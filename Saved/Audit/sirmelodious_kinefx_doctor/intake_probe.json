@@ -1,0 +1,1376 @@
+{
+ "schema": "melodia.sir_kinefx_intake.v1",
+ "timestamp": "2026-10-07T17:54:48+00:00",
+ "houdini": "22.0.368",
+ "stages_run": [
+  "mesh",
+  "clip"
+ ],
+ "mesh": {
+  "fbx": "Saved\\Audit\\SirMelodious_FlightUnit_20261003\\exports\\ue_arp\\SKM_SirMelodious_ARP_CrestTie_v5.fbx",
+  "pieces": {
+   "SirMelodiousBody": {
+    "points": 3892,
+    "prims": 3886,
+    "prim_groups": [],
+    "point_groups": [],
+    "point_attrs": [
+     "P"
+    ],
+    "prim_attrs": [
+     "shop_materialpath"
+    ],
+    "materials": {
+     "SirMelodious_Uni": 3886
+    },
+    "skin_chain": [
+     "SirMelodiousBody_capture=capture",
+     "SirMelodiousBody_override=captureoverride",
+     "SirMelodiousBody_deform=bonedeform"
+    ],
+    "bbox_min": [
+     -6.223,
+     -303.577,
+     -66.886
+    ],
+    "bbox_max": [
+     73.938,
+     38.231,
+     14.139
+    ]
+   },
+   "sirmelodious_B__zierCurve_002": {
+    "points": 20736,
+    "prims": 20736,
+    "prim_groups": [],
+    "point_groups": [],
+    "point_attrs": [
+     "P",
+     "N"
+    ],
+    "prim_attrs": [
+     "shop_materialpath"
+    ],
+    "materials": {
+     "Material.047": 20736
+    },
+    "skin_chain": [
+     "sirmelodious_B__zierCurve_002_capture=capture",
+     "sirmelodious_B__zierCurve_002_override=captureoverride",
+     "sirmelodious_B__zierCurve_002_deform=bonedeform"
+    ],
+    "bbox_min": [
+     31.213,
+     -293.73,
+     -61.788
+    ],
+    "bbox_max": [
+     61.75,
+     -264.709,
+     -42.459
+    ]
+   },
+   "sirmelodious_Crest": {
+    "points": 2344,
+    "prims": 4680,
+    "prim_groups": [],
+    "point_groups": [],
+    "point_attrs": [
+     "P"
+    ],
+    "prim_attrs": [
+     "shop_materialpath"
+    ],
+    "materials": {
+     "MAT_Crest": 4680
+    },
+    "skin_chain": [
+     "sirmelodious_Crest_capture=capture",
+     "sirmelodious_Crest_override=captureoverride",
+     "sirmelodious_Crest_deform=bonedeform"
+    ],
+    "bbox_min": [
+     39.486,
+     -249.625,
+     93.804
+    ],
+    "bbox_max": [
+     42.76,
+     -245.66,
+     102.48
+    ]
+   },
+   "sirmelodious_Retopo_PM3D_Cube3D1_002": {
+    "points": 344,
+    "prims": 342,
+    "prim_groups": [],
+    "point_groups": [],
+    "point_attrs": [
+     "P"
+    ],
+    "prim_attrs": [
+     "shop_materialpath"
+    ],
+    "materials": {
+     "SirMelodious_Uni.002": 342
+    },
+    "skin_chain": [
+     "sirmelodious_Retopo_PM3D_Cube3D1_002_capture=capture",
+     "sirmelodious_Retopo_PM3D_Cube3D1_002_override=captureoverride",
+     "sirmelodious_Retopo_PM3D_Cube3D1_002_deform=bonedeform"
+    ],
+    "bbox_min": [
+     42.624,
+     -294.184,
+     -58.082
+    ],
+    "bbox_max": [
+     50.334,
+     -292.06,
+     -40.004
+    ]
+   },
+   "sirmelodious_Retopo_PM3D_Cube3D24_001": {
+    "points": 40068,
+    "prims": 39856,
+    "prim_groups": [],
+    "point_groups": [],
+    "point_attrs": [
+     "P",
+     "N"
+    ],
+    "prim_attrs": [
+     "shop_materialpath"
+    ],
+    "materials": {
+     "SirMelodious_Uni.001": 39856
+    },
+    "skin_chain": [
+     "sirmelodious_Retopo_PM3D_Cube3D24_001_capture=capture",
+     "sirmelodious_Retopo_PM3D_Cube3D24_001_override=captureoverride",
+     "sirmelodious_Retopo_PM3D_Cube3D24_001_deform=bonedeform"
+    ],
+    "bbox_min": [
+     18.63,
+     -302.845,
+     -48.89
+    ],
+    "bbox_max": [
+     74.326,
+     -284.969,
+     -35.652
+    ]
+   },
+   "sirmelodious_Retopo_PM3D_Cube3D25_001": {
+    "points": 226840,
+    "prims": 223024,
+    "prim_groups": [
+     "Outline_Shader___030_group",
+     "SirMelodious_Uni_001_group"
+    ],
+    "point_groups": [],
+    "point_attrs": [
+     "P",
+     "N"
+    ],
+    "prim_attrs": [
+     "shop_materialpath"
+    ],
+    "materials": {
+     "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_SKM_SirMelodious_ARP_CrestTie_v5_fbx/materials/SirMelodious_Uni_001": 111512,
+     "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_SKM_SirMelodious_ARP_CrestTie_v5_fbx/materials/Outline_Shader___030": 111512
+    },
+    "skin_chain": [
+     "sirmelodious_Retopo_PM3D_Cube3D25_001_capture=capture",
+     "sirmelodious_Retopo_PM3D_Cube3D25_001_override=captureoverride",
+     "sirmelodious_Retopo_PM3D_Cube3D25_001_deform=bonedeform"
+    ],
+    "bbox_min": [
+     15.462,
+     -307.569,
+     -50.959
+    ],
+    "bbox_max": [
+     77.492,
+     -284.567,
+     -35.58
+    ]
+   },
+   "sirmelodious_Retopo_PM3D_Cube3D28_001": {
+    "points": 1190,
+    "prims": 1216,
+    "prim_groups": [],
+    "point_groups": [],
+    "point_attrs": [
+     "P",
+     "N"
+    ],
+    "prim_attrs": [
+     "shop_materialpath"
+    ],
+    "materials": {
+     "Material.038": 1216
+    },
+    "skin_chain": [
+     "sirmelodious_Retopo_PM3D_Cube3D28_001_capture=capture",
+     "sirmelodious_Retopo_PM3D_Cube3D28_001_override=captureoverride",
+     "sirmelodious_Retopo_PM3D_Cube3D28_001_deform=bonedeform"
+    ],
+    "bbox_min": [
+     20.164,
+     -307.257,
+     -49.167
+    ],
+    "bbox_max": [
+     72.789,
+     -291.52,
+     -38.87
+    ]
+   },
+   "sirmelodious_Retopo_PM3D_Cube3D29_001": {
+    "points": 49648,
+    "prims": 51040,
+    "prim_groups": [
+     "Outline_Shader___023_group",
+     "SirMelodious_Uni_001_group"
+    ],
+    "point_groups": [],
+    "point_attrs": [
+     "P",
+     "N"
+    ],
+    "prim_attrs": [
+     "shop_materialpath"
+    ],
+    "materials": {
+     "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_SKM_SirMelodious_ARP_CrestTie_v5_fbx/materials/SirMelodious_Uni_001": 25520,
+     "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_SKM_SirMelodious_ARP_CrestTie_v5_fbx/materials/Outline_Shader___023": 25520
+    },
+    "skin_chain": [
+     "sirmelodious_Retopo_PM3D_Cube3D29_001_capture=capture",
+     "sirmelodious_Retopo_PM3D_Cube3D29_001_override=captureoverride",
+     "sirmelodious_Retopo_PM3D_Cube3D29_001_deform=bonedeform"
+    ],
+    "bbox_min": [
+     21.126,
+     -298.388,
+     -41.507
+    ],
+    "bbox_max": [
+     71.831,
+     -284.943,
+     -36.337
+    ]
+   },
+   "sirmelodious_Retopo_PM3D_Ring3D2_002": {
+    "points": 1826,
+    "prims": 1826,
+    "prim_groups": [],
+    "point_groups": [],
+    "point_attrs": [
+     "P",
+     "N"
+    ],
+    "prim_attrs": [
+     "shop_materialpath"
+    ],
+    "materials": {
+     "SirMelodious_Uni.003": 1826
+    },
+    "skin_chain": [
+     "sirmelodious_Retopo_PM3D_Ring3D2_002_capture=capture",
+     "sirmelodious_Retopo_PM3D_Ring3D2_002_override=captureoverride",
+     "sirmelodious_Retopo_PM3D_Ring3D2_002_deform=bonedeform"
+    ],
+    "bbox_min": [
+     30.544,
+     -293.591,
+     -60.909
+    ],
+    "bbox_max": [
+     62.415,
+     -264.185,
+     -39.767
+    ]
+   },
+   "sirmelodious_Retopo_PM3D_Sphere3D1_002": {
+    "points": 136,
+    "prims": 128,
+    "prim_groups": [
+     "Material_035_group",
+     "Outline_Shader___002_group"
+    ],
+    "point_groups": [],
+    "point_attrs": [
+     "P"
+    ],
+    "prim_attrs": [
+     "shop_materialpath"
+    ],
+    "materials": {
+     "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_SKM_SirMelodious_ARP_CrestTie_v5_fbx/materials/Material_035": 64,
+     "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_SKM_SirMelodious_ARP_CrestTie_v5_fbx/materials/Outline_Shader___002": 64
+    },
+    "skin_chain": [
+     "sirmelodious_Retopo_PM3D_Sphere3D1_002_capture=capture",
+     "sirmelodious_Retopo_PM3D_Sphere3D1_002_override=captureoverride",
+     "sirmelodious_Retopo_PM3D_Sphere3D1_002_deform=bonedeform"
+    ],
+    "bbox_min": [
+     39.886,
+     -288.185,
+     -34.249
+    ],
+    "bbox_max": [
+     53.306,
+     -285.658,
+     -32.016
+    ]
+   }
+  },
+  "joint_objects": 132,
+  "joints": [
+   "arm_stretch_l",
+   "arm_stretch_l_bone",
+   "arm_stretch_l_bone1",
+   "arm_stretch_l_bone2",
+   "arm_stretch_l_bone3",
+   "arm_stretch_l_bone4",
+   "arm_stretch_r",
+   "arm_stretch_r_bone",
+   "arm_stretch_r_bone1",
+   "arm_stretch_r_bone2",
+   "arm_stretch_r_bone3",
+   "arm_stretch_r_bone4",
+   "c_arm_feather_01_01_01_l",
+   "c_arm_feather_01_01_01_r",
+   "c_arm_feather_02_01_01_l",
+   "c_arm_feather_02_01_01_r",
+   "c_arm_feather_03_01_01_l",
+   "c_arm_feather_03_01_01_r",
+   "c_arm_feather_04_01_01_l",
+   "c_arm_feather_04_01_01_r",
+   "c_forearm_feather_01_01_01_l",
+   "c_forearm_feather_01_01_01_r",
+   "c_forearm_feather_02_01_01_l",
+   "c_forearm_feather_02_01_01_r",
+   "c_forearm_feather_03_01_01_l",
+   "c_forearm_feather_03_01_01_r",
+   "c_forearm_feather_04_01_01_l",
+   "c_forearm_feather_04_01_01_r",
+   "c_forearm_feather_05_01_01_l",
+   "c_forearm_feather_05_01_01_r",
+   "c_hand_feather_01_01_01_l",
+   "c_hand_feather_01_01_01_r",
+   "c_hand_feather_02_01_01_l",
+   "c_hand_feather_02_01_01_r",
+   "c_kilt_01_01_l",
+   "c_kilt_01_01_r",
+   "c_kilt_02_01_l",
+   "c_kilt_02_01_r",
+   "c_kilt_03_01_l",
+   "c_kilt_03_01_r",
+   "c_kilt_04_01_l",
+   "c_kilt_04_01_r",
+   "c_kilt_05_01_l",
+   "c_kilt_05_01_r",
+   "c_kilt_06_01_l",
+   "c_kilt_06_01_r",
+   "c_kilt_master_x",
+   "c_kilt_master_x_bone",
+   "c_kilt_master_x_bone1",
+   "c_kilt_master_x_bone10",
+   "c_kilt_master_x_bone11",
+   "c_kilt_master_x_bone2",
+   "c_kilt_master_x_bone3",
+   "c_kilt_master_x_bone4",
+   "c_kilt_master_x_bone5",
+   "c_kilt_master_x_bone6",
+   "c_kilt_master_x_bone7",
+   "c_kilt_master_x_bone8",
+   "c_kilt_master_x_bone9",
+   "c_skull_01_x",
+   "c_skull_02_x",
+   "c_skull_03_x",
+   "cc_crest_01",
+   "cc_crest_01_bone",
+   "cc_crest_02",
+   "cc_crest_02_bone",
+   "cc_crest_03",
+   "cc_crest_03_bone",
+   "cc_crest_04",
+   "cc_tie_01",
+   "cc_tie_01_bone",
+   "cc_tie_02",
+   "cc_tie_02_bone",
+   "cc_tie_03",
+   "foot_l",
+   "foot_l_bone",
+   "foot_r",
+   "foot_r_bone",
+   "forearm_stretch_l",
+   "forearm_stretch_l_bone",
+   "forearm_stretch_l_bone1",
+   "forearm_stretch_l_bone2",
+   "forearm_stretch_l_bone3",
+   "forearm_stretch_l_bone4",
+   "forearm_stretch_l_bone5",
+   "forearm_stretch_r",
+   "forearm_stretch_r_bone",
+   "forearm_stretch_r_bone1",
+   "forearm_stretch_r_bone2",
+   "forearm_stretch_r_bone3",
+   "forearm_stretch_r_bone4",
+   "forearm_stretch_r_bone5",
+   "hand_l",
+   "hand_l_bone",
+   "hand_l_bone1",
+   "hand_r",
+   "hand_r_bone",
+   "hand_r_bone1",
+   "head_x",
+   "head_x_bone",
+   "head_x_bone1",
+   "head_x_bone2",
+   "head_x_bone3",
+   "leg_stretch_l",
+   "leg_stretch_l_bone",
+   "leg_stretch_r",
+   "leg_stretch_r_bone",
+   "neck_x",
+   "neck_x_bone",
+   "root",
+   "root_x",
+   "root_x_bone",
+   "root_x_bone1",
+   "root_x_bone2",
+   "root_x_bone3",
+   "shoulder_l",
+   "shoulder_l_bone",
+   "shoulder_r",
+   "shoulder_r_bone",
+   "spine_01_x",
+   "spine_01_x_bone",
+   "spine_02_x",
+   "spine_02_x_bone",
+   "spine_02_x_bone1",
+   "spine_02_x_bone2",
+   "spine_02_x_bone3",
+   "thigh_stretch_l",
+   "thigh_stretch_l_bone",
+   "thigh_stretch_r",
+   "thigh_stretch_r_bone",
+   "toes_01_l",
+   "toes_01_r"
+  ],
+  "feather_joints": [
+   "c_arm_feather_01_01_01_l",
+   "c_arm_feather_01_01_01_r",
+   "c_arm_feather_02_01_01_l",
+   "c_arm_feather_02_01_01_r",
+   "c_arm_feather_03_01_01_l",
+   "c_arm_feather_03_01_01_r",
+   "c_arm_feather_04_01_01_l",
+   "c_arm_feather_04_01_01_r",
+   "c_forearm_feather_01_01_01_l",
+   "c_forearm_feather_01_01_01_r",
+   "c_forearm_feather_02_01_01_l",
+   "c_forearm_feather_02_01_01_r",
+   "c_forearm_feather_03_01_01_l",
+   "c_forearm_feather_03_01_01_r",
+   "c_forearm_feather_04_01_01_l",
+   "c_forearm_feather_04_01_01_r",
+   "c_forearm_feather_05_01_01_l",
+   "c_forearm_feather_05_01_01_r",
+   "c_hand_feather_01_01_01_l",
+   "c_hand_feather_01_01_01_r",
+   "c_hand_feather_02_01_01_l",
+   "c_hand_feather_02_01_01_r"
+  ],
+  "crest_joints": [
+   "cc_crest_01",
+   "cc_crest_01_bone",
+   "cc_crest_02",
+   "cc_crest_02_bone",
+   "cc_crest_03",
+   "cc_crest_03_bone",
+   "cc_crest_04"
+  ],
+  "tie_joints": [
+   "cc_tie_01",
+   "cc_tie_01_bone",
+   "cc_tie_02",
+   "cc_tie_02_bone",
+   "cc_tie_03"
+  ],
+  "subnet": [
+   "D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_SKM_SirMelodious_ARP_CrestTie_v5_fbx"
+  ]
+ },
+ "clip": {
+  "fbx": "Saved\\Audit\\SirMelodious_FlightUnit_20261003\\exports\\ue_arp\\A_Sir_Fly_Loop_v5_ARP.fbx",
+  "animated_nodes_scene": {
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/root": 18,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/root/control1": 18,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/root_x": 438,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/root_x/control1": 18,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/root_x/cregion": 3,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_kilt_master_x": 77,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_kilt_master_x/control1": 18,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_kilt_master_x/cregion": 3,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/root_x_bone": 1,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/root_x_bone/bonelink": 8,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_kilt_01_01_l": 18,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_kilt_01_01_l/control1": 18,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_kilt_01_01_l/cregion": 3,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_kilt_master_x_bone": 1,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_kilt_master_x_bone/bonelink": 8,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_kilt_01_01_r": 18,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_kilt_01_01_r/control1": 18,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_kilt_01_01_r/cregion": 3,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_kilt_master_x_bone1": 1,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_kilt_master_x_bone1/bonelink": 8,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_kilt_02_01_l": 18,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_kilt_02_01_l/control1": 18,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_kilt_02_01_l/cregion": 3,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_kilt_master_x_bone2": 1,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_kilt_master_x_bone2/bonelink": 8,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_kilt_02_01_r": 18,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_kilt_02_01_r/control1": 18,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_kilt_02_01_r/cregion": 3,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_kilt_master_x_bone3": 1,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_kilt_master_x_bone3/bonelink": 8,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_kilt_03_01_l": 18,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_kilt_03_01_l/control1": 18,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_kilt_03_01_l/cregion": 3,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_kilt_master_x_bone4": 1,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_kilt_master_x_bone4/bonelink": 8,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_kilt_03_01_r": 18,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_kilt_03_01_r/control1": 18,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_kilt_03_01_r/cregion": 3,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_kilt_master_x_bone5": 1,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_kilt_master_x_bone5/bonelink": 8,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_kilt_04_01_l": 18,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_kilt_04_01_l/control1": 18,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_kilt_04_01_l/cregion": 3,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_kilt_master_x_bone6": 1,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_kilt_master_x_bone6/bonelink": 8,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_kilt_04_01_r": 18,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_kilt_04_01_r/control1": 18,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_kilt_04_01_r/cregion": 3,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_kilt_master_x_bone7": 1,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_kilt_master_x_bone7/bonelink": 8,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_kilt_05_01_l": 71,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_kilt_05_01_l/control1": 18,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_kilt_05_01_l/cregion": 3,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_kilt_master_x_bone8": 1,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_kilt_master_x_bone8/bonelink": 8,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_kilt_05_01_r": 60,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_kilt_05_01_r/control1": 18,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_kilt_05_01_r/cregion": 3,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_kilt_master_x_bone9": 1,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_kilt_master_x_bone9/bonelink": 8,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_kilt_06_01_l": 59,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_kilt_06_01_l/control1": 18,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_kilt_06_01_l/cregion": 3,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_kilt_master_x_bone10": 1,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_kilt_master_x_bone10/bonelink": 8,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_kilt_06_01_r": 65,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_kilt_06_01_r/control1": 18,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_kilt_06_01_r/cregion": 3,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_kilt_master_x_bone11": 1,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_kilt_master_x_bone11/bonelink": 8,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/spine_01_x": 160,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/spine_01_x/control1": 18,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/spine_01_x/cregion": 3,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/root_x_bone1": 1,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/root_x_bone1/bonelink": 8,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/spine_02_x": 137,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/spine_02_x/control1": 18,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/spine_02_x/cregion": 3,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/spine_01_x_bone": 1,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/spine_01_x_bone/bonelink": 8,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/cc_tie_01": 18,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/cc_tie_01/control1": 18,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/cc_tie_01/cregion": 3,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/spine_02_x_bone": 1,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/spine_02_x_bone/bonelink": 8,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/cc_tie_02": 148,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/cc_tie_02/control1": 18,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/cc_tie_02/cregion": 3,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/cc_tie_01_bone": 1,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/cc_tie_01_bone/bonelink": 8,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/cc_tie_03": 160,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/cc_tie_03/control1": 18,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/cc_tie_03/cregion": 3,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/cc_tie_02_bone": 1,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/cc_tie_02_bone/bonelink": 8,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/neck_x": 219,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/neck_x/control1": 18,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/neck_x/cregion": 3,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/spine_02_x_bone1": 1,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/spine_02_x_bone1/bonelink": 8,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/head_x": 302,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/head_x/control1": 18,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/head_x/cregion": 3,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/neck_x_bone": 1,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/neck_x_bone/bonelink": 8,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_skull_01_x": 249,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_skull_01_x/control1": 18,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_skull_01_x/cregion": 3,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/head_x_bone": 1,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/head_x_bone/bonelink": 8,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_skull_02_x": 229,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_skull_02_x/control1": 18,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_skull_02_x/cregion": 3,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/head_x_bone1": 1,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/head_x_bone1/bonelink": 8,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_skull_03_x": 198,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_skull_03_x/control1": 18,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_skull_03_x/cregion": 3,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/head_x_bone2": 1,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/head_x_bone2/bonelink": 8,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/cc_crest_01": 83,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/cc_crest_01/control1": 18,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/cc_crest_01/cregion": 3,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/head_x_bone3": 1,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/head_x_bone3/bonelink": 8,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/cc_crest_02": 268,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/cc_crest_02/control1": 18,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/cc_crest_02/cregion": 3,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/cc_crest_01_bone": 1,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/cc_crest_01_bone/bonelink": 8,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/cc_crest_03": 291,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/cc_crest_03/control1": 18,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/cc_crest_03/cregion": 3,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/cc_crest_02_bone": 1,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/cc_crest_02_bone/bonelink": 8,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/cc_crest_04": 307,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/cc_crest_04/control1": 18,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/cc_crest_04/cregion": 3,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/cc_crest_03_bone": 1,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/cc_crest_03_bone/bonelink": 8,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/shoulder_l": 18,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/shoulder_l/control1": 18,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/shoulder_l/cregion": 3,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/spine_02_x_bone2": 1,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/spine_02_x_bone2/bonelink": 8,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/arm_stretch_l": 279,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/arm_stretch_l/control1": 18,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/arm_stretch_l/cregion": 3,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/shoulder_l_bone": 1,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/shoulder_l_bone/bonelink": 8,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_arm_feather_01_01_01_l": 315,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_arm_feather_01_01_01_l/control1": 18,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_arm_feather_01_01_01_l/cregion": 3,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/arm_stretch_l_bone": 1,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/arm_stretch_l_bone/bonelink": 8,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_arm_feather_02_01_01_l": 414,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_arm_feather_02_01_01_l/control1": 18,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_arm_feather_02_01_01_l/cregion": 3,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/arm_stretch_l_bone1": 1,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/arm_stretch_l_bone1/bonelink": 8,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_arm_feather_03_01_01_l": 302,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_arm_feather_03_01_01_l/control1": 18,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_arm_feather_03_01_01_l/cregion": 3,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/arm_stretch_l_bone2": 1,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/arm_stretch_l_bone2/bonelink": 8,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_arm_feather_04_01_01_l": 290,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_arm_feather_04_01_01_l/control1": 18,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_arm_feather_04_01_01_l/cregion": 3,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/arm_stretch_l_bone3": 1,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/arm_stretch_l_bone3/bonelink": 8,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/forearm_stretch_l": 302,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/forearm_stretch_l/control1": 18,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/forearm_stretch_l/cregion": 3,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/arm_stretch_l_bone4": 1,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/arm_stretch_l_bone4/bonelink": 8,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_forearm_feather_01_01_01_l": 255,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_forearm_feather_01_01_01_l/control1": 18,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_forearm_feather_01_01_01_l/cregion": 3,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/forearm_stretch_l_bone": 1,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/forearm_stretch_l_bone/bonelink": 8,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_forearm_feather_02_01_01_l": 302,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_forearm_feather_02_01_01_l/control1": 18,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_forearm_feather_02_01_01_l/cregion": 3,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/forearm_stretch_l_bone1": 1,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/forearm_stretch_l_bone1/bonelink": 8,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_forearm_feather_03_01_01_l": 310,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_forearm_feather_03_01_01_l/control1": 18,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_forearm_feather_03_01_01_l/cregion": 3,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/forearm_stretch_l_bone2": 1,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/forearm_stretch_l_bone2/bonelink": 8,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_forearm_feather_04_01_01_l": 361,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_forearm_feather_04_01_01_l/control1": 18,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_forearm_feather_04_01_01_l/cregion": 3,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/forearm_stretch_l_bone3": 1,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/forearm_stretch_l_bone3/bonelink": 8,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_forearm_feather_05_01_01_l": 308,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_forearm_feather_05_01_01_l/control1": 18,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_forearm_feather_05_01_01_l/cregion": 3,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/forearm_stretch_l_bone4": 1,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/forearm_stretch_l_bone4/bonelink": 8,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/hand_l": 225,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/hand_l/control1": 18,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/hand_l/cregion": 3,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/forearm_stretch_l_bone5": 1,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/forearm_stretch_l_bone5/bonelink": 8,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_hand_feather_01_01_01_l": 274,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_hand_feather_01_01_01_l/control1": 18,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_hand_feather_01_01_01_l/cregion": 3,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/hand_l_bone": 1,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/hand_l_bone/bonelink": 8,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_hand_feather_02_01_01_l": 170,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_hand_feather_02_01_01_l/control1": 18,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_hand_feather_02_01_01_l/cregion": 3,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/hand_l_bone1": 1,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/hand_l_bone1/bonelink": 8,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/shoulder_r": 18,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/shoulder_r/control1": 18,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/shoulder_r/cregion": 3,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/spine_02_x_bone3": 1,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/spine_02_x_bone3/bonelink": 8,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/arm_stretch_r": 279,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/arm_stretch_r/control1": 18,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/arm_stretch_r/cregion": 3,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/shoulder_r_bone": 1,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/shoulder_r_bone/bonelink": 8,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_arm_feather_01_01_01_r": 331,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_arm_feather_01_01_01_r/control1": 18,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_arm_feather_01_01_01_r/cregion": 3,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/arm_stretch_r_bone": 1,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/arm_stretch_r_bone/bonelink": 8,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_arm_feather_02_01_01_r": 417,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_arm_feather_02_01_01_r/control1": 18,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_arm_feather_02_01_01_r/cregion": 3,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/arm_stretch_r_bone1": 1,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/arm_stretch_r_bone1/bonelink": 8,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_arm_feather_03_01_01_r": 302,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_arm_feather_03_01_01_r/control1": 18,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_arm_feather_03_01_01_r/cregion": 3,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/arm_stretch_r_bone2": 1,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/arm_stretch_r_bone2/bonelink": 8,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_arm_feather_04_01_01_r": 313,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_arm_feather_04_01_01_r/control1": 18,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_arm_feather_04_01_01_r/cregion": 3,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/arm_stretch_r_bone3": 1,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/arm_stretch_r_bone3/bonelink": 8,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/forearm_stretch_r": 302,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/forearm_stretch_r/control1": 18,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/forearm_stretch_r/cregion": 3,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/arm_stretch_r_bone4": 1,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/arm_stretch_r_bone4/bonelink": 8,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_forearm_feather_01_01_01_r": 285,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_forearm_feather_01_01_01_r/control1": 18,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_forearm_feather_01_01_01_r/cregion": 3,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/forearm_stretch_r_bone": 1,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/forearm_stretch_r_bone/bonelink": 8,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_forearm_feather_02_01_01_r": 302,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_forearm_feather_02_01_01_r/control1": 18,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_forearm_feather_02_01_01_r/cregion": 3,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/forearm_stretch_r_bone1": 1,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/forearm_stretch_r_bone1/bonelink": 8,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_forearm_feather_03_01_01_r": 335,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_forearm_feather_03_01_01_r/control1": 18,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_forearm_feather_03_01_01_r/cregion": 3,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/forearm_stretch_r_bone2": 1,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/forearm_stretch_r_bone2/bonelink": 8,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_forearm_feather_04_01_01_r": 390,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_forearm_feather_04_01_01_r/control1": 18,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_forearm_feather_04_01_01_r/cregion": 3,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/forearm_stretch_r_bone3": 1,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/forearm_stretch_r_bone3/bonelink": 8,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_forearm_feather_05_01_01_r": 324,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_forearm_feather_05_01_01_r/control1": 18,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_forearm_feather_05_01_01_r/cregion": 3,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/forearm_stretch_r_bone4": 1,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/forearm_stretch_r_bone4/bonelink": 8,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/hand_r": 222,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/hand_r/control1": 18,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/hand_r/cregion": 3,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/forearm_stretch_r_bone5": 1,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/forearm_stretch_r_bone5/bonelink": 8,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_hand_feather_01_01_01_r": 291,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_hand_feather_01_01_01_r/control1": 18,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_hand_feather_01_01_01_r/cregion": 3,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/hand_r_bone": 1,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/hand_r_bone/bonelink": 8,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_hand_feather_02_01_01_r": 331,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_hand_feather_02_01_01_r/control1": 18,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/c_hand_feather_02_01_01_r/cregion": 3,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/hand_r_bone1": 1,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/hand_r_bone1/bonelink": 8,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/thigh_stretch_l": 231,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/thigh_stretch_l/control1": 18,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/thigh_stretch_l/cregion": 3,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/root_x_bone2": 1,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/root_x_bone2/bonelink": 8,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/leg_stretch_l": 302,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/leg_stretch_l/control1": 18,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/leg_stretch_l/cregion": 3,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/thigh_stretch_l_bone": 1,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/thigh_stretch_l_bone/bonelink": 8,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/foot_l": 225,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/foot_l/control1": 18,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/foot_l/cregion": 3,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/leg_stretch_l_bone": 1,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/leg_stretch_l_bone/bonelink": 8,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/toes_01_l": 160,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/toes_01_l/control1": 18,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/toes_01_l/cregion": 3,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/foot_l_bone": 1,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/foot_l_bone/bonelink": 8,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/thigh_stretch_r": 231,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/thigh_stretch_r/control1": 18,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/thigh_stretch_r/cregion": 3,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/root_x_bone3": 1,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/root_x_bone3/bonelink": 8,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/leg_stretch_r": 302,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/leg_stretch_r/control1": 18,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/leg_stretch_r/cregion": 3,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/thigh_stretch_r_bone": 1,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/thigh_stretch_r_bone/bonelink": 8,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/foot_r": 225,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/foot_r/control1": 18,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/foot_r/cregion": 3,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/leg_stretch_r_bone": 1,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/leg_stretch_r_bone/bonelink": 8,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/toes_01_r": 160,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/toes_01_r/control1": 18,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/toes_01_r/cregion": 3,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/foot_r_bone": 1,
+   "/obj/D__EnvironmentPortfolio_BS_GodFile_Saved_Audit_SirMelodious_FlightUnit_20261003_exports_ue_arp_A_Sir_Fly_Loop_v5_ARP_fbx/foot_r_bone/bonelink": 8
+  },
+  "animated_node_count": 330,
+  "chopnets": {},
+  "sample_frames": [
+   1,
+   10
+  ],
+  "world_motion_sample": {
+   "root_x": {
+    "f1": [
+     -97.703,
+     128.073,
+     -19.803
+    ],
+    "f10": [
+     -97.841,
+     128.977,
+     -20.209
+    ],
+    "delta_l1": 1.449
+   },
+   "c_kilt_master_x": {
+    "f1": [
+     -93.803,
+     132.956,
+     -8.452
+    ],
+    "f10": [
+     -94.081,
+     134.814,
+     -9.269
+    ],
+    "delta_l1": 2.952
+   },
+   "root_x_bone": {
+    "f1": [
+     -97.703,
+     128.073,
+     -19.803
+    ],
+    "f10": [
+     -97.841,
+     128.977,
+     -20.209
+    ],
+    "delta_l1": 1.449
+   },
+   "c_kilt_01_01_l": {
+    "f1": [
+     -90.277,
+     142.711,
+     -5.942
+    ],
+    "f10": [
+     -90.812,
+     144.82,
+     -7.515
+    ],
+    "delta_l1": 4.217
+   },
+   "c_kilt_master_x_bone": {
+    "f1": [
+     -93.803,
+     132.956,
+     -8.452
+    ],
+    "f10": [
+     -94.081,
+     134.814,
+     -9.269
+    ],
+    "delta_l1": 2.952
+   },
+   "c_kilt_01_01_r": {
+    "f1": [
+     -95.069,
+     142.711,
+     -4.313
+    ],
+    "f10": [
+     -95.604,
+     144.82,
+     -5.886
+    ],
+    "delta_l1": 4.217
+   },
+   "c_kilt_master_x_bone1": {
+    "f1": [
+     -93.803,
+     132.956,
+     -8.452
+    ],
+    "f10": [
+     -94.081,
+     134.814,
+     -9.269
+    ],
+    "delta_l1": 2.952
+   },
+   "c_kilt_02_01_l": {
+    "f1": [
+     -89.694,
+     142.732,
+     -6.607
+    ],
+    "f10": [
+     -90.229,
+     144.805,
+     -8.18
+    ],
+    "delta_l1": 4.182
+   },
+   "c_kilt_master_x_bone2": {
+    "f1": [
+     -93.803,
+     132.956,
+     -8.452
+    ],
+    "f10": [
+     -94.081,
+     134.814,
+     -9.269
+    ],
+    "delta_l1": 2.952
+   },
+   "c_kilt_02_01_r": {
+    "f1": [
+     -95.936,
+     142.732,
+     -4.485
+    ],
+    "f10": [
+     -96.471,
+     144.805,
+     -6.058
+    ],
+    "delta_l1": 4.182
+   },
+   "c_kilt_master_x_bone3": {
+    "f1": [
+     -93.803,
+     132.956,
+     -8.452
+    ],
+    "f10": [
+     -94.081,
+     134.814,
+     -9.269
+    ],
+    "delta_l1": 2.952
+   },
+   "c_kilt_03_01_l": {
+    "f1": [
+     -89.521,
+     142.767,
+     -7.473
+    ],
+    "f10": [
+     -90.056,
+     144.779,
+     -9.047
+    ],
+    "delta_l1": 4.12
+   },
+   "c_kilt_master_x_bone4": {
+    "f1": [
+     -93.803,
+     132.956,
+     -8.452
+    ],
+    "f10": [
+     -94.081,
+     134.814,
+     -9.269
+    ],
+    "delta_l1": 2.952
+   },
+   "c_kilt_03_01_r": {
+    "f1": [
+     -96.601,
+     142.767,
+     -5.067
+    ],
+    "f10": [
+     -97.136,
+     144.779,
+     -6.641
+    ],
+    "delta_l1": 4.12
+   },
+   "c_kilt_master_x_bone5": {
+    "f1": [
+     -93.803,
+     132.956,
+     -8.452
+    ],
+    "f10": [
+     -94.081,
+     134.814,
+     -9.269
+    ],
+    "delta_l1": 2.952
+   },
+   "c_kilt_04_01_l": {
+    "f1": [
+     -89.806,
+     142.808,
+     -8.309
+    ],
+    "f10": [
+     -90.341,
+     144.748,
+     -9.884
+    ],
+    "delta_l1": 4.049
+   },
+   "c_kilt_master_x_bone6": {
+    "f1": [
+     -93.803,
+     132.956,
+     -8.452
+    ],
+    "f10": [
+     -94.081,
+     134.814,
+     -9.269
+    ],
+    "delta_l1": 2.952
+   },
+   "c_kilt_04_01_r": {
+    "f1": [
+     -96.885,
+     142.808,
+     -5.903
+    ],
+    "f10": [
+     -97.42,
+     144.748,
+     -7.477
+    ],
+    "delta_l1": 4.049
+   },
+   "c_kilt_master_x_bone7": {
+    "f1": [
+     -93.803,
+     132.956,
+     -8.452
+    ],
+    "f10": [
+     -94.081,
+     134.814,
+     -9.269
+    ],
+    "delta_l1": 2.952
+   },
+   "c_kilt_05_01_l": {
+    "f1": [
+     -90.47,
+     142.844,
+     -8.891
+    ],
+    "f10": [
+     -91.006,
+     144.722,
+     -10.466
+    ],
+    "delta_l1": 3.988
+   },
+   "c_kilt_master_x_bone8": {
+    "f1": [
+     -93.803,
+     132.956,
+     -8.452
+    ],
+    "f10": [
+     -94.081,
+     134.814,
+     -9.269
+    ],
+    "delta_l1": 2.952
+   },
+   "c_kilt_05_01_r": {
+    "f1": [
+     -96.713,
+     142.844,
+     -6.77
+    ],
+    "f10": [
+     -97.248,
+     144.722,
+     -8.344
+    ],
+    "delta_l1": 3.988
+   },
+   "c_kilt_master_x_bone9": {
+    "f1": [
+     -93.803,
+     132.956,
+     -8.452
+    ],
+    "f10": [
+     -94.081,
+     134.814,
+     -9.269
+    ],
+    "delta_l1": 2.952
+   },
+   "c_kilt_06_01_l": {
+    "f1": [
+     -91.338,
+     142.864,
+     -9.063
+    ],
+    "f10": [
+     -91.873,
+     144.707,
+     -10.638
+    ],
+    "delta_l1": 3.952
+   },
+   "c_kilt_master_x_bone10": {
+    "f1": [
+     -93.803,
+     132.956,
+     -8.452
+    ],
+    "f10": [
+     -94.081,
+     134.814,
+     -9.269
+    ],
+    "delta_l1": 2.952
+   },
+   "c_kilt_06_01_r": {
+    "f1": [
+     -96.13,
+     142.864,
+     -7.434
+    ],
+    "f10": [
+     -96.665,
+     144.707,
+     -9.009
+    ],
+    "delta_l1": 3.952
+   },
+   "c_kilt_master_x_bone11": {
+    "f1": [
+     -93.803,
+     132.956,
+     -8.452
+    ],
+    "f10": [
+     -94.081,
+     134.814,
+     -9.269
+    ],
+    "delta_l1": 2.952
+   },
+   "spine_01_x": {
+    "f1": [
+     -94.887,
+     133.546,
+     -11.234
+    ],
+    "f10": [
+     -95.177,
+     135.161,
+     -12.086
+    ],
+    "delta_l1": 2.757
+   },
+   "root_x_bone1": {
+    "f1": [
+     -97.703,
+     128.073,
+     -19.803
+    ],
+    "f10": [
+     -97.841,
+     128.977,
+     -20.209
+    ],
+    "delta_l1": 1.449
+   },
+   "spine_02_x": {
+    "f1": [
+     -93.862,
+     138.85,
+     -7.497
+    ],
+    "f10": [
+     -94.294,
+     140.759,
+     -8.767
+    ],
+    "delta_l1": 3.611
+   },
+   "spine_01_x_bone": {
+    "f1": [
+     -94.887,
+     133.546,
+     -11.234
+    ],
+    "f10": [
+     -95.177,
+     135.161,
+     -12.086
+    ],
+    "delta_l1": 2.757
+   },
+   "cc_tie_01": {
+    "f1": [
+     -93.201,
+     146.03,
+     -0.015
+    ],
+    "f10": [
+     -93.827,
+     148.505,
+     -1.856
+    ],
+    "delta_l1": 4.943
+   },
+   "spine_02_x_bone": {
+    "f1": [
+     -93.862,
+     138.85,
+     -7.497
+    ],
+    "f10": [
+     -94.294,
+     140.759,
+     -8.767
+    ],
+    "delta_l1": 3.611
+   },
+   "cc_tie_02": {
+    "f1": [
+     -93.141,
+     139.704,
+     -0.187
+    ],
+    "f10": [
+     -93.602,
+     142.189,
+     -1.545
+    ],
+    "delta_l1": 4.303
+   },
+   "cc_tie_01_bone": {
+    "f1": [
+     -93.201,
+     146.03,
+     -0.015
+    ],
+    "f10": [
+     -93.827,
+     148.505,
+     -1.856
+    ],
+    "delta_l1": 4.943
+   },
+   "cc_tie_03": {
+    "f1": [
+     -93.171,
+     133.428,
+     -0.994
+    ],
+    "f10": [
+     -93.469,
+     135.87,
+     -1.869
+    ],
+    "delta_l1": 3.615
+   },
+   "cc_tie_02_bone": {
+    "f1": [
+     -93.141,
+     139.704,
+     -0.187
+    ],
+    "f10": [
+     -93.602,
+     142.189,
+     -1.545
+    ],
+    "delta_l1": 4.303
+   },
+   "neck_x": {
+    "f1": [
+     -93.372,
+     143.032,
+     -6.165
+    ],
+    "f10": [
+     -93.914,
+     145.043,
+     -7.759
+    ],
+    "delta_l1": 4.146
+   },
+   "spine_02_x_bone1": {
+    "f1": [
+     -93.862,
+     138.85,
+     -7.497
+    ],
+    "f10": [
+     -94.294,
+     140.759,
+     -8.767
+    ],
+    "delta_l1": 3.611
+   },
+   "head_x": {
+    "f1": [
+     -93.162,
+     147.711,
+     -5.862
+    ],
+    "f10": [
+     -93.826,
+     148.538,
+     -7.58
+    ],
+    "delta_l1": 3.208
+   }
+  },
+  "motion_nodes_sampled": 40,
+  "verdict": "scene_keyframes"
+ },
+ "status": "PASS"
+}

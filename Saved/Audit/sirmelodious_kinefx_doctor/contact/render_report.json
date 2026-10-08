@@ -1,0 +1,286 @@
+{
+ "clips": {
+  "A_Sir_Fly_Loop_v6_ARP": {
+   "frames": [
+    1,
+    73
+   ],
+   "shots": [
+    {
+     "frame": 1,
+     "path": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\sirmelodious_kinefx_doctor\\contact\\sir_A_Sir_Fly_Loop_v6_ARP_f001.png"
+    },
+    {
+     "frame": 15,
+     "path": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\sirmelodious_kinefx_doctor\\contact\\sir_A_Sir_Fly_Loop_v6_ARP_f015.png"
+    },
+    {
+     "frame": 29,
+     "path": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\sirmelodious_kinefx_doctor\\contact\\sir_A_Sir_Fly_Loop_v6_ARP_f029.png"
+    },
+    {
+     "frame": 44,
+     "path": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\sirmelodious_kinefx_doctor\\contact\\sir_A_Sir_Fly_Loop_v6_ARP_f044.png"
+    },
+    {
+     "frame": 58,
+     "path": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\sirmelodious_kinefx_doctor\\contact\\sir_A_Sir_Fly_Loop_v6_ARP_f058.png"
+    },
+    {
+     "frame": 73,
+     "path": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\sirmelodious_kinefx_doctor\\contact\\sir_A_Sir_Fly_Loop_v6_ARP_f073.png"
+    }
+   ],
+   "action": "root.001|root|A_Sir_Fly_Loop_v5",
+   "status": "DONE",
+   "span_check": {
+    "bone_span": [
+     0.463,
+     0.244,
+     0.458
+    ],
+    "mesh_span": [
+     0.842,
+     0.673,
+     0.553
+    ],
+    "mesh_vs_bone": 1.82
+   }
+  },
+  "A_Sir_Hover_Idle_v6_ARP": {
+   "frames": [
+    1,
+    49
+   ],
+   "shots": [
+    {
+     "frame": 1,
+     "path": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\sirmelodious_kinefx_doctor\\contact\\sir_A_Sir_Hover_Idle_v6_ARP_f001.png"
+    },
+    {
+     "frame": 10,
+     "path": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\sirmelodious_kinefx_doctor\\contact\\sir_A_Sir_Hover_Idle_v6_ARP_f010.png"
+    },
+    {
+     "frame": 20,
+     "path": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\sirmelodious_kinefx_doctor\\contact\\sir_A_Sir_Hover_Idle_v6_ARP_f020.png"
+    },
+    {
+     "frame": 29,
+     "path": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\sirmelodious_kinefx_doctor\\contact\\sir_A_Sir_Hover_Idle_v6_ARP_f029.png"
+    },
+    {
+     "frame": 39,
+     "path": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\sirmelodious_kinefx_doctor\\contact\\sir_A_Sir_Hover_Idle_v6_ARP_f039.png"
+    },
+    {
+     "frame": 49,
+     "path": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\sirmelodious_kinefx_doctor\\contact\\sir_A_Sir_Hover_Idle_v6_ARP_f049.png"
+    }
+   ],
+   "action": "root.001|root|A_Sir_Hover_Idle_v5",
+   "status": "DONE",
+   "span_check": {
+    "bone_span": [
+     0.465,
+     0.21,
+     0.477
+    ],
+    "mesh_span": [
+     0.814,
+     0.647,
+     0.553
+    ],
+    "mesh_vs_bone": 1.71
+   }
+  },
+  "A_Sir_Glide_v6_ARP": {
+   "frames": [
+    1,
+    49
+   ],
+   "shots": [
+    {
+     "frame": 1,
+     "path": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\sirmelodious_kinefx_doctor\\contact\\sir_A_Sir_Glide_v6_ARP_f001.png"
+    },
+    {
+     "frame": 10,
+     "path": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\sirmelodious_kinefx_doctor\\contact\\sir_A_Sir_Glide_v6_ARP_f010.png"
+    },
+    {
+     "frame": 20,
+     "path": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\sirmelodious_kinefx_doctor\\contact\\sir_A_Sir_Glide_v6_ARP_f020.png"
+    },
+    {
+     "frame": 29,
+     "path": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\sirmelodious_kinefx_doctor\\contact\\sir_A_Sir_Glide_v6_ARP_f029.png"
+    },
+    {
+     "frame": 39,
+     "path": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\sirmelodious_kinefx_doctor\\contact\\sir_A_Sir_Glide_v6_ARP_f039.png"
+    },
+    {
+     "frame": 49,
+     "path": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\sirmelodious_kinefx_doctor\\contact\\sir_A_Sir_Glide_v6_ARP_f049.png"
+    }
+   ],
+   "action": "root.001|root|A_Sir_Glide_v5",
+   "status": "DONE",
+   "span_check": {
+    "bone_span": [
+     0.47,
+     0.253,
+     0.45
+    ],
+    "mesh_span": [
+     0.75,
+     0.645,
+     0.555
+    ],
+    "mesh_vs_bone": 1.6
+   }
+  },
+  "A_Sir_Takeoff_v6_ARP": {
+   "frames": [
+    1,
+    41
+   ],
+   "shots": [
+    {
+     "frame": 1,
+     "path": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\sirmelodious_kinefx_doctor\\contact\\sir_A_Sir_Takeoff_v6_ARP_f001.png"
+    },
+    {
+     "frame": 9,
+     "path": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\sirmelodious_kinefx_doctor\\contact\\sir_A_Sir_Takeoff_v6_ARP_f009.png"
+    },
+    {
+     "frame": 17,
+     "path": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\sirmelodious_kinefx_doctor\\contact\\sir_A_Sir_Takeoff_v6_ARP_f017.png"
+    },
+    {
+     "frame": 25,
+     "path": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\sirmelodious_kinefx_doctor\\contact\\sir_A_Sir_Takeoff_v6_ARP_f025.png"
+    },
+    {
+     "frame": 33,
+     "path": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\sirmelodious_kinefx_doctor\\contact\\sir_A_Sir_Takeoff_v6_ARP_f033.png"
+    },
+    {
+     "frame": 41,
+     "path": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\sirmelodious_kinefx_doctor\\contact\\sir_A_Sir_Takeoff_v6_ARP_f041.png"
+    }
+   ],
+   "action": "root.001|root|A_Sir_Takeoff_v5",
+   "status": "DONE",
+   "span_check": {
+    "bone_span": [
+     0.485,
+     0.258,
+     0.497
+    ],
+    "mesh_span": [
+     0.724,
+     0.632,
+     0.555
+    ],
+    "mesh_vs_bone": 1.46
+   }
+  },
+  "A_Sir_Land_v6_ARP": {
+   "frames": [
+    1,
+    41
+   ],
+   "shots": [
+    {
+     "frame": 1,
+     "path": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\sirmelodious_kinefx_doctor\\contact\\sir_A_Sir_Land_v6_ARP_f001.png"
+    },
+    {
+     "frame": 9,
+     "path": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\sirmelodious_kinefx_doctor\\contact\\sir_A_Sir_Land_v6_ARP_f009.png"
+    },
+    {
+     "frame": 17,
+     "path": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\sirmelodious_kinefx_doctor\\contact\\sir_A_Sir_Land_v6_ARP_f017.png"
+    },
+    {
+     "frame": 25,
+     "path": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\sirmelodious_kinefx_doctor\\contact\\sir_A_Sir_Land_v6_ARP_f025.png"
+    },
+    {
+     "frame": 33,
+     "path": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\sirmelodious_kinefx_doctor\\contact\\sir_A_Sir_Land_v6_ARP_f033.png"
+    },
+    {
+     "frame": 41,
+     "path": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\sirmelodious_kinefx_doctor\\contact\\sir_A_Sir_Land_v6_ARP_f041.png"
+    }
+   ],
+   "action": "root.001|root|A_Sir_Land_v5",
+   "status": "DONE",
+   "span_check": {
+    "bone_span": [
+     0.48,
+     0.254,
+     0.479
+    ],
+    "mesh_span": [
+     0.812,
+     0.644,
+     0.564
+    ],
+    "mesh_vs_bone": 1.69
+   }
+  },
+  "A_Sir_Fly_Loop_v5_ARP": {
+   "frames": [
+    1,
+    73
+   ],
+   "shots": [
+    {
+     "frame": 1,
+     "path": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\sirmelodious_kinefx_doctor\\contact\\sir_A_Sir_Fly_Loop_v5_ARP_f001.png"
+    },
+    {
+     "frame": 15,
+     "path": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\sirmelodious_kinefx_doctor\\contact\\sir_A_Sir_Fly_Loop_v5_ARP_f015.png"
+    },
+    {
+     "frame": 29,
+     "path": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\sirmelodious_kinefx_doctor\\contact\\sir_A_Sir_Fly_Loop_v5_ARP_f029.png"
+    },
+    {
+     "frame": 44,
+     "path": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\sirmelodious_kinefx_doctor\\contact\\sir_A_Sir_Fly_Loop_v5_ARP_f044.png"
+    },
+    {
+     "frame": 58,
+     "path": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\sirmelodious_kinefx_doctor\\contact\\sir_A_Sir_Fly_Loop_v5_ARP_f058.png"
+    },
+    {
+     "frame": 73,
+     "path": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\sirmelodious_kinefx_doctor\\contact\\sir_A_Sir_Fly_Loop_v5_ARP_f073.png"
+    }
+   ],
+   "action": "root.001|root|A_Sir_Fly_Loop_v5",
+   "status": "DONE",
+   "span_check": {
+    "bone_span": [
+     0.463,
+     0.244,
+     0.458
+    ],
+    "mesh_span": [
+     0.802,
+     0.662,
+     0.553
+    ],
+    "mesh_vs_bone": 1.73
+   }
+  }
+ }
+}

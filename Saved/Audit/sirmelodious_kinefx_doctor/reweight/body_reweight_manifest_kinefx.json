@@ -1,0 +1,11 @@
+{
+ "asset": "/Game/Melodia/Characters/SirMelodious/Rigged/SK_SirMelodious_Rigged",
+ "method": "hython KineFX detection + mapping proof; writer stays NAME-based (Blender body_reweight_delta.json, visually proven)",
+ "ue_orders": [
+  "apply Blender delta (657 tail points -> root.x @1.0) at UE import, top-4 clamp mesh-wide, renormalise;",
+  "re-run sir_flight_doctor + wingtip_probe before guarded UE import;",
+  "OWNER DECISION (real fix): export the spline/bbone tail chain (c_spline_root.x -> spline_01/02/03.x, bbones_01..04.x) as deform bones so the tail articulates; then either lane binds by name."
+ ],
+ "staging_only": true,
+ "content_writes": 0
+}

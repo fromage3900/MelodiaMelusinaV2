@@ -1,0 +1,12 @@
+{
+ "schema": "melodia.sir_tailfix_export_fbx.v1",
+ "status": "DONE",
+ "arp_loaded": true,
+ "scene_has_arp": true,
+ "mesh_count": 10,
+ "arp_ret": [
+  "FINISHED"
+ ],
+ "fbx": true,
+ "fbx_mb": 28.21
+}

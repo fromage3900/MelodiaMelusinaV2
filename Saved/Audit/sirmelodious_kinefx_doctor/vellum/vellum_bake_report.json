@@ -1,0 +1,59 @@
+{
+ "schema": "melodia.sir_vellum_clothes.v4",
+ "fbx": "C:/EnvironmentPortfolio/BS_GodFile/Saved/Audit/SirMelodious_FlightUnit_20261003/exports/ue_arp/SKM_SirMelodious_ARP_CrestTie_v5_tailfix.fbx",
+ "frames": 48,
+ "fps": 24,
+ "cloth": [
+  "sirmelodious_Retopo_PM3D_Cube3D1_002",
+  "sirmelodious_B__zierCurve_002"
+ ],
+ "colliders": [
+  "SirMelodiousBody",
+  "sirmelodious_Crest"
+ ],
+ "scale": 0.01,
+ "gravity_m_s2": -9.80665,
+ "pin_quantile": 0.2,
+ "wind_m_s": 0.0,
+ "pin_threshold_m": {
+  "0": 0.02706,
+  "1": 0.016958
+ },
+ "piece_points": {
+  "0": 344,
+  "1": 20736
+ },
+ "pinned": {
+  "0": 69,
+  "1": 4148
+ },
+ "cloth_bbox_m": [
+  [
+   0.312,
+   -2.942,
+   -0.618
+  ],
+  [
+   0.618,
+   -2.647,
+   -0.4
+  ]
+ ],
+ "cloth_points": 21080,
+ "bake_seconds": 248.6,
+ "cache_files": 48,
+ "first": "sir_clothes_v4.0001.bgeo.sc",
+ "last": "sir_clothes_v4.0048.bgeo.sc",
+ "cache_mb": 103.67,
+ "verify": {
+  "f1_points": 21080,
+  "f_last_points": 21080,
+  "disp_max_cm": 12.405,
+  "disp_mean_cm": 4.863,
+  "max_edge_stretch_ratio_all": 1.69,
+  "max_edge_stretch_ratio_mm_plus": 1.286,
+  "mm_plus_edges": 65446,
+  "mm_plus_edges_over_1_5x": 0,
+  "pass": true
+ }
+}

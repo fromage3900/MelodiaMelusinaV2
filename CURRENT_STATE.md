@@ -1,5 +1,75 @@
 # Melodia Melusina ? Current State
 
+## Staged plan — college trip, home editor, convergence — 2026-10-08 07:20 EDT (uncommitted)
+
+Staged, not executed. Planned read-only, then adversarially fact-checked; the first draft failed that check, and the version below is the verified one. Nothing here is committed. This pass edits only this section.
+
+**Snapshot (verified 07:19 EDT)**
+- Editor: GUI not running. Headless `UnrealEditor-Cmd` PID 38524 (started 06:29:09, `BS_GodFile.uproject -stdout -FullStdOutLogOutput -skipcompile`) holds 127.0.0.1:9316 and answers Monolith. **13 unsaved packages** under `L_MelusinaMorning` (12 at 06:35; one more since). A GUI launch now would be a second writer.
+- Disk: C: 15.7 GB free (floor 25). G: 121.7 GB free; G: is the ROG ESD-S1C USB SSD.
+- Submission: upload `G:\BS_GodFile_School_20261008\SHOREWAKE_Submission_Package_2026-10-08\01_Film\ShepherdBrennan_AnimaticCreation_2026-10-09.mp4`. Its hash equals the committed v07 LFS oid (sha256 85e9881f…, 17,393,902 bytes). Fallback on the drive: `01_Film\previous_cut_ShepherdBrennan_Animatic_v06.mp4` (= committed v06, 55657dca…). The packet's "v06 build" label is wrong, and its v05 fallback is not on the SSD. `G:\HUMBER_ANMN301_Shorewake_2026-10-09\` holds a stale v04 and a README that says to submit it.
+- Git: C: `main` 6ff7f97c0, 16 ahead / 52 behind stored origin/main (not fetched), 12 commits on no remote, 110 M / 382 ??. G: `EnvironmentPortfolio\BS_GodFile` ed98d721a, 2 ahead / 0 behind stored ref, 371 dirty; its `.git` is owned by Administrators, so git needs per-command `-c safe.directory`. Neither HEAD is an ancestor of the other.
+- Lane: `collab/laptop/longterm` at ef0772c46, 20 commits not on main. The git law names this lane for laptop asset work.
+- Shirt snapshot: `G:\melodia_bundles\melusina-shirt-20261006\` (MANIFEST.txt present). The `D:\melodia_bundles` path cited at line 175 no longer exists; the drive letter moved.
+- Field-atlas recipes (Morning and sea-above) both point at `hda/HDA_Foundry_FieldAtlas_1.0.hda`, which does not exist. Morning's `exists_on_main:false` flag is already in HEAD, so the "one-line fix" at lines 415–419 is stale. The missing HDA is the real blocker.
+- `deploy/` loop flags: none present (the `stop_*.ps1` files are scripts, not flags).
+
+**Owner decisions (default if no answer)**
+- Q1 The 13 Morning packages (Red list): save or leave? Default: leave. Nothing saved, nothing discarded.
+- Q2 Free C: space without deleting, e.g. relocate `C:\UE_DDC` (a cache) to G:. Default: none; Track C waits.
+- Q3 Preservation bundle of C: to `G:\EnvironmentPortfolio\preserve_20261008\`? Default: no.
+- Q4 Laptop asset lane: existing `collab/laptop/longterm` (per the law) or a new branch? Default: none. No git action without per-operation approval.
+- Q5 Doctor rig gate: approve a rig-dir argument (a code change), or replace the 10-06 manifests after a hashed backup? Default: neither.
+- Q6 Impostor bake: which terrain mesh? Default: not run.
+- Q7 Sheep: after reading `Docs/References/ChoralSheepCapstone/AGENT_CONTEXT.md`, approve a sheep leg? Default: no sheep work.
+- Q8 `Content/Melodia/Characters/Melusina/ABP_Melusina_Current.uasset` and `Characters/SirMelodious/BP_SirMelodious_Flight.uasset` show as modified: confirm no concurrent writer (GPT rule). Default: no writes there.
+- Q9 Long Houdini jobs: route through the existing Hermes plan (`.hermes/plans/2026-09-26_hermes-orchestrator-infra-plan.md`) or run as college-stage tasks? Default: college-stage; extend that plan rather than start a parallel one.
+- Q10 Packet relabel (v06 → v07)? Default: owner edits it.
+
+**Track A — before you leave (owner)**
+- A1 Confirm the SSD upload's sha256 equals `85e9881f…`. The owner uploads on Blackboard; no agent uploads. Resume if it stalls; confirm the receipt lists the file; do not rename after upload.
+- A2 G: is copy-only: no commits, pushes or branches from it.
+- A3 No agent launches an editor while PID 38524 holds 9316.
+
+**Track B — college, headless Houdini (no UE editor)**
+- B1 License gate: `python Tools/Houdini/foundry/houdini_foundry.py probe --timeout 60 --out Saved/Audit/houdini_foundry/probe_20261008_college.json`. Stop on nonzero exit or timeout; skip B3–B5.
+- B2 Verify only: `houdini_foundry.py validate recipes/houdini_foundry/*.json` (record the count) and `Tools/Houdini/foundry/test_houdini_foundry.py`. Record the actual results.
+- B3 Author `hda/HDA_Foundry_FieldAtlas_1.0.hda` (8 channels, per the Horizon table): build into `Saved/HDA_build/`, byte-copy into `hda/` (the V3 pattern, line 429), register in `Tools/Houdini/hda_verify/hda_registry.v1.json`, run `run_hda_verify.ps1`. Gate: exit 0 with golden counts pinned and the negative test still failing. Stop: node errors, or any write into `hda/backup/`. Flipping `exists_on_main` is an owner edit after this gate.
+- B4 Sea-above test tile (after B3): `houdini_foundry.py` has validate, plan, verify and probe only, with no cook command. A cook entry point is a new build; the owner approves it first. Gate: two runs into separate scratch dirs, both through `houdini_foundry.py verify`, with identical hashes.
+- B5 LOD3 impostor (`Tools/Houdini/copernicus/copernicus_impostor_bake.py --mesh <owner-named> --out <dir> --lod LOD3`): no dry-run mode, so every run writes. Stop: no mesh named (Q6).
+- B6 Universal Rig: blocked. `universal_rig.py:211` says capture waits on `skeleton_fbx_export` from UE, so the joint, mirror and ornament builds wait on C6. Read `Docs/Production/MELUSINA_RUNTIME_CANON_2026-10-05.md` before any rig work.
+
+**Track C — home editor (one writer; blocked until Q1 and Q2)**
+- C1 Clear the editor: Q1 decides each dirty package. Owner-approved saves only, then a graceful quit (not `taskkill`). Verify each save by the package's `__ExternalActors__` mtime. Gate: dirty count 0 and 9316 free. Stop: an undecided package; a new `MODAL_OPEN`; C: under 25 GB.
+- C2 Launch the GUI from the C: tree. Gate: one UnrealEditor owns 9316 and the world loads. If it opens on MelodiaIntegrationMap, stop and ask. No `load_level`.
+- C3 Bubble proof: the `MELODIA_BUBBLE` log lines that line 15 describes are not in source (no match in the tree or HEAD). Choose (a) a PIE readback of `IsBubbleSprinting()` during an owner-held V press, or (b) owner-approved log lines plus a build. Then strip the TEMP lines that exist: `MELODIA_TRAVERSAL_BIND` (MelodiaTraversalComponent.cpp:531) and `MELODIA_TRAV_IN` at :537, :637, :653, :765, plus the X/W watcher (locate before stripping). Gate: a dated receipt with V held and bubble engaged. Stop: no V-down after two windows (line 13).
+- C4 Boot grounding (lines 78, 86–95): needs Q8 and the canon doc read. Boots FBX unchanged. Candidate only, reversible. Measure CPU-skinned sole clearance and cuff fit with boots equipped; then G1 idle, G2 locomotion, G3 LMB plus 11-mask re-read; G5 staged only; G4 waits. Receipt under a new dated name; the 10-07 `live_skinned_boot_contact.json` stays untouched. Stop: a saved offset without cuff and ankle proof.
+- C5 Horizon PCG (section "Horizon System Plan"): needs Q1, owner approval for builder runs in `L_MelusinaMorning` (Red list) and writes to `/Game/EnvSandbox/`, and a count of PCGVolumes near x=200000 first. Re-run the builders with the `"Out"` pin; save dirty packages (not `save_current_level`); `generate()`; count on a later tick. Gate: instances above 0 in a dated receipt. Stop: the volume count rises, or `TAGGED_DATA_LEN:0`.
+- C6 `skeleton_fbx_export` from `SK_Melusina_Skeleton`: export only, no reimport. Unblocks B6. Owner approves.
+
+**Track D — convergence (git law: every git action needs per-operation approval, with a read-only check before and after)**
+- D1 Bundle of C: (`git bundle create --all`) to the Q3 folder, with a SHA256 manifest and `git bundle verify`.
+- D2 Use `collab/laptop/longterm` (Q4). Review its 20 commits before any merge. Do not create a new lane by default.
+- D3 Local `main` must mirror `origin/main` under the law; it does not (16 / 52). Moving `main` is an integrator decision with a written plan. Fetch only with approval.
+- D4 The two G:-only commits (`2c0f7b73f` RMB repoint, `ed98d721a` Gate-0A) go to the desktop integrator PR (lines 78, 120).
+- D5 Untracked staging (`deploy/houdini/`, `Saved/` staging) stays untracked (line 76).
+- D6 Doc fixes, owner-approved: lines 175–176 (`D:` → `G:`), line 15 (log lines), lines 415–419 (flag present; no dry-run at 417), the packet label, the HUMBER README.
+
+**Do not**
+- Commit, push, branch, merge, rebase, reset, fetch, pull, stash, clean, gc, `checkout --` or `add -A` without per-operation approval and a written plan.
+- Run a second editor, `taskkill`, `load_level` off MelodiaIntegrationMap, overwrite=true retargets, or a body reimport over a live mesh.
+- Edit Melusina clips (deform-only), add blanket root_x or Boots offsets, or touch the six Sparrow originals.
+- Write into `houdini_faraway_mother/` (the verified Phase-4 product), the doctor's `melusina_animation_doctor/rig/`, or `hda/backup/`.
+- Touch `.gitignore`, `.gitattributes`, `Config/Default*.ini`, `MF_MeshBlend_*`, or `deploy/run_verify.ps1`.
+- Delete `C:\UE_DDC`, the 43 orphan actor files, or anything else to free space.
+- Submit from `G:\HUMBER_ANMN301_Shorewake_2026-10-09\`.
+
+**What the verification pass changed (the first draft failed)**
+- The bubble log lines and the Morning "one-line fix" were stale. The impostor script has no dry-run mode. The faraway script's default output is `houdini_faraway_mother/`, so it is never used for determinism runs.
+- The universal-rig "mirror" code is the existing N5 symmetry QA, not a new build. Rig capture is blocked on UE's skeleton export.
+- The draft's new-lane default and its `git branch -f main origin/main` step were removed: both need owner approval the draft did not have.
+- The shirt snapshot is on G:, not D:.
+
 ## Bubble sprint + roll facing — 2026-10-08 dawn (implemented, PIE verification OWED)
 
 **Shipped in code, not yet proven in play.** Native build clean; editor relaunched on the new binaries.
@@ -70,6 +140,14 @@ STAGED FIX (owner asked; staging only, no Content/ write, no reimport): `Tools/H
 Weight-fix evidence: `probes/dbg_*.py` (dupe/GN/deform/slot/diff/target/isolate); before/after renders `probes/dbg_bodyonly_f029.png` vs `reweight/proof_f029.png`.
 
 HYTHON PORT (owner: "via hython please") DONE same eve: `Tools/Houdini/sir_kinefx/sir_reweight_kinefx.py` re-detects the 657 independently, calibrates 60+ capture-index→bone pairs by exact count signatures, and PROVES the honest limit — the tail fix needs root.x = one of capture indices {60,62,64,65}, but all four hold absolute zero weight mesh-wide in BOTH apps with no fitting permutation, so weight data cannot promote one (one candidate is the Kawaii collar root — a guess could couple the tail to the collar). No index fabricated; delta records the candidate SET + root.x recommendation with the full proof log (`body_reweight_delta_kinefx.json` + manifest). Writer stays NAME-based (Blender delta, visually proven). Doctor gained a `tail_export` HOLD gate (now **11/15 PASS, 4 HOLD, 0 FAIL**). Dev probes archived to `probes/toolshed/`. Real tail wag still needs the spline/bbone deform export — owner mesh decision.
+
+## Sir Melodious tailfix export + Vellum v4 — 2026-10-08 morning (owner-directed)
+
+TAILFIX EXPORTED + VERIFIED: `sir_export_tailfix.py` (Blender 5.2 + ARP) fixed the 657 zero-weight tail verts AT THE SOURCE (helper→exported map, top-4 clamp, normalise; `fixed_total 657`, `still_zero_total 0`) and saved `arp/SirMelodious_ARP_CrestTie_v5_tailfix.blend`; the recorded run's export step then raised on `sc.arp_engine_type` because its factory reset unloads the ARP user extension, so the FBX came from the export-only pass `sir_export_tailfix_fbx.py` (opens the saved blend; ARP FINISHED) → `exports/ue_arp/SKM_SirMelodious_ARP_CrestTie_v5_tailfix.fbx` (28,207,100 B). `sir_export_tailfix.py` now reloads ARP after the reset so a single run can complete end-to-end; the recorded receipts stay as they were. `sir_tailfix_verify.py` (hython 22.0.368) re-reads the FBX: SirMelodiousBody 657 zero-capture → 0, 132 joints, 3,892 body points, all 10 meshes bbox-identical to v5 — PASS (`reweight/tailfix_verify_kinefx.json`). Still the FOLLOW-body fix: true tail wag needs the spline/bbone deform export (owner mesh decision).
+
+VELLUM CLOTHES BAKE v4 PASS: `sir_vellum_clothes_bake.py` bakes tie+collar on the tailfix body (metre-scale sim, measured +Z up; cache written back ×100 cm): 48 frames, 103.67 MB, pinned 69/344 + 4,148/20,736 at pin-q 0.20 — max mm-plus edge stretch 1.286×, 0 edges >1.5×, disp max 12.4 cm/mean 4.9 cm (`vellum/vellum_bake_report.json`; proofs `proof_v4_f01/f48_on_body.png`). v1–v3 superseded. Headless OpenCL flake: bake with `$env:HOUDINI_OCL_DEVICETYPE="CPU"`.
+
+UE IMPORT (started): `/Game/Melodia/Characters/SirMelodious/ARP/` created in the live editor (empty; no asset imported). Handoff §1 mesh drag stays owner-manual — `SKM_SirMelodious_ARP_CrestTie_v5_tailfix.fbx` → ARP/ (Create New Skeleton, morphs ON, Nanite ON); `Content/Python/import_sir_anim_guarded_v4.py` prepared (v3 guards; auto-discovers the ARP skeleton; v6 clips; save OFF per handoff — in-memory until owner Ctrl+S); it runs only after the drag, then handoff §3 ABP/BS retarget. Editor verified live (one instance, Monolith v0.20.3); 13 unsaved L_MelusinaMorning external actors noticed, untouched. Committed locally (no push).
 
 ## Take-over finalize — 2026-10-07 eve (Sol on break; repo-side only, no editor contact)
 
