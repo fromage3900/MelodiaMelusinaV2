@@ -3333,6 +3333,15 @@
     6.243
    ]
   },
+  "MEL_music_breath_mark": {
+   "ok": true,
+   "verts": 176,
+   "bbox": [
+    0.298,
+    0.569,
+    0.24
+   ]
+  },
   "MEL_music_cabasa": {
    "ok": true,
    "verts": 6960,
@@ -3432,6 +3441,15 @@
     0.811
    ]
   },
+  "MEL_music_coda": {
+   "ok": true,
+   "verts": 272,
+   "bbox": [
+    0.516,
+    0.516,
+    0.06
+   ]
+  },
   "MEL_music_congas": {
    "ok": true,
    "verts": 840,
@@ -3493,6 +3511,24 @@
     2.359,
     0.66,
     1.894
+   ]
+  },
+  "MEL_music_double_flat": {
+   "ok": true,
+   "verts": 104,
+   "bbox": [
+    0.422,
+    0.6,
+    0.055
+   ]
+  },
+  "MEL_music_double_sharp": {
+   "ok": true,
+   "verts": 16,
+   "bbox": [
+    0.396,
+    0.396,
+    0.055
    ]
   },
   "MEL_music_drum_kit_rail": {
@@ -4233,6 +4269,15 @@
     0.799
    ]
   },
+  "MEL_music_segno": {
+   "ok": true,
+   "verts": 280,
+   "bbox": [
+    0.564,
+    0.6,
+    0.06
+   ]
+  },
   "MEL_music_sequencer": {
    "ok": true,
    "verts": 480,
@@ -4240,6 +4285,15 @@
     0.42,
     0.22,
     0.081
+   ]
+  },
+  "MEL_music_sforzando": {
+   "ok": true,
+   "verts": 24,
+   "bbox": [
+    0.258,
+    0.592,
+    0.055
    ]
   },
   "MEL_music_shaker": {
@@ -7391,7 +7445,7 @@
   },
   "GB_ROOM_CIRCULAR": {
    "ok": true,
-   "verts": 584,
+   "verts": 586,
    "bbox": [
     7.987,
     7.994,
@@ -8085,7 +8139,7 @@
  },
  "meta": {
   "blender": "5.2.1 LTS",
-  "package_count": 761,
+  "package_count": 767,
   "monolith_count": 209
  }
 }
