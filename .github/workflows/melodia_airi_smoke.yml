@@ -1,0 +1,26 @@
+name: Melodia AIRI Node smoke
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'Tools/AIRI/MelodiaBridge/**'
+      - '.pi/extensions/melodia-airi.ts'
+      - '.github/workflows/melodia_airi_smoke.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  bridge-contract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Dependency-free bridge and Pi observer tests
+        working-directory: Tools/AIRI/MelodiaBridge
+        run: node --test --test-isolation=none
