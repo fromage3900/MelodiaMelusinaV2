@@ -44,6 +44,7 @@ for _p in (str(ROOT / "Tools"), str(CONTENT_PY)):
         sys.path.insert(0, _p)
 
 import resonant_world_generator as rwg  # noqa: E402  (reused identity module)
+import harmonic_terrain as ht  # noqa: E402  (optional harmony stage)
 
 try:
     from pcg.resonance_ecology_processor import derive as _resonance_derive  # noqa: E402
@@ -170,6 +171,8 @@ def validate_recipe(recipe: dict[str, Any]) -> list[str]:
     for arc in (field.get("trail_arcs") or []):
         if arc.get("species_id") not in known_species:
             errors.append(f"field.trail_arcs species {arc.get('species_id')!r} is not a recipe species")
+    if recipe.get("harmony") is not None:
+        errors.extend(ht.validate(recipe["harmony"]))
     beauty = recipe.get("beauty")
     if beauty is not None:
         for key in ("sender_name", "render_target", "sender_bp"):
@@ -1141,6 +1144,54 @@ def stage_structures(recipe: dict[str, Any]) -> tuple[dict[str, Any] | None, lis
     return bake, slots, curves, _stage("PASS", "Tools/world_compiler.py:stage_structures", note)
 
 
+def _biome_point(pid: int, b: dict[str, Any], labels: list[str]) -> dict[str, Any]:
+    """A harmony biome sample as a points.csv row, so the existing PointField graph + S_WorldCompilerPoint spawn it."""
+    spec, k = b["spec"], b["mesh_index"]
+    band = min(b["band"], len(labels) - 1)
+    if "band_mi_prefix" in spec:
+        suffix = (spec.get("mi_suffixes") or [""] * len(spec["meshes"]))[k]
+        mat = f"{spec['band_mi_prefix']}{labels[band]}{suffix}"
+    else:
+        mat = spec["materials"][k]
+    x, y, z, s = b["x"], b["y"], b["z"], b["scale"]
+    height_class = {"basin": 0, "meadow": 0, "cliff": 1, "crest": 2}[b["biome"]]
+    return {
+        "point_id": pid, "x": x, "y": y, "z": z, "yaw": b["yaw"], "scale": s,
+        "species_id": f"harmony_{b['biome']}", "variant_id": k, "band": band, "mode_n": 0, "mode_m": 0,
+        "cluster_id": ht.BIOMES.index(b["biome"]), "hue_seed": _clamp01((band + 0.5) / len(labels) + (b["hue"] - 0.5) * 0.08),
+        "wind_phase": b["hue"], "wind_response": 0.85 if height_class == 0 else 0.0,
+        "sparkle_response": _clamp01(0.2 + 0.6 * b["resonance"]), "hero_weight": b["resonance"],
+        "height_class": height_class, "density_class": 1, "Resonance": b["resonance"],
+        "EcologyClass": ht.BIOMES.index(b["biome"]), "MaterialVariant": band, "ScaleBias": 1.0,
+        "mesh": _soft_path(spec["meshes"][k]), "material": _soft_path(mat), "StemMaterial": _soft_path(mat),
+        "Position": f"(X={_f(x)},Y={_f(y)},Z={_f(z)})",
+        "Rotation": f"(Pitch={_f(b['pitch'])},Yaw={_f(b['yaw'])},Roll=0.000)",
+        "Scale3D": f"(X={_f(s)},Y={_f(s)},Z={_f(s)})",
+        "horizon_distance": _f(0.0), "sky_exposure": _f(_clamp01(1.0 - b["slope"])),
+        "silhouette_weight": _f(b["resonance"]), "atmospheric_depth": _f(0.0),
+    }
+
+
+def stage_harmony(recipe: dict[str, Any], identity: dict[str, Any]) -> tuple[dict[str, Any] | None, dict[str, Any]]:
+    """Chords carve valleys, arpeggios raise ridges. Optional: absent => no tables."""
+    harmony = recipe.get("harmony")
+    if not harmony:
+        return None, _stage("SKIPPED", "Tools/harmonic_terrain.py", "recipe.harmony absent")
+    mode = rwg.MODE_LIBRARY[identity["world"]["mode_id"]]
+    out = ht.compile_harmony(harmony, seed=int(recipe["world_seed"]), anchor=recipe["place"]["anchor_cm"],
+                             scale_intervals=list(mode.intervals), rand=_u)
+    for row in out["nodes"]:
+        row["Position"] = ht.vec(row["Position"], _f)
+    for row in out["edges"]:
+        row["Start"], row["End"] = ht.vec(row["Start"], _f), ht.vec(row["End"], _f)
+    labels = [b["label"] for b in recipe["palette"]["bands"]]
+    out["points"] = [_biome_point(pid, row, labels) for pid, row in enumerate(out.pop("biomes"))]
+    c = out["meta"]["counts"]
+    note = (f"{c['chords']} chords -> {c['valley_features']} valley features, {c['peaks']} peaks / {c['ridges']} ridges, "
+            f"z {out['meta']['z_min_cm']:.0f}..{out['meta']['z_max_cm']:.0f} cm")
+    return out, _stage("PASS", "Tools/harmonic_terrain.py", note)
+
+
 # ----------------------------------------------------------------------------- bundle
 
 def _csv_bytes(columns: list[str], rows: list[dict[str, Any]]) -> bytes:
@@ -1186,6 +1237,9 @@ def compile_recipe(recipe_path: Path, *, out_root: Path | None = None, constella
     beauty, beauty_stage = stage_beauty(recipe)
     if recipe.get("beauty"):
         stages["beauty"] = beauty_stage
+    harmony, harmony_stage = stage_harmony(recipe, identity)
+    if recipe.get("harmony"):
+        stages["harmony"] = harmony_stage
 
     files: dict[str, bytes] = {
         "points.csv": _csv_bytes(POINT_COLUMNS, ecology["points"]),
@@ -1204,6 +1258,13 @@ def compile_recipe(recipe_path: Path, *, out_root: Path | None = None, constella
         files["structures_bake.json"] = _json_bytes(bake)
     if beauty is not None:
         files["beauty_feed.json"] = _json_bytes(beauty)
+    if harmony is not None:
+        files["harmony_nodes.csv"] = _csv_bytes(ht.NODE_COLUMNS, harmony["nodes"])
+        files["harmony_edges.csv"] = _csv_bytes(ht.EDGE_COLUMNS, harmony["edges"])
+        files["harmony_height.r16"] = harmony["r16"]
+        files["harmony.json"] = ht.to_json(harmony["meta"])
+        if harmony["points"]:
+            files["harmony_points.csv"] = _csv_bytes(POINT_COLUMNS, harmony["points"])
     for name, data in files.items():
         (out_dir / name).write_bytes(data)
 
@@ -1212,6 +1273,9 @@ def compile_recipe(recipe_path: Path, *, out_root: Path | None = None, constella
         "fx_anchors.csv": (len(ecology["fx_anchors"]), FX_COLUMNS),
         "structure_slots.csv": (len(slot_rows), SLOT_COLUMNS),
         "structure_curves.csv": (len(curve_rows), CURVE_COLUMNS),
+        **({"harmony_nodes.csv": (len(harmony["nodes"]), ht.NODE_COLUMNS),
+            "harmony_edges.csv": (len(harmony["edges"]), ht.EDGE_COLUMNS),
+            "harmony_points.csv": (len(harmony["points"]), POINT_COLUMNS)} if harmony is not None else {}),
     }
     tables = {
         name: {
@@ -1286,6 +1350,18 @@ def compile_recipe(recipe_path: Path, *, out_root: Path | None = None, constella
                 "startup_policy": beauty["startup_policy"],
                 "plugin": beauty["plugin"]["name"],
             }} if beauty is not None else {}),
+            **({"harmony": {
+                "node_row_struct": "/Game/Melodia/WorldCompiler/S_WorldCompilerHarmonyNode",
+                "edge_row_struct": "/Game/Melodia/WorldCompiler/S_WorldCompilerHarmonyEdge",
+                "node_data_table": f"/Game/Melodia/WorldCompiler/DT_{recipe['recipe_id']}_HarmonyNodes",
+                "edge_data_table": f"/Game/Melodia/WorldCompiler/DT_{recipe['recipe_id']}_HarmonyEdges",
+                "pcg_template_graph": "/Game/Melodia/WorldCompiler/PCG_WorldCompiler_HarmonicRidges",
+                "pcg_volume_label": f"WC_{recipe['recipe_id']}_Ridges",
+                "points_data_table": f"/Game/Melodia/WorldCompiler/DT_{recipe['recipe_id']}_HarmonyPoints",
+                "points_row_struct": "/Game/Melodia/WorldCompiler/S_WorldCompilerPoint",
+                "biome_volume_label": f"WC_{recipe['recipe_id']}_Biomes",
+                "landscape_import": harmony["meta"]["ue_landscape_import"],
+            }} if harmony is not None else {}),
         },
         "notes": [
             "compiler never imports unreal; UE lane is Content/Python/world_compiler_ue.py",
