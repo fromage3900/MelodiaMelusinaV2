@@ -16,6 +16,8 @@ Owner handed Sol the editor and scoped animation closeout. Existing mage idle, s
 
 Next bounded gate: matched idle/walk/caster/RMB stressed-shoulder frames and entry/exit poses, then boot sole+cuff+capsule contact and actual input replay. Keep full runtime presentation HOLD until these pass, save/reopen replay and scoped landing/G-sync are recorded. Saved/Audit artifacts are local diagnostic evidence, not a new status authority.
 
+- **Scoped landing and portable sync PROVEN:** local main checkpoints `51b98ce7a` (glide/wardrobe/assets) and `4530178dd` (assignment guard) passed repository hooks. Editor normally quit with zero dirty packages. Robocopy transferred 26 selected source/runtime/asset/evidence files to `G:/EnvironmentPortfolio/BS_GodFile`, verified SHA256 for each and retained differing destination files under `Saved/Audit/SolRuntimeSyncBackups_20261009_guard`. Receipt `g_sync_verified.json`; no deletion, DDC copy, bulk dress promotion or frozen donor edit. This proves file sync, not a school-machine build or portable gameplay acceptance. Other lane's 26 staged CURRENT_STATE additions were preserved. Full animation/presentation goal stays active; shoulder silhouette, boot contact and physical-input G1-G5 remain owed.
+
 ## UI Material Architecture & Figma Layout Delivery — 2026-10-08 (UI Manager, Complete)
 
 Full UI material system overhauled from legacy stubs into production-ready shaders and Figma-aligned layout tokens:
