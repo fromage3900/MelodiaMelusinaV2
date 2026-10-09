@@ -302,3 +302,12 @@ A second MI family inside one recipe needs no graph or authority change:
 - Detail MIs share one existing parent and differ only in tint/scalars — never a new master per effect.
 - **Warm the mesh:** a never-before-generated species mesh is still compiling on first generate (`Waiting for static meshes to be ready`) and the selector silently falls back per-point — always generate twice and recount per MI family before capturing.
 - Fairy dust + trails (landed 2026-09-27, Jev `F_FAIRY_TRAILS_COMPILER` 0.95): species-level `pitch_deg`/`pitch_jitter_deg` write flat-lay angles into the point `Rotation` column (90 = lying flat); `field.trail_arcs` emits deliberate spill arcs (`cluster_id` >= 900 marks trail rows; same ground + clearance filters, no chladni thinning); `palette.glitter.brightness_steps` forges one MI per band per step (1.0 keeps the canonical name, others `_L<pct>` with pre-scaled tints) for per-point glint variance. All three keys absent = byte-identical legacy output. No baked pile meshes (Jev killed the bake 0.0: Hython absent, Engine license failed 09-24).
+
+### 9.2 Harmonic terrain (landed: `harmony`, 2026-10-08)
+
+Optional recipe key `harmony` -> `Tools/harmonic_terrain.py`. Emits `harmony_nodes.csv` (peaks + chord valleys),
+`harmony_edges.csv` (ridge + voice_leading), `harmony_height.r16` (square raw uint16 LE, min-x/min-y origin, row-major)
+and `harmony.json` (z range + `ue_landscape_import` location/scale). Row structs `S_WorldCompilerHarmonyNode` /
+`S_WorldCompilerHarmonyEdge`, template graph `PCG_WorldCompiler_HarmonicRidges` (PCGEx cluster from the edge table).
+Same rule as every detail family: key absent = byte-identical legacy output. The heightmap is an authoring product
+(Landscape import, Houdini HeightField File, planet face displacement); Houdini never cooks at runtime.

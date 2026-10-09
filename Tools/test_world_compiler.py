@@ -441,6 +441,45 @@ def test_wind_absent_suffixes_legacy_seven():
     assert [b["material_instance"] for b in lane["bands"]] == [f"{prefix}{b['label']}" for b in recipe["palette"]["bands"]]
 
 
+HARMONY = ROOT / "recipes" / "harmonic_planet_lydian_c.v1.json"
+
+
+def test_harmony_deterministic_and_shaped():
+    with tempfile.TemporaryDirectory() as a, tempfile.TemporaryDirectory() as b:
+        m1, out1 = _compile(Path(a), HARMONY)
+        m2, out2 = _compile(Path(b), HARMONY)
+        assert m1["manifest_sha256"] == m2["manifest_sha256"]
+        assert m1["stages"]["harmony"]["status"] == "PASS"
+        meta = json.loads((out1 / "harmony.json").read_text(encoding="utf-8"))
+        res = meta["resolution"]
+        assert (out1 / "harmony_height.r16").stat().st_size == res * res * 2
+        nodes = _rows(out1 / "harmony_nodes.csv")
+        peaks = [n for n in nodes if n["kind"] == "peak"]
+        valleys = [n for n in nodes if n["kind"] == "valley"]
+        assert len(valleys) == 4 and len(peaks) == 5
+        # rising arpeggio => rising peaks; valleys sit below the anchor plane
+        heights = [float(p["height_cm"]) for p in peaks]
+        assert heights == sorted(heights)
+        assert sum(float(v["z"]) < 0 for v in valleys) >= 3
+        edges = _rows(out1 / "harmony_edges.csv")
+        ids = {n["node_id"] for n in nodes}
+        assert all(e["start_node"] in ids and e["end_node"] in ids for e in edges)
+
+
+def test_harmony_rejects_unknown_quality():
+    recipe, _ = wc.load_recipe(HARMONY)
+    recipe["harmony"]["progression"][0]["quality"] = "lydian_dominant"
+    assert wc.validate_recipe(recipe)
+
+
+def test_harmony_absent_emits_no_harmony_tables():
+    with tempfile.TemporaryDirectory() as tmp:
+        manifest, out = _compile(Path(tmp))
+        assert "harmony" not in manifest["stages"]
+        assert "harmony" not in manifest["ue_lane"]
+        assert not any(p.name.startswith("harmony") for p in out.iterdir())
+
+
 if __name__ == "__main__":
     failures = 0
     for name, fn in sorted(globals().items()):
