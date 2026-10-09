@@ -1,0 +1,91 @@
+{
+  "tracks": 465,
+  "endpoint_max_translation_cm": 0.0,
+  "endpoint_max_rotation_deg": 2.4148365394514667e-06,
+  "world_xy_ranges": {
+    "root": {
+      "x_range_cm": 0.0,
+      "y_range_cm": 0.0
+    },
+    "c_traj": {
+      "x_range_cm": 0.0,
+      "y_range_cm": 0.0
+    },
+    "root_x": {
+      "x_range_cm": 0.0,
+      "y_range_cm": 0.0
+    }
+  },
+  "shoulder_endpoints": [
+    {
+      "bone": "c_hand_fk_l",
+      "translation_cm": 0.0,
+      "rotation_deg": 0.0
+    },
+    {
+      "bone": "c_hand_fk_r",
+      "translation_cm": 0.0,
+      "rotation_deg": 0.0
+    },
+    {
+      "bone": "c_hand_ik_l",
+      "translation_cm": 0.0,
+      "rotation_deg": 0.0
+    },
+    {
+      "bone": "c_hand_ik_r",
+      "translation_cm": 0.0,
+      "rotation_deg": 0.0
+    },
+    {
+      "bone": "c_shoulder_l",
+      "translation_cm": 0.0,
+      "rotation_deg": 0.0
+    },
+    {
+      "bone": "c_shoulder_r",
+      "translation_cm": 0.0,
+      "rotation_deg": 0.0
+    },
+    {
+      "bone": "shoulder_l",
+      "translation_cm": 0.0,
+      "rotation_deg": 0.0
+    },
+    {
+      "bone": "arm_stretch_l",
+      "translation_cm": 0.0,
+      "rotation_deg": 0.0
+    },
+    {
+      "bone": "forearm_stretch_l",
+      "translation_cm": 0.0,
+      "rotation_deg": 0.0
+    },
+    {
+      "bone": "hand_l",
+      "translation_cm": 0.0,
+      "rotation_deg": 0.0
+    },
+    {
+      "bone": "shoulder_r",
+      "translation_cm": 0.0,
+      "rotation_deg": 0.0
+    },
+    {
+      "bone": "arm_stretch_r",
+      "translation_cm": 0.0,
+      "rotation_deg": 0.0
+    },
+    {
+      "bone": "forearm_stretch_r",
+      "translation_cm": 0.0,
+      "rotation_deg": 0.0
+    },
+    {
+      "bone": "hand_r",
+      "translation_cm": 0.0,
+      "rotation_deg": 0.0
+    }
+  ]
+}

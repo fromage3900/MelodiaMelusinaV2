@@ -1,0 +1,46 @@
+[
+  {
+    "bone": "spine_01_x",
+    "depth": 0
+  },
+  {
+    "bone": "spine_02_x",
+    "depth": 0
+  },
+  {
+    "bone": "spine_03_x",
+    "depth": 0
+  },
+  {
+    "bone": "shoulder_l",
+    "depth": 0
+  },
+  {
+    "bone": "shoulder_r",
+    "depth": 0
+  },
+  {
+    "bone": "arm_stretch_l",
+    "depth": 0
+  },
+  {
+    "bone": "arm_stretch_r",
+    "depth": 0
+  },
+  {
+    "bone": "forearm_stretch_l",
+    "depth": 0
+  },
+  {
+    "bone": "forearm_stretch_r",
+    "depth": 0
+  },
+  {
+    "bone": "hand_l",
+    "depth": 0
+  },
+  {
+    "bone": "hand_r",
+    "depth": 0
+  }
+]
