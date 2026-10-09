@@ -1,0 +1,87 @@
+{
+  "build": {
+    "exit": 0,
+    "actions": 4,
+    "seconds": 10.52,
+    "dll": "Plugins/Monolith/Binaries/Win64/UnrealEditor-MonolithAnimation.dll"
+  },
+  "scope": "Canonical Melusina skeleton only; existing Monolith editor assignment paths; no runtime pose modification.",
+  "bad_source": "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_GlideForward_Mocap_RootMotionMelusina_Mocap_Rig_Action",
+  "good_candidate": "/Game/Melodia/Characters/Melusina/Animations/AnimationDoctor_20261007/RuntimeCloseout_20261009/A_Melusina_Glide_InPlace_Candidate",
+  "state_rejection_unchanged": true,
+  "bad_tests": [
+    {
+      "action": "add_anim_graph_node",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "Melusina clip preflight rejected /Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_GlideForward_Mocap_RootMotionMelusina_Mocap_Rig_Action.A_Melusina_GlideForward_Mocap_RootMotionMelusina_Mocap_Rig_Action: root scale X=100.000 Y=100.000 Z=100.000 at key 0; require unit scale. Existing binding unchanged; repair a duplicate and revalidate, preserving authored rotations and frozen originals."
+          }
+        ],
+        "isError": true
+      }
+    },
+    {
+      "action": "add_blendspace_sample",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "Melusina clip preflight rejected /Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_GlideForward_Mocap_RootMotionMelusina_Mocap_Rig_Action.A_Melusina_GlideForward_Mocap_RootMotionMelusina_Mocap_Rig_Action: root scale X=100.000 Y=100.000 Z=100.000 at key 0; require unit scale. Existing binding unchanged; repair a duplicate and revalidate, preserving authored rotations and frozen originals."
+          }
+        ],
+        "isError": true
+      }
+    },
+    {
+      "action": "edit_blendspace_sample",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "Melusina clip preflight rejected /Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_GlideForward_Mocap_RootMotionMelusina_Mocap_Rig_Action.A_Melusina_GlideForward_Mocap_RootMotionMelusina_Mocap_Rig_Action: root scale X=100.000 Y=100.000 Z=100.000 at key 0; require unit scale. Existing binding unchanged; repair a duplicate and revalidate, preserving authored rotations and frozen originals."
+          }
+        ],
+        "isError": true
+      }
+    }
+  ],
+  "good_state_assignment": {
+    "action": "set_state_animation",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"asset_path\":\"/Game/Melodia/Characters/Melusina/ABP_Melusina_Current\",\"machine_name\":\"MelusinaLocomotion\",\"state_name\":\"Glide\",\"anim_asset_path\":\"/Game/Melodia/Characters/Melusina/Animations/AnimationDoctor_20261007/RuntimeCloseout_20261009/A_Melusina_Glide_InPlace_Candidate\",\"node_name\":\"AnimGraphNode_SequencePlayer_0\",\"node_class\":\"AnimGraphNode_SequencePlayer\",\"loop\":true,\"cleared_existing\":true,\"pins\":[{\"name\":\"Pose\",\"direction\":\"Output\",\"is_pose\":true,\"is_connected\":true,\"type\":\"struct\"}]}"
+        }
+      ],
+      "isError": false
+    }
+  },
+  "final_binding": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"state_name\":\"Glide\",\"machine_name\":\"MelusinaLocomotion\",\"position\":[192,0],\"nodes\":[{\"class\":\"AnimGraphNode_StateResult\",\"title\":\"Output Animation Pose\"},{\"class\":\"AnimGraphNode_SequencePlayer\",\"title\":\"A_Melusina_Glide_InPlace_Candidate\\nSequence Player\"}],\"node_count\":2}"
+      }
+    ],
+    "isError": false
+  },
+  "blendspace_readback": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"asset_path\":\"/Game/Melodia/Characters/Melusina/Animations/BS_Melusina_Locomotion_Hybrid\",\"skeleton\":\"/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton.SK_Melusina_Skeleton\",\"is_1d\":true,\"axis_x\":{\"name\":\"GroundSpeed\",\"min\":0,\"max\":650,\"grid_divisions\":4,\"snap_to_grid\":false,\"wrap_input\":false},\"axis_y\":{\"name\":\"None\",\"min\":0,\"max\":100,\"grid_divisions\":4,\"snap_to_grid\":false,\"wrap_input\":false},\"interpolate_using_grid\":false,\"triangulation_baked\":true,\"samples\":[{\"index\":0,\"animation\":\"/Game/Melodia/Characters/Melusina/Animations/Locomotion/A_Melusina_Run_Mocap_RootX.A_Melusina_Run_Mocap_RootX\",\"x\":420,\"y\":0,\"rate_scale\":1,\"root_motion_speed_known\":false,\"root_motion_speed_note\":\"root motion disabled (root-locked) — authored speed is unknowable\"},{\"index\":1,\"animation\":\"/Game/Melodia/Characters/Melusina/Animations/Locomotion/A_Melusina_Sprint_Mocap_RootX.A_Melusina_Sprint_Mocap_RootX\",\"x\":630,\"y\":0,\"rate_scale\":1,\"root_motion_speed_known\":false,\"root_motion_speed_note\":\"root motion disabled (root-locked) — authored speed is unknowable\"},{\"index\":2,\"animation\":\"/Game/Melodia/Characters/Melusina/Animations/Locomotion/A_Melusina_Walk_Mocap_RootX.A_Melusina_Walk_Mocap_RootX\",\"x\":180,\"y\":0,\"rate_scale\":1,\"root_motion_speed_known\":false,\"root_motion_speed_note\":\"root motion disabled (root-locked) — authored speed is unknowable\"},{\"index\":3,\"animation\":\"/Game/Melodia/Characters/Melusina/Animations/AnimationDoctor_20261007/ACFUMage_20261008/A_Melusina_ACFUMage_Idle.A_Melusina_ACFUMage_Idle\",\"x\":0,\"y\":0,\"rate_scale\":1,\"root_motion_speed_known\":false,\"root_motion_speed_note\":\"root motion disabled (root-locked) — authored speed is unknowable\"}],\"sample_count\":4}"
+      }
+    ],
+    "isError": false
+  },
+  "luna_review": "No mutation ordering blocker. Authored keys do not prove interpolated or runtime-blended poses.",
+  "limitations": [
+    "Manual editor UI and generic bulk struct/Python writes are outside this scoped guard.",
+    "Visual shoulder silhouette, boot contact and physical RMB still open.",
+    "Sparrow rejection probe blocked by automatic review before execution; no Sparrow bind was performed.",
+    "Reload of test-modified ABP rejected; verified corrected binding saved instead."
+  ]
+}

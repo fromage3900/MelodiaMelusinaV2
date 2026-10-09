@@ -1,0 +1,20 @@
+{
+  "world": "/Game/Melodia/Levels/Opening/UEDPIE_0_L_MelusinaMorning.L_MelusinaMorning",
+  "pawn": "/Game/MelodiaIntegration/Blueprints/BP_MelusinaJRPGCharacter.BP_MelusinaJRPGCharacter_C",
+  "mesh": "/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Body.SK_Melusina_V2_Body",
+  "anim_class": "/Game/Melodia/Characters/Melusina/ABP_Melusina_Current.ABP_Melusina_Current_C",
+  "arm_lengths_cm": {
+    "l": [
+      15.774462820874534,
+      28.561038025930895,
+      28.61461107555669
+    ],
+    "r": [
+      15.774471403938875,
+      28.560969361437348,
+      28.614566125581618
+    ]
+  },
+  "physical_input_proven": false,
+  "visual_shoulders_proven": false
+}

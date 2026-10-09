@@ -1,6 +1,8 @@
 #include "MonolithAbpWriteActions.h"
 #include "MonolithAssetUtils.h"
 #include "MonolithParamSchema.h"
+#include "MonolithMelusinaClipGuard.h"
+#include "Misc/PackageName.h"
 
 #include "Animation/AnimBlueprint.h"
 #include "Animation/AnimInstance.h"
@@ -1160,6 +1162,9 @@ FMonolithActionResult FMonolithAbpWriteActions::HandleAddAnimGraphNode(const TSh
 			{
 				return FMonolithActionResult::Error(FString::Printf(TEXT("Animation asset not found: %s"), *AnimAsset));
 			}
+			FString ClipError;
+			if (!MonolithMelusinaClipGuard::Validate(Asset, ABP->TargetSkeleton, ClipError))
+				return FMonolithActionResult::Error(ClipError);
 			AssetPlayer->SetAnimationAsset(Asset);
 		}
 		else
@@ -1443,6 +1448,9 @@ FMonolithActionResult FMonolithAbpWriteActions::HandleSetStateAnimation(const TS
 	// Load the animation asset
 	UAnimationAsset* AnimAsset = FMonolithAssetUtils::LoadAssetByPath<UAnimationAsset>(AnimAssetPath);
 	if (!AnimAsset) return FMonolithActionResult::Error(FString::Printf(TEXT("Animation asset not found: %s"), *AnimAssetPath));
+	FString ClipError;
+	if (!MonolithMelusinaClipGuard::Validate(AnimAsset, ABP->TargetSkeleton, ClipError))
+		return FMonolithActionResult::Error(ClipError);
 
 	// Determine node class using the engine's own mapping
 	UClass* NodeClass = GetNodeClassForAsset(AnimAsset->GetClass());
@@ -1872,6 +1880,18 @@ FMonolithActionResult FMonolithAbpWriteActions::HandleSetAnimGraphNodeProperty(c
 	}
 
 	// Capture old value for diff.
+	if (const FObjectPropertyBase* ObjectProperty = CastField<FObjectPropertyBase>(TargetProp))
+	{
+		if (ObjectProperty->PropertyClass->IsChildOf(UAnimationAsset::StaticClass())
+			&& MonolithMelusinaClipGuard::IsCanonicalSkeleton(ABP->TargetSkeleton))
+		{
+			const FString CandidatePath = FPackageName::ExportTextPathToObjectPath(Value);
+			UAnimationAsset* Candidate = FMonolithAssetUtils::LoadAssetByPath<UAnimationAsset>(CandidatePath);
+			FString ClipError;
+			if (!MonolithMelusinaClipGuard::Validate(Candidate, ABP->TargetSkeleton, ClipError))
+				return FMonolithActionResult::Error(ClipError);
+		}
+	}
 	FString OldValueText;
 	TargetProp->ExportText_InContainer(0, OldValueText, TargetContainer, TargetContainer, nullptr, PPF_None);
 
