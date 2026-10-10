@@ -40,9 +40,9 @@ for name, (src_path, seed, tint) in FAMILIES.items():
             ok &= srcparam == "Translucency"
         else:
             MEL.set_material_instance_texture_parameter_value(mi, param, tex)
-    for k, v in (("MelodiaWindResponse", 0.6), ("MelodiaWindHueSeed", seed), ("SharedOscillation", 4.0), ("SharedBend", 6.0),
-                 ("Branch1Oscillation", 2.0), ("Branch1Bend", 4.0), ("RippleDirectional", 2.0), ("RipplePlanar", 2.0),
-                 ("MelodiaWindGustResponse", 0.8), ("MelodiaHueShift", 0.07)):
+    for k, v in (("MelodiaWindResponse", 0.22), ("MelodiaWindHueSeed", seed), ("SharedOscillation", 2.2), ("SharedBend", 2.0),
+                 ("Branch1Oscillation", 1.2), ("Branch1Bend", 1.4), ("RippleDirectional", 0.9), ("RipplePlanar", 0.9),
+                 ("MelodiaWindGustResponse", 0.25), ("MelodiaHueShift", 0.07)):
         MEL.set_material_instance_scalar_parameter_value(mi, k, v)
     MEL.set_material_instance_vector_parameter_value(mi, "MelodiaWindRevealTint", unreal.LinearColor(*tint))
     MEL.update_material_instance(mi)
