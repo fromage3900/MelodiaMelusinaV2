@@ -1,0 +1,74 @@
+{
+  "schema": "MelodiaChladniSheet-draft-v1",
+  "id": "Chl_Cr_n1p1_n0p3_n0p1_C_E_G_3d52",
+  "family": "C_E_G",
+  "notes": [
+    {
+      "name": "C",
+      "octave": 4,
+      "hz": 261.63,
+      "amp": 1.0
+    },
+    {
+      "name": "E",
+      "octave": 4,
+      "hz": 329.63,
+      "amp": 0.6
+    },
+    {
+      "name": "G",
+      "octave": 4,
+      "hz": 392.0,
+      "amp": 0.45
+    }
+  ],
+  "geometry": "circular",
+  "modes": [
+    {
+      "n": 1,
+      "p": 1,
+      "phase": 2.581
+    },
+    {
+      "n": 0,
+      "p": 3,
+      "phase": 2.778
+    },
+    {
+      "n": 0,
+      "p": 1,
+      "phase": 1.986
+    }
+  ],
+  "seed": 15698,
+  "rank": 0.5907,
+  "nodal_length": 14.037,
+  "scores": {
+    "order": 0.375,
+    "legibility": 0.7872,
+    "negative_space": 0.0,
+    "symmetry": 0.9699,
+    "coherence": 0.9699
+  },
+  "rank_weights": {
+    "order": 0.25,
+    "legibility": 0.2,
+    "negative_space": 0.2,
+    "symmetry": 0.25,
+    "coherence": 0.1
+  },
+  "display_name": "Ring 1.1+0.3+0.1 - C_E_G",
+  "production_note": "draft preview; owner picks for texture authoring",
+  "name_model": "deterministic-fallback",
+  "palette": {
+    "field": "#F6F0E3",
+    "frame": "#8F83C4",
+    "blush": "#D98CA6",
+    "mauve": "#A96E96",
+    "lilac": "#7E74C9",
+    "pearl_shadow": "#B7AC99",
+    "cyan": "#4FA8BE"
+  },
+  "palette_provenance": "derived from BOARD_06 language: ivory field, lavender drafting lines, blush/mauve creature, restrained cyan accent; owner review required before real texture authoring",
+  "status": "draft"
+}

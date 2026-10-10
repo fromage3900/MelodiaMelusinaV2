@@ -1,0 +1,74 @@
+{
+  "schema": "MelodiaChladniSheet-draft-v1",
+  "id": "Chl_Sq_n3m3_n2m3_n1m1_C_E_G_183b",
+  "family": "C_E_G",
+  "notes": [
+    {
+      "name": "C",
+      "octave": 4,
+      "hz": 261.63,
+      "amp": 1.0
+    },
+    {
+      "name": "E",
+      "octave": 4,
+      "hz": 329.63,
+      "amp": 0.6
+    },
+    {
+      "name": "G",
+      "octave": 4,
+      "hz": 392.0,
+      "amp": 0.45
+    }
+  ],
+  "geometry": "square",
+  "modes": [
+    {
+      "n": 3,
+      "m": 3,
+      "w": -0.478
+    },
+    {
+      "n": 2,
+      "m": 3,
+      "w": 0.664
+    },
+    {
+      "n": 1,
+      "m": 1,
+      "w": -0.717
+    }
+  ],
+  "seed": 6203,
+  "rank": 0.5326,
+  "nodal_length": 3.994,
+  "scores": {
+    "order": 0.0,
+    "legibility": 1.0,
+    "negative_space": 0.1667,
+    "symmetry": 0.855,
+    "coherence": 0.855
+  },
+  "rank_weights": {
+    "order": 0.25,
+    "legibility": 0.2,
+    "negative_space": 0.2,
+    "symmetry": 0.25,
+    "coherence": 0.1
+  },
+  "display_name": "Square 33+23+11 - C_E_G",
+  "production_note": "draft preview; owner picks for texture authoring",
+  "name_model": "deterministic-fallback",
+  "palette": {
+    "field": "#F6F0E3",
+    "frame": "#8F83C4",
+    "blush": "#D98CA6",
+    "mauve": "#A96E96",
+    "lilac": "#7E74C9",
+    "pearl_shadow": "#B7AC99",
+    "cyan": "#4FA8BE"
+  },
+  "palette_provenance": "derived from BOARD_06 language: ivory field, lavender drafting lines, blush/mauve creature, restrained cyan accent; owner review required before real texture authoring",
+  "status": "draft"
+}
