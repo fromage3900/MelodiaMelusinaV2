@@ -29,7 +29,8 @@
         "structures": {"$ref": "#/$defs/stage"},
         "beauty": {"$ref": "#/$defs/stage"},
         "harmony": {"$ref": "#/$defs/stage"},
-        "meadow": {"$ref": "#/$defs/stage"}
+        "meadow": {"$ref": "#/$defs/stage"},
+        "archipelago": {"$ref": "#/$defs/stage"}
       }
     },
     "identity": {"type": "object"},

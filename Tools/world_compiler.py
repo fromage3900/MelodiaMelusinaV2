@@ -46,6 +46,7 @@ for _p in (str(ROOT / "Tools"), str(CONTENT_PY)):
 import resonant_world_generator as rwg  # noqa: E402  (reused identity module)
 import harmonic_terrain as ht  # noqa: E402  (optional harmony stage)
 import meadow_field as mf  # noqa: E402  (optional Houdini-driven meadow stage)
+import archipelago as arch  # noqa: E402  (optional melodic archipelago stage)
 
 try:
     from pcg.resonance_ecology_processor import derive as _resonance_derive  # noqa: E402
@@ -176,6 +177,8 @@ def validate_recipe(recipe: dict[str, Any]) -> list[str]:
         errors.extend(ht.validate(recipe["harmony"]))
     if recipe.get("meadow") is not None:
         errors.extend(mf.validate(recipe["meadow"]))
+    if recipe.get("archipelago") is not None:
+        errors.extend(arch.validate(recipe["archipelago"], set(rwg.MODE_LIBRARY)))
     beauty = recipe.get("beauty")
     if beauty is not None:
         for key in ("sender_name", "render_target", "sender_bp"):
@@ -1233,6 +1236,20 @@ def stage_meadow(recipe: dict[str, Any]) -> tuple[dict[str, Any] | None, dict[st
     return {"rows": rows, "meta": meta}, _stage("PASS" if rows else "FAIL", "Tools/meadow_field.py", note, None if rows else ["no meadow points (check field/ground overlap)"])
 
 
+def stage_archipelago(recipe: dict[str, Any]) -> tuple[list[dict[str, Any]] | None, dict[str, Any]]:
+    """Melodic archipelago: islands along the level's arpeggio contour. Optional: absent => no tables."""
+    cfg = recipe.get("archipelago")
+    if not cfg:
+        return None, _stage("SKIPPED", "Tools/archipelago.py", "recipe.archipelago absent")
+    scale = list(rwg.MODE_LIBRARY[cfg["mode"]].intervals)
+    rows = arch.compile_archipelago(cfg, scale=scale, anchor=recipe["place"]["anchor_cm"], seed=int(recipe["world_seed"]), rand=_u)
+    biomes: dict[str, int] = {}
+    for r in rows:
+        biomes[r["biome"]] = biomes.get(r["biome"], 0) + 1
+    note = f"{len(rows)} islands in {cfg['mode']} ({', '.join(f'{k}:{v}' for k, v in sorted(biomes.items()))})"
+    return rows, _stage("PASS", "Tools/archipelago.py", note)
+
+
 # ----------------------------------------------------------------------------- bundle
 
 def _csv_bytes(columns: list[str], rows: list[dict[str, Any]]) -> bytes:
@@ -1284,6 +1301,9 @@ def compile_recipe(recipe_path: Path, *, out_root: Path | None = None, constella
     meadow, meadow_stage = stage_meadow(recipe)
     if recipe.get("meadow"):
         stages["meadow"] = meadow_stage
+    archipelago, archipelago_stage = stage_archipelago(recipe)
+    if recipe.get("archipelago"):
+        stages["archipelago"] = archipelago_stage
 
     files: dict[str, bytes] = {
         "points.csv": _csv_bytes(POINT_COLUMNS, ecology["points"]),
@@ -1312,6 +1332,8 @@ def compile_recipe(recipe_path: Path, *, out_root: Path | None = None, constella
     if meadow is not None:
         files["meadow_points.csv"] = _csv_bytes(POINT_COLUMNS, meadow["rows"])
         files["meadow.json"] = _json_bytes(meadow["meta"])
+    if archipelago is not None:
+        files["archipelago.csv"] = _csv_bytes(arch.COLUMNS, archipelago)
     for name, data in files.items():
         (out_dir / name).write_bytes(data)
 
@@ -1324,6 +1346,7 @@ def compile_recipe(recipe_path: Path, *, out_root: Path | None = None, constella
             "harmony_edges.csv": (len(harmony["edges"]), ht.EDGE_COLUMNS),
             "harmony_points.csv": (len(harmony["points"]), POINT_COLUMNS)} if harmony is not None else {}),
         **({"meadow_points.csv": (len(meadow["rows"]), POINT_COLUMNS)} if meadow is not None else {}),
+        **({"archipelago.csv": (len(archipelago), arch.COLUMNS)} if archipelago is not None else {}),
     }
     tables = {
         name: {
@@ -1417,6 +1440,9 @@ def compile_recipe(recipe_path: Path, *, out_root: Path | None = None, constella
                 "pcg_volume_label": f"WC_{recipe['recipe_id']}_Meadow",
                 "field_sha256": meadow["meta"]["field_sha256"],
             }} if meadow is not None else {}),
+            **({"archipelago": {"islands": len(archipelago), "mode": recipe["archipelago"]["mode"],
+                                "lane_script": "Content/Python/world_compiler_archipelago_ue.py",
+                                "actor_prefix": f"ARCH_{recipe['recipe_id']}_"}} if archipelago is not None else {}),
         },
         "notes": [
             "compiler never imports unreal; UE lane is Content/Python/world_compiler_ue.py",

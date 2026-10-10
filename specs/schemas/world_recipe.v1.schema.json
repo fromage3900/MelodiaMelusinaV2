@@ -677,6 +677,21 @@
         "species": {"type": "array", "minItems": 1, "items": {"type": "object", "additionalProperties": false, "required": ["species_id", "meshes", "material"], "properties": {"species_id": {"type": "string"}, "meshes": {"type": "array", "minItems": 1, "items": {"type": "string", "pattern": "^/Game/"}}, "material": {"type": "string", "pattern": "^/Game/"}, "weight": {"type": "number", "exclusiveMinimum": 0}, "scale_range": {"$ref": "#/$defs/vec2"}, "health_range": {"$ref": "#/$defs/vec2"}, "tuft_range": {"$ref": "#/$defs/vec2"}}}}
       }
     },
+    "archipelago": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Optional melodic archipelago (Tools/archipelago.py): islands placed along the level's arpeggio contour in its mode. Absent => byte-identical legacy output.",
+      "required": ["mode", "count", "pool"],
+      "properties": {
+        "mode": {"enum": ["ionian", "dorian", "lydian", "aeolian", "phrygian"]},
+        "pattern": {"enum": ["arpeggio_up", "arpeggio_arch", "wave_harp", "prism_arch"]},
+        "count": {"type": "integer", "minimum": 2, "maximum": 64},
+        "base_radius_cm": {"type": "number", "exclusiveMinimum": 0}, "gap_cm": {"type": "number", "minimum": 0}, "cm_per_semitone": {"type": "number"},
+        "turn_deg_per_semitone": {"type": "number"}, "heading_deg": {"type": "number"}, "hero_scale": {"type": "number", "exclusiveMinimum": 0},
+        "lateral_alternate_cm": {"type": "number", "minimum": 0}, "beats_per_note": {"type": "number", "exclusiveMinimum": 0},
+        "pool": {"type": "array", "minItems": 1, "items": {"type": "object", "additionalProperties": false, "required": ["mesh", "radius_cm", "top_z_cm"], "properties": {"mesh": {"type": "string", "pattern": "^/Game/"}, "radius_cm": {"type": "number", "exclusiveMinimum": 0}, "top_z_cm": {"type": "number"}}}}
+      }
+    },
     "lookdev": {
       "type": "object",
       "additionalProperties": false,

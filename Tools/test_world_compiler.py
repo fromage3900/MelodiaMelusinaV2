@@ -526,6 +526,39 @@ def test_meadow_absent_emits_no_meadow_tables():
         assert not any(p.name.startswith("meadow") for p in out.iterdir())
 
 
+ARCH = ROOT / "recipes" / "kaleido_archipelago.v1.json"
+
+
+def test_archipelago_deterministic_and_melodic():
+    recipe, _ = wc.load_recipe(ARCH)
+    with tempfile.TemporaryDirectory() as a, tempfile.TemporaryDirectory() as b:
+        m1, out1 = _compile(Path(a), ARCH)
+        m2, _ = _compile(Path(b), ARCH)
+        assert m1["manifest_sha256"] == m2["manifest_sha256"]
+        assert m1["stages"]["archipelago"]["status"] == "PASS"
+        rows = _rows(out1 / "archipelago.csv")
+        assert len(rows) == recipe["archipelago"]["count"]
+        assert float(rows[0]["radius_cm"]) == max(float(r["radius_cm"]) for r in rows)   # tonic = hero island
+        assert {r["biome"] for r in rows} <= {"meadow", "grove", "crystal"}
+        for r in rows[:-1]:
+            assert float(r["bridge_len_cm"]) > 0 and int(r["next_island"]) == int(r["island_id"]) + 1
+        assert rows[-1]["next_island"] == "-1"
+        assert m1["ue_lane"]["archipelago"]["islands"] == len(rows)
+
+
+def test_archipelago_rejects_bad_mode():
+    recipe, _ = wc.load_recipe(ARCH)
+    recipe["archipelago"]["mode"] = "not_a_mode"
+    assert any("archipelago" in e and "mode" in e for e in wc.validate_recipe(recipe))
+
+
+def test_archipelago_absent_emits_no_tables():
+    with tempfile.TemporaryDirectory() as tmp:
+        manifest, out = _compile(Path(tmp))
+        assert "archipelago" not in manifest["stages"] and "archipelago" not in manifest["ue_lane"]
+        assert not (out / "archipelago.csv").exists()
+
+
 if __name__ == "__main__":
     failures = 0
     for name, fn in sorted(globals().items()):
