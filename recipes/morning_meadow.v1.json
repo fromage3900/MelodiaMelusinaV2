@@ -471,8 +471,8 @@
         "material": "/Game/EnvSandbox/Materials/Instances/Flora/Meadow/MI_Meadow_Kikuyu",
         "weight": 3.0,
         "scale_range": [
-          0.9,
-          1.5
+          0.45,
+          0.8
         ],
         "health_range": [
           0.45,
@@ -492,8 +492,8 @@
         "material": "/Game/EnvSandbox/Materials/Instances/Flora/Meadow/MI_Meadow_Kikuyu",
         "weight": 1.5,
         "scale_range": [
-          0.7,
-          1.1
+          0.4,
+          0.65
         ],
         "health_range": [
           0.2,
@@ -513,8 +513,8 @@
         "material": "/Game/EnvSandbox/Materials/Instances/Flora/Meadow/MI_Meadow_Clover",
         "weight": 1.2,
         "scale_range": [
-          1.0,
-          1.8
+          0.6,
+          1.0
         ],
         "health_range": [
           0.5,
@@ -530,8 +530,8 @@
         "material": "/Game/EnvSandbox/Materials/Instances/Flora/Meadow/MI_Meadow_GroundCover",
         "weight": 1.5,
         "scale_range": [
-          1.0,
-          1.8
+          0.6,
+          1.0
         ],
         "health_range": [
           0.15,

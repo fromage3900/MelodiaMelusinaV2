@@ -1,15 +1,6 @@
-"""World Compiler UE lane for the Houdini-driven meadow stage (editor only, one idempotent pass).
-
-    exec(open(".../world_compiler_meadow_ue.py").read())          # via Monolith run_python
-
-Does, in order, and prints STEP_OK only if every verification passed:
-  1. three wind/hue shader instances (children of the existing M_MelodiaPlant_Wind master; no new master),
-     textured from the matching Megascans MI -- the stack gives procedural wind + the Melodia hue reveal + the audio hue strobe
-  2. fills DT_morning_meadow_MeadowPoints from Saved/WorldCompiler/morning_meadow_3900/meadow_points.csv
-  3. duplicates PCG_WorldCompiler_PointField -> ..._Meadow and repoints its Load Data Table nodes
-  4. places/reuses the WC_morning_meadow_Meadow PCGVolume (pose copied from the rainbow-bloom field volume), generates, counts
-Never touches a master, a mesh asset or another level.
-"""
+# World Compiler UE lane for the Houdini-driven meadow stage (editor only, idempotent).
+# Steps: wind/hue MIs on the existing wind master, points table, PointField graph copy, volume + generate.
+# Prints STEP_OK only when every verification passed. Never touches a master, a mesh asset or another level.
 import unreal
 
 ROOT = "C:/EnvironmentPortfolio/BS_GodFile/"
@@ -18,9 +9,9 @@ W = "/Game/Melodia/WorldCompiler/"
 MI_DIR = "/Game/EnvSandbox/Materials/Instances/Flora/Meadow"
 MASTER = "/Game/Melodia/_PROJECT/04_Materials/Plants/M_MelodiaPlant_Wind"
 FAMILIES = {  # MI name -> (Megascans MI that already carries the right textures, hue seed, reveal tint)
-    "MI_Meadow_Kikuyu": ("/Game/Megascans/3D_Plants/KikuyuGrass/MI_KikuyuGrass_01", 0.30, (0.78, 0.96, 0.62, 1.0)),
-    "MI_Meadow_Clover": ("/Game/Megascans/3D_Plants/CloverVarieties/MI_CloverVarieties_01", 0.55, (0.86, 0.95, 0.70, 1.0)),
-    "MI_Meadow_GroundCover": ("/Game/Megascans/3D_Plants/GroundCover/MI_GroundCover_01", 0.15, (0.72, 0.92, 0.66, 1.0)),
+    "MI_Meadow_Kikuyu": ("/Game/Megascans/3D_Plants/KikuyuGrass/MI_KikuyuGrass_01", 0.30, (0.50, 0.88, 0.46, 1.0)),
+    "MI_Meadow_Clover": ("/Game/Megascans/3D_Plants/CloverVarieties/MI_CloverVarieties_01", 0.55, (0.58, 0.90, 0.52, 1.0)),
+    "MI_Meadow_GroundCover": ("/Game/Megascans/3D_Plants/GroundCover/MI_GroundCover_01", 0.15, (0.48, 0.84, 0.50, 1.0)),
 }
 
 ues = unreal.get_editor_subsystem(unreal.UnrealEditorSubsystem)
@@ -45,12 +36,13 @@ for name, (src_path, seed, tint) in FAMILIES.items():
     for param, srcparam in (("ColorOpacity", "Albedo"), ("NormalRoughness", "Normal"), ("Subsurface", "Translucency")):
         tex = MEL.get_material_instance_texture_parameter_value(src, srcparam)
         if tex is None:
-            print("no texture", src_path, srcparam); ok = False
+            print("no texture (optional)" if srcparam == "Translucency" else "MISSING TEXTURE", src_path, srcparam)
+            ok &= srcparam == "Translucency"
         else:
             MEL.set_material_instance_texture_parameter_value(mi, param, tex)
-    for k, v in (("MelodiaWindResponse", 0.85), ("MelodiaWindHueSeed", seed), ("SharedOscillation", 14.0), ("SharedBend", 25.0),
-                 ("Branch1Oscillation", 8.0), ("Branch1Bend", 20.0), ("RippleDirectional", 10.0), ("RipplePlanar", 10.0),
-                 ("MelodiaWindGustResponse", 1.6)):
+    for k, v in (("MelodiaWindResponse", 0.6), ("MelodiaWindHueSeed", seed), ("SharedOscillation", 4.0), ("SharedBend", 6.0),
+                 ("Branch1Oscillation", 2.0), ("Branch1Bend", 4.0), ("RippleDirectional", 2.0), ("RipplePlanar", 2.0),
+                 ("MelodiaWindGustResponse", 0.8), ("MelodiaHueShift", 0.07)):
         MEL.set_material_instance_scalar_parameter_value(mi, k, v)
     MEL.set_material_instance_vector_parameter_value(mi, "MelodiaWindRevealTint", unreal.LinearColor(*tint))
     MEL.update_material_instance(mi)
