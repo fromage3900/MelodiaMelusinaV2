@@ -91,6 +91,9 @@ def assess(issue: dict, *, now: datetime | None = None) -> dict | None:
         return None
     if "原始链接 / source url" in lower or "coin reward" in lower:
         return None
+    # Reject explicit in-project points/token denomination, not genuine cash claims.
+    if re.search(r"\$\s*\d[\d,]*(?:\.\d+)?\s*\((?:LT|MRG|tokens?|points?|credits?)\)", text, re.I):
+        return None
     if not re.search(r"\bbounty\b|\bpaid issue\b", title, re.I):
         return None
 
