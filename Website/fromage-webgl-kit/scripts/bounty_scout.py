@@ -28,6 +28,8 @@ API = "https://api.github.com/search/issues"
 QUERIES = (
     "is:issue is:open label:bounty",
     "is:issue is:open bounty in:title",
+    "is:issue is:open bounty python in:title,body",
+    "is:issue is:open bounty tests in:title,body",
 )
 ISSUE_URL = re.compile(r"^https://github\.com/([^/\s]+)/([^/\s]+)/issues/(\d+)$")
 MONEY = re.compile(r"(?<![\w])(?:(?:USD|CAD)\s*)?(?:US|CA)?\$\s*(\d[\d,]*(?:\.\d{1,2})?)\b", re.I)
@@ -40,7 +42,8 @@ SPAM = (
 )
 PRIMARY = ("python", "blender", "houdini", "glb", "gltf", "three.js", "webgl",
            "shader", "unreal", "geometry nodes", "pytest", "cli")
-SECONDARY = ("typescript", "javascript", "node.js", "test suite", "json", "api")
+SECONDARY = ("typescript", "javascript", "node.js", "test suite", "json", "api",
+             ".ts", "pnpm", "bun run", "npm run", "vitest", "jest", "playwright")
 
 
 def _date(value: str | None) -> datetime | None:
