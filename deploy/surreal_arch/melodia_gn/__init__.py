@@ -189,6 +189,15 @@ from . import music_note_durations  # noqa: F401 - P5 wave 17: whole/half/quarte
 from . import music_notation_extras  # noqa: F401 - P5 wave 18: sixteenth note, rests, dynamics, hairpins, percussion clef
 from . import music_notation_marks  # noqa: F401 - P5 wave 20: thirty-second note, bar lines, tenuto, caesura
 from . import music_notation_signs  # noqa: F401 - P5 wave 21: double sharp/flat, coda, segno, breath mark, sforzando
+from . import music_notation_signs2  # noqa: F401 - P5 wave 22: trill, mordent, turn, inverted turn, glissando, arpeggio, pedal marks, octave shift, key signature, tempo mark
+# == UE proxy material kit UI ========================================
+# integration.py registers melodia_gn.CLASSES. UE_PROXY_CLASSES was orphaned
+# when ue_proxy_kit was recovered (2026-09-11); the panel/operator never
+# registered. Fold it in here; do not remove. Gate: Tools/verify_proxy_materials.py
+from .ue_proxy_kit import UE_PROXY_CLASSES as _UE_PROXY_CLASSES
+
+CLASSES = list(CLASSES) + list(_UE_PROXY_CLASSES)
+
 from .core import _rebuild_derived_data
 _rebuild_derived_data()
 
