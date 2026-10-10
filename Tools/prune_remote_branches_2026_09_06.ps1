@@ -1,3 +1,8 @@
+# HISTORICAL REFERENCE ONLY — RETIRED 2026-10-10.
+# This dated hard-coded allowlist is obsolete. It MUST NOT execute remote deletions.
+# Use Tools/prune_remote_branches.ps1 with the current manifest and explicit approval.
+throw "Retired historical script. Use Tools/prune_remote_branches.ps1 (dry-run by default)."
+
 param(
   [switch]$Execute,
   [string]$Remote = "origin",
