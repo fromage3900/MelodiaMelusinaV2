@@ -6,7 +6,7 @@ import unreal, csv
 BUNDLE_DIR = BUNDLE  # noqa: F821  e.g. "C:/EnvironmentPortfolio/BS_GodFile/Saved/WorldCompiler/kaleido_archipelago_4101/"
 PREFIX = PREFIX      # noqa: F821  e.g. "ARCH_kaleido_archipelago_"
 GRAPH = {"meadow": "/Game/Melodia/PCG/MassiveBiome/PCG_Biome_MorningMeadow",
-         "grove": "/Game/Melodia/PCG/MassiveBiome/PCG_Biome_DistantForest",
+         "grove": "/Game/Melodia/PCG/MassiveBiome/PCG_Biome_IslandGrove",
          "crystal": "/Game/Melodia/PCG/MassiveBiome/PCG_Biome_CrystalGarden"}
 
 ues = unreal.get_editor_subsystem(unreal.UnrealEditorSubsystem)
