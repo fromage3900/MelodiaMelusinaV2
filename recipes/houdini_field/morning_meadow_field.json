@@ -1,0 +1,84 @@
+{
+  "schema": "melodia.houdini_field.v1",
+  "source_probe": "recipes/ground/morning_rainbow_bloom_ground_probe.json",
+  "source_probe_sha256": "965862142e7a44090ba92da1b107498f375eff0996f96ce2611e5ff639ba2317",
+  "seed": 3900,
+  "lattice": {
+    "nx": 49,
+    "ny": 49,
+    "step_cm": 100.0,
+    "center_cm": [
+      -2300.0,
+      1442.0
+    ],
+    "row_order": "point = ix*49+iy; ix indexes x, iy indexes y"
+  },
+  "houdini": {
+    "version": "22.0.368",
+    "license_category": "licenseCategoryType.Apprentice",
+    "note": "Apprentice/non-commercial; scene saved as .hipnc"
+  },
+  "world_sources_cm": {
+    "pond": {
+      "center": [
+        -950.0,
+        2300.0
+      ],
+      "radius": 380.0
+    },
+    "hero": [
+      -2560.0,
+      1250.0
+    ],
+    "bedroom_keepout": {
+      "center": [
+        900.0,
+        2300.0
+      ],
+      "radius": 1100.0
+    }
+  },
+  "soil_cells": 721,
+  "health_gt_0_5": 502,
+  "channel_stats_over_soil": {
+    "slope": {
+      "min": 0.0011180340079590678,
+      "max": 1.0,
+      "mean": 0.32191776507453357
+    },
+    "concavity": {
+      "min": 0.0,
+      "max": 1.0,
+      "mean": 0.4842774182268717
+    },
+    "moisture": {
+      "min": 0.25873038172721863,
+      "max": 1.0,
+      "mean": 0.6200601943818937
+    },
+    "health": {
+      "min": 0.0,
+      "max": 0.8919998407363892,
+      "mean": 0.5404881611931424
+    },
+    "tuft": {
+      "min": 0.22489333152770996,
+      "max": 0.7654074430465698,
+      "mean": 0.4933592390046867
+    },
+    "z_cm": {
+      "min": -209.5,
+      "max": 1224.6,
+      "mean": 628.5773925104022
+    }
+  },
+  "vex": {
+    "slope": "\n// neighbours by point number (ix*49+iy); non-soil/out-of-range neighbours fall back to own z\nfloat z0 = f@zc;\nfloat zn[];\nint dix[] = {1,-1,0,0};\nint diy[] = {0,0,1,-1};\nforeach (int k; int d; dix) {\n    int jx = i@ix + dix[k];\n    int jy = i@iy + diy[k];\n    float zz = z0;\n    if (jx >= 0 && jx < 49 && jy >= 0 && jy < 49) {\n        int pn = jx*49 + jy;\n        if (point(0, \"soil\", pn) == 1) zz = point(0, \"zc\", pn);\n    }\n    append(zn, zz);\n}\nfloat step = 100.0;\nfloat gx = (zn[0]-zn[1])/(2.0*step);\nfloat gy = (zn[2]-zn[3])/(2.0*step);\nfloat grad = sqrt(gx*gx + gy*gy);\nf@slope = clamp(grad/1.0, 0, 1) * i@soil;\nf@lapcm = (zn[0]+zn[1]+zn[2]+zn[3]-4.0*z0);\n",
+    "concavity": "\nf@concavity = clamp(0.5 + f@lapcm*0.01, 0, 1) * i@soil;\n",
+    "moisture": "\nvector2 pond = set(-950.0, 2300.0);\nfloat dpond = distance(set(@P.x, @P.y), pond);\nfloat seed = chf(\"seed\");\nvector q = @P*0.0009 + set(seed*0.137, seed*0.291, seed*0.053);\nfloat fbm = 0.5*noise(q) + 0.25*noise(q*2.0+11.7) + 0.125*noise(q*4.0+23.1);\nfbm /= 0.875;\nfloat m = exp(-dpond/1500.0) + 0.35*fbm + 0.25*f@concavity;\nf@moisture = clamp(m, 0, 1) * i@soil;\n",
+    "health": "\nvector2 xy = set(@P.x, @P.y);\nfloat dpond = distance(xy, set(-950.0, 2300.0));\nfloat dhero = distance(xy, set(-2560.0, 1250.0));\nfloat dbed  = distance(xy, set(900.0, 2300.0));\nfloat hero_boost = exp(-dhero/900.0);\nfloat h = 0.30 + 0.55*f@moisture - 0.85*max(0, f@slope-0.35) + 0.20*hero_boost;\nh = clamp(h, 0, 1) * i@soil;\nif (dbed < 1100.0 || dpond < 380.0) h = 0;\nf@health = h;\n",
+    "tuft": "\nfloat seed = chf(\"seed\");\nvector q = @P*0.0031 + set(seed*0.719 + 101.3, seed*0.331 + 57.9, seed*0.113 + 9.1);\nf@tuft = clamp(noise(q), 0, 1);\n"
+  },
+  "hip_file": "recipes/houdini_field/morning_meadow_field.hipnc",
+  "csv_file": "recipes/houdini_field/morning_meadow_field.csv"
+}

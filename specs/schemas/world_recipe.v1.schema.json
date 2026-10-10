@@ -661,6 +661,22 @@
         }
       }
     },
+    "meadow": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Optional Houdini-driven meadow (Tools/meadow_field.py): the hython-cooked health field CSV becomes deterministic grass points on probed soil. Absent => byte-identical legacy output.",
+      "required": ["field", "species"],
+      "properties": {
+        "field": {"type": "string", "description": "Repo-relative CSV from Tools/Houdini/foundry/morning_meadow_field.py"},
+        "spacing_cm": {"type": "number", "exclusiveMinimum": 0},
+        "jitter": {"type": "number", "minimum": 0, "maximum": 0.5},
+        "health_min": {"type": "number", "minimum": 0, "maximum": 1},
+        "density_gamma": {"type": "number", "exclusiveMinimum": 0},
+        "density_scale": {"type": "number", "exclusiveMinimum": 0},
+        "max_points": {"type": "integer", "minimum": 1},
+        "species": {"type": "array", "minItems": 1, "items": {"type": "object", "additionalProperties": false, "required": ["species_id", "meshes", "material"], "properties": {"species_id": {"type": "string"}, "meshes": {"type": "array", "minItems": 1, "items": {"type": "string", "pattern": "^/Game/"}}, "material": {"type": "string", "pattern": "^/Game/"}, "weight": {"type": "number", "exclusiveMinimum": 0}, "scale_range": {"$ref": "#/$defs/vec2"}, "health_range": {"$ref": "#/$defs/vec2"}, "tuft_range": {"$ref": "#/$defs/vec2"}}}}
+      }
+    },
     "lookdev": {
       "type": "object",
       "additionalProperties": false,

@@ -1,0 +1,543 @@
+{
+  "schema": "melodia.world_recipe.v1",
+  "recipe_id": "morning_meadow",
+  "world_seed": 3900,
+  "identity": {
+    "mode_id": "ionian",
+    "root_pitch_class": 0,
+    "bpm": 96,
+    "movement_id": "petal_cantata",
+    "chunk": [
+      0,
+      0
+    ]
+  },
+  "place": {
+    "level": "/Game/Melodia/Levels/Opening/L_MelusinaMorning",
+    "anchor_cm": [
+      -2300.0,
+      1442.0,
+      0.0
+    ],
+    "up_axis_offset_cm": 8.0,
+    "clearance": {
+      "circles": [
+        {
+          "label": "pond_water",
+          "center_cm": [
+            -950.0,
+            2300.0
+          ],
+          "radius_cm": 380.0
+        },
+        {
+          "label": "bedroom_keepout",
+          "center_cm": [
+            900.0,
+            2300.0
+          ],
+          "radius_cm": 1100.0
+        },
+        {
+          "label": "Morning_QuillTrigger_ChoralSheep",
+          "center_cm": [
+            -887.6,
+            2140.0
+          ],
+          "radius_cm": 140.0
+        },
+        {
+          "label": "BP_ChoralSheep_rest",
+          "center_cm": [
+            -110.9,
+            1042.5
+          ],
+          "radius_cm": 220.0
+        },
+        {
+          "label": "Morning_Bed",
+          "center_cm": [
+            1435.1,
+            2320.8
+          ],
+          "radius_cm": 420.0
+        }
+      ],
+      "capsules": [
+        {
+          "label": "wake_path_pond_to_sheep",
+          "a_cm": [
+            -887.6,
+            2140.0
+          ],
+          "b_cm": [
+            -110.9,
+            1042.5
+          ],
+          "radius_cm": 90.0
+        },
+        {
+          "label": "wake_path_west_bank",
+          "a_cm": [
+            -1800.0,
+            2500.0
+          ],
+          "b_cm": [
+            -1800.0,
+            1600.0
+          ],
+          "radius_cm": 80.0
+        }
+      ]
+    }
+  },
+  "field": {
+    "kind": "radial_bands",
+    "band_count": 7,
+    "inner_radius_cm": 200.0,
+    "band_width_cm": 250.0,
+    "sector_deg": [
+      0.0,
+      360.0
+    ],
+    "density_per_m2": 3.5,
+    "phyllotaxis_angle_rad": 2.399963,
+    "radial_jitter_cm": 22.0,
+    "scale_range": [
+      0.85,
+      1.45
+    ],
+    "chladni": {
+      "modes": [
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          5,
+          6
+        ],
+        [
+          6,
+          7
+        ],
+        [
+          7,
+          8
+        ],
+        [
+          8,
+          9
+        ]
+      ],
+      "threshold": 0.35,
+      "plate_size_cm": 11000.0
+    },
+    "hero_falloff_cm": 1000.0,
+    "trail_arcs": [
+      {
+        "species_id": "melody_glitter_fairy",
+        "angle_center_deg": 50.0,
+        "span_deg": 80.0,
+        "radius_cm": 600.0,
+        "count": 24,
+        "width_cm": 80.0
+      },
+      {
+        "species_id": "melody_glitter_fairy",
+        "angle_center_deg": 180.0,
+        "span_deg": 60.0,
+        "radius_cm": 1300.0,
+        "count": 20,
+        "width_cm": 60.0
+      },
+      {
+        "species_id": "melody_glitter_fairy",
+        "angle_center_deg": 300.0,
+        "span_deg": 60.0,
+        "radius_cm": 1400.0,
+        "count": 16,
+        "width_cm": 80.0
+      }
+    ]
+  },
+  "species": [
+    {
+      "species_id": "speedtree_meadow",
+      "mesh": "/Game/EnvSandbox/Library/FoliageCards/GenericFlower1",
+      "meshes": [
+        "/Game/EnvSandbox/Library/FoliageCards/GenericFlower1",
+        "/Game/EnvSandbox/Library/FoliageCards/GenericFlowerTall"
+      ],
+      "mesh_mi_suffixes": [
+        "",
+        "_Tall"
+      ],
+      "band_mi_prefix": "/Game/EnvSandbox/Materials/Instances/Flora/Rainbow/MI_RainbowSpeedTree_",
+      "stem_material": "__band__",
+      "scale_range": [
+        0.45,
+        0.8
+      ],
+      "weight": 1.0,
+      "variants": 2,
+      "height_class": 1,
+      "ground_labels": [
+        "BrushifyIsland_"
+      ]
+    },
+    {
+      "species_id": "brushify_overgrowth",
+      "mesh": "/Game/Brushify/Meshes/FloatingIslands/Dressing/Overgrowth_01/S_Overgrowth_01",
+      "meshes": [
+        "/Game/Brushify/Meshes/FloatingIslands/Dressing/Overgrowth_01/S_Overgrowth_01",
+        "/Game/Brushify/Meshes/FloatingIslands/Dressing/Overgrowth_01/S_Overgrowth_02"
+      ],
+      "weight": 0.04,
+      "variants": 2,
+      "height_class": 0,
+      "scale_range": [
+        0.035,
+        0.065
+      ],
+      "ground_labels": [
+        "WC_EscherWalk_",
+        "BrushifyIsland_"
+      ]
+    },
+    {
+      "species_id": "brushify_roots",
+      "mesh": "/Game/Brushify/Meshes/FloatingIslands/Dressing/Roots_01/S_Roots_01",
+      "meshes": [
+        "/Game/Brushify/Meshes/FloatingIslands/Dressing/Roots_01/S_Roots_01",
+        "/Game/Brushify/Meshes/FloatingIslands/Dressing/Roots_02/S_Roots_02",
+        "/Game/Brushify/Meshes/FloatingIslands/Dressing/Roots_03/S_Roots_03"
+      ],
+      "weight": 0.035,
+      "variants": 3,
+      "height_class": 0,
+      "scale_range": [
+        0.04,
+        0.075
+      ],
+      "ground_labels": [
+        "WC_EscherWalk_",
+        "BrushifyIsland_"
+      ]
+    },
+    {
+      "species_id": "brushify_bush",
+      "mesh": "/Game/Brushify/Meshes/Foliage/Bushes/GenericBush/S_GenericBush_Small",
+      "meshes": [
+        "/Game/Brushify/Meshes/Foliage/Bushes/GenericBush/S_GenericBush_Small",
+        "/Game/Brushify/Meshes/Foliage/Bushes/GenericBush/S_GenericBush_Medium"
+      ],
+      "weight": 0.03,
+      "variants": 2,
+      "height_class": 0,
+      "ground_labels": [
+        "WC_EscherWalk_",
+        "BrushifyIsland_"
+      ]
+    },
+    {
+      "species_id": "melody_glitter_soft",
+      "mesh": "/Game/EnvSandbox/SM_MelodyToken",
+      "meshes": [
+        "/Game/EnvSandbox/SM_MelodyToken"
+      ],
+      "band_mi_prefix": "/Game/EnvSandbox/Materials/Instances/Flora/Rainbow/MI_RainbowGlitter_",
+      "stem_material": "__band__",
+      "weight": 0.02,
+      "variants": 1,
+      "height_class": 0,
+      "scale_range": [
+        0.05,
+        0.09
+      ],
+      "ground_labels": [
+        "BrushifyIsland_"
+      ]
+    },
+    {
+      "species_id": "melody_glitter",
+      "mesh": "/Game/EnvSandbox/SM_MelodyToken",
+      "meshes": [
+        "/Game/EnvSandbox/SM_MelodyToken"
+      ],
+      "band_mi_prefix": "/Game/EnvSandbox/Materials/Instances/Flora/Rainbow/MI_RainbowGlitter_",
+      "stem_material": "__band__",
+      "weight": 0.02,
+      "variants": 1,
+      "height_class": 0,
+      "scale_range": [
+        0.06,
+        0.14
+      ],
+      "ground_labels": [
+        "WC_EscherWalk_",
+        "BrushifyIsland_"
+      ]
+    },
+    {
+      "species_id": "melody_glitter_blaze",
+      "mesh": "/Game/EnvSandbox/SM_MelodyToken",
+      "meshes": [
+        "/Game/EnvSandbox/SM_MelodyToken"
+      ],
+      "band_mi_prefix": "/Game/EnvSandbox/Materials/Instances/Flora/Rainbow/MI_RainbowGlitter_",
+      "stem_material": "__band__",
+      "weight": 0.015,
+      "variants": 1,
+      "height_class": 0,
+      "scale_range": [
+        0.1,
+        0.2
+      ],
+      "ground_labels": [
+        "WC_EscherWalk_",
+        "BrushifyIsland_"
+      ]
+    },
+    {
+      "species_id": "melody_glitter_fairy",
+      "mesh": "/Game/EnvSandbox/SM_MelodyToken",
+      "meshes": [
+        "/Game/EnvSandbox/SM_MelodyToken"
+      ],
+      "band_mi_prefix": "/Game/EnvSandbox/Materials/Instances/Flora/Rainbow/MI_RainbowGlitter_",
+      "stem_material": "__band__",
+      "weight": 0.03,
+      "variants": 1,
+      "height_class": 0,
+      "scale_range": [
+        0.03,
+        0.06
+      ],
+      "pitch_deg": 90.0,
+      "pitch_jitter_deg": 12.0,
+      "ground_labels": [
+        "BrushifyIsland_",
+        "WC_EscherWalk_"
+      ]
+    }
+  ],
+  "palette": {
+    "parent_master": "/Game/Melodia/_PROJECT/04_Materials/Plants/M_MelodiaPlant_Wind",
+    "tint_parameter": "MelodiaWindRevealTint",
+    "active_lane": "wind",
+    "wind": {
+      "parent": "/Game/Melodia/_PROJECT/04_Materials/Plants/Flowers/MI_Plant_Flower_GenericFlower1",
+      "mi_prefix": "/Game/EnvSandbox/Materials/Instances/Flora/Rainbow/MI_RainbowSpeedTree_",
+      "tint_parameter": "MelodiaWindRevealTint",
+      "hue_seed_parameter": "MelodiaWindHueSeed",
+      "response_parameter": "MelodiaWindResponse",
+      "response": 0.3,
+      "static_switches_off": [],
+      "texture_overrides": {},
+      "scalar_overrides": {
+        "SharedBend": 0.15
+      },
+      "note": "Children of the staged SpeedTree flower MI. SpeedTree wind chain stays on; hue reveal only. Wind calm 2026-09-27 (Jev F_CALM_CHILDREN 1.0): response 0.3 + SharedBend 0.15 on children ONLY (B2 outlier 0.75 normalized); parent MI_Plant_Flower_GenericFlower1 SharedBend 5.96 untouchable."
+    },
+    "glitter": {
+      "parent": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
+      "mi_prefix": "/Game/EnvSandbox/Materials/Instances/Flora/Rainbow/MI_RainbowGlitter_",
+      "tint_parameters": [
+        "BaseTint"
+      ],
+      "brightness_steps": [
+        0.7,
+        1.0,
+        1.4
+      ],
+      "scalar_overrides": {
+        "SparkleIntensity": 0.5,
+        "SparkleScale": 160.0
+      },
+      "note": "Melody-token pile tint family on the approved toon parent (MI_MelodyToken_Water precedent). Parent graph untouched; forged by the UE glitter_materials step. brightness_steps: 1.0 keeps canonical names, 0.7/1.4 get _L70/_L140 for per-point glint variance (Jev glitter audit 2026-09-27, F_FAIRY_TRAILS_COMPILER 0.95)."
+    },
+    "bands": [
+      {
+        "label": "B0_Red",
+        "tint": [
+          1.0,
+          0.18,
+          0.22
+        ]
+      },
+      {
+        "label": "B1_Orange",
+        "tint": [
+          1.0,
+          0.45,
+          0.1
+        ]
+      },
+      {
+        "label": "B2_Gold",
+        "tint": [
+          1.0,
+          0.8,
+          0.2
+        ]
+      },
+      {
+        "label": "B3_Green",
+        "tint": [
+          0.35,
+          0.95,
+          0.45
+        ]
+      },
+      {
+        "label": "B4_Blue",
+        "tint": [
+          0.3,
+          0.55,
+          1.0
+        ]
+      },
+      {
+        "label": "B5_Indigo",
+        "tint": [
+          0.45,
+          0.3,
+          0.95
+        ]
+      },
+      {
+        "label": "B6_Violet",
+        "tint": [
+          0.75,
+          0.35,
+          1.0
+        ]
+      }
+    ]
+  },
+  "signal": {
+    "source_mpc": "/Game/Melodia/_PROJECT/04_Materials/MPC_Melodia_Palette",
+    "driver_mpc": "/Game/Melodia/Cymatics/MPC_Cymatics_Driver",
+    "lanes": [
+      "Cymatic_EmissiveScale",
+      "Cymatic_IridescenceShift",
+      "Cymatic_BeatPulse",
+      "Cymatic_WindDirX",
+      "Cymatic_WindDirY",
+      "Cymatic_WindStrength"
+    ],
+    "material_function": "/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MelodiaWindHueReveal"
+  },
+  "terrain": {
+    "kind": "ground_probe",
+    "probe": "recipes/ground/morning_rainbow_bloom_ground_probe.json",
+    "probe_radius_cm": 2400.0,
+    "probe_step_cm": 100.0,
+    "walkable_z_cm": [
+      -900.0,
+      1500.0
+    ],
+    "exclude_actor_classes": [
+      "MelodiaBedActor"
+    ],
+    "note": "Snap flowers onto BrushifyIsland_* only. Dressing may use WC_EscherWalk_* plus island skirts. Bedroom / classic_arch / Sphere3D / WC_DellFloor stay null. Not a Landscape. No second meadow authority."
+  },
+  "influence": [],
+  "meadow": {
+    "field": "recipes/houdini_field/morning_meadow_field.csv",
+    "spacing_cm": 28,
+    "jitter": 0.45,
+    "health_min": 0.22,
+    "density_gamma": 1.1,
+    "density_scale": 1.0,
+    "max_points": 40000,
+    "species": [
+      {
+        "species_id": "kikuyu_lush",
+        "meshes": [
+          "/Game/Megascans/3D_Plants/KikuyuGrass/SM_KikuyuGrass_01",
+          "/Game/Megascans/3D_Plants/KikuyuGrass/SM_KikuyuGrass_02",
+          "/Game/Megascans/3D_Plants/KikuyuGrass/SM_KikuyuGrass_03"
+        ],
+        "material": "/Game/EnvSandbox/Materials/Instances/Flora/Meadow/MI_Meadow_Kikuyu",
+        "weight": 3.0,
+        "scale_range": [
+          0.9,
+          1.5
+        ],
+        "health_range": [
+          0.45,
+          1.0
+        ],
+        "tuft_range": [
+          0.3,
+          1.0
+        ]
+      },
+      {
+        "species_id": "kikuyu_sparse",
+        "meshes": [
+          "/Game/Megascans/3D_Plants/KikuyuGrass/SM_KikuyuGrass_07",
+          "/Game/Megascans/3D_Plants/KikuyuGrass/SM_KikuyuGrass_02"
+        ],
+        "material": "/Game/EnvSandbox/Materials/Instances/Flora/Meadow/MI_Meadow_Kikuyu",
+        "weight": 1.5,
+        "scale_range": [
+          0.7,
+          1.1
+        ],
+        "health_range": [
+          0.2,
+          0.6
+        ],
+        "tuft_range": [
+          0.0,
+          0.7
+        ]
+      },
+      {
+        "species_id": "clover_bloom",
+        "meshes": [
+          "/Game/Megascans/3D_Plants/CloverVarieties/SM_CloverVarieties_01",
+          "/Game/Megascans/3D_Plants/CloverVarieties/SM_CloverVarieties_02"
+        ],
+        "material": "/Game/EnvSandbox/Materials/Instances/Flora/Meadow/MI_Meadow_Clover",
+        "weight": 1.2,
+        "scale_range": [
+          1.0,
+          1.8
+        ],
+        "health_range": [
+          0.5,
+          1.0
+        ]
+      },
+      {
+        "species_id": "groundcover",
+        "meshes": [
+          "/Game/Megascans/3D_Plants/GroundCover/SM_GroundCover_01",
+          "/Game/Megascans/3D_Plants/GroundCover/SM_GroundCover_03"
+        ],
+        "material": "/Game/EnvSandbox/Materials/Instances/Flora/Meadow/MI_Meadow_GroundCover",
+        "weight": 1.5,
+        "scale_range": [
+          1.0,
+          1.8
+        ],
+        "health_range": [
+          0.15,
+          0.7
+        ]
+      }
+    ]
+  }
+}

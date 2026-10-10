@@ -45,6 +45,7 @@ for _p in (str(ROOT / "Tools"), str(CONTENT_PY)):
 
 import resonant_world_generator as rwg  # noqa: E402  (reused identity module)
 import harmonic_terrain as ht  # noqa: E402  (optional harmony stage)
+import meadow_field as mf  # noqa: E402  (optional Houdini-driven meadow stage)
 
 try:
     from pcg.resonance_ecology_processor import derive as _resonance_derive  # noqa: E402
@@ -173,6 +174,8 @@ def validate_recipe(recipe: dict[str, Any]) -> list[str]:
             errors.append(f"field.trail_arcs species {arc.get('species_id')!r} is not a recipe species")
     if recipe.get("harmony") is not None:
         errors.extend(ht.validate(recipe["harmony"]))
+    if recipe.get("meadow") is not None:
+        errors.extend(mf.validate(recipe["meadow"]))
     beauty = recipe.get("beauty")
     if beauty is not None:
         for key in ("sender_name", "render_target", "sender_bp"):
@@ -1192,6 +1195,44 @@ def stage_harmony(recipe: dict[str, Any], identity: dict[str, Any]) -> tuple[dic
     return out, _stage("PASS", "Tools/harmonic_terrain.py", note)
 
 
+def _meadow_point(pid: int, m: dict[str, Any]) -> dict[str, Any]:
+    """A meadow sample as a points.csv row: the existing PointField graph spawns mesh + per-point material."""
+    x, y, z, s = m["x"], m["y"], m["z"], m["scale"]
+    return {
+        "point_id": pid, "x": x, "y": y, "z": z, "yaw": m["yaw"], "scale": s,
+        "species_id": m["species"], "variant_id": 0, "band": 0, "mode_n": 0, "mode_m": 0,
+        "cluster_id": 0, "hue_seed": _clamp01(m["hue"]), "wind_phase": _clamp01(m["tuft"]),
+        "wind_response": 0.9, "sparkle_response": 0.0, "hero_weight": _clamp01(m["health"]),
+        "height_class": 0, "density_class": 2, "Resonance": _clamp01(m["health"]),
+        "EcologyClass": 0, "MaterialVariant": 0, "ScaleBias": 1.0,
+        "mesh": _soft_path(m["mesh"]), "material": _soft_path(m["material"]), "StemMaterial": _soft_path(m["material"]),
+        "Position": f"(X={_f(x)},Y={_f(y)},Z={_f(z)})",
+        "Rotation": f"(Pitch=0.000,Yaw={_f(m['yaw'])},Roll=0.000)",
+        "Scale3D": f"(X={_f(s)},Y={_f(s)},Z={_f(s)})",
+        "horizon_distance": _f(0.0), "sky_exposure": _f(1.0), "silhouette_weight": _f(0.0), "atmospheric_depth": _f(0.0),
+    }
+
+
+def stage_meadow(recipe: dict[str, Any]) -> tuple[dict[str, Any] | None, dict[str, Any]]:
+    """Houdini-cooked health field -> deterministic grass points. Optional: absent => no tables."""
+    cfg = recipe.get("meadow")
+    if not cfg:
+        return None, _stage("SKIPPED", "Tools/meadow_field.py", "recipe.meadow absent")
+    field_path = ROOT / cfg["field"]
+    if not field_path.exists():
+        return None, _stage("FAIL", "Tools/meadow_field.py", "", [f"field file missing: {cfg['field']} (run the hython cook)"])
+    field = mf.Field.load(field_path)
+    samples = mf.compile_meadow(cfg, field=field, ground=load_ground_mask(recipe), clearance=Clearance.from_recipe(recipe),
+                                seed=int(recipe["world_seed"]), up_cm=float(recipe["place"].get("up_axis_offset_cm", 4.0)), rand=_u)
+    rows = [_meadow_point(i, m) for i, m in enumerate(samples)]
+    per: dict[str, int] = {}
+    for m in samples:
+        per[m["species"]] = per.get(m["species"], 0) + 1
+    meta = {"field": cfg["field"], "field_sha256": _sha256_file(field_path), "points": len(rows), "per_species": per}
+    note = f"{len(rows)} grass points from field {field_path.name} ({', '.join(f'{k}:{v}' for k, v in sorted(per.items()))})"
+    return {"rows": rows, "meta": meta}, _stage("PASS" if rows else "FAIL", "Tools/meadow_field.py", note, None if rows else ["no meadow points (check field/ground overlap)"])
+
+
 # ----------------------------------------------------------------------------- bundle
 
 def _csv_bytes(columns: list[str], rows: list[dict[str, Any]]) -> bytes:
@@ -1240,6 +1281,9 @@ def compile_recipe(recipe_path: Path, *, out_root: Path | None = None, constella
     harmony, harmony_stage = stage_harmony(recipe, identity)
     if recipe.get("harmony"):
         stages["harmony"] = harmony_stage
+    meadow, meadow_stage = stage_meadow(recipe)
+    if recipe.get("meadow"):
+        stages["meadow"] = meadow_stage
 
     files: dict[str, bytes] = {
         "points.csv": _csv_bytes(POINT_COLUMNS, ecology["points"]),
@@ -1265,6 +1309,9 @@ def compile_recipe(recipe_path: Path, *, out_root: Path | None = None, constella
         files["harmony.json"] = ht.to_json(harmony["meta"])
         if harmony["points"]:
             files["harmony_points.csv"] = _csv_bytes(POINT_COLUMNS, harmony["points"])
+    if meadow is not None:
+        files["meadow_points.csv"] = _csv_bytes(POINT_COLUMNS, meadow["rows"])
+        files["meadow.json"] = _json_bytes(meadow["meta"])
     for name, data in files.items():
         (out_dir / name).write_bytes(data)
 
@@ -1276,6 +1323,7 @@ def compile_recipe(recipe_path: Path, *, out_root: Path | None = None, constella
         **({"harmony_nodes.csv": (len(harmony["nodes"]), ht.NODE_COLUMNS),
             "harmony_edges.csv": (len(harmony["edges"]), ht.EDGE_COLUMNS),
             "harmony_points.csv": (len(harmony["points"]), POINT_COLUMNS)} if harmony is not None else {}),
+        **({"meadow_points.csv": (len(meadow["rows"]), POINT_COLUMNS)} if meadow is not None else {}),
     }
     tables = {
         name: {
@@ -1362,6 +1410,13 @@ def compile_recipe(recipe_path: Path, *, out_root: Path | None = None, constella
                 "biome_volume_label": f"WC_{recipe['recipe_id']}_Biomes",
                 "landscape_import": harmony["meta"]["ue_landscape_import"],
             }} if harmony is not None else {}),
+            **({"meadow": {
+                "points_data_table": f"/Game/Melodia/WorldCompiler/DT_{recipe['recipe_id']}_MeadowPoints",
+                "points_row_struct": "/Game/Melodia/WorldCompiler/S_WorldCompilerPoint",
+                "pcg_template_graph": "/Game/Melodia/WorldCompiler/PCG_WorldCompiler_PointField_Meadow",
+                "pcg_volume_label": f"WC_{recipe['recipe_id']}_Meadow",
+                "field_sha256": meadow["meta"]["field_sha256"],
+            }} if meadow is not None else {}),
         },
         "notes": [
             "compiler never imports unreal; UE lane is Content/Python/world_compiler_ue.py",

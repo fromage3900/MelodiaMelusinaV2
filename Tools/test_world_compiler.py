@@ -480,6 +480,52 @@ def test_harmony_absent_emits_no_harmony_tables():
         assert not any(p.name.startswith("harmony") for p in out.iterdir())
 
 
+MEADOW = ROOT / "recipes" / "morning_meadow.v1.json"
+
+
+def test_meadow_deterministic_on_soil_outside_clearance():
+    recipe, _ = wc.load_recipe(MEADOW)
+    ground = wc.load_ground_mask(recipe)
+    clearance = wc.Clearance.from_recipe(recipe)
+    with tempfile.TemporaryDirectory() as a, tempfile.TemporaryDirectory() as b:
+        m1, out1 = _compile(Path(a), MEADOW)
+        m2, _ = _compile(Path(b), MEADOW)
+        assert m1["manifest_sha256"] == m2["manifest_sha256"]
+        assert m1["stages"]["meadow"]["status"] == "PASS"
+        rows = _rows(out1 / "meadow_points.csv")
+        assert len(rows) > 1000
+        names = {sp["species_id"] for sp in recipe["meadow"]["species"]}
+        assert {r["species_id"] for r in rows} <= names
+        for r in rows:
+            x, y = float(r["x"]), float(r["y"])
+            assert ground.ground_z(x, y) is not None, "grass off probed soil"
+            assert clearance.blocked(x, y) is None, "grass inside a clearance zone"
+        assert m1["ue_lane"]["meadow"]["field_sha256"]
+
+
+def test_meadow_health_drives_species_and_density():
+    recipe, _ = wc.load_recipe(MEADOW)
+    with tempfile.TemporaryDirectory() as tmp:
+        _, out = _compile(Path(tmp), MEADOW)
+        rows = _rows(out / "meadow_points.csv")
+        hi = [float(r["Resonance"]) for r in rows if r["species_id"] == "kikuyu_lush"]
+        lo = [float(r["Resonance"]) for r in rows if r["species_id"] == "kikuyu_sparse"]
+        assert hi and lo and sum(hi) / len(hi) > sum(lo) / len(lo)   # lush tufts sit in healthier cells
+
+
+def test_meadow_rejects_bad_species():
+    recipe, _ = wc.load_recipe(MEADOW)
+    recipe["meadow"]["species"][0].pop("material")
+    assert any("material" in e for e in wc.validate_recipe(recipe))
+
+
+def test_meadow_absent_emits_no_meadow_tables():
+    with tempfile.TemporaryDirectory() as tmp:
+        manifest, out = _compile(Path(tmp))
+        assert "meadow" not in manifest["stages"] and "meadow" not in manifest["ue_lane"]
+        assert not any(p.name.startswith("meadow") for p in out.iterdir())
+
+
 if __name__ == "__main__":
     failures = 0
     for name, fn in sorted(globals().items()):
