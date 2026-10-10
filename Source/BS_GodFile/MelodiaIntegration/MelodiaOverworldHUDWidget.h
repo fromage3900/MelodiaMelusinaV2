@@ -6,9 +6,11 @@
 #include "MelodiaOverworldHUDWidget.generated.h"
 
 class UButton;
+class UImage;
 class UProgressBar;
 class UTextBlock;
 class UWidget;
+class USoundBase;
 
 /**
  * Native base for WBP_Melodia_OverworldHUD. Fills the HUD from its authorities: party vitals from
@@ -60,6 +62,38 @@ protected:
 	UPROPERTY(meta = (BindWidgetOptional)) TObjectPtr<UButton> Sys_Journal;
 	UPROPERTY(meta = (BindWidgetOptional)) TObjectPtr<UButton> Sys_Settings;
 
+	/** Optional button icons */
+	UPROPERTY(meta = (BindWidgetOptional)) TObjectPtr<UImage> Sys_1_Icon;
+	UPROPERTY(meta = (BindWidgetOptional)) TObjectPtr<UImage> Sys_2_Icon;
+	UPROPERTY(meta = (BindWidgetOptional)) TObjectPtr<UImage> Sys_Journal_Icon;
+	UPROPERTY(meta = (BindWidgetOptional)) TObjectPtr<UImage> Sys_Settings_Icon;
+
+	/** Optional minimap compass and framing elements */
+	UPROPERTY(meta = (BindWidgetOptional)) TObjectPtr<UImage> Minimap_NorthStar;
+	UPROPERTY(meta = (BindWidgetOptional)) TObjectPtr<UImage> Minimap_Bezel;
+
+	/** Optional contextual interaction prompt */
+	UPROPERTY(meta = (BindWidgetOptional)) TObjectPtr<UWidget> InteractPrompt;
+
+	/** Optional center-screen reticle */
+	UPROPERTY(meta = (BindWidgetOptional)) TObjectPtr<UWidget> Reticle;
+
+	/** Sound cues for UI interactions */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Melodia|UI|Audio")
+	TObjectPtr<USoundBase> MenuOpenSound;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Melodia|UI|Audio")
+	TObjectPtr<USoundBase> MenuCloseSound;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Melodia|UI|Audio")
+	TObjectPtr<USoundBase> ButtonHoverSound;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Melodia|UI|Audio")
+	TObjectPtr<USoundBase> ButtonClickSound;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Melodia|UI|Audio")
+	TObjectPtr<USoundBase> LowVitalityPulseSound;
+
 	/** Configurable destination class for the Cosmic Orrery menu */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Melodia|UI|Navigation")
 	TSoftClassPtr<UUserWidget> OrreryMenuClass;
@@ -80,6 +114,38 @@ protected:
 	UFUNCTION(BlueprintCallable, Category = "Melodia|UI|Navigation")
 	void HandleSys2Clicked();
 
+	UFUNCTION(BlueprintCallable, Category = "Melodia|UI|Navigation")
+	void HandleSysSettingsHovered();
+
+	UFUNCTION(BlueprintCallable, Category = "Melodia|UI|Navigation")
+	void HandleSysSettingsUnhovered();
+
+	UFUNCTION(BlueprintCallable, Category = "Melodia|UI|Navigation")
+	void HandleSysJournalHovered();
+
+	UFUNCTION(BlueprintCallable, Category = "Melodia|UI|Navigation")
+	void HandleSysJournalUnhovered();
+
+	UFUNCTION(BlueprintCallable, Category = "Melodia|UI|Navigation")
+	void HandleSys1Hovered();
+
+	UFUNCTION(BlueprintCallable, Category = "Melodia|UI|Navigation")
+	void HandleSys1Unhovered();
+
+	UFUNCTION(BlueprintCallable, Category = "Melodia|UI|Navigation")
+	void HandleSys2Hovered();
+
+	UFUNCTION(BlueprintCallable, Category = "Melodia|UI|Navigation")
+	void HandleSys2Unhovered();
+
+	UFUNCTION(BlueprintCallable, Category = "Melodia|UI|Navigation")
+	void OpenOrreryWithArchetype(int32 ArchetypeIndex);
+
+	UFUNCTION()
+	void HandleOrreryClosed();
+
+	virtual FReply NativeOnKeyDown(const FGeometry& InGeometry, const FKeyEvent& InKeyEvent) override;
+
 	/** Seconds the area caption stays up after the HUD appears. */
 	UPROPERTY(EditAnywhere, Category = "Melodia|HUD", meta = (ClampMin = "0.0"))
 	float AreaCaptionSeconds = 4.0f;
@@ -98,4 +164,17 @@ private:
 
 	float RefreshAccumulator = 0.0f;
 	float CaptionRemaining = 0.0f;
+	float RunningTime = 0.0f;
+
+	float SysSettingsHoverAlpha = 0.0f;
+	float SysJournalHoverAlpha = 0.0f;
+	float Sys1HoverAlpha = 0.0f;
+	float Sys2HoverAlpha = 0.0f;
+
+	bool bSysSettingsHovered = false;
+	bool bSysJournalHovered = false;
+	bool bSys1Hovered = false;
+	bool bSys2Hovered = false;
+
+	float CachedVitalityPercent = 1.0f;
 };

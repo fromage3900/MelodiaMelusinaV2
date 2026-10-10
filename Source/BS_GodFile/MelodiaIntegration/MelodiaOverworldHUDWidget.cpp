@@ -1,12 +1,17 @@
 #include "MelodiaOverworldHUDWidget.h"
 
+#include "Camera/PlayerCameraManager.h"
 #include "Components/Button.h"
+#include "Components/Image.h"
 #include "Components/ProgressBar.h"
 #include "Components/TextBlock.h"
 #include "Engine/World.h"
 #include "GameFramework/PlayerController.h"
+#include "Kismet/GameplayStatics.h"
 #include "MelodiaCompendiumWidget.h"
+#include "MelodiaCosmicOrreryWidget.h"
 #include "MelodiaInputContextSubsystem.h"
+#include "MelodiaMusicClockSubsystem.h"
 #include "MelodiaPersonaSubsystem.h"
 #include "UObject/UnrealType.h"
 
@@ -55,6 +60,8 @@ namespace
 void UMelodiaOverworldHUDWidget::NativeConstruct()
 {
 	Super::NativeConstruct();
+
+	SetIsFocusable(true);
 
 	// Storybook Overworld runtime presentation: ChapterLine and QuestProgress are active narrative elements
 	Hide(TitleResonance);
@@ -115,18 +122,35 @@ void UMelodiaOverworldHUDWidget::NativeConstruct()
 	if (Sys_Settings)
 	{
 		Sys_Settings->OnClicked.AddDynamic(this, &UMelodiaOverworldHUDWidget::HandleSysSettingsClicked);
+		Sys_Settings->OnHovered.AddDynamic(this, &UMelodiaOverworldHUDWidget::HandleSysSettingsHovered);
+		Sys_Settings->OnUnhovered.AddDynamic(this, &UMelodiaOverworldHUDWidget::HandleSysSettingsUnhovered);
+		Sys_Settings->SetRenderTransformPivot(FVector2D(0.5f, 0.5f));
 	}
 	if (Sys_Journal)
 	{
 		Sys_Journal->OnClicked.AddDynamic(this, &UMelodiaOverworldHUDWidget::HandleSysJournalClicked);
+		Sys_Journal->OnHovered.AddDynamic(this, &UMelodiaOverworldHUDWidget::HandleSysJournalHovered);
+		Sys_Journal->OnUnhovered.AddDynamic(this, &UMelodiaOverworldHUDWidget::HandleSysJournalUnhovered);
+		Sys_Journal->SetRenderTransformPivot(FVector2D(0.5f, 0.5f));
 	}
 	if (Sys_1)
 	{
 		Sys_1->OnClicked.AddDynamic(this, &UMelodiaOverworldHUDWidget::HandleSys1Clicked);
+		Sys_1->OnHovered.AddDynamic(this, &UMelodiaOverworldHUDWidget::HandleSys1Hovered);
+		Sys_1->OnUnhovered.AddDynamic(this, &UMelodiaOverworldHUDWidget::HandleSys1Unhovered);
+		Sys_1->SetRenderTransformPivot(FVector2D(0.5f, 0.5f));
 	}
 	if (Sys_2)
 	{
 		Sys_2->OnClicked.AddDynamic(this, &UMelodiaOverworldHUDWidget::HandleSys2Clicked);
+		Sys_2->OnHovered.AddDynamic(this, &UMelodiaOverworldHUDWidget::HandleSys2Hovered);
+		Sys_2->OnUnhovered.AddDynamic(this, &UMelodiaOverworldHUDWidget::HandleSys2Unhovered);
+		Sys_2->SetRenderTransformPivot(FVector2D(0.5f, 0.5f));
+	}
+
+	if (Minimap_NorthStar)
+	{
+		Minimap_NorthStar->SetRenderTransformPivot(FVector2D(0.5f, 0.5f));
 	}
 }
 
@@ -135,18 +159,26 @@ void UMelodiaOverworldHUDWidget::NativeDestruct()
 	if (Sys_Settings)
 	{
 		Sys_Settings->OnClicked.RemoveDynamic(this, &UMelodiaOverworldHUDWidget::HandleSysSettingsClicked);
+		Sys_Settings->OnHovered.RemoveDynamic(this, &UMelodiaOverworldHUDWidget::HandleSysSettingsHovered);
+		Sys_Settings->OnUnhovered.RemoveDynamic(this, &UMelodiaOverworldHUDWidget::HandleSysSettingsUnhovered);
 	}
 	if (Sys_Journal)
 	{
 		Sys_Journal->OnClicked.RemoveDynamic(this, &UMelodiaOverworldHUDWidget::HandleSysJournalClicked);
+		Sys_Journal->OnHovered.RemoveDynamic(this, &UMelodiaOverworldHUDWidget::HandleSysJournalHovered);
+		Sys_Journal->OnUnhovered.RemoveDynamic(this, &UMelodiaOverworldHUDWidget::HandleSysJournalUnhovered);
 	}
 	if (Sys_1)
 	{
 		Sys_1->OnClicked.RemoveDynamic(this, &UMelodiaOverworldHUDWidget::HandleSys1Clicked);
+		Sys_1->OnHovered.RemoveDynamic(this, &UMelodiaOverworldHUDWidget::HandleSys1Hovered);
+		Sys_1->OnUnhovered.RemoveDynamic(this, &UMelodiaOverworldHUDWidget::HandleSys1Unhovered);
 	}
 	if (Sys_2)
 	{
 		Sys_2->OnClicked.RemoveDynamic(this, &UMelodiaOverworldHUDWidget::HandleSys2Clicked);
+		Sys_2->OnHovered.RemoveDynamic(this, &UMelodiaOverworldHUDWidget::HandleSys2Hovered);
+		Sys_2->OnUnhovered.RemoveDynamic(this, &UMelodiaOverworldHUDWidget::HandleSys2Unhovered);
 	}
 
 	if (ActiveOrreryWidget)
@@ -169,22 +201,34 @@ void UMelodiaOverworldHUDWidget::NativeDestruct()
 	Super::NativeDestruct();
 }
 
-void UMelodiaOverworldHUDWidget::HandleSysSettingsClicked()
+void UMelodiaOverworldHUDWidget::OpenOrreryWithArchetype(int32 ArchetypeIndex)
 {
-	// Toggle Cosmic Orrery menu with explicit input context ownership
 	if (ActiveOrreryWidget && ActiveOrreryWidget->IsInViewport())
 	{
-		ActiveOrreryWidget->RemoveFromParent();
-		if (OrreryContextHandle.IsValid())
+		if (UMelodiaCosmicOrreryWidget* Orrery = Cast<UMelodiaCosmicOrreryWidget>(ActiveOrreryWidget))
 		{
-			if (UMelodiaInputContextSubsystem* InputSubsystem = UMelodiaInputContextSubsystem::Get(this))
+			if (Orrery->GetFocusedArchetypeIndex() == ArchetypeIndex)
 			{
-				InputSubsystem->PopContext(OrreryContextHandle);
+				if (MenuCloseSound)
+				{
+					UGameplayStatics::PlaySound2D(this, MenuCloseSound);
+				}
+				Orrery->CloseOrrery();
+				ActiveOrreryWidget = nullptr;
+				return;
 			}
-			OrreryContextHandle = FMelodiaInputContextHandle();
+			Orrery->SetFocusedArchetypeIndex(ArchetypeIndex);
+			return;
 		}
-		ActiveOrreryWidget = nullptr;
-		return;
+	}
+
+	if (ButtonClickSound)
+	{
+		UGameplayStatics::PlaySound2D(this, ButtonClickSound);
+	}
+	if (MenuOpenSound)
+	{
+		UGameplayStatics::PlaySound2D(this, MenuOpenSound);
 	}
 
 	APlayerController* PC = GetOwningPlayer();
@@ -202,6 +246,10 @@ void UMelodiaOverworldHUDWidget::HandleSysSettingsClicked()
 	{
 		WidgetClass = LoadClass<UUserWidget>(nullptr, TEXT("/Game/Melodia/UI/Menu/WBP_Melodia_CosmicOrrery.WBP_Melodia_CosmicOrrery_C"));
 	}
+	if (!WidgetClass)
+	{
+		WidgetClass = UMelodiaCosmicOrreryWidget::StaticClass();
+	}
 
 	if (WidgetClass)
 	{
@@ -212,53 +260,208 @@ void UMelodiaOverworldHUDWidget::HandleSysSettingsClicked()
 			if (UMelodiaInputContextSubsystem* InputSubsystem = UMelodiaInputContextSubsystem::Get(this))
 			{
 				OrreryContextHandle = InputSubsystem->PushContext(EMelodiaInputContext::Menu, this);
+				if (UMelodiaCosmicOrreryWidget* Orrery = Cast<UMelodiaCosmicOrreryWidget>(ActiveOrreryWidget))
+				{
+					Orrery->SetContextHandle(OrreryContextHandle);
+					Orrery->SetFocusedArchetypeIndex(ArchetypeIndex);
+					Orrery->OnOrreryClosed.AddDynamic(this, &UMelodiaOverworldHUDWidget::HandleOrreryClosed);
+				}
 			}
 		}
 	}
+}
+
+void UMelodiaOverworldHUDWidget::HandleOrreryClosed()
+{
+	ActiveOrreryWidget = nullptr;
+	OrreryContextHandle = FMelodiaInputContextHandle();
+}
+
+FReply UMelodiaOverworldHUDWidget::NativeOnKeyDown(const FGeometry& InGeometry, const FKeyEvent& InKeyEvent)
+{
+	const FKey Key = InKeyEvent.GetKey();
+	if (Key == EKeys::M)
+	{
+		OpenOrreryWithArchetype(4); // Map
+		return FReply::Handled();
+	}
+	if (Key == EKeys::J)
+	{
+		OpenOrreryWithArchetype(3); // Journal
+		return FReply::Handled();
+	}
+	if (Key == EKeys::P || Key == EKeys::C)
+	{
+		OpenOrreryWithArchetype(0); // Party
+		return FReply::Handled();
+	}
+	if (Key == EKeys::Tab)
+	{
+		OpenOrreryWithArchetype(6); // Settings / Orrery
+		return FReply::Handled();
+	}
+
+	return Super::NativeOnKeyDown(InGeometry, InKeyEvent);
+}
+
+void UMelodiaOverworldHUDWidget::HandleSysSettingsClicked()
+{
+	OpenOrreryWithArchetype(6);
 }
 
 void UMelodiaOverworldHUDWidget::HandleSysJournalClicked()
 {
-	// Open the Enchanted Compendium / Lore Journal
-	UClass* CompendiumClass = CompendiumMenuClass.Get();
-	if (!CompendiumClass && !CompendiumMenuClass.IsNull())
-	{
-		CompendiumClass = CompendiumMenuClass.LoadSynchronous();
-	}
-	if (CompendiumClass)
-	{
-		if (APlayerController* PC = GetOwningPlayer())
-		{
-			UUserWidget* Widget = CreateWidget<UUserWidget>(PC, CompendiumClass);
-			if (Widget)
-			{
-				Widget->AddToViewport(60);
-				if (UMelodiaInputContextSubsystem* InputSubsystem = UMelodiaInputContextSubsystem::Get(this))
-				{
-					InputSubsystem->PushContext(EMelodiaInputContext::Menu, this);
-				}
-				return;
-			}
-		}
-	}
-
-	// Fallback to static archive opener
-	UMelodiaCompendiumWidget::Open(this);
+	OpenOrreryWithArchetype(3);
 }
 
 void UMelodiaOverworldHUDWidget::HandleSys1Clicked()
 {
-	UE_LOG(LogTemp, Log, TEXT("UMelodiaOverworldHUDWidget: Sys_1 triggered (Quick Item / Tonic slot)"));
+	OpenOrreryWithArchetype(0);
 }
 
 void UMelodiaOverworldHUDWidget::HandleSys2Clicked()
 {
-	UE_LOG(LogTemp, Log, TEXT("UMelodiaOverworldHUDWidget: Sys_2 triggered (Quick Resonance / Charm slot)"));
+	OpenOrreryWithArchetype(4);
+}
+
+void UMelodiaOverworldHUDWidget::HandleSysSettingsHovered()
+{
+	bSysSettingsHovered = true;
+	if (ButtonHoverSound)
+	{
+		UGameplayStatics::PlaySound2D(this, ButtonHoverSound);
+	}
+}
+
+void UMelodiaOverworldHUDWidget::HandleSysSettingsUnhovered()
+{
+	bSysSettingsHovered = false;
+}
+
+void UMelodiaOverworldHUDWidget::HandleSysJournalHovered()
+{
+	bSysJournalHovered = true;
+	if (ButtonHoverSound)
+	{
+		UGameplayStatics::PlaySound2D(this, ButtonHoverSound);
+	}
+}
+
+void UMelodiaOverworldHUDWidget::HandleSysJournalUnhovered()
+{
+	bSysJournalHovered = false;
+}
+
+void UMelodiaOverworldHUDWidget::HandleSys1Hovered()
+{
+	bSys1Hovered = true;
+	if (ButtonHoverSound)
+	{
+		UGameplayStatics::PlaySound2D(this, ButtonHoverSound);
+	}
+}
+
+void UMelodiaOverworldHUDWidget::HandleSys1Unhovered()
+{
+	bSys1Hovered = false;
+}
+
+void UMelodiaOverworldHUDWidget::HandleSys2Hovered()
+{
+	bSys2Hovered = true;
+	if (ButtonHoverSound)
+	{
+		UGameplayStatics::PlaySound2D(this, ButtonHoverSound);
+	}
+}
+
+void UMelodiaOverworldHUDWidget::HandleSys2Unhovered()
+{
+	bSys2Hovered = false;
 }
 
 void UMelodiaOverworldHUDWidget::NativeTick(const FGeometry& MyGeometry, float InDeltaTime)
 {
 	Super::NativeTick(MyGeometry, InDeltaTime);
+
+	RunningTime += InDeltaTime;
+
+	// Query ambient musical pulse from Music Clock
+	float MusicPulse = 0.0f;
+	if (UMelodiaMusicClockSubsystem* Clock = UMelodiaMusicClockSubsystem::Get(this))
+	{
+		MusicPulse = UMelodiaMusicClockSubsystem::GetMusicPulse(this);
+	}
+
+	// 1. Dynamic Minimap Compass Orientation & Starlight Twinkle
+	if (Minimap_NorthStar)
+	{
+		float CamYaw = 0.0f;
+		if (const APlayerController* PC = GetOwningPlayer())
+		{
+			if (PC->PlayerCameraManager)
+			{
+				CamYaw = PC->PlayerCameraManager->GetCameraRotation().Yaw;
+			}
+			else
+			{
+				CamYaw = PC->GetControlRotation().Yaw;
+			}
+		}
+		// Rotate North Star so it points to true North in camera-relative space
+		Minimap_NorthStar->SetRenderTransformAngle(-CamYaw);
+
+		// Starlight shimmer (subtle sine oscillation layered with musical pulse)
+		const float TwinkleSine = FMath::Sin(RunningTime * 2.8f) * 0.15f + 0.85f;
+		const float TwinkleOpacity = FMath::Clamp(TwinkleSine + 0.2f * MusicPulse, 0.7f, 1.0f);
+		Minimap_NorthStar->SetRenderOpacity(TwinkleOpacity);
+	}
+
+	// 2. Minimap Bezel gentle breathing emissive / opacity modulation
+	if (Minimap_Bezel)
+	{
+		const float BezelPulse = FMath::Sin(RunningTime * 1.5f) * 0.06f + 0.94f;
+		const float BezelOpacity = FMath::Clamp(BezelPulse + 0.12f * MusicPulse, 0.85f, 1.0f);
+		Minimap_Bezel->SetRenderOpacity(BezelOpacity);
+	}
+
+	// 3. Buoyant world-prompt hovering
+	if (InteractPrompt && InteractPrompt->GetVisibility() != ESlateVisibility::Collapsed && InteractPrompt->GetVisibility() != ESlateVisibility::Hidden)
+	{
+		FWidgetTransform Transform = InteractPrompt->GetRenderTransform();
+		Transform.Translation.Y = FMath::Sin(RunningTime * 3.2f) * 3.5f;
+		InteractPrompt->SetRenderTransform(Transform);
+	}
+
+	// 4. Smooth Button Hover Scaling (1.08x)
+	auto UpdateButtonScale = [InDeltaTime](UButton* Btn, bool bHovered, float& HoverAlpha)
+	{
+		if (!Btn) return;
+		const float TargetAlpha = bHovered ? 1.0f : 0.0f;
+		HoverAlpha = FMath::FInterpTo(HoverAlpha, TargetAlpha, InDeltaTime, 12.0f);
+		const float Scale = FMath::Lerp(1.0f, 1.08f, HoverAlpha);
+		FWidgetTransform Xform = Btn->GetRenderTransform();
+		Xform.Scale = FVector2D(Scale, Scale);
+		Btn->SetRenderTransform(Xform);
+	};
+	UpdateButtonScale(Sys_Settings, bSysSettingsHovered, SysSettingsHoverAlpha);
+	UpdateButtonScale(Sys_Journal, bSysJournalHovered, SysJournalHoverAlpha);
+	UpdateButtonScale(Sys_1, bSys1Hovered, Sys1HoverAlpha);
+	UpdateButtonScale(Sys_2, bSys2Hovered, Sys2HoverAlpha);
+
+	// 5. Low-Vitality Rose Heartbeat Pulse (when HP < 35%)
+	if (CachedVitalityPercent < 0.35f && VitalityBar)
+	{
+		const float HeartbeatFreq = 5.0f;
+		const float Lub = FMath::Max(0.0f, FMath::Sin(RunningTime * HeartbeatFreq));
+		const float Dub = FMath::Max(0.0f, FMath::Sin((RunningTime - 0.18f) * HeartbeatFreq));
+		const float Pulse = Lub * 0.6f + Dub * 0.4f;
+		VitalityBar->SetRenderOpacity(0.85f + 0.35f * Pulse);
+	}
+	else if (VitalityBar)
+	{
+		VitalityBar->SetRenderOpacity(1.0f);
+	}
 
 	if (CaptionRemaining > 0.0f)
 	{
@@ -312,6 +515,7 @@ void UMelodiaOverworldHUDWidget::RefreshVitals()
 			MaxHP = FMath::Max(MaxHP, HP);
 			MaxMP = FMath::Max(MaxMP, MP);
 			const float VitalityTarget = MaxHP > 0 ? static_cast<float>(HP) / MaxHP : 0.0f;
+			CachedVitalityPercent = VitalityTarget;
 			const float ResonanceTarget = MaxMP > 0 ? static_cast<float>(MP) / MaxMP : 0.0f;
 			if (VitalityBar)
 			{
@@ -336,6 +540,7 @@ void UMelodiaOverworldHUDWidget::RefreshVitals()
 	}
 	if (!bFoundUnit)
 	{
+		CachedVitalityPercent = 1.0f;
 		// Graceful overworld exploration default: display Melusina baseline stats
 		if (VitalityBar)
 		{
