@@ -15,6 +15,8 @@ Owner requested closeout for the next session. Preserve the improved saved set; 
 - **Landing/sync boundary:** only the saved ABP checkpoint and this handoff hunk are Sol's closeout commit; older dirty `BS_Melusina_Locomotion`, environment/material/HUD/wardrobe edits and the HeroTreatment bridge note are outside it and preserved. G: remains a complete portable project with separate authored work, but differs in skeleton revision, locomotion, ABP and module coverage. Preserve G-only dress work and dirty status notes. Handoff/diagnostic evidence may be copied with hash verification; runtime Content/DLL convergence is deferred until the exact dependency set is resolved and accepted. No new G runtime equivalence, packaged proof or animation canonization is claimed.
 
 
+- **Portable handoff copied at closeout:** merged this handoff into G: CURRENT_STATE without replacing its existing notes, and robocopied 60 selected preview/graph/Jev diagnostic files; every source/destination SHA256 matched. Differing destination evidence and the prior G status file were preserved under `Saved/Audit/SolSessionCloseoutBackups_20261010_1950`. No G runtime Content/DLL or Git-history synchronization was performed; portable runtime convergence remains open.
+
 ## Gouache BSDF black-render resolved — 2026-10-10 (editor live)
 
 Root cause PROVEN on a scratch duplicate: `M_PainterlyGouache` rendered black because the `Normal` input of `MaterialExpressionSubstrateToonBSDF_2` was unconnected (black under TP_Default/TP_SoftPainterly/None/TP_Iridescent_Flow; a constant-(0,0,1)-normal probe rendered immediately). Related trap recorded: a NULL ToonProfile breaks the material's load-for-edit path (recompile/save fail) — an assigned profile is mandatory.
