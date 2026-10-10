@@ -60,6 +60,14 @@ class BountyScoutTests(unittest.TestCase):
         self.assertIsNone(scout.assess(issue(body="PPPDUD free coins, pay me $100"), now=NOW))
         self.assertIsNone(scout.assess(issue(body="### 原始链接 / Source URL\nRepost of another issue"), now=NOW))
 
+    def test_rejects_explicit_non_cash_tokens(self):
+        self.assertIsNone(scout.assess(issue(
+            title="[$35 BOUNTY] [Python] Add module docstrings",
+            body="**Bounty:** $35 (LT); acceptance tests required."), now=NOW))
+        self.assertIsNone(scout.assess(issue(
+            title="[Bounty $200] Improve CLI",
+            body="Reward: $200 (MRG) in project points."), now=NOW))
+
     def test_deduplicates_and_limits_to_three(self):
         items = [issue(), issue(), issue(
             html_url="https://github.com/example/graphics-tools/issues/43",
