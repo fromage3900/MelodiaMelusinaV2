@@ -91,7 +91,26 @@ def _readme_text() -> str:
     return "\n".join(lines)
 
 
+def _source_meshes_or_fail() -> list[Path]:
+    """Fail before writing any outputs if the declared source pack is incomplete."""
+    expected = [FBX_EXPORT_DIR / mesh.fbx_name for mesh in MESHES]
+    missing = [path.name for path in expected if not path.is_file()]
+    empty = [path.name for path in expected if path.is_file() and path.stat().st_size == 0]
+    if missing or empty:
+        problems = []
+        if missing:
+            problems.append("missing: " + ", ".join(missing))
+        if empty:
+            problems.append("empty: " + ", ".join(empty))
+        raise FileNotFoundError(
+            "Musical Ornament release HOLD — " + "; ".join(problems)
+            + f" (source: {FBX_EXPORT_DIR})"
+        )
+    return expected
+
+
 def build_product_folder(*, make_zip: bool = False) -> Path:
+    source_meshes = _source_meshes_or_fail()
     PRODUCT_ROOT.mkdir(parents=True, exist_ok=True)
     (PRODUCT_ROOT / "FBX").mkdir(exist_ok=True)
     (PRODUCT_ROOT / "Docs").mkdir(exist_ok=True)
@@ -101,10 +120,10 @@ def build_product_folder(*, make_zip: bool = False) -> Path:
     (PRODUCT_ROOT / "Docs" / "README.md").write_text(_readme_text(), encoding="utf-8")
     (PRODUCT_ROOT / "Docs" / "LICENSE.txt").write_text(_license_text(), encoding="utf-8")
 
-    if FBX_EXPORT_DIR.is_dir():
-        for fbx in FBX_EXPORT_DIR.glob("SM_Orn_*.fbx"):
-            dest = PRODUCT_ROOT / "FBX" / fbx.name
-            shutil.copy2(fbx, dest)
+    # Only the ten catalogued meshes may enter this release; never sweep a wildcard.
+    for fbx in source_meshes:
+        dest = PRODUCT_ROOT / "FBX" / fbx.name
+        shutil.copy2(fbx, dest)
 
     catalog = as_product_dict()
     catalog["generated_at"] = datetime.now(timezone.utc).isoformat()
@@ -115,7 +134,7 @@ def build_product_folder(*, make_zip: bool = False) -> Path:
         catalog["bake_ok"] = bake.get("ok")
         catalog["bake_fail"] = bake.get("fail")
 
-    fbx_count = len(list((PRODUCT_ROOT / "FBX").glob("*.fbx")))
+    fbx_count = len(source_meshes)
     catalog["fbx_count"] = fbx_count
 
     (PRODUCT_ROOT / "product_manifest.json").write_text(
@@ -147,11 +166,12 @@ Store live stays false until ZIP is purchasable.
         stamp = datetime.now(timezone.utc).strftime("%Y%m%d")
         zip_path = PRODUCT_ROOT / "releases" / f"Melodia_Musical_Ornament_Kitbash_v1_{stamp}.zip"
         with zipfile.ZipFile(zip_path, "w", zipfile.ZIP_DEFLATED) as zf:
-            for folder in ("FBX", "Docs"):
-                base = PRODUCT_ROOT / folder
-                for file in base.rglob("*"):
-                    if file.is_file():
-                        zf.write(file, file.relative_to(PRODUCT_ROOT))
+            for source in source_meshes:
+                file = PRODUCT_ROOT / "FBX" / source.name
+                zf.write(file, file.relative_to(PRODUCT_ROOT))
+            for name in ("README.md", "LICENSE.txt"):
+                file = PRODUCT_ROOT / "Docs" / name
+                zf.write(file, file.relative_to(PRODUCT_ROOT))
         catalog["release_zip"] = str(zip_path.resolve())
         (PRODUCT_ROOT / "product_manifest.json").write_text(
             json.dumps(catalog, indent=2) + "\n", encoding="utf-8"
@@ -165,7 +185,11 @@ Store live stays false until ZIP is purchasable.
 
 def main() -> int:
     make_zip = "--zip" in sys.argv
-    build_product_folder(make_zip=make_zip)
+    try:
+        build_product_folder(make_zip=make_zip)
+    except (FileNotFoundError, OSError) as exc:
+        print(f"[MusicalOrnament] {exc}", file=sys.stderr)
+        return 1
     return 0
 
 
