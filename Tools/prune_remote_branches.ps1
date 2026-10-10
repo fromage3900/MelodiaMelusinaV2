@@ -113,6 +113,7 @@ try {
     Write-Host ("Melodia retirement: mode={0}; remote={1}; baseline={2}; candidates={3}; selected={4}" -f $(if ($Execute) { "EXECUTE" } else { "DRY RUN" }), $Remote, $remoteMain.Substring(0,12), $candidates.Count, $selected.Count)
     $rows = @()
     foreach ($name in $selected) {
+        try {
         if (-not $name -or $name -eq "main") { throw "Invalid protected branch selection." }
         $match = @($manifest.entries | Where-Object { $_.branch -ceq $name })
         if ($match.Count -ne 1) { throw "Branch not found exactly once in census: $name" }
@@ -171,6 +172,12 @@ try {
             $action = "ARCHIVED + RETIRED"
         }
         $rows += [pscustomobject]@{ Branch = $name; Ahead = 0; Behind = $entry.behind_by; Action = $action; Archive = $tag }
+        } catch {
+            if ($Execute) { throw }
+            $problem = $_.Exception.Message
+            Write-Warning ("HOLD {0}: {1}" -f $name, $problem)
+            $rows += [pscustomobject]@{ Branch = $name; Ahead = "?"; Behind = "?"; Action = ("HOLD: " + $problem); Archive = "" }
+        }
     }
     $rows | Format-Table Branch, Ahead, Behind, Action -AutoSize | Out-Host
     if (-not $Execute) {
