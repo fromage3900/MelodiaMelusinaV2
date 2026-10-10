@@ -3135,6 +3135,15 @@
     0.101
    ]
   },
+  "MEL_music_arpeggio": {
+   "ok": true,
+   "verts": 320,
+   "bbox": [
+    0.206,
+    0.635,
+    0.105
+   ]
+  },
   "MEL_music_bagpipes": {
    "ok": true,
    "verts": 1610,
@@ -3531,6 +3540,15 @@
     0.055
    ]
   },
+  "MEL_music_down_bow": {
+   "ok": true,
+   "verts": 24,
+   "bbox": [
+    0.211,
+    0.232,
+    0.055
+   ]
+  },
   "MEL_music_drum_kit_rail": {
    "ok": true,
    "verts": 40,
@@ -3684,6 +3702,15 @@
     1.403
    ]
   },
+  "MEL_music_glissando": {
+   "ok": true,
+   "verts": 320,
+   "bbox": [
+    0.719,
+    0.188,
+    0.105
+   ]
+  },
   "MEL_music_glockenspiel": {
    "ok": true,
    "verts": 72,
@@ -3700,6 +3727,15 @@
     0.872,
     0.716,
     1.182
+   ]
+  },
+  "MEL_music_grace_note": {
+   "ok": true,
+   "verts": 64,
+   "bbox": [
+    0.31,
+    0.338,
+    0.055
    ]
   },
   "MEL_music_grand_piano": {
@@ -3819,6 +3855,15 @@
     1.503
    ]
   },
+  "MEL_music_inverted_turn": {
+   "ok": true,
+   "verts": 320,
+   "bbox": [
+    0.512,
+    0.167,
+    0.105
+   ]
+  },
   "MEL_music_jingle_tower": {
    "ok": true,
    "verts": 320,
@@ -3835,6 +3880,15 @@
     0.174,
     0.276,
     0.205
+   ]
+  },
+  "MEL_music_key_signature": {
+   "ok": true,
+   "verts": 160,
+   "bbox": [
+    0.135,
+    0.99,
+    0.055
    ]
   },
   "MEL_music_key_unit": {
@@ -3952,6 +4006,15 @@
     0.904,
     0.52,
     0.978
+   ]
+  },
+  "MEL_music_mordent": {
+   "ok": true,
+   "verts": 16,
+   "bbox": [
+    0.21,
+    0.132,
+    0.055
    ]
   },
   "MEL_music_music_box": {
@@ -4107,6 +4170,15 @@
     0.3
    ]
   },
+  "MEL_music_octave_shift": {
+   "ok": true,
+   "verts": 48,
+   "bbox": [
+    0.424,
+    0.18,
+    0.055
+   ]
+  },
   "MEL_music_organ_pipes": {
    "ok": true,
    "verts": 608,
@@ -4123,6 +4195,24 @@
     0.123,
     0.123,
     0.34
+   ]
+  },
+  "MEL_music_pedal_down": {
+   "ok": true,
+   "verts": 56,
+   "bbox": [
+    0.6,
+    0.658,
+    0.055
+   ]
+  },
+  "MEL_music_pedal_up": {
+   "ok": true,
+   "verts": 24,
+   "bbox": [
+    0.27,
+    0.261,
+    0.055
    ]
   },
   "MEL_music_percussion_clef": {
@@ -4386,6 +4476,15 @@
     0.272
    ]
   },
+  "MEL_music_slur": {
+   "ok": true,
+   "verts": 240,
+   "bbox": [
+    0.832,
+    0.418,
+    0.084
+   ]
+  },
   "MEL_music_snare_drum": {
    "ok": true,
    "verts": 688,
@@ -4492,6 +4591,15 @@
     0.134,
     0.106,
     0.108
+   ]
+  },
+  "MEL_music_tempo_mark": {
+   "ok": true,
+   "verts": 96,
+   "bbox": [
+    0.6,
+    0.87,
+    0.055
    ]
   },
   "MEL_music_tenor_clef": {
@@ -4629,6 +4737,15 @@
     0.502
    ]
   },
+  "MEL_music_tie": {
+   "ok": true,
+   "verts": 240,
+   "bbox": [
+    0.555,
+    0.227,
+    0.084
+   ]
+  },
   "MEL_music_time_signature": {
    "ok": true,
    "verts": 208,
@@ -4692,6 +4809,24 @@
     1.543
    ]
   },
+  "MEL_music_tremolo": {
+   "ok": true,
+   "verts": 32,
+   "bbox": [
+    0.228,
+    0.62,
+    0.055
+   ]
+  },
+  "MEL_music_trill": {
+   "ok": true,
+   "verts": 24,
+   "bbox": [
+    0.06,
+    0.838,
+    0.055
+   ]
+  },
   "MEL_music_triplet_note": {
    "ok": true,
    "verts": 322,
@@ -4737,6 +4872,15 @@
     2.332
    ]
   },
+  "MEL_music_turn": {
+   "ok": true,
+   "verts": 320,
+   "bbox": [
+    0.512,
+    0.167,
+    0.105
+   ]
+  },
   "MEL_music_turntable": {
    "ok": true,
    "verts": 520,
@@ -4753,6 +4897,15 @@
     0.434,
     0.17,
     0.416
+   ]
+  },
+  "MEL_music_up_bow": {
+   "ok": true,
+   "verts": 24,
+   "bbox": [
+    0.211,
+    0.232,
+    0.055
    ]
   },
   "MEL_music_upright_piano": {
@@ -8139,7 +8292,7 @@
  },
  "meta": {
   "blender": "5.2.1 LTS",
-  "package_count": 767,
+  "package_count": 784,
   "monolith_count": 209
  }
 }
