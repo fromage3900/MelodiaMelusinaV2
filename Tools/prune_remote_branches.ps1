@@ -91,8 +91,14 @@ try {
     Invoke-CheckedGit -GitArgs @("fetch", "--prune", $Remote) | Out-Null
     $remoteMain = Get-RemoteSha -Kind "heads" -Name "main"
     $localMain = (Invoke-CheckedGit -GitArgs @("rev-parse", "refs/remotes/origin/main")).Text.Trim()
-    if (-not $remoteMain -or $remoteMain -ne $localMain -or $remoteMain -ne $manifest.main_sha) {
-        throw "Census baseline changed. Refresh the census against current origin/main; no deletion permitted."
+    if (-not $remoteMain -or $remoteMain -ne $localMain) {
+        throw "Local origin/main is not synchronized with the live remote; no deletion permitted."
+    }
+    # New housekeeping commits may advance main after this census PR merges. Require
+    # the pinned census base to remain in current main history, not byte-equal HEAD.
+    $baseReachable = Invoke-CheckedGit -GitArgs @("merge-base", "--is-ancestor", ([string]$manifest.main_sha), $remoteMain) -AllowFail
+    if ($baseReachable.Code -ne 0) {
+        throw "Census main SHA is no longer an ancestor of origin/main. Regenerate; no deletion permitted."
     }
     if ($Execute) {
         $checkoutHead = (Invoke-CheckedGit -GitArgs @("rev-parse", "HEAD")).Text.Trim()
@@ -115,7 +121,7 @@ try {
             $entry.ahead_by -ne 0 -or
             $entry.open_pr -ne $null -or
             $entry.execution_approved -ne $false -or
-            $entry.verified_main_sha -ne $remoteMain) {
+            $entry.verified_main_sha -ne $manifest.main_sha) {
             throw "Branch has no eligible, zero-ahead ancestry proof: $name"
         }
         if ($name -match '^(backup|recovery|collab|lane)/') {
