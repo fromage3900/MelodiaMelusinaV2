@@ -1,0 +1,179 @@
+{
+  "schema": "melodia.melusina_runtime_torso_gate.v1",
+  "evidence": "LIVE_POSE_DIAGNOSTIC_RECEIPT_CHECK",
+  "input_proof": "Direct-owner simulated diagnostic; no physical input or visual pass implied",
+  "physical_input_acceptance": false,
+  "visual_completion": false,
+  "ok": false,
+  "errors": [
+    "Torso inversion at sample 6 (draw/front)",
+    "Torso inversion at sample 7 (draw/side)",
+    "Torso inversion at sample 8 (hold/front)",
+    "Torso inversion at sample 9 (hold/side)",
+    "Torso inversion at sample 10 (fire/front)",
+    "Torso inversion at sample 11 (fire/side)",
+    "Torso inversion at sample 16 (caster_fire/front)"
+  ],
+  "samples": [
+    {
+      "sample": 0,
+      "phase": "idle",
+      "view": "front",
+      "spine_above_root_cm": 37.75555893533897,
+      "head_above_root_cm": 63.69377724067766,
+      "ok": true
+    },
+    {
+      "sample": 1,
+      "phase": "idle",
+      "view": "side",
+      "spine_above_root_cm": 37.798592693635385,
+      "head_above_root_cm": 63.904070929825195,
+      "ok": true
+    },
+    {
+      "sample": 2,
+      "phase": "walk",
+      "view": "front",
+      "spine_above_root_cm": 37.63545636971287,
+      "head_above_root_cm": 63.72329447950705,
+      "ok": true
+    },
+    {
+      "sample": 3,
+      "phase": "walk",
+      "view": "side",
+      "spine_above_root_cm": 37.641499751904576,
+      "head_above_root_cm": 63.769214485431746,
+      "ok": true
+    },
+    {
+      "sample": 4,
+      "phase": "stop",
+      "view": "front",
+      "spine_above_root_cm": 37.625982014239185,
+      "head_above_root_cm": 63.553096630502125,
+      "ok": true
+    },
+    {
+      "sample": 5,
+      "phase": "stop",
+      "view": "side",
+      "spine_above_root_cm": 37.58720685281861,
+      "head_above_root_cm": 63.41108881055834,
+      "ok": true
+    },
+    {
+      "sample": 6,
+      "phase": "draw",
+      "view": "front",
+      "spine_above_root_cm": -24.776965710082095,
+      "head_above_root_cm": -50.63778058711955,
+      "ok": false
+    },
+    {
+      "sample": 7,
+      "phase": "draw",
+      "view": "side",
+      "spine_above_root_cm": -25.031822795771177,
+      "head_above_root_cm": -51.24530324799832,
+      "ok": false
+    },
+    {
+      "sample": 8,
+      "phase": "hold",
+      "view": "front",
+      "spine_above_root_cm": -25.126915700336554,
+      "head_above_root_cm": -51.70576450929889,
+      "ok": false
+    },
+    {
+      "sample": 9,
+      "phase": "hold",
+      "view": "side",
+      "spine_above_root_cm": -25.107244501089326,
+      "head_above_root_cm": -51.68685628132903,
+      "ok": false
+    },
+    {
+      "sample": 10,
+      "phase": "fire",
+      "view": "front",
+      "spine_above_root_cm": -25.17801917152542,
+      "head_above_root_cm": -51.69538487701266,
+      "ok": false
+    },
+    {
+      "sample": 11,
+      "phase": "fire",
+      "view": "side",
+      "spine_above_root_cm": -25.292004547010606,
+      "head_above_root_cm": -51.738969116360295,
+      "ok": false
+    },
+    {
+      "sample": 12,
+      "phase": "recovery",
+      "view": "front",
+      "spine_above_root_cm": 37.7676426524589,
+      "head_above_root_cm": 63.767363921547485,
+      "ok": true
+    },
+    {
+      "sample": 13,
+      "phase": "recovery",
+      "view": "side",
+      "spine_above_root_cm": 37.81123051186688,
+      "head_above_root_cm": 63.925967154175964,
+      "ok": true
+    },
+    {
+      "sample": 14,
+      "phase": "caster_draw",
+      "view": "front",
+      "spine_above_root_cm": 37.58980715734003,
+      "head_above_root_cm": 63.480731179318354,
+      "ok": true
+    },
+    {
+      "sample": 15,
+      "phase": "caster_draw",
+      "view": "side",
+      "spine_above_root_cm": 37.623057754061506,
+      "head_above_root_cm": 63.523747377600785,
+      "ok": true
+    },
+    {
+      "sample": 16,
+      "phase": "caster_fire",
+      "view": "front",
+      "spine_above_root_cm": -24.885181417587205,
+      "head_above_root_cm": -51.00840711681076,
+      "ok": false
+    },
+    {
+      "sample": 17,
+      "phase": "caster_fire",
+      "view": "side",
+      "spine_above_root_cm": 37.60363781755706,
+      "head_above_root_cm": 63.484315335502174,
+      "ok": true
+    },
+    {
+      "sample": 18,
+      "phase": "caster_recovery",
+      "view": "front",
+      "spine_above_root_cm": 37.76255722004191,
+      "head_above_root_cm": 63.691434970209514,
+      "ok": true
+    },
+    {
+      "sample": 19,
+      "phase": "caster_recovery",
+      "view": "side",
+      "spine_above_root_cm": 37.80282576224056,
+      "head_above_root_cm": 63.910927813471744,
+      "ok": true
+    }
+  ]
+}

@@ -1,5 +1,6 @@
-"""Reference-policy regressions; pose/contact acceptance still requires PIE."""
+"""Reference and torso-receipt regressions; acceptance still requires live PIE."""
 import copy
+import json
 import importlib.util
 from pathlib import Path
 
@@ -162,3 +163,61 @@ def test_cycles_terminate_without_mutating_extraction():
 
 def test_unreal_tag_path_normalization():
     assert gate.package_path("/Script/Engine.Skeleton'/Game/Test/SK_Body.SK_Body'") == "/Game/Test/SK_Body"
+
+
+def torso_receipt():
+    phases = ("idle", "draw", "hold", "fire", "recovery",
+              "caster_draw", "caster_fire", "caster_recovery")
+    return {"errors": [], "proof": "Direct-owner simulated diagnostic",
+            "samples": [{"phase": phase, "view": view,
+                         "bones_cs": {"root_x": {"p": [0, 0, 72]},
+                                      "spine_03_x": {"p": [0, 0, 110]},
+                                      "head_x": {"p": [0, 0, 136]}}}
+                        for phase in phases for view in ("front", "side")]}
+
+
+def test_upright_runtime_diagnostic_does_not_claim_input_or_visual_acceptance():
+    receipt = torso_receipt()
+    original = copy.deepcopy(receipt)
+    result = gate.check_runtime_torso_order(receipt)
+    assert result["ok"]
+    assert not result["physical_input_acceptance"]
+    assert not result["visual_completion"]
+    assert receipt == original
+
+
+@pytest.mark.parametrize("phase", ["draw", "hold", "fire", "caster_fire"])
+def test_layered_inversion_fails_even_when_other_view_is_upright(phase):
+    receipt = torso_receipt()
+    row = next(s for s in receipt["samples"] if s["phase"] == phase)
+    row["bones_cs"]["spine_03_x"]["p"][2] = 47
+    row["bones_cs"]["head_x"]["p"][2] = 21
+    result = gate.check_runtime_torso_order(receipt)
+    assert not result["ok"]
+    assert any("Torso inversion" in e for e in result["errors"])
+
+
+@pytest.mark.parametrize("fault", ["missing_bone", "nan", "missing_phase", "missing_view", "capture_error"])
+def test_incomplete_runtime_torso_capture_fails_closed(fault):
+    receipt = torso_receipt()
+    if fault == "missing_bone":
+        del receipt["samples"][0]["bones_cs"]["head_x"]
+    elif fault == "nan":
+        receipt["samples"][0]["bones_cs"]["head_x"]["p"][2] = float("nan")
+    elif fault == "missing_phase":
+        receipt["samples"] = [s for s in receipt["samples"] if s["phase"] != "hold"]
+    elif fault == "missing_view":
+        receipt["samples"] = [s for s in receipt["samples"] if s["view"] != "side"]
+    else:
+        receipt["errors"] = ["capture callback failed"]
+    assert not gate.check_runtime_torso_order(receipt)["ok"]
+
+
+def test_runtime_capture_cli_propagates_inversion_failure(tmp_path, capsys):
+    receipt = torso_receipt()
+    receipt["samples"][2]["bones_cs"]["head_x"]["p"][2] = 21
+    source, output = tmp_path / "capture.json", tmp_path / "gate.json"
+    source.write_text(json.dumps(receipt), encoding="utf-8")
+    assert gate.reference_gate_main(["--runtime-capture", str(source), "--output", str(output)]) == 1
+    assert not json.loads(output.read_text(encoding="utf-8"))["ok"]
+    assert json.loads(capsys.readouterr().out)["physical_input_acceptance"] is False
