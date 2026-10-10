@@ -70,6 +70,12 @@
     "next": "run the bisect plan inside the editor (constant-normal / red-basecolor / specular-off probes on scratch duplicates), capture each, apply the winning fix to the master",
     "editor_state_at_handoff": "interactive session down; UnrealEditor-Cmd pid 14476 (started 14:37) remains; 3 crashes logged earlier today (13:23-13:56), none from this lane"
   },
+  "toon_bsdf_fix_20261010": {
+    "root_cause": "unconnected Normal input on MaterialExpressionSubstrateToonBSDF_2 - constant-(0,0,1)-normal probe on a scratch duplicate (M_Gouache_ProbeA, since deleted) rendered immediately while all profiles rendered black",
+    "fix": "MaterialExpressionVertexNormalWS_0 wired into BSDF Normal input on M_PainterlyGouache; recompiled; saved; 65/65 expressions verified persisted through a later editor restart",
+    "evidence": "live asset previews (RiderLink forceLive): master + MI_Gouache_Lookdev_{GameplayStandard,Narrative,PortfolioHero} all render (mottled blue-grey wash, per-profile character)",
+    "still_owed": "PIE/viewport acceptance with real lighting; ToonProfile remains TP_Iridescent_Flow; TP_SoftPainterly/TP_Default unretested post-fix"
+  },
   "correction": "/Game/Melodia/Lookdev/ and /Game/Melodia/Materials/Lookdev/ both exist on disk; the earlier CURRENT_STATE '(absent on disk)' note was wrong",
   "evidence_level": "editor-side only (validate/compile/save/write read-back). NOT proven: PIE, packaged, visual acceptance",
   "open": [
