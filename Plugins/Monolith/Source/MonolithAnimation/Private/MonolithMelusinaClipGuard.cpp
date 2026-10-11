@@ -5,6 +5,7 @@
 #include "Animation/BlendSpace.h"
 #include "Animation/Skeleton.h"
 #include "AnimPose.h"
+#include "Engine/SkeletalMesh.h"
 
 bool MonolithMelusinaClipGuard::IsCanonicalSkeleton(const USkeleton* Skeleton)
 {
@@ -38,6 +39,13 @@ bool MonolithMelusinaClipGuard::Validate(const UAnimationAsset* Asset, const USk
 	for (FName Bone : { FName(TEXT("arm_stretch_l")), FName(TEXT("forearm_stretch_l")), FName(TEXT("arm_stretch_r")), FName(TEXT("forearm_stretch_r")) })
 		if (!Model->IsValidBoneTrackName(Bone)) return Reject(FString::Printf(TEXT("missing authored arm track %s; reference-pose fallback is unsafe"), *Bone.ToString()));
 	FAnimPoseEvaluationOptions Options;
+	// Skeleton-only evaluation can accept translations that the actual body
+	// redistributes back to the rejected 34.789/9.520 cm shoulder convention.
+	USkeletalMesh* Body = LoadObject<USkeletalMesh>(nullptr,
+		TEXT("/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Body.SK_Melusina_V2_Body"));
+	if (!Body || Body->GetSkeleton() != TargetSkeleton)
+		return Reject(TEXT("canonical body missing or skeleton mismatch; no skeleton-only fallback"));
+	Options.OptionalSkeletalMesh = Body;
 	Options.EvaluationType = EAnimDataEvalType::Raw;
 	Options.bShouldRetarget = true;
 	Options.bExtractRootMotion = false;
