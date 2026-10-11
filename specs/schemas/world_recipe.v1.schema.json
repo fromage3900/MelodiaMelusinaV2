@@ -690,6 +690,8 @@
         "turn_deg_per_semitone": {"type": "number"}, "heading_deg": {"type": "number"}, "hero_scale": {"type": "number", "exclusiveMinimum": 0},
         "lateral_alternate_cm": {"type": "number", "minimum": 0}, "beats_per_note": {"type": "number", "exclusiveMinimum": 0},
         "bridge": {"type": "object", "additionalProperties": false, "required": ["mesh", "mesh_length_cm"], "properties": {"mesh": {"type": "string", "pattern": "^/Game/"}, "mesh_length_cm": {"type": "number", "exclusiveMinimum": 0}, "rim_inset": {"type": "number", "minimum": 0.3, "maximum": 1.0}, "width_scale": {"type": "number", "exclusiveMinimum": 0}}},
+        "visual_scale_mult": {"type": "number", "exclusiveMinimum": 0},
+        "set_pieces": {"type": "array", "items": {"type": "object", "additionalProperties": false, "required": ["mesh", "island"], "properties": {"label": {"type": "string"}, "mesh": {"type": "string", "pattern": "^/Game/"}, "island": {"type": "integer", "minimum": 0}, "offset_cm": {"type": "array", "items": {"type": "number"}, "minItems": 2, "maxItems": 2}, "lift_cm": {"type": "number"}, "yaw": {"type": "number"}, "target_length_cm": {"type": "number", "exclusiveMinimum": 0}}}},
         "pool": {"type": "array", "minItems": 1, "items": {"type": "object", "additionalProperties": false, "required": ["mesh", "radius_cm", "top_z_cm"], "properties": {"mesh": {"type": "string", "pattern": "^/Game/"}, "radius_cm": {"type": "number", "exclusiveMinimum": 0}, "top_z_cm": {"type": "number"}}}}
       }
     },

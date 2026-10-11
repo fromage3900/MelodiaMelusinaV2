@@ -88,7 +88,29 @@ if os.path.exists(bpath):
         ba.set_actor_scale3d(unreal.Vector(float(b["scale_x"]), float(b["scale_yz"]), float(b["scale_yz"])))
         ba.tags = [unreal.Name("WorldCompiler.archipelago"), unreal.Name("Arch.bridge")]
         spans.append(ba)
-made_all = made + spans
+# hero set pieces (vehicles etc.): scaled so the longest horizontal extent == target_length_cm, resting on the island top
+ppath = BUNDLE_DIR + "archipelago_set_pieces.csv"
+pieces = []
+if os.path.exists(ppath):
+    for sp in csv.DictReader(open(ppath, encoding="utf-8")):
+        pl = f"{PREFIX}PIECE_{int(sp['piece_id']):02d}_{sp['label']}"
+        pm = meshes.get(sp["mesh"]) or unreal.load_asset(sp["mesh"])
+        meshes[sp["mesh"]] = pm
+        bb = pm.get_bounding_box()
+        longest = max(bb.max.x - bb.min.x, bb.max.y - bb.min.y, 1.0)
+        k = float(sp["target_length_cm"]) / longest
+        ploc = unreal.Vector(float(sp["x"]), float(sp["y"]), float(sp["z"]) - bb.min.z * k)
+        prot = unreal.Rotator(roll=0.0, pitch=0.0, yaw=float(sp["yaw"]))
+        pa = L.get(pl)
+        if pa is None:
+            pa = sub.spawn_actor_from_object(pm, ploc, prot)
+            pa.set_actor_label(pl)
+        else:
+            pa.set_actor_location(ploc, False, False); pa.set_actor_rotation(prot, False)
+        pa.set_actor_scale3d(unreal.Vector(k, k, k))
+        pa.tags = [unreal.Name("WorldCompiler.archipelago"), unreal.Name("Arch.piece")]
+        pieces.append(pa)
+made_all = made + spans + pieces
 print("islands", len(made), "bridges", len(spans), "volumes", len(vols), "meshes loaded", len(meshes))
 pk = {x.get_package().get_name(): x.get_package() for x in made_all + vols}
 print("save", unreal.EditorLoadingAndSavingUtils.save_packages(list(pk.values()), False))

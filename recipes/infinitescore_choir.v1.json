@@ -395,6 +395,45 @@
     "turn_deg_per_semitone": 0.0,
     "heading_deg": 0.0,
     "lateral_alternate_cm": 4800,
-    "hero_scale": 1.0
+    "hero_scale": 1.0,
+    "visual_scale_mult": 2.5,
+    "set_pieces": [
+      {
+        "label": "BandWagon",
+        "mesh": "/Game/KitBash_EnchantedVehicles/SM_KB3D_ECV_VehicBandWagon",
+        "island": 2,
+        "offset_cm": [
+          0,
+          3600
+        ],
+        "lift_cm": -4300,
+        "yaw": 200,
+        "target_length_cm": 3200
+      },
+      {
+        "label": "RoyalCarriage",
+        "mesh": "/Game/KitBash_EnchantedVehicles/SM_KB3D_ECV_VehicRoyalCarriage",
+        "island": 4,
+        "offset_cm": [
+          0,
+          -3300
+        ],
+        "lift_cm": -4500,
+        "yaw": 150,
+        "target_length_cm": 3800
+      },
+      {
+        "label": "Courrier",
+        "mesh": "/Game/KitBash_EnchantedVehicles/SM_KB3D_ECV_VehicCourrier",
+        "island": 5,
+        "offset_cm": [
+          0,
+          -3200
+        ],
+        "lift_cm": -4700,
+        "yaw": 330,
+        "target_length_cm": 3000
+      }
+    ]
   }
 }
