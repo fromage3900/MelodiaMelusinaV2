@@ -1,0 +1,17 @@
+{
+ "schema": "melodia.setid_falsecolor.v1",
+ "timestamp": "2026-10-07T17:44:36.533347+00:00",
+ "out": "D:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\melusina_animation_doctor\\lookdev_outfit\\dress_setid_fc.bgeo",
+ "vertex_paints": {
+  "M_Bodice_Torso": 183536,
+  "M_Bodice_Front": 57456,
+  "M_Bodice_Side": 40612,
+  "M_Bodice_Upper": 96315,
+  "M_Collar": 36500,
+  "M_Shoulder_Trim": 8380,
+  "M_Shoulder_Ornament": 504,
+  "M_Sleeve": 2496,
+  "M_Underskirt": 77364,
+  "M_Skirt_Full": 273673
+ }
+}

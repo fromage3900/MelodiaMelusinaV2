@@ -1286,6 +1286,9 @@ CATEGORY_META: dict[str, dict] = {
     "reaver":      {"label": "Reaver Wings",          "icon": "MOD_DECIM"},     # added 2026-09-25: reaver_wings.py
     "bionic":      {"label": "Bionic Joints",         "icon": "MESH_CIRCLE"},   # added 2026-09-25: bionic_joint.py
     "escher":      {"label": "Escher Math",           "icon": "NODETREE"},
+    "Garment":     {"label": "Garment",               "icon": "MATERIAL"},   # 2026-10-07: garment_loom/garment_audio_drape
+    "angel":       {"label": "Angel",                 "icon": "LIGHT_AREA"}, # 2026-10-07: angel_convergence
+    "companions":  {"label": "Companions",            "icon": "COMMUNITY"},  # 2026-10-07: companion_flock
 }
 
 

@@ -3,7 +3,7 @@
   "recipe_id": "field_atlas_sea_above_test_tile",
   "product": "field_atlas",
   "seed": 3900,
-  "status": "staged",
+  "status": "source_proven",
   "description": "Gates 3-4: ONE Sea Above test tile through HDA_Foundry_FieldAtlas. Supplemental world intelligence only -- never replaces authored terrain.",
   "source": {
     "kind": "hda",

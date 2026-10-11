@@ -1,0 +1,28 @@
+{
+  "schema": "melodia.dress_region_breakdown.v1",
+  "timestamp": "2026-10-07T16:53:06.828641+00:00",
+  "src": "D:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\melusina_animation_doctor\\uv_repack\\dress_reef_packed.bgeo",
+  "regions": {
+    "hem": {
+      "prims_in_sample": 114,
+      "zero_uv": 0,
+      "inward": 65,
+      "zero_uv_frac": 0.0,
+      "inward_frac": 0.5702
+    },
+    "skirt": {
+      "prims_in_sample": 1817,
+      "zero_uv": 0,
+      "inward": 690,
+      "zero_uv_frac": 0.0,
+      "inward_frac": 0.3797
+    },
+    "bodice": {
+      "prims_in_sample": 8408,
+      "zero_uv": 0,
+      "inward": 5345,
+      "zero_uv_frac": 0.0,
+      "inward_frac": 0.6357
+    }
+  }
+}

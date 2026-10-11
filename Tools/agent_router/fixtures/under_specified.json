@@ -1,0 +1,9 @@
+{
+  "id": "ambiguous-quick-fix",
+  "goal": "Tidy up the loose ends.",
+  "done_when": [
+    "it looks right"
+  ],
+  "surfaces": ["filesystem"],
+  "mutation_scope": "none"
+}

@@ -1,0 +1,143 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "melodia.task_packet/v1",
+  "title": "Melodia Task Packet",
+  "description": "One packet is one kanban card. 'Tools/model_router.py route' consumes it. A packet is the ONLY thing a worker may be dispatched from: if a field the router needs is missing, the router must return classical-fallback and the card goes to the owner. Never auto-dispatched, never auto-closed.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "goal", "done_when", "mutation_scope"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9._-]{2,63}$",
+      "description": "Stable card id. Also the artifact subdirectory name under Saved/Audit/<id>/."
+    },
+    "goal": {
+      "type": "string",
+      "minLength": 4,
+      "maxLength": 2000,
+      "description": "What the worker is being asked to do, in one or two sentences. Matched against escalation_triggers[].goal_keywords, so it must name the real action ('widen the schema', not 'small cleanup')."
+    },
+    "done_when": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 12,
+      "items": { "type": "string", "minLength": 4 },
+      "description": "Acceptance criteria. HARD RULE: every entry must name a file or artifact a verifier can open. 'It works' is not a done_when. If the router cannot find any openable artifact for the packet, it returns classical-fallback."
+    },
+    "inputs": {
+      "type": "array",
+      "maxItems": 200,
+      "items": { "type": "string", "minLength": 1 },
+      "description": "Repo-relative paths the worker may read. Matched against escalation_triggers[].path_globs."
+    },
+    "mutation_paths": {
+      "type": "array",
+      "maxItems": 200,
+      "items": { "type": "string", "minLength": 1 },
+      "description": "Repo-relative paths the worker intends to write. An EMPTY array with mutation_scope != none is a packet defect and forces classical-fallback. Matched against escalation_triggers[].path_globs before the tier is chosen."
+    },
+    "surfaces": {
+      "type": "array",
+      "maxItems": 12,
+      "items": {
+        "type": "string",
+        "enum": [
+          "none",
+          "filesystem",
+          "git",
+          "p4",
+          "editor_readonly",
+          "editor_write",
+          "blender",
+          "mcp_melodia",
+          "mcp_claireon",
+          "shell"
+        ]
+      },
+      "description": "Surfaces this packet is allowed to touch. 'editor_write' REQUIRES the editor lease (Tools/agent_lease.py) and is refused when mutation_scope is not 'editor'."
+    },
+    "mutation_scope": {
+      "type": "string",
+      "enum": ["none", "files", "editor", "git"],
+      "description": "none = read-only. files = write repo files. editor = write Unreal assets. git = a git/p4 operation. 'git' is ALWAYS T0_ARCHITECT + owner approval; the router will not auto-dispatch it."
+    },
+    "task_class": {
+      "type": "string",
+      "description": "Optional. Must be a key of specs/orchestration/model_tiers.v1.json routing_matrix (python Tools/model_router.py tasks lists them). When present it fixes the BASE tier and the router only ever escalates upward. When absent the router returns classical-fallback - it does not guess."
+    },
+    "artifacts_expected": {
+      "type": "array",
+      "maxItems": 20,
+      "items": { "type": "string", "minLength": 1 },
+      "description": "Repo-relative artifact paths the worker must produce. Drives verify_kind inference."
+    },
+    "verify_kind": {
+      "type": "string",
+      "enum": [
+        "artifact_open",
+        "test_log",
+        "image_look",
+        "diff_review",
+        "log_cite",
+        "none"
+      ],
+      "description": "Optional. How a verifier will accept this packet. Inferred from artifacts_expected when absent. 'none' is only legal when mutation_scope == 'none'."
+    },
+    "verifier_class": {
+      "type": "string",
+      "description": "Optional. Forced to a non-producer tier when absent: the router escalates any packet that mutates to at least its tier's verifier requirement. 'no_self_certification' is a registry rule, not a suggestion."
+    },
+    "budget_usd": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 20,
+      "description": "Hard spend cap for this packet. Clamped to the tier's budget_usd_max by the router. A T4_LOCAL packet must carry 0."
+    },
+    "max_turns": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 200
+    },
+    "lease_ttl_s": {
+      "type": "integer",
+      "minimum": 60,
+      "maximum": 7200,
+      "description": "Editor lease TTL when surfaces contains editor_write. Default 900."
+    },
+    "notes": {
+      "type": "string",
+      "maxLength": 4000,
+      "description": "Human context. NEVER read by the router for tier selection beyond goal_keywords already in 'goal' - prose here cannot lower a tier."
+    }
+  },
+  "allOf": [
+    {
+      "$comment": "A packet that claims to mutate but names no path cannot be checked against escalation_triggers[].path_globs, so it cannot be routed safely. Fail here rather than three layers down.",
+      "if": {
+        "properties": { "mutation_scope": { "enum": ["files", "editor", "git"] } },
+        "required": ["mutation_scope"]
+      },
+      "then": {
+        "required": ["mutation_paths"],
+        "properties": { "mutation_paths": { "minItems": 1 } }
+      }
+    },
+    {
+      "$comment": "done_when must name something a verifier can OPEN. 'it looks right' is the canonical bad entry and is rejected by the path-shaped pattern below.",
+      "if": { "required": ["done_when"] },
+      "then": {
+        "properties": {
+          "done_when": {
+            "items": {
+              "anyOf": [
+                { "pattern": "[A-Za-z0-9_.-]+/[A-Za-z0-9_./-]+" },
+                { "pattern": "[A-Za-z0-9_.-]+\\.(md|json|log|py|diff|patch|png|jpg|umap|uasset|txt|html|fbx|ini|csv)" }
+              ]
+            }
+          }
+        }
+      }
+    }
+  ]
+}

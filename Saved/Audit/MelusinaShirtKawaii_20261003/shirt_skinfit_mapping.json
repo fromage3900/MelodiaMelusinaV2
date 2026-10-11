@@ -1,0 +1,267 @@
+{
+  "schema": "melodia.melusina_shirt_skinfit_candidate.v1",
+  "status": "OFFLINE_STAGING_ONLY_NOT_APPLIED",
+  "candidate_fbx": "C:/EnvironmentPortfolio/BS_GodFile/Saved/Audit/MelusinaShirtKawaii_20261003/shirt_skinfit_candidate.fbx",
+  "candidate_mesh": "SK_Melusina_V2_Shirt.001",
+  "candidate_armature": "Melusina_Shirt_Staging_Skeleton",
+  "candidate_vertex_count": 861,
+  "source": {
+    "shirt_fbx": "C:/EnvironmentPortfolio/BS_GodFile/Saved/Audit/MelusinaSecondarySources_20261003/shirt_readonly.fbx",
+    "shirt_sha256": "7e3ecfe23cabdef2f67aac850b38e14c32c4136ce543a890daa17b82539e59b4",
+    "body_fbx": "C:/EnvironmentPortfolio/BS_GodFile/Saved/Audit/MelusinaRuntimeConvergence_20261002/current_body_readonly.fbx",
+    "body_sha256": "789922438796b47c0834512b04073e485b3f5a46943df199282a23adbb50bff7"
+  },
+  "weight_transfer": {
+    "method": "preserve source body-deform weights per vertex; inverse-distance blend of four nearest current-body surface vertices only where the source used c_ helper/control groups exclusively",
+    "source_group_filter": "source body armature bones with use_deform=true, excluding c_ control/helper bones",
+    "source_deform_group_count": 150,
+    "excluded_shirt_groups": [
+      "c_arm_twist_offset_l",
+      "c_arm_twist_offset_r",
+      "c_kilt_02_01_l",
+      "c_kilt_02_01_r",
+      "c_kilt_02_02_l",
+      "c_kilt_02_02_r",
+      "c_kilt_04_01_l",
+      "c_kilt_04_01_r",
+      "c_kilt_04_02_l",
+      "c_kilt_04_02_r",
+      "c_kilt_05_01_l",
+      "c_kilt_05_01_r",
+      "c_kilt_05_02_l",
+      "c_kilt_05_02_r",
+      "c_kilt_06_01_l",
+      "c_kilt_06_01_r",
+      "c_kilt_06_02_l",
+      "c_kilt_06_02_r",
+      "c_kilt_07_01_l",
+      "c_kilt_07_01_r",
+      "c_kilt_07_02_l",
+      "c_kilt_07_02_r",
+      "c_kilt_08_01_l",
+      "c_kilt_08_01_r",
+      "c_kilt_08_02_l",
+      "c_kilt_08_02_r"
+    ],
+    "preserved_source_deform_weight_vertices": 793,
+    "body_surface_fallback_vertices": 68,
+    "preserved_anchor": "original torso/shoulder body-deform weights are kept exactly; chest/shoulder skin mapping is not re-estimated",
+    "hem_band": {
+      "z_start_cm": 95,
+      "z_end_cm": 70,
+      "maximum_secondary_weight": 0.7,
+      "vertices_with_hem_influence": 232,
+      "weights": {
+        "body_skin_fraction": "1 - hem influence",
+        "hem_spoke_01": 0.55,
+        "hem_spoke_02": 0.45
+      }
+    },
+    "weight_sum_expected": 1.0
+  },
+  "staged_hem_rig": {
+    "root": "c_shirt_hem_master_x",
+    "parent": "root_x",
+    "spokes": [
+      {
+        "index": 0,
+        "bone_01": "c_shirt_hem_01_01_x",
+        "bone_02": "c_shirt_hem_01_02_x",
+        "component_head_cm": [
+          12.75,
+          -4.75,
+          98.0
+        ],
+        "component_mid_cm": [
+          20.91,
+          -7.79,
+          83.5
+        ],
+        "component_end_cm": [
+          25.5,
+          -9.5,
+          70.0
+        ],
+        "angle_radians": 0.0
+      },
+      {
+        "index": 1,
+        "bone_01": "c_shirt_hem_02_01_x",
+        "bone_02": "c_shirt_hem_02_02_x",
+        "component_head_cm": [
+          9.016,
+          1.26,
+          98.0
+        ],
+        "component_mid_cm": [
+          14.786,
+          2.067,
+          83.5
+        ],
+        "component_end_cm": [
+          18.031,
+          2.521,
+          70.0
+        ],
+        "angle_radians": 0.7854
+      },
+      {
+        "index": 2,
+        "bone_01": "c_shirt_hem_03_01_x",
+        "bone_02": "c_shirt_hem_03_02_x",
+        "component_head_cm": [
+          0.0,
+          3.75,
+          98.0
+        ],
+        "component_mid_cm": [
+          0.0,
+          6.15,
+          83.5
+        ],
+        "component_end_cm": [
+          0.0,
+          7.5,
+          70.0
+        ],
+        "angle_radians": 1.5708
+      },
+      {
+        "index": 3,
+        "bone_01": "c_shirt_hem_04_01_x",
+        "bone_02": "c_shirt_hem_04_02_x",
+        "component_head_cm": [
+          -9.016,
+          1.26,
+          98.0
+        ],
+        "component_mid_cm": [
+          -14.786,
+          2.067,
+          83.5
+        ],
+        "component_end_cm": [
+          -18.031,
+          2.521,
+          70.0
+        ],
+        "angle_radians": 2.35619
+      },
+      {
+        "index": 4,
+        "bone_01": "c_shirt_hem_05_01_x",
+        "bone_02": "c_shirt_hem_05_02_x",
+        "component_head_cm": [
+          -12.75,
+          -4.75,
+          98.0
+        ],
+        "component_mid_cm": [
+          -20.91,
+          -7.79,
+          83.5
+        ],
+        "component_end_cm": [
+          -25.5,
+          -9.5,
+          70.0
+        ],
+        "angle_radians": 3.14159
+      },
+      {
+        "index": 5,
+        "bone_01": "c_shirt_hem_06_01_x",
+        "bone_02": "c_shirt_hem_06_02_x",
+        "component_head_cm": [
+          -9.016,
+          -10.76,
+          98.0
+        ],
+        "component_mid_cm": [
+          -14.786,
+          -17.647,
+          83.5
+        ],
+        "component_end_cm": [
+          -18.031,
+          -21.521,
+          70.0
+        ],
+        "angle_radians": 3.92699
+      },
+      {
+        "index": 6,
+        "bone_01": "c_shirt_hem_07_01_x",
+        "bone_02": "c_shirt_hem_07_02_x",
+        "component_head_cm": [
+          -0.0,
+          -13.25,
+          98.0
+        ],
+        "component_mid_cm": [
+          -0.0,
+          -21.73,
+          83.5
+        ],
+        "component_end_cm": [
+          -0.0,
+          -26.5,
+          70.0
+        ],
+        "angle_radians": 4.71239
+      },
+      {
+        "index": 7,
+        "bone_01": "c_shirt_hem_08_01_x",
+        "bone_02": "c_shirt_hem_08_02_x",
+        "component_head_cm": [
+          9.016,
+          -10.76,
+          98.0
+        ],
+        "component_mid_cm": [
+          14.786,
+          -17.647,
+          83.5
+        ],
+        "component_end_cm": [
+          18.031,
+          -21.521,
+          70.0
+        ],
+        "angle_radians": 5.49779
+      }
+    ],
+    "bone_count": 17,
+    "purpose": "independent soft hem motion beneath body-anchored chest/shoulders; offline candidate only; runtime wardrobe currently requires same USkeleton + LeaderPose"
+  },
+  "skeleton_contract": {
+    "common_body_bones": 464,
+    "common_body_bones_ue_including_wrapper": 465,
+    "custom_shirt_bones": 17,
+    "candidate_total_bones": 481,
+    "wrapper_root": "root",
+    "duplicate_root_001_removed": true,
+    "rest_pose": "body source bind/rest pose retained; no animation/action exported"
+  },
+  "existing_kawaii_mapping": {
+    "current_body_kawaii_root": "c_kilt_master_x",
+    "shirt_current_source_has_kilt_weights": true,
+    "new_candidate_kawaii_root": "c_shirt_hem_master_x",
+    "collision_body_source": "body component KawaiiPhysics / existing shared collision path",
+    "hair_target": "use world-space body source limits via bUseSharedCollision"
+  },
+  "kawaii_motion_profile_suggestion": {
+    "damping": 0.62,
+    "stiffness": 0.72,
+    "drag": 0.24,
+    "gravity_factor": 0.16,
+    "wind_factor": 0.12,
+    "radius_cm": 3.0,
+    "note": "staging starting point only; Kawaii node not authored or simulated here"
+  },
+  "warnings": [
+    "Candidate skeleton is an offline staging skeleton; the runtime same-USkeleton + LeaderPose contract still needs owner integration.",
+    "Export round-trip QA and rendered pose clearance are recorded in companion audits; no Unreal Kawaii simulation has been run."
+  ]
+}

@@ -4,6 +4,63 @@
 **Status authority:** `CURRENT_STATE.md`. Nothing in this folder promotes a proof level; only evidence plus a `CURRENT_STATE.md` edit does.
 **Status of this folder:** STAGED — every file describes work to run at college. Nothing here has run in Houdini or UE.
 
+## 2026-10-06 update — AnimationDoctor lab day (current priority)
+
+**Today's override:** use the college full Education licence first as a **KineFX animation diagnostics lab**, while Brennan handles hero-render framing and presentation work. The original Foundry world-building gates below remain valid backlog; they are not promoted or marked complete by this update.
+
+### Mission
+
+Build a reusable, non-destructive `HDA_Melodia_AnimationDoctor` that answers: **what is wrong with a runtime animation, on which joints/frames, and is the fault in source motion, rest pose/skeleton, retarget assumptions, root motion, contact, or UE presentation?** Houdini diagnoses and optionally produces deterministic corrected exports; **UE 5.8 and the canonical Melusina skeleton remain runtime authority.** Do not create a second animation pipeline or replace UE's IK Retargeter.
+
+### First specimen — isolated Melusina/Shinbi recovery lane
+
+Use the animation/retarget payload identified in source commit `6ca411e1d5` as the bounded test set, without treating its divergent cleanup branch as authority:
+
+- `A_Shin_Idle`
+- `A_Shin_Idle_pose`
+- `A_Shin_Idle_stand`
+- `A_Shin_Cast`
+- canonical Melusina target skeleton / current runtime retarget assumptions
+
+The GitHub reconciliation audit found the runtime UE binaries in that source lane do not overlap later `main` changes; `BS_GodFile.uproject` and `CURRENT_STATE.md` do, so neither may be restored from the old source commit. Work from current canonical `main`/SSD state and treat old history as specimen/reference only.
+
+### AnimationDoctor stages
+
+| Stage | Measure / visualize | Default behavior |
+|---|---|---|
+| REST | hierarchy, names, parents, rest transforms, joint orientation, bone length, scale, coordinate basis | flag only; no silent correction |
+| ROOT | trajectory, XY/Z displacement, rotation, discontinuities, floating/reference-pose jumps | visualize; optional normalization disabled by default |
+| CONTACT | foot height + velocity + stable-frame windows; sliding while planted | emit contact intervals/markers and slip metrics |
+| JOINT HEALTH | angular velocity, transform discontinuities, extreme rotations/scales | rank worst joints and frames |
+| RETARGET | source vs target vs retarget-result pose/trajectory differences | viewport overlay/comparison |
+| EXPORT | deterministic corrected clip when evidence justifies it | new output only; never overwrite source |
+
+Design contact analysis so the same architecture can later accept hands, hooves and weapon grips. Prefer machine-readable attributes/report data alongside viewport evidence.
+
+### Required viewport/evidence
+
+Show source skeleton, target skeleton, root trail, contact markers and problem-joint markers together clearly enough that a bad retarget assumption is visually obvious. For each Shinbi clip, retain a small diagnostic report plus representative captures under `Saved/Audit/houdini_foundry/animation_doctor/<clip>/`. Large caches/intermediates stay under `Saved/HoudiniFoundry/` or college scratch and are never committed.
+
+### Second specimen — Choral Sheep
+
+Only after the Melusina diagnostic foundation works, run the same analyzer against Choral Sheep. Evaluate hoof-contact detection and locomotion phase analysis first; then test deterministic phase offsets, speed variation, and bounded head/ear/tail secondary variation. This is the bridge to Jev-directed flock variants and realtime cymatics presentation, **not permission to build a parallel flock/runtime authority**.
+
+### Division of labor for the lab session
+
+- **Muse Spark / technical worker:** build and validate the bounded KineFX diagnostic network, metrics, reports and evidence. Do not redesign runtime architecture and do not auto-fix ambiguous failures.
+- **Brennan:** hero-render framing, lighting/composition and visual judgment; review diagnostic evidence at explicit gates rather than watching cooks.
+- **UE follow-up:** only after evidence identifies a specific failure, make the smallest surgical UE-side retarget/runtime repair and prove it in PIE/packaged presentation.
+
+### Today is successful when
+
+1. At least one Shinbi → Melusina clip produces an interpretable AnimationDoctor report and viewport proof.
+2. The report localizes the failure category and worst joints/frames instead of merely saying the animation looks wrong.
+3. Source assets remain untouched and no competing canonical animation path is introduced.
+4. If time permits, Choral Sheep proves the same diagnostic architecture can detect hoof contacts/phase without committing a full flock rewrite.
+5. Separately, the presentation lane leaves the lab with 2–3 portfolio-grade hero frames; rendering does not block the diagnostic worker.
+
+**Stop condition:** if the proposed fix requires changing canonical skeleton authority, rewriting the UE animation architecture, restoring stale `CURRENT_STATE.md`/`.uproject` state, or mass-exporting corrected clips before diagnosis is proven, stop at evidence and defer the runtime decision.
+
 ## What this day is for
 
 Turn a day of full-licence Houdini into **durable, deterministic, verifiable** world-building capability. The measure is "reusable capability added", not "assets generated".

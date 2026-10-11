@@ -1,0 +1,32 @@
+[
+  {
+    "name": "shared_limits_idle",
+    "world": "/Game/Melodia/Levels/Opening/UEDPIE_0_L_MelusinaMorning.L_MelusinaMorning",
+    "pawn": "/Game/Melodia/Levels/Opening/UEDPIE_0_L_MelusinaMorning.L_MelusinaMorning:PersistentLevel.BP_MelusinaJRPGCharacter_C_1",
+    "body_abp": "/Game/Melodia/Characters/Melusina/ABP_Melusina_Current.ABP_Melusina_Current_C",
+    "hair_abp": "/Game/Melodia/Characters/Melusina/Hair/ABP_Melusina_WaterHair.ABP_Melusina_WaterHair_C",
+    "hair_head_gap_cm": 0.029928693036483385,
+    "body_mesh": "/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Body.SK_Melusina_V2_Body",
+    "hair_mesh": "/Game/Melodia/Characters/Melusina/Hair/SK_MelusinaHair.SK_MelusinaHair"
+  },
+  {
+    "name": "shared_limits_hold",
+    "world": "/Game/Melodia/Levels/Opening/UEDPIE_0_L_MelusinaMorning.L_MelusinaMorning",
+    "pawn": "/Game/Melodia/Levels/Opening/UEDPIE_0_L_MelusinaMorning.L_MelusinaMorning:PersistentLevel.BP_MelusinaJRPGCharacter_C_1",
+    "body_abp": "/Game/Melodia/Characters/Melusina/ABP_Melusina_Current.ABP_Melusina_Current_C",
+    "hair_abp": "/Game/Melodia/Characters/Melusina/Hair/ABP_Melusina_WaterHair.ABP_Melusina_WaterHair_C",
+    "hair_head_gap_cm": 0.029928693036483545,
+    "body_mesh": "/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Body.SK_Melusina_V2_Body",
+    "hair_mesh": "/Game/Melodia/Characters/Melusina/Hair/SK_MelusinaHair.SK_MelusinaHair"
+  },
+  {
+    "name": "shared_limits_return",
+    "world": "/Game/Melodia/Levels/Opening/UEDPIE_0_L_MelusinaMorning.L_MelusinaMorning",
+    "pawn": "/Game/Melodia/Levels/Opening/UEDPIE_0_L_MelusinaMorning.L_MelusinaMorning:PersistentLevel.BP_MelusinaJRPGCharacter_C_1",
+    "body_abp": "/Game/Melodia/Characters/Melusina/ABP_Melusina_Current.ABP_Melusina_Current_C",
+    "hair_abp": "/Game/Melodia/Characters/Melusina/Hair/ABP_Melusina_WaterHair.ABP_Melusina_WaterHair_C",
+    "hair_head_gap_cm": 0.029928693036483385,
+    "body_mesh": "/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Body.SK_Melusina_V2_Body",
+    "hair_mesh": "/Game/Melodia/Characters/Melusina/Hair/SK_MelusinaHair.SK_MelusinaHair"
+  }
+]

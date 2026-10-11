@@ -1,0 +1,2649 @@
+{
+  "status": "OFFLINE_SOURCE_AUDIT_ONLY",
+  "sources": {
+    "REF_Body": {
+      "vertices": 20786,
+      "bounds_cm": [
+        [
+          -96.638,
+          -37.103,
+          -15.254
+        ],
+        [
+          96.638,
+          9.283,
+          183.557
+        ]
+      ],
+      "vertex_groups": 164,
+      "armature_modifier_targets": [
+        "root"
+      ],
+      "weight_audit": null
+    },
+    "REF_Shirt": {
+      "vertices": 861,
+      "bounds_cm": [
+        [
+          -40.864,
+          -40.385,
+          69.667
+        ],
+        [
+          41.209,
+          3.81,
+          146.738
+        ]
+      ],
+      "vertex_groups": 40,
+      "armature_modifier_targets": [
+        "root.001"
+      ],
+      "weight_audit": {
+        "verts": 861,
+        "bounds_cm": [
+          [
+            -40.864,
+            -40.385,
+            69.667
+          ],
+          [
+            41.209,
+            3.81,
+            146.738
+          ]
+        ],
+        "groups": {
+          "root_x": {
+            "weighted_vertices": 153,
+            "z_min_cm": 73.058,
+            "z_max_cm": 103.224,
+            "mean_weight_when_nonzero": 0.2077
+          },
+          "thigh_twist_l": {
+            "weighted_vertices": 85,
+            "z_min_cm": 77.842,
+            "z_max_cm": 104.577,
+            "mean_weight_when_nonzero": 0.2314
+          },
+          "thigh_twist_r": {
+            "weighted_vertices": 82,
+            "z_min_cm": 74.723,
+            "z_max_cm": 105.815,
+            "mean_weight_when_nonzero": 0.2096
+          },
+          "c_kilt_02_01_l": {
+            "weighted_vertices": 64,
+            "z_min_cm": 73.058,
+            "z_max_cm": 95.855,
+            "mean_weight_when_nonzero": 0.2439
+          },
+          "c_kilt_02_02_l": {
+            "weighted_vertices": 16,
+            "z_min_cm": 73.058,
+            "z_max_cm": 80.029,
+            "mean_weight_when_nonzero": 0.1746
+          },
+          "c_kilt_04_01_l": {
+            "weighted_vertices": 22,
+            "z_min_cm": 77.546,
+            "z_max_cm": 89.69,
+            "mean_weight_when_nonzero": 0.2652
+          },
+          "c_kilt_04_02_l": {
+            "weighted_vertices": 9,
+            "z_min_cm": 78.036,
+            "z_max_cm": 85.187,
+            "mean_weight_when_nonzero": 0.1454
+          },
+          "c_kilt_05_01_l": {
+            "weighted_vertices": 20,
+            "z_min_cm": 74.823,
+            "z_max_cm": 83.108,
+            "mean_weight_when_nonzero": 0.2007
+          },
+          "c_kilt_05_02_l": {
+            "weighted_vertices": 13,
+            "z_min_cm": 74.823,
+            "z_max_cm": 81.454,
+            "mean_weight_when_nonzero": 0.2005
+          },
+          "c_kilt_06_01_l": {
+            "weighted_vertices": 34,
+            "z_min_cm": 72.111,
+            "z_max_cm": 89.415,
+            "mean_weight_when_nonzero": 0.372
+          },
+          "c_kilt_06_02_l": {
+            "weighted_vertices": 12,
+            "z_min_cm": 72.111,
+            "z_max_cm": 79.676,
+            "mean_weight_when_nonzero": 0.1778
+          },
+          "c_kilt_02_01_r": {
+            "weighted_vertices": 73,
+            "z_min_cm": 73.058,
+            "z_max_cm": 100.512,
+            "mean_weight_when_nonzero": 0.2608
+          },
+          "c_kilt_02_02_r": {
+            "weighted_vertices": 14,
+            "z_min_cm": 74.723,
+            "z_max_cm": 82.02,
+            "mean_weight_when_nonzero": 0.179
+          },
+          "c_kilt_04_01_r": {
+            "weighted_vertices": 24,
+            "z_min_cm": 77.843,
+            "z_max_cm": 85.482,
+            "mean_weight_when_nonzero": 0.3211
+          },
+          "c_kilt_04_02_r": {
+            "weighted_vertices": 10,
+            "z_min_cm": 78.037,
+            "z_max_cm": 85.187,
+            "mean_weight_when_nonzero": 0.1257
+          },
+          "c_kilt_05_01_r": {
+            "weighted_vertices": 23,
+            "z_min_cm": 74.824,
+            "z_max_cm": 85.441,
+            "mean_weight_when_nonzero": 0.3217
+          },
+          "c_kilt_05_02_r": {
+            "weighted_vertices": 8,
+            "z_min_cm": 74.824,
+            "z_max_cm": 81.454,
+            "mean_weight_when_nonzero": 0.2013
+          },
+          "c_kilt_06_01_r": {
+            "weighted_vertices": 39,
+            "z_min_cm": 72.111,
+            "z_max_cm": 97.315,
+            "mean_weight_when_nonzero": 0.313
+          },
+          "c_kilt_06_02_r": {
+            "weighted_vertices": 10,
+            "z_min_cm": 72.111,
+            "z_max_cm": 79.675,
+            "mean_weight_when_nonzero": 0.182
+          },
+          "c_kilt_07_01_l": {
+            "weighted_vertices": 43,
+            "z_min_cm": 71.047,
+            "z_max_cm": 101.118,
+            "mean_weight_when_nonzero": 0.2962
+          },
+          "c_kilt_07_02_l": {
+            "weighted_vertices": 9,
+            "z_min_cm": 70.041,
+            "z_max_cm": 75.552,
+            "mean_weight_when_nonzero": 0.1921
+          },
+          "c_kilt_08_01_l": {
+            "weighted_vertices": 29,
+            "z_min_cm": 69.667,
+            "z_max_cm": 92.676,
+            "mean_weight_when_nonzero": 0.3851
+          },
+          "c_kilt_08_02_l": {
+            "weighted_vertices": 6,
+            "z_min_cm": 69.667,
+            "z_max_cm": 72.969,
+            "mean_weight_when_nonzero": 0.1138
+          },
+          "c_kilt_07_01_r": {
+            "weighted_vertices": 47,
+            "z_min_cm": 70.042,
+            "z_max_cm": 104.753,
+            "mean_weight_when_nonzero": 0.2939
+          },
+          "c_kilt_07_02_r": {
+            "weighted_vertices": 9,
+            "z_min_cm": 70.042,
+            "z_max_cm": 75.552,
+            "mean_weight_when_nonzero": 0.2027
+          },
+          "c_kilt_08_01_r": {
+            "weighted_vertices": 42,
+            "z_min_cm": 69.667,
+            "z_max_cm": 101.138,
+            "mean_weight_when_nonzero": 0.3504
+          },
+          "c_kilt_08_02_r": {
+            "weighted_vertices": 7,
+            "z_min_cm": 69.667,
+            "z_max_cm": 74.784,
+            "mean_weight_when_nonzero": 0.1581
+          },
+          "spine_01_x": {
+            "weighted_vertices": 240,
+            "z_min_cm": 81.71,
+            "z_max_cm": 116.701,
+            "mean_weight_when_nonzero": 0.3866
+          },
+          "spine_02_x": {
+            "weighted_vertices": 285,
+            "z_min_cm": 92.676,
+            "z_max_cm": 132.324,
+            "mean_weight_when_nonzero": 0.2638
+          },
+          "spine_03_x": {
+            "weighted_vertices": 110,
+            "z_min_cm": 105.018,
+            "z_max_cm": 134.203,
+            "mean_weight_when_nonzero": 0.2798
+          },
+          "shoulder_r": {
+            "weighted_vertices": 278,
+            "z_min_cm": 100.769,
+            "z_max_cm": 146.738,
+            "mean_weight_when_nonzero": 0.2792
+          },
+          "arm_stretch_r": {
+            "weighted_vertices": 44,
+            "z_min_cm": 117.983,
+            "z_max_cm": 137.099,
+            "mean_weight_when_nonzero": 0.2193
+          },
+          "c_arm_twist_offset_r": {
+            "weighted_vertices": 185,
+            "z_min_cm": 104.312,
+            "z_max_cm": 137.787,
+            "mean_weight_when_nonzero": 0.2723
+          },
+          "arm_twist_2_r": {
+            "weighted_vertices": 117,
+            "z_min_cm": 113.596,
+            "z_max_cm": 137.371,
+            "mean_weight_when_nonzero": 0.4203
+          },
+          "shoulder_l": {
+            "weighted_vertices": 230,
+            "z_min_cm": 104.313,
+            "z_max_cm": 146.731,
+            "mean_weight_when_nonzero": 0.3024
+          },
+          "arm_stretch_l": {
+            "weighted_vertices": 46,
+            "z_min_cm": 119.52,
+            "z_max_cm": 134.872,
+            "mean_weight_when_nonzero": 0.2076
+          },
+          "c_arm_twist_offset_l": {
+            "weighted_vertices": 178,
+            "z_min_cm": 110.84,
+            "z_max_cm": 137.784,
+            "mean_weight_when_nonzero": 0.34
+          },
+          "arm_twist_2_l": {
+            "weighted_vertices": 126,
+            "z_min_cm": 113.595,
+            "z_max_cm": 137.37,
+            "mean_weight_when_nonzero": 0.4853
+          },
+          "neck_x": {
+            "weighted_vertices": 154,
+            "z_min_cm": 122.452,
+            "z_max_cm": 146.738,
+            "mean_weight_when_nonzero": 0.228
+          },
+          "head_x": {
+            "weighted_vertices": 62,
+            "z_min_cm": 129.363,
+            "z_max_cm": 146.738,
+            "mean_weight_when_nonzero": 0.2047
+          }
+        },
+        "vertices_weight_sum_below_0.999": 0,
+        "lower_band_vertices": [
+          {
+            "vertex": 42,
+            "z_cm": 93.12759637832642,
+            "groups": {
+              "root_x": 0.217,
+              "thigh_twist_l": 0.238,
+              "c_kilt_07_01_l": 0.16,
+              "spine_01_x": 0.385
+            }
+          },
+          {
+            "vertex": 44,
+            "z_cm": 92.82841682434082,
+            "groups": {
+              "root_x": 0.147,
+              "thigh_twist_l": 0.198,
+              "c_kilt_07_01_l": 0.322,
+              "spine_01_x": 0.333
+            }
+          },
+          {
+            "vertex": 45,
+            "z_cm": 88.9274001121521,
+            "groups": {
+              "thigh_twist_l": 0.494,
+              "c_kilt_06_01_l": 0.181,
+              "c_kilt_07_01_l": 0.163,
+              "spine_01_x": 0.162
+            }
+          },
+          {
+            "vertex": 47,
+            "z_cm": 88.45134973526001,
+            "groups": {
+              "thigh_twist_l": 0.379,
+              "c_kilt_06_01_l": 0.182,
+              "c_kilt_07_01_l": 0.298,
+              "spine_01_x": 0.141
+            }
+          },
+          {
+            "vertex": 48,
+            "z_cm": 84.84238982200623,
+            "groups": {
+              "thigh_twist_l": 0.329,
+              "c_kilt_06_01_l": 0.492,
+              "c_kilt_07_01_l": 0.127,
+              "spine_01_x": 0.051
+            }
+          },
+          {
+            "vertex": 49,
+            "z_cm": 92.68685579299927,
+            "groups": {
+              "root_x": 0.151,
+              "thigh_twist_l": 0.139,
+              "c_kilt_07_01_l": 0.391,
+              "spine_01_x": 0.32
+            }
+          },
+          {
+            "vertex": 50,
+            "z_cm": 84.08917784690857,
+            "groups": {
+              "thigh_twist_l": 0.274,
+              "c_kilt_06_01_l": 0.433,
+              "c_kilt_07_01_l": 0.266,
+              "c_kilt_08_01_l": 0.026
+            }
+          },
+          {
+            "vertex": 51,
+            "z_cm": 81.45384788513184,
+            "groups": {
+              "thigh_twist_l": 0.128,
+              "c_kilt_05_01_l": 0.074,
+              "c_kilt_05_02_l": 0.072,
+              "c_kilt_06_01_l": 0.726
+            }
+          },
+          {
+            "vertex": 52,
+            "z_cm": 88.20608854293823,
+            "groups": {
+              "thigh_twist_l": 0.18,
+              "c_kilt_07_01_l": 0.501,
+              "c_kilt_08_01_l": 0.196,
+              "spine_01_x": 0.122
+            }
+          },
+          {
+            "vertex": 53,
+            "z_cm": 80.45417666435242,
+            "groups": {
+              "c_kilt_06_01_l": 1.0
+            }
+          },
+          {
+            "vertex": 54,
+            "z_cm": 78.9463222026825,
+            "groups": {
+              "thigh_twist_l": 0.047,
+              "c_kilt_05_01_l": 0.134,
+              "c_kilt_05_02_l": 0.188,
+              "c_kilt_06_01_l": 0.63
+            }
+          },
+          {
+            "vertex": 55,
+            "z_cm": 83.61265063285828,
+            "groups": {
+              "thigh_twist_l": 0.081,
+              "c_kilt_06_01_l": 0.177,
+              "c_kilt_07_01_l": 0.665,
+              "c_kilt_08_01_l": 0.077
+            }
+          },
+          {
+            "vertex": 56,
+            "z_cm": 88.21892738342285,
+            "groups": {
+              "thigh_twist_l": 0.079,
+              "c_kilt_07_01_l": 0.402,
+              "c_kilt_08_01_l": 0.412,
+              "spine_01_x": 0.107
+            }
+          },
+          {
+            "vertex": 57,
+            "z_cm": 83.5534930229187,
+            "groups": {
+              "c_kilt_06_01_l": 0.013,
+              "c_kilt_07_01_l": 0.806,
+              "c_kilt_08_01_l": 0.181
+            }
+          },
+          {
+            "vertex": 58,
+            "z_cm": 79.67590093612671,
+            "groups": {
+              "c_kilt_06_01_l": 0.312,
+              "c_kilt_06_02_l": 0.032,
+              "c_kilt_07_01_l": 0.655
+            }
+          },
+          {
+            "vertex": 59,
+            "z_cm": 92.6763117313385,
+            "groups": {
+              "root_x": 0.207,
+              "c_kilt_07_01_l": 0.311,
+              "c_kilt_08_01_l": 0.189,
+              "spine_01_x": 0.293
+            }
+          },
+          {
+            "vertex": 60,
+            "z_cm": 79.31089401245117,
+            "groups": {
+              "c_kilt_07_01_l": 1.0
+            }
+          },
+          {
+            "vertex": 62,
+            "z_cm": 88.28213214874268,
+            "groups": {
+              "c_kilt_07_01_l": 0.252,
+              "c_kilt_08_01_l": 0.554,
+              "c_kilt_08_01_r": 0.097,
+              "spine_01_x": 0.097
+            }
+          },
+          {
+            "vertex": 63,
+            "z_cm": 92.64395236968994,
+            "groups": {
+              "root_x": 0.187,
+              "c_kilt_07_01_l": 0.308,
+              "c_kilt_08_01_l": 0.221,
+              "spine_01_x": 0.285
+            }
+          },
+          {
+            "vertex": 65,
+            "z_cm": 83.63767862319946,
+            "groups": {
+              "c_kilt_07_01_l": 0.199,
+              "c_kilt_08_01_l": 0.801
+            }
+          },
+          {
+            "vertex": 67,
+            "z_cm": 79.13869619369507,
+            "groups": {
+              "c_kilt_07_01_l": 0.22,
+              "c_kilt_08_01_l": 0.78
+            }
+          },
+          {
+            "vertex": 69,
+            "z_cm": 75.55246353149414,
+            "groups": {
+              "c_kilt_07_01_l": 0.223,
+              "c_kilt_07_02_l": 0.138,
+              "c_kilt_08_01_l": 0.639
+            }
+          },
+          {
+            "vertex": 71,
+            "z_cm": 76.05481147766113,
+            "groups": {
+              "c_kilt_07_01_l": 1.0
+            }
+          },
+          {
+            "vertex": 89,
+            "z_cm": 92.51967072486877,
+            "groups": {
+              "root_x": 0.289,
+              "c_kilt_07_01_l": 0.196,
+              "c_kilt_08_01_l": 0.21,
+              "spine_01_x": 0.305
+            }
+          },
+          {
+            "vertex": 91,
+            "z_cm": 88.21547627449036,
+            "groups": {
+              "c_kilt_07_01_l": 0.217,
+              "c_kilt_08_01_l": 0.457,
+              "c_kilt_08_01_r": 0.225,
+              "spine_01_x": 0.101
+            }
+          },
+          {
+            "vertex": 92,
+            "z_cm": 92.43239164352417,
+            "groups": {
+              "root_x": 0.311,
+              "c_kilt_08_01_l": 0.146,
+              "c_kilt_08_01_r": 0.24,
+              "spine_01_x": 0.303
+            }
+          },
+          {
+            "vertex": 93,
+            "z_cm": 83.61740708351135,
+            "groups": {
+              "c_kilt_08_01_l": 1.0
+            }
+          },
+          {
+            "vertex": 94,
+            "z_cm": 88.1037175655365,
+            "groups": {
+              "c_kilt_07_01_l": 0.102,
+              "c_kilt_08_01_l": 0.256,
+              "c_kilt_07_01_r": 0.118,
+              "c_kilt_08_01_r": 0.524
+            }
+          },
+          {
+            "vertex": 95,
+            "z_cm": 92.51968264579773,
+            "groups": {
+              "root_x": 0.24,
+              "c_kilt_07_01_r": 0.209,
+              "c_kilt_08_01_r": 0.272,
+              "spine_01_x": 0.278
+            }
+          },
+          {
+            "vertex": 96,
+            "z_cm": 88.21547627449036,
+            "groups": {
+              "c_kilt_08_01_l": 0.107,
+              "c_kilt_07_01_r": 0.242,
+              "c_kilt_08_01_r": 0.557,
+              "spine_01_x": 0.095
+            }
+          },
+          {
+            "vertex": 98,
+            "z_cm": 92.64394044876099,
+            "groups": {
+              "root_x": 0.116,
+              "c_kilt_07_01_r": 0.336,
+              "c_kilt_08_01_r": 0.288,
+              "spine_01_x": 0.259
+            }
+          },
+          {
+            "vertex": 293,
+            "z_cm": 92.08285212516785,
+            "groups": {
+              "root_x": 0.318,
+              "thigh_twist_l": 0.109,
+              "c_kilt_02_01_l": 0.203,
+              "spine_01_x": 0.371
+            }
+          },
+          {
+            "vertex": 296,
+            "z_cm": 92.08261966705322,
+            "groups": {
+              "root_x": 0.304,
+              "thigh_twist_r": 0.111,
+              "c_kilt_02_01_r": 0.218,
+              "spine_01_x": 0.368
+            }
+          },
+          {
+            "vertex": 297,
+            "z_cm": 91.90242290496826,
+            "groups": {
+              "root_x": 0.326,
+              "thigh_twist_l": 0.147,
+              "c_kilt_02_01_l": 0.175,
+              "spine_01_x": 0.352
+            }
+          },
+          {
+            "vertex": 298,
+            "z_cm": 88.30369114875793,
+            "groups": {
+              "root_x": 0.315,
+              "thigh_twist_l": 0.202,
+              "c_kilt_02_01_l": 0.275,
+              "spine_01_x": 0.208
+            }
+          },
+          {
+            "vertex": 299,
+            "z_cm": 91.90219640731812,
+            "groups": {
+              "root_x": 0.311,
+              "thigh_twist_r": 0.143,
+              "c_kilt_02_01_r": 0.196,
+              "spine_01_x": 0.351
+            }
+          },
+          {
+            "vertex": 300,
+            "z_cm": 88.30325603485107,
+            "groups": {
+              "root_x": 0.299,
+              "thigh_twist_r": 0.18,
+              "c_kilt_02_01_r": 0.319,
+              "spine_01_x": 0.202
+            }
+          },
+          {
+            "vertex": 301,
+            "z_cm": 87.99350261688232,
+            "groups": {
+              "root_x": 0.259,
+              "thigh_twist_l": 0.298,
+              "c_kilt_02_01_l": 0.258,
+              "spine_01_x": 0.185
+            }
+          },
+          {
+            "vertex": 302,
+            "z_cm": 84.85866785049438,
+            "groups": {
+              "root_x": 0.274,
+              "thigh_twist_l": 0.193,
+              "c_kilt_02_01_l": 0.416,
+              "spine_01_x": 0.117
+            }
+          },
+          {
+            "vertex": 303,
+            "z_cm": 87.9931628704071,
+            "groups": {
+              "root_x": 0.241,
+              "thigh_twist_r": 0.27,
+              "c_kilt_02_01_r": 0.308,
+              "spine_01_x": 0.182
+            }
+          },
+          {
+            "vertex": 304,
+            "z_cm": 84.85829830169678,
+            "groups": {
+              "root_x": 0.233,
+              "thigh_twist_r": 0.17,
+              "c_kilt_02_01_r": 0.487,
+              "spine_01_x": 0.11
+            }
+          },
+          {
+            "vertex": 305,
+            "z_cm": 84.54223275184631,
+            "groups": {
+              "root_x": 0.196,
+              "thigh_twist_l": 0.276,
+              "c_kilt_02_01_l": 0.427,
+              "spine_01_x": 0.101
+            }
+          },
+          {
+            "vertex": 306,
+            "z_cm": 82.02000856399536,
+            "groups": {
+              "root_x": 0.241,
+              "thigh_twist_l": 0.136,
+              "c_kilt_02_01_l": 0.55,
+              "spine_01_x": 0.073
+            }
+          },
+          {
+            "vertex": 307,
+            "z_cm": 84.54199433326721,
+            "groups": {
+              "root_x": 0.16,
+              "thigh_twist_r": 0.259,
+              "c_kilt_02_01_r": 0.491,
+              "spine_01_x": 0.09
+            }
+          },
+          {
+            "vertex": 308,
+            "z_cm": 82.01988339424133,
+            "groups": {
+              "root_x": 0.179,
+              "thigh_twist_r": 0.115,
+              "c_kilt_02_01_r": 0.624,
+              "c_kilt_02_02_r": 0.083
+            }
+          },
+          {
+            "vertex": 309,
+            "z_cm": 91.46478176116943,
+            "groups": {
+              "root_x": 0.303,
+              "thigh_twist_r": 0.196,
+              "c_kilt_02_01_r": 0.172,
+              "spine_01_x": 0.329
+            }
+          },
+          {
+            "vertex": 310,
+            "z_cm": 87.37270832061768,
+            "groups": {
+              "root_x": 0.183,
+              "thigh_twist_r": 0.372,
+              "c_kilt_02_01_r": 0.29,
+              "spine_01_x": 0.155
+            }
+          },
+          {
+            "vertex": 311,
+            "z_cm": 81.70992732048035,
+            "groups": {
+              "root_x": 0.117,
+              "thigh_twist_r": 0.143,
+              "c_kilt_02_01_r": 0.656,
+              "c_kilt_02_02_r": 0.084
+            }
+          },
+          {
+            "vertex": 313,
+            "z_cm": 83.87171626091003,
+            "groups": {
+              "root_x": 0.099,
+              "thigh_twist_r": 0.255,
+              "c_kilt_02_01_r": 0.566,
+              "c_kilt_04_01_r": 0.08
+            }
+          },
+          {
+            "vertex": 317,
+            "z_cm": 94.95432376861572,
+            "groups": {
+              "root_x": 0.154,
+              "thigh_twist_r": 0.142,
+              "spine_01_x": 0.603,
+              "spine_02_x": 0.101
+            }
+          },
+          {
+            "vertex": 319,
+            "z_cm": 90.68520665168762,
+            "groups": {
+              "root_x": 0.266,
+              "thigh_twist_r": 0.308,
+              "c_kilt_02_01_r": 0.136,
+              "spine_01_x": 0.289
+            }
+          },
+          {
+            "vertex": 321,
+            "z_cm": 94.36275959014893,
+            "groups": {
+              "root_x": 0.132,
+              "thigh_twist_r": 0.236,
+              "spine_01_x": 0.529,
+              "spine_02_x": 0.102
+            }
+          },
+          {
+            "vertex": 322,
+            "z_cm": 86.2231969833374,
+            "groups": {
+              "root_x": 0.116,
+              "thigh_twist_r": 0.537,
+              "c_kilt_02_01_r": 0.229,
+              "spine_01_x": 0.119
+            }
+          },
+          {
+            "vertex": 323,
+            "z_cm": 90.01466631889343,
+            "groups": {
+              "root_x": 0.141,
+              "thigh_twist_r": 0.535,
+              "c_kilt_02_01_r": 0.09,
+              "spine_01_x": 0.233
+            }
+          },
+          {
+            "vertex": 325,
+            "z_cm": 93.89878511428833,
+            "groups": {
+              "root_x": 0.196,
+              "thigh_twist_r": 0.294,
+              "c_kilt_06_01_r": 0.111,
+              "spine_01_x": 0.399
+            }
+          },
+          {
+            "vertex": 329,
+            "z_cm": 93.50935816764832,
+            "groups": {
+              "thigh_twist_r": 0.297,
+              "c_kilt_06_01_r": 0.254,
+              "spine_01_x": 0.342,
+              "spine_02_x": 0.106
+            }
+          },
+          {
+            "vertex": 331,
+            "z_cm": 89.69058394432068,
+            "groups": {
+              "root_x": 0.096,
+              "thigh_twist_r": 0.605,
+              "c_kilt_06_01_r": 0.107,
+              "spine_01_x": 0.192
+            }
+          },
+          {
+            "vertex": 332,
+            "z_cm": 89.41544890403748,
+            "groups": {
+              "thigh_twist_r": 0.565,
+              "c_kilt_06_01_r": 0.188,
+              "c_kilt_07_01_r": 0.093,
+              "spine_01_x": 0.153
+            }
+          },
+          {
+            "vertex": 335,
+            "z_cm": 85.18731594085693,
+            "groups": {
+              "thigh_twist_r": 0.595,
+              "c_kilt_04_01_r": 0.218,
+              "c_kilt_04_02_r": 0.082,
+              "c_kilt_06_01_r": 0.105
+            }
+          },
+          {
+            "vertex": 336,
+            "z_cm": 85.44108867645264,
+            "groups": {
+              "thigh_twist_r": 0.525,
+              "c_kilt_04_01_r": 0.133,
+              "c_kilt_05_01_r": 0.074,
+              "c_kilt_06_01_r": 0.268
+            }
+          },
+          {
+            "vertex": 428,
+            "z_cm": 93.50935816764832,
+            "groups": {
+              "thigh_twist_r": 0.297,
+              "c_kilt_06_01_r": 0.254,
+              "spine_01_x": 0.342,
+              "spine_02_x": 0.106
+            }
+          },
+          {
+            "vertex": 429,
+            "z_cm": 93.12751889228821,
+            "groups": {
+              "thigh_twist_r": 0.24,
+              "c_kilt_06_01_r": 0.276,
+              "c_kilt_07_01_r": 0.191,
+              "spine_01_x": 0.292
+            }
+          },
+          {
+            "vertex": 430,
+            "z_cm": 89.41544890403748,
+            "groups": {
+              "thigh_twist_r": 0.565,
+              "c_kilt_06_01_r": 0.188,
+              "c_kilt_07_01_r": 0.093,
+              "spine_01_x": 0.153
+            }
+          },
+          {
+            "vertex": 432,
+            "z_cm": 88.92728686332703,
+            "groups": {
+              "thigh_twist_r": 0.444,
+              "c_kilt_06_01_r": 0.255,
+              "c_kilt_07_01_r": 0.174,
+              "spine_01_x": 0.127
+            }
+          },
+          {
+            "vertex": 433,
+            "z_cm": 85.44108867645264,
+            "groups": {
+              "thigh_twist_r": 0.525,
+              "c_kilt_04_01_r": 0.133,
+              "c_kilt_05_01_r": 0.074,
+              "c_kilt_06_01_r": 0.268
+            }
+          },
+          {
+            "vertex": 434,
+            "z_cm": 92.82825589179993,
+            "groups": {
+              "thigh_twist_r": 0.188,
+              "c_kilt_06_01_r": 0.176,
+              "c_kilt_07_01_r": 0.357,
+              "spine_01_x": 0.28
+            }
+          },
+          {
+            "vertex": 436,
+            "z_cm": 84.84243154525757,
+            "groups": {
+              "thigh_twist_r": 0.279,
+              "c_kilt_04_01_r": 0.047,
+              "c_kilt_06_01_r": 0.548,
+              "c_kilt_07_01_r": 0.126
+            }
+          },
+          {
+            "vertex": 437,
+            "z_cm": 82.44540691375732,
+            "groups": {
+              "thigh_twist_r": 0.305,
+              "c_kilt_04_01_r": 0.167,
+              "c_kilt_05_01_r": 0.214,
+              "c_kilt_06_01_r": 0.314
+            }
+          },
+          {
+            "vertex": 438,
+            "z_cm": 88.45100998878479,
+            "groups": {
+              "thigh_twist_r": 0.344,
+              "c_kilt_06_01_r": 0.219,
+              "c_kilt_07_01_r": 0.323,
+              "spine_01_x": 0.114
+            }
+          },
+          {
+            "vertex": 439,
+            "z_cm": 92.68671870231628,
+            "groups": {
+              "thigh_twist_r": 0.125,
+              "c_kilt_07_01_r": 0.423,
+              "c_kilt_08_01_r": 0.18,
+              "spine_01_x": 0.272
+            }
+          },
+          {
+            "vertex": 440,
+            "z_cm": 92.67624020576477,
+            "groups": {
+              "c_kilt_07_01_r": 0.345,
+              "c_kilt_08_01_r": 0.307,
+              "spine_01_x": 0.265,
+              "spine_02_x": 0.083
+            }
+          },
+          {
+            "vertex": 441,
+            "z_cm": 88.2056176662445,
+            "groups": {
+              "thigh_twist_r": 0.155,
+              "c_kilt_06_01_r": 0.129,
+              "c_kilt_07_01_r": 0.529,
+              "c_kilt_08_01_r": 0.187
+            }
+          },
+          {
+            "vertex": 442,
+            "z_cm": 88.28192353248596,
+            "groups": {
+              "c_kilt_08_01_l": 0.032,
+              "c_kilt_07_01_r": 0.284,
+              "c_kilt_08_01_r": 0.597,
+              "spine_01_x": 0.087
+            }
+          },
+          {
+            "vertex": 443,
+            "z_cm": 88.21850419044495,
+            "groups": {
+              "thigh_twist_r": 0.068,
+              "c_kilt_07_01_r": 0.447,
+              "c_kilt_08_01_r": 0.393,
+              "spine_01_x": 0.091
+            }
+          },
+          {
+            "vertex": 444,
+            "z_cm": 83.61740708351135,
+            "groups": {
+              "c_kilt_08_01_r": 1.0
+            }
+          },
+          {
+            "vertex": 445,
+            "z_cm": 83.63723158836365,
+            "groups": {
+              "c_kilt_07_01_r": 0.257,
+              "c_kilt_08_01_r": 0.743
+            }
+          },
+          {
+            "vertex": 446,
+            "z_cm": 83.4562361240387,
+            "groups": {
+              "c_kilt_08_01_l": 0.308,
+              "c_kilt_08_01_r": 0.692
+            }
+          },
+          {
+            "vertex": 447,
+            "z_cm": 78.73702645301819,
+            "groups": {
+              "c_kilt_08_01_l": 0.251,
+              "c_kilt_08_01_r": 0.749
+            }
+          },
+          {
+            "vertex": 448,
+            "z_cm": 78.96474599838257,
+            "groups": {
+              "c_kilt_08_01_r": 1.0
+            }
+          },
+          {
+            "vertex": 449,
+            "z_cm": 83.55277180671692,
+            "groups": {
+              "c_kilt_07_01_r": 0.918,
+              "c_kilt_08_01_r": 0.082
+            }
+          },
+          {
+            "vertex": 450,
+            "z_cm": 79.13820147514343,
+            "groups": {
+              "c_kilt_07_01_r": 0.294,
+              "c_kilt_08_01_r": 0.706
+            }
+          },
+          {
+            "vertex": 451,
+            "z_cm": 74.78383183479309,
+            "groups": {
+              "c_kilt_08_01_l": 0.219,
+              "c_kilt_08_01_r": 0.752,
+              "c_kilt_08_02_r": 0.029
+            }
+          },
+          {
+            "vertex": 452,
+            "z_cm": 78.96473407745361,
+            "groups": {
+              "c_kilt_08_01_l": 0.971,
+              "c_kilt_08_01_r": 0.029
+            }
+          },
+          {
+            "vertex": 453,
+            "z_cm": 75.0785768032074,
+            "groups": {
+              "c_kilt_08_01_l": 0.932,
+              "c_kilt_08_01_r": 0.068
+            }
+          },
+          {
+            "vertex": 454,
+            "z_cm": 75.0787079334259,
+            "groups": {
+              "c_kilt_07_01_r": 0.037,
+              "c_kilt_08_01_r": 0.963
+            }
+          },
+          {
+            "vertex": 455,
+            "z_cm": 71.92211747169495,
+            "groups": {
+              "c_kilt_08_01_l": 0.185,
+              "c_kilt_08_02_l": 0.015,
+              "c_kilt_08_01_r": 0.669,
+              "c_kilt_08_02_r": 0.132
+            }
+          },
+          {
+            "vertex": 456,
+            "z_cm": 72.22176790237427,
+            "groups": {
+              "c_kilt_07_02_l": 0.031,
+              "c_kilt_08_01_l": 0.787,
+              "c_kilt_08_02_l": 0.115,
+              "c_kilt_08_01_r": 0.068
+            }
+          },
+          {
+            "vertex": 457,
+            "z_cm": 72.96927571296692,
+            "groups": {
+              "c_kilt_07_01_l": 0.202,
+              "c_kilt_07_02_l": 0.429,
+              "c_kilt_08_01_l": 0.341,
+              "c_kilt_08_02_l": 0.027
+            }
+          },
+          {
+            "vertex": 458,
+            "z_cm": 69.66715455055237,
+            "groups": {
+              "c_kilt_08_01_l": 0.165,
+              "c_kilt_08_02_l": 0.055,
+              "c_kilt_08_01_r": 0.492,
+              "c_kilt_08_02_r": 0.287
+            }
+          },
+          {
+            "vertex": 459,
+            "z_cm": 70.0412929058075,
+            "groups": {
+              "c_kilt_07_02_l": 0.061,
+              "c_kilt_08_01_l": 0.462,
+              "c_kilt_08_02_l": 0.407,
+              "c_kilt_08_01_r": 0.07
+            }
+          },
+          {
+            "vertex": 460,
+            "z_cm": 71.04672193527222,
+            "groups": {
+              "c_kilt_07_01_l": 0.191,
+              "c_kilt_07_02_l": 0.482,
+              "c_kilt_08_01_l": 0.264,
+              "c_kilt_08_02_l": 0.063
+            }
+          },
+          {
+            "vertex": 461,
+            "z_cm": 72.22198247909546,
+            "groups": {
+              "c_kilt_07_01_r": 0.027,
+              "c_kilt_07_02_r": 0.033,
+              "c_kilt_08_01_r": 0.802,
+              "c_kilt_08_02_r": 0.138
+            }
+          },
+          {
+            "vertex": 462,
+            "z_cm": 70.04156112670898,
+            "groups": {
+              "c_kilt_07_01_r": 0.029,
+              "c_kilt_07_02_r": 0.055,
+              "c_kilt_08_01_r": 0.475,
+              "c_kilt_08_02_r": 0.441
+            }
+          },
+          {
+            "vertex": 463,
+            "z_cm": 73.76484870910645,
+            "groups": {
+              "c_kilt_06_02_l": 0.015,
+              "c_kilt_07_01_l": 0.859,
+              "c_kilt_07_02_l": 0.126
+            }
+          },
+          {
+            "vertex": 464,
+            "z_cm": 72.11143970489502,
+            "groups": {
+              "c_kilt_06_01_l": 0.006,
+              "c_kilt_06_02_l": 0.055,
+              "c_kilt_07_01_l": 0.507,
+              "c_kilt_07_02_l": 0.432
+            }
+          },
+          {
+            "vertex": 465,
+            "z_cm": 76.7428457736969,
+            "groups": {
+              "c_kilt_06_01_l": 0.535,
+              "c_kilt_06_02_l": 0.176,
+              "c_kilt_07_01_l": 0.289
+            }
+          },
+          {
+            "vertex": 466,
+            "z_cm": 74.72483515739441,
+            "groups": {
+              "c_kilt_06_01_l": 0.285,
+              "c_kilt_06_02_l": 0.533,
+              "c_kilt_07_01_l": 0.172,
+              "c_kilt_07_02_l": 0.01
+            }
+          },
+          {
+            "vertex": 467,
+            "z_cm": 73.30244183540344,
+            "groups": {
+              "c_kilt_06_01_l": 0.256,
+              "c_kilt_06_02_l": 0.587,
+              "c_kilt_07_01_l": 0.137,
+              "c_kilt_07_02_l": 0.02
+            }
+          },
+          {
+            "vertex": 468,
+            "z_cm": 77.74456739425659,
+            "groups": {
+              "c_kilt_06_01_l": 1.0
+            }
+          },
+          {
+            "vertex": 469,
+            "z_cm": 76.01729035377502,
+            "groups": {
+              "c_kilt_05_02_l": 0.036,
+              "c_kilt_06_01_l": 0.826,
+              "c_kilt_06_02_l": 0.138
+            }
+          },
+          {
+            "vertex": 470,
+            "z_cm": 74.82302784919739,
+            "groups": {
+              "c_kilt_05_01_l": 0.012,
+              "c_kilt_05_02_l": 0.077,
+              "c_kilt_06_01_l": 0.579,
+              "c_kilt_06_02_l": 0.332
+            }
+          },
+          {
+            "vertex": 471,
+            "z_cm": 77.38259434700012,
+            "groups": {
+              "c_kilt_05_01_l": 0.171,
+              "c_kilt_05_02_l": 0.37,
+              "c_kilt_06_01_l": 0.409,
+              "c_kilt_06_02_l": 0.05
+            }
+          },
+          {
+            "vertex": 472,
+            "z_cm": 76.08600854873657,
+            "groups": {
+              "c_kilt_05_01_l": 0.161,
+              "c_kilt_05_02_l": 0.401,
+              "c_kilt_06_01_l": 0.355,
+              "c_kilt_06_02_l": 0.083
+            }
+          },
+          {
+            "vertex": 473,
+            "z_cm": 72.96899557113647,
+            "groups": {
+              "c_kilt_07_01_r": 0.315,
+              "c_kilt_07_02_r": 0.445,
+              "c_kilt_08_01_r": 0.213,
+              "c_kilt_08_02_r": 0.027
+            }
+          },
+          {
+            "vertex": 474,
+            "z_cm": 71.04654908180237,
+            "groups": {
+              "c_kilt_07_01_r": 0.27,
+              "c_kilt_07_02_r": 0.502,
+              "c_kilt_08_01_r": 0.176,
+              "c_kilt_08_02_r": 0.052
+            }
+          },
+          {
+            "vertex": 475,
+            "z_cm": 75.55207014083862,
+            "groups": {
+              "c_kilt_07_01_r": 0.537,
+              "c_kilt_07_02_r": 0.142,
+              "c_kilt_08_01_r": 0.322
+            }
+          },
+          {
+            "vertex": 476,
+            "z_cm": 73.7643301486969,
+            "groups": {
+              "c_kilt_06_01_r": 0.005,
+              "c_kilt_06_02_r": 0.023,
+              "c_kilt_07_01_r": 0.826,
+              "c_kilt_07_02_r": 0.145
+            }
+          },
+          {
+            "vertex": 477,
+            "z_cm": 72.11105823516846,
+            "groups": {
+              "c_kilt_06_01_r": 0.022,
+              "c_kilt_06_02_r": 0.068,
+              "c_kilt_07_01_r": 0.492,
+              "c_kilt_07_02_r": 0.418
+            }
+          },
+          {
+            "vertex": 478,
+            "z_cm": 76.0541558265686,
+            "groups": {
+              "c_kilt_07_01_r": 1.0
+            }
+          },
+          {
+            "vertex": 479,
+            "z_cm": 79.31013107299805,
+            "groups": {
+              "c_kilt_07_01_r": 1.0
+            }
+          },
+          {
+            "vertex": 480,
+            "z_cm": 76.74235701560974,
+            "groups": {
+              "c_kilt_06_01_r": 0.554,
+              "c_kilt_06_02_r": 0.16,
+              "c_kilt_07_01_r": 0.286
+            }
+          },
+          {
+            "vertex": 481,
+            "z_cm": 83.61200094223022,
+            "groups": {
+              "thigh_twist_r": 0.076,
+              "c_kilt_06_01_r": 0.166,
+              "c_kilt_07_01_r": 0.713,
+              "c_kilt_08_01_r": 0.045
+            }
+          },
+          {
+            "vertex": 482,
+            "z_cm": 79.67527508735657,
+            "groups": {
+              "c_kilt_06_01_r": 0.31,
+              "c_kilt_06_02_r": 0.022,
+              "c_kilt_07_01_r": 0.669
+            }
+          },
+          {
+            "vertex": 483,
+            "z_cm": 84.08883810043335,
+            "groups": {
+              "thigh_twist_r": 0.258,
+              "c_kilt_06_01_r": 0.444,
+              "c_kilt_07_01_r": 0.284,
+              "c_kilt_08_01_r": 0.014
+            }
+          },
+          {
+            "vertex": 484,
+            "z_cm": 80.45405149459839,
+            "groups": {
+              "c_kilt_06_01_r": 1.0
+            }
+          },
+          {
+            "vertex": 485,
+            "z_cm": 81.45421147346497,
+            "groups": {
+              "thigh_twist_r": 0.106,
+              "c_kilt_05_01_r": 0.104,
+              "c_kilt_05_02_r": 0.073,
+              "c_kilt_06_01_r": 0.717
+            }
+          },
+          {
+            "vertex": 486,
+            "z_cm": 80.28849363327026,
+            "groups": {
+              "c_kilt_04_01_r": 0.113,
+              "c_kilt_05_01_r": 0.493,
+              "c_kilt_05_02_r": 0.222,
+              "c_kilt_06_01_r": 0.173
+            }
+          },
+          {
+            "vertex": 487,
+            "z_cm": 77.74470448493958,
+            "groups": {
+              "c_kilt_06_01_r": 1.0
+            }
+          },
+          {
+            "vertex": 488,
+            "z_cm": 78.94700169563293,
+            "groups": {
+              "thigh_twist_r": 0.039,
+              "c_kilt_05_01_r": 0.184,
+              "c_kilt_05_02_r": 0.183,
+              "c_kilt_06_01_r": 0.595
+            }
+          },
+          {
+            "vertex": 489,
+            "z_cm": 77.38345861434937,
+            "groups": {
+              "c_kilt_05_01_r": 0.234,
+              "c_kilt_05_02_r": 0.384,
+              "c_kilt_06_01_r": 0.356,
+              "c_kilt_06_02_r": 0.027
+            }
+          },
+          {
+            "vertex": 490,
+            "z_cm": 78.8392961025238,
+            "groups": {
+              "c_kilt_05_01_r": 1.0
+            }
+          },
+          {
+            "vertex": 491,
+            "z_cm": 77.54735946655273,
+            "groups": {
+              "c_kilt_05_01_r": 1.0
+            }
+          },
+          {
+            "vertex": 492,
+            "z_cm": 76.08696222305298,
+            "groups": {
+              "c_kilt_05_01_r": 0.248,
+              "c_kilt_05_02_r": 0.398,
+              "c_kilt_06_01_r": 0.296,
+              "c_kilt_06_02_r": 0.059
+            }
+          },
+          {
+            "vertex": 493,
+            "z_cm": 74.82361197471619,
+            "groups": {
+              "c_kilt_05_01_r": 0.052,
+              "c_kilt_05_02_r": 0.084,
+              "c_kilt_06_01_r": 0.583,
+              "c_kilt_06_02_r": 0.28
+            }
+          },
+          {
+            "vertex": 494,
+            "z_cm": 76.01766586303711,
+            "groups": {
+              "c_kilt_05_01_r": 0.01,
+              "c_kilt_05_02_r": 0.046,
+              "c_kilt_06_01_r": 0.819,
+              "c_kilt_06_02_r": 0.125
+            }
+          },
+          {
+            "vertex": 495,
+            "z_cm": 73.30234050750732,
+            "groups": {
+              "c_kilt_06_01_r": 0.24,
+              "c_kilt_06_02_r": 0.554,
+              "c_kilt_07_01_r": 0.145,
+              "c_kilt_07_02_r": 0.061
+            }
+          },
+          {
+            "vertex": 496,
+            "z_cm": 74.72451329231262,
+            "groups": {
+              "c_kilt_06_01_r": 0.287,
+              "c_kilt_06_02_r": 0.501,
+              "c_kilt_07_01_r": 0.189,
+              "c_kilt_07_02_r": 0.024
+            }
+          },
+          {
+            "vertex": 544,
+            "z_cm": 94.95438933372498,
+            "groups": {
+              "root_x": 0.165,
+              "thigh_twist_l": 0.154,
+              "c_kilt_02_01_l": 0.064,
+              "spine_01_x": 0.617
+            }
+          },
+          {
+            "vertex": 545,
+            "z_cm": 91.46498441696167,
+            "groups": {
+              "root_x": 0.319,
+              "thigh_twist_l": 0.203,
+              "c_kilt_02_01_l": 0.15,
+              "spine_01_x": 0.328
+            }
+          },
+          {
+            "vertex": 546,
+            "z_cm": 94.36278939247131,
+            "groups": {
+              "root_x": 0.175,
+              "thigh_twist_l": 0.239,
+              "spine_01_x": 0.586
+            }
+          },
+          {
+            "vertex": 547,
+            "z_cm": 87.37286925315857,
+            "groups": {
+              "root_x": 0.204,
+              "thigh_twist_l": 0.39,
+              "c_kilt_02_01_l": 0.246,
+              "spine_01_x": 0.16
+            }
+          },
+          {
+            "vertex": 548,
+            "z_cm": 90.68529605865479,
+            "groups": {
+              "root_x": 0.281,
+              "thigh_twist_l": 0.317,
+              "c_kilt_02_01_l": 0.111,
+              "spine_01_x": 0.291
+            }
+          },
+          {
+            "vertex": 549,
+            "z_cm": 83.87161493301392,
+            "groups": {
+              "root_x": 0.135,
+              "thigh_twist_l": 0.327,
+              "c_kilt_02_01_l": 0.455,
+              "spine_01_x": 0.083
+            }
+          },
+          {
+            "vertex": 550,
+            "z_cm": 86.22301816940308,
+            "groups": {
+              "root_x": 0.136,
+              "thigh_twist_l": 0.562,
+              "c_kilt_02_01_l": 0.179,
+              "spine_01_x": 0.123
+            }
+          },
+          {
+            "vertex": 551,
+            "z_cm": 90.01460671424866,
+            "groups": {
+              "root_x": 0.159,
+              "thigh_twist_l": 0.524,
+              "c_kilt_02_01_l": 0.068,
+              "spine_01_x": 0.25
+            }
+          },
+          {
+            "vertex": 553,
+            "z_cm": 93.89879107475281,
+            "groups": {
+              "root_x": 0.257,
+              "thigh_twist_l": 0.308,
+              "spine_01_x": 0.435
+            }
+          },
+          {
+            "vertex": 558,
+            "z_cm": 93.50939393043518,
+            "groups": {
+              "root_x": 0.258,
+              "thigh_twist_l": 0.29,
+              "c_kilt_07_01_l": 0.083,
+              "spine_01_x": 0.369
+            }
+          },
+          {
+            "vertex": 559,
+            "z_cm": 93.12759637832642,
+            "groups": {
+              "root_x": 0.217,
+              "thigh_twist_l": 0.238,
+              "c_kilt_07_01_l": 0.16,
+              "spine_01_x": 0.385
+            }
+          },
+          {
+            "vertex": 560,
+            "z_cm": 89.69042897224426,
+            "groups": {
+              "root_x": 0.132,
+              "thigh_twist_l": 0.622,
+              "c_kilt_04_01_l": 0.052,
+              "spine_01_x": 0.194
+            }
+          },
+          {
+            "vertex": 561,
+            "z_cm": 89.41537737846375,
+            "groups": {
+              "root_x": 0.117,
+              "thigh_twist_l": 0.588,
+              "c_kilt_06_01_l": 0.118,
+              "spine_01_x": 0.177
+            }
+          },
+          {
+            "vertex": 562,
+            "z_cm": 88.9274001121521,
+            "groups": {
+              "thigh_twist_l": 0.494,
+              "c_kilt_06_01_l": 0.181,
+              "c_kilt_07_01_l": 0.163,
+              "spine_01_x": 0.162
+            }
+          },
+          {
+            "vertex": 563,
+            "z_cm": 85.18667817115784,
+            "groups": {
+              "thigh_twist_l": 0.665,
+              "c_kilt_04_01_l": 0.163,
+              "c_kilt_04_02_l": 0.086,
+              "c_kilt_06_01_l": 0.086
+            }
+          },
+          {
+            "vertex": 564,
+            "z_cm": 85.44073700904846,
+            "groups": {
+              "thigh_twist_l": 0.608,
+              "c_kilt_04_01_l": 0.098,
+              "c_kilt_06_01_l": 0.223,
+              "spine_01_x": 0.07
+            }
+          },
+          {
+            "vertex": 565,
+            "z_cm": 84.84238982200623,
+            "groups": {
+              "thigh_twist_l": 0.329,
+              "c_kilt_06_01_l": 0.492,
+              "c_kilt_07_01_l": 0.127,
+              "spine_01_x": 0.051
+            }
+          },
+          {
+            "vertex": 566,
+            "z_cm": 85.48135161399841,
+            "groups": {
+              "thigh_twist_l": 0.698,
+              "c_kilt_02_01_l": 0.096,
+              "c_kilt_04_01_l": 0.116,
+              "spine_01_x": 0.09
+            }
+          },
+          {
+            "vertex": 567,
+            "z_cm": 82.44472146034241,
+            "groups": {
+              "thigh_twist_l": 0.352,
+              "c_kilt_04_01_l": 0.164,
+              "c_kilt_05_01_l": 0.165,
+              "c_kilt_06_01_l": 0.319
+            }
+          },
+          {
+            "vertex": 568,
+            "z_cm": 81.45384788513184,
+            "groups": {
+              "thigh_twist_l": 0.128,
+              "c_kilt_05_01_l": 0.074,
+              "c_kilt_05_02_l": 0.072,
+              "c_kilt_06_01_l": 0.726
+            }
+          },
+          {
+            "vertex": 569,
+            "z_cm": 83.10825824737549,
+            "groups": {
+              "thigh_twist_l": 0.403,
+              "c_kilt_04_01_l": 0.317,
+              "c_kilt_05_01_l": 0.121,
+              "c_kilt_06_01_l": 0.158
+            }
+          },
+          {
+            "vertex": 570,
+            "z_cm": 80.28750419616699,
+            "groups": {
+              "c_kilt_04_01_l": 0.141,
+              "c_kilt_05_01_l": 0.397,
+              "c_kilt_05_02_l": 0.233,
+              "c_kilt_06_01_l": 0.229
+            }
+          },
+          {
+            "vertex": 571,
+            "z_cm": 78.9463222026825,
+            "groups": {
+              "thigh_twist_l": 0.047,
+              "c_kilt_05_01_l": 0.134,
+              "c_kilt_05_02_l": 0.188,
+              "c_kilt_06_01_l": 0.63
+            }
+          },
+          {
+            "vertex": 572,
+            "z_cm": 77.38259434700012,
+            "groups": {
+              "c_kilt_05_01_l": 0.171,
+              "c_kilt_05_02_l": 0.37,
+              "c_kilt_06_01_l": 0.409,
+              "c_kilt_06_02_l": 0.05
+            }
+          },
+          {
+            "vertex": 573,
+            "z_cm": 82.3177695274353,
+            "groups": {
+              "thigh_twist_l": 0.349,
+              "c_kilt_04_01_l": 0.32,
+              "c_kilt_04_02_l": 0.257,
+              "c_kilt_05_01_l": 0.074
+            }
+          },
+          {
+            "vertex": 574,
+            "z_cm": 81.46064877510071,
+            "groups": {
+              "thigh_twist_l": 0.222,
+              "c_kilt_04_01_l": 0.489,
+              "c_kilt_05_01_l": 0.169,
+              "c_kilt_06_01_l": 0.12
+            }
+          },
+          {
+            "vertex": 575,
+            "z_cm": 78.83819341659546,
+            "groups": {
+              "c_kilt_04_01_l": 0.075,
+              "c_kilt_05_01_l": 0.76,
+              "c_kilt_05_02_l": 0.082,
+              "c_kilt_06_01_l": 0.084
+            }
+          },
+          {
+            "vertex": 576,
+            "z_cm": 77.54623293876648,
+            "groups": {
+              "c_kilt_04_01_l": 0.117,
+              "c_kilt_05_01_l": 0.65,
+              "c_kilt_05_02_l": 0.116,
+              "c_kilt_06_01_l": 0.117
+            }
+          },
+          {
+            "vertex": 577,
+            "z_cm": 76.08600854873657,
+            "groups": {
+              "c_kilt_05_01_l": 0.161,
+              "c_kilt_05_02_l": 0.401,
+              "c_kilt_06_01_l": 0.355,
+              "c_kilt_06_02_l": 0.083
+            }
+          },
+          {
+            "vertex": 578,
+            "z_cm": 78.54310274124146,
+            "groups": {
+              "thigh_twist_l": 0.103,
+              "c_kilt_04_01_l": 0.574,
+              "c_kilt_04_02_l": 0.083,
+              "c_kilt_05_01_l": 0.24
+            }
+          },
+          {
+            "vertex": 579,
+            "z_cm": 79.90368604660034,
+            "groups": {
+              "thigh_twist_l": 0.123,
+              "c_kilt_04_01_l": 0.566,
+              "c_kilt_04_02_l": 0.092,
+              "c_kilt_05_01_l": 0.218
+            }
+          },
+          {
+            "vertex": 580,
+            "z_cm": 80.26838302612305,
+            "groups": {
+              "thigh_twist_l": 0.194,
+              "c_kilt_04_01_l": 0.431,
+              "c_kilt_04_02_l": 0.306,
+              "c_kilt_05_01_l": 0.069
+            }
+          },
+          {
+            "vertex": 581,
+            "z_cm": 78.63907217979431,
+            "groups": {
+              "thigh_twist_l": 0.148,
+              "c_kilt_04_01_l": 0.605,
+              "c_kilt_04_02_l": 0.187,
+              "c_kilt_05_01_l": 0.061
+            }
+          },
+          {
+            "vertex": 582,
+            "z_cm": 82.24566578865051,
+            "groups": {
+              "thigh_twist_l": 0.527,
+              "c_kilt_02_01_l": 0.129,
+              "c_kilt_04_01_l": 0.246,
+              "c_kilt_04_02_l": 0.098
+            }
+          },
+          {
+            "vertex": 583,
+            "z_cm": 79.90661263465881,
+            "groups": {
+              "thigh_twist_l": 0.347,
+              "c_kilt_02_01_l": 0.148,
+              "c_kilt_04_01_l": 0.403,
+              "c_kilt_04_02_l": 0.102
+            }
+          },
+          {
+            "vertex": 584,
+            "z_cm": 78.03604006767273,
+            "groups": {
+              "thigh_twist_l": 0.321,
+              "c_kilt_02_01_l": 0.158,
+              "c_kilt_04_01_l": 0.423,
+              "c_kilt_04_02_l": 0.098
+            }
+          },
+          {
+            "vertex": 585,
+            "z_cm": 82.60828852653503,
+            "groups": {
+              "root_x": 0.08,
+              "thigh_twist_l": 0.504,
+              "c_kilt_02_01_l": 0.291,
+              "c_kilt_04_01_l": 0.125
+            }
+          },
+          {
+            "vertex": 586,
+            "z_cm": 79.76167798042297,
+            "groups": {
+              "root_x": 0.064,
+              "thigh_twist_l": 0.37,
+              "c_kilt_02_01_l": 0.399,
+              "c_kilt_04_01_l": 0.167
+            }
+          },
+          {
+            "vertex": 587,
+            "z_cm": 77.84215211868286,
+            "groups": {
+              "root_x": 0.062,
+              "thigh_twist_l": 0.383,
+              "c_kilt_02_01_l": 0.376,
+              "c_kilt_04_01_l": 0.179
+            }
+          },
+          {
+            "vertex": 588,
+            "z_cm": 78.7776231765747,
+            "groups": {
+              "root_x": 0.117,
+              "thigh_twist_l": 0.189,
+              "c_kilt_02_01_l": 0.646,
+              "c_kilt_02_02_l": 0.048
+            }
+          },
+          {
+            "vertex": 589,
+            "z_cm": 81.01022839546204,
+            "groups": {
+              "root_x": 0.099,
+              "thigh_twist_l": 0.227,
+              "c_kilt_02_01_l": 0.61,
+              "c_kilt_04_01_l": 0.064
+            }
+          },
+          {
+            "vertex": 590,
+            "z_cm": 81.70993328094482,
+            "groups": {
+              "root_x": 0.152,
+              "thigh_twist_l": 0.173,
+              "c_kilt_02_01_l": 0.617,
+              "spine_01_x": 0.058
+            }
+          },
+          {
+            "vertex": 591,
+            "z_cm": 78.88091802597046,
+            "groups": {
+              "root_x": 0.17,
+              "thigh_twist_l": 0.121,
+              "c_kilt_02_01_l": 0.601,
+              "c_kilt_02_02_l": 0.108
+            }
+          },
+          {
+            "vertex": 592,
+            "z_cm": 74.72280263900757,
+            "groups": {
+              "root_x": 0.263,
+              "c_kilt_02_01_l": 0.28,
+              "c_kilt_02_02_l": 0.348,
+              "c_kilt_02_01_r": 0.109
+            }
+          },
+          {
+            "vertex": 593,
+            "z_cm": 79.27238345146179,
+            "groups": {
+              "root_x": 0.252,
+              "thigh_twist_l": 0.096,
+              "c_kilt_02_01_l": 0.522,
+              "c_kilt_02_02_l": 0.13
+            }
+          },
+          {
+            "vertex": 594,
+            "z_cm": 75.2993106842041,
+            "groups": {
+              "root_x": 0.283,
+              "c_kilt_02_01_l": 0.281,
+              "c_kilt_02_02_l": 0.324,
+              "c_kilt_02_01_r": 0.112
+            }
+          },
+          {
+            "vertex": 595,
+            "z_cm": 73.0577826499939,
+            "groups": {
+              "root_x": 0.506,
+              "c_kilt_02_01_l": 0.229,
+              "c_kilt_02_02_l": 0.163,
+              "c_kilt_02_01_r": 0.102
+            }
+          },
+          {
+            "vertex": 596,
+            "z_cm": 76.5629768371582,
+            "groups": {
+              "root_x": 0.319,
+              "c_kilt_02_01_l": 0.284,
+              "c_kilt_02_02_l": 0.27,
+              "c_kilt_02_01_r": 0.127
+            }
+          },
+          {
+            "vertex": 597,
+            "z_cm": 73.92005324363708,
+            "groups": {
+              "root_x": 0.486,
+              "c_kilt_02_01_l": 0.222,
+              "c_kilt_02_02_l": 0.161,
+              "c_kilt_02_01_r": 0.131
+            }
+          },
+          {
+            "vertex": 598,
+            "z_cm": 75.63124299049377,
+            "groups": {
+              "root_x": 0.453,
+              "c_kilt_02_01_l": 0.211,
+              "c_kilt_02_02_l": 0.151,
+              "c_kilt_02_01_r": 0.185
+            }
+          },
+          {
+            "vertex": 599,
+            "z_cm": 76.56319737434387,
+            "groups": {
+              "root_x": 0.22,
+              "c_kilt_02_01_l": 0.087,
+              "c_kilt_02_01_r": 0.421,
+              "c_kilt_02_02_r": 0.273
+            }
+          },
+          {
+            "vertex": 600,
+            "z_cm": 75.29976963996887,
+            "groups": {
+              "root_x": 0.134,
+              "thigh_twist_r": 0.065,
+              "c_kilt_02_01_r": 0.475,
+              "c_kilt_02_02_r": 0.327
+            }
+          },
+          {
+            "vertex": 601,
+            "z_cm": 74.72337484359741,
+            "groups": {
+              "root_x": 0.082,
+              "thigh_twist_r": 0.071,
+              "c_kilt_02_01_r": 0.502,
+              "c_kilt_02_02_r": 0.345
+            }
+          },
+          {
+            "vertex": 602,
+            "z_cm": 79.27250862121582,
+            "groups": {
+              "root_x": 0.165,
+              "thigh_twist_r": 0.078,
+              "c_kilt_02_01_r": 0.607,
+              "c_kilt_02_02_r": 0.15
+            }
+          },
+          {
+            "vertex": 603,
+            "z_cm": 78.8811981678009,
+            "groups": {
+              "root_x": 0.109,
+              "thigh_twist_r": 0.093,
+              "c_kilt_02_01_r": 0.639,
+              "c_kilt_02_02_r": 0.159
+            }
+          },
+          {
+            "vertex": 604,
+            "z_cm": 78.77801060676575,
+            "groups": {
+              "root_x": 0.085,
+              "thigh_twist_r": 0.122,
+              "c_kilt_02_01_r": 0.625,
+              "c_kilt_02_02_r": 0.168
+            }
+          },
+          {
+            "vertex": 605,
+            "z_cm": 81.01052641868591,
+            "groups": {
+              "thigh_twist_r": 0.161,
+              "c_kilt_02_01_r": 0.677,
+              "c_kilt_02_02_r": 0.078,
+              "c_kilt_04_01_r": 0.085
+            }
+          },
+          {
+            "vertex": 606,
+            "z_cm": 79.76256012916565,
+            "groups": {
+              "root_x": 0.04,
+              "thigh_twist_r": 0.268,
+              "c_kilt_02_01_r": 0.459,
+              "c_kilt_04_01_r": 0.233
+            }
+          },
+          {
+            "vertex": 607,
+            "z_cm": 77.84312963485718,
+            "groups": {
+              "root_x": 0.04,
+              "thigh_twist_r": 0.276,
+              "c_kilt_02_01_r": 0.443,
+              "c_kilt_04_01_r": 0.241
+            }
+          },
+          {
+            "vertex": 608,
+            "z_cm": 78.03741097450256,
+            "groups": {
+              "thigh_twist_r": 0.171,
+              "c_kilt_02_01_r": 0.15,
+              "c_kilt_04_01_r": 0.601,
+              "c_kilt_04_02_r": 0.079
+            }
+          },
+          {
+            "vertex": 609,
+            "z_cm": 82.60888457298279,
+            "groups": {
+              "root_x": 0.064,
+              "thigh_twist_r": 0.395,
+              "c_kilt_02_01_r": 0.339,
+              "c_kilt_04_01_r": 0.202
+            }
+          },
+          {
+            "vertex": 610,
+            "z_cm": 79.90788221359253,
+            "groups": {
+              "thigh_twist_r": 0.193,
+              "c_kilt_02_01_r": 0.149,
+              "c_kilt_04_01_r": 0.567,
+              "c_kilt_04_02_r": 0.092
+            }
+          },
+          {
+            "vertex": 611,
+            "z_cm": 78.64049673080444,
+            "groups": {
+              "thigh_twist_r": 0.053,
+              "c_kilt_04_01_r": 0.81,
+              "c_kilt_04_02_r": 0.114,
+              "c_kilt_05_01_r": 0.024
+            }
+          },
+          {
+            "vertex": 612,
+            "z_cm": 82.2466492652893,
+            "groups": {
+              "thigh_twist_r": 0.293,
+              "c_kilt_02_01_r": 0.135,
+              "c_kilt_04_01_r": 0.474,
+              "c_kilt_04_02_r": 0.097
+            }
+          },
+          {
+            "vertex": 613,
+            "z_cm": 80.26971817016602,
+            "groups": {
+              "thigh_twist_r": 0.103,
+              "c_kilt_04_01_r": 0.55,
+              "c_kilt_04_02_r": 0.286,
+              "c_kilt_05_01_r": 0.062
+            }
+          },
+          {
+            "vertex": 614,
+            "z_cm": 78.54440808296204,
+            "groups": {
+              "thigh_twist_r": 0.055,
+              "c_kilt_04_01_r": 0.609,
+              "c_kilt_04_02_r": 0.063,
+              "c_kilt_05_01_r": 0.273
+            }
+          },
+          {
+            "vertex": 615,
+            "z_cm": 85.48184633255005,
+            "groups": {
+              "thigh_twist_r": 0.604,
+              "c_kilt_02_01_r": 0.112,
+              "c_kilt_04_01_r": 0.198,
+              "spine_01_x": 0.085
+            }
+          },
+          {
+            "vertex": 616,
+            "z_cm": 82.31886625289917,
+            "groups": {
+              "thigh_twist_r": 0.238,
+              "c_kilt_04_01_r": 0.421,
+              "c_kilt_04_02_r": 0.269,
+              "c_kilt_05_01_r": 0.071
+            }
+          },
+          {
+            "vertex": 617,
+            "z_cm": 79.90496754646301,
+            "groups": {
+              "thigh_twist_r": 0.074,
+              "c_kilt_04_01_r": 0.588,
+              "c_kilt_04_02_r": 0.078,
+              "c_kilt_05_01_r": 0.259
+            }
+          },
+          {
+            "vertex": 618,
+            "z_cm": 78.8392961025238,
+            "groups": {
+              "c_kilt_05_01_r": 1.0
+            }
+          },
+          {
+            "vertex": 619,
+            "z_cm": 77.54735946655273,
+            "groups": {
+              "c_kilt_05_01_r": 1.0
+            }
+          },
+          {
+            "vertex": 620,
+            "z_cm": 81.46178722381592,
+            "groups": {
+              "thigh_twist_r": 0.16,
+              "c_kilt_04_01_r": 0.547,
+              "c_kilt_04_02_r": 0.098,
+              "c_kilt_05_01_r": 0.195
+            }
+          },
+          {
+            "vertex": 621,
+            "z_cm": 80.28849363327026,
+            "groups": {
+              "c_kilt_04_01_r": 0.113,
+              "c_kilt_05_01_r": 0.493,
+              "c_kilt_05_02_r": 0.222,
+              "c_kilt_06_01_r": 0.173
+            }
+          },
+          {
+            "vertex": 622,
+            "z_cm": 83.10912251472473,
+            "groups": {
+              "thigh_twist_r": 0.312,
+              "c_kilt_04_01_r": 0.411,
+              "c_kilt_05_01_r": 0.122,
+              "c_kilt_06_01_r": 0.154
+            }
+          },
+          {
+            "vertex": 623,
+            "z_cm": 82.44540691375732,
+            "groups": {
+              "thigh_twist_r": 0.305,
+              "c_kilt_04_01_r": 0.167,
+              "c_kilt_05_01_r": 0.214,
+              "c_kilt_06_01_r": 0.314
+            }
+          },
+          {
+            "vertex": 698,
+            "z_cm": 79.27250862121582,
+            "groups": {
+              "root_x": 0.165,
+              "thigh_twist_r": 0.078,
+              "c_kilt_02_01_r": 0.607,
+              "c_kilt_02_02_r": 0.15
+            }
+          },
+          {
+            "vertex": 699,
+            "z_cm": 82.30178952217102,
+            "groups": {
+              "root_x": 0.333,
+              "c_kilt_02_01_l": 0.091,
+              "c_kilt_02_01_r": 0.485,
+              "spine_01_x": 0.092
+            }
+          },
+          {
+            "vertex": 700,
+            "z_cm": 82.01988339424133,
+            "groups": {
+              "root_x": 0.179,
+              "thigh_twist_r": 0.115,
+              "c_kilt_02_01_r": 0.624,
+              "c_kilt_02_02_r": 0.083
+            }
+          },
+          {
+            "vertex": 701,
+            "z_cm": 84.85829830169678,
+            "groups": {
+              "root_x": 0.233,
+              "thigh_twist_r": 0.17,
+              "c_kilt_02_01_r": 0.487,
+              "spine_01_x": 0.11
+            }
+          },
+          {
+            "vertex": 702,
+            "z_cm": 79.85889315605164,
+            "groups": {
+              "root_x": 0.294,
+              "c_kilt_02_01_l": 0.104,
+              "c_kilt_02_01_r": 0.468,
+              "c_kilt_02_02_r": 0.134
+            }
+          },
+          {
+            "vertex": 703,
+            "z_cm": 76.56319737434387,
+            "groups": {
+              "root_x": 0.22,
+              "c_kilt_02_01_l": 0.087,
+              "c_kilt_02_01_r": 0.421,
+              "c_kilt_02_02_r": 0.273
+            }
+          },
+          {
+            "vertex": 704,
+            "z_cm": 85.04772782325745,
+            "groups": {
+              "root_x": 0.42,
+              "thigh_twist_r": 0.102,
+              "c_kilt_02_01_r": 0.342,
+              "spine_01_x": 0.136
+            }
+          },
+          {
+            "vertex": 705,
+            "z_cm": 88.30325603485107,
+            "groups": {
+              "root_x": 0.299,
+              "thigh_twist_r": 0.18,
+              "c_kilt_02_01_r": 0.319,
+              "spine_01_x": 0.202
+            }
+          },
+          {
+            "vertex": 706,
+            "z_cm": 77.93259620666504,
+            "groups": {
+              "root_x": 0.302,
+              "c_kilt_02_01_l": 0.124,
+              "c_kilt_02_01_r": 0.373,
+              "c_kilt_02_02_r": 0.201
+            }
+          },
+          {
+            "vertex": 707,
+            "z_cm": 75.63124299049377,
+            "groups": {
+              "root_x": 0.453,
+              "c_kilt_02_01_l": 0.211,
+              "c_kilt_02_02_l": 0.151,
+              "c_kilt_02_01_r": 0.185
+            }
+          },
+          {
+            "vertex": 708,
+            "z_cm": 82.47703313827515,
+            "groups": {
+              "root_x": 0.498,
+              "c_kilt_02_01_l": 0.171,
+              "c_kilt_02_01_r": 0.231,
+              "spine_01_x": 0.1
+            }
+          },
+          {
+            "vertex": 709,
+            "z_cm": 80.0291657447815,
+            "groups": {
+              "root_x": 0.463,
+              "c_kilt_02_01_l": 0.194,
+              "c_kilt_02_02_l": 0.088,
+              "c_kilt_02_01_r": 0.255
+            }
+          },
+          {
+            "vertex": 710,
+            "z_cm": 77.74927020072937,
+            "groups": {
+              "root_x": 0.434,
+              "c_kilt_02_01_l": 0.201,
+              "c_kilt_02_02_l": 0.129,
+              "c_kilt_02_01_r": 0.236
+            }
+          },
+          {
+            "vertex": 711,
+            "z_cm": 77.93258428573608,
+            "groups": {
+              "root_x": 0.374,
+              "c_kilt_02_01_l": 0.27,
+              "c_kilt_02_02_l": 0.194,
+              "c_kilt_02_01_r": 0.161
+            }
+          },
+          {
+            "vertex": 712,
+            "z_cm": 76.5629768371582,
+            "groups": {
+              "root_x": 0.319,
+              "c_kilt_02_01_l": 0.284,
+              "c_kilt_02_02_l": 0.27,
+              "c_kilt_02_01_r": 0.127
+            }
+          },
+          {
+            "vertex": 713,
+            "z_cm": 79.85895276069641,
+            "groups": {
+              "root_x": 0.404,
+              "c_kilt_02_01_l": 0.327,
+              "c_kilt_02_02_l": 0.128,
+              "c_kilt_02_01_r": 0.142
+            }
+          },
+          {
+            "vertex": 714,
+            "z_cm": 79.27238345146179,
+            "groups": {
+              "root_x": 0.252,
+              "thigh_twist_l": 0.096,
+              "c_kilt_02_01_l": 0.522,
+              "c_kilt_02_02_l": 0.13
+            }
+          },
+          {
+            "vertex": 715,
+            "z_cm": 82.30196833610535,
+            "groups": {
+              "root_x": 0.443,
+              "thigh_twist_l": 0.098,
+              "c_kilt_02_01_l": 0.337,
+              "c_kilt_02_01_r": 0.123
+            }
+          },
+          {
+            "vertex": 716,
+            "z_cm": 82.02000856399536,
+            "groups": {
+              "root_x": 0.241,
+              "thigh_twist_l": 0.136,
+              "c_kilt_02_01_l": 0.55,
+              "spine_01_x": 0.073
+            }
+          },
+          {
+            "vertex": 717,
+            "z_cm": 84.85866785049438,
+            "groups": {
+              "root_x": 0.274,
+              "thigh_twist_l": 0.193,
+              "c_kilt_02_01_l": 0.416,
+              "spine_01_x": 0.117
+            }
+          },
+          {
+            "vertex": 718,
+            "z_cm": 85.04804372787476,
+            "groups": {
+              "root_x": 0.473,
+              "thigh_twist_l": 0.118,
+              "c_kilt_02_01_l": 0.268,
+              "spine_01_x": 0.141
+            }
+          },
+          {
+            "vertex": 719,
+            "z_cm": 88.30369114875793,
+            "groups": {
+              "root_x": 0.315,
+              "thigh_twist_l": 0.202,
+              "c_kilt_02_01_l": 0.275,
+              "spine_01_x": 0.208
+            }
+          },
+          {
+            "vertex": 720,
+            "z_cm": 85.1353108882904,
+            "groups": {
+              "root_x": 0.535,
+              "c_kilt_02_01_l": 0.139,
+              "c_kilt_02_01_r": 0.182,
+              "spine_01_x": 0.144
+            }
+          },
+          {
+            "vertex": 721,
+            "z_cm": 88.21322321891785,
+            "groups": {
+              "root_x": 0.473,
+              "thigh_twist_l": 0.112,
+              "c_kilt_02_01_l": 0.191,
+              "spine_01_x": 0.224
+            }
+          },
+          {
+            "vertex": 722,
+            "z_cm": 92.08285212516785,
+            "groups": {
+              "root_x": 0.318,
+              "thigh_twist_l": 0.109,
+              "c_kilt_02_01_l": 0.203,
+              "spine_01_x": 0.371
+            }
+          },
+          {
+            "vertex": 723,
+            "z_cm": 88.2128655910492,
+            "groups": {
+              "root_x": 0.451,
+              "thigh_twist_r": 0.102,
+              "c_kilt_02_01_r": 0.228,
+              "spine_01_x": 0.219
+            }
+          },
+          {
+            "vertex": 724,
+            "z_cm": 92.08261966705322,
+            "groups": {
+              "root_x": 0.304,
+              "thigh_twist_r": 0.111,
+              "c_kilt_02_01_r": 0.218,
+              "spine_01_x": 0.368
+            }
+          },
+          {
+            "vertex": 725,
+            "z_cm": 87.91213631629944,
+            "groups": {
+              "root_x": 0.538,
+              "c_kilt_02_01_l": 0.108,
+              "c_kilt_02_01_r": 0.136,
+              "spine_01_x": 0.219
+            }
+          },
+          {
+            "vertex": 726,
+            "z_cm": 90.97049236297607,
+            "groups": {
+              "root_x": 0.459,
+              "c_kilt_02_01_l": 0.08,
+              "c_kilt_02_01_r": 0.097,
+              "spine_01_x": 0.364
+            }
+          },
+          {
+            "vertex": 727,
+            "z_cm": 92.01765656471252,
+            "groups": {
+              "root_x": 0.393,
+              "thigh_twist_l": 0.072,
+              "c_kilt_02_01_l": 0.127,
+              "spine_01_x": 0.408
+            }
+          },
+          {
+            "vertex": 728,
+            "z_cm": 92.01749563217163,
+            "groups": {
+              "root_x": 0.386,
+              "thigh_twist_r": 0.068,
+              "c_kilt_02_01_r": 0.147,
+              "spine_01_x": 0.399
+            }
+          },
+          {
+            "vertex": 731,
+            "z_cm": 93.48775148391724,
+            "groups": {
+              "root_x": 0.293,
+              "c_kilt_02_01_r": 0.103,
+              "spine_01_x": 0.545,
+              "spine_02_x": 0.06
+            }
+          },
+          {
+            "vertex": 732,
+            "z_cm": 93.1309700012207,
+            "groups": {
+              "root_x": 0.311,
+              "c_kilt_02_01_l": 0.062,
+              "c_kilt_02_01_r": 0.078,
+              "spine_01_x": 0.549
+            }
+          },
+          {
+            "vertex": 747,
+            "z_cm": 93.4877872467041,
+            "groups": {
+              "root_x": 0.299,
+              "c_kilt_02_01_l": 0.083,
+              "spine_01_x": 0.562,
+              "spine_02_x": 0.056
+            }
+          }
+        ]
+      }
+    },
+    "REF_Skirt": {
+      "vertices": 30509,
+      "bounds_cm": [
+        [
+          -45.396,
+          -56.205,
+          17.193
+        ],
+        [
+          44.245,
+          24.136,
+          88.087
+        ]
+      ],
+      "vertex_groups": 73,
+      "armature_modifier_targets": [
+        "root.002"
+      ],
+      "weight_audit": null
+    }
+  },
+  "shirt_to_skirt_nearest_surface_cm": {
+    "sample_count": 861,
+    "minimum_cm": 0.145,
+    "q05_cm": 1.568,
+    "median_cm": 30.875,
+    "q95_cm": 51.605,
+    "within_0.25cm": 3,
+    "within_1cm": 12,
+    "within_3cm": 152,
+    "shirt_lower_band_70_100cm": {
+      "count": 285,
+      "q05_cm": 1.047
+    }
+  },
+  "body_to_shirt_nearest_surface_cm": {
+    "sample_count": 861,
+    "minimum_cm": 0.381,
+    "q05_cm": 0.977,
+    "median_cm": 3.417,
+    "q95_cm": 7.033,
+    "within_0.25cm": 0,
+    "within_1cm": 44,
+    "within_3cm": 381,
+    "shirt_lower_band_70_100cm": {
+      "count": 285,
+      "q05_cm": 1.421
+    }
+  },
+  "body_to_skirt_nearest_surface_cm": {
+    "sample_count": 30509,
+    "minimum_cm": 0.011,
+    "q05_cm": 19.753,
+    "median_cm": 24.253,
+    "q95_cm": 30.371,
+    "within_0.25cm": 37,
+    "within_1cm": 189,
+    "within_3cm": 462,
+    "shirt_lower_band_70_100cm": {
+      "count": 668,
+      "q05_cm": 0.246
+    }
+  }
+}

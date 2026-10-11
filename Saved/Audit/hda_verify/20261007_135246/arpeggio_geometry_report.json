@@ -1,0 +1,51 @@
+{
+  "cooked_sop": "/obj/inspect_tmp/output0",
+  "node_errors": [],
+  "points": 512,
+  "prims": 384,
+  "bbox_min": [
+    -5.5,
+    -0.5,
+    -5.08
+  ],
+  "bbox_max": [
+    5.5,
+    0.5,
+    5.08
+  ],
+  "bbox_size": [
+    11.0,
+    1.0,
+    10.16
+  ],
+  "prim_types": {
+    "Polygon": 384
+  },
+  "vert_count_hist": {
+    "4": 384
+  },
+  "edges_total": 0,
+  "edges_sharp_gt5deg": 0,
+  "dihedral_hist": {
+    "0-5": 0,
+    "5-30": 0,
+    "30-60": 0,
+    "60-89": 0,
+    "89-91": 0,
+    "91-175": 0,
+    "175-180": 0
+  },
+  "normal_attrib": null,
+  "shading": "no_explicit_N",
+  "unique_face_normals": 6,
+  "largest_normal_clusters": [
+    64,
+    64,
+    64,
+    64,
+    64,
+    64
+  ],
+  "point_count_vs_vert_normals": 512,
+  "verdict_notes": []
+}

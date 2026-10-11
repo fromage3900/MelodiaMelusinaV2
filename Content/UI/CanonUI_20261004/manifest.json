@@ -25,11 +25,11 @@
       "never_stream": "per-entry; true for current small atoms",
       "preserve_border": true
     },
-    "runtime_rule": "Use textures only for small irregular atoms. Keep paper/card geometry native UMG/Slate and rings/arcs parameterized.",
+    "runtime_rule": "Use textures only for small irregular atoms. Existing Storybook runtime textures on main are canonical and must be rebuilt in place; keep paper/card geometry native UMG/Slate and rings/arcs parameterized.",
     "bow_rule": "Bow HUD is already working at runtime. Bow files in this pack are source/reference canon only; do not replace or rewire the working HUD from this branch."
   },
   "destinations": {
-    "storybook_textures": "/Game/Melodia/UI/Storybook/Textures/Atoms",
+    "storybook_textures": "/Game/Melodia/UI/Textures/Storybook",
     "storybook_widgets": "/Game/Melodia/UI/Storybook",
     "bow_hud_existing": "existing runtime ownership; unchanged by this export lane"
   },
@@ -44,7 +44,8 @@
       ],
       "runtime_type": "texture",
       "runtime_manifest_id": "storybook.sparkle",
-      "usage": "ambient/foreground sparkle"
+      "usage": "ambient/foreground sparkle",
+      "runtime_asset_name": "storybook_sparkle"
     },
     {
       "id": "storybook.waypoint",
@@ -56,7 +57,8 @@
       ],
       "runtime_type": "texture",
       "runtime_manifest_id": "storybook.waypoint",
-      "usage": "compass/objective waypoint"
+      "usage": "compass/objective waypoint",
+      "runtime_asset_name": "storybook_waypoint"
     },
     {
       "id": "storybook.player_pin",
@@ -68,7 +70,8 @@
       ],
       "runtime_type": "texture",
       "runtime_manifest_id": "storybook.player_pin",
-      "usage": "minimap player pin"
+      "usage": "minimap player pin",
+      "runtime_asset_name": "storybook_player_pin"
     },
     {
       "id": "storybook.speech_tail",
@@ -80,7 +83,8 @@
       ],
       "runtime_type": "texture",
       "runtime_manifest_id": "storybook.speech_tail",
-      "usage": "speech bubble tail"
+      "usage": "speech bubble tail",
+      "runtime_asset_name": "storybook_speech_tail"
     },
     {
       "id": "storybook.menu_diamond",
@@ -92,7 +96,8 @@
       ],
       "runtime_type": "texture",
       "runtime_manifest_id": "storybook.menu_diamond",
-      "usage": "menu focus/status ornament"
+      "usage": "menu focus/status ornament",
+      "runtime_asset_name": "storybook_menu_diamond"
     },
     {
       "id": "storybook.bird_crest",
@@ -104,7 +109,8 @@
       ],
       "runtime_type": "texture",
       "runtime_manifest_id": "storybook.bird_crest",
-      "usage": "storybook Sir Melodious marker crest"
+      "usage": "storybook Sir Melodious marker crest",
+      "runtime_asset_name": "storybook_bird_crest"
     },
     {
       "id": "storybook.note_head",
@@ -116,7 +122,8 @@
       ],
       "runtime_type": "texture",
       "runtime_manifest_id": "storybook.note_head",
-      "usage": "loading/progress staff note"
+      "usage": "loading/progress staff note",
+      "runtime_asset_name": "storybook_note_head"
     },
     {
       "id": "storybook.orrery.outer",

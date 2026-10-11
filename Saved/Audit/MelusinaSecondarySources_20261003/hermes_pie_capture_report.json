@@ -1,0 +1,77 @@
+{
+  "task": "hair<-body shared collision PIE debug capture",
+  "steps": [
+    {
+      "step": "pre_state",
+      "value": {
+        "shared_limits_hold.png": 1791067773.1132615,
+        "shared_limits_idle.png": 1791067770.5390677,
+        "shared_limits_return.png": 1791067775.236112,
+        "rows": 1791067774.7406754
+      }
+    },
+    {
+      "step": "pie_before",
+      "value": "NONE"
+    },
+    {
+      "step": "start_pie",
+      "value": {
+        "started": true,
+        "mode": "in_viewport"
+      }
+    },
+    {
+      "step": "world",
+      "value": "/Game/Melodia/Levels/Opening/UEDPIE_0_L_MelusinaMorning.L_MelusinaMorning"
+    },
+    {
+      "step": "capture_script",
+      "value": {
+        "ok": true,
+        "success": true,
+        "mode": "execute_file",
+        "result": "None",
+        "output": []
+      }
+    },
+    {
+      "step": "capture_complete_marker",
+      "value": true
+    },
+    {
+      "step": "stop_pie",
+      "value": {
+        "stopped": true
+      }
+    },
+    {
+      "step": "post_state",
+      "value": {
+        "shared_limits_hold.png": 1791071322.579254,
+        "shared_limits_idle.png": 1791071319.563524,
+        "shared_limits_return.png": 1791071331.0457575,
+        "rows": 1791071324.1734467
+      }
+    },
+    {
+      "step": "refreshed",
+      "value": {
+        "shared_limits_hold.png": true,
+        "shared_limits_idle.png": true,
+        "shared_limits_return.png": true,
+        "rows": true
+      }
+    }
+  ],
+  "verdict": {
+    "marker": true,
+    "world": "/Game/Melodia/Levels/Opening/UEDPIE_0_L_MelusinaMorning.L_MelusinaMorning",
+    "refreshed": {
+      "shared_limits_hold.png": true,
+      "shared_limits_idle.png": true,
+      "shared_limits_return.png": true,
+      "rows": true
+    }
+  }
+}

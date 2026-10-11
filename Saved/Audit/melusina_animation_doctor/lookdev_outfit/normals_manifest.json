@@ -1,0 +1,12 @@
+{
+  "schema": "melodia.dress_normals_fix.v3",
+  "timestamp": "2026-10-07T17:06:37.690658+00:00",
+  "src": "D:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\melusina_animation_doctor\\uv_repack\\dress_reef_packed.bgeo",
+  "out": "D:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\melusina_animation_doctor\\lookdev_outfit\\dress_reef_lookdev.bgeo",
+  "out_bytes": 16957649,
+  "method": "agreement-test prim numbers -> prim group -> reverse SOP -> Newell N. Supersedes v2 (14 vertex-less prims from HOM delete+createPolygon) and v1 (radial-majority vote; vote retired as unreliable on asymmetric/folded construction).",
+  "n_disagreeing_prims": 18,
+  "empty_prims_in_output": 0,
+  "points": 183741,
+  "prims": 206780
+}

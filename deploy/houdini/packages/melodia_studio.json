@@ -1,0 +1,13 @@
+{
+	"show": true,
+	"load_package_once": true,
+	"env": [
+		{ "MELODIA_ROOT": "$HOUDINI_PACKAGE_PATH/../../.." },
+		{ "MELODIA_HOUDINI_ROOT": "$HOUDINI_PACKAGE_PATH/.." },
+		{ "MELODIA_HDA_ROOT": "$HOUDINI_PACKAGE_PATH/../../../hda" },
+		{ "MELODIA_AUDIT_ROOT": "$HOUDINI_PACKAGE_PATH/../../../Saved/Audit" },
+		{ "MELODIA_CACHE_ROOT": "$HOUDINI_PACKAGE_PATH/../../../Saved/HoudiniFoundry" },
+		{ "MELODIA_PACKAGE_ROOT": "$HOUDINI_PACKAGE_PATH/../melodia_studio" }
+	],
+	"hpath": "$HOUDINI_PACKAGE_PATH/../melodia_studio"
+}

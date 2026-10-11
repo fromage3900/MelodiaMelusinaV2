@@ -1,0 +1,974 @@
+{
+  "schema": "melodia.hda_verify_report.v1",
+  "gate": 2,
+  "generated": "2026-10-07T13:52:47",
+  "houdini_version": "22.0.368",
+  "license": "licenseCategoryType.Education",
+  "project_root": "D:\\EnvironmentPortfolio\\BS_GodFile",
+  "registry": "D:\\EnvironmentPortfolio\\BS_GodFile\\Tools\\Houdini\\hda_verify\\hda_registry.v1.json",
+  "counts": {
+    "PASS": 3,
+    "WARN": 4,
+    "FAIL": 0
+  },
+  "entries": [
+    {
+      "id": "arpeggio_stair",
+      "status": "active",
+      "path": "hda/ArpeggioStair_1.0.hda",
+      "node_type": "ArpeggioStair",
+      "checks": [
+        {
+          "name": "file_present",
+          "ok": true,
+          "detail": "24644 bytes"
+        },
+        {
+          "name": "definition_found",
+          "ok": true,
+          "detail": "ArpeggioStair (ArpeggioStair musical stair (BS_GodFile))"
+        },
+        {
+          "name": "create_node",
+          "ok": true,
+          "detail": "ArpeggioStair"
+        },
+        {
+          "name": "parms_required",
+          "ok": true,
+          "detail": "source=definition; missing=[]; required=['seed', 'stepCount', 'laneCount', 'stepSpacing', 'laneSpacing', 'baseMidiNote', 'scale_ctrl', 'heightPerDegree']"
+        },
+        {
+          "name": "parms_exposed",
+          "ok": true,
+          "detail": "8 parameter(s) declared on the HDA type - 0 means the controls still live only on an inner node, so the asset cooks at defaults only"
+        },
+        {
+          "name": "output:output0",
+          "ok": true,
+          "detail": "points=512 prims=384 bbox=[11.0, 1.0, 10.16]"
+        },
+        {
+          "name": "drive:stepCount=8",
+          "ok": true,
+          "detail": "driven cook 0.0s: output0=256/192"
+        },
+        {
+          "name": "restore_after_drive:stepCount",
+          "ok": true,
+          "detail": "golden cook restored: output0=512/384"
+        },
+        {
+          "name": "node_errors",
+          "ok": true,
+          "detail": "0 error(s): []"
+        }
+      ],
+      "result": "PASS",
+      "definition": {
+        "node_type": "ArpeggioStair",
+        "description": "ArpeggioStair musical stair (BS_GodFile)",
+        "disabled": false
+      },
+      "parms": {
+        "source": "definition",
+        "names": [
+          "baseMidiNote",
+          "heightPerDegree",
+          "laneCount",
+          "laneSpacing",
+          "scale_ctrl",
+          "seed",
+          "stepCount",
+          "stepSpacing"
+        ],
+        "count": 8
+      },
+      "network": [
+        {
+          "path": "grid_steps_lanes",
+          "type": "Sop/grid"
+        },
+        {
+          "path": "controls",
+          "type": "Sop/null"
+        },
+        {
+          "path": "assign_musical",
+          "type": "Sop/attribwrangle"
+        },
+        {
+          "path": "assign_musical/attribvop1",
+          "type": "Sop/attribwranglecore"
+        },
+        {
+          "path": "pad_box",
+          "type": "Sop/box"
+        },
+        {
+          "path": "copy_pads",
+          "type": "Sop/copytopoints::2.0"
+        },
+        {
+          "path": "output0",
+          "type": "Sop/output"
+        }
+      ],
+      "cook": {
+        "seconds": 0.093,
+        "outputs": {
+          "output0": {
+            "node": "output0",
+            "points": 512,
+            "prims": 384,
+            "bbox": [
+              11.0,
+              1.0,
+              10.16
+            ]
+          }
+        },
+        "node_errors": [],
+        "node_warnings": [],
+        "node_warning_count": 0
+      },
+      "drive": [
+        {
+          "parm": "stepCount",
+          "set_to": 8,
+          "previous": 16,
+          "problems": [],
+          "outputs": {
+            "output0": {
+              "points": 256,
+              "prims": 192
+            }
+          }
+        }
+      ],
+      "wall_seconds": 0.12
+    },
+    {
+      "id": "melodia_crystal_cathedral",
+      "status": "active",
+      "path": "hda/HDA_Melodia_CrystalCathedral_1.0.hda",
+      "node_type": "HDA_Melodia_CrystalCathedral",
+      "checks": [
+        {
+          "name": "file_present",
+          "ok": true,
+          "detail": "32034 bytes"
+        },
+        {
+          "name": "definition_found",
+          "ok": true,
+          "detail": "HDA_Melodia_CrystalCathedral (Melodia 6-bay Harmony crystal cathedral (Gate 2))"
+        },
+        {
+          "name": "create_node",
+          "ok": true,
+          "detail": "HDA_Melodia_CrystalCathedral"
+        },
+        {
+          "name": "parms_required",
+          "ok": true,
+          "detail": "source=definition; missing=[]; required=['depth', 'span', 'height', 'tracery', 'bays', 'crystal', 'facets', 'seed', 'wall_thickness', 'bevel_width', 'bevel_segments', 'floor_divisions', 'undulation_amp', 'undulation_period']"
+        },
+        {
+          "name": "parms_exposed",
+          "ok": true,
+          "detail": "14 parameter(s) declared on the HDA type - 0 means the controls still live only on an inner node, so the asset cooks at defaults only"
+        },
+        {
+          "name": "output:OUT_Cathedral",
+          "ok": true,
+          "detail": "points=9278 prims=8641 bbox=[12.043, 45.443, 25.632]"
+        },
+        {
+          "name": "output:OUT_Rose",
+          "ok": true,
+          "detail": "points=1032 prims=288 bbox=[8.137, 8.137, 2.377]"
+        },
+        {
+          "name": "output:OUT_Collision",
+          "ok": true,
+          "detail": "points=1682 prims=1608 bbox=[12.036, 45.439, 7.282]"
+        },
+        {
+          "name": "drive:bays=3",
+          "ok": true,
+          "detail": "driven cook 0.017s: OUT_Cathedral=4940/4597, OUT_Collision=854/816, OUT_Rose=1032/288"
+        },
+        {
+          "name": "restore_after_drive:bays",
+          "ok": true,
+          "detail": "golden cook restored: OUT_Cathedral=9278/8641, OUT_Collision=1682/1608, OUT_Rose=1032/288"
+        },
+        {
+          "name": "node_errors",
+          "ok": true,
+          "detail": "0 error(s): []"
+        }
+      ],
+      "result": "PASS",
+      "definition": {
+        "node_type": "HDA_Melodia_CrystalCathedral",
+        "description": "Melodia 6-bay Harmony crystal cathedral (Gate 2)",
+        "disabled": false
+      },
+      "parms": {
+        "source": "definition",
+        "names": [
+          "bays",
+          "bevel_segments",
+          "bevel_width",
+          "crystal",
+          "depth",
+          "facets",
+          "floor_divisions",
+          "height",
+          "seed",
+          "span",
+          "tracery",
+          "undulation_amp",
+          "undulation_period",
+          "wall_thickness"
+        ],
+        "count": 14
+      },
+      "network": [
+        {
+          "path": "controls",
+          "type": "Sop/null"
+        },
+        {
+          "path": "arch_seed",
+          "type": "Sop/grid"
+        },
+        {
+          "path": "arch_profile",
+          "type": "Sop/attribwrangle"
+        },
+        {
+          "path": "arch_profile/attribvop1",
+          "type": "Sop/attribwranglecore"
+        },
+        {
+          "path": "nave_sweep",
+          "type": "Sop/attribwrangle"
+        },
+        {
+          "path": "nave_sweep/attribvop1",
+          "type": "Sop/attribwranglecore"
+        },
+        {
+          "path": "crystal_growth",
+          "type": "Sop/attribwrangle"
+        },
+        {
+          "path": "crystal_growth/attribvop1",
+          "type": "Sop/attribwranglecore"
+        },
+        {
+          "path": "OUT_Cathedral",
+          "type": "Sop/output"
+        },
+        {
+          "path": "weld_seams",
+          "type": "Sop/fuse::2.0"
+        },
+        {
+          "path": "wall_thicken",
+          "type": "Sop/polyextrude::2.0"
+        },
+        {
+          "path": "edge_bevel",
+          "type": "Sop/polybevel::2.0"
+        },
+        {
+          "path": "floor_surface",
+          "type": "Sop/grid"
+        },
+        {
+          "path": "face_normals",
+          "type": "Sop/normal"
+        },
+        {
+          "path": "merge_architecture",
+          "type": "Sop/merge"
+        },
+        {
+          "path": "drop_crystals",
+          "type": "Sop/blast"
+        },
+        {
+          "path": "OUT_Collision",
+          "type": "Sop/output"
+        },
+        {
+          "path": "rose_seed",
+          "type": "Sop/grid"
+        },
+        {
+          "path": "rose_window",
+          "type": "Sop/attribwrangle"
+        },
+        {
+          "path": "rose_window/attribvop1",
+          "type": "Sop/attribwranglecore"
+        },
+        {
+          "path": "OUT_Rose",
+          "type": "Sop/output"
+        }
+      ],
+      "cook": {
+        "seconds": 0.125,
+        "outputs": {
+          "OUT_Cathedral": {
+            "node": "OUT_Cathedral",
+            "points": 9278,
+            "prims": 8641,
+            "bbox": [
+              12.043,
+              45.443,
+              25.632
+            ]
+          },
+          "OUT_Collision": {
+            "node": "OUT_Collision",
+            "points": 1682,
+            "prims": 1608,
+            "bbox": [
+              12.036,
+              45.439,
+              7.282
+            ]
+          },
+          "OUT_Rose": {
+            "node": "OUT_Rose",
+            "points": 1032,
+            "prims": 288,
+            "bbox": [
+              8.137,
+              8.137,
+              2.377
+            ]
+          }
+        },
+        "node_errors": [],
+        "node_warnings": [],
+        "node_warning_count": 0
+      },
+      "drive": [
+        {
+          "parm": "bays",
+          "set_to": 3,
+          "previous": 6,
+          "problems": [],
+          "outputs": {
+            "OUT_Cathedral": {
+              "points": 4940,
+              "prims": 4597
+            },
+            "OUT_Collision": {
+              "points": 854,
+              "prims": 816
+            },
+            "OUT_Rose": {
+              "points": 1032,
+              "prims": 288
+            }
+          }
+        }
+      ],
+      "wall_seconds": 0.192
+    },
+    {
+      "id": "space_orbital_rings",
+      "status": "missing",
+      "path": "hda/SpaceTraversal_OrbitalRings_1.0.hda",
+      "node_type": null,
+      "checks": [
+        {
+          "name": "file_present",
+          "ok": false,
+          "detail": "OWED: hda/SpaceTraversal_OrbitalRings_1.0.hda (builder: Content/Python/create_hda_space_orbital_rings.py)"
+        }
+      ],
+      "result": "WARN",
+      "wall_seconds": 0.0
+    },
+    {
+      "id": "corridor_network",
+      "status": "missing",
+      "path": "hda/CorridorNetwork_1_0.hda",
+      "node_type": null,
+      "checks": [
+        {
+          "name": "file_present",
+          "ok": false,
+          "detail": "OWED: hda/CorridorNetwork_1_0.hda (builder: Tools/Houdini/corridors/build_corridor_network_hda.py)"
+        }
+      ],
+      "result": "WARN",
+      "wall_seconds": 0.0
+    },
+    {
+      "id": "crystal_cathedral_v2",
+      "status": "missing",
+      "path": "hda/CrystalCathedralV2.hda",
+      "node_type": null,
+      "checks": [
+        {
+          "name": "file_present",
+          "ok": false,
+          "detail": "OWED: hda/CrystalCathedralV2.hda (builder: Tools/Houdini/cathedral/build_crystal_cathedral_v2_hda.py)"
+        }
+      ],
+      "result": "WARN",
+      "wall_seconds": 0.0
+    },
+    {
+      "id": "crystal_cathedral_v3",
+      "status": "active",
+      "path": "hda/CrystalCathedralV3.hda",
+      "node_type": "CrystalCathedralV3",
+      "checks": [
+        {
+          "name": "file_present",
+          "ok": true,
+          "detail": "38254 bytes"
+        },
+        {
+          "name": "definition_found",
+          "ok": true,
+          "detail": "CrystalCathedralV3 (Melodia Crystal Cathedral V3: vault + rose + collision + corridor LOD fog)"
+        },
+        {
+          "name": "create_node",
+          "ok": true,
+          "detail": "CrystalCathedralV3"
+        },
+        {
+          "name": "parms_required",
+          "ok": true,
+          "detail": "source=definition; missing=[]; required=['depth', 'span', 'height', 'tracery', 'bays', 'crystal', 'facets', 'seed', 'wall_thickness', 'bevel_width', 'bevel_segments', 'floor_divisions', 'undulation_amp', 'undulation_period', 'corridor_bays', 'corridor_span', 'corridor_height', 'bay_length']"
+        },
+        {
+          "name": "parms_exposed",
+          "ok": true,
+          "detail": "18 parameter(s) declared on the HDA type - 0 means the controls still live only on an inner node, so the asset cooks at defaults only"
+        },
+        {
+          "name": "output:OUT_Cathedral",
+          "ok": true,
+          "detail": "points=9278 prims=8641 bbox=[12.043, 45.443, 25.632]"
+        },
+        {
+          "name": "output:OUT_Rose",
+          "ok": true,
+          "detail": "points=1032 prims=288 bbox=[8.137, 8.137, 2.377]"
+        },
+        {
+          "name": "output:OUT_Collision",
+          "ok": true,
+          "detail": "points=1682 prims=1608 bbox=[12.036, 45.439, 7.282]"
+        },
+        {
+          "name": "output:OUT_Corridor",
+          "ok": true,
+          "detail": "points=1 prims=1 bbox=[6.0, 6.0, 120.0]"
+        },
+        {
+          "name": "drive:bays=3",
+          "ok": true,
+          "detail": "driven cook 0.019s: OUT_Cathedral=4940/4597, OUT_Collision=854/816, OUT_Rose=1032/288, OUT_Corridor=1/1"
+        },
+        {
+          "name": "restore_after_drive:bays",
+          "ok": true,
+          "detail": "golden cook restored: OUT_Cathedral=9278/8641, OUT_Collision=1682/1608, OUT_Rose=1032/288, OUT_Corridor=1/1"
+        },
+        {
+          "name": "drive:corridor_bays=4",
+          "ok": true,
+          "detail": "driven cook 0.007s: OUT_Cathedral=9278/8641, OUT_Collision=1682/1608, OUT_Rose=1032/288, OUT_Corridor=1/1"
+        },
+        {
+          "name": "restore_after_drive:corridor_bays",
+          "ok": true,
+          "detail": "golden cook restored: OUT_Cathedral=9278/8641, OUT_Collision=1682/1608, OUT_Rose=1032/288, OUT_Corridor=1/1"
+        },
+        {
+          "name": "node_errors",
+          "ok": true,
+          "detail": "0 error(s): []"
+        }
+      ],
+      "result": "PASS",
+      "definition": {
+        "node_type": "CrystalCathedralV3",
+        "description": "Melodia Crystal Cathedral V3: vault + rose + collision + corridor LOD fog",
+        "disabled": false
+      },
+      "parms": {
+        "source": "definition",
+        "names": [
+          "bay_length",
+          "bays",
+          "bevel_segments",
+          "bevel_width",
+          "corridor_bays",
+          "corridor_height",
+          "corridor_span",
+          "crystal",
+          "depth",
+          "facets",
+          "floor_divisions",
+          "height",
+          "seed",
+          "span",
+          "tracery",
+          "undulation_amp",
+          "undulation_period",
+          "wall_thickness"
+        ],
+        "count": 18
+      },
+      "network": [
+        {
+          "path": "corridor_fog_light",
+          "type": "Sop/volumevop"
+        },
+        {
+          "path": "corridor_fog_light/volumevopglobal1",
+          "type": "Vop/volumevopglobal"
+        },
+        {
+          "path": "corridor_fog_light/volumevopglobal1/suboutput1",
+          "type": "Vop/suboutput"
+        },
+        {
+          "path": "corridor_fog_light/volumevopglobal1/subinput1",
+          "type": "Vop/subinput"
+        },
+        {
+          "path": "corridor_fog_light/volumevopglobal1/P",
+          "type": "Vop/parameter"
+        },
+        {
+          "path": "corridor_fog_light/volumevopglobal1/ix",
+          "type": "Vop/parameter"
+        },
+        {
+          "path": "corridor_fog_light/volumevopglobal1/iy",
+          "type": "Vop/parameter"
+        },
+        {
+          "path": "corridor_fog_light/volumevopglobal1/iz",
+          "type": "Vop/parameter"
+        },
+        {
+          "path": "corridor_fog_light/volumevopglobal1/density",
+          "type": "Vop/parameter"
+        },
+        {
+          "path": "corridor_fog_light/volumevopglobal1/resx",
+          "type": "Vop/parameter"
+        },
+        {
+          "path": "corridor_fog_light/volumevopglobal1/resy",
+          "type": "Vop/parameter"
+        },
+        {
+          "path": "corridor_fog_light/volumevopglobal1/resz",
+          "type": "Vop/parameter"
+        },
+        {
+          "path": "corridor_fog_light/volumevopglobal1/dPdx",
+          "type": "Vop/parameter"
+        },
+        {
+          "path": "corridor_fog_light/volumevopglobal1/dPdy",
+          "type": "Vop/parameter"
+        },
+        {
+          "path": "corridor_fog_light/volumevopglobal1/dPdz",
+          "type": "Vop/parameter"
+        },
+        {
+          "path": "corridor_fog_light/volumevopglobal1/center",
+          "type": "Vop/parameter"
+        },
+        {
+          "path": "corridor_fog_light/volumevopglobal1/index_vec",
+          "type": "Vop/inttovec"
+        },
+        {
+          "path": "corridor_fog_light/volumevopglobal1/res_vec",
+          "type": "Vop/inttovec"
+        },
+        {
+          "path": "corridor_fog_light/volumevopglobal1/addconst1",
+          "type": "Vop/addconst"
+        },
+        {
+          "path": "corridor_fog_light/volumevopglobal1/bbox_pos",
+          "type": "Vop/divide"
+        },
+        {
+          "path": "corridor_fog_light/volumevopglobal1/Time",
+          "type": "Vop/parameter"
+        },
+        {
+          "path": "corridor_fog_light/volumevopglobal1/Timeinc",
+          "type": "Vop/parameter"
+        },
+        {
+          "path": "corridor_fog_light/volumevopglobal1/Frame",
+          "type": "Vop/parameter"
+        },
+        {
+          "path": "corridor_fog_light/volumevopglobal1/null1",
+          "type": "Vop/null"
+        },
+        {
+          "path": "corridor_fog_light/volumevopglobal1/resx_float",
+          "type": "Vop/inttofloat"
+        },
+        {
+          "path": "corridor_fog_light/volumevopglobal1/mulconst1",
+          "type": "Vop/mulconst"
+        },
+        {
+          "path": "corridor_fog_light/volumevopglobal1/multiply1",
+          "type": "Vop/multiply"
+        },
+        {
+          "path": "corridor_fog_light/volumevopglobal1/orig",
+          "type": "Vop/add"
+        },
+        {
+          "path": "corridor_fog_light/volumevopglobal1/resy_float1",
+          "type": "Vop/inttofloat"
+        },
+        {
+          "path": "corridor_fog_light/volumevopglobal1/mulconst2",
+          "type": "Vop/mulconst"
+        },
+        {
+          "path": "corridor_fog_light/volumevopglobal1/multiply2",
+          "type": "Vop/multiply"
+        },
+        {
+          "path": "corridor_fog_light/volumevopglobal1/resz_float2",
+          "type": "Vop/inttofloat"
+        },
+        {
+          "path": "corridor_fog_light/volumevopglobal1/mulconst3",
+          "type": "Vop/mulconst"
+        },
+        {
+          "path": "corridor_fog_light/volumevopglobal1/multiply3",
+          "type": "Vop/multiply"
+        },
+        {
+          "path": "corridor_fog_light/volumevopglobal1/length1",
+          "type": "Vop/length"
+        },
+        {
+          "path": "corridor_fog_light/volumevopglobal1/length2",
+          "type": "Vop/length"
+        },
+        {
+          "path": "corridor_fog_light/volumevopglobal1/length3",
+          "type": "Vop/length"
+        },
+        {
+          "path": "corridor_fog_light/volumevopglobal1/floattovec1",
+          "type": "Vop/floattovec"
+        },
+        {
+          "path": "corridor_fog_light/volumevopglobal1/mulconst4",
+          "type": "Vop/mulconst"
+        },
+        {
+          "path": "corridor_fog_light/volumevopglobal1/opinput2",
+          "type": "Vop/parameter"
+        },
+        {
+          "path": "corridor_fog_light/volumevopglobal1/opinput3",
+          "type": "Vop/parameter"
+        },
+        {
+          "path": "corridor_fog_light/volumevopglobal1/opinput4",
+          "type": "Vop/parameter"
+        },
+        {
+          "path": "corridor_fog_light/volumevopglobal1/opinput1",
+          "type": "Vop/parameter"
+        },
+        {
+          "path": "corridor_fog_light/volumevopoutput1",
+          "type": "Vop/volumevopoutput"
+        },
+        {
+          "path": "corridor_fog_light/volumevopoutput1/density_out",
+          "type": "Vop/parameter"
+        },
+        {
+          "path": "corridor_fog_light/volumevopoutput1/suboutput1",
+          "type": "Vop/suboutput"
+        },
+        {
+          "path": "corridor_fog_light/volumevopoutput1/subinput1",
+          "type": "Vop/subinput"
+        },
+        {
+          "path": "controls",
+          "type": "Sop/null"
+        },
+        {
+          "path": "arch_seed",
+          "type": "Sop/grid"
+        },
+        {
+          "path": "arch_profile",
+          "type": "Sop/attribwrangle"
+        },
+        {
+          "path": "arch_profile/attribvop1",
+          "type": "Sop/attribwranglecore"
+        },
+        {
+          "path": "nave_sweep",
+          "type": "Sop/attribwrangle"
+        },
+        {
+          "path": "nave_sweep/attribvop1",
+          "type": "Sop/attribwranglecore"
+        },
+        {
+          "path": "crystal_growth",
+          "type": "Sop/attribwrangle"
+        },
+        {
+          "path": "crystal_growth/attribvop1",
+          "type": "Sop/attribwranglecore"
+        },
+        {
+          "path": "weld_seams",
+          "type": "Sop/fuse::2.0"
+        },
+        {
+          "path": "wall_thicken",
+          "type": "Sop/polyextrude::2.0"
+        },
+        {
+          "path": "edge_bevel",
+          "type": "Sop/polybevel::2.0"
+        },
+        {
+          "path": "floor_surface",
+          "type": "Sop/grid"
+        },
+        {
+          "path": "face_normals",
+          "type": "Sop/normal"
+        },
+        {
+          "path": "merge_architecture",
+          "type": "Sop/merge"
+        },
+        {
+          "path": "OUT_Cathedral",
+          "type": "Sop/output"
+        },
+        {
+          "path": "drop_crystals",
+          "type": "Sop/blast"
+        },
+        {
+          "path": "OUT_Collision",
+          "type": "Sop/output"
+        },
+        {
+          "path": "rose_seed",
+          "type": "Sop/grid"
+        },
+        {
+          "path": "rose_window",
+          "type": "Sop/attribwrangle"
+        },
+        {
+          "path": "rose_window/attribvop1",
+          "type": "Sop/attribwranglecore"
+        },
+        {
+          "path": "OUT_Rose",
+          "type": "Sop/output"
+        },
+        {
+          "path": "corridor_seed",
+          "type": "Sop/grid"
+        },
+        {
+          "path": "corridor_build",
+          "type": "Sop/attribwrangle"
+        },
+        {
+          "path": "corridor_build/attribvop1",
+          "type": "Sop/attribwranglecore"
+        },
+        {
+          "path": "weld_corridor_seams",
+          "type": "Sop/fuse::2.0"
+        },
+        {
+          "path": "corridor_wall_thicken",
+          "type": "Sop/polyextrude::2.0"
+        },
+        {
+          "path": "corridor_edge_bevel",
+          "type": "Sop/polybevel::2.0"
+        },
+        {
+          "path": "lod_remove_0",
+          "type": "Sop/polyreduce::2.0"
+        },
+        {
+          "path": "lod_remove_1",
+          "type": "Sop/polyreduce::2.0"
+        },
+        {
+          "path": "lod_remove_2",
+          "type": "Sop/polyreduce::2.0"
+        },
+        {
+          "path": "corridor_fog_volume",
+          "type": "Sop/volume"
+        },
+        {
+          "path": "OUT_Corridor",
+          "type": "Sop/output"
+        }
+      ],
+      "cook": {
+        "seconds": 0.108,
+        "outputs": {
+          "OUT_Cathedral": {
+            "node": "OUT_Cathedral",
+            "points": 9278,
+            "prims": 8641,
+            "bbox": [
+              12.043,
+              45.443,
+              25.632
+            ]
+          },
+          "OUT_Collision": {
+            "node": "OUT_Collision",
+            "points": 1682,
+            "prims": 1608,
+            "bbox": [
+              12.036,
+              45.439,
+              7.282
+            ]
+          },
+          "OUT_Rose": {
+            "node": "OUT_Rose",
+            "points": 1032,
+            "prims": 288,
+            "bbox": [
+              8.137,
+              8.137,
+              2.377
+            ]
+          },
+          "OUT_Corridor": {
+            "node": "OUT_Corridor",
+            "points": 1,
+            "prims": 1,
+            "bbox": [
+              6.0,
+              6.0,
+              120.0
+            ]
+          }
+        },
+        "node_errors": [],
+        "node_warnings": [],
+        "node_warning_count": 0
+      },
+      "drive": [
+        {
+          "parm": "bays",
+          "set_to": 3,
+          "previous": 6,
+          "problems": [],
+          "outputs": {
+            "OUT_Cathedral": {
+              "points": 4940,
+              "prims": 4597
+            },
+            "OUT_Collision": {
+              "points": 854,
+              "prims": 816
+            },
+            "OUT_Rose": {
+              "points": 1032,
+              "prims": 288
+            },
+            "OUT_Corridor": {
+              "points": 1,
+              "prims": 1
+            }
+          }
+        },
+        {
+          "parm": "corridor_bays",
+          "set_to": 4,
+          "previous": 6,
+          "problems": [],
+          "outputs": {
+            "OUT_Cathedral": {
+              "points": 9278,
+              "prims": 8641
+            },
+            "OUT_Collision": {
+              "points": 1682,
+              "prims": 1608
+            },
+            "OUT_Rose": {
+              "points": 1032,
+              "prims": 288
+            },
+            "OUT_Corridor": {
+              "points": 1,
+              "prims": 1
+            }
+          }
+        }
+      ],
+      "wall_seconds": 0.213
+    },
+    {
+      "id": "foundry_field_atlas",
+      "status": "missing",
+      "path": "hda/HDA_Foundry_FieldAtlas_1.0.hda",
+      "node_type": null,
+      "checks": [
+        {
+          "name": "file_present",
+          "ok": false,
+          "detail": "OWED: hda/HDA_Foundry_FieldAtlas_1.0.hda (builder: none)"
+        }
+      ],
+      "result": "WARN",
+      "wall_seconds": 0.0
+    }
+  ],
+  "overall": "WARN"
+}

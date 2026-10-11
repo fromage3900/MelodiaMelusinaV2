@@ -1,0 +1,180 @@
+{
+  "MELODIA_AUDIT_ROOT": "D:/EnvironmentPortfolio/BS_GodFile/Saved/Audit",
+  "MELODIA_CACHE_ROOT": "D:/EnvironmentPortfolio/BS_GodFile/Saved/HoudiniFoundry",
+  "MELODIA_HDA_ROOT": "D:/EnvironmentPortfolio/BS_GodFile/hda",
+  "MELODIA_HOUDINI_ROOT": "D:/EnvironmentPortfolio/BS_GodFile/deploy/houdini",
+  "MELODIA_PACKAGE_ROOT": "D:/EnvironmentPortfolio/BS_GodFile/deploy/houdini/melodia_studio",
+  "MELODIA_ROOT": "D:/EnvironmentPortfolio/BS_GodFile",
+  "checks": [
+    {
+      "detail": "package_path=D:/EnvironmentPortfolio/BS_GodFile/deploy/houdini/packages",
+      "name": "pointer_installed",
+      "ok": true,
+      "required": true
+    },
+    {
+      "detail": "MELODIA_ROOT=D:/EnvironmentPortfolio/BS_GodFile",
+      "name": "package_env",
+      "ok": true,
+      "required": true
+    },
+    {
+      "detail": "package root on HOUDINI_PATH: D:/EnvironmentPortfolio/BS_GodFile/deploy/houdini/melodia_studio",
+      "name": "houdini_path",
+      "ok": true,
+      "required": true
+    },
+    {
+      "detail": "Melodia_Studio -> D:/EnvironmentPortfolio/BS_GodFile/deploy/houdini/melodia_studio/desktop/Melodia_Studio.desk",
+      "name": "desk_discovered",
+      "ok": true,
+      "required": true
+    },
+    {
+      "detail": "Melodia_KineFX -> D:/EnvironmentPortfolio/BS_GodFile/deploy/houdini/melodia_studio/desktop/Melodia_KineFX.desk",
+      "name": "desk_discovered",
+      "ok": true,
+      "required": true
+    },
+    {
+      "detail": "D:/EnvironmentPortfolio/BS_GodFile/deploy/houdini/melodia_studio/toolbar/Melodia.shelf",
+      "name": "shelf_file",
+      "ok": true,
+      "required": true
+    },
+    {
+      "detail": "'melodia' present (61 shelves registered)",
+      "name": "shelf_loaded",
+      "ok": true,
+      "required": true
+    },
+    {
+      "detail": "8/8 tools",
+      "name": "shelf_tools",
+      "ok": true,
+      "required": true
+    },
+    {
+      "detail": "D:\\EnvironmentPortfolio/BS_GodFile/deploy/houdini/melodia_studio/scripts/python\\melodia_studio\\__init__.py",
+      "name": "module_import",
+      "ok": true,
+      "required": true
+    },
+    {
+      "detail": "Melodia_Studio: 6 panes, 6 mode tokens, 1 shelf sets",
+      "name": "desk_syntax",
+      "ok": true,
+      "required": true
+    },
+    {
+      "detail": "Melodia_KineFX: 6 panes, 6 mode tokens, 1 shelf sets",
+      "name": "desk_syntax",
+      "ok": true,
+      "required": true
+    },
+    {
+      "detail": "melodia_shelf_set in Melodia.shelf: True",
+      "name": "shelf_set_defined",
+      "ok": true,
+      "required": true
+    },
+    {
+      "detail": "8 handlers: animation_doctor,copernicus,evidence,foundry_validate,project,shorewake,ue_handoff,vellum_cache",
+      "name": "tool_registry",
+      "ok": true,
+      "required": true
+    },
+    {
+      "detail": "melodia_project -> Melodia Houdini Studio 1.0.0",
+      "name": "tool_launch",
+      "ok": true,
+      "required": true
+    },
+    {
+      "detail": "melodia_animation_doctor -> AnimationDoctor artifacts under this repo",
+      "name": "tool_launch",
+      "ok": true,
+      "required": true
+    },
+    {
+      "detail": "melodia_shorewake -> Shorewake wardrobe sources inside this repo",
+      "name": "tool_launch",
+      "ok": true,
+      "required": true
+    },
+    {
+      "detail": "melodia_vellum_cache -> Vellum / cache root: Saved/HoudiniFoundry",
+      "name": "tool_launch",
+      "ok": true,
+      "required": true
+    },
+    {
+      "detail": "melodia_copernicus -> Copernicus lane",
+      "name": "tool_launch",
+      "ok": true,
+      "required": true
+    },
+    {
+      "detail": "melodia_foundry_validate -> Foundry validator",
+      "name": "tool_launch",
+      "ok": true,
+      "required": true
+    },
+    {
+      "detail": "melodia_evidence -> Evidence manifest written:",
+      "name": "tool_launch",
+      "ok": true,
+      "required": true
+    },
+    {
+      "detail": "melodia_ue_handoff -> UE handoff contract (read-only from this lane)",
+      "name": "tool_launch",
+      "ok": true,
+      "required": true
+    },
+    {
+      "detail": "unreachable handlers: none",
+      "name": "tool_wiring",
+      "ok": true,
+      "required": true
+    },
+    {
+      "detail": "scanned melodia_studio",
+      "name": "no_machine_paths",
+      "ok": true,
+      "required": true
+    },
+    {
+      "detail": "scanned packages",
+      "name": "no_machine_paths",
+      "ok": true,
+      "required": true
+    }
+  ],
+  "desktops": [
+    "Melodia_Studio",
+    "Melodia_KineFX"
+  ],
+  "gate": "0A",
+  "git_head": "d4f4a3b1036e",
+  "gui_acceptance": "owner-held: desktop visible, switch, reload survival, screenshots",
+  "headless_ok": true,
+  "houdini_version": "22.0.368",
+  "name": "setup",
+  "on_houdini_path": true,
+  "package_root": "D:/EnvironmentPortfolio/BS_GodFile/deploy/houdini/melodia_studio",
+  "pointer_path": "c:\\home\\houdini22.0\\packages\\melodia_studio_local.json",
+  "repo_root": "D:\\EnvironmentPortfolio\\BS_GodFile",
+  "schema": "melodia.houdini_studio.manifest/1",
+  "shelf": "melodia",
+  "shelf_tools": [
+    "melodia_project",
+    "melodia_animation_doctor",
+    "melodia_shorewake",
+    "melodia_vellum_cache",
+    "melodia_copernicus",
+    "melodia_foundry_validate",
+    "melodia_evidence",
+    "melodia_ue_handoff"
+  ]
+}

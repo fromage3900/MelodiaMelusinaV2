@@ -1,0 +1,62 @@
+{
+  "schema": "melodia.hand_sleeve_candidate_fbx_roundtrip.v1",
+  "fbx": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\MelusinaVisualPolish_20261003\\hand_sleeve_rigid_candidate.fbx",
+  "export_settings": {
+    "global_scale": 1.0,
+    "apply_scale_options": "FBX_SCALE_NONE",
+    "add_leaf_bones": false,
+    "bake_anim": false,
+    "use_mesh_modifiers": false
+  },
+  "expected": {
+    "candidate_mesh_vertices": 8084,
+    "candidate_mesh_polygons": 12628,
+    "bone_count": 464,
+    "candidate_matrix_scale": [
+      0.009999999776482582,
+      0.009999999776482582,
+      0.009999999776482582
+    ],
+    "slot_names": [
+      "MI_Melusina_Nikki_GLOVES_001",
+      "MI_Melusina_Nikki_sleeve_003",
+      "MI_Melusina_Nikki_bow_002",
+      "MI_Melusina_Nikki_frontpanel_001",
+      "MI_Melusina_Nikki_SHAWL_001",
+      "MI_Melusina_Outline_005.001",
+      "MI_Melusina_Nikki_bow_002_6",
+      "MI_Melusina_Nikki_frontpanel_001_7",
+      "MI_Melusina_Nikki_SHAWL_001_8",
+      "MI_Melusina_Outline_005_9"
+    ],
+    "weight_group_count": 119,
+    "fbx_sha256": "fc53e3daf354ba8c10af4dd2c0e5ed08c1bc55af881a096d36936d8b752b2355"
+  },
+  "roundtrip": {
+    "mesh": "Accessories_HandSleeveFit_Review",
+    "vertices": 8084,
+    "polygons": 12628,
+    "matrix_scale": [
+      0.009999999776482582,
+      0.009999999776482582,
+      0.009999999776482582
+    ],
+    "armature_modifier": "root.002",
+    "material_slots": [
+      "MI_Melusina_Nikki_GLOVES_001.001",
+      "MI_Melusina_Nikki_sleeve_003.001",
+      "MI_Melusina_Nikki_bow_002.001",
+      "MI_Melusina_Nikki_frontpanel_001.001",
+      "MI_Melusina_Nikki_SHAWL_001.001",
+      "MI_Melusina_Outline_005.002",
+      "MI_Melusina_Nikki_bow_002_6.001",
+      "MI_Melusina_Nikki_frontpanel_001_7.001",
+      "MI_Melusina_Nikki_SHAWL_001_8.001",
+      "MI_Melusina_Outline_005_9.001"
+    ],
+    "vertex_group_count": 119,
+    "bone_count": 464
+  },
+  "validated": true,
+  "note": "Roundtrip checks payload, material slots, topology, armature, and imported scale only; no UE import or runtime proof."
+}

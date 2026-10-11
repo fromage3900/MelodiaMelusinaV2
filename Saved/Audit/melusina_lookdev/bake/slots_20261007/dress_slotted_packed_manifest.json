@@ -1,0 +1,27 @@
+{
+  "schema": "melodia.dress_uv_repack.v1",
+  "timestamp": "2026-10-07T17:27:24.855507+00:00",
+  "src": "Saved\\Audit\\melusina_lookdev\\bake\\slots_20261007\\SM_ShorewakeDress_48MAT_rescue_slotted.obj",
+  "out_bgeo": "Saved\\Audit\\melusina_lookdev\\bake\\slots_20261007\\dress_slotted_packed.bgeo",
+  "out_bytes": 14827897,
+  "points": 183741,
+  "prims": 206780,
+  "tool": "labs::autouv (auto seams, asymmetric-safe: no mirror repair)",
+  "winding_note": "unchanged in this pass; per-region normalize is lookdev-staging work",
+  "qa": {
+    "sampled_prims": 10339,
+    "zero_uv_area_in_sample": 0,
+    "uv_min": [
+      0.0009765625,
+      0.0009765625
+    ],
+    "uv_max": [
+      0.9966639280319214,
+      0.9946792721748352
+    ],
+    "grid_res": 128,
+    "grid_cells_touched": 8942,
+    "grid_coverage_frac": 0.5458,
+    "grid_overlap_cells": 4038
+  }
+}

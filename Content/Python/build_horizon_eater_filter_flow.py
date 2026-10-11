@@ -75,6 +75,8 @@ def build(use_filter: bool = False) -> dict:
             continue
         try:
             g.remove_edge(a, "Out", b, "Out" if b == output_node else "In")
+            if b == output_node:
+                g.remove_edge(a, "Out", b, "In")  # legacy wrong-label edge (2026-10-07 audit)
         except Exception:
             pass
 

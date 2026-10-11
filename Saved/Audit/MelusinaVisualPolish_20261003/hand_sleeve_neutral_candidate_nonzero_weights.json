@@ -1,0 +1,1210 @@
+{
+  "schema": "melodia.hand_sleeve_final_candidate_nonzero_weights.v1",
+  "fbx": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\MelusinaVisualPolish_20261003\\hand_sleeve_neutral_candidate.fbx",
+  "fbx_sha256": "027b0be5a984e3fa995a728eddb7ed16a92cfdf993587cfca0353bd4d513bbc2",
+  "mesh": "Accessories_HandSleeveFit_Review",
+  "armature_object": "root",
+  "mesh_vertex_count": 8084,
+  "mesh_polygon_count": 12628,
+  "vertex_group_count": 119,
+  "groups_with_nonzero_weights_count": 119,
+  "groups_without_nonzero_weights": [],
+  "nonzero_group_name_missing_from_armature_bones": [],
+  "weighted_bone_names_count": 119,
+  "weighted_bone_names": [
+    "root_x",
+    "thigh_twist_2_l",
+    "thigh_twist_2_r",
+    "c_kilt_01_01_l",
+    "c_kilt_01_02_l",
+    "c_kilt_01_03_l",
+    "c_kilt_01_04_l",
+    "c_kilt_02_02_l",
+    "c_kilt_02_03_l",
+    "c_kilt_02_04_l",
+    "c_kilt_03_02_l",
+    "c_kilt_03_03_l",
+    "c_kilt_03_04_l",
+    "c_kilt_04_02_l",
+    "c_kilt_04_03_l",
+    "c_kilt_04_04_l",
+    "c_kilt_05_02_l",
+    "c_kilt_05_03_l",
+    "c_kilt_05_04_l",
+    "c_kilt_06_01_l",
+    "c_kilt_06_02_l",
+    "c_kilt_06_03_l",
+    "c_kilt_06_04_l",
+    "c_kilt_01_01_r",
+    "c_kilt_01_02_r",
+    "c_kilt_01_03_r",
+    "c_kilt_01_04_r",
+    "c_kilt_02_02_r",
+    "c_kilt_02_03_r",
+    "c_kilt_02_04_r",
+    "c_kilt_03_02_r",
+    "c_kilt_03_03_r",
+    "c_kilt_03_04_r",
+    "c_kilt_04_02_r",
+    "c_kilt_04_03_r",
+    "c_kilt_04_04_r",
+    "c_kilt_05_02_r",
+    "c_kilt_05_03_r",
+    "c_kilt_05_04_r",
+    "c_kilt_06_02_r",
+    "c_kilt_06_03_r",
+    "c_kilt_06_04_r",
+    "c_kilt_07_01_l",
+    "c_kilt_07_02_l",
+    "c_kilt_07_03_l",
+    "c_kilt_07_04_l",
+    "c_kilt_08_01_l",
+    "c_kilt_08_02_l",
+    "c_kilt_08_03_l",
+    "c_kilt_08_04_l",
+    "c_kilt_07_01_r",
+    "c_kilt_07_02_r",
+    "c_kilt_07_03_r",
+    "c_kilt_07_04_r",
+    "c_kilt_08_01_r",
+    "c_kilt_08_02_r",
+    "c_kilt_08_03_r",
+    "c_kilt_08_04_r",
+    "spine_02_x",
+    "spine_03_x",
+    "shoulder_r",
+    "arm_stretch_r",
+    "c_arm_twist_offset_r",
+    "arm_twist_2_r",
+    "forearm_stretch_r",
+    "hand_r",
+    "c_pinky1_base_r",
+    "c_ring1_base_r",
+    "c_middle1_base_r",
+    "c_index1_base_r",
+    "thumb1_r",
+    "thumb2_r",
+    "thumb3_r",
+    "pinky1_r",
+    "pinky2_r",
+    "pinky3_r",
+    "ring1_r",
+    "ring2_r",
+    "ring3_r",
+    "middle1_r",
+    "middle2_r",
+    "middle3_r",
+    "index1_r",
+    "index2_r",
+    "index3_r",
+    "forearm_twist_r",
+    "forearm_twist_2_r",
+    "shoulder_l",
+    "arm_stretch_l",
+    "c_arm_twist_offset_l",
+    "arm_twist_2_l",
+    "forearm_stretch_l",
+    "hand_l",
+    "c_pinky1_base_l",
+    "c_ring1_base_l",
+    "c_middle1_base_l",
+    "c_index1_base_l",
+    "thumb1_l",
+    "thumb2_l",
+    "thumb3_l",
+    "pinky1_l",
+    "pinky2_l",
+    "pinky3_l",
+    "ring1_l",
+    "ring2_l",
+    "ring3_l",
+    "middle1_l",
+    "middle2_l",
+    "middle3_l",
+    "index1_l",
+    "index2_l",
+    "index3_l",
+    "forearm_twist_l",
+    "forearm_twist_2_l",
+    "ORG-face",
+    "DEF-chin",
+    "DEF-chin_R",
+    "DEF-jaw",
+    "DEF-jaw_R_001"
+  ],
+  "groups": [
+    {
+      "name": "root_x",
+      "index": 0,
+      "is_bone_name": true,
+      "nonzero_vertex_count": 42,
+      "weight_sum": 5.718318462371826,
+      "min_nonzero_weight": 0.11252002418041229,
+      "max_weight": 0.24696727097034454
+    },
+    {
+      "name": "thigh_twist_2_l",
+      "index": 1,
+      "is_bone_name": true,
+      "nonzero_vertex_count": 1,
+      "weight_sum": 0.10365453362464905,
+      "min_nonzero_weight": 0.10365453362464905,
+      "max_weight": 0.10365453362464905
+    },
+    {
+      "name": "thigh_twist_2_r",
+      "index": 2,
+      "is_bone_name": true,
+      "nonzero_vertex_count": 4,
+      "weight_sum": 0.560112938284874,
+      "min_nonzero_weight": 0.13432517647743225,
+      "max_weight": 0.14802777767181396
+    },
+    {
+      "name": "c_kilt_01_01_l",
+      "index": 3,
+      "is_bone_name": true,
+      "nonzero_vertex_count": 198,
+      "weight_sum": 61.66982541233301,
+      "min_nonzero_weight": 0.01187151949852705,
+      "max_weight": 0.6448615193367004
+    },
+    {
+      "name": "c_kilt_01_02_l",
+      "index": 4,
+      "is_bone_name": true,
+      "nonzero_vertex_count": 156,
+      "weight_sum": 46.932936437428,
+      "min_nonzero_weight": 0.01931792125105858,
+      "max_weight": 0.8273289203643799
+    },
+    {
+      "name": "c_kilt_01_03_l",
+      "index": 5,
+      "is_bone_name": true,
+      "nonzero_vertex_count": 118,
+      "weight_sum": 33.81412998889573,
+      "min_nonzero_weight": 0.001144426641985774,
+      "max_weight": 0.956588089466095
+    },
+    {
+      "name": "c_kilt_01_04_l",
+      "index": 6,
+      "is_bone_name": true,
+      "nonzero_vertex_count": 59,
+      "weight_sum": 19.389745824970305,
+      "min_nonzero_weight": 0.0068818191066384315,
+      "max_weight": 0.8590981960296631
+    },
+    {
+      "name": "c_kilt_02_02_l",
+      "index": 7,
+      "is_bone_name": true,
+      "nonzero_vertex_count": 9,
+      "weight_sum": 6.223743040114641,
+      "min_nonzero_weight": 0.035965513437986374,
+      "max_weight": 1.0
+    },
+    {
+      "name": "c_kilt_02_03_l",
+      "index": 8,
+      "is_bone_name": true,
+      "nonzero_vertex_count": 52,
+      "weight_sum": 11.227069588378072,
+      "min_nonzero_weight": 0.012375066988170147,
+      "max_weight": 1.0
+    },
+    {
+      "name": "c_kilt_02_04_l",
+      "index": 9,
+      "is_bone_name": true,
+      "nonzero_vertex_count": 37,
+      "weight_sum": 14.304112248122692,
+      "min_nonzero_weight": 0.0156557559967041,
+      "max_weight": 1.0
+    },
+    {
+      "name": "c_kilt_03_02_l",
+      "index": 10,
+      "is_bone_name": true,
+      "nonzero_vertex_count": 4,
+      "weight_sum": 3.5233386754989624,
+      "min_nonzero_weight": 0.7433890104293823,
+      "max_weight": 1.0
+    },
+    {
+      "name": "c_kilt_03_03_l",
+      "index": 11,
+      "is_bone_name": true,
+      "nonzero_vertex_count": 7,
+      "weight_sum": 3.0282139405608177,
+      "min_nonzero_weight": 0.11367971450090408,
+      "max_weight": 1.0
+    },
+    {
+      "name": "c_kilt_03_04_l",
+      "index": 12,
+      "is_bone_name": true,
+      "nonzero_vertex_count": 33,
+      "weight_sum": 17.98728907853365,
+      "min_nonzero_weight": 0.06027313694357872,
+      "max_weight": 0.9535057544708252
+    },
+    {
+      "name": "c_kilt_04_02_l",
+      "index": 13,
+      "is_bone_name": true,
+      "nonzero_vertex_count": 4,
+      "weight_sum": 2.440695807337761,
+      "min_nonzero_weight": 0.18408484756946564,
+      "max_weight": 1.0
+    },
+    {
+      "name": "c_kilt_04_03_l",
+      "index": 14,
+      "is_bone_name": true,
+      "nonzero_vertex_count": 10,
+      "weight_sum": 5.152895353734493,
+      "min_nonzero_weight": 0.032349128276109695,
+      "max_weight": 0.9349355101585388
+    },
+    {
+      "name": "c_kilt_04_04_l",
+      "index": 15,
+      "is_bone_name": true,
+      "nonzero_vertex_count": 21,
+      "weight_sum": 11.162310265004635,
+      "min_nonzero_weight": 0.04649423807859421,
+      "max_weight": 0.9302815198898315
+    },
+    {
+      "name": "c_kilt_05_02_l",
+      "index": 16,
+      "is_bone_name": true,
+      "nonzero_vertex_count": 9,
+      "weight_sum": 4.217746272683144,
+      "min_nonzero_weight": 0.05119401961565018,
+      "max_weight": 1.0
+    },
+    {
+      "name": "c_kilt_05_03_l",
+      "index": 17,
+      "is_bone_name": true,
+      "nonzero_vertex_count": 24,
+      "weight_sum": 14.599526893347502,
+      "min_nonzero_weight": 0.03535515442490578,
+      "max_weight": 0.9782558679580688
+    },
+    {
+      "name": "c_kilt_05_04_l",
+      "index": 18,
+      "is_bone_name": true,
+      "nonzero_vertex_count": 29,
+      "weight_sum": 11.958632826805115,
+      "min_nonzero_weight": 0.021744105964899063,
+      "max_weight": 1.0
+    },
+    {
+      "name": "c_kilt_06_01_l",
+      "index": 19,
+      "is_bone_name": true,
+      "nonzero_vertex_count": 56,
+      "weight_sum": 56.0,
+      "min_nonzero_weight": 1.0,
+      "max_weight": 1.0
+    },
+    {
+      "name": "c_kilt_06_02_l",
+      "index": 20,
+      "is_bone_name": true,
+      "nonzero_vertex_count": 4,
+      "weight_sum": 3.8829175233840942,
+      "min_nonzero_weight": 0.8829175233840942,
+      "max_weight": 1.0
+    },
+    {
+      "name": "c_kilt_06_03_l",
+      "index": 21,
+      "is_bone_name": true,
+      "nonzero_vertex_count": 8,
+      "weight_sum": 5.118181020021439,
+      "min_nonzero_weight": 0.09214923530817032,
+      "max_weight": 0.845304012298584
+    },
+    {
+      "name": "c_kilt_06_04_l",
+      "index": 22,
+      "is_bone_name": true,
+      "nonzero_vertex_count": 16,
+      "weight_sum": 9.91479367017746,
+      "min_nonzero_weight": 0.35585564374923706,
+      "max_weight": 0.7837796807289124
+    },
+    {
+      "name": "c_kilt_01_01_r",
+      "index": 23,
+      "is_bone_name": true,
+      "nonzero_vertex_count": 205,
+      "weight_sum": 85.5303584181238,
+      "min_nonzero_weight": 1.5259021893143654e-05,
+      "max_weight": 0.7148699164390564
+    },
+    {
+      "name": "c_kilt_01_02_r",
+      "index": 24,
+      "is_bone_name": true,
+      "nonzero_vertex_count": 230,
+      "weight_sum": 63.0842296872288,
+      "min_nonzero_weight": 0.01921110786497593,
+      "max_weight": 0.8708171248435974
+    },
+    {
+      "name": "c_kilt_01_03_r",
+      "index": 25,
+      "is_bone_name": true,
+      "nonzero_vertex_count": 119,
+      "weight_sum": 35.28261219919659,
+      "min_nonzero_weight": 0.0029755092691630125,
+      "max_weight": 0.9651636481285095
+    },
+    {
+      "name": "c_kilt_01_04_r",
+      "index": 26,
+      "is_bone_name": true,
+      "nonzero_vertex_count": 64,
+      "weight_sum": 22.404806554317474,
+      "min_nonzero_weight": 0.017898833379149437,
+      "max_weight": 0.9112077355384827
+    },
+    {
+      "name": "c_kilt_02_02_r",
+      "index": 27,
+      "is_bone_name": true,
+      "nonzero_vertex_count": 14,
+      "weight_sum": 6.657328136265278,
+      "min_nonzero_weight": 0.04080262407660484,
+      "max_weight": 1.0
+    },
+    {
+      "name": "c_kilt_02_03_r",
+      "index": 28,
+      "is_bone_name": true,
+      "nonzero_vertex_count": 60,
+      "weight_sum": 12.338857042137533,
+      "min_nonzero_weight": 0.0018616006709635258,
+      "max_weight": 1.0
+    },
+    {
+      "name": "c_kilt_02_04_r",
+      "index": 29,
+      "is_bone_name": true,
+      "nonzero_vertex_count": 41,
+      "weight_sum": 13.213672038167715,
+      "min_nonzero_weight": 0.0028381780721247196,
+      "max_weight": 1.0
+    },
+    {
+      "name": "c_kilt_03_02_r",
+      "index": 30,
+      "is_bone_name": true,
+      "nonzero_vertex_count": 5,
+      "weight_sum": 3.8799267411231995,
+      "min_nonzero_weight": 0.2585641145706177,
+      "max_weight": 1.0
+    },
+    {
+      "name": "c_kilt_03_03_r",
+      "index": 31,
+      "is_bone_name": true,
+      "nonzero_vertex_count": 7,
+      "weight_sum": 3.5280842557549477,
+      "min_nonzero_weight": 0.09893950074911118,
+      "max_weight": 1.0
+    },
+    {
+      "name": "c_kilt_03_04_r",
+      "index": 32,
+      "is_bone_name": true,
+      "nonzero_vertex_count": 33,
+      "weight_sum": 18.52478851377964,
+      "min_nonzero_weight": 0.056198976933956146,
+      "max_weight": 0.963714063167572
+    },
+    {
+      "name": "c_kilt_04_02_r",
+      "index": 33,
+      "is_bone_name": true,
+      "nonzero_vertex_count": 3,
+      "weight_sum": 2.7414358854293823,
+      "min_nonzero_weight": 0.7414358854293823,
+      "max_weight": 1.0
+    },
+    {
+      "name": "c_kilt_04_03_r",
+      "index": 34,
+      "is_bone_name": true,
+      "nonzero_vertex_count": 10,
+      "weight_sum": 5.409140191972256,
+      "min_nonzero_weight": 0.07562371343374252,
+      "max_weight": 0.9090867638587952
+    },
+    {
+      "name": "c_kilt_04_04_r",
+      "index": 35,
+      "is_bone_name": true,
+      "nonzero_vertex_count": 21,
+      "weight_sum": 11.501228287816048,
+      "min_nonzero_weight": 0.03628595545887947,
+      "max_weight": 0.9309223890304565
+    },
+    {
+      "name": "c_kilt_05_02_r",
+      "index": 36,
+      "is_bone_name": true,
+      "nonzero_vertex_count": 16,
+      "weight_sum": 8.89195066690445,
+      "min_nonzero_weight": 0.05993743985891342,
+      "max_weight": 1.0
+    },
+    {
+      "name": "c_kilt_05_03_r",
+      "index": 37,
+      "is_bone_name": true,
+      "nonzero_vertex_count": 23,
+      "weight_sum": 12.193011360941455,
+      "min_nonzero_weight": 0.003707942320033908,
+      "max_weight": 0.9528191089630127
+    },
+    {
+      "name": "c_kilt_05_04_r",
+      "index": 38,
+      "is_bone_name": true,
+      "nonzero_vertex_count": 30,
+      "weight_sum": 13.908873111009598,
+      "min_nonzero_weight": 0.0471808947622776,
+      "max_weight": 1.0
+    },
+    {
+      "name": "c_kilt_06_02_r",
+      "index": 39,
+      "is_bone_name": true,
+      "nonzero_vertex_count": 8,
+      "weight_sum": 7.244800508022308,
+      "min_nonzero_weight": 0.3786373734474182,
+      "max_weight": 1.0
+    },
+    {
+      "name": "c_kilt_06_03_r",
+      "index": 40,
+      "is_bone_name": true,
+      "nonzero_vertex_count": 6,
+      "weight_sum": 4.247104629874229,
+      "min_nonzero_weight": 0.19781796634197235,
+      "max_weight": 0.843900203704834
+    },
+    {
+      "name": "c_kilt_06_04_r",
+      "index": 41,
+      "is_bone_name": true,
+      "nonzero_vertex_count": 16,
+      "weight_sum": 9.557228744029999,
+      "min_nonzero_weight": 0.3504997193813324,
+      "max_weight": 0.773617148399353
+    },
+    {
+      "name": "c_kilt_07_01_l",
+      "index": 42,
+      "is_bone_name": true,
+      "nonzero_vertex_count": 5,
+      "weight_sum": 2.695719838142395,
+      "min_nonzero_weight": 0.39108872413635254,
+      "max_weight": 0.8110170364379883
+    },
+    {
+      "name": "c_kilt_07_02_l",
+      "index": 43,
+      "is_bone_name": true,
+      "nonzero_vertex_count": 12,
+      "weight_sum": 6.12883192114532,
+      "min_nonzero_weight": 0.031067369505763054,
+      "max_weight": 1.0
+    },
+    {
+      "name": "c_kilt_07_03_l",
+      "index": 44,
+      "is_bone_name": true,
+      "nonzero_vertex_count": 13,
+      "weight_sum": 5.523720070719719,
+      "min_nonzero_weight": 0.1575341373682022,
+      "max_weight": 0.9078507423400879
+    },
+    {
+      "name": "c_kilt_07_04_l",
+      "index": 45,
+      "is_bone_name": true,
+      "nonzero_vertex_count": 24,
+      "weight_sum": 12.881773069500923,
+      "min_nonzero_weight": 0.21622033417224884,
+      "max_weight": 0.842465877532959
+    },
+    {
+      "name": "c_kilt_08_01_l",
+      "index": 46,
+      "is_bone_name": true,
+      "nonzero_vertex_count": 7,
+      "weight_sum": 4.676417201757431,
+      "min_nonzero_weight": 0.3630273938179016,
+      "max_weight": 1.0
+    },
+    {
+      "name": "c_kilt_08_02_l",
+      "index": 47,
+      "is_bone_name": true,
+      "nonzero_vertex_count": 13,
+      "weight_sum": 7.882108882069588,
+      "min_nonzero_weight": 0.1600671410560608,
+      "max_weight": 0.9689326286315918
+    },
+    {
+      "name": "c_kilt_08_03_l",
+      "index": 48,
+      "is_bone_name": true,
+      "nonzero_vertex_count": 10,
+      "weight_sum": 5.2114595621824265,
+      "min_nonzero_weight": 0.14023041725158691,
+      "max_weight": 0.8857709765434265
+    },
+    {
+      "name": "c_kilt_08_04_l",
+      "index": 49,
+      "is_bone_name": true,
+      "nonzero_vertex_count": 32,
+      "weight_sum": 17.187670722603798,
+      "min_nonzero_weight": 0.1769130975008011,
+      "max_weight": 0.8597695827484131
+    },
+    {
+      "name": "c_kilt_07_01_r",
+      "index": 50,
+      "is_bone_name": true,
+      "nonzero_vertex_count": 16,
+      "weight_sum": 5.849820777773857,
+      "min_nonzero_weight": 0.2368810623884201,
+      "max_weight": 0.801495373249054
+    },
+    {
+      "name": "c_kilt_07_02_r",
+      "index": 51,
+      "is_bone_name": true,
+      "nonzero_vertex_count": 19,
+      "weight_sum": 10.675013318657875,
+      "min_nonzero_weight": 0.02836652100086212,
+      "max_weight": 1.0
+    },
+    {
+      "name": "c_kilt_07_03_r",
+      "index": 52,
+      "is_bone_name": true,
+      "nonzero_vertex_count": 13,
+      "weight_sum": 5.54866860806942,
+      "min_nonzero_weight": 0.17964446544647217,
+      "max_weight": 1.0
+    },
+    {
+      "name": "c_kilt_07_04_r",
+      "index": 53,
+      "is_bone_name": true,
+      "nonzero_vertex_count": 25,
+      "weight_sum": 14.72474254667759,
+      "min_nonzero_weight": 0.24089418351650238,
+      "max_weight": 1.0
+    },
+    {
+      "name": "c_kilt_08_01_r",
+      "index": 54,
+      "is_bone_name": true,
+      "nonzero_vertex_count": 6,
+      "weight_sum": 3.265964776277542,
+      "min_nonzero_weight": 0.29071488976478577,
+      "max_weight": 1.0
+    },
+    {
+      "name": "c_kilt_08_02_r",
+      "index": 55,
+      "is_bone_name": true,
+      "nonzero_vertex_count": 16,
+      "weight_sum": 9.397344961762428,
+      "min_nonzero_weight": 0.08131533116102219,
+      "max_weight": 0.9716334939002991
+    },
+    {
+      "name": "c_kilt_08_03_r",
+      "index": 56,
+      "is_bone_name": true,
+      "nonzero_vertex_count": 9,
+      "weight_sum": 3.5854276418685913,
+      "min_nonzero_weight": 0.08113221824169159,
+      "max_weight": 0.8037232160568237
+    },
+    {
+      "name": "c_kilt_08_04_r",
+      "index": 57,
+      "is_bone_name": true,
+      "nonzero_vertex_count": 27,
+      "weight_sum": 11.695689350366592,
+      "min_nonzero_weight": 0.1421072781085968,
+      "max_weight": 0.7591058015823364
+    },
+    {
+      "name": "spine_02_x",
+      "index": 58,
+      "is_bone_name": true,
+      "nonzero_vertex_count": 806,
+      "weight_sum": 119.8089724816382,
+      "min_nonzero_weight": 0.04602121189236641,
+      "max_weight": 0.20202945172786713
+    },
+    {
+      "name": "spine_03_x",
+      "index": 59,
+      "is_bone_name": true,
+      "nonzero_vertex_count": 1249,
+      "weight_sum": 180.5457694977522,
+      "min_nonzero_weight": 0.10273899137973785,
+      "max_weight": 0.20999465882778168
+    },
+    {
+      "name": "shoulder_r",
+      "index": 60,
+      "is_bone_name": true,
+      "nonzero_vertex_count": 232,
+      "weight_sum": 19.501197904814035,
+      "min_nonzero_weight": 1.5259021893143654e-05,
+      "max_weight": 0.126039519906044
+    },
+    {
+      "name": "arm_stretch_r",
+      "index": 61,
+      "is_bone_name": true,
+      "nonzero_vertex_count": 964,
+      "weight_sum": 286.7575495049823,
+      "min_nonzero_weight": 9.155413135886192e-05,
+      "max_weight": 0.9161211848258972
+    },
+    {
+      "name": "c_arm_twist_offset_r",
+      "index": 62,
+      "is_bone_name": true,
+      "nonzero_vertex_count": 558,
+      "weight_sum": 18.069626949727535,
+      "min_nonzero_weight": 0.0005493247881531715,
+      "max_weight": 0.13171587884426117
+    },
+    {
+      "name": "arm_twist_2_r",
+      "index": 63,
+      "is_bone_name": true,
+      "nonzero_vertex_count": 834,
+      "weight_sum": 294.81299996515736,
+      "min_nonzero_weight": 0.0002899214159697294,
+      "max_weight": 0.8805981278419495
+    },
+    {
+      "name": "forearm_stretch_r",
+      "index": 64,
+      "is_bone_name": true,
+      "nonzero_vertex_count": 919,
+      "weight_sum": 246.09974813833833,
+      "min_nonzero_weight": 0.00015259021893143654,
+      "max_weight": 0.9803311228752136
+    },
+    {
+      "name": "hand_r",
+      "index": 65,
+      "is_bone_name": true,
+      "nonzero_vertex_count": 347,
+      "weight_sum": 56.65705348458141,
+      "min_nonzero_weight": 0.0076752882450819016,
+      "max_weight": 0.8398718237876892
+    },
+    {
+      "name": "c_pinky1_base_r",
+      "index": 66,
+      "is_bone_name": true,
+      "nonzero_vertex_count": 833,
+      "weight_sum": 251.3346298323013,
+      "min_nonzero_weight": 0.0004577706567943096,
+      "max_weight": 1.0
+    },
+    {
+      "name": "c_ring1_base_r",
+      "index": 67,
+      "is_bone_name": true,
+      "nonzero_vertex_count": 62,
+      "weight_sum": 8.697795053943992,
+      "min_nonzero_weight": 0.010223545134067535,
+      "max_weight": 0.6780041456222534
+    },
+    {
+      "name": "c_middle1_base_r",
+      "index": 68,
+      "is_bone_name": true,
+      "nonzero_vertex_count": 27,
+      "weight_sum": 5.836957393214107,
+      "min_nonzero_weight": 0.021652551367878914,
+      "max_weight": 0.7800107002258301
+    },
+    {
+      "name": "c_index1_base_r",
+      "index": 69,
+      "is_bone_name": true,
+      "nonzero_vertex_count": 190,
+      "weight_sum": 42.40859083482064,
+      "min_nonzero_weight": 0.0005035477224737406,
+      "max_weight": 0.9021896719932556
+    },
+    {
+      "name": "thumb1_r",
+      "index": 70,
+      "is_bone_name": true,
+      "nonzero_vertex_count": 678,
+      "weight_sum": 171.17321996972896,
+      "min_nonzero_weight": 0.0020141908898949623,
+      "max_weight": 1.0
+    },
+    {
+      "name": "thumb2_r",
+      "index": 71,
+      "is_bone_name": true,
+      "nonzero_vertex_count": 426,
+      "weight_sum": 97.7292744582519,
+      "min_nonzero_weight": 0.0020447089336812496,
+      "max_weight": 0.8910200595855713
+    },
+    {
+      "name": "thumb3_r",
+      "index": 72,
+      "is_bone_name": true,
+      "nonzero_vertex_count": 217,
+      "weight_sum": 118.56206591241062,
+      "min_nonzero_weight": 0.01895170472562313,
+      "max_weight": 1.0
+    },
+    {
+      "name": "pinky1_r",
+      "index": 73,
+      "is_bone_name": true,
+      "nonzero_vertex_count": 305,
+      "weight_sum": 71.0953078167513,
+      "min_nonzero_weight": 0.0013122758828103542,
+      "max_weight": 0.8270390033721924
+    },
+    {
+      "name": "pinky2_r",
+      "index": 74,
+      "is_bone_name": true,
+      "nonzero_vertex_count": 110,
+      "weight_sum": 24.316197243519127,
+      "min_nonzero_weight": 0.010040436871349812,
+      "max_weight": 0.8588082790374756
+    },
+    {
+      "name": "pinky3_r",
+      "index": 75,
+      "is_bone_name": true,
+      "nonzero_vertex_count": 101,
+      "weight_sum": 56.70034344494343,
+      "min_nonzero_weight": 0.06146334111690521,
+      "max_weight": 1.0
+    },
+    {
+      "name": "ring1_r",
+      "index": 76,
+      "is_bone_name": true,
+      "nonzero_vertex_count": 288,
+      "weight_sum": 75.06883343728259,
+      "min_nonzero_weight": 3.051804378628731e-05,
+      "max_weight": 1.0
+    },
+    {
+      "name": "ring2_r",
+      "index": 77,
+      "is_bone_name": true,
+      "nonzero_vertex_count": 119,
+      "weight_sum": 43.03289825562388,
+      "min_nonzero_weight": 0.0006408789195120335,
+      "max_weight": 0.9477226138114929
+    },
+    {
+      "name": "ring3_r",
+      "index": 78,
+      "is_bone_name": true,
+      "nonzero_vertex_count": 122,
+      "weight_sum": 87.54897403344512,
+      "min_nonzero_weight": 0.019623102620244026,
+      "max_weight": 1.0
+    },
+    {
+      "name": "middle1_r",
+      "index": 79,
+      "is_bone_name": true,
+      "nonzero_vertex_count": 348,
+      "weight_sum": 106.75802203151397,
+      "min_nonzero_weight": 0.001235980773344636,
+      "max_weight": 1.0
+    },
+    {
+      "name": "middle2_r",
+      "index": 80,
+      "is_bone_name": true,
+      "nonzero_vertex_count": 150,
+      "weight_sum": 55.49591832328588,
+      "min_nonzero_weight": 0.004379339516162872,
+      "max_weight": 1.0
+    },
+    {
+      "name": "middle3_r",
+      "index": 81,
+      "is_bone_name": true,
+      "nonzero_vertex_count": 111,
+      "weight_sum": 75.37811858719215,
+      "min_nonzero_weight": 0.0019989318680018187,
+      "max_weight": 1.0
+    },
+    {
+      "name": "index1_r",
+      "index": 82,
+      "is_bone_name": true,
+      "nonzero_vertex_count": 254,
+      "weight_sum": 89.08352764090523,
+      "min_nonzero_weight": 0.00035095750354230404,
+      "max_weight": 1.0
+    },
+    {
+      "name": "index2_r",
+      "index": 83,
+      "is_bone_name": true,
+      "nonzero_vertex_count": 132,
+      "weight_sum": 35.72600897029042,
+      "min_nonzero_weight": 0.005111772567033768,
+      "max_weight": 1.0
+    },
+    {
+      "name": "index3_r",
+      "index": 84,
+      "is_bone_name": true,
+      "nonzero_vertex_count": 96,
+      "weight_sum": 72.92167532630265,
+      "min_nonzero_weight": 0.00476081483066082,
+      "max_weight": 1.0
+    },
+    {
+      "name": "forearm_twist_r",
+      "index": 85,
+      "is_bone_name": true,
+      "nonzero_vertex_count": 958,
+      "weight_sum": 325.7424126614351,
+      "min_nonzero_weight": 0.0015259021893143654,
+      "max_weight": 0.930540919303894
+    },
+    {
+      "name": "forearm_twist_2_r",
+      "index": 86,
+      "is_bone_name": true,
+      "nonzero_vertex_count": 845,
+      "weight_sum": 298.9697568004485,
+      "min_nonzero_weight": 0.0016632333863526583,
+      "max_weight": 0.9804226756095886
+    },
+    {
+      "name": "shoulder_l",
+      "index": 87,
+      "is_bone_name": true,
+      "nonzero_vertex_count": 39,
+      "weight_sum": 0.016464484622702003,
+      "min_nonzero_weight": 4.577706567943096e-05,
+      "max_weight": 0.0010528725106269121
+    },
+    {
+      "name": "arm_stretch_l",
+      "index": 88,
+      "is_bone_name": true,
+      "nonzero_vertex_count": 962,
+      "weight_sum": 287.3949034071993,
+      "min_nonzero_weight": 0.00012207217514514923,
+      "max_weight": 0.9151140451431274
+    },
+    {
+      "name": "c_arm_twist_offset_l",
+      "index": 89,
+      "is_bone_name": true,
+      "nonzero_vertex_count": 537,
+      "weight_sum": 16.86066992674023,
+      "min_nonzero_weight": 0.0005188067443668842,
+      "max_weight": 0.13133439421653748
+    },
+    {
+      "name": "arm_twist_2_l",
+      "index": 90,
+      "is_bone_name": true,
+      "nonzero_vertex_count": 795,
+      "weight_sum": 294.1835960962344,
+      "min_nonzero_weight": 0.0002899214159697294,
+      "max_weight": 0.880552351474762
+    },
+    {
+      "name": "forearm_stretch_l",
+      "index": 91,
+      "is_bone_name": true,
+      "nonzero_vertex_count": 937,
+      "weight_sum": 247.23173860344104,
+      "min_nonzero_weight": 0.00015259021893143654,
+      "max_weight": 0.9804074168205261
+    },
+    {
+      "name": "hand_l",
+      "index": 92,
+      "is_bone_name": true,
+      "nonzero_vertex_count": 331,
+      "weight_sum": 51.582360573345795,
+      "min_nonzero_weight": 0.0032959487289190292,
+      "max_weight": 0.8429388999938965
+    },
+    {
+      "name": "c_pinky1_base_l",
+      "index": 93,
+      "is_bone_name": true,
+      "nonzero_vertex_count": 792,
+      "weight_sum": 233.2304266472347,
+      "min_nonzero_weight": 0.000747692072764039,
+      "max_weight": 1.0
+    },
+    {
+      "name": "c_ring1_base_l",
+      "index": 94,
+      "is_bone_name": true,
+      "nonzero_vertex_count": 76,
+      "weight_sum": 11.612466604216024,
+      "min_nonzero_weight": 0.00010681315325200558,
+      "max_weight": 0.7031357288360596
+    },
+    {
+      "name": "c_middle1_base_l",
+      "index": 95,
+      "is_bone_name": true,
+      "nonzero_vertex_count": 40,
+      "weight_sum": 6.719325501471758,
+      "min_nonzero_weight": 0.006958113983273506,
+      "max_weight": 0.7096208333969116
+    },
+    {
+      "name": "c_index1_base_l",
+      "index": 96,
+      "is_bone_name": true,
+      "nonzero_vertex_count": 158,
+      "weight_sum": 35.82517719990574,
+      "min_nonzero_weight": 0.000396734569221735,
+      "max_weight": 0.8932021260261536
+    },
+    {
+      "name": "thumb1_l",
+      "index": 97,
+      "is_bone_name": true,
+      "nonzero_vertex_count": 700,
+      "weight_sum": 183.3526050974615,
+      "min_nonzero_weight": 0.0007324330508708954,
+      "max_weight": 0.994094729423523
+    },
+    {
+      "name": "thumb2_l",
+      "index": 98,
+      "is_bone_name": true,
+      "nonzero_vertex_count": 452,
+      "weight_sum": 93.63515687012114,
+      "min_nonzero_weight": 0.0015716792549937963,
+      "max_weight": 0.885847270488739
+    },
+    {
+      "name": "thumb3_l",
+      "index": 99,
+      "is_bone_name": true,
+      "nonzero_vertex_count": 200,
+      "weight_sum": 108.48586235917173,
+      "min_nonzero_weight": 0.00041199359111487865,
+      "max_weight": 1.0
+    },
+    {
+      "name": "pinky1_l",
+      "index": 100,
+      "is_bone_name": true,
+      "nonzero_vertex_count": 288,
+      "weight_sum": 70.58872375357896,
+      "min_nonzero_weight": 0.00633249431848526,
+      "max_weight": 0.8334019780158997
+    },
+    {
+      "name": "pinky2_l",
+      "index": 101,
+      "is_bone_name": true,
+      "nonzero_vertex_count": 106,
+      "weight_sum": 23.919523934833705,
+      "min_nonzero_weight": 0.0119935916736722,
+      "max_weight": 0.8592813014984131
+    },
+    {
+      "name": "pinky3_l",
+      "index": 102,
+      "is_bone_name": true,
+      "nonzero_vertex_count": 93,
+      "weight_sum": 48.76168441772461,
+      "min_nonzero_weight": 0.06146334111690521,
+      "max_weight": 1.0
+    },
+    {
+      "name": "ring1_l",
+      "index": 103,
+      "is_bone_name": true,
+      "nonzero_vertex_count": 294,
+      "weight_sum": 83.68163609085605,
+      "min_nonzero_weight": 0.000747692072764039,
+      "max_weight": 1.0
+    },
+    {
+      "name": "ring2_l",
+      "index": 104,
+      "is_bone_name": true,
+      "nonzero_vertex_count": 114,
+      "weight_sum": 33.440161971375346,
+      "min_nonzero_weight": 0.0028992141596972942,
+      "max_weight": 0.9519188404083252
+    },
+    {
+      "name": "ring3_l",
+      "index": 105,
+      "is_bone_name": true,
+      "nonzero_vertex_count": 124,
+      "weight_sum": 91.38974612951279,
+      "min_nonzero_weight": 0.0065766386687755585,
+      "max_weight": 1.0
+    },
+    {
+      "name": "middle1_l",
+      "index": 106,
+      "is_bone_name": true,
+      "nonzero_vertex_count": 383,
+      "weight_sum": 124.53516400093213,
+      "min_nonzero_weight": 0.0034485389478504658,
+      "max_weight": 0.9891203045845032
+    },
+    {
+      "name": "middle2_l",
+      "index": 107,
+      "is_bone_name": true,
+      "nonzero_vertex_count": 145,
+      "weight_sum": 45.53301291074604,
+      "min_nonzero_weight": 0.004135195165872574,
+      "max_weight": 0.9370870590209961
+    },
+    {
+      "name": "middle3_l",
+      "index": 108,
+      "is_bone_name": true,
+      "nonzero_vertex_count": 108,
+      "weight_sum": 75.4821242033504,
+      "min_nonzero_weight": 0.004470893647521734,
+      "max_weight": 1.0
+    },
+    {
+      "name": "index1_l",
+      "index": 109,
+      "is_bone_name": true,
+      "nonzero_vertex_count": 289,
+      "weight_sum": 100.50499763805419,
+      "min_nonzero_weight": 0.004394598305225372,
+      "max_weight": 1.0
+    },
+    {
+      "name": "index2_l",
+      "index": 110,
+      "is_bone_name": true,
+      "nonzero_vertex_count": 112,
+      "weight_sum": 32.13914700318128,
+      "min_nonzero_weight": 0.004974441137164831,
+      "max_weight": 0.9485160708427429
+    },
+    {
+      "name": "index3_l",
+      "index": 111,
+      "is_bone_name": true,
+      "nonzero_vertex_count": 118,
+      "weight_sum": 82.42795453593135,
+      "min_nonzero_weight": 0.0020141908898949623,
+      "max_weight": 1.0
+    },
+    {
+      "name": "forearm_twist_l",
+      "index": 112,
+      "is_bone_name": true,
+      "nonzero_vertex_count": 936,
+      "weight_sum": 314.6170441855211,
+      "min_nonzero_weight": 9.155413135886192e-05,
+      "max_weight": 0.9338826537132263
+    },
+    {
+      "name": "forearm_twist_2_l",
+      "index": 113,
+      "is_bone_name": true,
+      "nonzero_vertex_count": 837,
+      "weight_sum": 299.8483257428743,
+      "min_nonzero_weight": 0.0003356984816491604,
+      "max_weight": 0.9805447459220886
+    },
+    {
+      "name": "ORG-face",
+      "index": 114,
+      "is_bone_name": true,
+      "nonzero_vertex_count": 1255,
+      "weight_sum": 745.1835494041443,
+      "min_nonzero_weight": 0.5510337948799133,
+      "max_weight": 0.8722514510154724
+    },
+    {
+      "name": "DEF-chin",
+      "index": 115,
+      "is_bone_name": true,
+      "nonzero_vertex_count": 1065,
+      "weight_sum": 140.18455773591995,
+      "min_nonzero_weight": 0.08712901175022125,
+      "max_weight": 0.23179979622364044
+    },
+    {
+      "name": "DEF-chin_R",
+      "index": 116,
+      "is_bone_name": true,
+      "nonzero_vertex_count": 323,
+      "weight_sum": 42.88061352074146,
+      "min_nonzero_weight": 0.06784161180257797,
+      "max_weight": 0.17125199735164642
+    },
+    {
+      "name": "DEF-jaw",
+      "index": 117,
+      "is_bone_name": true,
+      "nonzero_vertex_count": 111,
+      "weight_sum": 6.738780830055475,
+      "min_nonzero_weight": 0.048401616513729095,
+      "max_weight": 0.07220569252967834
+    },
+    {
+      "name": "DEF-jaw_R_001",
+      "index": 118,
+      "is_bone_name": true,
+      "nonzero_vertex_count": 2,
+      "weight_sum": 0.17904936522245407,
+      "min_nonzero_weight": 0.08894483745098114,
+      "max_weight": 0.09010452777147293
+    }
+  ],
+  "validated": true,
+  "note": "Read-only inventory of the final neutral FBX vertex groups. No geometry, weights, skeleton, or animation were modified."
+}

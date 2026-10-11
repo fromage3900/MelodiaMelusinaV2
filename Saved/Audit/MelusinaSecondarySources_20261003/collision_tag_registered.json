@@ -1,0 +1,11 @@
+{
+  "added_count": 3,
+  "skipped_count": 0,
+  "target": "DefaultGameplayTags.ini",
+  "added": [
+    "Melodia",
+    "Melodia.Physics",
+    "Melodia.Physics.BodyCollision"
+  ],
+  "skipped": []
+}

@@ -1,0 +1,22 @@
+{
+ "schema": "melodia.rename_48_to_10.v1",
+ "timestamp": "2026-10-07T17:31:40.604909+00:00",
+ "src": "D:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\melusina_lookdev\\bake\\slots_20261007\\dress_slotted_packed_grouped.bgeo",
+ "groups_renamed": 48,
+ "missing_panel_groups": [],
+ "sets": [
+  "M_Bodice_Front",
+  "M_Bodice_Side",
+  "M_Bodice_Torso",
+  "M_Bodice_Upper",
+  "M_Collar",
+  "M_Shoulder_Ornament",
+  "M_Shoulder_Trim",
+  "M_Skirt_Full",
+  "M_Sleeve",
+  "M_Underskirt"
+ ],
+ "obj": "D:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\melusina_lookdev\\bake\\slots_20261007\\SM_ShorewakeDress_10SET_packed.obj",
+ "obj_bytes": 22297636,
+ "obj_written": true
+}
