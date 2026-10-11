@@ -185,7 +185,21 @@ void UMelodiaWaveHarpHUDWidget::NativeTick(const FGeometry& MyGeometry, float In
  const UMelodiaWaveHarpCombatComponent* Combat = FindCombat();
  if (!Combat)
  {
-  bReticleVisible = false; State = EMelodiaBowHUDState::Idle; ReticleFade = 0.f;
+  // Preview / Design-Time fallback for UMG designer, lookdev, and headless preview capture:
+  State = EMelodiaBowHUDState::Target;
+  bReticleVisible = true;
+  bIsAiming = true;
+  bIsDrawing = true;
+  DrawTension = 0.85f;
+  LooseCount = 3;
+  ReticleFade = 1.0f;
+  ArcLight[0] = 1.0f;
+  ArcLight[1] = 1.0f;
+  ArcLight[2] = 0.75f;
+  bHasTarget = true;
+  TargetHP = 750.f;
+  TargetMaxHP = 1000.f;
+  BreathePhase = FMath::Fmod(float(Now) / (2.f * Beat), 1.f);
   return;
  }
  // ---- Figma inputs ----
@@ -254,7 +268,30 @@ int32 UMelodiaWaveHarpHUDWidget::NativePaint(const FPaintArgs& Args, const FGeom
 {
  using namespace MelodiaBowHUD;
  L = Super::NativePaint(Args, G, Cull, E, L, Style, Enabled);
- if (!FindCombat()) return L;
+
+ // Lazy art resolution if called in preview before construct
+ if (!Art[0].bBase && !Art[0].bLit && !Art[0].bPerfect)
+ {
+  const_cast<UMelodiaWaveHarpHUDWidget*>(this)->ResolveArt();
+ }
+
+ const bool bPreview = (FindCombat() == nullptr);
+ if (bPreview && (ReticleFade <= 0.002f || !bReticleVisible))
+ {
+  const_cast<UMelodiaWaveHarpHUDWidget*>(this)->State = EMelodiaBowHUDState::Target;
+  const_cast<UMelodiaWaveHarpHUDWidget*>(this)->bReticleVisible = true;
+  const_cast<UMelodiaWaveHarpHUDWidget*>(this)->bIsAiming = true;
+  const_cast<UMelodiaWaveHarpHUDWidget*>(this)->bIsDrawing = true;
+  const_cast<UMelodiaWaveHarpHUDWidget*>(this)->ReticleFade = 1.0f;
+  const_cast<UMelodiaWaveHarpHUDWidget*>(this)->DrawTension = 0.85f;
+  const_cast<UMelodiaWaveHarpHUDWidget*>(this)->LooseCount = 3;
+  const_cast<UMelodiaWaveHarpHUDWidget*>(this)->ArcLight[0] = 1.0f;
+  const_cast<UMelodiaWaveHarpHUDWidget*>(this)->ArcLight[1] = 1.0f;
+  const_cast<UMelodiaWaveHarpHUDWidget*>(this)->ArcLight[2] = 0.75f;
+  const_cast<UMelodiaWaveHarpHUDWidget*>(this)->bHasTarget = true;
+  const_cast<UMelodiaWaveHarpHUDWidget*>(this)->TargetHP = 750.f;
+  const_cast<UMelodiaWaveHarpHUDWidget*>(this)->TargetMaxHP = 1000.f;
+ }
 
  const FVector2D Size = G.GetLocalSize();
  const float S = (Size.Y / DesignH) * LayoutScale * .65f;          // compact frame for a full-screen viewport
