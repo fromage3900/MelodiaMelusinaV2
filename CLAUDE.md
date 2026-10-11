@@ -236,3 +236,38 @@ through `CURRENT_STATE.md` → `PROVEN CREATIVE CAPABILITY SURFACE`. If yes, aut
 rhythm skill, creature episode, outfit ability, musical puzzle, or procedural setpiece through the existing
 entry points. Architecture work requires a demonstrated content blocker. Do not reopen old rig or system work
 without current evidence of a blocker.
+
+## 🌌 Niagara VFX & Material Convergence Canon (Binding Rules)
+
+1. **Keep Unreal Engine Closed During Staging:**
+   - Do not launch the Unreal Editor or run commands that spawn the editor while staging / asset recovery is running.
+   - C: drive must preserve headroom (>13 GB free).
+
+2. **No New Masters Rule:**
+   - Every owned Niagara renderer must use a **unique Material Instance (MI)** parented to one of the canonical masters.
+   - Canonical masters:
+     - Sprite Flipbook / Static Atlas: `/Game/_PROJECT/VFX/Materials/M_Niagara_MelodiaFlipbook` (32 refs).
+     - Soft Additive Mote / Glitter: `/Game/Melodia/VFX/Materials/M_Niagara_Morning_PollenMote`.
+     - Petal Card: `/Game/Melodia/VFX/Materials/M_Niagara_Morning_PetalCard`.
+     - Mist Sheet: `/Game/Melodia/VFX/Materials/M_Niagara_Morning_MistSheet`.
+     - Dust / Light Shaft: `/Game/Melodia/VFX/Materials/M_Niagara_Morning_DustShaft`.
+     - Ribbon: `/Game/Melodia/VFX/Materials/M_Niagara_Morning_WindRibbon` (Melodia feature) & `/Game/EnvSandbox/VFX/Materials/M_SakuraRibbon` (Library).
+     - Ornament Card (SDF sprite + ribbon): `/Game/Melodia/VFX/Materials/M_Niagara_MelodiaOrnamentCard`.
+     - SDF Card: `/Game/Melodia/_PROJECT/04_Materials/SDF/M_SDF_StarburstGem`.
+     - Mesh Petal: `/Game/EnvSandbox/VFX/Materials/M_Niagara_PetalMesh_Loop`.
+     - Surface Fabric Flipbook: `/Game/Melodia/Materials/Masters/M_SurrealFabric_Flipbook`.
+
+3. **Fix A SubUV Flipbook Invariant:**
+   - Material owns the scrub clock (`ParticleRelativeTime` / `FlipFPS`).
+   - Niagara Particle Update `SubUVAnimation` module MUST be **DISABLED**.
+   - Sprite Renderer `SubImageSize` MUST be **1x1** (scrub) or native atlas grid (static atlas).
+   - Never enable both.
+
+4. **Staging & Convergence Invariants:**
+   - Organ Cliff staging destination: `/Game/Staging/Aeolian/`.
+   - Stash restore source: Commit `424146870` (`stash@{9}^3`) for `BP_MelodiaNiagaraDriver`, `EnvSandbox` VFX library, and `SurrealFabric` textures (462 assets, local LFS verified).
+   - Zero level modifications during convergence.
+   - Every modified file must be backed up before editing.
+   - Protected systems: `NS_Melusina_EyeSparkle` (1.5px atlas inset), `NS_Melusina_HairFlow`, and `NS_Hero_SoftSparkle` remain untouched / held.
+   - Batches of at most 4 assets; user Ctrl+S after each batch.
+
