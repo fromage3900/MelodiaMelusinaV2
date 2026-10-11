@@ -1,0 +1,128 @@
+// Copyright 2026 BS_GodFile. All Rights Reserved.
+//
+// MelodiaTriplanarCommon.ush — rider-authored triplanar expansion (v2).
+//
+// Expands the proven MF_Triplanar_Stable math (abs-power weights, normalised)
+// with the four defects that MF did not address:
+//   1. albedo sample count stays 3, but per-axis scale + offset + rotation are
+//      separated (was: one uniform TriplanarScale scalar);
+//   2. procedural macro-variation anti-tiling (hash, no texture dependency,
+//      deterministic — never wall-clock);
+//   3. a correct world-space normal path (RG decode + whiteout blend) so a
+//      triplanar surface can carry a normal map instead of albedo only;
+//   4. weights take an explicit pixel normal input rather than reading the
+//      VertexNormalWS by-name global inside the Custom node (the by-name global
+//      failure mode, 2026-08-18).
+//
+// Authoring: JetBrains Rider validates this as HLSL. Consumed by the builder
+// Content/Python/expand_melu_sdf_triplanar.py, which INLINES this file (after
+// stripping #pragma/#include) into the Custom HLSL node — the same proven
+// inlining lane the ink shaders use. Do not hand-edit the Custom node code.
+//
+// All globals the math needs (pixel normal, world position, view) are passed
+// as Custom-node inputs. This file must not reference UE by-name globals.
+
+#pragma once
+#include "MelodiaInkCommon.ush"
+
+// ---------------------------------------------------------------------------
+// Triplanar weights — abs-power blend, normalised. Faithful port of the proven
+// MF_Triplanar_Stable weight line, with the normal passed in.
+// ---------------------------------------------------------------------------
+float3 MelTriplanarWeights(float3 n, float sharpness)
+{
+    float3 w = pow(abs(normalize(n)), max(sharpness, 0.01));
+    return w / max(w.x + w.y + w.z, 0.0001);
+}
+
+// ---------------------------------------------------------------------------
+// Macro variation — deterministic hash anti-tiling. Removes the uniform
+// repetition a 3-tap triplanar shows on large surfaces. Returns a multiplier
+// in [1 - amount, 1 + amount]. No texture, no wall-clock.
+// ---------------------------------------------------------------------------
+float MelTriplanarMacro(float3 wp, float macroScale, float amount)
+{
+    float h = MelHashSmooth(wp.xz * macroScale) * 0.6
+            + MelHashSmooth(wp.yx * macroScale * 1.37) * 0.4;
+    return 1.0 + (h - 0.5) * 2.0 * amount;
+}
+
+// ---------------------------------------------------------------------------
+// Albedo / scalar-field triplanar with per-axis scale, offset, rotation,
+// macro variation and a distance fade (fade the projection to a flat colour as
+// the surface recedes, which also hides scale mismatch at distance).
+//
+//   t / s        : Texture2D + its sampler (Custom-node texture input + its
+//                  auto sampler "<InputName>Sampler")
+//   wp           : world position            n : pixel normal (passed in)
+//   scale        : per-axis tiling (float3)  offset : per-axis UV offset
+//   rot          : per-axis rotation degrees (float3)
+//   sharpness    : blend exponent (0.01..16)
+//   macroScale/amount : anti-tiling hash strength (amount 0 = off)
+//   fadeStart/fadeEnd : world distance where the projection fades to `fadeColor`
+//   viewPos      : camera world position (passed in)
+//   fadeColor    : the flat colour to fade toward
+// ---------------------------------------------------------------------------
+float3 MelTriplanarAlbedo(
+    Texture2D t, SamplerState s,
+    float3 wp, float3 n,
+    float3 scale, float3 offset, float3 rot,
+    float sharpness, float macroScale, float macroAmount,
+    float fadeStart, float fadeEnd,
+    float3 viewPos, float3 fadeColor)
+{
+    float3 w = MelTriplanarWeights(n, sharpness);
+    float3 p = wp * scale + offset;
+
+    // per-axis rotation (degrees) around the projection centre
+    float2 uvX = MelRotateUV(p.zy, rot.x);
+    float2 uvY = MelRotateUV(p.xz, rot.y);
+    float2 uvZ = MelRotateUV(p.xy, rot.z);
+
+    float3 sx = Texture2DSample(t, s, uvX).rgb;
+    float3 sy = Texture2DSample(t, s, uvY).rgb;
+    float3 sz = Texture2DSample(t, s, uvZ).rgb;
+    float3 c = sx * w.x + sy * w.y + sz * w.z;
+
+    c *= MelTriplanarMacro(wp, macroScale, macroAmount);
+
+    float dist = length(wp - viewPos);
+    float fade = smoothstep(fadeStart, max(fadeEnd, fadeStart + 1.0), dist);
+    return lerp(c, fadeColor, fade * step(0.001, fadeEnd));
+}
+
+// ---------------------------------------------------------------------------
+// RG normal decode (the project's normal maps are BC5, so only RG is stored).
+// ---------------------------------------------------------------------------
+float3 MelDecodeNormalRG(float2 rg)
+{
+    float2 xy = rg * 2.0 - 1.0;
+    float z = sqrt(max(0.0, 1.0 - dot(xy, xy)));
+    return normalize(float3(xy, z));
+}
+
+// ---------------------------------------------------------------------------
+// World-space triplanar normal via the canonical whiteout blend.
+// Per-axis tangent frame: for an X-facing surface U->worldZ, V->worldY, N->worldX
+// (and cyclically). sign() handles mirrored (negative-facing) projections.
+// ---------------------------------------------------------------------------
+float3 MelTriplanarNormal(
+    Texture2D t, SamplerState s,
+    float3 wp, float3 n,
+    float3 scale, float sharpness, float strength)
+{
+    float3 w = MelTriplanarWeights(n, sharpness);
+    float3 p = wp * scale;
+
+    float3 tX = MelDecodeNormalRG(Texture2DSample(t, s, p.zy).xy);
+    float3 tY = MelDecodeNormalRG(Texture2DSample(t, s, p.xz).xy);
+    float3 tZ = MelDecodeNormalRG(Texture2DSample(t, s, p.xy).xy);
+
+    float3 wX = float3(tX.z * sign(n.x), tX.y, tX.x);
+    float3 wY = float3(tY.x, tY.z * sign(n.y), tY.y);
+    float3 wZ = float3(tZ.x, tZ.y, tZ.z * sign(n.z));
+
+    float3 blended = normalize(wX * w.x + wY * w.y + wZ * w.z);
+    // strength 0 = flat surface normal, 1 = full triplanar normal
+    return normalize(lerp(normalize(n), blended, MelSaturate(strength)));
+}

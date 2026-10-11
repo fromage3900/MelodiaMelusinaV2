@@ -1,0 +1,97 @@
+// Copyright 2026 BS_GodFile. All Rights Reserved.
+//
+// MelodiaSdfQuasicrystal.ush — aperiodic (quasicrystal) field math.
+//
+// Produces the 5/8/12-fold aperiodic interference that reads as a quasicrystal:
+// N plane waves whose wave numbers are modulated by the golden-ratio conjugate
+// (frac(k * 0.6180339887)), which makes them mutually incommensurate — the sum
+// never repeats, but it is deterministic and cheap (no texture, no noise).
+//
+// Layers, in the order a material should compose them:
+//   1. MelQcWave       — the field itself, -1..1 (the "crystal lattice energy")
+//   2. MelQcZeroLine   — nodal lines where the field crosses zero (the facet
+//                        boundaries; screen-stable thickness via fwidth)
+//   3. MelQcBand       — banded contours of the field (the ring/interference read)
+//   4. MelQcCellHash   — deterministic per-cell value for per-facet tint
+//   5. MelQcIridescence— view-dependent thin-film tint for the gem read
+//
+// Authoring: JetBrains Rider validates this as HLSL. Consumed by the builder
+// Content/Python/expand_melu_sdf_triplanar.py, which INLINES it into the Custom
+// HLSL node (the same lane the ink shaders use). Never reference UE by-name
+// globals here: world position / view / time arrive as Custom-node inputs.
+
+#pragma once
+#include "MelodiaInkCommon.ush"
+
+// The golden-ratio conjugate — the incommensurate step that makes the field
+// aperiodic. Kept as a named constant so authors can see what it is.
+#define MEL_QC_CONJ 0.6180339887
+
+// ---------------------------------------------------------------------------
+// Quasicrystal field. `folds` = rotational symmetry order (5, 8, 12...),
+// `freq` = base spatial frequency, `ratio` = how far the wave numbers spread
+// along the golden ratio (0 = periodic plane-wave rosette, 1 = strongly
+// aperiodic). Returns -1..1.
+//
+// No dynamic loop: 12 fixed unrolled taps gated by `folds`, which keeps the
+// instruction count flat and avoids SM6 dynamic-loop divergence in a pixel
+// shader that may run on many surfaces at once.
+// ---------------------------------------------------------------------------
+float MelQcWave(float2 p, float folds, float freq, float ratio)
+{
+    float acc = 0.0;
+    float amp = 0.0;
+    [unroll]
+    for (int k = 0; k < 12; k++)
+    {
+        float on = step(float(k) + 0.5, folds);
+        float a = MEL_PI * float(k) / max(folds, 1.0);
+        float2 dir = float2(cos(a), sin(a));
+        float wn = 1.0 + ratio * frac(float(k) * MEL_QC_CONJ);
+        acc += on * cos(dot(p, dir) * freq * wn);
+        amp += on;
+    }
+    return acc / max(amp, 1e-4);
+}
+
+// ---------------------------------------------------------------------------
+// Nodal lines: 1 where the field crosses zero, fading to 0 away from it.
+// Thickness is screen-stable (fwidth-driven) so the lines do not crawl or
+// alias when the surface recedes.
+// ---------------------------------------------------------------------------
+float MelQcZeroLine(float field, float thickness)
+{
+    float w = max(fwidth(field) * 1.5, 1e-3);
+    return 1.0 - smoothstep(thickness, thickness + w, abs(field));
+}
+
+// ---------------------------------------------------------------------------
+// Banded contours of the field — the interference/ring read. `bands` = number
+// of contour bands across the field range; returns 0..1 peaking on the bands.
+// ---------------------------------------------------------------------------
+float MelQcBand(float field, float bands, float thickness)
+{
+    float f = field * bands;
+    float d = abs(frac(f) - 0.5) * 2.0;
+    float w = max(fwidth(f) * 1.5, 1e-3);
+    return 1.0 - smoothstep(thickness, thickness + w, d);
+}
+
+// ---------------------------------------------------------------------------
+// Deterministic per-cell value (0..1) for per-facet tint/spec variation.
+// ---------------------------------------------------------------------------
+float MelQcCellHash(float2 p, float scale)
+{
+    return MelHash(floor(p * scale));
+}
+
+// ---------------------------------------------------------------------------
+// View-dependent thin-film tint for the gem read. ndv = saturate(dot(N,V)).
+// `shift` rotates through the spectrum; `strength` blends to white (0 = white).
+// ---------------------------------------------------------------------------
+float3 MelQcIridescence(float ndv, float shift, float strength)
+{
+    float f = pow(1.0 - MelSaturate(ndv), 2.0);
+    float3 irid = 0.5 + 0.5 * cos(MEL_TAU * (f * (1.0 + shift * 3.0) + float3(0.0, 0.33, 0.67)));
+    return lerp(float3(1.0, 1.0, 1.0), irid, MelSaturate(strength));
+}
