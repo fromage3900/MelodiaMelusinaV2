@@ -5,8 +5,6 @@
 #include "Components/ProgressBar.h"
 #include "Components/TextBlock.h"
 #include "Engine/World.h"
-#include "GameFramework/InputSettings.h"
-#include "GameFramework/PlayerInput.h"
 #include "GameFramework/PlayerController.h"
 #include "Input/Events.h"
 #include "Kismet/GameplayStatics.h"
@@ -21,67 +19,28 @@ void MelodiaSetWorldCombatUISuppressed(const UObject* WorldContextObject, bool b
 
 namespace
 {
-	/** Same legacy action the Overworld HUD listens for; pressing it again while the Orrery is open closes it. */
-	const FName OrreryToggleActionName(TEXT("MelodiaOpenOrrery"));
-
-	bool IsOrreryToggleKey(const FKey& Key)
-	{
-		TArray<FInputActionKeyMapping> Mappings;
-		GetDefault<UInputSettings>()->GetActionMappingByName(OrreryToggleActionName, Mappings);
-		for (const FInputActionKeyMapping& Mapping : Mappings)
-		{
-			if (Mapping.Key == Key)
-			{
-				return true;
-			}
-		}
-		return false;
-	}
-
 	/**
 	 * Orreries currently holding the world-combat-UI suppression. File-scope storage keyed by weak
 	 * pointer instead of a class member, so the widget's layout is unchanged (Live Coding safe).
 	 */
 	TSet<TWeakObjectPtr<const UMelodiaCosmicOrreryWidget>> GOrreriesSuppressingCombatUI;
 
-	/** Open-side presentation: collapse world combat HUDs, UI-only input with cursor, user focus. */
-	void AcquireOrreryMenuPresentation(UMelodiaCosmicOrreryWidget* Orrery, const bool bOwnsMenuContext)
+	/** Bow HUD (z 90) and Rhythm HUD (z 85) draw above the Orrery (z 70): collapse them while open. */
+	void AcquireOrreryCombatUISuppression(const UMelodiaCosmicOrreryWidget* Orrery)
 	{
 		if (!Orrery || Orrery->IsDesignTime())
 		{
 			return;
 		}
-
-		// Bow HUD (z 90) and Rhythm HUD (z 85) draw above the Orrery (z 70): collapse them while open.
 		const TWeakObjectPtr<const UMelodiaCosmicOrreryWidget> Key(Orrery);
 		if (!GOrreriesSuppressingCombatUI.Contains(Key))
 		{
 			GOrreriesSuppressingCombatUI.Add(Key);
 			MelodiaSetWorldCombatUISuppressed(Orrery, true);
 		}
-
-		APlayerController* PC = Orrery->GetOwningPlayer();
-		if (!PC)
-		{
-			return;
-		}
-
-		// Only switch to UI-only when this Orrery owns the Menu context, so the pop on close/destruct
-		// is what restores the prior mode (UMelodiaInputContextSubsystem returns Exploration to
-		// GameOnly while the WaveHarp holds the pointer). If another menu already owned the Menu
-		// context, leave its input mode alone and only take focus.
-		if (bOwnsMenuContext)
-		{
-			FInputModeUIOnly Mode;
-			Mode.SetWidgetToFocus(Orrery->TakeWidget());
-			Mode.SetLockMouseToViewportBehavior(EMouseLockMode::DoNotLock);
-			PC->SetInputMode(Mode);
-			PC->SetShowMouseCursor(true);
-		}
-		Orrery->SetUserFocus(PC);
 	}
 
-	/** Idempotent close-side counterpart for the combat HUD suppression. */
+	/** Idempotent: restores the bow/rhythm HUDs once when this Orrery closes or is destroyed. */
 	void ReleaseOrreryCombatUISuppression(const UMelodiaCosmicOrreryWidget* Orrery)
 	{
 		if (GOrreriesSuppressingCombatUI.Remove(TWeakObjectPtr<const UMelodiaCosmicOrreryWidget>(Orrery)) > 0)
@@ -106,8 +65,6 @@ void UMelodiaCosmicOrreryWidget::NativeConstruct()
 	SetIsFocusable(true);
 	SetKeyboardFocus();
 
-	// The Orrery is the single owner of its Menu input context: exactly one push here, exactly one
-	// pop in CloseOrrery() / NativeDestruct(). Callers must not push on its behalf.
 	if (!OwnContextHandle.IsValid())
 	{
 		if (UMelodiaInputContextSubsystem* InputSubsystem = UMelodiaInputContextSubsystem::Get(this))
@@ -118,7 +75,7 @@ void UMelodiaCosmicOrreryWidget::NativeConstruct()
 			}
 		}
 	}
-	AcquireOrreryMenuPresentation(this, OwnContextHandle.IsValid());
+	AcquireOrreryCombatUISuppression(this);
 
 	Planets.Reset();
 	if (Planet_1) { Planets.Add(Planet_1); }
@@ -251,7 +208,6 @@ void UMelodiaCosmicOrreryWidget::NativeDestruct()
 	ReleaseOrreryCombatUISuppression(this);
 	if (OwnContextHandle.IsValid())
 	{
-		// Popping re-applies the input mode and cursor policy of whatever context is beneath.
 		if (UMelodiaInputContextSubsystem* InputSubsystem = UMelodiaInputContextSubsystem::Get(this))
 		{
 			InputSubsystem->PopContext(OwnContextHandle);
@@ -388,8 +344,7 @@ FReply UMelodiaCosmicOrreryWidget::NativeOnKeyDown(const FGeometry& InGeometry, 
 		ActivateCurrentArchetype();
 		return FReply::Handled();
 	}
-	if (Key == EKeys::Escape || Key == EKeys::Gamepad_FaceButton_Right || Key == EKeys::Gamepad_Special_Right
-		|| IsOrreryToggleKey(Key))
+	if (Key == EKeys::Escape || Key == EKeys::Gamepad_FaceButton_Right || Key == EKeys::Gamepad_Special_Right)
 	{
 		CloseOrrery();
 		return FReply::Handled();
@@ -555,7 +510,6 @@ void UMelodiaCosmicOrreryWidget::CloseOrrery()
 	ReleaseOrreryCombatUISuppression(this);
 	if (OwnContextHandle.IsValid())
 	{
-		// Popping re-applies the input mode and cursor policy of whatever context is beneath.
 		if (UMelodiaInputContextSubsystem* InputSubsystem = UMelodiaInputContextSubsystem::Get(this))
 		{
 			InputSubsystem->PopContext(OwnContextHandle);

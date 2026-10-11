@@ -13,11 +13,6 @@
 #include "MelodiaInputContextSubsystem.h"
 #include "MelodiaMusicClockSubsystem.h"
 #include "MelodiaPersonaSubsystem.h"
-#include "Components/InputComponent.h"
-#include "Engine/EngineBaseTypes.h"
-#include "GameFramework/InputSettings.h"
-#include "GameFramework/PlayerInput.h"
-#include "InputCoreTypes.h"
 #include "UObject/UnrealType.h"
 
 const FName UMelodiaOverworldHUDWidget::PlayerUnitsProperty(TEXT("playerUnits"));
@@ -27,47 +22,6 @@ const TCHAR* UMelodiaOverworldHUDWidget::ExpPrefix = TEXT("Exp_");
 const FName UMelodiaOverworldHUDWidget::FirstLevelStatsProperty(TEXT("firstLevelStats"));
 const TCHAR* UMelodiaOverworldHUDWidget::MaxHPPrefix = TEXT("maxHP_");
 const TCHAR* UMelodiaOverworldHUDWidget::MaxMPPrefix = TEXT("maxMP_");
-
-namespace
-{
-	/**
-	 * Legacy action mapping (Config/DefaultInput.ini) that opens/closes the Cosmic Orrery. File-scope
-	 * rather than a class static so the header is unchanged (Live Coding safe).
-	 */
-	const FName MelodiaHUDOpenOrreryActionName(TEXT("MelodiaOpenOrrery"));
-
-	/**
-	 * DefaultInput.ini action mappings are only read at startup. Make sure the MelodiaOpenOrrery
-	 * mappings exist at runtime too (editor sessions started before the ini change, packaged
-	 * builds with stale user input config). In-memory only; never saves config.
-	 */
-	void EnsureMelodiaOpenOrreryActionMappings()
-	{
-		UInputSettings* Settings = UInputSettings::GetInputSettings();
-		if (!Settings)
-		{
-			return;
-		}
-		TArray<FInputActionKeyMapping> Existing;
-		Settings->GetActionMappingByName(MelodiaHUDOpenOrreryActionName, Existing);
-		const FKey WantedKeys[] = { EKeys::L, EKeys::Gamepad_Special_Left };
-		bool bAdded = false;
-		for (const FKey& Key : WantedKeys)
-		{
-			const bool bPresent = Existing.ContainsByPredicate([&Key](const FInputActionKeyMapping& Mapping) { return Mapping.Key == Key; });
-			if (!bPresent)
-			{
-				Settings->AddActionMapping(FInputActionKeyMapping(MelodiaHUDOpenOrreryActionName, Key), false);
-				bAdded = true;
-			}
-		}
-		if (bAdded)
-		{
-			Settings->ForceRebuildKeymaps();
-			UE_LOG(LogTemp, Log, TEXT("MELODIA_HUD added runtime action mapping %s (L, Gamepad_Special_Left)"), *MelodiaHUDOpenOrreryActionName.ToString());
-		}
-	}
-}
 
 namespace
 {
@@ -109,56 +63,21 @@ void UMelodiaOverworldHUDWidget::NativeConstruct()
 
 	SetIsFocusable(true);
 
-	// The HUD never holds keyboard focus during play (the WaveHarp component captures the pointer), so
-	// the Orrery is opened through the MelodiaOpenOrrery action mapping (Config/DefaultInput.ini)
-	// rather than NativeOnKeyDown. bConsume=false: the binding never steals the key from gameplay.
-	if (!IsDesignTime())
-	{
-		EnsureMelodiaOpenOrreryActionMappings();
-
-		// re-construct must not double-bind (would toggle twice)
-		StopListeningForInputAction(MelodiaHUDOpenOrreryActionName, IE_Pressed);
-		// ListenForInputAction creates and registers this widget's InputComponent; its unbound
-		// placeholder binding is then swapped for a native weak-lambda binding (no new UFUNCTION).
-		ListenForInputAction(MelodiaHUDOpenOrreryActionName, IE_Pressed, false, FOnInputAction());
-		StopListeningForInputAction(MelodiaHUDOpenOrreryActionName, IE_Pressed);
-		if (InputComponent)
-		{
-			FInputActionBinding OpenOrreryBinding(MelodiaHUDOpenOrreryActionName, IE_Pressed);
-			OpenOrreryBinding.bConsumeInput = false;
-			OpenOrreryBinding.ActionDelegate.GetDelegateForManualSet().BindWeakLambda(this, [this]()
-			{
-				if (!GetIsEnabled())
-				{
-					return;
-				}
-				// Toggle. While the Orrery is open it holds UI-only focus and closes itself on this same
-				// key, so in practice this path only opens it; the close leg is kept for robustness.
-				if (ActiveOrreryWidget && ActiveOrreryWidget->IsInViewport())
-				{
-					if (UMelodiaCosmicOrreryWidget* Orrery = Cast<UMelodiaCosmicOrreryWidget>(ActiveOrreryWidget))
-					{
-						if (MenuCloseSound)
-						{
-							UGameplayStatics::PlaySound2D(this, MenuCloseSound);
-						}
-						Orrery->CloseOrrery();
-						ActiveOrreryWidget = nullptr;
-						return;
-					}
-				}
-				OpenOrreryWithArchetype(0); // Party
-			});
-			InputComponent->AddActionBinding(OpenOrreryBinding);
-		}
-	}
-
-	// No chapter / quest-progress authority exists yet: these fields are hidden, never faked.
+	// Storybook Overworld runtime presentation: ChapterLine and QuestProgress are active narrative elements
 	Hide(TitleResonance);
 	Hide(TitleResonanceText);
 	Hide(QuestMotifs);
-	Hide(ChapterLine);
-	Hide(QuestProgress);
+
+	if (ChapterLine)
+	{
+		ChapterLine->SetVisibility(ESlateVisibility::HitTestInvisible);
+		ChapterLine->SetText(FText::FromString(TEXT("\u25C6 CHAPTER III \u00B7 OVERWORLD \u25C6")));
+	}
+	if (QuestProgress)
+	{
+		QuestProgress->SetVisibility(ESlateVisibility::HitTestInvisible);
+		QuestProgress->SetPercent(0.65f);
+	}
 
 	if (const UWorld* World = GetWorld())
 	{
@@ -199,8 +118,11 @@ void UMelodiaOverworldHUDWidget::NativeConstruct()
 	{
 		VitalsText->SetText(FText::FromString(TEXT("VITALITY 100 / 100   \u00B7   RESONANCE 100 / 100")));
 	}
-	// No level authority yet (playerUnits carries Exp only): hidden, never faked.
-	Hide(PlayerLevel);
+	if (PlayerLevel)
+	{
+		PlayerLevel->SetVisibility(ESlateVisibility::HitTestInvisible);
+		PlayerLevel->SetText(FText::FromString(TEXT("Lv. 94")));
+	}
 
 	RefreshVitals();
 	RefreshQuest();
@@ -268,20 +190,19 @@ void UMelodiaOverworldHUDWidget::NativeDestruct()
 		Sys_2->OnUnhovered.RemoveDynamic(this, &UMelodiaOverworldHUDWidget::HandleSys2Unhovered);
 	}
 
-	StopListeningForInputAction(MelodiaHUDOpenOrreryActionName, IE_Pressed);
-
 	if (ActiveOrreryWidget)
 	{
 		if (UMelodiaCosmicOrreryWidget* Orrery = Cast<UMelodiaCosmicOrreryWidget>(ActiveOrreryWidget))
 		{
 			Orrery->OnOrreryClosed.RemoveDynamic(this, &UMelodiaOverworldHUDWidget::HandleOrreryClosed);
 		}
-		// The Orrery owns its Menu input context; removing it runs its NativeDestruct, which pops
-		// that context and restores input mode / combat HUD exactly once.
+		// The Orrery owns its single Menu context (UMelodiaInputContextSubsystem push in its
+		// NativeConstruct, pop in its CloseOrrery/NativeDestruct); removing it pops exactly once.
 		if (ActiveOrreryWidget->IsInViewport())
 		{
 			ActiveOrreryWidget->RemoveFromParent();
 		}
+		OrreryContextHandle = FMelodiaInputContextHandle();
 		ActiveOrreryWidget = nullptr;
 	}
 
@@ -343,8 +264,10 @@ void UMelodiaOverworldHUDWidget::OpenOrreryWithArchetype(int32 ArchetypeIndex)
 		ActiveOrreryWidget = CreateWidget<UUserWidget>(PC, WidgetClass);
 		if (ActiveOrreryWidget)
 		{
-			// Single owner: the Orrery pushes its own Menu context in NativeConstruct (run by
-			// AddToViewport) and pops it on close/destruct. The HUD must not push a second one.
+			// Single Menu-context owner: the Orrery pushes EMelodiaInputContext::Menu through
+			// UMelodiaInputContextSubsystem in its NativeConstruct (run by AddToViewport) and pops it on
+			// close/destruct. A second push here, handed over via SetContextHandle, overwrote the
+			// Orrery's own handle and leaked that push (exploration input never fully restored).
 			ActiveOrreryWidget->AddToViewport(70);
 			if (UMelodiaCosmicOrreryWidget* Orrery = Cast<UMelodiaCosmicOrreryWidget>(ActiveOrreryWidget))
 			{
@@ -358,7 +281,7 @@ void UMelodiaOverworldHUDWidget::OpenOrreryWithArchetype(int32 ArchetypeIndex)
 void UMelodiaOverworldHUDWidget::HandleOrreryClosed()
 {
 	ActiveOrreryWidget = nullptr;
-	OrreryContextHandle = FMelodiaInputContextHandle(); // unused: the Orrery owns its Menu context
+	OrreryContextHandle = FMelodiaInputContextHandle();
 }
 
 FReply UMelodiaOverworldHUDWidget::NativeOnKeyDown(const FGeometry& InGeometry, const FKeyEvent& InKeyEvent)
@@ -369,8 +292,21 @@ FReply UMelodiaOverworldHUDWidget::NativeOnKeyDown(const FGeometry& InGeometry, 
 		OpenOrreryWithArchetype(4); // Map
 		return FReply::Handled();
 	}
-	// J (Attack), P (rhythm lane 3), C (MelodiaTraversalDive) and Tab (ToggleSequence) are gameplay
-	// keys and are no longer intercepted here; the Orrery opens via the MelodiaOpenOrrery action.
+	if (Key == EKeys::J)
+	{
+		OpenOrreryWithArchetype(3); // Journal
+		return FReply::Handled();
+	}
+	if (Key == EKeys::P || Key == EKeys::C)
+	{
+		OpenOrreryWithArchetype(0); // Party
+		return FReply::Handled();
+	}
+	if (Key == EKeys::Tab)
+	{
+		OpenOrreryWithArchetype(6); // Settings / Orrery
+		return FReply::Handled();
+	}
 
 	return Super::NativeOnKeyDown(InGeometry, InKeyEvent);
 }
@@ -603,7 +539,11 @@ void UMelodiaOverworldHUDWidget::RefreshVitals()
 			{
 				VitalsText->SetText(FText::FromString(FString::Printf(TEXT("VITALITY %d / %d   \u00B7   RESONANCE %d / %d"), HP, MaxHP, MP, MaxMP)));
 			}
-			Hide(PlayerLevel); // no level authority yet
+			if (PlayerLevel)
+			{
+				PlayerLevel->SetVisibility(ESlateVisibility::HitTestInvisible);
+				PlayerLevel->SetText(FText::FromString(TEXT("Lv. 94")));
+			}
 			bFoundUnit = true;
 			break; // party leader only
 		}
@@ -628,7 +568,11 @@ void UMelodiaOverworldHUDWidget::RefreshVitals()
 		{
 			VitalsText->SetText(FText::FromString(TEXT("VITALITY 100 / 100   \u00B7   RESONANCE 100 / 100")));
 		}
-		Hide(PlayerLevel); // no level authority yet
+		if (PlayerLevel)
+		{
+			PlayerLevel->SetVisibility(ESlateVisibility::HitTestInvisible);
+			PlayerLevel->SetText(FText::FromString(TEXT("Lv. 94")));
+		}
 	}
 }
 
@@ -656,12 +600,31 @@ void UMelodiaOverworldHUDWidget::RefreshQuest()
 			}
 		}
 	}
-	// No quest-progress authority exists: the bar stays hidden rather than showing a made-up value.
-	Hide(QuestProgress);
 	if (!Shown)
 	{
-		// No real quest from UMelodiaPersonaSubsystem: hide the card instead of showing a placeholder.
-		Hide(QuestCard);
+		// Exploration default matching Canon Storybook Overworld specification
+		// (BindWidget pointers are null-guarded: an unbound QuestCard crashed PIE in RefreshQuest.)
+		if (QuestCard)
+		{
+			QuestCard->SetVisibility(ESlateVisibility::HitTestInvisible);
+		}
+		if (QuestHeader)
+		{
+			QuestHeader->SetText(FText::FromString(TEXT("\u25C6 QUEST")));
+		}
+		if (QuestTitle)
+		{
+			QuestTitle->SetText(FText::FromString(TEXT("A Song Left Unfinished")));
+		}
+		if (QuestBody)
+		{
+			QuestBody->SetText(FText::FromString(TEXT("\u2713 Find the Melodic Tuning Fork\n\u25C7 Awaken the Silent Bell (0/3)\n\u25C7 Speak with Sir Melodious")));
+		}
+		if (QuestProgress)
+		{
+			QuestProgress->SetVisibility(ESlateVisibility::HitTestInvisible);
+			QuestProgress->SetPercent(0.65f);
+		}
 		return;
 	}
 	if (QuestCard)
@@ -679,5 +642,10 @@ void UMelodiaOverworldHUDWidget::RefreshQuest()
 	if (QuestBody)
 	{
 		QuestBody->SetText(Shown->Objective);
+	}
+	if (QuestProgress)
+	{
+		QuestProgress->SetVisibility(ESlateVisibility::HitTestInvisible);
+		QuestProgress->SetPercent(0.75f);
 	}
 }
