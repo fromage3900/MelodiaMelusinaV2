@@ -146,38 +146,6 @@ void UMelodiaWaveHarpHUDWidget::NativeConstruct()
  ResolveArt();
 }
 
-void UMelodiaWaveHarpHUDWidget::NativePreConstruct()
-{
- Super::NativePreConstruct();
- // UMG designer only (NativeConstruct does not run there): resolve art and seed the lookdev
- // preview state here so NativePaint never has to mutate state through const_cast.
- if (IsDesignTime())
- {
-  InterFont = LabelFont.IsNull() ? nullptr : LabelFont.LoadSynchronous();
-  ResolveArt();
-  ApplyDesignPreviewState();
- }
-}
-
-void UMelodiaWaveHarpHUDWidget::ApplyDesignPreviewState()
-{
- // Designer / lookdev preview: a representative Target-state reticle. Never used at runtime.
- State = EMelodiaBowHUDState::Target;
- bReticleVisible = true;
- bIsAiming = true;
- bIsDrawing = true;
- DrawTension = 0.85f;
- LooseCount = 3;
- ReticleFade = 1.0f;
- ArcLight[0] = 1.0f;
- ArcLight[1] = 1.0f;
- ArcLight[2] = 0.75f;
- bHasTarget = true;
- TargetHP = 750.f;
- TargetMaxHP = 1000.f;
- BreathePhase = Beat > 0.f ? FMath::Fmod(float(Now) / (2.f * Beat), 1.f) : 0.f;
-}
-
 const UMelodiaWaveHarpCombatComponent* UMelodiaWaveHarpHUDWidget::FindCombat() const
 {
  const APawn* Pawn = GetOwningPlayer() ? GetOwningPlayer()->GetPawn() : nullptr;
@@ -219,8 +187,24 @@ void UMelodiaWaveHarpHUDWidget::NativeTick(const FGeometry& MyGeometry, float In
  {
   if (IsDesignTime())
   {
-   // UMG designer / lookdev preview only.
-   ApplyDesignPreviewState();
+   // UMG designer / lookdev preview only (NativeConstruct does not run there): resolve art once
+   // here so NativePaint never has to mutate state through const_cast, then seed a representative
+   // Target-state reticle. Never used at runtime.
+   if (!InterFont && !LabelFont.IsNull()) InterFont = LabelFont.LoadSynchronous();
+   if (!Art[0].bBase && !Art[0].bLit && !Art[0].bPerfect) ResolveArt();
+   State = EMelodiaBowHUDState::Target;
+   bReticleVisible = true;
+   bIsAiming = true;
+   bIsDrawing = true;
+   DrawTension = 0.85f;
+   LooseCount = 3;
+   ReticleFade = 1.0f;
+   ArcLight[0] = 1.0f;
+   ArcLight[1] = 1.0f;
+   ArcLight[2] = 0.75f;
+   bHasTarget = true;
+   TargetHP = 750.f;
+   TargetMaxHP = 1000.f;
    return;
   }
   // Runtime with no WaveHarp combat component: draw nothing extra. bReticleVisible=false lets the
@@ -296,7 +280,7 @@ int32 UMelodiaWaveHarpHUDWidget::NativePaint(const FPaintArgs& Args, const FGeom
  L = Super::NativePaint(Args, G, Cull, E, L, Style, Enabled);
 
  // Runtime with no combat component: nothing extra is drawn (the bridge restores the stock reticle).
- // In the UMG designer the preview state was seeded in NativePreConstruct/NativeTick; paint only reads.
+ // In the UMG designer the preview state is seeded in NativeTick; paint only reads.
  if (!IsDesignTime() && !FindCombat()) return L;
 
  const FVector2D Size = G.GetLocalSize();

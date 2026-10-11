@@ -13,7 +13,11 @@
 #include "MelodiaInputContextSubsystem.h"
 #include "MelodiaMusicClockSubsystem.h"
 #include "MelodiaPersonaSubsystem.h"
+#include "Components/InputComponent.h"
 #include "Engine/EngineBaseTypes.h"
+#include "GameFramework/InputSettings.h"
+#include "GameFramework/PlayerInput.h"
+#include "InputCoreTypes.h"
 #include "UObject/UnrealType.h"
 
 const FName UMelodiaOverworldHUDWidget::PlayerUnitsProperty(TEXT("playerUnits"));
@@ -23,7 +27,47 @@ const TCHAR* UMelodiaOverworldHUDWidget::ExpPrefix = TEXT("Exp_");
 const FName UMelodiaOverworldHUDWidget::FirstLevelStatsProperty(TEXT("firstLevelStats"));
 const TCHAR* UMelodiaOverworldHUDWidget::MaxHPPrefix = TEXT("maxHP_");
 const TCHAR* UMelodiaOverworldHUDWidget::MaxMPPrefix = TEXT("maxMP_");
-const FName UMelodiaOverworldHUDWidget::OpenOrreryActionName(TEXT("MelodiaOpenOrrery"));
+
+namespace
+{
+	/**
+	 * Legacy action mapping (Config/DefaultInput.ini) that opens/closes the Cosmic Orrery. File-scope
+	 * rather than a class static so the header is unchanged (Live Coding safe).
+	 */
+	const FName MelodiaHUDOpenOrreryActionName(TEXT("MelodiaOpenOrrery"));
+
+	/**
+	 * DefaultInput.ini action mappings are only read at startup. Make sure the MelodiaOpenOrrery
+	 * mappings exist at runtime too (editor sessions started before the ini change, packaged
+	 * builds with stale user input config). In-memory only; never saves config.
+	 */
+	void EnsureMelodiaOpenOrreryActionMappings()
+	{
+		UInputSettings* Settings = UInputSettings::GetInputSettings();
+		if (!Settings)
+		{
+			return;
+		}
+		TArray<FInputActionKeyMapping> Existing;
+		Settings->GetActionMappingByName(MelodiaHUDOpenOrreryActionName, Existing);
+		const FKey WantedKeys[] = { EKeys::L, EKeys::Gamepad_Special_Left };
+		bool bAdded = false;
+		for (const FKey& Key : WantedKeys)
+		{
+			const bool bPresent = Existing.ContainsByPredicate([&Key](const FInputActionKeyMapping& Mapping) { return Mapping.Key == Key; });
+			if (!bPresent)
+			{
+				Settings->AddActionMapping(FInputActionKeyMapping(MelodiaHUDOpenOrreryActionName, Key), false);
+				bAdded = true;
+			}
+		}
+		if (bAdded)
+		{
+			Settings->ForceRebuildKeymaps();
+			UE_LOG(LogTemp, Log, TEXT("MELODIA_HUD added runtime action mapping %s (L, Gamepad_Special_Left)"), *MelodiaHUDOpenOrreryActionName.ToString());
+		}
+	}
+}
 
 namespace
 {
@@ -68,11 +112,45 @@ void UMelodiaOverworldHUDWidget::NativeConstruct()
 	// The HUD never holds keyboard focus during play (the WaveHarp component captures the pointer), so
 	// the Orrery is opened through the MelodiaOpenOrrery action mapping (Config/DefaultInput.ini)
 	// rather than NativeOnKeyDown. bConsume=false: the binding never steals the key from gameplay.
+	if (!IsDesignTime())
 	{
-		FOnInputAction OpenOrreryCallback;
-		OpenOrreryCallback.BindUFunction(this, GET_FUNCTION_NAME_CHECKED(UMelodiaOverworldHUDWidget, HandleOpenOrreryAction));
-		StopListeningForInputAction(OpenOrreryActionName, IE_Pressed); // re-construct must not double-bind (would toggle twice)
-		ListenForInputAction(OpenOrreryActionName, IE_Pressed, false, OpenOrreryCallback);
+		EnsureMelodiaOpenOrreryActionMappings();
+
+		// re-construct must not double-bind (would toggle twice)
+		StopListeningForInputAction(MelodiaHUDOpenOrreryActionName, IE_Pressed);
+		// ListenForInputAction creates and registers this widget's InputComponent; its unbound
+		// placeholder binding is then swapped for a native weak-lambda binding (no new UFUNCTION).
+		ListenForInputAction(MelodiaHUDOpenOrreryActionName, IE_Pressed, false, FOnInputAction());
+		StopListeningForInputAction(MelodiaHUDOpenOrreryActionName, IE_Pressed);
+		if (InputComponent)
+		{
+			FInputActionBinding OpenOrreryBinding(MelodiaHUDOpenOrreryActionName, IE_Pressed);
+			OpenOrreryBinding.bConsumeInput = false;
+			OpenOrreryBinding.ActionDelegate.GetDelegateForManualSet().BindWeakLambda(this, [this]()
+			{
+				if (!GetIsEnabled())
+				{
+					return;
+				}
+				// Toggle. While the Orrery is open it holds UI-only focus and closes itself on this same
+				// key, so in practice this path only opens it; the close leg is kept for robustness.
+				if (ActiveOrreryWidget && ActiveOrreryWidget->IsInViewport())
+				{
+					if (UMelodiaCosmicOrreryWidget* Orrery = Cast<UMelodiaCosmicOrreryWidget>(ActiveOrreryWidget))
+					{
+						if (MenuCloseSound)
+						{
+							UGameplayStatics::PlaySound2D(this, MenuCloseSound);
+						}
+						Orrery->CloseOrrery();
+						ActiveOrreryWidget = nullptr;
+						return;
+					}
+				}
+				OpenOrreryWithArchetype(0); // Party
+			});
+			InputComponent->AddActionBinding(OpenOrreryBinding);
+		}
 	}
 
 	// No chapter / quest-progress authority exists yet: these fields are hidden, never faked.
@@ -190,7 +268,7 @@ void UMelodiaOverworldHUDWidget::NativeDestruct()
 		Sys_2->OnUnhovered.RemoveDynamic(this, &UMelodiaOverworldHUDWidget::HandleSys2Unhovered);
 	}
 
-	StopListeningForInputAction(OpenOrreryActionName, IE_Pressed);
+	StopListeningForInputAction(MelodiaHUDOpenOrreryActionName, IE_Pressed);
 
 	if (ActiveOrreryWidget)
 	{
@@ -280,26 +358,7 @@ void UMelodiaOverworldHUDWidget::OpenOrreryWithArchetype(int32 ArchetypeIndex)
 void UMelodiaOverworldHUDWidget::HandleOrreryClosed()
 {
 	ActiveOrreryWidget = nullptr;
-}
-
-void UMelodiaOverworldHUDWidget::HandleOpenOrreryAction()
-{
-	// Toggle. While the Orrery is open it holds UI-only focus and closes itself on this same key,
-	// so in practice this path only opens it; the close leg is kept for robustness.
-	if (ActiveOrreryWidget && ActiveOrreryWidget->IsInViewport())
-	{
-		if (UMelodiaCosmicOrreryWidget* Orrery = Cast<UMelodiaCosmicOrreryWidget>(ActiveOrreryWidget))
-		{
-			if (MenuCloseSound)
-			{
-				UGameplayStatics::PlaySound2D(this, MenuCloseSound);
-			}
-			Orrery->CloseOrrery();
-			ActiveOrreryWidget = nullptr;
-			return;
-		}
-	}
-	OpenOrreryWithArchetype(0); // Party
+	OrreryContextHandle = FMelodiaInputContextHandle(); // unused: the Orrery owns its Menu context
 }
 
 FReply UMelodiaOverworldHUDWidget::NativeOnKeyDown(const FGeometry& InGeometry, const FKeyEvent& InKeyEvent)

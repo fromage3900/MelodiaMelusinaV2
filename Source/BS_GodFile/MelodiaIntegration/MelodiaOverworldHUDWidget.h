@@ -32,8 +32,6 @@ public:
 	static const FName FirstLevelStatsProperty;
 	static const TCHAR* MaxHPPrefix;
 	static const TCHAR* MaxMPPrefix;
-	/** Legacy action mapping (Config/DefaultInput.ini) that opens/closes the Cosmic Orrery. */
-	static const FName OpenOrreryActionName;
 
 protected:
 	virtual void NativeConstruct() override;
@@ -146,10 +144,6 @@ protected:
 	UFUNCTION()
 	void HandleOrreryClosed();
 
-	/** MelodiaOpenOrrery action: toggles the Orrery (the HUD never holds keyboard focus in play). */
-	UFUNCTION()
-	void HandleOpenOrreryAction();
-
 	virtual FReply NativeOnKeyDown(const FGeometry& InGeometry, const FKeyEvent& InKeyEvent) override;
 
 	/** Seconds the area caption stays up after the HUD appears. */
@@ -165,6 +159,8 @@ private:
 
 	UPROPERTY(Transient)
 	TObjectPtr<UUserWidget> ActiveOrreryWidget;
+
+	FMelodiaInputContextHandle OrreryContextHandle;
 
 	float RefreshAccumulator = 0.0f;
 	float CaptionRemaining = 0.0f;

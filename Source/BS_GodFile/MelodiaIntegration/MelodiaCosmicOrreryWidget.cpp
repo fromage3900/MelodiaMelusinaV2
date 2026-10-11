@@ -14,7 +14,10 @@
 #include "MelodiaInputContextSubsystem.h"
 #include "MelodiaMusicClockSubsystem.h"
 #include "MelodiaPersonaSubsystem.h"
-#include "MelodiaUIBridgeSubsystem.h"
+
+// Defined in MelodiaUIBridgeSubsystem.cpp. Declared here instead of in the bridge header so this fix
+// stays header-free (Live Coding cannot patch class layout / reflection changes).
+void MelodiaSetWorldCombatUISuppressed(const UObject* WorldContextObject, bool bSuppressed);
 
 namespace
 {
@@ -34,6 +37,58 @@ namespace
 		}
 		return false;
 	}
+
+	/**
+	 * Orreries currently holding the world-combat-UI suppression. File-scope storage keyed by weak
+	 * pointer instead of a class member, so the widget's layout is unchanged (Live Coding safe).
+	 */
+	TSet<TWeakObjectPtr<const UMelodiaCosmicOrreryWidget>> GOrreriesSuppressingCombatUI;
+
+	/** Open-side presentation: collapse world combat HUDs, UI-only input with cursor, user focus. */
+	void AcquireOrreryMenuPresentation(UMelodiaCosmicOrreryWidget* Orrery, const bool bOwnsMenuContext)
+	{
+		if (!Orrery || Orrery->IsDesignTime())
+		{
+			return;
+		}
+
+		// Bow HUD (z 90) and Rhythm HUD (z 85) draw above the Orrery (z 70): collapse them while open.
+		const TWeakObjectPtr<const UMelodiaCosmicOrreryWidget> Key(Orrery);
+		if (!GOrreriesSuppressingCombatUI.Contains(Key))
+		{
+			GOrreriesSuppressingCombatUI.Add(Key);
+			MelodiaSetWorldCombatUISuppressed(Orrery, true);
+		}
+
+		APlayerController* PC = Orrery->GetOwningPlayer();
+		if (!PC)
+		{
+			return;
+		}
+
+		// Only switch to UI-only when this Orrery owns the Menu context, so the pop on close/destruct
+		// is what restores the prior mode (UMelodiaInputContextSubsystem returns Exploration to
+		// GameOnly while the WaveHarp holds the pointer). If another menu already owned the Menu
+		// context, leave its input mode alone and only take focus.
+		if (bOwnsMenuContext)
+		{
+			FInputModeUIOnly Mode;
+			Mode.SetWidgetToFocus(Orrery->TakeWidget());
+			Mode.SetLockMouseToViewportBehavior(EMouseLockMode::DoNotLock);
+			PC->SetInputMode(Mode);
+			PC->SetShowMouseCursor(true);
+		}
+		Orrery->SetUserFocus(PC);
+	}
+
+	/** Idempotent close-side counterpart for the combat HUD suppression. */
+	void ReleaseOrreryCombatUISuppression(const UMelodiaCosmicOrreryWidget* Orrery)
+	{
+		if (GOrreriesSuppressingCombatUI.Remove(TWeakObjectPtr<const UMelodiaCosmicOrreryWidget>(Orrery)) > 0)
+		{
+			MelodiaSetWorldCombatUISuppressed(Orrery, false);
+		}
+	}
 }
 
 UMelodiaCosmicOrreryWidget::UMelodiaCosmicOrreryWidget(const FObjectInitializer& ObjectInitializer)
@@ -52,7 +107,7 @@ void UMelodiaCosmicOrreryWidget::NativeConstruct()
 	SetKeyboardFocus();
 
 	// The Orrery is the single owner of its Menu input context: exactly one push here, exactly one
-	// pop in ReleaseMenuOwnership() (close or destruct). Callers must not push on its behalf.
+	// pop in CloseOrrery() / NativeDestruct(). Callers must not push on its behalf.
 	if (!OwnContextHandle.IsValid())
 	{
 		if (UMelodiaInputContextSubsystem* InputSubsystem = UMelodiaInputContextSubsystem::Get(this))
@@ -63,7 +118,7 @@ void UMelodiaCosmicOrreryWidget::NativeConstruct()
 			}
 		}
 	}
-	AcquireMenuPresentation();
+	AcquireOrreryMenuPresentation(this, OwnContextHandle.IsValid());
 
 	Planets.Reset();
 	if (Planet_1) { Planets.Add(Planet_1); }
@@ -193,7 +248,16 @@ void UMelodiaCosmicOrreryWidget::NativeDestruct()
 		Btn->OnClicked.RemoveDynamic(this, &UMelodiaCosmicOrreryWidget::HandleCloseButtonClicked);
 	}
 
-	ReleaseMenuOwnership();
+	ReleaseOrreryCombatUISuppression(this);
+	if (OwnContextHandle.IsValid())
+	{
+		// Popping re-applies the input mode and cursor policy of whatever context is beneath.
+		if (UMelodiaInputContextSubsystem* InputSubsystem = UMelodiaInputContextSubsystem::Get(this))
+		{
+			InputSubsystem->PopContext(OwnContextHandle);
+		}
+		OwnContextHandle = FMelodiaInputContextHandle();
+	}
 
 	Super::NativeDestruct();
 }
@@ -488,60 +552,7 @@ void UMelodiaCosmicOrreryWidget::CloseOrrery()
 
 	OnOrreryClosed.Broadcast();
 
-	ReleaseMenuOwnership();
-
-	RemoveFromParent();
-}
-
-void UMelodiaCosmicOrreryWidget::AcquireMenuPresentation()
-{
-	if (IsDesignTime())
-	{
-		return;
-	}
-
-	// Bow HUD (z 90) and Rhythm HUD (z 85) draw above the Orrery (z 70): collapse them while open.
-	if (!bSuppressedWorldCombatUI)
-	{
-		if (UMelodiaUIBridgeSubsystem* Bridge = UMelodiaUIBridgeSubsystem::Get(this))
-		{
-			Bridge->SetWorldCombatUISuppressed(true);
-			bSuppressedWorldCombatUI = true;
-		}
-	}
-
-	APlayerController* PC = GetOwningPlayer();
-	if (!PC)
-	{
-		return;
-	}
-
-	// Only switch to UI-only when this Orrery owns the Menu context, so the pop in
-	// ReleaseMenuOwnership() is what restores the prior mode (UMelodiaInputContextSubsystem returns
-	// Exploration to GameOnly while the WaveHarp holds the pointer). If another menu already owned
-	// the Menu context, leave its input mode alone and only take focus.
-	if (OwnContextHandle.IsValid())
-	{
-		FInputModeUIOnly Mode;
-		Mode.SetWidgetToFocus(TakeWidget());
-		Mode.SetLockMouseToViewportBehavior(EMouseLockMode::DoNotLock);
-		PC->SetInputMode(Mode);
-		PC->SetShowMouseCursor(true);
-	}
-	SetUserFocus(PC);
-}
-
-void UMelodiaCosmicOrreryWidget::ReleaseMenuOwnership()
-{
-	if (bSuppressedWorldCombatUI)
-	{
-		bSuppressedWorldCombatUI = false;
-		if (UMelodiaUIBridgeSubsystem* Bridge = UMelodiaUIBridgeSubsystem::Get(this))
-		{
-			Bridge->SetWorldCombatUISuppressed(false);
-		}
-	}
-
+	ReleaseOrreryCombatUISuppression(this);
 	if (OwnContextHandle.IsValid())
 	{
 		// Popping re-applies the input mode and cursor policy of whatever context is beneath.
@@ -551,6 +562,8 @@ void UMelodiaCosmicOrreryWidget::ReleaseMenuOwnership()
 		}
 		OwnContextHandle = FMelodiaInputContextHandle();
 	}
+
+	RemoveFromParent();
 }
 
 const FMelodiaOrreryArchetype& UMelodiaCosmicOrreryWidget::GetArchetype(int32 Index) const

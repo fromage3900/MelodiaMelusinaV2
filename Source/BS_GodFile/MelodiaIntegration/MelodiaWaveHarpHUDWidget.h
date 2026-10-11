@@ -47,7 +47,6 @@ class BS_GODFILE_API UMelodiaWaveHarpHUDWidget : public UUserWidget
 public:
  UMelodiaWaveHarpHUDWidget(const FObjectInitializer& ObjectInitializer);
  virtual void NativeConstruct() override;
- virtual void NativePreConstruct() override;
  virtual void NativeTick(const FGeometry& MyGeometry, float InDeltaTime) override;
  virtual int32 NativePaint(const FPaintArgs& Args, const FGeometry& Geometry,
   const FSlateRect& Cull, FSlateWindowElementList& Elements, int32 Layer,
@@ -115,8 +114,6 @@ private:
  };
  FMelodiaBowHUDTextureSlot* SlotProperty(ESlot InSlot);
  void ResolveArt();
- /** Designer-only lookdev state (IsDesignTime()); runtime never fakes a target. */
- void ApplyDesignPreviewState();
  bool ResolveBrush(const TSoftObjectPtr<UTexture2D>& Soft, FSlateBrush& Out);
  const UMelodiaWaveHarpCombatComponent* FindCombat() const;
  float BeatSeconds() const;
