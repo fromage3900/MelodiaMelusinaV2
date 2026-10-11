@@ -1,5 +1,17 @@
 # Melodia Melusina ? Current State
 
+## ⚑ OWNER CANON — turn-based ARPG / ACFU hybrid is the game — 2026-10-11
+
+**Owner decision (2026-10-11, verbatim intent):** the turn-based ARPG / ACFU hybrid is canon. This is the owner pivot that the 09-27 souls-track audit said was required ("no conversion without owner pivot + Issue #51"). It supersedes every "ACFU excluded / ACF is sandbox-only / JRPG slices plus isolated ACFU R&D" statement in this file, `CLAUDE.md` ("MelodiaCore ... ACFU and Conversation2D are excluded"), `AGENTS.md` and `Docs/Production/HYBRID_TRIAL_WEB_2026-10-05.md` §1/§5 (which called the ACF pawns a guarded, unmerged divergence).
+
+**What is now canon:** the combat identity is the hybrid — ACF (ACFU) action-RPG layer combined with the turn-based JRPG/Phoenix layer — not JRPG-only with ACF as a trial harness. Rhythm, WaveHarp caster/archer, Wardrobe, Quill narrative and the music-key world stay as the surrounding systems.
+
+**What is NOT yet decided (owner to specify; do not infer):** which layer owns damage resolution and HP per mode, how FLOW/SEQUENCE (`UMelodiaHybridEncounterComponent`) maps onto ACF melee/dodge versus turn menus, whether the canonical pawn stays `BP_MelusinaJRPGCharacter` or moves to an `ACFPlayerCharacterBP` child, and the production GameMode. Until the owner answers, `BP_MelodiaJRPGGameMode` + the canonical pawn remain the only production boot path and no production map boots an ACF GameMode.
+
+**Evidence that exists (unchanged, see 2026-09-28 ACF review and HYBRID_TRIAL_WEB):** ACFU 4.3.5 runtime loads in UE 5.8; `BP_MelusinaACFTrial` compiles 0/0 on an `ACFPlayerCharacterBP` child with V2 body + `ABP_Melusina_Current`; PIE starts under `BP_ACFTrialGameMode`. **Unverified:** controller possession, melee/lock-on/dodge/hit/death, beat-graded damage; V2 mesh has no Souls sockets; 24 invalid ACF gameplay-tag warnings at startup; `BP_MelusinaACFHybrid` carries a `CharacterMesh0` pin warning. `Content/Melodia/*` and `Tools/*` trial assets are git-ignored (P4 / local).
+
+**Next gates (in order):** (1) owner answers the four open questions above; (2) record them here and mirror into `CLAUDE.md`/`AGENTS.md` (integrator-owned single-writer files — update the "ACFU excluded" line there); (3) prove possession + one ACF melee exchange in PIE; (4) promote or retire the trial web (`BP_HybridSlimeNode`, `BP_WaveHarpProofArrowActor` are dead props). Issue #51 stays the idempotency reference.
+
 ## VFX Material Convergence & Niagara Gameplay Runtime Canon — 2026-10-10 (Unreal Closed, Staging Active)
 
 Owner documentation and convergence plan verified against actual disk state, Git LFS stashes, and runtime assets (`Saved/Staging/GrokPrep/vfx_material_convergence/`).
