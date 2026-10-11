@@ -267,10 +267,26 @@ void UMelodiaUIBridgeSubsystem::EnsureWorldCombatUI(APlayerController* Player, b
 		if (auto* Rhythm = UMelodiaRhythmCombatSubsystem::Get(this)) Rhythm->BindRhythmHUD(nullptr);
 		WorldRhythmHUD->RemoveFromParent(); WorldRhythmHUD = nullptr;
 	}
+	// While a full-screen menu suppresses world combat UI, keep newly (re)created HUDs collapsed too.
+	if (bWorldCombatUISuppressed) ApplyWorldCombatUIVisibility();
 	// One reticle at a time: while the bow reticle owns centre (or SEQUENCE yields it to the
 	// highway) the stock OverworldHUD Reticle is collapsed; otherwise its prior visibility returns.
 	const bool bBowOwnsCentre = WorldCombatHUD && (bSequence || WorldCombatHUD->IsBowReticleVisible() || WorldCombatHUD->IsCenterYielded());
 	SetStockReticleSuppressed(Player, bBowOwnsCentre);
+}
+void UMelodiaUIBridgeSubsystem::SetWorldCombatUISuppressed(const bool bSuppressed)
+{
+	if (bWorldCombatUISuppressed == bSuppressed) return;
+	bWorldCombatUISuppressed = bSuppressed;
+	UE_LOG(LogTemp, Log, TEXT("MELODIA_WORLDCOMBATUI %s"), bSuppressed ? TEXT("suppressed") : TEXT("restored"));
+	ApplyWorldCombatUIVisibility();
+}
+void UMelodiaUIBridgeSubsystem::ApplyWorldCombatUIVisibility()
+{
+	// HitTestInvisible is the only visibility the bridge ever gives these widgets (see creation above).
+	const ESlateVisibility Wanted = bWorldCombatUISuppressed ? ESlateVisibility::Collapsed : ESlateVisibility::HitTestInvisible;
+	if (WorldCombatHUD && WorldCombatHUD->GetVisibility() != Wanted) WorldCombatHUD->SetVisibility(Wanted);
+	if (WorldRhythmHUD && WorldRhythmHUD->GetVisibility() != Wanted) WorldRhythmHUD->SetVisibility(Wanted);
 }
 void UMelodiaUIBridgeSubsystem::ReleaseWorldCombatUI()
 {

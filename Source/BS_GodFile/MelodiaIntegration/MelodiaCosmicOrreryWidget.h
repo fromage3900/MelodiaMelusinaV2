@@ -102,8 +102,11 @@ public:
 	UFUNCTION(BlueprintPure, Category = "Melodia|Orrery")
 	const FMelodiaOrreryArchetype& GetArchetype(int32 Index) const;
 
-	/** Assign the modal input context handle from the pushing controller */
-	void SetContextHandle(FMelodiaInputContextHandle Handle) { OwnContextHandle = Handle; }
+	/**
+	 * Deprecated path: the Orrery pushes and pops its own Menu context. Kept for source compatibility;
+	 * it only adopts a handle when the Orrery does not already own one, so it can never orphan a push.
+	 */
+	void SetContextHandle(FMelodiaInputContextHandle Handle) { if (!OwnContextHandle.IsValid()) { OwnContextHandle = Handle; } }
 
 protected:
 	virtual void NativeConstruct() override;
@@ -216,6 +219,10 @@ private:
 	void RefreshActivePresentation();
 	void UpdateOrbitSimulation(float InDeltaTime);
 	void UpdateStardustDrift(float InDeltaTime);
+	/** Open-side presentation: collapse world combat HUDs, UI-only input with cursor, user focus. */
+	void AcquireMenuPresentation();
+	/** Idempotent close-side counterpart: restore combat HUDs, pop the one owned Menu context. */
+	void ReleaseMenuOwnership();
 
 	UFUNCTION() void HandlePlanet1Clicked();
 	UFUNCTION() void HandlePlanet2Clicked();
@@ -256,4 +263,5 @@ private:
 	TArray<TObjectPtr<UWidget>> StardustWidgets;
 
 	FMelodiaInputContextHandle OwnContextHandle;
+	bool bSuppressedWorldCombatUI = false;
 };

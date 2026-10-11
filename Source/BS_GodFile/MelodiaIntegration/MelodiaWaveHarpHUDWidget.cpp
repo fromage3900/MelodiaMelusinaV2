@@ -146,6 +146,38 @@ void UMelodiaWaveHarpHUDWidget::NativeConstruct()
  ResolveArt();
 }
 
+void UMelodiaWaveHarpHUDWidget::NativePreConstruct()
+{
+ Super::NativePreConstruct();
+ // UMG designer only (NativeConstruct does not run there): resolve art and seed the lookdev
+ // preview state here so NativePaint never has to mutate state through const_cast.
+ if (IsDesignTime())
+ {
+  InterFont = LabelFont.IsNull() ? nullptr : LabelFont.LoadSynchronous();
+  ResolveArt();
+  ApplyDesignPreviewState();
+ }
+}
+
+void UMelodiaWaveHarpHUDWidget::ApplyDesignPreviewState()
+{
+ // Designer / lookdev preview: a representative Target-state reticle. Never used at runtime.
+ State = EMelodiaBowHUDState::Target;
+ bReticleVisible = true;
+ bIsAiming = true;
+ bIsDrawing = true;
+ DrawTension = 0.85f;
+ LooseCount = 3;
+ ReticleFade = 1.0f;
+ ArcLight[0] = 1.0f;
+ ArcLight[1] = 1.0f;
+ ArcLight[2] = 0.75f;
+ bHasTarget = true;
+ TargetHP = 750.f;
+ TargetMaxHP = 1000.f;
+ BreathePhase = Beat > 0.f ? FMath::Fmod(float(Now) / (2.f * Beat), 1.f) : 0.f;
+}
+
 const UMelodiaWaveHarpCombatComponent* UMelodiaWaveHarpHUDWidget::FindCombat() const
 {
  const APawn* Pawn = GetOwningPlayer() ? GetOwningPlayer()->GetPawn() : nullptr;
@@ -185,21 +217,15 @@ void UMelodiaWaveHarpHUDWidget::NativeTick(const FGeometry& MyGeometry, float In
  const UMelodiaWaveHarpCombatComponent* Combat = FindCombat();
  if (!Combat)
  {
-  // Preview / Design-Time fallback for UMG designer, lookdev, and headless preview capture:
-  State = EMelodiaBowHUDState::Target;
-  bReticleVisible = true;
-  bIsAiming = true;
-  bIsDrawing = true;
-  DrawTension = 0.85f;
-  LooseCount = 3;
-  ReticleFade = 1.0f;
-  ArcLight[0] = 1.0f;
-  ArcLight[1] = 1.0f;
-  ArcLight[2] = 0.75f;
-  bHasTarget = true;
-  TargetHP = 750.f;
-  TargetMaxHP = 1000.f;
-  BreathePhase = FMath::Fmod(float(Now) / (2.f * Beat), 1.f);
+  if (IsDesignTime())
+  {
+   // UMG designer / lookdev preview only.
+   ApplyDesignPreviewState();
+   return;
+  }
+  // Runtime with no WaveHarp combat component: draw nothing extra. bReticleVisible=false lets the
+  // bridge restore the stock OverworldHUD reticle.
+  bReticleVisible = false; State = EMelodiaBowHUDState::Idle; ReticleFade = 0.f;
   return;
  }
  // ---- Figma inputs ----
@@ -269,29 +295,9 @@ int32 UMelodiaWaveHarpHUDWidget::NativePaint(const FPaintArgs& Args, const FGeom
  using namespace MelodiaBowHUD;
  L = Super::NativePaint(Args, G, Cull, E, L, Style, Enabled);
 
- // Lazy art resolution if called in preview before construct
- if (!Art[0].bBase && !Art[0].bLit && !Art[0].bPerfect)
- {
-  const_cast<UMelodiaWaveHarpHUDWidget*>(this)->ResolveArt();
- }
-
- const bool bPreview = (FindCombat() == nullptr);
- if (bPreview && (ReticleFade <= 0.002f || !bReticleVisible))
- {
-  const_cast<UMelodiaWaveHarpHUDWidget*>(this)->State = EMelodiaBowHUDState::Target;
-  const_cast<UMelodiaWaveHarpHUDWidget*>(this)->bReticleVisible = true;
-  const_cast<UMelodiaWaveHarpHUDWidget*>(this)->bIsAiming = true;
-  const_cast<UMelodiaWaveHarpHUDWidget*>(this)->bIsDrawing = true;
-  const_cast<UMelodiaWaveHarpHUDWidget*>(this)->ReticleFade = 1.0f;
-  const_cast<UMelodiaWaveHarpHUDWidget*>(this)->DrawTension = 0.85f;
-  const_cast<UMelodiaWaveHarpHUDWidget*>(this)->LooseCount = 3;
-  const_cast<UMelodiaWaveHarpHUDWidget*>(this)->ArcLight[0] = 1.0f;
-  const_cast<UMelodiaWaveHarpHUDWidget*>(this)->ArcLight[1] = 1.0f;
-  const_cast<UMelodiaWaveHarpHUDWidget*>(this)->ArcLight[2] = 0.75f;
-  const_cast<UMelodiaWaveHarpHUDWidget*>(this)->bHasTarget = true;
-  const_cast<UMelodiaWaveHarpHUDWidget*>(this)->TargetHP = 750.f;
-  const_cast<UMelodiaWaveHarpHUDWidget*>(this)->TargetMaxHP = 1000.f;
- }
+ // Runtime with no combat component: nothing extra is drawn (the bridge restores the stock reticle).
+ // In the UMG designer the preview state was seeded in NativePreConstruct/NativeTick; paint only reads.
+ if (!IsDesignTime() && !FindCombat()) return L;
 
  const FVector2D Size = G.GetLocalSize();
  const float S = (Size.Y / DesignH) * LayoutScale * .65f;          // compact frame for a full-screen viewport

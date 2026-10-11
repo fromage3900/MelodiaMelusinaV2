@@ -40,6 +40,11 @@ public:
 	/** Same UI owner for overworld controls and the authored phrase highway. */
 	void EnsureWorldCombatUI(APlayerController* Player, bool bSequence);
 	void ReleaseWorldCombatUI();
+	/**
+	 * Collapse (true) or restore (false) the world Bow HUD and Rhythm HUD while a full-screen menu
+	 * (the Cosmic Orrery) is open; they sit above it in z-order. Re-applied every EnsureWorldCombatUI.
+	 */
+	void SetWorldCombatUISuppressed(bool bSuppressed);
 
 	virtual void Initialize(FSubsystemCollectionBase& Collection) override;
 	virtual void Deinitialize() override;
@@ -179,4 +184,6 @@ private:
 	TObjectPtr<UMelodiaBattleKeyboardLegendWidget> KeyboardLegend;
 	UPROPERTY(Transient) TObjectPtr<UMelodiaWaveHarpHUDWidget> WorldCombatHUD;
 	UPROPERTY(Transient) TObjectPtr<UMelodiaRhythmHUDWidget> WorldRhythmHUD;
+	bool bWorldCombatUISuppressed = false;
+	void ApplyWorldCombatUIVisibility();
 };
