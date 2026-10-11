@@ -271,3 +271,8 @@ without current evidence of a blocker.
    - Protected systems: `NS_Melusina_EyeSparkle` (1.5px atlas inset), `NS_Melusina_HairFlow`, and `NS_Hero_SoftSparkle` remain untouched / held.
    - Batches of at most 4 assets; user Ctrl+S after each batch.
 
+5. **Direct Visual Video QA Verification Invariant:**
+   - Every UI, Slate brush, and Niagara particle claim requires direct visual motion proof (.mp4).
+   - Motion recordings must be verified via `ffmpeg -vf freezedetect` to ensure real frame repainting (0 freeze duration).
+   - QA evaluations must be documented via `Tools/gemini_video_qa.py` / `Tools/video_review_lane.py` with structured audit outputs saved to `Saved/Audit/VideoQA/`.
+

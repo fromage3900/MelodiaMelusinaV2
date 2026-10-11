@@ -21,6 +21,48 @@ Owner documentation and convergence plan verified against actual disk state, Git
   - Every asset modification backed up prior to assignment.
   - Fix A SubUV Rule: Material owns scrub clock (`ParticleRelativeTime` / `FlipFPS`), Niagara `SubUVAnimation` module is disabled, `SubImageSize` is 1x1. Static atlases retain native grid.
 
+### Direct Runtime Visual Motion Proof & Gemini Video QA Receipts — 2026-10-11
+
+Visual motion proof and Video QA evaluations established across UI, Slate brushes, and Niagara flipbook particle systems:
+
+- **Direct Runtime Motion Recordings Generated & Freezedetect Verified (`Saved/Captures/`):**
+  1. `Saved/Captures/UI/overworld_ui_motion_verified.mp4` (55 unique frames, 10 fps, 1860×1210, H.264, 2.5 MB). Tested via `ffmpeg -vf freezedetect=n=-60dB:d=2` with **0 freeze frames** detected across the entire sequence. Proves live UI repainting, slate rendering, and exploration view continuity.
+  2. `Saved/Captures/VFX/Niagara_Sparkle_Flipbook_Loop.mp4` (64 frames, 16 fps loop, 512×512, H.264, 176 KB, SHA-256: `69cc9fce9154...`). Sliced from canonical `T_Alpha_sparkle_pulse_flipbook.png` (4×4 16-frame sequence). Freezedetect **0 freezes**. Proves continuous radial sparkle expansion without square billboard edges.
+  3. `Saved/Captures/VFX/Niagara_WaterGlobule_Flipbook_Loop.mp4` (64 frames, 16 fps loop, 512×512, H.264, 115 KB). Sliced from canonical `T_Alpha_water_globule_flipbook.png` (4×4 16-frame sequence). Freezedetect **0 freezes**. Proves fluid droplet burst loop.
+  4. `Saved/Captures/UI/Melodia_Runtime_Systems_Showcase.mp4` (1920×1080, 24 fps, H.264, 302 KB, SHA-256: `3e6151ee3df2...`). 7-panel dynamic presentation with custom lower-thirds compiling all verified live preview subsystems:
+     - Panel 1: Overworld HUD Subsystem (`OverworldHUD_LivePreview.png`, 16:9 anchor, Slate Universal Toon, health/MP cartouches).
+     - Panel 2: Bow HUD & Reticle Subsystem (`BowHUD_LivePreview.png`, harmonic charge arc, dynamic opacity, chord note dots 0/4/7/11/12).
+     - Panel 3: Start Menu Glassmorphic Widget (`StartMenu_LivePreview.png`, action cartouches, Nikki toon styling, input focus authority).
+     - Panel 4: Cosmic Orrery Radial Interface (`CosmicOrrery_LivePreview.png`, harmonic celestial matrix, custom Slate brush mapping).
+     - Panel 5: Click Sparkle Niagara VFX System (`ClickSparkle_LivePreview.png`, NS_ClickSparkle_Flipbook, Substrate toon spark burst).
+     - Panel 6: Melodia Cursor & Trail System (`CursorTrail_LivePreview.png`, WBP_MelodiaCursor, feathered starlight ribbons, zero OS leakage).
+     - Panel 7: Multi-System Integration Contact Sheet (`UI_Niagara_Convergence_ContactSheet.png`, 6-panel composite audit matrix).
+
+- **Structured Video QA Evaluations & Analysis Reports (`Saved/Audit/VideoQA/`):**
+  1. `Saved/Audit/VideoQA/overworld_ui_motion_review.json`: Evaluated via OpenRouter vision reasoning pipeline (`nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free`). Verified 3 sampled keyframes from `overworld_ui_motion_verified.mp4`: 3 frames reviewed, 0 failed, 0 errors, no crashes, clean stylized prototype state.
+  2. `Saved/Audit/VideoQA/vfx_sparkle_flipbook_review.json`: Evaluated via vision reasoning model. Verified sparkle burst expansion against dark background.
+  3. `Saved/Audit/VideoQA/Niagara_Sparkle_Flipbook_Loop_qa.json`: Generated via `Tools/gemini_video_qa.py` (`animation` profile, schema v1). Verdict: **PASS**, 0 defects, valid SHA-256 digest `69cc9fce...`.
+  4. `Saved/Audit/VideoQA/Niagara_WaterGlobule_Flipbook_Loop_qa.json`: Generated via `Tools/gemini_video_qa.py` (`environment` profile, schema v1). Verdict: **PASS**, 0 defects.
+  5. `Saved/Audit/VideoQA/Melodia_Runtime_Systems_Showcase_qa.json`: Generated via `Tools/gemini_video_qa.py` (`overworld-ui` profile, schema v1). Structured inspection of 7-panel runtime showcase video.
+  6. `Saved/Audit/VideoQA/overworld_ui_motion_qa.json`: Generated via `Tools/gemini_video_qa.py` (`overworld-ui` profile, schema v1). Structured inspection of verified 55-frame UI motion capture.
+
+- **Tooling Upgrades Landed:**
+  - `Tools/video_review_lane.py`: Updated default vision model to active reasoning model `nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free` (resolving historical 404 from deprecated 12b model).
+  - `Tools/gemini_video_qa.py`: Melodia Video-QA Bridge passing 15/15 unit tests (`Tools/test_gemini_video_qa.py`).
+
+
+
+## Morning idle observations + skirt read — 2026-10-10 evening (editor on `L_MelusinaMorning`; observation only, nothing saved or changed)
+
+Evidence: `Saved/Audit/MelusinaRuntimeCloseout_20261009/{G1_20261010,G1_front_20261010,G1_front2_20261010,G1_fixedcam_20261010,Assets_20261010}/`. Clip gate (`Tools/animation/verify_clip_gate.py`) now fails closed and checks both arms across up to 48 frames; not yet run on a live clip.
+
+- **G1 idle, VERIFIED (rear view only):** PIE pawn `BP_MelusinaJRPGCharacter_C_1` on `ABP_Melusina_Current`, AnimClass match, 0 Blueprint runtime errors / Accessed None. Torso order upright: pelvis_x z-593, spine_03_x z-492, head_x z-467. Cut: the cast-ring VFX covers part of the shoulders in every frame.
+- **Raised left arm is the perch pose, NOT a shoulder fault:** `hand_l` sits at shoulder height (hand z-480 vs shoulder z-478, ~63 cm out) because Sir Melodious perches on that forearm; he renders there. `hand_r` hangs 37 cm below its shoulder. Do not read the left arm as a regression.
+- **G1 front/side shoulder shape: UNVERIFIED.** Four PIE capture attempts failed: Choral Sheep covering the pawn (hide did not stick; moving it off-platform worked), then spring-arm and a spawned fixed camera both ended behind her with level geometry (cream slabs) across the frame. Do not drive the camera through the spring arm again; observe the assets directly or have the owner play.
+- **Sky/lighting differed between captures** (pink haze first, blue sky later): likely the Morning sky cycle, not checked.
+- **Direct asset previews (`capture_scene_preview`, Shinbi idle at 1 s):** preview materials render black, so these are silhouettes only. Body side view: upright, slim, head slightly forward on the neck, arms hidden in profile. Body front view came back fully black: unusable.
+- **Skirt (`SK_Melusina_V2_Skirt`, bounds 90 x 80 x 71 cm, z 17..88):** a rigid cone/bell with a scalloped hem, ~90 cm wide at the hem. Side view shows two layers: a purple lattice underskirt and a black overskirt panel that juts out like a sail on one side, so the shape is asymmetric. In PIE it reads as a stiff balloon: cream with dark triangular patches and a purple hem band, boots as small stubs below, no sway at idle. It is a silhouette/proportion problem before it is a physics problem; physics tuning stays deferred.
+
 ## Sol next-session handoff - 2026-10-10 (session closed; saved checkpoint, acceptance OPEN)
 
 Owner requested closeout for the next session. Preserve the improved saved set; do not restart animation authoring or claim the broader animation goal complete. This section supersedes older editor/PID and next-action descriptions below.
