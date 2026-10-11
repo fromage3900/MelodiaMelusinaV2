@@ -1,4 +1,4 @@
-# ♪ Melodia Melusina — Solo UE5.8 Rhythm-JRPG & Technical Art Project
+# ♪ Melodia Melusina — Solo UE5.8 Turn-Based ARPG/ACFU Hybrid & Technical Art Project
 
 ```
 ✦ ─── ✧ ─── ★ ─── ✧ ─── ✦
@@ -22,7 +22,7 @@
 
 > **Tracked vs Local Assets:** `.gitignore` deliberately keeps bulk raw binary art out of the main repository — LFS is metered (check Settings → Billing) and the live payload at HEAD is 13.3 GB. A fresh clone retrieves the 5,399 curated `.uasset` files rather than all 21,501 development files on the authoring workstation. Deadline check: `python Tools/git_ok.py` — if it is OK, stop; do not spend a day on Git archaeology. Batch/LFS policy remains [Docs/GIT_BATCH_DISCIPLINE.md](Docs/GIT_BATCH_DISCIPLINE.md). Branch hygiene: the branch census, prune receipts, and KEEP decisions live in `Docs/Audits/BRANCH_PRUNE_RECEIPT_2026-09-21.md` and `Saved/Audit/git_health_*.md` (evidence, may be absent from a fresh clone) — read them before re-reviewing old branches.
 
-♪ **Solo-developed rhythm-JRPG vertical slice and environment-led technical-art project in Unreal Engine 5.8 + Blender 5.2.** The repository combines a proven First Dream integration route with reusable character, material, procedural-world, narrative, and capture tooling. Music is the universal key: rhythm timing drives action multipliers on top of turn-based JRPG combat commands, while musical phrase resonance unlocks physical world traversal routes and story portals.
+♪ **Solo-developed rhythm turn-based ARPG / ACFU hybrid (canon since 2026-10-11) vertical slice and environment-led technical-art project in Unreal Engine 5.8 + Blender 5.2.** The repository combines a proven First Dream integration route with reusable character, material, procedural-world, narrative, and capture tooling. Music is the universal key: rhythm timing drives action multipliers on top of turn-based JRPG combat commands, while musical phrase resonance unlocks physical world traversal routes and story portals.
 
 ---
 

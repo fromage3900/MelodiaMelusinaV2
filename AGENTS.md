@@ -148,7 +148,7 @@ Today's gameplay-engineering direction is **playable proof before canonization**
 - Both modes must share **one encounter identity, one HP owner, one damage/effect authority, one rhythm grader and one durable narrative outcome path**.
 - Recover recent local/P4/runtime work first. Prefer one visible end-to-end playable interaction over broad architecture work.
 - PR #367 is reference/provenance only. Never merge, rebase, revive or wholesale cherry-pick it.
-- ACFU remains R&D unless the owner explicitly promotes it after a convincing runtime proof.
+- ACFU is no longer R&D-only: the turn-based ARPG / ACFU hybrid is CANON (owner, 2026-10-11; open ownership questions are listed in `CURRENT_STATE.md` "OWNER CANON"). Production promotion still needs runtime proof (possession + one ACF melee exchange in PIE).
 - Choral Sheep remains the non-combat capstone lane and must not be coupled to the combat migration.
 - If runtime proof shows the stable owner map is genuinely wrong for the desired game, report the smallest owner-boundary change required; do not silently fork the authority.
 
@@ -260,7 +260,7 @@ Implementation rules:
   work gates. See `CURRENT_STATE.md` for the full Blueprint inventory and current evidence tiers.
 - One writer owns each UI/audio surface. Extend the existing UI bridge, audio-reactive palette,
   cymatic driver, and Niagara/flipbook consumers instead of introducing parallel writers.
-- MelodiaCore remains presentation/integration-only; ACFU and Conversation2D are excluded.
+- MelodiaCore remains presentation/integration-only; Conversation2D is excluded. The turn-based ARPG / ACFU hybrid is CANON (owner, 2026-10-11; open ownership questions are listed in `CURRENT_STATE.md` "OWNER CANON").
 
 ## Project-owned paths
 

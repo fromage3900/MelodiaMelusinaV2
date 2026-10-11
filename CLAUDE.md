@@ -227,7 +227,7 @@ checkpoints and exactly-once progression transactions. TurnBased JRPG / Phoenix 
 targeting, action resolution, damage, terminal results, inventory and stock gameplay saves. Rhythm executes
 on the selected JRPG action and returns grade/performance data; Wardrobe owns owned/equipped fashion state
 and its existing traversal/battle/rhythm/Convergence capability hooks. One writer owns each UI/audio surface.
-MelodiaCore remains integration/presentation-only; ACFU and Conversation2D are excluded. The scoped battle,
+MelodiaCore remains integration/presentation-only; Conversation2D is excluded. The turn-based ARPG / ACFU hybrid is CANON (owner, 2026-10-11; open ownership questions are listed in `CURRENT_STATE.md` "OWNER CANON") and supersedes the earlier "ACFU excluded" ruling; until those questions are answered the JRPG GameMode/pawn stays the only production boot path. The scoped battle,
 grade-to-damage, Wardrobe and music-key seams are evidence-backed in `CURRENT_STATE.md`; packaged golden-run
 and long-chain persistence proof remain separate open gates.
 
