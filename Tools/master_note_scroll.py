@@ -1,0 +1,43 @@
+import unreal
+MEL=unreal.MaterialEditingLibrary
+m=unreal.load_asset('/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal')
+wpo=unreal.MaterialProperty.MP_WORLD_POSITION_OFFSET
+sw=MEL.get_material_property_input_node(m,wpo)
+print('switch',sw.get_name())
+C=unreal
+def mk(cls,x,y): return MEL.create_material_expression(m,cls,x,y)
+t=mk(C.MaterialExpressionTime,-3000,6000)
+spd=mk(C.MaterialExpressionScalarParameter,-3000,6100); spd.set_editor_property('parameter_name','NoteScrollSpeed'); spd.set_editor_property('default_value',1.0); spd.set_editor_property('group','NoteScroll')
+amp=mk(C.MaterialExpressionScalarParameter,-3000,6200); amp.set_editor_property('parameter_name','NoteScrollAmp'); amp.set_editor_property('default_value',0.0); amp.set_editor_property('group','NoteScroll')
+tc=mk(C.MaterialExpressionTextureCoordinate,-3000,6300); tc.set_editor_property('coordinate_index',1)
+mask=mk(C.MaterialExpressionComponentMask,-2800,6300); mask.set_editor_property('r',True); mask.set_editor_property('g',False); mask.set_editor_property('b',False); mask.set_editor_property('a',False)
+tau=mk(C.MaterialExpressionConstant,-2800,6400); tau.set_editor_property('r',6.2831853)
+tmul=mk(C.MaterialExpressionMultiply,-2600,6000)      # time*speed
+ph=mk(C.MaterialExpressionMultiply,-2600,6300)        # phase*tau
+sum_=mk(C.MaterialExpressionAdd,-2400,6150)
+sn=mk(C.MaterialExpressionSine,-2200,6100)
+cs=mk(C.MaterialExpressionCosine,-2200,6250)
+half=mk(C.MaterialExpressionConstant,-2200,6400); half.set_editor_property('r',0.5)
+cz=mk(C.MaterialExpressionMultiply,-2000,6300)
+x_=mk(C.MaterialExpressionMultiply,-2000,6100)
+z_=mk(C.MaterialExpressionMultiply,-1800,6300)
+zero=mk(C.MaterialExpressionConstant,-2000,6500); zero.set_editor_property('r',0.0)
+ap1=mk(C.MaterialExpressionAppendVector,-1600,6150)   # (x,0)
+ap2=mk(C.MaterialExpressionAppendVector,-1400,6200)   # (x,0,z)
+tv=mk(C.MaterialExpressionTransformVector if hasattr(C,'MaterialExpressionTransformVector') else C.MaterialExpressionTransform,-1200,6200)
+tv.set_editor_property('transform_source_type',C.MaterialVectorCoordTransformSource.TRANSFORMSOURCE_LOCAL if hasattr(C,'MaterialVectorCoordTransformSource') else 0)
+tv.set_editor_property('transform_type',C.MaterialVectorCoordTransform.TRANSFORM_WORLD)
+add=mk(C.MaterialExpressionAdd,-900,6000)
+cn=MEL.connect_material_expressions
+cn(t,'',tmul,'A'); cn(spd,'',tmul,'B')
+cn(tc,'',mask,''); cn(mask,'',ph,'A'); cn(tau,'',ph,'B')
+cn(tmul,'',sum_,'A'); cn(ph,'',sum_,'B')
+cn(sum_,'',sn,''); cn(sum_,'',cs,'')
+cn(sn,'',x_,'A'); cn(amp,'',x_,'B')
+cn(cs,'',cz,'A'); cn(half,'',cz,'B'); cn(cz,'',z_,'A'); cn(amp,'',z_,'B')
+cn(x_,'',ap1,'A'); cn(zero,'',ap1,'B'); cn(ap1,'',ap2,'A'); cn(z_,'',ap2,'B')
+cn(ap2,'',tv,'')
+cn(sw,'',add,'A'); cn(tv,'',add,'B')
+print('wpo connect', MEL.connect_material_property(add,'',wpo))
+MEL.recompile_material(m)
+print('saved',unreal.EditorAssetLibrary.save_asset('/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal',only_if_is_dirty=False))
