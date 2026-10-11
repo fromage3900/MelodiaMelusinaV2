@@ -1,0 +1,97 @@
+{
+  "receipt": "lookdev_gouache_convergence",
+  "date": "2026-10-10",
+  "reconstructed": "2026-10-10 from the session record after the original file went missing at the folder rename (see file_loss_note)",
+  "editor": "UE5.8 via Monolith 0.20.3 (port 9316) + RiderLink; Sol idle; editor-side only, no PIE",
+  "this_session": {
+    "writes_before_continuation": [
+      "MI_StarryNight_Hero: PaintGloss 12->2, PaintSpecular 0.78->0.2, PaletteFollow 0->1 (saved, recompiled)",
+      "BP_MelodiaLookdevDirector_Candidate.InkProfilePortfolio: None -> MI_MelodiaInk_Render2026 (dry-run 0 silent drops, saved)"
+    ],
+    "gouache_master_fix": {
+      "asset": "/Game/EnvSandbox/Materials/Masters/M_PainterlyGouache",
+      "class": "Substrate toon gouache master (64 expressions; band ramp + granulation + blotch + paper grain + derivative edge)",
+      "prior": "validate 4 issues (islands: TextureCoordinate_2, Multiply_18; unused: GouacheTiling/ScalarParameter_39); all 3 texture samplers on default UV0",
+      "fix": "connected MaterialExpressionMultiply_18 -> UVs on TextureSampleParameter2D_8 (WashBlotch), _9 (Granulation), _10 (PaperGrain)",
+      "post": "validate 0 issues; recompiled; saved",
+      "unused_texture": "T_Gouache_BrushEdge (4th gouache texture) remains unwired in this master",
+      "index_note": "caution: Monolith find_references does NOT report MaterialInstanceConstant->parent edges (it returned referenced_by [] for MI_StarryNight_Hero despite parent MI_StarryNight_Frozen). 'No index referencers' therefore means no actor/map/other-asset consumers, not 'no MIs'."
+    },
+    "gouache_profiles_created": [
+      {"path": "/Game/Melodia/Materials/Lookdev/MI_Gouache_Lookdev_GameplayStandard", "parent": "/Game/EnvSandbox/Materials/Masters/M_PainterlyGouache", "scalar_overrides": {"GouacheGranulation": 0.25, "GouacheBlotchStrength": 0.12, "GouachePaperGrain": 0.15, "GouacheTiling": 7, "GouacheRoughness": 0.93}},
+      {"path": "/Game/Melodia/Materials/Lookdev/MI_Gouache_Lookdev_Narrative", "parent": "/Game/EnvSandbox/Materials/Masters/M_PainterlyGouache", "scalar_overrides": {"GouacheBandSoftness": 0.065, "GouacheGranulation": 0.38, "GouacheBlotchStrength": 0.24, "GouachePaperGrain": 0.28, "GouacheTiling": 5}},
+      {"path": "/Game/Melodia/Materials/Lookdev/MI_Gouache_Lookdev_PortfolioHero", "parent": "/Game/EnvSandbox/Materials/Masters/M_PainterlyGouache", "scalar_overrides": {"GouacheGranulation": 0.45, "GouacheEdgeStrength": 0.7, "GouacheEdgeWidth": 1.25, "GouacheBlotchStrength": 0.28, "GouachePaperGrain": 0.3, "GouacheRoughness": 0.95, "GouacheTiling": 4}}
+    ],
+    "director_bp_revive": {
+      "asset": "/Game/EnvSandbox/Lookdev/Candidates/BP_MelodiaLookdevDirector_Candidate",
+      "prior": "EventGraph dead: BeginPlay/Tick/Overlap disabled; stray MetaSoundOutputSubsystem scaffold nodes; no working logic",
+      "change": "removed dead K2Node_Event_0; added fresh BeginPlay (K2Node_Event_3); added KismetMaterialLibrary::SetScalarParameterValue with MPC_MelodiaInk + ParameterName 'InkMasterWeight' + ParameterValue from InkMasterWeight variable",
+      "post": "compiles 0 errors / 0 warnings; saved; pin read-back verified (Event.then->execute, MPC var->Collection, InkMasterWeight var->ParameterValue)",
+      "left_in_place": "MetaSound scaffold nodes (AssignDelegate / WatchOutput / GetSubsystem) not deleted - not created by this session",
+      "gouache_slots_added": "3 variables (GouacheProfileGameplay/Narrative/Portfolio, type object:MaterialInterface, category 'Gouache', instance_editable) defaulting to the 3 new MI profiles; variable_count 13->16; compiles 0e/0w; saved"
+    }
+  },
+  "nikki_wool_continuation": {
+    "owner_directive": "more Nikki tools/variants + artist-friendly params, using existing Copernicus maps or SDF textures for the converged Melodia Melusina LookDev",
+    "wool_import": {
+      "source": "Saved/GeneratedTextures/Copernicus (20 PNGs, generator Tools/Houdini/copernicus/copernicus_wool_variants.py, seed 20260828, 2048px, seam-verified manifest)",
+      "destination": "/Game/Melodia/Materials/Lookdev/Textures/Copernicus/",
+      "files": "5 weaves (WoolKnit/WoolCable/WoolTweed/WoolFelt/WoolBoucle) x 4 maps: BaseColor (TC_Default, sRGB), Normal (TC_Normalmap/BC5, WorldNormalMap), ORM (TC_Default, linear), Height (TC_Default, linear)",
+      "trap_fixed": "editor import_texture silently ignored the Normalmap compression setting (normals landed TC_Default/DXT1); the MATERIAL-domain import_texture with replace_existing applies it correctly (TC_Normalmap/BC5). Use the material action for texture imports."
+    },
+    "nikki_wool_variants": {
+      "created": [
+        "/Game/Melodia/Materials/Lookdev/MI_Nikki_Lookdev_WoolKnit",
+        "/Game/Melodia/Materials/Lookdev/MI_Nikki_Lookdev_WoolCable",
+        "/Game/Melodia/Materials/Lookdev/MI_Nikki_Lookdev_WoolTweed",
+        "/Game/Melodia/Materials/Lookdev/MI_Nikki_Lookdev_WoolFelt",
+        "/Game/Melodia/Materials/Lookdev/MI_Nikki_Lookdev_WoolBoucle"
+      ],
+      "parent": "/Game/EnvSandbox/Materials/Masters/M_Master_Nikki (148 params, per-feature switches, numbered artist groups)",
+      "overrides": "4 texture params each (Albedo/NormalMap/ORM/HeightMap); all scalars/switches inherit the master (NikkiTwinkleIris + NikkiPastelGrade active, ToonRamp active)",
+      "compile": "WoolKnit: 442 PS instructions, 5 samplers, 293 expressions; 0 scalar overrides (nothing to clamp)"
+    },
+    "artist_friendly_audit": {
+      "M_Master_Nikki": "already carries numbered parameter groups ('03 | Atmosphere' etc.) + slider ranges + sort priorities - no action needed",
+      "M_PainterlyGouache": "params have Group 'Surface' + SortPriority 32, but SliderMax=0 (no UI sliders); finer sub-groups (01 | Bands / 02 | Texture / 03 | Edge / ...) + sliders were drafted, the edit script was ABORTED by owner - left as an OPEN polish item, not applied"
+    },
+    "clamp_audit": {
+      "wool_variants": "no scalar overrides - pure texture variants, nothing to clamp",
+      "texture_settings": "sampler types correct (Color for BC, Normal for N), TA_Wrap tiling, 2048 max_size, mip chains 12 on built maps",
+      "note": "texture platform builds are async; late-queue items transiently read a 32x32/B8G8R8A8 placeholder before settling. Final sweep before closeout: all 20 settled to 2048 (BaseColor DXT1 sRGB, Normal BC5/TC_Normalmap/WorldNormalMap, ORM+Height DXT1 linear, TA_Wrap, mip 12)"
+    }
+  },
+  "toon_bsdf_black_diagnosis": {
+    "symptom": "M_PainterlyGouache + its 3 MIs render black in capture_material_grid under every ToonProfile tested; M_Master_Toon_Universal renders in the same capture scene",
+    "tests": "TP_Default -> black; TP_SoftPainterly -> black (recompile/save OK); None -> black AND load-for-edit broken (recompile/save/get_compilation_stats fail); TP_Iridescent_Flow -> black (the profile the rendering Universal BSDF uses)",
+    "trap": "SubstrateToonBSDF with a NULL ToonProfile breaks the material's load-for-edit path - always keep an assigned profile",
+    "structural_diff_vs_universal": "Universal connects Normal/Metallic/Anisotropy + leaves Specular unconnected; gouache connects Specular=0.06 + leaves Normal/Metallic/Anisotropy unconnected",
+    "disk_state_now": "ToonProfile=TP_Iridescent_Flow, recompiled + saved",
+    "next": "run the bisect plan inside the editor (constant-normal / red-basecolor / specular-off probes on scratch duplicates), capture each, apply the winning fix to the master",
+    "editor_state_at_handoff": "interactive session down; UnrealEditor-Cmd pid 14476 (started 14:37) remains; 3 crashes logged earlier today (13:23-13:56), none from this lane"
+  },
+  "toon_bsdf_fix_20261010": {
+    "root_cause": "unconnected Normal input on MaterialExpressionSubstrateToonBSDF_2 - constant-(0,0,1)-normal probe on a scratch duplicate (M_Gouache_ProbeA, since deleted) rendered immediately while all profiles rendered black",
+    "fix": "MaterialExpressionVertexNormalWS_0 wired into BSDF Normal input on M_PainterlyGouache; recompiled; saved; 65/65 expressions verified persisted through a later editor restart",
+    "evidence": "live asset previews (RiderLink forceLive): master + MI_Gouache_Lookdev_{GameplayStandard,Narrative,PortfolioHero} all render (mottled blue-grey wash, per-profile character)",
+    "still_owed": "PIE/viewport acceptance with real lighting; ToonProfile remains TP_Iridescent_Flow; TP_SoftPainterly/TP_Default unretested post-fix"
+  },
+  "correction": "/Game/Melodia/Lookdev/ and /Game/Melodia/Materials/Lookdev/ both exist on disk; the earlier CURRENT_STATE '(absent on disk)' note was wrong",
+  "evidence_level": "editor-side only (validate/compile/save/write read-back). NOT proven: PIE, packaged, visual acceptance",
+  "open": [
+    "PIE/PPV acceptance of gouache profiles on a lookdev stage (needs stage inspection with owner present)",
+    "PPV WeightedBlendables application path for the director deferred (stage contents unknown without loading a level)",
+    "T_Gouache_BrushEdge wiring decision",
+    "7 director profile slots still None (owner art call)",
+    "T3D baseline mirroring: NOT APPLICABLE - Docs/T3D_Baseline/README.md selection rule excludes all 483 MaterialInstanceConstant leaves (they follow their masters), and M_PainterlyGouache is not in the baseline set (M_Master_* + ToonProfiles + identity MF_* only); the UV fix therefore trips no drift gate. Revisit only if the master is promoted into the set (needs verify_baseline.py asset-list edit + live Monolith export).",
+    "render_preview (thumbnail pipeline) returned blank captures for PP-domain and surface materials in this editor state - use capture_material_grid / Rider asset_preview instead"
+  ],
+  "file_loss_note": "at offline closeout the folder's pre-restart capture set (original receipt + lookdev_material_grid.png + lookdev_gouache_diag.png + lookdev_gouache_check.png + lookdev_wool_strip.png + lookdev_wool_textures_sheet.png) was found missing after the folder rename to _20261010 (only lookdev_gouache_check2/check3.png remained); cause unverified; this receipt was reconstructed from the session record; the captures are regenerable next editor session",
+  "closeout": {
+    "editor_returned": "Monolith re-reached after the first outage; post-restart verification: M_PainterlyGouache validate 0 issues, director UpToDate, all 3 gouache MIs re-read; second outage followed (interactive session down at handoff)",
+    "foreign_dirty_packages": "3 dirty packages observed at re-verify, none mine: MI_M_Deco1, MI_M_Deco3 (EnvSandbox/Library/Migrated/MagiciansLibrary) and an external actor for L_MelusinaMorning - left untouched",
+    "fingerprint": "no material-graph fingerprint action exists in the material domain; compile stats recorded instead",
+    "clamp": "audit-only pass, no value changes: all new-MI scalars within [0,1] except Tiling (7/5/4, sane UV multipliers); Narrative BandSoftness 0.065 vs master 0.04 (softer bands, intended); Portfolio EdgeWidth 1.25 vs 1.0 (wider hero edge, intended); Hero MI 2.0/0.2/1.0 sane; director InkMasterWeight default 0.65 untouched",
+    "git": "2026-10-10 offline closeout: CURRENT_STATE.md + Tools/chladni_sheets_to_textures.py + this receipt + the chladni study (INDEX.md + sheet JSONs) staged for an owner-instructed deliberate main commit (ALLOW_MAIN_COMMIT); no push (39 ahead / 36 behind stays integrator territory); no p4"
+  }
+}

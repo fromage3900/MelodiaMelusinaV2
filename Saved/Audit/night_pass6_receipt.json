@@ -1,0 +1,287 @@
+{
+ "step": "tune5",
+ "gl_found": true,
+ "gl_props": [
+  "location_absolute",
+  "width",
+  "height",
+  "parent",
+  "warning_propagation",
+  "use_custom_color",
+  "color",
+  "select",
+  "show_options",
+  "show_preview",
+  "hide",
+  "mute",
+  "show_texture",
+  "bl_idname",
+  "bl_label",
+  "bl_description",
+  "bl_icon",
+  "bl_width_default",
+  "bl_width_min",
+  "bl_width_max",
+  "bl_height_default",
+  "bl_height_min",
+  "bl_height_max"
+ ],
+ "gl_inputs_before": [
+  [
+   "Image",
+   "RGBA",
+   "arr",
+   "",
+   true
+  ],
+  [
+   "Type",
+   "MENU",
+   "Streaks",
+   "",
+   false
+  ],
+  [
+   "Quality",
+   "MENU",
+   "Medium",
+   "",
+   false
+  ],
+  [
+   "Threshold",
+   "VALUE",
+   1.0,
+   "",
+   false
+  ],
+  [
+   "Smoothness",
+   "VALUE",
+   0.1,
+   "",
+   false
+  ],
+  [
+   "Clamp",
+   "BOOLEAN",
+   0.0,
+   "",
+   false
+  ],
+  [
+   "Maximum",
+   "VALUE",
+   10.0,
+   "",
+   false
+  ],
+  [
+   "Strength",
+   "VALUE",
+   1.0,
+   "",
+   false
+  ],
+  [
+   "Saturation",
+   "VALUE",
+   1.0,
+   "",
+   false
+  ],
+  [
+   "Tint",
+   "RGBA",
+   "arr",
+   "",
+   false
+  ],
+  [
+   "Size",
+   "VALUE",
+   0.5,
+   "",
+   false
+  ],
+  [
+   "Streaks",
+   "INT",
+   4.0,
+   "",
+   false
+  ],
+  [
+   "Streaks Angle",
+   "VALUE",
+   0.0,
+   "",
+   false
+  ],
+  [
+   "Iterations",
+   "INT",
+   3.0,
+   "",
+   false
+  ],
+  [
+   "Fade",
+   "VALUE",
+   0.9,
+   "",
+   false
+  ],
+  [
+   "Color Modulation",
+   "VALUE",
+   0.25,
+   "",
+   false
+  ],
+  [
+   "Diagonal",
+   "BOOLEAN",
+   1.0,
+   "",
+   false
+  ],
+  [
+   "Sun Position",
+   "VECTOR",
+   "arr",
+   "",
+   false
+  ],
+  [
+   "Jitter",
+   "VALUE",
+   0.0,
+   "",
+   false
+  ],
+  [
+   "Kernel Data Type",
+   "MENU",
+   "Float",
+   "",
+   false
+  ],
+  [
+   "Kernel",
+   "VALUE",
+   0.0,
+   "",
+   false
+  ],
+  [
+   "Kernel",
+   "RGBA",
+   "arr",
+   "",
+   false
+  ]
+ ],
+ "tuned_hits": {
+  "thresh": "Threshold",
+  "size": "Size",
+  "quality": "ERR:Quality"
+ },
+ "gl_inputs_after": [
+  [
+   "Image",
+   "<bpy_float[4], NodeS"
+  ],
+  [
+   "Type",
+   "Streaks"
+  ],
+  [
+   "Quality",
+   "Medium"
+  ],
+  [
+   "Threshold",
+   1.25
+  ],
+  [
+   "Smoothness",
+   0.1
+  ],
+  [
+   "Clamp",
+   0.0
+  ],
+  [
+   "Maximum",
+   10.0
+  ],
+  [
+   "Strength",
+   1.0
+  ],
+  [
+   "Saturation",
+   1.0
+  ],
+  [
+   "Tint",
+   "<bpy_float[4], NodeS"
+  ],
+  [
+   "Size",
+   5.0
+  ],
+  [
+   "Streaks",
+   4.0
+  ],
+  [
+   "Streaks Angle",
+   0.0
+  ],
+  [
+   "Iterations",
+   3.0
+  ],
+  [
+   "Fade",
+   0.9
+  ],
+  [
+   "Color Modulation",
+   0.25
+  ],
+  [
+   "Diagonal",
+   1.0
+  ],
+  [
+   "Sun Position",
+   "<bpy_float[2], NodeS"
+  ],
+  [
+   "Jitter",
+   0.0
+  ],
+  [
+   "Kernel Data Type",
+   "Float"
+  ],
+  [
+   "Kernel",
+   0.0
+  ],
+  [
+   "Kernel",
+   "<bpy_float[4], NodeS"
+  ]
+ ],
+ "probe_diff_pct_after_tune": 51.072,
+ "comp_still_verified": false,
+ "renders": {
+  "lookdev5_wide": true,
+  "lookdev5_close": true
+ },
+ "resaved": true
+}

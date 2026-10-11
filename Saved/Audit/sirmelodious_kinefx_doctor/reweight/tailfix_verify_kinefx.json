@@ -1,0 +1,317 @@
+{
+ "schema": "melodia.sir_tailfix_verify.v1",
+ "v5": {
+  "meshes": {
+   "SirMelodiousBody": {
+    "points": 3892,
+    "zero_capture": 657,
+    "slots": 66,
+    "bbox_min": [
+     -28.4,
+     -9.4,
+     -13.7
+    ],
+    "bbox_max": [
+     28.3,
+     38.2,
+     34.0
+    ]
+   },
+   "sirmelodious_B__zierCurve_002": {
+    "points": 20736,
+    "zero_capture": 0,
+    "slots": 66,
+    "bbox_min": [
+     -15.3,
+     -8.1,
+     0.9
+    ],
+    "bbox_max": [
+     15.3,
+     21.0,
+     20.2
+    ]
+   },
+   "sirmelodious_Crest": {
+    "points": 2344,
+    "zero_capture": 0,
+    "slots": 66,
+    "bbox_min": [
+     -96.4,
+     5.9,
+     156.5
+    ],
+    "bbox_max": [
+     -93.2,
+     9.9,
+     165.2
+    ]
+   },
+   "sirmelodious_Retopo_PM3D_Cube3D1_002": {
+    "points": 344,
+    "zero_capture": 0,
+    "slots": 66,
+    "bbox_min": [
+     -3.9,
+     -8.5,
+     4.6
+    ],
+    "bbox_max": [
+     3.9,
+     -6.4,
+     22.7
+    ]
+   },
+   "sirmelodious_Retopo_PM3D_Cube3D24_001": {
+    "points": 40068,
+    "zero_capture": 0,
+    "slots": 66,
+    "bbox_min": [
+     -31.3,
+     -7.2,
+     7.3
+    ],
+    "bbox_max": [
+     31.3,
+     5.4,
+     25.5
+    ]
+   },
+   "sirmelodious_Retopo_PM3D_Cube3D25_001": {
+    "points": 226840,
+    "zero_capture": 0,
+    "slots": 66,
+    "bbox_min": [
+     -33.4,
+     -7.1,
+     6.6
+    ],
+    "bbox_max": [
+     33.4,
+     8.9,
+     25.6
+    ]
+   },
+   "sirmelodious_Retopo_PM3D_Cube3D28_001": {
+    "points": 1190,
+    "zero_capture": 0,
+    "slots": 66,
+    "bbox_min": [
+     -32.1,
+     -6.2,
+     9.1
+    ],
+    "bbox_max": [
+     32.1,
+     3.7,
+     23.9
+    ]
+   },
+   "sirmelodious_Retopo_PM3D_Cube3D29_001": {
+    "points": 49648,
+    "zero_capture": 0,
+    "slots": 66,
+    "bbox_min": [
+     -28.2,
+     -7.2,
+     16.8
+    ],
+    "bbox_max": [
+     28.2,
+     0.7,
+     26.2
+    ]
+   },
+   "sirmelodious_Retopo_PM3D_Ring3D2_002": {
+    "points": 1826,
+    "zero_capture": 0,
+    "slots": 66,
+    "bbox_min": [
+     -15.9,
+     -7.9,
+     1.8
+    ],
+    "bbox_max": [
+     15.9,
+     21.5,
+     22.9
+    ]
+   },
+   "sirmelodious_Retopo_PM3D_Sphere3D1_002": {
+    "points": 136,
+    "zero_capture": 0,
+    "slots": 66,
+    "bbox_min": [
+     -6.6,
+     -2.5,
+     28.5
+    ],
+    "bbox_max": [
+     6.8,
+     0.0,
+     30.7
+    ]
+   }
+  },
+  "bones": 132
+ },
+ "tailfix": {
+  "meshes": {
+   "SirMelodiousBody": {
+    "points": 3892,
+    "zero_capture": 0,
+    "slots": 66,
+    "bbox_min": [
+     -28.4,
+     -9.4,
+     -13.7
+    ],
+    "bbox_max": [
+     28.3,
+     38.2,
+     34.0
+    ]
+   },
+   "sirmelodious_B__zierCurve_002": {
+    "points": 20736,
+    "zero_capture": 0,
+    "slots": 66,
+    "bbox_min": [
+     -15.3,
+     -8.1,
+     0.9
+    ],
+    "bbox_max": [
+     15.3,
+     21.0,
+     20.2
+    ]
+   },
+   "sirmelodious_Crest": {
+    "points": 2344,
+    "zero_capture": 0,
+    "slots": 66,
+    "bbox_min": [
+     -96.4,
+     5.9,
+     156.5
+    ],
+    "bbox_max": [
+     -93.2,
+     9.9,
+     165.2
+    ]
+   },
+   "sirmelodious_Retopo_PM3D_Cube3D1_002": {
+    "points": 344,
+    "zero_capture": 0,
+    "slots": 66,
+    "bbox_min": [
+     -3.9,
+     -8.5,
+     4.6
+    ],
+    "bbox_max": [
+     3.9,
+     -6.4,
+     22.7
+    ]
+   },
+   "sirmelodious_Retopo_PM3D_Cube3D24_001": {
+    "points": 40068,
+    "zero_capture": 0,
+    "slots": 66,
+    "bbox_min": [
+     -31.3,
+     -7.2,
+     7.3
+    ],
+    "bbox_max": [
+     31.3,
+     5.4,
+     25.5
+    ]
+   },
+   "sirmelodious_Retopo_PM3D_Cube3D25_001": {
+    "points": 226840,
+    "zero_capture": 0,
+    "slots": 66,
+    "bbox_min": [
+     -33.4,
+     -7.1,
+     6.6
+    ],
+    "bbox_max": [
+     33.4,
+     8.9,
+     25.6
+    ]
+   },
+   "sirmelodious_Retopo_PM3D_Cube3D28_001": {
+    "points": 1190,
+    "zero_capture": 0,
+    "slots": 66,
+    "bbox_min": [
+     -32.1,
+     -6.2,
+     9.1
+    ],
+    "bbox_max": [
+     32.1,
+     3.7,
+     23.9
+    ]
+   },
+   "sirmelodious_Retopo_PM3D_Cube3D29_001": {
+    "points": 49648,
+    "zero_capture": 0,
+    "slots": 66,
+    "bbox_min": [
+     -28.2,
+     -7.2,
+     16.8
+    ],
+    "bbox_max": [
+     28.2,
+     0.7,
+     26.2
+    ]
+   },
+   "sirmelodious_Retopo_PM3D_Ring3D2_002": {
+    "points": 1826,
+    "zero_capture": 0,
+    "slots": 66,
+    "bbox_min": [
+     -15.9,
+     -7.9,
+     1.8
+    ],
+    "bbox_max": [
+     15.9,
+     21.5,
+     22.9
+    ]
+   },
+   "sirmelodious_Retopo_PM3D_Sphere3D1_002": {
+    "points": 136,
+    "zero_capture": 0,
+    "slots": 66,
+    "bbox_min": [
+     -6.6,
+     -2.5,
+     28.5
+    ],
+    "bbox_max": [
+     6.8,
+     0.0,
+     30.7
+    ]
+   }
+  },
+  "bones": 132
+ },
+ "zeros_before": 657,
+ "zeros_after": 0,
+ "pass": true,
+ "note": "fix binds the 657 previously-zero tail points to exported root/spine bones at source; geometry and bone set unchanged. This makes the tail FOLLOW the body. True tail wag still needs the spline/bbone chain exported as deform bones."
+}

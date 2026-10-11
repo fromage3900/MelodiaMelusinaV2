@@ -1,0 +1,238 @@
+{
+  "$schema_version": "storybook_widget_stylesheet.v2",
+  "design_space": [1440, 900],
+  "source": {
+    "figma_file_key": "gzMjQjGoHLKNZh0jtexGEE",
+    "page": "03 · STORYBOOK RUNTIME",
+    "design_system": "melodia-design-system/tokens.json"
+  },
+  "rules": [
+    "Native UMG/Slate geometry for flat rounded paper cards; do not rasterize them.",
+    "Keep all labels, values, key letters, quest text, and numerals live.",
+    "Use shared paper shadow treatment [7, 8] #241B2E at 25% opacity instead of baking shadow pixels."
+  ],
+  "colorPalette": {
+    "primary": "#DDC79B",
+    "secondary": "#E7C9CE",
+    "accent": "#86E4FF",
+    "background": "#241B2E",
+    "surface": "#2A1646",
+    "error": "#D9598C",
+    "success": "#73E0F2",
+    "warning": "#F2D08B",
+    "paper": "#FCFBF8",
+    "paperGilded": "#F8ECD6",
+    "parchment": "#F3E6C8",
+    "parchmentDark": "#E3DACE",
+    "goldChampagne": "#C9A86A",
+    "goldHighlight": "#F2D08B",
+    "goldBorder": "#DDC79B",
+    "plumMidnight": "#241B2E",
+    "plumDeep": "#1C1426",
+    "plumCard": "#2A1646",
+    "plumMuted": "#463A54",
+    "plumBorder": "#65467E",
+    "sakura": "#E7C9CE",
+    "sakuraTint": "#F4CFD6",
+    "lavender": "#F0DCF0",
+    "lavenderStarlight": "#9F94C6",
+    "pearlAqua": "#86E4FF",
+    "roseHp": "#FF93B5",
+    "aquaMp": "#86E4FF",
+    "shadow": "#241B2E"
+  },
+  "typography": {
+    "fontFamily": "Inter",
+    "fontFamilies": {
+      "heading": "Outfit",
+      "body": "Inter",
+      "dialogueSerif": "KaiseiDecol",
+      "dialogueScript": "KleeOne",
+      "metrics": "JetBrainsMono"
+    },
+    "fontSize": {
+      "display": 48,
+      "h1": 32,
+      "h2": 24,
+      "h3": 18,
+      "body": 14,
+      "caption": 12,
+      "overline": 10
+    },
+    "fontWeight": {
+      "light": 300,
+      "regular": 400,
+      "medium": 500,
+      "semiBold": 600,
+      "bold": 700
+    },
+    "lineHeight": {
+      "display": 56,
+      "h1": 40,
+      "h2": 32,
+      "h3": 24,
+      "body": 20,
+      "caption": 16,
+      "overline": 14
+    }
+  },
+  "spacing": {
+    "unit": 8,
+    "xs": 4,
+    "sm": 8,
+    "md": 16,
+    "lg": 24,
+    "xl": 32,
+    "xxl": 48,
+    "xxxl": 64
+  },
+  "cornerRadius": {
+    "none": 0,
+    "xs": 2,
+    "sm": 4,
+    "md": 6,
+    "interaction": 7,
+    "lg": 10,
+    "card": 14,
+    "bubble": 18,
+    "pill": 29,
+    "full": -1
+  },
+  "shadow": {
+    "none": "none",
+    "sm": "0 2 4 rgba(36,27,46,0.15)",
+    "md": "0 4 8 rgba(36,27,46,0.20)",
+    "lg": "0 8 16 rgba(36,27,46,0.25)",
+    "storybook_paper": "7 8 0 rgba(36,27,46,0.25)"
+  },
+  "elevation": {
+    "level0": "0px",
+    "level1": "0px 2px 4px rgba(36,27,46,0.10)",
+    "level2": "0px 4px 8px rgba(36,27,46,0.15)",
+    "level3": "7px 8px 0px rgba(36,27,46,0.25)"
+  },
+  "shared_shadow": {
+    "offset_px": [7, 8],
+    "color": "#241B2E",
+    "opacity": 0.25,
+    "blur_px": 0
+  },
+  "materials": {
+    "masters": {
+      "universalToon": "/Game/Melodia/UI/Materials/M_UI_UniversalToon_Master",
+      "mstone": "/Game/Melodia/UI/Materials/M_UI_Mstone_Master",
+      "nikki": "/Game/Melodia/UI/Materials/M_UI_Nikki_Master",
+      "radialRing": "/Game/Melodia/UI/Materials/M_UI_Storybook_RadialRing",
+      "orreryDisc": "/Game/Melodia/UI/Materials/M_UI_Storybook_OrreryDisc",
+      "audioGlowBorder": "/Game/Melodia/UI/Materials/M_UI_AudioGlow_Border",
+      "dialogueFrame": "/Game/Melodia/UI/Quill/M_MelodiaUI_DialogueFrame"
+    },
+    "instances": {
+      "cardIvory": "/Game/Melodia/UI/Materials/MI_UI_Nikki_Card_Ivory",
+      "cardSakura": "/Game/Melodia/UI/Materials/MI_UI_Nikki_Card_Sakura",
+      "cardLavender": "/Game/Melodia/UI/Materials/MI_UI_Nikki_Card_Lavender",
+      "cardPlum": "/Game/Melodia/UI/Materials/MI_UI_Nikki_Card_Plum",
+      "cardParchment": "/Game/Melodia/UI/Materials/MI_UI_Toon_Card_Parchment",
+      "buttonPrimary": "/Game/Melodia/UI/Materials/MI_UI_Toon_Button_Primary",
+      "vitalityBar": "/Game/Melodia/UI/Materials/MI_UI_Nikki_VitalityBar",
+      "resonanceBar": "/Game/Melodia/UI/Materials/MI_UI_Nikki_ResonanceBar",
+      "questMeter": "/Game/Melodia/UI/Materials/MI_UI_Nikki_QuestMeter",
+      "mstoneReticle": "/Game/Melodia/UI/Materials/MI_UI_Mstone_Diamond_Reticle",
+      "mstoneCrest": "/Game/Melodia/UI/Materials/MI_UI_Mstone_Aquamarine_Crest",
+      "mstoneVitals": "/Game/Melodia/UI/Materials/MI_UI_Mstone_RosyQuartz_Vitals",
+      "mstoneVoidAccent": "/Game/Melodia/UI/Materials/MI_UI_Mstone_VoidOrchid_Accent",
+      "orreryRingOuter": "/Game/Melodia/UI/Materials/MI_UI_Orrery_RingOuter",
+      "orreryRingMidDashed": "/Game/Melodia/UI/Materials/MI_UI_Orrery_RingMidDashed",
+      "orreryRingInner": "/Game/Melodia/UI/Materials/MI_UI_Orrery_RingInner",
+      "orreryDiscFrame": "/Game/Melodia/UI/Materials/MI_UI_Orrery_DiscFrame",
+      "stardustGold": "/Game/Melodia/UI/Materials/MI_UI_Stardust_Gold",
+      "stardustIris": "/Game/Melodia/UI/Materials/MI_UI_Stardust_Iris"
+    }
+  },
+  "cardStyles": {
+    "PaperCard": {
+      "fill": "#FCFBF8",
+      "stroke": "#DDC79B",
+      "stroke_px": 1,
+      "radius_px": 14,
+      "material": "/Game/Melodia/UI/Materials/MI_UI_Nikki_Card_Ivory"
+    },
+    "PaperCard_Sakura": {
+      "fill": "#E7C9CE",
+      "stroke": "#DDC79B",
+      "stroke_px": 1,
+      "radius_px": 14,
+      "material": "/Game/Melodia/UI/Materials/MI_UI_Nikki_Card_Sakura"
+    },
+    "PaperCard_Lavender": {
+      "fill": "#F0DCF0",
+      "stroke": "#DDC79B",
+      "stroke_px": 1,
+      "radius_px": 14,
+      "material": "/Game/Melodia/UI/Materials/MI_UI_Nikki_Card_Lavender"
+    },
+    "PaperCard_Plum": {
+      "fill": "#2A1646",
+      "stroke": "#F2D08B",
+      "stroke_px": 2,
+      "radius_px": 10,
+      "material": "/Game/Melodia/UI/Materials/MI_UI_Nikki_Card_Plum"
+    },
+    "MenuCard_Default": {
+      "fill": "#FCFBF8",
+      "stroke": "#DDC79B",
+      "stroke_px": 1,
+      "radius_px": 10,
+      "padding_px": [52, 12, 44, 12],
+      "material": "/Game/Melodia/UI/Materials/MI_UI_Nikki_Card_Ivory"
+    },
+    "MenuCard_Selected": {
+      "fill": "#2A1646",
+      "stroke": "#F2D08B",
+      "stroke_px": 2,
+      "radius_px": 10,
+      "padding_px": [52, 12, 44, 12],
+      "material": "/Game/Melodia/UI/Materials/MI_UI_Nikki_Card_Plum"
+    },
+    "SpeechBubble": {
+      "fill": "#F0DCF0",
+      "stroke": "#DDC79B",
+      "stroke_px": 1,
+      "radius_px": 18,
+      "material": "/Game/Melodia/UI/Materials/MI_UI_Nikki_Card_Lavender"
+    },
+    "QuestCard": {
+      "fill": "#FCFBF8",
+      "stroke": "#DDC79B",
+      "stroke_px": 1,
+      "radius_px": 12,
+      "material": "/Game/Melodia/UI/Materials/MI_UI_Nikki_Card_Ivory"
+    },
+    "CompassSign": {
+      "fill": "#F3E6C8",
+      "stroke": "#DDC79B",
+      "stroke_px": 1,
+      "radius_px": 10,
+      "material": "/Game/Melodia/UI/Materials/MI_UI_Toon_Card_Parchment"
+    },
+    "MinimapCluster": {
+      "fill": "#FCFBF8",
+      "stroke": "#DDC79B",
+      "stroke_px": 1,
+      "radius_px": 16,
+      "material": "/Game/Melodia/UI/Materials/MI_UI_Nikki_Card_Minimap"
+    },
+    "ProgressBar_HP": {
+      "track": "#241B2E",
+      "fill": "#FF93B5",
+      "radius_px": 3,
+      "material": "/Game/Melodia/UI/Materials/MI_UI_Nikki_VitalityBar"
+    },
+    "ProgressBar_MP": {
+      "track": "#241B2E",
+      "fill": "#86E4FF",
+      "radius_px": 3,
+      "material": "/Game/Melodia/UI/Materials/MI_UI_Nikki_ResonanceBar"
+    }
+  }
+}

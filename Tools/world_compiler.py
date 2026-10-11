@@ -57,6 +57,8 @@ POINT_COLUMNS = [
     # NOTE: UE FNames are case-insensitive, so no column may differ from another only by case
     # ("Scale" vs "scale" collided in the DataTable -> the vector column read back the float).
     "mesh", "material", "StemMaterial", "Position", "Rotation", "Scale3D",
+    # v2 horizon fields (additive; v1 consumers ignore these)
+    "horizon_distance", "sky_exposure", "silhouette_weight", "atmospheric_depth",
 ]
 FX_COLUMNS = [
     "anchor_id", "fx_kind", "band", "x", "y", "z", "hue_seed", "spawn_multiplier", "bounds_cm",
@@ -418,6 +420,11 @@ def stage_ecology(recipe: dict[str, Any], identity: dict[str, Any]) -> dict[str,
             height_class = int(species.get("height_class", 1))
             density_class = 2 if weight > 0.66 else (1 if weight > 0.33 else 0)
             hero_w = clearance.hero_weight(x, y, hero_falloff)
+            # v2 horizon fields (additive; computed from radial distance + height_class)
+            horizon_dist = r  # radial distance from anchor = proxy for horizon distance
+            sky_exp = _clamp01(0.3 + 0.5 * height_class + 0.2 * (1.0 - density_class / 2.0))
+            silhouette_w = _clamp01(0.2 + 0.6 * height_class + 0.2 * weight)
+            atmo_depth = _clamp01(horizon_dist / (outer_radius * 2.0))
             sp_lo, sp_hi = species.get("scale_range", [s_lo, s_hi])
             scale = _lerp(float(sp_lo), float(sp_hi), _u(seed, rid, "scale", b, i)) * (0.85 + 0.15 * hero_w)
             # Flat-lay (fairy dust): species opt into lying at light-catching
@@ -460,6 +467,11 @@ def stage_ecology(recipe: dict[str, Any], identity: dict[str, Any]) -> dict[str,
                 "Position": f"(X={_f(x)},Y={_f(y)},Z={_f(z)})",
                 "Rotation": f"(Pitch={_f(pitch)},Yaw={_f(yaw_deg)},Roll=0.000)",
                 "Scale3D": f"(X={_f(scale)},Y={_f(scale)},Z={_f(scale)})",
+                # v2 horizon fields
+                "horizon_distance": _f(horizon_dist),
+                "sky_exposure": _f(sky_exp),
+                "silhouette_weight": _f(silhouette_w),
+                "atmospheric_depth": _f(atmo_depth),
             })
             point_id += 1
             kept += 1
@@ -558,6 +570,11 @@ def stage_ecology(recipe: dict[str, Any], identity: dict[str, Any]) -> dict[str,
                 "Position": f"(X={_f(x)},Y={_f(y)},Z={_f(z)})",
                 "Rotation": f"(Pitch={_f(tpitch_k)},Yaw={_f(tyaw)},Roll=0.000)",
                 "Scale3D": f"(X={_f(tscale)},Y={_f(tscale)},Z={_f(tscale)})",
+                # v2 horizon fields (trail arcs)
+                "horizon_distance": _f(rr),
+                "sky_exposure": _f(_clamp01(0.3 + 0.5 * theight + 0.2 * (1.0 - 2.0 / 2.0))),
+                "silhouette_weight": _f(_clamp01(0.2 + 0.6 * theight + 0.2 * thero)),
+                "atmospheric_depth": _f(_clamp01(rr / (outer_radius * 2.0))),
             })
             point_id += 1
             band_rows[tb]["point_count"] += 1

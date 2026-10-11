@@ -1,0 +1,32 @@
+{
+  "schema": "melodia.jev.animation_doctor.closeout.v1",
+  "recorded_utc": "2026-10-07T22:01:34.106027+00:00",
+  "requested_model": "jev-1.13.0",
+  "model_verified": true,
+  "input_sha256": "116a795ff1422ab715b28211df0304c48177a3577d8266967031511e4631a8e6",
+  "evidence_boundary": "Jev text judgment over supplied measurements and Sol observations; no image vision, runtime acceptance, asset mutation, or owner approval.",
+  "response": {
+    "model": "jev-1.13.0",
+    "usage": {
+      "input_tokens": 1175,
+      "output_tokens": 84
+    },
+    "answers": {
+      "next_gate": {
+        "type": "choice",
+        "choice": "GROUNDING_FIRST",
+        "confidence": 0.99,
+        "probabilities": {
+          "RMB_CONTACT_FIRST": 0.01,
+          "HAT_ATTACHMENT_FIRST": 0.0,
+          "MATERIAL_POLISH_FIRST": 0.0,
+          "GROUNDING_FIRST": 0.99
+        }
+      },
+      "handoff_order": {
+        "type": "noul",
+        "noul": 0.68
+      }
+    }
+  }
+}

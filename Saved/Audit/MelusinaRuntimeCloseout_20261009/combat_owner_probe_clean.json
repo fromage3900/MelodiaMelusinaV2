@@ -1,0 +1,119 @@
+{
+  "proof": "Direct owner API pose diagnostics, not player input verification",
+  "samples": [
+    {
+      "phase": "draw",
+      "time": 0.13128232955932617,
+      "arms_cm": {
+        "l": [
+          15.77447229040703,
+          28.561035976164206,
+          28.61462101588138
+        ],
+        "r": [
+          15.774480873482966,
+          28.561005458645862,
+          28.61460957179436
+        ]
+      },
+      "aiming": true,
+      "drawing": true,
+      "status": "CHARGE  /  Hold RMB to draw, release RMB to fire."
+    },
+    {
+      "phase": "charged_late",
+      "time": 1.6511740684509277,
+      "arms_cm": {
+        "l": [
+          15.774472290407147,
+          28.561035976163932,
+          28.614621015881532
+        ],
+        "r": [
+          15.774480873482881,
+          28.56100545864589,
+          28.614609571794393
+        ]
+      },
+      "aiming": true,
+      "drawing": true,
+      "status": "CHARGE  /  Hold RMB to draw, release RMB to fire."
+    },
+    {
+      "phase": "fire",
+      "time": 2.535905599594116,
+      "arms_cm": {
+        "l": [
+          15.774472290407278,
+          28.561035976163915,
+          28.614621015881394
+        ],
+        "r": [
+          15.774480873482895,
+          28.561005458645784,
+          28.614609571794368
+        ]
+      },
+      "aiming": false,
+      "drawing": false,
+      "status": "FLOW  /  LMB casts; hold and release RMB for a charged shot."
+    },
+    {
+      "phase": "recovery",
+      "time": 3.252192974090576,
+      "arms_cm": {
+        "l": [
+          15.774472290407289,
+          28.561035976163918,
+          28.61462101588153
+        ],
+        "r": [
+          15.774480873482991,
+          28.561005458645752,
+          28.61460957179439
+        ]
+      },
+      "aiming": false,
+      "drawing": false,
+      "status": "FLOW  /  LMB casts; hold and release RMB for a charged shot."
+    },
+    {
+      "phase": "caster",
+      "time": 3.963489294052124,
+      "arms_cm": {
+        "l": [
+          15.774472290407148,
+          28.561035976163883,
+          28.614621015881607
+        ],
+        "r": [
+          15.774480873482839,
+          28.561005458645756,
+          28.61460957179438
+        ]
+      },
+      "aiming": false,
+      "drawing": false,
+      "status": "RELEASE  /  Keep clicking to complete the chord."
+    },
+    {
+      "phase": "caster_recovery",
+      "time": 4.823886156082153,
+      "arms_cm": {
+        "l": [
+          15.774462820874593,
+          28.561038025930774,
+          28.614611075556653
+        ],
+        "r": [
+          15.774471403938932,
+          28.560969361437326,
+          28.614566125581458
+        ]
+      },
+      "aiming": false,
+      "drawing": false,
+      "status": "RELEASE  /  Keep clicking to complete the chord."
+    }
+  ]
+}

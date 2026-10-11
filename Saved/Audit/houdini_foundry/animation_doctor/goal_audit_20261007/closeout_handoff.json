@@ -1,0 +1,69 @@
+{
+  "schema": "melodia.animation_doctor.closeout_handoff.v1",
+  "owner": "Sol",
+  "canonical_baseline": "c3b5b326e1221f9e16101b6792ede625cdb2b187",
+  "main_commit": "02fd3af99c53b2240e01de230260c01e245b8f50",
+  "editor_state": "closed after orderly stop; dirty content packages 0",
+  "preserved_lane": [
+    "existing staged PCG files remain staged and outside the animation commit",
+    "pre-existing uncommitted material/level/external-actor changes remain outside the animation commit"
+  ],
+  "landed_scope": [
+    "six owner-authorized SparrowDoctor animation copies with original and prior-canon source hashes preserved",
+    "live CPU-skinned boot contact and graph-versus-saved-pose diagnostics",
+    "fresh 11-filter upper-body mask re-read",
+    "eight-angle live runtime capture metadata",
+    "Jev presentation and closeout audit receipts"
+  ],
+  "runtime_status": {
+    "numerical_deform": "sampled PASS for new copies; not visual acceptance",
+    "physical_lmb": "observed cast sequence",
+    "physical_rmb_hold": "unverified",
+    "boot_contact": "flat-floor idle sample reaches 30.080 cm below collision floor on 4600/5540 CPU-skinned boot vertices; saved-clip graph bypass reaches 12.918 cm",
+    "owner_visual_acceptance": false,
+    "canonical_runtime_promotion": false,
+    "houdini_round_trip": "still open",
+    "restart_and_packaged_replay": "still open"
+  },
+  "next_bounded_sequence": [
+    {
+      "gate": "G1 idle",
+      "action": "Keep current native owners; repair only the measured saved-pose and FootPlacement contribution after checking the existing foot/ball reference and root_x output.",
+      "advance_when": "A fresh full-frame idle capture shows the CPU-skinned boot sole at the measured floor without hiding the garment or clearing fields.",
+      "stop_when": "The repair requires skeleton replacement, body reimport, a second solver, or an invented sole offset."
+    },
+    {
+      "gate": "G2 locomotion",
+      "action": "Run walk-stop on flat ground, then slope/stair contact with a clean private observer and skinned vertex samples.",
+      "advance_when": "Both feet remain planted through stop and terrain changes with measured slip/contact evidence.",
+      "stop_when": "Only ankle/toe joint heights are available or cadence is contaminated."
+    },
+    {
+      "gate": "G3 LMB + 11-filter re-read",
+      "action": "Replay the native LMB caster and retain the fresh mask receipt; compare hands and instrument placement as a separate contact check.",
+      "advance_when": "Caster motion and both-hand instrument clearance are visible in live PIE with no new graph route.",
+      "stop_when": "A candidate is promoted only because arm-length or sampled deform metrics pass."
+    },
+    {
+      "gate": "G4 held RMB",
+      "action": "With editor input left untouched, capture real RMB draw, at least two seconds hold, release/fire, then movement; only the six copies may be bound for a bounded trial.",
+      "advance_when": "The same private observer records draw/hold/release, montage/sequence, tension, and movement at normal cadence, plus hand/string clearance.",
+      "stop_when": "The result is a direct function call, transient binding, or a replay with shared observer globals."
+    },
+    {
+      "gate": "G5 dress stage-aside",
+      "action": "Keep G dress geometry and 17-script promotion backlog staged only; do not skin, bind, or reopen skeleton_fbx_export for this gate.",
+      "advance_when": "Animation gates are closed independently of dress staging.",
+      "stop_when": "A dress or Houdini staging result is used as UE runtime proof."
+    }
+  ],
+  "jev": {
+    "receipt": "jev_closeout_audit.json",
+    "model": "jev-1.13.0",
+    "model_verified": true,
+    "choice": "GROUNDING_FIRST",
+    "confidence": 0.99,
+    "boundary": "Jev judged supplied measurements and Sol observations; it did not inspect pixels, run UE, mutate assets, or grant owner acceptance."
+  },
+  "handoff": "Resume at G1 idle with the existing FootPlacement/root_x owner. Preserve originals, candidates-as-copies policy, canonical skeleton, and the staged PCG lane. Do not mark the comprehensive goal complete until Houdini round-trip, real RMB proof, contact, restart, package, and owner visual gates pass."
+}

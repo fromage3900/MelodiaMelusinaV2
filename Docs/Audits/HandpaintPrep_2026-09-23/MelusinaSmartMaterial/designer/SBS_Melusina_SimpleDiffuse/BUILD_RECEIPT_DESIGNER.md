@@ -101,6 +101,27 @@ Dial: ShadowSpread, GouacheDepth, CurvatureOpacity, CymaticIntensity 0→hero, B
 
 ---
 
+## v3 deepen — 2026-10-05
+
+| Artifact | v2 M1 | **v3** |
+|---|---:|---:|
+| `.sbs` source | 130,164 B | **149,484 B** |
+| `.sbsar` cooked | 3,740 B | **4,410 B** |
+| Painter shelf SBSAR | 3,740 B | **4,410 B** (refreshed 2026-10-05) |
+
+Cook exit 0. New dynamically-wired params (gouache lookdev, cymatic rings, curvature tools):
+`GouacheStrokeBreakup`, `GouacheBlur`, `GouacheSharpen`, `RingDistance`, `RingWarp`,
+`RingSwirl`, `RingAngle`, `RingBandTightness`, `HistogramPosition`,
+`CurvatureEdgeLight`, `CurvatureEmissive`.
+
+Gouache height now tunable end-to-end (stroke breakup -> blur -> sharpen -> NormalStrength).
+Curvature lane split into albedo edge-light + emissive edge-sparkle in addition to the
+existing decoration/wear/gouache-height uses. Cymatic rings are fully characterable
+(distance, warp, swirl, angle, band tightness, histogram scan).
+
+**Brennan — pick up the v3 shelf SBSAR:** reload Painter resources (or restart), then
+re-assign **Melusina Simple Diffuse** on Mr. Sheep's fill layer to expose the new knobs.
+
 ## Brennan — next open step
 
 1. **Open** `SBS_Melusina_SimpleDiffuse.sbs` in Designer 12.2.1 — confirm graph, tweak ring Pattern/Tiling if desired, File → Publish .sbsar (or re-run `python build_sbs.py --cook`).  

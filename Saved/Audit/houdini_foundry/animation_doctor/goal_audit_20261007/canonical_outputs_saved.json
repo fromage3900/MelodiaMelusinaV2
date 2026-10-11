@@ -1,0 +1,102 @@
+{
+  "evidence": "FINAL_SAVED_OUTPUTS_NATIVE_ALL_NOMINAL_KEYS",
+  "clips": [
+    {
+      "clip": "Cast",
+      "asset": "/Game/Melodia/Characters/Melusina/Animations/ShinbiDoctor_20261007/A_Shin_Cast.A_Shin_Cast",
+      "key_count": 30,
+      "arm_segment_min_cm": [
+        15.774475698748127,
+        28.5610421472579,
+        28.61460621772297
+      ],
+      "arm_segment_max_cm": [
+        15.774475698748155,
+        28.56104214725794,
+        28.614606217723008
+      ],
+      "root_x_z_min_cm": 92.81905688507273,
+      "root_x_z_max_cm": 92.81905688507273,
+      "arm_rotation_excursion_deg": {
+        "arm_stretch_l": 75.96567087883889,
+        "forearm_stretch_l": 25.352191262947375,
+        "arm_stretch_r": 115.12220788627886,
+        "forearm_stretch_r": 32.39665983156588
+      },
+      "contact_acceptance": false
+    },
+    {
+      "clip": "Idle",
+      "asset": "/Game/Melodia/Characters/Melusina/Animations/ShinbiDoctor_20261007/A_Shin_Idle.A_Shin_Idle",
+      "key_count": 271,
+      "arm_segment_min_cm": [
+        15.774475698748123,
+        28.561042147257904,
+        28.614604310374244
+      ],
+      "arm_segment_max_cm": [
+        15.774475698748166,
+        28.561042147257957,
+        28.61460431037435
+      ],
+      "root_x_z_min_cm": 92.81905688507273,
+      "root_x_z_max_cm": 92.81905688507273,
+      "arm_rotation_excursion_deg": {
+        "arm_stretch_l": 35.91433857029311,
+        "forearm_stretch_l": 12.348525894396285,
+        "arm_stretch_r": 23.447391848182622,
+        "forearm_stretch_r": 8.31944549566534
+      },
+      "contact_acceptance": false
+    },
+    {
+      "clip": "Idle_pose",
+      "asset": "/Game/Melodia/Characters/Melusina/Animations/ShinbiDoctor_20261007/A_Shin_Idle_pose.A_Shin_Idle_pose",
+      "key_count": 3,
+      "arm_segment_min_cm": [
+        15.774475698748146,
+        28.561042147257936,
+        28.614604310374308
+      ],
+      "arm_segment_max_cm": [
+        15.774475698748146,
+        28.561042147257936,
+        28.614604310374308
+      ],
+      "root_x_z_min_cm": 92.81905688507273,
+      "root_x_z_max_cm": 92.81905688507273,
+      "arm_rotation_excursion_deg": {
+        "arm_stretch_l": 0.0,
+        "forearm_stretch_l": 0.0,
+        "arm_stretch_r": 2.4148365394514667e-06,
+        "forearm_stretch_r": 1.7075472925031877e-06
+      },
+      "contact_acceptance": false
+    },
+    {
+      "clip": "Idle_stand",
+      "asset": "/Game/Melodia/Characters/Melusina/Animations/ShinbiDoctor_20261007/A_Shin_Idle_stand.A_Shin_Idle_stand",
+      "key_count": 162,
+      "arm_segment_min_cm": [
+        15.774475698748123,
+        28.561042147257897,
+        28.614604310374197
+      ],
+      "arm_segment_max_cm": [
+        15.77447569874817,
+        28.56104214725798,
+        28.614604310374347
+      ],
+      "root_x_z_min_cm": 92.81905688507273,
+      "root_x_z_max_cm": 92.81905688507273,
+      "arm_rotation_excursion_deg": {
+        "arm_stretch_l": 7.812647207727468,
+        "forearm_stretch_l": 2.0425470116337983,
+        "arm_stretch_r": 6.750687565727261,
+        "forearm_stretch_r": 1.8365744862478712
+      },
+      "contact_acceptance": false
+    }
+  ],
+  "runtime_gate_complete": false
+}

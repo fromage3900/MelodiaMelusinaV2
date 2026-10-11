@@ -1,0 +1,50 @@
+[
+  {
+    "clip": "A_Spar_Mel_Primary_Fire_Fast.A_Spar_Mel_Primary_Fire_Fast",
+    "root_z_dev": 3.272919275656335,
+    "eye_deg": 0.0,
+    "hand_roll": 95.04892758900547,
+    "twist_moved": 5.00193868901988e-06,
+    "fail": []
+  },
+  {
+    "clip": "A_Spar_Mel_Primary_Fire_Med.A_Spar_Mel_Primary_Fire_Med",
+    "root_z_dev": 3.261650655850005,
+    "eye_deg": 0.0,
+    "hand_roll": 95.37046715590486,
+    "twist_moved": 5.00193868901988e-06,
+    "fail": []
+  },
+  {
+    "clip": "A_Spar_Mel_Primary_Fire_Slow.A_Spar_Mel_Primary_Fire_Slow",
+    "root_z_dev": 3.26577815816826,
+    "eye_deg": 0.0,
+    "hand_roll": 95.36385567283105,
+    "twist_moved": 5.00193868901988e-06,
+    "fail": []
+  },
+  {
+    "clip": "A_Spar_Mel_RMB_Drawback.A_Spar_Mel_RMB_Drawback",
+    "root_z_dev": 0.6700218065477372,
+    "eye_deg": 0.0,
+    "hand_roll": 99.17614588200996,
+    "twist_moved": 5.00193868901988e-06,
+    "fail": []
+  },
+  {
+    "clip": "A_Spar_Mel_RMB_Fire.A_Spar_Mel_RMB_Fire",
+    "root_z_dev": 3.30792297420048,
+    "eye_deg": 0.0,
+    "hand_roll": 102.6680754505316,
+    "twist_moved": 5.00193868901988e-06,
+    "fail": []
+  },
+  {
+    "clip": "A_Spar_Mel_RMB_Loop.A_Spar_Mel_RMB_Loop",
+    "root_z_dev": 0.43949939095377033,
+    "eye_deg": 0.0,
+    "hand_roll": 91.52209994818145,
+    "twist_moved": 5.00193868901988e-06,
+    "fail": []
+  }
+]

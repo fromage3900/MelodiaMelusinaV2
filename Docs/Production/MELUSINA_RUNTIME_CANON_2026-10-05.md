@@ -1,5 +1,10 @@
 # Melusina Runtime Rig + Retarget CANON — 2026-10-05
 
+### Owner-authorized four-clip recipe update - 2026-10-07
+
+For `Animations/ShinbiDoctor_20261007` only, preserve each source-retarget arm quaternion at every frame while replacing the translations of `arm_stretch_l/r` and `forearm_stretch_l/r` with the measured native convention. Do not copy their complete constant pose or remove the source initial stance by calibrating against animation frame 0: both can leave an outstretched T-biased result. These four authored outputs bake the existing CuteIdle V10 native root/leg pose below the Shinbi upper body. The existing Idle state uses `A_Shin_Idle_stand`, caster defaults use `A_Shin_Idle` and `A_Shin_Cast`, and the existing FootPlacement pelvis uses the common torso/leg ancestor `root_x`. The general recipe below describes the earlier constant-pose policy and is superseded for these four outputs. Frozen originals and canonical skeleton protection remain binding. Current proof and outstanding checks belong exclusively to `CURRENT_STATE.md`.
+
+
 **Status: CANON.** This document defines the authoritative runtime rig, retarget pipeline and
 idle/aim chain for Melusina as of 2026-10-05. Where any older doc, plan or asset name disagrees
 with this file, this file wins. Owner-authorized commit: *"the CANON RUNTIME MELUSINA RIG AND

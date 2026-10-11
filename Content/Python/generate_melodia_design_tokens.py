@@ -7,7 +7,11 @@ GameColors / KeybindColors are resolved from the same flatten path as Colors
 """
 
 import json
+import sys
 from pathlib import Path
+
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8")
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
 TOKENS_PATH = REPO_ROOT / "melodia-design-system" / "tokens.json"

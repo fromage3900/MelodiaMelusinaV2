@@ -2,6 +2,7 @@
 #include "MonolithAssetUtils.h"
 #include "MonolithJsonUtils.h"
 #include "MonolithParamSchema.h"
+#include "MonolithMelusinaClipGuard.h"
 #include "MonolithPropertyAccessReader.h"
 #include "MonolithAnimNodeBindingReader.h" // Gap 2 (function bindings) + Gap 12 (pin bindings) read helpers
 
@@ -1463,6 +1464,9 @@ FMonolithActionResult FMonolithAnimationActions::HandleAddBlendSpaceSample(const
 
 	USkeleton* BSSkeleton = BS->GetSkeleton();
 	USkeleton* AnimSkeleton = Anim->GetSkeleton();
+	FString ClipError;
+	if (!MonolithMelusinaClipGuard::Validate(Anim, BSSkeleton, ClipError))
+		return FMonolithActionResult::Error(ClipError);
 	if (BSSkeleton && AnimSkeleton && BSSkeleton != AnimSkeleton)
 	{
 		return FMonolithActionResult::Error(FString::Printf(
@@ -1506,20 +1510,25 @@ FMonolithActionResult FMonolithAnimationActions::HandleEditBlendSpaceSample(cons
 	if (!BS->IsValidBlendSampleIndex(SampleIndex))
 		return FMonolithActionResult::Error(FString::Printf(TEXT("Invalid sample index: %d"), SampleIndex));
 
+	UAnimSequence* Replacement = nullptr;
+	if (!AnimPath.IsEmpty())
+	{
+		Replacement = FMonolithAssetUtils::LoadAssetByPath<UAnimSequence>(AnimPath);
+		if (!Replacement) return FMonolithActionResult::Error(FString::Printf(TEXT("Animation not found: %s"), *AnimPath));
+		FString ClipError;
+		if (!MonolithMelusinaClipGuard::Validate(Replacement, BS->GetSkeleton(), ClipError))
+			return FMonolithActionResult::Error(ClipError);
+	}
 	GEditor->BeginTransaction(FText::FromString(TEXT("Edit BlendSpace Sample")));
 	BS->Modify();
 
 	FVector NewValue(X, Y, 0.0f);
 	BS->EditSampleValue(SampleIndex, NewValue);
 
-	if (!AnimPath.IsEmpty())
+	if (Replacement)
 	{
-		UAnimSequence* Anim = FMonolithAssetUtils::LoadAssetByPath<UAnimSequence>(AnimPath);
-		if (Anim)
-		{
-			BS->DeleteSample(SampleIndex);
-			BS->AddSample(Anim, NewValue);
-		}
+		BS->DeleteSample(SampleIndex);
+		BS->AddSample(Replacement, NewValue);
 	}
 
 	BS->ValidateSampleData();   // clamp/validate sample positions

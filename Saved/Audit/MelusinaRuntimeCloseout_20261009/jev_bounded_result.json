@@ -1,0 +1,20 @@
+{
+  "source": "jev-live",
+  "state": {
+    "intent": "Owner wants the current torso inversion repaired and a usable core gameplay stopping point. Basic clothing layering is in scope; skirt physics deferred. Existing authorities only, no second animation pipeline.",
+    "prior_direction": "Jev chose one bounded repair then validate, first isolate the layered torso parent frame.",
+    "result": "Native source poses are upright; matched direct-owner simulated PIE receipt proves bow draw/hold/fire and one caster-fire sample invert head/upper spine below root ancestor while native arm lengths stay valid. Parent rotation frame is still a hypothesis.",
+    "experiment": "One existing ABP setting, Mesh Space Rotation Blend false to true, preserved 11 filters and graph. Native GUI compile successful. Only idle in play observed, obstructed by presentation. No charged or caster post-change proof. Experiment remained unsaved; editor crashed.",
+    "crash": "Fatal system memory exhaustion, paging file too small. Asset on disk still byte-identical to pre-test backup. One editor relaunched with local derived cache, currently blocked at black package-recovery UI. Do not overwrite older packages or discard concurrent authoring.",
+    "regression": "Existing animation gate now has a runtime receipt torso-order check and CLI mode. Requires head and upper spine above root ancestor, finite bone positions and all required combat phases in front/side. All focused tests pass; pre-change receipt fails seven samples. This is receipt validation, not physical-input or visual acceptance.",
+    "limits": "No proven runtime repair, garment clearance, boot gait contact or physical-input acceptance. Do not canonize failure or promote unsaved candidate. No frozen donor or skeleton edits."
+  },
+  "answers": {
+    "next_bounded_action": {
+      "choice": "RECOVER_EDITOR_THEN_REPLAY_SAME_ONE_PROPERTY_TEST",
+      "confidence": 1.0,
+      "reason": null,
+      "distribution": null
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{
+ "step": "animatic_v06_final",
+ "date": "2026-10-08",
+ "source_blend": "SHOREWAKE_VSE_animatic_v04.blend (v03 + text strips + 3 GAMMA_CROSS dissolves, saved - reproducible)",
+ "candidate_mp4": "ShepherdBrennan_AnimaticCreation_2026-10-09_v06.mp4",
+ "checks": {
+  "duration": "65.00 s",
+  "format": "1920x1080 h264, 24 fps, single video stream (silent), ~2.1 Mb/s",
+  "decode": "clean (ffmpeg -v error full pass, no errors)",
+  "title_card": "text present + horizontally centered (verified from extracted frame: SHOREWAKE CALLING / Brennan Shepherd / ANMN 301 - Image and Sequence Editing Toolkit)",
+  "end_card": "text present (END / Shorewake Calling / ANMN 301 Animatic Story Edit / Brennan Shepherd)",
+  "panel_numbers": "present (01-17 burned in panels)",
+  "dissolves": "3 x 16-frame GAMMA_CROSS at boundaries 457 / 985 / 1393; measured tblend ramps 0->3.4->0 across each window",
+  "vs_v05": "v05 = all hard cuts, no text-strip source on disk; v06 = same panels + text + the planned 3 dissolves, from a saved source"
+ },
+ "vse_api_notes": {
+  "new_effect_params": ["name", "type", "channel", "frame_start", "length", "input1", "input2", "sequence"],
+  "crossfade_layering": "A strip ch1 / B strip ch-above overlapped / effect above both (ch4 worked; same-channel inputs render as plain cuts)",
+  "render": "blender -b --factory-startup <file> -a; movie output appends frame range to filename (0001-1560) - rename after",
+  "media_type": "image_settings.media_type='VIDEO' required before file_format='FFMPEG' (5.2)",
+  "speed": "1560-frame VSE render of stills completed in ~30 s headless"
+ },
+ "receipts": ["vse_v06_build_receipt_20261008.json", "scripts in Saved/Audit: vse_v06_build.py, vse_v06_crosses.py, vse_v06_crosses2.py"]
+}

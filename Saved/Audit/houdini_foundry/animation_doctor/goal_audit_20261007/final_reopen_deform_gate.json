@@ -1,0 +1,34 @@
+[
+  {
+    "clip": "A_Shin_Cast",
+    "root_z_dev": 4.819056885072726,
+    "eye_deg": 0.0,
+    "hand_roll": 20.880965976729613,
+    "twist_moved": 5.00193868901988e-06,
+    "fail": []
+  },
+  {
+    "clip": "A_Shin_Idle",
+    "root_z_dev": 4.819056885072726,
+    "eye_deg": 0.0,
+    "hand_roll": 26.37384982459571,
+    "twist_moved": 5.00193868901988e-06,
+    "fail": []
+  },
+  {
+    "clip": "A_Shin_Idle_pose",
+    "root_z_dev": 4.819056885072726,
+    "eye_deg": 0.0,
+    "hand_roll": 15.735526916530603,
+    "twist_moved": 5.00193868901988e-06,
+    "fail": []
+  },
+  {
+    "clip": "A_Shin_Idle_stand",
+    "root_z_dev": 4.819056885072726,
+    "eye_deg": 0.0,
+    "hand_roll": 4.48085487318599,
+    "twist_moved": 5.00193868901988e-06,
+    "fail": []
+  }
+]

@@ -1,0 +1,87 @@
+{
+ "step": "lookdev",
+ "water_before": {
+  "span": [
+   8.05,
+   8.18,
+   0.92
+  ],
+  "z": [
+   0.17,
+   1.09
+  ],
+  "verts": 2500
+ },
+ "size_desc": "Surface scale factor (does not affect the height of the waves)",
+ "spatial_desc": "Size of the simulation domain (in meters), and of the generated geometry (in BU)",
+ "water_steps": [
+  [
+   "size=8",
+   {
+    "span": [
+     64.05,
+     64.18,
+     0.92
+    ],
+    "z": [
+     0.17,
+     1.09
+    ],
+    "verts": 2500
+   }
+  ],
+  [
+   "res=9",
+   {
+    "span": [
+     64.05,
+     64.18,
+     0.92
+    ],
+    "z": [
+     0.17,
+     1.09
+    ],
+    "verts": 2500
+   }
+  ]
+ ],
+ "water_after": {
+  "span": [
+   64.05,
+   64.18,
+   0.92
+  ],
+  "z": [
+   0.17,
+   1.09
+  ],
+  "verts": 2500
+ },
+ "raytracing": true,
+ "comp_err": "RuntimeError('Error: Node type CompositorNodeComposite undefined\\n')",
+ "world": {
+  "gradient": true,
+  "stars": true,
+  "bg_strength": 0.6000000238418579
+ },
+ "renders": {
+  "lookdev_wide": true,
+  "lookdev_close": true
+ },
+ "lookdev_saved": true,
+ "diff_kplus": {
+  "mean": 0.0044,
+  "p50": 0.0,
+  "p95": 0.0275,
+  "changed_px": 28537,
+  "changed_pct": 1.376
+ },
+ "diff_lookdev": {
+  "mean": 0.311,
+  "p50": 0.251,
+  "p95": 0.6706,
+  "changed_px": 1316096,
+  "changed_pct": 63.469
+ }
+}

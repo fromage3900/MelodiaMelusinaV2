@@ -1,6 +1,10 @@
 import unreal, json
 
-OUT = "C:/EnvironmentPortfolio/BS_GodFile/Saved/Audit/pcg_build_v1.json"
+import os
+
+# Repo-relative so the project runs from any drive letter (e.g. G:). Content/Python/<this> -> repo root is two levels up.
+_ROOT = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", ".."))
+OUT = os.path.join(_ROOT, "Saved", "Audit", "pcg_build_v1.json")
 rep = {"steps": []}
 al = unreal.EditorAssetLibrary
 g = al.load_asset("/Game/EnvSandbox/PCG/House/PCG_MelusinaHouse_MorningDell")

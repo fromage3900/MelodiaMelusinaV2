@@ -101,6 +101,10 @@ _MPC_PATHS = {
     "SakuraDream":      "/Game/EnvSandbox/VFX/MPC/MPC_SakuraDream",
     "Magical":          "/Game/EnvSandbox/VFX/MPC/MPC_Magical",
     "PortfolioAudio":   "/Game/Melodia/_PROJECT/04_Materials/MPC_Melodia_Palette",
+    # Audio bus lanes (2026-10-05): TD owns the mix. UMelodiaAudioBusSubsystem is
+    # the sole runtime consumer; it maps these lanes onto the SCL_* class overrides
+    # via SM_MelodiaAudioBus. Without TD the C++ fallback publishes neutral 1.0.
+    "AudioBus":         "/Game/Melodia/Audio/Mix/MPC_MelodiaAudioBus",
 }
 
 _mpc_cache = {}
@@ -379,6 +383,20 @@ def _handle_melodia_beat_pulse(address: str, values: list):
     _set_mpc_scalar("PortfolioAudio","BeatPulse",v); _set_mpc_scalar("PortfolioAudio","BeatIntensity",v)
 def _handle_melodia_beat_phase(address: str, values: list):
     _set_mpc_scalar("PortfolioAudio","BeatPhase", float(values[0]) if values else 0.0)
+
+# Audio bus level lanes (2026-10-05). /audio/bus/<lane>/level with
+# lane in {ambience,music,sfx,voice}, 0..1 gain (1.0 = full). UMelodiaAudioBusSubsystem
+# is the sole consumer: it reads these and applies the SM_MelodiaAudioBus class
+# overrides. Clamped here so a runaway TD patch cannot mute or clip the mix.
+_BUS_LANES = {"ambience": "Bus_AmbienceLevel", "music": "Bus_MusicLevel",
+              "sfx": "Bus_SFXLevel", "voice": "Bus_VoiceLevel"}
+def _handle_bus_level(address: str, values: list):
+    lane = address.split("/")[-2]
+    param = _BUS_LANES.get(lane)
+    if not param:
+        return
+    val = max(0.0, min(1.0, float(values[0]) if values else 1.0))
+    _set_mpc_scalar("AudioBus", param, val)
 def _handle_rhythm_beat_pulse(address: str, values: list):
     v = float(values[0]) if values else 0.0
     _set_mpc_scalar("PortfolioAudio","BeatPulse",v); _set_mpc_scalar("PortfolioAudio","BeatIntensity",v)
@@ -414,6 +432,10 @@ _ROUTES = {
     "/melodia/audio/beat/phase": _handle_melodia_beat_phase,
     "/rhythm/beat_pulse":       _handle_rhythm_beat_pulse,
     "/rhythm/beat_phase":       _handle_rhythm_beat_phase,
+    "/audio/bus/ambience/level": _handle_bus_level,
+    "/audio/bus/music/level":    _handle_bus_level,
+    "/audio/bus/sfx/level":      _handle_bus_level,
+    "/audio/bus/voice/level":    _handle_bus_level,
 }
 
 

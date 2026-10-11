@@ -1,0 +1,11 @@
+{
+  "proof": "FRESH_EDITOR_REOPEN_AFTER_FULL_NATIVE_BUILD",
+  "bindings": {
+    "cast_stance_anim": "<Object '/Game/Melodia/Characters/Melusina/Animations/ShinbiDoctor_20261007/A_Shin_Idle.A_Shin_Idle' (0x00000234A6351C00) Class 'AnimSequence'>",
+    "cast_shoot_anim": "<Object '/Game/Melodia/Characters/Melusina/Animations/ShinbiDoctor_20261007/A_Shin_Cast.A_Shin_Cast' (0x00000234A914EE00) Class 'AnimSequence'>",
+    "charge_draw_anim": "<Object '/Game/Melodia/Characters/Melusina/Animations/SparrowArchery_Canon_20261005/A_Spar_Mel_RMB_Drawback.A_Spar_Mel_RMB_Drawback' (0x00000234A971EE00) Class 'AnimSequence'>",
+    "charge_hold_anim": "<Object '/Game/Melodia/Characters/Melusina/Animations/SparrowArchery_Canon_20261005/A_Spar_Mel_RMB_Loop.A_Spar_Mel_RMB_Loop' (0x00000234A8C10700) Class 'AnimSequence'>",
+    "charge_fire_anim": "<Object '/Game/Melodia/Characters/Melusina/Animations/SparrowArchery_Canon_20261005/A_Spar_Mel_RMB_Fire.A_Spar_Mel_RMB_Fire' (0x00000234A8F01C00) Class 'AnimSequence'>"
+  },
+  "runtime_contact_acceptance": false
+}

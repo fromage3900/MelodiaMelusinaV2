@@ -685,3 +685,17 @@ run_build_*.bat
 run_launch_*.bat
 hda/backup/
 
+# --- Repo-consolidation staging dir (NEVER track — 2026-10-05) ---------------
+# A buggy PowerShell pipeline used a .NET type name as a path, so this directory
+# is literally named after the object type. It holds ~41,000 files of OTHER
+# repos and backups (my-site-kit, melodia-toon-film, RepoBackup_20261003,
+# git_bundles_archive, TrueDepth addon, studio/teamwork_projects). It sits
+# inside the game working tree but belongs to no repo we track here. A bare
+# `git add -A` would swallow all of it (and the nested .git dirs) into the game
+# repo. Relocate it to a proper home; until then, keep it out of git and P4.
+Microsoft.PowerShell.Commands.GenericMeasureInfo/
+
+# --- Generated archive artifacts (pre-commit blocks .zip/.7z — 2026-10-05) ---
+# AIRI card bundles are regenerable build output, not source.
+Docs/AIRI/**/Generated/*.zip
+

@@ -211,7 +211,27 @@ USkeletalMeshComponent* UMelodiaWardrobeComponent::FindOrCreateSlotComponent(
 	}
 
 	const FName ComponentName = *FString::Printf(TEXT("WardrobeSlot_%s"), *UEnum::GetValueAsString(Slot));
-	USkeletalMeshComponent* SlotComp = NewObject<USkeletalMeshComponent>(OwningActor, ComponentName);
+	// Adopt the authored hat instead of adding a second visible copy. It is already
+	// actor-owned and registered. Other intentional same-mesh components are untouched.
+	USkeletalMeshComponent* SlotComp = nullptr;
+	if (Slot == EMelodiaWardrobeSlot::Hat)
+	{
+		for (UActorComponent* Component : OwningActor->GetComponents())
+		{
+			USkeletalMeshComponent* Authored = Cast<USkeletalMeshComponent>(Component);
+			if (Authored && Authored != BodyMesh && Authored->GetFName() == FName(TEXT("HatMesh"))
+				&& Authored->GetSkeletalMeshAsset() == InitialMesh)
+			{
+				SlotComp = Authored;
+				break;
+			}
+		}
+	}
+	const bool bAdopted = SlotComp != nullptr;
+	if (!SlotComp)
+	{
+		SlotComp = NewObject<USkeletalMeshComponent>(OwningActor, ComponentName);
+	}
 
 	// Garments are pure presentation. A SkeletalMeshComponent defaults to query+physics
 	// collision, so without this each equipped piece added an extra collider to the
@@ -221,7 +241,17 @@ USkeletalMeshComponent* UMelodiaWardrobeComponent::FindOrCreateSlotComponent(
 	SlotComp->SetGenerateOverlapEvents(false);
 	SlotComp->CanCharacterStepUpOn = ECB_No;
 
-	SlotComp->SetupAttachment(BodyMesh);
+	// Full-skeleton garments already deform in body component space via LeaderPose.
+	// A bone socket would apply that bone transform again and detach the silhouette.
+	if (bAdopted)
+	{
+		SlotComp->AttachToComponent(BodyMesh, FAttachmentTransformRules::SnapToTargetNotIncludingScale);
+		SlotComp->SetRelativeTransform(FTransform::Identity);
+	}
+	else
+	{
+		SlotComp->SetupAttachment(BodyMesh);
+	}
 
 	// Garments are part of the hero silhouette: write the same custom depth/stencil as the
 	// body, so post-process passes that key off the hero stencil (the storybook outline skips
@@ -238,12 +268,18 @@ USkeletalMeshComponent* UMelodiaWardrobeComponent::FindOrCreateSlotComponent(
 	// body's bone transforms directly rather than running its own animation.
 	SlotComp->SetLeaderPoseComponent(BodyMesh);
 
-	SlotComp->RegisterComponent();
+	if (!bAdopted)
+	{
+		SlotComp->RegisterComponent();
+	}
 
 	// Register with the actor's instance-component list. NewObject + RegisterComponent
 	// alone leaves the component outside the owner's bookkeeping: it does not appear in
 	// GetComponents(), is not serialised with the actor, and is not torn down with it.
-	OwningActor->AddInstanceComponent(SlotComp);
+	if (!bAdopted)
+	{
+		OwningActor->AddInstanceComponent(SlotComp);
+	}
 
 	SlotComponents.Add(Slot, SlotComp);
 	return SlotComp;

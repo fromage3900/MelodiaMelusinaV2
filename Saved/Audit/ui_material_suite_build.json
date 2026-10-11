@@ -1,0 +1,39 @@
+{
+  "timestamp": "2026-10-08T19:45:08.419835+00:00",
+  "duration_seconds": 1.305371,
+  "masters_authored": [
+    "M_UI_UniversalToon_Master",
+    "M_UI_Mstone_Master",
+    "M_UI_Nikki_Master",
+    "M_UI_Storybook_RadialRing",
+    "M_UI_Storybook_OrreryDisc"
+  ],
+  "stubs_overhauled": [
+    "M_UI_Nikki_StorybookCard",
+    "M_UI_Nikki_VitalsMeter",
+    "M_UI_AudioGlow_Border"
+  ],
+  "instances_created": [
+    "MI_UI_Toon_Card_Parchment",
+    "MI_UI_Toon_Card_Plum",
+    "MI_UI_Toon_Button_Primary",
+    "MI_UI_Toon_Progress_Gold",
+    "MI_UI_Mstone_Diamond_Reticle",
+    "MI_UI_Mstone_Aquamarine_Crest",
+    "MI_UI_Mstone_RosyQuartz_Vitals",
+    "MI_UI_Mstone_VoidOrchid_Accent",
+    "MI_UI_Nikki_Card_Ivory",
+    "MI_UI_Nikki_Card_Sakura",
+    "MI_UI_Nikki_Card_Lavender",
+    "MI_UI_Nikki_Card_Plum",
+    "MI_UI_Nikki_VitalityBar",
+    "MI_UI_Nikki_ResonanceBar",
+    "MI_UI_Nikki_QuestMeter",
+    "MI_UI_Orrery_RingOuter",
+    "MI_UI_Orrery_RingMidDashed",
+    "MI_UI_Orrery_RingInner",
+    "MI_UI_Orrery_DiscFrame"
+  ],
+  "total_assets": 27,
+  "status": "PASS"
+}

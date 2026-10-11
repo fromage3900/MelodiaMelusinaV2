@@ -41,6 +41,7 @@
 #include "../MelodiaRhythmSkillDefinition.h"
 #include "../MelodiaStockContract.h"
 #include "../MelodiaOverworldHUDWidget.h"
+#include "../MelodiaCosmicOrreryWidget.h"
 #include "NiagaraEffectType.h"
 #include "Misc/AutomationTest.h"
 #include "AssetRegistry/AssetRegistryModule.h"
@@ -621,8 +622,48 @@ bool FMelodiaOverworldHUDTemplateContractTest::RunTest(const FString& Parameters
 	TestNotNull(TEXT("Sys_Journal property exists on HUD"), FindFProperty<FProperty>(HUDWidgetClass, TEXT("Sys_Journal")));
 	TestNotNull(TEXT("Sys_1 property exists on HUD"), FindFProperty<FProperty>(HUDWidgetClass, TEXT("Sys_1")));
 	TestNotNull(TEXT("Sys_2 property exists on HUD"), FindFProperty<FProperty>(HUDWidgetClass, TEXT("Sys_2")));
+	TestNotNull(TEXT("Minimap_NorthStar property exists on HUD"), FindFProperty<FProperty>(HUDWidgetClass, TEXT("Minimap_NorthStar")));
+	TestNotNull(TEXT("Minimap_Bezel property exists on HUD"), FindFProperty<FProperty>(HUDWidgetClass, TEXT("Minimap_Bezel")));
+	TestNotNull(TEXT("InteractPrompt property exists on HUD"), FindFProperty<FProperty>(HUDWidgetClass, TEXT("InteractPrompt")));
+	TestNotNull(TEXT("MenuOpenSound property exists on HUD"), FindFProperty<FProperty>(HUDWidgetClass, TEXT("MenuOpenSound")));
+	TestNotNull(TEXT("ButtonHoverSound property exists on HUD"), FindFProperty<FProperty>(HUDWidgetClass, TEXT("ButtonHoverSound")));
+	TestNotNull(TEXT("ButtonClickSound property exists on HUD"), FindFProperty<FProperty>(HUDWidgetClass, TEXT("ButtonClickSound")));
 	TestNotNull(TEXT("HandleSysSettingsClicked function exists"), HUDWidgetClass->FindFunctionByName(TEXT("HandleSysSettingsClicked")));
 	TestNotNull(TEXT("HandleSysJournalClicked function exists"), HUDWidgetClass->FindFunctionByName(TEXT("HandleSysJournalClicked")));
+	TestNotNull(TEXT("HandleSysSettingsHovered function exists"), HUDWidgetClass->FindFunctionByName(TEXT("HandleSysSettingsHovered")));
+	TestNotNull(TEXT("HandleSysJournalHovered function exists"), HUDWidgetClass->FindFunctionByName(TEXT("HandleSysJournalHovered")));
+	TestNotNull(TEXT("OpenOrreryWithArchetype function exists"), HUDWidgetClass->FindFunctionByName(TEXT("OpenOrreryWithArchetype")));
+	return true;
+}
+
+// The Cosmic Orrery serves as the 7-node planetary astrolabe menu system.
+// Assert that the native C++ class exposes the required orbital controls and archetype definitions.
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(
+	FMelodiaCosmicOrreryContractTest,
+	"Melodia.Wiring.CosmicOrreryContract",
+	EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
+
+bool FMelodiaCosmicOrreryContractTest::RunTest(const FString& Parameters)
+{
+	const UClass* OrreryClass = UMelodiaCosmicOrreryWidget::StaticClass();
+	if (!TestNotNull(TEXT("UMelodiaCosmicOrreryWidget resolves"), OrreryClass)) { return false; }
+
+	TestNotNull(TEXT("Orrery_Rings_Img property exists"), FindFProperty<FProperty>(OrreryClass, TEXT("Orrery_Rings_Img")));
+	TestNotNull(TEXT("Orrery_Hub_Img property exists"), FindFProperty<FProperty>(OrreryClass, TEXT("Orrery_Hub_Img")));
+	TestNotNull(TEXT("Detail_Title property exists"), FindFProperty<FProperty>(OrreryClass, TEXT("Detail_Title")));
+	TestNotNull(TEXT("Detail_Description property exists"), FindFProperty<FProperty>(OrreryClass, TEXT("Detail_Description")));
+	TestNotNull(TEXT("Key_Orbit property exists"), FindFProperty<FProperty>(OrreryClass, TEXT("Key_Orbit")));
+	TestNotNull(TEXT("Key_Select property exists"), FindFProperty<FProperty>(OrreryClass, TEXT("Key_Select")));
+	TestNotNull(TEXT("Key_Close property exists"), FindFProperty<FProperty>(OrreryClass, TEXT("Key_Close")));
+	TestNotNull(TEXT("Planet_1 property exists"), FindFProperty<FProperty>(OrreryClass, TEXT("Planet_1")));
+	TestNotNull(TEXT("MenuItem_1 property exists"), FindFProperty<FProperty>(OrreryClass, TEXT("MenuItem_1")));
+
+	TestNotNull(TEXT("SelectPreviousArchetype function exists"), OrreryClass->FindFunctionByName(TEXT("SelectPreviousArchetype")));
+	TestNotNull(TEXT("SelectNextArchetype function exists"), OrreryClass->FindFunctionByName(TEXT("SelectNextArchetype")));
+	TestNotNull(TEXT("SetFocusedArchetypeIndex function exists"), OrreryClass->FindFunctionByName(TEXT("SetFocusedArchetypeIndex")));
+	TestNotNull(TEXT("ActivateCurrentArchetype function exists"), OrreryClass->FindFunctionByName(TEXT("ActivateCurrentArchetype")));
+	TestNotNull(TEXT("CloseOrrery function exists"), OrreryClass->FindFunctionByName(TEXT("CloseOrrery")));
+
 	return true;
 }
 

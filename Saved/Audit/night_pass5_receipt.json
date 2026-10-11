@@ -1,0 +1,428 @@
+{
+ "step": "comp4",
+ "comp_state_before": {
+  "use_comp": true,
+  "scene_comp": "ME_NightCompositor",
+  "nodes": [
+   "GROUP_OUTPUT",
+   "R_LAYERS",
+   "GLARE"
+  ],
+  "ng_in_data": [
+   [
+    "ME_NightCompositor",
+    "COMPOSITING"
+   ]
+  ]
+ },
+ "chain": [
+  "GROUP_OUTPUT",
+  "R_LAYERS",
+  "GLARE"
+ ],
+ "chain_err": "AttributeError(\"'CompositorNodeGlare' object has no attribute 'size'\")",
+ "probe_diff_pct": 73.621,
+ "comp_verified": true,
+ "water_groups": {
+  "Group": [
+   [
+    "Alpha",
+    1.0,
+    ""
+   ],
+   [
+    "Base Color",
+    "arr",
+    ""
+   ],
+   [
+    "Fresnel",
+    "arr",
+    ""
+   ],
+   [
+    "Range",
+    0.7485,
+    ""
+   ],
+   [
+    "Fresnel Opacity",
+    1.0,
+    ""
+   ],
+   [
+    "Alpha",
+    1.0,
+    ""
+   ],
+   [
+    "Invert Mask (Transparent)",
+    0.0,
+    ""
+   ],
+   [
+    "Rim Emission Strength",
+    1.0,
+    ""
+   ],
+   [
+    "Base Emission Strength",
+    1.0,
+    ""
+   ],
+   [
+    "Mask Mix",
+    0.5,
+    ""
+   ],
+   [
+    "Normal",
+    "arr",
+    ""
+   ]
+  ],
+  "Group.003": [
+   [
+    "Highlight",
+    "arr",
+    ""
+   ],
+   [
+    "Shadow",
+    "arr",
+    ""
+   ],
+   [
+    "Range Min",
+    0.0,
+    ""
+   ],
+   [
+    "Range Max",
+    1.0,
+    ""
+   ],
+   [
+    "Light Source Tint",
+    0.0,
+    ""
+   ],
+   [
+    "Alpha",
+    1.0,
+    ""
+   ],
+   [
+    "Invert Alpha Mask?",
+    0.0,
+    ""
+   ],
+   [
+    "Diffuse Color",
+    "arr",
+    ""
+   ],
+   [
+    "Diffuse Color Influence",
+    0.0,
+    ""
+   ],
+   [
+    "Baked Diffuse",
+    "arr",
+    ""
+   ],
+   [
+    "Baked Diffuse Influence",
+    0.0,
+    ""
+   ],
+   [
+    "Normal",
+    "arr",
+    ""
+   ]
+  ],
+  "Group.002": [
+   [
+    "Water",
+    "arr",
+    ""
+   ],
+   [
+    "Shadow",
+    "arr",
+    ""
+   ],
+   [
+    "Wave",
+    "arr",
+    ""
+   ],
+   [
+    "Mapping: UV | Object",
+    1.0,
+    ""
+   ],
+   [
+    "Global Scale",
+    10.0,
+    ""
+   ],
+   [
+    "Type: Smooth | Sharp",
+    1.0,
+    ""
+   ],
+   [
+    "Thickness",
+    0.1768,
+    ""
+   ],
+   [
+    "Opacity",
+    1.0,
+    ""
+   ],
+   [
+    "Emission Strength",
+    3.0,
+    ""
+   ],
+   [
+    "Type: Smooth | Sharp",
+    1.0,
+    ""
+   ],
+   [
+    "Thickness",
+    0.3,
+    ""
+   ],
+   [
+    "Opacity",
+    1.0,
+    ""
+   ],
+   [
+    "Strength",
+    0.1,
+    ""
+   ],
+   [
+    "Scale",
+    5.0,
+    ""
+   ],
+   [
+    "Detail",
+    1.0,
+    ""
+   ],
+   [
+    "X Wave Speed",
+    0.2,
+    ""
+   ],
+   [
+    "Y Wave Speed",
+    -0.05,
+    ""
+   ],
+   [
+    "Z Wave Speed",
+    0.0,
+    ""
+   ],
+   [
+    "Noise Speed Multiplier",
+    1.5,
+    ""
+   ],
+   [
+    "X Offset",
+    0.2,
+    ""
+   ],
+   [
+    "Y Offset",
+    0.0,
+    ""
+   ],
+   [
+    "Z Offset",
+    0.35,
+    ""
+   ]
+  ],
+  "Group.004": [
+   [
+    "Mapping: UV | Object | Camera",
+    0.5,
+    ""
+   ],
+   [
+    "Follow (Object Mapping): Object | None | View",
+    0.0,
+    ""
+   ],
+   [
+    "Type: Sharp | Smooth",
+    1.0,
+    ""
+   ],
+   [
+    "Range (Sharp)",
+    0.5,
+    ""
+   ],
+   [
+    "Range Min (Smooth)",
+    0.0,
+    ""
+   ],
+   [
+    "Range Max (Smooth)",
+    1.0,
+    ""
+   ],
+   [
+    "Global Scale",
+    2.0,
+    ""
+   ],
+   [
+    "Detail",
+    0.5,
+    ""
+   ],
+   [
+    "Distortion",
+    0.0,
+    ""
+   ],
+   [
+    "Bump Strength",
+    0.2,
+    ""
+   ],
+   [
+    "Invert Bump?",
+    0.0,
+    ""
+   ],
+   [
+    "X",
+    0.0,
+    ""
+   ],
+   [
+    "Y",
+    0.0,
+    ""
+   ],
+   [
+    "Z",
+    0.0,
+    ""
+   ],
+   [
+    "X",
+    0.0,
+    ""
+   ],
+   [
+    "Y",
+    0.0,
+    ""
+   ],
+   [
+    "Z",
+    0.0,
+    ""
+   ],
+   [
+    "X",
+    1.0,
+    ""
+   ],
+   [
+    "Y",
+    1.0,
+    ""
+   ],
+   [
+    "Z",
+    1.0,
+    ""
+   ],
+   [
+    "Custom Coordinates",
+    "arr",
+    ""
+   ]
+  ],
+  "Group.001": [
+   [
+    "Base Color",
+    "arr",
+    ""
+   ],
+   [
+    "Fresnel",
+    "arr",
+    ""
+   ],
+   [
+    "Range Min",
+    0.0,
+    ""
+   ],
+   [
+    "Range Max",
+    0.6909,
+    ""
+   ],
+   [
+    "Fresnel Opacity",
+    1.0,
+    ""
+   ],
+   [
+    "Alpha",
+    1.0,
+    ""
+   ],
+   [
+    "Invert Mask (Transparent)",
+    0.0,
+    ""
+   ],
+   [
+    "Rim Emission Strength",
+    1.0,
+    ""
+   ],
+   [
+    "Base Emission Strength",
+    1.0,
+    ""
+   ],
+   [
+    "Mask Mix",
+    0.5,
+    ""
+   ],
+   [
+    "Normal",
+    "arr",
+    ""
+   ]
+  ]
+ },
+ "renders": {
+  "lookdev4_wide": true,
+  "lookdev4_close": true
+ },
+ "resaved": true
+}

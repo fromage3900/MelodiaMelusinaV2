@@ -1,5 +1,53 @@
 # WEEKLY LOG — Humber final year
 
+## 2026-10-04 daily brief
+*Saturday, Oct 4 — 5 days to the 301 deadline. Week 5. Regenerated for the MelusinaDesk panel.*
+
+**THE ONE HARD DATE: ANMN 301 Animatic Story Edit — Fri Oct 9, 5 PM EDT (25%).**
+Export already exists and passes every spec: H.264, 1920x1080, 24fps, 65.0s, silent,
+17 panels in correct order, clean decode, no broken frames. **5 days out — do not re-render from scratch.**
+
+**What is actually missing (verified against the .blend, not assumed):**
+- No TITLE CARD. VSE strip `00_Title` is type=COLOR — renders a flat colour, nothing to read.
+- No END CARD. VSE strip `18_End` is type=COLOR — same problem.
+- No burned-in PANEL NUMBERS 01-17. Brief requires panels "labeled + numbered".
+- Root cause: title.png / end.png are also blank black, so this was never finished at any level.
+- Fix is 4 text strips, ~10 min. Exact frames + text: `ANMN301_Animatic/ANIMATIC_TEXT_FIX_2026-10-04.md`
+- **Submit even if unfixed** — Blackboard is a resumable multi-attempt test and the brief
+  says "submit by the due date, regardless of its state." A complete film beats a blank box.
+
+**MENTOR GATE — the biggest grade risk, and it is not a writing problem.**
+- 2 of 6 booked (Cory Avery, Paul Neale, booked 10-03). **Dates still TBC — 0 of 3 dated.**
+- Need 3 before midterm (Nov 5-6), 3 after, and must meet 3 of the 4 mentors twice.
+- Bryce Hallett staged as #3: `Email_Staging/bryce_hallett.eml`. Booking links beat email — one click sets a date.
+- Worth 25% (Mentor) + 25% (Milestones) of Capstone 1. The clock started weeks ago.
+
+**READY TO PASTE — writing is done, only the paste is yours:**
+- `Submission_Set_2026-10-03/305_posts_FINAL.md` — 4 main posts + 4 replies (8 of the 20 needed).
+  Dark Souls + Spirited Away woven in. Zero placeholders left.
+- `Submission_Set_2026-10-03/306_weeklies_FINAL.md` — 5 entries, due 12/18.
+- `Submission_Set_2026-10-03/309_resume_pitch_cover_FINAL.md` — «CONFIRM» fields to fill.
+
+**Still open:**
+- ANMN 304 Production Bible — due 10/9 (same day as 301!), scaffold ready, needs GROUP
+  film title/logline/roles from the class Discord "Humber 3D Film" server.
+- ANMN 304 In Class 2 — was due 10/2, now past due, submit point unconfirmed.
+- ANMN 305 — 4 unread discussions; 20-post requirement is participation-graded.
+- Banner timetable grid still empty → the desk's weekly column reads "class TBA" every day.
+  Fill SEM5_TIMETABLE_2026-09.md and the panel populates itself.
+
+**Deadline countdown (from Oct 4):**
+- **Oct 9 — ANMN 301 Animatic (25%) + 304 Production Bible → 5 days** ⏰
+- Oct 12 Thanksgiving, college closed → 8 days
+- Nov 5-6 Mid-Term Grades Due → 32 days | mentor #3 must land before this
+- Nov 20 Last Day to Withdraw Without Academic Penalty → 47 days
+- Dec 18 — 306 weeklies + mentor forms + 304 final film → 75 days
+- Dec 20 Last Day of Classes → 77 days | Final Grades Dec 22
+
+**One-line nudge:** *Set the three mentor dates before you touch Blender — it is 25% + 25% and it is the only item here that decays every day you wait.* ♪ — Melusina
+
+---
+
 ## 2026-09-09 daily brief
 *Wednesday, Week 1 Day 2 — AN311 3D Animation · Sep 9, 2026 (generated 2026-09-12 from verified Sep 8–09 sources; SSO Blackboard live-check skipped per spec)*
 

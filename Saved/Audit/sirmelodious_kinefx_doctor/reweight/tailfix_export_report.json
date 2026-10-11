@@ -1,0 +1,66 @@
+{
+ "schema": "melodia.sir_tailfix_export.v1",
+ "status": "EXCEPTION",
+ "src_blend": "C:/EnvironmentPortfolio/BS_GodFile/Saved/Audit/SirMelodious_FlightUnit_20261003/arp/SirMelodious_ARP_CrestTie_v5.blend",
+ "out_blend": "C:/EnvironmentPortfolio/BS_GodFile/Saved/Audit/SirMelodious_FlightUnit_20261003/arp/SirMelodious_ARP_CrestTie_v5_tailfix.blend",
+ "out_fbx": "C:/EnvironmentPortfolio/BS_GodFile/Saved/Audit/SirMelodious_FlightUnit_20261003/exports/ue_arp/SKM_SirMelodious_ARP_CrestTie_v5_tailfix.fbx",
+ "meshes": {
+  "sirmelodious_B\u00e9zierCurve.002": {
+   "fixed": 0,
+   "fallback_root": 0,
+   "still_zero_exportable": 0
+  },
+  "sirmelodious_Crest": {
+   "fixed": 0,
+   "fallback_root": 0,
+   "still_zero_exportable": 0
+  },
+  "sirmelodious_Retopo_PM3D_Cube3D1.002": {
+   "fixed": 0,
+   "fallback_root": 0,
+   "still_zero_exportable": 0
+  },
+  "sirmelodious_Retopo_PM3D_Cube3D24.001": {
+   "fixed": 0,
+   "fallback_root": 0,
+   "still_zero_exportable": 0
+  },
+  "sirmelodious_Retopo_PM3D_Cube3D25.001": {
+   "fixed": 0,
+   "fallback_root": 0,
+   "still_zero_exportable": 0
+  },
+  "sirmelodious_Retopo_PM3D_Cube3D28.001": {
+   "fixed": 0,
+   "fallback_root": 0,
+   "still_zero_exportable": 0
+  },
+  "sirmelodious_Retopo_PM3D_Cube3D29.001": {
+   "fixed": 0,
+   "fallback_root": 0,
+   "still_zero_exportable": 0
+  },
+  "sirmelodious_Retopo_PM3D_Ring3D2.002": {
+   "fixed": 0,
+   "fallback_root": 0,
+   "still_zero_exportable": 0
+  },
+  "sirmelodious_Retopo_PM3D_Sphere3D1.002": {
+   "fixed": 0,
+   "fallback_root": 0,
+   "still_zero_exportable": 0
+  },
+  "SirMelodiousBody": {
+   "fixed": 657,
+   "fallback_root": 0,
+   "still_zero_exportable": 0
+  }
+ },
+ "exportable_bones": 66,
+ "source_blend": true,
+ "mesh_count": 10,
+ "fixed_total": 657,
+ "still_zero_total": 0,
+ "blend_saved": true,
+ "trace": "Traceback (most recent call last):\n  File \"C:\\EnvironmentPortfolio\\BS_GodFile\\Tools\\Houdini\\sir_kinefx\\sir_export_tailfix.py\", line 137, in <module>\n    sc.arp_engine_type = \"UNREAL\"\n    ^^^^^^^^^^^^^^^^^^\nAttributeError: 'Scene' object has no attribute 'arp_engine_type'\n"
+}

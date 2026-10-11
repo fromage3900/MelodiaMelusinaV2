@@ -1,0 +1,47 @@
+{
+  "pawn": "/Game/MelodiaIntegration/Blueprints/BP_MelusinaJRPGCharacter.BP_MelusinaJRPGCharacter_C",
+  "anim": "/Game/Melodia/Characters/Melusina/ABP_Melusina_Current.ABP_Melusina_Current_C",
+  "components": [
+    {
+      "component": "HatMesh",
+      "mesh": "/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Hat.SK_Melusina_V2_Hat",
+      "visible": true,
+      "parent": "CharacterMesh0",
+      "socket": "None",
+      "leader": "CharacterMesh0"
+    },
+    {
+      "component": "WardrobeSlot_EMelodiaWardrobeSlot::Shirt",
+      "mesh": "/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Shirt.SK_Melusina_V2_Shirt",
+      "visible": true,
+      "parent": "CharacterMesh0",
+      "socket": "None",
+      "leader": "CharacterMesh0"
+    },
+    {
+      "component": "WardrobeSlot_EMelodiaWardrobeSlot::Skirt",
+      "mesh": "/Game/Melodia/Characters/Melusina/Outfits/V2/Polish_20260920/SK_Melusina_V2_Skirt_R2_SmoothChains.SK_Melusina_V2_Skirt_R2_SmoothChains",
+      "visible": true,
+      "parent": "CharacterMesh0",
+      "socket": "None",
+      "leader": "CharacterMesh0"
+    },
+    {
+      "component": "WardrobeSlot_EMelodiaWardrobeSlot::Boots",
+      "mesh": "/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Boots.SK_Melusina_V2_Boots",
+      "visible": true,
+      "parent": "CharacterMesh0",
+      "socket": "None",
+      "leader": "CharacterMesh0"
+    },
+    {
+      "component": "WardrobeSlot_EMelodiaWardrobeSlot::Accessories",
+      "mesh": "/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Accessories.SK_Melusina_V2_Accessories",
+      "visible": true,
+      "parent": "CharacterMesh0",
+      "socket": "None",
+      "leader": "CharacterMesh0"
+    }
+  ],
+  "visible_hat_count": 1
+}

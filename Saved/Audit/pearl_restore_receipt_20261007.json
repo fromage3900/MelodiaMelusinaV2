@@ -1,0 +1,24 @@
+{
+  "receipt": "pearl_restore_stage_20261007",
+  "when": "2026-10-07 20:56 EDT (staged in-memory in the live session; NOT saved)",
+  "session": "SHOREWAKE_LOOP_v5.blend - Blender 5.2.1 - MCP socket :9876 (PID 32240)",
+  "found": "LIS_pearl_seaward's 'LissajousPearl' modifier had node_group=None (evaluates to 0 verts - invisible in every LOOP render since v19). Shared tree MEL_mh_aaa_lissajous_pearl had regressed to raw builder state (phase DIVIDE in1=2*pi/128 aliased scatter; Curve-to-Points COUNT/10 bypassing Pearl Count). Root: v18 refine pass (Saved/Audit/sa_refine_v18.py, 'MORE LISSAJOUS / PEARL') built a fresh raw tree for the new LIS_pearl_aft; seaward's link was lost in the same file generation.",
+  "fix_staged": [
+    "wire LIS_pearl_seaward 'LissajousPearl' -> MEL_mh_aaa_lissajous_pearl",
+    "modifier values: Freq X/Y/Z=1.0, Radius=1.0, Pearl Count=61, Pearl Size=0.019, Music Influence=0.0, Musical Amplitude=0.0 (v16 design)",
+    "tree DIVIDE in1 0.04908738657832146 -> 20.3718318939209 (=128/2pi)",
+    "tree Curve to Points mode COUNT(10) -> EVALUATED"
+  ],
+  "verified": {
+    "sw_before": {"eval_verts": 0, "mod_group": null, "beads": 0},
+    "sw_after": {"eval_verts": 5246, "beads": 61, "wbb": [0.322, -0.021, 0.832, 3.837, 0.047, 2.693], "sail_gap_m": 0.0247, "term_to_bow_m": 0.1552, "term_to_collar_m": 0.285},
+    "af_after": {"eval_verts": 5160, "beads": 60, "note": "was 10 beads via the COUNT/10 bypass; now its designed 60-bead loop"},
+    "tree_users": 2,
+    "v16_match": "tree node/link dump + local bead coordinates identical to SHOREWAKE_proxy_v16_lissajous.blend (diff empty)",
+    "loop_safe": "local bbox identical across f1/f60/f120 (static_sw/static_af true)",
+    "scene_after": "0 unwired GN modifiers; only zero-eval meshes = LIS_pearl_aft (instance-based, renders) + fluid_surface (FLIP sim)"
+  },
+  "not_saved": "The live session was NOT saved. NB: socket-exec edits do not set bpy.data.is_dirty - save (Ctrl+S) deliberately to keep the stage.",
+  "scripts": ["Saved/Audit/pearl_restore_stage_20261007.py", "Saved/Audit/stage_pearl_live_20261007.py"],
+  "revert": "Simplest: don't save / reopen the file (last save 20:28 is pre-fix). After a save: set tree Curve-to-Points back to COUNT/10, DIVIDE in1 back to 0.04908738657832146, and clear seaward 'LissajousPearl' node_group (full pre-stage state), or ask for the per-strand tree split if only aft should revert."
+}

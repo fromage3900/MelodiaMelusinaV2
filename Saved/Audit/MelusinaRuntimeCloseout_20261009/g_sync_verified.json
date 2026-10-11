@@ -1,0 +1,191 @@
+{
+  "scope": "26 selected validated runtime/source/assets/evidence files; no deletion, no DDC, no dress promotion",
+  "destination": "G:/EnvironmentPortfolio/BS_GodFile",
+  "files": [
+    {
+      "path": "Plugins/MelodiaWardrobe/Source/MelodiaWardrobe/Private/MelodiaWardrobeComponent.cpp",
+      "sha256": "A170A7DFA0F05477CEB9735D7B6E66968D1A1BCBEC04382E76D48A1046F85544",
+      "previous_sha256": "DB882A118398A665EEF266FDEB94BC081C2B5E0F627BE26A9B2E017688EC6D8B",
+      "backup": "G:/EnvironmentPortfolio/BS_GodFile/Saved/Audit/SolRuntimeSyncBackups_20261009_guard/Plugins/MelodiaWardrobe/Source/MelodiaWardrobe/Private/MelodiaWardrobeComponent.cpp",
+      "robocopy_exit": 1
+    },
+    {
+      "path": "Plugins/Monolith/Source/MonolithAnimation/Private/MonolithMelusinaClipGuard.h",
+      "sha256": "F86600D13E36D342523CE2BE6C4DE91E1F6093F9A4B222A6794CE5004905D7D5",
+      "previous_sha256": null,
+      "backup": null,
+      "robocopy_exit": 1
+    },
+    {
+      "path": "Plugins/Monolith/Source/MonolithAnimation/Private/MonolithMelusinaClipGuard.cpp",
+      "sha256": "5E7D1CF95608D4AEBC64A16415B2D3B5C363671298CCE2E2C87EC1FB8ACA37D6",
+      "previous_sha256": null,
+      "backup": null,
+      "robocopy_exit": 1
+    },
+    {
+      "path": "Plugins/Monolith/Source/MonolithAnimation/Private/MonolithAbpWriteActions.cpp",
+      "sha256": "750174385E30397694DFA394F235E45E57ADADAE0D86E19DECC1B2C7BB3EECF1",
+      "previous_sha256": "8B90260FCB80F7C089BE2FDD651EADDD016D797AB2888C0F25F42A1C04EDBEE3",
+      "backup": "G:/EnvironmentPortfolio/BS_GodFile/Saved/Audit/SolRuntimeSyncBackups_20261009_guard/Plugins/Monolith/Source/MonolithAnimation/Private/MonolithAbpWriteActions.cpp",
+      "robocopy_exit": 1
+    },
+    {
+      "path": "Plugins/Monolith/Source/MonolithAnimation/Private/MonolithAnimationActions.cpp",
+      "sha256": "1E6A84D6365694217AA3FAE615737D06D5B754B88E38F1446E9616EC1297B8E3",
+      "previous_sha256": "408CB313883C72A273B4D70359B36BFEE2AA949EA3B0A0CEC9678BC6D0419FCD",
+      "backup": "G:/EnvironmentPortfolio/BS_GodFile/Saved/Audit/SolRuntimeSyncBackups_20261009_guard/Plugins/Monolith/Source/MonolithAnimation/Private/MonolithAnimationActions.cpp",
+      "robocopy_exit": 1
+    },
+    {
+      "path": "Content/Melodia/Characters/Melusina/ABP_Melusina_Current.uasset",
+      "sha256": "0175973B84194176784906F194F1D47317C41B44FE8F70E54375EF47A861D27A",
+      "previous_sha256": "4ADF365670314619AE787B4984A269956F9C084F74280E744D22A3D67F5CFD36",
+      "backup": "G:/EnvironmentPortfolio/BS_GodFile/Saved/Audit/SolRuntimeSyncBackups_20261009_guard/Content/Melodia/Characters/Melusina/ABP_Melusina_Current.uasset",
+      "robocopy_exit": 1
+    },
+    {
+      "path": "Content/Melodia/Characters/Melusina/Animations/BS_Melusina_Locomotion_Hybrid.uasset",
+      "sha256": "3A9BD0BBC0BC69EC774EBC2AFB0C28B4EB45822D544D74D1B62B60EA98170517",
+      "previous_sha256": "EEDBE90F11B5E9546FC60E549719CDF9E732CEF2226110C9F92560FF869A7A0D",
+      "backup": "G:/EnvironmentPortfolio/BS_GodFile/Saved/Audit/SolRuntimeSyncBackups_20261009_guard/Content/Melodia/Characters/Melusina/Animations/BS_Melusina_Locomotion_Hybrid.uasset",
+      "robocopy_exit": 1
+    },
+    {
+      "path": "Content/Melodia/Characters/Melusina/Animations/AnimationDoctor_20261007/ACFUMage_20261008/A_Melusina_ACFUMage_Idle.uasset",
+      "sha256": "95761610A5769905539932A155CB59E943A3543E2285019561E6056016064A32",
+      "previous_sha256": null,
+      "backup": null,
+      "robocopy_exit": 1
+    },
+    {
+      "path": "Content/Melodia/Characters/Melusina/Animations/AnimationDoctor_20261007/RuntimeCloseout_20261009/A_Melusina_Glide_InPlace_Candidate.uasset",
+      "sha256": "694DFBF0B2F71679218AC3CFB2CBE9EABBF7B31F87B1D6C3016B68BD7C69F2A9",
+      "previous_sha256": null,
+      "backup": null,
+      "robocopy_exit": 1
+    },
+    {
+      "path": "Plugins/MelodiaWardrobe/Binaries/Win64/UnrealEditor-MelodiaWardrobe.dll",
+      "sha256": "88EC9A617D568240F2DE4BB4533E1688F0D5B17DE5890454E54C3655BCDE37C1",
+      "previous_sha256": "915CD147596E5DA23C1861C0E32E8B51E89558647596C2E959C1ECB2632191C0",
+      "backup": "G:/EnvironmentPortfolio/BS_GodFile/Saved/Audit/SolRuntimeSyncBackups_20261009_guard/Plugins/MelodiaWardrobe/Binaries/Win64/UnrealEditor-MelodiaWardrobe.dll",
+      "robocopy_exit": 1
+    },
+    {
+      "path": "Plugins/MelodiaWardrobe/Binaries/Win64/UnrealEditor-MelodiaWardrobe.pdb",
+      "sha256": "AD668ADF8CF48100B00E1E256DBF56DAFA032B946E933D6FD920B5BFDC0C0996",
+      "previous_sha256": "C024CCA431888339BAE9171D00BFB17521A3B8DDA5167DAA0310E1D60AD195CD",
+      "backup": "G:/EnvironmentPortfolio/BS_GodFile/Saved/Audit/SolRuntimeSyncBackups_20261009_guard/Plugins/MelodiaWardrobe/Binaries/Win64/UnrealEditor-MelodiaWardrobe.pdb",
+      "robocopy_exit": 1
+    },
+    {
+      "path": "Plugins/MelodiaWardrobe/Binaries/Win64/UnrealEditor.modules",
+      "sha256": "A19732C3542DFBED2E3BBF3977BCA27717425F883EBF1E0B34B0D025C396780B",
+      "previous_sha256": "A19732C3542DFBED2E3BBF3977BCA27717425F883EBF1E0B34B0D025C396780B",
+      "backup": null,
+      "robocopy_exit": 1
+    },
+    {
+      "path": "Plugins/Monolith/Binaries/Win64/UnrealEditor-MonolithAnimation.dll",
+      "sha256": "9AC308353A7E5ED85AA2528345529FCAB239EB31E3AF22F7E3FE7B3D7E27F9EA",
+      "previous_sha256": "56112ACCD0D0029D5837684667536E19170DF91EDA4FAB238D25223D8FB43E70",
+      "backup": "G:/EnvironmentPortfolio/BS_GodFile/Saved/Audit/SolRuntimeSyncBackups_20261009_guard/Plugins/Monolith/Binaries/Win64/UnrealEditor-MonolithAnimation.dll",
+      "robocopy_exit": 1
+    },
+    {
+      "path": "Plugins/Monolith/Binaries/Win64/UnrealEditor-MonolithAnimation.pdb",
+      "sha256": "D1020A7CC9A7D8D2E42BD7F17D786D7896EB7A6CDBEBEEEFF25EF7D0C23B10EB",
+      "previous_sha256": "618650BF002265FB1B23A54D4884699DBA7EA1DAA72F0C905B1B3B2A08DD3709",
+      "backup": "G:/EnvironmentPortfolio/BS_GodFile/Saved/Audit/SolRuntimeSyncBackups_20261009_guard/Plugins/Monolith/Binaries/Win64/UnrealEditor-MonolithAnimation.pdb",
+      "robocopy_exit": 1
+    },
+    {
+      "path": "Plugins/Monolith/Binaries/Win64/UnrealEditor.modules",
+      "sha256": "2686588728A9469E47C0D4F9E8E4AF8857EF880BAEEB5AFDB60250C6CDD47080",
+      "previous_sha256": "2686588728A9469E47C0D4F9E8E4AF8857EF880BAEEB5AFDB60250C6CDD47080",
+      "backup": null,
+      "robocopy_exit": 1
+    },
+    {
+      "path": "CURRENT_STATE.md",
+      "sha256": "A7CAD4D2D29358AAF640379A4E85D43D972E502CAB77B603D1A7361AE705E9BF",
+      "previous_sha256": "25EEB17F0C7FF61144094DE2F8D130D52C2C1C600ED26CAE45F5696E4DF7C543",
+      "backup": "G:/EnvironmentPortfolio/BS_GodFile/Saved/Audit/SolRuntimeSyncBackups_20261009_guard/CURRENT_STATE.md",
+      "robocopy_exit": 1
+    },
+    {
+      "path": "Saved/Audit/MelusinaRuntimeCloseout_20261009/bound_shoulders.json",
+      "sha256": "505C3FDC596474C30BF3D229DBABBFE3ACD1CD40A0D3A8D91C60F9A1D0021FA3",
+      "previous_sha256": null,
+      "backup": null,
+      "robocopy_exit": 1
+    },
+    {
+      "path": "Saved/Audit/MelusinaRuntimeCloseout_20261009/combat_owner_probe_clean.json",
+      "sha256": "D6F6219BBD3AC289578CD7CF0CB5D64AC8976BDDD92C4BF0C823724688BDC8EA",
+      "previous_sha256": null,
+      "backup": null,
+      "robocopy_exit": 1
+    },
+    {
+      "path": "Saved/Audit/MelusinaRuntimeCloseout_20261009/final_glide_candidate_readback.json",
+      "sha256": "889B1C0FDF62ADD4CAF267F501B7419D572D0B853B126BB9E177300D9A05FC7F",
+      "previous_sha256": null,
+      "backup": null,
+      "robocopy_exit": 1
+    },
+    {
+      "path": "Saved/Audit/MelusinaRuntimeCloseout_20261009/final_glide_seam.json",
+      "sha256": "BD573FE3231FCD7CBEA41C346052C53B5B2085B79A878ABBEAB7E8DEE01DBECF",
+      "previous_sha256": null,
+      "backup": null,
+      "robocopy_exit": 1
+    },
+    {
+      "path": "Saved/Audit/MelusinaRuntimeCloseout_20261009/idle_angles_final.json",
+      "sha256": "280D55556A3FFFDBBD731595E1C7986B5BB77E0CDD87E164D79E4978B143A225",
+      "previous_sha256": null,
+      "backup": null,
+      "robocopy_exit": 1
+    },
+    {
+      "path": "Saved/Audit/MelusinaRuntimeCloseout_20261009/preserved_11_mask.json",
+      "sha256": "CC2537C6BA16E01610DF2C3DCBC051B900AACB55B015581E03B4A678F2EEFF07",
+      "previous_sha256": null,
+      "backup": null,
+      "robocopy_exit": 1
+    },
+    {
+      "path": "Saved/Audit/MelusinaRuntimeCloseout_20261009/rebuilt_wardrobe.json",
+      "sha256": "871311AECD16C4CC0DC42421585B3B52EA2FE52BD10A1114AC7225F249337096",
+      "previous_sha256": null,
+      "backup": null,
+      "robocopy_exit": 1
+    },
+    {
+      "path": "Saved/Audit/MelusinaRuntimeCloseout_20261009/clip_guard_live_tests.json",
+      "sha256": "3A2EF705C86C222B15348B47A5EE0F719974C16BA3F562C1238E417E3F030C50",
+      "previous_sha256": null,
+      "backup": null,
+      "robocopy_exit": 1
+    },
+    {
+      "path": "Saved/Audit/MelusinaRuntimeCloseout_20261009/clip_guard_restart_pie.json",
+      "sha256": "39E68BFBA83BB936D3CCD59C078083088E27533D52202F58978374CDA9F19EB1",
+      "previous_sha256": null,
+      "backup": null,
+      "robocopy_exit": 1
+    },
+    {
+      "path": "Saved/Audit/MelusinaTraversalLiveInput/20261009_210238.json",
+      "sha256": "498DBCCAD34C077F40F7D84DFC0028BCB42AE9291E24A2774EFC5AE6381A0C62",
+      "previous_sha256": null,
+      "backup": null,
+      "robocopy_exit": 1
+    }
+  ],
+  "hashes_match": true,
+  "portable_runtime_playtested": false,
+  "editor_closed": true
+}

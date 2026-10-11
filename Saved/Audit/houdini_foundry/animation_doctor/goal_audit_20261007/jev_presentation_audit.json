@@ -1,0 +1,28 @@
+{
+  "model_verified": true,
+  "input_sha256": "e75977af8bd9db6eb225ebdfb6c1e3a4bef23f5855e9318264139b918d9f7e44",
+  "boundary": "Jev text judgment on Sol observations, not image vision or runtime acceptance",
+  "response": {
+    "model": "jev-1.13.0",
+    "usage": {
+      "input_tokens": 2608,
+      "output_tokens": 77
+    },
+    "answers": {
+      "priority": {
+        "type": "choice",
+        "choice": "GROUNDING_AND_MOTION_FIRST",
+        "confidence": 1.0,
+        "probabilities": {
+          "HEAD_ATTACHMENT_FIRST": 0.0,
+          "GROUNDING_AND_MOTION_FIRST": 1.0,
+          "COSMETIC_FIRST": 0.0
+        }
+      },
+      "next_steps": {
+        "type": "noul",
+        "noul": 0.56
+      }
+    }
+  }
+}

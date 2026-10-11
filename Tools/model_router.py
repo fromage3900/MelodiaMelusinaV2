@@ -3,7 +3,12 @@
 
 Picks the best model per task class, with ordered fallbacks, then can run the
 chat call itself. Keys come from env (OPENROUTER_API_KEY / TOKENROUTER_API_KEY /
-LOCAL_LLM_API_KEY) or fall back to the root .mcp.json (legacy; prefer env).
+LOCAL_LLM_API_KEY / NOUS_API_KEY) or fall back to the root .mcp.json (legacy; prefer env).
+The Nous Portal key+endpoint are read from Hermes' auth.json (refreshed when expired),
+so `nous` candidates work with no env setup.
+
+Owner default (2026-10-05): `deepseek/deepseek-v4.1-flash` on the Nous Portal leads
+every general class; daemon + production lanes stay local-first.
 
 Local daemons: set LOCAL_LLM_BASE_URL (default http://127.0.0.1:11434/v1 for Ollama).
 
@@ -29,11 +34,13 @@ import json
 import os
 import re
 import socket
+import subprocess
 import sys
 import time
 import urllib.request
 import urllib.error
 import urllib.parse
+from datetime import datetime
 
 _TOOLS_DIR = os.path.dirname(os.path.abspath(__file__))
 ROOT_MCP = os.path.abspath(os.path.join(_TOOLS_DIR, "..", "..", ".mcp.json"))
@@ -46,17 +53,30 @@ REQUEST_TIMEOUT = int(os.environ.get("LLM_REQUEST_TIMEOUT", "90"))
 
 LOCAL_BASE = os.environ.get("LOCAL_LLM_BASE_URL", "http://127.0.0.1:11434/v1").rstrip("/")
 
-LOCAL_BASE = os.environ.get("LOCAL_LLM_BASE_URL", "http://127.0.0.1:11434/v1").rstrip("/")
+# Nous Portal (inference-api.nousresearch.com): the agent key in Hermes' auth.json is
+# short-lived and rotated by Hermes; _nous_creds() re-reads (and refreshes) it at call time.
+NOUS_AUTH_JSON = os.environ.get("NOUS_AUTH_JSON") or os.path.expanduser(
+    os.path.join("~", "AppData", "Local", "hermes", "auth.json"))
+_HERMES_PY = os.path.expanduser(
+    os.path.join("~", "AppData", "Local", "hermes", "hermes-agent", "venv", "Scripts", "python.exe"))
+NOUS_REFRESH_CMD = os.environ.get("NOUS_REFRESH_CMD") or (
+    ('"%s" -c "from hermes_cli.auth import resolve_nous_runtime_credentials as r; '
+     'r(timeout_seconds=30, force_refresh=True)"' % _HERMES_PY)
+    if os.path.exists(_HERMES_PY) else "")
 
 ENDPOINTS = {
     "openrouter": "https://openrouter.ai/api/v1",
     "tokenrouter": "https://api.tokenrouter.com/v1",
     "local": LOCAL_BASE,
     "bedrock": os.environ.get("BEDROCK_MANTLE_URL", "https://bedrock-mantle.us-east-1.api.aws/v1"),
+    "nous": os.environ.get("NOUS_BASE_URL", "https://inference-api.nousresearch.com/v1"),
 }
 
 PRICES = {
     "deepseek/deepseek-v4-flash": (0.00000014, 0.00000028),
+    # Owner default (Nous Portal). Price estimate mirrors v4-flash; update if the
+    # portal rate differs.
+    "deepseek/deepseek-v4.1-flash": (0.00000014, 0.00000028),
     "deepseek/deepseek-v4-pro": (0.00000063168, 0.00000126336),
     "mistralai/mistral-medium-3-5": (0.0000015, 0.0000075),
     "x-ai/grok-4.5": (0.000002, 0.000006),
@@ -66,7 +86,7 @@ PRICES = {
     "nvidia/nemotron-3-ultra-550b-a55b:free": (0.0, 0.0),
     "nvidia/nemotron-3-super-120b-a12b:free": (0.0, 0.0),
     "openai/gpt-oss-20b:free": (0.0, 0.0),
-    # Free rotation 2026-09-02: opencode-go/deepseek ??? nous ??? meituan (OpenRouter free tier rotation)
+    # Free rotation 2026-09-02: opencode-go/deepseek → nous → meituan (OpenRouter free tier rotation)
     "meituan/longcat-2.0:free": (0.0, 0.0),
     "meituan/longcat-flash-chat:free": (0.0, 0.0),
     "nousresearch/hermes-4-405b:free": (0.0, 0.0),
@@ -132,6 +152,9 @@ PRODUCTION_MUST_NOT = {
 # Local-first by design: every production lane leads with a model that is actually
 # pulled on this workstation (verified 2026-08-20 via `ollama list`). Cloud entries
 # are fallbacks, never the default -- production content should not require network.
+# Exception, owner-set 2026-10-05: `NOUS_DEFAULT` below leads every GENERAL class
+# (triage..docs). The production lanes above and `daemon` stay local-first; `author`
+# and `vision` keep their local/multimodal chains.
 #
 # Model-fit evidence, not vibes:
 #   qwen2.5-coder:7b   -- 7/8 with 100% surface adherence on the 2-tool discovery probe
@@ -139,6 +162,9 @@ PRODUCTION_MUST_NOT = {
 #                         tool outside the manifest. Best structured-output local model.
 #   deepseek-coder:6.7b -- 1/8. Names the right tool in prose, emits no JSON. Routed
 #                         NOWHERE. Do not add it to a lane without constrained decoding.
+# Owner default (2026-10-05): first candidate for every general class below.
+NOUS_DEFAULT = ("deepseek/deepseek-v4.1-flash", "nous", "owner default: Nous Portal")
+
 POLICY = {
     # ---- production lanes: real game artifacts, gate-accepted ----
     #
@@ -186,8 +212,9 @@ POLICY = {
         ("deepseek/deepseek-v4-flash", "openrouter", "cloud fallback only"),
     ],
     "triage": [
+        NOUS_DEFAULT,
         ("zai.glm-4.7-flash", "bedrock", "Mantle fast/bulk, verified live 2026-09-26"),
-        # Free rotation 2026-09-02: deepseek (opencode-go) ??? nous ??? meituan ; local fallback last
+        # Free rotation 2026-09-02: deepseek (opencode-go) → nous → meituan ; local fallback last
         ("meituan/longcat-2.0:free", "openrouter", "free rotation primary: meituan (switched)"),
         ("nousresearch/hermes-4-405b:free", "openrouter", "free rotation secondary: nous"),
         ("nvidia/nemotron-3-ultra-550b-a55b:free", "openrouter", "free rotation tertiary: nvidia (prev deepseek lane)"),
@@ -196,6 +223,7 @@ POLICY = {
         ("moonshotai/kimi-k3-free", "tokenrouter", "slow but strong fallback"),
     ],
     "audit": [
+        NOUS_DEFAULT,
         ("zai.glm-4.7-flash", "bedrock", "Mantle fast/bulk, verified live 2026-09-26"),
         ("meituan/longcat-2.0:free", "openrouter", "free rotation primary: meituan"),
         ("nousresearch/hermes-4-405b:free", "openrouter", "free rotation secondary: nous"),
@@ -205,6 +233,7 @@ POLICY = {
         ("meta/muse-spark-1.2", "openrouter", "gamedev-ranked"),
     ],
     "code": [
+        NOUS_DEFAULT,
         ("qwen.qwen3-coder-next", "bedrock", "Mantle coder, verified live 2026-09-26"),
         ("deepseek/deepseek-v4-flash", "openrouter", "default coder"),
         ("mistralai/codestral-2508", "openrouter", "code specialist"),
@@ -212,6 +241,7 @@ POLICY = {
         ("meta/muse-spark-1.2", "openrouter", "gamedev-ranked"),
     ],
     "cpp": [
+        NOUS_DEFAULT,
         ("qwen.qwen3-coder-480b-a35b-instruct", "bedrock", "Mantle heavy C++"),
         ("qwen.qwen3-coder-next", "bedrock", "Mantle coder, verified live 2026-09-26"),
         ("deepseek/deepseek-v4-pro", "openrouter", "stronger C++/UE reasoning"),
@@ -220,6 +250,7 @@ POLICY = {
         ("devstral-small", "local", "agentic multi-file local"),
     ],
     "mcp": [
+        NOUS_DEFAULT,
         ("qwen.qwen3-coder-next", "bedrock", "Mantle agentic, verified live 2026-09-26"),
         ("x-ai/grok-4.5", "openrouter", "MCP multi-step plans"),
         ("mistralai/mistral-medium-3-5", "openrouter", "tool-orchestration fallback"),
@@ -227,6 +258,7 @@ POLICY = {
         ("moonshotai/kimi-k3-free", "tokenrouter", "MCP-strong free"),
     ],
     "playtest": [
+        NOUS_DEFAULT,
         ("x-ai/grok-4.5", "openrouter", "fresh-eyes on assertion JSON"),
         ("mistralai/mistral-medium-3-5", "openrouter", "report grading"),
         ("qwen3-coder:14b", "local", "grade reports only - never record pass alone"),
@@ -238,17 +270,20 @@ POLICY = {
         ("qwen3:8b", "local", "local dialogue drafts"),
     ],
     "deep": [
+        NOUS_DEFAULT,
         ("qwen.qwen3-235b-a22b-2507", "bedrock", "Mantle long reasoning, verified live 2026-09-26"),
         ("moonshotai/kimi-k3-free", "tokenrouter", "SLOW but strong: long complex tasks"),
         ("mistralai/mistral-medium-3-5", "openrouter", "frontier fallback"),
     ],
     "review": [
+        NOUS_DEFAULT,
         ("qwen.qwen3-235b-a22b-2507", "bedrock", "Mantle fresh-eyes, verified live 2026-09-26"),
         ("x-ai/grok-4.5", "openrouter", "fresh-eyes verifier"),
         ("meta/muse-spark-1.2", "openrouter", "multimodal review"),
         ("mistralai/mistral-medium-3-5", "openrouter", "frontier fallback"),
     ],
     "orchestrator": [
+        NOUS_DEFAULT,
         ("x-ai/grok-4.20-multi-agent", "openrouter", "multi-agent orchestration"),
         ("x-ai/grok-4.5", "openrouter", "frontier fallback"),
     ],
@@ -264,6 +299,7 @@ POLICY = {
         ("gpt-oss:20b", "local", "alt local free-weight"),
     ],
     "docs": [
+        NOUS_DEFAULT,
         ("zai.glm-4.7-flash", "bedrock", "Mantle fast/bulk, verified live 2026-09-26"),
         ("deepseek/deepseek-v4-flash", "openrouter", "handoff/fold-in prose"),
         ("qwen3:8b", "local", "local docs daemon"),
@@ -272,13 +308,46 @@ POLICY = {
 }
 
 
+def _nous_creds():
+    """(key, base_url) from Hermes auth.json; refresh once if the agent key expired."""
+    def read():
+        with open(NOUS_AUTH_JSON, "r", encoding="utf-8") as fh:
+            nous = json.load(fh)["providers"]["nous"]
+        exp = nous.get("agent_key_expires_at") or ""
+        stale = False
+        if exp:
+            try:
+                stale = datetime.fromisoformat(exp).timestamp() < time.time() + 60
+            except ValueError:
+                stale = False
+        return nous.get("agent_key", ""), (nous.get("inference_base_url") or "").rstrip("/"), stale
+
+    try:
+        key, base, stale = read()
+        if stale and NOUS_REFRESH_CMD:
+            subprocess.run(NOUS_REFRESH_CMD, shell=True, timeout=120, check=False,
+                           stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+            key, base, stale = read()
+        if stale:
+            return "", ""
+        return key, base
+    except Exception:
+        return "", ""
+
+
 def load_keys():
     keys = {
         "openrouter": os.environ.get("OPENROUTER_API_KEY", ""),
         "tokenrouter": os.environ.get("TOKENROUTER_API_KEY", ""),
         "local": os.environ.get("LOCAL_LLM_API_KEY", "ollama"),
         "bedrock": os.environ.get("AWS_BEARER_TOKEN_BEDROCK", ""),
+        "nous": os.environ.get("NOUS_API_KEY", ""),
     }
+    if not keys["nous"]:
+        key, base = _nous_creds()
+        keys["nous"] = key
+        if base and not os.environ.get("NOUS_BASE_URL"):
+            ENDPOINTS["nous"] = base
     if not keys["openrouter"] or not keys["tokenrouter"]:
         try:
             with open(ROOT_MCP, "r", encoding="utf-8") as fh:

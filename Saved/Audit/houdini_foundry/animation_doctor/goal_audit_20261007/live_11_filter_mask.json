@@ -1,0 +1,104 @@
+[
+  {
+    "node": "/Game/Melodia/Characters/Melusina/ABP_Melusina_Current.ABP_Melusina_Current:AnimGraph.AnimGraphNode_LayeredBoneBlend_0",
+    "layers": [
+      [
+        {
+          "bone": "spine_01_x",
+          "depth": 0
+        },
+        {
+          "bone": "spine_02_x",
+          "depth": 0
+        },
+        {
+          "bone": "spine_03_x",
+          "depth": 0
+        },
+        {
+          "bone": "shoulder_l",
+          "depth": 0
+        },
+        {
+          "bone": "shoulder_r",
+          "depth": 0
+        },
+        {
+          "bone": "arm_stretch_l",
+          "depth": 0
+        },
+        {
+          "bone": "arm_stretch_r",
+          "depth": 0
+        },
+        {
+          "bone": "forearm_stretch_l",
+          "depth": 0
+        },
+        {
+          "bone": "forearm_stretch_r",
+          "depth": 0
+        },
+        {
+          "bone": "hand_l",
+          "depth": 0
+        },
+        {
+          "bone": "hand_r",
+          "depth": 0
+        }
+      ]
+    ]
+  },
+  {
+    "node": "/Game/Melodia/Characters/Melusina/ABP_Melusina_Current.ABP_Melusina_Current:ExecuteUbergraph_ABP_Melusina_Current.AnimGraphNode_LayeredBoneBlend_0",
+    "layers": [
+      [
+        {
+          "bone": "spine_01_x",
+          "depth": 0
+        },
+        {
+          "bone": "spine_02_x",
+          "depth": 0
+        },
+        {
+          "bone": "spine_03_x",
+          "depth": 0
+        },
+        {
+          "bone": "shoulder_l",
+          "depth": 0
+        },
+        {
+          "bone": "shoulder_r",
+          "depth": 0
+        },
+        {
+          "bone": "arm_stretch_l",
+          "depth": 0
+        },
+        {
+          "bone": "arm_stretch_r",
+          "depth": 0
+        },
+        {
+          "bone": "forearm_stretch_l",
+          "depth": 0
+        },
+        {
+          "bone": "forearm_stretch_r",
+          "depth": 0
+        },
+        {
+          "bone": "hand_l",
+          "depth": 0
+        },
+        {
+          "bone": "hand_r",
+          "depth": 0
+        }
+      ]
+    ]
+  }
+]

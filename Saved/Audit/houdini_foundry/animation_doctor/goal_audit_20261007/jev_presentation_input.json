@@ -1,0 +1,64 @@
+{
+  "recorded_utc": "2026-10-07T19:42:57.755822+00:00",
+  "state": {
+    "scope": "Owner requested eight-angle live Melusina review and smallest next gameplay showcase fixes. Text-only consultation on Sol image observations; Jev has not received or seen image pixels.",
+    "authority": "UE5.8 canonical skeleton, current ABP, existing native combat and instrument owners; canonical baseline c3b5b326e1221f9e16101b6792ede625cdb2b187. No second pipeline or body reimport.",
+    "evidence": {
+      "images": {
+        "back.png": "45bc07ef5279b7ef3c9f7f39cc89ea6c69108325462df0ff2dc55bc52679e264",
+        "back_left.png": "c35df1c5d7c12b74e0b5c375892f90c7584c45d265f0b96ce7dff35a3a18f6eb",
+        "back_right.png": "faf810b817e5bc0167c6091c6a96857045cb6798771d10773e8fa897effdfe25",
+        "front.png": "59776c5c618bf2a0ee4e26148a0b0787a7f567345aab853094c8060007c217a0",
+        "front_left.png": "8aea462b7cc6d32e5fa784a6dbb2def22de194337a88fa664debffbb9ab81230",
+        "front_right.png": "ee4811cf06f51111193141f256e284c7c5ba3b7f5cd86ed9c8ac876685028c51",
+        "left.png": "8aea32fddcfe4376db23c367a82dac9fa912c8fa319119f5578caf97e191b7f6",
+        "right.png": "db3524a323e77a70fdc9937b651fbb314659108b251bd4df1bc63203cdb00dee"
+      },
+      "capture": "Eight live Morning PIE cameras, 1280-square, full body; All eight latest views show full Melusina; 90-degree diagnostic camera; ChoralSheep temporarily hidden for visibility then restored, all hero defects exposed. Saved Shinbi idle; Sparrow copies only transiently bound. No owner acceptance.",
+      "observations": [
+        "Hat floats far above head: measured hat bounds center Z -327.415 vs head joint -468.774, approximately 141cm separation. Hat parent is CollisionCylinder, no leader pose, 434 mesh bones, no head_x; canonical body465 bones. Hat local ref bounds center192.712cm. This is attachment/bind-frame evidence, not source skin diagnosis.",
+        "Body scale1, current root_x75cm above mesh origin; head124cm above mesh origin; ankle about12cm below mesh origin. Capsule halfheight88, meshrelativeZ-73. Actual traced floor/skinned sole not yet measured; images alone cannot resolve toe reference versus sole penetration.",
+        "Asymmetric bent-left idle/open palm and lowered right arm; owner explicitly reports arms or feet still wrong. Stable canonical arm lengths do not establish attractive motion or grip.",
+        "Oversized instrument orbit rings surround and obscure head/upper silhouette. Hands do not visibly establish both-hand bow grip/string contact in idle. No topology/morph edits authorized.",
+        "Bright pastel wardrobe loses value separation in current Morning lighting. Material polish follows rig/contact repair.",
+        "Actual CPU-skinned boot vertices now prove30.080cm penetration on flat floor,4600/5540vertices below floor. Same saved clip with live graph bypassed yields12.918cm penetration. Both source pose/boot frame and live graph contribute; compare one frame only, not final full-motion acceptance."
+      ],
+      "numerical": "Four Shinbi and six new Sparrow copies pass sampled deform gate. Six originals and prior canon copies unchanged. New Sparrow restores original per-key arm rotation with canonical translations; zero-rotation predecessor explains stuck arms.",
+      "runtime": "Physical LMB new Cast observed. Direct-call charged loop proven only. Held physical RMB, clean cadence, sole/slip/slope/stairs, restart and package remain open. Old observer callbacks shared globals and contaminated cadence/count; fix before reuse.",
+      "skinned_sole": {
+        "proof_tier": "LIVE_PIE_CPU_SKINNED_BOOT_VERTICES",
+        "method": "GeometryScript SceneUtils copy_mesh_from_component, RenderData LOD0 world space; installed engine SkinnedMeshToDynamicMesh.cpp line59 GetCPUSkinnedVertices",
+        "outcome": "SUCCESS",
+        "vertex_count": 5540,
+        "floor_trace_export": "(FaceIndex=-1,Time=0.560600,Distance=140.150009,Location=(X=-202.275736,Y=1687.004813,Z=-610.276951),ImpactPoint=(X=-202.275727,Y=1687.004822,Z=-610.276939),Normal=(X=0.000000,Y=0.000000,Z=1.000000),ImpactNormal=(X=0.000000,Y=0.000000,Z=1.000000),TraceStart=(X=-202.275736,Y=1687.004813,Z=-470.126940),TraceEnd=(X=-202.275736,Y=1687.004813,Z=-720.126940),PenetrationDepth=0.000000,MyItem=-1,Item=-1,ElementIndex=0,bBlockingHit=True,bStartPenetrating=False,PhysMaterial=\"/Script/PhysicsCore.PhysicalMaterial'/Engine/EngineMaterials/DefaultPhysicalMaterial.DefaultPhysicalMaterial'\",HitObjectHandle=(ReferenceObject=\"/Script/Engine.StaticMeshComponent'/Memory/UEDPIE_0_L_MelusinaMorning_DJJ01EIUWY3N1BSDAWBJ5ALBU.L_MelusinaMorning:PersistentLevel.StaticMeshActor_UAID_7C5758FA1CACA80303_1143005572.StaticMeshComponent0'\"),Component=\"/Script/Engine.StaticMeshComponent'/Memory/UEDPIE_0_L_MelusinaMorning_DJJ01EIUWY3N1BSDAWBJ5ALBU.L_MelusinaMorning:PersistentLevel.StaticMeshActor_UAID_7C5758FA1CACA80303_1143005572.StaticMeshComponent0'\",BoneName=\"\",MyBoneName=\"\")",
+        "floor_z_cm": -610.276939,
+        "min_boot_vertex_z_cm": -640.3572599856882,
+        "max_penetration_cm": 30.080320985688218,
+        "vertices_below_flat_floor": 4600,
+        "boundary": "One flat-floor idle sample, not walk/slip/slope/stair acceptance. Source bounds and toe height are not substituted for skinned geometry.",
+        "single_node_min_boot_vertex_z_cm": -623.1951963870554,
+        "single_node_penetration_cm": 12.918257387055405
+      }
+    },
+    "constraints": [
+      "Owner authorized repair/bind separate six Sparrow copies only; originals untouched. Candidate visual rejected, do not promote merely from numerical PASS.",
+      "G dress source-only stages and17-script promotion backlog remain stage-aside; no skin/Kawaii bind.",
+      "No cosmetic hiding of defective hat/feet, no blanket-save/stage, no stale branches. Existing CURRENT_STATE only."
+    ]
+  },
+  "questions": {
+    "priority": {
+      "type": "choice",
+      "instructions": "Choose highest value next gate from these concrete findings.",
+      "criteria": {
+        "GROUNDING_AND_MOTION_FIRST": "Isolate live graph versus saved pose, measure actual sole/floor, verify idle/loco/caster and charged arm motion; then head attachment and instrument contacts before light/material polish.",
+        "HEAD_ATTACHMENT_FIRST": "Resolve hat capsule-versus-body attachment using actual asset bind transforms and compare runtime, then grounding/motion/contact.",
+        "COSMETIC_FIRST": "Tune exposure/glow/ring prominence before fixing anatomy/contact."
+      }
+    },
+    "next_steps": {
+      "type": "noul",
+      "instructions": "Give an ordered minimal existing-owner sequence, evidence needed to distinguish clip/FootPlacement/attachment effects, and stop conditions. Do not claim image vision, owner approval or runtime proof beyond provided facts. Do not invent tolerance or bone offset; state whether candidates can be promoted now."
+    }
+  }
+}

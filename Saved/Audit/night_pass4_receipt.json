@@ -1,0 +1,261 @@
+{
+ "step": "tune4",
+ "glare_before": {},
+ "glare_after": {},
+ "water_nodes": [
+  [
+   "Frame.001",
+   "FRAME",
+   []
+  ],
+  [
+   "Frame.002",
+   "FRAME",
+   []
+  ],
+  [
+   "Material Output",
+   "OUTPUT_MATERIAL",
+   [
+    "Surface",
+    "Volume",
+    "Displacement",
+    "Thickness"
+   ]
+  ],
+  [
+   "Math.001",
+   "MATH",
+   [
+    "Value",
+    "Value",
+    "Value"
+   ]
+  ],
+  [
+   "Emission",
+   "EMISSION",
+   [
+    "Color",
+    "Strength",
+    "Weight"
+   ]
+  ],
+  [
+   "Math",
+   "MATH",
+   [
+    "Value",
+    "Value",
+    "Value"
+   ]
+  ],
+  [
+   "Group",
+   "GROUP",
+   [
+    "Alpha",
+    "Base Color",
+    "Fresnel",
+    "Range",
+    "Fresnel Opacity",
+    "Alpha"
+   ]
+  ],
+  [
+   "Group.003",
+   "GROUP",
+   [
+    "Highlight",
+    "Shadow",
+    "Range Min",
+    "Range Max",
+    "Light Source Tint",
+    "Alpha"
+   ]
+  ],
+  [
+   "Mix",
+   "MIX",
+   [
+    "Factor",
+    "Factor",
+    "A",
+    "B",
+    "A",
+    "B"
+   ]
+  ],
+  [
+   "Group.002",
+   "GROUP",
+   [
+    "Water",
+    "Shadow",
+    "Wave",
+    "Mapping: UV | Object",
+    "Global Scale",
+    "Type: Smooth | Sharp"
+   ]
+  ],
+  [
+   "Group.004",
+   "GROUP",
+   [
+    "Mapping: UV | Object | Camera",
+    "Follow (Object Mapping): Object | None | View",
+    "Type: Sharp | Smooth",
+    "Range (Sharp)",
+    "Range Min (Smooth)",
+    "Range Max (Smooth)"
+   ]
+  ],
+  [
+   "Group.001",
+   "GROUP",
+   [
+    "Base Color",
+    "Fresnel",
+    "Range Min",
+    "Range Max",
+    "Fresnel Opacity",
+    "Alpha"
+   ]
+  ]
+ ],
+ "water_links": [
+  [
+   "Group.003",
+   "Color",
+   "Group.001",
+   "Base Color"
+  ],
+  [
+   "Group.002",
+   "Mask",
+   "Math",
+   "Value"
+  ],
+  [
+   "Group.002",
+   "Color",
+   "Group",
+   "Base Color"
+  ],
+  [
+   "Group",
+   "Color",
+   "Emission",
+   "Color"
+  ],
+  [
+   "Group",
+   "Mask",
+   "Math.001",
+   "Value"
+  ],
+  [
+   "Math",
+   "Value",
+   "Math.001",
+   "Value"
+  ],
+  [
+   "Math.001",
+   "Value",
+   "Mix",
+   "Factor"
+  ],
+  [
+   "Mix",
+   "Result",
+   "Emission",
+   "Strength"
+  ],
+  [
+   "Emission",
+   "Emission",
+   "Material Output",
+   "Surface"
+  ],
+  [
+   "Group.004",
+   "Bump Normal",
+   "Group",
+   "Normal"
+  ],
+  [
+   "Group.001",
+   "Color",
+   "Group.002",
+   "Water"
+  ]
+ ],
+ "water_group_ins": [
+  [
+   "Alpha",
+   1.0,
+   false
+  ],
+  [
+   "Base Color",
+   "bpy_prop_array",
+   true
+  ],
+  [
+   "Fresnel",
+   "bpy_prop_array",
+   false
+  ],
+  [
+   "Range",
+   0.7485,
+   false
+  ],
+  [
+   "Fresnel Opacity",
+   1.0,
+   false
+  ],
+  [
+   "Alpha",
+   1.0,
+   false
+  ],
+  [
+   "Invert Mask (Transparent)",
+   0.0,
+   false
+  ],
+  [
+   "Rim Emission Strength",
+   1.0,
+   false
+  ],
+  [
+   "Base Emission Strength",
+   1.0,
+   false
+  ],
+  [
+   "Mask Mix",
+   0.5,
+   false
+  ],
+  [
+   "Normal",
+   "bpy_prop_array",
+   true
+  ]
+ ],
+ "renders": {
+  "lookdev3_wide": true,
+  "lookdev3_close": true
+ },
+ "resaved": true,
+ "diff3": {
+  "mean": 0.3428,
+  "p50": 0.2314,
+  "changed_pct": 79.748
+ }
+}

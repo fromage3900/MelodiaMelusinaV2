@@ -24,8 +24,7 @@ def build() -> dict:
     if g is None:
         raise RuntimeError(f"Graph not found: {GRAPH_PATH}")
 
-    input_node = g.input_node
-    output_node = g.output_node
+    output_node = g.get_output_node()
 
     # Clear existing nodes
     for n in list(g.nodes):
@@ -44,11 +43,19 @@ def build() -> dict:
     n3, s3 = g.add_node_of_type(unreal.PCGStaticMeshSpawnerSettings)
     n3.set_node_position(600, 0)
 
-    # Wire: Input -> CreatePoints -> Transform -> Spawner -> Output
-    g.add_edge(input_node, "Out", n1, "In")
-    g.add_edge(n1, "Out", n2, "In")
-    g.add_edge(n2, "Out", n3, "In")
-    g.add_edge(n3, "Out", output_node, "Out")
+    # Wire: CreatePoints -> Transform -> Spawner -> Output.
+    # CreatePoints is a source node (no input pin). The OUTPUT node's input pin
+    # is labelled "Out" in every proven builder (build_pcg_escher.py,
+    # pcg_graph_builder.py); PCG only runs nodes upstream of the output node, so
+    # the previous ("In") label left the spawner disconnected.
+    edges = [
+        (n1, "Out", n2, "In"),
+        (n2, "Out", n3, "In"),
+        (n3, "Out", output_node, "Out"),
+    ]
+    for a, a_pin, b, b_pin in edges:
+        if g.add_edge(a, a_pin, b, b_pin) is None:
+            raise RuntimeError(f"add_edge failed: {a.get_name()}.{a_pin} -> {b.get_name()}.{b_pin}")
 
     # Save
     unreal.EditorAssetLibrary.save_loaded_asset(g)
@@ -59,11 +66,11 @@ def build() -> dict:
         "graph": GRAPH_PATH,
         "nodes": [n1.get_name(), n2.get_name(), n3.get_name()],
         "edges": [
-            "Input -> CreatePoints",
             "CreatePoints -> TransformPoints",
             "TransformPoints -> StaticMeshSpawner",
             "StaticMeshSpawner -> Output",
         ],
+        "note": "wired only; generation is NOT proven until instances are read back on a later tick",
     }
 
     REPORT.parent.mkdir(parents=True, exist_ok=True)

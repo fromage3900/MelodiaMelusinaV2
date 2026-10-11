@@ -1,0 +1,68 @@
+{
+  "boundary": "Transient same saved idle clip played on the possessed pawn with graph bypassed; no saved change. Joint heights are not skinned sole contact.",
+  "graph_joints": {
+    "root_x": [
+      -194.6510660354722,
+      1667.5620804513835,
+      -517.5198633639841
+    ],
+    "head_x": [
+      -201.59733997655496,
+      1659.8595804235404,
+      -468.08047890369323
+    ],
+    "foot_l": [
+      -203.2005551566864,
+      1667.1698825492456,
+      -607.8016271591187
+    ],
+    "foot_r": [
+      -188.1571003122415,
+      1673.0734832068279,
+      -607.8053464889526
+    ],
+    "toes_01_l": [
+      -200.17364547266988,
+      1657.6381797542035,
+      -621.0125766332329
+    ],
+    "toes_01_r": [
+      -183.89903242122864,
+      1664.024978756098,
+      -621.0166233167421
+    ]
+  },
+  "single_node_joints": {
+    "root_x": [
+      -194.65106603547474,
+      1667.5620804513833,
+      -500.30788445163057
+    ],
+    "head_x": [
+      -191.85525181246766,
+      1663.6215471960888,
+      -449.42757576623933
+    ],
+    "foot_l": [
+      -203.2005551566866,
+      1667.1698825492472,
+      -590.6396266361188
+    ],
+    "foot_r": [
+      -188.1571003122581,
+      1673.0734832068251,
+      -590.643468175108
+    ],
+    "toes_01_l": [
+      -200.1737323701584,
+      1657.6380946513239,
+      -603.8505346179245
+    ],
+    "toes_01_r": [
+      -183.89911830574167,
+      1664.024891493717,
+      -603.8547178712756
+    ]
+  },
+  "trace_export": "(FaceIndex=-1,Time=0.560600,Distance=140.150009,Location=(X=-202.275736,Y=1687.004813,Z=-610.276951),ImpactPoint=(X=-202.275727,Y=1687.004822,Z=-610.276939),Normal=(X=0.000000,Y=0.000000,Z=1.000000),ImpactNormal=(X=0.000000,Y=0.000000,Z=1.000000),TraceStart=(X=-202.275736,Y=1687.004813,Z=-470.126940),TraceEnd=(X=-202.275736,Y=1687.004813,Z=-720.126940),PenetrationDepth=0.000000,MyItem=-1,Item=-1,ElementIndex=0,bBlockingHit=True,bStartPenetrating=False,PhysMaterial=\"/Script/PhysicsCore.PhysicalMaterial'/Engine/EngineMaterials/DefaultPhysicalMaterial.DefaultPhysicalMaterial'\",HitObjectHandle=(ReferenceObject=\"/Script/Engine.StaticMeshComponent'/Memory/UEDPIE_0_L_MelusinaMorning_DJJ01EIUWY3N1BSDAWBJ5ALBU.L_MelusinaMorning:PersistentLevel.StaticMeshActor_UAID_7C5758FA1CACA80303_1143005572.StaticMeshComponent0'\"),Component=\"/Script/Engine.StaticMeshComponent'/Memory/UEDPIE_0_L_MelusinaMorning_DJJ01EIUWY3N1BSDAWBJ5ALBU.L_MelusinaMorning:PersistentLevel.StaticMeshActor_UAID_7C5758FA1CACA80303_1143005572.StaticMeshComponent0'\",BoneName=\"\",MyBoneName=\"\")"
+}

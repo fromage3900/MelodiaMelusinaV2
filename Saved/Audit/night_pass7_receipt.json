@@ -1,0 +1,25 @@
+{
+ "step": "tune6",
+ "gl_found": true,
+ "settings": {
+  "type": "Fog Glow",
+  "Threshold": 1.2,
+  "Size": 6.0,
+  "Strength": 0.7,
+  "Smoothness": 0.15,
+  "Quality": "High"
+ },
+ "readback": {
+  "Type": "Fog Glow",
+  "Threshold": "1.2000000476837158",
+  "Size": "6.0",
+  "Strength": "0.699999988079071",
+  "Quality": "High"
+ },
+ "probe_diff_pct": 6.598,
+ "renders": {
+  "final_wide": true,
+  "final_close": true
+ },
+ "resaved": true
+}

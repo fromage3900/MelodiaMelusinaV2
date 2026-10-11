@@ -1,0 +1,48 @@
+{
+ "step": "geophysics_verification",
+ "date": "2026-10-08",
+ "scene": "SHOREWAKE_LOOP_v5_animfix.blend (canonical lineage)",
+ "draft_waterline": {
+  "hull_lowest_point": ["Keel", 0.1134],
+  "water_near_hull_avg_z": 0.4672,
+  "water_near_hull_z_range": [0.1691, 0.7227],
+  "draft_m": 0.3538,
+  "draft_to_LOA": 0.0438,
+  "draft_ratio_1_in": 22.8,
+  "keel_trough_margin_m": 0.0557,
+  "verdict": "plausible shallow skiff; keel always submerged; reference: shallow-draft patent ~1:12 min for shoal cruisers, light open skiff shallower is fine"
+ },
+ "loa_beam": {"LOA_m": 8.072, "bbox_note": "beam 2.96 includes spars; hull proper narrower"},
+ "mast": {"rake_deg_from_vertical": 0.36, "verdict": "near vertical; real rakes 1-3 deg aft; fine"},
+ "rigging": {
+  "stays_and_shrouds_angle_from_vertical_deg": 10.5,
+  "minimum_textbook_staying_angle_deg": 12,
+  "shroud_straightness_poly_over_chord_pct": 0.08,
+  "verdict": "marginally steep vs the 12-degree minimum but plausible; shrouds taut as real rigging (no sag)",
+  "decorative_swags": "drape (correct for decoration; not cables)"
+ },
+ "seating_vs_all_visible_geometry_bvh": {
+  "bvh": [79758, 79095],
+  "nails": "28 nails, min distance 0.000 m to full boat surface - all seated; NO floating",
+  "others": {"Perch_Cap_A": 0.0, "Perch_Cap_B": 0.0, "Cushion_Stern": 0.0, "Lantern_Hoop_0": 0.0, "Heart_Template_L": "0.379 (hidden template, expected)"},
+  "note": "earlier 8-13cm gaps were an artifact of a hull-subset BVH; full-surface pass closes the question"
+ },
+ "swell_vs_boat_before": {
+  "water_near_hull_avg": {"f1": 0.4672, "f31": 0.7871, "f51": 0.4194, "f61": 0.4549, "f91": 0.7834, "f120": 0.4672},
+  "boat_root_z_before": {"f1": 0.26197, "f60": 0.26997, "f120": 0.26197},
+  "verdict": "MISMATCH: sea breathes +-0.19m around a hull that moved 8mm, out of phase -> waterline slid on the hull (the floaty tell)"
+ },
+ "swell_vs_boat_after_bob_variant": {
+  "file": "SHOREWAKE_LOOP_v5_bob.blend",
+  "root_z_after": {"f1": 0.26197, "f30": 0.5708, "f60": 0.2476, "f90": 0.57064, "f120": 0.26197},
+  "keys": 25,
+  "closure_mm": 0.0,
+  "draft_preserved": "constant 0.205 m offset (water avg - root z)",
+  "stills": ["Saved/Audit/bob_A_old_f31.png", "Saved/Audit/bob_B_new_f31.png", "Saved/Audit/bob_A_old_f61.png", "Saved/Audit/bob_B_new_f61.png"]
+ },
+ "marginal_notes": [
+  "no external mooring line geometry (beat board 'tethered' is narrative)",
+  "LG_LightObj_0 point light at z=-18.1 m (inert; verify/hide)",
+  "ocean wind_velocity scalar 4.0 (direction fixed +X); pennant sway keyed - coherence = eyeball item"
+ ]
+}

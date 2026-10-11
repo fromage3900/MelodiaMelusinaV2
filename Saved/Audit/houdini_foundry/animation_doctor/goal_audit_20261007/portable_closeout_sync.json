@@ -1,0 +1,180 @@
+{
+  "schema": "melodia.animation_doctor.portable_closeout_sync.v1",
+  "source_root": "C:/EnvironmentPortfolio/BS_GodFile",
+  "target_root": "G:/EnvironmentPortfolio/BS_GodFile",
+  "main_commits": [
+    "02fd3af99c53b2240e01de230260c01e245b8f50",
+    "276c6b2e06fced9acddb8d029f0c8ff86767c2b5"
+  ],
+  "robocopy_mode": "explicit files; /COPY:DAT; no /MIR or /PURGE",
+  "files": [
+    {
+      "path": "Content/Melodia/Characters/Melusina/Animations/SparrowDoctor_20261007/A_Spar_Mel_Primary_Fire_Fast.uasset",
+      "source_sha256": "A562EB7C8496E557CCCAC0FFE3971D3112CF897D9C89349878188BA15167F5E4",
+      "target_sha256": "A562EB7C8496E557CCCAC0FFE3971D3112CF897D9C89349878188BA15167F5E4",
+      "match": true
+    },
+    {
+      "path": "Content/Melodia/Characters/Melusina/Animations/SparrowDoctor_20261007/A_Spar_Mel_Primary_Fire_Med.uasset",
+      "source_sha256": "BED264C4A0EBA0D842BA735EF2281A98FB3509F7443947BD58C5D62592164A66",
+      "target_sha256": "BED264C4A0EBA0D842BA735EF2281A98FB3509F7443947BD58C5D62592164A66",
+      "match": true
+    },
+    {
+      "path": "Content/Melodia/Characters/Melusina/Animations/SparrowDoctor_20261007/A_Spar_Mel_Primary_Fire_Slow.uasset",
+      "source_sha256": "6C316BCD9C67DCBB78CE580612B23A9613B0A75561D4C4981276C32E7F2F4C60",
+      "target_sha256": "6C316BCD9C67DCBB78CE580612B23A9613B0A75561D4C4981276C32E7F2F4C60",
+      "match": true
+    },
+    {
+      "path": "Content/Melodia/Characters/Melusina/Animations/SparrowDoctor_20261007/A_Spar_Mel_RMB_Drawback.uasset",
+      "source_sha256": "137AAB1F0EC9DEC1B61F6BC7E4D9C8FCC79AD05A46EC015F44C26824B675419F",
+      "target_sha256": "137AAB1F0EC9DEC1B61F6BC7E4D9C8FCC79AD05A46EC015F44C26824B675419F",
+      "match": true
+    },
+    {
+      "path": "Content/Melodia/Characters/Melusina/Animations/SparrowDoctor_20261007/A_Spar_Mel_RMB_Fire.uasset",
+      "source_sha256": "3471537ACCC7769FF14FB3425D00904CE26550AE9F33BC1ED9C68D9D7AFB5434",
+      "target_sha256": "3471537ACCC7769FF14FB3425D00904CE26550AE9F33BC1ED9C68D9D7AFB5434",
+      "match": true
+    },
+    {
+      "path": "Content/Melodia/Characters/Melusina/Animations/SparrowDoctor_20261007/A_Spar_Mel_RMB_Loop.uasset",
+      "source_sha256": "805E42B3C3E8E3FE12806E6CAC3DE0119A9CAC88190950C7C8B42B2E87B20223",
+      "target_sha256": "805E42B3C3E8E3FE12806E6CAC3DE0119A9CAC88190950C7C8B42B2E87B20223",
+      "match": true
+    },
+    {
+      "path": "Saved/Audit/houdini_foundry/animation_doctor/goal_audit_20261007/live_skinned_boot_contact.json",
+      "source_sha256": "6748C3CF1B9BA86B925B1F6BD5ED007F2F1FBE5BB11170D8529918D0A88C97B8",
+      "target_sha256": "6748C3CF1B9BA86B925B1F6BD5ED007F2F1FBE5BB11170D8529918D0A88C97B8",
+      "match": true
+    },
+    {
+      "path": "Saved/Audit/houdini_foundry/animation_doctor/goal_audit_20261007/graph_vs_saved_pose.json",
+      "source_sha256": "559A62F12B63EAD63E28C29EA4FFA65FC3E55A054AFD2EF472FB8064E9AEA0D9",
+      "target_sha256": "559A62F12B63EAD63E28C29EA4FFA65FC3E55A054AFD2EF472FB8064E9AEA0D9",
+      "match": true
+    },
+    {
+      "path": "Saved/Audit/houdini_foundry/animation_doctor/goal_audit_20261007/live_11_filter_mask.json",
+      "source_sha256": "04AC7DC9CA34F4E9C0304DA504905FCC7B1F6FFBA8A0E1E0F9ED3A43875CAADF",
+      "target_sha256": "04AC7DC9CA34F4E9C0304DA504905FCC7B1F6FFBA8A0E1E0F9ED3A43875CAADF",
+      "match": true
+    },
+    {
+      "path": "Saved/Audit/houdini_foundry/animation_doctor/goal_audit_20261007/sparrow_dynamic_copy_repair.json",
+      "source_sha256": "B9A135F3B18F025E6949EDCFA50413DF551C21FE321A70D01FC6A48FC03E7934",
+      "target_sha256": "B9A135F3B18F025E6949EDCFA50413DF551C21FE321A70D01FC6A48FC03E7934",
+      "match": true
+    },
+    {
+      "path": "Saved/Audit/houdini_foundry/animation_doctor/goal_audit_20261007/sparrow_dynamic_deform_gate.json",
+      "source_sha256": "DA37DDD04F661091BE45A597B6FED98D6A441E54AFF128AC1A953D504752D15A",
+      "target_sha256": "DA37DDD04F661091BE45A597B6FED98D6A441E54AFF128AC1A953D504752D15A",
+      "match": true
+    },
+    {
+      "path": "Saved/Audit/houdini_foundry/animation_doctor/goal_audit_20261007/final_reopen_deform_gate.json",
+      "source_sha256": "711AAD4307540BFFF995D7C5AEF868DB084C92DB087405B0049472C3166A4677",
+      "target_sha256": "711AAD4307540BFFF995D7C5AEF868DB084C92DB087405B0049472C3166A4677",
+      "match": true
+    },
+    {
+      "path": "Saved/Audit/houdini_foundry/animation_doctor/goal_audit_20261007/jev_presentation_audit.json",
+      "source_sha256": "2079664D172033C68804F8A516B276152023EA988EB8AE9411A7D698BFFD1C2E",
+      "target_sha256": "2079664D172033C68804F8A516B276152023EA988EB8AE9411A7D698BFFD1C2E",
+      "match": true
+    },
+    {
+      "path": "Saved/Audit/houdini_foundry/animation_doctor/goal_audit_20261007/jev_presentation_input.json",
+      "source_sha256": "E75977AF8BD9DB6EB225EBDFB6C1E3A4BEF23F5855E9318264139B918D9F7E44",
+      "target_sha256": "E75977AF8BD9DB6EB225EBDFB6C1E3A4BEF23F5855E9318264139B918D9F7E44",
+      "match": true
+    },
+    {
+      "path": "Saved/Audit/houdini_foundry/animation_doctor/goal_audit_20261007/RuntimeAngles/angles.json",
+      "source_sha256": "5369935719392912ACED573204C925F429C333A462548EB6AFC5D691336CA20A",
+      "target_sha256": "5369935719392912ACED573204C925F429C333A462548EB6AFC5D691336CA20A",
+      "match": true
+    },
+    {
+      "path": "Saved/Audit/houdini_foundry/animation_doctor/goal_audit_20261007/closeout_handoff.json",
+      "source_sha256": "C53EE6A348B28431968EDF0B165359FA86787E3B61BC12667943B79AFC3DE365",
+      "target_sha256": "C53EE6A348B28431968EDF0B165359FA86787E3B61BC12667943B79AFC3DE365",
+      "match": true
+    },
+    {
+      "path": "Saved/Audit/houdini_foundry/animation_doctor/goal_audit_20261007/jev_closeout_audit.json",
+      "source_sha256": "2847BEBC33BB10E7FEE70FD3200DCD69DEC91FFFA3D7E7304CEAA43271451D3D",
+      "target_sha256": "2847BEBC33BB10E7FEE70FD3200DCD69DEC91FFFA3D7E7304CEAA43271451D3D",
+      "match": true
+    },
+    {
+      "path": "Saved/Audit/houdini_foundry/animation_doctor/goal_audit_20261007/jev_closeout_input.json",
+      "source_sha256": "116A795FF1422AB715B28211DF0304C48177A3577D8266967031511E4631A8E6",
+      "target_sha256": "116A795FF1422AB715B28211DF0304C48177A3577D8266967031511E4631A8E6",
+      "match": true
+    },
+    {
+      "path": "Saved/Audit/houdini_foundry/animation_doctor/goal_audit_20261007/RuntimeAngles/front.png",
+      "source_sha256": "59776C5C618BF2A0EE4E26148A0B0787A7F567345AAB853094C8060007C217A0",
+      "target_sha256": "59776C5C618BF2A0EE4E26148A0B0787A7F567345AAB853094C8060007C217A0",
+      "match": true
+    },
+    {
+      "path": "Saved/Audit/houdini_foundry/animation_doctor/goal_audit_20261007/RuntimeAngles/front_right.png",
+      "source_sha256": "EE4811CF06F51111193141F256E284C7C5BA3B7F5CD86ED9C8AC876685028C51",
+      "target_sha256": "EE4811CF06F51111193141F256E284C7C5BA3B7F5CD86ED9C8AC876685028C51",
+      "match": true
+    },
+    {
+      "path": "Saved/Audit/houdini_foundry/animation_doctor/goal_audit_20261007/RuntimeAngles/right.png",
+      "source_sha256": "DB3524A323E77A70FDC9937B651FBB314659108B251BD4DF1BC63203CDB00DEE",
+      "target_sha256": "DB3524A323E77A70FDC9937B651FBB314659108B251BD4DF1BC63203CDB00DEE",
+      "match": true
+    },
+    {
+      "path": "Saved/Audit/houdini_foundry/animation_doctor/goal_audit_20261007/RuntimeAngles/back_right.png",
+      "source_sha256": "FAF810B817E5BC0167C6091C6A96857045CB6798771D10773E8FA897EFFDFE25",
+      "target_sha256": "FAF810B817E5BC0167C6091C6A96857045CB6798771D10773E8FA897EFFDFE25",
+      "match": true
+    },
+    {
+      "path": "Saved/Audit/houdini_foundry/animation_doctor/goal_audit_20261007/RuntimeAngles/back.png",
+      "source_sha256": "45BC07EF5279B7EF3C9F7F39CC89EA6C69108325462DF0FF2DC55BC52679E264",
+      "target_sha256": "45BC07EF5279B7EF3C9F7F39CC89EA6C69108325462DF0FF2DC55BC52679E264",
+      "match": true
+    },
+    {
+      "path": "Saved/Audit/houdini_foundry/animation_doctor/goal_audit_20261007/RuntimeAngles/back_left.png",
+      "source_sha256": "C35DF1C5D7C12B74E0B5C375892F90C7584C45D265F0B96CE7DFF35A3A18F6EB",
+      "target_sha256": "C35DF1C5D7C12B74E0B5C375892F90C7584C45D265F0B96CE7DFF35A3A18F6EB",
+      "match": true
+    },
+    {
+      "path": "Saved/Audit/houdini_foundry/animation_doctor/goal_audit_20261007/RuntimeAngles/left.png",
+      "source_sha256": "8AEA32FDDCFE4376DB23C367A82DAC9FA912C8FA319119F5578CAF97E191B7F6",
+      "target_sha256": "8AEA32FDDCFE4376DB23C367A82DAC9FA912C8FA319119F5578CAF97E191B7F6",
+      "match": true
+    },
+    {
+      "path": "Saved/Audit/houdini_foundry/animation_doctor/goal_audit_20261007/RuntimeAngles/front_left.png",
+      "source_sha256": "8AEA462B7CC6D32E5FA784A6DBB2DEF22DE194337A88FA664DEBFFBB9AB81230",
+      "target_sha256": "8AEA462B7CC6D32E5FA784A6DBB2DEF22DE194337A88FA664DEBFFBB9AB81230",
+      "match": true
+    },
+    {
+      "path": "Saved/Audit/houdini_foundry/animation_doctor/goal_audit_20261007/RuntimeAngles/contact_sheet.jpg",
+      "source_sha256": "B32E74B9431B429DF7DD1F26237D7BB8B6BCE55F30B7AA6D9C555C7C91CE181B",
+      "target_sha256": "B32E74B9431B429DF7DD1F26237D7BB8B6BCE55F30B7AA6D9C555C7C91CE181B",
+      "match": true
+    },
+    {
+      "path": "CURRENT_STATE.md",
+      "source_sha256": "6D43A94FF4FA5E1D5B8DED7C924EBE2E86868415EEB75E11F5BE4DB2709ED6A4",
+      "target_sha256": "6D43A94FF4FA5E1D5B8DED7C924EBE2E86868415EEB75E11F5BE4DB2709ED6A4",
+      "match": true
+    }
+  ]
+}

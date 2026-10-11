@@ -1,0 +1,11 @@
+{
+  "asset": "Content/Melodia/Characters/Melusina/Materials/MI_Melusina_Regalia_SDFGilded.uasset",
+  "parameter": "GlowAmount",
+  "before": 1.4,
+  "after": 0.25,
+  "evidence": "LIVE_PIE_VISIBLE_COMPARISON",
+  "observation": "Halo reads lilac rather than clipped white; blue hair and clothing remain legible.",
+  "camera_experiments_persisted": false,
+  "hero_geometry_changed": false,
+  "owner_visual_acceptance": false
+}

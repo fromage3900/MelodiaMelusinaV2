@@ -1,0 +1,19 @@
+{
+ "purpose": "Wiring context for the 5 inert nodes found in the 2026-10-07 GN hygiene sweep, so any of them can be restored or finished later. None of these affect output (all have zero output links; the Index node has zero links at all).",
+ "trees": {
+  "MEL_chime_carillon_tier": {
+   "Index": {"pos": [240.0, -80.0], "links": "none at all — fully inert scratch node"}
+  },
+  "MEL_mother_draped_curtain": {
+   "Combine XYZ": {"pos": [450.0, -200.0], "wired": "Y <- Math.004 <- Math.003 <- Group Input 'Tension'", "output": "Vector -> n/c (dead end)"},
+   "Combine XYZ.001": {"pos": [400.0, -300.0], "wired": "Z <- Math.008 <- Math.007 <- Group Input 'Fold Sharpness'", "output": "Vector -> n/c (dead end)"}
+  },
+  "MEL_starskiff_hull_form": {
+   "Clamp": {"pos": [0.0, -100.0], "wired": "Value <- Math.013 <- Math.012 <- Group Input 'Symmetry'", "output": "Result -> n/c (dead end)"}
+  },
+  "Water Basic": {
+   "Math.019": {"pos": [1069.0, -722.1], "wired": "<- Math.018 ('Global Scale')", "output": "Value -> n/c (vendor kit tree — leave alone unless asked)"}
+  }
+ },
+ "restore_hint": "All positions/wirings recorded above; re-create node and links to restore. Sweep: Saved/Audit/deadend_sweep_20261007.json; context script: Saved/Audit/ctx_litter.py"
+}
