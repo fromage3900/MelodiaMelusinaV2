@@ -6,7 +6,7 @@
 **Branch:** feature/les-petits-accordeurs-foundry-20261011.
 
 ## Purpose
-Preserve the seven tiny watercolor/ink repair spirits without reinterpreting them as generic photorealistic furry fantasy creatures. Converge lore, individual character bibles, one representative mesh/rig, environmental interaction, and Maison L'Accordeur into a bounded production lane.
+Preserve the seven tiny watercolor/ink repair spirits without reinterpreting them as generic photorealistic furry fantasy creatures. Converge lore, individual character bibles, a **procedural Geometry Nodes character family**, later rigging, and Maison L'Accordeur into a bounded production lane. **Blender Melodia Studio GN geometry is the production authority; Tripo is optional shape exploration only.**
 
 ## Visual authority / explicit rejection
 **APPROVED SOURCE OF TRUTH (provided by owner):**
@@ -31,19 +31,20 @@ Mottos: "Small hands. Better worlds.", "Keep things in tune.", "Different tasks.
 ## Read in order
 1. [CANON_LORE_AND_CHARACTER_BIBLE.md](CANON_LORE_AND_CHARACTER_BIBLE.md) — established details separated from pitches.
 2. [GAMEPLAY_AND_MAISON_DESIGN.md](GAMEPLAY_AND_MAISON_DESIGN.md) — data-driven proposal, scoped to existing authorities.
-3. [TRIPO_TO_UE58_MESH_PIPELINE.md](TRIPO_TO_UE58_MESH_PIPELINE.md) — seed base meshes, controlled import and acceptance.
-4. [accordeurs_manifest.json](accordeurs_manifest.json) — stable IDs and authoring status.
+3. [STEPFUN_GN_HANDOFF.md](STEPFUN_GN_HANDOFF.md) — **primary StepFun execution contract**, using existing Melodia Studio GN registry.
+4. [TRIPO_TO_UE58_MESH_PIPELINE.md](TRIPO_TO_UE58_MESH_PIPELINE.md) — optional reference mesh exploration, not canonical geometry.
+5. [accordeurs_manifest.json](accordeurs_manifest.json) — stable IDs and authoring status.
 
 ## Non-negotiable implementation boundaries
 - **Do not edit active Melusina AnimBP, skeleton, wardrobe, level maps, or ongoing VFX work.**
 - No new narrative or save authority. Use the repository's QuillScript/narrative and JRPG/persistence ownership once the integration owner confirms exact interfaces.
 - No new live runtime system until a small isolated playtest passes and the owner approves.
-- Prefer reproducible, import-only source from Tripo; do not commit uncontrolled generated GLBs to metered Git LFS. Inventory and budget check first.
+- **Make original editable, seeded Geometry Nodes builders in the EXISTING Melodia Studio add-on.** Tripo images or GLBs can inform proportions but must not become the mandatory mesh-authoring route. Avoid uncontrolled GLB/LFS payloads.
 - A branch/plan is not proof of mesh generation, rigging, Unreal import, or playable runtime.
 
 ## First bounded milestone
-1. Make a clean single-subject crop of **Le Build**, **Mlle. Merge**, **Petit Cache** from the approved lineup; keep full sheets alongside them for validation.
-2. Generate one test base mesh (Le Build), inspect front/side/back against sheet, repair topology/geometry, define an optional shared small-spirit deform skeleton.
-3. Accept/reject that mesh with screenshot-based silhouette/material/UV evidence; only then process Mlle. Merge and Petit Cache.
-4. In UE 5.8, import into an isolated test asset folder and prove one cosmetic idle plus one interaction without changes to authority systems.
-5. Hold gameplay design proposals behind their acceptance gates; no branch merge before owner visual review.
+1. Use the individual approved crops of **Le Build**, **Mlle. Merge**, **Petit Cache** solely as references, with full concept sheet for cross-checks.
+2. Audit current `deploy/surreal_arch/melodia_gn` registry, Melodia Studio GN Stack, Blender 5.2 verification and presets; DO NOT make a parallel implementation.
+3. Build one seed-driven procedural Le Build silhouette with independent, tweakable body/face/ear and accessory modules; capture same-scale orthographic views.
+4. Prove the SAME reusable GN family can generate visually distinct Mlle. Merge and Petit Cache presets; do not fake this with colors alone.
+5. Owner reviews silhouettes and geometry prior to topology/rigging and any UE sandbox import. Keep gameplay designs proposed until explicit acceptance.
