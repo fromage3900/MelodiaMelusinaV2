@@ -191,3 +191,7 @@ If a shared artifact is required:
 - final take metadata records both commit SHAs.
 
 Do not synchronize whole source trees across repos merely to make discovery easier.
+
+## 10. Embedded TouchEngine ↔ UE 5.8 path
+
+The separately installed TouchEngine plugin is an **optional embedded TouchDesigner presentation executor**, not a replacement for existing Spout/OSC, the music clock, the canonical gameplay subsystem, or the TD repository. UE 5.8 plugin compilation, PIE and packaging are **not proven by this contract**. Preserve a native UE fallback and the one-writer constraints. See [TouchEngine UE5.8 Runtime Integration Contract](TOUCHENGINE_UE58_RUNTIME_INTEGRATION.md) for the gated UE implementation path and exact `.tox` handoff interface. Status and evidence still belong only in `CURRENT_STATE.md`.

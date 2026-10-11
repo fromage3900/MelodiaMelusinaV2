@@ -54,6 +54,7 @@ For anything involving **what is true now, what is blocked, or what to do next**
 ## TouchDesigner / After Effects
 
 - `Docs/TouchDesigner/MELODIA_TD_AE_CROSS_REPO_CONTRACT_2026-09-08.md` — UE ↔ TD ↔ AE ownership and handoff boundary.
+- `Docs/TouchDesigner/TOUCHENGINE_UE58_RUNTIME_INTEGRATION.md` — experimental TouchEngine-in-UE5.8 contract, staged plugin/canary/runtime gates, and TD `.tox` handoff.
 
 ## Compatibility / historical material
 
