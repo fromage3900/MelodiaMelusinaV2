@@ -14,16 +14,21 @@
 
 **Next gates (in order):** (1) owner answers the four open questions above; (2) record them here and mirror into `CLAUDE.md`/`AGENTS.md` (integrator-owned single-writer files — update the "ACFU excluded" line there); (3) prove possession + one ACF melee exchange in PIE; (4) promote or retire the trial web (`BP_HybridSlimeNode`, `BP_WaveHarpProofArrowActor` are dead props). Issue #51 stays the idempotency reference.
 
-## VFX Material Convergence & Niagara Gameplay Runtime Canon — 2026-10-10 (Unreal Closed, Staging Active)
+## VFX Material Convergence & Niagara Gameplay Runtime Canon — 2026-10-11 (Staging Complete, Driver Restored)
 
 Owner documentation and convergence plan verified against actual disk state, Git LFS stashes, and runtime assets (`Saved/Staging/GrokPrep/vfx_material_convergence/`).
 
-- **Unreal Process & Disk Headroom Verified:** Unreal Engine is fully exited. C: drive currently holds **13.36 GB free** (8.6 GB shared cache cleared for staging). Engine must remain closed until owner reports staging completion.
-- **Git Stash & Untracked Tree Verified:** Commit `424146870` (`stash@{9}^3`) contains the untracked recovery tree:
-  - `Content/Melodia/VFX/BP_MelodiaNiagaraDriver.uasset` (driver restored without branch disruption).
-  - `Content/EnvSandbox/Textures/SurrealFabric_Flipbooks/` (462 `.uasset` files across BrassPatina, CelestialSilk, and CymaticPulse; all 462 local Git LFS objects verified on disk).
-  - `Content/EnvSandbox/Textures/Copernicus/_BrassShared/T_Brass_Flipbook_30_Atlas_4x4` (4x4 brass shimmer atlas available for `MI_Melodia_CursorTrail`).
-- **Organ Cliff Staging Target:** The flipbooks, signed distance fields (SDFs), validated meshes, and effects pack instances stage cleanly into `/Game/Staging/Aeolian/`.
+- **Restoration Completed from Git Stash `424146870` (`recovery/vfx-library-stash9-20260920`):**
+  - `Content/Melodia/VFX/BP_MelodiaNiagaraDriver.uasset` (228,810 B, magic `0x9E2A83C1`) restored and verified without branch disruption.
+  - `Content/EnvSandbox/Textures/SurrealFabric_Flipbooks/` (462 `.uasset` files across BrassPatina, CelestialSilk, and CymaticPulse; all extracted from local LFS store).
+  - `Content/EnvSandbox/Textures/Copernicus/_BrassShared/T_Brass_Flipbook_30_Atlas_4x4` (4x4 brass shimmer atlas restored for `MI_Melodia_CursorTrail`).
+  - `Content/EnvSandbox/VFX/` library restored (1,039 total assets extracted from stash).
+- **Organ Cliff Staging Executed (`/Game/Staging/Aeolian/`):**
+  - `Content/Staging/Aeolian/Flipbooks/`: 15 flipbook atlases (Houdini Droplet atlas, Clutter atlas, SurrealFabric master atlases, Copernicus brass shimmer).
+  - `Content/Staging/Aeolian/SDF/`: 18 canonical signed distance fields (Cracks, Cross, Dots, Leaf, Scales, Strokes, MusicNote, Rosette, Starburst).
+  - `Content/Staging/Aeolian/Systems/`: 57 Niagara Systems (`NS_*`) staged for gameplay convergence.
+  - `Content/Staging/Aeolian/Materials/`: 30 Niagara Material Instances (`MI_*`) staged for unique image mapping.
+  - Verification receipt recorded at `Saved/Audit/Aeolian_Staging_Verification_20261011.json`.
 - **Texture Inventory & Gap Resolution (19 of 30 Filled):**
   - **18 Verified SDF Textures:** 12 in `Melodia/VFX/Textures/SDF`, 6 canonical SDFs in `EnvSandbox/Materials/Textures` (`T_SDF_Cracks`, `T_SDF_Cross`, `T_SDF_Dots`, `T_SDF_Leaf`, `T_SDF_Scales`, `T_SDF_Strokes`), plus Gaea and Melusina face SDFs.
   - **~22 Particle-Usable Flipbook Sheets:** Verified on disk including `T_SeaAbove_Droplet_Atlas` (2048x2048 Houdini bake), `T_WaterSplash2x2`, `T_CloudSmoke_WispInk_Sheet`, `RainSnow_Sheet`, `T_Test_AtlasTexture_4x4subframe_{density,velocity}`, and Oceanology sheets.
