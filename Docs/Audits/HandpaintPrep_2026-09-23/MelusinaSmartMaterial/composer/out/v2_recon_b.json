@@ -1,0 +1,26 @@
+{
+ "channels_err": "{'description': \"TypeError: 'pybind11_type' object is not iterable\\n\\nAt:\\n  <string>(6): <module>\\n\"}",
+ "textureset_api": [
+  "all_mesh_names",
+  "all_stacks",
+  "all_uv_tiles",
+  "description",
+  "from_name",
+  "get_mesh_map_resource",
+  "get_resolution",
+  "get_stack",
+  "get_uvtiles_resolution",
+  "has_uv_tiles",
+  "is_layered_material",
+  "material_id",
+  "name",
+  "original_name",
+  "reset_uvtiles_resolution",
+  "set_mesh_map_resource",
+  "set_resolution",
+  "set_uvtiles_resolution",
+  "uv_tile"
+ ],
+ "fill_repr_err": "{'description': 'RuntimeError: Fill is not in material edition mode\\n\\nAt:\\n  C:\\\\Program Files/Adobe/Adobe Substance 3D Painter/resources/python/modules\\\\substance_painter\\\\source.py(406): get_material_source\\n  <string>(4): <listcomp>\\n  <string>(6): <module>\\n'}",
+ "presets_all_err": "{'description': \"TypeError: 'str' object is not callable\\n\\nAt:\\n  <string>(4): <listcomp>\\n  <string>(6): <module>\\n\"}"
+}

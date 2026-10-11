@@ -1,0 +1,66 @@
+{
+ "ok": true,
+ "exports": {
+  "Verse": {
+   "status": "ExportStatus.Success",
+   "files": 6,
+   "secs": 0.8,
+   "sample": [
+    "choral_sheep_A_blossoms_FIXED_202s61003_IDMAP_Sheep_Body_BaseColor.1001.png",
+    "choral_sheep_A_blossoms_FIXED_202s61003_IDMAP_Sheep_Body_Emissive.1001.png",
+    "choral_sheep_A_blossoms_FIXED_202s61003_IDMAP_Sheep_Body_Height.1001.png"
+   ]
+  },
+  "Inversion": {
+   "status": "ExportStatus.Success",
+   "files": 6,
+   "secs": 0.7,
+   "sample": [
+    "choral_sheep_A_blossoms_FIXED_202s61003_IDMAP_Sheep_Body_BaseColor.1001.png",
+    "choral_sheep_A_blossoms_FIXED_202s61003_IDMAP_Sheep_Body_Emissive.1001.png",
+    "choral_sheep_A_blossoms_FIXED_202s61003_IDMAP_Sheep_Body_Height.1001.png"
+   ]
+  },
+  "Moonlight": {
+   "status": "ExportStatus.Success",
+   "files": 6,
+   "secs": 1.1,
+   "sample": [
+    "choral_sheep_A_blossoms_FIXED_202s61003_IDMAP_Sheep_Body_BaseColor.1001.png",
+    "choral_sheep_A_blossoms_FIXED_202s61003_IDMAP_Sheep_Body_Emissive.1001.png",
+    "choral_sheep_A_blossoms_FIXED_202s61003_IDMAP_Sheep_Body_Height.1001.png"
+   ]
+  },
+  "Ember": {
+   "status": "ExportStatus.Success",
+   "files": 6,
+   "secs": 1.0,
+   "sample": [
+    "choral_sheep_A_blossoms_FIXED_202s61003_IDMAP_Sheep_Body_BaseColor.1001.png",
+    "choral_sheep_A_blossoms_FIXED_202s61003_IDMAP_Sheep_Body_Emissive.1001.png",
+    "choral_sheep_A_blossoms_FIXED_202s61003_IDMAP_Sheep_Body_Height.1001.png"
+   ]
+  },
+  "Lullaby": {
+   "status": "ExportStatus.Success",
+   "files": 6,
+   "secs": 0.7,
+   "sample": [
+    "choral_sheep_A_blossoms_FIXED_202s61003_IDMAP_Sheep_Body_BaseColor.1001.png",
+    "choral_sheep_A_blossoms_FIXED_202s61003_IDMAP_Sheep_Body_Emissive.1001.png",
+    "choral_sheep_A_blossoms_FIXED_202s61003_IDMAP_Sheep_Body_Height.1001.png"
+   ]
+  },
+  "Storm": {
+   "status": "ExportStatus.Success",
+   "files": 6,
+   "secs": 0.7,
+   "sample": [
+    "choral_sheep_A_blossoms_FIXED_202s61003_IDMAP_Sheep_Body_BaseColor.1001.png",
+    "choral_sheep_A_blossoms_FIXED_202s61003_IDMAP_Sheep_Body_Emissive.1001.png",
+    "choral_sheep_A_blossoms_FIXED_202s61003_IDMAP_Sheep_Body_Height.1001.png"
+   ]
+  }
+ },
+ "saved": "C:\\EnvironmentPortfolio\\BS_GodFile\\Docs\\Audits\\HandpaintPrep_2026-09-23\\MelusinaSmartMaterial\\exports\\MrSheep\\MrSheep_SMS.spp"
+}

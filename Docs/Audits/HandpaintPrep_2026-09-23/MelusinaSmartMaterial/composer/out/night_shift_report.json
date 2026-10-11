@@ -1,0 +1,19 @@
+{
+ "date": "2026-10-11",
+ "ok": true,
+ "seed": 20261011,
+ "theme": "melodia_history.mid",
+ "variants": {
+  "Verse": 6,
+  "Lullaby": 6,
+  "Inversion": 6,
+  "Storm": 6,
+  "Moonlight": 12,
+  "Ember": 12
+ },
+ "map_sheet": true,
+ "scores_sheet": true,
+ "sheet_renders": true,
+ "sheet_albedo": true,
+ "summary": true
+}

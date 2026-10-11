@@ -1,0 +1,221 @@
+{
+ "presets": [
+  {
+   "rid": "ResourceID(context='starter_assets', name='KeyShot', version='17879932926818572098.spexp')",
+   "url": "resource://starter_assets/KeyShot?version=17879932926818572098.spexp",
+   "name": "KeyShot",
+   "context": "starter_assets"
+  },
+  {
+   "rid": "ResourceID(context='starter_assets', name='Renderman (pxrDisney)', version='13087227034542411758.spexp')",
+   "url": "resource://starter_assets/Renderman (pxrDisney)?version=13087227034542411758.spexp",
+   "name": "Renderman (pxrDisney)",
+   "context": "starter_assets"
+  },
+  {
+   "rid": "ResourceID(context='starter_assets', name='Unity Universal Render Pipeline (Specular)', version='16376253665133241820.spexp')",
+   "url": "resource://starter_assets/Unity Universal Render Pipeline (Specular)?version=16376253665133241820.spexp",
+   "name": "Unity Universal Render Pipeline (Specular)",
+   "context": "starter_assets"
+  },
+  {
+   "rid": "ResourceID(context='starter_assets', name='Roblox (MaterialVariant)', version='10376817150006676822.spexp')",
+   "url": "resource://starter_assets/Roblox (MaterialVariant)?version=10376817150006676822.spexp",
+   "name": "Roblox (MaterialVariant)",
+   "context": "starter_assets"
+  },
+  {
+   "rid": "ResourceID(context='starter_assets', name='Dota 2', version='11521834281680808798.spexp')",
+   "url": "resource://starter_assets/Dota 2?version=11521834281680808798.spexp",
+   "name": "Dota 2",
+   "context": "starter_assets"
+  },
+  {
+   "rid": "ResourceID(context='starter_assets', name='Renderman (pxrSurface)', version='4094778744882113453.spexp')",
+   "url": "resource://starter_assets/Renderman (pxrSurface)?version=4094778744882113453.spexp",
+   "name": "Renderman (pxrSurface)",
+   "context": "starter_assets"
+  },
+  {
+   "rid": "ResourceID(context='starter_assets', name='Vray Next UDIM Legacy (Metallic Roughness)', version='11392826322343893366.spexp')",
+   "url": "resource://starter_assets/Vray Next UDIM Legacy (Metallic Roughness)?version=11392826322343893366.spexp",
+   "name": "Vray Next UDIM Legacy (Metallic Roughness)",
+   "context": "starter_assets"
+  },
+  {
+   "rid": "ResourceID(context='your_assets', name='new_export_preset', version='12443384736189124717.spexp')",
+   "url": "resource://your_assets/new_export_preset?version=12443384736189124717.spexp",
+   "name": "new_export_preset",
+   "context": "your_assets"
+  },
+  {
+   "rid": "ResourceID(context='starter_assets', name='Maxwell (Metallic Roughness)', version='15515274777046557503.spexp')",
+   "url": "resource://starter_assets/Maxwell (Metallic Roughness)?version=15515274777046557503.spexp",
+   "name": "Maxwell (Metallic Roughness)",
+   "context": "starter_assets"
+  },
+  {
+   "rid": "ResourceID(context='starter_assets', name='PBR Metallic Roughness (folders or PSD groups)', version='13778254907701229420.spexp')",
+   "url": "resource://starter_assets/PBR Metallic Roughness (folders or PSD groups)?version=13778254907701229420.spexp",
+   "name": "PBR Metallic Roughness (folders or PSD groups)",
+   "context": "starter_assets"
+  },
+  {
+   "rid": "ResourceID(context='starter_assets', name='Vray Next (Specular Glossiness)', version='17458810544184189983.spexp')",
+   "url": "resource://starter_assets/Vray Next (Specular Glossiness)?version=17458810544184189983.spexp",
+   "name": "Vray Next (Specular Glossiness)",
+   "context": "starter_assets"
+  },
+  {
+   "rid": "ResourceID(context='starter_assets', name='Blender (Principled BSDF)', version='13464013867785734784.spexp')",
+   "url": "resource://starter_assets/Blender (Principled BSDF)?version=13464013867785734784.spexp",
+   "name": "Blender (Principled BSDF)",
+   "context": "starter_assets"
+  },
+  {
+   "rid": "ResourceID(context='starter_assets', name='Lens Studio', version='1626237904596282370.spexp')",
+   "url": "resource://starter_assets/Lens Studio?version=1626237904596282370.spexp",
+   "name": "Lens Studio",
+   "context": "starter_assets"
+  },
+  {
+   "rid": "ResourceID(context='starter_assets', name='KeyShot 9+', version='9679307935968962318.spexp')",
+   "url": "resource://starter_assets/KeyShot 9+?version=9679307935968962318.spexp",
+   "name": "KeyShot 9+",
+   "context": "starter_assets"
+  },
+  {
+   "rid": "ResourceID(context='starter_assets', name='Amazon Lumberyard', version='9834292420289014522.spexp')",
+   "url": "resource://starter_assets/Amazon Lumberyard?version=9834292420289014522.spexp",
+   "name": "Amazon Lumberyard",
+   "context": "starter_assets"
+  },
+  {
+   "rid": "ResourceID(context='starter_assets', name='Arnold (AiStandard)', version='5149380568899946784.spexp')",
+   "url": "resource://starter_assets/Arnold (AiStandard)?version=5149380568899946784.spexp",
+   "name": "Arnold (AiStandard)",
+   "context": "starter_assets"
+  },
+  {
+   "rid": "ResourceID(context='starter_assets', name='Arnold UDIM Legacy (AiStandard)', version='8983452333309472129.spexp')",
+   "url": "resource://starter_assets/Arnold UDIM Legacy (AiStandard)?version=8983452333309472129.spexp",
+   "name": "Arnold UDIM Legacy (AiStandard)",
+   "context": "starter_assets"
+  },
+  {
+   "rid": "ResourceID(context='starter_assets', name='Corona', version='5529498962983206314.spexp')",
+   "url": "resource://starter_assets/Corona?version=5529498962983206314.spexp",
+   "name": "Corona",
+   "context": "starter_assets"
+  },
+  {
+   "rid": "ResourceID(context='starter_assets', name='CryEngine', version='9834292420289014522.spexp')",
+   "url": "resource://starter_assets/CryEngine?version=9834292420289014522.spexp",
+   "name": "CryEngine",
+   "context": "starter_assets"
+  },
+  {
+   "rid": "ResourceID(context='starter_assets', name='Maxwell (Specular Glossiness)', version='14172777678301557889.spexp')",
+   "url": "resource://starter_assets/Maxwell (Specular Glossiness)?version=14172777678301557889.spexp",
+   "name": "Maxwell (Specular Glossiness)",
+   "context": "starter_assets"
+  },
+  {
+   "rid": "ResourceID(context='starter_assets', name='Mesh Maps', version='966907117468566740.spexp')",
+   "url": "resource://starter_assets/Mesh Maps?version=966907117468566740.spexp",
+   "name": "Mesh Maps",
+   "context": "starter_assets"
+  },
+  {
+   "rid": "ResourceID(context='starter_assets', name='Non-PBR Specular Glossiness', version='11935292543892635233.spexp')",
+   "url": "resource://starter_assets/Non-PBR Specular Glossiness?version=11935292543892635233.spexp",
+   "name": "Non-PBR Specular Glossiness",
+   "context": "starter_assets"
+  },
+  {
+   "rid": "ResourceID(context='starter_assets', name='PBR Metallic Roughness', version='12212909757578709068.spexp')",
+   "url": "resource://starter_assets/PBR Metallic Roughness?version=12212909757578709068.spexp",
+   "name": "PBR Metallic Roughness",
+   "context": "starter_assets"
+  },
+  {
+   "rid": "ResourceID(context='starter_assets', name='PBR Specular Glossiness (converted from Metallic Roughness)', version='4168704817989054791.spexp')",
+   "url": "resource://starter_assets/PBR Specular Glossiness (converted from Metallic Roughness)?version=4168704817989054791.spexp",
+   "name": "PBR Specular Glossiness (converted from Metallic Roughness)",
+   "context": "starter_assets"
+  },
+  {
+   "rid": "ResourceID(context='starter_assets', name='PBR Specular Glossiness', version='1395785653088665196.spexp')",
+   "url": "resource://starter_assets/PBR Specular Glossiness?version=1395785653088665196.spexp",
+   "name": "PBR Specular Glossiness",
+   "context": "starter_assets"
+  },
+  {
+   "rid": "ResourceID(context='starter_assets', name='Redshift (rsMaterial)', version='1380376890363543874.spexp')",
+   "url": "resource://starter_assets/Redshift (rsMaterial)?version=1380376890363543874.spexp",
+   "name": "Redshift (rsMaterial)",
+   "context": "starter_assets"
+  },
+  {
+   "rid": "ResourceID(context='starter_assets', name='Roblox (SurfaceAppearance)', version='2491087945659338990.spexp')",
+   "url": "resource://starter_assets/Roblox (SurfaceAppearance)?version=2491087945659338990.spexp",
+   "name": "Roblox (SurfaceAppearance)",
+   "context": "starter_assets"
+  },
+  {
+   "rid": "ResourceID(context='starter_assets', name='Shade 3D', version='5995116008940554524.spexp')",
+   "url": "resource://starter_assets/Shade 3D?version=5995116008940554524.spexp",
+   "name": "Shade 3D",
+   "context": "starter_assets"
+  },
+  {
+   "rid": "ResourceID(context='starter_assets', name='Spark AR Studio', version='17880299120691041927.spexp')",
+   "url": "resource://starter_assets/Spark AR Studio?version=17880299120691041927.spexp",
+   "name": "Spark AR Studio",
+   "context": "starter_assets"
+  },
+  {
+   "rid": "ResourceID(context='starter_assets', name='Unity HD Render Pipeline (Metallic Standard)', version='4359396237598282215.spexp')",
+   "url": "resource://starter_assets/Unity HD Render Pipeline (Metallic Standard)?version=4359396237598282215.spexp",
+   "name": "Unity HD Render Pipeline (Metallic Standard)",
+   "context": "starter_assets"
+  },
+  {
+   "rid": "ResourceID(context='starter_assets', name='Unity HD Render Pipeline (Specular)', version='2888222950303895762.spexp')",
+   "url": "resource://starter_assets/Unity HD Render Pipeline (Specular)?version=2888222950303895762.spexp",
+   "name": "Unity HD Render Pipeline (Specular)",
+   "context": "starter_assets"
+  },
+  {
+   "rid": "ResourceID(context='starter_assets', name='Unity Universal Render Pipeline (Metallic Standard)', version='13177289412546223952.spexp')",
+   "url": "resource://starter_assets/Unity Universal Render Pipeline (Metallic Standard)?version=13177289412546223952.spexp",
+   "name": "Unity Universal Render Pipeline (Metallic Standard)",
+   "context": "starter_assets"
+  },
+  {
+   "rid": "ResourceID(context='starter_assets', name='Unreal Engine (Packed)', version='8696494605450634014.spexp')",
+   "url": "resource://starter_assets/Unreal Engine (Packed)?version=8696494605450634014.spexp",
+   "name": "Unreal Engine (Packed)",
+   "context": "starter_assets"
+  },
+  {
+   "rid": "ResourceID(context='starter_assets', name='Unreal Engine SSS (Packed)', version='10344455293167247584.spexp')",
+   "url": "resource://starter_assets/Unreal Engine SSS (Packed)?version=10344455293167247584.spexp",
+   "name": "Unreal Engine SSS (Packed)",
+   "context": "starter_assets"
+  },
+  {
+   "rid": "ResourceID(context='starter_assets', name='Vray Next (Metallic Roughness)', version='14966485319374681622.spexp')",
+   "url": "resource://starter_assets/Vray Next (Metallic Roughness)?version=14966485319374681622.spexp",
+   "name": "Vray Next (Metallic Roughness)",
+   "context": "starter_assets"
+  }
+ ],
+ "pick": {
+  "rid": "ResourceID(context='starter_assets', name='PBR Metallic Roughness', version='12212909757578709068.spexp')",
+  "url": "resource://starter_assets/PBR Metallic Roughness?version=12212909757578709068.spexp",
+  "name": "PBR Metallic Roughness",
+  "context": "starter_assets"
+ },
+ "fatal": "ValueError('For map \"C:/EnvironmentPortfolio/BS_GodFile/Docs/Audits/HandpaintPrep_2026-09-23/MelusinaSmartMaterial/exports/MrSheep/_schema_test/out/choral_sheep_A_blossoms_FIXED_202s61003_IDMAP_Sheep_Body_BaseColor.1001\", when evaluating export parameters, padding algorithm could not be resolved')"
+}

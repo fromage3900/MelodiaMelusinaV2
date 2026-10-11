@@ -1,0 +1,64 @@
+{
+  "asset_class": "CurveFloat",
+  "package_name": "/Game/EnvSandbox/VFX/Curves/C_Audio_beat_trigger",
+  "channel": "beat_trigger",
+  "keyframe_count": 7,
+  "keys": [
+    {
+      "time": 0.0,
+      "value": 0.0,
+      "interp_mode": "constant",
+      "tangent_mode": "auto",
+      "arrive_tangent": 0.0,
+      "leave_tangent": 0.0
+    },
+    {
+      "time": 0.5,
+      "value": 1.0,
+      "interp_mode": "constant",
+      "tangent_mode": "auto",
+      "arrive_tangent": 0.0,
+      "leave_tangent": 0.0
+    },
+    {
+      "time": 0.55,
+      "value": 0.0,
+      "interp_mode": "constant",
+      "tangent_mode": "auto",
+      "arrive_tangent": 0.0,
+      "leave_tangent": 0.0
+    },
+    {
+      "time": 1.5,
+      "value": 1.0,
+      "interp_mode": "constant",
+      "tangent_mode": "auto",
+      "arrive_tangent": 0.0,
+      "leave_tangent": 0.0
+    },
+    {
+      "time": 1.55,
+      "value": 0.0,
+      "interp_mode": "constant",
+      "tangent_mode": "auto",
+      "arrive_tangent": 0.0,
+      "leave_tangent": 0.0
+    },
+    {
+      "time": 2.5,
+      "value": 1.0,
+      "interp_mode": "constant",
+      "tangent_mode": "auto",
+      "arrive_tangent": 0.0,
+      "leave_tangent": 0.0
+    },
+    {
+      "time": 2.55,
+      "value": 0.0,
+      "interp_mode": "constant",
+      "tangent_mode": "auto",
+      "arrive_tangent": 0.0,
+      "leave_tangent": 0.0
+    }
+  ]
+}

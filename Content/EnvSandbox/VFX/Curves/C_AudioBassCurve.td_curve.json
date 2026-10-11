@@ -1,0 +1,64 @@
+{
+  "asset_class": "CurveFloat",
+  "package_name": "/Game/EnvSandbox/VFX/Curves/C_AudioBassCurve",
+  "channel": "bass",
+  "keyframe_count": 7,
+  "keys": [
+    {
+      "time": 0.0,
+      "value": 0.05,
+      "interp_mode": "cubic",
+      "tangent_mode": "auto",
+      "arrive_tangent": 0.0,
+      "leave_tangent": 0.0
+    },
+    {
+      "time": 0.5,
+      "value": 0.85,
+      "interp_mode": "cubic",
+      "tangent_mode": "auto",
+      "arrive_tangent": 0.2,
+      "leave_tangent": -0.1
+    },
+    {
+      "time": 1.0,
+      "value": 0.2,
+      "interp_mode": "cubic",
+      "tangent_mode": "auto",
+      "arrive_tangent": 0.0,
+      "leave_tangent": 0.0
+    },
+    {
+      "time": 1.5,
+      "value": 0.95,
+      "interp_mode": "cubic",
+      "tangent_mode": "auto",
+      "arrive_tangent": 0.0,
+      "leave_tangent": 0.0
+    },
+    {
+      "time": 2.0,
+      "value": 0.1,
+      "interp_mode": "cubic",
+      "tangent_mode": "auto",
+      "arrive_tangent": 0.0,
+      "leave_tangent": 0.0
+    },
+    {
+      "time": 2.5,
+      "value": 0.9,
+      "interp_mode": "cubic",
+      "tangent_mode": "auto",
+      "arrive_tangent": 0.1,
+      "leave_tangent": -0.1
+    },
+    {
+      "time": 3.0,
+      "value": 0.15,
+      "interp_mode": "cubic",
+      "tangent_mode": "auto",
+      "arrive_tangent": 0.0,
+      "leave_tangent": 0.0
+    }
+  ]
+}

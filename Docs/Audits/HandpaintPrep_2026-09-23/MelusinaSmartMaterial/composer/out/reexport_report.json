@@ -1,0 +1,64 @@
+{
+ "exports": {
+  "Verse": {
+   "status": "ExportStatus.Success",
+   "n": 12,
+   "secs": 0.7
+  },
+  "Inversion": {
+   "status": "ExportStatus.Success",
+   "n": 12,
+   "secs": 1.0
+  },
+  "Moonlight": {
+   "status": "ExportStatus.Success",
+   "n": 12,
+   "secs": 0.9
+  },
+  "Ember": {
+   "status": "ExportStatus.Success",
+   "n": 12,
+   "secs": 0.9
+  },
+  "Lullaby": {
+   "status": "ExportStatus.Success",
+   "n": 12,
+   "secs": 0.9
+  },
+  "Storm": {
+   "status": "ExportStatus.Success",
+   "n": 12,
+   "secs": 1.0
+  }
+ },
+ "comp_vis": true,
+ "sms_vis": true,
+ "groups": [
+  "Ember",
+  "Inversion",
+  "Lullaby",
+  "Moonlight",
+  "Storm",
+  "Verse"
+ ],
+ "washes": [
+  "Ember",
+  "Inversion",
+  "Lullaby",
+  "Moonlight",
+  "Storm",
+  "Verse"
+ ],
+ "saved": true,
+ "mesh_opts": [
+  "BaseMesh",
+  "TessellationNormalsBaseMesh",
+  "TessellationRecomputeNormals",
+  "TriangulatedMesh",
+  "name",
+  "value"
+ ],
+ "mesh_status": "ExportStatus.Success",
+ "mesh_done": "BaseMesh",
+ "mesh_exists": true
+}

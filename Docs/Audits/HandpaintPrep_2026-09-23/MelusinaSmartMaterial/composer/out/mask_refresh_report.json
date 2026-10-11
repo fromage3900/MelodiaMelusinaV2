@@ -1,0 +1,59 @@
+{
+ "ok": true,
+ "deleted": [
+  "16_Moonlight_Wash",
+  "16_Moonlight",
+  "16_Inversion_Wash",
+  "16_Inversion",
+  "16_Verse_Wash",
+  "16_Verse",
+  "16_Storm_Wash",
+  "16_Storm",
+  "16_Lullaby_Wash",
+  "16_Lullaby",
+  "16_Ember_Wash",
+  "16_Ember"
+ ],
+ "exports": {
+  "Verse": {
+   "status": "ExportStatus.Success",
+   "n": 12,
+   "secs": 1.3
+  },
+  "Inversion": {
+   "status": "ExportStatus.Success",
+   "n": 12,
+   "secs": 1.0
+  },
+  "Moonlight": {
+   "status": "ExportStatus.Success",
+   "n": 12,
+   "secs": 0.9
+  },
+  "Ember": {
+   "status": "ExportStatus.Success",
+   "n": 12,
+   "secs": 0.9
+  },
+  "Lullaby": {
+   "status": "ExportStatus.Success",
+   "n": 12,
+   "secs": 0.9
+  },
+  "Storm": {
+   "status": "ExportStatus.Success",
+   "n": 12,
+   "secs": 0.9
+  }
+ },
+ "left_after_delete": [],
+ "engrave_bitmap": {
+  "Verse": true,
+  "Inversion": true,
+  "Moonlight": true,
+  "Ember": true,
+  "Lullaby": true,
+  "Storm": true
+ },
+ "saved": "C:\\EnvironmentPortfolio\\BS_GodFile\\Docs\\Audits\\HandpaintPrep_2026-09-23\\MelusinaSmartMaterial\\exports\\MrSheep\\MrSheep_SMS.spp"
+}

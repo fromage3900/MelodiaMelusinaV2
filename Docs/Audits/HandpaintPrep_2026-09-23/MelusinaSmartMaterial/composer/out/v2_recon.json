@@ -1,0 +1,256 @@
+{
+ "channels_err": "{'description': \"AttributeError: module 'substance_painter.textureset' has no attribute 'active_texture_set'\\n\\nAt:\\n  <string>(6): <module>\\n\"}",
+ "layerstack_api": [
+  "ActiveChannelsMixin",
+  "AnchorPointEffectNode",
+  "BlendingMode",
+  "ChannelType",
+  "ClassVar",
+  "Color",
+  "ColorSelectionBackgroundColor",
+  "ColorSelectionEffectNode",
+  "ColorSelectionEffectParams",
+  "CompareMaskEffectNode",
+  "CompareMaskEffectOperand",
+  "CompareMaskEffectOperation",
+  "CompareMaskEffectParams",
+  "CylindricalProjectionParams",
+  "Dict",
+  "EffectNode",
+  "Enum",
+  "FillEffectNode",
+  "FillLayerNode",
+  "FillParamsEditorMixin",
+  "FilterEffectNode",
+  "FilteringMode",
+  "GeneratorEffectNode",
+  "GeometryMaskType",
+  "GroupLayerNode",
+  "HierarchicalNode",
+  "InsertPosition",
+  "InstanceLayerNode",
+  "LayerNode",
+  "LevelsEffectNode",
+  "LevelsParams",
+  "List",
+  "MaskBackground",
+  "MirrorSymmetryParams",
+  "Node",
+  "NodeStack",
+  "NodeType",
+  "Optional",
+  "PaintEffectNode",
+  "PaintLayerNode",
+  "PlanarProjectionParams",
+  "Projection3DParams",
+  "ProjectionCullingParams",
+  "ProjectionMode",
+  "ProjectionParams",
+  "RadialSymmetryParams",
+  "ReadOnlyUid",
+  "ScaleMode",
+  "ScopedModification",
+  "SelectionType",
+  "ShapeCropMode",
+  "SourceEditorMixin",
+  "SourceSubstance",
+  "SphericalProjectionParams",
+  "Stack",
+  "SymmetryAxis",
+  "SymmetryMode",
+  "SymmetryParams",
+  "TextureSet",
+  "TriplanarProjectionParams",
+  "UVProjectionParams",
+  "UVSetToUVSetProjectionParams",
+  "UVTile",
+  "UVTransformationParams",
+  "UVWrapMode",
+  "Union",
+  "WarpProjectionParams",
+  "annotations",
+  "create_smart_mask",
+  "create_smart_material",
+  "dataclasses",
+  "delete_node",
+  "get_node_by_uid",
+  "get_root_layer_nodes",
+  "get_selected_nodes",
+  "get_selection_type",
+  "insert_anchor_point_effect",
+  "insert_color_selection_effect",
+  "insert_compare_mask_effect",
+  "insert_fill",
+  "insert_filter_effect",
+  "insert_generator_effect",
+  "insert_group",
+  "insert_levels_effect",
+  "insert_paint",
+  "insert_smart_mask",
+  "insert_smart_material",
+  "instantiate",
+  "is_3d_projection_mode",
+  "levels",
+  "set_selected_nodes",
+  "set_selection_type",
+  "substance_painter"
+ ],
+ "fill_api": [
+  "active_channels",
+  "add_mask",
+  "content_effects",
+  "enable_mask",
+  "get_blending_mode",
+  "get_geometry_mask_enabled_meshes",
+  "get_geometry_mask_enabled_uv_tiles",
+  "get_geometry_mask_type",
+  "get_mask_background",
+  "get_material_source",
+  "get_name",
+  "get_next_sibling",
+  "get_opacity",
+  "get_parent",
+  "get_previous_sibling",
+  "get_projection_mode",
+  "get_projection_parameters",
+  "get_source",
+  "get_stack",
+  "get_symmetry_parameters",
+  "get_texture_set",
+  "get_type",
+  "has_blending",
+  "has_mask",
+  "instances",
+  "is_in_mask_stack",
+  "is_mask_enabled",
+  "is_symmetry_enabled",
+  "is_visible",
+  "mask_effects",
+  "remove_mask",
+  "reset_material_source",
+  "reset_source",
+  "set_blending_mode",
+  "set_geometry_mask_enabled_meshes",
+  "set_geometry_mask_enabled_uv_tiles",
+  "set_geometry_mask_type",
+  "set_mask_background",
+  "set_material_source",
+  "set_name",
+  "set_opacity",
+  "set_projection_mode",
+  "set_projection_parameters",
+  "set_source",
+  "set_sources_from_preset",
+  "set_symmetry_enabled",
+  "set_symmetry_parameters",
+  "set_visible",
+  "source_mode",
+  "uid"
+ ],
+ "preamble": "{'description': \"TypeError: 'str' object is not callable\\n\\nAt:\\n  <string>(4): <listcomp>\\n  <string>(6): <module>\\n\"}",
+ "export_err": "{'description': \"TypeError: 'str' object is not callable\\n\\nAt:\\n  <string>(4): <listcomp>\\n  <string>(6): <module>\\n\"}",
+ "stack": {
+  "IDMAP_Sheep_Body": [
+   [
+    "16_Composer",
+    "GroupLayerNode",
+    true,
+    12
+   ],
+   [
+    "SMS_Melusina_Handpaint",
+    "GroupLayerNode",
+    false,
+    12
+   ],
+   [
+    "Melusina Simple Diffuse",
+    "FillLayerNode",
+    true,
+    0
+   ],
+   [
+    "Layer 1",
+    "PaintLayerNode",
+    true,
+    0
+   ]
+  ],
+  "IDMAP_Sheep_FloofyChest": [
+   [
+    "Melusina Simple Diffuse instance",
+    "InstanceLayerNode",
+    true,
+    0
+   ],
+   [
+    "Layer 1",
+    "PaintLayerNode",
+    true,
+    0
+   ]
+  ],
+  "IDMAP_Sheep_Head": [
+   [
+    "Melusina Simple Diffuse instance",
+    "InstanceLayerNode",
+    true,
+    0
+   ],
+   [
+    "SimpleDiffuse",
+    "FillLayerNode",
+    false,
+    0
+   ],
+   [
+    "Layer 1",
+    "PaintLayerNode",
+    true,
+    0
+   ]
+  ],
+  "IDMAP_Sheep_Hooves": [
+   [
+    "Melusina Simple Diffuse instance",
+    "InstanceLayerNode",
+    true,
+    0
+   ],
+   [
+    "Layer 1",
+    "PaintLayerNode",
+    true,
+    0
+   ]
+  ],
+  "IDMAP_Sheep_Legs": [
+   [
+    "Melusina Simple Diffuse instance",
+    "InstanceLayerNode",
+    true,
+    0
+   ],
+   [
+    "Layer 1",
+    "PaintLayerNode",
+    true,
+    0
+   ]
+  ],
+  "ME_Sheep_Coat_PC_C": [
+   [
+    "Melusina Simple Diffuse instance",
+    "InstanceLayerNode",
+    true,
+    0
+   ],
+   [
+    "Layer 1",
+    "PaintLayerNode",
+    true,
+    0
+   ]
+  ]
+ }
+}

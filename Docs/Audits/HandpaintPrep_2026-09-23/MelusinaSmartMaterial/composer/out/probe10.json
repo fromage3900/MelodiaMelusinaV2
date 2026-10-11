@@ -1,0 +1,15 @@
+{
+ "has_uv_tiles": true,
+ "uv_tiles": "[UVTile(u=0, v=0, _material_id=149)]",
+ "preset_url": "resource://starter_assets/PBR Metallic Roughness?version=12212909757578709068.spexp",
+ "preview": "{('IDMAP_Sheep_Body', ''): ['C:/EnvironmentPortfolio/BS_GodFile/Docs/Audits/HandpaintPrep_2026-09-23/MelusinaSmartMaterial/exports/MrSheep/_schema_test/out/choral_sheep_A_blossoms_FIXED_202s61003_IDMAP_Sheep_Body_BaseColor.1001.png', 'C:/EnvironmentPortfolio/BS_GodFile/Docs/Audits/HandpaintPrep_2026-09-23/MelusinaSmartMaterial/exports/MrSheep/_schema_test/out/choral_sheep_A_blossoms_FIXED_202s61003_IDMAP_Sheep_Body_Roughness.1001.png', 'C:/EnvironmentPortfolio/BS_GodFile/Docs/Audits/HandpaintPrep_2026-09-23/MelusinaSmartMaterial/exports/MrSheep/_schema_test/out/choral_sheep_A_blossoms_FIXED_202s61003_IDMAP_Sheep_Body_Metallic.1001.png', 'C:/EnvironmentPortfolio/BS_GodFile/Docs/Audits/HandpaintPrep_2026-09-23/MelusinaSmartMaterial/exports/MrSheep/_schema_test/out/choral_sheep_A_blossoms_FIXED_202s61003_IDMAP_Sheep_Body_Normal.1001.png', 'C:/EnvironmentPortfolio/BS_GodFile/Docs/Audits/HandpaintPrep_2026-09-23/MelusinaSmartMaterial/exports/MrSheep/_schema_test/out/choral_sheep_A_blossoms_",
+ "export_status": "ExportStatus.Success",
+ "files": [
+  "choral_sheep_A_blossoms_FIXED_202s61003_IDMAP_Sheep_Body_BaseColor.1001.png",
+  "choral_sheep_A_blossoms_FIXED_202s61003_IDMAP_Sheep_Body_Emissive.1001.png",
+  "choral_sheep_A_blossoms_FIXED_202s61003_IDMAP_Sheep_Body_Height.1001.png",
+  "choral_sheep_A_blossoms_FIXED_202s61003_IDMAP_Sheep_Body_Metallic.1001.png",
+  "choral_sheep_A_blossoms_FIXED_202s61003_IDMAP_Sheep_Body_Normal.1001.png",
+  "choral_sheep_A_blossoms_FIXED_202s61003_IDMAP_Sheep_Body_Roughness.1001.png"
+ ]
+}

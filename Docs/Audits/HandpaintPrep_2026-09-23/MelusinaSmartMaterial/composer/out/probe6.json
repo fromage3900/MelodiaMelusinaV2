@@ -1,0 +1,14 @@
+{
+ "body": "IDMAP_Sheep_Body",
+ "body_res": "Resolution(width=4096, height=4096)",
+ "err__PBR Metallic Roughness": "ValueError('@/exportList/#0/rootPath, Expected a string value')",
+ "err2__PBR Metallic Roughness": "ValueError('@/exportList/#0/rootPath, Expected a string value')",
+ "err__pbr-metallic-roughness": "ValueError('@/exportList/#0/rootPath, Expected a string value')",
+ "err2__pbr-metallic-roughness": "ValueError('@/exportList/#0/rootPath, Expected a string value')",
+ "err__Document channels + Normal + AO (No Alph": "ValueError('@/exportList/#0/rootPath, Expected a string value')",
+ "err2__Document channels + Normal + AO (No Alph": "ValueError('@/exportList/#0/rootPath, Expected a string value')",
+ "err__export-preset-generator://doc-channel-no": "ValueError('@/exportList/#0/rootPath, Expected a string value')",
+ "err2__export-preset-generator://doc-channel-no": "ValueError('@/exportList/#0/rootPath, Expected a string value')",
+ "err__PBR Metallic Roughness (folders or PSD g": "ValueError('@/exportList/#0/rootPath, Expected a string value')",
+ "err2__PBR Metallic Roughness (folders or PSD g": "ValueError('@/exportList/#0/rootPath, Expected a string value')"
+}

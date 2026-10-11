@@ -1,0 +1,25 @@
+{
+ "nodes": [
+  {
+   "name": "16_Composer",
+   "cls": "<class 'substance_painter.layerstack.GroupLayerNode'>",
+   "visible": false
+  },
+  {
+   "name": "SMS_Melusina_Handpaint",
+   "cls": "<class 'substance_painter.layerstack.GroupLayerNode'>",
+   "visible": false
+  },
+  {
+   "name": "Melusina Simple Diffuse",
+   "cls": "<class 'substance_painter.layerstack.FillLayerNode'>",
+   "visible": true
+  },
+  {
+   "name": "Layer 1",
+   "cls": "<class 'substance_painter.layerstack.PaintLayerNode'>",
+   "visible": true
+  }
+ ],
+ "body": "IDMAP_Sheep_Body"
+}

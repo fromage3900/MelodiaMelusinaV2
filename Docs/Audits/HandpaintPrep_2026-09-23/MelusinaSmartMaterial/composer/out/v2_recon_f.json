@@ -1,0 +1,64 @@
+{
+ "baked_maps": [
+  [
+   "MeshMapUsage.AO",
+   "ResourceID(context='project0', name='AmbientOcclusion IDMAP_Sheep_Body', version='0d4ae5da81a212919e26f9b43d86e8be722541ff.image')"
+  ],
+  [
+   "MeshMapUsage.Curvature",
+   "ResourceID(context='project0', name='Curvature IDMAP_Sheep_Body', version='78bd44d78112f0ac5c74a7d76e6b4f069d28453b.image')"
+  ],
+  [
+   "MeshMapUsage.Normal",
+   "ResourceID(context='project0', name='Normal IDMAP_Sheep_Body', version='3a3eaf9a43d13560f3002742a1fbe9ac88fc763e.image')"
+  ],
+  [
+   "MeshMapUsage.Position",
+   "ResourceID(context='project0', name='Position IDMAP_Sheep_Body', version='7b5959a17af7f150e1a1654adfdcb7c7d3656441.image')"
+  ],
+  [
+   "MeshMapUsage.Thickness",
+   "ResourceID(context='project0', name='Thickness IDMAP_Sheep_Body', version='2dca0861be0cf4a36f3d1b24881cd5d6fc2dffc0.image')"
+  ],
+  [
+   "MeshMapUsage.BentNormals",
+   "ResourceID(context='project0', name='BentNormals IDMAP_Sheep_Body', version='bec71677eddc34a08f7702ae4d011b69bcd8022d.image')"
+  ],
+  [
+   "MeshMapUsage.WorldSpaceNormal",
+   "ResourceID(context='project0', name='NormalWS IDMAP_Sheep_Body', version='8d4ebec0d10bb111c3854bbded5b4da2f2b98f65.image')"
+  ],
+  [
+   "MeshMapUsage.ID",
+   "ResourceID(context='project0', name='Color IDMAP_Sheep_Body', version='9ba009802eda4a45238fa3b19b5a7aa41547a640.image')"
+  ]
+ ],
+ "shelf_sample_ids": [
+  "ResourceID(context='starter_assets', name='3d_distance/3d_distance', version='69091988e3fa6fe86157958795eb43e8290dbf68.sbsar')",
+  "ResourceID(context='starter_assets', name='3d_linear_gradient/3d_linear_gradient', version='c768b56945eedbfb1b9fbe59c2af1283410fc48f.sbsar')",
+  "ResourceID(context='starter_assets', name='3D_perlin_noise/3D_perlin_noise', version='327082216296188123242cdfa0a89428bb499205.sbsar')",
+  "ResourceID(context='starter_assets', name='3D_perlin_noise_fractal/3D_perlin_noise_fractal', version='eb2f8b1a48241b9578c88c0ae53a5c5111beabeb.sbsar')",
+  "ResourceID(context='starter_assets', name='3D_ridged_noise_fractal/3D_ridged_noise_fractal', version='0f097c86dff1d748f101ce138f4cd93d852a6211.sbsar')",
+  "ResourceID(context='starter_assets', name='3D_simplex_noise/3D_simplex_noise', version='ad50ca4207e057966ddc52881ed70ee827785937.sbsar')",
+  "ResourceID(context='starter_assets', name='3D_voronoi/3D_voronoi', version='780869ccdb86e5d0012ea608b3d77740e0b121d5.sbsar')",
+  "ResourceID(context='starter_assets', name='3D_voronoi_fractal/3D_voronoi_fractal', version='1c4753931d1e2431d6ffbd3e46b667c74de848d8.sbsar')",
+  "ResourceID(context='starter_assets', name='3D_worley_noise/3D_worley_noise', version='033d753a22429033fb39c62545c75238267fc1d8.sbsar')",
+  "ResourceID(context='starter_assets', name='mg_ambient_occlusion/mg_ambient_occlusion', version='bc64d74bb40943a3c4fc45ae35e8d4604b276d94.sbsar')",
+  "ResourceID(context='starter_assets', name='anisotropic_kuwahara/anisotropic_kuwahara', version='fec6f9101840eabf6025c7f93579454747a2a1df.sbsar')",
+  "ResourceID(context='starter_assets', name='noise_anisotropic_noise/anisotropic_noise', version='4ff19b5821d029ae69cd12609a7655c5b5fede77.sbsar')",
+  "ResourceID(context='starter_assets', name='noise_anisotropic_radial/noise_anisotropic_radial', version='a4e859cda08416af120f438cb2cca63afc5b0e87.sbsar')",
+  "ResourceID(context='starter_assets', name='arrow_band/arrow_band', version='d3fa27c58a29479f23d82a3c537e50b70b87d325.sbsar')",
+  "ResourceID(context='starter_assets', name='arrow_bend_split/arrow_bend_split', version='fcee82e380a56e91ebb73d1aa91022dd53fae286.sbsar')",
+  "ResourceID(context='starter_assets', name='arrow_bent/arrow_bent', version='1a5014412f6b2b01f25e83f1bf011fa3a374087f.sbsar')",
+  "ResourceID(context='starter_assets', name='arrow_border_cut/arrow_border_cut', version='85cdf51fca2bbca6bcfd3e9a1bd4ef60b23cc7ee.sbsar')",
+  "ResourceID(context='starter_assets', name='arrow_circle/arrow_circle', version='9d558ef0d7ec94f5fd6691c3c7bc5f13d83f3652.sbsar')",
+  "ResourceID(context='starter_assets', name='arrow_double/arrow_double', version='be15fe6d22cc64653c8f4da862a871f1d6a9ed59.sbsar')",
+  "ResourceID(context='starter_assets', name='arrow_fire/arrow_fire', version='4e97d37a899f1ec9c98079bba77b01625c76b467.sbsar')",
+  "ResourceID(context='starter_assets', name='arrow_flat/arrow_flat', version='0f12c0582a1b931bee8f3a98aa4550610f623865.sbsar')",
+  "ResourceID(context='starter_assets', name='arrow_head_cut/arrow_head_cut', version='c78f2cf31b5c9c16f1bbf471baf7fe56908bc44e.sbsar')",
+  "ResourceID(context='starter_assets', name='arrow_head_smooth/arrow_head_smooth', version='5e089b5a76de0c027b27e3893e0533b43379f0c5.sbsar')",
+  "ResourceID(context='starter_assets', name='arrow_inset_border/arrow_inset_border', version='671da326decbc5fa800e757b087957045538550f.sbsar')",
+  "ResourceID(context='starter_assets', name='arrow_long/arrow_long', version='4dc991cf774d34d956e1a6152001fa5bf61085ff.sbsar')"
+ ],
+ "add_test_err": "{'description': \"TypeError: Stack.add_channel() missing 1 required positional argument: 'channel_format'\\n\\nAt:\\n  <string>(4): <lambda>\\n  <string>(6): <module>\\n\"}"
+}
