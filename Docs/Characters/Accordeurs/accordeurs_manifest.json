@@ -1,0 +1,161 @@
+{
+  "schema": "melodia.accordeurs.character_foundry.v1",
+  "created": "2026-10-11",
+  "status": "DESIGN_AND_REFERENCE_ONLY",
+  "source": "Owner-approved Les Petits Accordeurs Character Lineup.jpeg and Les Petits Accordeurs Concept Sheet.jpeg, original watercolor/ink",
+  "rejected_source": "Les Petits Accordeurs Atelier Magique.png",
+  "height_cm": {
+    "min": 15,
+    "max": 25,
+    "approximate": true
+  },
+  "authority": {
+    "visual": "original concept art",
+    "gameplay": "proposed; requires existing narrative and save-state owners",
+    "mesh": "none approved yet"
+  },
+  "characters": [
+    {
+      "id": "ACC_COMMITTE",
+      "name": "Monsieur Committe",
+      "role": "Archivist",
+      "palette": "lavender",
+      "props": [
+        "ledger",
+        "stamp",
+        "round_glasses"
+      ],
+      "pilot_priority": "HOLD",
+      "reference_crop": "ACC_COMMITTE_source_front.png",
+      "tripo_glb": null,
+      "blender_clean": null,
+      "unreal_asset": null,
+      "mesh_status": "NOT_GENERATED",
+      "rig_status": "NOT_STARTED",
+      "visual_review": "PENDING"
+    },
+    {
+      "id": "ACC_MERGE",
+      "name": "Mlle. Merge",
+      "role": "Seamstress of Realities",
+      "palette": "cream_pink",
+      "props": [
+        "thread_spool",
+        "needle",
+        "ribbon"
+      ],
+      "pilot_priority": "PILOT_2",
+      "reference_crop": "ACC_MERGE_source_front.png",
+      "tripo_glb": null,
+      "blender_clean": null,
+      "unreal_asset": null,
+      "mesh_status": "NOT_GENERATED",
+      "rig_status": "NOT_STARTED",
+      "visual_review": "PENDING"
+    },
+    {
+      "id": "ACC_CACHE",
+      "name": "Petit Cache",
+      "role": "Keeper of What Might Be",
+      "palette": "blue",
+      "props": [
+        "sleep_cap",
+        "treasure_satchel"
+      ],
+      "pilot_priority": "PILOT_3",
+      "reference_crop": "ACC_CACHE_source_front.png",
+      "tripo_glb": null,
+      "blender_clean": null,
+      "unreal_asset": null,
+      "mesh_status": "NOT_GENERATED",
+      "rig_status": "NOT_STARTED",
+      "visual_review": "PENDING"
+    },
+    {
+      "id": "ACC_BUILD",
+      "name": "Le Build",
+      "role": "Foreman",
+      "palette": "mint_green",
+      "props": [
+        "yellow_helmet",
+        "musical_note",
+        "hammer"
+      ],
+      "pilot_priority": "PILOT_1",
+      "reference_crop": "ACC_BUILD_source_front.png",
+      "tripo_glb": null,
+      "blender_clean": null,
+      "unreal_asset": null,
+      "mesh_status": "NOT_GENERATED",
+      "rig_status": "NOT_STARTED",
+      "visual_review": "PENDING"
+    },
+    {
+      "id": "ACC_LFS",
+      "name": "Madame L.F.S.",
+      "role": "Quartermaster",
+      "palette": "pale_violet",
+      "props": [
+        "backpack",
+        "keys"
+      ],
+      "pilot_priority": "HOLD",
+      "reference_crop": "ACC_LFS_source_front.png",
+      "tripo_glb": null,
+      "blender_clean": null,
+      "unreal_asset": null,
+      "mesh_status": "NOT_GENERATED",
+      "rig_status": "NOT_STARTED",
+      "visual_review": "PENDING"
+    },
+    {
+      "id": "ACC_REBASE",
+      "name": "Monsieur Rebase",
+      "role": "Cartographer",
+      "palette": "sage_green",
+      "props": [
+        "beard",
+        "map",
+        "scroll",
+        "pencil"
+      ],
+      "pilot_priority": "HOLD",
+      "reference_crop": "ACC_REBASE_source_front.png",
+      "tripo_glb": null,
+      "blender_clean": null,
+      "unreal_asset": null,
+      "mesh_status": "NOT_GENERATED",
+      "rig_status": "NOT_STARTED",
+      "visual_review": "PENDING"
+    },
+    {
+      "id": "ACC_BOT",
+      "name": "Le Bot",
+      "role": "Errand-Runner",
+      "palette": "coral_pink",
+      "props": [
+        "mailbag",
+        "envelopes",
+        "antennae"
+      ],
+      "pilot_priority": "HOLD",
+      "reference_crop": "ACC_BOT_source_front.png",
+      "tripo_glb": null,
+      "blender_clean": null,
+      "unreal_asset": null,
+      "mesh_status": "NOT_GENERATED",
+      "rig_status": "NOT_STARTED",
+      "visual_review": "PENDING"
+    }
+  ],
+  "stage_gates": [
+    "source crop",
+    "Tripo mesh (unverified)",
+    "silhouette review",
+    "Blender cleanup",
+    "deform/idle",
+    "UE sandbox",
+    "existing-state save/reload",
+    "art signoff"
+  ]
+}
