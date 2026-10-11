@@ -1333,6 +1333,9 @@ def compile_recipe(recipe_path: Path, *, out_root: Path | None = None, constella
         files["meadow_points.csv"] = _csv_bytes(POINT_COLUMNS, meadow["rows"])
         files["meadow.json"] = _json_bytes(meadow["meta"])
     bridges = arch.compile_bridges(recipe["archipelago"], archipelago) if archipelago is not None and recipe["archipelago"].get("bridge") else None
+    set_pieces = arch.compile_set_pieces(recipe["archipelago"], archipelago) if archipelago is not None and recipe["archipelago"].get("set_pieces") else None
+    if set_pieces is not None:
+        files["archipelago_set_pieces.csv"] = _csv_bytes(arch.SET_PIECE_COLUMNS, set_pieces)
     if archipelago is not None:
         files["archipelago.csv"] = _csv_bytes(arch.COLUMNS, archipelago)
     if bridges is not None:
@@ -1351,6 +1354,7 @@ def compile_recipe(recipe_path: Path, *, out_root: Path | None = None, constella
         **({"meadow_points.csv": (len(meadow["rows"]), POINT_COLUMNS)} if meadow is not None else {}),
         **({"archipelago.csv": (len(archipelago), arch.COLUMNS)} if archipelago is not None else {}),
         **({"archipelago_bridges.csv": (len(bridges), arch.BRIDGE_COLUMNS)} if bridges is not None else {}),
+        **({"archipelago_set_pieces.csv": (len(set_pieces), arch.SET_PIECE_COLUMNS)} if set_pieces is not None else {}),
     }
     tables = {
         name: {

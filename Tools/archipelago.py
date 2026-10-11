@@ -32,6 +32,7 @@ COLUMNS = ["island_id", "x", "y", "z", "yaw", "scale", "mesh", "degree", "pitch"
            "radius_cm", "top_z_cm", "next_island", "bridge_len_cm"]
 
 
+SET_PIECE_COLUMNS = ["piece_id", "label", "mesh", "x", "y", "z", "yaw", "target_length_cm", "island"]
 BRIDGE_COLUMNS = ["bridge_id", "from_island", "to_island", "x", "y", "z", "yaw", "pitch", "length_cm", "scale_x", "scale_yz", "mesh", "mesh_length_cm"]
 
 
@@ -59,6 +60,19 @@ def compile_bridges(cfg: dict[str, Any], islands: list[dict[str, Any]]) -> list[
     return rows
 
 
+def compile_set_pieces(cfg: dict[str, Any], islands: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    """Authored hero pieces (vehicles, bells, orbs) parked on islands: island + offset + lift. The UE lane scales each
+    mesh so its longest horizontal extent equals target_length_cm."""
+    rows: list[dict[str, Any]] = []
+    for i, sp in enumerate(cfg.get("set_pieces") or []):
+        isl = islands[int(sp["island"]) % len(islands)]
+        dx, dy = (sp.get("offset_cm") or [0.0, 0.0])
+        rows.append({"piece_id": i, "label": sp.get("label", f"piece{i}"), "mesh": sp["mesh"], "x": isl["x"] + float(dx), "y": isl["y"] + float(dy),
+                     "z": isl["top_z_cm"] + float(sp.get("lift_cm", 0.0)), "yaw": float(sp.get("yaw", 0.0)),
+                     "target_length_cm": float(sp.get("target_length_cm", 1500.0)), "island": int(isl["island_id"])})
+    return rows
+
+
 def validate(cfg: dict[str, Any], mode_ids: set[str]) -> list[str]:
     errors: list[str] = []
     if cfg.get("mode") not in mode_ids:
@@ -71,6 +85,10 @@ def validate(cfg: dict[str, Any], mode_ids: set[str]) -> list[str]:
         for k in ("mesh", "radius_cm", "top_z_cm"):
             if k not in m:
                 errors.append(f"archipelago.pool[{i}].{k} is required")
+    for i, sp in enumerate(cfg.get("set_pieces") or []):
+        for k in ("mesh", "island"):
+            if k not in sp:
+                errors.append(f"archipelago.set_pieces[{i}].{k} is required")
     br = cfg.get("bridge")
     if br is not None:
         for k in ("mesh", "mesh_length_cm"):
@@ -128,4 +146,9 @@ def compile_archipelago(cfg: dict[str, Any], *, scale: list[int], anchor: list[f
         rows.append(row)
         px, py = x, y
         prev, prev_pitch = row, pitch
+    vm = float(cfg.get("visual_scale_mult", 1.0))
+    if vm != 1.0:   # visual only: layout (spacing, bridges) was computed at the authored scale
+        for r in rows:
+            r["scale"] *= vm
+            r["top_z_cm"] = r["z"] + (r["top_z_cm"] - r["z"]) * vm
     return rows

@@ -572,6 +572,20 @@ def test_archipelago_without_bridge_emits_no_bridge_table():
     assert not wc.validate_recipe(recipe)
 
 
+CHOIR = ROOT / "recipes" / "infinitescore_choir.v1.json"
+
+
+def test_archipelago_set_pieces_and_visual_scale():
+    recipe, _ = wc.load_recipe(CHOIR)
+    with tempfile.TemporaryDirectory() as tmp:
+        m, out = _compile(Path(tmp), CHOIR)
+        isl = _rows(out / "archipelago.csv")
+        sp = _rows(out / "archipelago_set_pieces.csv")
+        assert len(sp) == len(recipe["archipelago"]["set_pieces"]) >= 1
+        assert all(float(r["target_length_cm"]) > 0 and 0 <= int(r["island"]) < len(isl) for r in sp)
+        assert float(isl[0]["scale"]) > 10.0     # pool scale ~6.8 x visual_scale_mult 2.5
+
+
 def test_archipelago_absent_emits_no_tables():
     with tempfile.TemporaryDirectory() as tmp:
         manifest, out = _compile(Path(tmp))
