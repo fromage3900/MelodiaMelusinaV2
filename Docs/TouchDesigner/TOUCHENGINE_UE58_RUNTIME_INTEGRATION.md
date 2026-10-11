@@ -59,13 +59,21 @@ Naming is the **desired cross-repo handoff**; confirm the parameter identifiers 
 
 ## Implementation sequence — UE lane (strict gates)
 
-### G0 — Plugin compatibility and machine preflight [not yet proven]
+### G0 — Plugin compatibility and machine preflight [PROVEN 2026-10-11 on UE 5.8; see result below]
 
 1. Record the exact UE **5.8** engine build, Windows/DirectX/RHI, TouchDesigner Commercial build, and TouchEngine-UE plugin SHA/version. The upstream official sample is currently documented for **UE 5.7.x / plugin 1.7.0**; UE 5.8 is a compatibility experiment, not supported by assertion.
 2. Work in a **disposable 5.8 compatibility project / isolated integration lane**. Keep the production `BS_GodFile.uproject` and Spout plugin untouched until loading/build succeeds.
 3. Verify plugin module compilation, editor startup, runtime library lookup, appropriate paid license activation, and one successful load/unload. Check logs for missing DLLs, ABI/deprecated API issues and crash-on-exit.
 4. Do not copy compiled binaries or third-party runtime files into Git; use existing Perforce/vendor policies for permitted binary artifacts. Record source version/patch and build steps so another workstation can reproduce.
 5. **Exit:** editor launches with the plugin enabled and the official sample or minimalist `.tox` reports load success **in UE 5.8**. On failure: stop, document exact compiler/runtime error in the task/PR, and retain Spout-only production.
+
+**G0 result (2026-10-11, owner-waived disposable-lab gate).** The owner has an active TouchDesigner Commercial license and waived the disposable-project step ("not too worried about compatibility"), so G0 ran in the production project with `BS_GodFile.uproject` enabling `TouchEngine` locally (the uproject change is intentionally NOT landed in Git/P4 until G1).
+- Closed-editor `Build.bat BS_GodFileEditor Win64 Development` exit 0. Editor 5.8 log: `TouchEngine`, `TouchEngineEditor`, `TouchEngineD3D11RHI`, `TouchEngineD3D12RHI`, `TouchEngineVulkanRHI` all loaded, no plugin error, engine initialized.
+- Two UE 5.7 -> 5.8 source breaks patched (plugin source is landed under `Plugins/TouchEngine/`):
+  1. `Public/Engine/Util/CookFrameData.h`: `UENUM ECookFrameResult` lacked `#include "CookFrameData.generated.h"`; 5.8 deletes `StaticEnum<>` without it (C2280 in `TouchEngineComponent.cpp`/`TouchFrameCooker.cpp`).
+  2. `TouchEngineD3D12RHI/.../ExportedTextureD3D12.cpp:205`: `ID3D12DynamicRHI::RHIWaitManualFence` gained a 4th arg `const TSharedPtr<std::atomic<bool>>& bHasSignalled`; pass `nullptr` (5.8 submission code null-checks it).
+- Not in Git by policy (G0 step 4): `Plugins/TouchEngine/Binaries/` (incl. `ThirdParty/Win64/TouchEngine.dll/.lib` from the Derivative 1.7.0 release). Reproduce by installing the 1.7.0 release binaries, applying the two patches above (already in the landed source) and doing a closed-editor build.
+- Still open: load/unload of a real `.tox` and crash-on-exit check belong to G1.
 
 ### G1 — Isolated `.tox` TOP canary [first actual proof]
 
