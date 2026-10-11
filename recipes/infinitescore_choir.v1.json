@@ -1,0 +1,400 @@
+{
+  "schema": "melodia.world_recipe.v1",
+  "recipe_id": "infinitescore_choir",
+  "world_seed": 4104,
+  "identity": {
+    "mode_id": "lydian",
+    "root_pitch_class": 0,
+    "bpm": 96,
+    "movement_id": "petal_cantata",
+    "chunk": [
+      0,
+      0
+    ]
+  },
+  "place": {
+    "level": "/Game/EnvSandbox/Environments/L_InfiniteScore",
+    "anchor_cm": [
+      -9500.0,
+      0.0,
+      200.0
+    ],
+    "up_axis_offset_cm": 4.0
+  },
+  "field": {
+    "kind": "radial_bands",
+    "band_count": 7,
+    "inner_radius_cm": 200.0,
+    "band_width_cm": 250.0,
+    "sector_deg": [
+      0.0,
+      360.0
+    ],
+    "density_per_m2": 3.5,
+    "phyllotaxis_angle_rad": 2.399963,
+    "radial_jitter_cm": 22.0,
+    "scale_range": [
+      0.85,
+      1.45
+    ],
+    "chladni": {
+      "modes": [
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          5,
+          6
+        ],
+        [
+          6,
+          7
+        ],
+        [
+          7,
+          8
+        ],
+        [
+          8,
+          9
+        ]
+      ],
+      "threshold": 0.35,
+      "plate_size_cm": 11000.0
+    },
+    "hero_falloff_cm": 1000.0,
+    "trail_arcs": [
+      {
+        "species_id": "melody_glitter_fairy",
+        "angle_center_deg": 50.0,
+        "span_deg": 80.0,
+        "radius_cm": 600.0,
+        "count": 24,
+        "width_cm": 80.0
+      },
+      {
+        "species_id": "melody_glitter_fairy",
+        "angle_center_deg": 180.0,
+        "span_deg": 60.0,
+        "radius_cm": 1300.0,
+        "count": 20,
+        "width_cm": 60.0
+      },
+      {
+        "species_id": "melody_glitter_fairy",
+        "angle_center_deg": 300.0,
+        "span_deg": 60.0,
+        "radius_cm": 1400.0,
+        "count": 16,
+        "width_cm": 80.0
+      }
+    ]
+  },
+  "species": [
+    {
+      "species_id": "speedtree_meadow",
+      "mesh": "/Game/EnvSandbox/Library/FoliageCards/GenericFlower1",
+      "meshes": [
+        "/Game/EnvSandbox/Library/FoliageCards/GenericFlower1",
+        "/Game/EnvSandbox/Library/FoliageCards/GenericFlowerTall"
+      ],
+      "mesh_mi_suffixes": [
+        "",
+        "_Tall"
+      ],
+      "band_mi_prefix": "/Game/EnvSandbox/Materials/Instances/Flora/Rainbow/MI_RainbowSpeedTree_",
+      "stem_material": "__band__",
+      "scale_range": [
+        0.45,
+        0.8
+      ],
+      "weight": 1.0,
+      "variants": 2,
+      "height_class": 1,
+      "ground_labels": [
+        "BrushifyIsland_"
+      ]
+    },
+    {
+      "species_id": "brushify_overgrowth",
+      "mesh": "/Game/Brushify/Meshes/FloatingIslands/Dressing/Overgrowth_01/S_Overgrowth_01",
+      "meshes": [
+        "/Game/Brushify/Meshes/FloatingIslands/Dressing/Overgrowth_01/S_Overgrowth_01",
+        "/Game/Brushify/Meshes/FloatingIslands/Dressing/Overgrowth_01/S_Overgrowth_02"
+      ],
+      "weight": 0.04,
+      "variants": 2,
+      "height_class": 0,
+      "scale_range": [
+        0.035,
+        0.065
+      ],
+      "ground_labels": [
+        "WC_EscherWalk_",
+        "BrushifyIsland_"
+      ]
+    },
+    {
+      "species_id": "brushify_roots",
+      "mesh": "/Game/Brushify/Meshes/FloatingIslands/Dressing/Roots_01/S_Roots_01",
+      "meshes": [
+        "/Game/Brushify/Meshes/FloatingIslands/Dressing/Roots_01/S_Roots_01",
+        "/Game/Brushify/Meshes/FloatingIslands/Dressing/Roots_02/S_Roots_02",
+        "/Game/Brushify/Meshes/FloatingIslands/Dressing/Roots_03/S_Roots_03"
+      ],
+      "weight": 0.035,
+      "variants": 3,
+      "height_class": 0,
+      "scale_range": [
+        0.04,
+        0.075
+      ],
+      "ground_labels": [
+        "WC_EscherWalk_",
+        "BrushifyIsland_"
+      ]
+    },
+    {
+      "species_id": "brushify_bush",
+      "mesh": "/Game/Brushify/Meshes/Foliage/Bushes/GenericBush/S_GenericBush_Small",
+      "meshes": [
+        "/Game/Brushify/Meshes/Foliage/Bushes/GenericBush/S_GenericBush_Small",
+        "/Game/Brushify/Meshes/Foliage/Bushes/GenericBush/S_GenericBush_Medium"
+      ],
+      "weight": 0.03,
+      "variants": 2,
+      "height_class": 0,
+      "ground_labels": [
+        "WC_EscherWalk_",
+        "BrushifyIsland_"
+      ]
+    },
+    {
+      "species_id": "melody_glitter_soft",
+      "mesh": "/Game/EnvSandbox/SM_MelodyToken",
+      "meshes": [
+        "/Game/EnvSandbox/SM_MelodyToken"
+      ],
+      "band_mi_prefix": "/Game/EnvSandbox/Materials/Instances/Flora/Rainbow/MI_RainbowGlitter_",
+      "stem_material": "__band__",
+      "weight": 0.02,
+      "variants": 1,
+      "height_class": 0,
+      "scale_range": [
+        0.05,
+        0.09
+      ],
+      "ground_labels": [
+        "BrushifyIsland_"
+      ]
+    },
+    {
+      "species_id": "melody_glitter",
+      "mesh": "/Game/EnvSandbox/SM_MelodyToken",
+      "meshes": [
+        "/Game/EnvSandbox/SM_MelodyToken"
+      ],
+      "band_mi_prefix": "/Game/EnvSandbox/Materials/Instances/Flora/Rainbow/MI_RainbowGlitter_",
+      "stem_material": "__band__",
+      "weight": 0.02,
+      "variants": 1,
+      "height_class": 0,
+      "scale_range": [
+        0.06,
+        0.14
+      ],
+      "ground_labels": [
+        "WC_EscherWalk_",
+        "BrushifyIsland_"
+      ]
+    },
+    {
+      "species_id": "melody_glitter_blaze",
+      "mesh": "/Game/EnvSandbox/SM_MelodyToken",
+      "meshes": [
+        "/Game/EnvSandbox/SM_MelodyToken"
+      ],
+      "band_mi_prefix": "/Game/EnvSandbox/Materials/Instances/Flora/Rainbow/MI_RainbowGlitter_",
+      "stem_material": "__band__",
+      "weight": 0.015,
+      "variants": 1,
+      "height_class": 0,
+      "scale_range": [
+        0.1,
+        0.2
+      ],
+      "ground_labels": [
+        "WC_EscherWalk_",
+        "BrushifyIsland_"
+      ]
+    },
+    {
+      "species_id": "melody_glitter_fairy",
+      "mesh": "/Game/EnvSandbox/SM_MelodyToken",
+      "meshes": [
+        "/Game/EnvSandbox/SM_MelodyToken"
+      ],
+      "band_mi_prefix": "/Game/EnvSandbox/Materials/Instances/Flora/Rainbow/MI_RainbowGlitter_",
+      "stem_material": "__band__",
+      "weight": 0.03,
+      "variants": 1,
+      "height_class": 0,
+      "scale_range": [
+        0.03,
+        0.06
+      ],
+      "pitch_deg": 90.0,
+      "pitch_jitter_deg": 12.0,
+      "ground_labels": [
+        "BrushifyIsland_",
+        "WC_EscherWalk_"
+      ]
+    }
+  ],
+  "palette": {
+    "parent_master": "/Game/Melodia/_PROJECT/04_Materials/Plants/M_MelodiaPlant_Wind",
+    "tint_parameter": "MelodiaWindRevealTint",
+    "active_lane": "wind",
+    "wind": {
+      "parent": "/Game/Melodia/_PROJECT/04_Materials/Plants/Flowers/MI_Plant_Flower_GenericFlower1",
+      "mi_prefix": "/Game/EnvSandbox/Materials/Instances/Flora/Rainbow/MI_RainbowSpeedTree_",
+      "tint_parameter": "MelodiaWindRevealTint",
+      "hue_seed_parameter": "MelodiaWindHueSeed",
+      "response_parameter": "MelodiaWindResponse",
+      "response": 0.3,
+      "static_switches_off": [],
+      "texture_overrides": {},
+      "scalar_overrides": {
+        "SharedBend": 0.15
+      },
+      "note": "Children of the staged SpeedTree flower MI. SpeedTree wind chain stays on; hue reveal only. Wind calm 2026-09-27 (Jev F_CALM_CHILDREN 1.0): response 0.3 + SharedBend 0.15 on children ONLY (B2 outlier 0.75 normalized); parent MI_Plant_Flower_GenericFlower1 SharedBend 5.96 untouchable."
+    },
+    "glitter": {
+      "parent": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
+      "mi_prefix": "/Game/EnvSandbox/Materials/Instances/Flora/Rainbow/MI_RainbowGlitter_",
+      "tint_parameters": [
+        "BaseTint"
+      ],
+      "brightness_steps": [
+        0.7,
+        1.0,
+        1.4
+      ],
+      "scalar_overrides": {
+        "SparkleIntensity": 0.5,
+        "SparkleScale": 160.0
+      },
+      "note": "Melody-token pile tint family on the approved toon parent (MI_MelodyToken_Water precedent). Parent graph untouched; forged by the UE glitter_materials step. brightness_steps: 1.0 keeps canonical names, 0.7/1.4 get _L70/_L140 for per-point glint variance (Jev glitter audit 2026-09-27, F_FAIRY_TRAILS_COMPILER 0.95)."
+    },
+    "bands": [
+      {
+        "label": "B0_Red",
+        "tint": [
+          1.0,
+          0.18,
+          0.22
+        ]
+      },
+      {
+        "label": "B1_Orange",
+        "tint": [
+          1.0,
+          0.45,
+          0.1
+        ]
+      },
+      {
+        "label": "B2_Gold",
+        "tint": [
+          1.0,
+          0.8,
+          0.2
+        ]
+      },
+      {
+        "label": "B3_Green",
+        "tint": [
+          0.35,
+          0.95,
+          0.45
+        ]
+      },
+      {
+        "label": "B4_Blue",
+        "tint": [
+          0.3,
+          0.55,
+          1.0
+        ]
+      },
+      {
+        "label": "B5_Indigo",
+        "tint": [
+          0.45,
+          0.3,
+          0.95
+        ]
+      },
+      {
+        "label": "B6_Violet",
+        "tint": [
+          0.75,
+          0.35,
+          1.0
+        ]
+      }
+    ]
+  },
+  "signal": {
+    "source_mpc": "/Game/Melodia/_PROJECT/04_Materials/MPC_Melodia_Palette",
+    "driver_mpc": "/Game/Melodia/Cymatics/MPC_Cymatics_Driver",
+    "lanes": [
+      "Cymatic_EmissiveScale",
+      "Cymatic_IridescenceShift",
+      "Cymatic_BeatPulse",
+      "Cymatic_WindDirX",
+      "Cymatic_WindDirY",
+      "Cymatic_WindStrength"
+    ],
+    "material_function": "/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MelodiaWindHueReveal"
+  },
+  "influence": [],
+  "archipelago": {
+    "mode": "lydian",
+    "pool": [
+      {
+        "mesh": "/Game/EnvSandbox/Monoliths/FarawayMother/UniverseFoundry/Meshes/SM_FloatingCrystal_Cluster_A",
+        "radius_cm": 185,
+        "top_z_cm": 325
+      },
+      {
+        "mesh": "/Game/EnvSandbox/Monoliths/FarawayMother/UniverseFoundry/Meshes/SM_FloatingCrystal_Cluster_B",
+        "radius_cm": 165,
+        "top_z_cm": 231
+      },
+      {
+        "mesh": "/Game/EnvSandbox/Monoliths/FarawayMother/UniverseFoundry/Meshes/SM_FloatingCrystal_Cluster_C",
+        "radius_cm": 235,
+        "top_z_cm": 383
+      }
+    ],
+    "pattern": "arpeggio_arch",
+    "count": 7,
+    "base_radius_cm": 1700,
+    "gap_cm": 500,
+    "cm_per_semitone": 300,
+    "turn_deg_per_semitone": 0.0,
+    "heading_deg": 0.0,
+    "lateral_alternate_cm": 4800,
+    "hero_scale": 1.0
+  }
+}

@@ -552,6 +552,26 @@ def test_archipelago_rejects_bad_mode():
     assert any("archipelago" in e and "mode" in e for e in wc.validate_recipe(recipe))
 
 
+def test_archipelago_bridges_span_next_island_edges():
+    recipe, _ = wc.load_recipe(ARCH)
+    with tempfile.TemporaryDirectory() as tmp:
+        m, out = _compile(Path(tmp), ARCH)
+        isl = _rows(out / "archipelago.csv")
+        br = _rows(out / "archipelago_bridges.csv")
+        assert len(br) == len(isl) - 1 and m["ue_lane"]["archipelago"]["bridges"] == len(br)
+        for b in br:
+            a, n = isl[int(b["from_island"])], isl[int(b["to_island"])]
+            assert abs(float(b["scale_x"]) * float(b["mesh_length_cm"]) - float(b["length_cm"])) < 0.002 * float(b["length_cm"])
+            assert abs(float(b["z"]) - float(a["top_z_cm"])) < 0.5
+            assert float(b["length_cm"]) > 0
+
+
+def test_archipelago_without_bridge_emits_no_bridge_table():
+    recipe, _ = wc.load_recipe(ARCH)
+    recipe["archipelago"].pop("bridge")
+    assert not wc.validate_recipe(recipe)
+
+
 def test_archipelago_absent_emits_no_tables():
     with tempfile.TemporaryDirectory() as tmp:
         manifest, out = _compile(Path(tmp))

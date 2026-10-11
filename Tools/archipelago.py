@@ -32,6 +32,33 @@ COLUMNS = ["island_id", "x", "y", "z", "yaw", "scale", "mesh", "degree", "pitch"
            "radius_cm", "top_z_cm", "next_island", "bridge_len_cm"]
 
 
+BRIDGE_COLUMNS = ["bridge_id", "from_island", "to_island", "x", "y", "z", "yaw", "pitch", "length_cm", "scale_x", "scale_yz", "mesh", "mesh_length_cm"]
+
+
+def compile_bridges(cfg: dict[str, Any], islands: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    """One span per next_island edge: starts on the rim of island i, ends on the rim of island i+1.
+    The mesh is stretched along +X (mesh_length_cm long), so scale_x = span / mesh_length_cm."""
+    b = cfg["bridge"]
+    mesh_len = float(b["mesh_length_cm"])
+    inset = float(b.get("rim_inset", 0.82))
+    rows: list[dict[str, Any]] = []
+    for a in islands:
+        if a["next_island"] < 0:
+            continue
+        n = islands[a["next_island"]]
+        dx, dy = n["x"] - a["x"], n["y"] - a["y"]
+        d = math.hypot(dx, dy) or 1.0
+        ux, uy = dx / d, dy / d
+        sx, sy, sz = a["x"] + ux * a["radius_cm"] * inset, a["y"] + uy * a["radius_cm"] * inset, a["top_z_cm"]
+        ex, ey, ez = n["x"] - ux * n["radius_cm"] * inset, n["y"] - uy * n["radius_cm"] * inset, n["top_z_cm"]
+        run = math.hypot(ex - sx, ey - sy)
+        length = math.hypot(run, ez - sz)
+        rows.append({"bridge_id": a["island_id"], "from_island": a["island_id"], "to_island": n["island_id"], "x": sx, "y": sy, "z": sz,
+                     "yaw": math.degrees(math.atan2(uy, ux)), "pitch": math.degrees(math.atan2(ez - sz, run)), "length_cm": length,
+                     "scale_x": length / mesh_len, "scale_yz": float(b.get("width_scale", 1.0)), "mesh": b["mesh"], "mesh_length_cm": mesh_len})
+    return rows
+
+
 def validate(cfg: dict[str, Any], mode_ids: set[str]) -> list[str]:
     errors: list[str] = []
     if cfg.get("mode") not in mode_ids:
@@ -44,6 +71,11 @@ def validate(cfg: dict[str, Any], mode_ids: set[str]) -> list[str]:
         for k in ("mesh", "radius_cm", "top_z_cm"):
             if k not in m:
                 errors.append(f"archipelago.pool[{i}].{k} is required")
+    br = cfg.get("bridge")
+    if br is not None:
+        for k in ("mesh", "mesh_length_cm"):
+            if k not in br:
+                errors.append(f"archipelago.bridge.{k} is required")
     if int(cfg.get("count", 0)) < 2:
         errors.append("archipelago.count must be >= 2")
     return errors

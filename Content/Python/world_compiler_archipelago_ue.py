@@ -28,7 +28,7 @@ for r in rows:
     m = meshes.get(r["mesh"]) or unreal.load_asset(r["mesh"])
     meshes[r["mesh"]] = m
     loc = unreal.Vector(float(r["x"]), float(r["y"]), float(r["z"]))
-    rot = unreal.Rotator(0.0, float(r["yaw"]), 0.0)
+    rot = unreal.Rotator(roll=0.0, pitch=0.0, yaw=float(r["yaw"]))   # positional order is (roll, pitch, yaw)
     a = L.get(lab)
     if a is None:
         a = sub.spawn_actor_from_object(m, loc, rot)
@@ -69,7 +69,27 @@ for r in rows:
         gc.set_graph(unreal.load_asset("/Game/Melodia/PCG/MassiveBiome/PCG_Biome_GrassField"))
         gc.generate(True)
         vols.append(gv)
-print("islands", len(made), "volumes", len(vols), "meshes loaded", len(meshes))
-pk = {x.get_package().get_name(): x.get_package() for x in made + vols}
+import os   # sky-bridges (optional bridge table): one stretched span per next_island edge
+bpath = BUNDLE_DIR + "archipelago_bridges.csv"
+spans = []
+if os.path.exists(bpath):
+    for b in csv.DictReader(open(bpath, encoding="utf-8")):
+        bl = f"{PREFIX}BRIDGE_{int(b['bridge_id']):02d}"
+        bm = meshes.get(b["mesh"]) or unreal.load_asset(b["mesh"])
+        meshes[b["mesh"]] = bm
+        bloc = unreal.Vector(float(b["x"]), float(b["y"]), float(b["z"]))
+        brot = unreal.Rotator(roll=0.0, pitch=float(b["pitch"]), yaw=float(b["yaw"]))   # UE pitch is nose-up positive
+        ba = L.get(bl)
+        if ba is None:
+            ba = sub.spawn_actor_from_object(bm, bloc, brot)
+            ba.set_actor_label(bl)
+        else:
+            ba.set_actor_location(bloc, False, False); ba.set_actor_rotation(brot, False)
+        ba.set_actor_scale3d(unreal.Vector(float(b["scale_x"]), float(b["scale_yz"]), float(b["scale_yz"])))
+        ba.tags = [unreal.Name("WorldCompiler.archipelago"), unreal.Name("Arch.bridge")]
+        spans.append(ba)
+made_all = made + spans
+print("islands", len(made), "bridges", len(spans), "volumes", len(vols), "meshes loaded", len(meshes))
+pk = {x.get_package().get_name(): x.get_package() for x in made_all + vols}
 print("save", unreal.EditorLoadingAndSavingUtils.save_packages(list(pk.values()), False))
 print("STEP_OK" if ok and len(made) == len(rows) else "NOT_OK")

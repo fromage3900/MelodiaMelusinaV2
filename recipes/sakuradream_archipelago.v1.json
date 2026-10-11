@@ -389,6 +389,12 @@
     "cm_per_semitone": 100,
     "turn_deg_per_semitone": 2.0,
     "heading_deg": 55.0,
-    "hero_scale": 1.25
+    "hero_scale": 1.25,
+    "bridge": {
+      "mesh": "/Game/EnvSandbox/Meshes/Cathedral/SM_Cathedral_BifrostBridge",
+      "mesh_length_cm": 1815,
+      "rim_inset": 0.82,
+      "width_scale": 2.0
+    }
   }
 }
