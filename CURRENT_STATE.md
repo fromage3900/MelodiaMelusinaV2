@@ -1,5 +1,17 @@
 # Melodia Melusina ? Current State
 
+## Triplanar v2 + SDF quasicrystal expansion — 2026-10-10 (editor live)
+
+Owner directive: expand the triplanar + SDF-quasicrystal lanes through the Rider shader pipeline while materials are hot.
+
+- **Two new Rider-authored shader headers** (source of truth; the builder INLINES them into Custom nodes, so nothing depends on a runtime include resolving): `Source/MelodiaShader/Shaders/MelodiaTriplanarCommon.ush` — abs-power weights + per-axis scale/offset/rotation + deterministic hash anti-tiling + distance fade + RG-decode whiteout world normal; `MelodiaSdfQuasicrystal.ush` — aperiodic 5/8/12-fold plane-wave field (golden-ratio modulation), nodal facet lines, contour bands, per-cell hash, thin-film iridescence. Both `#include MelodiaInkCommon.ush` and reference **no UE by-name globals** (normal/world/view/phase arrive as Custom inputs — respects the 2026-08-18 by-name trap).
+- **Three MFs built + saved** (tag `MeluShaders:`, idempotent rebuild): `MF_MeluTriplanar_Albedo`, `MF_MeluTriplanar_Normal`, `MF_MeluSdfQuasicrystal`.
+- **Live-graph discovery — corrects a stale assumption.** The Nikki spine is fully connected, but the August `NikkiX:SDLerp` anchor is now a **dead orphan with no inputs**; a `MelPile:` glitter-pile stage ends the chain. The resolver now walks the live graph (BSDF → its BaseColor source → the pin fed by the last tagged stage). Verified read-back: `SubstrateToonBSDF_1.BaseColor ← LI_5.A ← MeluShaders:bMeluQuasicrystal_Active` (293→315 expressions). The same stale anchor was fixed in the queued gouache builder.
+- **Quasicrystal spliced** into `M_Master_Nikki` behind default-OFF `bMeluQuasicrystal_Active` (group `08 | Quasicrystal`; 12 scalars + 2 vectors with slider ranges), plus `MI_Nikki_Show_Quasicrystal`. `BeatPulse` deliberately unconnected — tempo comes from the music clock when wired; no fake Time-based tempo.
+- **Deliberately NOT done:** `MF_Triplanar_Stable` untouched (rewiring its pins would silently break its Universal/Nikki/Landscape consumers); the `M_Master_Gemstone` splice is opt-in only (basecolor anchor uninspected). Note the Nikki master's existing triplanar stage already carries axis-weights, breakup and projection offset/rotation — so v2's genuine adds are the **normal-map path, distance fade and per-axis scale**, not a replacement of working capability.
+- **Tooling trap found + fixed:** `EditorAssetLibrary` desynced in-session — `does_asset_exist` returned False for an intact master and its saves were silent no-ops (leaving fresh functions dirty). `scan_paths_synchronous(..., force_rescan=True)` repaired it; the builder now falls back to `unreal.load_asset` / `save_packages`.
+- **Evidence level:** structural only — pin-level read-back, compile success, zero dirty packages of mine (3 dirty are other lanes: `BS_Melusina_Locomotion`, `MI_GroundCover_02`, `BP_ScoreWagon`). **Visual acceptance is OWED:** the asset-preview/thumbnail pipeline returned blank frames in this editor state (the level viewport renders normally), so the quasicrystal needs a `capture_material_grid` or PIE pass. Commit `efd895012`.
+
 ## Sol next-session handoff - 2026-10-10 (session closed; saved checkpoint, acceptance OPEN)
 
 Owner requested closeout for the next session. Preserve the improved saved set; do not restart animation authoring or claim the broader animation goal complete. This section supersedes older editor/PID and next-action descriptions below.
