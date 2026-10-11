@@ -1,3 +1,5 @@
+> **SUPERSEDED AS PRIMARY BUILD ROUTE (2026-10-11):** User confirmed the approved sheets/crops are references for an original **procedural Geometry Nodes generator**. The authoritative workflow is [STEPFUN_GN_HANDOFF.md](STEPFUN_GN_HANDOFF.md) using the existing Melodia Studio GN registry and presets. Tripo may provide optional supplementary shape studies, but no Tripo mesh is required or considered canonical. This document is retained strictly as a fallback/reference experiment.
+
 # Accordeur Base Meshes — Tripo to Blender/Houdini to UE5.8
 
 **Status:** production recipe; no Tripo job / GLB or UE import verified in this branch.  
