@@ -14,6 +14,20 @@
 
 **Next gates (in order):** (1) owner answers the four open questions above; (2) record them here and mirror into `CLAUDE.md`/`AGENTS.md` (integrator-owned single-writer files — update the "ACFU excluded" line there); (3) prove possession + one ACF melee exchange in PIE; (4) promote or retire the trial web (`BP_HybridSlimeNode`, `BP_WaveHarpProofArrowActor` are dead props). Issue #51 stays the idempotency reference.
 
+## Infinite Score + four-level hero treatment — LANDED 2026-10-11 (PR #461, lane `claude-land`)
+
+**On main:** World Compiler `archipelago` stage (islands along a level's arpeggio contour; `bridge`, `set_pieces`, `visual_scale_mult`), tests 42/42, recipes `kaleido|fallenmoon|sakuradream_archipelago` + `infinitescore_choir`; piano key kit bake (`Tools/bake_piano_key_kit.py`) + `pcg_piano_walkway` (AAA keys/rails); `Content/Python/infinitescore_dress_ue.py` (aborts outside `L_InfiniteScore`). Content: `L_InfiniteScore.umap` (linear AAA key run, Chladni stepping garden from GrokPrep `stepping_pads.csv`, floating melody, oculus chimes, rail pendants, crystal choir + 3 Enchanted vehicles, additive ocean, `ScoreWagon`, cameras `CAM_Score_*`), `L_KaleidoNave.umap` (7 islands, 6 bridges, Megascans groves, ocean, petal FX), FallenMoon external actors (path is gitignored — force-added), `BP_ScoreWagon` (Pawn + `ACFMountableComponent`, spline-follow Tick), `ScoreKit_GP` (11 meshes), `PianoKey_AAA` (3), BandWagon `Seat` socket, `DA_Melodia_IslandGrove` + `PCG_Biome_IslandGrove` (Megascans only), walkway graph/profile.
+
+**Materials on main:** all 72 `M_KB3D_ECV_*` converted to `M_Master_Toon_Universal` / `_Alpha` with textures (`Tools/convert_enchanted_vehicle_mis.py`); `M_Master_Toon_Universal` gained a gated note-scroll WPO term (`NoteScrollSpeed`/`NoteScrollAmp`, default 0 = no change; `Tools/master_note_scroll.py`; **compile stats never read**) + `MI_ScoreNotes_Glow`; `MI_StorybookOutline_Premium_Hero_Dream` tuned to master-default sanity (originals: `Tools/ppv_hero_dream_original_scalars.json`). Wind calmed on the three `MI_Meadow_*`.
+
+**Rebuilt after the 2026-10-11 clean** (untracked/ignored content was swept and several tracked edits reverted at ~23:30 and 10:55): `DA_Melodia_DistantForest` was rebuilt from a dump and **still uses Tree0x_Art + Atlantis trees (owner rule: Megascans/SpeedTree only)**. `DA_Melodia_GrassField` and `PCG_Biome_GrassField` were deleted, were never in git, and are **NOT rebuilt**.
+
+**Local only, not on main:** `ZenForestTest.umap` (97 MB, gitignored; islands/ocean/FX saved 10-10 19:16); Morning edits (Hero 04 camera nudge, removal of old `Massive_Biome_GrassField_A/B`). Old lane `claude` (`a25733872`) and rescue refs `refs/agents/*-20261011` are backups.
+
+**Open / unproven:** `ScoreWagon` ACF boarding in PIE (PIE ended itself after a teleport; no throttle/steer/dismount input, no wheel spin, no Chaos path); `NS_Hero_SoftSparkle` still renders nothing; Chladni cymatic plate + `MelodiaCymatic` tagging not started; rosette key layouts (`map_layout_to_pattern`) are in code but disliked — not used. First editor open after pulling will recompile Toon Universal shaders (long).
+
+**Gotchas learned:** editor asserts on level loads (`EditorServer.cpp:1951` world-leak) — clear Python globals + `collect_garbage` first; screenshots stall after cold loads (run capture in the background); `unreal.Rotator` is (roll, pitch, yaw); Blueprint variables keep exact names in Python; `ACF MountSystem` possesses the mount pawn and uses the mesh `Seat` socket; dress-script cleanup deletes actors tagged `InfiniteScore.Dress` (wagon uses `InfiniteScore.Wagon`).
+
 ## VFX Material Convergence & Niagara Gameplay Runtime Canon — 2026-10-11 (Staging Complete, Driver Restored)
 
 Owner documentation and convergence plan verified against actual disk state, Git LFS stashes, and runtime assets (`Saved/Staging/GrokPrep/vfx_material_convergence/`).
