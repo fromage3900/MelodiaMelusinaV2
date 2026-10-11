@@ -33,7 +33,10 @@
   "axis_settings": {
     "horizontal_axis": "Speed",
     "_horizontal_range_comment": "Max raised 630 -> 750. The sprint gate records 714 uu/s; an axis capped at 630 (or the Hybrid's 650) clamps sprint and the top of the range is never reachable.",
-    "horizontal_range": [0.0, 750.0],
+    "horizontal_range": [
+      0.0,
+      750.0
+    ],
     "interpolation": {
       "type": "linear",
       "target_value_interpolation": "Linear"
@@ -53,12 +56,36 @@
       "/Game/Melodia/Characters/Melusina/Hair/ABP_Melusina_WaterHair"
     ],
     "required_native_fields": [
-      {"consumer": "MelodiaWaveHarpCombatComponent", "field": "CastStanceAnim", "expected_skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton"},
-      {"consumer": "MelodiaWaveHarpCombatComponent", "field": "CastShootAnim", "expected_skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton"},
-      {"consumer": "MelodiaWaveHarpCombatComponent", "field": "ChargeDrawAnim", "expected_skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton"},
-      {"consumer": "MelodiaWaveHarpCombatComponent", "field": "ChargeHoldAnim", "expected_skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton"},
-      {"consumer": "MelodiaWaveHarpCombatComponent", "field": "ChargeFireAnim", "expected_skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton"},
-      {"consumer": "MelodiaTraversalComponent", "field": "DashRollMontage", "expected_skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton"}
+      {
+        "consumer": "MelodiaWaveHarpCombatComponent",
+        "field": "CastStanceAnim",
+        "expected_skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton"
+      },
+      {
+        "consumer": "MelodiaWaveHarpCombatComponent",
+        "field": "CastShootAnim",
+        "expected_skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton"
+      },
+      {
+        "consumer": "MelodiaWaveHarpCombatComponent",
+        "field": "ChargeDrawAnim",
+        "expected_skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton"
+      },
+      {
+        "consumer": "MelodiaWaveHarpCombatComponent",
+        "field": "ChargeHoldAnim",
+        "expected_skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton"
+      },
+      {
+        "consumer": "MelodiaWaveHarpCombatComponent",
+        "field": "ChargeFireAnim",
+        "expected_skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton"
+      },
+      {
+        "consumer": "MelodiaTraversalComponent",
+        "field": "DashRollMontage",
+        "expected_skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton"
+      }
     ],
     "canonical_allowlist": {
       "/Game/MelodiaIntegration/Blueprints/BP_MelusinaJRPGCharacter": "Possessed Morning pawn observed in fresh PIE 2026-10-02",
@@ -192,7 +219,8 @@
       "/Game/Melodia/Characters/Melusina/Animations/SparrowArchery_20261002/A_Spar_Mel_idle_relaxed": "Owner-rejected idle bake from Sparrow retarget; preserve source authoring only",
       "/Game/Melodia/Characters/Melusina/Animations/SparrowArchery_20261002/A_Spar_Mel_Travel_Mode_Idle_BowDown": "Owner-rejected idle bake from Sparrow retarget; preserve source authoring only",
       "/Game/Melodia/Characters/Melusina/Animations/ContactCandidates_20261003/A_Spar_Mel_idle": "Owner-rejected comparison idle bake from Sparrow retarget; preserve source authoring only",
-      "/Game/Melodia/Characters/Melusina/Animations/ContactCandidates_20261003/A_Spar_Mel_Travel_Mode_Idle_BowDown": "Owner-rejected comparison idle bake from Sparrow retarget; preserve source authoring only"
+      "/Game/Melodia/Characters/Melusina/Animations/ContactCandidates_20261003/A_Spar_Mel_Travel_Mode_Idle_BowDown": "Owner-rejected comparison idle bake from Sparrow retarget; preserve source authoring only",
+      "/Game/Melodia/Characters/Melusina/Animations/AnimationDoctor_20261007/RuntimeCloseout_20261009/A_Melusina_BattleBow_ArmCorrected_20261011": "Oct11 actual-body preview shows raised/distorted shoulder silhouette despite all-key numeric arm pass. Unbound duplicate rejected for canonical runtime; preserve diagnostics/source only. No montage promotion."
     }
   }
 }
