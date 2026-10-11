@@ -83,8 +83,9 @@
       },
       {
         "consumer": "MelodiaTraversalComponent",
-        "field": "DashRollMontage",
-        "expected_skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton"
+        "field": "GetMelusinaRollMontage",
+        "expected_skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton",
+        "binding_kind": "static_loader"
       }
     ],
     "canonical_allowlist": {
