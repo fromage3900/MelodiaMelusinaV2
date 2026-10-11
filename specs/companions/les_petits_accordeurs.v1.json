@@ -1,0 +1,250 @@
+{
+  "schema_version": "1.0",
+  "id": "les_petits_accordeurs",
+  "name": "Les Petits Accordeurs",
+  "status": "design_only_not_runtime_verified",
+  "canon_artifacts": [
+    "Les Petits Accordeurs Character Lineup.png",
+    "Les Petits Accordeurs Concept Sheet.png",
+    "Les Petits Accordeurs Atelier Magique.png"
+  ],
+  "reference_source": "ChatGPT Library artworks dated 2026-09-18; binary art not yet ingested into repository/P4",
+  "identity": "Maintenance Spirits of Melody, Memory, and Small Repairs",
+  "mottos": [
+    "Small hands. Better worlds.",
+    "Keep things in tune.",
+    "Different tasks. Same song."
+  ],
+  "height_range_cm": [
+    15,
+    25
+  ],
+  "shared_materials": [
+    "paper",
+    "ink",
+    "woven cloth",
+    "aged brass",
+    "stained wood",
+    "leather",
+    "starlight"
+  ],
+  "house": "Maison L'Accordeur (concept only)",
+  "pipeline": {
+    "source": "Blender 5.2.1 LTS via existing Melodia Studio / deploy/surreal_arch/melodia_gn builder registry",
+    "verification": "Tools/verify_full_registry.py, Tools/verify_addon.py",
+    "export": "existing Melodia Studio Export UE5 path; consume using existing UE integration",
+    "runtime": "existing UE companion, gameplay and world compiler owners; no new manager/framework"
+  },
+  "characters": [
+    {
+      "id": "monsieur_committe",
+      "name": "Monsieur Committe",
+      "title": "The Archivist",
+      "role": "Archivist",
+      "palette": [
+        "#9B8CCC",
+        "#E9DAB8",
+        "#6C5488",
+        "#A97958"
+      ],
+      "height_cm": 20,
+      "silhouette": "round spectacles; twin upright lavender leaf ears; ledger block silhouette; ink-tail flourish",
+      "props": [
+        "ledger",
+        "stamp",
+        "ink bottle",
+        "wax seal"
+      ],
+      "emotion": "earnest meticulous anxiety; triumphant stamp",
+      "motions": [
+        "page-flip",
+        "stamp",
+        "note-taking",
+        "startled-glasses-adjust"
+      ],
+      "in_world": "Records remembered melodies and reveals documented clues; never rewrites canonical history.",
+      "pilot_hook": "archive_hint",
+      "audio": "muted paper taps, stamp chord"
+    },
+    {
+      "id": "mademoiselle_merge",
+      "name": "Mlle. Merge",
+      "title": "Seamstress of Realities",
+      "role": "Mender",
+      "palette": [
+        "#F7E6D7",
+        "#E5B8C4",
+        "#D8AE66",
+        "#AE768E"
+      ],
+      "height_cm": 19,
+      "silhouette": "floppy ribbon ears; golden treble-loop ornament; broad spool plus fine needle",
+      "props": [
+        "golden thread spool",
+        "needle",
+        "ribbon strips",
+        "scissors"
+      ],
+      "emotion": "patient joy; quietly determined",
+      "motions": [
+        "thread-pull",
+        "needle-loop",
+        "tie-knot",
+        "happy-hop"
+      ],
+      "in_world": "Mends broken connections; proposes temporary spatial crossings through established puzzle hooks, not a new save system.",
+      "pilot_hook": "lullaby_mend",
+      "audio": "soft pluck, thread harmonics"
+    },
+    {
+      "id": "petit_cache",
+      "name": "Petit Cache",
+      "title": "Keeper of What Might Be",
+      "role": "Treasure-Keeper",
+      "palette": [
+        "#7F9DB8",
+        "#BCCEDD",
+        "#435578",
+        "#E4C8A2"
+      ],
+      "height_cm": 17,
+      "silhouette": "oversized soft sleeping cap; rounded drooping posture; treasure bag larger than torso",
+      "props": [
+        "treasure satchel",
+        "lost star",
+        "memory fragments",
+        "lantern"
+      ],
+      "emotion": "sleepy wonder; protective curiosity",
+      "motions": [
+        "doze",
+        "satchel-sort",
+        "waking-gasp",
+        "treasure-offer"
+      ],
+      "in_world": "Returns misplaced little things and lost memories; optional lore recovery.",
+      "pilot_hook": "lost_fragment",
+      "audio": "small bells, soft cloth"
+    },
+    {
+      "id": "le_build",
+      "name": "Le Build",
+      "title": "The Foreman",
+      "role": "Repairer",
+      "palette": [
+        "#B7D4C7",
+        "#EFC76C",
+        "#6F9E90",
+        "#8D6A59"
+      ],
+      "height_cm": 22,
+      "silhouette": "helmet with musical note; tall tool-and-mallet diagonal; green sprout-ears",
+      "props": [
+        "mallet",
+        "blueprint",
+        "toolbox",
+        "fasteners"
+      ],
+      "emotion": "eager confident delight",
+      "motions": [
+        "hammer-hit",
+        "plan-unfurl",
+        "point-work",
+        "victory"
+      ],
+      "in_world": "Repairs dormant fixtures and musical infrastructure.",
+      "pilot_hook": "repair_fixture",
+      "audio": "warm wood knock, bright fifth"
+    },
+    {
+      "id": "madame_lfs",
+      "name": "Madame L.F.S.",
+      "title": "The Quartermaster",
+      "role": "Quartermaster",
+      "palette": [
+        "#EEE3E7",
+        "#8E819C",
+        "#9C795D",
+        "#54546B"
+      ],
+      "height_cm": 21,
+      "silhouette": "stern arched brow; huge parcel-pack with dangling keys; angular scarf",
+      "props": [
+        "keys",
+        "provisions satchel",
+        "supply crate",
+        "stock ledger"
+      ],
+      "emotion": "stern vigilance; secretly affectionate",
+      "motions": [
+        "key-jingle",
+        "inventory-count",
+        "parcel-heave",
+        "disapproving-stare"
+      ],
+      "in_world": "Manages materials and helpful deliveries; avoids player-inventory authority duplication.",
+      "pilot_hook": "supply_request",
+      "audio": "keys, dry marimba"
+    },
+    {
+      "id": "monsieur_rebase",
+      "name": "Monsieur Rebase",
+      "title": "The Cartographer",
+      "role": "Pathfinder",
+      "palette": [
+        "#A1BCAC",
+        "#D4D4B7",
+        "#7F96A4",
+        "#AA8767"
+      ],
+      "height_cm": 23,
+      "silhouette": "long curling sprout; whisker/beard triangle; map-scroll silhouette",
+      "props": [
+        "maps",
+        "scrolls",
+        "compass",
+        "pointer"
+      ],
+      "emotion": "gentle patient wisdom",
+      "motions": [
+        "map-unfold",
+        "compass-check",
+        "walk-and-point",
+        "thoughtful-tilt"
+      ],
+      "in_world": "Surveys hidden paths and navigational alternatives.",
+      "pilot_hook": "route_reveal",
+      "audio": "paper rustle, low flute"
+    },
+    {
+      "id": "le_bot",
+      "name": "Le Bot",
+      "title": "The Errand-Runner",
+      "role": "Messenger",
+      "palette": [
+        "#F2A3A4",
+        "#EBAF8E",
+        "#E8C77D",
+        "#9D5968"
+      ],
+      "height_cm": 15,
+      "silhouette": "heart-tipped upward ears; raised running legs; floating envelope trail",
+      "props": [
+        "mail satchel",
+        "letters",
+        "seal",
+        "message tags"
+      ],
+      "emotion": "excited joyous urgency",
+      "motions": [
+        "dash",
+        "letter-toss",
+        "receive",
+        "wave"
+      ],
+      "in_world": "Carries messages and scripted world news using existing quest/event hooks.",
+      "pilot_hook": "message_delivery",
+      "audio": "staccato pizzicato, paper flutter"
+    }
+  ]
+}
