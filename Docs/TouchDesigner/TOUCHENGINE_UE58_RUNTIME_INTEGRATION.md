@@ -75,13 +75,19 @@ Naming is the **desired cross-repo handoff**; confirm the parameter identifiers 
 - Not in Git by policy (G0 step 4): `Plugins/TouchEngine/Binaries/` (incl. `ThirdParty/Win64/TouchEngine.dll/.lib` from the Derivative 1.7.0 release). Reproduce by installing the 1.7.0 release binaries, applying the two patches above (already in the landed source) and doing a closed-editor build.
 - Still open: load/unload of a real `.tox` and crash-on-exit check belong to G1.
 
-### G1 — Isolated `.tox` TOP canary [first actual proof]
+### G1 — Isolated `.tox` TOP canary [PROVEN in editor 2026-10-11; PIE/packaged still open]
 
 1. TD side supplies a self-contained `melodia_te_canary_v1.tox`, exported from a **COMP** with only the two agreed input parameters and `OUT_BEAUTY`. It must not require the complete grandmaster network, OSC sockets, cameras or external file paths.
 2. Import it as a **TouchEngine ToxAsset** using a project-relative path under UE `Content` (never an absolute-only external path). The official plugin documentation notes that absolute `.tox` asset paths are **not packaged**.
 3. In the test project, create **a dedicated TouchEngine Actor-derived Blueprint** (`TE_MelodiaCanary`), not a reparented player/character. Assign the ToxAsset. Bind documented `On Tox Loaded`, `On Tox Failed Load` and `On End Frame` callbacks; query parameters/outputs after successful load.
 4. Bind constant/slider test values; verify `OUT_BEAUTY` changes and can be displayed on a single debug plane via UE material instance. Explicitly verify successful frame/update before replacing a texture; record dropped frames and latency.
 5. **Exit:** visible, repeatable parameter→image change in UE PIE. If Tox load fails or stops, native material/neutral texture remains visible; game input and gameplay are unaffected.
+
+**G1 result (2026-10-11, editor, UE 5.8.0 CL 55116800, TD 2025.32460 Commercial).** `Content/Melodia/TouchEngine/melodia_te_canary_v1.tox` (imported as a `ToxAsset`) loads on a fresh `TouchEngineComponent` start and exposes exactly the contract interface: input group `Canary` with `Beatphase` and `Amplitude` (TD lower-cases the P: the UE-side name is `Beatphase`, not `BeatPhase`; Double) and output `OUT_BEAUTY` (Texture). Parameter-to-image proof via a Blueprint harness (`/Game/Dev/TouchEngineG0/BP_TE_Canary_Harness`: `SetFloatByName(prefix "p/")` -> `GetTextureByName(prefix "o/")` -> canvas draw into a 256x256 RT -> pixel readback). Same RT pixels, inputs `Beatphase`/`Amplitude`:
+- 0.0/0.0 -> centre (255,224,179); (128,100) (249,244,226); (128,160) (28,34,53)
+- 0.5/1.0 -> centre (255,255,243); (128,100) (255,255,243); (128,160) (255,255,243)
+- back to 0.0/0.0 -> centre (255,224,179) again (reversible). Frame counter advanced 1 -> 126 -> 803. EXR exports: `Saved/Audit/TouchEngineG1/` (local, not in Git).
+Harness lessons: (a) the component default `CookTimeout` of 0.3 s is too short for the first cook, the adapter must raise it (5 s worked); (b) the editor only cooks between Python calls, so set inputs in one call and read in a later one; (c) never swap `ToxAsset` on a running component, and a Blueprint recompile resets the instance, restart it; (d) an unfocused first TD start can report "TouchEngine process crashed" once, retry from a fresh start; (e) do not hot-swap `.tox` assets on a live component (it contributed to an editor access violation). **Still open:** PIE and packaged-build proof, a recorded visible-motion clip with `freezedetect`, and the adapter (single writer) that drives the inputs from the real Melodia beat/amplitude (G2).
 
 ### G2 — Connect one *real* Melodia signal [no duplicated bridge]
 
