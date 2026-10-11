@@ -1,5 +1,13 @@
 # Melodia Melusina ? Current State
 
+## Next cross-repo TD procedural art action — Chord Atelier / Infinite Aeolian Atrium (owner, 2026-10-11)
+
+**Owner direction:** use the existing infrastructure to create an **artist-facing procedural TD workstation tool**, not another engine, world compiler or Blender-like object-editing layer. The next TD authoring deliverable is one reusable `ChordAtelier` COMP built inside the current `grandmaster_melodia` / `geo_engines`: 1) deterministic, seeded chord-to-architecture layout, 2) existing Blender GN Aeolian/chime meshes, 3) Chladni masks sourced from the current GN/Hython/sheets workflow, 4) TD POP/CHOP GPU-resident instances, wind and resonance animation, 5) existing Lookdev Studio beauty output. **First gate:** one seeded static chord atrium; **second:** Aeolian wind and four-chord Cm→A♭→E♭→B♭ fixture; **third:** measured, verified 20–30s beauty take and independently portable `.tox`/TDN. These gates are **planned**, not implemented/PIE-proven. TD authoritative runbook is `fromage3900/MelodiaTouchDesigner:docs/CHORD_ATELIER_AEOLIAN_ATRIUM.md`.
+
+**Existing game-side sources:** `deploy/surreal_arch/melodia_gn/chimes_gn.py`, `deploy/surreal_arch/melodia_gn/chladni_layers.py`, `Tools/Houdini/copernicus/chladni_eigen.py`, `Tools/chladni_sheets_to_textures.py`, `Tools/archipelago.py`, `UMelodiaHarmonicStateSubsystem`. Game owns musical, gameplay, authored world and PCG truth; TD only animates/visualizes and exports presentation textures/geometry previews, and never writes saved world state. No duplicate audio/OSC bus, gameplay writer, or Chladni solver.
+
+**Parallel UE lane:** owner has **started** TouchEngine 1.7.0→UE5.8 port/build, but the actual build/PIE/texture return and packaging remain unverified until gates in `Docs/TouchDesigner/TOUCHENGINE_UE58_RUNTIME_INTEGRATION.md` pass. Do not wait for that port to do TD authoring; keep Spout/OSC functioning, no `:8000` ghost receiver. Current game editor/content mutation remains subject to worktree/P4/editor-lease contracts. No new source/binary changes were made by this docs update.
+
 ## ⚑ OWNER CANON — turn-based ARPG / ACFU hybrid is the game — 2026-10-11
 
 **Owner decision (2026-10-11, verbatim intent):** the turn-based ARPG / ACFU hybrid is canon. This is the owner pivot that the 09-27 souls-track audit said was required ("no conversion without owner pivot + Issue #51"). It supersedes every "ACFU excluded / ACF is sandbox-only / JRPG slices plus isolated ACFU R&D" statement in this file, `CLAUDE.md` ("MelodiaCore ... ACFU and Conversation2D are excluded"), `AGENTS.md` and `Docs/Production/HYBRID_TRIAL_WEB_2026-10-05.md` §1/§5 (which called the ACF pawns a guarded, unmerged divergence).
