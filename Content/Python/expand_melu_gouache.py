@@ -270,28 +270,49 @@ def master_surgery(material, functions: dict):
         except Exception as exc:
             _log(f"cleanup {e.get_name()}: {exc}")
 
-    # anchor: the current feature tail. Today that is the petal switch output,
-    # which currently feeds the ShadowDream lerp's A input (see NikkiX:SDLerp).
-    # This surgery appends AFTER it: petal -> gouache switch -> sd_lerp.A.
-    # Resolve the tail dynamically so a future chain extension still works:
-    # find the Lerp node tagged NikkiX:SDLerp and read its current A input.
-    sd_lerp = None
+    # Verified insertion point: the tagged feature stage that feeds the final
+    # BaseColor pin of the master's BSDF. The August `NikkiX:SDLerp` node is a
+    # dead orphan on the live master (a `MelPile:` stage now ends the chain), so
+    # walk the live graph instead of trusting that tag.
+    def _inputs_of(node):
+        try:
+            names = list(MEL.get_material_expression_input_names(node))
+        except Exception:
+            names = []
+        try:
+            ins = list(MEL.get_inputs_for_material_expression(material, node))
+        except Exception:
+            ins = []
+        out = {}
+        for i, n in enumerate(names):
+            x = ins[i] if i < len(ins) else None
+            if x is not None:
+                out[n] = x
+        return out
+
+    bsdf = None
     for e in _exprs(material):
-        if type(e).__name__ == "MaterialExpressionLinearInterpolate" and str(_get(e, "desc", "")) == "NikkiX:SDLerp":
-            sd_lerp = e
+        if "SubstrateToonBSDF" in type(e).__name__ or "Substrate" in type(e).__name__:
+            bsdf = e
             break
-    if sd_lerp is None:
-        raise RuntimeError("anchor not found (NikkiX:SDLerp)")
-    tail_src = None
-    try:
-        inputs = MEL.get_inputs_for_material_expression(material, sd_lerp)
-        names = MEL.get_material_expression_input_names(sd_lerp)
-        w = {n: inputs[i] for i, n in enumerate(names) if i < len(inputs) and inputs[i] is not None}
-        tail_src = w.get("A")
-    except Exception:
-        pass
-    if tail_src is None:
-        raise RuntimeError("ShadowDream lerp has no A input to splice after")
+    if bsdf is None:
+        raise RuntimeError("no BSDF node found to anchor the gouache splice")
+    bi = _inputs_of(bsdf)
+    final_node = bi.get("BaseColor")
+    if final_node is None:
+        raise RuntimeError("BSDF BaseColor has no input to splice before")
+    final_pin, tail_src = None, None
+    for pin, src in _inputs_of(final_node).items():
+        d = ""
+        try:
+            d = str(_get(src, "desc", "")) if src else ""
+        except Exception:
+            d = ""
+        if d.startswith(("NikkiX:", "NikkiFeat:", "MelPile:", TAG)):
+            final_pin, tail_src = pin, src
+            break
+    if tail_src is None or final_pin is None:
+        raise RuntimeError("no tagged feature stage found feeding the final basecolor pin")
 
     # ── Gouache wash stage ──
     gw_sw = _switch_param(material, "bMeluGouacheWash_Active", False, g, 900, 200)

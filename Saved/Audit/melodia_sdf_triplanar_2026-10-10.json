@@ -1,0 +1,21 @@
+{
+  "generated": "2026-10-10",
+  "shader_source": [
+    "Source/MelodiaShader/Shaders/MelodiaInkCommon.ush",
+    "Source/MelodiaShader/Shaders/MelodiaTriplanarCommon.ush",
+    "Source/MelodiaShader/Shaders/MelodiaSdfQuasicrystal.ush"
+  ],
+  "functions": [
+    "MF_MeluTriplanar_Albedo",
+    "MF_MeluTriplanar_Normal",
+    "MF_MeluSdfQuasicrystal"
+  ],
+  "spliced": [
+    "/Game/EnvSandbox/Materials/Masters/M_Master_Nikki :: bMeluQuasicrystal_Active (group 08 | Quasicrystal)"
+  ],
+  "show": "/Game/EnvSandbox/Materials/Instances/NikkiHero/MI_Nikki_Show_Quasicrystal",
+  "not_done": [
+    "MF_Triplanar_Stable untouched (pin-compatible consumers preserved)",
+    "M_Master_Gemstone splice opt-in only"
+  ]
+}
