@@ -23,7 +23,7 @@ import urllib.request
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from model_router import load_keys, ENDPOINTS, log_usage  # noqa: E402
 
-REVIEW_MODEL = "nvidia/nemotron-nano-12b-v2-vl:free"
+REVIEW_MODEL = "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free"
 REVIEW_ENDPOINT = "openrouter"
 MAX_IMAGE_BYTES = 19 * 1024 * 1024
 REVIEW_PROMPT = (
