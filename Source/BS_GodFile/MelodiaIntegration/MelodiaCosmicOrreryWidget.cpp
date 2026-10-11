@@ -13,6 +13,43 @@
 #include "MelodiaMusicClockSubsystem.h"
 #include "MelodiaPersonaSubsystem.h"
 
+// Defined in MelodiaUIBridgeSubsystem.cpp. Declared here instead of in the bridge header so this fix
+// stays header-free (Live Coding cannot patch class layout / reflection changes).
+void MelodiaSetWorldCombatUISuppressed(const UObject* WorldContextObject, bool bSuppressed);
+
+namespace
+{
+	/**
+	 * Orreries currently holding the world-combat-UI suppression. File-scope storage keyed by weak
+	 * pointer instead of a class member, so the widget's layout is unchanged (Live Coding safe).
+	 */
+	TSet<TWeakObjectPtr<const UMelodiaCosmicOrreryWidget>> GOrreriesSuppressingCombatUI;
+
+	/** Bow HUD (z 90) and Rhythm HUD (z 85) draw above the Orrery (z 70): collapse them while open. */
+	void AcquireOrreryCombatUISuppression(const UMelodiaCosmicOrreryWidget* Orrery)
+	{
+		if (!Orrery || Orrery->IsDesignTime())
+		{
+			return;
+		}
+		const TWeakObjectPtr<const UMelodiaCosmicOrreryWidget> Key(Orrery);
+		if (!GOrreriesSuppressingCombatUI.Contains(Key))
+		{
+			GOrreriesSuppressingCombatUI.Add(Key);
+			MelodiaSetWorldCombatUISuppressed(Orrery, true);
+		}
+	}
+
+	/** Idempotent: restores the bow/rhythm HUDs once when this Orrery closes or is destroyed. */
+	void ReleaseOrreryCombatUISuppression(const UMelodiaCosmicOrreryWidget* Orrery)
+	{
+		if (GOrreriesSuppressingCombatUI.Remove(TWeakObjectPtr<const UMelodiaCosmicOrreryWidget>(Orrery)) > 0)
+		{
+			MelodiaSetWorldCombatUISuppressed(Orrery, false);
+		}
+	}
+}
+
 UMelodiaCosmicOrreryWidget::UMelodiaCosmicOrreryWidget(const FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer)
 {
@@ -38,6 +75,7 @@ void UMelodiaCosmicOrreryWidget::NativeConstruct()
 			}
 		}
 	}
+	AcquireOrreryCombatUISuppression(this);
 
 	Planets.Reset();
 	if (Planet_1) { Planets.Add(Planet_1); }
@@ -167,6 +205,7 @@ void UMelodiaCosmicOrreryWidget::NativeDestruct()
 		Btn->OnClicked.RemoveDynamic(this, &UMelodiaCosmicOrreryWidget::HandleCloseButtonClicked);
 	}
 
+	ReleaseOrreryCombatUISuppression(this);
 	if (OwnContextHandle.IsValid())
 	{
 		if (UMelodiaInputContextSubsystem* InputSubsystem = UMelodiaInputContextSubsystem::Get(this))
@@ -468,6 +507,7 @@ void UMelodiaCosmicOrreryWidget::CloseOrrery()
 
 	OnOrreryClosed.Broadcast();
 
+	ReleaseOrreryCombatUISuppression(this);
 	if (OwnContextHandle.IsValid())
 	{
 		if (UMelodiaInputContextSubsystem* InputSubsystem = UMelodiaInputContextSubsystem::Get(this))
@@ -482,7 +522,13 @@ void UMelodiaCosmicOrreryWidget::CloseOrrery()
 
 const FMelodiaOrreryArchetype& UMelodiaCosmicOrreryWidget::GetArchetype(int32 Index) const
 {
-	check(Archetypes.IsValidIndex(Index));
+	if (!Archetypes.IsValidIndex(Index))
+	{
+		// Blueprint-callable: a bad index must not crash PIE. Return a stable empty archetype instead.
+		static const FMelodiaOrreryArchetype InvalidArchetype;
+		UE_LOG(LogTemp, Warning, TEXT("MELODIA_ORRERY GetArchetype index %d out of range (count=%d)"), Index, Archetypes.Num());
+		return InvalidArchetype;
+	}
 	return Archetypes[Index];
 }
 

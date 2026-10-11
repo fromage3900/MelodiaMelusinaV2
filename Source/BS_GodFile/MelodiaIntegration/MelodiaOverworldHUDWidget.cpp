@@ -82,11 +82,20 @@ void UMelodiaOverworldHUDWidget::NativeConstruct()
 	if (const UWorld* World = GetWorld())
 	{
 		const FText Area = Pretty(UWorld::RemovePIEPrefix(World->GetMapName()), {TEXT("LV_"), TEXT("L_")});
-		AreaTitle->SetText(Area.IsEmpty() ? FText::FromString(TEXT("Whimsical Glade")) : Area);
-		AreaName->SetText(FText::FromString(Area.IsEmpty() ? TEXT("WHIMSICAL GLADE") : Area.ToString().ToUpper()));
+		if (AreaTitle)
+		{
+			AreaTitle->SetText(Area.IsEmpty() ? FText::FromString(TEXT("Whimsical Glade")) : Area);
+		}
+		if (AreaName)
+		{
+			AreaName->SetText(FText::FromString(Area.IsEmpty() ? TEXT("WHIMSICAL GLADE") : Area.ToString().ToUpper()));
+		}
 	}
-	TitleBlock->SetVisibility(ESlateVisibility::HitTestInvisible);
-	TitleBlock->SetRenderOpacity(0.95f);
+	if (TitleBlock)
+	{
+		TitleBlock->SetVisibility(ESlateVisibility::HitTestInvisible);
+		TitleBlock->SetRenderOpacity(0.95f);
+	}
 	CaptionRemaining = AreaCaptionSeconds;
 	RefreshAccumulator = 0.0f;
 
@@ -107,7 +116,7 @@ void UMelodiaOverworldHUDWidget::NativeConstruct()
 	}
 	if (VitalsText)
 	{
-		VitalsText->SetText(FText::FromString(TEXT("VITALITY 100 / 100   ·   RESONANCE 100 / 100")));
+		VitalsText->SetText(FText::FromString(TEXT("VITALITY 100 / 100   \u00B7   RESONANCE 100 / 100")));
 	}
 	if (PlayerLevel)
 	{
@@ -183,18 +192,17 @@ void UMelodiaOverworldHUDWidget::NativeDestruct()
 
 	if (ActiveOrreryWidget)
 	{
+		if (UMelodiaCosmicOrreryWidget* Orrery = Cast<UMelodiaCosmicOrreryWidget>(ActiveOrreryWidget))
+		{
+			Orrery->OnOrreryClosed.RemoveDynamic(this, &UMelodiaOverworldHUDWidget::HandleOrreryClosed);
+		}
+		// The Orrery owns its single Menu context (UMelodiaInputContextSubsystem push in its
+		// NativeConstruct, pop in its CloseOrrery/NativeDestruct); removing it pops exactly once.
 		if (ActiveOrreryWidget->IsInViewport())
 		{
 			ActiveOrreryWidget->RemoveFromParent();
 		}
-		if (OrreryContextHandle.IsValid())
-		{
-			if (UMelodiaInputContextSubsystem* InputSubsystem = UMelodiaInputContextSubsystem::Get(this))
-			{
-				InputSubsystem->PopContext(OrreryContextHandle);
-			}
-			OrreryContextHandle = FMelodiaInputContextHandle();
-		}
+		OrreryContextHandle = FMelodiaInputContextHandle();
 		ActiveOrreryWidget = nullptr;
 	}
 
@@ -256,16 +264,15 @@ void UMelodiaOverworldHUDWidget::OpenOrreryWithArchetype(int32 ArchetypeIndex)
 		ActiveOrreryWidget = CreateWidget<UUserWidget>(PC, WidgetClass);
 		if (ActiveOrreryWidget)
 		{
+			// Single Menu-context owner: the Orrery pushes EMelodiaInputContext::Menu through
+			// UMelodiaInputContextSubsystem in its NativeConstruct (run by AddToViewport) and pops it on
+			// close/destruct. A second push here, handed over via SetContextHandle, overwrote the
+			// Orrery's own handle and leaked that push (exploration input never fully restored).
 			ActiveOrreryWidget->AddToViewport(70);
-			if (UMelodiaInputContextSubsystem* InputSubsystem = UMelodiaInputContextSubsystem::Get(this))
+			if (UMelodiaCosmicOrreryWidget* Orrery = Cast<UMelodiaCosmicOrreryWidget>(ActiveOrreryWidget))
 			{
-				OrreryContextHandle = InputSubsystem->PushContext(EMelodiaInputContext::Menu, this);
-				if (UMelodiaCosmicOrreryWidget* Orrery = Cast<UMelodiaCosmicOrreryWidget>(ActiveOrreryWidget))
-				{
-					Orrery->SetContextHandle(OrreryContextHandle);
-					Orrery->SetFocusedArchetypeIndex(ArchetypeIndex);
-					Orrery->OnOrreryClosed.AddDynamic(this, &UMelodiaOverworldHUDWidget::HandleOrreryClosed);
-				}
+				Orrery->SetFocusedArchetypeIndex(ArchetypeIndex);
+				Orrery->OnOrreryClosed.AddUniqueDynamic(this, &UMelodiaOverworldHUDWidget::HandleOrreryClosed);
 			}
 		}
 	}
@@ -468,7 +475,10 @@ void UMelodiaOverworldHUDWidget::NativeTick(const FGeometry& MyGeometry, float I
 		CaptionRemaining -= InDeltaTime;
 		// Keep the storybook chapter ribbon subtly visible at 0.85f opacity after intro
 		const float RibbonOpacity = FMath::Clamp(CaptionRemaining / 1.0f, 0.85f, 0.95f);
-		TitleBlock->SetRenderOpacity(RibbonOpacity);
+		if (TitleBlock)
+		{
+			TitleBlock->SetRenderOpacity(RibbonOpacity);
+		}
 	}
 
 	RefreshAccumulator -= InDeltaTime;
@@ -527,7 +537,7 @@ void UMelodiaOverworldHUDWidget::RefreshVitals()
 			}
 			if (VitalsText)
 			{
-				VitalsText->SetText(FText::FromString(FString::Printf(TEXT("VITALITY %d / %d   ·   RESONANCE %d / %d"), HP, MaxHP, MP, MaxMP)));
+				VitalsText->SetText(FText::FromString(FString::Printf(TEXT("VITALITY %d / %d   \u00B7   RESONANCE %d / %d"), HP, MaxHP, MP, MaxMP)));
 			}
 			if (PlayerLevel)
 			{
@@ -556,7 +566,7 @@ void UMelodiaOverworldHUDWidget::RefreshVitals()
 		}
 		if (VitalsText && VitalsText->GetText().IsEmpty())
 		{
-			VitalsText->SetText(FText::FromString(TEXT("VITALITY 100 / 100   ·   RESONANCE 100 / 100")));
+			VitalsText->SetText(FText::FromString(TEXT("VITALITY 100 / 100   \u00B7   RESONANCE 100 / 100")));
 		}
 		if (PlayerLevel)
 		{
@@ -593,10 +603,23 @@ void UMelodiaOverworldHUDWidget::RefreshQuest()
 	if (!Shown)
 	{
 		// Exploration default matching Canon Storybook Overworld specification
-		QuestCard->SetVisibility(ESlateVisibility::HitTestInvisible);
-		QuestHeader->SetText(FText::FromString(TEXT("\u25C6 QUEST")));
-		QuestTitle->SetText(FText::FromString(TEXT("A Song Left Unfinished")));
-		QuestBody->SetText(FText::FromString(TEXT("\u2713 Find the Melodic Tuning Fork\n\u25C7 Awaken the Silent Bell (0/3)\n\u25C7 Speak with Sir Melodious")));
+		// (BindWidget pointers are null-guarded: an unbound QuestCard crashed PIE in RefreshQuest.)
+		if (QuestCard)
+		{
+			QuestCard->SetVisibility(ESlateVisibility::HitTestInvisible);
+		}
+		if (QuestHeader)
+		{
+			QuestHeader->SetText(FText::FromString(TEXT("\u25C6 QUEST")));
+		}
+		if (QuestTitle)
+		{
+			QuestTitle->SetText(FText::FromString(TEXT("A Song Left Unfinished")));
+		}
+		if (QuestBody)
+		{
+			QuestBody->SetText(FText::FromString(TEXT("\u2713 Find the Melodic Tuning Fork\n\u25C7 Awaken the Silent Bell (0/3)\n\u25C7 Speak with Sir Melodious")));
+		}
 		if (QuestProgress)
 		{
 			QuestProgress->SetVisibility(ESlateVisibility::HitTestInvisible);
@@ -604,10 +627,22 @@ void UMelodiaOverworldHUDWidget::RefreshQuest()
 		}
 		return;
 	}
-	QuestCard->SetVisibility(ESlateVisibility::HitTestInvisible);
-	QuestHeader->SetText(FText::FromString(bActive ? TEXT("\u25C6 ACTIVE QUEST") : TEXT("\u25C6 NEW QUEST")));
-	QuestTitle->SetText(Shown->DisplayName);
-	QuestBody->SetText(Shown->Objective);
+	if (QuestCard)
+	{
+		QuestCard->SetVisibility(ESlateVisibility::HitTestInvisible);
+	}
+	if (QuestHeader)
+	{
+		QuestHeader->SetText(FText::FromString(bActive ? TEXT("\u25C6 ACTIVE QUEST") : TEXT("\u25C6 NEW QUEST")));
+	}
+	if (QuestTitle)
+	{
+		QuestTitle->SetText(Shown->DisplayName);
+	}
+	if (QuestBody)
+	{
+		QuestBody->SetText(Shown->Objective);
+	}
 	if (QuestProgress)
 	{
 		QuestProgress->SetVisibility(ESlateVisibility::HitTestInvisible);
