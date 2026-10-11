@@ -57,21 +57,17 @@ the real token over a near-match. Fonts should use the token type scale, not the
 
 ### The font composite trap — read before touching any font
 
-`F_Melodia_UI` is a **UFont composite**, not a FontFace. Slate **cannot render a FontFace** handed to
-`FontObject` (recorded in `Saved/Audit/_rebind_f_melodia_ui.py`). The working shape:
-import `.ttf` → FontFace asset → add it to `F_Melodia_UI.CompositeFont.DefaultTypeface.Fonts` under a
-**named slot** → widgets request the typeface *by name*.
+`F_Melodia_UI`, `Font_KaiseiDecol`, and `Font_KleeOne` are **UFont composites**, not FontFace assets.
+Slate **cannot render a FontFace** handed to `FontObject` (recorded in `Saved/Audit/_rebind_f_melodia_ui.py`).
+The working shape:
+import `.ttf` → FontFace asset → add it to the composite's `DefaultTypeface.Fonts` under **named slots**
+→ widgets request the typeface *by name* (`TypefaceFontName`).
 
-**A typeface name absent from the composite silently falls back to engine Roboto.** That is why a
-widget can read a plausible font in the graph and still render as default text: `Bold` / `Default` /
-`Regular` resolve to whatever slot the composite carries, or to Roboto. When the audit shows a mass of
-`Bold`/`Default`/`Regular` uses, suspect a missing or misnamed slot before assuming 227 hand-authored
-choices.
-
-Font sources live in `Imports/UI/Fonts/` (gitignored) and import to
-`Content/Melodia/UI/Fonts/F_<Family>.uasset`. Existing families: Syne, InstrumentSerif, TwinkleStar,
-NotoMusic, Inter. The D2 ramp (owner 2026-09-26) is **Kaisei Decol + Klee One**; sources staged and
-importer at `Content/Python/import_d2_fonts.py` (2026-10-03, not yet run).
+**The Invisible Font Invariants:**
+1. **Weight Aliases Are Mandatory**: Widgets throughout `WBP_Melodia_OverworldHUD` and `WBP_Melodia_CosmicOrrery` request `"Bold"` on `Font_KleeOne`. Because Klee One only has Regular and SemiBold source files, the composite MUST explicitly alias `Bold` -> `F_KleeOne_SemiBold` alongside `Regular`, `Medium`, and `SemiBold`. A missing slot name causes Slate to draw zero glyphs.
+2. **FallbackTypeface Is Mandatory**: Every UFont composite MUST define `FallbackTypeface=(Typeface=(Fonts=((Name="Regular",Font=(FontFaceAsset="/Script/Engine.FontFace'/Engine/EngineFonts/Faces/DroidSansFallback.DroidSansFallback'")),(Name="Roboto",Font=(FontFaceAsset="/Script/Engine.FontFace'/Engine/EngineFonts/Faces/RobotoRegular.RobotoRegular'")))),ScalingFactor=1.000000)`. Without this, unicode glyphs (`·`, `◆`, `✓`, `◇`, `…`) and Japanese characters drop out entirely.
+3. **Always Check Alpha**: Verify `ColorAndOpacity.SpecifiedColor.A > 0.0`. `AreaName` defaulted to `(0, 0, 0, 0)` in HUD templates, causing complete invisibility even with valid fonts.
+4. **Maintenance Script**: Run `Content/Python/repair_d2_font_stubs.py` inside Unreal Editor via `editor_query.run_python` to repair all composites in one pass.
 
 When splicing `export_text()` to add composite slots, **check paren balance offline first** — the
 Fonts array nests two levels deep and an off-by-one paren produces a broken composite that still

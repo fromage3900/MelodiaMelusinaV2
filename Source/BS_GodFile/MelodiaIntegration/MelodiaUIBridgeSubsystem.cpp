@@ -238,6 +238,93 @@ void UMelodiaUIBridgeSubsystem::Deinitialize()
 	Super::Deinitialize();
 }
 
+// ---------------------------------------------------------------------------------------------
+// World combat UI suppression while a full-screen menu (the Cosmic Orrery, z 70) is open: the Bow
+// HUD (z 90) and Rhythm HUD (z 85) sit above it. All state is file-scope (keyed by weak pointers)
+// rather than new class members, so this is a Live-Coding-safe, header-free change.
+// ---------------------------------------------------------------------------------------------
+namespace
+{
+	TSet<TWeakObjectPtr<const UMelodiaUIBridgeSubsystem>> GMelodiaCombatUISuppressedBridges;
+	bool GMelodiaCombatUISuppressedNoBridge = false;
+	/** Widgets this suppression collapsed, with the visibility to restore. */
+	TMap<TWeakObjectPtr<UUserWidget>, ESlateVisibility> GMelodiaCollapsedCombatWidgets;
+
+	bool MelodiaIsWorldCombatUISuppressed(const UMelodiaUIBridgeSubsystem* Bridge)
+	{
+		return Bridge && GMelodiaCombatUISuppressedBridges.Contains(TWeakObjectPtr<const UMelodiaUIBridgeSubsystem>(Bridge));
+	}
+
+	void MelodiaCollapseWorldCombatWidget(UUserWidget* Widget)
+	{
+		if (!Widget)
+		{
+			return;
+		}
+		const TWeakObjectPtr<UUserWidget> Key(Widget);
+		if (!GMelodiaCollapsedCombatWidgets.Contains(Key))
+		{
+			const ESlateVisibility Prior = Widget->GetVisibility();
+			// HitTestInvisible is the only visibility the bridge ever gives these widgets.
+			GMelodiaCollapsedCombatWidgets.Add(Key, Prior == ESlateVisibility::Collapsed ? ESlateVisibility::HitTestInvisible : Prior);
+		}
+		if (Widget->GetVisibility() != ESlateVisibility::Collapsed)
+		{
+			Widget->SetVisibility(ESlateVisibility::Collapsed);
+		}
+	}
+}
+
+// External linkage on purpose: declared (not in any header) by MelodiaCosmicOrreryWidget.cpp.
+void MelodiaSetWorldCombatUISuppressed(const UObject* WorldContextObject, const bool bSuppressed)
+{
+	if (UMelodiaUIBridgeSubsystem* Bridge = UMelodiaUIBridgeSubsystem::Get(WorldContextObject))
+	{
+		const TWeakObjectPtr<const UMelodiaUIBridgeSubsystem> Key(Bridge);
+		if (bSuppressed)
+		{
+			if (GMelodiaCombatUISuppressedBridges.Contains(Key)) return;
+			GMelodiaCombatUISuppressedBridges.Add(Key);
+		}
+		else if (GMelodiaCombatUISuppressedBridges.Remove(Key) == 0)
+		{
+			return;
+		}
+	}
+	else
+	{
+		if (GMelodiaCombatUISuppressedNoBridge == bSuppressed) return;
+		GMelodiaCombatUISuppressedNoBridge = bSuppressed;
+	}
+	UE_LOG(LogTemp, Log, TEXT("MELODIA_WORLDCOMBATUI %s"), bSuppressed ? TEXT("suppressed") : TEXT("restored"));
+
+	if (bSuppressed)
+	{
+		// The bridge's WorldCombatHUD / WorldRhythmHUD are top-level viewport widgets of these classes.
+		TArray<UUserWidget*> Found;
+		UWidgetBlueprintLibrary::GetAllWidgetsOfClass(WorldContextObject, Found, UMelodiaWaveHarpHUDWidget::StaticClass(), true);
+		TArray<UUserWidget*> FoundRhythm;
+		UWidgetBlueprintLibrary::GetAllWidgetsOfClass(WorldContextObject, FoundRhythm, UMelodiaRhythmHUDWidget::StaticClass(), true);
+		Found.Append(FoundRhythm);
+		for (UUserWidget* Widget : Found)
+		{
+			MelodiaCollapseWorldCombatWidget(Widget);
+		}
+	}
+	else
+	{
+		for (const TPair<TWeakObjectPtr<UUserWidget>, ESlateVisibility>& Entry : GMelodiaCollapsedCombatWidgets)
+		{
+			UUserWidget* Widget = Entry.Key.Get();
+			if (Widget && Widget->GetVisibility() == ESlateVisibility::Collapsed)
+			{
+				Widget->SetVisibility(Entry.Value);
+			}
+		}
+		GMelodiaCollapsedCombatWidgets.Reset();
+	}
+}
+
 void UMelodiaUIBridgeSubsystem::EnsureWorldCombatUI(APlayerController* Player, bool bSequence)
 {
 	if (!Player || !Player->IsLocalController()) return;
@@ -266,6 +353,12 @@ void UMelodiaUIBridgeSubsystem::EnsureWorldCombatUI(APlayerController* Player, b
 	{
 		if (auto* Rhythm = UMelodiaRhythmCombatSubsystem::Get(this)) Rhythm->BindRhythmHUD(nullptr);
 		WorldRhythmHUD->RemoveFromParent(); WorldRhythmHUD = nullptr;
+	}
+	// While a full-screen menu suppresses world combat UI, keep newly (re)created HUDs collapsed too.
+	if (MelodiaIsWorldCombatUISuppressed(this))
+	{
+		MelodiaCollapseWorldCombatWidget(WorldCombatHUD);
+		MelodiaCollapseWorldCombatWidget(WorldRhythmHUD);
 	}
 	// One reticle at a time: while the bow reticle owns centre (or SEQUENCE yields it to the
 	// highway) the stock OverworldHUD Reticle is collapsed; otherwise its prior visibility returns.

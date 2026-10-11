@@ -276,3 +276,21 @@ without current evidence of a blocker.
    - Motion recordings must be verified via `ffmpeg -vf freezedetect` to ensure real frame repainting (0 freeze duration).
    - QA evaluations must be documented via `Tools/gemini_video_qa.py` / `Tools/video_review_lane.py` with structured audit outputs saved to `Saved/Audit/VideoQA/`.
 
+## 🔤 Slate & UMG Font Composite Binding Law (Binding Rules)
+
+1. **UFont Composite vs UFontFace Distinction**:
+   - `FSlateFontInfo.FontObject` resolves a **UFont composite asset** (e.g., `/Game/Melodia/UI/Fonts/F_Melodia_UI`, `Font_KaiseiDecol`, `Font_KleeOne`), **NEVER a raw UFontFace**.
+   - Slate cannot render a raw FontFace passed to FontObject.
+
+2. **Explicit Slot Name Resolution & Weight Aliases**:
+   - Widgets request typeface by slot name via `TypefaceFontName` (e.g. `Bold`, `Regular`, `SemiBold`).
+   - Every composite font's `DefaultTypeface.Fonts` MUST register explicit aliases for all common weights (`Regular`, `Medium`, `SemiBold`, `Bold`) pointing to valid `FontFace` assets.
+   - **Crucial Invisibility Trap**: `Font_KleeOne` only has Regular and SemiBold source files. Its composite MUST explicitly alias `Bold` -> `F_KleeOne_SemiBold`. TextBlocks specifying `TypefaceFontName="Bold"` on a font lacking that slot fail to match and render 100% invisible when FallbackTypeface is empty.
+
+3. **Mandatory FallbackTypeface**:
+   - Every UFont composite MUST declare a non-empty `FallbackTypeface` pointing to `/Engine/EngineFonts/Faces/DroidSansFallback` and `/Engine/EngineFonts/Faces/RobotoRegular`.
+   - Without a fallback typeface (`FallbackTypeface=(Typeface=())`), any character outside the TTF glyph set (such as middle dots `·`, bullets `◆`, checkmarks `✓`, `◇`, or Japanese Kanji) fails to draw.
+
+4. **Zero-Alpha Text Inspection**:
+   - When text blocks are reported invisible, always verify `ColorAndOpacity.SpecifiedColor.A > 0.0`. Do not allow uninitialized or black zero-alpha `(0, 0, 0, 0)` colors to hide text.
+
