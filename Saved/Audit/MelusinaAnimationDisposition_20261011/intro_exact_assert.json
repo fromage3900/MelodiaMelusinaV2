@@ -1,0 +1,25 @@
+{
+  "delta": [
+    [
+      "introAnimationMontage",
+      "/Game/TurnBasedJRPGTemplate/Animations/AM_Intro.AM_Intro",
+      "/Game/Melodia/Characters/Melusina/Animations/AM_Intro.AM_Intro"
+    ]
+  ],
+  "graph_unchanged": true,
+  "montage_contract_unchanged": true,
+  "fingerprint": {
+    "asset_path": "/Game/Experiments/MelodiaJRPG/BP_MelusinaSwordsman_Presentation",
+    "graph_name": "EventGraph",
+    "mode": "topology",
+    "node_count": 64,
+    "connection_count": 101,
+    "fingerprint": "9d297969b5aca45305bf5ffcaa1c7f0f2a8bed0d",
+    "node_class_histogram": {
+      "K2Node_CallFunction": 43,
+      "K2Node_Event": 2,
+      "K2Node_VariableGet": 18,
+      "K2Node_VariableSet": 1
+    }
+  }
+}

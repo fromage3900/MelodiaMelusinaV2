@@ -1,0 +1,25 @@
+{
+  "asset_path": "/Game/Melodia/Characters/Melusina/Animations/AM_Idle",
+  "skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton.SK_Melusina_Skeleton",
+  "duration": 5.366666793823242,
+  "rate_scale": 1,
+  "blend_in_time": 0.25,
+  "blend_out_time": 0.25,
+  "blend_out_trigger_time": -1,
+  "enable_auto_blend_out": true,
+  "sections": [
+    {
+      "index": 0,
+      "name": "Default",
+      "time": 0,
+      "next_section": "Default"
+    }
+  ],
+  "slots": [
+    {
+      "index": 0,
+      "slot_name": "DefaultSlot"
+    }
+  ],
+  "notify_count": 0
+}

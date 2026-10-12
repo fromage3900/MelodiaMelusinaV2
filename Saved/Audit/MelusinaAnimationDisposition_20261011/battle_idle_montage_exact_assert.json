@@ -1,0 +1,11 @@
+{
+  "delta": [
+    [
+      "IdleAnimationMontage",
+      "/Game/TurnBasedJRPGTemplate/Animations/AM_Idle.AM_Idle",
+      "/Game/Melodia/Characters/Melusina/Animations/AM_Idle.AM_Idle"
+    ]
+  ],
+  "topology_unchanged": true,
+  "compile_clean": true
+}

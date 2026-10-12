@@ -1,0 +1,12 @@
+{
+  "ok": true,
+  "success": true,
+  "mode": "execute_file",
+  "result": "None",
+  "output": [
+    {
+      "type": "info",
+      "output": "{\"package\": \"/Game/Melodia/Characters/Melusina/Animations/AM_Intro\", \"dependencies\": [\"/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton\", \"/Game/Melodia/Characters/Melusina/SK_Melusina\", \"/Game/Melodia/Characters/Melusina/Animations/ShinbiDoctor_20261007/A_Shin_Idle_stand\"]}"
+    }
+  ]
+}

@@ -1,0 +1,85 @@
+{
+  "asset_path": "/Game/Experiments/MelodiaJRPG/BP_MelusinaSwordsman_Presentation",
+  "native_class": "Actor",
+  "parent_class": "BP_PlayerUnitBase_C",
+  "properties": [
+    {
+      "name": "introAnimationMontage",
+      "type": "UAnimMontage*",
+      "category": "Animations",
+      "owner_class": "BP_UnitBase_C",
+      "value": "/Game/Melodia/Characters/Melusina/Animations/AM_Intro.AM_Intro"
+    },
+    {
+      "name": "IdleAnimationMontage",
+      "type": "UAnimMontage*",
+      "category": "Animations",
+      "owner_class": "BP_UnitBase_C",
+      "value": "/Game/Melodia/Characters/Melusina/Animations/AM_Idle.AM_Idle"
+    },
+    {
+      "name": "idleAnimation",
+      "type": "UAnimSequenceBase*",
+      "category": "Animations",
+      "owner_class": "BP_UnitBase_C",
+      "value": "/Game/Melodia/Characters/Melusina/Animations/ShinbiDoctor_20261007/A_Shin_Idle_stand.A_Shin_Idle_stand"
+    },
+    {
+      "name": "dieAnimation",
+      "type": "UAnimSequenceBase*",
+      "category": "Animations",
+      "owner_class": "BP_UnitBase_C",
+      "value": "/Game/TurnBasedJRPGTemplate/Animations/A_Die.A_Die"
+    },
+    {
+      "name": "dashForwardAnimation",
+      "type": "UAnimMontage*",
+      "category": "Animations",
+      "owner_class": "BP_UnitBase_C",
+      "value": "/Game/TurnBasedJRPGTemplate/Animations/AM_Dash.AM_Dash"
+    },
+    {
+      "name": "dashBackwardAnimation",
+      "type": "UAnimMontage*",
+      "category": "Animations",
+      "owner_class": "BP_UnitBase_C",
+      "value": "/Game/TurnBasedJRPGTemplate/Animations/AM_Dash.AM_Dash"
+    },
+    {
+      "name": "attackAnimationMontage",
+      "type": "UAnimMontage*",
+      "category": "Animations",
+      "owner_class": "BP_UnitBase_C",
+      "value": "/Game/Melodia/Characters/Melusina/Animations/Polish_20260919/AM_Melusina_BowAttack_Bound.AM_Melusina_BowAttack_Bound"
+    },
+    {
+      "name": "getHitAnimationMontage",
+      "type": "UAnimMontage*",
+      "category": "Animations",
+      "owner_class": "BP_UnitBase_C",
+      "value": "/Game/TurnBasedJRPGTemplate/Animations/AM_GetHit.AM_GetHit"
+    },
+    {
+      "name": "itemUseAnimationMontage",
+      "type": "UAnimMontage*",
+      "category": "Animations",
+      "owner_class": "BP_UnitBase_C",
+      "value": "/Game/TurnBasedJRPGTemplate/Animations/AM_ItemUse.AM_ItemUse"
+    },
+    {
+      "name": "stunAnimationMontage",
+      "type": "UAnimMontage*",
+      "category": "Animations",
+      "owner_class": "BP_UnitBase_C",
+      "value": "/Game/TurnBasedJRPGTemplate/Animations/AM_Stun.AM_Stun"
+    },
+    {
+      "name": "victoryAnimationMontage",
+      "type": "UAnimMontage*",
+      "category": "Animations",
+      "owner_class": "BP_UnitBase_C",
+      "value": "None"
+    }
+  ],
+  "property_count": 11
+}
