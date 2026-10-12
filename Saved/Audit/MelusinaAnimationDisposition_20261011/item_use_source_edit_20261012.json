@@ -1,0 +1,12 @@
+{
+  "ok": true,
+  "success": true,
+  "mode": "execute_file",
+  "result": "None",
+  "output": [
+    {
+      "type": "info",
+      "output": "{\"before\": \"(CachedPlayLength=2.633333,AnimReference=\\\"/Script/Engine.AnimSequence'/Game/Melodia/Characters/Melusina/Animations/A_ThirdPersonIdle.A_ThirdPersonIdle'\\\",StartPos=0.000000,AnimStartTime=0.000000,AnimEndTime=2.633333,AnimPlayRate=1.000000,LoopingCount=1)\", \"after\": \"(SlotName=\\\"DefaultSlot\\\",AnimTrack=(AnimSegments=((CachedPlayLength=2.633333,AnimReference=\\\"/Script/Engine.AnimSequence'/Game/Melodia/Characters/Melusina/Animations/ShinbiDoctor_20261007/A_Shin_Idle_stand.A_Shin_Idle_stand'\\\",AnimEndTime=2.633333))))\", \"duration\": 2.633333444595337}\r\n"
+    }
+  ]
+}
