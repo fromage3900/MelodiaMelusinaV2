@@ -208,6 +208,7 @@ private:
 	void StopGlide();
 	void StartDash();
 	void FinishDash();
+	void RestoreDashMovementTuning();
 	void StartSwim();
 	void StopSwim();
 	void StartDive();
@@ -240,6 +241,10 @@ private:
 	bool bSprintInputHeld = false;
 	bool bIsSprinting = false;
 	bool bIsDashing = false;
+	bool bDashMovementTuningCaptured = false;
+	float SavedDashGroundFriction = 0.0f;
+	float SavedDashBrakingFrictionFactor = 0.0f;
+	float SavedDashBrakingDecelerationWalking = 0.0f;
 	bool bBubbleInputHeld = false;
 	bool bIsBubbleSprinting = false;
 	bool bMovementDefaultsCaptured = false;

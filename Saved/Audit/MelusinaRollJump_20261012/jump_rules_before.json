@@ -1,0 +1,58 @@
+[
+  {
+    "asset_path": "/Game/Melodia/Characters/Melusina/ABP_Melusina_Current",
+    "machine_name": "MelusinaLocomotion",
+    "from_state": "Idle",
+    "to_state": "JumpStart",
+    "rule_kind": "bool",
+    "variable_name": "bRuntimeIsRising"
+  },
+  {
+    "asset_path": "/Game/Melodia/Characters/Melusina/ABP_Melusina_Current",
+    "machine_name": "MelusinaLocomotion",
+    "from_state": "Locomotion",
+    "to_state": "JumpStart",
+    "rule_kind": "bool",
+    "variable_name": "bRuntimeIsRising"
+  },
+  {
+    "asset_path": "/Game/Melodia/Characters/Melusina/ABP_Melusina_Current",
+    "machine_name": "MelusinaLocomotion",
+    "from_state": "JumpStart",
+    "to_state": "Airborne",
+    "rule_kind": "bool",
+    "variable_name": "bRuntimeIsDescending"
+  },
+  {
+    "asset_path": "/Game/Melodia/Characters/Melusina/ABP_Melusina_Current",
+    "machine_name": "MelusinaLocomotion",
+    "from_state": "Idle",
+    "to_state": "Airborne",
+    "rule_kind": "bool",
+    "variable_name": "bRuntimeIsDescending"
+  },
+  {
+    "asset_path": "/Game/Melodia/Characters/Melusina/ABP_Melusina_Current",
+    "machine_name": "MelusinaLocomotion",
+    "from_state": "Locomotion",
+    "to_state": "Airborne",
+    "rule_kind": "bool",
+    "variable_name": "bRuntimeIsDescending"
+  },
+  {
+    "asset_path": "/Game/Melodia/Characters/Melusina/ABP_Melusina_Current",
+    "machine_name": "MelusinaLocomotion",
+    "from_state": "Land",
+    "to_state": "JumpStart",
+    "rule_kind": "bool",
+    "variable_name": "bRuntimeIsRising"
+  },
+  {
+    "asset_path": "/Game/Melodia/Characters/Melusina/ABP_Melusina_Current",
+    "machine_name": "MelusinaLocomotion",
+    "from_state": "Land",
+    "to_state": "Airborne",
+    "rule_kind": "bool",
+    "variable_name": "bRuntimeIsDescending"
+  }
+]

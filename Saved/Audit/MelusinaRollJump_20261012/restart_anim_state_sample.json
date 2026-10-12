@@ -1,0 +1,23 @@
+{
+  "actor": "BP_MelusinaJRPGCharacter1",
+  "component": "CharacterMesh0",
+  "animation_mode": "AnimationBlueprint",
+  "mesh_anim_class": "/Game/Melodia/Characters/Melusina/ABP_Melusina_Current.ABP_Melusina_Current_C",
+  "skeletal_mesh": "/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Body.SK_Melusina_V2_Body",
+  "anim_instance_class": "/Game/Melodia/Characters/Melusina/ABP_Melusina_Current.ABP_Melusina_Current_C",
+  "state_machines": [
+    {
+      "machine_name": "MelusinaLocomotion",
+      "machine_index": 20,
+      "active_state": "Idle",
+      "machine_weight": 1
+    }
+  ],
+  "active_montage": null,
+  "variables": {
+    "RuntimeVerticalSpeed": 0,
+    "bRuntimeIsRising": false,
+    "bRuntimeIsDescending": false
+  },
+  "asset_player_weight_note": "Per-asset-player blend weights have no direct public getter; state-machine weights are reported under state_machines[].machine_weight. Full node-graph weight walk deferred."
+}

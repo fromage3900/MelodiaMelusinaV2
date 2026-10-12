@@ -678,6 +678,21 @@ void UMelodiaTraversalComponent::HandleStrafePressed()
 		Direction.Z = 0.0f;
 	}
 
+	// Walking braking can consume the entire impulse in a slow frame. Keep its
+	// tuning suspended only for the existing dash window, then restore exactly.
+	if (!bDashMovementTuningCaptured)
+	{
+		SavedDashGroundFriction = Movement->GroundFriction;
+		SavedDashBrakingFrictionFactor = Movement->BrakingFrictionFactor;
+		SavedDashBrakingDecelerationWalking = Movement->BrakingDecelerationWalking;
+		bDashMovementTuningCaptured = true;
+	}
+	Movement->GroundFriction = 0.0f;
+	Movement->BrakingFrictionFactor = 0.0f;
+	Movement->BrakingDecelerationWalking = 0.0f;
+	bIsDashing = true;
+	ApplyCurrentMovementSpeed();
+
 	// Apply the impulse. In air we don't stack vertical velocity so a glide-flavored
 	// dash reads as a burst of horizontal speed, not a teleport upward.
 	FVector NewVelocity = Movement->Velocity;
@@ -686,7 +701,6 @@ void UMelodiaTraversalComponent::HandleStrafePressed()
 	NewVelocity.Y = DashDir.Y;
 	Movement->Velocity = NewVelocity;
 
-	bIsDashing = true;
 	DashCooldownUntilTime = Now + DashCooldownSeconds;
 
 	// Presentation: roll on the canonical skeleton. DefaultSlot sits between the
@@ -804,10 +818,23 @@ void UMelodiaTraversalComponent::HandleDivePressed()
 void UMelodiaTraversalComponent::FinishDash()
 {
 	bIsDashing = false;
+	RestoreDashMovementTuning();
+	ApplyCurrentMovementSpeed();
+}
 
-	// Dash closed the window; velocity on X/Y already settled by friction.
-	// No restore needed because we never touched gravity or walk speed —
-	// only the instantaneous velocity impulse.
+void UMelodiaTraversalComponent::RestoreDashMovementTuning()
+{
+	if (!bDashMovementTuningCaptured)
+	{
+		return;
+	}
+	if (Movement.IsValid())
+	{
+		Movement->GroundFriction = SavedDashGroundFriction;
+		Movement->BrakingFrictionFactor = SavedDashBrakingFrictionFactor;
+		Movement->BrakingDecelerationWalking = SavedDashBrakingDecelerationWalking;
+	}
+	bDashMovementTuningCaptured = false;
 }
 
 void UMelodiaTraversalComponent::HandleBubblePressed()
@@ -876,7 +903,8 @@ void UMelodiaTraversalComponent::ApplyCurrentMovementSpeed()
 	{
 		return;
 	}
-	Movement->MaxWalkSpeed = bIsBubbleSprinting ? BubbleSprintSpeed : (bIsSprinting ? SprintSpeed : NormalWalkSpeed);
+	const float WalkSpeed = bIsBubbleSprinting ? BubbleSprintSpeed : (bIsSprinting ? SprintSpeed : NormalWalkSpeed);
+	Movement->MaxWalkSpeed = bIsDashing ? FMath::Max(WalkSpeed, DashImpulse) : WalkSpeed;
 }
 
 void UMelodiaTraversalComponent::CancelTraversalState()
@@ -894,6 +922,8 @@ void UMelodiaTraversalComponent::CancelTraversalState()
 	bJumpInputOwnsGlide = false;
 	bJumpBuffered = false;
 	bIsDashing = false;
+	RestoreDashMovementTuning();
+	ApplyCurrentMovementSpeed();
 	DashPersistTimer.Invalidate();
 	if (OwnerCharacter.IsValid())
 	{
@@ -1323,6 +1353,7 @@ void UMelodiaTraversalComponent::SetWingPresentation(bool bVisible)
 
 void UMelodiaTraversalComponent::RestoreMovementDefaults()
 {
+	RestoreDashMovementTuning();
 	if (!bMovementDefaultsCaptured || !Movement.IsValid() || !OwnerCharacter.IsValid())
 	{
 		return;

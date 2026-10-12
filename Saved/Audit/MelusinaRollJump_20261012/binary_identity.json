@@ -1,0 +1,7 @@
+{
+  "dll": "Binaries/Win64/UnrealEditor-BS_GodFile.dll",
+  "sha256": "15c1b1e3d9ad8b044807c5a0d38c622176a2cc2196938810122a00b648793aba",
+  "build_exit": 0,
+  "module_only": "BS_GodFile",
+  "restart_pid": 34444
+}
