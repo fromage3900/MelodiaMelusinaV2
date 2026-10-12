@@ -6,6 +6,7 @@
 #include "Materials/MaterialParameterCollection.h"
 #include "NiagaraParameterCollection.h"
 #include "NiagaraFunctionLibrary.h"
+#include "NiagaraComponent.h"
 #include "MelodiaBattleSession.h"
 #include "MelodiaCymaticsWriterSubsystem.h"
 #include "MelodiaExternalJRPGBridgeSubsystem.h"
@@ -30,6 +31,16 @@ namespace
 	// Dreamprint ink lane of the shipping PPV stack. Sampled by MI_MelodiaInk_Frozen
 	// and MI_MeluColorGrade_Frozen; unwritten until 2026-09-30.
 	constexpr TCHAR InkMpcPath[] = TEXT("/Game/Melodia/_PROJECT/04_Materials/MPC_MelodiaInk.MPC_MelodiaInk");
+
+	// Audio-hit colour/burst lane tunables (owner-approved 2026-10-12).
+	constexpr float HitHueShiftDepth = 0.20f;      // InkHueShift push (accent mix on the ink dots)
+	constexpr float HitSyncVisionDepth = 0.45f;    // InkSyncVision push (frame tint toward palette primary)
+	constexpr float HitEnvelopeDecayPerSec = 2.5f; // ~0.4 s to return to the authored look
+	constexpr float HitRiseThreshold = 0.45f;
+	constexpr float HitReleaseThreshold = 0.30f;
+	constexpr int32 BurstEveryNthBeat = 4;
+	constexpr double BurstMinIntervalSec = 0.25;
+	const FName AudioBurstTag(TEXT("MelodiaAudioBurst"));
 
 	// --- Oceanology presentation drive ----------------------------------------
 	// Oceanology's water surface cannot sample MPC_Melodia_Palette: its master
@@ -201,6 +212,14 @@ void UMelodiaAudioReactivePresentationSubsystem::Initialize(FSubsystemCollection
 		UE_LOG(LogTemp, Warning,
 			TEXT("Melodia Dreamprint ink lane inactive: missing %s (palette unaffected)"), InkMpcPath);
 	}
+	if (InkParameterCollection)
+	{
+		bool bFound = false;
+		const float Hue = InkParameterCollection->GetScalarParameterDefaultValue(TEXT("InkHueShift"), bFound);
+		if (bFound) { InkHueBase = Hue; }
+		const float Sync = InkParameterCollection->GetScalarParameterDefaultValue(TEXT("InkSyncVision"), bFound);
+		if (bFound) { InkSyncBase = Sync; }
+	}
 	// Missing NPC is not fatal: materials still pulse, FX simply stay unreactive. Warn
 	// loudly though -- a silent zero here is exactly how this went unnoticed until now.
 	NiagaraAudioParameterCollection = LoadObject<UNiagaraParameterCollection>(nullptr, AudioNpcPath);
@@ -307,6 +326,10 @@ bool UMelodiaAudioReactivePresentationSubsystem::TickPresentation(float DeltaTim
 		{
 			Reactivity->NotifyBeat(LastKnownBPM, BeatPhase);
 		}
+		if ((++BeatCounter % BurstEveryNthBeat) == 0)
+		{
+			FireAudioBursts(World);
+		}
 	}
 	LastBeatPhase = bHasMusicalTime ? BeatPhase : 0.0f;
 
@@ -329,6 +352,16 @@ bool UMelodiaAudioReactivePresentationSubsystem::TickPresentation(float DeltaTim
 	const float PaletteBass = UKismetMaterialLibrary::GetScalarParameterValue(World, AudioParameterCollection, TEXT("Bass"));
 	const float PaletteMid = UKismetMaterialLibrary::GetScalarParameterValue(World, AudioParameterCollection, TEXT("Mid"));
 	const float PaletteTreble = UKismetMaterialLibrary::GetScalarParameterValue(World, AudioParameterCollection, TEXT("Treble"));
+	// Audio hit = rising edge of the strongest of this subsystem's own impact pulse and the
+	// palette Mid lane (which holds the OSC/TD analysis when that bridge is live).
+	const float HitSignal = FMath::Max(ImpactPulse, PaletteMid);
+	if (HitSignal >= HitRiseThreshold && PrevHitSignal < HitReleaseThreshold)
+	{
+		AudioHitEnvelope = 1.0f;
+		FireAudioBursts(World);
+	}
+	PrevHitSignal = HitSignal;
+	AudioHitEnvelope = FMath::Max(0.0f, AudioHitEnvelope - DeltaTime * HitEnvelopeDecayPerSec);
 	UKismetMaterialLibrary::SetScalarParameterValue(World, AudioParameterCollection, TEXT("GlobalReactivity"), bBattleActive ? BattleIntensity : 0.0f);
 	UKismetMaterialLibrary::SetScalarParameterValue(World, AudioParameterCollection, TEXT("Bass"), bBattleActive ? BattleIntensity : 0.0f);
 	UKismetMaterialLibrary::SetScalarParameterValue(World, AudioParameterCollection, TEXT("Mid"), ImpactPulse);
@@ -364,8 +397,8 @@ bool UMelodiaAudioReactivePresentationSubsystem::TickPresentation(float DeltaTim
 	// ink follows OSC audio analysis when the bridge is live and the combat/impact/beat
 	// values otherwise.
 	//
-	// Deliberately NOT written: InkHueShift, InkAccentTint, InkSyncVision (art
-	// direction, owner call) and InkMasterWeight (blend weight is owned by the PPV
+	// InkHueShift and InkSyncVision are now written as authored base + audio-hit push (owner
+	// call 2026-10-12). Still NOT written: InkAccentTint (art direction) and InkMasterWeight (blend weight is owned by the PPV
 	// actor, not by audio). Leaving them at their authored values is what keeps this
 	// a missing-writer fix rather than a look change.
 	if (InkParameterCollection)
@@ -374,6 +407,11 @@ bool UMelodiaAudioReactivePresentationSubsystem::TickPresentation(float DeltaTim
 		UKismetMaterialLibrary::SetScalarParameterValue(World, InkParameterCollection, TEXT("InkBass"), PaletteBass);
 		UKismetMaterialLibrary::SetScalarParameterValue(World, InkParameterCollection, TEXT("InkMid"), PaletteMid);
 		UKismetMaterialLibrary::SetScalarParameterValue(World, InkParameterCollection, TEXT("InkTreble"), PaletteTreble);
+		// Audio-hit colour push (owner call 2026-10-12): authored base + decaying hit envelope.
+		UKismetMaterialLibrary::SetScalarParameterValue(World, InkParameterCollection, TEXT("InkHueShift"),
+			FMath::Clamp(InkHueBase + HitHueShiftDepth * AudioHitEnvelope, 0.0f, 1.0f));
+		UKismetMaterialLibrary::SetScalarParameterValue(World, InkParameterCollection, TEXT("InkSyncVision"),
+			FMath::Clamp(InkSyncBase + HitSyncVisionDepth * AudioHitEnvelope, 0.0f, 1.0f));
 	}
 	// "BeatTracker" was published here as a third name for BeatPulseValue. It is not declared
 	// on MPC_Melodia_Palette (verified against the asset's 51 scalars, 2026-09-05), so the
@@ -435,6 +473,38 @@ bool UMelodiaAudioReactivePresentationSubsystem::TickPresentation(float DeltaTim
 		}
 	}
 	return true;
+}
+
+void UMelodiaAudioReactivePresentationSubsystem::FireAudioBursts(UWorld* World)
+{
+	// Game worlds only: the editor viewport must never be mutated by runtime presentation.
+	if (!World || !World->IsGameWorld())
+	{
+		return;
+	}
+	const double Now = World->GetTimeSeconds();
+	if (Now - LastBurstTime < BurstMinIntervalSec)
+	{
+		return;
+	}
+	LastBurstTime = Now;
+	for (TActorIterator<AActor> It(World); It; ++It)
+	{
+		AActor* Actor = *It;
+		if (!Actor || !Actor->ActorHasTag(AudioBurstTag))
+		{
+			continue;
+		}
+		TArray<UNiagaraComponent*> Systems;
+		Actor->GetComponents<UNiagaraComponent>(Systems);
+		for (UNiagaraComponent* System : Systems)
+		{
+			if (System)
+			{
+				System->ResetSystem();
+			}
+		}
+	}
 }
 
 void UMelodiaAudioReactivePresentationSubsystem::PushBattleInputContext()

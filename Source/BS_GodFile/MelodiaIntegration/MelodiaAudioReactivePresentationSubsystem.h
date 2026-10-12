@@ -96,6 +96,18 @@ private:
 	FTSTicker::FDelegateHandle TickerHandle;
 	FMelodiaInputContextHandle BattleContextHandle;
 	bool bBattleActive = false;
+
+	// --- Audio-hit colour + burst lane (owner call 2026-10-12) ------------------
+	// Authored values read from MPC_MelodiaInk at Initialize; the hit push is added on top and
+	// decays back, so a quiet scene keeps exactly the authored look.
+	float InkHueBase = 0.5f;
+	float InkSyncBase = 0.0f;
+	float AudioHitEnvelope = 0.0f;
+	float PrevHitSignal = 0.0f;
+	int32 BeatCounter = 0;
+	double LastBurstTime = -1000.0;
+	/** Resets every Niagara component on actors tagged "MelodiaAudioBurst" (game worlds only). */
+	void FireAudioBursts(UWorld* World);
 	float BattleIntensity = 0.0f;
 	float ImpactPulse = 0.0f;
 
