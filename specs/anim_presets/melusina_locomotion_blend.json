@@ -5,9 +5,9 @@
   "samples": [
     {
       "index": 3,
-      "_comment": "Fresh saved-state Morning PIE 2026-10-04 shows the existing CuteIdle V10 upright with relaxed arms and planted feet. The Idle state already uses it looping at 0.6; speed-zero now shares that pose and timing. RootX currently renders a static T-pose and is retired from runtime, despite its historical approval.",
-      "animation": "/Game/Cinematics/Shorewake/HERO01/IdleCanonicalDirect_20260909_V10/Retargeted_V10Exact/A_HERO01_A_Melusina_CuteIdle_UECanonicalDirect_V10_RetargetedExactV10",
-      "rate_scale": 0.6,
+      "_comment": "Oct11: zero-speed sample matches accepted Shinbi standing Idle state and its1x playback, avoiding a mixed CuteIdle/standing transition. Clip guard accepted assignment; locomotion samples unchanged. Live contact/visual acceptance remains required.",
+      "animation": "/Game/Melodia/Characters/Melusina/Animations/ShinbiDoctor_20261007/A_Shin_Idle_stand",
+      "rate_scale": 1.0,
       "speed": 0.0,
       "label": "Idle"
     },
@@ -38,8 +38,11 @@
       750.0
     ],
     "interpolation": {
-      "type": "linear",
-      "target_value_interpolation": "Linear"
+      "type": "spring_damper",
+      "interpolation_time": 0.2,
+      "damping_ratio": 1.0,
+      "target_weight_interpolation_speed_per_sec": 5.0,
+      "target_weight_ease_in_out": true
     }
   },
   "modifiers": {
@@ -86,6 +89,66 @@
         "field": "GetMelusinaRollMontage",
         "expected_skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton",
         "binding_kind": "static_loader"
+      },
+      {
+        "consumer": "BP_MelusinaSwordsman_Presentation.CDO",
+        "field": "introAnimationMontage",
+        "expected_skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton",
+        "binding_kind": "blueprint_cdo"
+      },
+      {
+        "consumer": "BP_MelusinaSwordsman_Presentation.CDO",
+        "field": "IdleAnimationMontage",
+        "expected_skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton",
+        "binding_kind": "blueprint_cdo"
+      },
+      {
+        "consumer": "BP_MelusinaSwordsman_Presentation.CDO",
+        "field": "idleAnimation",
+        "expected_skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton",
+        "binding_kind": "blueprint_cdo"
+      },
+      {
+        "consumer": "BP_MelusinaSwordsman_Presentation.CDO",
+        "field": "dieAnimation",
+        "expected_skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton",
+        "binding_kind": "blueprint_cdo"
+      },
+      {
+        "consumer": "BP_MelusinaSwordsman_Presentation.CDO",
+        "field": "dashForwardAnimation",
+        "expected_skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton",
+        "binding_kind": "blueprint_cdo"
+      },
+      {
+        "consumer": "BP_MelusinaSwordsman_Presentation.CDO",
+        "field": "dashBackwardAnimation",
+        "expected_skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton",
+        "binding_kind": "blueprint_cdo"
+      },
+      {
+        "consumer": "BP_MelusinaSwordsman_Presentation.CDO",
+        "field": "attackAnimationMontage",
+        "expected_skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton",
+        "binding_kind": "blueprint_cdo"
+      },
+      {
+        "consumer": "BP_MelusinaSwordsman_Presentation.CDO",
+        "field": "getHitAnimationMontage",
+        "expected_skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton",
+        "binding_kind": "blueprint_cdo"
+      },
+      {
+        "consumer": "BP_MelusinaSwordsman_Presentation.CDO",
+        "field": "itemUseAnimationMontage",
+        "expected_skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton",
+        "binding_kind": "blueprint_cdo"
+      },
+      {
+        "consumer": "BP_MelusinaSwordsman_Presentation.CDO",
+        "field": "stunAnimationMontage",
+        "expected_skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton",
+        "binding_kind": "blueprint_cdo"
       }
     ],
     "canonical_allowlist": {
@@ -221,7 +284,9 @@
       "/Game/Melodia/Characters/Melusina/Animations/SparrowArchery_20261002/A_Spar_Mel_Travel_Mode_Idle_BowDown": "Owner-rejected idle bake from Sparrow retarget; preserve source authoring only",
       "/Game/Melodia/Characters/Melusina/Animations/ContactCandidates_20261003/A_Spar_Mel_idle": "Owner-rejected comparison idle bake from Sparrow retarget; preserve source authoring only",
       "/Game/Melodia/Characters/Melusina/Animations/ContactCandidates_20261003/A_Spar_Mel_Travel_Mode_Idle_BowDown": "Owner-rejected comparison idle bake from Sparrow retarget; preserve source authoring only",
-      "/Game/Melodia/Characters/Melusina/Animations/AnimationDoctor_20261007/RuntimeCloseout_20261009/A_Melusina_BattleBow_ArmCorrected_20261011": "Oct11 actual-body preview shows raised/distorted shoulder silhouette despite all-key numeric arm pass. Unbound duplicate rejected for canonical runtime; preserve diagnostics/source only. No montage promotion."
+      "/Game/Melodia/Characters/Melusina/Animations/AnimationDoctor_20261007/RuntimeCloseout_20261009/A_Melusina_BattleBow_ArmCorrected_20261011": "Oct11 actual-body preview shows raised/distorted shoulder silhouette despite all-key numeric arm pass. Unbound duplicate rejected for canonical runtime; preserve diagnostics/source only. No montage promotion.",
+      "/Game/Melodia/Characters/Melusina/Animations/QuaterniusRetargeted/A_Q_Melusina_Interact": "SOURCE_ONLY_DO_NOT_BIND: actual V2 root_x Z about7678cm in both RAW and COMPRESSED entry/mid/exit samples; blank isolated preview. Oct11 quaternius_raw_compressed_compare.json. Preserve original for bounded translation repair.",
+      "/Game/Melodia/Characters/Melusina/Animations/QuaterniusRetargeted_V2Fixed/A_Q_Melusina_Idle_Loop": "SOURCE_ONLY_DO_NOT_BIND: all76 COMPRESSED actual-V2 keys have root_x Z7603.66-7678.19cm. Oct11 compressed_numeric_pass_followup.json. Preserve source; not current accepted Shinbi idle."
     }
   }
 }

@@ -1,0 +1,12 @@
+{
+  "changed_fields": [
+    [
+      "idleAnimation",
+      "/Game/TurnBasedJRPGTemplate/Animations/A_ThirdPersonIdle.A_ThirdPersonIdle",
+      "/Game/Melodia/Characters/Melusina/Animations/ShinbiDoctor_20261007/A_Shin_Idle_stand.A_Shin_Idle_stand"
+    ]
+  ],
+  "graph_fingerprint_unchanged": true,
+  "compile_errors": 0,
+  "compile_warnings": 0
+}
