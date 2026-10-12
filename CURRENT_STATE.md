@@ -1764,6 +1764,17 @@ Stale-agent damage classes (read these before any WC / Jev / Blender / git work)
 - **Skip `scene_context_cycle`.** Any WC / PCG / Monolith spatial edit requires `scene_context_cycle.begin()` before the first mutation and `end()` after. One editor, Monolith `127.0.0.1:9316` only.
 - **UBT while the editor is open.** Closed-editor builds only. A stale `UnrealEditor-BS_GodFile.dll` is how OSC readback stays at bar 0.
 
+## Sir Melodious ARP v7 staging — 2026-10-11 night (STAGED + SAVED; PIE proof OPEN)
+
+Owner's fresh import (`SKM_SirMelodious_ARP_v7`, 6:21 PM) is staged and saved. **Supersedes the line-540 state** (`BP_SirMelodious_Flight` on old `SK_SirMelodious_Rigged` / `ABP_SirMelodious`): the flight BP now points at the v7 mesh + `ABP_SirMelodious_v7`. No C++ touched (native comment: BP-child assignment is the designed workflow). No production pawn/GameMode touched.
+
+- **v7 identity:** 67-bone deform-only skeleton (`root→root_x→spine/legs`, Melusina-style stretch arms, feather/kilt/tie/crest chains); mesh 537k verts / 685k tris / 1 LOD, morph `Crest_Raise`, sockets `wingtip_L/R` + `crest_tip`. 59 bone names shared with the old 128-bone authoring rig but hierarchy does NOT match — new skeleton, not a revision. Old `IK_SirMelodious` / `RTG_UE4Mannequin_To_SirMelodious` target the old rig only.
+- **ABP v7 healthy as authored:** entry Fly, 4 states (Fly=BlendSpace Hover@0/Fly@450/Glide@800 on Speed 0–800; Perch=Hover; Takeoff/Land one-shots), 6 transitions with real rules, EventGraph drives Speed + bPerched from the pawn every tick.
+- **Staging fixes applied + verified on live re-read:** loop=true on Hover_Idle/Fly_Loop/Glide (were all off — states would freeze); `Land→Perch` auto-rule added (Land had no exit at low speed); BP mesh+anim assigned (RiderLink python CDO read: mesh=v7, anim=`ABP_SirMelodious_v7_C`). Compiles 0/0, save 5/5, 0 dirty after.
+- **Reader trap (new):** Monolith `get_component_details` reports None for this BP's inherited-native `CharacterMesh0` both before AND after the assignment — stale reader, not an empty BP. Ground truth is RiderLink python CDO read. Never cite that None again.
+- **Deliberately NOT done:** `bLanding` has no writer anywhere (pawn has no landing signal; teleport perch) so `Fly→Land` is unreachable — no stub invented. `Perch→Takeoff` rule polarity is ambiguous in readback (same `{bool bPerched}` as `Fly→Perch`, no negation flag) — if both fire on true, Perch can't hold. PIE perch test decides before any rule edit. Feet MI/textures exist but are unreferenced by the v7 mesh — owner's texture drop needs a slot decision. 685k tris / 1 LOD noted, not blocking.
+- Evidence: `Saved/Audit/SirMelodiousV7_20261011/sir_v7_staging_receipt.json`. PIE state proof (Fly hold, perch behavior, no freeze) is the open gate.
+
 ---
 
 ## 8. Keeping this healthy
