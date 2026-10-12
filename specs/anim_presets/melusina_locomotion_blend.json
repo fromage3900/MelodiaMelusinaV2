@@ -4,7 +4,7 @@
   "skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton",
   "samples": [
     {
-      "index": 3,
+      "index": 1,
       "_comment": "Oct11: zero-speed sample matches accepted Shinbi standing Idle state and its1x playback, avoiding a mixed CuteIdle/standing transition. Clip guard accepted assignment; locomotion samples unchanged. Live contact/visual acceptance remains required.",
       "animation": "/Game/Melodia/Characters/Melusina/Animations/ShinbiDoctor_20261007/A_Shin_Idle_stand",
       "rate_scale": 1.0,
@@ -12,13 +12,13 @@
       "label": "Idle"
     },
     {
-      "index": 1,
+      "index": 2,
       "animation": "/Game/Melodia/Characters/Melusina/Animations/Locomotion/A_Melusina_Walk_Mocap_RootX",
       "speed": 180.0,
       "label": "Walk_Mocap"
     },
     {
-      "index": 2,
+      "index": 3,
       "animation": "/Game/Melodia/Characters/Melusina/Animations/Locomotion/A_Melusina_Run_Mocap_RootX",
       "speed": 420.0,
       "label": "Run_Mocap"
@@ -288,5 +288,6 @@
       "/Game/Melodia/Characters/Melusina/Animations/QuaterniusRetargeted/A_Q_Melusina_Interact": "SOURCE_ONLY_DO_NOT_BIND: actual V2 root_x Z about7678cm in both RAW and COMPRESSED entry/mid/exit samples; blank isolated preview. Oct11 quaternius_raw_compressed_compare.json. Preserve original for bounded translation repair.",
       "/Game/Melodia/Characters/Melusina/Animations/QuaterniusRetargeted_V2Fixed/A_Q_Melusina_Idle_Loop": "SOURCE_ONLY_DO_NOT_BIND: all76 COMPRESSED actual-V2 keys have root_x Z7603.66-7678.19cm. Oct11 compressed_numeric_pass_followup.json. Preserve source; not current accepted Shinbi idle."
     }
-  }
+  },
+  "_sample_index_policy": "Indices are observed hints, not identities. Resolve each live sample by speed and current animation immediately before mutation; baking can reorder sample_data. The guarded live promotion writer already queries current rows. Never apply a stale index to the canonical blendspace."
 }

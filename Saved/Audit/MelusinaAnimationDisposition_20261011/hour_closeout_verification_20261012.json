@@ -1,0 +1,23 @@
+{
+  "scope": "bounded hour checkpoint, not full runtime acceptance",
+  "tests": "59 passed",
+  "positive": "final_gate_shinbi_20261012.json",
+  "negative": "final_gate_frozen_sparrow_20261012.json",
+  "next": "CORE_CONTACT_AND_SAFE_REPLAY",
+  "remaining": [
+    "sole/cuff/capsule contact",
+    "grounded gait replay and loop disposition",
+    "complete caster/charged action replay",
+    "five battle fields",
+    "sustained V skim/wake"
+  ],
+  "files": {
+    "Tools/animation/verify_clip_gate.py": "e11db58bff7fbb6f46a26309d7b96f15431019c91d0764abac5afbafe6963a70",
+    "Tools/animation/test_verify_clip_gate.py": "0292826e22e3da4e9386966a5b4592cc944750887773bfc0d5b40e26e0f95250",
+    "Tools/build_melusina_locomotion_stack.py": "06a1b1fed82750bed837e3a45f5104891f4ae94f55614f669e9aa4f62c5f04d4",
+    "Docs/Production/MELUSINA_RUNTIME_CANON_2026-10-05.md": "f5e58327b0810011dcc6db58ad892767a5399419d13b15daa590734c6f1dd896",
+    "Content/Melodia/VFX/BP_MelodiaNiagaraDriver.uasset": "59ad964a1e614b20bff15c96245a6698d70fbc075c9526db3bb694694c4571bb",
+    "Content/Melodia/Characters/Melusina/Animations/BS_Melusina_Locomotion.uasset": "022426228dfbd07fafcca16cf67a5c0a00fc2bb46d0256343a7bc9b82b22ad4e",
+    "Content/Melodia/Characters/Melusina/ABP_Melusina_Current.uasset": "2ce912d24e870baabb9e825070e08141ff798ea7db4a91e3371114a8cc02fed1"
+  }
+}

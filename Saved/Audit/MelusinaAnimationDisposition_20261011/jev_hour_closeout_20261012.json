@@ -1,0 +1,31 @@
+{
+  "source": "jev-live",
+  "model": "jev-1.13.0",
+  "input": {
+    "objective": "Close Melusina animation stabilization in one hour without daily shoulder regressions",
+    "verified": "Accepted Shinbi idle, corrected Sparrow copies, actual-body all-key audits and exact quarantines exist. Roll/Space fixes built and physically verified previously. Fresh Morning editor, no dirty packages before suite. Five battle defaults use incompatible skeleton; item-use fixed retains idle-placeholder behavior. V source maps bubble sprint 780cm/s, skim and water bus wake; no current live proof.",
+    "constraints": "One editor/Monolith writer, existing pipeline only, frozen originals and canonical skeleton preserved. Numeric passes do not certify silhouette, contact or composed runtime."
+  },
+  "answers": {
+    "next_step": {
+      "type": "choice",
+      "choice": "LIVE_CORE_AND_V_INPUT_SUITE",
+      "confidence": 0.27,
+      "probabilities": {
+        "LIVE_CORE_AND_V_INPUT_SUITE": 0.51,
+        "REPAIR_FIVE_BATTLE_DEFAULTS_FIRST": 0.41,
+        "TIGHTEN_EXISTING_ADMISSION_FIRST": 0.08
+      }
+    },
+    "prevention": {
+      "type": "choice",
+      "choice": "HASHED_ADMISSION_AND_REPLAY",
+      "confidence": 0.98,
+      "probabilities": {
+        "HASHED_ADMISSION_AND_REPLAY": 0.99,
+        "NUMERIC_ONLY": 0.01,
+        "REBUILD_RIG": 0.0
+      }
+    }
+  }
+}

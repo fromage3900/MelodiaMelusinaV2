@@ -1,66 +1,13 @@
 #!/usr/bin/env python3
-"""
-build_melusina_locomotion_stack.py -- repair ABP_Melusina_Current's locomotion.
+"""Read-only legacy locomotion inventory and measurement utilities.
 
-WHAT IS ACTUALLY BROKEN
------------------------
-Content/Exports/battle_anim_ui_export/2_ABP_Melusina_Current_state_machines.json shows
-the live `MelusinaLocomotion` state machine holds exactly four states:
+The stale bootstrap writer and delayed Space wind-up instructions are retired.
+They predate the current six-state ABP, accepted Shinbi idle, corrected glide and
+immediate native jump. Reapplying that recipe can regress working runtime.
 
-    Idle -> JumpStart -> Airborne -> Land -> Idle
-
-There is no ground-locomotion state, and `BS_Melusina_Locomotion` is not referenced by
-the AnimGraph at all. So:
-
-  * walk/run never triggers -- there is nothing for velocity to drive; and
-  * idle is a T-pose -- the entry state resolves to no sequence, so it emits the
-    reference pose.
-
-Both are one repair, not two.
-
-THE JUMP WIND-UP
-----------------
-Owner requirement: the INITIAL HOLD of SpaceBar triggers the wind-up animation.
-`MelodiaTraversalJump` is already bound to SpaceBar (Config/DefaultInput.ini:115).
-The chain is:
-
-    Pressed -> bJumpWindup = true      (no launch yet)
-            -> JumpWindup state plays the anticipation crouch
-            -> AnimNotify 'JumpLaunch' inside that clip calls Jump()
-            -> bIsFalling goes true -> Airborne
-
-The state entry rule is `bJumpWindup`, deliberately NOT `bIsFalling`: keying off
-IsFalling means the wind-up could only begin after she has already left the ground,
-which is the opposite of an anticipation pose.
-
-WHY MONOLITH AND NOT T3D
-------------------------
-T3D injection (MONOLITH_GUIDE Recipe 16) is the right tool for authoring a node
-cluster that has no first-class action -- which is the case for the Event Graph
-wind-up logic in BP_MelusinaJRPGCharacter (see --emit-jump-t3d).
-
-It is the wrong tool here. `animation_query` exposes first-class, C++-backed actions
-for state machines (`add_state_to_machine`, `set_state_animation`, `add_transition`,
-`set_transition_rule`, `build_foot_ik_pass`). Hand-rolling state-machine T3D when
-those exist buys nothing and gives up their validation. Tools/t3d_anim_injector.py
-already records the same conclusion from the other side: raw Unreal Python has
-"limited API surface" for state-machine graph editing.
-
-SAFETY
-------
-Dry-run by default. `--apply` is required to mutate. Mutations abort on the first
-failure rather than continuing, so a schema mismatch leaves the graph untouched
-instead of half-wired. Every run writes a report to Saved/Audit/.
-
-USAGE
------
-    python Tools/build_melusina_locomotion_stack.py --preflight
-    python Tools/build_melusina_locomotion_stack.py --measure
-    python Tools/build_melusina_locomotion_stack.py --apply
-    python Tools/build_melusina_locomotion_stack.py --verify
-    python Tools/build_melusina_locomotion_stack.py --emit-jump-t3d
-
-Requires the interactive Unreal Editor running with Monolith on 127.0.0.1:9316.
+Use CURRENT_STATE.md and the existing guarded animation promotion lane for
+current work. Retained diagnostics are historical comparisons, not current
+presentation, input or contact certification.
 """
 from __future__ import annotations
 
@@ -251,39 +198,8 @@ def measure():
     return report
 
 
-def _read_preflight():
-    """Existing states from the last --preflight, so apply() is re-runnable.
-
-    Adding a state that already exists is the same non-idempotency trap Recipe 16
-    warns about for T3D re-injection: you get two of the thing, not one.
-    """
-    path = AUDIT_DIR / "melusina_locomotion_preflight.json"
-    if not path.exists():
-        return None
-    try:
-        return set(json.loads(path.read_text(encoding="utf-8")).get(
-            "existing_states", []))
-    except (ValueError, OSError):
-        return None
 
 
-def _read_preflight_transitions():
-    """(from,to) pairs already present, from the last --preflight."""
-    path = AUDIT_DIR / "melusina_locomotion_preflight.json"
-    if not path.exists():
-        return set()
-    try:
-        d = json.loads(path.read_text(encoding="utf-8"))
-        pairs = set()
-        for m in (d.get("checks", {}).get("state_machines", {})
-                  .get("state_machines") or []):
-            if m.get("name") not in (None, STATE_MACHINE):
-                continue
-            for t in m.get("transitions") or []:
-                pairs.add((t.get("from"), t.get("to")))
-        return pairs
-    except (ValueError, OSError, KeyError, TypeError):
-        return set()
 
 
 def _read_preflight_vars():
@@ -299,159 +215,6 @@ def _read_preflight_vars():
         return set()
 
 
-def apply_stack(dry_run=True):
-    """Repair the state machine. Aborts on first failure; never half-wires."""
-    mode = "DRY RUN" if dry_run else "APPLY"
-    print(f"[{mode}] rebuilding {STATE_MACHINE}")
-    sm_spec, blend_spec = load_specs()
-
-    existing_vars = _read_preflight_vars()
-    existing_transitions = _read_preflight_transitions()
-    existing = _read_preflight()
-    if existing is None:
-        # No preflight on disk. Fall back to the committed export baseline, which is
-        # the only real data in Content/Exports (the sibling JSONs are error stubs).
-        existing = {"Idle", "JumpStart", "Airborne", "Land"}
-        print("  no preflight report found -- assuming committed baseline "
-              f"{sorted(existing)}. Run --preflight against the live editor to be sure.")
-    else:
-        print(f"  preflight says existing states: {sorted(existing)}")
-
-    # NEVER remove states. Live preflight (2026-08-16) found a 'Glide' state absent from
-    # the committed export; the old `stale = existing - spec` rule would have deleted it,
-    # and Glide is live traversal (pawn sets bRequireCapabilityProviderForGlide=true).
-    # A state this driver does not know about is a state it must not touch.
-    spec_states = {s["name"] for s in sm_spec["states"]}
-    unknown = sorted(existing - spec_states)
-    if unknown:
-        print(f"  preserving {len(unknown)} state(s) not in spec: {unknown}")
-    stale = []
-
-    steps = []
-
-    def step(label, tool, action, params):
-        steps.append({"label": label, "tool": tool,
-                      "action": action, "params": params})
-
-    # 1. Variables. Only what the live ABP lacks (preflight showed 11 already present).
-    for name, meta in sm_spec["required_variables"].items():
-        if name in existing_vars:
-            print(f"  variable '{name}' already exists -- skipping")
-            continue
-        step(f"variable:{name}", "blueprint_query", "add_variable",
-             {"asset_path": ABP, "name": name, "type": meta["type"],
-              "default_value": str(meta["default"]).lower()})
-
-    # 2. Blendspace axis. 630/650 clamps the 714 uu/s sprint gate; 750 does not.
-    axis = blend_spec["axis_settings"]
-    step("blendspace:axis", "animation_query", "set_blend_space_axis",
-         {"asset_path": blend_spec["blendspace_path"], "axis": "X",
-          "name": axis["horizontal_axis"],
-          "min": axis["horizontal_range"][0], "max": axis["horizontal_range"][1]})
-
-    # 3. States. Idle exists but is bound to a stale clip -- that is the T-pose.
-    for state in sm_spec["states"]:
-        if state["name"] not in existing:
-            step(f"state:{state['name']}", "animation_query", "add_state_to_machine",
-                 {"asset_path": ABP, "machine_name": STATE_MACHINE,
-                  "state_name": state["name"],
-                  "position_x": state["position"][0],
-                  "position_y": state["position"][1]})
-        else:
-            print(f"  state '{state['name']}' exists -- binding animation only")
-        step(f"state_anim:{state['name']}", "animation_query", "set_state_animation",
-             {"asset_path": ABP, "machine_name": STATE_MACHINE,
-              "state_name": state["name"],
-              "anim_asset_path": state["animation"], "loop": state["loop"]})
-
-    step("entry_state", "animation_query", "set_anim_entry_state",
-         {"asset_path": ABP, "machine_name": STATE_MACHINE,
-          "state_name": sm_spec["entry_state"]})
-
-    # 4. Transitions. add_transition takes no blend_time; cross-fade is a node
-    #    property set separately, tracked as follow-up rather than faked here.
-    for t in sm_spec["transitions"]:
-        if t["from"] not in existing and t["from"] not in {x["name"] for x in sm_spec["states"]}:
-            continue
-        if (t["from"], t["to"]) in existing_transitions:
-            print(f"  transition {t['from']}->{t['to']} exists -- rule only")
-        else:
-            step(f"transition:{t['from']}->{t['to']}", "animation_query",
-                 "add_transition",
-                 {"asset_path": ABP, "machine_name": STATE_MACHINE,
-                  "from_state": t["from"], "to_state": t["to"]})
-        step(f"rule:{t['from']}->{t['to']}", "animation_query", "set_transition_rule",
-             {"asset_path": ABP, "machine_name": STATE_MACHINE,
-              "from_state": t["from"], "to_state": t["to"], "rule": t["rule"]})
-
-    # 5. Montage slot -- montages evaluate to nothing without it.
-    step("montage_slot", "animation_query", "add_slot_node",
-         {"asset_path": ABP, "slot_name": "DefaultSlot"})
-
-    step("compile", "blueprint_query", "compile_blueprint", {"asset_path": ABP})
-    step("save", "blueprint_query", "save_asset", {"asset_path": ABP})
-
-    report = {"kind": "melusina_locomotion_apply", "abp": ABP,
-              "dry_run": dry_run, "step_count": len(steps), "steps": []}
-
-    if dry_run:
-        for s in steps:
-            print(f"  would {s['tool']}:{s['action']}  [{s['label']}]")
-        report["steps"] = steps
-        write_report("melusina_locomotion_apply_dryrun.json", report)
-        print(f"\n  {len(steps)} steps planned. Re-run with --apply to execute.")
-        return report
-
-    require_editor()
-    before = bp("get_graph_fingerprint", {"asset_path": ABP, "graph_name": "AnimGraph"})
-    report["fingerprint_before"] = before
-
-    for s in steps:
-        print(f"  {s['tool']}:{s['action']}  [{s['label']}]")
-        try:
-            result = call(s["tool"], s["action"], s["params"])
-            report["steps"].append({**s, "result": result, "ok": True})
-        except MonolithError as e:
-            report["steps"].append({**s, "error": str(e), "ok": False})
-            report["aborted_at"] = s["label"]
-            write_report("melusina_locomotion_apply.json", report)
-            raise SystemExit(
-                f"\nABORTED at [{s['label']}]: {e}\n"
-                f"Graph left unmodified from this step onward. Report written.\n"
-                f"If this is a parameter-schema mismatch, run:\n"
-                f"  describe_query action_schema for {s['tool']}:{s['action']}\n"
-                f"and correct the params in this script -- do not guess again."
-            )
-
-    report["fingerprint_after"] = bp(
-        "get_graph_fingerprint", {"asset_path": ABP, "graph_name": "AnimGraph"})
-
-    # Artifact check. save_asset reporting saved=true is NOT proof of a write.
-    uasset = (PROJECT_DIR / "Content" /
-              ABP.replace("/Game/", "").replace("/", os.sep)).with_suffix(".uasset")
-    if uasset.exists():
-        mtime = datetime.fromtimestamp(uasset.stat().st_mtime, timezone.utc)
-        age_s = (datetime.now(timezone.utc) - mtime).total_seconds()
-        report["uasset_mtime"] = mtime.isoformat()
-        report["uasset_written_this_run"] = age_s < 600
-        if age_s >= 600:
-            report["ok"] = False
-            print("")
-            print(f"  WARNING: {uasset.name} on disk is {age_s/3600:.1f}h old.")
-            print("  The graph changed IN MEMORY but nothing was written. If this "
-                  "editor exits, the work is lost.")
-            print("  A wedged editor accepts edits and reports saved=true while "
-                  "never completing the package write -- restart it and re-run.")
-        else:
-            print("")
-            print(f"  disk write confirmed: {uasset.name} @ {mtime:%H:%M:%S}Z")
-    else:
-        report["uasset_mtime"] = None
-        print("")
-        print(f"  WARNING: {uasset} not found on disk.")
-
-    write_report("melusina_locomotion_apply.json", report)
-    return report
 
 
 def verify():
@@ -516,85 +279,25 @@ def verify():
 # Jump wind-up Event Graph payload (T3D -- no first-class action for this)
 # ---------------------------------------------------------------------------
 
-JUMP_T3D_NOTES = """\
-BP_MelusinaJRPGCharacter Event Graph -- SpaceBar hold -> wind-up.
-
-`MelodiaTraversalJump` is a legacy ActionMapping on SpaceBar
-(Config/DefaultInput.ini:115), so it yields Pressed/Released exec pins directly.
-
-Required wiring (author once by hand, Ctrl+C, save as the T3D payload, then
-parameterise NodeGuid/PinId per MONOLITH_GUIDE Recipe 16 step 2):
-
-  InputAction MelodiaTraversalJump
-    Pressed  -> Set bJumpWindup = true        on the ABP instance
-                (Get Mesh -> Get Anim Instance -> Cast to ABP_Melusina_Current)
-                DO NOT call Jump() here. That is the entire point -- launching on
-                press is what makes an anticipation pose impossible.
-    Released -> Set bJumpWindup = false
-
-  AnimNotify_JumpLaunch (on ABP_Melusina_Current, forwarded to the pawn)
-             -> Jump()
-             -> Set bJumpWindup = false
-
-  Event OnLanded
-             -> Set bJumpWindup = false       (safety: covers a Released that was
-                                               swallowed by a state change)
-
-Recipe 16 step 0 first: `python Tools/bp_live_path.py BP_MelusinaJRPGCharacter`
-and abort on ORPHAN or AMBIGUOUS. Injecting into an unreachable graph is worse
-than a bad payload because it succeeds.
-
-Then: validate_nodes_t3d -> get_graph_fingerprint -> inject_nodes_t3d
-(compile: true) -> get_graph_fingerprint + assert_graph_matches -> save_asset.
-
-Re-injection is NOT idempotent -- guids are forced unique on import, so running
-twice gives two working copies of the cluster. Delete first or assert absence.
-"""
 
 
-def emit_jump_t3d():
-    AUDIT_DIR.mkdir(parents=True, exist_ok=True)
-    path = AUDIT_DIR / "melusina_jump_windup_wiring.md"
-    path.write_text(JUMP_T3D_NOTES, encoding="utf-8")
-    print(JUMP_T3D_NOTES)
-    print(f"  written -> {path}")
-    return path
 
 
 def main():
-    ap = argparse.ArgumentParser(description=__doc__,
-                                 formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--preflight", action="store_true",
-                    help="read-only: dump live ABP/blendspace/IK-rig state")
-    ap.add_argument("--measure", action="store_true",
-                    help="read-only: measure real root-motion speed per clip")
-    ap.add_argument("--plan", action="store_true",
-                    help="dry run: print every step that --apply would execute")
-    ap.add_argument("--apply", action="store_true",
-                    help="mutate the ABP (requires the editor)")
-    ap.add_argument("--verify", action="store_true",
-                    help="read-only: prove the repair landed")
-    ap.add_argument("--emit-jump-t3d", action="store_true",
-                    help="print the SpaceBar wind-up wiring contract")
+    ap = argparse.ArgumentParser(description=__doc__)
+    ap.add_argument('--preflight', action='store_true', help='read-only live inventory')
+    ap.add_argument('--measure', action='store_true', help='read-only root-motion measurement')
+    ap.add_argument('--verify', action='store_true', help='historical comparison; not current runtime acceptance')
     args = ap.parse_args()
-
     if not any(vars(args).values()):
         ap.print_help()
         return 0
-
     try:
-        if args.preflight:
-            preflight()
-        if args.measure:
-            measure()
-        if args.emit_jump_t3d:
-            emit_jump_t3d()
-        if args.apply or args.plan:
-            apply_stack(dry_run=not args.apply)
-        if args.verify:
-            verify()
+        if args.preflight: preflight()
+        if args.measure: measure()
+        if args.verify: verify()
     except MonolithError as e:
-        print(f"\nERROR: {e}", file=sys.stderr)
+        print(str(e), file=sys.stderr)
         return 1
     return 0
 

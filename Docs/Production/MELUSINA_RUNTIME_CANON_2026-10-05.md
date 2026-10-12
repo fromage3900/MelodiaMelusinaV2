@@ -2,7 +2,7 @@
 
 ### Owner-authorized four-clip recipe update - 2026-10-07
 
-For `Animations/ShinbiDoctor_20261007` only, preserve each source-retarget arm quaternion at every frame while replacing the translations of `arm_stretch_l/r` and `forearm_stretch_l/r` with the measured native convention. Do not copy their complete constant pose or remove the source initial stance by calibrating against animation frame 0: both can leave an outstretched T-biased result. These four authored outputs bake the existing CuteIdle V10 native root/leg pose below the Shinbi upper body. The existing Idle state uses `A_Shin_Idle_stand`, caster defaults use `A_Shin_Idle` and `A_Shin_Cast`, and the existing FootPlacement pelvis uses the common torso/leg ancestor `root_x`. The general recipe below describes the earlier constant-pose policy and is superseded for these four outputs. Frozen originals and canonical skeleton protection remain binding. Current proof and outstanding checks belong exclusively to `CURRENT_STATE.md`.
+The four `Animations/ShinbiDoctor_20261007` outputs preserve each source-retarget arm quaternion at every frame while replacing the translations of `arm_stretch_l/r` and `forearm_stretch_l/r` with the measured native convention. Do not copy their complete constant pose or remove the source initial stance by calibrating against animation frame 0: both can leave an outstretched T-biased result. These authored outputs bake the existing CuteIdle V10 native root/leg pose below the Shinbi upper body. Section 1 now removes the unsafe generic constant-pose recipe; use the existing donor-specific correction and verify each output. Frozen originals and canonical skeleton protection remain binding. Current bindings, proof and outstanding checks belong exclusively to `CURRENT_STATE.md`.
 
 
 **Status: CANON.** This document defines the authoritative runtime rig, retarget pipeline and
@@ -22,20 +22,42 @@ RETARGET"*.
       NEVER pass overwrite=true — it crashes the editor inside
       FMonolithAnimationActions::HandleBatchRetargetAnimations().
 
-2. copy_bone_pose_between_sequences(
-      source_path = /Game/Melodia/Characters/Melusina/Animations/Locomotion/A_Melusina_Idle_Mocap_RootX,
-      dest_path   = <each retargeted clip>,
-      bone_names  = [arm_stretch_l, arm_stretch_r, forearm_stretch_l, forearm_stretch_r],
-      source_time = 0.0,
-      apply_to_all_dest_frames = true)
+2. Use the existing donor-specific AnimationDoctor correction on a duplicate.
+   Preserve the authored per-frame arm quaternions. Correct the demonstrated
+   arm-stretch translations; do not copy a constant complete pose over motion.
+   The earlier copy_bone_pose_between_sequences(... apply_to_all_dest_frames=true)
+   instruction is historical and must not be used as a generic repair recipe.
+   Existing verified Doctor outputs take priority over another retarget pass.
 
-3. VERIFY with get_animated_bone_transform (space=world, frame=0) on
-   shoulder_l / arm_stretch_l / forearm_stretch_l / hand_l.
+3. VERIFY both arms at every stored key in compressed playback space, explicitly
+   on /Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Body.
+   A missing mesh, foreign skeleton, failed extraction or stale/dirty input is
+   ERROR, never a skeleton-preview fallback or PASS. Inspect RAW separately for
+   source diagnosis; RAW torso height alone is not compressed/runtime inversion.
    REQUIRE:  15.774 | 28.561 | 28.615  (±1 cm)
    REJECT:   34.789 |  9.520 | 28.615
 
-4. save_asset on EACH output. save_dirty_assets does NOT pick these up.
+4. Verify unit root scale and the motion role. Apply loop-seam checks only to
+   actual loops. Root_x height is role-dependent: roll/jump/landing cannot use
+   a universal standing-height band. Save EACH approved output; preserve its
+   clip/body/contract/policy hashes with the existing gate evidence.
+
+5. Before binding, inspect the exact output on the actual body at entry,
+   representative motion and exit with unobstructed shoulder/elbow views.
+   Raised/collapsed shoulders, a frozen T pose or torso inversion FAIL.
+   Then verify the complete normal character under the existing ABP and
+   UpperBody composition through input, movement and recovery, including
+   boot/cuff/capsule contact. Missing visual/contact proof is HOLD.
 ```
+
+`Tools/animation/verify_clip_gate.py` is the existing numeric prerequisite;
+its PASS does not authorize runtime admission. Use the existing exact retirement
+policy in `specs/anim_presets/melusina_locomotion_blend.json` and keep all six
+Sparrow originals frozen. Generic Python/UI assignment can bypass native Monolith
+preflight; such a write still requires the same evidence and binding readback.
+REST, ROOT, CONTACT, JOINT HEALTH, RETARGET and EXPORT remain separate evidence
+domains. Historical KineFX receipts or a successful build do not certify them
+on changed assets. Current acceptance and remaining gates live in CURRENT_STATE.
 
 ### Why (the reference-pose interruption, solved)
 
@@ -87,7 +109,7 @@ the WaveHarp shape keys.
 | `A_Shin_Idle`, `A_Shin_Idle_pose`, `A_Shin_Idle_stand` | `Animations/ShinbiIdles_20261005/` | staged Shinbi idles, arm-corrected |
 | `A_Shin_Cast` | `Animations/ShinbiCast_20261005/` | staged Shinbi cast, arm-corrected |
 | `A_Melusina_Idle_Mocap_RootX` | `Animations/Locomotion/` | **the arm-convention reference clip** |
-| `A_HERO01_..._CuteIdle_..._V10_RetargetedExactV10` | `Cinematics/Shorewake/HERO01/IdleCanonicalDirect_20260909_V10/Retargeted_V10Exact/` | her live overworld idle — **arm-corrected 2026-10-05** |
+| `A_HERO01_..._CuteIdle_..._V10_RetargetedExactV10` | `Cinematics/Shorewake/HERO01/IdleCanonicalDirect_20260909_V10/Retargeted_V10Exact/` | historical native-pose reference; current idle binding belongs to `CURRENT_STATE.md` |
 
 ### ABP runtime chain (canonical)
 
@@ -106,9 +128,12 @@ LBB_0.Pose → L2C_0 → FootPlacement_1 → KawaiiPhysics_0(c_kilt_master_x) �
   Without the arm filters the draw/cast montage is **silently blended away** and the arms never move.
 - **Slot discipline**: `PoseSlot = TEXT("UpperBody")` — cast/charge clips must never replace the legs.
 - **Foot IK**: `FAnimNode_FootPlacement` (AnimationWarping, enabled in the `.uproject`).
-  `PlantSpeedMode=Graph`, `IKFootRootBone=root`, `PelvisBone=spine_01_x`,
-  legs `foot_l/toes_01_l` and `foot_r/toes_01_r`. Verified: feet level (`foot_z_delta 0.004`),
-  arms unaffected. **Caveat: the node is marked Experimental in the engine.**
+  `PlantSpeedMode=Graph`, `IKFootRootBone=root`. Use the common torso/leg ancestor
+  `root_x` for the pelvis owner, not a spine-only branch. The current graph copies
+  `foot_l/r` to authored `c_foot_ik_l/r` targets, applies grounded target offsets,
+  then uses FootPlacement and LegIK. Current settings and measured contact are
+  recorded in `CURRENT_STATE.md`; the old feet-level measurement is not boot-sole
+  or slope/stair acceptance. **Caveat: the node is marked Experimental in the engine.**
 
 ---
 

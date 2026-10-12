@@ -1,0 +1,12 @@
+{
+  "ok": true,
+  "success": true,
+  "mode": "execute_file",
+  "result": "None",
+  "output": [
+    {
+      "type": "info",
+      "output": "{\"dirty_content\": [], \"dirty_maps\": [], \"game_world\": \"None\"}\r\n"
+    }
+  ]
+}

@@ -1,0 +1,850 @@
+{
+  "session_id": "pie_smoke_1_131827",
+  "status": "complete",
+  "marker": "MELUSINA_HOUR_VALIDITY",
+  "map": "UEDPIE_0_L_MelusinaMorning",
+  "duration": 8,
+  "pie_active": true,
+  "pie_ready": true,
+  "lifecycle": "teardown-complete",
+  "sample_count": 92,
+  "elapsed_seconds": 8.028448700904846,
+  "var_summary": {
+    "RuntimeGroundSpeed": {
+      "type": "number",
+      "min": 0,
+      "max": 0,
+      "last": 0
+    },
+    "RuntimeVerticalSpeed": {
+      "type": "number",
+      "min": 0,
+      "max": 0,
+      "last": 0
+    },
+    "bRuntimeIsInAir": {
+      "type": "bool",
+      "last": false
+    },
+    "bRuntimeIsRising": {
+      "type": "bool",
+      "last": false
+    },
+    "bRuntimeIsDescending": {
+      "type": "bool",
+      "last": false
+    }
+  },
+  "output_dir": "C:/EnvironmentPortfolio/BS_GodFile/Saved/Audit/MelusinaAnimationDisposition_20261011/HourDriverReplay",
+  "frame_count": 6,
+  "frame_paths": [
+    "C:/EnvironmentPortfolio/BS_GodFile/Saved/Audit/MelusinaAnimationDisposition_20261011/HourDriverReplay/frame_000.png",
+    "C:/EnvironmentPortfolio/BS_GodFile/Saved/Audit/MelusinaAnimationDisposition_20261011/HourDriverReplay/frame_001.png",
+    "C:/EnvironmentPortfolio/BS_GodFile/Saved/Audit/MelusinaAnimationDisposition_20261011/HourDriverReplay/frame_002.png",
+    "C:/EnvironmentPortfolio/BS_GodFile/Saved/Audit/MelusinaAnimationDisposition_20261011/HourDriverReplay/frame_003.png",
+    "C:/EnvironmentPortfolio/BS_GodFile/Saved/Audit/MelusinaAnimationDisposition_20261011/HourDriverReplay/frame_004.png",
+    "C:/EnvironmentPortfolio/BS_GodFile/Saved/Audit/MelusinaAnimationDisposition_20261011/HourDriverReplay/frame_005.png"
+  ],
+  "capture_validity": {
+    "valid_frames": 5,
+    "invalid_frames": 0,
+    "captured_ok": true
+  },
+  "view_target": {
+    "active_actor": "BP_MelusinaJRPGCharacter_C_1",
+    "active_class": "BP_MelusinaJRPGCharacter_C"
+  },
+  "runtime_identity": {
+    "actor": "BP_MelusinaJRPGCharacter_C_1",
+    "actor_class": "BP_MelusinaJRPGCharacter_C",
+    "skel_comp": "CharacterMesh0",
+    "anim_instance_class": "/Game/Melodia/Characters/Melusina/ABP_Melusina_Current.ABP_Melusina_Current_C",
+    "mesh_anim_class": "/Game/Melodia/Characters/Melusina/ABP_Melusina_Current.ABP_Melusina_Current_C",
+    "animation_mode": "anim_blueprint",
+    "anim_class_changed": false
+  },
+  "samples": [
+    {
+      "t": 0.0036542005836963654,
+      "frame_path": "C:/EnvironmentPortfolio/BS_GodFile/Saved/Audit/MelusinaAnimationDisposition_20261011/HourDriverReplay/frame_000.png",
+      "RuntimeGroundSpeed": 0,
+      "RuntimeVerticalSpeed": 0,
+      "bRuntimeIsInAir": false,
+      "bRuntimeIsRising": false,
+      "bRuntimeIsDescending": false
+    },
+    {
+      "t": 3.264281999319792,
+      "frame_path": "C:/EnvironmentPortfolio/BS_GodFile/Saved/Audit/MelusinaAnimationDisposition_20261011/HourDriverReplay/frame_001.png",
+      "RuntimeGroundSpeed": 0,
+      "RuntimeVerticalSpeed": 0,
+      "bRuntimeIsInAir": false,
+      "bRuntimeIsRising": false,
+      "bRuntimeIsDescending": false
+    },
+    {
+      "t": 3.4793191999197006,
+      "RuntimeGroundSpeed": 0,
+      "RuntimeVerticalSpeed": 0,
+      "bRuntimeIsInAir": false,
+      "bRuntimeIsRising": false,
+      "bRuntimeIsDescending": false
+    },
+    {
+      "t": 3.54079519957304,
+      "RuntimeGroundSpeed": 0,
+      "RuntimeVerticalSpeed": 0,
+      "bRuntimeIsInAir": false,
+      "bRuntimeIsRising": false,
+      "bRuntimeIsDescending": false
+    },
+    {
+      "t": 3.5918859988451004,
+      "RuntimeGroundSpeed": 0,
+      "RuntimeVerticalSpeed": 0,
+      "bRuntimeIsInAir": false,
+      "bRuntimeIsRising": false,
+      "bRuntimeIsDescending": false
+    },
+    {
+      "t": 3.6553869992494583,
+      "RuntimeGroundSpeed": 0,
+      "RuntimeVerticalSpeed": 0,
+      "bRuntimeIsInAir": false,
+      "bRuntimeIsRising": false,
+      "bRuntimeIsDescending": false
+    },
+    {
+      "t": 3.715896900743246,
+      "RuntimeGroundSpeed": 0,
+      "RuntimeVerticalSpeed": 0,
+      "bRuntimeIsInAir": false,
+      "bRuntimeIsRising": false,
+      "bRuntimeIsDescending": false
+    },
+    {
+      "t": 3.7673765011131763,
+      "RuntimeGroundSpeed": 0,
+      "RuntimeVerticalSpeed": 0,
+      "bRuntimeIsInAir": false,
+      "bRuntimeIsRising": false,
+      "bRuntimeIsDescending": false
+    },
+    {
+      "t": 3.8200611993670464,
+      "RuntimeGroundSpeed": 0,
+      "RuntimeVerticalSpeed": 0,
+      "bRuntimeIsInAir": false,
+      "bRuntimeIsRising": false,
+      "bRuntimeIsDescending": false
+    },
+    {
+      "t": 3.8654944002628326,
+      "RuntimeGroundSpeed": 0,
+      "RuntimeVerticalSpeed": 0,
+      "bRuntimeIsInAir": false,
+      "bRuntimeIsRising": false,
+      "bRuntimeIsDescending": false
+    },
+    {
+      "t": 3.9096945002675056,
+      "RuntimeGroundSpeed": 0,
+      "RuntimeVerticalSpeed": 0,
+      "bRuntimeIsInAir": false,
+      "bRuntimeIsRising": false,
+      "bRuntimeIsDescending": false
+    },
+    {
+      "t": 3.9551142007112503,
+      "RuntimeGroundSpeed": 0,
+      "RuntimeVerticalSpeed": 0,
+      "bRuntimeIsInAir": false,
+      "bRuntimeIsRising": false,
+      "bRuntimeIsDescending": false
+    },
+    {
+      "t": 3.9980498999357224,
+      "RuntimeGroundSpeed": 0,
+      "RuntimeVerticalSpeed": 0,
+      "bRuntimeIsInAir": false,
+      "bRuntimeIsRising": false,
+      "bRuntimeIsDescending": false
+    },
+    {
+      "t": 4.041012700647116,
+      "RuntimeGroundSpeed": 0,
+      "RuntimeVerticalSpeed": 0,
+      "bRuntimeIsInAir": false,
+      "bRuntimeIsRising": false,
+      "bRuntimeIsDescending": false
+    },
+    {
+      "t": 4.084711700677872,
+      "RuntimeGroundSpeed": 0,
+      "RuntimeVerticalSpeed": 0,
+      "bRuntimeIsInAir": false,
+      "bRuntimeIsRising": false,
+      "bRuntimeIsDescending": false
+    },
+    {
+      "t": 4.12684940174222,
+      "RuntimeGroundSpeed": 0,
+      "RuntimeVerticalSpeed": 0,
+      "bRuntimeIsInAir": false,
+      "bRuntimeIsRising": false,
+      "bRuntimeIsDescending": false
+    },
+    {
+      "t": 4.172444000840187,
+      "RuntimeGroundSpeed": 0,
+      "RuntimeVerticalSpeed": 0,
+      "bRuntimeIsInAir": false,
+      "bRuntimeIsRising": false,
+      "bRuntimeIsDescending": false
+    },
+    {
+      "t": 4.216283299028873,
+      "RuntimeGroundSpeed": 0,
+      "RuntimeVerticalSpeed": 0,
+      "bRuntimeIsInAir": false,
+      "bRuntimeIsRising": false,
+      "bRuntimeIsDescending": false
+    },
+    {
+      "t": 4.266838200390339,
+      "frame_path": "C:/EnvironmentPortfolio/BS_GodFile/Saved/Audit/MelusinaAnimationDisposition_20261011/HourDriverReplay/frame_002.png",
+      "RuntimeGroundSpeed": 0,
+      "RuntimeVerticalSpeed": 0,
+      "bRuntimeIsInAir": false,
+      "bRuntimeIsRising": false,
+      "bRuntimeIsDescending": false
+    },
+    {
+      "t": 4.451134901493788,
+      "RuntimeGroundSpeed": 0,
+      "RuntimeVerticalSpeed": 0,
+      "bRuntimeIsInAir": false,
+      "bRuntimeIsRising": false,
+      "bRuntimeIsDescending": false
+    },
+    {
+      "t": 4.494016699492931,
+      "RuntimeGroundSpeed": 0,
+      "RuntimeVerticalSpeed": 0,
+      "bRuntimeIsInAir": false,
+      "bRuntimeIsRising": false,
+      "bRuntimeIsDescending": false
+    },
+    {
+      "t": 4.5389223992824554,
+      "RuntimeGroundSpeed": 0,
+      "RuntimeVerticalSpeed": 0,
+      "bRuntimeIsInAir": false,
+      "bRuntimeIsRising": false,
+      "bRuntimeIsDescending": false
+    },
+    {
+      "t": 4.58521020039916,
+      "RuntimeGroundSpeed": 0,
+      "RuntimeVerticalSpeed": 0,
+      "bRuntimeIsInAir": false,
+      "bRuntimeIsRising": false,
+      "bRuntimeIsDescending": false
+    },
+    {
+      "t": 4.631221499294043,
+      "RuntimeGroundSpeed": 0,
+      "RuntimeVerticalSpeed": 0,
+      "bRuntimeIsInAir": false,
+      "bRuntimeIsRising": false,
+      "bRuntimeIsDescending": false
+    },
+    {
+      "t": 4.677790001034737,
+      "RuntimeGroundSpeed": 0,
+      "RuntimeVerticalSpeed": 0,
+      "bRuntimeIsInAir": false,
+      "bRuntimeIsRising": false,
+      "bRuntimeIsDescending": false
+    },
+    {
+      "t": 4.722025200724602,
+      "RuntimeGroundSpeed": 0,
+      "RuntimeVerticalSpeed": 0,
+      "bRuntimeIsInAir": false,
+      "bRuntimeIsRising": false,
+      "bRuntimeIsDescending": false
+    },
+    {
+      "t": 4.766896400600672,
+      "RuntimeGroundSpeed": 0,
+      "RuntimeVerticalSpeed": 0,
+      "bRuntimeIsInAir": false,
+      "bRuntimeIsRising": false,
+      "bRuntimeIsDescending": false
+    },
+    {
+      "t": 4.814894299954176,
+      "RuntimeGroundSpeed": 0,
+      "RuntimeVerticalSpeed": 0,
+      "bRuntimeIsInAir": false,
+      "bRuntimeIsRising": false,
+      "bRuntimeIsDescending": false
+    },
+    {
+      "t": 4.862017899751663,
+      "RuntimeGroundSpeed": 0,
+      "RuntimeVerticalSpeed": 0,
+      "bRuntimeIsInAir": false,
+      "bRuntimeIsRising": false,
+      "bRuntimeIsDescending": false
+    },
+    {
+      "t": 4.905364900827408,
+      "RuntimeGroundSpeed": 0,
+      "RuntimeVerticalSpeed": 0,
+      "bRuntimeIsInAir": false,
+      "bRuntimeIsRising": false,
+      "bRuntimeIsDescending": false
+    },
+    {
+      "t": 4.950137600302696,
+      "RuntimeGroundSpeed": 0,
+      "RuntimeVerticalSpeed": 0,
+      "bRuntimeIsInAir": false,
+      "bRuntimeIsRising": false,
+      "bRuntimeIsDescending": false
+    },
+    {
+      "t": 4.993956599384546,
+      "RuntimeGroundSpeed": 0,
+      "RuntimeVerticalSpeed": 0,
+      "bRuntimeIsInAir": false,
+      "bRuntimeIsRising": false,
+      "bRuntimeIsDescending": false
+    },
+    {
+      "t": 5.039939198642969,
+      "RuntimeGroundSpeed": 0,
+      "RuntimeVerticalSpeed": 0,
+      "bRuntimeIsInAir": false,
+      "bRuntimeIsRising": false,
+      "bRuntimeIsDescending": false
+    },
+    {
+      "t": 5.0818393006920815,
+      "RuntimeGroundSpeed": 0,
+      "RuntimeVerticalSpeed": 0,
+      "bRuntimeIsInAir": false,
+      "bRuntimeIsRising": false,
+      "bRuntimeIsDescending": false
+    },
+    {
+      "t": 5.130226399749517,
+      "RuntimeGroundSpeed": 0,
+      "RuntimeVerticalSpeed": 0,
+      "bRuntimeIsInAir": false,
+      "bRuntimeIsRising": false,
+      "bRuntimeIsDescending": false
+    },
+    {
+      "t": 5.1812703013420105,
+      "RuntimeGroundSpeed": 0,
+      "RuntimeVerticalSpeed": 0,
+      "bRuntimeIsInAir": false,
+      "bRuntimeIsRising": false,
+      "bRuntimeIsDescending": false
+    },
+    {
+      "t": 5.225218299776316,
+      "RuntimeGroundSpeed": 0,
+      "RuntimeVerticalSpeed": 0,
+      "bRuntimeIsInAir": false,
+      "bRuntimeIsRising": false,
+      "bRuntimeIsDescending": false
+    },
+    {
+      "t": 5.267988499253988,
+      "frame_path": "C:/EnvironmentPortfolio/BS_GodFile/Saved/Audit/MelusinaAnimationDisposition_20261011/HourDriverReplay/frame_003.png",
+      "RuntimeGroundSpeed": 0,
+      "RuntimeVerticalSpeed": 0,
+      "bRuntimeIsInAir": false,
+      "bRuntimeIsRising": false,
+      "bRuntimeIsDescending": false
+    },
+    {
+      "t": 5.457727700471878,
+      "RuntimeGroundSpeed": 0,
+      "RuntimeVerticalSpeed": 0,
+      "bRuntimeIsInAir": false,
+      "bRuntimeIsRising": false,
+      "bRuntimeIsDescending": false
+    },
+    {
+      "t": 5.500474099069834,
+      "RuntimeGroundSpeed": 0,
+      "RuntimeVerticalSpeed": 0,
+      "bRuntimeIsInAir": false,
+      "bRuntimeIsRising": false,
+      "bRuntimeIsDescending": false
+    },
+    {
+      "t": 5.544282302260399,
+      "RuntimeGroundSpeed": 0,
+      "RuntimeVerticalSpeed": 0,
+      "bRuntimeIsInAir": false,
+      "bRuntimeIsRising": false,
+      "bRuntimeIsDescending": false
+    },
+    {
+      "t": 5.585774399340153,
+      "RuntimeGroundSpeed": 0,
+      "RuntimeVerticalSpeed": 0,
+      "bRuntimeIsInAir": false,
+      "bRuntimeIsRising": false,
+      "bRuntimeIsDescending": false
+    },
+    {
+      "t": 5.630145199596882,
+      "RuntimeGroundSpeed": 0,
+      "RuntimeVerticalSpeed": 0,
+      "bRuntimeIsInAir": false,
+      "bRuntimeIsRising": false,
+      "bRuntimeIsDescending": false
+    },
+    {
+      "t": 5.674008700996637,
+      "RuntimeGroundSpeed": 0,
+      "RuntimeVerticalSpeed": 0,
+      "bRuntimeIsInAir": false,
+      "bRuntimeIsRising": false,
+      "bRuntimeIsDescending": false
+    },
+    {
+      "t": 5.719080202281475,
+      "RuntimeGroundSpeed": 0,
+      "RuntimeVerticalSpeed": 0,
+      "bRuntimeIsInAir": false,
+      "bRuntimeIsRising": false,
+      "bRuntimeIsDescending": false
+    },
+    {
+      "t": 5.763299200683832,
+      "RuntimeGroundSpeed": 0,
+      "RuntimeVerticalSpeed": 0,
+      "bRuntimeIsInAir": false,
+      "bRuntimeIsRising": false,
+      "bRuntimeIsDescending": false
+    },
+    {
+      "t": 5.807415202260017,
+      "RuntimeGroundSpeed": 0,
+      "RuntimeVerticalSpeed": 0,
+      "bRuntimeIsInAir": false,
+      "bRuntimeIsRising": false,
+      "bRuntimeIsDescending": false
+    },
+    {
+      "t": 5.852447498589754,
+      "RuntimeGroundSpeed": 0,
+      "RuntimeVerticalSpeed": 0,
+      "bRuntimeIsInAir": false,
+      "bRuntimeIsRising": false,
+      "bRuntimeIsDescending": false
+    },
+    {
+      "t": 5.896471198648214,
+      "RuntimeGroundSpeed": 0,
+      "RuntimeVerticalSpeed": 0,
+      "bRuntimeIsInAir": false,
+      "bRuntimeIsRising": false,
+      "bRuntimeIsDescending": false
+    },
+    {
+      "t": 5.940390300005674,
+      "RuntimeGroundSpeed": 0,
+      "RuntimeVerticalSpeed": 0,
+      "bRuntimeIsInAir": false,
+      "bRuntimeIsRising": false,
+      "bRuntimeIsDescending": false
+    },
+    {
+      "t": 5.986703500151634,
+      "RuntimeGroundSpeed": 0,
+      "RuntimeVerticalSpeed": 0,
+      "bRuntimeIsInAir": false,
+      "bRuntimeIsRising": false,
+      "bRuntimeIsDescending": false
+    },
+    {
+      "t": 6.028384901583195,
+      "RuntimeGroundSpeed": 0,
+      "RuntimeVerticalSpeed": 0,
+      "bRuntimeIsInAir": false,
+      "bRuntimeIsRising": false,
+      "bRuntimeIsDescending": false
+    },
+    {
+      "t": 6.071638502180576,
+      "RuntimeGroundSpeed": 0,
+      "RuntimeVerticalSpeed": 0,
+      "bRuntimeIsInAir": false,
+      "bRuntimeIsRising": false,
+      "bRuntimeIsDescending": false
+    },
+    {
+      "t": 6.115743700414896,
+      "RuntimeGroundSpeed": 0,
+      "RuntimeVerticalSpeed": 0,
+      "bRuntimeIsInAir": false,
+      "bRuntimeIsRising": false,
+      "bRuntimeIsDescending": false
+    },
+    {
+      "t": 6.158924698829651,
+      "RuntimeGroundSpeed": 0,
+      "RuntimeVerticalSpeed": 0,
+      "bRuntimeIsInAir": false,
+      "bRuntimeIsRising": false,
+      "bRuntimeIsDescending": false
+    },
+    {
+      "t": 6.201077301055193,
+      "RuntimeGroundSpeed": 0,
+      "RuntimeVerticalSpeed": 0,
+      "bRuntimeIsInAir": false,
+      "bRuntimeIsRising": false,
+      "bRuntimeIsDescending": false
+    },
+    {
+      "t": 6.24203360080719,
+      "RuntimeGroundSpeed": 0,
+      "RuntimeVerticalSpeed": 0,
+      "bRuntimeIsInAir": false,
+      "bRuntimeIsRising": false,
+      "bRuntimeIsDescending": false
+    },
+    {
+      "t": 6.287015799432993,
+      "frame_path": "C:/EnvironmentPortfolio/BS_GodFile/Saved/Audit/MelusinaAnimationDisposition_20261011/HourDriverReplay/frame_004.png",
+      "RuntimeGroundSpeed": 0,
+      "RuntimeVerticalSpeed": 0,
+      "bRuntimeIsInAir": false,
+      "bRuntimeIsRising": false,
+      "bRuntimeIsDescending": false
+    },
+    {
+      "t": 6.475001700222492,
+      "RuntimeGroundSpeed": 0,
+      "RuntimeVerticalSpeed": 0,
+      "bRuntimeIsInAir": false,
+      "bRuntimeIsRising": false,
+      "bRuntimeIsDescending": false
+    },
+    {
+      "t": 6.5169959999620914,
+      "RuntimeGroundSpeed": 0,
+      "RuntimeVerticalSpeed": 0,
+      "bRuntimeIsInAir": false,
+      "bRuntimeIsRising": false,
+      "bRuntimeIsDescending": false
+    },
+    {
+      "t": 6.556958802044392,
+      "RuntimeGroundSpeed": 0,
+      "RuntimeVerticalSpeed": 0,
+      "bRuntimeIsInAir": false,
+      "bRuntimeIsRising": false,
+      "bRuntimeIsDescending": false
+    },
+    {
+      "t": 6.597827300429344,
+      "RuntimeGroundSpeed": 0,
+      "RuntimeVerticalSpeed": 0,
+      "bRuntimeIsInAir": false,
+      "bRuntimeIsRising": false,
+      "bRuntimeIsDescending": false
+    },
+    {
+      "t": 6.63933390006423,
+      "RuntimeGroundSpeed": 0,
+      "RuntimeVerticalSpeed": 0,
+      "bRuntimeIsInAir": false,
+      "bRuntimeIsRising": false,
+      "bRuntimeIsDescending": false
+    },
+    {
+      "t": 6.680191200226545,
+      "RuntimeGroundSpeed": 0,
+      "RuntimeVerticalSpeed": 0,
+      "bRuntimeIsInAir": false,
+      "bRuntimeIsRising": false,
+      "bRuntimeIsDescending": false
+    },
+    {
+      "t": 6.7259302996098995,
+      "RuntimeGroundSpeed": 0,
+      "RuntimeVerticalSpeed": 0,
+      "bRuntimeIsInAir": false,
+      "bRuntimeIsRising": false,
+      "bRuntimeIsDescending": false
+    },
+    {
+      "t": 6.769309099763632,
+      "RuntimeGroundSpeed": 0,
+      "RuntimeVerticalSpeed": 0,
+      "bRuntimeIsInAir": false,
+      "bRuntimeIsRising": false,
+      "bRuntimeIsDescending": false
+    },
+    {
+      "t": 6.810276102274656,
+      "RuntimeGroundSpeed": 0,
+      "RuntimeVerticalSpeed": 0,
+      "bRuntimeIsInAir": false,
+      "bRuntimeIsRising": false,
+      "bRuntimeIsDescending": false
+    },
+    {
+      "t": 6.852095901966095,
+      "RuntimeGroundSpeed": 0,
+      "RuntimeVerticalSpeed": 0,
+      "bRuntimeIsInAir": false,
+      "bRuntimeIsRising": false,
+      "bRuntimeIsDescending": false
+    },
+    {
+      "t": 6.894792400300503,
+      "RuntimeGroundSpeed": 0,
+      "RuntimeVerticalSpeed": 0,
+      "bRuntimeIsInAir": false,
+      "bRuntimeIsRising": false,
+      "bRuntimeIsDescending": false
+    },
+    {
+      "t": 6.937365401536226,
+      "RuntimeGroundSpeed": 0,
+      "RuntimeVerticalSpeed": 0,
+      "bRuntimeIsInAir": false,
+      "bRuntimeIsRising": false,
+      "bRuntimeIsDescending": false
+    },
+    {
+      "t": 6.978247601538897,
+      "RuntimeGroundSpeed": 0,
+      "RuntimeVerticalSpeed": 0,
+      "bRuntimeIsInAir": false,
+      "bRuntimeIsRising": false,
+      "bRuntimeIsDescending": false
+    },
+    {
+      "t": 7.022047199308872,
+      "RuntimeGroundSpeed": 0,
+      "RuntimeVerticalSpeed": 0,
+      "bRuntimeIsInAir": false,
+      "bRuntimeIsRising": false,
+      "bRuntimeIsDescending": false
+    },
+    {
+      "t": 7.065476201474667,
+      "RuntimeGroundSpeed": 0,
+      "RuntimeVerticalSpeed": 0,
+      "bRuntimeIsInAir": false,
+      "bRuntimeIsRising": false,
+      "bRuntimeIsDescending": false
+    },
+    {
+      "t": 7.110161300748587,
+      "RuntimeGroundSpeed": 0,
+      "RuntimeVerticalSpeed": 0,
+      "bRuntimeIsInAir": false,
+      "bRuntimeIsRising": false,
+      "bRuntimeIsDescending": false
+    },
+    {
+      "t": 7.15551570057869,
+      "RuntimeGroundSpeed": 0,
+      "RuntimeVerticalSpeed": 0,
+      "bRuntimeIsInAir": false,
+      "bRuntimeIsRising": false,
+      "bRuntimeIsDescending": false
+    },
+    {
+      "t": 7.201129600405693,
+      "RuntimeGroundSpeed": 0,
+      "RuntimeVerticalSpeed": 0,
+      "bRuntimeIsInAir": false,
+      "bRuntimeIsRising": false,
+      "bRuntimeIsDescending": false
+    },
+    {
+      "t": 7.2444084994494915,
+      "RuntimeGroundSpeed": 0,
+      "RuntimeVerticalSpeed": 0,
+      "bRuntimeIsInAir": false,
+      "bRuntimeIsRising": false,
+      "bRuntimeIsDescending": false
+    },
+    {
+      "t": 7.288975398987532,
+      "frame_path": "C:/EnvironmentPortfolio/BS_GodFile/Saved/Audit/MelusinaAnimationDisposition_20261011/HourDriverReplay/frame_005.png",
+      "RuntimeGroundSpeed": 0,
+      "RuntimeVerticalSpeed": 0,
+      "bRuntimeIsInAir": false,
+      "bRuntimeIsRising": false,
+      "bRuntimeIsDescending": false
+    },
+    {
+      "t": 7.475602898746729,
+      "RuntimeGroundSpeed": 0,
+      "RuntimeVerticalSpeed": 0,
+      "bRuntimeIsInAir": false,
+      "bRuntimeIsRising": false,
+      "bRuntimeIsDescending": false
+    },
+    {
+      "t": 7.518355201929808,
+      "RuntimeGroundSpeed": 0,
+      "RuntimeVerticalSpeed": 0,
+      "bRuntimeIsInAir": false,
+      "bRuntimeIsRising": false,
+      "bRuntimeIsDescending": false
+    },
+    {
+      "t": 7.559453099966049,
+      "RuntimeGroundSpeed": 0,
+      "RuntimeVerticalSpeed": 0,
+      "bRuntimeIsInAir": false,
+      "bRuntimeIsRising": false,
+      "bRuntimeIsDescending": false
+    },
+    {
+      "t": 7.600443098694086,
+      "RuntimeGroundSpeed": 0,
+      "RuntimeVerticalSpeed": 0,
+      "bRuntimeIsInAir": false,
+      "bRuntimeIsRising": false,
+      "bRuntimeIsDescending": false
+    },
+    {
+      "t": 7.643514599651098,
+      "RuntimeGroundSpeed": 0,
+      "RuntimeVerticalSpeed": 0,
+      "bRuntimeIsInAir": false,
+      "bRuntimeIsRising": false,
+      "bRuntimeIsDescending": false
+    },
+    {
+      "t": 7.686423700302839,
+      "RuntimeGroundSpeed": 0,
+      "RuntimeVerticalSpeed": 0,
+      "bRuntimeIsInAir": false,
+      "bRuntimeIsRising": false,
+      "bRuntimeIsDescending": false
+    },
+    {
+      "t": 7.728943198919296,
+      "RuntimeGroundSpeed": 0,
+      "RuntimeVerticalSpeed": 0,
+      "bRuntimeIsInAir": false,
+      "bRuntimeIsRising": false,
+      "bRuntimeIsDescending": false
+    },
+    {
+      "t": 7.76940730214119,
+      "RuntimeGroundSpeed": 0,
+      "RuntimeVerticalSpeed": 0,
+      "bRuntimeIsInAir": false,
+      "bRuntimeIsRising": false,
+      "bRuntimeIsDescending": false
+    },
+    {
+      "t": 7.812397599220276,
+      "RuntimeGroundSpeed": 0,
+      "RuntimeVerticalSpeed": 0,
+      "bRuntimeIsInAir": false,
+      "bRuntimeIsRising": false,
+      "bRuntimeIsDescending": false
+    },
+    {
+      "t": 7.855540499091148,
+      "RuntimeGroundSpeed": 0,
+      "RuntimeVerticalSpeed": 0,
+      "bRuntimeIsInAir": false,
+      "bRuntimeIsRising": false,
+      "bRuntimeIsDescending": false
+    },
+    {
+      "t": 7.897896599024534,
+      "RuntimeGroundSpeed": 0,
+      "RuntimeVerticalSpeed": 0,
+      "bRuntimeIsInAir": false,
+      "bRuntimeIsRising": false,
+      "bRuntimeIsDescending": false
+    },
+    {
+      "t": 7.940960101783276,
+      "RuntimeGroundSpeed": 0,
+      "RuntimeVerticalSpeed": 0,
+      "bRuntimeIsInAir": false,
+      "bRuntimeIsRising": false,
+      "bRuntimeIsDescending": false
+    },
+    {
+      "t": 7.984956499189138,
+      "RuntimeGroundSpeed": 0,
+      "RuntimeVerticalSpeed": 0,
+      "bRuntimeIsInAir": false,
+      "bRuntimeIsRising": false,
+      "bRuntimeIsDescending": false
+    },
+    {
+      "t": 8.028449799865484,
+      "RuntimeGroundSpeed": 0,
+      "RuntimeVerticalSpeed": 0,
+      "bRuntimeIsInAir": false,
+      "bRuntimeIsRising": false,
+      "bRuntimeIsDescending": false
+    }
+  ],
+  "grouped_counts": {
+    "active_runtime": {
+      "must_absent": {
+        "Blueprint Runtime Error": 0,
+        "Accessed None": 0,
+        "LogChooser": 0,
+        "Accessed None trying to read (real) property CallFunc_Array_Get_Item": 0,
+        "Attempted to access PCGPiano": 0
+      },
+      "must_present": {},
+      "observe_only": {
+        "Blueprint Runtime Error": 0
+      },
+      "warn": {},
+      "entry_count": 38
+    },
+    "teardown": {
+      "must_absent": {
+        "Blueprint Runtime Error": 0,
+        "Accessed None": 0,
+        "LogChooser": 0,
+        "Accessed None trying to read (real) property CallFunc_Array_Get_Item": 0,
+        "Attempted to access PCGPiano": 0
+      },
+      "entry_count": 250,
+      "allowed": true
+    },
+    "ignore_after_pattern": "BeginTearingDown"
+  },
+  "warnings": [],
+  "missing_must_present": [],
+  "post_marker_counts": {
+    "Blueprint Runtime Error": 0,
+    "Accessed None": 0,
+    "LogChooser": 0,
+    "Accessed None trying to read (real) property CallFunc_Array_Get_Item": 0,
+    "Attempted to access PCGPiano": 0
+  },
+  "total_matches": 0,
+  "ok": true
+}
