@@ -2,7 +2,7 @@
 
 **Status:** scaffold code staged; no Houdini cook, GUI acceptance or UE runtime proof claimed.
 
-This is an additive *scene* over the existing [Houdini Studio package](../../../deploy/houdini/README.md), [October 7 convergence plan](../../../Docs/Houdini/MELODIA_HOUDINI_STUDIO_CONVERGENCE_2026-10-07.md), and [Foundry Day gates](../../../Docs/Houdini/FoundryDay_2026-09-24/README.md). \`CURRENT_STATE.md\` remains the status authority.
+This is an additive *scene* over the existing [Houdini Studio package](../../deploy/houdini/README.md), [October 7 convergence plan](MELODIA_HOUDINI_STUDIO_CONVERGENCE_2026-10-07.md), and [Foundry Day gates](FoundryDay_2026-09-24/README.md). \`CURRENT_STATE.md\` remains the status authority.
 
 ## Why this scene exists
 
