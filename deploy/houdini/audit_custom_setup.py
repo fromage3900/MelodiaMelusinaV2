@@ -53,7 +53,7 @@ def find_local_files(root: Path, max_files: int = MAX_TOTAL) -> list[dict]:
         for current, dirs, files in os.walk(folder, followlinks=False):
             current_path = Path(current)
             depth = len(current_path.relative_to(folder).parts)
-            dirs[:] = [] if depth >= MAX_DEPTH else [d for d in dirs if d not in SKIP_DIRS and not d.startswith(".")]
+            dirs[:] = [] if folder == root or depth >= MAX_DEPTH else [d for d in dirs if d not in SKIP_DIRS and not d.startswith(".")]
             for filename in sorted(files):
                 path = current_path / filename
                 ext = path.suffix.lower()
@@ -89,6 +89,8 @@ def package_info(pref: Path | None) -> list[dict]:
         info = {"file": file.name, "path": safe_str(file)}
         try:
             data = json.loads(file.read_text(encoding="utf-8-sig"))
+            if not isinstance(data, dict):
+                raise ValueError("expected a JSON object")
             info["package_path"] = data.get("package_path")
             info["hpath"] = data.get("hpath")
             info["env_keys"] = [
