@@ -109,6 +109,60 @@ def package_path(value):
     return match.group(1)
 
 
+def check_runtime_torso_order(receipt):
+    """Check the existing live pose capture, never isolated clip or input proof.
+
+    root_x is Melusina's common torso/leg ancestor, not a mannequin pelvis.
+    A head/upper spine below it reproduced the layered combat inversion even
+    while both arm lengths passed. Positive height alone is not visual acceptance.
+    This checks supplied samples only: provenance, stable montage weight and
+    transition coverage still require separate live verification.
+    """
+    required_phases = {"idle", "draw", "hold", "fire", "recovery",
+                       "caster_draw", "caster_fire", "caster_recovery"}
+    required_views = {"front", "side"}
+    errors, rows, covered = [], [], set()
+    samples = receipt.get("samples", []) if isinstance(receipt, dict) else []
+    if not isinstance(samples, list):
+        samples = []
+        errors.append("samples must be an array")
+    if isinstance(receipt, dict) and receipt.get("errors"):
+        errors.append("Capture reported errors; incomplete diagnostic")
+    for index, sample in enumerate(samples):
+        try:
+            phase, view = sample["phase"], sample["view"]
+            positions = [sample["bones_cs"][bone]["p"] for bone in
+                         ("root_x", "spine_03_x", "head_x")]
+            if not all(isinstance(p, (list, tuple)) and len(p) == 3 and
+                       all(isinstance(v, (int, float)) and not isinstance(v, bool)
+                           and math.isfinite(v) for v in p) for p in positions):
+                raise ValueError("positions must contain three finite numbers")
+            if not isinstance(phase, str) or not isinstance(view, str):
+                raise ValueError("phase/view must be strings")
+        except (KeyError, TypeError, ValueError) as exc:
+            errors.append("Invalid pose sample %d: %s" % (index, exc))
+            continue
+        covered.add((phase, view))
+        pelvis_z, spine_z, head_z = [p[2] for p in positions]
+        row = {"sample": index, "phase": phase, "view": view,
+               "spine_above_root_cm": spine_z - pelvis_z,
+               "head_above_root_cm": head_z - pelvis_z}
+        row["ok"] = row["spine_above_root_cm"] > 0 and row["head_above_root_cm"] > 0
+        if not row["ok"]:
+            errors.append("Torso inversion at sample %d (%s/%s)" % (index, phase, view))
+        rows.append(row)
+    missing = sorted((phase, view) for phase in required_phases for view in required_views
+                     if (phase, view) not in covered)
+    if missing:
+        errors.append("Missing required phase/view coverage: " +
+                      ", ".join("%s/%s" % pair for pair in missing))
+    return {"schema": "melodia.melusina_runtime_torso_gate.v1",
+            "evidence": "LIVE_POSE_DIAGNOSTIC_RECEIPT_CHECK",
+            "input_proof": receipt.get("proof") if isinstance(receipt, dict) else None,
+            "physical_input_acceptance": False, "visual_completion": False,
+            "ok": not errors, "errors": errors, "samples": rows}
+
+
 def check_runtime_references(manifest, policy, extra_edges=()):
     """Fail on exact retired paths reached through hard, soft or native edges.
 
@@ -263,17 +317,24 @@ def check_runtime_references(manifest, policy, extra_edges=()):
 
 def reference_gate_main(argv=None):
     import argparse
-    parser = argparse.ArgumentParser(description="Check the existing Melusina animation gate's retired reference policy")
-    parser.add_argument("--references", type=Path, required=True)
+    parser = argparse.ArgumentParser(description="Check Melusina animation references or captured runtime torso poses")
+    source = parser.add_mutually_exclusive_group(required=True)
+    source.add_argument("--references", type=Path)
+    source.add_argument("--runtime-capture", type=Path)
     parser.add_argument("--policy", type=Path, default=Path(__file__).resolve().parents[1] / "specs/anim_presets/melusina_locomotion_blend.json")
     parser.add_argument("--native-bindings", type=Path)
     parser.add_argument("--output", type=Path)
     args = parser.parse_args(argv)
-    manifest = json.loads(args.references.read_text(encoding="utf-8-sig"))
-    policy = json.loads(args.policy.read_text(encoding="utf-8-sig"))
-    policy = policy.get("runtime_reference_policy", policy)
-    edges = json.loads(args.native_bindings.read_text(encoding="utf-8-sig")) if args.native_bindings else []
-    report = check_runtime_references(manifest, policy, edges)
+    if args.runtime_capture:
+        if args.native_bindings:
+            parser.error("--native-bindings applies only to --references")
+        report = check_runtime_torso_order(json.loads(args.runtime_capture.read_text(encoding="utf-8-sig")))
+    else:
+        manifest = json.loads(args.references.read_text(encoding="utf-8-sig"))
+        policy = json.loads(args.policy.read_text(encoding="utf-8-sig"))
+        policy = policy.get("runtime_reference_policy", policy)
+        edges = json.loads(args.native_bindings.read_text(encoding="utf-8-sig")) if args.native_bindings else []
+        report = check_runtime_references(manifest, policy, edges)
     text = json.dumps(report, indent=2) + "\n"
     if args.output:
         args.output.write_text(text, encoding="utf-8")

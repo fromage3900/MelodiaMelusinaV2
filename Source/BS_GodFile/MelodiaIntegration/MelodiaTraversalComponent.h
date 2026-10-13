@@ -19,6 +19,7 @@ DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FMelodiaGlideStateChanged, bool, bIs
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FMelodiaSwimStateChanged, bool, bIsSwimming);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FMelodiaDiveStateChanged, bool, bIsDiving);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FMelodiaFloatValueChanged, float, NewValue);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FMelodiaBubbleSprintStateChanged, bool, bIsBubbleSprinting);
 
 UENUM(BlueprintType)
 enum class EMelodiaTraversalMode : uint8
@@ -100,6 +101,10 @@ public:
 	UFUNCTION(BlueprintPure, Category="Melodia|Traversal")
 	bool IsDiving() const { return bIsDiving; }
 
+	/** True while the held bubble sprint (water-walking puddle) is active. */
+	UFUNCTION(BlueprintPure, Category="Melodia|Traversal")
+	bool IsBubbleSprinting() const { return bIsBubbleSprinting; }
+
 	/** Current mode exposed to world-facing gates and presentation BPs. */
 	UFUNCTION(BlueprintPure, Category="Melodia|Traversal")
 	EMelodiaTraversalMode GetTraversalMode() const;
@@ -172,6 +177,10 @@ public:
 	UPROPERTY(BlueprintAssignable, Category="Melodia|Traversal|Presentation")
 	FMelodiaDiveStateChanged OnDiveStateChanged;
 
+	/** Fired when the held bubble sprint (water-walking puddle) state changes. */
+	UPROPERTY(BlueprintAssignable, Category="Melodia|Traversal|Presentation")
+	FMelodiaBubbleSprintStateChanged OnBubbleSprintStateChanged;
+
 	/** Fired when water proximity changes (0-1). */
 	UPROPERTY(BlueprintAssignable, Category="Melodia|Traversal|Water")
 	FMelodiaFloatValueChanged OnWaterProximityChanged;
@@ -188,6 +197,9 @@ private:
 	void HandleSprintReleased();
 	void HandleStrafePressed();
 	void HandleDivePressed();
+	void HandleBubblePressed();
+	void HandleBubbleReleased();
+	void SetBubbleSprint(bool bShouldBubble);
 	void SetSprinting(bool bShouldSprint);
 	void ApplyCurrentMovementSpeed();
 	bool IsCapabilityAvailableForMode(EMelodiaTraversalMode RequestedMode, FName& OutBlockReason) const;
@@ -214,12 +226,30 @@ private:
 	/** Set via SetWingPresentationOwnedExternally; see that function for why. */
 	bool bWingPresentationOwnedExternally = false;
 	bool bIsGliding = false;
-	/** Jump pressed on the ground and still held: glide starts at the apex. */
+	/** Jump remains held: reaching the apex may flow into glide. */
 	bool bGlideHoldArmed = false;
+	bool bJumpInputHeld = false;
+	bool bJumpInputOwnsGlide = false;
+	bool bJumpBuffered = false;
+	bool bHasGroundContactSinceBeginPlay = false;
+	bool bWasMovingOnGround = false;
+	bool bCoyoteJumpConsumed = false;
+	bool bGlideActivationImpulseSpent = false;
+	double LastGroundedTimeSeconds = -1.0;
+	double JumpBufferExpiresAtSeconds = -1.0;
 	bool bSprintInputHeld = false;
 	bool bIsSprinting = false;
 	bool bIsDashing = false;
+	bool bBubbleInputHeld = false;
+	bool bIsBubbleSprinting = false;
 	bool bMovementDefaultsCaptured = false;
+
+	/** Yaw to re-face when the roll montage ends (travel direction, not the clip's backward roll). */
+	float RollExitFacingYaw = 0.0f;
+	bool bRollExitFacingValid = false;
+
+	/** Accumulates time between wake events while the bubble sprint is active. */
+	float BubbleWakeAccumulator = 0.0f;
 
 	/**
 	 * Opt-in during the migration window. Promoted traversal fixtures should set
@@ -340,8 +370,30 @@ private:
 	UPROPERTY(EditDefaultsOnly, Category="Melodia|Traversal|Movement", meta=(ClampMin="0.05", ClampMax="1.0"))
 	float DashPersistSeconds = 0.22f;
 
+	/** Held move speed while the bubble sprint (water-walking puddle) is active. */
+	UPROPERTY(EditDefaultsOnly, Category="Melodia|Traversal|Movement", meta=(ClampMin="100.0", ClampMax="2000.0"))
+	float BubbleSprintSpeed = 780.0f;
+
+	/** Interval between wake events published through the water bus while bubble sprinting. */
+	UPROPERTY(EditDefaultsOnly, Category="Melodia|Traversal|Water|Presentation", meta=(ClampMin="0.06", ClampMax="1.0"))
+	float BubbleWakeEventInterval = 0.22f;
+
+	/** Height above the sampled water surface the bubble sprint skims at (cm). */
+	UPROPERTY(EditDefaultsOnly, Category="Melodia|Traversal|Water", meta=(ClampMin="0.0", ClampMax="40.0"))
+	float BubbleSkimOffsetZ = 2.0f;
+
 	UPROPERTY(EditDefaultsOnly, Category="Melodia|Traversal|Feel", meta=(ClampMin="0.05", ClampMax="1.0"))
 	float GlideGravityScale = 0.11f;
+
+	/** Variable-height jump configuration applied only when the pawn has no authored value. */
+	UPROPERTY(EditDefaultsOnly, Category="Melodia|Traversal|Feel", meta=(ClampMin="0.0", ClampMax="1.0"))
+	float JumpMaxHoldTimeSeconds = 0.25f;
+
+	UPROPERTY(EditDefaultsOnly, Category="Melodia|Traversal|Feel", meta=(ClampMin="0.0", ClampMax="0.3"))
+	float CoyoteTimeSeconds = 0.12f;
+
+	UPROPERTY(EditDefaultsOnly, Category="Melodia|Traversal|Feel", meta=(ClampMin="0.0", ClampMax="0.3"))
+	float JumpBufferSeconds = 0.15f;
 
 	UPROPERTY(EditDefaultsOnly, Category="Melodia|Traversal|Feel", meta=(ClampMin="0.0", ClampMax="1.0"))
 	float GlideAirControl = 1.0f;

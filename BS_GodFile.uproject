@@ -395,10 +395,6 @@
 				"Linux",
 				"Android"
 			]
-		},
-		{
-			"Name": "RiderLink",
-			"Enabled": true
 		}
 	]
 }

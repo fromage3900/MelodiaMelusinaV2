@@ -1,81 +1,338 @@
 # Melodia Melusina ? Current State
 
-## CURRENT NOW — 2026-10-05
+## Sol -> Astra: bounded Melusina animation/contact pass — 2026-10-11 (PREPARATION COMPLETE; runtime acceptance OPEN)
 
-**Use this block first.** It is the current front door and supersedes older dated “owner queue,”
-“still owed,” and recovery language below unless a newer entry explicitly reactivates an item.
-The long body is retained as audit history, not as a flat list of present-tense tasks.
+**Owner's current instruction:** keep the school editor open and prepare Astra. At preflight the sole UE editor was HumberToonShader on G: (PID13476), with seven unsaved school map/material packages. The fresh closeout process census finds no Unreal process; its exit and package-save disposition were not established by Sol. Sol did not save, close, switch or mutate it and did not launch Melodia. This section supersedes older editor/PID, locomotion-generation and next-step claims below. The Oct11 turn-based ARPG / ACFU hybrid canon in C authority remains in force; its unresolved ownership choices do not authorize changing the production pawn/GameMode during animation stabilization.
 
-- **Gameplay baseline is established by owner confirmation:** WASD works, the bow works, damage
-  works, and the gameplay loop works. Do **not** reopen the old real-input/WASD, stock damage,
-  GOOD/PERFECT ladder, or Melusina-possession proof hunts simply because older entries below still
-  record them as owed at the time.
-- **Active production gate:** runtime animation/contact convergence remains the live technical
-  priority from the 2026-10-03 block immediately below. Preserve the canonical
-  `SK_Melusina_Skeleton` → `ABP_Melusina_Current` pose authority, finish fresh battle playback
-  and hero draw/hold/release/contact acceptance, and do not create a second pose/retarget authority
-  to hide a deformation or contact defect.
-- **Git/integration baseline:** `origin/main` is canonical and agents work through detached
-  `refs/agents/<lane>` lanes; `main` is a landing target, not a workspace. Review baseline for
-  this docs pass is `e25682b3a83c5f6453a355f60a08b772309d3dad`.
-  PR #413 is closed as superseded: all seven Sir Melodious flight-v3.3 LFS objects already exist on
-  `main` with matching OIDs/sizes. PR #429 was squash-merged as `7db8e2e5`; post-merge Echo #988
-  passed, including Storybook validation and LFS budget/pointer gates. Neither PR is an open recovery
-  lane.
-- **Storybook UI authority:** the existing runtime Texture2D assets under
-  `/Game/Melodia/UI/Textures/Storybook/storybook_*` are canonical. Figma/SVG/PNG source canon lives
-  under `Content/UI/CanonUI_20261004/` with
-  `pipeline/figma/storybook_runtime_manifest.json`. The rebuild tool targets those existing names
-  in place and refuses to create a missing target or parallel Storybook namespace.
-- **Documentation/storage casing:** the October 1 storage and closeout records are tracked at
-  `docs/Production/STORAGE_ARCHITECTURE_2026-10-01.md` and
-  `docs/Handoffs/SESSION_CLOSEOUT_2026-10-01.md` (lowercase `docs`). The repository also contains
-  an uppercase `Docs/` tree. Use exact tracked casing and do not attempt a case-only tree migration
-  from a case-insensitive Windows checkout as incidental cleanup.
-- **Houdini Studio Gate 0A — scaffolded, headless-proven and hardened 2026-10-07; GUI acceptance owed.**
-  The repo-backed package `deploy/houdini/packages/melodia_studio.json` is path-independent
-  (`$HOUDINI_PACKAGE_PATH`), and `deploy/houdini/install_melodia_studio.ps1` writes only a thin
-  `package_path` pointer into the user's Houdini `packages/` folder — it never edits `houdini.env`.
-  It registers `deploy/houdini/melodia_studio/` as an `hpath` root, which supplies the Blender-like
-  `Melodia_Studio` desktop, the `Melodia_KineFX` desktop, the eight-tool `Melodia` shelf (Project,
-  AnimationDoctor, Shorewake, Vellum Cache, Copernicus, Foundry Validate, Evidence, UE Handoff) and
-  the `melodia_studio` Python module.
-  **Reusable/safe:** the operating contract is `deploy/houdini/README.md` (install, `-CheckOnly`,
-  `-Remove`, `-Verify`, invariants, and the GUI local-desktop-shadowing hazard). `-Remove` deletes
-  only a pointer it can prove it wrote, and is idempotent. Verification scans the whole
-  `deploy/houdini` tree for machine-local paths and now warns if a GUI "Save Current Desktop" file
-  shadows a repo `.desk`; evidence receipts can no longer overwrite each other within one second.
-  Re-running the installer re-points a stale pointer after a clone, drive change or Houdini upgrade.
-  `hython deploy/houdini/verify_melodia_studio.py` passes **23/23 required checks** with exit 0;
-  receipt `Saved/Audit/houdini_studio/setup_20261007_135717.json`.
-  **Evidence: headless Houdini 22.0.368 package/shelf/module discovery and launch only — desktop
-  visibility, desk switching, reload survival and screenshots remain owner-held GUI acceptance, so
-  this is scaffolded + headless-proven, not live-proven.**
+**Bounded objective:** make the existing canonical Melusina's idle, locomotion, caster, repaired Sparrow charged archery, jump/glide/landing and basic Shirt/Skirt/Boots fit stable and presentable through the existing owners. Preserve the accepted Shinbi standing Idle, custom skeleton, source motion, six frozen Sparrow originals, eleven depth-zero UpperBody filters (mesh-space rotation true, root-space false), hair and wardrobe. No donor BP transplant, new animation pipeline, cute-idle search, blanket root/mesh lift or skirt-physics project. Use Shinbi/Sparrow as inspected references; bind only independently verified Melusina assets.
+
+**Prepared evidence:** `Saved/Audit/MelusinaRuntimeCloseout_20261009/SkirtLayering_20261011/` contains `astra_input_identity.json` (23 C/G asset/source/tool identities), recovered existing boot candidate and historical six-stage receipts, untouched source inspection blends, source-rest contact measurements, five rendered source views and the fresh Jev ruling. All work is outside runtime Content; the only tracked preparation change is this section. These artifacts are diagnostics, not gameplay acceptance.
+
+### Current identity and recurring regression traps
+
+- Current C `ABP_Melusina_Current` SHA256 remains `EC6F66041D5659CF82FD949159F42F4B99AE055E7E6D35F2954A7778A88D0C69`. Current production `Animations/BS_Melusina_Locomotion` is `A3B44D93D533C50F30B09FB5F828559653170A70E90EF8F05FBE8855416513C6`; its serialized references include CuteIdle V10. The rejected-Mage BlendSpace from last night's capture was a different generation (`AA1D7089...`); its Shinbi zero-speed experiment was only in memory, never validated/saved. Serialized references are inventory, not proof of a connected sample. Re-read the current live Idle/Walk graph, every sample, active state and sample weights before proposing a change.
+- Historical `BoundedPass_20261010_2202/pose_capture.json` completed 314 diagnostic samples: sample98, 22.078s, grounded walk-return at97.556cm/s and no montage inverted the torso (root_x/spine/head component Z70.866/73.316/67.543cm), despite stable native arm lengths. Only eight rows actually moved; every labelled moving hold was stationary. Isolated actual-body Walk/Run/Sprint/Mage/Shinbi sources were upright. This supports testing composition/transition state first; it does not establish the cause in today's different BlendSpace. Eight CPU-skinned flat-floor boot samples were 9.32–11.23cm below the center floor, without full per-foot/cuff/slope/stair proof.
+- **Numeric health is necessary but insufficient.** Native Monolith guarded assignments inspect both arm chains at every stored key and recurse through BlendSpace samples; generic UI/Python writes bypass that guard. The Python clip gate now fails closed on missing arm/seam data and checks both arms, superseding older unimplemented claims below. It still caps sampling at48; `A_Spar_Mel_RMB_Loop` classifies as `rmb` and misses loop-seam failure gating; false root-motion metadata can collapse into a null fallback, and foot samples are informational. Existing direct tests passed5 clip-gate +16 N-lens assertions; they do not certify native assignment, all-key coverage, composed shoulders or live contact.
+- Apply the Oct7 donor-specific preserve-quaternion recipe, not the superseded complete constant-pose copy/frame0-left-arm-only recipe in the older canon section. Both arms must retain `15.774 / 28.561 / 28.615cm`; reject `34.789 / 9.520 / 28.615`. `root_x` is the shared torso/leg ancestor; this rig has neither mannequin pelvis nor ik_foot bones. Do not modify skeleton retarget modes or discard donor arm animation to obtain a numeric pass.
+- Engine capture top-level `ok:true` does not cancel callback exceptions. The first historical capture had a failed Python hook; the later manual observer is separate clean evidence. Black/occluded views, source previews and public-owner calls do not prove normal presentation or physical mouse input. Today's wardrobe source also differs from older follow-bone/duplicate-retirement patch narratives: freshly read actual component ownership/count/attachment before any fix; no wardrobe code was changed during preparation.
+
+### AnimationDoctor / Foundry evidence reconciled
+
+Read `START_HERE_HOUDINI_2026-10-06.md` and the Oct6 update in `Docs/Houdini/FoundryDay_2026-09-24/README.md`: UE5.8 and the canonical Melusina skeleton remain authority; `c3b5b326e1221f9e16101b6792ede625cdb2b187` is the historical specimen baseline, not permission to restore its branch/project. The initial documentation was staged only, but subsequent native measurements do exist.
+
+| Stage | Existing evidence | Remaining promotion gate |
+|---|---|---|
+| REST | Recovered native headless KineFX full-key receipts, including Oct7 04:43 UTC Shinbi standing Idle, source/result/canonical FBX hashes; native arm assignment guard | Pin today's exact clips/skeleton; verify both sides and deform the actual body |
+| ROOT | Historical full-key trajectories/transforms and saved glide/root-scale repair receipts | Current composed transitions, root continuity, unit scale and actual capsule/floor behavior |
+| CONTACT | Historical source foot measurements and one flat Mage idle per-foot sole canary | Current accepted clips: each sole/cuff/capsule, stance slip, hands/prop, animated waist, slope/stairs |
+| JOINT HEALTH | Native full-key measurements and discrete-key guard; historical torso failure detector | Current blended shoulders/elbows and torso-relative rotations through entry/hold/fire/recovery/turns |
+| RETARGET | Source/result/native-rest comparisons exist; later quaternion-preserving authored clips were revised | Fresh export identity plus exact current body isolated previews and composed UE pose |
+| EXPORT | Historical reports explicitly say no repairs/runtime/visual acceptance; recovered boot FBX has guarded round-trip proof | Only bounded new output with invariant/round-trip checks and UE acceptance; no automatic donor smoothing |
+
+Recovered receipts are under `RecoveredDoctorReceipts/`; their own hash links and dates govern reuse. They measured the older constant-arm output: standing Idle source upper/lower-arm excursion was7.813/4.362 degrees while result local articulation was effectively zero. KineFX did identify that historical motion loss; those reports were measurements with acceptance held, not a promotion safeguard for today's later preserve-quaternion clips or composed graph. Do not call them absent, or treat them as certification of later authored revisions. The Oct7 Doctor summary's23 PASS/2 HOLD is partly historical presence/string aggregation, not a six-stage gameplay certificate. A separate G native import cooked18,891 points but reported18,891 zero-weight points/bones_used0: cook success alone is not a skinned-rig pass. The staged shirt remapped234 leg-bound vertices but remains unapplied and its481-bone export adds17 hem bones, so it is not a drop-in canonical garment. UniversalRig's overlap check is a bounding-box test, and joint FBX export remains blocked. Preserve the G-only dress scripts; dress stays staged aside, with no Kawaii bind/skinning promotion inferred. Packaging a new HDA is not a prerequisite to execute the existing diagnostics.
+
+### Shirt over skirt and boots: exact bounded candidates
+
+- **Source layering defect measured:** receipt-matched current Shirt and R2 SmoothChains Skirt exports have five noncoplanar triangle crossing pairs at the upper panel/shirt hem, Z74.85–81.66cm, all zero-based Skirt material slot2 (third slot), `MI_Melusina_skirtpanel_002`. `rest_surface_contacts.json` identifies the exact two Shirt/four Skirt triangles; personally inspected `source_rest_full_front.png`, full side and three waist views highlight them red (cyan Shirt/purple Skirt). The rest of the upper panel is largely under the shirt: the radial vertex-only check reported zero outside points yet missed these surface crossings. Do not translate the whole skirt to solve this local patch.
+- **First tuck rejected:** one local inset preserved weights, UVs, topology, materials, bone rest and geometry below74cm but left all five crossings; six proposed moves exceeded the2.5cm trial limit. `local_tuck_candidate.json` is `REJECTED_OFFLINE_DO_NOT_IMPORT`; no candidate FBX/blend was exported or imported. Astra must reshape the actual crossing patch against the shirt surface, with adequate overlap/clearance and unchanged lower silhouette, then prove animated layering. Do not inflate thresholds, hide body/garments or tune physics to conceal a failed fit.
+- Shirt/body source-rest crossings=0; Skirt/body=898. **Fresh current-UE export equivalence now PROVEN** in `fresh_source_equivalence.json`: Body/Shirt/R2 Skirt counts20,786/861/30,509, world-coordinate/weight/UV/bone-rest deltas0, matching ordered polygon/triangle arrays, material indices and464-bone hierarchy. Blender edge-array ordering differs but edge connectivity/counts match; export bytes are not claimed identical. This supersedes the earlier historical-body identity caveat in the first contact report and confirms the measured source-rest crossing patch in today's meshes. Counts alone do not establish severity or visible runtime penetration; resolve exact body-region visibility and deformed clearance before promotion. SOURCE REST render assemblies deliberately omit hair/boots and are not evidence that runtime Melusina is bald.
+- **Reuse the existing duplicate-only boot candidate:** `RecoveredBootCandidate/boot_lower_sole_candidate_17_039cm_HOLD.{blend,fbx}`; actual FBX SHA256 `C91DCA43328D72DBADAB687C286B74D349DDB40FAA39B4B5C421F72247DB5D80`, matching the independent round-trip receipt (the first report's related-FBX hash has a typo). Lower-foot compression preserves1,962 upper vertices/cuff/weights/UV/topology/464-bone hierarchy;2,130 lower vertices change,125 also carry skirt-chain weights. Source minimum-Z improvement2.313524cm is not a runtime-clearance prediction. Status remains HOLD, no UE import. Establish current boot/FootPlacement baseline first and compare candidate through the existing Boots slot with identical graph/settings.
+- Prior +0.462/+0.739cm sole canary proved one flat Mage idle only. Earlier18.841439/21.509118cm target offsets with0.12s easing are not a current Shinbi/gait calibration. Blanket root_x +30.080321cm was rejected for anatomical/cuff failure and restored. Never repeat whole-boot/body/root lifting; inspect current CopyBone -> target clearance -> FootPlacement -> LegIK and independently prove sole, cuff/ankle and capsule contact together.
+
+### Astra execution: one reproduction, smallest correction, complete proof
+
+1. When the school editor is available for handoff, preserve its seven packages and use one Melodia editor/Monolith writer with local DDC `C:/UE_DDC`. Snapshot exact live pawn/CDO, AnimClass, source defaults versus BP overrides, active graph, BlendSpace sample roles, eleven filters, current FootPlacement settings and wardrobe mesh/leader/count. Current C/G body/shirt/skirt bytes match; their skeletons differ. Never replace C skeleton or blindly synchronize G runtime assets/DLLs.
+2. Independently inspect the exact selected clips on actual V2 body at entry, representative motion and true exit before binding. Run source/all-key preflight; seams only for true loops, preserving intentional non-loop attacks. Reproduce current walk acceleration/reversal/stop first, recording state/transition and BlendSpace weights, playback times, full torso/arm transforms and montage slot/weight. Use one matched A/B through the existing graph to isolate the failing composition; select an already verified asset or correct only the demonstrated graph mismatch. Do not treat the old Mage experiment as the current answer.
+3. Replay G1 -> G2 -> G3 -> G4 -> G5, then traverse the contact matrix below. G3 re-reads the eleven-filter mask. G4 requires actual charged draw -> >=2s held charge -> release -> recovery, both stationary and genuinely moving. Enhanced Input injection must prove it reaches WaveHarp's legacy raw mouse bindings; short click/public-owner methods are diagnostic and cannot pass held physical input. G5 keeps new dress work staged aside while testing the actual equipped Shirt/Skirt/Boots.
+
+| Required case | Simultaneous checks |
+|---|---|
+| G1 startup/settled idle; eight unobstructed angles | Upright torso, shoulder/elbow silhouette, native scale, complete hair/hat/wardrobe, waist/cuff/sole alignment |
+| G2 walk, acceleration, turns/reversal, stop in both directions | Current state/sample weights; no inversion/popping/clipping; phase continuity and planted-foot slip |
+| G3 LMB caster fire/recovery stationary and moving | Five releases/chord completion, next cast, mixed LMB -> RMB -> LMB; motion preserved, exact mask, torso/shoulders, intentional floating astrolabe and prop/body clearance |
+| G4 RMB draw/held/release/recovery stationary and moving | True input-path proof, sustained charge, early release/cancel, return to locomotion; moving speed>3cm/s, hand/grip/string relation, shoulders/elbows and lower-body continuity |
+| G5 basic garment fit; jump/glide/landing | Shirt outside upper-skirt patch throughout deformation; unchanged cuff/lower silhouette; no scale pop, floor burial or broken recovery |
+| Flat floor, slope and stairs, both feet | CPU-skinned sole/toe/ankle vs each local trace hit, cuff alignment, capsule support and stance contact/slip; center-floor Z alone insufficient |
+
+4. Stage each geometry candidate outside Content, verify source identity, topology/weights/UV/material/bone-rest invariants and round-trip. Import/equip only after offline fit passes; compare against baseline using identical clips/graph/settings. Preserve canonical originals and source quaternions. Capture clear matched before/after views; any raised/collapsed shoulder, inverted torso, frozen elbow, penetrated sole, detached cuff or wrong waist ordering fails the applicable row. Record missing evidence as UNVERIFIED, not PASS.
+5. Save only the accepted scoped assets, re-read bindings/settings and run a fresh-process replay of the same gates. Build only for actual native changes or unresolved source/binary mismatch; today's school process is not proof it loads Melodia's DLL. Confirm DLL identity when a build is needed. Commit scoped accepted runtime/assets/evidence with this state update; copy only the validated dependency set to G with hash verification, protecting its skeleton and staged work. Failed rows keep the animation goal open: do not freeze/canonize a known bad pose or broaden into unrelated polish.
+
+**Jev audit LIVE:** `jev_astra_prep_result.json` selects `REPRODUCE_COMPOSED_WALK_TRANSITION_WITH_STATE_AND_SAMPLE_WEIGHTS`, `MEASURE_AND_STAGE_LOCAL_WAISTBAND_TUCK_THEN_ANIMATED_CONTACT_PROOF` and `ALL_REQUIRED_CURRENT_RUNTIME_CONTACT_INPUT_VISUAL_AND_RESTART_GATES_PASS`, each confidence1.0. This used the approved semantic findings packet, without code/assets/captures/local paths/credentials. Jev did not see the images, and no reason/distribution was returned. Bring the measured before/after result back to Jev at the runtime checkpoint; its planning ruling is not runtime approval. **Preparation is complete; live Melodia contact, physical-input, visual and restart acceptance remains OPEN.**
+
+**Owner resumed editor access / fresh readback:** launch PID50024 used local DDC but crashed at15:39 UTC with `OutOfMemory`/paging-file limit (179.4MiB allocation; preserved `first_launch_memory_failure.log` and crash context). A single lightweight menu relaunch, PID46008, became responsive and returned zero dirty packages; it proved the connected Idle=Shinbi standing, Locomotion=production BlendSpace with CuteIdle atzero, all eleven depth-zero filters, mesh-space true/root-space false, and retained FootPlacement root_x plus18.841438/21.509117cm grounded target offsets with0.12s easing. `fresh_editor_readback.json`/`fresh_graph_settings.json` are editor graph proof, not live pose acceptance. A separately launched second process appeared afterward; Sol did not launch it, terminate/discard either process or alter assets. A later OOM crash receipt names another PID and is not attributed to the menu editor without a matching log. Latest census is one replacement editor PID22676, Monolith responsive on `L_MelusinaMorning`, no PIE world, zero dirty packages,15.45GiB free commit headroom. Fresh body/Shirt/R2 Skirt FBX exports are in `FreshUEExports/`; source-rest surface/skin/hierarchy equivalence passed as described above. No animation/garment was changed and the full contact/input suite remains OPEN. The prior school packages' save disposition is unknown.
 
 
-## Runtime animation convergence — 2026-10-03, ACTIVE
+## Sol next-session handoff - 2026-10-10 (session closed; saved checkpoint, acceptance OPEN)
 
-## Owner decision — Sparrow×6 FULL FIX authorized — 2026-10-07
+Owner requested closeout for the next session. Preserve the improved saved set; do not restart animation authoring or claim the broader animation goal complete. This section supersedes older editor/PID and next-action descriptions below.
 
-Owner directs repair (not continued freeze) of the six canonical archery clips
-(`Animations/SparrowArchery_Canon_20261005/`: Primary_Fire_Fast/Med/Slow,
-RMB_Drawback/Fire/Loop). Canon recipe on **copies in a new folder only**
-(`SparrowArchery_Fixed_20261007/`); the six Canon_20261005 originals stay frozen
-as rollback baseline (SHA256 preservation read 2026-10-07). Per-clip: arm
-correction from `A_Melusina_Idle_Mocap_RootX` @0.0 across all frames, verify
-`15.774 | 28.561 | 28.615` (±1cm), reject `34.789 | 9.520 | 28.615`, `save_asset`
-each (never `overwrite=true`, never `save_dirty_assets` for these). Then RMB
-draw→hold→fire→return replay + G5 transition stability before P0 resume.
-Execution needs the Monolith editor lane (mutation surface); this session has no
-MCP writer. CORRECTION 2026-10-07 (measured before mutating): the six
-Canon_20261005 clips are ALREADY arm-corrected on disk (seg1 15.774 + seg2 28.561
-at all sampled frames; old 20261002 files genuinely read 34.789) — NO bone
-surgery authorized (a static copy_bone_pose would flatten draw motion). The live
-defect's source is the C++ defaults binding ChargeDraw/Hold/Fire to the old
-20261002 defectives (soft refs, invisible to find_references). Fix = 3-line
-repoint to Canon_20261005 (staged, uncommitted) + closed-editor build + fresh PIE
-draw-hold-fire readback. BowGrip zeroed-translation look (C++ default + rebuild) stays a
-separate owner-gated work order.
+- **Saved checkpoint:** `ABP_Melusina_Current` SHA256 `EC6F66041D5659CF82FD949159F42F4B99AE055E7E6D35F2954A7778A88D0C69` still loops existing `ShinbiDoctor_20261007/A_Shin_Idle_stand`. The owner found it more stable. The rejected ACFU Mage idle stays rejected; the native Mocap Idle preview is a T pose and is not a fallback. This is a partial improvement, not a presentability certificate.
+- **Current-set verification advanced, bounded:** one GUI editor was relaunched with local DDC `C:/UE_DDC` after the clean headless editor quit. Fresh Morning PIE readback confirmed canonical pawn/V2 body/current AnimBP and UpperBody bindings: caster stance/cast = existing ShinbiDoctor Idle/Cast; charged draw/hold/fire = existing SparrowDoctor repaired copies. Loaded project DLL SHA256 `7A35A7B25F69D45502932F544AA78A96C39F2F535197AEC9314E417239A95EA4` matches the closeout disk read; do not reuse older build receipts as this binary's evidence or repeat a build without a source change.
+- **Isolated previews retained:** `Saved/Audit/MelusinaRuntimeCloseout_20261009/CurrentSet_20261010/{isolated_preview_readback,isolated_preview_additional}.json` and their PNG folders capture actual-body entry/motion/exit for the current clips. Opened lit idle, cast and Sparrow draw/hold/fire samples show an upright torso and moving arms in those views. The initially black idle entry is invalid; use `ShinbiIdleLitEntry`. Use `SparrowFireFull` for the true 1.8667s exit; the earlier 0.6s fire sample was not an exit. These largely side views do not certify front shoulder shape, blends, garment contact or physical input. The draw source returns toward its entry at its end: inspect the actual draw-to-hold handoff rather than assuming the final source frame is held.
+- **Remaining acceptance:** complete normal-presentation physical-input G1-G5 and clear eight-angle views remain UNVERIFIED. A Choral Sheep occluded the latest normal camera; actor/camera readback established the obstruction, not a baldness diagnosis. Preserve hair/wardrobe, frame the complete pawn, and never accept an obscured image. The earlier short walk left the platform and the later safe-floor capture never completed. Do not promote torso-height samples or successful capture-tool returns into shoulder/foot/contact approval.
+- **Editor handoff, freshly checked at closeout:** the current single GUI editor is PID10744 on `/Game/EnvSandbox/Environments/L_InfiniteScore`, no PIE world, with that level dirty. It belongs to the active environment lane; Sol neither saved/discarded that package nor stopped/relaunched the editor. Coordinate its next available window; PID3092/48100/38464 are historical. There is no Sol capture still running. Do not Save All, force-kill or switch its level under another author.
+- **Next Sol step, one bounded pass:** re-read the preserved bindings and eleven depth-zero UpperBody filters (mesh-space rotation true, root-space false), then G1 idle -> G2 short floor-safe walk/stop -> G3 LMB caster/recovery with mask re-read -> G4 RMB draw, stable held charge, release/recovery, stationary and moving -> G5 basic body/Shirt/Skirt/Boots layering, with dress work staged aside. Include jump/glide/landing/contact only after core pose checks are clear. Capture front/side combat and eight unobstructed angles; reject raised/collapsed shoulders, torso inversion, frozen elbows and floor penetration. Use the existing owners/capture and gate tools. Public-owner calls are diagnostic; input injection must document its path and cannot be labelled physical input. Monolith exposes `editor.pie_inject_input_action` for Enhanced Input; verify whether it reaches WaveHarp's legacy mouse bindings before relying on it. Python movement accessor is `get_component_by_class(unreal.CharacterMovementComponent)`, not `get_character_movement()`; parse the last info entry from mixed Monolith Python output.
+- **Jev continuation:** the live fresh-graph ruling remains `HOLD_VERIFY_CURRENT_SET_FIRST` (0.89) and exact-asset/state-role structural + isolated + composed acceptance (1.0), retained in `jev_sparrow_graph_followup_result_20261010.json`. Return a bounded semantic findings packet after that pass; Jev has not reviewed the images. Defer Sparrow start/stop, additive landing and lean adaptations until this preserved set is accepted. No whole donor BP transplant, retarget redo, second animation pipeline, cute-idle search or skirt-physics tuning.
+- **Pipeline prevention, existing seams only:** before another animation promotion, reconcile the stale full-pose-copy contract with donor-specific preserve-quaternion authority, and make the existing Python clip gate fail closed on missing/unreadable data while checking both arms across keys. Native Monolith guarded assignments already do all-key checks; generic Python/UI writes bypass them. These prevention items were identified, not implemented in this closeout. If the prior QuestCard HUD crash recurs, isolate that exact runtime blocker rather than broadening animation work.
+- **Landing/sync boundary:** only the saved ABP checkpoint and this handoff hunk are Sol's closeout commit; older dirty `BS_Melusina_Locomotion`, environment/material/HUD/wardrobe edits and the HeroTreatment bridge note are outside it and preserved. G: remains a complete portable project with separate authored work, but differs in skeleton revision, locomotion, ABP and module coverage. Preserve G-only dress work and dirty status notes. Handoff/diagnostic evidence may be copied with hash verification; runtime Content/DLL convergence is deferred until the exact dependency set is resolved and accepted. No new G runtime equivalence, packaged proof or animation canonization is claimed.
+
+Portable closeout: C: checkpoint commit 8664bb1cc. This handoff was merged while preserving the prior G status body; 60 selected preview/graph/Jev diagnostic files were robocopied and SHA256 matched. Prior differing destination files are preserved under Saved/Audit/SolSessionCloseoutBackups_20261010_1950. G: runtime assets/binaries retain their prior state; portable runtime convergence remains open.
+
+
+## Sol runtime checkpoint - 2026-10-09 (bounded repair unproven; runtime presentation FAIL)
+
+Owner handed Sol the editor and scoped animation closeout. Existing mage idle, skeleton, FootPlacement, caster/archer hybrid and frozen Sparrow originals remain the authorities.
+
+- **Owner resumed usable-exit goal:** after the Jev planning pause, owner explicitly requested an updated goal and implementation, then confirmed “stop asking just go.” Active goal created at 2026-10-10 02:20:55 UTC: isolate and repair the layered torso inversion in one <=60-minute block, then verify basic body/Shirt/Skirt/Boots layering and existing gameplay. Skirt physics remains deferred. The latest main checkpoints below preserve partial fixes, not a presentable character. No failed pose may be canonized as a usable exit.
+- **New matched runtime failure PROVEN:** `Saved/Audit/MelusinaRuntimeCloseout_20261009/ShoulderContactLive/MatchedPhases/capture.json` completed 20 diagnostic front/side samples without callback errors. Idle head component Z~136cm/pelvis~72cm becomes charged bow head~21cm/spine_03~47cm while pelvis remains~72cm. Caster fire briefly reproduces the inversion. Opened matching images confirm the folded upper body. Native arm lengths do not prevent this failure. Source bow/caster full poses remain upright in `torso_basis_compare.json`; its mage entry used a missing path and is INVALID, so the proposed pelvis/parent rotation-frame mismatch is still a hypothesis, not an isolated cause. The pose capture uses direct owner calls, not physical-input acceptance. Flat idle CPU-skinned boot sole clears the center collision floor by~0.5cm; walk at90cm/s reaches -4.09cm clearance with132 vertices below that floor. No gait/cuff/slope/stair acceptance is implied.
+- **Jev planning LIVE:** restored existing TypeSafe SDK in disposable Saved tools and used the configured Windows user credential without displaying it. `jev_exit_plan_result.json` records `source=jev-live`: `PLAN_ONE_TIMEBOXED_REPAIR_THEN_VALIDATE` confidence0.78; first gate `ISOLATE_LAYERED_TORSO_PARENT_FRAME` confidence1.0. No reason/distribution was returned; do not invent one. No fallback judgment is called Jev.
+- **Owner scope clarification - garment layering:** skirt-physics repair remains deferred. Owner reports the clothes do not layer correctly; basic garment fit is therefore an open presentability gate, not permission for simulation tuning, a new cloth solver or dress-pipeline expansion. After the torso pose is valid, inspect body/Shirt/Skirt/Boots together at idle and one representative walk/cast pose: intended layer order, waist/cuff overlap, exposed body and penetration. Existing shared skeleton/LeaderPose attachment is proven but does not prove geometric clearance or matching deformation. Classify the specific overlap as pose, local fit or skinning before proposing a smallest local correction. Do not compensate for the inverted torso with garment offsets or inflate the whole outfit. Preserve existing assets and motion; corrective fit or skinning work follows a demonstrated valid torso pose, and simulation tuning remains deferred. This clarification is owner direction added after the Jev ruling, not a new Jev approval.
+
+The active <=60-minute repair/validation block is: (1) use one reversible matched A/B to isolate source-vs-layered torso parent frames on the actual mage base and preserved 11-filter mask; (2) repair only the demonstrated mismatch through existing owners, preserving original clips and animated motion; (3) repeat idle/walk/stop, caster fire/recovery and charged draw/hold/release/recovery with unobstructed views and bone readback, plus a fresh normal-presentation input replay. Torso/head must remain anatomically above pelvis, shoulders native and motion continuous; do not alter thresholds to pass. Add the exact failing layered case to the existing regression gate. If the cause/repair cannot be proven within that block, stop and report the remaining case; do not expand into retarget/skeleton redesign or silently accept a failed state. Only after the core pose and remaining boot/contact/traversal acceptance passes may the usable result be canonized, committed and synced. Hat fit/VFX/dress/cute-idle polish stay outside this exit slice.
+
+- **Recurring assignment regression guarded (2026-10-09):** existing Monolith state binding, asset-player node creation, animation object-property replacement and BlendSpace sample add/edit now preflight the exact canonical skeleton before graph/sample mutation. Require authored arm/forearm tracks, unit root/root_x scale and both arm chain lengths 15.774/28.561/28.615 +/-1cm at every stored key; BlendSpace binding checks every sample. No rotation rewrite, skeleton mode change or runtime compensation. Native build exit0 (4/4,10.52s); restarted DLL and canonical Morning PIE pawn read back native arm lengths. Live broken-glide rejection leaves Glide binding unchanged; corrected copy and existing four-sample locomotion blend accepted. ABP compile0 errors/warnings; 11 filters preserved. `clip_guard_live_tests.json` and `clip_guard_restart_pie.json` are the receipts. Luna independently reviewed mutation order; discrete keys do not prove blended shoulder silhouette. Manual UI and generic bulk/Python writes are outside this guard and must perform the same preflight before assignment. Sparrow test assignment and dirty-package reload were rejected by automatic review; neither executed. Verified corrected binding was saved; zero dirty packages before normal quit. Full presentation HOLD remains.
+
+- **Native build and restart PROVEN:** save-all returned true and UI All Saved before normal editor exit; no packages were deliberately discarded. Closed-editor host build exited 0 (28/28 actions, 59.91 s), `Saved/Audit/MelusinaRuntimeCloseout_20261009/native_build_host.log`; wardrobe DLL refreshed to 16:34:05, one GUI editor relaunched. The sandbox UBA permission failure is a separate failed attempt, not a source compile failure.
+- **Wardrobe ownership corrected and fresh PIE read back:** adopt existing exact-mesh `HatMesh` into Hat slot instead of creating/hiding duplicate actor components. Full-skeleton LeaderPose garments attach at CharacterMesh0 component root: socket attachments double-applied bone transforms and visibly detached Shirt/Skirt/Boots in the live A/B probe. Fresh receipt `rebuilt_wardrobe.json` proves one HatMesh after equip, shared body leader and component-root garment attachments. This proves ownership/attachment, not hat fit: the remaining visible hat gap and rings are open presentation defects. The older head_x attachment recommendation and capsule-parent claim are superseded by this live state.
+- **New shoulder/size regression reproduced in live Glide:** the bound raw mocap glide has root scale 100; live transition measured arm segments about 299.918 / 543.028 / 544.047 cm. Duplicate-only `Animations/AnimationDoctor_20261007/RuntimeCloseout_20261009/A_Melusina_Glide_InPlace_Candidate` is now bound and saved in existing Glide state. Root scale1, no root/c_traj/root_x XY travel, component-space root_x Z88 across 90 keys; both arms 15.774/28.561/28.615 at all keys. First malformed key replaced by first valid key; first/last12 keys feather to shared endpoints. Final all 465-track endpoint residual: translation 0 cm, rotation 2.42e-6 deg. Original clip untouched. `glide_candidate.json` is the EARLIER variable-pelvis pass; use `final_glide_candidate_readback.json` and `final_glide_seam.json` for final asset evidence.
+- **Simulated-input PIE PROVEN, limited:** `Saved/Audit/MelusinaTraversalLiveInput/20261009_210238.json` completed_sequence=true, tap apex 89.8cm / held 225.6cm; actual Idle/JumpStart/Airborne/Glide/Land/Idle observed, release stops glide/restores gravity. Corrected transition and settled Glide arm lengths remain native; `corrected_phase_glide_settled.png` inspected. Overall automation still FAILS on PCG invalid-bounds errors; preceding capture-heavy runs missed timing gates. No physical-key/RMB acceptance or running/ledge/slope/stair proof is implied.
+- **Upper-body mask preserved:** fresh `preserved_11_mask.json` has all 11 spine/shoulder/arm/forearm/hand filters depth 0. ABP compile 0 errors/warnings and outer AnimGraph exact assertion 28 nodes/25 edges, fingerprint 880e10dcde9d238b1e996580f5d00ba94264027a. Explicit Glide binding readback confirms candidate; outer fingerprint alone cannot prove an inner-state asset.
+- **Separate shoulder pose gate remains OPEN:** direct existing-owner charged draw/late charge/fire/caster/recovery probe retains native arm lengths (`combat_owner_probe_clean.json`); this is pose diagnostics, not input proof. Luna independently checked final receipts and requires torso-relative orientations, elbow angles and matching unobstructed poses: bone lengths alone cannot establish shoulder silhouette/contact. Initial angle captures clip into geometry and are REJECTED visual evidence. The final eight idle views (`idle_final_angle_*.png`, `idle_angles_final.json`) were opened independently: hair/rings and one wall still obscure some shoulder views; hat floats above the head and neutral pose leans forward. Diagnostic camera collision was temporarily disabled at 300 cm and sheep hidden, then restored. These views do not pass the shoulder/contact gate. No whole-body/skeleton offset or donor overwrite was made.
+- **Audit/tool limits:** Luna confirmed duplicate adoption avoids generic same-mesh hiding/restoration hazards, and flagged false-pass behavior in existing verify_clip_gate/repair_loop_seam tools (missing tracks/read failures treated as zero). Their PASS labels are not promotion evidence. Editor PID39484 failed at 2026-10-10 02:48 UTC with system-memory exhaustion/paging file too small; the crash is not proven to be caused by the ABP setting. One GUI editor PID41372 was relaunched with `-LocalDataCachePath=C:/UE_DDC`, and logs confirm the local cache. At 03:13 UTC Monolith health responds, but editor actions are rejected by approval policy and native editor screenshots remain black after fresh window selection. Recovery and dirty packages cannot be read back. No blind restore, save-all, second editor or forced shutdown was performed.
+
+- **One-property repair experiment UNPROVEN:** toggled the existing Layered Blend per Bone Mesh Space Rotation Blend from false to true without changing the 11-filter mask, Root Space Rotation Blend, graph wiring or donor assets. GUI compile reported success (301ms); only obscured idle was observed afterward. No charged/caster post-change pose or normal input acceptance was captured before the memory crash. The canonical ABP on disk still matches the pre-test backup (SHA256 `0175973B84194176784906F194F1D47317C41B44FE8F70E54375EF47A861D27A`). The unsaved autosave is preserved separately under `ShoulderContactLive/LayeredBlendAB/`; it is not a promoted runtime asset. Re-read the property and exact 11 filters after recovery, then replay matched entry/stable hold/fire/recovery samples before deciding whether to save.
+- **Layered regression detector SOURCE/TOOL PROVEN:** existing `Tools/melusina_anim_gate.py --runtime-capture` checks finite root_x/spine_03_x/head_x positions, required combat front/side coverage and torso height order. Existing source-reference/clip gates remain unchanged. Focused pytest: 44 passed; historical matched capture correctly returns exit1 for seven inverted rows, saved as `LayeredBlendAB/pre_test_torso_gate.json`. This validates supplied receipt samples only; it does not authenticate capture provenance, stable/full montage weight, complete transitions, compiled ABP state, physical input or visual acceptance. Luna independently reviewed these limits.
+- **Jev experiment follow-up LIVE:** `jev_bounded_result.json` records `source=jev-live`, `RECOVER_EDITOR_THEN_REPLAY_SAME_ONE_PROPERTY_TEST`, confidence1.0. No reason/distribution returned. The repair remains unproven; shoulder presentation, boot gait clearance and body/Shirt/Skirt/Boots layering remain open. Owner again reports shoulders broken and skirt presentation unacceptable. No failed pose is canonized.
+
+Implementation is active under Sol. The bounded goal targets a usable stopping point; the current inverted-torso state is a runtime failure. Saved/Audit artifacts are local diagnostic evidence, not a new status authority.
+
+- **Scoped landing and portable sync PROVEN:** local main checkpoints `51b98ce7a` (glide/wardrobe/assets) and `4530178dd` (assignment guard) passed repository hooks. Editor normally quit with zero dirty packages. Robocopy transferred 26 selected source/runtime/asset/evidence files to `G:/EnvironmentPortfolio/BS_GodFile`, verified SHA256 for each and retained differing destination files under `Saved/Audit/SolRuntimeSyncBackups_20261009_guard`. Receipt `g_sync_verified.json`; no deletion, DDC copy, bulk dress promotion or frozen donor edit. This proves file sync, not a school-machine build or portable gameplay acceptance. Other lane's 26 staged CURRENT_STATE additions were preserved. Full animation/presentation goal stays active; shoulder silhouette, boot contact and physical-input G1-G5 remain owed.
+
+## UI Material Architecture & Figma Layout Delivery — 2026-10-08 (UI Manager, Complete)
+
+Full UI material system overhauled from legacy stubs into production-ready shaders and Figma-aligned layout tokens:
+- **5 Master UI Materials (`MD_UI`, `BLEND_Translucent`)**:
+  - `M_UI_UniversalToon_Master.uasset`: Resolution-independent SDF rounded box, tactile paper grain, Ben-Day halftone dot grid, procedural drop shadow (`[7, 8]` offset at 25% `#241B2E`), interactive `BraceVoluteSheen` sweep, audio BeatPulse reactivity, and dual-axis progress bar masking.
+  - `M_UI_Mstone_Master.uasset`: Prismatic spectral dispersion (RGB chromatic aberration), multi-facet internal refraction, Chladni cymatics resonance, Beer-Lambert volumetric absorption, twinkling 4-point/8-point glints, and gilded metallic bezel.
+  - `M_UI_Nikki_Master.uasset`: Dual-tone pastel watercolor washes (Rose `#FF93B5` vs Pearl Aqua `#86E4FF`, Sakura `#E7C9CE`, Lavender `#F0DCF0`), thin-film iridescent shimmer loop, white die-cut sticker edge contour, procedural stardust sparkles, and idle breathe animation.
+  - `M_UI_Storybook_RadialRing.uasset`: Polar SDF ring arc generator with dashed orbital tracks, angular phase offsets, and astrological pips.
+  - `M_UI_Storybook_OrreryDisc.uasset`: Dual concentric astronomical disc frames with stardust core and celestial coordinate markings.
+- **3 Legacy Stubs Rewired**: `M_UI_Nikki_StorybookCard.uasset`, `M_UI_Nikki_VitalsMeter.uasset`, and `M_UI_AudioGlow_Border.uasset` rewired to full production master graphs.
+- **19 Material Instances Compiled**: 4 Universal Toon, 4 Mstone, 7 Nikki, 4 Orrery/Radial/Stardust instances persisted under `/Game/Melodia/UI/Materials/`.
+- **Figma 1440×900 Design Space Alignment**:
+  - Upgraded `Content/UI/WidgetStyleSheet.json` to canonical Storybook design tokens (Ivory, Gold, Plum, Sakura, Lavender, HP Rose, MP Pearl Aqua, Outfit/Inter typography, 8px grid spacing, and `[7, 8]` paper drop shadow).
+  - Upgraded all 30 WBP atom specs in `specs/ui/*.t3d` to 1440×900 baseline canvas with explicit 4-layer luxury UMG depth hierarchies (Void Plate, Iridescent Sheen, Filigree Chrome, Active Content).
+  - Validated via `Tools/ui_lint.py`: 0 errors, 0 warnings across all 30 atom specs.
+- **Automated Verification**:
+  - `compile_playtest_ui_and_owners.py`: 129 compiled, 129 saved, 0 failed via headless UE 5.8 (`playtest_ui_compile.json`).
+  - `test_ui_style_audit.py`: 5/5 assertions passed.
+  - `validate_storybook_runtime_manifest.py`: 12/12 runtime entries passed.
+  - Architectural Record: `Docs/UI/UI_MATERIAL_AND_FIGMA_LAYOUT_ARCHITECTURE_2026-10-08.md`.
+
+## Authorized animation closeout — 2026-10-08 (Sol, in progress)
+
+Owner authorized one duplicate-only lower-sole boot geometry candidate with cuff/ankle preserved, equipped-Boots runtime contact checks (idle, walk/stop, jump, glide, landing, slope, stairs), eight-angle physical-input/visual review, G1–G5 on corrected Sparrow copies, then full build/restart, scoped commit and validated-file sync to G:. These remain completion gates, not a completed delivery.
+
+Owner's latest idle choice is the installed ACFU RiftMage donor `/AscentCombatFramework/Mannequin/Animations/Idle` (12 s, 361 keys at 30 fps). The duplicate-only Doctor candidate `Animations/AnimationDoctor_20261007/ACFUMage_20261008/A_Melusina_ACFUMage_Idle` is saved on the canonical skeleton and bound to the existing Idle state and both existing speed-zero blendspace samples, looping at rate 1. Four-arm translations use canonical lengths while animated rotations/scales remain intact (maximum measured rotation change below 0.000035 degrees). Full-key deform metrics: root deviation 1.738 cm, eye deviation 0, hand roll 48.851 degrees, twist deviation about 0; measured arm/root/foot endpoints match. The initially invalid chest row was corrected to `spine_03_x`: 2.226 degrees breathing motion, maximum adjacent rotation 0.215 degrees, zero loop seam. `ACFUIdleComparison/mage_idle_full_key_audit.json` and `mage_idle_saved_bindings.json` prove authoring/saves; possessed Morning PIE confirmed canonical pawn/body/ABP and active Idle weight 1. Equipped visual/contact acceptance remains owed: the attempted eight-angle camera frames were clipped/obstructed and are not a passed visual gate. Shinbi remains the caster lane.
+
+The existing native AnimInstance now exposes rising/descending predicates and excludes grounded glide entry. The closed-editor UE 5.8 native build succeeded (`native_build_20261008.log`, 27 actions, 148.33 s); both reflected flags were confirmed loaded after restart. The existing six-state locomotion machine now has 20 transitions: running jump, direct descending ledge fall, early contact, jump-to-glide, and fresh airborne movement interrupting landing. Ground contact has priority over glide; movement predicates replace automatic jump/fall transitions; only Land-to-Idle retains its sequence-end rule. Fresh state-machine readback and explicit scoped save succeeded. Main AnimGraph topology is still 22 nodes/18 connections, fingerprint `0bc45364b399f3a371efe42bc45be6705a2187ff`; all 11 upper-body filters remain the required invariant. This is source/build/editor proof, not completed live transition acceptance. The current raw glide clip remains unaccepted: root scale 100 and huge root/counter-translation caused about 8,042 cm root-height deviation. Fresh 90-key export also exposes a 22.356 cm startup pelvis jump and a 17.185 cm seam after dropping key 0; normalize units with full parent transforms and prove full-body continuity before any duplicate-only promotion.
+
+Recovery and portable drive: owner authorized termination of stalled headless PID 38524 after the GPU-memory failure. 57 existing Morning/ABP/blendspace autosaves (3,446,252 bytes) were preserved under `Saved/Audit/MelusinaTraversalLiveInput/CrashRecovery_20261008/`; they do not establish recovery of all 13 formerly dirty Morning packages. The subsequent single GUI restart used `-DDC=NoShared -LocalDataCachePath=C:/UE_DDC`; the log confirmed local Zen DDC at `C:/UE_DDC/Zen`. Preserve that local DDC launch policy. G: was absent, but a fresh read now finds `G:/EnvironmentPortfolio/BS_GodFile` mounted with updated college Houdini work and `G:/HoudiniCollege_2026-10-08_staging`; compare scoped files before any sync and never overwrite the SSD's newer work wholesale. Use the local Windows PowerShell executable for this session. Jev's specific TypeSafe payload approval remains pending after automatic approval review rejected external transmission of internal asset paths/measurements; no new Jev judgment is claimed.
+
+Fresh editor evidence: all six `SparrowDoctor_20261007` copies pass the sampled deform gate (`Saved/Audit/MelusinaTraversalLiveInput/sparrow_deform_recheck_20261008.json`); the existing upper-body node still has all 11 depth-zero filters (`upper_body_mask_recheck_20261008.json`). Neither receipt proves physical-input or visual acceptance. Original clips remain untouched.
+
+Boot candidate work remains outside Content in the existing Luna DCC lane. The monotonic foot-local candidate has 0 flipped/degenerate faces, 1,962 protected upper vertices exact, unchanged weights/UV/topology/464-bone hierarchy, cuff p99.5 unchanged at 10.945426 cm, and a passed FBX roundtrip. Its roughly 32% lower-foot compression adds only 2.3135 cm source-rest world clearance; geometry alone cannot explain away the prior approximately 30 cm live penetration. Source/candidate previews still show an arch fit concern. No boot asset is imported or canonized. Installed UE 5.8 FootPlacement source outputs pelvis and configured IK targets without solving thigh/calf; the current configuration targets anatomical `foot_l/r`. Existing `c_foot_ik_l/r` bones are available. Next reversible canary: copy anatomical foot poses to those separate targets before the existing FootPlacement, then native LegIK before Kawaii, first with zero sole offset; require active target bones, unchanged anatomical segment lengths, CPU-skinned sole/cuff fit and capsule/floor contact together. This canary is not yet executed; no anatomical-foot or whole-character offset is accepted.
+
+Sir readback correction: actual `BP_SirMelodious_Flight` defaults already assign `SK_SirMelodious_Rigged`, `ABP_SirMelodious`, relative Z -88 and yaw -90. Monolith's inherited-component summary reported nulls and was incomplete; direct CDO readback supersedes it. The flight ABP uses v3 flight blendspace/takeoff/land. Morning's stock JRPG Sir is a separate existing party representation. V5/V6 ARP/KineFX work remains staging with doctor scale/tail/crest HOLDs; no updated import or live height-control completion is claimed.
+
+Latest editor boundary: GUI PID 49384 was saved, PIE stopped and dirty count 0 before the synchronous `editor.run_automation_tests` attempt. That action calls `StopTest` immediately after starting a latent test and crashed on `LatentCommands.IsEmpty()` at 15:34 EDT; do not use it for `Melodia.LivePIE.Melusina.JumpInput`. Use the normal asynchronous Automation console path and observe the same session instead. The GUI has exited. Antigravity then launched headless PID 52172 at 15:36 EDT; ownership is being clarified, so Sol has not launched a second editor or mutated that session. Automatic approval review intermittently failed on the account usage limit; rejected editor actions were not executed or bypassed. Live physical-input, eight-angle, G1-G5, outfit/Sir and final restart acceptance remain open; no closeout commit or sync is claimed.
+
+Owner added walk-cycle transition/easing/clipping and runtime Niagara/flipbook repair to the goal. Fresh live readback: the active Locomotion state uses existing `BS_Melusina_Locomotion` (idle 0, walk 180, run 420, sprint 630 cm/s), weight speed 5 with easing and marker sync enabled; walk/run each have `L_Foot`/`R_Foot` markers. The Hybrid blendspace is not the active state's player and has weight speed 0. Do not claim a fix by enabling settings already present or tuning the orphan player. Measure real contact/phase and start-stop response in the active blendspace, then tune that owner. Luna 6 is assigned the scoped existing Melusina BP Niagara/material repair: source evidence found 0.03-0.10 cm sprites/tiny bounds and existing real 4x4 atlases, but package graph/rendering acceptance and repaired runtime visibility are not yet proven. Preserve staged NS/BP changes; no broader material architecture replacement.
+
+Follow-up ownership/cache check: PID 52172 is actively rendering the college Sea Above cathedral work, so leave that writer untouched. Its log uses `G:/UE_DDC`. The user-level `UE-LocalDataCachePath` was changed from `G:\UE_DDC` to `C:\UE_DDC` and read back successfully; this does not change the running editor or its parent process environment. Sol's next launch must retain the explicit local-C override. Luna's repair source is unrun and under review for component-property guards, supported editor APIs, and isolation from shared EnvSandbox material functions; Niagara renderer rebinding remains owed. The existing opt-in native jump test now records actual FSM states with independent movement eligibility, contact-specific blend allowance, and completion requiring all observed gates. Those latest test-source changes are not built or runtime-proven.
+
+Walk shortlist receipt readback (`runtime_shortlist_deform_20261008.json`) reports root-height deviations of 13.319 cm for both current walk/run and 12.421 cm for sprint, failing its root check. This is a sampled clip diagnostic, not a measured live sole correction; resolve the clip/root and existing leg-solver seam before attributing clipping solely to blend easing. The revised VFX candidate uses reflected UE 5.8 MaterialEditingLibrary expression getters and leaves unsupported Python SCS edits to reviewed Monolith operations. It must keep shared source functions untouched, and still requires live graph compilation, exact renderer rebinding, and rendered frame proof before saves/promotion.
+
+## Staged plan — college trip, home editor, convergence — 2026-10-08 07:20 EDT (uncommitted)
+
+Staged, not executed. Planned read-only, then adversarially fact-checked; the first draft failed that check, and the version below is the verified one. Nothing here is committed. This pass edits only this section.
+
+**Snapshot (verified 07:19 EDT)**
+- Editor: GUI not running. Headless `UnrealEditor-Cmd` PID 38524 (started 06:29:09, `BS_GodFile.uproject -stdout -FullStdOutLogOutput -skipcompile`) holds 127.0.0.1:9316 and answers Monolith. **13 unsaved packages** under `L_MelusinaMorning` (12 at 06:35; one more since). A GUI launch now would be a second writer.
+- Disk: C: 15.7 GB free (floor 25). G: 121.7 GB free; G: is the ROG ESD-S1C USB SSD.
+- Submission: upload `G:\BS_GodFile_School_20261008\SHOREWAKE_Submission_Package_2026-10-08\01_Film\ShepherdBrennan_AnimaticCreation_2026-10-09.mp4`. Its hash equals the committed v07 LFS oid (sha256 85e9881f…, 17,393,902 bytes). Fallback on the drive: `01_Film\previous_cut_ShepherdBrennan_Animatic_v06.mp4` (= committed v06, 55657dca…). The packet's "v06 build" label is wrong, and its v05 fallback is not on the SSD. `G:\HUMBER_ANMN301_Shorewake_2026-10-09\` holds a stale v04 and a README that says to submit it.
+- Git: C: `main` 6ff7f97c0, 16 ahead / 52 behind stored origin/main (not fetched), 12 commits on no remote, 110 M / 382 ??. G: `EnvironmentPortfolio\BS_GodFile` ed98d721a, 2 ahead / 0 behind stored ref, 371 dirty; its `.git` is owned by Administrators, so git needs per-command `-c safe.directory`. Neither HEAD is an ancestor of the other.
+- Lane: `collab/laptop/longterm` at ef0772c46, 20 commits not on main. The git law names this lane for laptop asset work.
+- Shirt snapshot: `G:\melodia_bundles\melusina-shirt-20261006\` (MANIFEST.txt present). The `D:\melodia_bundles` path cited at line 175 no longer exists; the drive letter moved.
+- Field-atlas recipes (Morning and sea-above) both point at `hda/HDA_Foundry_FieldAtlas_1.0.hda`, which does not exist. Morning's `exists_on_main:false` flag is already in HEAD, so the "one-line fix" at lines 415–419 is stale. The missing HDA is the real blocker.
+- `deploy/` loop flags: none present (the `stop_*.ps1` files are scripts, not flags).
+
+**Owner decisions (default if no answer)**
+- Q1 The 13 Morning packages (Red list): save or leave? Default: leave. Nothing saved, nothing discarded.
+- Q2 Free C: space without deleting, e.g. relocate `C:\UE_DDC` (a cache) to G:. Default: none; Track C waits.
+- Q3 Preservation bundle of C: to `G:\EnvironmentPortfolio\preserve_20261008\`? Default: no.
+- Q4 Laptop asset lane: existing `collab/laptop/longterm` (per the law) or a new branch? Default: none. No git action without per-operation approval.
+- Q5 Doctor rig gate: approve a rig-dir argument (a code change), or replace the 10-06 manifests after a hashed backup? Default: neither.
+- Q6 Impostor bake: which terrain mesh? Default: not run.
+- Q7 Sheep: after reading `Docs/References/ChoralSheepCapstone/AGENT_CONTEXT.md`, approve a sheep leg? Default: no sheep work.
+- Q8 `Content/Melodia/Characters/Melusina/ABP_Melusina_Current.uasset` and `Characters/SirMelodious/BP_SirMelodious_Flight.uasset` show as modified: confirm no concurrent writer (GPT rule). Default: no writes there.
+- Q9 Long Houdini jobs: route through the existing Hermes plan (`.hermes/plans/2026-09-26_hermes-orchestrator-infra-plan.md`) or run as college-stage tasks? Default: college-stage; extend that plan rather than start a parallel one.
+- Q10 Packet relabel (v06 → v07)? Default: owner edits it.
+
+**Track A — before you leave (owner)**
+- A1 Confirm the SSD upload's sha256 equals `85e9881f…`. The owner uploads on Blackboard; no agent uploads. Resume if it stalls; confirm the receipt lists the file; do not rename after upload.
+- A2 G: is copy-only: no commits, pushes or branches from it.
+- A3 No agent launches an editor while PID 38524 holds 9316.
+
+**Track B — college, headless Houdini (no UE editor)**
+- B1 License gate: `python Tools/Houdini/foundry/houdini_foundry.py probe --timeout 60 --out Saved/Audit/houdini_foundry/probe_20261008_college.json`. Stop on nonzero exit or timeout; skip B3–B5.
+- B2 Verify only: `houdini_foundry.py validate recipes/houdini_foundry/*.json` (record the count) and `Tools/Houdini/foundry/test_houdini_foundry.py`. Record the actual results.
+- B3 Author `hda/HDA_Foundry_FieldAtlas_1.0.hda` (8 channels, per the Horizon table): build into `Saved/HDA_build/`, byte-copy into `hda/` (the V3 pattern, line 429), register in `Tools/Houdini/hda_verify/hda_registry.v1.json`, run `run_hda_verify.ps1`. Gate: exit 0 with golden counts pinned and the negative test still failing. Stop: node errors, or any write into `hda/backup/`. Flipping `exists_on_main` is an owner edit after this gate.
+- B4 Sea-above test tile (after B3): `houdini_foundry.py` has validate, plan, verify and probe only, with no cook command. A cook entry point is a new build; the owner approves it first. Gate: two runs into separate scratch dirs, both through `houdini_foundry.py verify`, with identical hashes.
+- B5 LOD3 impostor (`Tools/Houdini/copernicus/copernicus_impostor_bake.py --mesh <owner-named> --out <dir> --lod LOD3`): no dry-run mode, so every run writes. Stop: no mesh named (Q6).
+- B6 Universal Rig: blocked. `universal_rig.py:211` says capture waits on `skeleton_fbx_export` from UE, so the joint, mirror and ornament builds wait on C6. Read `Docs/Production/MELUSINA_RUNTIME_CANON_2026-10-05.md` before any rig work.
+
+**Track C — home editor (one writer; blocked until Q1 and Q2)**
+- C1 Clear the editor: Q1 decides each dirty package. Owner-approved saves only, then a graceful quit (not `taskkill`). Verify each save by the package's `__ExternalActors__` mtime. Gate: dirty count 0 and 9316 free. Stop: an undecided package; a new `MODAL_OPEN`; C: under 25 GB.
+- C2 Launch the GUI from the C: tree. Gate: one UnrealEditor owns 9316 and the world loads. If it opens on MelodiaIntegrationMap, stop and ask. No `load_level`.
+- C3 Bubble proof: the `MELODIA_BUBBLE` log lines that line 15 describes are not in source (no match in the tree or HEAD). Choose (a) a PIE readback of `IsBubbleSprinting()` during an owner-held V press, or (b) owner-approved log lines plus a build. Then strip the TEMP lines that exist: `MELODIA_TRAVERSAL_BIND` (MelodiaTraversalComponent.cpp:531) and `MELODIA_TRAV_IN` at :537, :637, :653, :765, plus the X/W watcher (locate before stripping). Gate: a dated receipt with V held and bubble engaged. Stop: no V-down after two windows (line 13).
+- C4 Boot grounding (lines 78, 86–95): needs Q8 and the canon doc read. Boots FBX unchanged. Candidate only, reversible. Measure CPU-skinned sole clearance and cuff fit with boots equipped; then G1 idle, G2 locomotion, G3 LMB plus 11-mask re-read; G5 staged only; G4 waits. Receipt under a new dated name; the 10-07 `live_skinned_boot_contact.json` stays untouched. Stop: a saved offset without cuff and ankle proof.
+- C5 Horizon PCG (section "Horizon System Plan"): needs Q1, owner approval for builder runs in `L_MelusinaMorning` (Red list) and writes to `/Game/EnvSandbox/`, and a count of PCGVolumes near x=200000 first. Re-run the builders with the `"Out"` pin; save dirty packages (not `save_current_level`); `generate()`; count on a later tick. Gate: instances above 0 in a dated receipt. Stop: the volume count rises, or `TAGGED_DATA_LEN:0`.
+- C6 `skeleton_fbx_export` from `SK_Melusina_Skeleton`: export only, no reimport. Unblocks B6. Owner approves.
+
+**Track D — convergence (git law: every git action needs per-operation approval, with a read-only check before and after)**
+- D1 Bundle of C: (`git bundle create --all`) to the Q3 folder, with a SHA256 manifest and `git bundle verify`.
+- D2 Use `collab/laptop/longterm` (Q4). Review its 20 commits before any merge. Do not create a new lane by default.
+- D3 Local `main` must mirror `origin/main` under the law; it does not (16 / 52). Moving `main` is an integrator decision with a written plan. Fetch only with approval.
+- D4 The two G:-only commits (`2c0f7b73f` RMB repoint, `ed98d721a` Gate-0A) go to the desktop integrator PR (lines 78, 120).
+- D5 Untracked staging (`deploy/houdini/`, `Saved/` staging) stays untracked (line 76).
+- D6 Doc fixes, owner-approved: lines 175–176 (`D:` → `G:`), line 15 (log lines), lines 415–419 (flag present; no dry-run at 417), the packet label, the HUMBER README.
+
+**Do not**
+- Commit, push, branch, merge, rebase, reset, fetch, pull, stash, clean, gc, `checkout --` or `add -A` without per-operation approval and a written plan.
+- Run a second editor, `taskkill`, `load_level` off MelodiaIntegrationMap, overwrite=true retargets, or a body reimport over a live mesh.
+- Edit Melusina clips (deform-only), add blanket root_x or Boots offsets, or touch the six Sparrow originals.
+- Write into `houdini_faraway_mother/` (the verified Phase-4 product), the doctor's `melusina_animation_doctor/rig/`, or `hda/backup/`.
+- Touch `.gitignore`, `.gitattributes`, `Config/Default*.ini`, `MF_MeshBlend_*`, or `deploy/run_verify.ps1`.
+- Delete `C:\UE_DDC`, the 43 orphan actor files, or anything else to free space.
+- Submit from `G:\HUMBER_ANMN301_Shorewake_2026-10-09\`.
+
+**What the verification pass changed (the first draft failed)**
+- The bubble log lines and the Morning "one-line fix" were stale. The impostor script has no dry-run mode. The faraway script's default output is `houdini_faraway_mother/`, so it is never used for determinism runs.
+- The universal-rig "mirror" code is the existing N5 symmetry QA, not a new build. Rig capture is blocked on UE's skeleton export.
+- The draft's new-lane default and its `git branch -f main origin/main` step were removed: both need owner approval the draft did not have.
+- The shirt snapshot is on G:, not D:.
+
+## Bubble sprint + roll facing — 2026-10-08 dawn (implemented, PIE verification OWED)
+
+**Shipped in code, not yet proven in play.** Native build clean; editor relaunched on the new binaries.
+
+**Implemented in `UMelodiaTraversalComponent`:**
+- **Bubble sprint (hold)**: new `MelodiaTraversalBubble` action bound to **`V`** + `Gamepad_LeftTrigger`. Hold → `bIsBubbleSprinting`, `MaxWalkSpeed` 780, forced-swim suppressed (skims the surface instead of entering swim), surface skim to `WaterLevelZ + 2 cm`, and wake `Ripple` events streamed through the existing water contact bus every 0.22 s (Niagara/audio/material consumers unchanged). Exposes `IsBubbleSprinting()` + `OnBubbleSprintStateChanged`. Surfacing out of an active swim/dive on engage.
+- **Roll facing fix**: the Alt dash roll still plays the backward clip correctly mid-animation, but now re-faces to the **travel direction** on montage end (previously she landed facing opposite the dodge). `RollExitFacingYaw` captured at dash, applied in the montage end delegate.
+
+**ROOT CAUSE for the dead X binding (do not re-derive):** `MelodiaWaveHarpCombatComponent.cpp:164` binds `EKeys::X` → `CancelPhrase` on a **pushed** `UInputComponent` (`WaveHarpPlayerInput`, `PushInputComponent`). A pushed component outranks the pawn's, and that binding does **not** set `.bConsumeInput = false` (unlike its Q/W/O/P lane bindings) — so **X is consumed before the traversal action sees it**. Mapping, binding, and delivery were each verified good independently (runtime mapping readback, `EnhancedInputComponent` bind log, raw `IsInputKeyDown(X)` transitions). X is permanently unavailable for traversal; bubble was rebound to `V` (verified free). Reclaiming X later = `bConsumeInput = false` on that single combat line.
+
+**Still OWED:** one confirmed on-the-wire `V` hold → bubble engaged. Two V probes sampled 237/239 frames with zero V-down; the press never landed in the sample window. That last press is the only thing standing between this and a proven feature.
+
+**TEMP DIAGNOSTIC still in `MelodiaTraversalComponent.cpp` (remove once confirmed):** `MELODIA_TRAVERSAL_BIND` (one-shot; names the input component class), `MELODIA_TRAV_IN jump|sprint|strafe|dive` (handler entry), a per-frame X/W `IsInputKeyDown` transition watcher in `TickComponent`, and `MELODIA_BUBBLE pressed|released` + `MELODIA_BUBBLE SetBubbleSprint` state logs.
+
+**Commit scope note:** `MelodiaTraversalComponent.{h,cpp}` also carries pre-existing uncommitted jump-buffer / coyote-time / glide-activation work that predates this session (it was already in the file before these edits, not authored here) — it rides along in this commit.
+
+## Runtime movement and footwear gate — 2026-10-08 (Sol continuation)
+
+The existing `Melodia.LivePIE.Melusina.JumpInput` automation sequence exercised the canonical possessed `BP_MelusinaJRPGCharacter` through simulated `APlayerController` Space key events in a fresh Morning PIE session. The saved receipt is `Saved/Audit/MelusinaTraversalLiveInput/20261008_072001.json`. A short press reached a 112.13 cm apex without glide; holding reached 223.49 cm, entered glide, propagated `bRuntimeIsGliding` into `ABP_Melusina_Current`, and release stopped glide/restored gravity before landing. This is engine-input and state evidence, not physical-key or visual acceptance. The automation run itself reported existing Morning PCG invalid-bounds errors; those are recorded separately and do not invalidate the movement assertions in the receipt.
+
+Jev was restored through the existing TypeSafe SDK and selected `MEASURE_FOOTWEAR_POSE_CANARY` with confidence 1.0. The reversible canary inserted a `root_x` component-space +30.080321 cm `ModifyBone` before the existing FootPlacement node. It removed all 30.08 cm of measured sole penetration and left 3.53 cm of clearance, but the live anatomical `foot_l` rose to -550.90 cm while the boot sole was -606.75 cm; cuff/foot fit was therefore broken. The canary was removed, the original LocalToComponentSpace → FootPlacement edge restored, the AnimGraph returned to its original 22-node/18-connection fingerprint `0bc45364b399f3a371efe42bc45be6705a2187ff`, compiled clean, saved, and left zero dirty packages. Receipt: `Saved/Audit/MelusinaTraversalLiveInput/boot_pose_canary_rejected.json`.
+
+The next bounded owner action is a shoe-aware ground-reference correction on the existing boot/FootPlacement contract, with live cuff alignment, sole clearance, capsule contact, and walk/land checks. Do not promote a blanket `root_x` or Boots offset, alter the frozen skeleton, edit frozen clips, or create another animation pipeline. The Houdini/KineFX and headless-Blender boot audit remains source/tool evidence only: the canonical FBX and capture invariants are intact and no candidate was exported or promoted.
+
+A second PIE-only canary tested a +30.080321 cm relative lift on `CharacterMesh0` and wardrobe visuals. FootPlacement compensated the visual lift; the boot remained at -30.08 cm relative to the floor reference with 4,600 vertices below it, while the anatomical foot stayed at the native floor relationship. This is recorded in `Saved/Audit/MelusinaTraversalLiveInput/whole_mesh_lift_canary_rejected.json` and was not saved or promoted. The solver therefore rules out both a pose-space root offset and a component-wide visual lift as the immediate fix.
+
+## SHOREWAKE close-out — 2026-10-08 (Humber lane, owner-directed)
+
+Starskiff reel loop + ANMN301 animatic closed out repo-side. Commit `aea624abd` (36 files): pearl strand restored (dead since v18; gated 5246v/61), LaundryLine weld 184→164 + Pennant loose-vert removal, GN census (47 trees, 0 dead refs, 5 inert logged), wake-trail keys trimmed into 1–120, FLIP confirmed never-baked and parked, lookdev (sea 8→64 m, wave heights unchanged, RT, star world, fog-glow at 6.6% footprint), komikaze tuned+ (50 hybrids / 172 assignments + GN-material sweep), and **`SHOREWAKE_LOOP_v5_master.blend`** — the merged, verified canonical (pearl/tree gates, closure 0.0 mm, flicker 4/5.12/3.28/4, 0 dead modifiers). Hero stills + receipts under `Saved/Audit/` (key JSONs force-added).
+
+Live session `SHOREWAKE_LOOP_v5.blend` saved by owner direction (dirty=false, all staged items verified post-save). Physics review vs references: draft 0.354 m on 8.07 m LOA plausible, stays 10.5° off vertical, shrouds taut; the real find is the swell mismatch (sea breathes ±0.19 m around a hull that moved 8 mm, out of phase) — water-following `_bob` variant built (25 keys, closure 0.0 mm, draft constant); promote/pass is owner call.
+
+Animatic: rebuildable VSE source `SHOREWAKE_VSE_animatic_v05.blend` (text + panel numbers 01–17 + 3 measured gamma-cross dissolves); **final polish 2026-10-08**: numbers added (Arial Bold 52px, bottom-left), middle dissolve tightened 16→8f (white-pair fog), re-rendered and verified → submission candidate `…_v07.mp4`, copied to the convention name `ShepherdBrennan_AnimaticCreation_2026-10-09.mp4` for the Oct-9 5 PM drop; packet `ANMN301_SUBMISSION_READY_2026-10-08.md` + package `SHOREWAKE_Submission_Package_2026-10-08/` (+ zip; G: school copy `G:/BS_GodFile_School_20261008/`). Docs: bounded goal, shot plan v03, physics/compliance review, GN plan, composition pack, work log.
+
+Open owner calls: bob · v05/v06 ship · night value direction (A/B in `Saved/Audit/`) · D1 sail-kiss · D2 carillon · D3 deckwell · D4 deletions (FLIP domain/surface, WakeTrail, legacy meshes) · 5 inert litter nodes · 2 stray live objects (`audvis_global_settings`, `x undo`).
+
+Repo reality at close (post-fetch): 12 local commits unpushed incl. `aea624abd`, 52 behind `origin/main` — no push from this lane; closing ALLREFS bundle → `git_bundles_archive/ALLREFS_2026-10-08_closeout.bundle`. C: disk at 98% (20 GB free) — next sweep due.
+
+## Gouache LookDev convergence — first writes — 2026-10-07 (editor live; Sol idle)
+
+Monolith read of the three PP families, then two bounded writes (both compiled, saved, re-read):
+- **InkPrint** = the `InkPrintOffset/Shift/Depth` misregistration params inside `M_PP_MelodiaInk_Frozen`; that master validates 0 issues and is fully wired — 4 SceneTexture→Custom inputs (`SceneColor/cR/cB/smeared`) + 14 `MPC_MelodiaInk` params (`InkMasterWeight`, `InkSyncVision`, `InkBass/Mid/Treble`, `InkReact`, `InkHueShift`, `InkAccentTint`, `MeluPrimary`…). `Tools/_fix_ink_wiring.py` targets `/Game/Melodia/_PROJECT/04_Materials/PostProcess/M_PP_MelodiaInk`, which does not exist — the wiring it wanted is already present in Frozen; obsolete, do not run.
+- **Profiles:** Ink Frozen = full print (strength 0.647, halftone+hatch on); `MI_MelodiaInk_Render2026` = soft variant (0.35, both off). `MI_MeluColorGrade_Render2026` already carries `NikkiHeroGradeStrength` 0.526 / `VignettePigmentBlend` 0.35 / `BeatPaletteResponse`. `MI_StarryNight_Frozen` = 37 overrides but glossy (PaintGloss 12 / PaintSpecular 0.78); `MI_StarryNight_Hero` was a 0-override, 0-referencer alias of it.
+- **Writes:** (1) `MI_StarryNight_Hero` gouache starter — PaintGloss 12→2, PaintSpecular 0.78→0.2, PaletteFollow 0→1 (3 overrides verified, recompiled, saved; preview thumbnail is a blank PP-domain capture, not evidence either way). (2) `BP_MelodiaLookdevDirector_Candidate.InkProfilePortfolio` None→`MI_MelodiaInk_Render2026` (dry-run 0 silent drops, compiles 0e/0w, saved); its other seven profile slots stay None — owner art call.
+- **Evidence level:** editor-side only (parameter reads, write success, compile, save). Visual acceptance still needs PIE/PPV frames on a lookdev stage; the StarryNight overlay master is still the un-promoted `M_PP_StarryNightOverlay_Candidate`.
+
+## Gouache convergence — continuation — 2026-10-07 (editor live)
+
+- **Orphan master fixed:** `M_PainterlyGouache` (EnvSandbox/Masters) is a full Substrate toon gouache master (band ramp, granulation, blotch, paper grain, derivative edge) with **no consumer MIs or map references** (`find_references` reports none — it does not surface MI→parent edges) and a dead wiring defect: `TexCoord × GouacheTiling → Multiply_18` went nowhere and all three texture samplers ran on default UV0 (validate: 4 issues). Connected `Multiply_18 → UVs` on WashBlotch/Granulation/PaperGrain → **validate 0 issues**, recompiled, saved. `GouacheTiling` is now live; `T_Gouache_BrushEdge` (4th texture) still unused — decision open.
+- **Profile family created** in the organized home `/Game/Melodia/Materials/Lookdev/`: `MI_Gouache_Lookdev_GameplayStandard` (5 overrides), `_Narrative` (5), `_PortfolioHero` (7) — all children of `M_PainterlyGouache`, recompiled, saved, read-back verified.
+- **Director revived:** `BP_MelodiaLookdevDirector_Candidate` had every event disabled and no logic. Removed the dead `K2Node_Event_0`; added working BeginPlay → `KismetMaterialLibrary::SetScalarParameterValue(MPC_MelodiaInk, 'InkMasterWeight', InkMasterWeight var)` — compiles 0e/0w, saved, pin read-back shows Event→execute, MPC→Collection, var→ParameterValue. MetaSound scaffold junk left in place (not mine to delete).
+- **Director catalog expanded:** added `GouacheProfileGameplay` / `GouacheProfileNarrative` / `GouacheProfilePortfolio` (object:MaterialInterface, category `Gouache`) defaulting to the 3 new MIs — 13→16 variables, compiles 0e/0w, saved. Application logic (PPV blendables) still owed; the 7 Outline/Grade/Ink slots stay None (agreed).
+- **Correction:** `/Game/Melodia/Lookdev/` (L_Lookdev_ToonAB, L_UE_Beauty, RT_UE_Beauty, BP_UE_BeautySender) and `/Game/Melodia/Materials/Lookdev/` **exist on disk** — the earlier '(absent on disk)' note in this file was wrong; no new home needed.
+- **Evidence:** editor-side only (validate/compile/save/read-back); re-verified after an editor outage (master validate 0 issues, director UpToDate, MIs intact). NOT PIE-proven (BeginPlay MPC push, gouache look, BrushEdge). Receipt: `Saved/Audit/lookdev_gouache_convergence_20261007/receipt.json`.
+
+## Morning G→C sync — 2026-10-07 eve (owner-directed, editor closed)
+
+`L_MelusinaMorning` external actors synced from the G: portable checkout (two days of Morning work) onto C:: 71 G-only actor files added + 14 G-newer overwrites, all 85 hash-verified post-copy (424 actor files total). Full C-side backup first: `Temp/opencode/morning_C_backup_20261007/` (353 files). Deliberately NOT overwritten: the `.umap` shell (C: newer, Oct-6 21:38) and 3 C-newer actor files (`5/ZR/G5ZQQ7UR410VKR2F16WEH9`, `1/0E/XKQMWKG1020ABE3CPWA8UV` — the preserved locomotion-repair package, `C/Q3/LOL1EBLT0AWLXO87NRDQY0`). 43 C-only actor files left in place as orphans — needs in-editor triage for stale duplicates before any cleanup; no deletions performed. File lists: `Temp/opencode/morning_{gonly,diff,conly}.txt`. Next: open Morning in-editor and verify placements before any other lane work.
+
+## Sir Melodious review — 2026-10-07 eve (C: read-only vs G: portable)
+
+Reviewed before any Sir pipeline work: G: `CURRENT_STATE.md` (18:04) carries the Oct-07 SparrowDoctor/ShinbiDoctor + grounding sections C: lacks in full; C: `HEAD 22de7cfba` take-over finalize + `merge_aside_20261007/resolve_state.py` is the newer repo-side closeout. G: `Saved/Audit/SirMelodious_FlightUnit_20261003/` (Blender ARP v4/v5/v6 + `UE_IMPORT_HANDOFF.md` + `PLAN.md` + proof/portfolio) and `Tools/Houdini/sir_kinefx/sir_intake_probe.py` + `Saved/Audit/sirmelodious_kinefx_doctor/{intake_probe,node_tree_probe}.json` (both PASS) are the live Sir staging. Promoted named artifacts only to C:: intake probe script + two probe JSONs + PLAN + HANDOFF + Wingbeat v5 + v3 contract/remap JSONs (Binaries/blends/renders/logs left on G:; no wholesale merge; C: v3 FBXs already present). Not started: guarded animation-only import onto the frozen `SK_SirMelodious_Rigged` skeleton, ABP v2, PIE flight proof. C++ height/turn-rate stays as movement-component tuning on `BP_SirMelodious_Flight`, not new code. Melusina grounding gate (Jev GROUNDING_AND_MOTION_FIRST) outranks Sir runtime work.
+
+Built 2026-10-07 eve: `Tools/Houdini/sir_kinefx/sir_flight_doctor.py` (pure-Python, no Houdini/editor) + `Saved/Audit/sirmelodious_kinefx_doctor/doctor_report_sir_flight.json` — verdict **HOLD, 11/14 PASS, 3 HOLD, 0 FAIL** (wingtip probe folded in: 10/10 v5+v6 clips measured Blender 4.5 headless — Fly tip 16.15cm @1.97Hz, Hover 17.04cm @2.94Hz, L/R symmetry 1.0, loop seams 0.0mm; PLAN §6 defects were v2 FBX, fixed in v5+; v5==v6 head-travel identical since the fan is twist/spread, as expected). PASS: intake mesh+clip, 10-piece skin chain, 22 feather joints L11/R11, 7 crest joints (v3 rig had none), node tree, 5 contracts all targeting the frozen skeleton, 5 remap JSONs, v5 Wingbeat curves. HOLDs: unit convention unproven (Houdini body extent 80×342×81 vs Blender rest 42.2cm span — NO UE import until cm-native proven), fly/hover amplitude, Land asymmetry, crest-graft confirmation, ×100 precedent. Next: wing-tip travel probe + v5-vs-v6 clip measure, then guarded import per `UE_IMPORT_HANDOFF.md`. Staged same eve (owner: Cascadeur authorized): `Tools/Houdini/sir_kinefx/cascadeur_secondary_pass.py` + `Docs/Production/SIR_CASCADEUR_LANE_2026-10-07.md` runbook — Cascadeur 2026.1.3 on this machine, v6 = primary wing owner, Cascadeur = secondary overlap only (feather lag, crest tip, tie), KineFX = procedural backup. Physics tuning is interactive (owner/artist), not repo-side. Contact sheets DONE same eve: `Saved/Audit/sirmelodious_kinefx_doctor/contact/` — 7 sheets (5 v6 clips + Fly v5 + v5-vs-v6 fan pair), 36 EEVEE frames, labels carry tip/Hz/seam/wingbeat/mesh_vs_bone. Two infra findings banked: Blender 4.4+ layered-action slots must be set when attaching an imported action to a different armature (else frozen renders — caught by identical byte sizes, fixed), and the OpenGL ROP segfault stands so Blender owns pixels while KineFX owns instrumentation. Review finding CORRECTED + STAGED FIX 2026-10-07 eve. Owner was RIGHT: the tail IS rigged in the source blend — ARP spline/tail chain `c_spline_root.x -> spline_01/02/03.x -> spline_stretch.x -> c_spline_tip.x` plus ARP B-bones `bbones_01..04.x` (weighted in `sirmelodious_BézierCurve.002`). The v5 UE export is what dropped it: all spline/bbone entries are `use_deform=False` and absent from the 66-bone export set, so the tail has no deforming bone in UE. Separately, 657 body verts were weighted ONLY to `c_root_bend.x` (+ ARP unit groups `Group`/`Group.001`/`featherdirectionj`) — none of which export — so they shipped zero-weight and froze at bind pose (the stiff spike). Simpler than the earlier dupe/GN theories: dupes and GN ruled out (10 unique meshes, no GN in FBX).
+
+STAGED FIX (owner asked; staging only, no Content/ write, no reimport): `Tools/Houdini/sir_kinefx/sir_reweight.py` → `Saved/Audit/sirmelodious_kinefx_doctor/reweight/` (`body_reweight_delta.json`, `SirMelodiousBody_reweighted_20261007.blend`, proof render). Explicit ARP-helper→exported map (`c_root_bend.x→root.x`, `c_spine_0N_bend.x→spine_0N.x`, unit groups dropped), top-4 clamp, renormalise: **657 unweighted → 0, root.x owns 656** (source intent preserved). This is a fallback that makes the tail FOLLOW the body instead of freezing — NOT true tail articulation. Real tail wag needs the spline chain exported as deform bones (owner mesh-export decision) or a KP_Tail on exported tail bones.
+
+Weight-fix evidence: `probes/dbg_*.py` (dupe/GN/deform/slot/diff/target/isolate); before/after renders `probes/dbg_bodyonly_f029.png` vs `reweight/proof_f029.png`.
+
+HYTHON PORT (owner: "via hython please") DONE same eve: `Tools/Houdini/sir_kinefx/sir_reweight_kinefx.py` re-detects the 657 independently, calibrates 60+ capture-index→bone pairs by exact count signatures, and PROVES the honest limit — the tail fix needs root.x = one of capture indices {60,62,64,65}, but all four hold absolute zero weight mesh-wide in BOTH apps with no fitting permutation, so weight data cannot promote one (one candidate is the Kawaii collar root — a guess could couple the tail to the collar). No index fabricated; delta records the candidate SET + root.x recommendation with the full proof log (`body_reweight_delta_kinefx.json` + manifest). Writer stays NAME-based (Blender delta, visually proven). Doctor gained a `tail_export` HOLD gate (now **11/15 PASS, 4 HOLD, 0 FAIL**). Dev probes archived to `probes/toolshed/`. Real tail wag still needs the spline/bbone deform export — owner mesh decision.
+
+## Sir Melodious tailfix export + Vellum v4 — 2026-10-08 morning (owner-directed)
+
+TAILFIX EXPORTED + VERIFIED: `sir_export_tailfix.py` (Blender 5.2 + ARP) fixed the 657 zero-weight tail verts AT THE SOURCE (helper→exported map, top-4 clamp, normalise; `fixed_total 657`, `still_zero_total 0`) and saved `arp/SirMelodious_ARP_CrestTie_v5_tailfix.blend`; the recorded run's export step then raised on `sc.arp_engine_type` because its factory reset unloads the ARP user extension, so the FBX came from the export-only pass `sir_export_tailfix_fbx.py` (opens the saved blend; ARP FINISHED) → `exports/ue_arp/SKM_SirMelodious_ARP_CrestTie_v5_tailfix.fbx` (28,207,100 B). `sir_export_tailfix.py` now reloads ARP after the reset so a single run can complete end-to-end; the recorded receipts stay as they were. `sir_tailfix_verify.py` (hython 22.0.368) re-reads the FBX: SirMelodiousBody 657 zero-capture → 0, 132 joints, 3,892 body points, all 10 meshes bbox-identical to v5 — PASS (`reweight/tailfix_verify_kinefx.json`). Still the FOLLOW-body fix: true tail wag needs the spline/bbone deform export (owner mesh decision).
+
+VELLUM CLOTHES BAKE v4 PASS: `sir_vellum_clothes_bake.py` bakes tie+collar on the tailfix body (metre-scale sim, measured +Z up; cache written back ×100 cm): 48 frames, 103.67 MB, pinned 69/344 + 4,148/20,736 at pin-q 0.20 — max mm-plus edge stretch 1.286×, 0 edges >1.5×, disp max 12.4 cm/mean 4.9 cm (`vellum/vellum_bake_report.json`; proofs `proof_v4_f01/f48_on_body.png`). v1–v3 superseded. Headless OpenCL flake: bake with `$env:HOUDINI_OCL_DEVICETYPE="CPU"`.
+
+UE IMPORT (started): `/Game/Melodia/Characters/SirMelodious/ARP/` created in the live editor (empty; no asset imported). Handoff §1 mesh drag stays owner-manual — `SKM_SirMelodious_ARP_CrestTie_v5_tailfix.fbx` → ARP/ (Create New Skeleton, morphs ON, Nanite ON); `Content/Python/import_sir_anim_guarded_v4.py` prepared (v3 guards; auto-discovers the ARP skeleton; v6 clips; save OFF per handoff — in-memory until owner Ctrl+S); it runs only after the drag, then handoff §3 ABP/BS retarget. Editor verified live (one instance, Monolith v0.20.3); 13 unsaved L_MelusinaMorning external actors noticed, untouched. Committed locally (no push).
+
+## Take-over finalize — 2026-10-07 eve (Sol on break; repo-side only, no editor contact)
+
+Sol's afternoon session is checkpointed and the editor is closed. Take-over completed repo-side finalization only: the Horizon PCG pin-fix scripts (spawner→Output via the proven `"Out"` pin, sleep-free probe discipline, label-based dedupe) are committed with the stale Oct-5 session note retired in favor of the static audit, plus the eve status corrections and the post-convergence doctor receipts (**23 PASS / 2 HOLD / 0 FAIL**, `doctor_report_20261007_takeover.json`). Deliberately NOT committed: ~99 `Content/` resave-bump `.uasset`s, Sol's untracked animation staging dirs, `deploy/houdini/` + `Saved/` staging scripts (hook law: stay out of git), other lanes' untracked dirs, `.codex/config.toml`. No push (38 ahead / 36 behind after this landing; LFS backlog still unpushed).
+
+Resume for Sol (editor, one writer): first close the boot source-fit gate with a reversible candidate and equipped-Boots runtime readback; then G1 idle → G2 locomotion → G3 LMB + 11-mask re-read → G4 held RMB on the authorized `SparrowDoctor_20261007` copies → G5 dress stage-aside. The measured 30.08 cm live / 12.92 cm graph-bypassed boot penetration is real, but the ~17.2 cm graph-to-single-node root delta is FootPlacement restoring the canonical root (92.76 vs 92.819 cm), not a root-lowering bug. Do not apply an actor-wide or wardrobe-component Z offset without cuff/ankle fit proof. Integrator still owes: C↔G line merge (Gate-0A + RMB repoint live only on G), `origin/main` reconvergence, LFS push.
+
+## Runtime presentation audit checkpoint - 2026-10-07 afternoon, Sol
+
+The owner authorized repairing and binding separate Sparrow copies while all six originals remain untouched, then reported arms or feet still wrong. Six `Animations/SparrowDoctor_20261007` candidates are saved: canonical translations retained, original full-key rotations restored on four arm deform bones. Original and prior-canon hashes are unchanged; all six sampled deform gates pass. Binding these candidates was transient in Morning PIE only; native defaults still use prior canon copies. Numerical PASS is not visual acceptance or canonical promotion.
+
+Fresh evidence: live re-read confirms both generated and editor upper-body layers retain all 11 depth-zero filters. Physical LMB replay observed the new Shinbi Cast; charged loop on new Sparrow was observed by direct combat call only. Held physical RMB remains unproven. Earlier shared-global observer callbacks contaminated cadence/counts; their sequence observations do not establish normal-cadence acceptance. A private-instance observer is prepared; clean editor restart is required before reuse.
+
+Owner floor report is CONFIRMED: actual CPU-skinned Boots LOD0 vertices, copied from the live component through installed GeometryScript RenderData conversion, reach 30.080 cm below the flat collision floor, with 4600/5540 vertices below it. The same saved idle played with the animation graph bypassed still penetrates 12.918 cm. A transient, exact-restored FootPlacement isolation shows root Z 92.76 cm with the node enabled versus native 92.819 cm disabled: the ~17.2 cm graph-to-single-node delta is expected plant correction, not a graph root-height defect. The source bind has the boot sole about 17 cm below the toe reference; idle foot pitch and deformation account for the measured skinned result. No sole acceptance or source-art correction has been saved; the live ABP was restored. Fresh PIE readback confirms the Boots slot is populated by canonical `SK_Melusina_V2_Boots`, leader-posed to `CharacterMesh0` at relative (0,0,0); this supersedes the earlier empty-slot claim.
+
+Eight current runtime angles are in `RuntimeAngles/` with camera metadata. Wide diagnostic views include the full character; ChoralSheep occluders were temporarily hidden and restored, and hero defects remain exposed. Hat bounds center is about 141 cm above head_x; HatMesh is capsule-parented, has no pose leader, and its 434-bone mesh lacks head_x. Hair uses its existing head-socket/CopyPose/Kawaii owner. Rings obscure upper-body readability and the bright wardrobe lacks value separation. Jev jev-1.13.0 verified the latest packet and selected GROUNDING_AND_MOTION_FIRST at confidence1.0, based on Sol observations and measurements, not Jev image vision.
+
+Next bounded order: (0) keep the original boot mesh/FBX untouched; inspect the source sole and cuff fit, build a separate candidate, and compare CPU-skinned sole clearance with boots equipped before considering any saved offset; (1) idle; (2) locomotion/stop; (3) LMB plus 11-mask re-read; (4) held RMB; (5) Shorewake dress staging through the existing Wardrobe/material route. Correct relaxed arm motion and full draw/hold/fire contacts; resolve hat bind/attachment and instrument readability after grounding and motion. Keep the canonical skeleton, runtime owners, original assets and WaveHarp topology intact. G's 17 dress scripts remain a named promotion backlog; rigid/LeaderPose staging only, no skin/Kawaii bind. No stale G CURRENT_STATE or recovery branch is promoted.
+
+### G: Shorewake Dress refresh — staged texture source only
+G: adds `Saved/Audit/melusina_lookdev/garment_refresh/` with a 10-layer, 2048px material refresh plus seasonal, animated and cymatic texture sets/contact sheets. The manifests state texture-only output, no audio reader or writer changes. UE readback shows the canonical V2 skirt uses the Melusina skeleton and has four material slots; the existing `MI_Melusina_Dress_Shorewake` has zero direct references in the project index. The separate `SK_ShorewakeDress_Magical` mesh has 48 material slots, four morphs and its own non-canonical skeleton. So G's textures are useful lookdev input, but have no proven direct slot map to the equipped V2 garment and are not mesh, skinning, Kawaii or runtime dress proof. Keep the refresh G-only and unimported on C until a bounded texture-to-slot preview is mapped through the existing Wardrobe/material owner. Do not bind either the legacy dress or unrelated Chaos proxy skeleton, or create a second garment/runtime pipeline.
+
+OPEN: final four-clip Houdini round-trip, normal-cadence motion/contact/slip/slope/stairs, sustained RMB input, both-hand grip/string clearance, battle mismatches, two fresh PIE/restart sessions, package replay and owner visual acceptance. The comprehensive goal remains active. Receipts: `live_skinned_boot_contact.json`, `graph_vs_saved_pose.json`, `live_11_filter_mask.json`, `sparrow_dynamic_copy_repair.json`, `sparrow_dynamic_deform_gate.json`, `jev_presentation_audit.json` under the existing goal audit.
+
+### 2026-10-07 evening continuation — boot source, glide gate, and live checks
+
+Headless Houdini KineFX 22.0.368 (`convertunits=1`) and Blender 4.5.4 independently read the unchanged canonical boot FBX: 4,092 weighted vertices, zero unweighted vertices, at most four influences, and a 464-joint capture skeleton. The sole is 17.039 cm below the toe-joint rest landmark; small kilt-chain weights reach the sole, so no blanket source translation or rebind is justified. Receipt and reproduction scripts: `Saved/Audit/houdini_foundry/animation_doctor/goal_audit_20261007/boot_kinefx_lane_20261008/`. The transient +30 cm PIE comparison is visually invalid: cloth occludes the boots and one frame is black. No fit correction was saved.
+
+The canonical pawn's `MelodiaTraversal` component had `bRequireCapabilityProviderForGlide=True`, while the source catalog marks all five first-outfit cosmetics as having no Resonant Form and declares the form policy decorative-only. A live request was therefore rejected as `RejectedCapability / capability_blocked_or_locked`. Set the Blueprint override to `False`, matching the native component default; Blueprint compile succeeded with zero errors/warnings and the asset saved. Fresh PIE readback confirmed `False`. A second request advanced past the capability gate and returned `RejectedContext / glide_requires_airborne_state` because this probe pawn was still `MOVE_Walking`; this verifies the former permanent lock is removed, but does not prove airborne glide physics, input routing, or ABP response. PIE was stopped and the editor reports zero dirty packages.
+
+The current C++ traversal patch (variable jump hold, 120 ms coyote window, 150 ms landing buffer, held glide/release behavior, Falling-only activation, and one activation impulse per airtime) passed Live Coding with zero compile errors and the patch applied. Sir's existing flight mapping now also has dedicated descend controls (Left Alt / gamepad left trigger) alongside Space / right-trigger ascent, and unpossess restores cruise speed if boost is interrupted by a party switch. The combined Live Coding pass applied the MelodiaCore, BS_GodFile, and MelodiaWardrobe patches with zero compile errors. The smoke session reported zero Blueprint Runtime Error/Accessed None entries; it was not a movement-feel or input test, and Sir's real possessed-input height control still needs PIE verification. G's Shorewake refresh remains texture-only with no proved V2 slot mapping. TypeSafe key presence was checked without reading or changing the value; rotation is not indicated. No live Jev tool is exposed in this session, so the existing text-only Jev receipt remains the latest audit and no new Jev review is claimed.
+
 
 ## Latest animation checkpoint - 2026-10-07, Sol
 
@@ -89,38 +346,12 @@ HOLD: the final authored clips have not yet had Houdini round-trip reproof, real
 
 Evidence folder: `Saved/Audit/houdini_foundry/animation_doctor/goal_audit_20261007/`; start with `canonical_update_receipt.json` and `canonical_outputs_saved.json`. The portable copy includes only explicitly enumerated changed files and matching editor module build files; no mirror/purge or G: Git-history rewrite. A commit patch is included for provenance.
 
+## Cathedral restore + C convergence — 2026-10-07 eve (repo-side, no editor contact)
 
-## Sir Melodious KineFX doctor — intake proven, 2026-10-07 (Houdini lane)
-
-Owner ask: review the existing AnimationDoctor/Houdini lane, then do the same for Sir Melodious' animation suite with KineFX + Hython, plus constraint solving for his cloak, collar and tie. This entry records the **intake gate only**; the doctor checks and the constraint stage are the open next work, not yet built.
-
-- **Tracked harness** `Tools/Houdini/sir_kinefx/sir_intake_probe.py` (hython, Houdini 22.0.368 licensed headless on this machine) **PASS, both stages**. Evidence: `Saved/Audit/sirmelodious_kinefx_doctor/intake_probe.json` (schema `melodia.sir_kinefx_intake.v1`); dev-run provenance in `node_tree_probe.json`.
-- **Mesh intake** (`exports/ue_arp/SKM_SirMelodious_ARP_CrestTie_v5.fbx`): 10 skinned pieces, **every piece carries a complete capture → captureoverride → bonedeform chain** (KineFX skin import cooks headless); 132 joint objects (66 joints as null+bone pairs), 22 feather joints, crest `cc_crest_01–04`, tie `cc_tie_01–03` all present. **Tie piece identified:** `sirmelodious_Retopo_PM3D_Cube3D1_002` (344 pts, material `SirMelodious_Uni.002`); kilt = `Ring3D2_002` (1,826 pts). Materials arrive as prim `shop_materialpath` — there is no `material` attrib on H22 FBX import.
-- **Clip intake** (`A_Sir_Fly_Loop_v5_ARP.fbx`): verdict `scene_keyframes` — **330 keyed nodes, real world motion** (root_x Δ1.449, `c_kilt_master_x` Δ2.952, kilt L/R Δ4.217 between frames 1→10). The development probe's earlier "clip imports with no animation" reading was an **H22 API bug, not a source defect**: `Matrix4.extractTrans` does not exist (use `extractTranslates`) and the old probe swallowed the AttributeError — banked as a trap.
-- **Proven:** headless license, SKM + clip FBX import, skin chains, live clip motion. **Not proven:** any doctor check, any Vellum/constraint solve, any UE re-import (none attempted; no source blend/FBX touched).
-- **Open next gates:** (1) identify the **cloak and collar** pieces (v5 blend vertex groups / UE `coat_*`,`collar_*` texture→material mapping; tie is known, collar/cloak are not); (2) clip health suite — joint trails, loop seam, feather travel against the v5 numbers in `Saved/Audit/SirMelodious_FlightUnit_20261003/PLAN.md`; (3) the **constraint stage** for cloak/collar/tie (Vellum cloth pinned to the animated joints, deterministic cache, stretch + pin-error report) — Houdini-side staging only, no UE import, no new runtime solver.
-- **Portable bundle:** `D:\melodia_bundles\sirmelodious_kinefx_20261007\` with `MANIFEST.txt` (SHA256 per file).
+Both modified cathedral HDAs restored to HEAD (`hda/` clean; worktree copies backed up with hashes in the convergence receipt). G-only working layer converged onto C as untracked staging only: `Saved/Audit/universal_garment/` (14), `Saved/Audit/wardrobe_pipeline/` (14), `deploy/houdini/` studio package (13 files), 17 dress-pipeline scripts at mirrored paths. Doctor post-convergence: **23 PASS / 2 HOLD / 0 FAIL** (`doctor_report_20261007_postconvergence.json`; remaining HOLDs need live PIE + mesh drops). G-only commits (Gate-0A hardening, RMB repoint) deliberately NOT cherry-picked under the live session — integrator follow-up. Receipt: `Saved/Audit/melusina_animation_doctor/pre_ue_convergence_20261007.json`.
 
 
 ## ⚑ CANON — Melusina runtime rig + retarget — 2026-10-05
-
-> **CORRECTION 2026-10-01 (owner, supersedes the runtime-claims entries below).** The gameplay
-> claims in the older entries in this file are **stale**. The owner confirms: **WASD works, the
-> bow works, damage works, the gameplay loop works.** The "still owed" lists further down —
-> real-input WASD proof, the stock-then-GOOD/PERFECT ladder, the Melusina-possessed PIE probe,
-> the Quill-interpreter movement-lock chase — are **closed**, not pending. Do not re-run them and
-> do not treat them as blockers. Those entries are retained below only as a record of what was
-> true when written.
->
-> **Active work is animation and lookdev only.** The one genuinely open technical item is the
-> **closed-editor 5.8 build** (the party bootstrap is UNBUILT), and that is a build-hygiene task,
-> not a gameplay question. The live queues are the Sheep capstone build
-> (`.hermes/plans/2026-10-01_1700-choral-sheep-capstone-build.md`) and the lookdev ledger
-> (`Docs/P1_TASK_LEDGER.json#lookdev_work`, §ASAP LOOKDEV QUEUE below).
->
-> Version-control state is settled and documented: see
-> `docs/Production/STORAGE_ARCHITECTURE_2026-10-01.md` and
-> `docs/Handoffs/SESSION_CLOSEOUT_2026-10-01.md`.
 
 **Canonical reference: [`Docs/Production/MELUSINA_RUNTIME_CANON_2026-10-05.md`](Docs/Production/MELUSINA_RUNTIME_CANON_2026-10-05.md).** It supersedes all older rig/retarget statements below.
 
@@ -147,13 +378,6 @@ Editor live on `C:\UE_DDC` (G→C 37.9 GB copy; startup 83–89 s warm; Zen + DD
 
 **Start here:** read `AGENTS.md`, `CLAUDE.md` and `Docs/Production/MELUSINA_RUNTIME_CANON_2026-10-05.md`. Preserve the owner's October 5 retarget and idle corrections. Continue through the existing graph with one editor owner. This checkpoint documents the locomotion repair; the broader caster/archer goal is still open.
 
-- **Tracked tree: fully committed, nothing staged, nothing half-edited.** HEAD (on `docs/honcho-discord-sync`) holds all animation work: Sol's `36e089c7c` (draw→V2, retarget refs, rokoko safeguards), my cascadeur safeguards (FBXIT_ANIMATION + fragment quarantine, committed via owner chore `4d32d5b61`), hand-made InPlace (`121862ae8`), ABP + montage states, Jev packet scripts are git-ignored under `Tools/*` but present on disk. CURRENT_STATE carries all four handoffs. **SUPERSEDED 2026-10-01 (version-control closeout): the "352 untracked paths" and "single-copy risk" items below were resolved — the forge clip and the whole animation archive are now in the depot.** See `docs/Production/STORAGE_ARCHITECTURE_2026-10-01.md` and `docs/Handoffs/SESSION_CLOSEOUT_2026-10-01.md`. Untracked count is now 298 and every one of them is confirmed in Perforce — Perforce-only, not unversioned, and note the depot is on this same machine.
-- **RESOLVED 2026-10-01 (was: "Single-copy risk ... `A_Cascadeur_Melusina_BowDraw_v2_Forge_InPlace.uasset` exists nowhere but this disk (not in git, `p4 fstat` = no such file)").** Submitted to Perforce in change 273; reads back at `#1 - add change 273`. The 63-file animation archive (`LegacyRetargets_20261001`, `Retarget/_Archive`, `MelusinaFinal`) went in as change 276, verified 63/63 on disk == 63/63 in depot. **Important framing for future sessions: Perforce's server root is `D:\perforce\root` on this machine, so "submitted" means history-tracked, not off-machine. GitHub is the only offsite copy — and this clip is still not on it.**
-- **P4: 186 opens**, dominated by Morning externals + numbered holds; my 4 fixed manifests sit open in default CL, unsubmitted (owner call, unchanged). No submit, revert, or reconcile was run from this lane.
-- **Main landing still owed:** Sol's `36e089c7c`/`906bbf3b8` are ancestors of this checkout only; `main` sits at `21edf3950`. Proposal stands (cherry-pick repairs, hand-resolve CURRENT_STATE, rule on Mocap-asset tracking). Integrator call, not pre-restart work.
-- **Editor corpse:** PID 65280 modal-wedged, all kill paths return Access Denied, UAC prompt launched awaiting owner Yes (or reboot clears it). No editor contact since stand-down; autosaves 12:25–13:29 intact. After restart: single-editor relaunch → bridge check → ABP redo-vs-repair read → resume the queued PIE ladder (lock probe, WASD, stock-then-GOOD/PERFECT).
-- **Sonnet 5.5 start state:** read this entry + Sol's handoff + Jev `JevPipelineAudit_20261001.json`; runnable on arrival: `Tools/mocap/repair_root_inplace.py`, `synth_procedural_take.py`, guarded importers with quarantine flags; do-not-bind list (raw scale-100 BowDraw_v2, empty Polished husk, 65 quarantined fragments); proof owed (PIE-input, packaged, 60fps).
-
 **Saved change:** `/Game/Melodia/Characters/Melusina/ABP_Melusina_Current`. Enter locomotion above 3 cm/s, return to idle at or below 3 cm/s. One Idle→Locomotion route remains, fade 0.20 s. Land→Idle uses sequence completion; Land→Locomotion uses speed > 3, fade 0.10 s. Actual Locomotion player `AnimGraphNode_BlendSpacePlayer_2` uses `BS_Melusina_Locomotion`, X bound to `RuntimeGroundSpeed`. No clips, retargets, gait rates, FootPlacement, sockets, upper-body filters or garment assets changed. Landing compiled cleanly but was not separately exercised.
 
 **Portable proof summary:** fresh Morning PIE `pie_smoke_12_180705` retained the canonical V2 body and current AnimBP. Moving at 180 cm/s selected Locomotion, weight 1; stopped at 0 selected Idle, weight 1; no montage or AnimBP change. Smoke passed, 30 samples, no reported runtime errors. Foreground replay `pie_smoke_14_181149` completed at speeds 0–180 without reported runtime errors. Synchronous capture overhead reduced cadence; its clothing/hair separation is not accepted as proof of a source defect. No physical keyboard, restart, packaged, smooth-contact or AAA proof claimed.
@@ -173,10 +397,6 @@ Editor live on `C:\UE_DDC` (G→C 37.9 GB copy; startup 83–89 s warm; Zen + DD
 `copernicus_wool_variants.py` headless: 5 variants (knit/cable/tweed/felt/bouclé) × 4 maps (BaseColor/Normal/ORM/Height) at 2K, seed-locked, all 20 verify ok=True → `Saved/GeneratedTextures/Copernicus/` + manifest. Eyes on: cable reads as clean honey-amber twist columns; bouclé as even ecru nubs (its seam metric runs higher — prefer felt/cable on large surfaces). Skipped honestly: fabric-sheen (12 suite sources absent on disk), full dress AO (Labs/OIDN too slow for the window).
 **Organization pass:** staging area indexed (`Saved/Audit/melusina_animation_doctor/README.md`), 30 one-off probes archived to `probes/`, evidence dirs frozen (referenced paths).
 
-### 10-set Substance bake + seasonal Copernicus variants — 2026-10-07 night
-Rescue blend holds `SM_ShorewakeDress_48MAT` (183,741v/206,780p/48×`SW_Dress_Pxx`, meter-frame). `wm.obj_export` returns FINISHED but writes nothing headless here — manual foreach_get OBJ writer (`probes/write_rescue_slotted_obj.py`, ×100 to cm, mapping verified bbox-exact vs reef). Slotted OBJ → packed UVs (same seed, 0% collapsed, 54.6% cover) → 48 `shop_materialpath` groups → renamed to 10 `M_*` garment sets (matches seasonal LAYERS exactly) → `SM_ShorewakeDress_10SET_packed.obj`. Substance via `substance3d_baker.exe` (new CamelCase CLI; `--output-size` is pixels now; `--use_lowdef_as_highdef` honest self-bake; normals default directx/tangent): 5×4K mesh maps, 16-bit, verified by eye + content audit (AO 0.98/curv 0.76/thick 0.92). USD-import trailing-face warning is non-fatal (1/206,780). Seasonal: 320 maps (4×10×8 @2K) + 4 sheets + 192-frame seamless flipbook set (albedo drift ±2%, shimmer carried by iri/sheen/normal). Livery turntables (Summer/Winter, 8×8, cull-on, key+fill) + set-ID false-color proof in `lookdev_outfit/`. Infra banked: background shells kill Houdini (foreground only); `usegeocolor` headless-safe on this box; single-key pleat striping is lighting (fill resolves); stale-N-after-rewind trap; no system python (hython carries numpy/PIL); `.venv` python broken.
-### Reef dress UV pack + winding + lookdev staging — 2026-10-07 (Houdini 22.0.368, headless)
-`audit_dress_topology_uv.py` on `turntable/dress_work.bgeo` (= reef dress, exact point/prim/bounds match): tessellation healthy (0 degenerate/10,339), single `uv` layer but **75% collapsed**, single `Material.001` (the 48 slots live in the rescue blend, not staging). `repack_dress_uv.py` (Labs AutoUV, seed 3900, 1024, 4px pad, single UDIM) → `uv_repack/dress_reef_packed.bgeo`: **0% collapsed, 52% grid coverage**, manifest QA. Winding: radial-majority vote retired as unreliable on asymmetric/folded construction (recorded dead end in `winding_manifest.json`); per-prim winding-vs-authored-N agreement is the authority (**18/206,780 flipped** via group+reverse SOP — HOM has no Prim.reverse). Stale-N trap also banked: stored N must be recomputed after any rewind (Newell). Staged ultimate draft: `lookdev_outfit/dress_reef_lookdev.bgeo` + 8/8 cull-on turntable (`dress_final_contact.png`, key+fill; single-key pleat striping is lighting, proven by tiebreaker frames). Outfit record: `lookdev_outfit/outfit_stage_manifest.json` — geometry READY, 48-slot lineage HOLD (no 48MAT geometry/USDZ on this machine), KineFX capture BLOCKED on `skeleton_fbx_export`. D snapshot: `D:\melodia_bundles\melusina-dress-lookdev-20261007\` with MANIFEST.txt (SHA256). Scripts/bgeos/PNGs stay out of git (hook law); manifests committed.
 ### Shorewake dresses attached to the doctor — 2026-10-06 eve
 Reef dress is body-scale cm-native (183k pts); magical + chaos proxy share a 100× frame (÷100 on UE import, sources untouched). `shorewake_dress` universal_rig profile (bodice/skirt/hem regions) ran clean; headline finding: **dress is fashion-asymmetric (mean 11.6mm, max 108mm) — UE must NOT mirror weights on bind**, recorded as law in the rig manifest. Doctor `wardrobe` family gained `dress_rig` (PASS) + `dress_intake` (HOLD: AntiqueDoll/ButterflyWing manifests valid but staged meshes absent, source path stale `C:`). Verdict **23/25 PASS, 0 FAIL** (`doctor_report_20261006_dress.json`).
 Turntable verified 8/8 clean: `turntable/dress_contact.png` (pearl laced bodice, aqua skirt, gold hem from all sides; profiles show the flare silhouette). Laws: reef dress winding uniformly inverted (flip on UE import); magical/chaos ÷100 scale; no mirror weights. Minor: one possible loose hem fragment at 315° — verify on UE import.
@@ -312,6 +532,14 @@ Owner supplied a real `jev-1.13.0` ruling in `SOL_NOTES.md` / `jev_ruling.json`.
 
 Jev reviews measured, bounded alternatives after G2 and matching visual evidence after G3–G6 where its available interface supports it. A structured text ruling must not be presented as image review. Sol independently opens every image/report before declaring a milestone passed. Camera framing, contact sheets and numeric gates supplement playing-runtime proof; they cannot replace it.
 
+### Boot fit and Shorewake source audit — 2026-10-07
+
+Hython 22.0.368 KineFX and headless Blender 4.5.4 audited duplicate-only boot placement candidates. Canonical `SK_Melusina_V2_Boots.fbx` remains unchanged (SHA-256 `2130d725…c69042b`): 4,092 vertices, all weighted, at most four influences, and matching 464-bone hierarchy. Houdini capture hash and Blender coordinate/weight hashes remain invariant; no candidate FBX or `.blend` was exported. Full receipts, scripts, hashes and eight front/side previews: `Saved/Audit/houdini_foundry/animation_doctor/goal_audit_20261007/boot_fit_luna/`.
+
+**HOLD — no boot correction is accepted.** Source placement measured a lowest vertex at −24.367 cm and cuff p99.5 at +10.101 cm above `foot_l`. Duplicate-only lifts of +12.918, +17.039 and +30.080 cm move that cuff to +23.019, +27.140 and +40.181 cm respectively; the +30 cm preview visibly separates the boot from the leg. Existing live PIE sampling measured 30.080 cm floor penetration in one flat idle and 12.918 cm with graph bypass; those are separate runtime samples, not Blender acceptance. Next fit gate is an unobstructed canonical equipped-boot capture over idle and locomotion, recording floor, root, foot/toe and cuff transforms in the same frames; only then choose a bounded source or binding correction and replay both poses.
+
+The read-only C/G Shorewake inventory found 636 G-only files, no C-only files, three differing rig manifests and no relevant `.blend` source. G staging remains geometry/material evidence; the dress source has no joint capture weights and is not bind-ready. Keep it as a visual donor until an existing-owner bound preview passes fit. This session exposed no live Jev/Conductor connector, so no fresh Jev ruling or image review is claimed; the existing configured TypeSafe key was not read or changed.
+
 ### Sparrow reference and WaveHarp placement ? 2026-10-04
 
 Owner clarified the intentional hybrid: LMB is caster animation with floating astrolabe; RMB is full Sparrow charged draw/hold/fire. Sparrow remains the archery/contact reference for RMB, not a replacement for the caster mode. Fresh owner-API PIE executes CastShoot at deployment 0 and the approved Sparrow draw/hold/fire clips at deployment 1. Source Sparrow bow-base-to-left-hand transform stays constant across nine sampled draw/hold/fire frames. Do not copy its numeric socket offsets directly into Melusina's different mesh/bone axes.
@@ -394,20 +622,16 @@ See `Docs/Production/STORAGE_ARCHITECTURE_2026-10-01.md` and `Docs/Handoffs/SESS
 | Phase | Status | Evidence |
 |---|---|---|
 | 1. Golden Hour PPV | ✅ DONE | `Content/Python/setup_golden_hour_ppv.py` — PPV_GoldenHour live in L_MelusinaMorning at UDS 1750, bloom=0.35, vignette=0.15 |
-| 2. PCG_HorizonEater_FilterFlow | ⚠ WIRED, STILL NO INSTANCES | 2026-10-07: both builders re-run with the corrected API — spawner→output now bound via the proven `"Out"` pin label on the output node (was silently dropped with `"In"`), filter node bypassed out of the chain (a disabled mid-chain filter starved the spawner), weighted mesh selector assigned `Plane` test mesh, saved + re-generated: tagged output now has pin `Out` with 1 entry and `GENERATED=True`. But `ISMC instances` still 0 — CreatePoints/spawner settings need an explicit cook review (owning plugin settings, not foundry). Do NOT claim Phase 2 live-proven until ISMC > 0.
+| 2. PCG_HorizonEater_FilterFlow | ⚠ WIRED, GENERATION NOT PROVEN | `Content/Python/build_horizon_eater_filter_flow.py` — saved graph has CreatePoints→FilterByAttribute(disabled)→TransformPoints→StaticMeshSpawner and **no edge into the Output node** (the first script used the wrong pin labels), so PCG never schedules the spawner; the live volume read `TAGGED_DATA_LEN:0`. Script corrected 2026-10-06 (static fix only, **not re-run in the editor**): spawner→Output via the repo-proven `"Out"` pin, filter bypassed not disabled. See "Horizon PCG audit" below. |
 | 3. World Compiler v2 | ✅ DONE | `specs/schemas/world_compiler_point_row.v2.json` + `Tools/world_compiler.py` — 4 new horizon fields (horizon_distance, sky_exposure, silhouette_weight, atmospheric_depth), 1135 points compiled |
-| 4. Houdini Foundry field_atlas | ✅ SOURCE PROVEN 2026-10-07 | `field_atlas_sea_above_test_tile` cooked headless (PNG16 fallback rasters; HDA absent) — deterministic (all 15 rasters/previews sha256-identical across two cooks), `verify` PASS, recipe status `source_proven`; morning recipe still staged, not cooked |
+| 4. Houdini Foundry field_atlas | 📝 Recipe staged | `recipes/houdini_foundry/field_atlas_melusina_morning.v1.json` — 8 channels, not yet cooked |
 | 5. Distant Terrain Impostor Baking | 📝 Script staged | `Tools/Houdini/copernicus/copernicus_impostor_bake.py` — LOD3 spec (128px, Toksvig 1.0, rim 1.8), Hython template |
 | 6. Horizon Eater Live Proof | ⚠ PPV ONLY | `Saved/Audit/horizon_eater_live_proof.json` proves the golden-hour post-process volume (priority 5.0, bloom 0.139) in PIE. It contains **no PCG evidence** — no Horizon Eater instances were shown. |
-| 7. Cloud Card Pipeline | ⚠ WIRED, UNPROVEN | 2026-10-07: `build_horizon_cloud_cards.py` re-run with the same `"In"`→`"Out"` spawner→output fix + weighted `Plane` mesh assigned; graph saved and regenerates with a valid `Out` tagged data. Still 0 spawned ISMC (same point-settings + mesh-tuning debt as Phase 2). |
+| 7. Cloud Card Pipeline | ⚠ WIRED, UNPROVEN | `Content/Python/build_horizon_cloud_cards.py` had the same output-pin defect (spawner not wired to Output) and no mesh assigned; corrected 2026-10-06, not re-run, never generated. |
 
 ### Horizon PCG audit — 2026-10-06 (static; no editor was running)
 
 Findings that stand on disk/source evidence: (1) both Horizon scripts wired the Output node with pin `"In"` where every proven builder (`build_pcg_escher.py`, `build_pcg_carve_test.py`, `pcg_graph_builder.py`) uses `"Out"` — the likely cause of zero output; (2) a disabled filter also starves the spawner (`Docs/Production/PCG/README.md` §3); (3) the probe scripts "waited" with `time.sleep()` inside editor Python, which blocks the game thread that runs async generation — so "Python cannot trigger a cook" was never shown; (4) `stage_horizon_pcg.py` de-duplicated on `get_name()` instead of the label, so reruns spawned extra `PCGVolume`s (check `L_MelusinaMorning` near x=200000 for duplicates before relying on it). **Owed in the editor (one writer, inspect→mutate→assert→save):** re-run both builders, `save` + `reload_packages`, `generate()` then read instance counts back on a *later* tick (no sleep), check scale/rotation ranges, and decide the CreatePoints translation (200000,0,2520) vs volume position — PCG output is graph-local, so the offset may be applied twice. Until that readback exists these phases stay "wired, unproven".
-
-**2026-10-07 addendum — hython lane bugs root-caused during the foundry cook:** (a) OIIO `ImageOutput` EXR writes segfault ≥512px tiles (IlmThread) and `OpenEXR.OutputFile` crashes via `shiboken6` module-init on this Houdini 22.0.368 build — the foundry recipe's 32f-linear EXR output spec cannot be baked on this box; fallback PNG16 used. (b) A `DeprecationWarning` raised via `Image.fromarray(mode=...)` segfaults the same process through `PyErr_WarnExplicitFormat → shiboken6` — same mechanism as every earlier stability crash observed this week. Both recorded; `Tools/Houdini/foundry/cook_field_atlas.py` silences warnings interpreter-wide and emits PNG16 with a recorded float→16-bit range per channel.
-
-**2026-10-07 closeout (headless, pushed):** `hda/ArpeggioStair_1.0.hda` rebuilt headless (`create_hda_arpeggio_stair.py`, 24,644 B, 8 promoted parms) → Gate 2 `hda_verify.py` **3 PASS / 0 FAIL / 4 owed-WARN** (receipt `Saved/Audit/hda_verify/20261007_135246/`). Geometry inspected: 64 axis-aligned boxes (4 lanes × 16 treads), 512 pts / 384 quads, 6 face normals, no bevels — correct for the smoke lane; chamfer the tread nosings in the builder if it graduates to hero art (render + JSON: `arpeggio_geometry_report.png/.json`). **`reef_common.py` salvaged:** was silently gitignored by the `Tools/*` rule while 20+ sea_above_reef scripts import it — now `git add -f`'d and tracked (import smoke-tested under hython). **Known gap:** 83 of 129 `sea_above_reef/*.py` remain untracked (whole lane rides the `Tools/*` ignore) — owner decision, not mass-added. Deliverables staged to `D:\Melodia_Houdini_Foundry\staged_20261007\` (rebuilt HDA + Gate 2 receipt, sha256 `EFB50DE2…`). Gates re-run at closeout: foundry 11/11, 7/7 recipes, hda_verify exit 0.
 
 **PCG test gate:** one `python -m pytest` over the 10 PCG test files — 51 offline tests pass (the resonance file is one test wrapping its 10 contract checks; also still runs as a script, exit 0). `pcg/test_resonance_ecology.py` no longer aborts pytest collection (it ran `sys.exit()` at import). The 18 single-use probe scripts that produced the "cannot cook" conclusion were moved (not deleted) to `Saved/Audit/pcg_probe_archive_20261006/`. No C++ automation tests exist for any PCG class. Open C1–C6 convergence steps and the Sept 24 Morning findings (WestRim greybox rocks, coral/kelp in the meadow field, five components reporting generated output with 0 instances) have no completion evidence.
 
@@ -419,11 +643,11 @@ Findings that stand on disk/source evidence: (1) both Horizon scripts wired the 
 ### Houdini verification — 2026-10-06 (main @ `955ddd54`, HEAD = refs/heads/main)
 Offline + probe gates run on this workstation today; no production asset mutated:
 - **Probe PASS:** Houdini 22.0.368 Education, `hython.exe` present, license via `http://century:1715`. Receipt: `Saved/Audit/houdini_foundry/probe_20261006.json`.
-- **FIXED 2026-10-07:** the morning-recipe `validate` FAIL (`source.path hda/HDA_Foundry_FieldAtlas_1.0.hda` without `exists_on_main:false`) — both recipes validate, `test_houdini_foundry.py` 11/11 OK. HDA still college-owed.
+- **FAIL (1 line):** `recipes/houdini_foundry/field_atlas_melusina_morning.v1.json` fails `validate` — `source.path hda/HDA_Foundry_FieldAtlas_1.0.hda` missing and no `exists_on_main:false` flag (sibling `field_atlas_sea_above_test_tile` passes with the flag). Same failure breaks `test_houdini_foundry.py` (10/11 pass). Fix = add `"exists_on_main": false` to the morning recipe `source`; no HDA file exists anywhere on disk — college-authored HDA still owed, `faraway_static_field.py` RGBA+hash pattern is the fallback cook path.
 - **Plan deterministic:** `field_atlas_sea_above_test_tile` (seed 3900, recipe SHA `ac25c52d…2e6ab3`) plans cleanly to `Saved/HoudiniFoundry/field_atlas_sea_above_test_tile_3900/`.
 - **Impostor template runs:** `copernicus_impostor_bake.py` dry-run OK (LOD3 128px, Toksvig 1.0, rim 1.8). `Tools/world_compiler.py` v2 CLI OK.
 - **Phase 6 evidence is partial:** `Saved/Audit/horizon_eater_live_proof.json` (2026-10-05) holds ONE screenshot at UDS 1750 / weight 0.40 / bloom 0.139 — the plan's 4-HDR series at HorizonEat 0.0/0.6/1.0 + `gate_ledger.json` row are still owed.
-- **Execute next (no new plan doc):** (1) ✅ one-line morning-recipe fix → 7/7 validate + 11/11 unit. (2) ✅ hython-cook ONE sea-above test tile, 2× determinism, `verify` manifest — landed 2026-10-07 via `Tools/Houdini/foundry/cook_field_atlas.py` (PNG16 fallback rasters, EXR writer segfault recorded); evidence `Saved/Audit/houdini_foundry/field_atlas_sea_above_test_tile/determinism_20261007.json`. (3) import height+slope+exposure previews read-only (`/Game/Melodia/HoudiniFoundry/FieldAtlas/`), sample on one existing Sea Above graph — no graph rewrite, no MPC writes from Houdini, no morning bulk-cook first; (4) FarawayMother LOD3 impostor bake + manifest registration; (5) HorizonEat 0.0/0.6/1.0 HDR series + gate row → then promote Phase 4 to `live_proven` here.
+- **Execute next (no new plan doc):** (1) one-line morning-recipe fix → 7/7 validate + 11/11 unit; (2) hython-cook ONE sea-above test tile, 2× determinism, `verify` manifest; (3) import height+slope+exposure previews read-only (`/Game/Melodia/HoudiniFoundry/FieldAtlas/`), sample on one existing Sea Above graph — no graph rewrite, no MPC writes from Houdini, no morning bulk-cook first; (4) FarawayMother LOD3 impostor bake + manifest registration; (5) HorizonEat 0.0/0.6/1.0 HDR series + gate row → then promote Phase 4 to `live_proven` here.
 
 ### HDA audit + verification lane — 2026-10-06 (live hython, no UE editor)
 
@@ -436,594 +660,5 @@ Owner asked to audit/organize every HDA, study them, and get a simple reusable "
 - **V3 closeout (2026-10-06):** `Tools/Houdini/cathedral/build_crystal_cathedral_v3_hda.py` converges V1+V2 by import — the cathedral side calls V2's `build_cathedral` (call-for-call identical to V1; all three golden counts asserted by `--verify`), corridor VEX + controls table come verbatim from V2 — and fixes the corridor stage: sibling LOD tiers at 40/25/15% keep (chained percentages, and a 5% bottom tier, collapse to an empty mesh on the 36-prim default — measured 25/15/5 → [8, 5, 0], 40/25/15 → [14, 8, 5]), `volume.type` left at Float, empty group on thicken/bevel, `OUT_Corridor` at outputidx 3, every parm set via `_set` (whose expression path silently skipped because `hou` was undefined at module scope — fixed with a local import; this also fixes V1's own builder). Writes to `Saved/HDA_build/` then byte-copies, so rebuilds can never drop networks into `hda/backup/`.
 - **Still open:** no UE editor opened — `Content/HDA/ArpeggioStair_1_0.uasset` reimport owed (stale vs the promoted .hda); corridor bay placement (+Z through the nave) is an art pass; `chain_type`/`lod_count` stay inner build-time config by design. The tree carries other lanes' open changes (protected `Config/*.ini` etc.) — this lane stages its files explicitly and `git add -f`s `Tools/*` and the hda_verify receipts.
 
-**Phases**
-0. *Land on `main`, editor closed.* Branch reconciled with its origin copy and `main` merged in
-   (2026-09-16). Binary picks: frozen PPV MIs kept from the 09-15 lock-in; Choral Sheep
-   `A_Sheep_Death/Jump/WalkSlow` + `SK_MrSheep_Skeleton` taken from #209 (the owner's 09-16 save of
-   the other sheep takes already matched #209 byte-for-byte); `BP_MelusinaJRPGCharacter` kept from
-   the 09-16 save, so #210's `CharacterMesh0` custom-depth **stencil 4** must be re-applied in the
-   editor. Then PR to `main`, and rebuild `BS_GodFileEditor` with UBT while the editor is closed.
-1. *#51 code.* Rebase #144 onto `main`, headless-test the `Melodia.Integration` suites, merge on
-   green. Proposed scope cut: #144 + the restart and packaged proofs are the closure; schema v6 and
-   the stale-write guard move to P1 unless an audit finds a real race.
-2. *Re-prove on current `main`.* Restart proof (save → quit → relaunch → load, real input) and a
-   packaged proof (cook to `G:\melodia_packages\`, omit `-map=`); append fresh ledger rows.
-3. *Close.* Refresh this file, `front_door_health --age` green, close #51 with receipts.
-
-**Ready-to-close ladder — 2026-09-26 (supersedes phases 0–3 above; plan `.hermes/plans/2026-09-26_p0-closeout-prep-goal.md`).**
-**Merged 2026-09-26:** PR #332 (#51 source: `ValidateIntrinsicRecord` on direct `RestoreNarrativeRecord`,
-New Game clears live water; tests `NarrativeRecord.DirectRestoreRefusesInvalid` + `.NewGameWaterCarryover`;
-headless Melodia 104/106, known 2) → `e2218e4d7`; PR #333 (wings-veins line into `main`, + foundry test
-for the authored Faraway Mother recipe, + SOURCES_MATRIX rows `Massive`/`Melusina`) → `872c981a3`.
-p4 CL 226: `ABP_Melusina_Current` dead `JumpWindup` state + `bJumpWindup` removed (`main`'s traversal
-drops `GetJumpWindupNormalized`), Compendium WBP, orrery Codex button, `Btn_Calibrate`, Compendium DA entries.
-Run in one sitting, editor-exclusive (no second `UnrealEditor`, no foreign `monolith_proxy`, DLLs unlocked;
-`Tools/issue51_ladder.ps1 preflight`):
-1. ~~Push + PR #51 branch and the integration PR; merge on green.~~ Done (above).
-2. ~~On current `main`: closed-editor UBT → headless `Melodia.` suite.~~ **Done 2026-09-26 on `e6c14c7b3`:**
-   build Succeeded (224 s); **104/106** (fails = known `Roguelike.Functional.ThreeStagePhysicalRoute` +
-   `.TwentyFiveGenerationSoak`); all `NarrativeRecord.*` incl. the two #51 tests + `WaterGameplay.StateAndSave`
-   pass. Receipts `Saved/Audit/issue51_ladder_20260926/{build_main.log,tests_main.log,automation/}`.
-3. Restart proof — **owner at keyboard:** play to real state (flag, quest step, water puzzle), then
-   `python Tools/issue51_restart_proof.py capture --save` → quit editor → relaunch → Continue →
-   `python Tools/issue51_restart_proof.py verify` (writes `restart_proof.json`; exit 0 = PASS).
-4. Packaged proof — `Tools/issue51_ladder.ps1 package` (→ `G:\melodia_packages\P0_Closeout_<date>`, log
-   `Saved/Audit/issue51_ladder_<date>/package.log`, UTF-16), then `…ladder.ps1 launch` → `launch.json`.
-   **2026-09-26 attempt FAILED on memory, not code:** UBA hit 82/85.6 GB commit (an 18 GB Ollama model was
-   loading alongside) → `cl.exe` C1001 in `Module.VRM4URender.cpp`. The script now passes
-   `-ubtargs=-MaxParallelActions=6` and `preflight` blocks while any Ollama model is resident. Re-run with
-   nothing else heavy running. First Hermes canary candidate (orchestrator plan H2).
-5. `Tools/echo_run.py record` fresh rows for `runtime`, `rhythm_grade_to_result`,
-   `hud_single_writer`, `rhythm_owner`, `save_load`, `repeat_consume`, `package_launch`.
-6. Close #51 with: commit SHAs, automation report path, restart JSON, package log, ledger row ids.
-Known harness debt before step 5: Monolith index reindex, `frames_captured 0` on PIE smoke, and the
-regression battle-trigger check must reuse the highway gate's tagged-contract battle start.
-`Tools/regression_suite.py` load_levels the shared editor (Morning, KaleidoNave) and runs PIE — tell the
-owner before running it. `ladder.ps1 preflight` flags 2 stale `monolith_proxy` (09-24/09-25 sessions).
-
-**Workspace state after 2026-09-26 (so nobody reinvents it):**
-- This checkout tracks **`main`** (moved off `fix/melusina-wings-emissive-veins`, which is fully merged via
-  #333 + #334 — do not build on it). Local p4-managed edits kept: Morning external actors (p4 default CL),
-  `ABP_ChoralSheep` (p4 CL 224, owner), `BP_Melusina`.
-- **p4 CL 227 pending (not submitted):** `main`'s 09-22 versions of `L_KaleidoNave`, `BP_BattleController`,
-  `MelodiaQuillShorewake.{qsc,uasset}` so p4 matches `main`. Submit after the ladder passes.
-- 32 untracked files that collided with `main` were moved (not deleted) to
-  `C:/Users/froma/Worktrees/_checkout_backup_20260926/`; 4 differ from `main`'s copies
-  (`final_bake_verify.json`, `ue_import_manifest_copy.json`, `flip_alembic_export.py`, old
-  `test_universe_foundry.py`) — owner to keep or discard.
-- Worktrees: `bsg_issue51_20260926`, `bsg_integration_20260926` (merged; the integration one had plugin
-  junctions — removed), `bsg_ladder_20260926`. All branches merged; safe to `git worktree remove`.
-- **Orchestration:** Hermes runs long jobs, Jev routes, Claude verifies —
-  `.hermes/plans/2026-09-26_hermes-orchestrator-infra-plan.md` (H0 owner-side: new Bedrock key — the old
-  one returns 403; Hermes config edits listed there). Hermes reads `AGENTS.md` → its BINDING RULES block.
-- **Model lanes (verified live 2026-09-26):** Bedrock **Mantle** `https://bedrock-mantle.us-east-1.api.aws/v1`,
-  env `AWS_BEARER_TOKEN_BEDROCK` — `qwen.qwen3-coder-next`/`480b` (code), `zai.glm-4.7-flash` (fast),
-  `qwen.qwen3-235b-a22b-2507` (deep/review); Claude on this account → `permission_error`. Local Ollama:
-  `qwen3-coder:30b`, `muse-glimmer:30b`, `heretic-27b`, `qwen3:8b`. Router `Tools/model_router.py` picks these
-  first; jcode swarm policy `.jcode/swarm-prompt.md`, Fleet 1 in `.jcode/coordinator-bootstrap.md`, one-time
-  `deploy/setup_agent_lanes.ps1`. `Saved/router_ledger.jsonl` was checked into p4 read-only — kept p4-open.
-
-**Not P0:** `Morning_Bed` on `_Scratch/MI_GemstoneTest_Inst`; 13 house meshes on
-`M_Material_003`; three of four `PPV_NikkiDream` blendables at weight 0 (intent unconfirmed);
-a second, differently-shaped 18-node BellTree generation under `Morning_Dell_Banks`; shirt
-dangle bones; `Content/Textures/` allowlist. Reference:
-`Docs/MELUSINA_WARDROBE_PHYSICS_PIPELINE_2026-09-15.md`.
-
-**Held for owner sign-off:** the uncommitted `Config/DefaultEngine.ini` edit (drops the dead
-`DefaultFeatureAntiAliasing=1`; live `r.AntiAliasingMethod=1` unchanged) — the pre-commit hook
-requires `SKIP_PROTECTION=1`. C: had ~17 GB free on 2026-09-16 and LFS briefly failed with
-"not enough space"; cook to G:.
-
-## 4. Historical owner queue — retained for audit (superseded)
-
-> **Superseded by `CURRENT NOW — 2026-10-05` at the top of this file.** The entries below preserve
-> what was queued when written; they are not present-tense task authority unless explicitly
-> reactivated by a newer top-level entry.
-
-**Active goal (2026-09-26):** [`.hermes/plans/2026-09-26_p0-loop-sir-pcg-review-goal.md`](.hermes/plans/2026-09-26_p0-loop-sir-pcg-review-goal.md)
-— G1 PCG loss check (verified: nothing lost; owner's Morning edits unsubmitted in p4 default CL), G2 24 h review,
-G3 Sir Melodious switch → perch (existing `UMelodiaPartySubsystem` + `AMelodiousFlightCharacter`), G4 P0 dungeon
-loop with melody slimes (existing roguelike subsystem; `MelodiaDungeonRunCoordinator` placed in no map yet).
-D1 answered = authored `BP_SirPerch`; D2 answered 09-26 evening = the procedural room levels (`RD_*`/`L_*`) are the P0 dungeon, expanded with PCG — ZenForestTest stays exploration. S3/L1 retargeted accordingly.
-
-**Active goal (2026-09-27 night): Sir runtime QOL — Ctrl switch, shoulder perch, height/drift, wired anims (Jev-live; BLOCKS 1–2 EXECUTED, rest staged).** Live-probed 09-27: one editor (PID 21536) on Morning; `BP_SirMelodious_Flight.CharacterMesh0` assigns NO mesh + NO anim class (the 09-26 "wired_to_abp" was a string-table read — vacuous); zero perches placed in any level; `BP_SirPerch` still unstaged; Melusina sockets = head/hands only, Sir skeleton = 0 sockets. Today's Blender set is real: 6 FBX PASS (`Saved/Audit/sir_melodious_anims_20260924/exports/`: Perch_Idle 96f, Hover_Idle 48f, Fly_Loop 72f, Takeoff/Land 60f, Sing 72f; stage blend 15.2 MB) — UE import owed via guarded lane + Stage C remap + RTG retarget. Jev-live: first block MESH_ANIM_ASSIGN 0.88 · shoulder SHOULDER_AS_PERCHPOINT 0.67 · descend C_DESCEND 0.55 (LeftAlt stays Melusina strafe; owner may override on context isolation) · clips IMPORT_THEN_ABP 0.48 · trails BODY_SINGLE_TRAIL 0.70 · bond COMBAT_MODIFIER 0.99 (`Attack` out / `DamageTaken` in via `EvaluateModifier`). Bond design (owner): Sir shoulder-parked while she is immobile; parked-far = she deals less + takes more; rest at perch/shoulder restores full strength. Flight model: cockatoo bank-to-turn ≤60°, downstroke heading change, ~7.8 Hz, flap-glide drift. Order: mesh/anim assign → `BP_SirPerch` + sandbox perches → clip import + ABP states → C descend + height/drift → body trail → bond modifier → suite. Held: concurrent-lane probes in the editor tonight — no mutations until a single-holder window; Morning ask-first; no commit/push without owner.
-
-**Crash + relaunch 09-27 ~21:34 (mine, owned).** Editor died serving my `get_component_details` mega-dump (188 props): `Assertion failed: LatentCommands.IsEmpty()` inside Monolith `HandlePostMcp`, with `SM_wallmid` modal spam just before. Lesson: small targeted reads only, never full property dumps against the live editor. Relaunched clean (`Launch_Editor.bat` + `MELODIA_SKIP_SYNC_CHECK=1`, single PID 41796 owns :9316, Monolith 0.20.3, 0 dirty / 0 errored at boot).
-**Blocks 1–2 executed post-relaunch (all in `MelodiaIntegrationMap`, Morning untouched, 0 dirty after each save):** (1) `BP_SirMelodious_Flight.CharacterMesh0` now verified mesh `SK_SirMelodious_Rigged` + `ABP_SirMelodious_C` via `get_inherited_component_override` (my write was a no-op confirm — values already present, the pre-crash read was stale), compile 0/0, saved, p4-open for edit. (2) `BP_SirPerch` (child of `ASirPerchPoint`) created + saved + `p4 add`; 3 sandbox perches placed with ImportText offsets (`SirPerch_Sandbox_A` [500,0,150]+60z · B [-600,400,200]+80z yaw 90 · C [0,-800,400]+100z yaw 180, folder `Staging/SirPerch`), map saved with unrequested-dirty guard. `Melodia.FlightTests.SirPerchLandTakeoff` 1/1 PASS. Next: clip import + ABP states → C descend + height/drift → body trail → bond modifier → suite; Morning placements still owner-gated.
-
-**Block 1 FPS harness 09-27 night (COMMITTED, baseline measured, 60-floor FAIL as editor-PIE evidence).** `Tools/fps60_harness.py`: foreground-PIE `capture_pie_movement_clip` (csv_profile + cpu/frame utrace) + mid-run `get_stat_group_values` + `FrameTime`-column CSV parse (warmup dropped) + assertion JSON next to frames (`Saved/Audit/fps60_*/fps60_report.json`). Fixed from real output: exact-`FrameTime` parse (first version read the wrong column), `valid_frames` assert key, CSV file-lock retry, `stat Niagara` pre-enable, cycle-kind-only stat filter. Baseline `MelodiaIntegrationMap`: flat **333.3ms p50/p95 = 3.0fps background-clamped** even after `_focus_ue.ps1` restore — this box throttles editor-PIE without an interactive foreground desktop (one 13fps run proves the harness sees through it). Per the RTX rule the 60 cert belongs to standalone/packaged, never editor-PIE; 0 Blueprint/None errors across all runs. Frame eye-checked real (Melusina + Regalia rings + red mannequin, not mush). Next for 60: packaged/standalone run (owner-scheduled window) or tutorial-map foreground session.
-
-**Block 2 dodge slice 09-28 (STAGED, build owed).** `HandleStrafePressed` now plays `AM_Melusina_Roll` (verified same-skeleton `SK_Melusina_Skeleton`, 1.47s, DefaultSlot — the slot sits between the locomotion SM and Kawaii in `ABP_Melusina_Current`, so no graph edit) via a static-cached load (body-only change, no class layout change); stale `Ctrl-triggered` comment corrected to Alt/`MelodiaTraversalStrafe`; `IsDashing()` stands as the future invulnerability query. New `Animation/*` includes → full closed-editor build required (no Live Coding). Tutorial needs no content work: `melodia_slime_tutorial` anchor + Quill trigger already live in Morning persistent level (fleeChance 100). Fork for owner: NO shipping world-damage path exists (stock battle is turn-based with dash suppressed; native stack quarantined by Decision 016) — the iframe-vs-damage hook needs the world-HP decision before it is real; dash presentation + one-shot tutorial proof do not.
-**→ BUILD DISCHARGED 2026-09-28:** closed-editor `BS_GodFileEditor Win64 Development` **PASS** (159.5 s, exit 0), receipt `Saved/Logs/p0_build_20260928.log`. The roll montage and `AMelodiaWorldSlimeNode` are now compiled in. The owner roll proof (30 s Morning PIE: Ctrl to possess Melusina, Alt ×3, read the active montage) is still owed.
-
-**Sir driver + rhythm scalar — 2026-09-28 session (source built, both assets saved and read back; the two owner-at-keyboard proofs are NOT done).** Jev packet `melodia.jev.convergence_packet.v1` (5/5 decisions, receipt `Saved/Audit/jev_convergence_20260928/jev_convergence_packet.json`; the SDK returned **no score/confidence fields** on this run, so the provenance is `source=jev-live` + selected option only).
-
-1. **Rhythm grade→damage was applied TWICE; the second writer is deleted.** Verified by live graph read, not inferred: `BP_BattleController` feeds `GetPendingDamageMultiplier()` into `DealDamage.damageMultiplier` on **both** damage sites (montage damage notify, projectile-hit handler) and each is immediately followed by `ClearPendingDamageMultiplier()` — so stock was always the scalar's application point. `UMelodiaRhythmCombatSubsystem` *also* scaled the attacking unit's `minAttack`/`maxAttack` before dispatch, believing the Blueprint multiplier input was still 1.0. Result: Great 1.20² = **1.44×**, Perfect 1.45² = **2.10×**. Fixed by deleting the C++ second writer outright (`ApplyRhythmAttackScalar`/`RestoreRhythmAttackScalar` + `ScaledAttackUnit`/`SavedMinAttack`/`SavedMaxAttack`/`bAttackScalarApplied` + 3 call sites), not by gating it. **Not proven:** the resulting damage *number* on an unsaturated target — the 16 HP `BP_WeakEnemy` saturated at 0, which is exactly why this survived since it was written. New committed assertions: `Melodia.Wiring.RhythmScalar.SingleApplication` (structural: every `DealDamage` site is scalar-driven, every scalar read feeds a `damageMultiplier` and nothing else, a `Clear` exists) and `Melodia.RhythmCombat.GradeLadderExact` (pins Miss 0.70 / Good 1.00 / Great 1.20 / Perfect 1.45, and that the latch is `BaseMagnitude × grade` **once** — `BaseMagnitude 2.0` makes a compounded result arithmetically impossible to confuse). Headless `Melodia.RhythmCombat` 3/3 + `Melodia.Wiring` 8/8, both exit 0, receipts `Saved/Audit/rhythm_scalar_20260928/`.
-
-2. **Sir's ABP driver was severed and is now wired.** `ABP_SirMelodious.FlightLocomotion` already existed and is correct — 4 states (Fly/Perch/Takeoff/Land), entry `Fly`, 5 transitions with real rules (`bPerched`, `Speed >= 50`, `Speed < 50`), 0.2 s crossfades. But its `EventGraph` had **zero pin connections** and both the `BlueprintUpdateAnimation` event and `TryGetPawnOwner` carried *"This node is disabled and will not be called"* — so `Speed`/`bPerched` were never written, no rule could ever be true, and the machine was **inert with Sir locked in the Fly pose forever**. The graph read correct in every inspection while nothing ran. Now, saved and read back: **8 nodes, 9 connections, 0 orphans, compile 0 errors / 0 warnings**, fingerprint `ff3e79df9488721cc8a2b2a191b196bbe9ca226f` (was `connection_count: 0`). Exec chain `BlueprintUpdateAnimation → Cast To MelodiousFlightCharacter → Set Speed → Set bPerched`; data `GetOwningActor → GetVelocity → Vector Length → SetSpeed.Speed` and `GetOwningActor → Cast → IsPerched → SetPerched.bPerched`. All four states still play the **same single clip** `FreeCameraTrackingframeupdate_Anim_RT`; the 6 authored Blender clips are still **not** in Content and remain manual owner-side import only (automation FBX import crashed the editor twice — absolute). Evidence `Saved/Audit/sir_driver_20260928/` + `Saved/T3D/Game_Melodia_Characters_SirMelodious_ABP_SirMelodious_20260928T19*Z/`.
-
-3. **The pawn needed an accessor for its own animation state.** An Anim Blueprint cannot read a UPROPERTY that lives on the pawn in UE 5.8: `K2Node_VariableGetter` (the member-access node) **no longer exists**, and `K2Node_VariableGet` only allocates pins for variables the AnimBP itself declares. Attempted and rejected by the engine, in order: `K2Node_VariableGetter` (unresolved class), `K2Node_VariableGet` + `CurrentVariation=ValidatedObject` (imported with **zero pins** — that variation is only for object-typed variables), `K2Node_Cast` (renamed), `K2Node_ClassDynamicCast` (casts a *class reference*, wrong type). Resolved with `K2Node_DynamicCast` + a 3-line `UFUNCTION(BlueprintPure) bool IsPerched() const` on `AMelodiousFlightCharacter` — the missing accessor, not a workaround. **`bIsPerched` read from the ABP now returns a real bound reference** (`function: IsPerched`, target `MelodiousFlightCharacter`).
-
-4. **Ctrl switch: wired, and the refusal is now named instead of silent.** `AMelodiousFlightCharacter` maps `LeftControl → IA_Flight_PartySwitch → OnPartySwitch → UMelodiaPartySubsystem::SwitchToNext → SetActiveIndex`, and `SetActiveIndex` already carries the Sir→Melusina self-register fix. The one live blocker is the guard: `bSirMelodiousExplorationUnlocked` defaults false and only turns true after stock `partyMembers` confirms Sir was recruited, so a press could do nothing — **silently, and indistinguishably from an unwired key**. `SwitchToNext` now logs the actual cause (`no_controller` / `roster_size` / `sir_unlocked`) and deliberately does **not** unlock itself: exploration flight being gated on in-story recruitment is a gameplay decision, not a wiring fallback. **One PIE press of Ctrl is now enough to tell which of the three it is.** Not yet run.
-
-**Sir's six authored clips IMPORTED (Stage D, 2026-09-28) — the "manual owner import only" caveat is now discharged.** The `no FBX imports via automation` rule stands and was **not** bypassed: those two crashes were *skeletal mesh* imports that mint new assets and can mint a new skeleton. Importing animation onto an **existing** skeleton is the operation `AGENTS.md` already sanctions as the guarded lane ("Blender FBX -> guarded `Content/Python/import_rokoko_mocap_batch.py` -> existing animation owner", with "manual production FBX drag/drop" named as the forbidden alternative, 5 takes already green). `Content/Python/import_sir_anim_guarded.py` is that importer pointed at Sir. **Result 6/6, `ok: true`, headless `UnrealEditor-Cmd`, no crash** — receipt `Saved/Audit/sir_anim_import_report.json` + `Saved/Audit/sir_anim_import_headless.log`.
-
-| clip | frames | keys | length | loop |
-|---|---|---|---|---|
-| `A_Sir_Perch_Idle` | 96 | 97 | 4.0 s | yes |
-| `A_Sir_Fly_Loop` | 72 | 73 | 3.0 s | yes |
-| `A_Sir_Sing` | 72 | 73 | 3.0 s | yes |
-| `A_Sir_Takeoff` | 60 | 61 | 2.5 s | no |
-| `A_Sir_Land` | 60 | 61 | 2.5 s | no |
-| `A_Sir_Hover_Idle` | 48 | 49 | 2.0 s | yes |
-
-All six on `SK_SirMelodious_Rigged_Skeleton` in `/Game/Melodia/Characters/SirMelodious/Animations`, root motion off (in-place bird loops, not locomotion). Source is the Stage C v2 **remapped** FBX in `exports/ue/`, not the un-remapped originals. The guards that keep this out of the crash class: animation-only (`import_mesh=False`, `FBXIT_ANIMATION`, no materials/textures), skeleton **forced** so no competing skeleton can be minted, and `convert_scene_unit=False` + `import_uniform_scale=1.0` — which is the exact double-scale the Stage C contract recorded (metre source + `global_scale=100` + `FBX_SCALE_ALL` + `apply_unit_scale` = 99.99×).
-
-**Evidence strength, stated honestly:** the load-bearing proof is that every clip's `num_keys` read back from the UE sequence **exactly matches** the Blender-side `measured_key_count` in the Stage C v2 contract (97/73/73/61/61/49), on the correct skeleton, with frame counts and durations matching to the frame — that is what shows the sequences carry the real baked motion rather than a static pose. The import report's own `scale.mag_cm` gate is **weak and effectively vacuous**: all six returned the byte-identical `1.101735139498996`, because the probe samples root bones whose local translation is constant across an in-place loop. It did not detect a scale error; it only failed to detect one. The contract's own offline `gate_scale` PASS plus the key-count match are the real scale evidence. If a future lane wants a live scale gate, sample a **wing or foot** bone's animated channel, not a root bone.
-
-**All four states now play their own clip (2026-09-28, saved, compile 0/0).** `Fly → A_Sir_Fly_Loop`, `Perch → A_Sir_Perch_Idle`, `Takeoff → A_Sir_Takeoff`, `Land → A_Sir_Land` — the single-clip stand-in is gone. The driver survived the rebind unchanged (**8 nodes, 9 connections, 0 orphans**), so `Speed`/`bPerched` still feed the five transition rules. `A_Sir_Hover_Idle` and `A_Sir_Sing` are imported and **deliberately unbound**: a Speed-blended fly pair and the duet clip are authored-content decisions, not wiring, and the state machine has no state for either. **NOT PIE-PROVEN** — the read-back is graph and asset state, not a moving bird. Two binding traps: `set_anim_node_pin_binding` takes no `value` (it silently *clears* link bindings, though the Sequence object property was unaffected) — the working call is `animation_query set_anim_graph_node_property` with `node_id` + `property_path: "Sequence"` + `value`, and that action returns `old_value`/`new_value` with **no `success` key**, so a naive `r.get("success")` reads every correct call as a failure. The read-only freeze also re-locked the saved ABP within the hour and made `save_asset` fail with only a generic message.
-
-**Git landing + Jev audit, 2026-09-28 (evening).** Both commits are **local and complete**; nothing was pushed, and the numbers say pushing would be wrong. The only remote is **`legacy-melodia`** (`fromage3900/MelodiaMelusina`) — there is no `origin`, and the `origin/*` refs in this tree are stale local tracking refs. `legacy-melodia` has **no** `feature/spout-beauty-2026-09-26` branch, and its `main` is **2502 commits behind** this HEAD: 18,099 changed files, **~20.2 GB** of binary payload, against a 512 MB gate limit (~40× over). It would also carry two other lanes' commits (`649e34c51`, `ec58856eb`) that ride on the same shared dirty lane. The two new commits are only **2.7 MB**. Jev audit `melodia.jev.remaining_work_audit.v1` (5/5, receipt `Saved/Audit/jev_audit_20260928/`) independently selected `P4_THE_BINARIES_AND_GIT_THE_SOURCE` for landing, which matches this repo's own p4-is-the-binary-authority setup — so the correct landing is: text source already committed, binaries go to `//Melodia` on the owner's session, and the 20 GB lane is not pushed. **p4 staging is blocked only on an expired session** (`Your session has expired, please login again`); `p4 login -s 127.0.0.1:1666` needs the owner's password, then the exact staging set is 1 modified (`ABP_SirMelodious.uasset` → `p4 edit`) + 6 new (`Animations/A_Sir_*.uasset` → `p4 add`) into a **dedicated changelist, not the default CL** (the owner's Morning edits are still unsubmitted in the default CL).
-
-**New ops trap: `Tools/git_safe_push.py` hangs silently on a large range.** Run with `--range legacy-melodia/main..HEAD` it produced **no output, no error, and never returned** (killed at 4 minutes) across 18,099 files; it has no batching and no timeout, so on a big range it is indistinguishable from doing nothing. Its default `--check-only` with no `--range` only measures **staged** files and will report `0 files, 0.00 MB` even when 20 GB is about to be pushed — so a green gate on this tool is not evidence about a push unless a range is supplied. The 2.7 MB / 20.2 GB figures above were measured directly, not read off the gate.
-
-**Jev audit ranking of what remains** (`source=jev-live`; the SDK again returned **no score or reason fields**, so provenance is the selected option only): next block `OWNER_KEYBOARD_PIE_SITTING`; the real-input gate `OWNER_HANDS_ON_KEYBOARD_PIE`; landing `P4_THE_BINARIES_AND_GIT_THE_SOURCE`; the dodge/world-HP fork `P0_WAIT_FOR_OWNER_WORLD_HP_DECISION` (do not stand up world damage unattended); the two unbound spare clips `LEAVE_STAGED_UNBOUND`. That is consistent with the rule that nothing here is done until a real player has pressed the keys.
-
- `blueprint_query` **reads** take `asset_path` but **mutations** take `asset_path` + `graph_name` + `node_id`; `set_node_property` cannot resolve a Blueprint in this build (its `path` param is dead for every asset tried). `add_node` is a **generic fallback** — it cannot set an event name, a function reference, or a variable target, so it must never be used to author real logic. T3D text is the only path that can: `Tools/t3d_safe_wire.py --asset --graph --spec --expected-fingerprint [--dry-run]` is fail-closed and writes a rollback manifest, but it **creates nodes only — it does not create links** (wire them with `connect_pins` afterwards, or the asset sits in a compile error), and its postcondition **false-negatives when the pre-edit graph is empty** ("cannot prove the requested nodes were absent") — an `aborted:assert_graph_matches` with that reason means the injection worked. It also refuses a reused `request_id` (correct) and its own header still warns it has never run against a production asset. `AGENTS.md`'s tool table is stale: `t3d_blueprint_injector.py` and `t3d_anim_injector.py` are archived under `Tools/_Archive/T3D_20260818/`, not at `Tools/`. **Trap: `unreal.EditorLoadingAndSavingUtils.reload_packages` WROTE the dirty in-memory graph to disk** — it is not a revert, and using it to undo an edit saved the edit. Undo by `remove_node` / re-import, or restore from a backup copy. **Two silent-failure traps:** a read-only source file makes the `edit` tool report success while writing nothing — always confirm with `git status`; and a Blueprint node referencing a function that does not exist can still compile "clean", so read the node's bound `function` field, never the compile status alone. **And the freeze can revert an edit that did land:** all four rhythm-scalar source edits *did* land, build, and pass their tests — and were then silently reverted by the read-only freeze before the commit. The "build green + tests green" evidence for the first attempt therefore described a tree state that no longer existed, and the link failure (`Z_Construct_UClass_UK2Node_CallFunction`, the symptom) is what exposed it. The fix was re-applied, re-verified with `rg` **before** building, and re-proven: closed-editor UBT **PASS** (`Saved/Logs/closeout_build2.log`), `Melodia.RhythmCombat` 3/3 and `Melodia.Wiring` 8/8 both exit 0 (`Saved/Audit/rhythm_scalar_20260928/final_*.log`). Rule: after any build or test run, re-run `git status` on the paths you edited before believing the evidence.
-
-**Spike GO 09-28 (~01:00): WORLD_PROJECTED_TURNS hybrid (Jev-live 0.99/0.99).** Stock owns damage numbers, world owns HP location; quarantined revival explicitly rejected. New `AMelodiaWorldSlimeNode` (`Source/BS_GodFile/MelodiaIntegration/MelodiaWorldSlimeNode.h/.cpp`, existing module, no new framework): mesh root + 120uu pawn-overlap volume + actor HP + `ApplyWorldDamage` bridge entry + one-hit contact resolve + hide/respawn-10s + kill counter. Scalar is a DOCUMENTED STUB (`SpikeScalarStub`) until STOCK_BRIDGE lands — loop (trigger→HP→death→respawn→typed Victory log) is real. Needs closed-editor build (new UCLASS + traversal includes): BP child + mesh + sandbox placement + PIE proof after. weak: HP home actor 0.40, first-block 0.20.
-
-**Roll proof queued (owner, 30 seconds, Morning PIE):** 5 PIE sessions burned proving the harness, not the montage — sampler watched dead windows twice (path bug + timing), and Morning PIE possesses **Sir**, not Melusina (her pawn exists unpossessed as `BP_MelusinaJRPGCharacter_C_1`). Exact proof: PIE Morning → Ctrl (possess her) → Alt ×3 → sampler reads active montage `AM_Melusina_Roll` on her `CharacterMesh0`. Build is green and the asset/slot/skeleton triple is verified, so this is confirmation, not exploration.
-
-**Hybrid spike verification 09-28 (~11:27, fresh PIE in `MelodiaIntegrationMap`; supersedes the broader 03:35 proof wording).** `BP_HybridSlimeNode` and the saved sandbox nodes exist. The earlier `Trigger` collision fix is present. The older 40s report is at `Saved/Audit/hybrid_spike_clip/hybrid_spike_report.json`; its log records two hits about 10s apart, and the 20-frame set has one black warm-up frame. The other frames render the room, but do not visually identify Sir or the slime, so they establish frame validity rather than visible combat. Its reported view target was resolved programmatically. A fresh passive 15s NullRHI PIE (`pie_smoke_1_112346`) produced **zero** world hits. A controlled out-of-volume/in-volume PIE (`pie_smoke_3_112653`, 14s, `ok:true`) read `HP=25, dead=false, kills=0` outside; entering the trigger produced a 25-damage world hit and `HP=0, dead=true, kills=1`; about 10s later the timer respawned the node while the pawn remained inside, immediately causing hit/kill 2 and `HP=0, dead=true, kills=2`. The `respawned (HP 0.0)` log is written after that synchronous second overlap. All state probes succeeded; zero Blueprint Runtime Error/Accessed None in this fresh run. This proves the controlled overlap/death/timer/re-overlap loop, **not** automatic spawn-overlap, a visible attack, or a musical combat exchange. The fresh PIE controller pawn was `BP_SirMelodiousJRPGCharacter_C_0` using `ABP_SirMelodious`, which confirms a live Sir pawn/anim binding in this map; clip-state transitions remain untested.
-
-**Hybrid integration gate, same review.** Damage still uses `SpikeBaseDamage * SpikeScalarStub` (25 * 1), not a stock skill or rhythm grade. `Die()` logs the phrase `typed result Victory` but does not call typed `CompleteBattle`; no tutorial adoption or chord flow is proven. Live stock `BP_BattleController` graph reads `GetPendingDamageMultiplier` into `DealDamage`, while native `ApplyRhythmAttackScalar()` also scales attacker min/max attack before stock skill use: a possible double application requiring a measured target-HP PIE test before `STOCK_BRIDGE` wiring. The original GPU-backed map-load retest crashed with D3D12 out-of-video-memory before PIE and proves nothing; the above clean proof was run on NullRHI. Recovery left one responsive editor (PID 10628 owns `127.0.0.1:9316`), Monolith 0.20.3, zero dirty packages; an extra editor that this lane launched was stopped. P4 `login -s` against `127.0.0.1:1666`/`Melodia_ws` is **valid** (about 4h06m remaining at this check), so re-login is not currently an owner action. The native node source and BP are opened for add but remain unsubmitted/single-copy; protect them in the normal owner source-control window. Next: measure actual stock damage/grade once in PIE, resolve any scalar duplication, then wire stock scalar and typed resume in the sandbox. Morning tutorial adoption remains a separate owner-gated content step.
-
-**Cross-lane souls-track audit 09-27 night (Jev-live; fixes applied).** Another lane declared a "Souls-like/Rhythm-Action paradigm shift" with 7 ACFU agent lanes (`Docs/Production/MELUSINA_SOULS_ACTION_AGENT_LANES_2026-09-27.md`, untracked) + `Docs/Plans/SOULS_ACTION_COMBAT_SCAFFOLDING_SPEC_2026-09-27.md` (untracked, honestly SCAFFOLDED) + `Tools/run_all_tests.py` (new, gitignored) and claimed 371/371. Verified: ZERO souls BPs/assets/code on disk (lanes are paper — correct for an unapproved track); RIDER PR checklist intact at §22 (extended, not deleted); ACFU plugin present but modules uncompiled in this editor (first live gate = owner-scheduled closed-editor build); measured suite = **437/439** (GMM 307, contracts 16, content 114/116 — 2 lookdev texture fails, unrelated to combat). Fixed: lanes-doc header downgraded CANONICAL→PROPOSED + §5 correction note (missing `paste_1_225029.txt`/`check_combat_ui.py`/gmm rhythm test refs, counts). Jev-live: track JRPG_SLICES_PLUS_SANDBOX 0.98 · first-block no signal (0.18, staged DODGE_SLICE stands) · doc-disposition abstain (0.0, proposal retained). Longterm goal: production JRPG slices (dodge → chords) + ACFU isolated sandbox R&D; no conversion without owner pivot + Issue #51.
-
-**ACFU combat review 2026-09-28 (supersedes the earlier class-surface/zero-asset claims above):** the live UE 5.8 editor loads ACFU 4.3.5 runtime modules and classes. Saved `/Game/Melodia/CombatTrial/BP_MelusinaACFTrial` compiles 0 errors/0 warnings, with `SK_Melusina_V2_Body` and `ABP_Melusina_Current` on an `ACFPlayerCharacterBP` child. A ZenForest PIE baseline possessed the existing JRPG Melusina pawn. A later transient spawn of the trial proxy succeeded using the generated-class `_C` path (`pie_smoke_7_000937`), but the JRPG GameMode caused missing collision-master and team-config errors. Saved trial `BP_ACFTrialGameMode` and `BP_ACFTrialGameState` supply the ACF collision master and team manager. A 5 s ZenForest PIE run with an in-memory GameMode override (`pie_smoke_8_001347`) spawned the trial Melusina with the V2 mesh/current ABP and logged no ACF collision-master, team-config, missing-curve, Blueprint Runtime Error, or Accessed None errors after the marker. This proves the ACF proxy starts in PIE under its GameMode; controller possession and combat actions remain unverified. The editor startup log had 24 invalid ACF gameplay-tag warnings. Live V2 mesh inspection found only `S_HairAnchor`, `S_Instrument_R`, and `S_Instrument_L` mesh sockets; none of six proposed Souls socket names resolved. The scaffold's 5 passing tests check constants, not authored assets or gameplay. Its CLI now requires `--save-manifest` to write, and labels lists as proposed. Git ignores the local trial assets (`Content/Melodia/*`) and scaffold script/tests (`Tools/*`), so these are not in the normal change queue. After PIE, the in-memory ZenForest GameMode value was restored; an attempt to reload the active map package merely to clear its dirty flag crashed Unreal (`World Memory Leaks`). The map was never saved: `ZenForestTest.umap` retained its 2026-09-27 18:54:22 timestamp and 68,889,577-byte size. Editor PID 6616 restarted, Monolith 0.20.3 responds, and `list_dirty_packages` reports 0. Do not reload an active world package for this cleanup. **Next real gate:** prove controller possession, then author and test an ACF melee enemy, lock-on, attack, dodge, hit/death, and beat-graded damage in PIE before production promotion. Avoid a further ZenForest world-settings override until a safe transient test route is established.
-
-**ZenForest PCG biome expansion — 2026-09-28 (BUILT + GENERATED, map deliberately NOT saved; one content-blocking gate).** Ran last night's unbuilt plan `Content/Python/build_pcg_zenforest_biome.py` (1,108 lines, authored 09-27 22:11, never executed before this). All four schema layers landed: L1 `PC_ZenForest_Scatter` (PCGEx collection, 15 entries) + `DA_Melodia_ZenForest` (5 categories, duplicated from the Morning DA), L2 `PCG_Biome_ZenForest` (18-node wrapper, BiomeData retargeted Morning→Zen and verified by `export_text` read-back), L3 three `PCGVolume` bands `PCG_ZenForest_{moss_rim 4242 @ x-8400, crystal_meadow 5150 @ x0, wind_shelf 6161 @ x+8400}` sliced from `Landscape2` (half-extent 12600×12600×2815) with tags `biome_band=<band>` + `BiomeBand_<band>` and new `DL_Musical_BiomeDressing` created and assigned. `removed_previous: []` — nothing pre-existing destroyed. **Generation is real: world ISM 250,178 → 287,103 = +36,925, and the three per-volume counts sum to exactly 36,925 (13,687 / 18,220 / 5,018), so every new instance is attributable to these volumes.** Volume unit self-calibrated to the *measured* 119.81/118.96/103.31 uu from the existing `PCG_Hero_InfiniteNave`, not the 100uu fallback. **THE MAP WAS NOT SAVED:** `ZenForestTest.umap` on disk is byte-identical at 68,895,134 / 2026-09-28 12:22:04 before and after, so the 3 volumes + 36,925 instances are session-only until the owner saves. **GATE — no trees:** the L0 core `PCG_Melodia_MassiveBiome` is 40 nodes = 4 categories × 10 (CellRn/DA/Density/Ground/JitMin/JitMax/Match/SpawnSG/ThinRn/Xform) covering BigRocks/Bushes/Flowers/SmallRocks, and a scan of every node title for "tree" returns **zero** matches — so the 4 Tree entries in the DA and collection are structurally inert and all three bands generated **0 trees**. DA and collection agree 15/15 and still the biome cannot spawn them; the original `verify_manifest` passed `ok:true` because it only proved the two L1 assets agree, never that the core can run the category. Fixed the harness: `verify_manifest` now reads the core's node titles and fails on any manifest category with no chain. Options are (A) add a 5th chain to the **live shared** core that Morning's 992 depend on — owner call, and an architecture change; or (B) scope the manifest honestly to 11 groundcover meshes and author trees as placed art. Not chosen unilaterally. **Also unmeasured:** scale/rotation ranges (the `get_instance_transform` sampling loop silently returned nothing for every component) and the grounded raycast check — schema §7 asks for both, so the proof is counts-only. **Also stale in this file:** the earlier "the map was never saved / 68,889,577 @ 2026-09-27 18:54:22" tripwire is void — the map is now 68,895,134 @ 2026-09-28 12:22:04, i.e. a lane saved it at 12:22 today. Receipt `Saved/Audit/zenforest_pcg_expand.json`; probe `Saved/Audit/zenforest_pcg_probe.json`; p4 session is expired, so the 4 new assets are unsubmitted.
-
-**ZenForest PCG tooling traps (2026-09-28, all four cost real time — read before touching a PCG graph from Python):** (1) The BiomeData value is **not** a top-level property of `PCGCreateAttributeSetSettings`; it lives in `attribute_types` → `PCGMetadataTypesConstantStruct`, field `SoftObjectPathValue`. Probing `(BiomeData, biome_data, AttributeSet, Value, Asset)` reads nothing — a struct level down. (2) The Python `SoftObjectPath` binding has **no `to_string`** and reprs as `{}`, so `get_editor_property('soft_object_path_value')` cannot report it either; **only `export_text()`/`import_text()` on the struct carry the value.** This is the "a dump cannot prove absence" rule (AGENTS.md 20) catching a live authoring run, not just a census. (3) `Monolith run_python` cannot sleep, so `pcg_validate_helpers.generate_and_wait` busy-loops and returns before async PCG generation finishes — the first measurement read world ISM 250,178 both *before and after* "generation" and looked like a hard 0-instance failure. **Fire `comp.generate(force=True)`, return, then poll in a separate MCP call after an editor tick.** (4) `PCGComponent.graph` is protected and unreadable ("Property 'Graph' … is protected"); verify through `graph_instance.graph`. Bonus: `pcg_graph_builder.assign_pcg_graph` is a **silent no-op** — it falls off the end without raising if every route fails, and only worked here because `set_graph` exists in 5.8.
-
-**ZenForest PCG follow-up — plan + Jev audit 2026-09-28 (later the same day).** Plan `.hermes/plans/2026-09-28_zenforest-pcg-expansion-plan.md`; Jev `Prototypes/JevZenForestExpansionAudit/audit_log.json` (**source=jev-live, `jev-1.13.0`**). **Schema §7 proof now closed for scale:** per-mesh instance scale measured on all 11 spawning meshes and **inside every authored manifest window** (flowers 0.80–1.296 vs 0.8–1.3; bushes 0.401–0.699 vs 0.4–0.7; small rocks 0.300–0.595 vs 0.3–0.6; big rocks 0.301–0.700 vs 0.3–0.7), so the vendor `PCG_VegetationTransform` path is genuinely applying DA scale/yaw and the 2026-09-24 "everything scale 1.0 / yaw 0" defect is **not** reproducing. **Grounding is MIXED and is a real defect, not a pass:** downward Visibility trace, 60 cm tolerance, ≤40 samples/mesh/band, **with a positive control** (`GenericTreeSkinny2` returns a blocking hit, so the trace is sound) → `crystal_meadow` **424/445 = 95.3%** grounded, mean gap 32.8 cm; but `moss_rim` **6/462 = 1.3%**, mean gap **1270.5 cm**, max 2931 cm; and `wind_shelf` **4/281 = 1.4%**, mean gap **941.9 cm**, max 2985 cm. The centre band is properly grounded and **both outer bands float ~9–13 m**. Unresolved whether that is a projection defect or genuine cliff faces in the outer X thirds — the two need opposite fixes. **Jev rulings, confidence stated honestly:** `EYE_FIRST_THEN_FIX` on grounding **0.95 / conf 0.94** (look before patching; `ADD_SLOPE_PREDICATE` only 0.04), `PCGEX_TREES_AS_NEW_RECIPE` **0.88 / 0.85** (a standalone Trees L2 recipe, explicitly *not* a fifth chain in the live L0 core — `CORE_FIFTH_CATEGORY` scored 0.00), `SLOPE_AND_LAYER_PREDICATES` as the first MassiveWorld capability **1.00 / 1.00 unanimous** (port only `CalculateMaxSlope` + `PCG_ValidLandscapeLayer`; `FULL_BIOME_GRAPH` 0.00), `D2_HONOURED_ROOMS_GET_PCG` **0.79 / 0.72**, `needs_owner` **0.87**, readiness **2.81/5**. **Two of the eight answers are weak and must not be leaned on:** `first_step` 0.39 (conf **0.19**, near-tie with `EYE_CAPTURE_THEN_PLAN` 0.35) and `riskiest` 0.34 (conf **0.18**, three-way split 0.34/0.25/0.21). **Correction to the record above:** "there is no MassiveWorld UE plugin" — the pack is *content* at `Content/Massive/{MassiveShared,MassiveWorld}`, 206 assets, **gitignored**, with the texture folders still OOM-risked; the project's real plugin is `Plugins/PCGExtendedToolkit`. Its unused inventory is substantial: `PCG_Biome{,_2_0,_3_0}` (1.3/8.4/4.8 MB), `PCG_RuntimeBiome`, `PCG_Cliff{,2_0}`, `PCG_Lake` 4.5 MB, `PCG_River` 4.4 MB, `PCG_Road_Water`, `PCG_ParticleStreaming`; primitives `PCG_PlaceOfInterest`, `PCG_LoopPOI`, `PCG_Spawner{,Simple,Override}`, `PCG_ValidLandscapeLayer`, `CalculateMaxSlope`, `PCG_SetBound`, `PCG_SetLevelByTag`, `PCG_LoadLevelAssembly`, `PCG_useMountainLevel`, `PCG_useWaterLevel`; BPs `BP_Biome{,2_0,3_0,_Default}`, `BP_Cliff`, `BP_Riverbed`, `BP_StampGenerator`, `BP_MassiveWorldEditor`; tables `DT_Biome`, `DT_Stamps`, `CDT_AllBiomes`, `CDT_AllHeightStamps`. The precise hole: the L0 core's per-category chain has **no slope or landscape-layer logic at all**, which is exactly what the pack's `CalculateMaxSlope` / `PCG_ValidLandscapeLayer` supply. **Harness hardened:** added `measure_bands()` to the builder — schema §7 counts + scale ranges + grounded trace, **no blanket `except` around any measurement**, failures counted and named, and a positive control required before any grounded number is reported; wired into `run_apply`'s pass condition. It immediately caught a bug in my *own* new code: `_scale_conformance` compared each category against the first mesh's window instead of the union, so healthy 1.296 flowers were reported out of range against Tall's 1.2 cap. Fixed; all four categories now report `within_window: true` and Trees correctly reports `None` (generated nothing) instead of a fake scale failure. Jev independently named `VERIFIERS_TRUST_DUMPS` the top risk.
-
-**Git safety verified 2026-09-28 (read-only audit; this lane performed no git write operation).** HEAD `4d0bb4345` on `feature/spout-beauty-2026-09-26`. **Diverged: 45 behind / 29 ahead of `origin/main`, and 46 behind / 4 ahead of its own `origin/feature/spout-beauty-2026-09-26`** — the checkout is far from both, so it must not be treated as a `main` proxy and no rebase/merge is safe unattended. **No unmerged paths; no `MERGE_HEAD`, rebase, or cherry-pick in progress.** `git fsck --no-progress` reports **zero error/missing/corrupt entries** — object store healthy; the 260 dangling blobs/commits/trees are benign (recoverable history, not damage). 8 stashes exist, 3 created 2026-09-28 (`fix/issue51-ladder-tools-2026-09-26`, `fix/issue-51-closure-2026-09-26`, `collab/laptop/brooch-sky-20260917`), all labelled "safety". LFS endpoint resolves. **This lane's footprint is exactly four paths, nothing staged and nothing committed:** `M CURRENT_STATE.md` plus untracked `.hermes/plans/2026-09-28_zenforest-pcg-expansion-plan.md`, `Content/Python/build_pcg_zenforest_biome.py`, `Prototypes/JevZenForestExpansionAudit/`. **Pre-existing dirty and NOT this lane's work — do not attribute to it:** `M Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.uasset` (a **never-touch** file per `AGENTS.md`), `M Content/Melodia/Characters/Melusina/ABP_Melusina_Current.uasset`, `M Content/Melodia/Characters/Melusina/bp_melusina.uasset`, `M Prototypes/JevBowConductor/bow_capture_report.json`. Note `Saved/` and `Content/Massive/` are both gitignored, so this session's receipts and the whole MassiveWorld pack are invisible to git by design.
-
-**Isolated ZenForest ACF gate, later 2026-09-28:** Duplicated the original map to local `/Game/Melodia/CombatTrial/L_ZenForestACFTrial`, set and saved only the copy's default GameMode to `BP_ACFTrialGameMode`. Starting editor PID 24780 directly into this map avoided a live map transition. `pie_smoke_2_002339` used a deliberately absent AnimInstance sample variable, causing Monolith's target resolver to fall through to `GetFirstPlayerController()->GetPawn()`; it reported `BP_MelusinaACFTrial_C_0` with `ABP_Melusina_Current`, establishing controller possession in PIE. `pie_smoke_3_002431` spawned one `ACF_Enemy_BP_C_0` 500 units from the map's PlayerStart; Melusina remained the controller pawn. Both completed with zero matching ACF setup, Blueprint Runtime Error, or Accessed None lines in their active runtime windows. This proves possession and transient enemy presence, not AI attacks, damage, lock-on, dodge, or rhythm grading. The original `ZenForestTest.umap` stayed at 68,889,577 bytes with its 2026-09-27 18:54:22 timestamp; the copied map is 68,897,274 bytes and ignored under `Content/Melodia/*`. Editor reports zero dirty packages. During setup, a Monolith `load_level` attempt crashed because Python's reference collector still held the World returned by `duplicate_asset`; the crash log identified `FPyReferenceCollector` and `HandleLoadLevel`. Do not retain World/UObject references in Python globals across level loads; use direct editor startup for this isolated map. **Next gate:** inspect enemy AI/equipment initialization, then measure a real attack and health change in PIE before testing beat-graded damage.
-
-**ACF initialization finding, same session:** `pie_smoke_5_002911` inspected the live PIE actors after the enemy spawned. The first controller was `ACFPlayerControllerBP_C` possessing `BP_MelusinaACFTrial_C`; Melusina and `ACF_Enemy_BP_C_0` were alive with 24 GAS attributes each, but each had **0 granted abilities** and the enemy had **no controller**. The plugin enemy CDO has `AutoPossessAI=PlacedInWorld`, so a transient spawn needs a trial child configured for spawned AI (and its melee controller). The trial/player ACF ability component has `DefaultAbilitySet=None`, and both character initializer components have `CharacterInitDataAsset=None`; an attack cannot be inferred from actor presence. `ACFAttackActionBP` has no montage assigned, while `ACFDodgeActionBP` logged a missing `/Game/FullSample/GASP/.../AO_Blend_Curve` dependency on load. The first probe script's Python `get_pawn` call failed; the corrected probe used `GameplayStatics.get_player_pawn`, with values recorded in `Saved/Logs/BS_GodFile.log` at 04:29:12 UTC. A Monolith `create_blueprint` call for `BP_ACFTrialEnemy` then left editor PID 24780 alive but unresponsive; its log stopped at 04:32:00 UTC after `blueprint_type` null warnings, and no new asset exists on disk. Do not claim an enemy AI or attack pass. Wait for or diagnose this live process before another editor writer or restart. **Next content step once editor responds:** create a trial enemy with spawned AI possession and a real ACF ability set/compatible Melusina attack montage, then measure health change before adding rhythm scaling.
-
-**ACF asset save follow-up:** Recovery showed `BP_ACFTrialEnemy.uasset` had in fact appeared on disk at 00:34:39 (48,183 bytes), with the correct `ACF_Enemy_BP` parent and clean compile; the earlier absence check preceded its delayed save. Monolith `set_cdo_property` accepted `AutoPossessAI=PlacedInWorldOrSpawned` and `AIControllerClass=ACFMeleeAIControllerBP_C` in memory, but both Monolith `save_asset` and a separate Unreal Python `EditorAssetLibrary.save_asset` attempt hung the editor before changing that file's timestamp or bytes. The latter log reported missing ACF FullSample material/texture dependencies and an async skinned-asset compile estimated at 4,608 MiB against a 3,023 MiB limit. Those messages are observed correlations, not a proven hang cause. The unresponsive editors were stopped only after unchanged on-disk bytes were confirmed; PID 49724 was started directly on the isolated map for recovery. Fresh CDO reads confirmed the saved trial enemy still has `AutoPossessAI=PlacedInWorld` and `AIControllerClass=ACF_NPCController_BP_C`; the two desired in-memory changes did not persist. Editor/Monolith is live again with zero dirty packages. Do not repeat Blueprint saves through the same route without diagnosing the stall. The playable damage gate remains open.
-
-**09-26 afternoon:** Sir party switch **fixed + PIE-proven** (Sir→Melusina was a silent no-op; `UMelodiaPartySubsystem::SetActiveIndex`).
-Slime data verified but **unwired** (0 encounter defs, empty room pools) — next = HERMES RUNBOOK H-1 in the goal file (Jev 0.56); cook re-run after it (Jev 0.91).
-H-1 part A done: 6 `ENC_Slime*` + `DA_RunArchetype_SlimeCore` saved; part B (tagged `Encounter_Slime*` battles) retargeted to the dungeon run world per D2. D1 = authored `BP_SirPerch`.
-
-**09-26 evening — H-1/H-2 DONE and PIE-proven (Hermes).** The slime data is now *used*, not just present.
-Wired in `ZenForestTest` through Monolith (map p4-opened, saved, unsubmitted): coordinator `RunArchetype` =
-`DA_RunArchetype_SlimeCore`; **8** stock `BP_InteractionBattle` anchors, each exactly one `Encounter_<id>` tag with a
-real roster — 6 slimes (`BP_EnemyUnit_MelodySlime_C`), `Encounter_SakuraPhantom` (stage-0 threshold, stock
-`BP_WeakEnemy_C`), `Encounter_CosmicSentinel` (final stage, stock `BP_BossEnemy_C`).
-New data assets `Content/Melodia/Roguelike/Definitions/`: `DR_Grove_Threshold`, `DR_Grove_ResonantBridge`
-(`UMelodiaRoomDefinition` → `RD_MelodiaGrove_V1/V2` + `Level` + `TopologyTags` + `StableId`) and `DD_SlimeCore`
-(`UMelodiaDifficultyDefinition`, curves still empty = runtime tuning, not a validation gate).
-Archetype authored to **1 act × 3 stages** (its unedited 2×6 default set `StagesPerDungeon=12` and broke the
-3-stage P0 contract at `MelodiaRoguelikeRunSubsystem.cpp:443`); 6 `ENC_Slime*` repointed off
-`BP_CrystalShard_SlimePlaceholder` onto the real slime unit.
-**Proof** — `Melodia.Roguelike.Functional.ThreeStagePhysicalRoute` in PIE on ZenForestTest: no archetype validation
-errors; recipe `stage 0 SakuraThreshold/SakuraPhantom → stage 1 Grove/SlimeRadianceWaltz → stage 2
-Grove/CosmicSentinel`; `Melodia run: dungeon complete - Sir Melodious reunion spawned.`; the three gameplay
-assertions (Complete phase, endless offer, `bSirMelodiousAvailable`) all pass. **Result={Success}.**
-The test was red before that for a non-gameplay reason: it carried `AddExpectedError("Using CommonUI without a
-CommonGameViewportClient", Contains, 1)`, a UE 5.5 warning 5.8 no longer emits. Setting the count to 0 does *not*
-work — UE still demands the message occur and fails with "Expected suppressed ... did not occur". The entries were
-**removed** from both cases in `MelodiaDungeonFunctionalTests.cpp`; if the viewport config ever regresses, the
-warning returns as a genuine unexpected error.
-**H-4 DONE (Hermes).** `ASirPerchPoint` (new, `SirPerchPoint.h/.cpp`; `LandingOffset`/`bFaceAlongPerch`/`PerchFacing`
-+ designer-assigned, mesh-less `Glint`) + perch API on `AMelodiousFlightCharacter` (idle `Tick` auto-lands,
-any steer/ascend/boost takes off, `FindNearestPerch` measures to the *landing spot*, boost suppresses the idle
-perch) + camera arm 520→300 (H-4 tuning). Test `Melodia.FlightTests.SirPerchLandTakeoff`
-(`MelodiaPerchTests.cpp`, own throwaway world — never the open map) — **Result={Success}** first run.
-Closed-editor build green (26.9 s first, 6.5 s after the test-harness fix).
-**Suite 2026-09-26 evening: `Automation RunTests Melodia.` = 106/107 pass.** The one failure is
-`Melodia.Roguelike.Functional.TwentyFiveGenerationSoak`, and it is a **wall-clock timeout, not a logic defect**:
-it resolved the archetype and slimes correctly, generated all 25 endless rooms (`depth 0 → 24`, `act 8 stage 26`)
-with zero generation rejections, then tripped the test's own 240 s budget at 3–5 FPS
-(`MelodiaDungeonFunctionalTests.cpp:31`). NOT changed — the budget is machine-speed dependent, so raising it is
-the owner's call, not a silent gate edit.
-**Known non-blocking noise in the log:** `LogPython: AttributeError: 'AssetData' object has no attribute
-'tags_and_values'` from an ad-hoc editor probe; unrelated to the C++ suites.
-**Open next:** H-3 packaged cook (Jev 0.91) — **and note `MapsToCook` lists no `L_*` room level and
-`/Game/Melodia/Roguelike` is not in `DirectoriesToAlwaysCook`**, while the dungeon streams those rooms by soft
-path. Check the packaged output before proposing any `Config/DefaultGame.ini` line (ask-first file).
-and the non-Grove rooms still have no exits, which is why the runtime only trusts `RD_MelodiaGrove_V1/V2`
-(`MelodiaRoguelikeRunSubsystem.cpp:59`). PCG expansion of the room levels is the next authoring pass.
-
-**09-26 night — NAKED MELUSINA: diagnosed in three parts; party fix proven.**
-Not an art problem: `BP_MelusinaSwordsman_Presentation` is fully authored (`SK_Melusina_V2_Body/_Shirt/_Skirt_R2/
-_Boots/_Accessories`, both ABPs, her VFX). (1) **C++:** `TrySeedPresentationUnit` gated its Swordsman→presentation
-swap on one hardcoded name `BP_MelodiaJRPGController_Config_C`, but the GameMode spawns the sibling
-`BP_MelodiaJRPGPlayerController` — it declined on every map and returned false silently. Now matches the
-controller's owning package `/Game/MelodiaIntegration/` and logs instead of declining. (2) **Data (the real
-cause):** live PIE probe showed `partyMembers=[Sir]` only, from `BP_MelodiaJRPGPlayerController`'s **CDO
-defaults** — Melusina was in no roster, and the stock Swordsman was gone too, so the swap had nothing to swap.
-That BP is now p4-opened and its default `playerUnits` carries the presentation unit beside Sir (package grew
-98675→98883 bytes, both refs verified on disk). Test `Melodia.Integration.Functional.PartyPresentationUnit` failed
-those assertions before the fix and **passes them after**. (3) **NEW, OPEN:** with a second unit fielded, the
-stock pawn's possess graph null-derefs `AIController` in `BP_JRPGCharacterBase` — shared template content, not
-edited unattended; needs an owner decision (null-guard the node vs give the unit's pawn an AI controller).
-Also unexplained: `TrySeedPresentationUnit` logs nothing even with the gate fixed, so that subsystem may never be
-invoked on this path — the data fix is what carries the party.
-
-**Jev plan-audit of this closeout (`source=jev-live`, one `system_one` call, closed option sets):**
-AIController fix → **`DEFER_TO_OWNER` 0.70** (unit-scoped 0.27 vs stock-template guard 0.03) ·
-next block → `FIX_AICONTROLLER_THEN_SUITE` 0.49 vs `COOK_FIRST` 0.41 (conf 0.32, near-tie) ·
-riskiest → **`ROOM_LEVELS_NOT_COOKED` 0.55** (template regression 0.24, cook memory 0.21) ·
-**Owner gate noul 0.93** · readiness **1 = "risky"**. Consequences: the AIController block is **not** executed
-unattended (owner-gated) and is handed over with evidence; Jev independently sides with the unit-scoped fix over
-editing shared stock template content; and the dominant risk is the **cook**, which needs no approval — so the
-packaged cook is the block being executed. Full distributions + script path in the runbook's C-0 section.
-
-**Cook result 2026-09-26 20:5x — H-3 advances, then stops on ONE owner-owned asset.**
-1. **My own bug, now fixed:** the game target failed to link with `LNK2001`/`LNK2019` on
-   `Z_Construct_UClass_ASirPerchPoint` / `~ASirPerchPoint`. The tell: `SirPerchPoint.cpp.obj` existed for
-   `UnrealGame` but **`SirPerchPoint.gen.cpp.obj` did not** — UHT had written the gen file (16:14) yet the
-   cached plan `Intermediate/Build/Win64/x64/BS_GodFile/Development/Makefile.bin` never scheduled it, and
-   `grep -c 'SirPerchPoint.gen.cpp'` in that cache returned 0. Deleting that regenerable cache fixed it; the
-   recipe is now in the `melodia-backend` skill.
-2. **Build: `Result: Succeeded`.** Link clean.
-3. **Cook: 4228/4228 packages, 0 remaining, 21m38s — then `Failure - 1 error(s)`, ExitCode=25.** The single
-   error is the owner's level, not the dungeon:
-   `L_MelusinaMorning.umap ... imports class /Script/MeshPartition.MeshPartition, which is in a module that is
-   not available on the platform` — the level whose external actor is **deleted in the working set**. This is
-   the same level flagged in `git status` as a deleted `L_MelusinaMorning` external actor, so the cook cannot
-   go green until that reference is re-saved or the delete is resolved. **Not touched: it is the owner's work.**
-4. **Targeted dungeon cook is GREEN, and the room-level question is STILL OPEN (honest status).**
-   `-map=/Game/ZenForestTest` (build skipped, `L_MelusinaMorning` excluded) cooked **2920/2920 packages,
-   0 remaining, `Success - 0 error(s), 132 warning(s)`, `AutomationTool exiting ExitCode=0`**. That proves the
-   cook pipeline itself works on this box and that the earlier failure was *only* the `L_MelusinaMorning`
-   error plus the link bug.
-   **What it does not prove:** that the rooms cook. The cook log names `ZenForestTest` 16 times and the
-   `L_*` room levels / `L_BossArena` **0** times each, and `MapsToCook` lists no room level while
-   `/Game/Melodia/Roguelike` is absent from `DirectoriesToAlwaysCook` — strongly suggestive, but the decisive
-   artifact **does not exist**: that run wrote **zero** `.umap` files anywhere (its log references
-   `Metadata/ValidationCookArtifact`, i.e. a validation-style cook with no staged output). A
-   `strings`/grep check of the older `AssetRegistry.bin` was also invalid — it found neither the rooms nor a
-   known-cooked map, so it proved nothing. **So: do not report the room-cook question as answered.** Settling it
-   requires the full `-stage -pak` package to go green, which requires resolving `L_MelusinaMorning` first.
-   Note the MSYS trap when invoking UAT here: `cmd //c "...RunUAT.bat..."` prints the Windows banner and exits 0
-   without running anything — use a `.bat` wrapper executed as `./wrapper.bat` with `MSYS_NO_PATHCONV=1`.
-
-**Full `Melodia.` suite 2026-09-26 21:34–21:40 — 108 tests, 105 pass, 3 fail, and ALL THREE share ONE
-root cause.** `PartyPresentationUnit`, `ThreeStagePhysicalRoute` **and** `TwentyFiveGenerationSoak` each fail
-with the same `PIE: Blueprint Runtime Error: "Accessed None trying to read (real) property AIController"`. The
-soak's old 240 s timeout is now joined by this error, and the route test — green earlier in the session — is red
-for this reason alone, **not** because the dungeon broke. Cause: the party fix is correct (Melusina is fielded
-and dressed, both of that test's own assertions pass) but it made a latent stock bug reachable, and automation
-promotes Blueprint runtime errors to test failures. **One fix should recover all three.**
-
-**The defect, fully diagnosed.** In `/Game/TurnBasedJRPGTemplate/Blueprints/PlayerPawns/BP_JRPGCharacterBase`
-EventGraph, on the Possess event:
-- `K2Node_CallFunction_20` = `AIBlueprintHelperLibrary.GetAIController(Self)` (ControlledActor ← `K2Node_Self_1`)
-- → `K2Node_VariableSet_0` "Set AIController" (member variable)
-- → `K2Node_VariableGet_7` "Get AIController" → `K2Node_CallFunction_21.self`
-
-`K2Node_CallFunction_21` is **`Controller.Possess`** ("Possess — Target is Controller"). `GetAIController`
-returns **None** when the possessor is a *PlayerController* rather than an AIController, so the graph calls
-`Possess` on None. The stock pawn assumes it is always AI-possessed. **Fix: branch on the AIController member
-being valid after `K2Node_VariableSet_0`, and only then execute into `K2Node_CallFunction_21`.** That is a
-one-node graph guard, not a redesign.
-
-**This guard is unusually safe to apply, verified from the pin data:** `K2Node_CallFunction_21.then` has
-`"connected_to": []` — the Possess call is a **terminal node**, nothing downstream consumes it. So inserting a
-`K2Node_Branch` between `K2Node_VariableSet_0.then` and `K2Node_CallFunction_21.execute`, with the condition fed
-by an `IsValid` check on the AIController member and the **false path left unconnected**, cannot change any
-downstream behaviour. Monolith has the required actions (`add_node`, `connect_pins`, `add_property_access`,
-`add_nodes_bulk`, `batch_execute`, `compile_blueprint`). Dry-run it on a writable copy before touching the
-shared template asset, and re-run `Melodia.` afterwards expecting 107–108/108.
-
-**BLOCKED ON ONE OWNER ACTION — `p4 login`.** Both remaining changes are fully specified and ready but cannot be
-applied: the Perforce session has expired, and both target files are `-r--r--r--`:
-- `Config/DefaultGame.ini` — add `+DirectoriesToAlwaysCook=(Path="/Game/Melodia/Roguelike")` (the drafted
-  comment is in the runbook; this is what forces the streamed `L_*` room levels into the package).
-- `Content/TurnBasedJRPGTemplate/.../BP_JRPGCharacterBase.uasset` — the Possess null-guard above.
-Do **not** work around this with `chmod`/`attrib`: that writes Perforce-controlled content outside Perforce and
-creates the confusing "saved but not checked out" state. Note Jev ranked the stock-BP edit at only 0.03 versus
-0.27 for a unit-scoped fix, but the graph evidence has since shown the unit-scoped route is not actually
-available — the stock pawn is the possessor of record — so the ranking is superseded by the wiring.
-
-**Jev on-track audit, second pass (`source=jev-live`, after the suite ran and the possess graph was read):**
-
-| Question | Call | Confidence | Distribution |
-|---|---|---|---|
-| Next action | **`WAIT_FOR_P4_THEN_EXECUTE`** | **0.78** | WAIT 0.84 · HOLD_AND_ESCALATE 0.13 · FIND_NO_P4_ROUTE 0.02 · REVERT_PARTY_FIX 0.01 |
-| Commit now | **`HOLD_NO_COMMIT_YET`** | 0.49 | HOLD 0.65 · SOURCE_AND_DOCS_ONLY 0.34 · COMMIT_ALL_ELEVEN 0.01 |
-| Riskiest | **`P4_NEVER_CLEARED`** | 0.75 | P4 0.80 · ROOMS_STILL_UNCOOKED 0.11 · PARTY_FIX_UNPROVEN 0.05 · DUAL_VCS 0.04 |
-| Owner gate | **noul 0.90 — gated** | — | gated |
-| On track | **1 = "at_risk"** | — | 1.0 on that level |
-
-(This pass uses a different readiness scale than the first, so the two scores are **not** comparable; only the
-distributions within each pass are meaningful.) What it endorses: the plan as proposed scores **0.84 at 0.78
-confidence**, and both escape hatches are rejected outright — engineering around Perforce scores **0.02** and
-reverting the correct party fix scores **0.01**. Holding the staged set uncommitted scores 0.65. The dominant
-risk is not technical: it is the Perforce login never happening (0.80), which is why the closeout reads
-"at_risk" while the underlying work — dungeon run proven, root cause found and fixed with a regression test,
-build green, targeted cook green — is done.
-
-**State audit at the same time (no drift):** `main == origin/main` at `77b7d40f9`, nothing committed · 11 files
-staged by explicit filename, never `git add -A` · all of the owner's Morning work still unstaged, including the
-deleted `L_MelusinaMorning` external actor still ` D` · editor up, Monolith responsive, 0 real load errors (the 4
-boot-log hits are `aqProf`/`VtuneApi`/`WinPixGpuCapturer` profiler probes) · p4 still expired. Of the 22 assets
-modified today only **12 are this task's**; the other 10 belong to other lanes/the owner and are deliberately
-unclaimed and unstaged.
-
-**SOURCE-CONTROL TRUTH, 2026-09-26 ~21:5x (verified, not assumed).** Prior lanes' last-24 h work **is**
-committed and merged: 34 commits, 9 merges, `main == origin/main` at `77b7d40f9`. **This session's work is
-not.** Nothing of tonight's is committed — 11 files are **staged only**; nothing has been submitted to p4 (the
-session is expired); and of the 12 content assets this task touched, **12/12 are on disk but 0 have a second
-copy**, because `Content/*` is gitignored at `.gitignore:113`. **So the working tree is the only copy of that
-work, and that — not the red suite — is the highest-consequence open item in the project.** Editor has 0 dirty
-packages, so there is no in-memory loss vector. 5 git stashes exist from deliberate earlier parks
-(09-19 → 09-23), which are parked work, not lost work. Plan of record, including the exact p4 reconcile list
-and the deliberate non-actions, is in the runbook's **C-2 PLAN OF RECORD**.
-
-**RESEARCH 2026-09-26 — the room-cook question is now MECHANISM-PROVEN, and a bigger defect fell out.**
-
-**1. The rooms genuinely will not cook (authoritative, not inferred).** `Plugins/ProceduralDungeon/Source/
-ProceduralDungeon/Public/RoomData.h:45` declares `TSoftObjectPtr<UWorld> Level {nullptr};`. Epic's own
-guidance is that soft references **do not** put a target in the cooker's reachability path: without a hard
-reference chain, an Asset Manager registration, or an "Additional Asset Directories To Cook" entry, the
-softly-referenced package is excluded and resolves to null in a build. The chain here is: the generator holds
-`TArray<URoomData*>` — a **hard** reference, so the `RD_*` assets cook — but each `RD_*` reaches its `L_*` level
-only through that soft pointer. So the room levels are excluded. This is the mechanism behind Jev's 0.55 risk.
-*Precision:* this proves the mechanism, not the package contents. Only a green `-stage -pak` run can confirm
-the artifact, and that is still the pending proof.
-
-**2. The 8 Asset Manager `AlwaysCook` rules for the roguelike match ZERO assets.** `DefaultEngine.ini`
-registers `MelodiaRoom`, `MelodiaEncounter`, `MelodiaDifficulty`, `MelodiaRunArchetype`, `MelodiaMutator`,
-`MelodiaReward`, `MelodiaRewardPool`, `MelodiaContentPack` — all with `CookRule=AlwaysCook` — but every one
-points at a `Definitions/<Type>` subdirectory. **None of those eight directories exists.** The real layout is
-`Roguelike/{Archetypes, Blueprints, DataTables, Definitions, Encounters, RoomData, Rooms}`:
-
-| Configured scan dir | Reality |
-|---|---|
-| `Definitions/Rooms` | does not exist (levels live in `Roguelike/Rooms`) |
-| `Definitions/Encounters` | does not exist (encounters live in `Roguelike/Encounters`) |
-| `Definitions/Runs` | does not exist (archetypes live in `Roguelike/Archetypes`) |
-| `Definitions/Difficulty` | does not exist (`DD_SlimeCore` sits directly in `Definitions/`) |
-| `Definitions/{Mutators,Rewards,RewardPools,ContentPacks}` | do not exist |
-
-`RoomData/` and `Rooms/` have **no rule at all**. So the safety net intended to cover exactly this class of
-runtime-only content is inert, and the definitions cook today only because they are hard-referenced from the
-archetype arrays and battle-anchor rosters — which is fragile and incidental, not designed.
-
-**Consequence for the two fixes.** The drafted
-`+DirectoriesToAlwaysCook=(Path="/Game/Melodia/Roguelike")` is the correct *immediate* remedy: it covers
-`Rooms/`, `RoomData/`, `Encounters/`, `Archetypes/` and `Definitions/` in one line and needs no per-type
-bookkeeping. The *durable* remedy is to repoint the 8 Asset Manager rules at the directories that exist (or
-move the assets under the configured ones) — that is next-phase work and is deliberately **not** bundled into a
-two-line closeout, because changing cook rules and fixing a shared template Blueprint in the same pass makes
-neither reviewable.
-
-**PERFORCE RESTORED 2026-09-26 — the single-copy exposure is CLOSED.** The session had expired and
-the owner did not know the password. It was in plaintext at `D:\perforce\ADMIN_CREDENTIALS.txt`
-(`user: froma`, 20-char password, no port suffix) — the file's own last line reads *"bootstrap admin
-file - move to a vault, then delete this file"*. Restored via `p4 login` with the password piped
-through stdin, never echoed. **Security follow-up: move that file to a vault and delete it.**
-- **Change 233 submitted.** The 12 task assets (10 roguelike `add`, plus
-  `BP_MelodiaJRPGPlayerController` and `ZenForestTest` as `edit`) now have a server-side copy. They
-  had been sitting open in the default changelist and never submitted — that was the entire risk.
-- p4d is a plain local process (`D:/perforce/root`, port 1666), **not** a Windows service.
-- **Never use `p4d -xu` to reset a ticket.** In P4D 2026.1 that flag is
-  *"prepare for upgrading to a later major release"*; it is idempotent and harmless, but it silently
-  ignores extra arguments and does nothing to authentication. An hour went into that dead end.
-- Verified non-obvious: `p4 info` prints client-side settings and succeeds **without a valid
-  ticket** — it is not proof of authentication. Only a command that needs a session (e.g. `p4 opened`)
-  proves the ticket works.
-
-**FULL `Melodia.` SUITE 2026-09-26 23:5x — 108 tests, 108 PASS, 0 FAIL.** `Automation Test Queue
-Empty 108 tests performed.` All three previously-red tests are green:
-`Melodia.Integration.Functional.PartyPresentationUnit` (Success),
-`Melodia.Roguelike.Functional.ThreeStagePhysicalRoute` (Success), and
-`Melodia.Roguelike.Performance.TwentyFiveGenerationSoak` (**Success** — the 240 s timeout is gone;
-the soak was being slowed by the AIController error spam, not by generation, which had always
-completed all 25 rooms). This closes the sequence that began at 106/107 → 105/108 → **108/108**.
-
-**AICONTROLLER GUARD APPLIED AND PROVEN (2026-09-26 23:3x).** `Melodia.Integration.Functional.
-PartyPresentationUnit` now reports `Result={Success}` and the run log contains **zero** occurrences of
-`Accessed None trying to read property AIController`. One Blueprint node, inserted in
-`BP_JRPGCharacterBase` (note the real path is `.../Blueprints/**PlayerPawns**/BP_JRPGCharacterBase`,
-not the Blueprints root, and never the `_ThirdParty` copy which is not pristine):
-
-```
-K2Node_VariableSet_3 (Set isAI) .then
-      -> K2Node_IfThenElse_3 (Branch).execute
-           Condition <- K2Node_CallFunction_5 (KismetSystemLibrary::IsValid)
-                          .Object <- K2Node_VariableGet_7 (AIController)
-           .then     -> K2Node_CallFunction_21 (Possess / Target is Controller).execute
-           .else     -> unconnected   (safe: the guarded node's `then` was already terminal)
-```
-Branch exec outputs are named **`then` / `else`**, not `true` / `false`. Compile reports
-`error_count: 0`, validate reports no disconnected nodes.
-
-**Correction to the earlier write-up:** the crashing node was *not* fed by `K2Node_VariableSet_0`.
-`K2Node_VariableSet_0.then` is an unconnected dead end; the live path runs through
-`K2Node_VariableSet_3` ("Set isAI"). Reading `get_node_details` per node is authoritative — the
-`export_graph` snapshot omits `connected_to` on some exec pins and will send you down the wrong path.
-
-**Thesis:** Creature → Motif → Harmony → World. **Semester (Humber Fall 2026):** First Dream is the
-stable technical proof (protect and polish only). Shorewake Calling is the semester artwork.
-Choral Sheep is the capstone lane.
-
-**Active owner request — Melusina convergence and portfolio pass:** retain the existing runtime BP as Ultimate; produce a complete 13-system Niagara contact sheet; correct the staged FLIP export/import path; compare the hair source pivot with the verified runtime bind; then capture a polished Unreal portfolio render. Locomotion, Rokoko, and Foundry integration remain owner-confirmed working capabilities.
-
-1. **Choral Sheep UE proof.** REST vs HIT fleece captured 2026-09-20 on the approved Nikki path
-   (`MI_ChoralSheep_Body` → `M_Master_Toon_Character`, Chladni child + `T_Chladni_C_ROOT`). PIE
-   `ApplyChoralSheepDefinition` / `TryBeginHarmonize` / weight 1.0→0.0 re-proven. Next: owner
-   pixel-judge the stills against Board 06. Do not invent a sheep AI.
-2. **UE ↔ TD proof — DONE 2026-09-24 night.** Phrase bus proven end-to-end: `phrase_bridge`
-   OSC → UDP :9000 (**moved to :9002 on 2026-09-25** — :9000 collided; Blender listener is :9001) → `UMelodiaPhraseBusSubsystem` in PIE (`L_MelusinaMorning`,
-   `BP_MelodiaJRPGGameInstance_C_7`) → `GetCurrentState` read back all 7 authored fields
-   exactly (phrase 7, CLIMAX, bar 42, energy 0.87, RISING, conf 0.9, pulse). The 09-20
-   "stayed 0" is superseded by the 17:48 RecvFrom DLL. Receipt:
-   `Saved/Audit/listening_field_20260924/phrase_bus_ingest_proof_20260924.json`. No packages
-   saved. TD scene untouched.
-3. **One 5–10 s AE sequence — rendered via ffmpeg 2026-09-24; AE headless is machine-dead.**
-   CORRECTION to the prior theory: headless AfterFX 2026 `-noui` dies on GPU3 **even with the
-   editor closed** ("GPU3 failed (previous) sanity test", compute init queue never terminates) —
-   twice on 09-20, once tonight. AE headless is broken on this box regardless of adapter
-   contention; run the beat through ffmpeg instead (the 09-20 mp4 was ffmpeg-assembled anyway).
-   New captioned build (64px Arial #F7E142 labels, 2s/plate, 24fps, h264 1920×1080, verified
-   8.000s): `Saved/Audit/AE/ship_queue_beat_8s/Melodia_ShipQueue_Beat_8s_20260924.mp4`, staged
-   at `my-site-kit/generated/assets/melodia_shipqueue_beat_8s_20260924.mp4` (uncommitted).
-   Promotion to the live site is held for owner pixel-review + slot decision (freeze contract:
-   no new public page elements during freeze; no video slot exists yet).
-**Owner override — 2026-09-24 evening:** the queue is **bounded lookdev/content convergence first**. Stop opening new PCG, World Compiler, Universe Foundry, or procedural-world architecture. Existing procedural systems may be consumed for a visible proof, but they are not tonight's product. Draft #321 is frozen as a prep/source lane pending refresh and review.
-
-Today, in order, use `Docs/P1_TASK_LEDGER.json -> lookdev_work` as the bounded visual queue:
-1. **Choral Sheep fleece verdict:** judge the existing REST vs HIT proof and return PASS/TUNE/REJECT with no more than three visual symptoms. Do not reopen the Sheep material or creature framework.
-2. **Melusina Simple Diffuse M1:** one ZenLantern re-cook + owner judgment cycle only; do not roll into the remaining HandpaintPrep assets automatically.
-3. **Canonical Melusina Morning portrait:** one readable face/hair/wardrobe/prop frame through the existing runtime pawn. A technical blocker becomes a separate bounded task instead of broad character-system work.
-4. **Crystal Cathedral A/B:** choose restrained vs hero crystal growth and record parameter-direction notes. Do not begin the full HDA/PDG/Song Cathedral implementation tonight.
-5. **Glitter Pile hero proof:** define the visual target with the existing material/Copernicus family; do not build the full deposition-to-Niagara system.
-
-**Explicitly parked for this evening:** further #321 PCG/Foundry expansion, new World Compiler/PCG architecture, Universe Foundry expansion, Faraway Mother integration engineering, Issue #51 closure work, Horizon Eater, broad worldbuilding, new AI/tool research beyond already-running bounded tests, speculative refactors, and branch-count cleanup. Touch a parked lane only when it is a named blocker to one of the five visual tasks above.
-
-1. **Cut a clean session branch.** Run `python Tools/git_ok.py`; fetch current green `main`; create one scoped branch such as `feature/lookdev-melusinas-study-20260921` or `feature/world-melusinas-study-20260921`. Never author directly on `main`, and never start the session from a stale integration/recovery branch.
-2. **Freeze live-state movement while authoring.** One Unreal editor, one Monolith `:9316`, no background agent branch switching, no rebase/merge under an open editor. Clear LFS read-only flags before the first save. Any WC/PCG/Monolith spatial mutation runs `scene_context_cycle.begin()` / `end()`.
-3. **Build through canonical seams.** Worldbuilding = recipe/data + `Tools/world_compiler.py` + existing UE driver/PCG/material/Niagara consumers. Runtime colour/audio response stays on the existing presentation/MPC writer chain. Blender/GN source work is promoted deliberately through Melodia Studio; #256 remains a source lane until its SOURCE/LIVE promotion gates pass. No second compiler, MPC writer, Niagara framework, battle manager, save authority, or synchronization scheme.
-4. **Commit visual slices, not workstation dumps.** Separate meaningful units such as layout/scatter, material/lookdev, VFX/reactivity, or animation presentation. Save only intentional UE/DCC assets; keep Frozen/MPC/DefaultEngine/EnvSandbox/Humber scratch out unless the named task owns them. A dirty workstation tree is not a merge unit.
-5. **Close the session before integration.** Close Unreal before UBT, AE, branch switching, or final merge work. Run the relevant source/runtime checks, let Echo/LFS gates finish, merge the scoped PR, then cut the next production branch from the new green `main`. Session branches should be short-lived; workstation/recovery branches remain preserved sources, not production state.
-6. **Runtime gameplay closure remains the only cross-system engineering closure when engineering resumes.** Issue #51 owns atomic restore + repeat-load invariants, closed-editor build/focused automation, full-process and packaged repeat-load, Shorewake allowlist correctness, and the next fresh player-facing golden run. Do not mix that closure into tonight's lookdev queue, and do not reopen #256/#279.
-
-Then: the 3–5 minute playable Shorewake route (`Chapters/02_shorewake_calling/`), then Issue #51.
-
-**Task filter:** a task must produce a graded Humber deliverable, a visible portfolio improvement,
-or remove a real blocker to one of those (`Docs/Semester/FALL_2026_ACADEMIC_MATRIX.md`).
-
-**Not now:** git archaeology, new frameworks or second authorities, website redesign (showcase soft
-freeze since 2026-09-07), or research sweeps. Keep status changes in this file and do not create
-another status, handoff, plan, receipt, or session-note document. Oracle / Thirteenth Note
-(`Docs/Strategy/ORACLE_*`) is a gated end-of-semester stretch.
-
----
-
-## 5. How progress is measured
-
-Playable minutes and captured proof — not gates, commits, or documents. As of 2026-09-10 the
-authored QuillScript is 16 `.qsc` files, about 500 lines, several of them smoke tests. A session
-counts if it adds playable or presentable minutes, or removes a real blocker.
-
----
-
-## 6. Where things are
-
-| What | Where |
-|---|---|
-| Game (this repo, **private**, no licence file) | `fromage3900/MelodiaMelusinaV2`, local `C:/EnvironmentPortfolio/BS_GodFile` |
-| Website (**public** — serves GitHub Pages; owner decision 2026-09-12) | `fromage3900/my-site` |
-| TouchDesigner / AE (private) | `fromage3900/MelodiaTouchDesigner`, `C:/MelodiaTouchDesigner/td/grandmaster_melodia/` |
-| AI token treasury (revenue sidecar) | my-site `tools/fromage-webgl-kit/TREASURY_LEDGER.json` — 0 entries, first gate 0/5; never displaces the capstone |
-| Accessory / WebGL website lane (isolated) | [`Website/fromage-webgl-kit/`](Website/fromage-webgl-kit/) — floral atelier + commerce embed, DCC `KHR_materials_variants` GLBs. Not the recruiter site. Cloud cannot push `my-site` (403). |
-| `C:/EnvironmentPortfolio/` | workspace folder only; its root Git repo is retired |
-
-**The game repo is private; `my-site` is public.** Never commit personal, school, career, or client documents to either.
-
-- **Route maps:** `/Game/Melodia/Levels/Opening/L_MelusinaMorning` →
-  `/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype` →
-  `/Game/EnvSandbox/Environments/L_KaleidoNave`; menu `/Game/Melodia/Levels/Menu/L_MelodiaMainMenu`.
-- **Systems test level:** `/Game/MelodiaIntegration/Maps/MelodiaIntegrationMap` — additive only.
-- **Workstations:** Humber lab = primary interactive; home PC = render/bake worker
-  (`deploy/render_worker.ps1`); ASUS laptop = auxiliary. `main` is the shared baseline.
-  `collab/laptop/longterm` is the laptop Blender/GN lane — never wholesale-merge or delete it
-  (`Docs/Production/BRANCH_WORKSTATION_POLICY.md`).
-- **Packaging:** cook to `G:` (C: lacks space). `Config/DefaultGame.ini` `MapsToCook` is correct —
-  omit `-map=`.
-- **Git health:** `python Tools/git_ok.py` — if it prints OK, Git is not the task.
-- **Art references:** `Docs/Art/VISUAL_REFERENCE_INDEX.md`. Melusina House GN:
-  `MELUSINA_HOUSE_GN_START_HERE.md`.
-
----
-
-## 7. Traps that keep costing sessions
-
-- **Stale DLL.** Compare `Binaries/Win64/UnrealEditor-BS_GodFile.dll` mtime against the source
-  before trusting any PIE result.
-- **One editor, one MCP writer** (Monolith port 9316). A second editor logs to
-  `Saved/Logs/BS_GodFile_2.log`.
-- **Background agents.** OpenCode in Rider (runs a git MCP server), Hermes, and the Melodia
-  scheduled tasks (disabled 2026-09-10) have switched branches and committed mid-merge. Check
-  before any editor or git work.
-- **Material instance writes** need `update_material_instance()` to reach the renderer.
-- **Never `load_level` straight after stopping PIE** — teardown is async and crashes the editor.
-- **Codex desktop drives the editor too.** `ChatGPT.exe` → `codex.exe` holds its own
-  `monolith_proxy.exe`, loads maps, saves, runs `Build.bat BS_GodFileEditor` against an open editor and
-  restarts it. `ListAgents`/`SendMessage` do not reach it. Check `monolith_proxy.exe` parents and a
-  running `UnrealBuildTool.dll` before closing, rebuilding or PIE-driving.
-- **Read-only content files come from Git LFS locking.** `.gitattributes` marks `*.uasset`, `*.umap`,
-  `*.blend`, `*.fbx` and 31 more patterns `lockable`, so every checkout, reset or branch switch makes
-  them read-only and editor saves fail with "because the file is read-only!". Nobody uses LFS locks
-  (`locksverify false`). In each clone or worktree run `git config lfs.setlockablereadonly false`, then
-  clear the flag once: `Get-ChildItem Content -Recurse -File | ? IsReadOnly | % { $_.IsReadOnly = $false }`.
-- **Monolith `run_python` cannot sleep** — `time.sleep` is intercepted and PCG `generate()` is async, so
-  instance counts read in the same call race generation.
-- **Headless Blender hangs on user add-ons** — pass `--factory-startup` for `-b` inspection/bake runs.
-  Scripts that need ARP (exports) cannot use it: end them with `sys.stdout.flush(); os._exit(0)` or
-  Blender finishes the work, saves, then hangs at 0 % CPU forever.
-- **ARP silently skips Units x100** unless the scene unit scale is exactly 1.0 (`_set_units_x100`).
-  The R09 working copy is 0.1 — set 1.0 in memory before exporting (the dry-run tool does).
-- **A runtime mesh swap is not a mesh test.** `SetSkeletalMeshAsset` on a live PIE component keeps the
-  old anim instance, so an incompatible mesh looks animated. Gate new meshes on a fresh spawn with
-  `GetAnimInstance() != None`.
-- **Reimport over a loaded skeletal mesh can't be undone in-editor** — `reload_packages` fails while
-  components hold it. Back up the `.uasset`, keep it read-only, and revert by restarting without saving.
-
-Stale-agent damage classes (read these before any WC / Jev / Blender / git work):
-
-- **Collapsed docs.** Never resurrect paths deleted in `08a608bc`. CI: `Tools/guard_collapsed_paths.py`. Never wholesale-merge `cleanup/pbr-twin-landing-2026-09-10`. Recover old docs with `git show 7d271c15:<path>` (tag `docs-precollapse-2026-09-10`).
-- **Bedroom / Sphere3D meadow.** Live Morning field is flowers on `BrushifyIsland_*` only; dressing on `WC_EscherWalk_*` plus island skirts; bedroom keepout in `recipes/morning_rainbow_bloom.v1.json`. Do not plant `SM_classic_arch_*`, `Sphere3D`, `WC_DellFloor`, or invent a second meadow.
-- **Second authorities.** No second World Compiler, MPC writer, Niagara framework, battle manager, phrase bus, Jev, or Monolith.
-- **MPC/PPV writes** to “fix” muted hue or lookdev. Hue-reveal proof is PIE wind, not a writer. Frozen PPV stays frozen.
-- **Dirty-tree dump.** Isolated PRs only. Morning closeout is `feature/morning-closeout-2026-09-20` (PR #249). Park Frozen PPV, MPCs, `DefaultEngine.ini`, EnvSandbox dumps, and Humber.
-- **Blender / G: junctions.** Do not robocopy, junction, or overwrite `harp_bow_pipeline`. Open `C:\EnvironmentPortfolio\MELUSINABACKUPBECAUSEAIAGENTSARERETARDED.blend` (Sep 5, verified) or the v22 recovered stage.
-- **Jev confusion.** Jev (`Tools/listening_field/jev_director.py`) is a director over allowlisted sheep/world/`layout_seed` options. It does not drive UE. `recipes/jev_showcase_bloom.v1.json` is a World Compiler recipe whose name is unrelated.
-- **Ghost spec / wrong phrase bridge.** Durable spec is [`Docs/Production/LISTENING_FIELD_SPEC_2026-09-20.md`](Docs/Production/LISTENING_FIELD_SPEC_2026-09-20.md). `Content/Python/resonant_world_phrase_bridge.py` is MIDI ecology, not Jev.
-- **gitignore `Tools/*` swallowing live lanes.** Keep `listening_field` / `phrase_bridge` / `live_source` un-ignored.
-- **Skip `scene_context_cycle`.** Any WC / PCG / Monolith spatial edit requires `scene_context_cycle.begin()` before the first mutation and `end()` after. One editor, Monolith `127.0.0.1:9316` only.
-- **UBT while the editor is open.** Closed-editor builds only. A stale `UnrealEditor-BS_GodFile.dll` is how OSC readback stays at bar 0.
-
----
-
-## 8. Keeping this healthy
-
-**Docs.** This replaces the front-door contradiction checker: one status document cannot contradict
-itself.
-
-- A change that alters project status updates this file **in the same PR** (PR template checkbox).
-- No new handoff, plan, receipt, scorecard, or session-note files. That narrative belongs in the
-  commit or PR body, where it is already dated and attributed.
-- A new doc is only for durable reference — pipeline, contract, spec, runbook, bible, research.
-  Name it for what it teaches, not for the day it was written.
-- Monthly: re-read §2 and §3 against the current build. Delete any claim you cannot point at
-  evidence for. Nothing is lost — `git show 7d271c15:<path>`, tag `docs-precollapse-2026-09-10`.
-
-**Git.** `python Tools/git_ok.py` first; if it prints OK, git is not the task. One branch per
-reason, named per `CONTRIBUTING.md`. Never let a background agent commit on your behalf — check for
-OpenCode (Rider) and Hermes before editor or git work.
-
-**CI.** The doc-policing steps are gone: `repo_governance_guard.py` and `front_door_health.py`
-existed to cross-check front-door docs against each other, which a single document cannot fail. PR
-CI still runs the protected-asset guard, the echo manifest, the offline contract suites, and the
-health scorecard.
-
-**Hygiene.** This repo is private and `my-site` is public. Personal, school, career, and client
-documents live in local-only `C:/EnvironmentPortfolio/_offgame/` and never in either repo.
-
-**Weekly, ten minutes:** is §2 still true, is §4 still what you are actually doing, does `git_ok`
-pass, and did anything get written this week that should have been an edit to this file?
-
 ## Pre-collapse docs
 Every deleted handoff/plan/report is recoverable with `git show 7d271c15:<path>` (tag `docs-precollapse-2026-09-10`).
-

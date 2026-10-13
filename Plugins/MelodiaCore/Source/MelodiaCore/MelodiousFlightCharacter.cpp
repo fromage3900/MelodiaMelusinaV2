@@ -74,6 +74,12 @@ void AMelodiousFlightCharacter::CreateInputMappingContext()
 	AscendAction = NewObject<UInputAction>(this, TEXT("IA_Flight_Ascend"));
 	AscendAction->ValueType = EInputActionValueType::Boolean;
 	FlightMappingContext->MapKey(AscendAction, EKeys::SpaceBar);
+	FlightMappingContext->MapKey(AscendAction, EKeys::Gamepad_RightTrigger);
+
+	DescendAction = NewObject<UInputAction>(this, TEXT("IA_Flight_Descend"));
+	DescendAction->ValueType = EInputActionValueType::Boolean;
+	FlightMappingContext->MapKey(DescendAction, EKeys::LeftAlt);
+	FlightMappingContext->MapKey(DescendAction, EKeys::Gamepad_LeftTrigger);
 
 	BoostAction = NewObject<UInputAction>(this, TEXT("IA_Flight_Boost"));
 	BoostAction->ValueType = EInputActionValueType::Boolean;
@@ -100,6 +106,7 @@ void AMelodiousFlightCharacter::SetupPlayerInputComponent(UInputComponent* Playe
 	EIC->BindAction(MoveRightAction, ETriggerEvent::Triggered, this, &AMelodiousFlightCharacter::OnMoveRightTriggered);
 	EIC->BindAction(LookAction, ETriggerEvent::Triggered, this, &AMelodiousFlightCharacter::OnLookTriggered);
 	EIC->BindAction(AscendAction, ETriggerEvent::Triggered, this, &AMelodiousFlightCharacter::OnAscendTriggered);
+	EIC->BindAction(DescendAction, ETriggerEvent::Triggered, this, &AMelodiousFlightCharacter::OnDescendTriggered);
 	EIC->BindAction(BoostAction, ETriggerEvent::Started, this, &AMelodiousFlightCharacter::OnBoostStarted);
 	EIC->BindAction(BoostAction, ETriggerEvent::Completed, this, &AMelodiousFlightCharacter::OnBoostCompleted);
 	EIC->BindAction(BoostAction, ETriggerEvent::Canceled, this, &AMelodiousFlightCharacter::OnBoostCompleted);
@@ -119,6 +126,9 @@ void AMelodiousFlightCharacter::SetupPlayerInputComponent(UInputComponent* Playe
 
 void AMelodiousFlightCharacter::UnPossessed()
 {
+	// The Completed callback can be lost when party switching removes the mapping
+	// context while Shift is held. Never carry boost into a later possession.
+	OnBoostCompleted();
 	RemoveMappingContextOnUnpossess(FlightMappingContext);
 	Super::UnPossessed();
 }
@@ -163,6 +173,13 @@ void AMelodiousFlightCharacter::OnAscendTriggered(const FInputActionValue& Value
 	LeavePerch();
 	SecondsSinceSteering = 0.0f;
 	AddMovementInput(FVector::UpVector, 1.0f);
+}
+
+void AMelodiousFlightCharacter::OnDescendTriggered(const FInputActionValue& Value)
+{
+	LeavePerch();
+	SecondsSinceSteering = 0.0f;
+	AddMovementInput(FVector::DownVector, 1.0f);
 }
 
 void AMelodiousFlightCharacter::OnBoostStarted()
