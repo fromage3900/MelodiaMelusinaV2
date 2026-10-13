@@ -31,6 +31,7 @@ LANES = (
     ("C0_FIELDS_ECOLOGY", (1, 3), (0.31, 0.61, 0.40), "FieldAtlas/PCG and ecology bakes; add validated outputs here"),
     ("D0_COPERNICUS_LOOKDEV", (5, 3), (0.75, 0.49, 0.64), "Non-authoritative material and resonance lookdev"),
     ("E0_BAKE_EVIDENCE", (9, 3), (0.76, 0.56, 0.29), "Bakes, manifests, hashes; no direct Unreal mutation"),
+    ("F0_CUSTOM_AUTHORING", (13, 3), (0.53, 0.62, 0.82), "External/custom HIP/HDA workspace references; never auto-import or overwrite"),
 )
 
 
@@ -65,7 +66,7 @@ def annotate(node, caption: str, color) -> None:
         pass
 
 
-def build(root: Path, output: Path, use_cathedral: bool) -> dict:
+def build(root: Path, output: Path, use_cathedral: bool, custom_roots: list[Path]) -> dict:
     import hou
     # Always run in an isolated Hython process. Do not clear an artist's open GUI HIP.
     if hou.isUIAvailable():
@@ -82,6 +83,8 @@ def build(root: Path, output: Path, use_cathedral: bool) -> dict:
     master.setUserData("melodia.world_compiler.recipe", WORLD_RECIPE)
     master.setUserData("melodia.houdini_foundry.recipe", PROCEDURAL_RECIPE)
     master.setUserData("melodia.cook_policy", "explicit_manual_only")
+    master.setUserData("melodia.custom_roots", json.dumps([str(p) for p in custom_roots]))
+    master.setUserData("melodia.custom_root_policy", "references_only_manual_selection")
 
     for name, pos, color, caption in LANES:
         marker = master.createNode("null", name)
@@ -112,6 +115,7 @@ def build(root: Path, output: Path, use_cathedral: bool) -> dict:
         "universe_foundry_inputs": [GENOME, DELTA],
         "world_compiler_recipe": WORLD_RECIPE,
         "houdini_foundry_recipe": PROCEDURAL_RECIPE,
+        "custom_root_refs_local_only": [str(p) for p in custom_roots],
         "runtime_or_ue_proof": False,
         "mission_ref_attached": False,
         "integration_note": "Mission/World Compiler references only: explicitly compile and validate via existing CLIs; do not call this an end-to-end bridge proof.",
@@ -124,10 +128,14 @@ def main(argv=None) -> int:
     parser.add_argument("--refresh-offline", action="store_true", help="explicitly run canonical offline compilers before HIP creation")
     parser.add_argument("--no-cathedral", action="store_true", help="omit Cathedral V3 instance (useful for lightweight authoring)")
     parser.add_argument("--out", type=Path, default=DEFAULT_HIP)
+    parser.add_argument("--custom-root", type=Path, action="append", default=[],
+                        help="existing local custom Houdini workspace; repeatable, reference-only")
     parser.add_argument("--force", action="store_true", help="overwrite only the specified HIP output, never backups or sources")
     args = parser.parse_args(argv)
     root = ROOT
     missing = preflight(root, not args.no_cathedral)
+    custom_roots = [p.expanduser().resolve() for p in args.custom_root]
+    missing += [f"custom root: {p}" for p in custom_roots if not p.is_dir()]
     if missing:
         print("ERROR: missing canonical inputs:\n" + "\n".join("  " + p for p in missing), file=sys.stderr)
         return 2
@@ -139,7 +147,7 @@ def main(argv=None) -> int:
         parser.error(f"Refusing to overwrite existing HIP: {output} (use --out or --force)")
     if args.refresh_offline:
         refresh_offline(root)
-    report = build(root, output, not args.no_cathedral)
+    report = build(root, output, not args.no_cathedral, custom_roots)
     receipt = output.with_suffix(".scaffold.json")
     receipt.write_text(json.dumps(report, indent=2, sort_keys=True) + "\n", encoding="utf-8")
     print("CREATED", output)
