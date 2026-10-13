@@ -14,6 +14,31 @@ A reusable, artist-friendly HIP for rapidly iterating Melodia environments, not 
 - World Compiler: \`Tools/world_compiler.py\` handles \`recipes/kaleido_archipelago.v1.json\` via its existing archipelago stage. **Kaleido is a separate authoring demo**; it is not a Faraway mission task.
 - Unreal: only the existing UE PCG/World Compiler driver or explicit Houdini Engine editor cook/bake may author UE content after acquiring the editor lease. Saving and gameplay truth stay in UE.
 
+## Integrating the existing custom Houdini studio first
+
+The repo-backed Melodia Studio package and its desktops are additive, **not** a complete inventory of the owner's personal Houdini customization. Earlier school work used `G:/Melodia_Houdini_Foundry` and the separate `G:/BS_GodFile_School_20260925` mirror, which may include local HIP/HDA/scripts absent from Git.
+
+1. Run the new **read-only** auditor with Hython on the target machine. Add only local roots that actually exist:
+
+~~~powershell
+hython deploy/houdini/audit_custom_setup.py --scan-root "G:/Melodia_Houdini_Foundry" --scan-root "G:/BS_GodFile_School_20260925" --out Saved/HoudiniFoundry/Grandmaster/custom_setup_local.json
+~~~
+
+The resulting JSON lists installed package names, detected Houdini desktops and shelves, local HDA/HIP/script paths and HDA hashes, and potential user-desktop shadowing. It is **local/private**, in the ignored Saved/HoudiniFoundry tree. Never commit it, custom settings, or personal paths.
+2. Review custom-vs-canonical HDA hash differences, duplicate HDA names, user-local desktops shadowing `Melodia_Studio`, and Houdini version/license. The auditor **does not install**, move, or open any files. Do not load conflicting HDA definitions automatically.
+3. Preview the existing package install with `deploy/houdini/install_melodia_studio.ps1 -CheckOnly`; only afterward run `-Verify` if appropriate. That installer edits only its own small local package pointer, never `houdini.env` or unrelated shelves/desktops.
+4. Prefer the owner's current GUI layout over a generic one. If local `Melodia_Studio.desk` shadows the repo desktop, preserve it; create a new uniquely named Grandmaster desktop for intentional edits rather than writing over a personal preference.
+5. Link chosen custom workspace directories explicitly when building the HIP:
+
+~~~powershell
+hython Tools/Houdini/grandmaster/build_grandmaster_hip.py --custom-root "G:/Melodia_Houdini_Foundry"
+~~~
+
+This stores a local path reference in the scene and receipt, under the `F0_CUSTOM_AUTHORING` marker. It **does not automatically import or overwrite local .hip/.hda files**. Custom HDA selection is a separate, explicit art/compatibility review.
+6. After opening in Houdini: confirm the existing custom shelves remain accessible, original desktops still work after restart, the Cathedral V3 HDA cooks, and no local authoring file has changed. Record which custom HIP/HDA/script assets are to be integrated in the next controlled step.
+
+**Acceptance for personalized integration:** actual custom setup inventoried; no duplicate definitions silently selected; no local files modified; selected custom roots referenced; GUI behavior and Houdini 22/UE5.8 plugin compatibility checked. This PR creates discovery and safe references, not a claim that it has already folded every local scene into the master HIP.
+
 ## Humber workstation quick start (PowerShell, from repo root)
 
 1. Run Git preflight: \`git status --short --branch\`; \`git fetch origin\`. Do not reset, clean or overwrite portable-SSD work. Check out this branch only in a clean dedicated working tree.
