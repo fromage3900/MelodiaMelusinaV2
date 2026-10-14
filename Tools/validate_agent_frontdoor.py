@@ -22,6 +22,7 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[1]
 AGENTS = ROOT / "AGENTS.md"
+CLAUDE = ROOT / "CLAUDE.md"
 STATE = ROOT / "CURRENT_STATE.md"
 SYSTEM_MAP = ROOT / "SYSTEM_MAP.md"
 DATA_FLOW = ROOT / "DATA_FLOW.md"
@@ -56,6 +57,7 @@ def forbid(text: str, phrase: str, where: str) -> None:
 FAILURES: list[str] = []
 
 agents = read(AGENTS)
+claude = read(CLAUDE)
 state = read(STATE)
 system_map = read(SYSTEM_MAP)
 data_flow = read(DATA_FLOW)
@@ -70,6 +72,27 @@ require(agents, r"author(?:ing)?\s+content|content[- ]first", "AGENTS.md")
 require(agents, r"Can .* be authored .* systems|before changing architecture", "AGENTS.md")
 forbid(agents, "The current job is convergence, not construction.", "AGENTS.md")
 forbid(agents, "Rhythm and wardrobe still have competing or prototype authorities.", "AGENTS.md")
+
+# 1b) Both agent entry points must preserve Melodia's cymatics-first world canon.
+cymatics_signals = {
+    "music-shaped world": r"fundamentally structured by music, harmony, resonance and cymatic mathematics",
+    "cymatics as structure": r"not merely decorated with audio-reactive effects",
+    "MIDI/chord mapping discovery": r"MIDI/chord mappings",
+    "Harmonic State owner": r"Harmonic State.*UMelodiaHarmonicStateSubsystem",
+    "Cymatics Subsystem owner": r"Cymatics Subsystem.*UMelodiaCymaticsSubsystem",
+    "World Field Bus": r"World Field Bus.*UWorldFieldBus",
+    "Houdini/PCG producers and runtime consumers": r"Houdini/PCG producers and runtime consumers",
+    "world-building authority": r"WORLD_BUILDING_SOURCE_OF_TRUTH\.md",
+    "audio-reactive authority": r"AUDIO_REACTIVE_CANON\.md",
+    "gameplay/save and single-writer authority": r"gameplay/save authority and single-writer contracts",
+    "no parallel architecture": r"Do not create a new harmonic engine, World Compiler, model router, documentation authority or redundant subsystem",
+}
+for entrypoint, where in ((agents, "AGENTS.md"), (claude, "CLAUDE.md")):
+    for label, pattern in cymatics_signals.items():
+        require(entrypoint, pattern, where)
+
+if AGENTS.exists() and AGENTS.stat().st_size >= 32768:
+    fail(f"AGENTS.md: exceeds the 32,768-byte agent-context limit ({AGENTS.stat().st_size} bytes)")
 
 # 2) CURRENT_STATE must expose capabilities as usable creative vocabulary near the front door.
 require(state, r"Proven Creative Capability Surface|Creative Capability Surface", "CURRENT_STATE.md")
@@ -155,4 +178,4 @@ if FAILURES:
     sys.exit(1)
 
 print("AGENT FRONT-DOOR CONTRACT: PASS")
-print("Fresh-agent context exposes the content-first capability surface, stable owners, and canonical World Compiler/Hython/Rokoko/Rider/RiderLink/Qodana/Jev router.")
+print("Fresh-agent context exposes the content-first and cymatics-first canon, stable owners, and canonical World Compiler/Hython/Rokoko/Rider/RiderLink/Qodana/Jev router.")
