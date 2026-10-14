@@ -1,0 +1,160 @@
+{
+  "schema": "melodia.jev_ocean_cathedral_orrery_hero.v1",
+  "date": "2026-10-14T17:13:17",
+  "source": "jev-live",
+  "model": "jev-1.13.0",
+  "state": {
+    "date": "2026-10-14",
+    "active_level": "/Game/EnvSandbox/Environments/WP/L_WP_CosmicOrrery",
+    "pcg_volume_in_level": {
+      "label": "HS1_Aquatic_OceanCathedral_PCG",
+      "location_cm": [
+        -6200.0,
+        0.0,
+        100.0
+      ],
+      "graph": "/Game/EnvSandbox/PCG/Styles/SeaAbove/OceanCathedral_20261014/PCG_SeaAbove_OceanCathedral",
+      "generated_instance_count": 3117,
+      "branches_14": {
+        "nave": 1,
+        "foyer": 1,
+        "bay": 910,
+        "deck": 910,
+        "bridge": 70,
+        "court": 6,
+        "ocean_spiral_Session": 4,
+        "arpeggio": 6,
+        "orrery": 7,
+        "pipe": 98,
+        "rose": 8,
+        "ocean_ruffle": 910,
+        "ocean_shell": 182,
+        "ocean_conch": 4
+      },
+      "custom_data_floats_currently_packed": 0
+    },
+    "unstaged_houdini_1_3_silk_modules_on_disk": {
+      "SM_CathedralHero_ocean_crown.fbx": {
+        "placements": 16,
+        "role": "H15_SOFT_SHELL_CROWNS"
+      },
+      "SM_CathedralHero_ocean_ribbon.fbx": {
+        "placements": 8,
+        "role": "H16_FLOWING_SILK_RIBBONS"
+      }
+    },
+    "cosmic_orrery_sections": {
+      "count": 7,
+      "cloister_court_orreries": [
+        [
+          -10600,
+          5570,
+          100
+        ],
+        [
+          -10600,
+          -5570,
+          100
+        ],
+        [
+          -15000,
+          5570,
+          100
+        ],
+        [
+          -15000,
+          -5570,
+          100
+        ],
+        [
+          -19400,
+          5570,
+          100
+        ],
+        [
+          -19400,
+          -5570,
+          100
+        ]
+      ],
+      "grand_apse_hero_orrery": [
+        -20984,
+        0,
+        100
+      ],
+      "current_collision_on_SM_OceanCathedral_orrery": "NO_COLLISION"
+    },
+    "level_gaps_observed_in_before_snapshot": [
+      "4 old CathedralHero graybox stub StaticMeshActors (HS1_L_ArchCourt_Anchor, HS1_L_GateBay_L/R, HS1_L_Stair) overlap the Foyer/Nave approach",
+      "HS1_L_RoomEntrance_Stub (AMelodiaRoomEntrance) is at Z=0 below the Z=100 cathedral deck",
+      "DefaultGameMode on L_WP_CosmicOrrery is None (needs BP_MelodiaJRPGGameMode for canonical BP_MelusinaJRPGCharacter)",
+      "No OceanologyInfiniteOcean, no PPV_NikkiDream, and no Hero Key/Fill/Orrery RectLights in L_WP_CosmicOrrery (viewport_before.png is dark silhouetted against brown checker terrain)",
+      "T_OceanCathedral_* prototype textures carry Houdini Apprentice watermark, whereas /Game/EnvSandbox/Textures/Copernicus/{PearlWeave,CrystalCathedral,ChoirStone,CavernWeave} are clean un-watermarked 4K/2K cymatic maps"
+    ],
+    "existing_runtime_owners": {
+      "cymatic_field": "UMelodiaCymaticFieldComponent + BP_CymaticFieldVolume (reads UWorldFieldBus Chladni standing wave, ripples ISM instances tagged MelodiaCymatic on pawn overlap/beat, triggers UMelodiaRhythmReactivitySubsystem -> UMelodiaCymaticsWriterSubsystem -> MPC_Cymatics_Driver + OSC out)",
+      "pcg_semantic_packer": "PCGInstanceDataPackerByAttribute packing Resonance float 0..1 on PCGStaticMeshSpawnerSettings",
+      "traversal_and_rooms": "BP_MelodiaJRPGGameMode + BP_MelusinaJRPGCharacter + AMelodiaRoomEntrance + AMelodiaRoomExit + AMelodiaDungeonRunCoordinator"
+    }
+  },
+  "answers": {
+    "orrery_cymatic_strategy": {
+      "type": "choice",
+      "choice": "SELECTIVE_CYMATIC_ISM_PLUS_PACKED_RESONANCE",
+      "confidence": 1.0,
+      "probabilities": {
+        "SELECTIVE_CYMATIC_ISM_PLUS_PACKED_RESONANCE": 1.0,
+        "WHOLE_ACTOR_CYMATIC_TAG": 0.0,
+        "MATERIAL_MPC_ONLY": 0.0
+      }
+    },
+    "nikki_aaa_lookdev_strategy": {
+      "type": "choice",
+      "choice": "SILK_CROWN_PCG_PLUS_CLEAN_COPERNICUS_AND_OCEAN_DREAM",
+      "confidence": 1.0,
+      "probabilities": {
+        "SILK_CROWN_PCG_PLUS_CLEAN_COPERNICUS_AND_OCEAN_DREAM": 1.0,
+        "BIND_WATERMARKED_APPRENTICE_COPS": 0.0,
+        "LIGHTING_ONLY": 0.0
+      }
+    },
+    "corridor_gameplay_integration": {
+      "type": "choice",
+      "choice": "CANONICAL_PAWN_CORRIDOR_LOOP_WITH_ORRERY_RESONANCE",
+      "confidence": 1.0,
+      "probabilities": {
+        "CANONICAL_PAWN_CORRIDOR_LOOP_WITH_ORRERY_RESONANCE": 1.0,
+        "ACF_TRIAL_GAMEMODE_SWAP": 0.0,
+        "STATIC_CAMERA_FLYTHROUGH_ONLY": 0.0
+      }
+    },
+    "execution_order": {
+      "type": "choice",
+      "choice": "PCG_SILK_AND_RESONANCE_FIRST_THEN_NIKKI_LOOKDEV_THEN_PIE_GAMEPLAY",
+      "confidence": 1.0,
+      "probabilities": {
+        "PCG_SILK_AND_RESONANCE_FIRST_THEN_NIKKI_LOOKDEV_THEN_PIE_GAMEPLAY": 1.0,
+        "PIE_FIRST_BEFORE_COLLISION_AND_PCG": 0.0
+      }
+    },
+    "readiness": {
+      "type": "score",
+      "score": 2.36,
+      "confidence": 0.47,
+      "legend": {
+        "0": "Blocked by missing C++ systems.",
+        "1": "Major gaps require new plugins.",
+        "2": "Partial assets only.",
+        "3": "All meshes, PCG graphs, Copernicus textures, and C++ owners exist; needs bounded assembly and PIE verification.",
+        "4": "Already 100% complete in level."
+      },
+      "probabilities": {
+        "0": 0.01,
+        "1": 0.11,
+        "2": 0.38,
+        "3": 0.5,
+        "4": 0.0
+      }
+    }
+  }
+}
