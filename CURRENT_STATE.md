@@ -729,6 +729,21 @@ The long body is retained as audit history, not as a flat list of present-tense 
   **Evidence: headless Houdini 22.0.368 package/shelf/module discovery and launch only — desktop
   visibility, desk switching, reload survival and screenshots remain owner-held GUI acceptance, so
   this is scaffolded + headless-proven, not live-proven.**
+- **Claireon Gemini 4 Argon lane — live-proven 2026-10-14.** The Claude Code button
+  (`Scripts/nous_proxy/claude.ps1`) now has target **`[0] Gemini 4 Argon`**. The existing
+  Anthropic→OpenAI translating proxy (`nous_anthropic_proxy.py`) gained a runtime-switchable
+  `gemini` upstream against Google's OpenAI-compatible surface
+  (`generativelanguage.googleapis.com/v1beta/openai`, model `gemini-4-argon`); the key lives in
+  user-scope `GEMINI_API_KEY` / `%LOCALAPPDATA%\hermes\gemini_api_key.txt`, written once by
+  `Scripts/nous_proxy/set_gemini_key.ps1` (hidden input, value never logged, never in git).
+  Gemini thought-signatures are cached proxy-side by tool-call id and replayed on history;
+  that cache is in-memory, so do not restart the proxy mid-session (restarts are fine between
+  sessions; `ensure_proxy.ps1` also resyncs a running proxy to Nous on the next non-Argon launch).
+  **Evidence: live-proven** — direct OpenAI-compat chat + proxy `/v1/messages` round-trip
+  (47 tokens, `ARGON_OK`) and an owner Claude Code session completing real MCP tool calls on
+  `gemini-4-argon` (clean 200 stream in `Scripts/nous_proxy/proxy.log`). Known cosmetic: Claude
+  Code warns about the `nous` model alias (assumes a 200k window). `Scripts/nous_proxy/` remains
+  **untracked in git** — commit owed when the owner asks.
 
 
 ## Runtime animation convergence — 2026-10-03, ACTIVE
