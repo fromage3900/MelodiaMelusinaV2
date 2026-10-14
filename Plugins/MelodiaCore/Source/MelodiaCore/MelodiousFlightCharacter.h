@@ -11,8 +11,8 @@ class ASirPerchPoint;
 
 /**
  * Sir Melodious free-flight exploration pawn. Always airborne (MOVE_Flying);
- * WASD steers along the camera (including pitch), Space ascends, Shift boosts,
- * Ctrl hands control back to the party subsystem.
+ * WASD steers along the camera (including pitch), Space ascends, Left Alt
+ * descends, Shift boosts, and Ctrl hands control back to the party subsystem.
  */
 UCLASS(Blueprintable)
 class MELODIACORE_API AMelodiousFlightCharacter : public AMelodiaCharacterBase
@@ -47,6 +47,9 @@ public:
 
 	UPROPERTY(BlueprintReadOnly, Category="Melodia|Flight|Input")
 	TObjectPtr<UInputAction> AscendAction;
+
+	UPROPERTY(BlueprintReadOnly, Category="Melodia|Flight|Input")
+	TObjectPtr<UInputAction> DescendAction;
 
 	UPROPERTY(BlueprintReadOnly, Category="Melodia|Flight|Input")
 	TObjectPtr<UInputAction> BoostAction;
@@ -99,6 +102,7 @@ private:
 	void OnMoveRightTriggered(const FInputActionValue& Value);
 	void OnLookTriggered(const FInputActionValue& Value);
 	void OnAscendTriggered(const FInputActionValue& Value);
+	void OnDescendTriggered(const FInputActionValue& Value);
 	void OnBoostStarted();
 	void OnBoostCompleted();
 	void CreateInputMappingContext();
