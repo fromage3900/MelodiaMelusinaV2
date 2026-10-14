@@ -26,6 +26,12 @@
 - **OPEN — do not claim:** foyer west doorway art pass; exposure/composition polish (owner taste); cymatic ripple visual proof; apse arrival + exit transition. Light-tune actors saved to disk (gitignored, P4 promotion owed); 2 residual dirty packages match no loaded actors (likely nav/transient).
 - **Sol package commissioned 2026-10-14:** `Docs/Production/SOL_COSMIC_ORRERY_CORRIDOR_PACKAGE_2026-10-14.md` — corridor plan v2, Escher notes, real-architecture formulary (pointed arch, vault diagonals, rose tracery, Blondel stairs, Kepler-harmonic orrery rings), MI snapshot, proof standard. UE integration verified alongside: navmesh 5/5 route projections → deck Z=110, cymatic volumes cover orrery nodes, 9/9 MIs saved with clean Copernicus maps.
 
+## Melusina runtime animation review — 2026-10-14 (READ-ONLY + gate; PIE proof deferred by editor crash)
+
+- **Anim-gate over all 13 production-bound clips** (receipt `Saved/Audit/melusina_anim_gate_20261014.json`): 7 ok (Shinbi idle/cast, all 4 Sparrow archery, mocap idle reference); 6 FAIL **root_z-only** — Walk/Run 13.3, Sprint 12.4 (marginal gait bob), Glide/JumpLoop 27.6 (air role), Land 19.3 (crouch role). Eyes/hands/twist clean on all 13. Per canon, root_x height is role-dependent: no defect, no clip edits (forbidden by gate contract). GlidePose is metadata-identical to JumpLoop (likely intentional duplicate, no action).
+- **Binding review — zero drift:** BlendSpace 4 samples (Sprint 630 / Idle 0 / Walk 180 / Run 420) and all battle CDO fields match the Oct 11–12 commits exactly; the 5 incompatible battle fields (dash ×2, hit, stun, death — mannequin) remain owner-gated work, untouched. No Melusina animation asset dirty in git.
+- **Editor crash 6:40 PM:** `start_pie` for the planned BlendSpace-drive proof coincided with a native cast assertion (`Ret->IsA`, Class.h:4627; 3 prior crashes on this machine today). Causation unproven. PIE proof deferred — do not re-run unprompted on the fresh editor. Lost: only 2 residual dirty packages with no loaded actors; all committed/saved work intact.
+
 ## 🔤 Melodia UI & Slate Font Composite Repair Status — 2026-10-11 (RESOLVED & VERIFIED)
 
 - **Root Cause of Font Invisibility**:
