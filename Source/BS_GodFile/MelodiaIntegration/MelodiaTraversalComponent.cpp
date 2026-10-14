@@ -14,6 +14,9 @@
 #include "Materials/MaterialParameterCollection.h"
 #include "Materials/MaterialParameterCollectionInstance.h"
 #include "MelodiaInputContextSubsystem.h"
+#include "MelodiaAudioReactivePresentationSubsystem.h"
+#include "MelodiaMusicClockSubsystem.h"
+#include "MelodiaPCGResonanceSensorComponent.h"
 #include "MelodiaWaveHarpCombatComponent.h"
 #include "MelodiaRhythmReactivitySubsystem.h"
 #include "MelodiaTraversalCapabilityProvider.h"
@@ -21,6 +24,8 @@
 #include "MelodiaWaterInteractionSubsystem.h"
 #include "MelodiaWaterNiagaraBridgeComponent.h"
 #include "MelodiaWaterUnderwaterPostProcessComponent.h"
+#include "Kismet/GameplayStatics.h"
+#include "Sound/SoundBase.h"
 #include "TimerManager.h"
 
 namespace
@@ -34,6 +39,73 @@ namespace
 				TEXT("/Game/Melodia/Characters/Melusina/Animations/Montages/AM_Melusina_Roll.AM_Melusina_Roll")));
 		}
 		return Roll.Get();
+	}
+
+	USoundBase* GetCachedTraversalSound(const TCHAR* AssetPath)
+	{
+		static TMap<FString, TWeakObjectPtr<USoundBase>> SoundCache;
+		if (TWeakObjectPtr<USoundBase>* Existing = SoundCache.Find(AssetPath))
+		{
+			if (Existing->IsValid())
+			{
+				return Existing->Get();
+			}
+		}
+		USoundBase* Loaded = Cast<USoundBase>(StaticLoadObject(USoundBase::StaticClass(), nullptr, AssetPath));
+		SoundCache.Add(AssetPath, Loaded);
+		return Loaded;
+	}
+
+	float GetMusicalTotalBeats(const UObject* WorldContextObject, bool& bOutOnBeat)
+	{
+		bOutOnBeat = false;
+		if (!WorldContextObject)
+		{
+			return 0.0f;
+		}
+		if (UWorld* World = WorldContextObject->GetWorld())
+		{
+			if (const UMelodiaMusicClockSubsystem* Clock = World->GetSubsystem<UMelodiaMusicClockSubsystem>())
+			{
+				const FMelodiaMusicTime Sample = Clock->GetMusicTime();
+				if (Sample.bValid)
+				{
+					bOutOnBeat = (FMath::Abs(Clock->GetTimingErrorMsToNearestBeat()) <= 85.0f);
+					return Sample.TotalBeats;
+				}
+			}
+			const float FallbackBeats = static_cast<float>(World->GetTimeSeconds() * (128.0 / 60.0));
+			const float Frac = FMath::Frac(FallbackBeats);
+			bOutOnBeat = (Frac <= 0.18f || Frac >= 0.82f);
+			return FallbackBeats;
+		}
+		return 0.0f;
+	}
+
+	float GetMusicalPentatonicPitch(const UObject* WorldContextObject, bool& bOutOnBeat)
+	{
+		static const float PentatonicRatios[5] = { 1.0f, 1.122462f, 1.259921f, 1.498307f, 1.681793f };
+		const float TotalBeats = GetMusicalTotalBeats(WorldContextObject, bOutOnBeat);
+		const int32 BeatIndex = FMath::Max(0, FMath::FloorToInt(TotalBeats));
+		return PentatonicRatios[BeatIndex % 5];
+	}
+
+	void TriggerMusicalCymaticPulse(const UObject* WorldContextObject, float BaseStrength, bool bOnBeat)
+	{
+		if (!WorldContextObject)
+		{
+			return;
+		}
+		if (UWorld* World = WorldContextObject->GetWorld())
+		{
+			if (UGameInstance* GI = World->GetGameInstance())
+			{
+				if (UMelodiaAudioReactivePresentationSubsystem* AudioReactive = GI->GetSubsystem<UMelodiaAudioReactivePresentationSubsystem>())
+				{
+					AudioReactive->PulseImpact(FMath::Clamp(BaseStrength * (bOnBeat ? 1.25f : 1.0f), 0.0f, 1.5f));
+				}
+			}
+		}
 	}
 
 	bool IsTraversalMovementAllowed(const UObject* WorldContextObject)
@@ -59,6 +131,12 @@ void UMelodiaTraversalComponent::BeginPlay()
 		UMelodiaWaveHarpCombatComponent* Combat = NewObject<UMelodiaWaveHarpCombatComponent>(OwnerCharacter.Get());
 		OwnerCharacter->AddInstanceComponent(Combat);
 		Combat->RegisterComponent();
+	}
+	if (OwnerCharacter.IsValid() && !OwnerCharacter->FindComponentByClass<UMelodiaPCGResonanceSensorComponent>())
+	{
+		UMelodiaPCGResonanceSensorComponent* ResonanceSensor = NewObject<UMelodiaPCGResonanceSensorComponent>(OwnerCharacter.Get());
+		OwnerCharacter->AddInstanceComponent(ResonanceSensor);
+		ResonanceSensor->RegisterComponent();
 	}
 	if (OwnerCharacter.IsValid())
 	{
@@ -365,10 +443,75 @@ void UMelodiaTraversalComponent::TickComponent(float DeltaTime, ELevelTick TickT
 		{
 			bCoyoteJumpConsumed = false;
 			bGlideActivationImpulseSpent = false;
+			if (bHasGroundContactSinceBeginPlay && OwnerCharacter.IsValid())
+			{
+				bool bLandOnBeat = false;
+				const float LandPitch = GetMusicalPentatonicPitch(this, bLandOnBeat);
+				PublishWaterContact(
+					EMelodiaWaterContactType::WaterImpact,
+					bLandOnBeat ? 0.96f : 0.78f,
+					Movement->Velocity);
+				TriggerMusicalCymaticPulse(this, 0.90f, bLandOnBeat);
+				const FVector LandLoc = OwnerCharacter->GetActorLocation();
+				if (USoundBase* LandChord = GetCachedTraversalSound(TEXT("/Game/Melodia/Audio/WaveHarp/SW_WaveHarp_Cmaj7_Complete.SW_WaveHarp_Cmaj7_Complete")))
+				{
+					UGameplayStatics::PlaySoundAtLocation(this, LandChord, LandLoc, bLandOnBeat ? 0.55f : 0.38f, 1.0f);
+				}
+				if (USoundBase* LandSplash = GetCachedTraversalSound(TEXT("/Game/Melodia/Audio/Foley/Footsteps/Splash/SW_FS_Splash_2.SW_FS_Splash_2")))
+				{
+					UGameplayStatics::PlaySoundAtLocation(this, LandSplash, LandLoc, 0.65f, LandPitch);
+				}
+			}
 		}
 		bHasGroundContactSinceBeginPlay = true;
 		bWasMovingOnGround = true;
 		LastGroundedTimeSeconds = CurrentTimeSeconds;
+
+		// Beat-quantized musical footsteps + cymatic ripple cadence (128 BPM Harmonix clock)
+		const float GroundSpeed2D = Movement->Velocity.Size2D();
+		if (GroundSpeed2D > 85.0f && OwnerCharacter.IsValid())
+		{
+			static TMap<TWeakObjectPtr<const UMelodiaTraversalComponent>, int32> LastStepSubdivisionByComp;
+			bool bStepOnBeatInit = true; const float MusicTime = GetMusicalTotalBeats(this, bStepOnBeatInit) * (60.0f / 128.0f);
+			const float SubdivisionsPerBeat = (bIsSprinting || bIsDashing) ? 2.0f : 1.0f;
+			const int32 CurrentSubdivision = FMath::FloorToInt(MusicTime * (128.0f / 60.0f) * SubdivisionsPerBeat);
+			int32& LastSubdivision = LastStepSubdivisionByComp.FindOrAdd(this, -1);
+			if (CurrentSubdivision > LastSubdivision)
+			{
+				LastSubdivision = CurrentSubdivision;
+				const float Speed01 = FMath::Clamp(GroundSpeed2D / 600.0f, 0.2f, 1.0f);
+				bool bStepOnBeat = true;
+				const float StepPitch = GetMusicalPentatonicPitch(this, bStepOnBeat);
+				PublishWaterContact(
+					EMelodiaWaterContactType::Footstep,
+					FMath::Clamp(0.32f + 0.42f * Speed01, 0.25f, 0.85f),
+					Movement->Velocity);
+				TriggerMusicalCymaticPulse(this, 0.32f + 0.28f * Speed01, true);
+
+				static const TCHAR* StoneSteps[4] = {
+					TEXT("/Game/Melodia/Audio/Foley/Footsteps/Stone/SW_FS_Stone_1.SW_FS_Stone_1"),
+					TEXT("/Game/Melodia/Audio/Foley/Footsteps/Stone/SW_FS_Stone_2.SW_FS_Stone_2"),
+					TEXT("/Game/Melodia/Audio/Foley/Footsteps/Stone/SW_FS_Stone_3.SW_FS_Stone_3"),
+					TEXT("/Game/Melodia/Audio/Foley/Footsteps/Stone/SW_FS_Stone_4.SW_FS_Stone_4")
+				};
+				static const TCHAR* SplashSteps[4] = {
+					TEXT("/Game/Melodia/Audio/Foley/Footsteps/Splash/SW_FS_Splash_1.SW_FS_Splash_1"),
+					TEXT("/Game/Melodia/Audio/Foley/Footsteps/Splash/SW_FS_Splash_2.SW_FS_Splash_2"),
+					TEXT("/Game/Melodia/Audio/Foley/Footsteps/Splash/SW_FS_Splash_3.SW_FS_Splash_3"),
+					TEXT("/Game/Melodia/Audio/Foley/Footsteps/Splash/SW_FS_Splash_4.SW_FS_Splash_4")
+				};
+				const int32 StepIdx = FMath::Abs(CurrentSubdivision) % 4;
+				const FVector StepLoc = OwnerCharacter->GetActorLocation();
+				if (USoundBase* StoneSfx = GetCachedTraversalSound(StoneSteps[StepIdx]))
+				{
+					UGameplayStatics::PlaySoundAtLocation(this, StoneSfx, StepLoc, 0.42f * Speed01, StepPitch);
+				}
+				if (USoundBase* SplashSfx = GetCachedTraversalSound(SplashSteps[StepIdx]))
+				{
+					UGameplayStatics::PlaySoundAtLocation(this, SplashSfx, StepLoc, 0.28f * Speed01, StepPitch);
+				}
+			}
+		}
 
 		if (bIsGliding)
 		{
@@ -589,6 +732,14 @@ void UMelodiaTraversalComponent::HandleJumpPressed()
 		bCoyoteJumpConsumed = true;
 		bJumpBuffered = false;
 		bGlideHoldArmed = true;
+		bool bJumpOnBeat = false;
+		const float JumpPitch = GetMusicalPentatonicPitch(this, bJumpOnBeat);
+		PublishWaterContact(EMelodiaWaterContactType::SurfaceEntry, bJumpOnBeat ? 0.92f : 0.72f, Movement->Velocity);
+		TriggerMusicalCymaticPulse(this, 0.78f, bJumpOnBeat);
+		if (USoundBase* JumpHarp = GetCachedTraversalSound(TEXT("/Game/Melodia/Audio/WaveHarp/SW_WaveHarp_Orchestra_C4.SW_WaveHarp_Orchestra_C4")))
+		{
+			UGameplayStatics::PlaySoundAtLocation(this, JumpHarp, OwnerCharacter->GetActorLocation(), bJumpOnBeat ? 0.55f : 0.38f, JumpPitch);
+		}
 		return;
 	}
 
@@ -601,6 +752,14 @@ void UMelodiaTraversalComponent::HandleJumpPressed()
 		bCoyoteJumpConsumed = true;
 		bJumpBuffered = false;
 		bGlideHoldArmed = true;
+		bool bJumpOnBeat = false;
+		const float JumpPitch = GetMusicalPentatonicPitch(this, bJumpOnBeat);
+		PublishWaterContact(EMelodiaWaterContactType::SurfaceEntry, bJumpOnBeat ? 0.92f : 0.72f, Movement->Velocity);
+		TriggerMusicalCymaticPulse(this, 0.78f, bJumpOnBeat);
+		if (USoundBase* JumpHarp = GetCachedTraversalSound(TEXT("/Game/Melodia/Audio/WaveHarp/SW_WaveHarp_Orchestra_C4.SW_WaveHarp_Orchestra_C4")))
+		{
+			UGameplayStatics::PlaySoundAtLocation(this, JumpHarp, OwnerCharacter->GetActorLocation(), bJumpOnBeat ? 0.55f : 0.38f, JumpPitch);
+		}
 		return;
 	}
 
@@ -702,6 +861,25 @@ void UMelodiaTraversalComponent::HandleStrafePressed()
 	Movement->Velocity = NewVelocity;
 
 	DashCooldownUntilTime = Now + DashCooldownSeconds;
+
+	{
+		bool bDodgeOnBeat = false;
+		const float DodgePitch = GetMusicalPentatonicPitch(this, bDodgeOnBeat);
+		PublishWaterContact(EMelodiaWaterContactType::WaterImpact, bDodgeOnBeat ? 1.0f : 0.82f, NewVelocity);
+		TriggerMusicalCymaticPulse(this, 0.95f, bDodgeOnBeat);
+		const FVector DodgeLoc = OwnerCharacter->GetActorLocation();
+		if (USoundBase* DodgeWhoosh = GetCachedTraversalSound(TEXT("/Game/Melodia/Audio/Foley/Combat/SW_CMB_Whoosh_1.SW_CMB_Whoosh_1")))
+		{
+			UGameplayStatics::PlaySoundAtLocation(this, DodgeWhoosh, DodgeLoc, 0.65f, DodgePitch);
+		}
+		const TCHAR* DodgeChordPath = bDodgeOnBeat
+			? TEXT("/Game/Melodia/Audio/WaveHarp/SW_WaveHarp_Cmaj6_Complete.SW_WaveHarp_Cmaj6_Complete")
+			: TEXT("/Game/Melodia/Audio/WaveHarp/SW_WaveHarp_Cm7_Complete.SW_WaveHarp_Cm7_Complete");
+		if (USoundBase* DodgeChord = GetCachedTraversalSound(DodgeChordPath))
+		{
+			UGameplayStatics::PlaySoundAtLocation(this, DodgeChord, DodgeLoc, bDodgeOnBeat ? 0.58f : 0.42f, 1.0f);
+		}
+	}
 
 	// Presentation: roll on the canonical skeleton. DefaultSlot sits between the
 	// locomotion state machine and the Kawaii pass in ABP_Melusina_Current, so the

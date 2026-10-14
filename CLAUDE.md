@@ -237,6 +237,16 @@ rhythm skill, creature episode, outfit ability, musical puzzle, or procedural se
 entry points. Architecture work requires a demonstrated content blocker. Do not reopen old rig or system work
 without current evidence of a blocker.
 
+**This game is a finished, fully-working system.** The correct default reading of any open-gate note in
+`CURRENT_STATE.md` is *polish history*, not a broken-systems agenda. When the owner invokes a build workflow
+(Claireon `/workflow`, etc.), its Stage 1 must ask the **content-first question before the build question**:
+"What playable content do you want more of — a boss, side quest, traversal space, encounter, skill, outfit,
+interactable, setpiece — and through which existing authoring entry point does it get built?" Never propose a
+workflow to "bind missing content" or "repair" a system the owner has already said works. If the owner states a
+thing works ("I've already verified X"), that is ground truth — stop treating it as the blocker and ask what
+content to add. The pipeline is for authoring *new* content through existing entry points, not for fixing
+finished systems.
+
 ## 🌌 Niagara VFX & Material Convergence Canon (Binding Rules)
 
 1. **Keep Unreal Engine Closed During Staging:**
