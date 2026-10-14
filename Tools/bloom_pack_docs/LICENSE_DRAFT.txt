@@ -1,0 +1,13 @@
+RESONANT BLOOMS — LICENCE (DRAFT — NOT LEGAL ADVICE; the seller must review and finalise before release)
+
+Copyright (c) <YEAR> <SELLER NAME>. All rights reserved.
+
+1. Grant. The buyer receives a non-exclusive, non-transferable licence to use the node groups, materials and scripts in
+   personal and commercial projects (renders, animations, games, films, products), including projects delivered to clients.
+2. Output. Geometry, renders and exported meshes produced with the product belong to the buyer, with no royalty.
+3. No redistribution. The buyer may not resell, share, sublicense or publish the .blend files, node groups, materials or the
+   Python source, in original or modified form, including inside other asset packs, add-ons or marketplaces.
+4. Modification. The buyer may modify the files for their own use under the same restrictions.
+5. Seats. One licence per person; studios need one per user (seller to confirm the policy).
+6. No warranty. The product is provided as is. Requires Blender 5.2 or newer.
+7. Third parties. No third-party assets or code are included in this product.
