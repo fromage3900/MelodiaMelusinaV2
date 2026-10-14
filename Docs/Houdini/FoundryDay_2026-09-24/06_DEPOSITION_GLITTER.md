@@ -9,6 +9,12 @@
 | **Evidence** | `Saved/Audit/houdini_foundry/deposition_glitter_pile_reference/` |
 | **Status** | STAGED. Texture-only precedent exists: `_build_glitter_pile` in `Tools/Houdini/copernicus/copernicus_cymatic_parallax.py`, which is numpy and not deterministic across processes. Reuse its *look* (palette, sparkle), not its seeding. |
 
+## 2026-10-13 native smoke check
+
+The G: candidate `hda/HDA_Foundry_Deposition_1.0.hda` loads in Houdini 22.0.368 Apprentice. A disposable in-memory cook at 4,000 grains produced `OUT_Grains` with 4,000 points and the `accumulation`, `active`, `flow`, `pile_h`, `seedf`, `sparkle`, and rest-position attributes. `OUT_RestMesh` and `OUT_PileField` each produced 20,383 points, 16,129 primitives, and UVs; no node cook errors were reported.
+
+This is a native Hython smoke check only. It did not write the manifest, CSV, VDB, or EXR exports, and it provides no UE integration proof. The current candidate uses deterministic height-grid VEX deposition; it has not completed the POP/Vellum and export contract described below, so the gate remains **STAGED**.
+
 ## HDA interface
 
 | Parm | Default | Notes |
