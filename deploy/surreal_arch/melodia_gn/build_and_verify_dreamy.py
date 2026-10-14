@@ -3,14 +3,18 @@ import sys
 import os
 import types
 import importlib.util
+from pathlib import Path
 import bpy
 
-deploy_dir = r'P:/MelodiaMelusinaV2-Laptop/deploy'
+# Repo-root-relative (parents[3] of this file = <root>/deploy/surreal_arch/melodia_gn/).
+# Was hardcoded to the laptop P: checkout until 2026-10-13.
+_ROOT = Path(__file__).resolve().parents[3]
+deploy_dir = str(_ROOT / "deploy")
 surreal_arch_dir = os.path.join(deploy_dir, 'surreal_arch')
 gn_dir = os.path.join(surreal_arch_dir, 'melodia_gn')
 
 # Save the file when we're done
-SAVE_FILE = r"P:/MelodiaMelusinaV2-Laptop/Saved/MelusinasHouse/DreamyArchitectureGN.blend"
+SAVE_FILE = str(_ROOT / "Saved" / "MelusinasHouse" / "DreamyArchitectureGN.blend")
 
 # Set up package manually
 package = types.ModuleType("melodia_gn")

@@ -24,10 +24,16 @@ register_builder() is attached when the addon core is importable.
 
 import bpy
 import math
+import os
 from mathutils import Vector
+from pathlib import Path
 
-ROOT = r'P:/MelodiaMelusinaV2-Laptop/deploy'
-OUT = r'P:/MelodiaMelusinaV2-Laptop/Saved/TrimSheets/out'
+# Repo-root-relative: this file is <root>/deploy/surreal_arch/melodia_gn/, so
+# parents[3] is the checkout root. The laptop P: path was hardcoded here until
+# 2026-10-13 and made this module unusable from any other checkout.
+_ROOT = Path(__file__).resolve().parents[3]
+ROOT = str(_ROOT / "deploy")
+OUT = os.path.join(str(_ROOT), "Saved", "TrimSheets", "out")
 _HELPER_COLL = 'MH_Gen_Helpers'
 ARCH_OBJECT = 'MH_GothicArchHead'
 
