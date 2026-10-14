@@ -1076,7 +1076,7 @@ def build_baluster_collar(group_name="MEL_baluster_collar"):
 
         set_pos = safe_node(tree, "GeometryNodeSetPosition", (bx - 500, by + 60 - i * 180))
         link_sockets(tree, collar.outputs["Mesh"], set_pos.inputs["Geometry"])
-        link_sockets(tree, combine.outputs["Vector"], set_pos.inputs["Position"])
+        link_sockets(tree, combine.outputs["Vector"], set_pos.inputs["Offset"])
 
         gate = safe_node(tree, "FunctionNodeCompare", (bx - 500, by - 40 - i * 180))
         gate.data_type = "INT"

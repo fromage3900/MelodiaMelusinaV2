@@ -187,6 +187,9 @@ def build_post(group_name="MEL_post"):
     cube = safe_node(tree, "GeometryNodeMeshCube", (bx - 200, by))
     link_float_to_vector(tree, gin.outputs["Height"], cube, "Size", component=2, defaults=(0.0, 0.0, 0.0))
     link_float_to_vector(tree, gin.outputs["Width"], cube, "Size", component=0, defaults=(0.0, 0.0, 0.0))
+    # Square section: Y was left unlinked and defaulted to 0, making the post a
+    # zero-thickness plane whose side faces are all degenerate.
+    link_float_to_vector(tree, gin.outputs["Width"], cube, "Size", component=1, defaults=(0.0, 0.0, 0.0))
 
     set_shade = safe_node(tree, "GeometryNodeSetShadeSmooth", (bx, by))
     set_shade.inputs["Shade Smooth"].default_value = True

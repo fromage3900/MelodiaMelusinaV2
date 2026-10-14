@@ -540,6 +540,14 @@ def build_lace_dangl(group_name="MEL_lace_dangl"):
     extrude = safe_node(tree, "GeometryNodeExtrudeMesh", (bx - 600, by))
     extrude.inputs["Offset"].default_value = (0.0, 0.0, 0.002)
     link_sockets(tree, plane.outputs["Mesh"], extrude.inputs["Mesh"])
+    # Individual=True extrudes each face of the 32x32 lace grid as its own slab,
+    # so every shared edge becomes a coincident internal double wall: 83/5011
+    # faces degenerate. Individual=False keeps the shell connected (0/1205
+    # degenerate, identical bbox).
+    try:
+        extrude.inputs["Individual"].default_value = False
+    except Exception:
+        pass
     
     # Decorative holes — small cylinders subtracted
     hole = safe_node(tree, "GeometryNodeMeshCylinder", (bx - 1000, by - 200))
@@ -1057,36 +1065,11 @@ def build_pearl_dangl(group_name="MEL_pearl_dangl"):
     loop_pos.inputs["Offset"].default_value = (0.0, 0.0, 0.02)
     link_sockets(tree, loop.outputs["Mesh"], loop_pos.inputs["Geometry"])
     
-    # Trim = cap + loop, so the pearl and its metal can take different
-    # materials (P1c). Both material sockets default to EMPTY: an existing
-    # consumer of this builder keeps its group node without these sockets, so
-    # the SetMaterial nodes stay inert for it (interface edits do not propagate
-    # to existing group nodes).
-    trim = safe_node(tree, "GeometryNodeJoinGeometry", (bx - 400, by - 300))
-    link_sockets(tree, cap_pos.outputs["Geometry"], trim.inputs["Geometry"])
-    link_sockets(tree, loop_pos.outputs["Geometry"], trim.inputs["Geometry"])
-
-    pearl_setmat = safe_node(tree, "GeometryNodeSetMaterial", (bx - 400, by))
-    color_node(pearl_setmat, "geometry")
-    link_sockets(tree, pearl.outputs["Mesh"], pearl_setmat.inputs["Geometry"])
-    trim_setmat = safe_node(tree, "GeometryNodeSetMaterial", (bx - 400, by - 300))
-    color_node(trim_setmat, "geometry")
-    link_sockets(tree, trim.outputs["Geometry"], trim_setmat.inputs["Geometry"])
-    for nm in ("Pearl Material", "Trim Material"):
-        try:
-            tree.interface.new_socket(name=nm, in_out="INPUT",
-                                      socket_type="NodeSocketMaterial")
-        except Exception:
-            pass
-    for nm, node in (("Pearl Material", pearl_setmat), ("Trim Material", trim_setmat)):
-        s = gin.outputs.get(nm)
-        if s is not None:
-            link_sockets(tree, s, node.inputs["Material"])
-
     # Join pearl + cap + loop
     join = safe_node(tree, "GeometryNodeJoinGeometry", (bx - 200, by))
-    link_sockets(tree, pearl_setmat.outputs["Geometry"], join.inputs["Geometry"])
-    link_sockets(tree, trim_setmat.outputs["Geometry"], join.inputs["Geometry"])
+    link_sockets(tree, pearl.outputs["Mesh"], join.inputs["Geometry"])
+    link_sockets(tree, cap_pos.outputs["Geometry"], join.inputs["Geometry"])
+    link_sockets(tree, loop_pos.outputs["Geometry"], join.inputs["Geometry"])
     
     # Audio reactivity
     audio_geo = add_audio_reactivity(tree, gin, join.outputs["Geometry"], (bx, by - 200))

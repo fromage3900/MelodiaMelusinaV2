@@ -343,7 +343,7 @@ def build_ornament_keyhole_frame(group_name="MEL_ornament_keyhole_frame"):
     ring.inputs["Resolution"].default_value = 40
     ring_pos = safe_node(tree, "GeometryNodeSetPosition", (bx - 460, by + 300))
     link_sockets(tree, ring.outputs["Curve"], ring_pos.inputs["Geometry"])
-    link_float_to_vector(tree, gin.outputs["Ring Radius"], ring_pos, "Position", component=1, defaults=(0.0, 0.0, 0.0))
+    link_float_to_vector(tree, gin.outputs["Ring Radius"], ring_pos, "Offset", component=1, defaults=(0.0, 0.0, 0.0))
 
     # Corner math: half widths and handle fractions
     r_neg = safe_node(tree, "ShaderNodeMath", (bx - 800, by + 500))

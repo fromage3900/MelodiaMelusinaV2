@@ -78,13 +78,29 @@ def _is_sock(v):
     return v is not None and hasattr(v, "is_output")
 
 
-def _vec(tree, loc, x=None, y=None, z=None):
+def _vec(tree, loc, x=None, y=None, z=None, const=0.0):
+    """CombineXYZ whose components are each a socket, a float, or None.
+
+    A float MUST be written to default_value, not dropped: silently leaving a
+    component at 0.0 collapses geometry (measured on MEL_music_metronome_pillar,
+    whose rod Size was meant to be (0.03, 0.03, L) and came out (0, 0, L)).
+    """
     n = safe_node(tree, "ShaderNodeCombineXYZ", loc)
     if n is None:
         return None
     for comp, sock in (("X", x), ("Y", y), ("Z", z)):
         if _is_sock(sock):
             link_sockets(tree, sock, n.inputs[comp])
+        elif sock is None:
+            try:
+                n.inputs[comp].default_value = float(const)
+            except Exception:
+                pass
+        else:
+            try:
+                n.inputs[comp].default_value = float(sock)
+            except Exception:
+                pass
     return n
 
 
@@ -204,10 +220,12 @@ def _torus(tree, loc, major_sock, major_mult, minor_sock, minor_mult, major_seg=
         link_sockets(tree, mo.outputs[0], _in(outer, "Radius"))
     if mi:
         link_sockets(tree, mi.outputs[0], _in(inner, "Radius"))
-    # minor circle must stand perpendicular: rotate 90deg Y
-    inner_xf = _xf(tree, (loc[0] - 120, loc[1] - 60), inner.outputs["Curve"],
-                   rot=(0, math.radians(90), 0))
-    prof_curve = inner_xf.outputs["Geometry"] if inner_xf else inner.outputs["Curve"]
+    # The profile circle already lies in the XY plane, which Curve-to-Mesh's
+    # frame makes perpendicular to the tangent at every point of a circle
+    # path -- no rotation is needed (same as core.add_mesh_torus). Rotating it
+    # (previously 90deg about Y) folds the profile into the tangent plane,
+    # squashing the cross-section and emitting zero-area faces.
+    prof_curve = inner.outputs["Curve"]
     c2m = safe_node(tree, "GeometryNodeCurveToMesh", (loc[0] + 100, loc[1]))
     if c2m is None:
         return None
@@ -286,17 +304,29 @@ def build_music_waveform_wall(group_name="MEL_music_waveform_wall"):
     add_float_param(tree, "Thickness", 0.04, 0.01, 0.3)
     add_float_param(tree, "Scale", 1.0, 0.1, 5.0)
 
-    # Straight line along X centred on origin: start=-W/2, offset=+W
+    # Straight line along X centred on origin: start=-W/2, offset=+W/(res-1).
+    # MeshLine 'Offset' is a PER-STEP delta, not a total span: linking Width
+    # straight in made the wall Resolution x Width wide (128 * 4 m = 508 m,
+    # audit 2026-10-02 P3). Divide the span by the step count.
     neg_half = _math(tree, (-700, 260), "MULTIPLY", a=gin.outputs["Width"], b_val=-0.5)
     start_v = _vec(tree, (-560, 320), x=neg_half.outputs[0] if neg_half else None)
-    off_v = _vec(tree, (-560, 200), x=gin.outputs["Width"])
+    res_m1 = _math(tree, (-880, 200), "SUBTRACT", a=gin.outputs["Resolution"], b_val=1.0)
+    step_x = _math(tree, (-720, 200), "DIVIDE", a=gin.outputs["Width"],
+                   b=res_m1.outputs[0] if res_m1 else None)
+    off_v = _vec(tree, (-560, 200), x=step_x.outputs[0] if step_x else None)
     line = _point_line(tree, (-380, 300), gin.outputs["Resolution"],
                        start=(0, 0, 0), step=None, step_sock=off_v)
     if line and start_v:
         link_sockets(tree, start_v.outputs["Vector"], _in(line, "Start Location"))
 
-    spl = safe_node(tree, "GeometryNodeSplineParameter", (-380, 480))
-    factor = _out(spl, "Factor")
+    # SplineParameter.Factor is a CURVE field. The source here is a MeshLine
+    # MESH, which has no splines: Factor read 0.0 at every point, so all three
+    # sine layers were constant and the wall measured FLAT (z extent 0.0; A/B
+    # micro-tree probe 2026-10-02). Use the point index normalised by the step
+    # count - the same 0..1 ramp along the line, valid on the point domain.
+    idx = safe_node(tree, "GeometryNodeInputIndex", (-560, 480))
+    factor = _out(_math(tree, (-380, 480), "DIVIDE",
+                        a=_out(idx), b=_out(res_m1) if res_m1 else None))
 
     def layer(loc_y, mult, blend_param, blend_default):
         tm = _math(tree, (-180, loc_y), "MULTIPLY", a=factor, b_val=mult * math.tau)
@@ -315,9 +345,13 @@ def build_music_waveform_wall(group_name="MEL_music_waveform_wall"):
     l2 = layer(430, 2.0, "Harmonic Blend", 0.5)
     l3 = layer(300, 4.0, "Harmonic Blend", 0.25)
 
-    sum_a = _math(tree, (520, 520), "ADD", a=l1, b=l2)
+    # _math(a=/b=) only accepts a SOCKET or a number: a bare node is neither
+    # (_is_sock is False), so the input kept its 0.0 default and both sums
+    # collapsed to a constant -> displacement constant -> the wall measured
+    # FLAT (z extent 0.0; probe 2026-10-02). Pass _out(node) at every site.
+    sum_a = _math(tree, (520, 520), "ADD", a=_out(l1), b=_out(l2))
     total = _math(tree, (660, 480), "ADD",
-                  a=sum_a.outputs[0] if sum_a else l1, b=l3)
+                  a=_out(sum_a) if sum_a else _out(l1), b=_out(l3))
 
     disp = _vec(tree, (820, 460), z=total.outputs[0] if total else None)
     set_pos = safe_node(tree, "GeometryNodeSetPosition", (980, 400))
@@ -796,7 +830,7 @@ def build_music_tuning_fork(group_name="MEL_music_tuning_fork"):
                          yp.inputs["Position"] if False else yp.inputs["Geometry"])
             pv = _vec(tree, (-350, -230), z=yh.outputs[0])
             if pv:
-                link_sockets(tree, pv.outputs["Vector"], yp.inputs["Position"])
+                link_sockets(tree, pv.outputs["Vector"], yp.inputs["Offset"])
             parts.append(yp.outputs["Geometry"])
 
     def prong(side_sign, y_loc):
@@ -916,7 +950,7 @@ def build_music_metronome_pillar(group_name="MEL_music_metronome_pillar"):
                 if tvp:
                     link_sockets(tree, bs.outputs["Geometry"] if bs else bob.outputs["Mesh"],
                                  bob_pos.inputs["Geometry"])
-                    link_sockets(tree, tvp.outputs["Vector"], bob_pos.inputs["Position"])
+                    link_sockets(tree, tvp.outputs["Vector"], bob_pos.inputs["Offset"])
             j = safe_node(tree, "GeometryNodeJoinGeometry", (180, -300))
             if j and swing:
                 link_sockets(tree, swing.outputs["Geometry"], j.inputs["Geometry"])

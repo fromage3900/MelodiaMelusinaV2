@@ -613,7 +613,15 @@ def build_music_waveform_wall_v2(group_name="MEL_music_waveform_wall_v2"):
         line.mode = "OFFSET"
     except Exception:
         pass
-    link_sockets(tree, gin.outputs["Width"], line.inputs["Offset"] if "Offset" in line.inputs else line.inputs[0])
+    # MeshLine 'Offset' is the PER-STEP delta. Linking Width straight in gave a
+    # span of Resolution x Width (128 * 4 m = 508 m; audit 2026-10-02 P3).
+    # Divide the span by the step count (Resolution - 1).
+    res_m1 = _math(tree, (bx - 620, by + 120), "SUBTRACT", gin.outputs["Resolution"], 1.0)
+    step_x = _math(tree, (bx - 520, by + 160), "DIVIDE", gin.outputs["Width"],
+                   res_m1.outputs[0] if res_m1 else None)
+    off_v = _combine(tree, (bx - 460, by + 200), step_x.outputs[0] if step_x else 0.0, 0.0, 0.0)
+    link_sockets(tree, off_v.outputs["Vector"],
+                 line.inputs["Offset"] if "Offset" in line.inputs else line.inputs[0])
     to_curve = safe_node(tree, "GeometryNodeMeshToCurve", (bx - 200, by + 200))
     link_sockets(tree, line.outputs["Mesh"], to_curve.inputs["Mesh"] if "Mesh" in to_curve.inputs else to_curve.inputs[0])
     curve = to_curve.outputs["Curve"] if "Curve" in to_curve.outputs else to_curve.outputs[0]

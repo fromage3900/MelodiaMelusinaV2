@@ -127,6 +127,13 @@ def build_mother_hair_cascade(group_name="MEL_mother_hair_cascade"):
     profile_pos = safe_node(tree, "GeometryNodeTransform", (bx + 200, by - 280))
     link_sockets(tree, profile.outputs["Curve"], profile_pos.inputs["Geometry"])
     profile_pos.inputs["Scale"].default_value = (0.15, 0.02, 1.0)
+    # Stand the flat profile perpendicular to the sweep. Without this the
+    # profile is coplanar with the curve and every face has area 0 (measured:
+    # 31/31 faces degenerate, bbox ext [0, 0, 12]).
+    try:
+        profile_pos.inputs["Rotation"].default_value = (1.5707963267948966, 0.0, 0.0)
+    except Exception:
+        pass
 
     to_mesh = safe_node(tree, "GeometryNodeCurveToMesh", (bx + 400, by))
     link_sockets(tree, set_radius.outputs["Curve"], to_mesh.inputs["Curve"])

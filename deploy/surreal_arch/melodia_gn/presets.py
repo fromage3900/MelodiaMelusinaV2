@@ -323,91 +323,6 @@ BUILDERS_PRESETS: dict[str, dict[str, Any]] = {
         },
     },
 
-    # garment_ribbon.py - MEL_garm_ribbon_trail (decor)
-    "MEL_garm_ribbon_trail": {
-        "label": "Garment Ribbon Trail",
-        "preset_labels": {
-            "HEM_WHISPER": "Hem Whisper",
-            "FESTIVAL_SWAG": "Festival Swag",
-            "STARLIT_TATTER": "Starlit Tatter",
-        },
-        "preset_descriptions": {
-            "HEM_WHISPER": "Subtle short bands kissing the hem line.",
-            "FESTIVAL_SWAG": "Deep bows and generous motion - stage-ready.",
-            "STARLIT_TATTER": "Many thin streaming bands, strong scatter.",
-        },
-        "presets": {
-            "HEM_WHISPER": {
-                "Ribbon Count": 10, "Hang Length": 0.28, "Sag": 0.35,
-                "Wave Count": 2.0, "Wave Amp": 0.04, "Ribbon Width": 0.03,
-                "Jitter": 0.2, "Spin Variety": 0.5, "Segments": 32,
-            },
-            "FESTIVAL_SWAG": {
-                "Ribbon Count": 22, "Hang Length": 0.5, "Sag": 0.75,
-                "Wave Count": 3.5, "Wave Amp": 0.08, "Ribbon Width": 0.045,
-                "Jitter": 0.35, "Spin Variety": 0.9, "Segments": 40,
-            },
-            "STARLIT_TATTER": {
-                "Ribbon Count": 34, "Hang Length": 0.65, "Sag": 0.55,
-                "Wave Count": 5.5, "Wave Amp": 0.11, "Ribbon Width": 0.022,
-                "Jitter": 0.5, "Spin Variety": 1.0, "Segments": 48,
-            },
-        },
-    },
-
-    # angel_wings.py - MEL_angel_wing_* (decor)
-    "MEL_angel_wing_feather_row": {
-        "label": "Angel Wing Feather Row",
-        "preset_labels": {
-            "SERAPH_REST": "Seraph at Rest",
-            "SERAPH_SPREAD": "Seraph Spread",
-            "VEIL_SMALL": "Veil of Small Feathers",
-        },
-        "preset_descriptions": {
-            "SERAPH_REST": "Folded-at-rest row: 14 feathers, gentle rise and droop.",
-            "SERAPH_SPREAD": "Wide spread: 22 feathers, tall arc, strong fan.",
-            "VEIL_SMALL": "Short soft row for shoulder veils and collars.",
-        },
-        "presets": {
-            "SERAPH_REST": {
-                "Feather Count": 14, "Span": 0.85, "Rise": 0.45,
-                "Blade Length": 0.42, "Blade Width": 0.028, "Droop": 0.16,
-                "Fan Angle": 0.5, "Taper Power": 1.6, "Size Min": 0.35,
-                "Segments": 16, "Side": 1,
-            },
-            "SERAPH_SPREAD": {
-                "Feather Count": 22, "Span": 1.4, "Rise": 0.7,
-                "Blade Length": 0.55, "Blade Width": 0.032, "Droop": 0.1,
-                "Fan Angle": 0.8, "Taper Power": 1.8, "Size Min": 0.3,
-                "Segments": 20, "Side": 1,
-            },
-            "VEIL_SMALL": {
-                "Feather Count": 10, "Span": 0.6, "Rise": 0.3,
-                "Blade Length": 0.3, "Blade Width": 0.02, "Droop": 0.22,
-                "Fan Angle": 0.35, "Taper Power": 1.4, "Size Min": 0.45,
-                "Segments": 12, "Side": 1,
-            },
-        },
-    },
-    "MEL_angel_wing_pair": {
-        "label": "Angel Wing Pair",
-        "preset_labels": {
-            "SERAPH_PAIR_REST": "Seraph Pair at Rest",
-            "SERAPH_PAIR_HIGH": "Seraph Pair, High Root",
-            "SERAPH_PAIR_LOW": "Seraph Pair, Low Root",
-        },
-        "preset_descriptions": {
-            "SERAPH_PAIR_REST": "Symmetric pair at the default spine root.",
-            "SERAPH_PAIR_HIGH": "Root lifted toward the shoulder blades.",
-            "SERAPH_PAIR_LOW": "Root dropped toward the mid-back.",
-        },
-        "presets": {
-            "SERAPH_PAIR_REST": {"Root Height": 0.12, "Root Back": -0.06},
-            "SERAPH_PAIR_HIGH": {"Root Height": 0.26, "Root Back": -0.09},
-            "SERAPH_PAIR_LOW": {"Root Height": 0.02, "Root Back": -0.04},
-        },
-    },
-
     # ribbon.py - MEL_ribbon_curve (effects)
     "MEL_ribbon_curve": {
         "label": "Ribbon Curve",
@@ -4008,7 +3923,7 @@ BRANDS: dict[str, dict[str, Any]] = {
                      "note": "Sunk relief panels on the courtyard walls."},
                     {"builder": "GN_PARIS_FountainLoop",
                      "preset": "MI_COURTYARD_DAY",
-                     "note": "Track A builder: self-feeding basin loop."},
+                     "note": "The self-feeding basin loop, working read."},
                 ],
             },
             "MI_MAISON_NUIT": {
@@ -4027,7 +3942,7 @@ BRANDS: dict[str, dict[str, Any]] = {
                     {"builder": "MEL_escher_waterfall", "preset": "IMPOSSIBLE_TRIBAR",
                      "note": "Self-feeding channel, lit warm."},
                     {"builder": "GN_PARIS_DayNightFacade", "preset": "MI_NUIT",
-                     "note": "Track A builder: light/dark duality slider."},
+                     "note": "The light/dark duality slider, night read."},
                 ],
             },
         },
@@ -4172,67 +4087,553 @@ BUILDERS_PRESETS["GN_PARIS_EscherLadder"] = {
     },
 }
 
+# Maison Impossible - Track A builders 2-3 (2026-09-22):
+# the self-feeding courtyard fountain and the day/night duality facade.
 
-# Paris Track A - the courtyard fountain (paris_track_a.py).
-# Wobble is the only effect dial and is neutral at 0.0; the rest are structural.
 BUILDERS_PRESETS["GN_PARIS_FountainLoop"] = {
     "label": "PARIS Fountain Loop",
     "preset_labels": {
-        "MI_COURTYARD_DAY": "Courtyard Day",
-        "MI_COURTYARD_STILL": "Courtyard Still",
-        "MI_COURTYARD_TOUR": "Grand Tour Basin",
+        "MI_COURTYARD_DAY": "Courtyard Fountain",
+        "MI_SELF_FEED": "Self-Feeding Fountain",
+        "MI_WINTER_DRY": "Winter Basin",
     },
     "preset_descriptions": {
-        "MI_COURTYARD_DAY": "The pack slot: day-lit courtyard basin, ring at full rise.",
-        "MI_COURTYARD_STILL": "Still water - wobble 0, low ring, wide stone basin.",
-        "MI_COURTYARD_TOUR": "Grand tour scale: deep basin, tall self-feeding ring, lively wobble.",
+        "MI_COURTYARD_DAY": "Working courtyard fountain - the channel's mouth "
+                            "meets its own spout (Feed Rise 1.364 solves the "
+                            "meet for these tiers).",
+        "MI_SELF_FEED": "The Escher read: the return channel arrives 0.28m "
+                        "above its own mouth and spills past it.",
+        "MI_WINTER_DRY": "Drained winter basin - no channel, no streams, dense "
+                         "rim beads and shells.",
     },
     "presets": {
         "MI_COURTYARD_DAY": {
-            "Basin Radius": 0.9, "Basin Depth": 0.35, "Loop Rise": 0.85,
-            "Stream Radius": 0.06, "Wobble": 0.04, "Basin Segments": 48,
+            "Basin Radius": 1.6, "Basin Height": 0.72, "Flutes": 24,
+            "Shell Count": 4, "Shell Size": 0.34, "Rim Beads": 120,
+            "Bead Size": 0.022, "Tiers": 2, "Tier Rise": 0.46,
+            "Tier Shrink": 0.62, "Crown Spikes": 8, "Crown Size": 0.16,
+            "Water Level": 0.80, "Ripple Amp": 0.025, "Ripple Count": 6.0,
+            "Streams": 6, "Stream Radius": 0.022, "Droplets": 24,
+            "Droplet Size": 0.020, "Self Feed": True, "Feed Rise": 1.364,
+            "Loop Error": 0.0, "Channel Radius": 0.055,
         },
-        "MI_COURTYARD_STILL": {
-            "Basin Radius": 1.1, "Basin Depth": 0.28, "Loop Rise": 0.55,
-            "Stream Radius": 0.05, "Wobble": 0.0, "Basin Segments": 64,
+        "MI_SELF_FEED": {
+            "Basin Radius": 1.6, "Basin Height": 0.72, "Flutes": 24,
+            "Shell Count": 4, "Shell Size": 0.34, "Rim Beads": 120,
+            "Bead Size": 0.022, "Tiers": 2, "Tier Rise": 0.46,
+            "Tier Shrink": 0.62, "Crown Spikes": 8, "Crown Size": 0.16,
+            "Water Level": 0.80, "Ripple Amp": 0.035, "Ripple Count": 7.0,
+            "Streams": 6, "Stream Radius": 0.022, "Droplets": 40,
+            "Droplet Size": 0.024, "Self Feed": True, "Feed Rise": 1.30,
+            "Loop Error": 0.28, "Channel Radius": 0.055,
         },
-        "MI_COURTYARD_TOUR": {
-            "Basin Radius": 1.4, "Basin Depth": 0.5, "Loop Rise": 1.4,
-            "Stream Radius": 0.09, "Wobble": 0.1, "Basin Segments": 64,
+        "MI_WINTER_DRY": {
+            "Basin Radius": 1.6, "Basin Height": 0.72, "Flutes": 32,
+            "Shell Count": 8, "Shell Size": 0.38, "Rim Beads": 160,
+            "Bead Size": 0.022, "Tiers": 3, "Tier Rise": 0.40,
+            "Tier Shrink": 0.58, "Crown Spikes": 12, "Crown Size": 0.16,
+            "Water Level": 0.55, "Ripple Amp": 0.0, "Ripple Count": 6.0,
+            "Streams": 0, "Stream Radius": 0.022, "Droplets": 0,
+            "Droplet Size": 0.020, "Self Feed": False, "Feed Rise": 1.364,
+            "Loop Error": 0.0, "Channel Radius": 0.055,
         },
     },
 }
 
-# Paris Track A - the duality facade (paris_track_a.py).
-# Duality slides the day plate (light tiles forward) through the flat Escher
-# plate (0.5) to the night plate (dark tiles forward).
 BUILDERS_PRESETS["GN_PARIS_DayNightFacade"] = {
     "label": "PARIS Day-Night Facade",
     "preset_labels": {
         "MI_NUIT": "Maison Nuit",
         "MI_JOUR": "Maison Jour",
-        "MI_PLATE": "Escher Plate",
+        "MI_CREPUSCULE": "Crepuscule",
+        "MI_ECLIPSE": "Eclipse Overload",
     },
     "preset_descriptions": {
-        "MI_NUIT": "The pack slot: dark tiles forward at full density - the night read.",
-        "MI_JOUR": "Day plate: light tiles forward, sober limestone relief.",
-        "MI_PLATE": "Duality 0.5 - the flat woodcut plate, every tile equal.",
+        "MI_NUIT": "Full night pass: every window lit and popped proud with "
+                   "brass trim, shutters drawn to slits.",
+        "MI_JOUR": "Full day: dark recessed panes, shutters folded back "
+                   "against the wall.",
+        "MI_CREPUSCULE": "Dusk - the slider caught mid-climb, light down to the "
+                         "middle floor, birds deeply interlocked.",
+        "MI_ECLIPSE": "Overloaded bay: six bays, four floors, eighteen "
+                      "interlocked birds, dense dentils and blooms.",
     },
     "presets": {
         "MI_NUIT": {
-            "Facade Width": 3.0, "Facade Height": 3.2, "Tiles X": 12, "Tiles Y": 14,
-            "Relief": 0.06, "Duality": 1.0,
+            "Bay Count": 5, "Floor Count": 3, "Bay Width": 2.30,
+            "Floor Height": 2.75, "Wall Depth": 0.45, "Plinth Height": 0.45,
+            "Window Width": 0.52, "Window Height": 0.60, "Window Base": 0.85,
+            "Window Recess": 0.05, "Muntins": True, "Muntin Bars": 2,
+            "Night Mix": 1.0, "Lit Pop": 0.16, "Brass Trim": True,
+            "Shutters": True, "Shutter Open": 0.12, "Balconies": True,
+            "Balcony Bars": 12, "Rail Height": 0.95, "Dentils": 28,
+            "Dentil Size": 0.14, "Flower Boxes": True, "Bloom Count": 10,
+            "Bloom Size": 0.075, "Portal Width": 1.15, "Oculus": True,
+            "Birds": 14, "Bird Size": 0.55, "Bird Lock": 0.50, "Seed": 7,
         },
         "MI_JOUR": {
-            "Facade Width": 3.0, "Facade Height": 3.2, "Tiles X": 12, "Tiles Y": 14,
-            "Relief": 0.06, "Duality": 0.0,
+            "Bay Count": 5, "Floor Count": 3, "Bay Width": 2.30,
+            "Floor Height": 2.75, "Wall Depth": 0.45, "Plinth Height": 0.45,
+            "Window Width": 0.52, "Window Height": 0.60, "Window Base": 0.85,
+            "Window Recess": 0.05, "Muntins": True, "Muntin Bars": 2,
+            "Night Mix": 0.0, "Lit Pop": 0.14, "Brass Trim": True,
+            "Shutters": True, "Shutter Open": 0.85, "Balconies": True,
+            "Balcony Bars": 12, "Rail Height": 0.95, "Dentils": 28,
+            "Dentil Size": 0.14, "Flower Boxes": True, "Bloom Count": 12,
+            "Bloom Size": 0.075, "Portal Width": 1.15, "Oculus": True,
+            "Birds": 14, "Bird Size": 0.55, "Bird Lock": 0.50, "Seed": 7,
         },
-        "MI_PLATE": {
-            "Facade Width": 2.4, "Facade Height": 2.4, "Tiles X": 16, "Tiles Y": 16,
-            "Relief": 0.04, "Duality": 0.5,
+        "MI_CREPUSCULE": {
+            "Bay Count": 5, "Floor Count": 3, "Bay Width": 2.30,
+            "Floor Height": 2.75, "Wall Depth": 0.45, "Plinth Height": 0.45,
+            "Window Width": 0.52, "Window Height": 0.60, "Window Base": 0.85,
+            "Window Recess": 0.05, "Muntins": True, "Muntin Bars": 2,
+            "Night Mix": 0.45, "Lit Pop": 0.14, "Brass Trim": True,
+            "Shutters": True, "Shutter Open": 0.45, "Balconies": True,
+            "Balcony Bars": 12, "Rail Height": 0.95, "Dentils": 28,
+            "Dentil Size": 0.14, "Flower Boxes": True, "Bloom Count": 14,
+            "Bloom Size": 0.080, "Portal Width": 1.15, "Oculus": True,
+            "Birds": 14, "Bird Size": 0.55, "Bird Lock": 0.62, "Seed": 21,
+        },
+        "MI_ECLIPSE": {
+            "Bay Count": 6, "Floor Count": 4, "Bay Width": 2.50,
+            "Floor Height": 2.90, "Wall Depth": 0.45, "Plinth Height": 0.45,
+            "Window Width": 0.52, "Window Height": 0.60, "Window Base": 0.85,
+            "Window Recess": 0.05, "Muntins": True, "Muntin Bars": 3,
+            "Night Mix": 0.85, "Lit Pop": 0.20, "Brass Trim": True,
+            "Shutters": True, "Shutter Open": 0.0, "Balconies": True,
+            "Balcony Bars": 18, "Rail Height": 0.95, "Dentils": 40,
+            "Dentil Size": 0.12, "Flower Boxes": True, "Bloom Count": 16,
+            "Bloom Size": 0.085, "Portal Width": 1.35, "Oculus": True,
+            "Birds": 18, "Bird Size": 0.62, "Bird Lock": 0.75, "Seed": 33,
         },
     },
 }
+
+
+# Maison Impossible - Track A builders 4-6 (2026-09-22):
+# the mansard roof band, the Penrose doorway, and the metamorphosis frieze.
+
+BUILDERS_PRESETS["GN_PARIS_Mansard"] = {
+    "label": "PARIS Mansard",
+    "preset_labels": {
+        "MI_MANSARD_CANON": "Canonical Mansard",
+        "MI_MANSARD_STEEP": "Steep Mansard",
+        "MI_MANSARD_PETIT": "Petit Mansard",
+    },
+    "preset_descriptions": {
+        "MI_MANSARD_CANON": "The standard Haussmann hat: balanced two-slope "
+                            "profile, four dormers, zinc seams, chimneys.",
+        "MI_MANSARD_STEEP": "Steep lower pitch with a shallow break, denser "
+                            "zinc and more dormers - the Opera read.",
+        "MI_MANSARD_PETIT": "A small hôtel particulier roof: 6.5m band, two "
+                            "dormers, one chimney.",
+    },
+    "presets": {
+        "MI_MANSARD_CANON": {
+            "Band Width": 11.5, "Band Depth": 6.0, "Lower Slope": 1.15,
+            "Upper Slope": 0.25, "Break Point": 0.62, "Cornice Lip": 0.16,
+            "Dormers": 4, "Dormer Width": 0.85, "Dormer Height": 0.95,
+            "Oculus Dormers": True, "Zinc Ribs": 14, "Rib Size": 0.02,
+            "Chimneys": 2, "Chimney Height": 1.10, "Chimney Pots": 3,
+            "Iron Cresting": True, "Cresting": 16,
+        },
+        "MI_MANSARD_STEEP": {
+            "Band Width": 11.5, "Band Depth": 6.5, "Lower Slope": 1.50,
+            "Upper Slope": 0.18, "Break Point": 0.52, "Cornice Lip": 0.16,
+            "Dormers": 5, "Dormer Width": 0.85, "Dormer Height": 1.05,
+            "Oculus Dormers": True, "Zinc Ribs": 20, "Rib Size": 0.02,
+            "Chimneys": 3, "Chimney Height": 1.30, "Chimney Pots": 3,
+            "Iron Cresting": True, "Cresting": 20,
+        },
+        "MI_MANSARD_PETIT": {
+            "Band Width": 6.5, "Band Depth": 3.6, "Lower Slope": 1.05,
+            "Upper Slope": 0.30, "Break Point": 0.66, "Cornice Lip": 0.12,
+            "Dormers": 2, "Dormer Width": 0.70, "Dormer Height": 0.80,
+            "Oculus Dormers": True, "Zinc Ribs": 8, "Rib Size": 0.02,
+            "Chimneys": 1, "Chimney Height": 0.90, "Chimney Pots": 2,
+            "Iron Cresting": True, "Cresting": 10,
+        },
+    },
+}
+
+BUILDERS_PRESETS["GN_PARIS_PenroseArch"] = {
+    "label": "PARIS Penrose Arch",
+    "preset_labels": {
+        "MI_ARCH_HONEST": "Honest Arch",
+        "MI_ARCH_TRIBAR": "Tribar Arch",
+        "MI_ARCH_MIRROR": "Mirror Tribar",
+        "MI_ARCH_BARE": "Bare Opening",
+    },
+    "preset_descriptions": {
+        "MI_ARCH_HONEST": "A working doorway: join blocks flush with the "
+                          "jambs, full dress.",
+        "MI_ARCH_TRIBAR": "The impossibility engaged: the left join steps to "
+                          "the street, the right steps back.",
+        "MI_ARCH_MIRROR": "Same paradox, opposite handedness.",
+        "MI_ARCH_BARE": "Stripped opening - no dress, just the swap.",
+    },
+    "presets": {
+        "MI_ARCH_HONEST": {
+            "Arch Width": 1.6, "Arch Height": 2.6, "Jamb Width": 0.36,
+            "Jamb Depth": 0.45, "Lintel Height": 0.45, "Impossibility": 0.0,
+            "Swap Offset": 0.22, "Keystone": True, "Keystone Size": 0.36,
+            "Plinths": True, "Plinth Height": 0.22, "Brackets": True,
+            "Bracket Size": 0.16, "Crown": True, "Crown Size": 0.22,
+            "Panel": True, "Panel Size": 0.50, "Door": True,
+            "Door Panels": 2,
+        },
+        "MI_ARCH_TRIBAR": {
+            "Arch Width": 1.6, "Arch Height": 2.6, "Jamb Width": 0.36,
+            "Jamb Depth": 0.45, "Lintel Height": 0.45, "Impossibility": 1.0,
+            "Swap Offset": 0.32, "Keystone": True, "Keystone Size": 0.36,
+            "Plinths": True, "Plinth Height": 0.22, "Brackets": True,
+            "Bracket Size": 0.16, "Crown": True, "Crown Size": 0.22,
+            "Panel": True, "Panel Size": 0.50, "Door": True,
+            "Door Panels": 2,
+        },
+        "MI_ARCH_MIRROR": {
+            "Arch Width": 1.6, "Arch Height": 2.6, "Jamb Width": 0.36,
+            "Jamb Depth": 0.45, "Lintel Height": 0.45, "Impossibility": -1.0,
+            "Swap Offset": 0.32, "Keystone": True, "Keystone Size": 0.36,
+            "Plinths": True, "Plinth Height": 0.22, "Brackets": True,
+            "Bracket Size": 0.16, "Crown": True, "Crown Size": 0.22,
+            "Panel": True, "Panel Size": 0.50, "Door": True,
+            "Door Panels": 2,
+        },
+        "MI_ARCH_BARE": {
+            "Arch Width": 1.9, "Arch Height": 2.8, "Jamb Width": 0.30,
+            "Jamb Depth": 0.40, "Lintel Height": 0.40, "Impossibility": 1.0,
+            "Swap Offset": 0.26, "Keystone": False, "Keystone Size": 0.36,
+            "Plinths": False, "Plinth Height": 0.22, "Brackets": False,
+            "Bracket Size": 0.16, "Crown": False, "Crown Size": 0.22,
+            "Panel": False, "Panel Size": 0.50, "Door": False,
+            "Door Panels": 2,
+        },
+    },
+}
+
+BUILDERS_PRESETS["GN_PARIS_MetamorphosisFrieze"] = {
+    "label": "PARIS Metamorphosis Frieze",
+    "preset_labels": {
+        "MI_MORPH_SEAM": "Morph Seam",
+        "MI_MORPH_BIRDS": "All Birds",
+        "MI_MORPH_FISH": "All Fish",
+        "MI_MORPH_LONG": "Long Morph",
+    },
+    "preset_descriptions": {
+        "MI_MORPH_SEAM": "The transition caught mid-way: three cells where "
+                         "bird and fish mesh.",
+        "MI_MORPH_BIRDS": "The band before the change - birds only.",
+        "MI_MORPH_FISH": "The band after the change - fish only.",
+        "MI_MORPH_LONG": "A long wall band with a wide, deep interlock zone.",
+    },
+    "presets": {
+        "MI_MORPH_SEAM": {
+            "Band Length": 8.0, "Band Height": 0.9, "Band Depth": 0.12,
+            "Cells": 16, "Morph": 0.5, "Seam Width": 3, "Interlock": 0.5,
+            "Motif Scale": 0.36, "Bird Wing Spread": 0.6, "Fin Count": 4,
+            "Fish Flip": True, "Bead Rail": True, "Rail Beads": 60,
+            "Bead Size": 0.02, "Reveal": 0.06,
+        },
+        "MI_MORPH_BIRDS": {
+            "Band Length": 8.0, "Band Height": 0.9, "Band Depth": 0.12,
+            "Cells": 16, "Morph": 0.0, "Seam Width": 0, "Interlock": 0.5,
+            "Motif Scale": 0.36, "Bird Wing Spread": 0.6, "Fin Count": 4,
+            "Fish Flip": True, "Bead Rail": True, "Rail Beads": 60,
+            "Bead Size": 0.02, "Reveal": 0.06,
+        },
+        "MI_MORPH_FISH": {
+            "Band Length": 8.0, "Band Height": 0.9, "Band Depth": 0.12,
+            "Cells": 16, "Morph": 1.0, "Seam Width": 0, "Interlock": 0.5,
+            "Motif Scale": 0.36, "Bird Wing Spread": 0.6, "Fin Count": 4,
+            "Fish Flip": True, "Bead Rail": True, "Rail Beads": 60,
+            "Bead Size": 0.02, "Reveal": 0.06,
+        },
+        "MI_MORPH_LONG": {
+            "Band Length": 14.0, "Band Height": 1.0, "Band Depth": 0.14,
+            "Cells": 28, "Morph": 0.5, "Seam Width": 5, "Interlock": 0.7,
+            "Motif Scale": 0.40, "Bird Wing Spread": 0.7, "Fin Count": 5,
+            "Fish Flip": True, "Bead Rail": True, "Rail Beads": 100,
+            "Bead Size": 0.022, "Reveal": 0.08,
+        },
+    },
+}
+
+
+# BRUTALIST office family (2026-09-23): the beton brut office block and its
+# cubicle farm.  Same dial philosophy as the PARIS family - the system IS the
+# parameter set.
+
+BUILDERS_PRESETS["GN_BRUTALIST_OfficeBlock"] = {
+    "label": "BRUTALIST Office Block",
+    "preset_labels": {
+        "BR_OFFICE_CIVIC": "Civic Slab",
+        "BR_OFFICE_BARBICAN": "Barbican Scale",
+        "BR_OFFICE_BUNKER": "Bunker",
+        "BR_OFFICE_SLENDER": "Slender Tower",
+    },
+    "preset_descriptions": {
+        "BR_OFFICE_CIVIC": "The default read: 18x12, six floors, pilotis "
+                           "lobby, stair tower, roof plant.",
+        "BR_OFFICE_BARBICAN": "Estate scale: 24x14, eight floors, ten bays, "
+                              "deep reveals, denser formwork.",
+        "BR_OFFICE_BUNKER": "Squat and windowless-heavy: three floors, no "
+                            "pilotis, no tower, high parapet, fat bands.",
+        "BR_OFFICE_SLENDER": "Ten-storey slab: 10x8 footprint, four bays, "
+                             "tight floor height.",
+    },
+    "presets": {
+        "BR_OFFICE_CIVIC": {
+            "Block Width": 18.0, "Block Depth": 12.0, "Floors": 6,
+            "Floor Height": 3.2, "Bay Count": 8, "Pier Width": 0.5,
+            "Band Height": 0.9, "Window Reveal": 0.35, "Pilotis": True,
+            "Pilotis Height": 4.2, "Stair Tower": True, "Tower Width": 3.2,
+            "Slot Count": 6, "Parapet Height": 0.9, "Roof Plant": True,
+            "Plant Height": 2.2, "Formwork": 3,
+        },
+        "BR_OFFICE_BARBICAN": {
+            "Block Width": 24.0, "Block Depth": 14.0, "Floors": 8,
+            "Floor Height": 3.4, "Bay Count": 10, "Pier Width": 0.6,
+            "Band Height": 1.1, "Window Reveal": 0.55, "Pilotis": True,
+            "Pilotis Height": 5.0, "Stair Tower": True, "Tower Width": 4.0,
+            "Slot Count": 8, "Parapet Height": 1.2, "Roof Plant": True,
+            "Plant Height": 2.6, "Formwork": 5,
+        },
+        "BR_OFFICE_BUNKER": {
+            "Block Width": 14.0, "Block Depth": 10.0, "Floors": 3,
+            "Floor Height": 3.6, "Bay Count": 5, "Pier Width": 0.8,
+            "Band Height": 1.4, "Window Reveal": 0.9, "Pilotis": False,
+            "Pilotis Height": 3.0, "Stair Tower": False, "Tower Width": 3.2,
+            "Slot Count": 4, "Parapet Height": 1.6, "Roof Plant": False,
+            "Plant Height": 1.4, "Formwork": 4,
+        },
+        "BR_OFFICE_SLENDER": {
+            "Block Width": 10.0, "Block Depth": 8.0, "Floors": 12,
+            "Floor Height": 3.0, "Bay Count": 4, "Pier Width": 0.45,
+            "Band Height": 0.8, "Window Reveal": 0.3, "Pilotis": True,
+            "Pilotis Height": 4.6, "Stair Tower": True, "Tower Width": 2.6,
+            "Slot Count": 10, "Parapet Height": 0.7, "Roof Plant": True,
+            "Plant Height": 1.8, "Formwork": 2,
+        },
+    },
+}
+
+BUILDERS_PRESETS["GN_BRUTALIST_CubicleFarm"] = {
+    "label": "BRUTALIST Cubicle Farm",
+    "preset_labels": {
+        "BR_CUBICLE_CANON": "Canonical Farm",
+        "BR_CUBICLE_MAZE": "Maze Shift",
+        "BR_CUBICLE_OPEN": "Open Plan",
+        "BR_CUBICLE_SWARM": "Swarm",
+    },
+    "preset_descriptions": {
+        "BR_CUBICLE_CANON": "Three rows of four: partitions, desks, monitors, "
+                            "chairs, bins, waffle ceiling.",
+        "BR_CUBICLE_MAZE": "Five by five with Drift 0.55 - the grid starts to "
+                           "shear without rebuilding.",
+        "BR_CUBICLE_OPEN": "Low partitions, no bins, more plants - the "
+                           "management-approved read.",
+        "BR_CUBICLE_SWARM": "Six by eight at Drift 0.85 - the Escher shear at "
+                            "floor-plan scale.",
+    },
+    "presets": {
+        "BR_CUBICLE_CANON": {
+            "Rows": 3, "Columns": 4, "Cell Width": 2.4, "Cell Depth": 2.0,
+            "Partition Height": 1.65, "Partition Thickness": 0.06,
+            "Desk Height": 0.74, "Desk Depth": 0.6, "Monitor": True,
+            "Monitor Size": 0.5, "Chair": True, "Overhead Bin": True,
+            "Drift": 0.0, "Ceiling Grid": True, "Grid Beams": 8,
+            "Ceiling Height": 2.9, "Lights": 8, "Plants": 3,
+        },
+        "BR_CUBICLE_MAZE": {
+            "Rows": 5, "Columns": 5, "Cell Width": 2.4, "Cell Depth": 2.0,
+            "Partition Height": 1.65, "Partition Thickness": 0.06,
+            "Desk Height": 0.74, "Desk Depth": 0.6, "Monitor": True,
+            "Monitor Size": 0.5, "Chair": True, "Overhead Bin": True,
+            "Drift": 0.55, "Ceiling Grid": True, "Grid Beams": 10,
+            "Ceiling Height": 3.1, "Lights": 10, "Plants": 4,
+        },
+        "BR_CUBICLE_OPEN": {
+            "Rows": 3, "Columns": 5, "Cell Width": 2.6, "Cell Depth": 2.1,
+            "Partition Height": 1.10, "Partition Thickness": 0.05,
+            "Desk Height": 0.74, "Desk Depth": 0.65, "Monitor": True,
+            "Monitor Size": 0.55, "Chair": True, "Overhead Bin": False,
+            "Drift": 0.0, "Ceiling Grid": True, "Grid Beams": 8,
+            "Ceiling Height": 3.4, "Lights": 8, "Plants": 5,
+        },
+        "BR_CUBICLE_SWARM": {
+            "Rows": 6, "Columns": 8, "Cell Width": 2.0, "Cell Depth": 1.8,
+            "Partition Height": 1.5, "Partition Thickness": 0.05,
+            "Desk Height": 0.72, "Desk Depth": 0.55, "Monitor": True,
+            "Monitor Size": 0.45, "Chair": True, "Overhead Bin": True,
+            "Drift": 0.85, "Ceiling Grid": True, "Grid Beams": 14,
+            "Ceiling Height": 3.0, "Lights": 14, "Plants": 6,
+        },
+    },
+}
+
+
+# BRUTALIST city family (2026-09-25): the 2D exterior massing layer.  Same dial
+# philosophy as the other two brutalist builders - the system IS the parameter set.
+# Presets double as the contact-sheet shot list, so every one is a frame a team can
+# look at rather than an abstract number set.
+
+BUILDERS_PRESETS["GN_BRUTALIST_CityBlock"] = {
+    "label": "BRUTALIST City Block",
+    "preset_labels": {
+        "BR_CITY_TIGHT": "Tight Estate",
+        "BR_CITY_TOWERS": "Tower Cluster",
+        "BR_CITY_SPRAWL": "Low Sprawl",
+        "BR_CITY_CIVIC": "Civic Superblock",
+    },
+    "preset_descriptions": {
+        "BR_CITY_TIGHT": "4x4 lots at 12m with 6m streets: the Barbican read, "
+                         "18-42m of stacked slab.",
+        "BR_CITY_TOWERS": "3x3 generous lots, 45-90m. Aerial view territory - "
+                          "the skyline shot.",
+        "BR_CITY_SPRAWL": "5x5 wide lots, deep setback, 8-16m. Post-war "
+                          "low-rise estate plate.",
+        "BR_CITY_CIVIC": "2x2 oversized lots, 14m carriageways, 16-28m. "
+                         "Institutional superblock with a plaza-scale void.",
+    },
+    "presets": {
+        "BR_CITY_TIGHT": {
+            "Blocks X": 4, "Blocks Y": 4, "Lot Width": 12.0, "Lot Depth": 12.0,
+            "Street Width": 6.0, "Setback": 1.0, "Height Min": 18.0,
+            "Height Max": 42.0, "Seed": 7, "Ground": True, "Roads": True,
+            "Sidewalks": True, "Parapet": True, "Piers": True,
+        },
+        "BR_CITY_TOWERS": {
+            "Blocks X": 3, "Blocks Y": 3, "Lot Width": 18.0, "Lot Depth": 16.0,
+            "Street Width": 10.0, "Setback": 2.0, "Height Min": 45.0,
+            "Height Max": 90.0, "Seed": 23, "Ground": True, "Roads": True,
+            "Sidewalks": True, "Parapet": True, "Piers": True,
+        },
+        "BR_CITY_SPRAWL": {
+            "Blocks X": 5, "Blocks Y": 5, "Lot Width": 20.0, "Lot Depth": 18.0,
+            "Street Width": 7.0, "Setback": 4.0, "Height Min": 8.0,
+            "Height Max": 16.0, "Seed": 3, "Ground": True, "Roads": True,
+            "Sidewalks": True, "Parapet": True, "Piers": True,
+        },
+        "BR_CITY_CIVIC": {
+            "Blocks X": 2, "Blocks Y": 2, "Lot Width": 28.0, "Lot Depth": 24.0,
+            "Street Width": 14.0, "Setback": 3.0, "Height Min": 16.0,
+            "Height Max": 28.0, "Seed": 11, "Ground": True, "Roads": True,
+            "Sidewalks": True, "Parapet": True, "Piers": False,
+        },
+    },
+}
+
+# BRUTALIST roof family (2026-09-25) - GN_BRUTALIST_Roof, added with the builder.
+# Same philosophy as the rest of the family: the system IS the parameter set, and
+# each preset is a frame a team can look at rather than an abstract number set.
+# Roof Style values are the builder's own enum: 0 Flat/Parapet, 1 Low Pitch,
+# 2 Sawtooth, 3 Barrel Vault, 4 Pyramid/Hip, 5 Plant Deck.
+BUILDERS_PRESETS["GN_BRUTALIST_Roof"] = {
+    "label": "BRUTALIST Roof",
+    "preset_labels": {
+        "BR_ROOF_FLAT": "Flat Parapet",
+        "BR_ROOF_PITCH": "Low Pitch",
+        "BR_ROOF_SAWTOOTH": "Sawtooth",
+        "BR_ROOF_BARREL": "Barrel Vault",
+        "BR_ROOF_HIP": "Pyramid Hip",
+        "BR_ROOF_PLANT": "Plant Deck",
+    },
+    "preset_descriptions": {
+        "BR_ROOF_FLAT": "Parapet rim over a deck. The default brutalist "
+                        "roofline; reads at skyline distance.",
+        "BR_ROOF_PITCH": "Shallow two-sided pitch, eaves dropping outward.",
+        "BR_ROOF_SAWTOOTH": "North-lit sheds - the post-war industrial plate.",
+        "BR_ROOF_BARREL": "Faceted concrete barrel for vaulted halls.",
+        "BR_ROOF_HIP": "Four-way hip over a civic block.",
+        "BR_ROOF_PLANT": "Lift overrun and plant housing; makes a flat roof "
+                         "read as inhabited rather than unfinished.",
+    },
+    "presets": {
+        "BR_ROOF_FLAT": {
+            "Building Width": 18.0, "Building Depth": 12.0, "Roof Style": 0,
+            "Roof Pitch": 0.28, "Eave Overhang": 0.6, "Roof Thickness": 0.32,
+            "Gutters": True, "Gutter Width": 0.28,
+            "Roof Plant": False, "Plant Height": 1.6, "Plant Units": 4,
+        },
+        "BR_ROOF_PITCH": {
+            "Building Width": 22.0, "Building Depth": 14.0, "Roof Style": 1,
+            "Roof Pitch": 0.22, "Eave Overhang": 0.9, "Roof Thickness": 0.35,
+            "Gutters": True, "Gutter Width": 0.3,
+            "Roof Plant": False, "Plant Height": 1.6, "Plant Units": 4,
+        },
+        "BR_ROOF_SAWTOOTH": {
+            "Building Width": 26.0, "Building Depth": 18.0, "Roof Style": 2,
+            "Roof Pitch": 0.34, "Eave Overhang": 0.4, "Roof Thickness": 0.3,
+            "Sawtooth Teeth": 5, "Sawtooth Width": 3.4,
+            "Gutters": False, "Gutter Width": 0.28,
+            "Roof Plant": False, "Plant Height": 1.6, "Plant Units": 4,
+        },
+        "BR_ROOF_BARREL": {
+            "Building Width": 20.0, "Building Depth": 16.0, "Roof Style": 3,
+            "Roof Pitch": 0.42, "Eave Overhang": 0.5, "Roof Thickness": 0.4,
+            "Gutters": False, "Gutter Width": 0.28,
+            "Roof Plant": False, "Plant Height": 1.6, "Plant Units": 4,
+        },
+        "BR_ROOF_HIP": {
+            "Building Width": 24.0, "Building Depth": 20.0, "Roof Style": 4,
+            "Roof Pitch": 0.3, "Eave Overhang": 1.0, "Roof Thickness": 0.36,
+            "Gutters": True, "Gutter Width": 0.32,
+            "Roof Plant": False, "Plant Height": 1.6, "Plant Units": 4,
+        },
+        "BR_ROOF_PLANT": {
+            "Building Width": 18.0, "Building Depth": 12.0, "Roof Style": 5,
+            "Roof Pitch": 0.28, "Eave Overhang": 0.6, "Roof Thickness": 0.32,
+            "Gutters": True, "Gutter Width": 0.28,
+            "Roof Plant": True, "Plant Height": 2.2, "Plant Units": 6,
+        },
+    },
+}
+
+# City facade variations (2026-09-25). Facade Style is the builder's enum:
+# 0 Blank, 1 Ribbon, 2 Punched, 3 Colonnade. Default stays 0, so every
+# pre-existing city preset is untouched - these are ADDITIONAL named looks.
+# NOTE: the registry dict is BUILDERS_PRESETS, not _BUILDERS_PRESETS; the
+# leading-underscore name is a NameError, not a private alias.
+BUILDERS_PRESETS["GN_BRUTALIST_CityBlock"]["presets"]["BR_CITY_TOWERS_GLASS"] = {
+    "Blocks X": 3, "Blocks Y": 3, "Lot Width": 18.0, "Lot Depth": 16.0,
+    "Street Width": 10.0, "Setback": 2.0, "Height Min": 45.0,
+    "Height Max": 90.0, "Seed": 23, "Ground": True, "Roads": True,
+    "Sidewalks": True, "Parapet": True, "Piers": True,
+    "Facade Style": 1, "Window Floors": 18, "Window Bay": 2.4,
+    "Window Band Height": 1.6, "Window Reveal": 0.3, "Fin Depth": 0.5,
+    "Fin Count": 6,
+}
+BUILDERS_PRESETS["GN_BRUTALIST_CityBlock"]["presets"]["BR_CITY_PUNCHED"] = {
+    "Blocks X": 4, "Blocks Y": 4, "Lot Width": 14.0, "Lot Depth": 14.0,
+    "Street Width": 7.0, "Setback": 1.5, "Height Min": 18.0,
+    "Height Max": 36.0, "Seed": 5, "Ground": True, "Roads": True,
+    "Sidewalks": True, "Parapet": True, "Piers": True,
+    "Facade Style": 2, "Window Floors": 9, "Window Bay": 2.0,
+    "Window Band Height": 1.3, "Window Reveal": 0.35, "Fin Depth": 0.5,
+    "Fin Count": 6,
+}
+BUILDERS_PRESETS["GN_BRUTALIST_CityBlock"]["presets"]["BR_CITY_COLONNADE"] = {
+    "Blocks X": 2, "Blocks Y": 2, "Lot Width": 28.0, "Lot Depth": 24.0,
+    "Street Width": 14.0, "Setback": 3.0, "Height Min": 16.0,
+    "Height Max": 28.0, "Seed": 11, "Ground": True, "Roads": True,
+    "Sidewalks": True, "Parapet": True, "Piers": True,
+    "Facade Style": 3, "Window Floors": 6, "Window Bay": 2.6,
+    "Window Band Height": 1.5, "Window Reveal": 0.4, "Fin Depth": 0.9,
+    "Fin Count": 10,
+}
+BUILDERS_PRESETS["GN_BRUTALIST_CityBlock"]["preset_labels"].update({
+    "BR_CITY_TOWERS_GLASS": "Tower Cluster (Ribbon glazing)",
+    "BR_CITY_PUNCHED": "Punched Estate",
+    "BR_CITY_COLONNADE": "Civic Colonnade",
+})
+BUILDERS_PRESETS["GN_BRUTALIST_CityBlock"]["preset_descriptions"].update({
+    "BR_CITY_TOWERS_GLASS": "The skyline shot with ribbon glazing - the "
+                            "difference between a tower and a grey box.",
+    "BR_CITY_PUNCHED": "Punched openings on a bay grid, post-war housing read.",
+    "BR_CITY_COLONNADE": "Deep vertical fins on a civic superblock.",
+})
 
 
 def main() -> None:

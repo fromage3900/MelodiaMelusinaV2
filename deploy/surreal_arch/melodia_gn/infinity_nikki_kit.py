@@ -40,11 +40,16 @@ def _combine(tree, loc, x=None, y=None, z=None):
     return n
 
 def _position(tree, loc, geo, x=None, y=None, z=None):
+    """Translate a piece to its final spot (primitives are origin-centered).
+
+    Offset, not Position: SetPosition.Position is ABSOLUTE in 5.2 and a
+    constant there collapses the geometry to a single point.
+    """
     sp = safe_node(tree, "GeometryNodeSetPosition", loc)
     link_sockets(tree, geo, sp.inputs["Geometry"])
     if x is not None or y is not None or z is not None:
         cv = _combine(tree, (loc[0]-180, loc[1]-80), x, y, z)
-        link_sockets(tree, cv.outputs["Vector"], sp.inputs["Position"])
+        link_sockets(tree, cv.outputs["Vector"], sp.inputs["Offset"])
     return sp.outputs["Geometry"]
 
 def _switch_geo(tree, loc, cond_sock, true_geo, false_geo=None):

@@ -34,23 +34,6 @@ def _wire_mesh_bevel(tree, bevel, mesh_sock, offset_sock, segments_sock=None, pr
             link_sockets(tree, profile_sock, shape)
         elif prof is not None and getattr(prof, "type", "") != "GEOMETRY":
             link_sockets(tree, profile_sock, prof)
-    # Blender 5.2 Mesh Bevel carries FOUR extra proportion sockets:
-    #   Start Left/Right Offset, End Left/Right Offset.
-    # They default to 0.1 and are NOT cosmetic: each says how much of the
-    # edge the bevel may consume. On a dense mesh that inflates the result
-    # enormously and is INDEPENDENT of Offset -- changing Width does nothing,
-    # which makes it look like a broken link rather than a default.
-    #
-    # Measured on the baroque circlet (6252 v / 6189 faces -> 37186 v after a
-    # 1.6 mm thicken):
-    #   Start/End offsets at their 0.1 defaults -> 590664 v, 1267.9 x 1093.7 x
-    #     548.4 mm  (the circlet is 508 mm wide -- it had grown 2.5x)
-    #   Start/End offsets set to 0.0           ->  37186 v,  511.4 x  512.0 x
-    #      96.3 mm  (correct: +1.6 mm wall on each side)
-    for _prop in ("Start Left Offset", "Start Right Offset",
-                  "End Left Offset", "End Right Offset"):
-        if _prop in bevel.inputs:
-            bevel.inputs[_prop].default_value = 0.0
     color_node(bevel, "geometry")
     return sock(bevel, "Mesh", "Geometry", outputs=True)
 

@@ -1846,6 +1846,13 @@ def build_weave_surface_group(group_name="MEL_weave_surface"):
         color_node(cyl_w, "tower")
 
         # UV sphere as sampling surface
+        # NOTE: kept for reference only -- see the strand loop. Geometry Nodes
+        # primitives emit NO uv map (measured: MeshUVSphere/MeshGrid/Cube/
+        # Cylinder all report uv_layers=[]), so SampleUVSurface returns the
+        # zero vector for every point and the whole tower collapses to one
+        # point (measured 3402/3402 degenerate, ext [0.0497, 0.0445, 0]).
+        # A minimal 12-node repro reproduced it with a Grid too. The strand is
+        # placed analytically on the cylinder instead.
         uvsph_w = _node(tree, 'GeometryNodeMeshUVSphere', (x, -400))
         uvsph_w.inputs['Segments'].default_value = 32
         uvsph_w.inputs['Rings'].default_value    = 16
@@ -1885,22 +1892,25 @@ def build_weave_surface_group(group_name="MEL_weave_surface"):
             _link(tree, ang_w.outputs['Value'], cos_w.inputs[0])
             _link(tree, ang_w.outputs['Value'], sin_w.inputs[0])
 
-            # Sample UV surface at this angle/height
-            suvs = _node(tree, 'GeometryNodeSampleUVSurface', (x+1500, strand_i * 150))
-            suvs.data_type = 'FLOAT_VECTOR'
-            uv_x = _node(tree, 'ShaderNodeCombineXYZ', (x+1300, strand_i*150-400))
-            _link(tree, cos_w.outputs['Value'], uv_x.inputs['X'])
-            _link(tree, sin_w.outputs['Value'], uv_x.inputs['Y'])
-            _link(tree, uvsph_w.outputs['Mesh'],    suvs.inputs['Mesh'])
-            _link(tree, uv_x.outputs['Vector'],     suvs.inputs['Sample UV'])
-            pos_uvsph = _node(tree, 'GeometryNodeInputPosition', (x+1200, strand_i*150-600))
-            _link(tree, pos_uvsph.outputs['Position'], suvs.inputs['Value'])
-            color_node(suvs, "deform")
+            # Analytic cylinder placement: offset each resampled point by
+            # (R*cos(theta), R*sin(theta), 0), keeping the line's own Z. This is
+            # what the SampleUVSurface attempt was trying to do.
+            r_cos = _node(tree, 'ShaderNodeMath', (x+1450, strand_i*150 - 100))
+            r_cos.operation = 'MULTIPLY'
+            r_cos.inputs[1].default_value = R_w
+            _link(tree, cos_w.outputs['Value'], r_cos.inputs[0])
+            r_sin = _node(tree, 'ShaderNodeMath', (x+1450, strand_i*150 - 300))
+            r_sin.operation = 'MULTIPLY'
+            r_sin.inputs[1].default_value = R_w
+            _link(tree, sin_w.outputs['Value'], r_sin.inputs[0])
+            off_w = _node(tree, 'ShaderNodeCombineXYZ', (x+1650, strand_i*150 - 200))
+            _link(tree, r_cos.outputs['Value'], off_w.inputs['X'])
+            _link(tree, r_sin.outputs['Value'], off_w.inputs['Y'])
+            color_node(off_w, "deform")
 
-            # Set curve positions to sampled surface positions
             set_w = _node(tree, 'GeometryNodeSetPosition', (x+1800, strand_i * 150))
             _link(tree, res_w.outputs['Curve'],    set_w.inputs['Geometry'])
-            _link(tree, suvs.outputs['Value'],     set_w.inputs['Position'])
+            _link(tree, off_w.outputs['Vector'],   set_w.inputs['Offset'])
             color_node(set_w, "deform")
 
             # Sweep thin tube profile
