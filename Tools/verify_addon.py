@@ -33,7 +33,10 @@ except ImportError:
     )
     raise SystemExit(2)
 
-REPO = r"P:/MelodiaMelusinaV2-Laptop"
+REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+# Repo-root-relative so this gate runs from any checkout (C:, G:, or a laptop
+# drive) instead of a hardcoded laptop path. Was r"P:/MelodiaMelusinaV2-Laptop"
+# until 2026-10-13, which made the gate unrunnable off the laptop.
 APPDATA_ADDONS = os.path.join(os.environ["APPDATA"], "Blender Foundation",
                               "Blender", "5.2", "scripts", "addons")
 BASELINE = os.path.join(REPO, "Tools", "registry_baseline.json")
