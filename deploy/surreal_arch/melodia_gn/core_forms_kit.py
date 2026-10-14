@@ -1258,25 +1258,29 @@ def build_pillar_group(group_name="MEL_pillar"):
         # ── Higgsas path: NTSpin profile + NTTaper entasis ─────────────────
         higg_spin = _higg_node(tree, 'NTSpin', (base_x, 0))
         if higg_spin is not None:
-            # Build a half-profile curve (quarter of a circle for the shaft cross-section)
-            # Use a CurveArc for the shaft silhouette, then spin 360deg
-            profile_arc = _safe_node(tree, 'GeometryNodeCurveArc', (base_x - 300, 0))
-            if profile_arc:
+            # Lathe the SHAFT SILHOUETTE: a vertical line at radius R spanning
+            # z in [-0.5, 0.5], spun about Z. A swept 2D SECTOR (the previous
+            # CurveArc + FillCurve NGON) is not a silhouette: it lies flat in
+            # the XY plane, so spinning it about Z reproduces the same flat
+            # sheet — the shaft came out a DISC of zero height (measured
+            # ext z = 0.0000, 20/256 faces zero-area) and the pillar had no
+            # column at all. A profile line gives the real column: ext
+            # [1.664, 1.664, 1.0] after NTTaper, 0 degenerate.
+            profile = _safe_node(tree, 'GeometryNodeMeshLine', (base_x - 300, 0))
+            if profile:
                 try:
-                    profile_arc.mode = 'RADIUS'
-                    profile_arc.inputs['Radius'].default_value      = R
-                    profile_arc.inputs['Start Angle'].default_value = 0
-                    profile_arc.inputs['Sweep Angle'].default_value = math.pi / 2
-                    profile_arc.inputs['Resolution'].default_value  = 8
-                except Exception: pass
-                fill = _safe_node(tree, 'GeometryNodeFillCurve', (base_x - 100, 0))
-                if fill:
-                    _link(tree, profile_arc.outputs['Curve'], fill.inputs['Curve'])
-                    _higg_input(higg_spin, 'Angle', math.tau)   # full 360deg
-                    _higg_input(higg_spin, 'Steps', max(16, n_flutes * 2))
-                    try:
-                        _link(tree, fill.outputs['Mesh'], higg_spin.inputs['Mesh'])
-                    except Exception: pass
+                    profile.mode = 'OFFSET'
+                    profile.inputs['Count'].default_value = 12
+                    profile.inputs['Start Location'].default_value = (R, 0.0, -0.5)
+                    profile.inputs['Offset'].default_value = (0.0, 0.0, 1.0 / 11.0)
+                except Exception:
+                    pass
+                _higg_input(higg_spin, 'Angle', math.tau)   # full 360deg
+                _higg_input(higg_spin, 'Steps', max(16, n_flutes * 2))
+                try:
+                    _link(tree, profile.outputs['Mesh'], higg_spin.inputs['Mesh'])
+                except Exception:
+                    pass
             # Apply Higgsas NTTaper for entasis (slight bulge at mid-height)
             higg_taper = _higg_node(tree, 'NTTaper', (base_x + 400, 0))
             geom_out = higg_spin.outputs.get('Mesh') or higg_spin.outputs[0]

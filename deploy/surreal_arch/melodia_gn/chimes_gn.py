@@ -62,6 +62,46 @@ def _combine(tree, loc, x=None, y=None, z=None):
     return node
 
 
+def _semitone_length_ratio(tree, loc, semitone_sock):
+    """sq = 2^((9 - semitone) / 24) -- the dimensionless length factor of the
+    free-free beam law (L = Longest * sqrt(f_ref / f), f_ref at semitone 9).
+
+    The PARENT applies this with ScaleInstances. It cannot be pushed into the
+    proto: linking a field into the proto's Semitone makes the primitive's
+    Depth socket a field, which has no geometry domain to evaluate against, so
+    every instance came out zero-length (measured on MEL_chime_field_scatter:
+    192/224 faces degenerate, ext z = 0.0). Same collapse on carillon + siku.
+    """
+    bx, by = loc
+    off = _math(tree, "SUBTRACT", (bx, by), 9.0, semitone_sock)
+    div = _math(tree, "DIVIDE", (bx + 140, by), off.outputs[0], 24.0)
+    p = safe_node(tree, "ShaderNodeMath", (bx + 280, by))
+    if p is None:
+        return None
+    try:
+        p.operation = "POWER"
+    except Exception:
+        pass
+    try:
+        p.inputs[0].default_value = 2.0
+    except Exception:
+        pass
+    link_sockets(tree, div.outputs[0], p.inputs[1])
+    return p.outputs[0]
+
+
+def _pin_proto_length(proto, semitone=9.0):
+    """Pin a tube proto to the semitone whose length equals Longest M exactly."""
+    if proto is None:
+        return
+    s = proto.inputs.get("Semitone")
+    if s is not None:
+        try:
+            s.default_value = semitone
+        except Exception:
+            pass
+
+
 def _true_socket(n): return n.inputs.get("True") or n.inputs.get("A")
 def _false_socket(n): return n.inputs.get("False") or n.inputs.get("B")
 def _out_socket(n): return n.outputs.get("Output") or (n.outputs[0] if n and n.outputs else None)
@@ -265,8 +305,16 @@ def _ensure_tube_group(tree, loc):
 
 def _scatter_instances(tree, loc, proto_group, count_sock, spacing_sock, cols_sock,
                        semitone_start=0, jitter=0.0, seed=11):
-    """Grid-scatter proto with per-instance Semitone = index (row-major)."""
+    """Grid-scatter proto with per-instance length = free-free beam law.
+
+    The proto stays a CLEAN unit tube pinned at Semitone 9 (= Longest M) and the
+    PARENT applies the tuning with ScaleInstances driven by Index. Linking the
+    Index field into the proto's Semitone instead makes the primitive's Depth
+    socket a field, which has no geometry domain to evaluate against: every
+    instance came out zero-length (measured 192/224 degenerate faces).
+    """
     bx, by = loc
+    _pin_proto_length(proto_group)
     mesh_line = safe_node(tree, "GeometryNodeMeshLine", (bx, by + 160))
     try:
         mesh_line.inputs["Count"].default_value = 64
@@ -289,10 +337,8 @@ def _scatter_instances(tree, loc, proto_group, count_sock, spacing_sock, cols_so
     link_sockets(tree, proto_group.outputs.get("Geometry"), sock(inst, "Instance"))
 
     idx = safe_node(tree, "GeometryNodeInputIndex", (bx + 420, by - 80))
-    # per-instance semitone -> group input
-    if proto_group.inputs.get("Semitone") is not None:
-        link_sockets(tree, idx.outputs["Index"], proto_group.inputs["Semitone"])
 
+    geom = inst.outputs["Instances"]
     if jitter > 0.0:
         rand = safe_node(tree, "FunctionNodeRandomValue", (bx + 420, by - 220))
         try:
@@ -311,8 +357,20 @@ def _scatter_instances(tree, loc, proto_group, count_sock, spacing_sock, cols_so
         tr = safe_node(tree, "GeometryNodeTranslateInstances", (bx + 700, by + 120))
         link_sockets(tree, inst.outputs["Instances"], tr.inputs["Instances"])
         link_sockets(tree, rand.outputs[0], sock(tr, "Translation") or tr.inputs[1])
-        return tr.outputs["Instances"]
-    return inst.outputs["Instances"]
+        geom = tr.outputs["Instances"]
+
+    # Per-instance tuning: Z scale = 2^((9 - index) / 24), X/Y stay 1 (the proto
+    # already carries Radius M). ScaleInstances AFTER InstanceOnPoints is the only
+    # place a per-instance field has a geometry domain to read.
+    ratio = _semitone_length_ratio(tree, (bx + 420, by - 400), idx.outputs["Index"])
+    if ratio is not None:
+        sv = _combine(tree, (bx + 700, by - 400), 1.0, 1.0, ratio)
+        si = safe_node(tree, "GeometryNodeScaleInstances", (bx + 900, by + 120))
+        if si is not None and sv is not None:
+            link_sockets(tree, geom, si.inputs["Instances"])
+            link_sockets(tree, sv.outputs["Vector"], sock(si, "Scale") or si.inputs[2])
+            return si.outputs["Instances"]
+    return geom
 
 
 # ---------------------------------------------------------------------------
@@ -380,6 +438,10 @@ def build_chime_mark_tree(group_name="MEL_chime_mark_tree"):
 
     proto = _ensure_tube_group(tree, (bx - 520, by + 80))
     if proto:
+        # Pin the proto at semitone 9 so its length is exactly Longest M; the
+        # graduation lerp below then scales from a known 1.0 base. Left at the
+        # interface default (0.0) the proto was 2^(9/24) = 1.297x too long.
+        _pin_proto_length(proto)
         if proto.inputs.get("Root Hz") is not None:
             try:
                 proto.inputs["Root Hz"].default_value = 523.25  # C5 anchor
@@ -413,8 +475,14 @@ def build_chime_mark_tree(group_name="MEL_chime_mark_tree"):
     span = _math(tree, "SUBTRACT", (bx + 260, by - 280), gin.outputs["Shortest M"], gin.outputs["Longest M"])
     scaled = _math(tree, "MULTIPLY", (bx + 420, by - 220), span.outputs[0], t.outputs[0])
     length = _math(tree, "ADD", (bx + 580, by - 200), gin.outputs["Longest M"], scaled.outputs[0])
-    # uniform Z scale approximates length change for the tube prototype
-    sv = _combine(tree, (bx + 740, by - 200), 1.0, 1.0, length.outputs[0])
+    # The proto is pinned at semitone 9, so its own length is exactly Longest M.
+    # The per-instance scale is therefore the RATIO length/Longest, not the
+    # absolute length -- feeding the absolute value multiplied every rod by
+    # Longest M again (the curtain measured 2.27 m tall for a 1.4 m longest rod).
+    ratio = _math(tree, "DIVIDE", (bx + 740, by - 260), length.outputs[0],
+                  gin.outputs["Longest M"])
+    sv = _combine(tree, (bx + 900, by - 200), 1.0, 1.0,
+                  ratio.outputs[0] if ratio else 1.0)
     scale_inst = safe_node(tree, "GeometryNodeScaleInstances", (bx + 900, by + 140))
     link_sockets(tree, inst.outputs["Instances"], scale_inst.inputs["Instances"])
     link_sockets(tree, sv.outputs["Vector"], sock(scale_inst, "Scale") or scale_inst.inputs[2])
@@ -467,6 +535,7 @@ def build_chime_carillon_tier(group_name="MEL_chime_carillon_tier"):
 
     proto = _ensure_tube_group(tree, (bx - 420, by - 120))
     if proto:
+        _pin_proto_length(proto)
         for s, d in (("Root Hz", "Root Hz"), ("Longest M", "Longest M"),
                      ("Radius M", "Radius M")):
             if proto.inputs.get(s) is not None:
@@ -474,13 +543,25 @@ def build_chime_carillon_tier(group_name="MEL_chime_carillon_tier"):
 
     inst = safe_node(tree, "GeometryNodeInstanceOnPoints", (bx + 240, by + 120))
     link_sockets(tree, pts.outputs["Points"], sock(inst, "Points"))
+    geom = inst.outputs["Instances"]
     if proto:
         link_sockets(tree, proto.outputs.get("Geometry"), sock(inst, "Instance"))
-        if proto.inputs.get("Semitone") is not None:
-            idx = safe_node(tree, "GeometryNodeInputIndex", (bx + 240, by - 80))
-            link_sockets(tree, idx.outputs["Index"], proto.inputs["Semitone"])
 
-    _export_tail(tree, gin, gout, inst.outputs["Instances"], (bx + 460, by + 120))
+    # Semitone steps around the ring, applied as a per-instance Z scale. Driving
+    # the proto's Semitone with the Index field instead put a field in the
+    # primitive's Depth socket, which has no geometry domain: 120/140 faces came
+    # out degenerate with ext z = 0.0.
+    idx = safe_node(tree, "GeometryNodeInputIndex", (bx + 240, by - 80))
+    ratio = _semitone_length_ratio(tree, (bx + 240, by - 320), idx.outputs["Index"])
+    if ratio is not None:
+        sv = _combine(tree, (bx + 520, by - 320), 1.0, 1.0, ratio)
+        si = safe_node(tree, "GeometryNodeScaleInstances", (bx + 640, by + 120))
+        if si is not None and sv is not None:
+            link_sockets(tree, geom, si.inputs["Instances"])
+            link_sockets(tree, sv.outputs["Vector"], sock(si, "Scale") or si.inputs[2])
+            geom = si.outputs["Instances"]
+
+    _export_tail(tree, gin, gout, geom, (bx + 860, by + 120))
 
     _refresh_group_refs(tree, "MEL_chime_tube")
     return label_tree(tree, group_name, [
@@ -534,8 +615,14 @@ def build_chime_aeolian_wall(group_name="MEL_chime_aeolian_wall"):
     c_in = sock(line, "Count")
     if c_in is not None:
         link_sockets(tree, gin.outputs["String Count"], c_in)
+    # MeshLine 'Offset' is a PER-STEP delta, not a total span. Linking Width M
+    # straight in spanned String Count x Width M (28 * 6 m = 162 m wall, audit
+    # 2026-10-02 P3). Divide the span by the step count first.
     end_input = "Offset" if sock(line, "Offset") is not None else "End Location"
-    link_float_to_vector(tree, gin.outputs["Width M"], line, end_input, component=0)
+    cnt_m1 = _math(tree, "SUBTRACT", (bx - 900, by + 140), gin.outputs["String Count"], 1.0)
+    step_x = _math(tree, "DIVIDE", (bx - 700, by + 140), gin.outputs["Width M"],
+                   cnt_m1.outputs[0] if cnt_m1 else None)
+    link_float_to_vector(tree, step_x.outputs[0] if step_x else None, line, end_input, component=0)
     pts = safe_node(tree, "GeometryNodeMeshToPoints", (bx - 180, by + 260))
     link_sockets(tree, line.outputs["Mesh"], sock(pts, "Mesh") or pts.inputs[0])
 

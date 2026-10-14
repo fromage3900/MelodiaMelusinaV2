@@ -63,12 +63,18 @@ def _combine(tree, loc, x, y, z):
 
 
 def _position_piece(tree, loc, geometry_sock, x=None, y=None, z=None):
-    """Set a piece's position (primitives are origin-centered)."""
+    """Translate a piece to its final spot (primitives are origin-centered).
+
+    Uses Offset, NOT Position: SetPosition.Position is ABSOLUTE in 5.2, so
+    writing a constant there collapses every vertex onto one point (measured:
+    ext 0,0,0 with 100% zero-area faces). Offset is the translate semantics
+    this helper always meant.
+    """
     set_pos = safe_node(tree, "GeometryNodeSetPosition", loc)
     link_sockets(tree, geometry_sock, set_pos.inputs["Geometry"])
     if x is not None or y is not None or z is not None:
         pos = _combine(tree, (loc[0] - 200, loc[1] - 120), x, y, z)
-        link_sockets(tree, pos.outputs["Vector"], set_pos.inputs["Position"])
+        link_sockets(tree, pos.outputs["Vector"], set_pos.inputs["Offset"])
     return set_pos.outputs["Geometry"]
 
 

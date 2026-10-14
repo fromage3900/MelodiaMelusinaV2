@@ -51,11 +51,18 @@ def build_barrel_vault_ceiling(group_name="MEL_barrel_vault_ceiling"):
             arc.inputs["Resolution"].default_value = 64
         except Exception:
             pass
-        # Semicircle = π radians
-        try:
-            arc.inputs["Arc Angle"].default_value = 3.14159265359
-        except Exception:
-            pass
+        # Semicircle = π radians. The 5.2 socket is "Sweep Angle" — writing
+        # "Arc Angle" raised KeyError inside try/except and silently left the
+        # node's 315° default (5.4978 rad), so the vault wrapped past a
+        # semicircle. Probe, don't assume.
+        for _name in ("Sweep Angle", "Arc Angle"):
+            _s = arc.inputs.get(_name)
+            if _s is not None:
+                try:
+                    _s.default_value = 3.14159265359
+                except Exception:
+                    pass
+                break
 
     # ── 2. Profile: Grid → MeshToCurve ──
     # Width = thickness (Z direction), Height = length (Y direction)
@@ -117,14 +124,22 @@ def build_barrel_vault_ceiling(group_name="MEL_barrel_vault_ceiling"):
         pass
 
     # ── 5. Extrude for thickness ──
+    # The vault is a swept OPEN surface, so it has no volume of its own: the
+    # extrude IS the thickness. Offset is the (linked) thickness field, so
+    # Offset Scale must stay 1.0 — a 0.0 default multiplied the field to zero,
+    # leaving every side face coincident (1016 zero-area faces, z extent 0.0;
+    # probe 2026-10-02). Both name variants probed: the 5.2 socket is
+    # "Offset Scale".
     extrude = safe_node(tree, "GeometryNodeExtrudeMesh", (bx + 700, by))
     color_node(extrude, "geometry")
     link_sockets(tree, inv_tx.outputs.get("Geometry", inv_tx.outputs.get("Mesh")), extrude.inputs.get("Mesh", extrude.inputs[0]))
     link_sockets(tree, vt, extrude.inputs.get("Offset", extrude.inputs[2]))
-    try:
-        extrude.inputs["Offset Scale"].default_value = 0.0
-    except Exception:
-        pass
+    _os = extrude.inputs.get("Offset Scale")
+    if _os is not None:
+        try:
+            _os.default_value = 1.0
+        except Exception:
+            pass
 
     # ── 6. Join with incoming geometry ──
     join = safe_node(tree, "GeometryNodeJoinGeometry", (bx + 900, by))

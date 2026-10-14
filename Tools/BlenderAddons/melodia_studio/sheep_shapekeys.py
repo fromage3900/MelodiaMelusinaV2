@@ -177,6 +177,72 @@ class MELODIA_OT_sheep_sk_cycle(Operator):
         return {"FINISHED"}
 
 
+class MELODIA_OT_prop_create_with_sk(Operator):
+    """Duplicate the selected sheep mesh with a shape-key preset baked in."""
+    bl_idname = "melodia.prop_create_with_sk"
+    bl_label = "Bake Prop from Preset"
+    bl_options = {"REGISTER", "UNDO"}
+    set_name: StringProperty(default="harmonize", name="Preset")
+
+    SETS = MELODIA_OT_sheep_sk_cycle.SETS
+
+    def execute(self, context):
+        src = _find_sheep_mesh(context)
+        if src is None:
+            self.report({"ERROR"}, "Select the sheep mesh first")
+            return {"CANCELLED"}
+        if src.data.shape_keys is None:
+            self.report({"WARNING"}, "No shape keys - create the library first")
+            return {"CANCELLED"}
+        target = self.SETS.get(self.set_name, self.SETS["neutral"])
+        for kb in src.data.shape_keys.key_blocks:
+            kb.value = target.get(kb.name, 0.0)
+        src.evaluated_get(context.evaluated_depsgraph_get())
+        try:
+            import bpy
+            deps = context.evaluated_depsgraph_get()
+            src_eval = src.evaluated_get(deps)
+            mesh = src_eval.to_mesh()
+        except Exception:
+            mesh = src.to_mesh()
+        prop_name = f"Prop_Sheep_{self.set_name.capitalize()}"
+        prop_obj = bpy.data.objects.new(prop_name, mesh)
+        context.collection.objects.link(prop_obj)
+        prop_obj.location = (src.location.x + 1.5, src.location.y, src.location.z)
+        self.report({"INFO"}, f"Created {prop_name}")
+        return {"FINISHED"}
+
+
+class MELODIA_OT_sk_bake_to_prop(Operator):
+    """Bake the current slider state into a new mesh object (apply shapekeys)."""
+    bl_idname = "melodia.sk_bake_to_prop"
+    bl_label = "Bake Current to Prop"
+    bl_options = {"REGISTER", "UNDO"}
+    prop_name: StringProperty(default="Prop_Sheep_Baked", name="Prop Name")
+
+    def execute(self, context):
+        obj = _find_sheep_mesh(context)
+        if obj is None:
+            self.report({"ERROR"}, "Select the sheep mesh first")
+            return {"CANCELLED"}
+        if obj.data.shape_keys is None:
+            self.report({"WARNING"}, "No shape keys")
+            return {"CANCELLED"}
+        try:
+            import bpy
+            deps = context.evaluated_depsgraph_get()
+            obj_eval = obj.evaluated_get(deps)
+            mesh = obj_eval.to_mesh()
+        except Exception:
+            mesh = obj.to_mesh()
+        name = self.prop_name.strip() or "Prop_Sheep_Baked"
+        prop_obj = bpy.data.objects.new(name, mesh)
+        context.collection.objects.link(prop_obj)
+        prop_obj.location = (obj.location.x + 2.0, obj.location.y, obj.location.z)
+        self.report({"INFO"}, f"Baked {name}")
+        return {"FINISHED"}
+
+
 class MELODIA_PT_sheep_shapekeys(Panel):
     bl_label = "Choral Sheep Shape Keys"
     bl_idname = BL_IDNAME
@@ -203,6 +269,15 @@ class MELODIA_PT_sheep_shapekeys(Panel):
         row.operator(MELODIA_OT_sheep_sk_create_group.bl_idname, icon="ADD")
 
         layout.separator()
+        layout.label(text="Prop Bakers", icon="OUTLINER_DATA_MESH")
+        for sname in ("neutral", "harmonize", "guide", "graze", "breath", "blink"):
+            op = layout.operator(MELODIA_OT_prop_create_with_sk.bl_idname,
+                                 text=f"Bake Prop: {sname.capitalize()}")
+            op.set_name = sname
+        row = layout.row(align=True)
+        row.operator(MELODIA_OT_sk_bake_to_prop.bl_idname, icon="CON_TRANSFORM")
+
+        layout.separator()
         layout.label(text="Preview Cycle", icon="PLAY")
         for sname in ("neutral", "breath", "blink", "harmonize", "guide", "graze"):
             op = layout.operator(MELODIA_OT_sheep_sk_cycle.bl_idname,
@@ -227,6 +302,8 @@ classes = (
     MELODIA_OT_sheep_sk_bake,
     MELODIA_OT_sheep_sk_clear,
     MELODIA_OT_sheep_sk_cycle,
+    MELODIA_OT_prop_create_with_sk,
+    MELODIA_OT_sk_bake_to_prop,
     MELODIA_PT_sheep_shapekeys,
 )
 

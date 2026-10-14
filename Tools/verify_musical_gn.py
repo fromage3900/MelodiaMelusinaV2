@@ -100,13 +100,6 @@ def probe_builder(name, builder_fn, params=None):
         eval_obj = empty.evaluated_get(depsgraph)
         mesh = eval_obj.to_mesh()
 
-        # to_mesh() ignores instances; builders that default to instance output
-        # (e.g. MEL_music_piano_roll with Realize off) would otherwise read as empty.
-        entry["instances"] = sum(
-            1 for inst in depsgraph.object_instances
-            if inst.is_instance and inst.parent and inst.parent.original == empty
-        )
-
         if mesh is None:
             entry["errors"].append("evaluated to no mesh")
         else:
@@ -130,7 +123,7 @@ def probe_builder(name, builder_fn, params=None):
             eval_obj.to_mesh_clear()
 
         # Self-contained pass criteria
-        has_geometry = entry.get("polygons", 0) > 0 or entry.get("instances", 0) > 0
+        has_geometry = entry.get("polygons", 0) > 0
         no_nans = not entry.get("nan_values", False) and not entry.get("nan_vertices", False)
         no_dup_inputs = not entry.get("duplicate_inputs", False)
         entry["ok"] = has_geometry and no_nans and no_dup_inputs and not entry["errors"]
@@ -191,10 +184,10 @@ def main():
             extra += " | NaN verts!"
         if entry.get("duplicate_inputs"):
             extra += " | DUP INPUTS!"
-        print("  %-38s %s nodes=%-4d in=%-3d out=%-3d v=%-6d p=%-6d inst=%-4d%s" % (
+        print("  %-38s %s nodes=%-4d in=%-3d out=%-3d v=%-6d p=%-6d%s" % (
             name, status, entry.get("nodes", 0), entry.get("inputs", 0),
             entry.get("outputs", 0), entry.get("verts", 0),
-            entry.get("polygons", 0), entry.get("instances", 0), extra), flush=True)
+            entry.get("polygons", 0), extra), flush=True)
 
     report["summary"] = {"total": len(builders), "ok": ok_count, "fail": len(builders) - ok_count}
     report["verdict"] = "PASS" if ok_count == len(builders) else "FAIL"

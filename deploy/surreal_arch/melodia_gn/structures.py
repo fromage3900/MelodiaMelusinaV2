@@ -363,9 +363,8 @@ def build_portico(group_name="MEL_portico"):
 
     # Simple box pediment
     cube = safe_node(tree, "GeometryNodeMeshCube", (bx - 200, by + 100))
-    link_float_to_vector(tree, gin.outputs["Width"], cube, "Size", component=0, defaults=(0.0, 0.0, 0.0))
-    link_float_to_vector(tree, gin.outputs["Depth"], cube, "Size", component=1, defaults=(0.0, 0.0, 0.0))
-    cube.inputs["Size"].default_value[2] = 0.3
+    link_float_to_vector(tree, gin.outputs["Width"], cube, "Size", component=0, defaults=(0.0, 0.0, 0.3))
+    link_float_to_vector(tree, gin.outputs["Depth"], cube, "Size", component=1, defaults=(0.0, 0.0, 0.3))
 
     set_pos_ped = safe_node(tree, "GeometryNodeSetPosition", (bx, by + 100))
     link_sockets(tree, cube.outputs["Mesh"], set_pos_ped.inputs["Geometry"])

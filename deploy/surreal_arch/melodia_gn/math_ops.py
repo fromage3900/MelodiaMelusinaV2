@@ -129,7 +129,7 @@ def build_exponent_blend(group_name="MEL_exponent_blend"):
     # Set Position on geometry
     set_pos = safe_node(tree, "GeometryNodeSetPosition", (bx + 200, by - 200))
     link_sockets(tree, gin.outputs["Geometry"], set_pos.inputs["Geometry"])
-    link_sockets(tree, add.outputs["Vector"], set_pos.inputs["Position"])
+    link_sockets(tree, add.outputs["Vector"], set_pos.inputs["Offset"])
     link_sockets(tree, set_pos.outputs["Geometry"], gout.inputs["Geometry"])
 
     color_node(exp_n, "math")
