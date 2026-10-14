@@ -1,11 +1,12 @@
 # Melodia Melusina ? Current State
 
-## Studio/GN reconcile lane — 2026-10-13 (READY FOR INTEGRATOR; not landed)
+## Studio/GN reconcile lane -- LANDED 2026-10-13 (PR #480, 8 commits)
 
-- **Lane:** `refs/agents/studio-gn` (worktree `C:\EnvironmentPortfolio\_worktrees\lane-studio-gn`), 8 commits rebased onto `origin/main@28ee209`. Land via `.\deploy\land_agent_lane.ps1 -Lane studio-gn`; do not push/PR. Local main's 21 unpushed animation commits are parked on `land/melusina-animation-20261013`, main itself untouched.
+- **Lane landed:** `refs/agents/studio-gn` (8 commits, base `origin/main@28ee209`) via `deploy/land_agent_lane.ps1`; PR #480 merged 2026-10-14T03:44:26Z, temp branch deleted in the same run. Local main coal-face untouched.
 - **What:** selective promotion from `origin/collab/laptop/melodia-studio-tidy-20261004` (105 files, never merged) — 54 new files (panel-split modules, 8 music verifiers, 39 GN builders), 43 modified paths (registrations, facade, builder revisions), `core.py` union merge, 3-file laptop-`P:`-hardcode repair. No wholesale merge; 5 laptop file-deletions deferred (files retained, orphans harmless); `registry_baseline.json` untouched.
 - **Evidence (all in-lane, Blender 5.2.1):** `MELODIA STUDIO SOURCE GATE: PASS` — registry 784, `GN_PARIS_WallDetail` 576 verts, `GN_PARIS_SlabTrim` 0 verts (documented input-dependent); `blender_smoke.py` 27/27 `[SMOKE]` PASS incl. 15 classes + clean unregister (exit-1 is the documented background-teardown bug, not a failure); `py_compile` clean; `_batch_remaining_presets.py` duplicate proved SHA256-identical before delete.
 - **Integrator notes:** eyewear consolidated 3 builders into `MEL_eyewear_hero` by laptop design (gate `baseline_lost` warning, PASS); baseline re-cut is a follow-up (new ids report as `baseline_new`, zero unexpected lost); AppData live profile still has addon 1.5.0 — reinstall from `Tools/BlenderAddons` after landing so Blender loads 1.6.0.
+- **Repo incident during landing (2026-10-13 ~23:39 UTC):** `.git/config` gained `core.bare=true`, breaking `git status` in EVERY worktree on this machine (primary + all lanes). Repaired with `git config core.bare false`; all trees verified (`is-inside-work-tree=true`, lane clean, primary dirty=404 as before). Writer unidentified -- file mtime 23:39:52, no lane command writes config. If it recurs, check concurrent agents/daemons before touching history.
 
 ## Next cross-repo TD procedural art action — Chord Atelier / Infinite Aeolian Atrium (owner, 2026-10-11)
 
