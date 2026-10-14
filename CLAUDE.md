@@ -1,6 +1,6 @@
 # BS_GodFile — AI Agent Rules (Auto-loaded by Claude)
 
-**Front-door review:** 2026-10-05 against `main` at `e25682b3a83c5f6453a355f60a08b772309d3dad`.
+**Front-door review:** 2026-10-14 against `origin/main` at `97e576805ee5107ea14747874ba950e0de4e7ca4`.
 
 ## 🛑 GIT PIPELINE LAW — BINDING
 
@@ -60,6 +60,10 @@ table for a one-line fix; you are proposing a design where the ask was a repair.
 > **Status, queue, and where everything is: [`CURRENT_STATE.md`](CURRENT_STATE.md) — the only status document.**
 > Sheep / Chladni / Nikki Cymatics work must also open [`Docs/References/ChoralSheepCapstone/AGENT_CONTEXT.md`](Docs/References/ChoralSheepCapstone/AGENT_CONTEXT.md).
 > Do not create handoff, plan, receipt, or session-note files. Update `CURRENT_STATE.md` in the same commit as the change; everything else goes in the commit or PR message.
+
+## Cymatics-first Melodia canon (binding)
+
+Melodia is fundamentally structured by music, harmony, resonance and cymatic mathematics, not merely decorated with audio-reactive effects. Before suggesting replacements, trace existing MIDI/chord mappings, Harmonic State (`UMelodiaHarmonicStateSubsystem`), Cymatics Subsystem (`UMelodiaCymaticsSubsystem`), World Field Bus (`UWorldFieldBus`), Houdini/PCG producers and runtime consumers. Follow the [World-Building Source of Truth](Docs/WorldBuilding/WORLD_BUILDING_SOURCE_OF_TRUTH.md) and [Audio-Reactive Canon](Docs/Architecture/AUDIO_REACTIVE_CANON.md). Preserve established gameplay/save authority and single-writer contracts. Do not create a new harmonic engine, World Compiler, model router, documentation authority or redundant subsystem.
 
 ## ⏱ Read dates before you trust a doc
 
