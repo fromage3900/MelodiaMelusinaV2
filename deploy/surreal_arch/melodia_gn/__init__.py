@@ -100,7 +100,12 @@ from . import core_forms_kit  # noqa: F401
 from . import core_forms_port  # noqa: F401 - tower, organic, hybrid, curved_wall, building
 from . import walls_kit  # noqa: F401
 from . import paris_wall_detail  # noqa: F401 - Paris lane v2 (Melusina study)
-from . import paris_track_a  # noqa: F401 - Track A: FountainLoop + DayNightFacade (owner queue 2026-09-21; kept: still registered on main, file retained)
+# NOTE: paris_track_a.py is RETAINED on disk but not imported: its two ids
+# (GN_PARIS_FountainLoop + GN_PARIS_DayNightFacade) are fully covered by the
+# paris_fountain_loop / paris_daynight_facade splits below (verified: SOURCE
+# gate registry shows both ids from the splits). Importing both would double-
+# register the same ids (last wins, splits). Re-adding the import was tried
+# and reverted in review for exactly this reason.
 from . import paris_escher_ladder  # noqa: F401 - Track A: Belvedere ladder device
 from . import paris_fountain_loop  # noqa: F401 - Track A: self-feeding courtyard fountain
 from . import paris_daynight_facade  # noqa: F401 - Track A: day/night duality facade
