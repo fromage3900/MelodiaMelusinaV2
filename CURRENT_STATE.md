@@ -857,8 +857,14 @@ The long body is retained as audit history, not as a flat list of present-tense 
   **Evidence: live-proven** — direct OpenAI-compat chat + proxy `/v1/messages` round-trip
   (47 tokens, `ARGON_OK`) and an owner Claude Code session completing real MCP tool calls on
   `gemini-4-argon` (clean 200 stream in `Scripts/nous_proxy/proxy.log`). Known cosmetic: Claude
-  Code warns about the `nous` model alias (assumes a 200k window). `Scripts/nous_proxy/` remains
-  **untracked in git** — commit owed when the owner asks.
+  Code warns about the `nous` model alias (assumes a 200k window). Lane landed as `2e8ac27fb`.
+  **Also wired into the canonical router** (`Tools/model_router.py`): `ENDPOINTS["gemini"]`,
+  `PRICES["gemini-4-argon"]` at Google's published intro rate ($2/$10 per 1M — **steps to
+  $4/$20 on 2026-12-01, update the row**), `load_keys()` from `GEMINI_API_KEY` /
+  `%LOCALAPPDATA%\hermes\gemini_api_key.txt`, and POLICY mid-chain fallback in `review` and
+  `docs` only (NOUS_DEFAULT lead and LOCAL_ONLY production/daemon rules untouched).
+  Router-path evidence: `run_chat(review, attempt=2)` → `ARGON_OK`, ledger row at the exact
+  published rate (`$0.000108` for 39 in / 3 out), `audit` 0 registry gaps.
 
 
 ## Runtime animation convergence — 2026-10-03, ACTIVE
