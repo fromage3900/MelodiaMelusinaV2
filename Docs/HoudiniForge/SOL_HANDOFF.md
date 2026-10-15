@@ -128,3 +128,24 @@ Committed on `lane/houdini-forge-staging` and merged to main. 84 .uasset files, 
 - Cathedral v3.1 is owned by Sol.
 - Anim pack import (pending, editor must be closed or Claude lane): root at crown pivot, root motion off; mixed creature scales, verify scale on import; no sockets/UCX: add sockets on UE skeleton and generate Physics Asset; Strike_Ring f8 needs an AnimNotify driving the ring.
 - Aeolian dressing (Brennan-approved, existing assets only, owner 💧 for UE placement, needs editor closed or Claude lane): Weingarten facade + RoseTracery at S0_Amin7; known blockers: facade floats 8-54m, not refit to windows.json, no collision, 2 MI-less slots (Lookdev Manager mapping to contract MIs). New versioned Aeolian map; Brennan Ctrl+S.
+
+## Session 2026-10-15 live pass
+Live editor pass (Grok Bot / Brennan). Details: `Docs/HoudiniForge/ENEMY_WIRING_LIVE_2026-10-15.md`.
+
+**Landed this session**
+- Pitch **860** baked into `PCG_SeaAbove_OceanCathedral` CreatePoints (nodes tagged `[pitch860]` / `[pitch860 dedupe50]`).
+- **51** `HoudiniForge_Live` anchors in outliner (anchor/note/pitch_hz tags). Anchor-to-world mapping assumed and **unverified**.
+- **7** enemy BPs under `/Game/Staging/HoudiniForge/Enemies/` (mesh / MI / fly only; no Physics Assets or socket work yet).
+- Gaudy **v4** static meshes + child MIs (`*_GaudyV4`): LayerAOBlend/CAOBlend 0.5, DreamShadowLift 0.15.
+- Anim pack for 9 creatures + `AM_*_Strike_Ring` montages with empty `ACFNotifyFX` at **0.267 s** (frame 8 @ 30 fps).
+
+**Next**
+- Physics Assets for each `SKM_*_anim`.
+- Skeleton sockets `SKT_Emit_*` / `SKT_Weak_*` (CONTRACT names).
+- Notify FX via MPC route (`BP_MelodiaNiagaraDriver` / niagara contract) - do not write Niagara directly.
+- Wake/turn graph wiring: `ACFAIController` `OnAIStateChanged`, ATS `OnNewTarget`, `MelodiaBattleSession` phase.
+- Swap enemy BPs from static `CreatureMesh` to skeletal `SKM_*_anim`.
+- Dingle float BP (none yet).
+- BellSpirit bounds check.
+- Gaudy rebake (trim mask / patina) - Lookdev.
+- Cathedral **v3_2** (Cutie, paused).
