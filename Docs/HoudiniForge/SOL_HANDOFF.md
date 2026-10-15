@@ -165,3 +165,32 @@ Live editor pass continued (Grok Bot / Brennan). Wings detail: `Docs/HoudiniForg
 - `WingUnfold` AnimBP.
 - Physics Assets (anim pack + wings).
 - Plus earlier list: SKT_Emit/SKT_Weak, notify FX via MPC, wake/turn wiring, swap BPs to skeletal meshes, Dingle float BP, BellSpirit bounds, gaudy rebake, cathedral v3_2 (Cutie, paused).
+
+## 2026-10-15 (late) - final HoudiniForge/Aeolian commit
+
+### Aeolian facade (L_WP_CosmicOrrery)
+- `Aeolian_GPX_Weingarten_Facade_v2` + `Aeolian_GPX_Weingarten_RoseTracery` placed at (-1573, 19802, 1795), yaw 138.9.
+- Cliff-frame coordinates are **unverified**; alternate yaw is -41.1 if it faces the wrong way.
+- Collision is a single box only.
+
+### Melusina GN toys v1 (`Content/Staging/HoudiniForge/MelusinaGNToys`)
+- Committed as v1; **on hold** pending Cutie's v3 pass.
+- Halo not attached: `SK_Melusina` loads as None (possible broken redirector).
+- Emissive not set. Check `SM_MEL_Wand_CrystalTimeless` lightmap UVs.
+- Hidden probe actor `Aeolian_HaloBoneProbe` should be deleted (not committed).
+
+### Wing anims
+- Keyed one frame late (frames 2-50); trim to start at frame 1.
+
+### VFX audit (disk scan)
+- Missing effect type `/Game/EnvSandbox/VFX/EffectTypes/ENV_SakuraVFX` (18 SDF systems across Sakura, Candidates/SDF, Staging/Aeolian).
+- Missing `M_SDF_ParallaxPulse_Niagara` and `M_MusicalSDF_PulsingGeometry_Niagara`.
+- Missing JRO_JP Ornament14/31/44 textures (vfxMed folder) used by Melodia MIs ConstellationRosette/LanternFiligree/ShrineSeal.
+- `BP_HF_BellGolem_ACF` references missing `/Game/ACFEffectsManagerComponentBP`.
+- Check stash 9 recovery tag `recovery/vfx-library-stash9-20260920` for the missing assets.
+- The 42 "engine default emitter" flags are **false positives** (all reference project materials).
+- Ribbon renderer check on NS_WindRibbonGust / NS_SakuraCosmicAurora not done (editor query hung); still open.
+
+### Lookdev
+- See `ue_stage_pack/lookdev/ENEMY_WIRING_SPEC_v1.md` and `ue_stage_pack/lookdev/CONTRACT.md`.
+- Gaudy rebake using v5 Houdini UVs in `lookdev/gaudy/uvwork_v5`; fix texel density and patina first.

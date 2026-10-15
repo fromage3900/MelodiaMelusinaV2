@@ -218,3 +218,6 @@ _STACK_CATS = _core_mod.TREE_CATEGORIES
 _STACK_DESC = _core_mod.TREE_DESCRIPTIONS
 _STACK_CATMAP = _core_mod.TREE_CATEGORY_MAP
 _STACK_LABMAP = _core_mod.TREE_LABEL_MAP
+
+# ── leaf-card / hedge family (landing/blooms-v0.1) ───────────────────
+from . import hedge_clutter  # noqa: F401 - procedural hedge + foliage clutter

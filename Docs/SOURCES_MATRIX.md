@@ -17,6 +17,8 @@ Status values:
 | `Brushify - Floating Islands` | Brushify – Floating Islands | Joe Garth (Brushify Ltd) | https://www.fab.com/listings/097af450-268d-4691-9502-aeb3714fbda7 | Marketplace EULA | verified |
 | `Custom` | First-party Blender/custom work + ED sequence copy | fromage3900 + Epic Games | first-party · https://fab.com/s/7ee8c5704aaa | Owner + UE-Only | verified |
 | `Staging` (HoudiniForge) | First-party Houdini/Blender procedural kit (Carillon, gaudy v2/v4, Anim, Enemies BPs, Materials/Toon, MelusinaWings) | fromage3900 | first-party | Owner | verified |
+| `Staging` (Aeolian/Facade) | First-party Weingarten facade v2 + RoseTracery (Houdini procedural) | fromage3900 | first-party | Owner | verified |
+| `Staging` (HoudiniForge/MelusinaGNToys) | First-party Melusina GN toys v1 (wands, halo, ribbon) + Materials | fromage3900 | first-party | Owner | verified |
 | `EnvSandbox` (Cathedral / OrnamentMusical / SDF-SKU2 suite) | First-party art & material suite | fromage3900 | first-party | Owner | verified |
 | `EnvSandbox` (Library/Migrated/MagiciansLibrary) | Magician's Library Environment & VFX Pack | Coreb Games | https://www.fab.com/listings/25a46fa5-1f75-44e0-806c-026cfc1d45f8 | Marketplace EULA | verified |
 | `EnvSandbox` (Meshes/Environment — ~760-module assembled kit) | Assembled modular environment mega-kit (castle/interiors/nature/siege; components: carrot_fbx, FoodProps, confectionary + more) | Assembled by fromage3900 · components per-pack | https://www.artstation.com/marketplace | Per-component (ArtStation/CC0) | verified |
