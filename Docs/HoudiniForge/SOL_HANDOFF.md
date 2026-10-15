@@ -17,6 +17,7 @@ Updated 2026-10-15 ~13:10 ET by Grok Bot for Brennan. Branch lane/houdini-forge-
 | Cathedral v3.x (v3.1 and later) | Sol |
 | In-editor vertex color/UV check of the staged meshes | Brennan (needs the editor) |
 | Dingle collar clearance (~160 cm) check | Brennan / Sol |
+| Anim pack import (pending, editor must be closed or Claude lane): root at crown pivot, root motion off; mixed creature scales, verify scale on import; no sockets/UCX: add sockets on UE skeleton and generate Physics Asset; Strike_Ring f8 needs an AnimNotify driving the ring. Source: ue_stage_pack\lookdev\anim\ (9 fbx/SKM_<Creature>_anim.fbx x 7 takes + ANIM_CLIPS.md; local only, Saved/ is gitignored) | Lookdev Manager |
 | Proposed CURRENT_STATE.md line (not applied; see PR body) | Brennan |
 
 **Lane status (verbatim from Brennan's session notes; paths relative to houdini_forge / ue_stage_pack):**
@@ -112,3 +113,4 @@ Committed on `lane/houdini-forge-staging` and merged to main. 84 .uasset files, 
 - In-editor vertex color/UV check.
 - Dingle collar clearance, about 160 cm.
 - Cathedral v3.1 is owned by Sol.
+- Anim pack import (pending, editor must be closed or Claude lane): root at crown pivot, root motion off; mixed creature scales, verify scale on import; no sockets/UCX: add sockets on UE skeleton and generate Physics Asset; Strike_Ring f8 needs an AnimNotify driving the ring.
