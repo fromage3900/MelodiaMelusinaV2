@@ -149,3 +149,19 @@ Live editor pass (Grok Bot / Brennan). Details: `Docs/HoudiniForge/ENEMY_WIRING_
 - BellSpirit bounds check.
 - Gaudy rebake (trim mask / patina) - Lookdev.
 - Cathedral **v3_2** (Cutie, paused).
+
+## Session 2026-10-15 part 2
+Live editor pass continued (Grok Bot / Brennan). Wings detail: `Docs/HoudiniForge/MELUSINA_WINGS_STAGING.md`.
+
+**Landed**
+- **102+24** toon MIs under `/Game/Staging/HoudiniForge/Materials/Toon/` (`M_Master_Toon_Universal` via brass MIs).
+- Enemy BPs use `CreatureMesh` overrides (toon/slot wiring); snail/mimic tint applied.
+- **4** Carillon Arch creature meshes restored to their committed materials.
+- Melusina wings: 4 variants (Butterfly/Dragonfly/Moth/Musical) under `MelusinaWings/`; `WingSocket` on `spine_03_x`; `MelusinaWings` component looping Flutter; clockwork `Regalia_Wings` / Rings **hidden not deleted**.
+
+**TODO**
+- Set parent socket on `MelusinaWings` to `WingSocket` in BP editor (Python could not bind AttachToName); then zero relative location.
+- Variant swap (enum + Construction Script).
+- `WingUnfold` AnimBP.
+- Physics Assets (anim pack + wings).
+- Plus earlier list: SKT_Emit/SKT_Weak, notify FX via MPC, wake/turn wiring, swap BPs to skeletal meshes, Dingle float BP, BellSpirit bounds, gaudy rebake, cathedral v3_2 (Cutie, paused).
