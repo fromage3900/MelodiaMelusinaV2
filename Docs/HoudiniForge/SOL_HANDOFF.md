@@ -1,3 +1,15 @@
+# SOL BRIEF: Enemy BPs + chime systems in cathedral (Brennan approved)
+- Build on existing systems only. Read CURRENT_STATE.md first. No new master materials.
+- Enemy BPs are children of BP_EnemyExplorePawnBase and roam on the NavMesh.
+- Spawn from cathedral_v3 anchors (output 1, 35 anchors) with PCG Spawn Actor + InitializeFromPCGPoint. Actor variable names must match the anchor attributes: piece_id, pitch_hz, decay_s, strike_vel, mount, hang_cm, roams, orient, pscale. Frame is shared_zup_cm; pivot is the crown.
+- Bell MI follows pitch, per ue_stage_pack\lookdev\CONTRACT.md.
+- Prereqs before wiring:
+  - Import the anim pack: 9 SKM fbx with 7 takes each. Root motion off, check scale, add skeleton sockets and a Physics Asset, and add a Strike_Ring f8 AnimNotify.
+  - Gaudy v4 from Lookdev Manager.
+- Chime systems: use the existing Niagara picks in NIAGARA_PICK.md and Brennan's Niagara driver/pipeline. Never use default emitters.
+- Sol owns cathedral v3.x. Use the Claude lane only for live-editor writes.
+
+---
 # NEXT_SESSION_HANDOFF (read this first)
 Updated 2026-10-15 ~13:10 ET by Grok Bot for Brennan. Branch lane/houdini-forge-staging, merged to main.
 
