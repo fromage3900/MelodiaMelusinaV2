@@ -35,7 +35,8 @@ The integrated rhythm-JRPG loop remains the **production authority spine until t
   `UMelodiaAudioReactivePresentationSubsystem` owns the canonical audio palette. Cymatics reads
   that palette and its dedicated driver contract; it does not become a second audio writer.
 - **MelodiaCore** is an integration/presentation layer, not a competing combat or save authority.
-  ACFU and Conversation2D remain excluded.
+  Conversation2D remains excluded. The turn-based ARPG / ACFU hybrid is CANON (owner, 2026-10-11):
+  ACF supplies the realtime FLOW action layer on the canonical pawn; see `CURRENT_STATE.md` "OWNER CANON".
 
 **The four pillars converge onto those two layers.** Rhythm input rides *on top of* JRPG command
 input - same Attack/Skill/Item/Flee decisions, timed. Wardrobe is a core pillar (outfits carry

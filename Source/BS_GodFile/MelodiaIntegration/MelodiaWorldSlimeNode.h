@@ -5,6 +5,7 @@
 #include "MelodiaWorldSlimeNode.generated.h"
 
 class APawn;
+class UMaterialInstanceDynamic;
 class UMelodiaHybridEncounterComponent;
 class USphereComponent;
 class UStaticMeshComponent;
@@ -70,4 +71,14 @@ protected:
 
 private:
 	void Die();
+
+	/** The Chladni figure clears as Flow tunes the target and rings at lock. */
+	UFUNCTION()
+	void HandleResonanceChanged(float ResonanceNormalized, bool bLocked);
+
+	UPROPERTY(Transient)
+	TObjectPtr<UMaterialInstanceDynamic> ResonanceMaterial;
+
+	/** The material's authored ChladniIntensity, reached at lock. */
+	float LockedChladniIntensity = 0.0f;
 };
