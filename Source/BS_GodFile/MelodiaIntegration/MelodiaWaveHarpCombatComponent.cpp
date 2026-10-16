@@ -9,6 +9,7 @@
 #include "MelodiaWorldSlimeNode.h"
 #include "MelodiaTraversalComponent.h"
 #include "../PCG/MelodiaCymaticFieldComponent.h"
+#include "../Piano/PCGHeroMusic.h"
 #include "Camera/CameraComponent.h"
 #include "Animation/AnimInstance.h"
 #include "Animation/AnimMontage.h"
@@ -368,6 +369,18 @@ void UMelodiaWaveHarpCombatComponent::ReleaseDraw()
 }
 void UMelodiaWaveHarpCombatComponent::ResolveProjectileHit(AActor* Other, const float ReleaseBeatPhase)
 {
+ // A note that lands on an instrument plays it exactly like a footstep does: the
+ // node's own press path owns pitch, grading and reactivity.
+ if (auto* Bell = Cast<APCGHeroMusicNode>(Other))
+ {
+  if (!Character.IsValid()) return;
+  Bell->SetPressedForActor(Character.Get(), true);
+  UMelodiaCymaticFieldComponent::BroadcastHit(GetWorld(), Bell->GetActorLocation(), 1.f);
+  FTimerHandle Release;
+  GetWorld()->GetTimerManager().SetTimer(Release, FTimerDelegate::CreateWeakLambda(Bell,
+   [Bell, Player = Character]() { if (Player.IsValid()) Bell->SetPressedForActor(Player.Get(), false); }), .25f, false);
+  return;
+ }
  auto* Encounter = IsValid(Other) ? Other->FindComponentByClass<UMelodiaHybridEncounterComponent>() : nullptr;
  const auto* WorldTarget = Cast<AMelodiaWorldSlimeNode>(Other);
  const float HPBefore = WorldTarget ? WorldTarget->CurrentHP : 0.f;

@@ -327,7 +327,9 @@ private:
 	void ApplyNoteToScore(const FPCGHeroMusicNoteEvent& Event);
 	void ApplyCrescendoResponse();
 
-	UPROPERTY()
+	/** Runtime registry. Transient: a saved or PIE-duplicated set would already
+	 * contain its nodes, so RegisterNode would skip SetHost and leave them unbound. */
+	UPROPERTY(Transient)
 	TSet<TObjectPtr<APCGHeroMusicNode>> RegisteredNodes;
 };
 

@@ -787,6 +787,12 @@ APCGBellTreeGardenNode::APCGBellTreeGardenNode()
 	// The base actor owns the canonical overlap/press contract. This subclass
 	// only replaces the visible presentation geometry with a lathed bell body.
 	PrimaryActorTick.bCanEverTick = true;
+	// The bell body is struck by projectiles (WorldDynamic) but never blocks the
+	// pawn, so the garden stays a walkable staircase of step pads.
+	BeveledKeyMeshComponent->SetCollisionEnabled(ECollisionEnabled::QueryOnly);
+	BeveledKeyMeshComponent->SetCollisionObjectType(ECC_WorldStatic);
+	BeveledKeyMeshComponent->SetCollisionResponseToAllChannels(ECR_Ignore);
+	BeveledKeyMeshComponent->SetCollisionResponseToChannel(ECC_WorldDynamic, ECR_Block);
 }
 
 void APCGBellTreeGardenNode::ApplyProfileGeometry()
@@ -899,7 +905,7 @@ void APCGBellTreeGardenNode::RebuildBellGeometry(
 	UKismetProceduralMeshLibrary::CalculateTangentsForMesh(Vertices, Triangles, UV0, Normals, Tangents);
 	BeveledKeyMeshComponent->ClearAllMeshSections();
 	BeveledKeyMeshComponent->CreateMeshSection_LinearColor(
-		0, Vertices, Triangles, Normals, UV0, Colors, Tangents, false);
+		0, Vertices, Triangles, Normals, UV0, Colors, Tangents, true);
 	BeveledKeyMeshComponent->SetMaterial(0, Material);
 	BeveledKeyMeshComponent->SetVisibility(true);
 	BeveledKeyMeshComponent->SetRelativeScale3D(FVector(1.0f, 1.0f, 1.0f));
