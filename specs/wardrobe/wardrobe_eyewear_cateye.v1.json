@@ -1,0 +1,43 @@
+{
+  "schema": "melodia.wardrobe_accessory.v1",
+  "contract_id": "wardrobe_eyewear_cateye",
+  "status": "source_ready_editor_materialization_pending",
+  "outfit_id": "Melusina_CatEye_Grand",
+  "display_name": "Cat-Eye Grand (Editorial Gold)",
+  "rarity": "Uncommon",
+  "slots": {
+    "Accessories": {
+      "cosmetic_id": "Cos_Eyewear_CatEye_Grand",
+      "mesh": "/Game/Melodia/Characters/Melusina/Accessories/SK_Eyewear_CatEye_Grand_SK_Eyewear_CatEye_Grand",
+      "lens_mesh": "/Game/Melodia/Characters/Melusina/Accessories/SK_Eyewear_CatEye_Grand_Eyewear_CatEye_Lenses",
+      "material_slots": ["MI_Eyewear_CatEye_Gold", "MI_Eyewear_CatEye_Lens"],
+      "note": "Static meshes (rigid accessory, socket-attached; no skeleton). Names carry the FBX stem by importer derivation; import also produced a 24-vert default-cube byproduct in the same folder, pending owner tidy."
+    }
+  },
+  "source": {
+    "builder_id": "MEL_eyewear_hero",
+    "builder_params": {
+      "Silhouette": 2,
+      "Cat Eye Taper": 0.88,
+      "Cat Eye Sweep": 6.0,
+      "Inlay Sine Depth": 1.0
+    },
+    "staging_blend": "Saved/Audit/EyewearCatEye/Grand/EyewearCatEye_Grand.blend",
+    "staging_fbx": "Saved/Audit/EyewearCatEye/Grand/SK_Eyewear_CatEye_Grand.fbx",
+    "staging_report": "Saved/Audit/EyewearCatEye/Grand/eyewear_cateye_grand_report_20261016.json",
+    "measured": {
+      "eval_verts": 5144,
+      "export_polys": 4888,
+      "lens_verts": 320,
+      "width_m": 0.138,
+      "ue_frame_verts": 5736,
+      "ue_frame_tris": 10088,
+      "ue_lens_verts": 536,
+      "ue_lens_tris": 476
+    }
+  },
+  "resonant_form": null,
+  "form_policy": "decorative_only (matches starter-set policy; ability hook deferred to owner decision)",
+  "traversal_impact": {},
+  "save_contract": "FMelodiaNarrativeRecord.EquippedCosmeticIds + OwnedCosmeticIds"
+}
