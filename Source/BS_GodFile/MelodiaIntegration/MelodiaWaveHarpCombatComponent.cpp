@@ -363,13 +363,13 @@ void UMelodiaWaveHarpCombatComponent::ReleaseDraw()
  }
  // Tension is presentation only. It never scales the stock damage result.
 }
-void UMelodiaWaveHarpCombatComponent::ResolveProjectileHit(AActor* Other)
+void UMelodiaWaveHarpCombatComponent::ResolveProjectileHit(AActor* Other, const float ReleaseBeatPhase)
 {
  auto* Encounter = IsValid(Other) ? Other->FindComponentByClass<UMelodiaHybridEncounterComponent>() : nullptr;
  const auto* WorldTarget = Cast<AMelodiaWorldSlimeNode>(Other);
  const float HPBefore = WorldTarget ? WorldTarget->CurrentHP : 0.f;
  auto* Bridge = UMelodiaExternalJRPGBridgeSubsystem::GetGameInstanceSubsystem(GetWorld()->GetGameInstance());
- if (Encounter && Bridge && Bridge->ResolveWorldFlowAttack(Encounter))
+ if (Encounter && Bridge && Bridge->ResolveWorldFlowAttack(Encounter, ReleaseBeatPhase))
  {
   ++HitsResolved;
   // Observe the existing HP owner after resolution. This is feedback, never damage input.
@@ -377,7 +377,9 @@ void UMelodiaWaveHarpCombatComponent::ResolveProjectileHit(AActor* Other)
   {
    LastHitDamage = HPBefore - WorldTarget->CurrentHP;
    LastHit = GetWorld()->GetTimeSeconds();
-   StatusText = WorldTarget->bIsDead ? TEXT("ENCOUNTER COMPLETE") : TEXT("HIT");
+   StatusText = WorldTarget->bIsDead ? TEXT("ENCOUNTER COMPLETE")
+    : Encounter->IsResonanceLocked() ? TEXT("RESONANCE LOCKED  /  TAB to play the figure.")
+    : FString::Printf(TEXT("HIT  /  Resonance %d%%"), FMath::RoundToInt(Encounter->GetResonanceNormalized() * 100.f));
   }
   else StatusText = TEXT("MISS");
  }
@@ -389,6 +391,8 @@ void UMelodiaWaveHarpCombatComponent::ToggleSequence()
   if (PhraseTarget->ExitSequence()) { PhraseTarget.Reset(); StatusText = TEXT("FLOW  /  Movement restored."); }
   else StatusText = TEXT("Phrase / authoritative effect pending. X cancels.");
  }
+ else if (CanAct() && Target.IsValid() && !Target->IsResonanceLocked())
+  StatusText = TEXT("Figure not resonant yet. Land hits on the beat.");
  else if (CanAct() && Target.IsValid())
  {
   StopAim(); bDrawing = false;

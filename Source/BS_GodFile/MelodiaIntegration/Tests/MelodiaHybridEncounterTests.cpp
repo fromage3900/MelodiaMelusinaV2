@@ -117,6 +117,8 @@ struct FHybridSandbox
 		}
 
 		Slime->HybridEncounter->EncounterId = EncounterId;
+		// Seam tests drive Sequence directly; the resonance gate has its own test.
+		Slime->HybridEncounter->ResonanceHitsToLock = 0;
 		// InitializeStandalone creates a Game world but does not begin play for
 		// actors spawned into this test world. Route the normal actor lifecycle so
 		// the component binds to the authoritative rhythm-complete delegate.
@@ -628,6 +630,47 @@ bool FMelodiaHybridPlayerProjectileGuardTest::RunTest(const FString&)
  }
  Sandbox.Teardown();
  return true;
+}
+
+// Flow tunes the figure; Sequence opens only on the lock and spends it.
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(FMelodiaHybridResonanceLockTest,
+	"Melodia.Hybrid.ResonanceLockGatesSequence",
+	EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
+
+bool FMelodiaHybridResonanceLockTest::RunTest(const FString& Parameters)
+{
+	MelodiaHybridTest::FHybridSandbox Sandbox;
+	if (!Sandbox.Build(*this)) { Sandbox.Teardown(); return false; }
+	UMelodiaHybridEncounterComponent* Encounter = Sandbox.Slime->HybridEncounter;
+	Encounter->ResonanceHitsToLock = 3;
+	// The standalone world runs no music clock, so every hit is on the beat.
+	TestFalse(TEXT("Untuned figure refuses Sequence"), Encounter->EnterSequence(Sandbox.SkillId));
+	TestTrue(TEXT("Flow hit 1"), Encounter->ApplyResolvedFlowDamage(1.f));
+	TestTrue(TEXT("Flow hit 2"), Encounter->ApplyResolvedFlowDamage(1.f));
+	TestFalse(TEXT("Two of three steps is not a lock"), Encounter->IsResonanceLocked());
+	TestFalse(TEXT("Partial figure refuses Sequence"), Encounter->EnterSequence(Sandbox.SkillId));
+	TestTrue(TEXT("Flow hit 3"), Encounter->ApplyResolvedFlowDamage(1.f));
+	TestTrue(TEXT("Third on-beat hit locks"), Encounter->IsResonanceLocked());
+	TestTrue(TEXT("Locked figure opens Sequence"), Encounter->EnterSequence(Sandbox.SkillId));
+	TestTrue(TEXT("Cancelled phrase returns to Flow"), Encounter->CancelSequence());
+	TestEqual(TEXT("Cancel shatters the figure"), Encounter->GetResonanceNormalized(), 0.f);
+	TestFalse(TEXT("Shattered figure refuses Sequence"), Encounter->EnterSequence(Sandbox.SkillId));
+	for (int32 Hit = 0; Hit < 3; ++Hit) Encounter->ApplyResolvedFlowDamage(1.f);
+	TestTrue(TEXT("Re-tuned figure opens Sequence"), Encounter->EnterSequence(Sandbox.SkillId));
+	TestTrue(TEXT("Phrase finishes"), Encounter->FinishSequencePhrase());
+	TestTrue(TEXT("Stock miss resolves the phrase"),
+		Encounter->ApplyResolvedSequenceDamage(0.f, Encounter->GetSequenceSessionId()));
+	TestTrue(TEXT("Resolved phrase exits to Flow"), Encounter->ExitSequence());
+	TestEqual(TEXT("A played figure is spent"), Encounter->GetResonanceNormalized(), 0.f);
+	// A projectile is judged on its release phase, not on when it lands.
+	Encounter->ApplyResolvedFlowDamage(1.f, 0.5f);
+	TestEqual(TEXT("Off-beat release is a partial step"),
+		Encounter->GetResonanceNormalized(), Encounter->OffBeatResonanceFraction / 3.f, 0.001f);
+	Encounter->ApplyResolvedFlowDamage(1.f, 0.97f);
+	TestEqual(TEXT("Release just before the beat is a full step"),
+		Encounter->GetResonanceNormalized(), (Encounter->OffBeatResonanceFraction + 1.f) / 3.f, 0.001f);
+	Sandbox.Teardown();
+	return true;
 }
 
 #endif // WITH_DEV_AUTOMATION_TESTS
