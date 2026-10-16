@@ -1,5 +1,20 @@
 # Melodia Melusina ? Current State
 
+## Cat-Eye eyewear accessory — 2026-10-16 (mesh+manifest LANDED via lane; UE materials/attach pending)
+
+- **What:** first eyewear cosmetic `Cos_Eyewear_CatEye_Grand` (Uncommon, Accessories slot, decorative-only;
+  manifest `specs/wardrobe/wardrobe_eyewear_cateye.v1.json`): Cat-Eye hero pair in editorial gold +
+  smoked lenses, 5,144-vert frame / 320-vert lenses, 13.8 cm ISO boxing. Meshes imported to
+  `/Game/Melodia/Characters/Melusina/Accessories/` (frame + lenses static meshes, saved on disk;
+  import also dropped a 24-vert default-cube byproduct in that folder, pending owner tidy).
+- **Builder fix that made it real:** laptop rewrite had dropped Sept's `neg_pivot` right-side seat,
+  stacking both temples on +X (proven in renders); restored verbatim in pair+hero. Renders personally
+  inspected (front/persp/macro). Baseline re-cut: exactly one measurement moved (hero bbox x 0.138->0.142);
+  full gate 6/6 PASS. Staging under `Saved/Audit/EyewearCatEye/` (gitignored).
+- **Still open:** MI_Eyewear_CatEye_Gold + MI_Eyewear_CatEye_Lens instances, head-socket attach + worn-orientation
+  rotation, live-fit approval on Melusina, equip-roundtrip proof. Pair builds flat by Sept convention;
+  upright rotation belongs in staging/attach, not the builder.
+
 ## Studio/GN reconcile lane -- LANDED 2026-10-13 (PR #480, 8 commits)
 
 - **Lane landed:** `refs/agents/studio-gn` (8 commits, base `origin/main@28ee209`) via `deploy/land_agent_lane.ps1`; PR #480 merged 2026-10-14T03:44:26Z, temp branch deleted in the same run. Local main coal-face untouched.
