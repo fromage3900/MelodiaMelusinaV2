@@ -1241,14 +1241,41 @@ def build_eyewear_hero(group_name="MEL_eyewear_hero"):
             link_sockets(tree, pivot.outputs["Vector"], xf.inputs["Translation"])
         placed[key] = xf.outputs["Geometry"]
 
+    # Per-part material slots (wired 2026-10-16; declared since hero v1 but never
+    # applied, so the baked mesh carried a single unnamed slot). Bridge Material
+    # stays declared-but-unapplied: the bridge is inseparable inside the front
+    # sub-tree (splitting it for its own slot is recorded future work, not faked
+    # here). An unset material input is a no-op — faces stay on slot 0.
+    def _dress(geom, mat_name, loc):
+        if geom is None:
+            return None
+        try:
+            mat_sock = sock(gin, mat_name, outputs=True)
+        except Exception:
+            return geom
+        if mat_sock is None:
+            return geom
+        sm = safe_node(tree, "GeometryNodeSetMaterial", loc)
+        if sm is None:
+            return geom
+        try:
+            link_sockets(tree, geom, sm.inputs["Geometry"])
+            link_sockets(tree, mat_sock, sm.inputs["Material"])
+            return sm.outputs["Geometry"]
+        except Exception:
+            return geom
+
     joins = []
-    front_geo = _g_sock(front, "Geometry", outputs=True)
+    front_geo = _dress(_g_sock(front, "Geometry", outputs=True),
+                       "Frame Material", (bx + 60, by + 300))
     if front_geo is not None:
         joins.append(front_geo)
     for key in ("hl", "hr", "tl", "tr"):
         if placed.get(key) is not None:
-            joins.append(placed[key])
-    lens_geo = _g_sock(lenses, "Geometry", outputs=True)
+            _mat = "Hinge Material" if key[0] == "h" else "Temple Material"
+            joins.append(_dress(placed[key], _mat, (bx + 60, by - 500)))
+    lens_geo = _dress(_g_sock(lenses, "Geometry", outputs=True),
+                      "Lens Material", (bx + 60, by - 1300))
     if lens_geo is not None:
         joins.append(lens_geo)
 
@@ -1261,6 +1288,68 @@ def build_eyewear_hero(group_name="MEL_eyewear_hero"):
             link_sockets(tree, acc, j.inputs["Geometry"])
             link_sockets(tree, nxt, j.inputs["Geometry"])
             acc = j.outputs["Geometry"]
+        # Lissajous flourish halo (2026-10-16): closed 3:2 curve floating above the
+        # bridge, gated by Enable Flourish (default OFF, so the default output is
+        # identical to the unflourished build). Any construction failure falls back
+        # to acc untouched; link_sockets never raises.
+        try:
+            _fl = (bx + 900, by + 300)
+            _fcirc = safe_node(tree, "GeometryNodeCurvePrimitiveCircle", _fl)
+            _frs = safe_node(tree, "GeometryNodeResampleCurve", (_fl[0] + 160, _fl[1]))
+            _fsp = safe_node(tree, "GeometryNodeSplineParameter", (_fl[0] + 320, _fl[1]))
+            _fset = safe_node(tree, "GeometryNodeSetPosition", (_fl[0] + 640, _fl[1] - 110))
+            _fprof = safe_node(tree, "GeometryNodeCurvePrimitiveCircle", (_fl[0] + 320, _fl[1] - 330))
+            _fctm = safe_node(tree, "GeometryNodeCurveToMesh", (_fl[0] + 800, _fl[1] - 110))
+            _fxf = safe_node(tree, "GeometryNodeTransform", (_fl[0] + 960, _fl[1] - 110))
+            _fj = safe_node(tree, "GeometryNodeJoinGeometry", (_fl[0] + 1120, _fl[1] - 110))
+            _fsw = safe_node(tree, "GeometryNodeSwitch", (_fl[0] + 1280, _fl[1] - 110))
+            _fparts = (_fcirc, _frs, _fsp, _fset, _fprof, _fctm, _fxf, _fj, _fsw)
+            if all(p is not None for p in _fparts):
+                _fcirc.inputs["Resolution"].default_value = 24
+                _fcirc.inputs["Radius"].default_value = 0.012
+                try:
+                    _frs.mode = "COUNT"
+                except Exception:
+                    pass
+                try:
+                    _frs.inputs["Count"].default_value = 96
+                except Exception:
+                    pass
+                _fprof.inputs["Resolution"].default_value = 12
+                _fprof.inputs["Radius"].default_value = 0.0004
+                _ft = sock(_fsp, "Factor", outputs=True)
+                _ffa = sock(gin, "Flourish Freq A", outputs=True)
+                _ffb = sock(gin, "Flourish Freq B", outputs=True)
+                _faa = _mm(tree, gin, "Flourish Amp A", (_fl[0] + 160, _fl[1] - 440))
+                _fab = _mm(tree, gin, "Flourish Amp B", (_fl[0] + 160, _fl[1] - 550))
+                _foff = _lissajous_offset(
+                    tree, (_fl[0] + 480, _fl[1] - 110), _ft,
+                    _ffa if _ffa is not None else 3.0,
+                    _ffb if _ffb is not None else 2.0, _faa, _fab)
+                _fstation = _vec(tree, (_fl[0] + 960, _fl[1] - 330), x=0.0, y=0.0, z=0.030)
+                link_sockets(tree, _fcirc.outputs["Curve"], _frs.inputs["Curve"])
+                link_sockets(tree, _frs.outputs["Curve"], _fset.inputs["Geometry"])
+                if _foff is not None:
+                    link_sockets(tree, _foff, _fset.inputs["Offset"])
+                link_sockets(tree, _fset.outputs["Geometry"], _fctm.inputs["Curve"])
+                link_sockets(tree, _fprof.outputs["Curve"], _fctm.inputs["Profile Curve"])
+                link_sockets(tree, _fctm.outputs["Mesh"], _fxf.inputs["Geometry"])
+                if _fstation is not None:
+                    link_sockets(tree, _fstation, _fxf.inputs["Translation"])
+                link_sockets(tree, acc, _fj.inputs["Geometry"])
+                link_sockets(tree, _fxf.outputs["Geometry"], _fj.inputs["Geometry"])
+                try:
+                    _fsw.input_type = "GEOMETRY"
+                except Exception:
+                    pass
+                _fen = sock(gin, "Enable Flourish", outputs=True)
+                if _fen is not None:
+                    link_sockets(tree, _fen, _fsw.inputs["Switch"])
+                link_sockets(tree, acc, _fsw.inputs["False"])
+                link_sockets(tree, _fj.outputs["Geometry"], _fsw.inputs["True"])
+                acc = _fsw.outputs["Output"]
+        except Exception:
+            pass
         link_sockets(tree, acc, gout.inputs["Geometry"])
 
     label_tree(tree, group_name)
