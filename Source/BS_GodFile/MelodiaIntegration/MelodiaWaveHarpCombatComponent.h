@@ -55,6 +55,9 @@ public:
  UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|WaveHarp|Feel", meta=(ClampMin="0.1", ClampMax="0.8")) float ArrowTrailIntensity = .6f;
  /** Magical arrow trail. Swap this asset to retune the arrow FX; the arrow only reads it at launch. */
  UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|WaveHarp|FX") TSoftObjectPtr<UNiagaraSystem> ArrowTrailSystem = TSoftObjectPtr<UNiagaraSystem>(FSoftObjectPath(TEXT("/Game/Melodia/Characters/Melusina/Weapons/WaveHarp/NS_WaveHarp_ArrowTrail.NS_WaveHarp_ArrowTrail")));
+ /** Burst and ripple where a resolved note lands; an on-beat release plays them at full scale. */
+ UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|WaveHarp|FX") TSoftObjectPtr<UNiagaraSystem> HitBurstSystem = TSoftObjectPtr<UNiagaraSystem>(FSoftObjectPath(TEXT("/Game/Melodia/VFX/NS_Melusina_ImpactBurst.NS_Melusina_ImpactBurst")));
+ UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|WaveHarp|FX") TSoftObjectPtr<UNiagaraSystem> HitRippleSystem = TSoftObjectPtr<UNiagaraSystem>(FSoftObjectPath(TEXT("/Game/Melodia/VFX/NS_Melusina_Ripple.NS_Melusina_Ripple")));
 
  /** Both instruments are held in the authored hand-prop socket, so they follow the hand and arm instead of the world. */
  UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|WaveHarp|Presentation") FName InstrumentSocket = TEXT("S_Instrument_L");

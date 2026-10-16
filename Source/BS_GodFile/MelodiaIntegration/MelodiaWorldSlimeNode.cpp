@@ -5,6 +5,9 @@
 #include "Engine/GameInstance.h"
 #include "Engine/World.h"
 #include "Materials/MaterialInstanceDynamic.h"
+#include "NiagaraComponent.h"
+#include "NiagaraFunctionLibrary.h"
+#include "NiagaraSystem.h"
 #include "GameFramework/Pawn.h"
 #include "MelodiaExternalJRPGBridgeSubsystem.h"
 #include "MelodiaHybridEncounterComponent.h"
@@ -50,9 +53,10 @@ void AMelodiaWorldSlimeNode::BeginPlay()
 	if (ResonanceMaterial)
 	{
 		LockedChladniIntensity = ResonanceMaterial->K2_GetScalarParameterValue(TEXT("ChladniIntensity"));
-		HybridEncounter->OnResonanceChanged.AddUniqueDynamic(this, &ThisClass::HandleResonanceChanged);
-		HandleResonanceChanged(HybridEncounter->GetResonanceNormalized(), HybridEncounter->IsResonanceLocked());
 	}
+	HybridEncounter->OnResonanceChanged.AddUniqueDynamic(this, &ThisClass::HandleResonanceChanged);
+	HandleResonanceChanged(HybridEncounter->GetResonanceNormalized(), HybridEncounter->IsResonanceLocked());
+	HybridEncounter->OnPresentationModeChanged.AddUniqueDynamic(this, &ThisClass::HandlePresentationModeChanged);
 	if (StockAttackerDefinition && StockDefenderDefinition)
 	{
 		if (UMelodiaExternalJRPGBridgeSubsystem* Bridge =
@@ -120,6 +124,19 @@ void AMelodiaWorldSlimeNode::Die()
 
 void AMelodiaWorldSlimeNode::HandleResonanceChanged(const float ResonanceNormalized, const bool bLocked)
 {
+	if (bLocked && !LockFx)
+	{
+		if (UNiagaraSystem* System = LockSystem.LoadSynchronous())
+		{
+			LockFx = UNiagaraFunctionLibrary::SpawnSystemAttached(System, SlimeMesh, NAME_None,
+				FVector::ZeroVector, FRotator::ZeroRotator, EAttachLocation::SnapToTarget, false);
+		}
+	}
+	else if (!bLocked && LockFx)
+	{
+		LockFx->DestroyComponent();
+		LockFx = nullptr;
+	}
 	if (!ResonanceMaterial)
 	{
 		return;
@@ -128,4 +145,17 @@ void AMelodiaWorldSlimeNode::HandleResonanceChanged(const float ResonanceNormali
 	// HarmonizeActive gates the whole figure in the master; ramping it lets the
 	// lines emerge as the target is tuned instead of popping in at lock.
 	ResonanceMaterial->SetScalarParameterValue(TEXT("HarmonizeActive"), ResonanceNormalized);
+}
+
+void AMelodiaWorldSlimeNode::HandlePresentationModeChanged(const EMelodiaHybridPresentationMode Mode, AActor* Target)
+{
+	PlayOnce(Mode == EMelodiaHybridPresentationMode::Sequence ? SequenceSystem : ReleaseSystem);
+}
+
+void AMelodiaWorldSlimeNode::PlayOnce(const TSoftObjectPtr<UNiagaraSystem>& System) const
+{
+	if (UNiagaraSystem* Loaded = System.LoadSynchronous())
+	{
+		UNiagaraFunctionLibrary::SpawnSystemAtLocation(this, Loaded, GetActorLocation());
+	}
 }

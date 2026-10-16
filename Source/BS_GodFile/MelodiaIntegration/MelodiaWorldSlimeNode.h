@@ -2,10 +2,13 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "MelodiaHybridEncounterComponent.h"
 #include "MelodiaWorldSlimeNode.generated.h"
 
 class APawn;
 class UMaterialInstanceDynamic;
+class UNiagaraComponent;
+class UNiagaraSystem;
 class UMelodiaHybridEncounterComponent;
 class USphereComponent;
 class UStaticMeshComponent;
@@ -56,6 +59,18 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Melodia|Hybrid|Stock", meta=(ClampMin="0"))
 	int32 StockPureDamage = 0;
 
+	/** Ring held around the target while its figure is locked. */
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Melodia|Hybrid|FX")
+	TSoftObjectPtr<UNiagaraSystem> LockSystem = TSoftObjectPtr<UNiagaraSystem>(FSoftObjectPath(TEXT("/Game/Melodia/VFX/NS_Melusina_Sigil.NS_Melusina_Sigil")));
+
+	/** Played once as a phrase opens. */
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Melodia|Hybrid|FX")
+	TSoftObjectPtr<UNiagaraSystem> SequenceSystem = TSoftObjectPtr<UNiagaraSystem>(FSoftObjectPath(TEXT("/Game/Melodia/VFX/NS_Melusina_StarPop.NS_Melusina_StarPop")));
+
+	/** The FLIP splash, once per phrase, when the figure is released back into Flow. */
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Melodia|Hybrid|FX")
+	TSoftObjectPtr<UNiagaraSystem> ReleaseSystem = TSoftObjectPtr<UNiagaraSystem>(FSoftObjectPath(TEXT("/Game/Melodia/VFX/NS_Melusina_Splash.NS_Melusina_Splash")));
+
 	UFUNCTION(BlueprintPure, Category="Melodia|Hybrid")
 	bool IsPlayerInTargetRange(const APawn* PlayerPawn) const;
 
@@ -75,6 +90,14 @@ private:
 	/** The Chladni figure clears as Flow tunes the target and rings at lock. */
 	UFUNCTION()
 	void HandleResonanceChanged(float ResonanceNormalized, bool bLocked);
+
+	UFUNCTION()
+	void HandlePresentationModeChanged(EMelodiaHybridPresentationMode Mode, AActor* Target);
+
+	void PlayOnce(const TSoftObjectPtr<UNiagaraSystem>& System) const;
+
+	UPROPERTY(Transient)
+	TObjectPtr<UNiagaraComponent> LockFx;
 
 	UPROPERTY(Transient)
 	TObjectPtr<UMaterialInstanceDynamic> ResonanceMaterial;
