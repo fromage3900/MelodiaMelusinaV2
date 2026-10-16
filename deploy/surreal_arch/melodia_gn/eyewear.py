@@ -889,6 +889,15 @@ def build_eyewear_pair(group_name="MEL_eyewear_pair"):
 
     pivot = _vec(tree, (bx - 780, by - 40), x=nest_x.outputs[0])
     neg_one_v = _vec(tree, (bx - 780, by - 260), x=-1.0, y=1.0, z=1.0)
+    # Right-side seat (restored 2026-10-16 from the Sept verified assembly; the
+    # laptop rewrite dropped it and stacked both arms on +X): mirroring about X
+    # then translating by +nest_x parks the right hardware inboard over the lens
+    # (Sept measured TempleR at [+57.0, +61.5] instead of [-67.0, -62.5]), so the
+    # right-side translation is -nest_x.
+    neg_x = _math(tree, "MULTIPLY", (bx - 780, by - 380),
+                  a=nest_x.outputs[0], b=-1.0)
+    neg_pivot = _vec(tree, (bx - 780, by - 500),
+                     x=neg_x.outputs[0] if neg_x is not None else -62.0)
 
     placed = {}
     for key, node in (("tl", templ_l), ("hl", hinge_l), ("tr", templ_r), ("hr", hinge_r)):
@@ -910,7 +919,11 @@ def build_eyewear_pair(group_name="MEL_eyewear_pair"):
             placed[key] = None
             continue
         link_sockets(tree, geom, xf.inputs["Geometry"])
-        link_sockets(tree, pivot.outputs["Vector"], xf.inputs["Translation"])
+        seat = neg_pivot if key in ("tr", "hr") else pivot
+        if seat is not None:
+            link_sockets(tree, seat.outputs["Vector"], xf.inputs["Translation"])
+        else:
+            link_sockets(tree, pivot.outputs["Vector"], xf.inputs["Translation"])
         placed[key] = xf.outputs["Geometry"]
 
     joins = []
@@ -1191,6 +1204,15 @@ def build_eyewear_hero(group_name="MEL_eyewear_hero"):
 
     pivot = _vec(tree, (bx - 780, by - 40), x=nest_x.outputs[0])
     neg_one_v = _vec(tree, (bx - 780, by - 260), x=-1.0, y=1.0, z=1.0)
+    # Right-side seat (restored 2026-10-16 from the Sept verified assembly; the
+    # laptop rewrite dropped it and stacked both arms on +X): mirroring about X
+    # then translating by +nest_x parks the right hardware inboard over the lens
+    # (Sept measured TempleR at [+57.0, +61.5] instead of [-67.0, -62.5]), so the
+    # right-side translation is -nest_x.
+    neg_x = _math(tree, "MULTIPLY", (bx - 780, by - 380),
+                  a=nest_x.outputs[0], b=-1.0)
+    neg_pivot = _vec(tree, (bx - 780, by - 500),
+                     x=neg_x.outputs[0] if neg_x is not None else -62.0)
 
     placed = {}
     for key, node in (("tl", templ_l), ("hl", hinge_l), ("tr", templ_r), ("hr", hinge_r)):
@@ -1212,7 +1234,11 @@ def build_eyewear_hero(group_name="MEL_eyewear_hero"):
             placed[key] = None
             continue
         link_sockets(tree, geom, xf.inputs["Geometry"])
-        link_sockets(tree, pivot.outputs["Vector"], xf.inputs["Translation"])
+        seat = neg_pivot if key in ("tr", "hr") else pivot
+        if seat is not None:
+            link_sockets(tree, seat.outputs["Vector"], xf.inputs["Translation"])
+        else:
+            link_sockets(tree, pivot.outputs["Vector"], xf.inputs["Translation"])
         placed[key] = xf.outputs["Geometry"]
 
     joins = []
