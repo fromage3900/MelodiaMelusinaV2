@@ -8,6 +8,7 @@
 #include "MelodiaAudioReactivePresentationSubsystem.h"
 #include "MelodiaWorldSlimeNode.h"
 #include "MelodiaTraversalComponent.h"
+#include "../PCG/MelodiaCymaticFieldComponent.h"
 #include "Camera/CameraComponent.h"
 #include "Animation/AnimInstance.h"
 #include "Animation/AnimMontage.h"
@@ -26,6 +27,8 @@
 #include "GameFramework/PlayerController.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "Kismet/GameplayStatics.h"
+#include "NiagaraFunctionLibrary.h"
+#include "NiagaraSystem.h"
 #include "Sound/SoundBase.h"
 
 UMelodiaWaveHarpCombatComponent::UMelodiaWaveHarpCombatComponent()
@@ -372,6 +375,17 @@ void UMelodiaWaveHarpCombatComponent::ResolveProjectileHit(AActor* Other, const 
  if (Encounter && Bridge && Bridge->ResolveWorldFlowAttack(Encounter, ReleaseBeatPhase))
  {
   ++HitsResolved;
+  // The landed note rings the world: an on-beat release is a full-strength impact.
+  const bool bOnBeat = ReleaseBeatPhase < 0.f
+   || FMath::Min(ReleaseBeatPhase, 1.f - ReleaseBeatPhase) <= Encounter->OnBeatWindowBeats;
+  const float Ring = bOnBeat ? 1.f : .45f;
+  if (auto* Audio = GetWorld()->GetGameInstance()->GetSubsystem<UMelodiaAudioReactivePresentationSubsystem>())
+   Audio->PulseImpact(Ring);
+  UMelodiaCymaticFieldComponent::BroadcastHit(GetWorld(), Other->GetActorLocation(), Ring);
+  for (const TSoftObjectPtr<UNiagaraSystem>& Fx : {HitBurstSystem, HitRippleSystem})
+   if (UNiagaraSystem* System = Fx.LoadSynchronous())
+    UNiagaraFunctionLibrary::SpawnSystemAtLocation(this, System, Other->GetActorLocation(),
+     FRotator::ZeroRotator, FVector(.6f + .4f * Ring));
   // Observe the existing HP owner after resolution. This is feedback, never damage input.
   if (WorldTarget && WorldTarget->CurrentHP < HPBefore)
   {

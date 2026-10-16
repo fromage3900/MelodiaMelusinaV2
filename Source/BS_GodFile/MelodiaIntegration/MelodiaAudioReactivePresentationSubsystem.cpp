@@ -310,7 +310,6 @@ bool UMelodiaAudioReactivePresentationSubsystem::TickPresentation(float DeltaTim
 	}
 	LastBeatPhase = bHasMusicalTime ? BeatPhase : 0.0f;
 
-	ImpactPulse = FMath::Max(0.0f, ImpactPulse - DeltaTime * 3.5f);
 	// cos^2, not sin^2: BeatPhase is 0 ON the beat, so sin^2 peaked at phase 0.5
 	// and every MPC consumer pulsed on the off-beat. Same correction as
 	// UMelodiaMusicClockSubsystem::GetMusicPulse, which is the canonical copy --
@@ -434,6 +433,9 @@ bool UMelodiaAudioReactivePresentationSubsystem::TickPresentation(float DeltaTim
 			}
 		}
 	}
+	// Decay after every lane above has published this frame's impact, so a pulse
+	// raised since the last tick is always written once, at any frame rate.
+	ImpactPulse = FMath::Max(0.0f, ImpactPulse - DeltaTime * 3.5f);
 	return true;
 }
 
