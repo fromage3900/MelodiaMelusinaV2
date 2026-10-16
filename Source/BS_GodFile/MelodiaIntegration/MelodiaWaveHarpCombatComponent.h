@@ -103,7 +103,7 @@ public:
  UFUNCTION(BlueprintCallable, Category="Melodia|WaveHarp") void ReleaseDraw();
  UFUNCTION(BlueprintCallable, Category="Melodia|WaveHarp") void ToggleSequence();
  UFUNCTION(BlueprintCallable, Category="Melodia|WaveHarp") void CancelPhrase();
- void ResolveProjectileHit(AActor* HitActor);
+ void ResolveProjectileHit(AActor* HitActor, float ReleaseBeatPhase);
 
 private:
  void BindInput();

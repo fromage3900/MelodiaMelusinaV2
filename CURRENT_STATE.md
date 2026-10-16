@@ -14,6 +14,14 @@
 
 **Next gates (in order):** (1) owner answers the four open questions above; (2) record them here and mirror into `CLAUDE.md`/`AGENTS.md` (integrator-owned single-writer files — update the "ACFU excluded" line there); (3) prove possession + one ACF melee exchange in PIE; (4) promote or retire the trial web (`BP_HybridSlimeNode`, `BP_WaveHarpProofArrowActor` are dead props). Issue #51 stays the idempotency reference.
 
+## First Resonance — Flow↔Sequence resonance lock, PIE-proven 2026-10-15
+
+Hybrid convergence slice (owner-approved; does not answer the four open canon questions above). `UMelodiaHybridEncounterComponent` now gates `EnterSequence` on a **resonance lock**: Flow hits tune the target (on-beat = 1 step, off-beat = `OffBeatResonanceFraction` 0.34; `ResonanceHitsToLock` 3, 0 = no gate). Arrows are judged on their **release** beat phase (carried arrow → `ResolveWorldFlowAttack` → `ApplyResolvedFlowDamage`), not arrival — arrival judging scored every on-beat release off-beat (~0.28 beat flight at 128 BPM). Cancel shatters and Exit spends the lock. `OnResonanceChanged` / `GetResonanceNormalized` are ready for the Chladni-figure presentation (not built yet).
+
+- **Fixture (additive):** `MelodiaIntegrationMap` actor `First Resonance` (`AMelodiaWorldSlimeNode`, `melodia_slime_tutorial`, MaxHP 140, scale 30 / HitVolume radius 4 because `SM_MelodySlime` is ~6 cm native, stock stats `BP_WaveHarpTest*Stats`, PureDamage 20) at (350, 600, 80) inside the arena.
+- **Proof:** `Melodia.Hybrid` 8/8 incl. `ResonanceLockGatesSequence`. PIE with canonical pawn: 3 on-beat releases (phases 0.006/0.982/0.048) → `locked=1`, HP 80; TAB → Sequence session 1 (`cadence_strike`, 13 notes) → `grade=Miss` → stock `multiplier=0.700 final=14` → HP 66; TAB → Flow, resonance 0, early TAB refused. Screenshots `Saved/Screenshots/WindowsEditor/FR_01_Flow … FR_04_BackToFlow.png`.
+- **Open:** no graded-hit PIE run (chart notes aren't exposed to an autoplayer; grading is the rhythm subsystem's own tested surface); lock has no visual yet (HighResShot omits UMG, the slime shows no state); slime mesh reads as a pale translucent dome.
+
 ## Cathedral hero composition — bounded Sol takeover, 2026-10-15
 
 Owner requests CAD-level architectural variation, connected CosmicOrrery rooms/layers/bridges/focal points, built-in fountains and visible pouring water. Local cathedral/chandelier references confirmed by owner; additional references incoming. This adds artistic scope to the runtime continuation below; it does not declare those runtime blockers solved.

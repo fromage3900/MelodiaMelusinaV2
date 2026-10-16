@@ -1,5 +1,6 @@
 #include "MelodiaWaveArrow.h"
 #include "MelodiaWaveHarpCombatComponent.h"
+#include "MelodiaMusicClockSubsystem.h"
 #include "MelodiaHybridEncounterComponent.h"
 #include "Components/SphereComponent.h"
 #include "Components/StaticMeshComponent.h"
@@ -42,6 +43,9 @@ AMelodiaWaveArrow::AMelodiaWaveArrow()
 void AMelodiaWaveArrow::Launch(UMelodiaWaveHarpCombatComponent* Source, const FVector& Direction)
 {
  Shooter = Source;
+ if (const UMelodiaMusicClockSubsystem* MusicClock = UMelodiaMusicClockSubsystem::Get(this))
+  if (MusicClock->HasMusicalTime())
+   ReleaseBeatPhase = MusicClock->GetBeatPhase(UMelodiaMusicClockSubsystem::InputTimebase);
  Collision->IgnoreActorWhenMoving(GetOwner(), true);
  Visual->SetStaticMesh(LoadObject<UStaticMesh>(nullptr,
   TEXT("/Game/Cinematics/Shorewake/HERO01/WaveHarp_R07/SM_ME_WaveHarp_Arrow_R07.SM_ME_WaveHarp_Arrow_R07")));
@@ -71,6 +75,6 @@ void AMelodiaWaveArrow::Consume(AActor* Other)
  if (bConsumed || !Other || Other == GetOwner() || Other == GetInstigator()) return;
  bConsumed = true; // Before the synchronous stock/HP/outcome callbacks.
  UE_LOG(LogTemp, Log, TEXT("MELODIA_ARROW_COLLISION arrow=%s target=%s"), *GetName(), *GetNameSafe(Other));
- if (Shooter.IsValid()) Shooter->ResolveProjectileHit(Other);
+ if (Shooter.IsValid()) Shooter->ResolveProjectileHit(Other, ReleaseBeatPhase);
  Destroy();
 }

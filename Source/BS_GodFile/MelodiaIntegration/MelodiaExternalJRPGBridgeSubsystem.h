@@ -53,7 +53,7 @@ public:
 
 	/** FLOW uses the same stock resolver with identity rhythm scaling. */
 	UFUNCTION(BlueprintCallable, Category="Melodia|Hybrid")
-	bool ResolveWorldFlowAttack(UMelodiaHybridEncounterComponent* Encounter);
+	bool ResolveWorldFlowAttack(UMelodiaHybridEncounterComponent* Encounter, float ActionBeatPhase = -1.0f);
 
 	UFUNCTION(BlueprintPure, Category = "Melodia|JRPG Bridge")
 	bool IsJRPGBattleActive() const { return IsValid(ActiveBattleActor); }
