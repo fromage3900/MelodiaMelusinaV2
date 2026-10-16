@@ -1,21 +1,102 @@
 {
  "package": {
+  "GN_BRUTALIST_CityBlock": {
+   "ok": true,
+   "verts": 576,
+   "bbox": [
+    90.021,
+    90.002,
+    33.382
+   ]
+  },
+  "GN_BRUTALIST_CubicleFarm": {
+   "ok": true,
+   "verts": 2098,
+   "bbox": [
+    10.235,
+    6.601,
+    3.22
+   ]
+  },
+  "GN_BRUTALIST_OfficeBlock": {
+   "ok": true,
+   "verts": 904,
+   "bbox": [
+    21.171,
+    12.57,
+    25.6
+   ]
+  },
+  "GN_BRUTALIST_Roof": {
+   "ok": true,
+   "verts": 56,
+   "bbox": [
+    19.244,
+    13.254,
+    4.11
+   ]
+  },
+  "GN_OFFICE_DeskCluster": {
+   "ok": true,
+   "verts": 294,
+   "bbox": [
+    1.505,
+    0.705,
+    1.089
+   ]
+  },
   "GN_PARIS_DayNightFacade": {
    "ok": true,
-   "verts": 195,
+   "verts": 10528,
    "bbox": [
-    3.037,
-    0.043,
-    3.2
+    11.839,
+    0.894,
+    8.985
+   ]
+  },
+  "GN_PARIS_EscherLadder": {
+   "ok": true,
+   "verts": 152,
+   "bbox": [
+    1.372,
+    1.596,
+    4.553
    ]
   },
   "GN_PARIS_FountainLoop": {
    "ok": true,
-   "verts": 832,
+   "verts": 14482,
    "bbox": [
-    1.815,
-    1.815,
-    1.435
+    3.573,
+    3.573,
+    2.06
+   ]
+  },
+  "GN_PARIS_Mansard": {
+   "ok": true,
+   "verts": 1192,
+   "bbox": [
+    11.657,
+    6.219,
+    3.614
+   ]
+  },
+  "GN_PARIS_MetamorphosisFrieze": {
+   "ok": true,
+   "verts": 11152,
+   "bbox": [
+    8.046,
+    0.213,
+    0.9
+   ]
+  },
+  "GN_PARIS_PenroseArch": {
+   "ok": true,
+   "verts": 144,
+   "bbox": [
+    4.114,
+    0.615,
+    3.942
    ]
   },
   "GN_PARIS_SlabTrim": {
@@ -574,8 +655,8 @@
    "ok": true,
    "verts": 424,
    "bbox": [
-    3.582,
-    1.903,
+    3.569,
+    1.943,
     0.65
    ]
   },
@@ -609,6 +690,24 @@
    "ok": false,
    "error": "empty geometry"
   },
+  "MEL_audio_beat_sync": {
+   "ok": true,
+   "verts": 16641,
+   "bbox": [
+    50.037,
+    50.032,
+    0.0
+   ]
+  },
+  "MEL_audio_emission_pulse": {
+   "ok": true,
+   "verts": 4225,
+   "bbox": [
+    30.037,
+    30.032,
+    0.0
+   ]
+  },
   "MEL_audio_facade": {
    "ok": true,
    "verts": 12,
@@ -627,12 +726,30 @@
     2.602
    ]
   },
+  "MEL_audio_multiband_decomposition": {
+   "ok": true,
+   "verts": 16641,
+   "bbox": [
+    40.037,
+    40.032,
+    0.0
+   ]
+  },
   "MEL_audio_radial_field": {
    "ok": true,
    "verts": 65536,
    "bbox": [
     100.037,
     100.032,
+    0.0
+   ]
+  },
+  "MEL_audio_spectral_ripple": {
+   "ok": true,
+   "verts": 36864,
+   "bbox": [
+    60.037,
+    60.032,
     0.0
    ]
   },
@@ -651,6 +768,15 @@
    "bbox": [
     120.705,
     3.032,
+    0.001
+   ]
+  },
+  "MEL_audio_waveform_deform": {
+   "ok": true,
+   "verts": 16641,
+   "bbox": [
+    40.037,
+    40.032,
     0.0
    ]
   },
@@ -671,8 +797,8 @@
    "ok": true,
    "verts": 468,
    "bbox": [
-    3.93,
-    1.263,
+    3.889,
+    1.266,
     1.261
    ]
   },
@@ -702,7 +828,7 @@
    "ok": true,
    "verts": 88,
    "bbox": [
-    4.141,
+    4.134,
     0.151,
     0.56
    ]
@@ -711,8 +837,8 @@
    "ok": true,
    "verts": 331,
    "bbox": [
-    12.449,
-    0.492,
+    12.425,
+    0.496,
     12.0
    ]
   },
@@ -720,8 +846,8 @@
    "ok": true,
    "verts": 24,
    "bbox": [
-    1.589,
-    0.416,
+    1.636,
+    0.423,
     2.375
    ]
   },
@@ -729,8 +855,8 @@
    "ok": true,
    "verts": 96,
    "bbox": [
-    6.292,
-    7.889,
+    6.316,
+    7.881,
     3.142
    ]
   },
@@ -747,9 +873,9 @@
    "ok": true,
    "verts": 1272,
    "bbox": [
-    10.254,
-    10.242,
-    0.0
+    10.558,
+    8.405,
+    0.3
    ]
   },
   "MEL_bead_tassel": {
@@ -763,7 +889,7 @@
   },
   "MEL_bell_chime": {
    "ok": true,
-   "verts": 170,
+   "verts": 160,
    "bbox": [
     6.0,
     6.0,
@@ -787,8 +913,8 @@
    "ok": true,
    "verts": 1808,
    "bbox": [
-    2.756,
-    0.757,
+    2.724,
+    0.75,
     4.12
    ]
   },
@@ -847,20 +973,20 @@
   },
   "MEL_brass_pipe": {
    "ok": true,
-   "verts": 64,
+   "verts": 320,
    "bbox": [
     6.0,
     6.0,
-    40.0
+    62.0
    ]
   },
   "MEL_brick_wall": {
    "ok": true,
-   "verts": 2460,
+   "verts": 864,
    "bbox": [
-    4.04,
-    0.201,
-    3.0
+    4.867,
+    0.242,
+    3.15
    ]
   },
   "MEL_bridge_advanced": {
@@ -885,8 +1011,8 @@
    "ok": true,
    "verts": 425,
    "bbox": [
-    3.477,
-    0.552,
+    3.461,
+    0.547,
     5.01
    ]
   },
@@ -928,11 +1054,11 @@
   },
   "MEL_castle_assembler": {
    "ok": true,
-   "verts": 296,
+   "verts": 316,
    "bbox": [
-    0.0,
+    20.0,
     15.0,
-    0.0
+    10.0
    ]
   },
   "MEL_castle_barbican": {
@@ -948,8 +1074,8 @@
    "ok": true,
    "verts": 144,
    "bbox": [
-    2.0,
-    1.15,
+    3.268,
+    1.45,
     4.0
    ]
   },
@@ -957,8 +1083,8 @@
    "ok": true,
    "verts": 48,
    "bbox": [
-    3.5,
-    3.5,
+    6.0,
+    6.0,
     4.0
    ]
   },
@@ -993,17 +1119,17 @@
    "ok": true,
    "verts": 76,
    "bbox": [
-    3.0,
+    3.08,
     2.0,
-    1.0
+    1.04
    ]
   },
   "MEL_castle_gatehouse": {
    "ok": true,
-   "verts": 128,
+   "verts": 148,
    "bbox": [
     2.73,
-    1.6,
+    6.0,
     5.0
    ]
   },
@@ -1083,7 +1209,7 @@
    "ok": true,
    "verts": 56,
    "bbox": [
-    6.0,
+    6.333,
     0.4,
     3.0
    ]
@@ -1133,7 +1259,7 @@
   },
   "MEL_church_bell": {
    "ok": true,
-   "verts": 406,
+   "verts": 354,
    "bbox": [
     0.5,
     0.5,
@@ -1163,7 +1289,7 @@
   },
   "MEL_city_house_cell": {
    "ok": true,
-   "verts": 15784,
+   "verts": 16288,
    "bbox": [
     6.094,
     4.526,
@@ -1181,10 +1307,10 @@
   },
   "MEL_city_plan_round": {
    "ok": true,
-   "verts": 15760,
+   "verts": 16264,
    "bbox": [
     12.472,
-    6.375,
+    7.539,
     3.12
    ]
   },
@@ -1271,10 +1397,10 @@
   },
   "MEL_corner_pillar": {
    "ok": true,
-   "verts": 368,
+   "verts": 384,
    "bbox": [
-    1.15,
-    1.144,
+    0.981,
+    0.981,
     3.4
    ]
   },
@@ -1282,7 +1408,7 @@
    "ok": true,
    "verts": 56,
    "bbox": [
-    4.032,
+    4.023,
     0.251,
     0.4
    ]
@@ -1291,8 +1417,8 @@
    "ok": true,
    "verts": 1056,
    "bbox": [
-    2.942,
-    2.819,
+    2.923,
+    2.806,
     5.323
    ]
   },
@@ -1309,8 +1435,8 @@
    "ok": true,
    "verts": 88,
    "bbox": [
-    8.031,
-    0.62,
+    8.041,
+    0.639,
     3.16
    ]
   },
@@ -1389,8 +1515,8 @@
    "ok": true,
    "verts": 1402,
    "bbox": [
-    2.244,
-    1.505,
+    2.254,
+    1.522,
     2.779
    ]
   },
@@ -1407,8 +1533,8 @@
    "ok": true,
    "verts": 1296,
    "bbox": [
-    2.582,
-    2.568,
+    2.58,
+    2.58,
     5.14
    ]
   },
@@ -1416,7 +1542,7 @@
    "ok": true,
    "verts": 1810,
    "bbox": [
-    3.093,
+    3.103,
     3.091,
     2.702
    ]
@@ -1425,8 +1551,8 @@
    "ok": true,
    "verts": 560,
    "bbox": [
-    1.708,
-    0.421,
+    1.694,
+    0.423,
     3.782
    ]
   },
@@ -1453,7 +1579,7 @@
    "verts": 3136,
    "bbox": [
     0.226,
-    0.0,
+    0.003,
     0.452
    ]
   },
@@ -1639,8 +1765,8 @@
    "ok": true,
    "verts": 4320,
    "bbox": [
-    9.557,
-    9.492,
+    9.537,
+    9.513,
     1.993
    ]
   },
@@ -1677,11 +1803,20 @@
   },
   "MEL_eyewear_front": {
    "ok": true,
-   "verts": 9600,
+   "verts": 4320,
    "bbox": [
     0.134,
     0.042,
-    0.006
+    0.007
+   ]
+  },
+  "MEL_eyewear_hero": {
+   "ok": true,
+   "verts": 5144,
+   "bbox": [
+    0.138,
+    0.05,
+    0.126
    ]
   },
   "MEL_eyewear_hinge": {
@@ -1695,20 +1830,16 @@
   },
   "MEL_eyewear_lens": {
    "ok": true,
-   "verts": 420,
+   "verts": 320,
    "bbox": [
     0.126,
     0.034,
     0.002
    ]
   },
-  "MEL_eyewear_lens_gradient": {
-   "ok": false,
-   "error": "empty geometry"
-  },
   "MEL_eyewear_pair": {
    "ok": true,
-   "verts": 4848,
+   "verts": 4824,
    "bbox": [
     0.134,
     0.05,
@@ -1717,20 +1848,12 @@
   },
   "MEL_eyewear_temple": {
    "ok": true,
-   "verts": 360,
+   "verts": 180,
    "bbox": [
     0.005,
     0.03,
     0.123
    ]
-  },
-  "MEL_eyewear_tortoise": {
-   "ok": false,
-   "error": "empty geometry"
-  },
-  "MEL_eyewear_uv": {
-   "ok": false,
-   "error": "empty geometry"
   },
   "MEL_fence": {
    "ok": true,
@@ -1745,8 +1868,8 @@
    "ok": true,
    "verts": 40898,
    "bbox": [
-    2.4,
-    2.397,
+    2.399,
+    2.396,
     2.399
    ]
   },
@@ -1817,8 +1940,8 @@
    "ok": true,
    "verts": 288,
    "bbox": [
-    3.512,
-    3.508,
+    3.499,
+    3.491,
     0.05
    ]
   },
@@ -1840,12 +1963,16 @@
     0.016
    ]
   },
+  "MEL_foliage_clutter": {
+   "ok": false,
+   "error": "empty geometry"
+  },
   "MEL_fountain": {
    "ok": true,
    "verts": 658,
    "bbox": [
-    3.021,
-    3.021,
+    3.02,
+    3.007,
     2.287
    ]
   },
@@ -1853,8 +1980,8 @@
    "ok": true,
    "verts": 1248,
    "bbox": [
-    2.422,
-    2.489,
+    2.346,
+    2.411,
     9.206
    ]
   },
@@ -1958,10 +2085,10 @@
   },
   "MEL_gb_room_circular": {
    "ok": true,
-   "verts": 155,
+   "verts": 154,
    "bbox": [
-    5.997,
-    5.997,
+    6.002,
+    6.002,
     0.3
    ]
   },
@@ -2038,8 +2165,8 @@
    "ok": true,
    "verts": 118,
    "bbox": [
-    2.209,
-    2.338,
+    2.206,
+    2.331,
     2.4
    ]
   },
@@ -2060,7 +2187,7 @@
    "ok": true,
    "verts": 512,
    "bbox": [
-    2.244,
+    2.254,
     0.281,
     1.529
    ]
@@ -2078,8 +2205,8 @@
    "ok": true,
    "verts": 425,
    "bbox": [
-    3.501,
-    0.584,
+    3.478,
+    0.565,
     5.01
    ]
   },
@@ -2344,7 +2471,7 @@
    "bbox": [
     2.085,
     2.171,
-    1.783
+    1.818
    ]
   },
   "MEL_harp_kora": {
@@ -2387,6 +2514,24 @@
     0.022
    ]
   },
+  "MEL_hedge": {
+   "ok": true,
+   "verts": 8028,
+   "bbox": [
+    4.314,
+    0.886,
+    0.596
+   ]
+  },
+  "MEL_hedge_wild": {
+   "ok": true,
+   "verts": 264628,
+   "bbox": [
+    7.673,
+    2.558,
+    1.506
+   ]
+  },
   "MEL_heraldic_banner": {
    "ok": true,
    "verts": 60,
@@ -2398,7 +2543,7 @@
   },
   "MEL_higgsas_colonnade": {
    "ok": true,
-   "verts": 1560,
+   "verts": 200,
    "bbox": [
     16.656,
     1.022,
@@ -2407,10 +2552,10 @@
   },
   "MEL_higgsas_surface_wall": {
    "ok": true,
-   "verts": 2460,
+   "verts": 852,
    "bbox": [
     4.04,
-    0.301,
+    0.27,
     3.0
    ]
   },
@@ -2431,8 +2576,8 @@
    "ok": true,
    "verts": 1008,
    "bbox": [
-    4.092,
-    4.004,
+    4.111,
+    4.002,
     4.514
    ]
   },
@@ -2484,8 +2629,8 @@
    "ok": true,
    "verts": 13824,
    "bbox": [
-    0.604,
-    0.616,
+    0.605,
+    0.601,
     3.705
    ]
   },
@@ -2518,7 +2663,7 @@
   },
   "MEL_lace_dangl": {
    "ok": true,
-   "verts": 5605,
+   "verts": 1340,
    "bbox": [
     0.06,
     0.08,
@@ -2538,8 +2683,8 @@
    "ok": true,
    "verts": 137,
    "bbox": [
-    0.5,
-    0.5,
+    0.485,
+    0.487,
     3.39
    ]
   },
@@ -2656,20 +2801,20 @@
   },
   "MEL_melusina_house_round_interior": {
    "ok": true,
-   "verts": 15760,
+   "verts": 16264,
    "bbox": [
     12.428,
-    6.35,
+    7.518,
     3.12
    ]
   },
   "MEL_mh6_room_shell": {
    "ok": true,
-   "verts": 27720,
+   "verts": 27960,
    "bbox": [
     4.246,
-    0.55,
-    3.442
+    0.557,
+    3.435
    ]
   },
   "MEL_mh_aaa_cornice": {
@@ -2758,11 +2903,11 @@
   },
   "MEL_mh_roof_ribbon": {
    "ok": true,
-   "verts": 1972,
+   "verts": 1144,
    "bbox": [
-    6.014,
+    6.015,
     18.018,
-    1.444
+    1.463
    ]
   },
   "MEL_mh_sheet_rail": {
@@ -2814,8 +2959,8 @@
    "ok": true,
    "verts": 3683,
    "bbox": [
-    4.425,
-    3.794,
+    4.437,
+    3.804,
     1.5
    ]
   },
@@ -2878,8 +3023,8 @@
    "verts": 64,
    "bbox": [
     0.0,
-    0.0,
-    12.0
+    1.0,
+    11.0
    ]
   },
   "MEL_mother_head_silhouette": {
@@ -2931,9 +3076,126 @@
    "ok": false,
    "error": "empty geometry"
   },
+  "MEL_music_accent": {
+   "ok": true,
+   "verts": 16,
+   "bbox": [
+    0.062,
+    0.087,
+    0.016
+   ]
+  },
+  "MEL_music_accordion": {
+   "ok": true,
+   "verts": 32,
+   "bbox": [
+    0.425,
+    0.216,
+    0.32
+   ]
+  },
+  "MEL_music_alto_clef": {
+   "ok": true,
+   "verts": 488,
+   "bbox": [
+    0.574,
+    0.579,
+    0.094
+   ]
+  },
+  "MEL_music_alto_flute": {
+   "ok": true,
+   "verts": 440,
+   "bbox": [
+    0.714,
+    0.025,
+    0.101
+   ]
+  },
+  "MEL_music_arpeggio": {
+   "ok": true,
+   "verts": 320,
+   "bbox": [
+    0.206,
+    0.635,
+    0.105
+   ]
+  },
+  "MEL_music_bagpipes": {
+   "ok": true,
+   "verts": 1162,
+   "bbox": [
+    0.512,
+    0.34,
+    0.597
+   ]
+  },
+  "MEL_music_balalaika": {
+   "ok": true,
+   "verts": 150,
+   "bbox": [
+    0.96,
+    0.462,
+    0.146
+   ]
+  },
   "MEL_music_bamboo_chimes": {
    "ok": false,
    "error": "empty geometry"
+  },
+  "MEL_music_bandoneon": {
+   "ok": true,
+   "verts": 16,
+   "bbox": [
+    0.92,
+    0.4,
+    0.13
+   ]
+  },
+  "MEL_music_banjo": {
+   "ok": true,
+   "verts": 512,
+   "bbox": [
+    0.858,
+    0.297,
+    0.19
+   ]
+  },
+  "MEL_music_bansuri": {
+   "ok": true,
+   "verts": 200,
+   "bbox": [
+    0.7,
+    0.024,
+    0.024
+   ]
+  },
+  "MEL_music_bar_double": {
+   "ok": true,
+   "verts": 16,
+   "bbox": [
+    0.105,
+    0.6,
+    0.03
+   ]
+  },
+  "MEL_music_bar_final": {
+   "ok": true,
+   "verts": 16,
+   "bbox": [
+    0.135,
+    0.6,
+    0.03
+   ]
+  },
+  "MEL_music_bar_line": {
+   "ok": true,
+   "verts": 8,
+   "bbox": [
+    0.03,
+    0.6,
+    0.03
+   ]
   },
   "MEL_music_baroque_harpsichord": {
    "ok": true,
@@ -2980,6 +3242,42 @@
     0.18
    ]
   },
+  "MEL_music_bass_drum": {
+   "ok": true,
+   "verts": 616,
+   "bbox": [
+    0.588,
+    0.636,
+    0.385
+   ]
+  },
+  "MEL_music_bass_flute": {
+   "ok": true,
+   "verts": 456,
+   "bbox": [
+    1.171,
+    0.034,
+    0.138
+   ]
+  },
+  "MEL_music_bassoon": {
+   "ok": true,
+   "verts": 216,
+   "bbox": [
+    0.332,
+    0.068,
+    1.279
+   ]
+  },
+  "MEL_music_bawu": {
+   "ok": true,
+   "verts": 144,
+   "bbox": [
+    0.455,
+    0.019,
+    0.019
+   ]
+  },
   "MEL_music_beam_cluster": {
    "ok": true,
    "verts": 416,
@@ -2987,6 +3285,24 @@
     2.859,
     1.7,
     1.051
+   ]
+  },
+  "MEL_music_bodhran": {
+   "ok": true,
+   "verts": 352,
+   "bbox": [
+    0.468,
+    0.468,
+    0.124
+   ]
+  },
+  "MEL_music_bongos": {
+   "ok": true,
+   "verts": 392,
+   "bbox": [
+    0.439,
+    0.231,
+    0.221
    ]
   },
   "MEL_music_boss_gate": {
@@ -2998,6 +3314,60 @@
     4.5
    ]
   },
+  "MEL_music_breath_mark": {
+   "ok": true,
+   "verts": 176,
+   "bbox": [
+    0.298,
+    0.569,
+    0.24
+   ]
+  },
+  "MEL_music_cabasa": {
+   "ok": true,
+   "verts": 80,
+   "bbox": [
+    0.1,
+    0.1,
+    0.26
+   ]
+  },
+  "MEL_music_caesura": {
+   "ok": true,
+   "verts": 16,
+   "bbox": [
+    0.133,
+    0.142,
+    0.021
+   ]
+  },
+  "MEL_music_cajon": {
+   "ok": true,
+   "verts": 112,
+   "bbox": [
+    0.312,
+    0.334,
+    0.502
+   ]
+  },
+  "MEL_music_carillon": {
+   "ok": true,
+   "verts": 56,
+   "bbox": [
+    6.66,
+    0.08,
+    0.94
+   ]
+  },
+  "MEL_music_castanets": {
+   "ok": true,
+   "verts": 16,
+   "bbox": [
+    0.2,
+    0.006,
+    0.006
+   ]
+  },
   "MEL_music_celesta": {
    "ok": true,
    "verts": 8,
@@ -3005,6 +3375,15 @@
     0.48,
     0.18,
     0.28
+   ]
+  },
+  "MEL_music_cello": {
+   "ok": true,
+   "verts": 180,
+   "bbox": [
+    1.575,
+    0.44,
+    0.17
    ]
   },
   "MEL_music_chord_stack": {
@@ -3016,6 +3395,145 @@
     1.051
    ]
   },
+  "MEL_music_clarinet": {
+   "ok": true,
+   "verts": 128,
+   "bbox": [
+    0.07,
+    0.07,
+    0.66
+   ]
+  },
+  "MEL_music_claves": {
+   "ok": false,
+   "error": "empty geometry"
+  },
+  "MEL_music_clavinet": {
+   "ok": true,
+   "verts": 128,
+   "bbox": [
+    1.548,
+    0.42,
+    0.78
+   ]
+  },
+  "MEL_music_coda": {
+   "ok": true,
+   "verts": 272,
+   "bbox": [
+    0.516,
+    0.516,
+    0.06
+   ]
+  },
+  "MEL_music_congas": {
+   "ok": true,
+   "verts": 584,
+   "bbox": [
+    0.638,
+    0.308,
+    1.044
+   ]
+  },
+  "MEL_music_cowbell": {
+   "ok": true,
+   "verts": 64,
+   "bbox": [
+    0.111,
+    0.111,
+    0.172
+   ]
+  },
+  "MEL_music_cymbals": {
+   "ok": true,
+   "verts": 496,
+   "bbox": [
+    0.51,
+    0.51,
+    0.735
+   ]
+  },
+  "MEL_music_didgeridoo": {
+   "ok": true,
+   "verts": 224,
+   "bbox": [
+    1.5,
+    0.079,
+    0.079
+   ]
+  },
+  "MEL_music_dizi": {
+   "ok": true,
+   "verts": 192,
+   "bbox": [
+    0.664,
+    0.019,
+    0.019
+   ]
+  },
+  "MEL_music_djembe": {
+   "ok": true,
+   "verts": 384,
+   "bbox": [
+    0.416,
+    0.416,
+    0.635
+   ]
+  },
+  "MEL_music_double_bass": {
+   "ok": true,
+   "verts": 234,
+   "bbox": [
+    2.359,
+    0.66,
+    0.34
+   ]
+  },
+  "MEL_music_double_flat": {
+   "ok": true,
+   "verts": 104,
+   "bbox": [
+    0.422,
+    0.6,
+    0.055
+   ]
+  },
+  "MEL_music_double_sharp": {
+   "ok": true,
+   "verts": 16,
+   "bbox": [
+    0.396,
+    0.396,
+    0.055
+   ]
+  },
+  "MEL_music_down_bow": {
+   "ok": true,
+   "verts": 24,
+   "bbox": [
+    0.211,
+    0.232,
+    0.055
+   ]
+  },
+  "MEL_music_drum_kit_rail": {
+   "ok": true,
+   "verts": 16,
+   "bbox": [
+    1.6,
+    0.535,
+    0.035
+   ]
+  },
+  "MEL_music_drum_machine": {
+   "ok": true,
+   "verts": 32,
+   "bbox": [
+    0.34,
+    0.26,
+    0.078
+   ]
+  },
   "MEL_music_dulcimer": {
    "ok": true,
    "verts": 8,
@@ -3025,13 +3543,112 @@
     0.09
    ]
   },
+  "MEL_music_dynamic_f": {
+   "ok": true,
+   "verts": 24,
+   "bbox": [
+    0.192,
+    0.6,
+    0.055
+   ]
+  },
+  "MEL_music_dynamic_ff": {
+   "ok": true,
+   "verts": 48,
+   "bbox": [
+    0.462,
+    0.6,
+    0.055
+   ]
+  },
+  "MEL_music_dynamic_mf": {
+   "ok": true,
+   "verts": 56,
+   "bbox": [
+    0.514,
+    0.6,
+    0.055
+   ]
+  },
+  "MEL_music_dynamic_mp": {
+   "ok": true,
+   "verts": 80,
+   "bbox": [
+    0.61,
+    0.6,
+    0.055
+   ]
+  },
+  "MEL_music_dynamic_p": {
+   "ok": true,
+   "verts": 48,
+   "bbox": [
+    0.28,
+    0.6,
+    0.055
+   ]
+  },
+  "MEL_music_dynamic_pp": {
+   "ok": true,
+   "verts": 96,
+   "bbox": [
+    0.55,
+    0.6,
+    0.055
+   ]
+  },
+  "MEL_music_erhu": {
+   "ok": true,
+   "verts": 204,
+   "bbox": [
+    1.165,
+    0.104,
+    0.094
+   ]
+  },
   "MEL_music_fermata": {
    "ok": true,
    "verts": 196,
    "bbox": [
     1.287,
-    0.872,
-    0.04
+    0.968,
+    0.2
+   ]
+  },
+  "MEL_music_fife": {
+   "ok": true,
+   "verts": 88,
+   "bbox": [
+    0.38,
+    0.013,
+    0.015
+   ]
+  },
+  "MEL_music_flat": {
+   "ok": true,
+   "verts": 56,
+   "bbox": [
+    0.238,
+    0.6,
+    0.055
+   ]
+  },
+  "MEL_music_flute": {
+   "ok": true,
+   "verts": 189,
+   "bbox": [
+    0.019,
+    0.019,
+    0.67
+   ]
+  },
+  "MEL_music_frame_drum": {
+   "ok": true,
+   "verts": 408,
+   "bbox": [
+    0.55,
+    0.597,
+    0.092
    ]
   },
   "MEL_music_frequency_ribcage": {
@@ -3043,6 +3660,24 @@
     0.265
    ]
   },
+  "MEL_music_glass_harmonica": {
+   "ok": true,
+   "verts": 136,
+   "bbox": [
+    0.42,
+    0.32,
+    0.92
+   ]
+  },
+  "MEL_music_glissando": {
+   "ok": true,
+   "verts": 320,
+   "bbox": [
+    0.719,
+    0.188,
+    0.105
+   ]
+  },
   "MEL_music_glockenspiel": {
    "ok": true,
    "verts": 8,
@@ -3052,6 +3687,78 @@
     0.02
    ]
   },
+  "MEL_music_gong": {
+   "ok": true,
+   "verts": 4004,
+   "bbox": [
+    0.872,
+    0.716,
+    1.17
+   ]
+  },
+  "MEL_music_grace_note": {
+   "ok": true,
+   "verts": 64,
+   "bbox": [
+    0.31,
+    0.338,
+    0.055
+   ]
+  },
+  "MEL_music_grand_piano": {
+   "ok": true,
+   "verts": 320,
+   "bbox": [
+    1.52,
+    1.95,
+    1.653
+   ]
+  },
+  "MEL_music_guiro": {
+   "ok": true,
+   "verts": 262,
+   "bbox": [
+    0.347,
+    0.106,
+    0.075
+   ]
+  },
+  "MEL_music_guzheng": {
+   "ok": true,
+   "verts": 32,
+   "bbox": [
+    1.63,
+    0.306,
+    0.24
+   ]
+  },
+  "MEL_music_hairpin_cresc": {
+   "ok": true,
+   "verts": 16,
+   "bbox": [
+    0.474,
+    0.275,
+    0.055
+   ]
+  },
+  "MEL_music_hairpin_decresc": {
+   "ok": true,
+   "verts": 16,
+   "bbox": [
+    0.474,
+    0.275,
+    0.055
+   ]
+  },
+  "MEL_music_handpan": {
+   "ok": true,
+   "verts": 2060,
+   "bbox": [
+    0.52,
+    0.52,
+    0.3
+   ]
+  },
   "MEL_music_harmonic": {
    "ok": true,
    "verts": 1024,
@@ -3059,6 +3766,15 @@
     4.0,
     4.0,
     0.0
+   ]
+  },
+  "MEL_music_harmonium": {
+   "ok": true,
+   "verts": 24,
+   "bbox": [
+    1.05,
+    0.55,
+    1.23
    ]
   },
   "MEL_music_harmonograph": {
@@ -3088,6 +3804,33 @@
     1.8
    ]
   },
+  "MEL_music_hulusi": {
+   "ok": true,
+   "verts": 1202,
+   "bbox": [
+    0.169,
+    0.13,
+    0.449
+   ]
+  },
+  "MEL_music_hurdy_gurdy": {
+   "ok": true,
+   "verts": 158,
+   "bbox": [
+    0.26,
+    0.406,
+    0.678
+   ]
+  },
+  "MEL_music_inverted_turn": {
+   "ok": true,
+   "verts": 320,
+   "bbox": [
+    0.512,
+    0.167,
+    0.105
+   ]
+  },
   "MEL_music_jingle_tower": {
    "ok": true,
    "verts": 32,
@@ -3106,6 +3849,15 @@
     0.04
    ]
   },
+  "MEL_music_key_signature": {
+   "ok": true,
+   "verts": 160,
+   "bbox": [
+    0.135,
+    0.99,
+    0.055
+   ]
+  },
   "MEL_music_key_unit": {
    "ok": true,
    "verts": 16,
@@ -3113,6 +3865,15 @@
     0.023,
     0.162,
     0.018
+   ]
+  },
+  "MEL_music_koto": {
+   "ok": true,
+   "verts": 24,
+   "bbox": [
+    1.82,
+    0.24,
+    0.168
    ]
   },
   "MEL_music_lissajous_harp": {
@@ -3124,6 +3885,15 @@
     3.001
    ]
   },
+  "MEL_music_low_whistle": {
+   "ok": true,
+   "verts": 232,
+   "bbox": [
+    0.6,
+    0.023,
+    0.037
+   ]
+  },
   "MEL_music_lullaby_nook": {
    "ok": true,
    "verts": 8,
@@ -3133,13 +3903,139 @@
     0.08
    ]
   },
+  "MEL_music_mandolin": {
+   "ok": true,
+   "verts": 192,
+   "bbox": [
+    0.55,
+    0.25,
+    0.078
+   ]
+  },
+  "MEL_music_maracas": {
+   "ok": true,
+   "verts": 1028,
+   "bbox": [
+    0.226,
+    0.076,
+    0.216
+   ]
+  },
+  "MEL_music_marcato": {
+   "ok": true,
+   "verts": 16,
+   "bbox": [
+    0.03,
+    0.089,
+    0.016
+   ]
+  },
+  "MEL_music_marimba": {
+   "ok": true,
+   "verts": 8,
+   "bbox": [
+    0.3,
+    0.03,
+    0.015
+   ]
+  },
+  "MEL_music_mellotron": {
+   "ok": true,
+   "verts": 256,
+   "bbox": [
+    1.05,
+    0.567,
+    1.071
+   ]
+  },
+  "MEL_music_melodica": {
+   "ok": true,
+   "verts": 16,
+   "bbox": [
+    0.48,
+    0.08,
+    0.035
+   ]
+  },
   "MEL_music_metronome_pillar": {
    "ok": true,
    "verts": 162,
    "bbox": [
     1.556,
     1.556,
-    5.614
+    5.617
+   ]
+  },
+  "MEL_music_mixer": {
+   "ok": true,
+   "verts": 24,
+   "bbox": [
+    0.904,
+    0.5,
+    0.76
+   ]
+  },
+  "MEL_music_mordent": {
+   "ok": true,
+   "verts": 16,
+   "bbox": [
+    0.21,
+    0.132,
+    0.055
+   ]
+  },
+  "MEL_music_music_box": {
+   "ok": true,
+   "verts": 254,
+   "bbox": [
+    0.464,
+    0.416,
+    0.364
+   ]
+  },
+  "MEL_music_natural": {
+   "ok": true,
+   "verts": 32,
+   "bbox": [
+    0.171,
+    0.6,
+    0.055
+   ]
+  },
+  "MEL_music_note_dotted_eighth": {
+   "ok": true,
+   "verts": 168,
+   "bbox": [
+    0.397,
+    0.543,
+    0.034
+   ]
+  },
+  "MEL_music_note_dotted_half": {
+   "ok": true,
+   "verts": 240,
+   "bbox": [
+    0.299,
+    0.539,
+    0.026
+   ]
+  },
+  "MEL_music_note_dotted_quarter": {
+   "ok": true,
+   "verts": 96,
+   "bbox": [
+    0.286,
+    0.526,
+    0.026
+   ]
+  },
+  "MEL_music_note_eighth": {
+   "ok": true,
+   "verts": 128,
+   "bbox": [
+    0.397,
+    0.543,
+    0.034
    ]
   },
   "MEL_music_note_fish": {
@@ -3149,6 +4045,15 @@
     3.293,
     3.132,
     1.544
+   ]
+  },
+  "MEL_music_note_half": {
+   "ok": true,
+   "verts": 200,
+   "bbox": [
+    0.249,
+    0.539,
+    0.026
    ]
   },
   "MEL_music_note_head": {
@@ -3169,13 +4074,112 @@
     1.248
    ]
   },
+  "MEL_music_note_quarter": {
+   "ok": true,
+   "verts": 56,
+   "bbox": [
+    0.231,
+    0.526,
+    0.026
+   ]
+  },
   "MEL_music_note_school": {
    "ok": false,
    "error": "empty geometry"
   },
+  "MEL_music_note_sixteenth": {
+   "ok": true,
+   "verts": 200,
+   "bbox": [
+    0.397,
+    0.543,
+    0.034
+   ]
+  },
+  "MEL_music_note_thirty_second": {
+   "ok": true,
+   "verts": 272,
+   "bbox": [
+    0.397,
+    0.543,
+    0.034
+   ]
+  },
+  "MEL_music_note_whole": {
+   "ok": true,
+   "verts": 192,
+   "bbox": [
+    0.249,
+    0.199,
+    0.026
+   ]
+  },
+  "MEL_music_oboe": {
+   "ok": true,
+   "verts": 176,
+   "bbox": [
+    0.667,
+    0.048,
+    0.048
+   ]
+  },
+  "MEL_music_ocarina": {
+   "ok": true,
+   "verts": 1384,
+   "bbox": [
+    0.11,
+    0.128,
+    0.3
+   ]
+  },
+  "MEL_music_octave_shift": {
+   "ok": true,
+   "verts": 48,
+   "bbox": [
+    0.424,
+    0.18,
+    0.055
+   ]
+  },
   "MEL_music_organ_pipes": {
    "ok": false,
    "error": "empty geometry"
+  },
+  "MEL_music_panpipes": {
+   "ok": true,
+   "verts": 128,
+   "bbox": [
+    0.123,
+    0.123,
+    0.105
+   ]
+  },
+  "MEL_music_pedal_down": {
+   "ok": true,
+   "verts": 56,
+   "bbox": [
+    0.6,
+    0.658,
+    0.055
+   ]
+  },
+  "MEL_music_pedal_up": {
+   "ok": true,
+   "verts": 24,
+   "bbox": [
+    0.27,
+    0.261,
+    0.055
+   ]
+  },
+  "MEL_music_percussion_clef": {
+   "ok": true,
+   "verts": 16,
+   "bbox": [
+    0.372,
+    0.6,
+    0.055
+   ]
   },
   "MEL_music_phrase": {
    "ok": true,
@@ -3190,13 +4194,94 @@
    "ok": false,
    "error": "empty geometry"
   },
+  "MEL_music_piccolo": {
+   "ok": true,
+   "verts": 232,
+   "bbox": [
+    0.337,
+    0.015,
+    0.015
+   ]
+  },
+  "MEL_music_quena": {
+   "ok": true,
+   "verts": 272,
+   "bbox": [
+    0.02,
+    0.022,
+    0.402
+   ]
+  },
+  "MEL_music_ratchet": {
+   "ok": true,
+   "verts": 168,
+   "bbox": [
+    0.12,
+    0.07,
+    0.15
+   ]
+  },
+  "MEL_music_recorder": {
+   "ok": true,
+   "verts": 190,
+   "bbox": [
+    0.022,
+    0.022,
+    0.32
+   ]
+  },
   "MEL_music_repeat_bar": {
    "ok": true,
    "verts": 120,
    "bbox": [
-    0.414,
-    0.672,
-    0.0
+    0.559,
+    1.2,
+    0.2
+   ]
+  },
+  "MEL_music_rest_eighth": {
+   "ok": true,
+   "verts": 72,
+   "bbox": [
+    0.578,
+    0.555,
+    0.06
+   ]
+  },
+  "MEL_music_rest_half": {
+   "ok": true,
+   "verts": 8,
+   "bbox": [
+    0.169,
+    0.065,
+    0.05
+   ]
+  },
+  "MEL_music_rest_quarter": {
+   "ok": true,
+   "verts": 350,
+   "bbox": [
+    0.2,
+    0.636,
+    0.058
+   ]
+  },
+  "MEL_music_rest_sixteenth": {
+   "ok": true,
+   "verts": 104,
+   "bbox": [
+    0.578,
+    0.555,
+    0.06
+   ]
+  },
+  "MEL_music_rest_whole": {
+   "ok": true,
+   "verts": 8,
+   "bbox": [
+    0.169,
+    0.065,
+    0.05
    ]
   },
   "MEL_music_room_shell": {
@@ -3206,6 +4291,87 @@
     10.044,
     7.009,
     4.5
+   ]
+  },
+  "MEL_music_sampler": {
+   "ok": true,
+   "verts": 200,
+   "bbox": [
+    0.507,
+    0.323,
+    0.115
+   ]
+  },
+  "MEL_music_saxophone": {
+   "ok": true,
+   "verts": 208,
+   "bbox": [
+    0.23,
+    0.267,
+    0.799
+   ]
+  },
+  "MEL_music_segno": {
+   "ok": true,
+   "verts": 280,
+   "bbox": [
+    0.564,
+    0.6,
+    0.06
+   ]
+  },
+  "MEL_music_sequencer": {
+   "ok": true,
+   "verts": 32,
+   "bbox": [
+    0.42,
+    0.22,
+    0.079
+   ]
+  },
+  "MEL_music_sforzando": {
+   "ok": true,
+   "verts": 24,
+   "bbox": [
+    0.258,
+    0.592,
+    0.055
+   ]
+  },
+  "MEL_music_shaker": {
+   "ok": true,
+   "verts": 144,
+   "bbox": [
+    0.052,
+    0.052,
+    0.19
+   ]
+  },
+  "MEL_music_shakuhachi": {
+   "ok": true,
+   "verts": 208,
+   "bbox": [
+    0.049,
+    0.052,
+    0.563
+   ]
+  },
+  "MEL_music_shamisen": {
+   "ok": true,
+   "verts": 200,
+   "bbox": [
+    1.015,
+    0.144,
+    0.08
+   ]
+  },
+  "MEL_music_sharp": {
+   "ok": true,
+   "verts": 32,
+   "bbox": [
+    0.263,
+    0.6,
+    0.055
    ]
   },
   "MEL_music_sheet_rail": {
@@ -3226,6 +4392,60 @@
     2.4
    ]
   },
+  "MEL_music_sheng": {
+   "ok": true,
+   "verts": 144,
+   "bbox": [
+    0.206,
+    0.15,
+    0.102
+   ]
+  },
+  "MEL_music_sitar": {
+   "ok": true,
+   "verts": 1724,
+   "bbox": [
+    1.344,
+    0.36,
+    0.321
+   ]
+  },
+  "MEL_music_slapstick": {
+   "ok": true,
+   "verts": 104,
+   "bbox": [
+    0.369,
+    0.03,
+    0.11
+   ]
+  },
+  "MEL_music_slit_drum": {
+   "ok": true,
+   "verts": 1330,
+   "bbox": [
+    0.806,
+    0.265,
+    0.272
+   ]
+  },
+  "MEL_music_slur": {
+   "ok": true,
+   "verts": 240,
+   "bbox": [
+    0.832,
+    0.418,
+    0.084
+   ]
+  },
+  "MEL_music_snare_drum": {
+   "ok": true,
+   "verts": 488,
+   "bbox": [
+    0.391,
+    0.376,
+    0.14
+   ]
+  },
   "MEL_music_soundhole_rosette": {
    "ok": true,
    "verts": 2016,
@@ -3233,6 +4453,15 @@
     2.472,
     2.472,
     0.132
+   ]
+  },
+  "MEL_music_staccato": {
+   "ok": true,
+   "verts": 40,
+   "bbox": [
+    0.052,
+    0.052,
+    0.013
    ]
   },
   "MEL_music_staff": {
@@ -3258,8 +4487,89 @@
    "verts": 72,
    "bbox": [
     1.4,
-    1.635,
-    0.804
+    1.664,
+    1.2
+   ]
+  },
+  "MEL_music_steelpan": {
+   "ok": true,
+   "verts": 2826,
+   "bbox": [
+    0.402,
+    0.402,
+    0.55
+   ]
+  },
+  "MEL_music_suona": {
+   "ok": true,
+   "verts": 300,
+   "bbox": [
+    0.451,
+    0.115,
+    0.115
+   ]
+  },
+  "MEL_music_synthesizer": {
+   "ok": true,
+   "verts": 40,
+   "bbox": [
+    1.1,
+    0.465,
+    1.34
+   ]
+  },
+  "MEL_music_tabla": {
+   "ok": true,
+   "verts": 512,
+   "bbox": [
+    0.477,
+    0.233,
+    0.285
+   ]
+  },
+  "MEL_music_tambourine": {
+   "ok": true,
+   "verts": 288,
+   "bbox": [
+    0.25,
+    0.25,
+    0.084
+   ]
+  },
+  "MEL_music_temple_block": {
+   "ok": true,
+   "verts": 1320,
+   "bbox": [
+    0.134,
+    0.096,
+    0.103
+   ]
+  },
+  "MEL_music_tempo_mark": {
+   "ok": true,
+   "verts": 96,
+   "bbox": [
+    0.6,
+    0.87,
+    0.055
+   ]
+  },
+  "MEL_music_tenor_clef": {
+   "ok": true,
+   "verts": 488,
+   "bbox": [
+    0.574,
+    0.579,
+    0.094
+   ]
+  },
+  "MEL_music_tenuto": {
+   "ok": true,
+   "verts": 8,
+   "bbox": [
+    0.111,
+    0.018,
+    0.018
    ]
   },
   "MEL_music_them_arch": {
@@ -3370,6 +4680,24 @@
     6.0
    ]
   },
+  "MEL_music_theremin": {
+   "ok": true,
+   "verts": 1632,
+   "bbox": [
+    0.634,
+    0.477,
+    0.42
+   ]
+  },
+  "MEL_music_tie": {
+   "ok": true,
+   "verts": 240,
+   "bbox": [
+    0.555,
+    0.227,
+    0.084
+   ]
+  },
   "MEL_music_time_signature": {
    "ok": true,
    "verts": 208,
@@ -3386,6 +4714,33 @@
     0.84,
     0.84,
     0.42
+   ]
+  },
+  "MEL_music_tin_whistle": {
+   "ok": true,
+   "verts": 232,
+   "bbox": [
+    0.3,
+    0.019,
+    0.024
+   ]
+  },
+  "MEL_music_tom_tom": {
+   "ok": true,
+   "verts": 240,
+   "bbox": [
+    0.33,
+    0.33,
+    0.562
+   ]
+  },
+  "MEL_music_tonewheel_organ": {
+   "ok": true,
+   "verts": 96,
+   "bbox": [
+    1.725,
+    0.815,
+    0.989
    ]
   },
   "MEL_music_treble_clef": {
@@ -3406,6 +4761,24 @@
     1.543
    ]
   },
+  "MEL_music_tremolo": {
+   "ok": true,
+   "verts": 32,
+   "bbox": [
+    0.228,
+    0.62,
+    0.055
+   ]
+  },
+  "MEL_music_trill": {
+   "ok": true,
+   "verts": 24,
+   "bbox": [
+    0.06,
+    0.838,
+    0.055
+   ]
+  },
   "MEL_music_triplet_note": {
    "ok": true,
    "verts": 322,
@@ -3413,6 +4786,24 @@
     2.759,
     1.7,
     1.051
+   ]
+  },
+  "MEL_music_trumpet": {
+   "ok": true,
+   "verts": 240,
+   "bbox": [
+    0.497,
+    0.124,
+    0.124
+   ]
+  },
+  "MEL_music_tuba": {
+   "ok": true,
+   "verts": 304,
+   "bbox": [
+    0.736,
+    0.38,
+    1.031
    ]
   },
   "MEL_music_tubular_bells": {
@@ -3428,6 +4819,69 @@
     2.332
    ]
   },
+  "MEL_music_turn": {
+   "ok": true,
+   "verts": 320,
+   "bbox": [
+    0.512,
+    0.167,
+    0.105
+   ]
+  },
+  "MEL_music_turntable": {
+   "ok": true,
+   "verts": 520,
+   "bbox": [
+    0.45,
+    0.36,
+    0.174
+   ]
+  },
+  "MEL_music_ukulele": {
+   "ok": true,
+   "verts": 210,
+   "bbox": [
+    0.434,
+    0.17,
+    0.08
+   ]
+  },
+  "MEL_music_up_bow": {
+   "ok": true,
+   "verts": 24,
+   "bbox": [
+    0.211,
+    0.232,
+    0.055
+   ]
+  },
+  "MEL_music_upright_piano": {
+   "ok": true,
+   "verts": 88,
+   "bbox": [
+    1.502,
+    0.693,
+    1.35
+   ]
+  },
+  "MEL_music_vibraphone": {
+   "ok": true,
+   "verts": 8,
+   "bbox": [
+    0.36,
+    0.025,
+    0.012
+   ]
+  },
+  "MEL_music_vibraslap": {
+   "ok": true,
+   "verts": 506,
+   "bbox": [
+    0.485,
+    0.06,
+    0.06
+   ]
+  },
   "MEL_music_victory_plaza": {
    "ok": true,
    "verts": 96,
@@ -3437,22 +4891,76 @@
     0.8
    ]
   },
+  "MEL_music_viola": {
+   "ok": true,
+   "verts": 164,
+   "bbox": [
+    0.747,
+    0.25,
+    0.108
+   ]
+  },
+  "MEL_music_washboard": {
+   "ok": true,
+   "verts": 80,
+   "bbox": [
+    0.348,
+    0.036,
+    0.519
+   ]
+  },
   "MEL_music_waveform_wall": {
    "ok": true,
    "verts": 768,
    "bbox": [
-    508.069,
+    4.021,
     0.08,
-    0.0
+    1.382
    ]
   },
   "MEL_music_waveform_wall_v2": {
    "ok": true,
    "verts": 256,
    "bbox": [
-    508.707,
-    508.707,
-    508.577
+    4.0,
+    1.0,
+    0.95
+   ]
+  },
+  "MEL_music_wood_block": {
+   "ok": true,
+   "verts": 24,
+   "bbox": [
+    0.205,
+    0.078,
+    0.088
+   ]
+  },
+  "MEL_music_xiao": {
+   "ok": true,
+   "verts": 128,
+   "bbox": [
+    0.021,
+    0.021,
+    0.772
+   ]
+  },
+  "MEL_music_xun": {
+   "ok": true,
+   "verts": 1210,
+   "bbox": [
+    0.09,
+    0.09,
+    0.109
+   ]
+  },
+  "MEL_music_xylophone": {
+   "ok": true,
+   "verts": 64,
+   "bbox": [
+    0.647,
+    0.382,
+    0.62
    ]
   },
   "MEL_musical_harmonic_variant": {
@@ -3488,9 +4996,9 @@
    "ok": true,
    "verts": 138,
    "bbox": [
-    4.8,
-    4.8,
-    4.6
+    6.37,
+    5.6,
+    4.82
    ]
   },
   "MEL_nikki_cord": {
@@ -3511,6 +5019,33 @@
     0.068
    ]
   },
+  "MEL_nikki_fabric_mesh": {
+   "ok": true,
+   "verts": 15625,
+   "bbox": [
+    0.537,
+    0.532,
+    0.029
+   ]
+  },
+  "MEL_nikki_floral_petal": {
+   "ok": true,
+   "verts": 72241,
+   "bbox": [
+    0.117,
+    0.129,
+    1.0
+   ]
+  },
+  "MEL_nikki_gem": {
+   "ok": true,
+   "verts": 20,
+   "bbox": [
+    0.114,
+    0.121,
+    0.12
+   ]
+  },
   "MEL_nikki_heart": {
    "ok": true,
    "verts": 697,
@@ -3523,6 +5058,15 @@
   "MEL_nikki_heart_filigree": {
    "ok": false,
    "error": "empty geometry"
+  },
+  "MEL_nikki_heart_token": {
+   "ok": true,
+   "verts": 710,
+   "bbox": [
+    0.092,
+    0.04,
+    0.101
+   ]
   },
   "MEL_nikki_legacy_heart_filigree": {
    "ok": false,
@@ -3542,17 +5086,26 @@
    "verts": 308,
    "bbox": [
     33.1,
-    9.885,
-    0.205
+    10.76,
+    0.405
    ]
   },
   "MEL_nikki_quarter": {
    "ok": true,
    "verts": 333,
    "bbox": [
-    4.395,
-    5.001,
-    10.19
+    4.523,
+    7.23,
+    12.3
+   ]
+  },
+  "MEL_nikki_ribbon": {
+   "ok": true,
+   "verts": 136,
+   "bbox": [
+    1.042,
+    0.129,
+    0.1
    ]
   },
   "MEL_nikki_sheet_rail_hero": {
@@ -3577,6 +5130,15 @@
    "ok": false,
    "error": "empty geometry"
   },
+  "MEL_nikki_star_token": {
+   "ok": true,
+   "verts": 20,
+   "bbox": [
+    0.09,
+    0.095,
+    0.01
+   ]
+  },
   "MEL_nikki_wall_beads": {
    "ok": true,
    "verts": 336,
@@ -3590,9 +5152,9 @@
    "ok": true,
    "verts": 96,
    "bbox": [
-    1.2,
-    1.0,
-    1.45
+    5.3,
+    1.56,
+    3.95
    ]
   },
   "MEL_note_head_filigree": {
@@ -3612,8 +5174,8 @@
    "ok": true,
    "verts": 545,
    "bbox": [
-    2.443,
-    0.267,
+    2.413,
+    0.288,
     3.66
    ]
   },
@@ -3656,7 +5218,7 @@
    "verts": 608,
    "bbox": [
     0.84,
-    1.34,
+    1.74,
     0.04
    ]
   },
@@ -3752,8 +5314,8 @@
    "ok": true,
    "verts": 160,
    "bbox": [
-    4.764,
-    4.772,
+    4.779,
+    4.789,
     3.632
    ]
   },
@@ -3795,10 +5357,10 @@
   },
   "MEL_pillar": {
    "ok": true,
-   "verts": 456,
+   "verts": 480,
    "bbox": [
-    1.526,
-    1.522,
+    1.352,
+    1.339,
     4.8
    ]
   },
@@ -3847,7 +5409,7 @@
    "verts": 8,
    "bbox": [
     0.15,
-    0.0,
+    0.15,
     2.0
    ]
   },
@@ -3889,8 +5451,8 @@
    "ok": true,
    "verts": 540,
    "bbox": [
-    9.153,
-    0.133,
+    9.157,
+    0.128,
     1.156
    ]
   },
@@ -3914,10 +5476,10 @@
   },
   "MEL_reed_body": {
    "ok": true,
-   "verts": 48,
+   "verts": 106,
    "bbox": [
-    1.6,
-    1.6,
+    0.4,
+    0.4,
     60.0
    ]
   },
@@ -4024,8 +5586,8 @@
    "ok": true,
    "verts": 18624,
    "bbox": [
-    2.342,
-    2.325,
+    2.326,
+    2.321,
     2.927
    ]
   },
@@ -4111,8 +5673,8 @@
    "ok": true,
    "verts": 1584,
    "bbox": [
-    2.404,
     2.403,
+    2.402,
     1.281
    ]
   },
@@ -4142,8 +5704,8 @@
    "ok": true,
    "verts": 384,
    "bbox": [
-    4.806,
-    1.726,
+    4.829,
+    1.699,
     3.278
    ]
   },
@@ -4257,8 +5819,8 @@
    "ok": true,
    "verts": 512,
    "bbox": [
-    4.575,
-    4.558,
+    4.566,
+    4.557,
     0.794
    ]
   },
@@ -4266,9 +5828,36 @@
    "ok": true,
    "verts": 1884,
    "bbox": [
-    2.471,
-    2.464,
+    2.462,
+    2.456,
     4.051
+   ]
+  },
+  "MEL_topiary_ball": {
+   "ok": true,
+   "verts": 90042,
+   "bbox": [
+    1.259,
+    1.25,
+    1.775
+   ]
+  },
+  "MEL_topiary_cone": {
+   "ok": true,
+   "verts": 80920,
+   "bbox": [
+    1.136,
+    1.147,
+    2.058
+   ]
+  },
+  "MEL_topiary_spline": {
+   "ok": true,
+   "verts": 87448,
+   "bbox": [
+    2.736,
+    2.941,
+    0.715
    ]
   },
   "MEL_torch_sconce": {
@@ -4293,8 +5882,8 @@
    "ok": true,
    "verts": 312,
    "bbox": [
-    2.422,
-    2.489,
+    2.346,
+    2.411,
     5.092
    ]
   },
@@ -4316,12 +5905,34 @@
     8.867
    ]
   },
+  "MEL_tree": {
+   "ok": true,
+   "verts": 176116,
+   "bbox": [
+    2.929,
+    2.812,
+    7.026
+   ]
+  },
+  "MEL_tree_foliage": {
+   "ok": false,
+   "error": "empty geometry"
+  },
+  "MEL_tree_trunk": {
+   "ok": true,
+   "verts": 4736,
+   "bbox": [
+    2.341,
+    2.585,
+    6.595
+   ]
+  },
   "MEL_trefoil": {
    "ok": true,
    "verts": 960,
    "bbox": [
-    3.042,
-    0.26,
+    3.054,
+    0.25,
     3.04
    ]
   },
@@ -4338,8 +5949,8 @@
    "ok": true,
    "verts": 1664,
    "bbox": [
-    8.016,
-    1.046,
+    8.052,
+    1.057,
     2.713
    ]
   },
@@ -4347,8 +5958,8 @@
    "ok": true,
    "verts": 1808,
    "bbox": [
-    2.795,
-    0.794,
+    2.764,
+    0.787,
     4.12
    ]
   },
@@ -4661,9 +6272,9 @@
    "ok": true,
    "verts": 3456,
    "bbox": [
-    0.05,
-    0.044,
-    0.0
+    2.481,
+    2.477,
+    5.042
    ]
   },
   "MEL_weighted_array": {
@@ -4687,9 +6298,9 @@
    "ok": true,
    "verts": 128,
    "bbox": [
-    64.017,
+    63.017,
     0.0,
-    0.0
+    1.0
    ]
   },
   "MEL_wind_siku": {
@@ -4709,8 +6320,8 @@
    "ok": true,
    "verts": 552,
    "bbox": [
-    1.023,
-    0.34,
+    1.026,
+    0.322,
     1.593
    ]
   },
@@ -6671,8 +8282,8 @@
   }
  },
  "meta": {
-  "blender": "5.2.0 LTS",
-  "package_count": 614,
+  "blender": "5.2.1 LTS",
+  "package_count": 793,
   "monolith_count": 209
  }
 }

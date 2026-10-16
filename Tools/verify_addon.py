@@ -80,7 +80,19 @@ CONVERGED_FILES = [
 # id that flips is MEL_heart_chain, empty cold and non-empty once gate A has
 # built the registry — the GB_ROOM_CIRCULAR run-order class). The constant had
 # simply not been re-measured since 2026-09-19.
-RECORDED_EMPTIES = 145
+# 145 -> 147 on 2026-10-15 (registry 614 -> 793 re-cut): +2 MEL_foliage_clutter
+# / MEL_tree_foliage (scatter-onto-input architecture: InstanceOnPoints over
+# host geometry, correctly empty on the harness bare cube — same class as
+# MEL_music_note_school) +1 MEL_music_claves (pure-instance rods: unrealized
+# instances are invisible to the harness to_mesh(); non-empty with
+# "Realize for export" — measurement artifact, not a builder defect; siblings
+# carry real geometry so they read non-empty) -3 retired eyewear builders
+# (consolidated into MEL_eyewear_hero). MEL_heart_chain flips cold-empty /
+# warm-nonempty: cold single-pass counts 148, gate-D (warm, gate A built the
+# registry first) counts 147 twice, independently confirmed by
+# Saved/Audit/warm_empties_20261015.py (147) vs the re-cut probe (148).
+# This constant governs the warm gate-D reading: 147.
+RECORDED_EMPTIES = 147
 
 results = []
 
