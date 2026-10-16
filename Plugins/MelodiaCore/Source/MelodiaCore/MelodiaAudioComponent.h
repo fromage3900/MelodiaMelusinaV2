@@ -5,7 +5,7 @@
 #include "MelodiaCoreRulesLibrary.h"
 #include "MelodiaAudioComponent.generated.h"
 
-class USoundWave;
+class USoundBase;
 class UAudioComponent;
 class UQuartzClockHandle;
 
@@ -31,9 +31,9 @@ public:
 	UFUNCTION(BlueprintCallable, Category="Melodia|Audio")
 	void PlayMetronomeClick();
 
-	/** Play a short runtime-generated tone for a MIDI note. Used as the fallback
-	 * instrument for interactable PCG music nodes when authored samples are not
-	 * available. */
+	/** Play a MIDI note on NoteSample, pitch-shifted from its C4 root. Used by the
+	 * interactable PCG music nodes. DurationSeconds is kept for callers; the
+	 * sample's own decay sets the length. */
 	UFUNCTION(BlueprintCallable, Category="Melodia|Audio")
 	void PlayMusicalNote(int32 MidiNote, float DurationSeconds = 0.18f, float Velocity = 0.75f);
 
@@ -73,19 +73,17 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|Audio", meta=(ClampMin="0.0", ClampMax="1.0"))
 	float SFXVolume = 0.5f;
 
+	/** One authored C4 note every SFX, grade tone and musical note is pitched from. */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|Audio")
+	TSoftObjectPtr<USoundBase> NoteSample = TSoftObjectPtr<USoundBase>(FSoftObjectPath(TEXT("/Game/Melodia/Audio/WaveHarp/SW_WaveHarp_Orchestra_C4.SW_WaveHarp_Orchestra_C4")));
+
 	/** Master volume scalar for BGM */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|Audio", meta=(ClampMin="0.0", ClampMax="1.0"))
 	float BGMVolume = 0.3f;
 
 private:
-	/** Create a simple sine-wave sound wave at runtime */
-	USoundWave* CreateTone(float FrequencyHz, float DurationSec, float Volume = 0.5f);
-
-	/** Create a metronome click (short burst at ~1kHz) */
-	USoundWave* CreateClickTone();
-
-	/** Spawn and play a sound wave */
-	void PlaySound(USoundWave* Sound, float VolumeMultiplier = 1.0f);
+	/** Play NoteSample at FrequencyHz (pitch relative to its C4 root). */
+	void PlayTone(float FrequencyHz, float VolumeMultiplier = 1.0f);
 
 	UPROPERTY()
 	TObjectPtr<UAudioComponent> BGMComponent;
@@ -101,24 +99,4 @@ private:
 	FName CurrentSkillId;
 
 	static const FName BattleClockName;
-
-	/** Cached tone sounds generated at runtime */
-	UPROPERTY()
-	TObjectPtr<USoundWave> PerfectTone;
-
-	UPROPERTY()
-	TObjectPtr<USoundWave> GreatTone;
-
-	UPROPERTY()
-	TObjectPtr<USoundWave> GoodTone;
-
-	UPROPERTY()
-	TObjectPtr<USoundWave> MissTone;
-
-	UPROPERTY()
-	TObjectPtr<USoundWave> ClickTone;
-
-	/** Keeps transient note waves alive for the short duration of playback. */
-	UPROPERTY(Transient)
-	TArray<TObjectPtr<USoundWave>> ActiveMusicalTones;
 };
