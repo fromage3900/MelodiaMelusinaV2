@@ -476,7 +476,7 @@ void UMelodiaTraversalComponent::TickComponent(float DeltaTime, ELevelTick TickT
 			const float SubdivisionsPerBeat = (bIsSprinting || bIsDashing) ? 2.0f : 1.0f;
 			const int32 CurrentSubdivision = FMath::FloorToInt(MusicTime * (128.0f / 60.0f) * SubdivisionsPerBeat);
 			int32& LastSubdivision = LastStepSubdivisionByComp.FindOrAdd(this, -1);
-			if (CurrentSubdivision != LastSubdivision)
+			if (CurrentSubdivision > LastSubdivision)
 			{
 				LastSubdivision = CurrentSubdivision;
 				const float Speed01 = FMath::Clamp(GroundSpeed2D / 600.0f, 0.2f, 1.0f);
