@@ -1,5 +1,19 @@
 # Melodia Melusina ? Current State
 
+## Eyewear flourish + material slots — 2026-10-16 (LANDED via lane; UE BP queued)
+
+- **Builder work (landed):** hero `Enable Flourish` now gates a 3:2 Lissajous tube halo above the bridge
+  (freq/amp dials live, default OFF); per-part material slots (Frame/Temple/Hinge/Lens) applied to
+  nested outputs (Bridge stays declared — inseparable inside front sub-tree). Default output verified
+  identical to pre-change build (5,144 verts); ON adds 1,152 halo verts. Full verify_addon 6/6 PASS.
+  Renders under `Saved/Audit/EyewearFlourish/` (gitignored staging).
+- **UE side (in-editor):** Cat-Eye frame + lens static meshes imported (fresh Accessories path, saved on
+  disk); `wardrobe_eyewear_cateye.v1.json` extended with lens mesh + UE-measured counts.
+- **Blocked 2026-10-16:** Monolith MCP namespace dropped from the agent tool catalog mid-session
+  (editor + :9316 bridge verified alive; owner restarted editor 10-15 21:30). BP wiring (glasses BP +
+  halo toggle + socket attach + MI instances) queued until the surface returns — no live-editor
+  mutation attempted without it.
+
 ## Cat-Eye eyewear accessory — 2026-10-16 (mesh+manifest LANDED via lane; UE materials/attach pending)
 
 - **What:** first eyewear cosmetic `Cos_Eyewear_CatEye_Grand` (Uncommon, Accessories slot, decorative-only;
