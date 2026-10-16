@@ -4,6 +4,7 @@
 #include "Components/StaticMeshComponent.h"
 #include "Engine/GameInstance.h"
 #include "Engine/World.h"
+#include "Materials/MaterialInstanceDynamic.h"
 #include "GameFramework/Pawn.h"
 #include "MelodiaExternalJRPGBridgeSubsystem.h"
 #include "MelodiaHybridEncounterComponent.h"
@@ -43,6 +44,14 @@ void AMelodiaWorldSlimeNode::BeginPlay()
 			}
 			return; // Restoring a durable outcome must never broadcast another death.
 		}
+	}
+	// The slime body shows its figure only when its material exposes one.
+	ResonanceMaterial = SlimeMesh->GetNumMaterials() > 0 ? SlimeMesh->CreateDynamicMaterialInstance(0) : nullptr;
+	if (ResonanceMaterial)
+	{
+		LockedChladniIntensity = ResonanceMaterial->K2_GetScalarParameterValue(TEXT("ChladniIntensity"));
+		HybridEncounter->OnResonanceChanged.AddUniqueDynamic(this, &ThisClass::HandleResonanceChanged);
+		HandleResonanceChanged(HybridEncounter->GetResonanceNormalized(), HybridEncounter->IsResonanceLocked());
 	}
 	if (StockAttackerDefinition && StockDefenderDefinition)
 	{
@@ -107,4 +116,16 @@ void AMelodiaWorldSlimeNode::Die()
 		UE_LOG(LogTemp, Warning, TEXT("MELODIA_HYBRID_OUTCOME_NOT_RETAINED target=%s encounter=%s: completion failed and no retry is queued"),
 			*GetName(), HybridEncounter ? *HybridEncounter->GetEncounterId().ToString() : TEXT("None"));
 	}
+}
+
+void AMelodiaWorldSlimeNode::HandleResonanceChanged(const float ResonanceNormalized, const bool bLocked)
+{
+	if (!ResonanceMaterial)
+	{
+		return;
+	}
+	ResonanceMaterial->SetScalarParameterValue(TEXT("ChladniIntensity"), LockedChladniIntensity * ResonanceNormalized);
+	// HarmonizeActive gates the whole figure in the master; ramping it lets the
+	// lines emerge as the target is tuned instead of popping in at lock.
+	ResonanceMaterial->SetScalarParameterValue(TEXT("HarmonizeActive"), ResonanceNormalized);
 }

@@ -105,7 +105,8 @@ No AI agent may modify these without `SKIP_PROTECTION=1` or explicit human instr
 in one place so Echo-pipeline tests are cheap to run. Battle controller, player/enemy spawn sets,
 NPC/shop/forge/shrine/chest/save-point interactables, encounter + traversal-gate + portal +
 state-anchor fixtures, the PCG hero music host, a parked Oceanology ocean, and the debug cameras all
-live here **on purpose, together**. Its clutter is the feature — that is what makes one PIE run
+live here **on purpose, together**. Since 2026-10-15 it also holds `First Resonance`, the hybrid
+FLOW→lock→SEQUENCE→FLOW fixture in the west arena. Its clutter is the feature — that is what makes one PIE run
 exercise the whole pipeline.
 
 Rules:
@@ -227,7 +228,7 @@ checkpoints and exactly-once progression transactions. TurnBased JRPG / Phoenix 
 targeting, action resolution, damage, terminal results, inventory and stock gameplay saves. Rhythm executes
 on the selected JRPG action and returns grade/performance data; Wardrobe owns owned/equipped fashion state
 and its existing traversal/battle/rhythm/Convergence capability hooks. One writer owns each UI/audio surface.
-MelodiaCore remains integration/presentation-only; Conversation2D is excluded. The turn-based ARPG / ACFU hybrid is CANON (owner, 2026-10-11; open ownership questions are listed in `CURRENT_STATE.md` "OWNER CANON") and supersedes the earlier "ACFU excluded" ruling; until those questions are answered the JRPG GameMode/pawn stays the only production boot path. The scoped battle,
+MelodiaCore remains integration/presentation-only; Conversation2D is excluded. The turn-based ARPG / ACFU hybrid is CANON (owner, 2026-10-11) — see "Hybrid combat canon" below; until the owner ratifies the ownership table in `CURRENT_STATE.md` "OWNER CANON" the JRPG GameMode/pawn stays the only production boot path. The scoped battle,
 grade-to-damage, Wardrobe and music-key seams are evidence-backed in `CURRENT_STATE.md`; packaged golden-run
 and long-chain persistence proof remain separate open gates.
 
@@ -246,6 +247,30 @@ workflow to "bind missing content" or "repair" a system the owner has already sa
 thing works ("I've already verified X"), that is ground truth — stop treating it as the blocker and ask what
 content to add. The pipeline is for authoring *new* content through existing entry points, not for fixing
 finished systems.
+
+
+## ⚔ Hybrid combat canon — FLOW tunes, SEQUENCE plays (binding)
+
+The turn-based ARPG / ACFU hybrid is the game (owner, 2026-10-11). Any doc that still says "ACFU excluded"
+is stale — delete it, do not obey it. The convergence is built on `UMelodiaHybridEncounterComponent` and is
+PIE-proven on the `First Resonance` fixture (`CURRENT_STATE.md` → "First Resonance"):
+
+- **FLOW** = realtime play on the canonical `BP_MelusinaJRPGCharacter` (WaveHarp now, ACF melee/dodge next).
+  Each landed hit **tunes** the target's resonance — on-beat a full step, off-beat a partial one, judged at the
+  moment of the player's action (an arrow's release, a swing's start), never at impact.
+- **Resonance lock** opens **SEQUENCE** = the turn/rhythm phrase. Cancel shatters the lock; Exit spends it,
+  so every phrase is earned again in FLOW.
+- **One of everything across both modes:** one encounter identity, one HP owner (the encounter actor), one
+  damage authority (the stock Phoenix resolver produces `FinalDamage` in both modes; FLOW passes ×1.0,
+  SEQUENCE passes the rhythm grade's multiplier), one rhythm grader, one durable narrative outcome.
+- **New FLOW attack sources** (ACF melee, dodge-counters, Wardrobe abilities) call
+  `UMelodiaExternalJRPGBridgeSubsystem::ResolveWorldFlowAttack(Encounter, ActionBeatPhase)` — never their own
+  damage math, never a second HP.
+- **Presentation reads, never writes gameplay.** The Chladni figure is driven from `OnResonanceChanged` /
+  `GetResonanceNormalized` on a per-actor MID (Nikki Chladni MI path, no new masters, no MPC writes).
+- Ownership answers are working-proven but **owner ratification is still owed** (`CURRENT_STATE.md` "OWNER
+  CANON" table). Until ratified the JRPG GameMode + canonical pawn stay the only production boot path; ACF
+  arrives as components on that pawn, not by reparenting.
 
 ## 🌌 Niagara VFX & Material Convergence Canon (Binding Rules)
 

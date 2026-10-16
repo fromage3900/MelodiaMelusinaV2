@@ -297,7 +297,31 @@ Quill resume or a save reload is a no-op. Two different beats may both award the
 `MELUSINA_LOOP_ITEM_GRANT`, then stops. There is no inventory/wallet consumer. Do not author content
 that depends on it granting anything.
 
-Current allowlisted IDs are documented in `Docs/MELODIA_UE58_INTEGRATION_ARCHITECTURE_2026-07-26.md` (§ "Initial allowlist"); the live authority is `DA_MelodiaIntegrationConfig -> TravelLevelIds`. Do not add identifiers casually.
+The live allowlist authority is `DA_MelodiaIntegrationConfig` (`TravelLevelIds`, `EncounterIds`, …). Do not add identifiers casually.
+
+
+## ⚔ Hybrid combat canon — FLOW tunes, SEQUENCE plays (binding)
+
+The turn-based ARPG / ACFU hybrid is the game (owner, 2026-10-11). Any doc that still says "ACFU excluded"
+is stale — delete it, do not obey it. The convergence is built on `UMelodiaHybridEncounterComponent` and is
+PIE-proven on the `First Resonance` fixture (`CURRENT_STATE.md` → "First Resonance"):
+
+- **FLOW** = realtime play on the canonical `BP_MelusinaJRPGCharacter` (WaveHarp now, ACF melee/dodge next).
+  Each landed hit **tunes** the target's resonance — on-beat a full step, off-beat a partial one, judged at the
+  moment of the player's action (an arrow's release, a swing's start), never at impact.
+- **Resonance lock** opens **SEQUENCE** = the turn/rhythm phrase. Cancel shatters the lock; Exit spends it,
+  so every phrase is earned again in FLOW.
+- **One of everything across both modes:** one encounter identity, one HP owner (the encounter actor), one
+  damage authority (the stock Phoenix resolver produces `FinalDamage` in both modes; FLOW passes ×1.0,
+  SEQUENCE passes the rhythm grade's multiplier), one rhythm grader, one durable narrative outcome.
+- **New FLOW attack sources** (ACF melee, dodge-counters, Wardrobe abilities) call
+  `UMelodiaExternalJRPGBridgeSubsystem::ResolveWorldFlowAttack(Encounter, ActionBeatPhase)` — never their own
+  damage math, never a second HP.
+- **Presentation reads, never writes gameplay.** The Chladni figure is driven from `OnResonanceChanged` /
+  `GetResonanceNormalized` on a per-actor MID (Nikki Chladni MI path, no new masters, no MPC writes).
+- Ownership answers are working-proven but **owner ratification is still owed** (`CURRENT_STATE.md` "OWNER
+  CANON" table). Until ratified the JRPG GameMode + canonical pawn stay the only production boot path; ACF
+  arrives as components on that pawn, not by reparenting.
 
 ## ⛔ NEVER RUN THESE — they destroy unrecoverable work
 

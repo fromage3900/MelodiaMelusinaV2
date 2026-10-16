@@ -50,8 +50,8 @@ blocking the JRPG attack.
 - MelodiaCore does not become battle or rhythm authority.
 - No second damage/effect path is allowed from the timing adapter.
 - No montage-completion callback may advance the turn.
-- No global dissonance, modifier stack, roguelike phase, wardrobe, or ACFU
-  system is imported for this slice.
+- No global dissonance, modifier stack, roguelike phase or wardrobe system is
+  imported for this slice.
 
 ## Acceptance evidence
 
