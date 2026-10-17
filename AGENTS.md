@@ -283,28 +283,9 @@ that depends on it granting anything.
 The live allowlist authority is `DA_MelodiaIntegrationConfig` (`TravelLevelIds`, `EncounterIds`, …). Do not add identifiers casually.
 
 
-## ⚔ Hybrid combat canon — FLOW tunes, SEQUENCE plays (binding)
+## ⚔ Hybrid combat canon — FLOW tunes, SEQUENCE plays
 
-The turn-based ARPG / ACFU hybrid is the game (owner, 2026-10-11). Any doc that still says "ACFU excluded"
-is stale — delete it, do not obey it. The convergence is built on `UMelodiaHybridEncounterComponent` and is
-PIE-proven on the `First Resonance` fixture (`CURRENT_STATE.md` → "First Resonance"):
-
-- **FLOW** = realtime play on the canonical `BP_MelusinaJRPGCharacter` (WaveHarp now, ACF melee/dodge next).
-  Each landed hit **tunes** the target's resonance — on-beat a full step, off-beat a partial one, judged at the
-  moment of the player's action (an arrow's release, a swing's start), never at impact.
-- **Resonance lock** opens **SEQUENCE** = the turn/rhythm phrase. Cancel shatters the lock; Exit spends it,
-  so every phrase is earned again in FLOW.
-- **One of everything across both modes:** one encounter identity, one HP owner (the encounter actor), one
-  damage authority (the stock Phoenix resolver produces `FinalDamage` in both modes; FLOW passes ×1.0,
-  SEQUENCE passes the rhythm grade's multiplier), one rhythm grader, one durable narrative outcome.
-- **New FLOW attack sources** (ACF melee, dodge-counters, Wardrobe abilities) call
-  `UMelodiaExternalJRPGBridgeSubsystem::ResolveWorldFlowAttack(Encounter, ActionBeatPhase)` — never their own
-  damage math, never a second HP.
-- **Presentation reads, never writes gameplay.** The Chladni figure is driven from `OnResonanceChanged` /
-  `GetResonanceNormalized` on a per-actor MID (Nikki Chladni MI path, no new masters, no MPC writes).
-- Ownership answers are working-proven but **owner ratification is still owed** (`CURRENT_STATE.md` "OWNER
-  CANON" table). Until ratified the JRPG GameMode + canonical pawn stay the only production boot path; ACF
-  arrives as components on that pawn, not by reparenting.
+Hybrid ACFU/JRPG is canon. See `CURRENT_STATE.md` ("First Resonance", "OWNER CANON"). `UMelodiaHybridEncounterComponent` is PIE-proven. FLOW on canonical `BP_MelusinaJRPGCharacter` tunes resonance (judge action/release, not impact; on-beat full step, off-beat partial); lock unlocks SEQUENCE. Cancel shatters lock; Exit spends it. Both share encounter/HP owner, stock Phoenix `FinalDamage` resolver (FLOW ×1.0, SEQUENCE graded), rhythm grader and narrative outcome. New FLOW attacks call `UMelodiaExternalJRPGBridgeSubsystem::ResolveWorldFlowAttack(Encounter, ActionBeatPhase)`—no duplicate damage or HP. Chladni reads `OnResonanceChanged`/`GetResonanceNormalized` into a per-actor Nikki MID, never MPC. Owner ratification pending: keep JRPG GameMode/canonical pawn; add ACF as components, never reparent. Retire "ACFU excluded" claims.
 
 ## ⛔ NEVER RUN THESE — they destroy unrecoverable work
 
@@ -414,15 +395,4 @@ or stagger them.
 
 ## 5. jcode Swarm (parallel coding lane)
 
-Primary **repo-side** parallel coding uses [jcode](https://jcode.sh) light-swarm on the Windows UE workstation — not `deploy/cursor_*_loop.ps1` wake ticks.
-
-*   **Policy:** [`.jcode/swarm-prompt.md`](.jcode/swarm-prompt.md) — PGA/MPA/PPA/WIA/SQA/WEB/MUSE spawn scopes, concurrency cap 6, no recursive worker spawning.
-*   **Bootstrap:** `.\deploy\start_jcode_swarm.ps1` then paste [`.jcode/coordinator-bootstrap.md`](.jcode/coordinator-bootstrap.md).
-*   **MCP:** [`.jcode/mcp.json`](.jcode/mcp.json) → Monolith stdio proxy (`Plugins/Monolith/Scripts/monolith_proxy.bat`); requires Unreal open for editor tools.
-*   **Skills:** `.\deploy\install_jcode_melodia_skills.ps1` installs Monolith skills into `%USERPROFILE%\.jcode\skills\`.
-*   **Companion IDE lanes:** OpenCode in Rider (C++/PIE) via [`.opencode/opencode.jsonc`](.opencode/opencode.jsonc) + `.\deploy\start_opencode_muse_lane.ps1`; Muse Code (WSL) via [`Docs/Production/MUSE_CODE_LANE_2026-08-11.md`](Docs/Production/MUSE_CODE_LANE_2026-08-11.md).
-*   **Keep running:** surreal/world/`run_verify` production loops.
-*   **Deprecated for parallel coding wakes:** `deploy/cursor_*_loop.ps1` (left in tree; do not start for new work).
-*   **Phone/Cursor cloud agents** remain the PR / mobile lane; do not overlap write paths with a live local swarm without coordination.
-
-Full guide: [Docs/PhoneOps/JCODE_SWARM_PIPELINE.md](Docs/PhoneOps/JCODE_SWARM_PIPELINE.md) · [`.jcode/README.md`](.jcode/README.md)
+Repo-side Windows parallel coding uses [jcode](https://jcode.sh), not deprecated `deploy/cursor_*_loop.ps1` wake ticks. Follow [`.jcode/swarm-prompt.md`](.jcode/swarm-prompt.md) (six-worker cap, no recursive spawning) and [`.jcode/coordinator-bootstrap.md`](.jcode/coordinator-bootstrap.md); start with `.\deploy\start_jcode_swarm.ps1`. Monolith proxy requires Unreal open. Keep production verify loops running; avoid overlapping write paths with phone/cloud agents. Full setup: [Docs/PhoneOps/JCODE_SWARM_PIPELINE.md](Docs/PhoneOps/JCODE_SWARM_PIPELINE.md) and [`.jcode/README.md`](.jcode/README.md).
