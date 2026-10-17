@@ -72,33 +72,39 @@ from build_melusina_locomotion_stack import (  # noqa: E402
 # Constants
 # ---------------------------------------------------------------------------
 
-MESH_PATH = "/Game/Melodia/Characters/Melusina/SK_Melusina_V2_Body"
+MESH_PATH = "/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Body"
 
-# The 68 real morph targets (FACS-driven)
+# The real morph targets (FACS-driven, exact names on SK_Melusina_V2_Body)
 FACS_TARGETS = [
     # Brow
     "innerBrowRaiserL", "innerBrowRaiserR",
     "outerBrowRaiserL", "outerBrowRaiserR",
-    "browLowererL", "browLowererR",
+    "browLowerL", "browLowerR",
     # Eye
-    "upperLidRaiserL", "upperLidRaiserR",
-    "lidTightenerL", "lidTightenerR",
+    "eyesUpperLidRaiserL", "eyesUpperLidRaiserR",
+    "squintL", "squintR",
     "eyesCloseL", "eyesCloseR",
+    "eyesLookLeft", "eyesLookRight", "eyesLookUp", "eyesLookDown",
     # Cheek
     "cheekRaiserL", "cheekRaiserR",
+    "cheekPuffL", "cheekPuffR",
     # Nose
     "noseWrinklerL", "noseWrinklerR",
     # Mouth
     "upperLipRaiserL", "upperLipRaiserR",
+    "lowerLipDepressorL", "lowerLipDepressorR",
     "lipCornerPullerL", "lipCornerPullerR",
     "lipCornerDepressorL", "lipCornerDepressorR",
     "lipStretcherL", "lipStretcherR",
-    "lipTightener",
-    "lipsPart", "jawDrop",
-    "lipsSuck",
+    "dimplerL", "dimplerR",
+    "lipPressor", "pucker", "funneler", "lipSuck",
     "chinRaiser",
-    # Jaw
-    "jawDrop",
+    # Jaw & Visemes
+    "jawDrop", "jawDropLipTowards", "jawThrust", "jawSlideLeft", "jawSlideRight",
+    "aa_ah_ax_01", "aa_02", "ao_03", "ey_eh_uh_04", "er_05",
+    "y_iy_ih_ix_06", "w_uw_07", "ow_08", "aw_09", "oy_10",
+    "ay_11", "h_12", "r_13", "l_14", "s_z_15",
+    "sh_ch_jh_zh_16", "th_dh_17", "f_v_18", "d_t_n_19", "k_g_ng_20", "p_b_m_21",
 ]
 
 # 15 visemes for lip-sync (phoneme -> morph target mapping)
@@ -165,9 +171,9 @@ EMOTIONS = {
 # ---------------------------------------------------------------------------
 
 def verify_facs_targets() -> dict:
-    """Verify the 68 FACS morph targets exist on the live mesh."""
+    """Verify the 65 FACS & viseme morph targets exist on the live mesh."""
     info = anim("get_skeletal_mesh_info", {"asset_path": MESH_PATH})
-    blob = json.dumps(info)
+    blob = info if isinstance(info, str) else json.dumps(info)
 
     report = {
         "mesh": MESH_PATH,
@@ -248,16 +254,21 @@ def apply_face_rig() -> dict:
     # and wire curves via Animation Blueprint's curve system directly.
     report["steps"] = []
 
-    # 3. Add FACS curves to ABP
+    # 3. Add FACS curves to canonical idle sequence & verify skeleton curves
+    idle_seq = "/Game/Melodia/Characters/Melusina/Animations/Locomotion/A_Shin_Idle_stand_MocapConv"
     for name in FACS_TARGETS:
         try:
             result = anim("add_curve", {
-                "asset_path": ABP,
+                "asset_path": idle_seq,
                 "curve_name": name,
             })
             report["steps"].append({"action": "add_curve", "curve": name, "ok": True})
         except MonolithError as e:
             report["steps"].append({"action": "add_curve", "curve": name, "ok": False, "error": str(e)})
+    try:
+        bp("save_asset", {"asset_path": idle_seq})
+    except MonolithError:
+        pass
 
     # 4. Compile + save
     try:

@@ -1,8 +1,22 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Engine/EngineTypes.h"
+#include "Animation/AnimNotifies/AnimNotify.h"
 #include "Components/ActorComponent.h"
+#include "ProceduralMeshComponent.h"
 #include "MelodiaWaveHarpCombatComponent.generated.h"
+
+class UAnimNotify_MelodiaScytheHit;
+
+/** Fires at the scythe's forward peak. The hit is resolved on the following frame. */
+UCLASS()
+class BS_GODFILE_API UAnimNotify_MelodiaScytheHit : public UAnimNotify
+{
+ GENERATED_BODY()
+public:
+ virtual void Notify(USkeletalMeshComponent* MeshComp, UAnimSequenceBase* Animation, const FAnimNotifyEventReference& EventReference) override;
+};
 
 class ACharacter;
 class APlayerController;
@@ -84,11 +98,27 @@ public:
  UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|WaveHarp|Animation") TSoftObjectPtr<UAnimSequence> ChargeHoldAnim = TSoftObjectPtr<UAnimSequence>(FSoftObjectPath(TEXT("/Game/Melodia/Characters/Melusina/Animations/SparrowDoctor_20261007/A_Spar_Mel_RMB_Loop.A_Spar_Mel_RMB_Loop")));
  UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|WaveHarp|Animation") TSoftObjectPtr<UAnimSequence> ChargeFireAnim = TSoftObjectPtr<UAnimSequence>(FSoftObjectPath(TEXT("/Game/Melodia/Characters/Melusina/Animations/SparrowDoctor_20261007/A_Spar_Mel_RMB_Fire.A_Spar_Mel_RMB_Fire")));
 
- /** Harp-to-bow instrument. If this skeletal mesh exists it is driven by the shape keys below; otherwise the static harp/bow blend is used. */
- UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|WaveHarp|Instrument") TSoftObjectPtr<USkeletalMesh> InstrumentMesh = TSoftObjectPtr<USkeletalMesh>(FSoftObjectPath(TEXT("/Game/Melodia/Characters/Melusina/Weapons/WaveHarp/SK_ME_WaveHarp.SK_ME_WaveHarp")));
+ /** Harp-to-bow-to-scythe instrument. If this skeletal mesh exists it is driven by the shape keys below; otherwise the static harp/bow blend is used. */
+ UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|WaveHarp|Instrument") TSoftObjectPtr<USkeletalMesh> InstrumentMesh = TSoftObjectPtr<USkeletalMesh>(FSoftObjectPath(TEXT("/Game/Melodia/Characters/Melusina/Weapons/WaveHarp/SK_ME_WaveHarp_Scythe.SK_ME_WaveHarp_Scythe")));
  UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|WaveHarp|Instrument") FName MorphBowDeployment = TEXT("Bow_Deployment");
  UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|WaveHarp|Instrument") FName MorphFlexDraw = TEXT("Flex_Draw");
  UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|WaveHarp|Instrument") FName MorphBowstringDraw = TEXT("Draw");
+ /** 3rd Harmonic Form: Carillon Chime-Scythe morphs and melee trace parameters. */
+ UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|WaveHarp|Instrument") FName MorphScytheDeployment = TEXT("Scythe_Deployment");
+ UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|WaveHarp|Instrument") FName MorphScytheChord = TEXT("Scythe_Chord_Tension");
+ UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|WaveHarp|Instrument") FName MorphScytheBell = TEXT("Scythe_Bell_Swing");
+ UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|WaveHarp|Melee") TSoftObjectPtr<UAnimSequence> MeleeSwingAnim = TSoftObjectPtr<UAnimSequence>(FSoftObjectPath(TEXT("/Game/Melodia/Characters/Melusina/Animations/ShinbiDoctor_20261007/A_Shin_Cast.A_Shin_Cast")));
+ UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|WaveHarp|Melee", meta=(ClampMin="100.0", ClampMax="600.0")) float MeleeReachCm = 320.f;
+ UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|WaveHarp|Melee", meta=(ClampMin="0.2", ClampMax="2.5")) float ScytheFormHoldSeconds = 1.15f;
+ UPROPERTY(BlueprintReadOnly, Category="Melodia|WaveHarp|Melee") int32 MeleeSwings = 0;
+ /** Fraction of the swing montage where the blade is farthest forward. The hit notify is placed here. */
+ UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|WaveHarp|Melee", meta=(ClampMin="0.15", ClampMax="0.85")) float ScytheHitFraction = 0.42f;
+ UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|WaveHarp|Melee") FName ScytheBladeStartSocket = TEXT("Scythe_BladeStart");
+ UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|WaveHarp|Melee") FName ScytheBladeTipSocket = TEXT("Scythe_BladeTip");
+ UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|WaveHarp|Melee") FName LockWarpTarget = TEXT("ScytheStep");
+ UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|WaveHarp|Melee") TSoftObjectPtr<UAnimSequence> LockStepAnim = TSoftObjectPtr<UAnimSequence>(FSoftObjectPath(TEXT("/Game/Melodia/Characters/Melusina/Animations/Locomotion/A_Melusina_Walk_Mocap_RootX_SeamFix.A_Melusina_Walk_Mocap_RootX_SeamFix")));
+ /** Scythe chain only. Arrow chords keep ComboStep. */
+ UPROPERTY(BlueprintReadOnly, Category="Melodia|WaveHarp|Melee") int32 ScytheStep = 0;
  /** Seconds for the harp to open into the bow (and back). */
  UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|WaveHarp|Instrument", meta=(ClampMin="0.05", ClampMax="1.0")) float TransformSeconds = .22f;
  /** How long the bow form is held after a charged release before the instrument folds back. */
@@ -106,7 +136,15 @@ public:
  UFUNCTION(BlueprintCallable, Category="Melodia|WaveHarp") void ReleaseDraw();
  UFUNCTION(BlueprintCallable, Category="Melodia|WaveHarp") void ToggleSequence();
  UFUNCTION(BlueprintCallable, Category="Melodia|WaveHarp") void CancelPhrase();
+ UFUNCTION(BlueprintCallable, Category="Melodia|WaveHarp") void TriggerScytheMelee();
+ UFUNCTION(BlueprintCallable, Category="Melodia|WaveHarp") void ToggleLock();
+ UFUNCTION(BlueprintCallable, Category="Melodia|WaveHarp") void RegisterLaneHit(int32 Index);
+ UFUNCTION(BlueprintPure, Category="Melodia|WaveHarp") bool IsCombatLocked() const { return bCombatLocked; }
+ UFUNCTION(BlueprintPure, Category="Melodia|WaveHarp") int32 GetScytheStep() const { return ScytheStep; }
+ UFUNCTION(BlueprintPure, Category="Melodia|WaveHarp") float GetScytheAlpha() const { return ScytheAlpha; }
  void ResolveProjectileHit(AActor* HitActor, float ReleaseBeatPhase);
+ void ResolveMeleeHit(AActor* HitActor, float SwingBeatPhase);
+ void CommitScytheHit();
 
 private:
  void BindInput();
@@ -123,6 +161,17 @@ private:
  void StopPose();
  void UpdateAimCamera(float Delta);
  void RestoreAimCamera();
+ void UpdateSequenceFeel(float Delta);
+ void UpdateLockTurn(float Delta);
+ void ResolvePendingScytheHit();
+ void BeginLockStep(AActor* LockActor);
+ void PlayScytheMontage();
+ void UpdateScytheRibbon();
+ void EnsureCameraBoom();
+ AActor* FindMeleeActor() const;
+ float SampleBeatPhase() const;
+ UAnimMontage* MakeSlotMontage(UAnimSequence* Seq, float BlendOut) const;
+ void SyncLockedTarget();
  TWeakObjectPtr<ACharacter> Character;
  TWeakObjectPtr<APlayerController> Player;
  UPROPERTY(Transient) TObjectPtr<UInputComponent> BoundInput;
@@ -134,12 +183,32 @@ private:
  UPROPERTY(Transient) TObjectPtr<UStaticMeshComponent> Harp;
  UPROPERTY(Transient) TObjectPtr<USkeletalMeshComponent> Instrument;
  UPROPERTY(Transient) TObjectPtr<UAnimMontage> PoseMontage;
- enum class EPose : uint8 { None, Stance, Draw, Hold, Fire, CastShoot };
+ enum class EPose : uint8 { None, Stance, Draw, Hold, Fire, CastShoot, ScytheSwing };
  EPose Pose = EPose::None;
  bool bCharging = false;
  double ChargeBegan = 0;
  double LastChargedRelease = -100;
+ double LastMeleeSwing = -100;
+ double LastScytheChain = -100;
  float FormAlpha = 0.f;
+ float ScytheAlpha = 0.f;
+ float ScytheMontageFraction = -1.f;
+ float ScytheSwingBeatPhase = -1.f;
+ float SequenceDampAlpha = 0.f;
+ float SavedMaxWalkSpeed = 0.f;
+ bool bHaveSavedWalkSpeed = false;
+ bool bCombatLocked = false;
+ bool bScytheHitArmed = false;
+ bool bScytheResolveQueued = false;
+ double ScytheResolveAfterTime = 0;
+ int32 ScytheResolveStep = 0;
+ int32 ScytheResolveSwings = 0;
+ TWeakObjectPtr<AActor> ScytheResolveTarget;
+ TEnumAsByte<ERootMotionMode::Type> SavedRootMotionMode = ERootMotionMode::RootMotionFromMontagesOnly;
+ bool bRootMotionOverridden = false;
+ UPROPERTY(Transient) TObjectPtr<UProceduralMeshComponent> ScytheRibbon;
+ UPROPERTY(Transient) TObjectPtr<UAnimMontage> WarpMontage;
+ bool bRibbonSection = false;
  UPROPERTY(Transient) TObjectPtr<USoundBase> ShotNote;
  UPROPERTY(Transient) TArray<TObjectPtr<USoundBase>> ChordFlourishes;
  bool bAiming = false;

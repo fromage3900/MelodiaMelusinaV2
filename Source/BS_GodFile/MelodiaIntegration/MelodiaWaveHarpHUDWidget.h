@@ -131,6 +131,8 @@ private:
  float HitFeedback = 0.f;
  float LastHitDamage = 0.f;
  float TargetHP = 0.f, TargetMaxHP = 0.f;
+ float Resonance01 = 0.f;
+ bool bCombatLocked = false;
  int32 LastShotsFired = 0;
  double Now = 0.0;
  double StateEnteredAt = -100.0;

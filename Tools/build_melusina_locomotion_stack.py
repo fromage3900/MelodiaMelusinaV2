@@ -65,11 +65,11 @@ def call(namespace_tool, action, params=None, timeout=60):
 
 
 def anim(action, params=None, timeout=60):
-    return monolith("animation_query", {"action": action, **(params or {})}, timeout)
+    return monolith("animation_query", {"action": action, "params": params or {}}, timeout)
 
 
 def bp(action, params=None, timeout=60):
-    return monolith("blueprint_query", {"action": action, **(params or {})}, timeout)
+    return monolith("blueprint_query", {"action": action, "params": params or {}}, timeout)
 
 
 def require_editor():
