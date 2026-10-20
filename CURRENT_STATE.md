@@ -1,3 +1,5 @@
+
+
 # Melodia Melusina ? Current State
 
 ## ACTIVE GOAL — P0 hybrid gameplay loop closeout — 2026-10-17
@@ -2374,7 +2376,6 @@ Every deleted handoff/plan/report is recoverable with `git show 7d271c15:<path>`
   - Pivots at the bell crown, rotations as `rot_xyzw`.
   - 618/30 is the bell kit's own height limit, not the cathedral's.
 - **Materials:** the six existing brass MIs, all verified on disk, plus `BP_MelodiaNiagaraDriver`. No new masters.
-
 ## Shirt hem bones (Blender/KineFX review) — route (a) legal artifact + route (b) defect report — 2026-10-20
 
 - **Owner ask:** review what already exists for adding shirt bones to Melusina, then do route (b) then route (a).
@@ -2385,7 +2386,6 @@ Every deleted handoff/plan/report is recoverable with `git show 7d271c15:<path>`
 - **Next:** W1 owner approval for the skeleton delta → W2 reimport the legal FBX onto the same skeleton (keep/re-point the wardrobe slot binding `Cos_Shirt_MelusinaV2 -> SK_Melusina_V2_Shirt_Flared`) → W3 second KawaiiPhysics node on `ABP_Melusina_Current` rooted at `c_shirt_hem_master_x` (DummyBoneLength 3.0, collision DA cloned from `DA_Melusina_SkirtCollisionLimits`, staging profile damp 0.62 / stiff 0.72 / drag 0.24 / gravity 0.16 / wind 0.12 / radius 3 cm) → W4 PIE gate (walk/stop, arm raise, hold pose) + re-run `Content/Python/melusina_animation_doctor.py`. At most one bounded change before re-proving; Sparrow clips, body mesh and skeleton stay frozen apart from W1.
 - **Bind-pose note:** the FBX rest matches the **live mesh bind exactly** (`arm_stretch_l|arm_stretch_r` 72.932 cm, `root_x|thigh_stretch_l` 39.538 cm, `spine_01_x|root_x` 0.000 cm — identical on the live shirt mesh, the live body mesh and every FBX). The live *skeleton* ref pose differs from the mesh bind for `root_x`/thighs/arms — a pre-existing project condition shared by body and garment, not introduced by these artifacts.
 - **Also this session — the shirt's own textures are applied:** the shirt slot (`WardrobeSlot_EMelodiaWardrobeSlot::Shirt`, mesh `SK_Melusina_V2_Shirt_Flared`, no override) uses `MI_Melusina_Nikki_Material_008`, which now points at `T_Melusina_Shirt_{BC,N,ORM,H,Emission}` instead of the generic `T_Melusina_Material_008_*` set (readback-verified; `material_query preview_textures` confirms 4096², 13 mips, DXT1/BC5, ORM+H linear). Which set is the intended look remains an art call (`Material_008` vs `UpdatedShirt` vs `FrontPanel`).
-
 
 
 ## Demo display path — 4K internal render, vsync on, standalone launch — 2026-10-20
@@ -2399,4 +2399,20 @@ Every deleted handoff/plan/report is recoverable with `git show 7d271c15:<path>`
 - **Engine facts behind the choice:** `sg.ResolutionQuality` maps directly onto `r.ScreenPercentage` but clamps at `Scalability::MaxResolutionScale = 100.0f` (`Runtime/Engine/Private/Scalability.cpp`), so supersampling must go through `r.ScreenPercentage` itself; with FXAA (`r.AntiAliasingMethod=1`, the ink look) UE takes the `SpatialUpscale` path, so >100 is supersampling without TSR.
 - **Fallback if the frame rate dips:** console (Shift+`) → `r.ScreenPercentage 100` (native 1440p). AA stays FXAA on purpose — the ink depends on it.
 - **Open / owner-side:** `LastExecutedPlayModeType` cannot be written while the editor is alive (Monolith's `config set_developer_setting` only mutates `UDeveloperSettings` CDOs; `LevelEditorPlaySettings` is not one, and `cppreflect` is read-only). The Play-button route therefore needs either the dropdown's **"Standalone Game"** (one click, persists) or `deploy/set_demo_4k.ps1 -Apply` with the editor closed. `deploy/start_demo_4k.ps1` needs neither.
+
+
+## Verification sweep — shirt textures, hem artifact, 4K demo path — 2026-10-20 (pre-meeting)
+
+**Verified live, after the editor restart (pid 121776 → 93996) — i.e. these survive an editor bounce:**
+- **Shirt material applied:** `MI_Melusina_Nikki_Material_008` (the shirt slot's only material; parent `M_Master_Nikki`) reads back `Albedo→T_Melusina_Shirt_BC`, `NormalMap→T_Melusina_Shirt_N`, `HeightMap→T_Melusina_Shirt_H`, `ORM→T_Melusina_Shirt_ORM`, `EmissiveMap→T_Melusina_Shirt_Emission`; scalars `FabricSheen 0.25` / `NikkiFabricSheen 0.25`. `material_query preview_textures` confirms the maps are 4096², 13 mips, DXT1/BC5 with ORM+H linear.
+- **Display config on disk:** `bUseVSync=True`, `ResolutionSizeX/Y=3840/2160`, `FullscreenMode=1` (borderless), `FrameRateLimit=0.000000`; `PlayNetMode=PIE_Standalone` intact.
+- **Artifacts present and byte-identical across C:, D:, G::** `SK_Melusina_V2_Shirt_HemRig_Legal.fbx` (991,372 B, sha256 `356f51aa502e2453edc6bd480c68b08112fe5fb2396b55da9555ea320b057d4c`) + `route_a_integration_manifest.json` + `legal_fbx_acceptance.json` + `MANIFEST.txt` in `D:\melodia_bundles\melusina-shirt-hemrig-20261020\`. Acceptance gate green (rig identical, weights match the Oct-6 delta within 1e-4, ≤4 influences, all sums 1.0, 0 unweighted verts, 0 leg bindings, clearance min 0.5205 cm vs the fresh UE body export, 232 hem-weighted verts).
+- **Git:** `8589e311e` (shirt textures + hem artifact + route (a)/(b) verification) and `f1aa64822` (4K/vsync demo path) on `refs/heads/shirt-hem-2026-10-20`; **HEAD unmoved** at `main` `e76c94347`.
+
+**Demo path — measured, not assumed:**
+- `deploy/start_demo_4k.ps1` **works**: borderless 2560×1440 window, and the stat overlay confirmed **`RenderRes: 150.0% (3840×2160)`** — the 4K internal render is real (evidence `Saved/Audit/Demo4K_20261020/game_screen_4k.png`).
+- **Cost at 4K internal:** integration map measured `Frame 57.99 ms` (**≈17 fps**), `GPU 56.58 ms`, VRAM 5.38/9.50 GB. 4K internal is **2.25× the pixels** of native 1440p. The editor viewport alone (other lanes active: Claireon, Blender Live Link, Houdini, OBSBOT, 3× Brennan tasks) measured `Frame 38.28 ms` / `GPU 31.45 ms` with **VRAM 10.50 GB against a 10.24 GB budget** → those numbers are contaminated by machine load, but the VRAM headroom is real and thin.
+- **Standalone on the Morning level CRASHES (deterministic, not a flake):** `Assertion failed: DescriptorCache [Engine\Plugins\Experimental\MeshPartition\...\MeshPartitionWorldUpdater.cpp:67]` — the experimental MeshPartition plugin's editor-side world updater asserts inside a `-game` process, and the Morning level uses it. Standalone is therefore viable only on maps without MeshPartition (the integration map booted and ran fine). **The demo path is PIE in the editor** (proven all session: `World NetMode = Standalone`, 0 PlayerRef errors per run, HUD suppress/restore, working captures).
+
+**Meeting recipe (no config changes needed):** maximize the editor → **Play** (PIE in the viewport, `PIE_Standalone`) → optional console `r.ScreenPercentage 150` for a 4K internal render (~17 fps, accept the softness) or leave it at 100 for the smoothest motion. **Do not** use the standalone launcher on the Morning level.
 
