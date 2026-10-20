@@ -90,7 +90,10 @@ if ((Test-Path $authJson) -and (Test-Path $hermesExe)) {
 # -----------------------------------------------------------------------------
 $defaultTarget = "1"
 if (Test-Path $prefFile) {
-    $savedPref = (Get-Content $prefFile -Raw).Trim()
+    # Windows PS 5.1's Set-Content -Encoding UTF8 prepends a BOM; strip it so
+    # the numeric choice always maps to a real menu case (BOM'd "3" never matched
+    # any case, silently falling through to stock Claude).
+    $savedPref = (Get-Content $prefFile -Raw).Trim().TrimStart([char]0xFEFF)
     if ($savedPref) { $defaultTarget = $savedPref }
 }
 
@@ -158,10 +161,10 @@ if (-not $choice) {
     Write-Host "$selectedKey" -ForegroundColor Green
     $choice = $selectedKey
 
-    # Persist preference
+    # Persist preference (BOM-less so the next non-interactive launch still parses).
     try {
         if (-not (Test-Path $savedDir)) { New-Item -ItemType Directory -Force $savedDir | Out-Null }
-        Set-Content -Path $prefFile -Value $choice -Encoding UTF8 -NoNewline
+        [System.IO.File]::WriteAllText($prefFile, $choice, (New-Object System.Text.UTF8Encoding $false))
     } catch {}
 }
 
