@@ -37,8 +37,11 @@ Detailed integration notes:
 **Current next-builder roadmap:**
 `Docs/MelodiaStudio/MELUSINA_HOUSE_GN_FOUNDATION_TO_SHELL_ROADMAP_2026-09-04.md`
 
-Visual/design plan:
-`melusinashouseplan.md`
+Visual/design plan (recovered original, historical; not current builder status):
+`Docs/References/MelusinasHouse/OriginalDesign/melusinashouseplan_2026-09-02.md`
+
+Paitou / Melusina's Morning convergence (new creative location, house builders unchanged):
+`PAITOU_START_HERE.md`
 
 Reference boards:
 `Docs/References/MelusinasHouse/`

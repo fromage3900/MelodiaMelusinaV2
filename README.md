@@ -13,6 +13,10 @@
 
 > **Status:** [CURRENT_STATE.md](CURRENT_STATE.md) is the only status document — what works and at what evidence level, what is open, the owner queue, repositories and workstations. This README describes the project; it does not track status.
 
+## P0 Environment — Paitou / Melusina's Morning
+
+**[Paitou Start Here — house, Poitou terrain, Luna/Sol convergence](PAITOU_START_HERE.md)** · [canonical execution plan](Docs/Plans/PAITOU_MELUSINAS_MORNING_CONVERGENCE_2026-10-20.md) · [original house reference](Docs/References/MelusinasHouse/README.md). This is a task entry, not a second status document; [CURRENT_STATE.md](CURRENT_STATE.md) remains status authority.
+
 ## Recruiter / Professor Entry
 
 - **Portfolio:** https://www.fromageart.xyz/
