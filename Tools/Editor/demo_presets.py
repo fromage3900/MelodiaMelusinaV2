@@ -1,35 +1,45 @@
 """Demo presentation helpers - session-scoped, no shared asset is modified.
 
-Two things the owner needs during a live screenshare:
+Three things the owner needs for a live screenshare / PIE demo:
 
   1. The Choral Sheep is not presentation-ready -> hide him.
-  2. Ambient/random audio must not run during the demo -> mute.
+  2. Ambient/random audio must not run -> mute.
+  3. The pawn must not fall through the floor -> collision.
 
-Both are applied to the PIE world at runtime, so nothing in the shared Morning
-level (which has 137 external-actor packages already dirty from other lanes) is
+Applied to the PIE world at runtime, so nothing in the shared Morning level
+(which has 137 external-actor packages already dirty from other lanes) is
 touched, and nothing survives the PIE session.
+
+WHY IT RE-APPLIES CONTINUOUSLY (not once):
+  PIE reloads the map ~0.25 s in this project (Saved/SaveGames/SaveMetadata.sav
+  is missing, so [AscentSaveSystemEditor] cannot load P0_Shorewake_Validation
+  and reloads the current map). A one-shot pass therefore applies to the first
+  world instance and is undone by the reload - the sheep comes back and the
+  streamed-in floors lose their collision. The preset re-applies on a timer,
+  and also re-places the pawn if it has fallen.
 
 Usage (in the running editor):
 
     py "C:/EnvironmentPortfolio/BS_GodFile/Tools/Editor/demo_presets.py"
 
-or from Monolith / editor Python:
-
-    exec(open(r"C:/EnvironmentPortfolio/BS_GodFile/Tools/Editor/demo_presets.py").read())
-    install()
-
-`install()` is idempotent and safe to call at any time; it applies to every
-PIE session started afterwards. `remove()` unhooks it.
+`install()` is idempotent. `remove()` unhooks it.
 """
 import unreal
 
-SHEEP_KEY = "choral"
 MIX_PATH = "/Game/Melodia/Audio/SM_MelodiaUserPreferences"
 MASTER_CLASS = "/Engine/EngineSounds/Master"
 MUSIC_CLASS = "/Engine/EngineSounds/Music"
 SFX_CLASS = "/Engine/EngineSounds/SFX"
 
-_state = {"world": None, "handle": None, "applied": []}
+# 'ram' is deliberately absent: it is a substring of 'ca*ram*era' and hid the
+# camera manager.
+SHEEP_WORDS = ("sheep", "choral", "ewe", "lamb")
+NEVER_HIDE = ("camera", "manager", "trigger", "player")
+
+REAPPLY_EVERY_TICKS = 20
+FALL_THRESHOLD_CM = 200.0
+
+_state = {"world": None, "handle": None, "ticks": 0, "applied": []}
 
 
 def _game_world():
@@ -40,53 +50,71 @@ def _game_world():
         return None
 
 
+def _label(a):
+    try:
+        return str(a.get_actor_label() or "").lower()
+    except Exception:
+        return ""
+
+
+def _is_sheep(a):
+    name = (a.get_name() or "").lower()
+    label = _label(a)
+    cls = a.get_class().get_name().lower()
+    for w in NEVER_HIDE:
+        if w in name or w in cls:
+            return False
+    for w in SHEEP_WORDS:
+        if w in name or w in label or w in cls:
+            return True
+    return False
+
+
 def _hide_sheep(world):
-    """Hide the Choral Sheep actor and stop his components (he carries the
-    MelodiaCompanionComponent that drives his behaviour and sound)."""
     hidden = []
-    notes = []
     try:
         actors = unreal.GameplayStatics.get_all_actors_of_class(world, unreal.Actor)
     except Exception as e:
-        return hidden, ["actor enumeration failed: %s" % e]
+        return hidden, ["enumeration failed: %s" % e]
     for a in actors:
-        name = (a.get_name() or "").lower()
-        if SHEEP_KEY not in name and "sheep" not in name:
+        if not _is_sheep(a):
             continue
-        try:
-            a.set_actor_hidden_in_game(True)
-        except Exception as e:
-            notes.append("hidden flag: %s" % e)
-        try:
-            a.set_actor_tick_enabled(False)
-        except Exception as e:
-            notes.append("tick: %s" % e)
-        try:
-            a.set_actor_enable_collision(False)
-        except Exception as e:
-            notes.append("collision: %s" % e)
+        for fn, args in (
+            ("set_actor_hidden_in_game", (True,)),
+            ("set_actor_tick_enabled", (False,)),
+            ("set_actor_enable_collision", (False,)),
+        ):
+            try:
+                getattr(a, fn)(*args)
+            except Exception:
+                pass
         try:
             for c in a.get_components_by_class(unreal.SkeletalMeshComponent):
                 c.set_visibility(False)
                 c.set_hidden_in_game(True)
-        except Exception as e:
-            notes.append("mesh visibility: %s" % e)
+        except Exception:
+            pass
+        try:
+            for c in a.get_components_by_class(unreal.AudioComponent):
+                c.set_active(False)
+                c.deactivate()
+        except Exception:
+            pass
         try:
             for c in a.get_components_by_class(unreal.ActorComponent):
                 c.deactivate()
-        except Exception as e:
-            notes.append("deactivate: %s" % e)
+        except Exception:
+            pass
         hidden.append(a.get_name())
-    return hidden, notes
+    return hidden, []
 
 
 def _mute(world):
-    """Mute everything through the project's own sound mix (same mechanism as
-    UMelodiaGameUserSettings::ApplyMelodiaPreferences). Runtime only - nothing
-    is written to the saved user settings."""
+    """Mute through the project's own sound mix - the same mechanism as
+    UMelodiaGameUserSettings::ApplyMelodiaPreferences. Runtime only."""
     mix = unreal.load_asset(MIX_PATH)
     if not mix:
-        return False, ["sound mix not found: %s" % MIX_PATH]
+        return False, ["sound mix not found"]
     notes = []
     try:
         unreal.GameplayStatics.push_sound_mix_modifier(world, mix)
@@ -104,63 +132,111 @@ def _mute(world):
     return True, notes
 
 
-def _frame_camera(world):
-    """PIE opens wherever the editor camera was (LastExecutedPlayModeLocation =
-    PlayLocation_CurrentCameraLocation), which is usually inside geometry, and
-    the spawn is then inside the room shell. Put the pawn back on the level's
-    PlayerStart so the gameplay camera frames her normally.
+def _ensure_collision(world):
+    """Turn collision on for static geometry that has it switched off. The
+    asset must own collision data; this enables the component."""
+    fixed = []
+    try:
+        actors = unreal.GameplayStatics.get_all_actors_of_class(world, unreal.Actor)
+    except Exception as e:
+        return fixed, ["enumeration failed: %s" % e]
+    for a in actors:
+        try:
+            comps = a.get_components_by_class(unreal.ActorComponent)
+        except Exception:
+            continue
+        for c in comps:
+            cn = c.get_class().get_name().lower()
+            if 'staticmesh' not in cn and 'houdini' not in cn:
+                continue
+            try:
+                if 'NO_COLLISION' not in str(c.get_collision_enabled()):
+                    continue
+                c.set_collision_enabled(unreal.CollisionEnabled.QUERY_AND_PHYSICS)
+                c.set_collision_profile_name('BlockAll')
+                fixed.append(a.get_name())
+            except Exception:
+                pass
+    return fixed, []
 
-    No camera hijack: a static cine camera would lose her the moment she moves.
-    """
-    notes = []
-    starts = []
+
+def _player_start(world):
     for a in unreal.GameplayStatics.get_all_actors_of_class(world, unreal.Actor):
         if a.get_class().get_name() in ("PlayerStart", "APlayerStart"):
-            starts.append(a)
-    if not starts:
-        return None, ["no PlayerStart in level"]
-    pawn = None
+            return a
+    return None
+
+
+def _melusina(world):
     for p in unreal.GameplayStatics.get_all_actors_of_class(world, unreal.Pawn):
         if p.get_class().get_name().startswith("BP_Melusina"):
-            pawn = p
-            break
-    if not pawn:
-        for p in unreal.GameplayStatics.get_all_actors_of_class(world, unreal.Pawn):
-            pawn = p
-            break
+            return p
+    return None
+
+
+def _place_on_player_start(world):
+    """PIE spawns the player wherever the editor camera was
+    (LastExecutedPlayModeLocation=PlayLocation_CurrentCameraLocation), which
+    puts the camera inside the room shell. Put the pawn back on the
+    PlayerStart - and keep putting it back if it falls through the floor."""
+    st = _player_start(world)
+    if not st:
+        return None, ["no PlayerStart in level"]
+    pawn = _melusina(world)
     if not pawn:
         return None, ["no pawn"]
-    st = starts[0]
     loc = st.get_actor_location()
-    rot = st.get_actor_rotation()
     try:
-        pawn.set_actor_location_and_rotation(loc, rot, False, None)
-        teleported = True
+        pz = pawn.get_actor_location().z
+        fell = (pz - loc.z) < -FALL_THRESHOLD_CM
+    except Exception:
+        fell = False
+    if not fell:
+        return "standing", []
+    try:
+        pawn.set_actor_location_and_rotation(loc, st.get_actor_rotation(), False, None)
     except Exception as e:
-        teleported = False
-        notes.append("teleport failed: %s" % e)
-    return "{} -> {}".format(pawn.get_name(), st.get_name()), notes
+        return None, ["teleport failed: %s" % e]
+    return "respawned on PlayerStart (was below the floor)", []
 
 
-def _apply_once():
-    world = _game_world()
-    if not world:
-        return
-    name = world.get_name()
-    if name == _state["world"]:
-        return
-    _state["world"] = name
+def _apply_now(world, first=False):
     hidden, hnotes = _hide_sheep(world)
     muted, mnotes = _mute(world)
-    cam, cnotes = _frame_camera(world)
-    _state["applied"] = [name, hidden, muted, cam]
-    unreal.log("demo_presets: applied to {} | sheep hidden: {} | muted: {} | spawn: {} | notes: {}".format(
-        name, hidden if hidden else "none found", muted, cam, hnotes + mnotes + cnotes))
+    coll, cnotes = _ensure_collision(world)
+    spawn, snotes = _place_on_player_start(world)
+    if first:
+        _state["applied"] = [world.get_name(), hidden, muted, spawn, len(coll)]
+        unreal.log("demo_presets: applied to {} | sheep hidden: {} | muted: {} | spawn: {} | "
+                   "collision enabled on {} components | notes: {}".format(
+                       world.get_name(), hidden if hidden else "none found", muted, spawn,
+                       len(coll), hnotes + mnotes + cnotes + snotes))
+    else:
+        bits = []
+        if hidden:
+            bits.append("sheep re-hidden: %d" % len(hidden))
+        if coll:
+            bits.append("collision re-enabled: %d" % len(coll))
+        if spawn and spawn.startswith("respawned"):
+            bits.append(spawn)
+        if bits:
+            unreal.log("demo_presets: " + " | ".join(bits))
 
 
 def _tick(delta):
     try:
-        _apply_once()
+        world = _game_world()
+        if not world:
+            return True
+        name = world.get_name()
+        if name != _state["world"]:
+            _state["world"] = name
+            _state["ticks"] = 0
+            _apply_now(world, first=True)
+        else:
+            _state["ticks"] += 1
+            if _state["ticks"] % REAPPLY_EVERY_TICKS == 0:
+                _apply_now(world, first=False)
     except Exception as e:
         unreal.log_warning("demo_presets tick error: {}".format(e))
     return True
