@@ -1,7 +1,7 @@
 # Melusina’s House — Modeling References
 
 > **Original design score (recovered Sept 2):** [OriginalDesign/melusinashouseplan_2026-09-02.md](OriginalDesign/melusinashouseplan_2026-09-02.md)  
-> **Current convergence plan:** [PAITOU_START_HERE.md](../../../PAITOU_START_HERE.md)  
+> **Current convergence plan:** [POITOU_START_HERE.md](../../../POITOU_START_HERE.md)  
 > **Hermes search token:** `melusinashouseplan`
 
 These are the current working concept references for the **rounder pink/blue Baroque / Rococo** version of Melusina’s house.

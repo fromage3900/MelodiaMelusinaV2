@@ -1,7 +1,7 @@
 > **ARCHIVED ORIGINAL — concept/design reference only, recovered 2026-10-20.**
 > Original path: \`melusinashouseplan.md\` at commit \`01996c03dc18cdafd96e760ee9065c2fd7a49379\`.
 > Historical links and status statements in the preserved body below may refer to removed/moved files.
-> **Current Paitou entry:** [PAITOU_START_HERE.md](../../../../PAITOU_START_HERE.md). Status: \`CURRENT_STATE.md\`.
+> **Current Poitou entry:** [POITOU_START_HERE.md](../../../../POITOU_START_HERE.md). Status: \`CURRENT_STATE.md\`.
 > **Do not infer live builder status from historical \`GN_MH_*\` aliases.**
 
 ---
