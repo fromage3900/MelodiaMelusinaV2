@@ -1,0 +1,448 @@
+{
+ "schema": "melodia.shirt_hem_bone_integration.v1",
+ "created": "2026-10-20",
+ "status": "STAGING_ONLY_OWNER_GATED_NO_CONTENT_WRITE",
+ "routes": {
+  "a": "additive hem bones on the shared skeleton (Pattern A, per Docs/MELUSINA_WARDROBE_PHYSICS_PIPELINE_2026-09-15.md)",
+  "b": "hem driven by the existing skirt kilt chain (no skeleton change)"
+ },
+ "route_a": {
+  "artifact_fbx": "Saved/Audit/ShirtBones_20261020/SK_Melusina_V2_Shirt_HemRig_Legal.fbx",
+  "artifact_bytes": 991372,
+  "artifact_sha256": "356f51aa502e2453edc6bd480c68b08112fe5fb2396b55da9555ea320b057d4c",
+  "built_from": "G:/EnvironmentPortfolio/BS_GodFile/Saved/Audit/MelusinaShirtKawaii_20261003/shirt_skinfit_candidate.fbx (Oct-3 Blender candidate, 481 joints)",
+  "weight_fix_applied": "Saved/Audit/melusina_animation_doctor/shirt_fix/shirt_weight_fix_v1.json (Oct-6 Houdini pass). Index alignment proven against the candidate: 533/861 verts identical pre-apply, hem vertex set identical 232/232, 234 leg-bound verts cleaned 234->0.",
+  "acceptance": {
+   "rig_identical_to_candidate": true,
+   "no_geometry_drift": true,
+   "weights_match_delta_within_1e-3": true,
+   "influence_limit_ok": true,
+   "all_sums_one": true,
+   "no_unweighted_verts": true,
+   "no_leg_bindings": true,
+   "unknown_bones_are_exactly_the_17_hem_bones": true,
+   "missing_only_ue_wrapper_root": true,
+   "hem_weighted_verts": 232
+  },
+  "acceptance_detail": {
+   "weights": {
+    "verts_checked": 861,
+    "verts_differing_from_delta": 123,
+    "max_weight_delta": 0.0001,
+    "verts_with_more_than_4_influences": 0,
+    "verts_with_sum_not_1": 0,
+    "unweighted_verts": 0,
+    "leg_bound_verts": 0,
+    "hem_influenced_verts": 232
+   },
+   "clearance_vs_body_cm": 0.5205,
+   "joint_positions_max_delta_mm": 0.0015,
+   "vertex_positions_max_delta_mm": 0.0002,
+   "missing_canonical_bones": [
+    "root"
+   ],
+   "unknown_bones_are": [
+    "c_shirt_hem_01_01_x",
+    "c_shirt_hem_01_02_x",
+    "c_shirt_hem_02_01_x",
+    "c_shirt_hem_02_02_x",
+    "c_shirt_hem_03_01_x",
+    "c_shirt_hem_03_02_x",
+    "c_shirt_hem_04_01_x",
+    "c_shirt_hem_04_02_x",
+    "c_shirt_hem_05_01_x",
+    "c_shirt_hem_05_02_x",
+    "c_shirt_hem_06_01_x",
+    "c_shirt_hem_06_02_x",
+    "c_shirt_hem_07_01_x",
+    "c_shirt_hem_07_02_x",
+    "c_shirt_hem_08_01_x",
+    "c_shirt_hem_08_02_x",
+    "c_shirt_hem_master_x"
+   ]
+  },
+  "skeleton_delta": {
+   "target_skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton",
+   "current_bone_count": 465,
+   "additive_bones": 17,
+   "total_after": 482,
+   "bones": [
+    {
+     "name": "c_shirt_hem_01_01_x",
+     "parent": "c_shirt_hem_master_x",
+     "use_deform": true,
+     "head_cm": [
+      12.74999,
+      -4.75002,
+      98.0
+     ],
+     "tail_cm": [
+      20.90999,
+      -7.79002,
+      83.5
+     ],
+     "length_cm": 16.91382
+    },
+    {
+     "name": "c_shirt_hem_01_02_x",
+     "parent": "c_shirt_hem_01_01_x",
+     "use_deform": true,
+     "head_cm": [
+      20.90999,
+      -7.79002,
+      83.5
+     ],
+     "tail_cm": [
+      26.31587,
+      -9.80397,
+      67.60038
+     ],
+     "length_cm": 16.91382
+    },
+    {
+     "name": "c_shirt_hem_02_01_x",
+     "parent": "c_shirt_hem_master_x",
+     "use_deform": true,
+     "head_cm": [
+      9.0156,
+      1.26039,
+      98.0
+     ],
+     "tail_cm": [
+      14.78559,
+      2.06705,
+      83.5
+     ],
+     "length_cm": 15.62669
+    },
+    {
+     "name": "c_shirt_hem_02_02_x",
+     "parent": "c_shirt_hem_02_01_x",
+     "use_deform": true,
+     "head_cm": [
+      14.78559,
+      2.06705,
+      83.5
+     ],
+     "tail_cm": [
+      18.43647,
+      2.57746,
+      68.31435
+     ],
+     "length_cm": 15.62669
+    },
+    {
+     "name": "c_shirt_hem_03_01_x",
+     "parent": "c_shirt_hem_master_x",
+     "use_deform": true,
+     "head_cm": [
+      -1e-05,
+      3.74998,
+      98.0
+     ],
+     "tail_cm": [
+      -1e-05,
+      6.14999,
+      83.49998
+     ],
+     "length_cm": 14.69729
+    },
+    {
+     "name": "c_shirt_hem_03_02_x",
+     "parent": "c_shirt_hem_03_01_x",
+     "use_deform": true,
+     "head_cm": [
+      -1e-05,
+      6.14999,
+      83.49998
+     ],
+     "tail_cm": [
+      -1e-05,
+      7.61242,
+      68.87563
+     ],
+     "length_cm": 14.69729
+    },
+    {
+     "name": "c_shirt_hem_04_01_x",
+     "parent": "c_shirt_hem_master_x",
+     "use_deform": true,
+     "head_cm": [
+      -9.01562,
+      1.26039,
+      98.0
+     ],
+     "tail_cm": [
+      -14.78561,
+      2.06705,
+      83.5
+     ],
+     "length_cm": 15.62669
+    },
+    {
+     "name": "c_shirt_hem_04_02_x",
+     "parent": "c_shirt_hem_04_01_x",
+     "use_deform": true,
+     "head_cm": [
+      -14.78561,
+      2.06706,
+      83.49999
+     ],
+     "tail_cm": [
+      -18.43648,
+      2.57746,
+      68.31433
+     ],
+     "length_cm": 15.6267
+    },
+    {
+     "name": "c_shirt_hem_05_01_x",
+     "parent": "c_shirt_hem_master_x",
+     "use_deform": true,
+     "head_cm": [
+      -12.75001,
+      -4.75002,
+      98.0
+     ],
+     "tail_cm": [
+      -20.91001,
+      -7.79002,
+      83.5
+     ],
+     "length_cm": 16.91382
+    },
+    {
+     "name": "c_shirt_hem_05_02_x",
+     "parent": "c_shirt_hem_05_01_x",
+     "use_deform": true,
+     "head_cm": [
+      -20.91001,
+      -7.79003,
+      83.5
+     ],
+     "tail_cm": [
+      -26.31588,
+      -9.80398,
+      67.60038
+     ],
+     "length_cm": 16.91382
+    },
+    {
+     "name": "c_shirt_hem_06_01_x",
+     "parent": "c_shirt_hem_master_x",
+     "use_deform": true,
+     "head_cm": [
+      -9.01562,
+      -10.76043,
+      98.0
+     ],
+     "tail_cm": [
+      -14.78561,
+      -17.64708,
+      83.5
+     ],
+     "length_cm": 17.05781
+    },
+    {
+     "name": "c_shirt_hem_06_02_x",
+     "parent": "c_shirt_hem_06_01_x",
+     "use_deform": true,
+     "head_cm": [
+      -14.78561,
+      -17.64708,
+      83.5
+     ],
+     "tail_cm": [
+      -18.6263,
+      -22.23105,
+      67.52486
+     ],
+     "length_cm": 17.05781
+    },
+    {
+     "name": "c_shirt_hem_07_01_x",
+     "parent": "c_shirt_hem_master_x",
+     "use_deform": true,
+     "head_cm": [
+      -1e-05,
+      -13.25002,
+      98.0
+     ],
+     "tail_cm": [
+      -1e-05,
+      -21.73002,
+      83.5
+     ],
+     "length_cm": 16.79763
+    },
+    {
+     "name": "c_shirt_hem_07_02_x",
+     "parent": "c_shirt_hem_07_01_x",
+     "use_deform": true,
+     "head_cm": [
+      -1e-05,
+      -21.73002,
+      83.5
+     ],
+     "tail_cm": [
+      -1e-05,
+      -27.32612,
+      67.66194
+     ],
+     "length_cm": 16.79763
+    },
+    {
+     "name": "c_shirt_hem_08_01_x",
+     "parent": "c_shirt_hem_master_x",
+     "use_deform": true,
+     "head_cm": [
+      9.0156,
+      -10.76043,
+      98.0
+     ],
+     "tail_cm": [
+      14.78559,
+      -17.64708,
+      83.5
+     ],
+     "length_cm": 17.05781
+    },
+    {
+     "name": "c_shirt_hem_08_02_x",
+     "parent": "c_shirt_hem_08_01_x",
+     "use_deform": true,
+     "head_cm": [
+      14.78559,
+      -17.64708,
+      83.5
+     ],
+     "tail_cm": [
+      18.62629,
+      -22.23106,
+      67.52486
+     ],
+     "length_cm": 17.05781
+    },
+    {
+     "name": "c_shirt_hem_master_x",
+     "parent": "root_x",
+     "use_deform": true,
+     "head_cm": [
+      -1e-05,
+      -2e-05,
+      98.00002
+     ],
+     "tail_cm": [
+      -1e-05,
+      -2e-05,
+      86.68816
+     ],
+     "length_cm": 11.31186
+    }
+   ],
+   "note": "additive only; no existing bone renamed, reparented or removed. Frozen skeleton: owner approval required before any skeleton edit."
+  },
+  "ue_work_orders": [
+   {
+    "id": "W1_owner_approve_skeleton_delta",
+    "status": "OWNER",
+    "detail": "add the 17 bones above to SK_Melusina_Skeleton (additive). Never ship the 481-bone staging skeleton."
+   },
+   {
+    "id": "W2_reimport_shirt",
+    "status": "READY_AFTER_W1",
+    "detail": "import SK_Melusina_V2_Shirt_HemRig_Legal.fbx onto the same SK_Melusina_Skeleton; keep or re-point the wardrobe slot binding (Cos_Shirt_MelusinaV2 -> SK_Melusina_V2_Shirt_Flared)."
+   },
+   {
+    "id": "W3_kawaii_node",
+    "status": "READY_AFTER_W1",
+    "detail": "second KawaiiPhysics node on ABP_Melusina_Current rooted at c_shirt_hem_master_x, DummyBoneLength 3.0, collision DA cloned from DA_Melusina_SkirtCollisionLimits, staging profile damp 0.62 / stiff 0.72 / drag 0.24 / gravity 0.16 / wind 0.12 / radius 3 cm."
+   },
+   {
+    "id": "W4_pie_verify",
+    "status": "READY_AFTER_W2",
+    "detail": "PIE: walk/stop, arm raise, hold pose. Gate: hem lags with settle, no body penetration, no thigh pull-through, face clear. Re-run Content/Python/melusina_animation_doctor.py; any FAIL keeps the previous .uasset."
+   },
+   {
+    "id": "W5_at_most_one_bounded_change",
+    "status": "RULE",
+    "detail": "one bounded change before re-proving. Sparrow clips, body mesh and skeleton stay frozen apart from W1."
+   }
+  ]
+ },
+ "route_b": {
+  "artifact": "Saved/Staging/WaveHarpScythe_20261017/SK_Melusina_V2_Shirt_Flared.fbx",
+  "verdict": "NOT_SHIPPABLE_AS_IS_WEIGHT_DEFECTS",
+  "verified_good": {
+   "joints": 464,
+   "unknown_bones": 0,
+   "missing_canonical": [
+    "root"
+   ],
+   "verts": 861,
+   "max_influences": 4,
+   "leg_bound_points": 0,
+   "hem_bones": 0,
+   "hem_driver": "c_kilt_master_x + root_x (existing bones, no skeleton change)"
+  },
+  "defects": {
+   "unweighted_verts": 25,
+   "unweighted_location": "hem band; nearest joints c_kilt_main_05_02_r / c_kilt_05_01_r / c_kilt_04_02_l - the verts whose leg/kilt weights were stripped and never replaced",
+   "verts_with_sum_not_1": 207,
+   "sum_buckets": {
+    "0 (unweighted)": 25,
+    "0-0.5": 108,
+    "0.5-0.9": 61,
+    "0.9-0.999": 38,
+    "0.999-1.001": 629,
+    "1.001-1.1": 0,
+    "1.1-2.0": 0,
+    ">2.0": 0
+   },
+   "worst_sums": [
+    [
+     50,
+     0.0317
+    ],
+    [
+     483,
+     0.0317
+    ],
+    [
+     55,
+     0.0394
+    ],
+    [
+     481,
+     0.0394
+    ],
+    [
+     573,
+     0.0633
+    ]
+   ]
+  },
+  "repair": "reweight the affected verts to the torso chain (strongest torso bone, top-4, renormalise) - the same rule the Oct-6 pass applied to route (a) - then re-run the acceptance probe before any reimport."
+ },
+ "bind_pose_note": "The FBX rest pose matches the LIVE MESH bind exactly (arm_stretch_l|arm_stretch_r 72.932 cm, root_x|thigh_stretch_l 39.538 cm, spine_01_x|root_x 0.000 cm - identical on the live shirt mesh, the live body mesh and every FBX). The live skeleton ref pose differs from the mesh bind for root_x/thighs/arms: a pre-existing project condition, identical on body and garment, not introduced by these artifacts.",
+ "evidence": [
+  "Saved/Audit/ShirtBones_20261020/legal_fbx_acceptance.json",
+  "Saved/Audit/ShirtBones_20261020/legality_bones.json",
+  "Saved/Audit/ShirtBones_20261020/route_b_verification.json",
+  "Saved/Audit/ShirtBones_20261020/route_b_verification_pass2.json",
+  "Saved/Audit/ShirtBones_20261020/canonical_skeleton.json",
+  "Saved/Audit/ShirtBones_20261020/canonical_ref_pose.json"
+ ],
+ "tools": [
+  "Tools/Houdini/shirt_legal/verify_shirt_fbx.py",
+  "Tools/Houdini/shirt_legal/verify_shirt_fbx_pass2.py",
+  "Tools/Houdini/shirt_legal/verify_legal_fbx.py",
+  "Tools/Houdini/shirt_legal/dump_weights.py",
+  "Tools/Houdini/shirt_legal/dump_bones.py",
+  "Tools/Houdini/shirt_legal/build_legal_shirt_fbx.py"
+ ],
+ "notes": [
+  "Nothing in Content/ was written by this work; the live editor (pid 121776) was read-only for it.",
+  "The artifact FBX stays out of git (Saved/ is ignored, .gitignore:5); the manifest and tools are the committed evidence."
+ ]
+}
