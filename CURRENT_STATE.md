@@ -2416,3 +2416,15 @@ Every deleted handoff/plan/report is recoverable with `git show 7d271c15:<path>`
 
 **Meeting recipe (no config changes needed):** maximize the editor → **Play** (PIE in the viewport, `PIE_Standalone`) → optional console `r.ScreenPercentage 150` for a 4K internal render (~17 fps, accept the softness) or leave it at 100 for the smoothest motion. **Do not** use the standalone launcher on the Morning level.
 
+
+## Demo presentation presets — sheep hidden, audio muted, spawn fix — 2026-10-20 (pre-meeting)
+
+- **Owner ask (demo blockers on Play):** the Choral Sheep is not presentation-ready and random audio must not run during the screenshare.
+- **Implemented as a runtime-only PIE preset — `Tools/Editor/demo_presets.py`.** No shared asset was touched: the Morning level already carries **137 external-actor packages dirty from other lanes**, so the umap was deliberately **not** edited for this.
+  - **Sheep hidden:** the placed actor `BP_ChoralSheep_C_UAID_7C5758FA1CACDAFF02_1566876143` gets hidden-in-game, tick off, collision off, mesh `SetVisibility(false)` + `SetHiddenInGame(true)`, and all components deactivated (his `MelodiaCompanionComponent` is what drives his behaviour and sound). Verified live in PIE: mesh visibility **False**, actor tick **False**, every component inactive.
+  - **Audio muted:** through the project's own sound mix `/Game/Melodia/Audio/SM_MelodiaUserPreferences` with Master/Music/SFX sound-class overrides at 0 — the same mechanism as `UMelodiaGameUserSettings::ApplyMelodiaPreferences` (`Source/BS_GodFile/MelodiaIntegration/MelodiaGameUserSettings.cpp`), applied **runtime-only**: no saved user setting is written, so other sessions are unaffected.
+  - **Spawn framing:** PIE opens wherever the editor camera was (`LastExecutedPlayModeLocation=PlayLocation_CurrentCameraLocation`), which put the camera inside the room shell and produced an unreadable frame. The preset teleports the pawn back onto the level's PlayerStart. Implemented, **not yet visually verified** (the PIE session ended before the capture).
+- **Wiring:** a slate post-tick watcher applies the preset to every PIE session, so the owner's own Play button gets it — editor log: `demo_presets: applied to L_MelusinaMorning | sheep hidden: ['BP_ChoralSheep_C_UAID_7C5758FA1CACDAFF02_1566876143'] | muted: True`.
+- **Recovery after an editor restart:** UE console (Shift+`) → `py "C:/EnvironmentPortfolio/BS_GodFile/Tools/Editor/demo_presets.py"` (verified working from the log). `Content/Python/init_unreal.py` was deliberately **not** edited — it is the live shared startup script for the LiveLink / OSC-bridge / Melodia-Studio surfaces.
+- **Evidence:** `Saved/Audit/Demo4K_20261020/` (4K standalone plate with `RenderRes 150.0% (3840x2160)`, editor PIE stat plate, sheep-hidden PIE plates).
+
