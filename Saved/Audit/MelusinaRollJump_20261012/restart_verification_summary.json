@@ -1,0 +1,12 @@
+{
+  "ok": true,
+  "success": true,
+  "mode": "execute_file",
+  "result": "None",
+  "output": [
+    {
+      "type": "info",
+      "output": "{\"samples\": 732, \"elapsed\": 113.64100000000326, \"max_horizontal_speed\": 900.0, \"max_jump_velocity\": 299.5589803904295, \"rising_samples\": 4, \"descending_samples\": 4, \"roll_samples\": 12, \"distance\": 328.077789143918, \"current_tuning\": {\"ground_friction\": 8.0, \"braking_deceleration_walking\": 2048.0, \"braking_friction_factor\": 2.0, \"max_walk_speed\": 300.0}}\r\n"
+    }
+  ]
+}

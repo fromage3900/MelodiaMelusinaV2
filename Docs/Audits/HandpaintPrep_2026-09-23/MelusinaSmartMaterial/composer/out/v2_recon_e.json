@@ -1,0 +1,52 @@
+{
+ "body_channels": [
+  "ChannelType.BaseColor",
+  "ChannelType.Emissive",
+  "ChannelType.Height",
+  "ChannelType.Metallic",
+  "ChannelType.Normal",
+  "ChannelType.Opacity",
+  "ChannelType.Roughness"
+ ],
+ "geomasks": [
+  "Mesh",
+  "UVTile",
+  "name",
+  "value"
+ ],
+ "meshmaps": [
+  "AO",
+  "BentNormals",
+  "Curvature",
+  "Height",
+  "ID",
+  "Normal",
+  "Opacity",
+  "Position",
+  "Thickness",
+  "WorldSpaceNormal",
+  "name",
+  "value"
+ ],
+ "curv_map": "ResourceID(context='project0', name='Curvature IDMAP_Sheep_Body', version='78bd44d78112f0ac5c74a7d76e6b4f069d28453b.image')",
+ "ao_map_err": "{'description': \"AttributeError: type object '_substance_painter.textureset.MeshMapUsage' has no attribute 'AmbientOcclusion'\\n\\nAt:\\n  <string>(6): <module>\\n\"}",
+ "shelf_count": 1819,
+ "shelf_irid": [],
+ "shelf_general": [
+  "Resource(handle=<_substance_painter.resource.ResourceHandle object at 0x000001C135BC4330>)",
+  "Resource(handle=<_substance_painter.resource.ResourceHandle object at 0x000001C135BC6930>)",
+  "Resource(handle=<_substance_painter.resource.ResourceHandle object at 0x000001C135BC5E30>)",
+  "Resource(handle=<_substance_painter.resource.ResourceHandle object at 0x000001C135BC67B0>)",
+  "Resource(handle=<_substance_painter.resource.ResourceHandle object at 0x000001C135BC6FB0>)",
+  "Resource(handle=<_substance_painter.resource.ResourceHandle object at 0x000001C135BC4CF0>)",
+  "Resource(handle=<_substance_painter.resource.ResourceHandle object at 0x000001C135BC4E30>)",
+  "Resource(handle=<_substance_painter.resource.ResourceHandle object at 0x000001C135BC4C30>)",
+  "Resource(handle=<_substance_painter.resource.ResourceHandle object at 0x000001C135BC4CB0>)",
+  "Resource(handle=<_substance_painter.resource.ResourceHandle object at 0x000001C135BC4EF0>)",
+  "Resource(handle=<_substance_painter.resource.ResourceHandle object at 0x000001C135BC6EB0>)",
+  "Resource(handle=<_substance_painter.resource.ResourceHandle object at 0x000001C135BC70B0>)",
+  "Resource(handle=<_substance_painter.resource.ResourceHandle object at 0x000001C135BC7130>)",
+  "Resource(handle=<_substance_painter.resource.ResourceHandle object at 0x000001C135BC70F0>)",
+  "Resource(handle=<_substance_painter.resource.ResourceHandle object at 0x000001C135BC6970>)"
+ ]
+}

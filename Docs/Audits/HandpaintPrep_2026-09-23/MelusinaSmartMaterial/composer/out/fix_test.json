@@ -1,0 +1,13 @@
+{
+ "comp_found": true,
+ "sms_found": true,
+ "comp_vis_before": true,
+ "sms_vis_before": true,
+ "sub_layers_err": "TypeError(\"'method' object is not iterable\")",
+ "children": [],
+ "comp_vis_after": true,
+ "sms_vis_after": true,
+ "preset": "resource://starter_assets/PBR Metallic Roughness?version=12212909757578709068.spexp",
+ "exportA_visible": "ExportStatus.Success",
+ "exportB_composer_off": "ExportStatus.Success"
+}

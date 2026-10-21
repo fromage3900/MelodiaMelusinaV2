@@ -1,0 +1,72 @@
+{
+  "generated": "2026-10-21",
+  "gate": "G closure + ramp convergence",
+  "evidence_level": "graph/asset/compile read + one saved MI change; no visual capture (capture_scene_preview returns the editor viewport in this session), no PIE",
+  "landscape_material_in_use": "/Game/EnvSandbox/Poitou/Materials/MI_Poitou_Landscape_Nikki",
+  "master": "/Game/EnvSandbox/Materials/Masters/M_Master_Nikki_Landscape",
+
+  "gate_G_findings": {
+    "switch": {"parameter": "bUseGaeaMasks", "master_default": false},
+    "consequence": "All four Gaea mask samples, their lerp(constant, mask, GaeaWeight) chains and the Multiply/Add consumers are inert. Placeholder gradients never reach a shader.",
+    "weights": {
+      "Gaea_SnowWeight": 1,
+      "Gaea_RockWeight": 1,
+      "Gaea_WaterWeight": 0,
+      "Gaea_FlowWeight": 0
+    },
+    "wiring": {
+      "Gaea_SnowMask": "LinearInterpolate_6.B  (alpha = Saturate_9 <- Gaea_SnowWeight)",
+      "Gaea_WaterMask": "LinearInterpolate_7.B  (alpha = Saturate_10 <- Gaea_WaterWeight)",
+      "Gaea_FlowMask": "LinearInterpolate_10.B (alpha = Saturate_12 <- Gaea_FlowWeight)",
+      "Gaea_RockMask": "LinearInterpolate_19.B (alpha = Saturate_11 <- Gaea_RockWeight)",
+      "consumers": {
+        "LinearInterpolate_6": "Multiply_22.B, A = LandscapeLayerSample_0 (Snow) -> Add_2.A",
+        "LinearInterpolate_7": "Multiply_23.B, A = LandscapeLayerSample_1 (Water) -> Add_3.B, Multiply_27.B, Multiply_36.B, Multiply_41.A",
+        "LinearInterpolate_10": "Multiply_39.B, A = Constant_4 -> Multiply_40.B",
+        "LinearInterpolate_19": "Multiply_45.B, A = LandscapeLayerSample_4 (Rock) -> Add_12.B"
+      }
+    },
+    "mask_texture_resolution": {
+      "/Game/Gaea/Glacier/Snow_Snow": "32x32 TC_HDR_COMPRESSED",
+      "/Game/Gaea/Glacier/Snow_Out": "32x32 TC_HDR_COMPRESSED",
+      "/Game/Gaea/Glacier/Glacier_Snow": "32x32 TC_HDR_COMPRESSED",
+      "/Game/Gaea/Glacier/Textures/W_Glacier_Rock": "32x32 TC_MASKS",
+      "/Game/Gaea/Glacier/Textures/W_Glacier_Water": "32x32 TC_MASKS",
+      "/Game/Gaea/Glacier/Textures/W_Glacier_Snow": "32x32 TC_MASKS",
+      "/Game/Gaea/Glacier/Textures/T_Glacier_SnowEdge_SDF16": "1009x1009 R32_FLOAT (the only real Gaea bake)"
+    },
+    "verdict": "No texture to bind. The lane is an unused scaffold behind an off switch, and every candidate Gaea mask is a 32x32 stub. Leave it off until real masks are baked."
+  },
+
+  "ramp_convergence": {
+    "asset": "/Game/EnvSandbox/Poitou/Materials/MI_Poitou_Landscape_Nikki",
+    "before": {"RampContrast": 0.1, "RampPosMid": 0.05},
+    "after": {"RampContrast": 1.0, "RampPosMid": 0.5},
+    "master_defaults": {"RampContrast": 1.0, "RampPosMid": 0.5, "RampStrength": 0.0},
+    "mi_RampStrength_kept": 1.0,
+    "saved": true,
+    "scalar_override_count_after": 12,
+    "compilation_stats": {
+      "is_compiled": true,
+      "num_pixel_shader_instructions": 446,
+      "num_vertex_shader_instructions": 153,
+      "estimated_vs_texture_samples": 3,
+      "estimated_ps_texture_samples": 11,
+      "expression_count": 353
+    },
+    "ramp_chain": "RampContrast -> MaterialFunctionCall_3 'RampContrast (V3)' input; RampPosMid -> 'RampPosMid (V3)'; Mask (V3) <- DotProduct_1 (normal dot up); RampLow/Mid/High -> 3 stops; output Color -> LinearInterpolate_3.B"
+  },
+
+  "incident": {
+    "what": "Editor crash (EXCEPTION_ACCESS_VIOLATION reading 0x10) at 2026-10-21 07:08:16 while opening the material editor for the master.",
+    "cause": "Agent Python used unreal.AssetEditorSubsystem() (constructor) instead of unreal.get_editor_subsystem(unreal.AssetEditorSubsystem). The bogus instance made open_editor_for_assets deref null.",
+    "impact": "Editor process lost; no unsaved work from this session (master and MI were both saved before). Editor relaunched 03:09:34 and Monolith :9316 verified.",
+    "lesson": "Never open the material editor for this material. Monolith graph reads work on a fresh editor; the stale editor's material-editor state is what made material_query fail to load the asset."
+  },
+
+  "retractions": [
+    "Earlier claim 'the five placeholder parameters are orphans / zero consumers' was NOT proven: the Python connection probe returned edge_count 0 for all 353 expressions, i.e. the API failed, not the graph.",
+    "Earlier claim 'the Nikki paint lane is dead / overlap is water only' compared against the wrong layer family. Real target layers are the Houdini LandscapeLayerInfoObjects Base/Grass/Ground/Mud/Path/Rock/Water; the master samples 4 of 7.",
+    "Earlier claim 'bind Gaea bakes to the mask slots' is void: the bakes are 32x32 stubs and the lane is switched off."
+  ]
+}

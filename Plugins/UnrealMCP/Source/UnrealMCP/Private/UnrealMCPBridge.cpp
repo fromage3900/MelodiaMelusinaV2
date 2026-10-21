@@ -269,7 +269,8 @@ FString UUnrealMCPBridge::ExecuteCommand(const FString& CommandType, const TShar
                 ResultJson = ProjectCommands->HandleCommand(CommandType, Params);
             }
             // UMG Commands
-            else if (CommandType == TEXT("create_umg_widget_blueprint") ||
+            else if (CommandType == TEXT("create_widget_blueprint") ||
+                     CommandType == TEXT("create_umg_widget_blueprint") ||
                      CommandType == TEXT("add_text_block_to_widget") ||
                      CommandType == TEXT("add_button_to_widget") ||
                      CommandType == TEXT("bind_widget_event") ||

@@ -1,0 +1,66 @@
+# Faraway Mother P2 — Procedural (hython) Inventory — 2026-10-17
+
+Read-only inventory. D: not touched; no project files opened in an editor or modified. Every path below was seen on disk (relative to `C:\EnvironmentPortfolio\BS_GodFile`). Verdicts come from file headers and docs only. No graph or mesh was opened or cooked.
+
+## 0. Fast UE blockout path (panel 9, "Take a UE Blockout and Make It Sing")
+
+- **Target map (exists):** `Content\EnvSandbox\Monoliths\FarawayMother\Prototype\LV_FarawayMother_Prototype.umap`
+- **First graph:** `Content\EnvSandbox\PCG\Greybox\PCG_Greybox_Standard` (and its sibling `PCG_Greybox_Minimal`), registered in `Content\Python\pcg_portfolio_standards.py` and built by `setup_pcg_greybox.py`. `Content\EnvSandbox\PCG\Universal\PCG_GreyboxBlockout` is the alternative.
+- **Stack to copy:** `Content\Python\setup_wp_pillar_levels.py` (L109) already runs this pillar stack: `PCG_RockScatter` + `PCG_GardenRuins` + `PCG_FloatingStairways` + `PCG_Greybox_Standard` + `PCG_BridgeArchipelago`. That is the closest existing match for panel 9's grey towers, islands and bridges. A WP instance also exists: `Content\EnvSandbox\PCG\Styles\WP\PCG_WP_SpaceCathedral_Greybox_Standard`.
+- **Add-ons for the sheet:** `Styles\Escher\PCG_EscherWaterfall` (waterfalls), `Styles\Baroque\PCG_BezierBridgeSpan` (curved bridge spline), `Styles\Baroque\PCG_TerraceGarden` / `Universal\PCG_PortfolioTerraceBezier` (terraces), `Universal\PCG_WaterEdgeScatter` (basin rim), `Styles\Sakura\PCG_SakuraGrove` + `Universal\PCG_MeadowBloom` (orchard and meadow).
+- **Faraway-specific PCG:** no `PCG_Faraway*` graph asset exists. The Faraway PCG lives only as scripts: `Tools\PCG\build_faraway_mother_pcg_ecosystem.py`, `Content\Python\build_faraway_mother_height_aware_pcg.py`, `Content\Python\faraway_mother_pcg_assembly.py`, `Content\Python\faraway_mother_prototype_build.py`. The spec is `Docs\PCG\FARAWAY_MOTHER_PCG_SYSTEM_ARCHITECTURE.md` (4 biomes: WeaveRidge, LaceCanopy, FrillValley, ResonantSeamWay; includes a `MEL_mother_heart_gate` builder).
+
+## 1. Per-system table
+
+| # | System | Existing (paths) | Exists vs missing | Verdict | hython build order |
+|---|---|---|---|---|---|
+| 1 | Silk Mountain Language (pleated silk peaks) | `Houdini\FarawayDrape.hip/.hipnc`; `Docs\Houdini\FARAWAY_MOTHER_DRAPE_SPEC_2026-09-01.md` (Vellum drape→VAT, status "scaffold, not yet cooked"); `Tools\Houdini\sea_above_reef\build_cloth_mountains.py`, `build_terrain_suite.py`, `build_faraway_mother_heroes.py`; `Tools\Houdini\vdm_fabric_mountains\vdm_fabric_baker.py`, `faraway_static_field.py`, `faraway_alignment_diagnostic.py`; `Tools\cook_faraway_fabric_vdm.py`; `Content\Python\build_faraway_vdm_mountains.py`; `Tools\_gen_faraway_heightmap*.py`; `Docs\Art\FARAWAY_MOTHER_FABRIC_MOUNTAIN_BUILD_2026-09-02.md`, `FARAWAY_MOTHER_CLOTH_TIERS_2026-09-02.md` | Exists: generators, VDM baker, drape spec and hip. Missing: `Exports\Houdini\FarawayMother\` (the drape FBX output the spec names) is absent, and there's no HDA. | **FIX** | The pieces are there; consolidate them into one HDA and do the first real cook. Steps: (1) peak base heightfield, (2) pleat curve SDF, (3) Vellum drape, (4) LOD/Nanite export |
+| 2 | Heart Gate (lace-rib cathedral arch, glowing heart) | `hda\CrystalCathedralV3.hda`, `hda\HDA_Melodia_CrystalCathedral_1.0.hda`; `Tools\Houdini\cathedral\build_crystal_cathedral*_hda.py` (v1–v3), `build_fractal_cathedral.py`, `measure_cathedral.py`, `render_cathedral_hython.py`; `Docs\Houdini\GOTHIC_GEOMETRY_REFERENCE_2026-10-05.md`, `FoundryDay_2026-09-24\03_CRYSTAL_CATHEDRAL_HDA.md`; meshes `Content\EnvSandbox\Meshes\Cathedral` (41, e.g. SM_Cathedral_Portal, RoseWindow, TraceryPanel, LancetWindow) + `Cathedral_Houdini` (8, SM_P4_Cathedral_*); staging `Content\Staging\HoudiniForge\HeroCathedralV4_20261015` (33 files), `...WaterFix_20261016` (41), `Content\Staging\ResonantCathedral_20261017` (68) | Exists: gothic and crystal cathedral HDAs and kit. Missing: no Heart Gate asset or HDA at all (only `MEL_mother_heart_gate` named in the PCG doc), and no lace/filigree rib generator. | **REBUILD** (reuse the arch math) | The crystal cathedral targets a different look (crystal bays) and doesn't fit the lace-arch silhouette. Steps: (1) pointed-arch profile curve, (2) sweep lace ribs, (3) filigree boolean/copy, (4) heart-opening emissive mask |
+| 3 | Terraced rock-cliff islands + small waterfalls | `Tools\Houdini\sea_above_reef\build_island_generator.py` (floating islands with flat plateau); `Plugins\HoudiniEngine\Content\Tools\rock_generator.hda`; PCG `Styles\Baroque\PCG_TerraceGarden`, `Universal\PCG_PortfolioTerraceBezier`, `Styles\Escher\PCG_EscherWaterfall`, `Styles\Escher\PCG_EscherFloatingIslandEx`, `MassiveBiome\PCG_Biome_IslandGrove`; mesh `SM_Cathedral_EscherWaterfall` | Exists: island generator and terrace/waterfall PCG. Missing: no terraced-strata cliff HDA, and no waterfall ribbon/emitter generator tied to ledges. | **REBUILD** | The current island generator makes inverted-gravity domes, not terraced cliffs. Steps: (1) terrace heightfield stack, (2) cliff mesh + strata, (3) ledge-lip curves → waterfall ribbon points |
+| 4 | Thin lace arched bridges along curves | PCG `Styles\Baroque\PCG_BezierBridgeSpan`, `PCG_BridgeArchipelago`, `PCGCol_Baroque_Bridges`, `Escher\PCG_EscherGravityBridgeEx`, `Musical\Hero\PCG_Hero_ArpeggioBridge` (+`DA_Hero_ArpeggioBridgeProfile`); meshes `SM_Cathedral_BifrostBridge`, `SM_Cathedral_EscherBridge`; `Content\HDA\ArpeggioStair_1.0.hda`; `Plugins\HoudiniEngine\Content\Examples\hda\copy_to_curve.1.0.hda`, `Content\Tools\he_sop_curve_instancer.hda` | Exists: spline bridge PCG and arch/bridge meshes. Missing: no lace/openwork bridge profile, and no Houdini curve→bridge HDA. | **FIX** | The spline PCG works; add a Houdini HDA that takes a UE spline. Steps: (1) curve resample, (2) arch-span profile sweep, (3) lace cutout pattern |
+| 5 | Motherfold Basin (turquoise lake) | PCG `Universal\PCG_WaterEdgeScatter`; `Content\Python\setup_master_water.py`; `Plugins\Oceanology_Plugin`; uproject `PCGWaterInterop` enabled; `Tools\Houdini\sea_above_reef\singing_water_veil_kit.py` (water silk PBR) | Exists: generic water and rim scatter. Missing: no file named Motherfold, and no basin-carve heightfield or shoreline mask. | **REBUILD** (small) | Steps: (1) basin carve on heightfield, (2) export shoreline curve + depth mask, (3) water body + rim scatter in UE |
+| 6 | Listening Orchard + flower meadow | PCG `Styles\Sakura\PCG_SakuraGrove`, `PCG_Sakura_PetalDrift`, `PCG_Sakura_Showcase`, `Universal\PCG_BlossomPath`, `PCG_MeadowBloom`, `PCG_MeadowFalloff`, `Melodia\PCG\Meadow\PCG_Meadow_RainbowBloom`, `MassiveBiome\PCG_Biome_MorningMeadow`; `Content\Python\build_sakura_trees.py`, `setup_pcg_zen_sakura.py`; `Content\EnvSandbox\VFX\Systems\Sakura` (20); `Tools\Houdini\foundry\morning_meadow_field.py` + `recipes\houdini_field\morning_meadow_field.hipnc`; `Tools\Houdini\sea_above_reef\build_dream_flora.py` | Exists: the most complete system. Missing: no Listening Orchard hero tree (the sheet shows big gnarled trunks with a pink canopy). | **KEEP** (scatter) / **FIX** (hero tree) | Steps: (1) hero blossom tree (L-system based on `build_dream_flora.py`), (2) meadow density field via the morning_meadow_field pattern |
+| 7 | Floating silk ribbons in sky | Niagara `Content\EnvSandbox\VFX\Systems\Sakura\NS_WindRibbonGust`, `Content\Melodia\VFX\NS_Morning_WindRibbon`, `MI_Niagara_AuroraRibbon`; flipbooks `Content\EnvSandbox\Textures\SurrealFabric_Flipbooks\CelestialSilk` (154 uassets); `Tools\Houdini\silk_aaa.py`; `Content\Python\import_faraway_drape_scaffold.py` | Exists: thin Niagara ribbons and silk textures. Missing: no wide-cloth ribbon mesh or VAT. | **REBUILD** | Niagara ribbons are thin trails; the sheet shows wide draped cloth. Steps: (1) curve → wide ribbon strip, (2) Vellum flutter → VAT, (3) spline placement in UE |
+
+**Top 3 to build first:** (1) Silk Mountain drape HDA, since it's the region's identity and most of it already exists; (2) Terraced cliff islands + waterfalls, which make up most of the sheet's frame; (3) Heart Gate, the hero landmark and the one with no existing asset.
+
+## 2. Houdini and the Houdini→UE pipeline
+
+- **Install:** `C:\Program Files\Side Effects Software\Houdini 22.0.368` (plus `Houdini Engine`, `Houdini Server`, `License Server`, `Launcher`).
+- **hython:** `...\Houdini 22.0.368\bin\hython.exe` (also `hython3.13.exe`). `hython --version` printed `Python 3.13.10` (exit 0, no GUI). It launches headless. The license-backed cook was not tested. See `Docs\Houdini\HYTHON_HEADLESS_RENDER_FACTS_2026-10-05.md`.
+- **Houdini Engine plugin:** `Plugins\HoudiniEngine\HoudiniEngine.uplugin`, VersionName `3.0 - H22.0.368`. It **matches** the installed Houdini 22.0.368 and is enabled in `BS_GodFile.uproject` (EngineAssociation 5.8). No engine-level copy was found via the registry lookup.
+- **Project HDAs:** `hda\CrystalCathedralV3.hda`, `hda\HDA_Melodia_CrystalCathedral_1.0.hda`, `hda\ArpeggioStair_1.0.hda`, `Content\HDA\ArpeggioStair_1.0.hda`, `Content\HDA\MelodiaRoomShell_1.0.hda`. The plugin ships `rock_generator`, `he_sop_curve_instancer`, `copy_to_curve`, `hilly_landscape_erode`.
+- **Bridge tooling:** `Tools\houdini_engine_stage\` (stage1–9 session/instantiate/cook/WP scripts, `pcg_param_*`), `Tools\houdini_engine_promotion_gate.py`, `Tools\Houdini\hda_verify\hda_verify.py`/`hda_audit.py`, `Content\Python\smoke_houdini_engine_pcg.py`, `deploy\houdini_mcp_server.py`, `deploy\houdini\melodia_studio\`. Staging levels `Content\Staging\HoudiniEngine\L_CathedralCookStage`, `OceanCathedralEd14`. A PCG + HE graph exists: `Styles\SeaAbove\CathedralHero_20261014\PCG_SeaAbove_CathedralHero_Engine`.
+- **PCG plugins enabled in .uproject:** PCG, PCGExtendedToolkit, PCGGeometryScriptInterop, PCGPythonInterop, PCGWaterInterop, PCGNiagaraInterop, PCGBiomeCore/Sample, PCGPrimitives, PCGFastGeoInterop, PCGNaniteAssembliesInterop, and others.
+
+## 3. Substance and PBR fabric sets
+
+| Set | Path | Count / res | Feeds |
+|---|---|---|---|
+| .sbsar | only `Docs\Audits\HandpaintPrep_2026-09-23\MelusinaSmartMaterial\designer\SBS_Melusina_SimpleDiffuse\exports\SBS_Melusina_SimpleDiffuse.sbsar` (character). No lace, silk, wool or velvet .sbsar on C: | 1 | none (character) |
+| FarawayAquaLace | `Content\EnvSandbox\Textures\Copernicus\Faraway\FarawayAquaLace` | 10 maps (BC/N/H/R/M/ORM/Opacity/Sheen/Iridescence/Emissive) | Heart Gate ribs, lace bridges |
+| FarawayCelestialSilk | `...\Copernicus\Faraway\FarawayCelestialSilk` | 10 maps | Silk mountains, sky ribbons |
+| FarawayNightVelvet | `...\Copernicus\Faraway\FarawayNightVelvet` | 10 maps | Silk mountain valleys/shadows |
+| FarawayGildedRidge | `...\Copernicus\Faraway\FarawayGildedRidge` | 10 maps | Mountain crests, gate trim |
+| SingingSilk | `Content\EnvSandbox\Textures\Copernicus\SingingSilk` | 9 | Ribbons, basin water silk |
+| CelestialSilk flipbook | `Content\EnvSandbox\Textures\SurrealFabric_Flipbooks\CelestialSilk` | 154 uassets + PNGs (sampled atlas 1024x850) | Sky ribbons (animated) |
+| FarawayAlabasterDrape | `Content\Melodia\Cymatics\FarawayAlabasterDrape` | 1 (BaseColor) | Silk mountains |
+| MelodiaRoseVelvet | `Content\Melodia\Cymatics\MelodiaRoseVelvet` | 7 | Orchard/meadow accents |
+| Faraway MIs | `Content\EnvSandbox\Materials\Instances\FarawayMother` | 8 files | All |
+| Web fabric lab PNGs | `Website\fromage-webgl-kit\prototypes\fabric-material-lab\assets\textiles` | 30 (BaroqueLace, SheerSilk, RoyalVelvet, CelestialWeave, GildedBrocade, GoldEmbroidery) | Lace/silk/velvet source to import |
+| Wool | none for environments (only ChoralSheep coat textures) | — | — |
+
+Script outputs that are missing: `Tools\Houdini\silk_aaa.py` → `Content\EnvSandbox\Textures\PearlWoven_Silk` and `pearl_lace_aaa.py` → `PearlWoven_Lace` are both empty or absent.
+
+## 4. Editor automation (read-only findings; nothing was connected)
+
+| Surface | Plugin / config | Endpoint | Enabled in .uproject | Docs |
+|---|---|---|---|---|
+| Monolith 0.20.3 | `Plugins\Monolith`; `.mcp.json` + `.cursor\mcp.json` → `Plugins\Monolith\Binaries\monolith_proxy.exe` (stdio), `MONOLITH_URL=http://localhost:9316/mcp` | 127.0.0.1:9316 (listening, PID 46924) | yes | `Plugins\Monolith\Docs\MONOLITH_GUIDE.md`, `API_REFERENCE.md`, `Docs\AGENT_MCP_CHEAT_SHEET.md`, `Docs\AGENT_MCP_SURFACES.md` |
+| Claireon 2.1.0 | `Plugins\Claireon`; `.mcp.json` → `http://127.0.0.1:60162/mcp`; live port recorded in `Saved\Claireon\MCPServer.json` | 127.0.0.1:60162 (listening, PID 46924) | yes | `Plugins\Claireon\README.md`, `Content\Instructions\ConnectClaireon.md`, `Docs\CLAIREON_*` |
+| UnrealMCP 1.0 | `Plugins\UnrealMCP`; `~\.cursor\mcp.json` "unrealMCP" (uv it_is_unreal.py, UNREAL_PORT 55557) | 127.0.0.1:55557 (listening) | yes | `Docs\AGENT_MCP_SURFACES.md` |
+| UEBlueprintMCP 0.1.0 | `Plugins\UEBlueprintMCP` | 127.0.0.1:55558 (listening) | yes | same |
+| it-is-unreal (VibeUE) | `.cursor\mcp.json` http :8088 | not listening on PID 46924 | n/a | same |
+| unreal-mcp | `.mcp.json` http :8000 | not listening on PID 46924 | n/a | — |
+
+Claireon's docs say to make editor calls one at a time, because concurrent calls can destabilize the editor.

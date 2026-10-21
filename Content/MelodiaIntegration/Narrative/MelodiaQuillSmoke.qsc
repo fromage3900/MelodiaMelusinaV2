@@ -1,41 +1,63 @@
 @ Start
 
-- Melusina
-  Sir Melodious? Is that you? The quiet petal is humming again.
+$ Background {&/Game/Melodia/UI/Textures/Figma/T_Melodia_Figma_Asset_Hero_CosmicOrrery.T_Melodia_Figma_Asset_Hero_CosmicOrrery} none 0
 
-* Follow the quiet chirp. | melodia_met_melodious = on | -> Reunion
-* Wait and listen.         | -> Listening
+- Melusina
+  Sir Melodious? Is that you beyond the nave columns? The quiet petal in my pocket is humming again.
+
+      $ Voice {&/Game/Melodia/Characters/Melusina/Audio/mel_perch_02.mel_perch_02} 0.9
+
+* Follow the quiet chirp into the crossing. | melodia_met_melodious = on | -> Reunion
+* Wait beneath the arch and listen first.   | -> Listening
 
 <@> Listening
 
 - .
-  The room settles. A softer chirp answers from beyond the door, keeping time with her breath.
+  The vaulted stone settles. From beyond the fountain court, a bright seven-semitone chirp answers—keeping exact time with her breath.
 
--> Start
+      $ SFX {&/Game/Audio/Aud_Source/fx_Amb_SoundScape/Birds/amb_ss_palette_bird01_mid_01.amb_ss_palette_bird01_mid_01} 0.85
+
+- Melusina
+  There you are. Always waiting for me to leave a rest in the bar before you make an entrance.
+
+$ melodia_met_melodious = on
+-> Reunion
 
 <@> Reunion
 
 ? if: {melodia_met_melodious} == on
 
   - Sir Melodious
-    There you are. Even the silence remembers our song.
+    There you are, little bard. Even when the hall is empty, the silence remembers our song.
+
+        $ Voice {&/Game/Melodia/Characters/Melusina/Audio/mel_reunion_01.mel_reunion_01} 0.9
 
 ? else:
 
   - .
-    The perch remains empty, but one bright note waits in the air.
+    The perch remains empty, but one bright note hangs in the cathedral air.
 
 ? endif
 
 - Sir Melodious
-  Hold fast to the quiet note. Something restless has heard us.
+  Hold fast to your keynote. The smoke echo that swallowed the opening cadence has gathered at the altar—and it will not yield until someone finishes the phrase.
+
+- Melusina
+  Then we don't silence it. We tune it, lock the figure, and play the resolution.
+
+      $ Voice {&/Game/Melodia/Characters/Melusina/Audio/mel_battle_entry.mel_battle_entry} 0.9
 
 $ Notify melodia:battle:melodia_smoke_encounter
 
 ? if: {melodia_battle_result} == victory
 
   - Sir Melodious
-    Victory. The dream remembers your courage, and the quiet petal opens.
+    Bravo! The dissonance unknots into a clean fifth, and the quiet petal opens in full bloom.
+
+        $ SFX {&/Game/Melodia/Audio/WaveHarp/SW_WaveHarp_Orchestra_C4.SW_WaveHarp_Orchestra_C4} 0.85
+
+  - Melusina
+    It wasn't trying to fight us—it was just afraid of being forgotten when the lights went down.
 
   $ melodia_first_dream_resolved = on
   $ Notify melodia:quest:melodia_q_echo_01
@@ -46,7 +68,7 @@ $ Notify melodia:battle:melodia_smoke_encounter
   ? if: {melodia_battle_result} == defeat
 
     - Sir Melodious
-      The dream releases you gently. We will carry its lesson into the next refrain.
+      The dream releases you gently. Catch your breath; we will carry its tempo into the next refrain.
 
     $ melodia_first_dream_resolved = on
 
@@ -55,14 +77,14 @@ $ Notify melodia:battle:melodia_smoke_encounter
     ? if: {melodia_battle_result} == fled
 
       - Sir Melodious
-        We escaped with the melody intact. We can return when the rhythm is kinder.
+        We stepped out of the measure with our strings intact. We can return when the rhythm is kinder.
 
       $ melodia_first_dream_resolved = on
 
     ? else:
 
       - Sir Melodious
-        The battle could not begin. The dream remains open, waiting for a safer return.
+        The encounter could not begin yet. The nave holds its breath for our return.
 
     ? endif
 
@@ -77,12 +99,12 @@ $ Notify melodia:battle:melodia_smoke_encounter
   $ Notify melodia:flag:melodia_smoke_complete:true
 
   - .
-    The first dream resolves. Melusina wakes with its melody safely remembered.
+    The First Dream resolves across the Kaleido Nave. Melusina carries its remembered melody back toward the waking world.
 
 ? else:
 
   - .
-    The unfinished dream fades, leaving a path back to its first note.
+    The unfinished dream lingers among the arches, leaving a clear path back to its opening note.
 
 ? endif
 

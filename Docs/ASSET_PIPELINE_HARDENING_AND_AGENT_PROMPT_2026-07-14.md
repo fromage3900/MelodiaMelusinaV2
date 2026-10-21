@@ -3,8 +3,8 @@
 > **Authority amendment (2026-07-26).** Asset-pipeline practices remain useful,
 > but statements below naming MelodiaCore as runtime/gameplay authority are
 > superseded. The complete TurnBased JRPG template is the provisional
-> mechanical authority; MelodiaCore is quarantined for selective salvage. See
-> `MELODIA_UE58_INTEGRATION_ARCHITECTURE_2026-07-26.md`.
+> mechanical authority; MelodiaCore is quarantined for selective salvage. Current
+> authority map: `Docs/Production/AUTHORING_AUTHORITY_AND_MODEL_LANES.md`.
 
 **Purpose:** Lock in the long-term production lens for Melodia/EnvironmentPortfolio: prevent pipeline drift, make asset creation faster, and give agents a shared execution prompt for NPCs, environments, gameplay assets, materials, and validation.
 

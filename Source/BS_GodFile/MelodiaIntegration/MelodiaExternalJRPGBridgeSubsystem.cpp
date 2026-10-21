@@ -183,7 +183,8 @@ bool UMelodiaExternalJRPGBridgeSubsystem::InvokeStockDamageResolver(
 	return OutDamage >= 0;
 }
 
-bool UMelodiaExternalJRPGBridgeSubsystem::ResolveWorldFlowAttack(UMelodiaHybridEncounterComponent* Encounter)
+bool UMelodiaExternalJRPGBridgeSubsystem::ResolveWorldFlowAttack(UMelodiaHybridEncounterComponent* Encounter,
+	const float ActionBeatPhase)
 {
 	if (!IsValid(Encounter) || !IsValid(Encounter->GetEncounterTarget())
 		|| !Encounter->GetEncounterTarget()->CanBeDamaged()
@@ -199,7 +200,7 @@ bool UMelodiaExternalJRPGBridgeSubsystem::ResolveWorldFlowAttack(UMelodiaHybridE
 	const FWorldDamageBinding Binding = *Found;
 	int32 FinalDamage = 0;
 	return InvokeStockDamageResolver(Binding, 1.0, FinalDamage)
-		&& (FinalDamage == 0 || Encounter->ApplyResolvedFlowDamage(FinalDamage));
+		&& (FinalDamage == 0 || Encounter->ApplyResolvedFlowDamage(FinalDamage, ActionBeatPhase));
 }
 
 void UMelodiaExternalJRPGBridgeSubsystem::HandleWorldEffectRequested(

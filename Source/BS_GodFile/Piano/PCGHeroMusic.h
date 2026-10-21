@@ -187,6 +187,9 @@ public:
 	UFUNCTION(BlueprintPure, Category = "Hero Music|Node")
 	int32 GetMidiNote() const { return MidiNote; }
 
+	/** For hand-placed instruments (e.g. AMelodiaPlayableDecorNode) that are not seeded from a PCG point. */
+	void SetMidiNote(const int32 InMidiNote) { MidiNote = FMath::Clamp(InMidiNote, 0, 127); }
+
 	UFUNCTION(BlueprintPure, Category = "Hero Music|Node")
 	int32 GetSeedIdentity() const { return SeedIdentity; }
 
@@ -327,7 +330,9 @@ private:
 	void ApplyNoteToScore(const FPCGHeroMusicNoteEvent& Event);
 	void ApplyCrescendoResponse();
 
-	UPROPERTY()
+	/** Runtime registry. Transient: a saved or PIE-duplicated set would already
+	 * contain its nodes, so RegisterNode would skip SetHost and leave them unbound. */
+	UPROPERTY(Transient)
 	TSet<TObjectPtr<APCGHeroMusicNode>> RegisteredNodes;
 };
 

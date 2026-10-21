@@ -1,43 +1,67 @@
 @ Start
 
+$ Background {&/Game/Melodia/UI/Textures/Figma/T_Melodia_Figma_Asset_Hero_SakuraDream.T_Melodia_Figma_Asset_Hero_SakuraDream} none 0
+
 - Melusina
-  The morning bell tolls across the Kaleido Nave. The quiet petal in my hand hums with dawn cadence.
+  The morning bell tolls across the sanctuary, but the note doesn't clear the arches. It keeps folding back on itself.
+
+      $ Voice {&/Game/Melodia/Characters/Melusina/Audio/mel_dream_01.mel_dream_01} 0.9
 
 - Sir Melodious
-  Melusina, the dream is awake. Listen closely—before the resonance scatters, we must trace its first note.
+  Look by the resonance floor. That is what happens when a festival packs up mid-phrase—an orphan echo, spinning in place because nobody gave it a bar line.
 
-* Listen to the morning chime and align cadence. | -> Harmonize
-* Step forward into the nave sanctuary.          | -> AdvanceToEncounter
+- Melusina
+  It's holding the first chamber door shut. Look at the nodal pearls around its base—every time it shivers, the floor tries to draw a Chladni figure and drops the beat.
+
+- Sir Melodious
+  You cannot shatter a knotted cadence by shouting over it, Melusina. You must tune it into lock on the downbeat before you play the resolving phrase.
+
+* Listen for the downbeat and tune the keynote first. | -> Harmonize
+* Step into the ring and draw the Chime-Scythe cadence. | -> AdvanceToEncounter
 
 <@> Harmonize
 
 - Melusina
-  I hear the keynote. The air trembles in perfect fifths.
+  Wait... there. One-two-three, and a rest on four. It isn't hostile—it's just stuck on an unresolved seventh.
+
+      $ SFX {&/Game/Melodia/Audio/WaveHarp/SW_WaveHarp_Orchestra_C4.SW_WaveHarp_Orchestra_C4} 0.8
+
+- .
+  Melusina plucks a single open string. Around the echo, the scattered pearl beads lift and align along the first nodal ring.
 
 $ Notify melodia:stat:intent.p0.morning_resonance:melodia_harmony:2
 
 - Sir Melodious
-  Well struck. The sanctuary path opens ahead.
+  Well heard! Notice how the lilac shimmer gathers along its crest? Three true strikes on the beat will lock the figure open.
 
 -> AdvanceToEncounter
 
 <@> AdvanceToEncounter
 
 - Melusina
-  Something restless stirs near the central altar. A shadow of unresolved dissonance.
+  All right, little echo. You've been holding that breath since yesterday's encore. Let's bring the measure home.
+
+      $ Voice {&/Game/Melodia/Characters/Melusina/Audio/mel_battle_entry.mel_battle_entry} 0.9
 
 - Sir Melodious
-  Stand firm. Draw your rhythm cadence and face the smoke echo.
+  Tune in Flow, lock the figure, and resolve the Sequence!
 
 $ Notify melodia:battle:melodia_smoke_encounter
 
 ? if: {melodia_battle_result} == victory
 
+  - .
+    The Chladni figure flashes bright pearl across the floor and releases in a single clear chime. In the distance, the first brass story-door shimmers and begins to rise—one full bar of music made solid.
+
+        $ SFX {&/Game/Melodia/Audio/WaveHarp/SW_WaveHarp_Orchestra_C4.SW_WaveHarp_Orchestra_C4} 0.85
+
   - Sir Melodious
-    A triumphant resolution! The dissonance dissolves into pure harmony.
+    A clean resolution! Not silenced—answered. Look toward the house: the first threshold has unsealed.
 
   - Melusina
-    The dream remembers our song, and the path beyond the nave is clear.
+    It left a warm note in my hand. One measure returned to the house, three still waiting in the mist.
+
+        $ Voice {&/Game/Melodia/Characters/Melusina/Audio/mel_halfsong_02.mel_halfsong_02} 0.9
 
   $ melodia_p0_victory = on
   $ Notify melodia:questcomplete:quest.first_dream:flag.first_dream.quest.completed:reward.first_resonance_echo:intent.first_dream.complete:checkpoint.first_dream.complete
@@ -48,14 +72,20 @@ $ Notify melodia:battle:melodia_smoke_encounter
   ? if: {melodia_battle_result} == defeat
 
     - Sir Melodious
-      The melody faltered, but the echo held no cruelty. Breathe, and we shall harmonize anew.
+      You rushed the release, little bard. The echo held no malice—it simply slipped out of phase.
+
+    - Melusina
+      My hands were ahead of the clock. Give me one breath; I know where the downbeat lives now.
 
     $ Notify melodia:flag:flag.p0.playthrough.attempted:true
 
   ? else:
 
     - Sir Melodious
-      We stepped back in good time. The echo waits quietly for our return.
+      Stepping back is better than playing out of tune. The figure will keep its tempo until we return.
+
+    - Melusina
+      It isn't going anywhere. Neither are we.
 
     $ Notify melodia:flag:flag.p0.playthrough.fled:true
 
@@ -68,12 +98,12 @@ $ Notify melodia:battle:melodia_smoke_encounter
 ? if: {melodia_p0_victory} == on
 
   - .
-    The First Dream concludes in resonant harmony. The gates to the resonant world stand open.
+    The First Dream resolves in clear harmony. Within the Morning House, the first story door stands open, inviting Melusina toward the sanctum mirror.
 
 ? else:
 
   - .
-    The nave settles into gentle stillness, awaiting your voice once more.
+    The sanctuary settles into expectant stillness, holding the first measure until Melusina's voice returns.
 
 ? endif
 

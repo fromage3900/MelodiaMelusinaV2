@@ -1,0 +1,144 @@
+{
+ "material_id": "149",
+ "preset_maps": [
+  [
+   "2D View",
+   "export-preset-generator://viewport2d",
+   [
+    "{'channels': [{'destChannel': 'R', 'srcChannel': 'R', 'srcMapName': 'View_2D', 'srcMapType': 'virtualMap', 'srcPath': ''}, {'destChannel': 'G', 'srcChannel': 'G', 'srcMapName': 'View_2D', 'srcMapType': 'virtualMap', 'srcPath': ''}, {'destChannel': 'B', 'srcChannel': 'B', 'srcMapName': 'View_2D', 'srcMapType': 'virtualMap', 'srcPath': ''}, {'destChannel': 'A', 'srcChannel': 'A', 'srcMapName': 'View_2D', 'srcMapType': 'virtualMap', 'srcPath': ''}], 'fileName': '$textureSet_2D_View_$udim', 'parameters': {'bitDepth': '8', 'dithering': False, 'fileFormat': 'png'}}"
+   ]
+  ],
+  [
+   "Document channels + Normal + AO (No Alpha)",
+   "export-preset-generator://doc-channel-normal-no-alpha",
+   [
+    "{'channels': [{'destChannel': 'R', 'srcChannel': 'R', 'srcMapName': 'basecolor', 'srcMapType': 'documentMap', 'srcPath': ''}, {'destChannel': 'G', 'srcChannel': 'G', 'srcMapName': 'basecolor', 'srcMapType': 'documentMap', 'srcPath': ''}, {'destChannel': 'B', 'srcChannel': 'B', 'srcMapName': 'basecolor', 'srcMapType': 'documentMap', 'srcPath': ''}], 'fileName': '$textureSet_Base_color_$udim', 'parameters': {'bitDepth': '8', 'dithering': False, 'fileFormat': 'png'}}",
+    "{'channels': [{'destChannel': 'L', 'srcChannel': 'L', 'srcMapName': 'height', 'srcMapType': 'documentMap', 'srcPath': ''}], 'fileName': '$textureSet_Height_$udim', 'parameters': {'bitDepth': '16', 'dithering': False, 'fileFormat': 'png'}}",
+    "{'channels': [{'destChannel': 'L', 'srcChannel': 'L', 'srcMapName': 'roughness', 'srcMapType': 'documentMap', 'srcPath': ''}], 'fileName': '$textureSet_Roughness_$udim', 'parameters': {'bitDepth': '8', 'dithering': False, 'fileFormat': 'png'}}",
+    "{'channels': [{'destChannel': 'L', 'srcChannel': 'L', 'srcMapName': 'metallic', 'srcMapType': 'documentMap', 'srcPath': ''}], 'fileName': '$textureSet_Metallic_$udim', 'parameters': {'bitDepth': '8', 'dithering': False, 'fileFormat': 'png'}}",
+    "{'channels': [{'destChannel': 'R', 'srcChannel': 'R', 'srcMapName': 'normal', 'srcMapType': 'documentMap', 'srcPath': ''}, {'destChannel': 'G', 'srcChannel': 'G', 'srcMapName': 'normal', 'srcMapType': 'documentMap', 'srcPath': ''}, {'destChannel': 'B', 'srcChannel': 'B', 'srcMapName': 'normal', 'srcMapType': 'documentMap', 'srcPath': ''}], 'fileName': '$textureSet_Normal_$udim', 'parameters': {'bitDepth': '16', 'dithering': False, 'fileFormat': 'png'}}",
+    "{'channels': [{'destChannel': 'R', 'srcChannel': 'R', 'srcMapName': 'emissive', 'srcMapType': 'documentMap', 'srcPath': ''}, {'destChannel': 'G', 'srcChannel': 'G', 'srcMapName': 'emissive', 'srcMapType': 'documentMap', 'srcPath': ''}, {'destChannel': 'B', 'srcChannel': 'B', 'srcMapName': 'emissive', 'srcMapType': 'documentMap', 'srcPath': ''}], 'fileName': '$textureSet_Emissive_$udim', 'parameters': {'bitDepth': '8', 'dithering': False, 'fileFormat': 'png'}}",
+    "{'channels': [{'destChannel': 'L', 'srcChannel': 'L', 'srcMapName': 'opacity', 'srcMapType': 'documentMap', 'srcPath': ''}], 'fileName': '$textureSet_Opacity_$udim', 'parameters': {'bitDepth': '8', 'dithering': False, 'fileFormat': 'png'}}",
+    "{'channels': [{'destChannel': 'R', 'srcChannel': 'R', 'srcMapName': 'Normal_OpenGL', 'srcMapType': 'virtualMap', 'srcPath': ''}, {'destChannel': 'G', 'srcChannel': 'G', 'srcMapName': 'Normal_OpenGL', 'srcMapType': 'virtualMap', 'srcPath': ''}, {'destChannel': 'B', 'srcChannel': 'B', 'srcMapName': 'Normal_OpenGL', 'srcMapType': 'virtualMap', 'srcPath': ''}], 'fileName': '$textureSet_Normal_OpenGL_$udim', 'parameters': {'bitDepth': '16', 'dithering': False, 'fileFormat': 'png'}}",
+    "{'channels': [{'destChannel': 'L', 'srcChannel': 'L', 'srcMapName': 'AO_Mixed', 'srcMapType': 'virtualMap', 'srcPath': ''}], 'fileName': '$textureSet_Mixed_AO_$udim', 'parameters': {'bitDepth': '8', 'dithering': False, 'fileFormat': 'png'}}"
+   ]
+  ],
+  [
+   "Document channels + Normal + AO (With Alpha)",
+   "export-preset-generator://doc-channel-normal-with-alpha",
+   [
+    "{'channels': [{'destChannel': 'R', 'srcChannel': 'R', 'srcMapName': 'basecolor', 'srcMapType': 'documentMap', 'srcPath': ''}, {'destChannel': 'G', 'srcChannel': 'G', 'srcMapName': 'basecolor', 'srcMapType': 'documentMap', 'srcPath': ''}, {'destChannel': 'B', 'srcChannel': 'B', 'srcMapName': 'basecolor', 'srcMapType': 'documentMap', 'srcPath': ''}, {'destChannel': 'A', 'srcChannel': 'A', 'srcMapName': 'basecolor', 'srcMapType': 'documentMap', 'srcPath': ''}], 'fileName': '$textureSet_Base_color_$udim', 'parameters': {'bitDepth': '8', 'dithering': False, 'fileFormat': 'png'}}",
+    "{'channels': [{'destChannel': 'R', 'srcChannel': 'L', 'srcMapName': 'height', 'srcMapType': 'documentMap', 'srcPath': ''}, {'destChannel': 'A', 'srcChannel': 'A', 'srcMapName': 'height', 'srcMapType': 'documentMap', 'srcPath': ''}], 'fileName': '$textureSet_Height_$udim', 'parameters': {'bitDepth': '16', 'dithering': False, 'fileFormat': 'png'}}",
+    "{'channels': [{'destChannel': 'R', 'srcChannel': 'L', 'srcMapName': 'roughness', 'srcMapType': 'documentMap', 'srcPath': ''}, {'destChannel': 'A', 'srcChannel': 'A', 'srcMapName': 'roughness', 'srcMapType': 'documentMap', 'srcPath': ''}], 'fileName': '$textureSet_Roughness_$udim', 'parameters': {'bitDepth': '8', 'dithering': False, 'fileFormat': 'png'}}",
+    "{'channels': [{'destChannel': 'R', 'srcChannel': 'L', 'srcMapName': 'metallic', 'srcMapType': 'documentMap', 'srcPath': ''}, {'destChannel': 'A', 'srcChannel': 'A', 'srcMapName': 'metallic', 'srcMapType': 'documentMap', 'srcPath': ''}], 'fileName': '$textureSet_Metallic_$udim', 'parameters': {'bitDepth': '8', 'dithering': False, 'fileFormat': 'png'}}",
+    "{'channels': [{'destChannel': 'R', 'srcChannel': 'R', 'srcMapName': 'normal', 'srcMapType': 'documentMap', 'srcPath': ''}, {'destChannel': 'G', 'srcChannel': 'G', 'srcMapName': 'normal', 'srcMapType': 'documentMap', 'srcPath': ''}, {'destChannel': 'B', 'srcChannel': 'B', 'srcMapName': 'normal', 'srcMapType': 'documentMap', 'srcPath': ''}, {'destChannel': 'A', 'srcChannel': 'A', 'srcMapName': 'normal', 'srcMapType': 'documentMap', 'srcPath': ''}], 'fileName': '$textureSet_Normal_$udim', 'parameters': {'bitDepth': '16', 'dithering': False, 'fileFormat': 'png'}}",
+    "{'channels': [{'destChannel': 'R', 'srcChannel': 'R', 'srcMapName': 'emissive', 'srcMapType': 'documentMap', 'srcPath': ''}, {'destChannel': 'G', 'srcChannel': 'G', 'srcMapName': 'emissive', 'srcMapType': 'documentMap', 'srcPath': ''}, {'destChannel': 'B', 'srcChannel': 'B', 'srcMapName': 'emissive', 'srcMapType': 'documentMap', 'srcPath': ''}, {'destChannel': 'A', 'srcChannel': 'A', 'srcMapName': 'emissive', 'srcMapType': 'documentMap', 'srcPath': ''}], 'fileName': '$textureSet_Emissive_$udim', 'parameters': {'bitDepth': '8', 'dithering': False, 'fileFormat': 'png'}}",
+    "{'channels': [{'destChannel': 'R', 'srcChannel': 'L', 'srcMapName': 'opacity', 'srcMapType': 'documentMap', 'srcPath': ''}, {'destChannel': 'A', 'srcChannel': 'A', 'srcMapName': 'opacity', 'srcMapType': 'documentMap', 'srcPath': ''}], 'fileName': '$textureSet_Opacity_$udim', 'parameters': {'bitDepth': '8', 'dithering': False, 'fileFormat': 'png'}}",
+    "{'channels': [{'destChannel': 'R', 'srcChannel': 'R', 'srcMapName': 'Normal_OpenGL', 'srcMapType': 'virtualMap', 'srcPath': ''}, {'destChannel': 'G', 'srcChannel': 'G', 'srcMapName': 'Normal_OpenGL', 'srcMapType': 'virtualMap', 'srcPath': ''}, {'destChannel': 'B', 'srcChannel': 'B', 'srcMapName': 'Normal_OpenGL', 'srcMapType': 'virtualMap', 'srcPath': ''}, {'destChannel': 'A', 'srcChannel': 'A', 'srcMapName': 'Normal_OpenGL', 'srcMapType': 'virtualMap', 'srcPath': ''}], 'fileName': '$textureSet_Normal_OpenGL_$udim', 'parameters': {'bitDepth': '16', 'dithering': False, 'fileFormat': 'png'}}",
+    "{'channels': [{'destChannel': 'R', 'srcChannel': 'L', 'srcMapName': 'AO_Mixed', 'srcMapType': 'virtualMap', 'srcPath': ''}, {'destChannel': 'A', 'srcChannel': 'A', 'srcMapName': 'AO_Mixed', 'srcMapType': 'virtualMap', 'srcPath': ''}], 'fileName': '$textureSet_Mixed_AO_$udim', 'parameters': {'bitDepth': '8', 'dithering': False, 'fileFormat': 'png'}}"
+   ]
+  ],
+  [
+   "Sketchfab",
+   "export-preset-generator://sketchfab",
+   [
+    "{'channels': [{'destChannel': 'R', 'srcChannel': 'R', 'srcMapName': 'basecolor', 'srcMapType': 'documentMap', 'srcPath': ''}, {'destChannel': 'G', 'srcChannel': 'G', 'srcMapName': 'basecolor', 'srcMapType': 'documentMap', 'srcPath': ''}, {'destChannel': 'B', 'srcChannel': 'B', 'srcMapName': 'basecolor', 'srcMapType': 'documentMap', 'srcPath': ''}], 'fileName': '/exportsketchfab/textures/IDMAP_Sheep_Body_$udim_albedo', 'parameters': {'bitDepth': '8', 'dithering': False, 'fileFormat': 'jpg'}}",
+    "{'channels': [{'destChannel': 'L', 'srcChannel': 'L', 'srcMapName': 'opacity', 'srcMapType': 'documentMap', 'srcPath': ''}], 'fileName': '/exportsketchfab/textures/IDMAP_Sheep_Body_$udim_opacity', 'parameters': {'bitDepth': '8', 'dithering': False, 'fileFormat': 'jpg'}}",
+    "{'channels': [{'destChannel': 'R', 'srcChannel': 'R', 'srcMapName': 'emissive', 'srcMapType': 'documentMap', 'srcPath': ''}, {'destChannel': 'G', 'srcChannel': 'G', 'srcMapName': 'emissive', 'srcMapType': 'documentMap', 'srcPath': ''}, {'destChannel': 'B', 'srcChannel': 'B', 'srcMapName': 'emissive', 'srcMapType': 'documentMap', 'srcPath': ''}], 'fileName': '/exportsketchfab/textures/IDMAP_Sheep_Body_$udim_emissive', 'parameters': {'bitDepth': '8', 'dithering': False, 'fileFormat': 'jpg'}}",
+    "{'channels': [{'destChannel': 'L', 'srcChannel': 'L', 'srcMapName': 'roughness', 'srcMapType': 'documentMap', 'srcPath': ''}], 'fileName': '/exportsketchfab/textures/IDMAP_Sheep_Body_$udim_roughness', 'parameters': {'bitDepth': '8', 'dithering': False, 'fileFormat': 'jpg'}}",
+    "{'channels': [{'destChannel': 'L', 'srcChannel': 'L', 'srcMapName': 'metallic', 'srcMapType': 'documentMap', 'srcPath': ''}], 'fileName': '/exportsketchfab/textures/IDMAP_Sheep_Body_$udim_metallic', 'parameters': {'bitDepth': '8', 'dithering': False, 'fileFormat': 'jpg'}}",
+    "{'channels': [{'destChannel': 'R', 'srcChannel': 'R', 'srcMapName': 'Normal_OpenGL', 'srcMapType': 'virtualMap', 'srcPath': ''}, {'destChannel': 'G', 'srcChannel': 'G', 'srcMapName': 'Normal_OpenGL', 'srcMapType': 'virtualMap', 'srcPath': ''}, {'destChannel': 'B', 'srcChannel': 'B', 'srcMapName': 'Normal_OpenGL', 'srcMapType': 'virtualMap', 'srcPath': ''}], 'fileName': '/exportsketchfab/textures/IDMAP_Sheep_Body_$udim_normal', 'parameters': {'bitDepth': '8', 'dilationDistance': 32, 'dithering': True, 'fileFormat': 'png', 'paddingAlgorithm': 'color'}}",
+    "{'channels': [{'destChannel': 'L', 'srcChannel': 'L', 'srcMapName': 'AO_Mixed', 'srcMapType': 'virtualMap', 'srcPath': ''}], 'fileName': '/exportsketchfab/textures/IDMAP_Sheep_Body_$udim_AO', 'parameters': {'bitDepth': '8', 'dithering': False, 'fileFormat': 'jpg'}}"
+   ]
+  ],
+  [
+   "Substance 3D Stager",
+   "export-preset-generator://adobe-standard-material",
+   [
+    "{'channels': [{'destChannel': 'R', 'srcChannel': 'R', 'srcMapName': 'basecolor', 'srcMapType': 'documentMap', 'srcPath': ''}, {'destChannel': 'G', 'srcChannel': 'G', 'srcMapName': 'basecolor', 'srcMapType': 'documentMap', 'srcPath': ''}, {'destChannel': 'B', 'srcChannel': 'B', 'srcMapName': 'basecolor', 'srcMapType': 'documentMap', 'srcPath': ''}], 'fileName': 'Material_$project/IDMAP_SHEEP_BODY_base_color_$udim', 'parameters': {'bitDepth': '8', 'dithering': False, 'fileFormat': 'png'}}",
+    "{'channels': [{'destChannel': 'R', 'srcChannel': 'R', 'srcMapName': 'emissive', 'srcMapType': 'documentMap', 'srcPath': ''}, {'destChannel': 'G', 'srcChannel': 'G', 'srcMapName': 'emissive', 'srcMapType': 'documentMap', 'srcPath': ''}, {'destChannel': 'B', 'srcChannel': 'B', 'srcMapName': 'emissive', 'srcMapType': 'documentMap', 'srcPath': ''}], 'fileName': 'Material_$project/IDMAP_SHEEP_BODY_emission_color_$udim', 'parameters': {'bitDepth': '8', 'dithering': False, 'fileFormat': 'png'}}",
+    "{'channels': [{'destChannel': 'L', 'srcChannel': 'L', 'srcMapName': 'roughness', 'srcMapType': 'documentMap', 'srcPath': ''}], 'fileName': 'Material_$project/IDMAP_SHEEP_BODY_roughness_$udim', 'parameters': {'bitDepth': '8', 'dithering': False, 'fileFormat': 'png'}}",
+    "{'channels': [{'destChannel': 'L', 'srcChannel': 'L', 'srcMapName': 'metallic', 'srcMapType': 'documentMap', 'srcPath': ''}], 'fileName': 'Material_$project/IDMAP_SHEEP_BODY_metallic_$udim', 'parameters': {'bitDepth': '8', 'dithering': False, 'fileFormat': 'png'}}",
+    "{'channels': [{'destChannel': 'R', 'srcChannel': 'R', 'srcMapName': 'Normal_OpenGL', 'srcMapType': 'virtualMap', 'srcPath': ''}, {'destChannel': 'G', 'srcChannel': 'G', 'srcMapName': 'Normal_OpenGL', 'srcMapType': 'virtualMap', 'srcPath': ''}, {'destChannel': 'B', 'srcChannel': 'B', 'srcMapName': 'Normal_OpenGL', 'srcMapType': 'virtualMap', 'srcPath': ''}], 'fileName': 'Material_$project/IDMAP_SHEEP_BODY_normal_$udim', 'parameters': {'bitDepth': '16', 'dithering': False, 'fileFormat': 'png'}}",
+    "{'channels': [{'destChannel': 'L', 'srcChannel': 'L', 'srcMapName': 'AO_Mixed', 'srcMapType': 'virtualMap', 'srcPath': ''}], 'fileName': 'Material_$project/IDMAP_SHEEP_BODY_ambient_occlusion_$udim', 'parameters': {'bitDepth': '8', 'dithering': False, 'fileFormat': 'png'}}"
+   ]
+  ],
+  [
+   "USDz (Apple AR)",
+   "export-preset-generator://usd",
+   [
+    "{'channels': [{'destChannel': 'R', 'srcChannel': 'R', 'srcMapName': 'basecolor', 'srcMapType': 'documentMap', 'srcPath': ''}, {'destChannel': 'G', 'srcChannel': 'G', 'srcMapName': 'basecolor', 'srcMapType': 'documentMap', 'srcPath': ''}, {'destChannel': 'B', 'srcChannel': 'B', 'srcMapName': 'basecolor', 'srcMapType': 'documentMap', 'srcPath': ''}, {'destChannel': 'A', 'srcChannel': 'L', 'srcMapName': 'opacity', 'srcMapType': 'documentMap', 'srcPath': ''}], 'fileName': 'IDMAP_Sheep_Body_$udim_baseColor', 'parameters': {'bitDepth': '8', 'dithering': False, 'fileFormat': 'png'}}",
+    "{'channels': [{'destChannel': 'L', 'srcChannel': 'L', 'srcMapName': 'AO_Mixed', 'srcMapType': 'virtualMap', 'srcPath': ''}], 'fileName': 'IDMAP_Sheep_Body_$udim_occlusion', 'parameters': {'bitDepth': '8', 'dithering': False, 'fileFormat': 'jpg'}}",
+    "{'channels': [{'destChannel': 'L', 'srcChannel': 'L', 'srcMapName': 'roughness', 'srcMapType': 'documentMap', 'srcPath': ''}], 'fileName': 'IDMAP_Sheep_Body_$udim_roughness', 'parameters': {'bitDepth': '8', 'dithering': False, 'fileFormat': 'jpg'}}",
+    "{'channels': [{'destChannel': 'L', 'srcChannel': 'L', 'srcMapName': 'metallic', 'srcMapType': 'documentMap', 'srcPath': ''}], 'fileName': 'IDMAP_Sheep_Body_$udim_metallic', 'parameters': {'bitDepth': '8', 'dithering': False, 'fileFormat': 'jpg'}}",
+    "{'channels': [{'destChannel': 'R', 'srcChannel': 'R', 'srcMapName': 'Normal_OpenGL', 'srcMapType': 'virtualMap', 'srcPath': ''}, {'destChannel': 'G', 'srcChannel': 'G', 'srcMapName': 'Normal_OpenGL', 'srcMapType': 'virtualMap', 'srcPath': ''}, {'destChannel': 'B', 'srcChannel': 'B', 'srcMapName': 'Normal_OpenGL', 'srcMapType': 'virtualMap', 'srcPath': ''}], 'fileName': 'IDMAP_Sheep_Body_$udim_normal', 'parameters': {'bitDepth': '8', 'dithering': True, 'fileFormat': 'png'}}",
+    "{'channels': [{'destChannel': 'R', 'srcChannel': 'R', 'srcMapName': 'emissive', 'srcMapType': 'documentMap', 'srcPath': ''}, {'destChannel': 'G', 'srcChannel': 'G', 'srcMapName': 'emissive', 'srcMapType': 'documentMap', 'srcPath': ''}, {'destChannel': 'B', 'srcChannel': 'B', 'srcMapName': 'emissive', 'srcMapType': 'documentMap', 'srcPath': ''}], 'fileName': 'IDMAP_Sheep_Body_$udim_emissive', 'parameters': {'bitDepth': '8', 'dithering': False, 'fileFormat': 'jpg'}}"
+   ]
+  ],
+  [
+   "glTF PBR Metal Roughness",
+   "export-preset-generator://gltf",
+   [
+    "{'channels': [{'destChannel': 'R', 'srcChannel': 'R', 'srcMapName': 'basecolor', 'srcMapType': 'documentMap', 'srcPath': ''}, {'destChannel': 'G', 'srcChannel': 'G', 'srcMapName': 'basecolor', 'srcMapType': 'documentMap', 'srcPath': ''}, {'destChannel': 'B', 'srcChannel': 'B', 'srcMapName': 'basecolor', 'srcMapType': 'documentMap', 'srcPath': ''}, {'destChannel': 'A', 'srcChannel': 'L', 'srcMapName': 'opacity', 'srcMapType': 'documentMap', 'srcPath': ''}], 'fileName': 'IDMAP_Sheep_Body_baseColor_$udim', 'parameters': {'bitDepth': '8', 'dithering': False, 'fileFormat': 'png'}}",
+    "{'channels': [{'destChannel': 'R', 'srcChannel': 'L', 'srcMapName': 'AO_Mixed', 'srcMapType': 'virtualMap', 'srcPath': ''}, {'destChannel': 'G', 'srcChannel': 'L', 'srcMapName': 'roughness', 'srcMapType': 'documentMap', 'srcPath': ''}, {'destChannel': 'B', 'srcChannel': 'L', 'srcMapName': 'metallic', 'srcMapType': 'documentMap', 'srcPath': ''}], 'fileName': 'IDMAP_Sheep_Body_occlusionRoughnessMetallic_$udim', 'parameters': {'bitDepth': '8', 'dithering': False, 'fileFormat': 'png'}}",
+    "{'channels': [{'destChannel': 'R', 'srcChannel': 'R', 'srcMapName': 'Normal_OpenGL', 'srcMapType': 'virtualMap', 'srcPath': ''}, {'destChannel': 'G', 'srcChannel': 'G', 'srcMapName': 'Normal_OpenGL', 'srcMapType': 'virtualMap', 'srcPath': ''}, {'destChannel': 'B', 'srcChannel': 'B', 'srcMapName': 'Normal_OpenGL', 'srcMapType': 'virtualMap', 'srcPath': ''}], 'fileName': 'IDMAP_Sheep_Body_normal_$udim', 'parameters': {'bitDepth': '8', 'dithering': True, 'fileFormat': 'png'}}",
+    "{'channels': [{'destChannel': 'R', 'srcChannel': 'R', 'srcMapName': 'emissive', 'srcMapType': 'documentMap', 'srcPath': ''}, {'destChannel': 'G', 'srcChannel': 'G', 'srcMapName': 'emissive', 'srcMapType': 'documentMap', 'srcPath': ''}, {'destChannel': 'B', 'srcChannel': 'B', 'srcMapName': 'emissive', 'srcMapType': 'documentMap', 'srcPath': ''}], 'fileName': 'IDMAP_Sheep_Body_emissive_$udim', 'parameters': {'bitDepth': '8', 'dithering': False, 'fileFormat': 'png'}}"
+   ]
+  ],
+  [
+   "glTF PBR Metal Roughness + Displacement texture (experimental)",
+   "export-preset-generator://gltf-displacement",
+   [
+    "{'channels': [{'destChannel': 'R', 'srcChannel': 'R', 'srcMapName': 'basecolor', 'srcMapType': 'documentMap', 'srcPath': ''}, {'destChannel': 'G', 'srcChannel': 'G', 'srcMapName': 'basecolor', 'srcMapType': 'documentMap', 'srcPath': ''}, {'destChannel': 'B', 'srcChannel': 'B', 'srcMapName': 'basecolor', 'srcMapType': 'documentMap', 'srcPath': ''}, {'destChannel': 'A', 'srcChannel': 'L', 'srcMapName': 'opacity', 'srcMapType': 'documentMap', 'srcPath': ''}], 'fileName': 'IDMAP_Sheep_Body_baseColor_$udim', 'parameters': {'bitDepth': '8', 'dithering': False, 'fileFormat': 'png'}}",
+    "{'channels': [{'destChannel': 'R', 'srcChannel': 'L', 'srcMapName': 'AO_Mixed', 'srcMapType': 'virtualMap', 'srcPath': ''}, {'destChannel': 'G', 'srcChannel': 'L', 'srcMapName': 'roughness', 'srcMapType': 'documentMap', 'srcPath': ''}, {'destChannel': 'B', 'srcChannel': 'L', 'srcMapName': 'metallic', 'srcMapType': 'documentMap', 'srcPath': ''}], 'fileName': 'IDMAP_Sheep_Body_occlusionRoughnessMetallic_$udim', 'parameters': {'bitDepth': '8', 'dithering': False, 'fileFormat': 'png'}}",
+    "{'channels': [{'destChannel': 'R', 'srcChannel': 'R', 'srcMapName': 'Normal_OpenGL', 'srcMapType': 'virtualMap', 'srcPath': ''}, {'destChannel': 'G', 'srcChannel': 'G', 'srcMapName': 'Normal_OpenGL', 'srcMapType': 'virtualMap', 'srcPath': ''}, {'destChannel': 'B', 'srcChannel': 'B', 'srcMapName': 'Normal_OpenGL', 'srcMapType': 'virtualMap', 'srcPath': ''}], 'fileName': 'IDMAP_Sheep_Body_normal_$udim', 'parameters': {'bitDepth': '8', 'dithering': True, 'fileFormat': 'png'}}",
+    "{'channels': [{'destChannel': 'R', 'srcChannel': 'R', 'srcMapName': 'emissive', 'srcMapType': 'documentMap', 'srcPath': ''}, {'destChannel': 'G', 'srcChannel': 'G', 'srcMapName': 'emissive', 'srcMapType': 'documentMap', 'srcPath': ''}, {'destChannel': 'B', 'srcChannel': 'B', 'srcMapName': 'emissive', 'srcMapType': 'documentMap', 'srcPath': ''}], 'fileName': 'IDMAP_Sheep_Body_emissive_$udim', 'parameters': {'bitDepth': '8', 'dithering': False, 'fileFormat': 'png'}}"
+   ]
+  ]
+ ],
+ "source_mod": [
+  "ActiveChannelsMixin",
+  "AlphaMatte",
+  "ChannelMapping",
+  "ChannelMappingIterator",
+  "ChannelType",
+  "Color",
+  "CropAreaMode",
+  "Dict",
+  "Enum",
+  "FontResolutionMode",
+  "HorizontalAlignment",
+  "LevelsParams",
+  "List",
+  "OutputMapping",
+  "OutputMappingIterator",
+  "Property",
+  "PropertyValue",
+  "ReadOnlyUid",
+  "ResolutionMode",
+  "ResolutionOverride",
+  "ResourceColorSpace",
+  "ResourceID",
+  "Set",
+  "Source",
+  "SourceBitmap",
+  "SourceEditorMixin",
+  "SourceFont",
+  "SourceFontParams",
+  "SourceMode",
+  "SourceReference",
+  "SourceSubstance",
+  "SourceUniformColor",
+  "SourceVectorial",
+  "SourceVectorialParams",
+  "Tuple",
+  "Union",
+  "VectorialResolutionMode",
+  "VerticalAlignment",
+  "annotations",
+  "dataclasses",
+  "layerstack",
+  "levels",
+  "warnings"
+ ]
+}

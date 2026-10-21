@@ -1,0 +1,48 @@
+{
+  "asset_class": "CurveFloat",
+  "package_name": "/Game/EnvSandbox/VFX/Curves/C_Audio_high",
+  "channel": "high",
+  "keyframe_count": 5,
+  "keys": [
+    {
+      "time": 0.0,
+      "value": 0.02,
+      "interp_mode": "linear",
+      "tangent_mode": "auto",
+      "arrive_tangent": 0.0,
+      "leave_tangent": 0.0
+    },
+    {
+      "time": 0.8,
+      "value": 0.4,
+      "interp_mode": "linear",
+      "tangent_mode": "auto",
+      "arrive_tangent": 0.0,
+      "leave_tangent": 0.0
+    },
+    {
+      "time": 1.6,
+      "value": 0.05,
+      "interp_mode": "linear",
+      "tangent_mode": "auto",
+      "arrive_tangent": 0.0,
+      "leave_tangent": 0.0
+    },
+    {
+      "time": 2.4,
+      "value": 0.5,
+      "interp_mode": "linear",
+      "tangent_mode": "auto",
+      "arrive_tangent": 0.0,
+      "leave_tangent": 0.0
+    },
+    {
+      "time": 3.0,
+      "value": 0.08,
+      "interp_mode": "linear",
+      "tangent_mode": "auto",
+      "arrive_tangent": 0.0,
+      "leave_tangent": 0.0
+    }
+  ]
+}

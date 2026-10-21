@@ -323,7 +323,7 @@ def capture_still_from_camera(
                 ok_file
                 and q.get("ok")
                 and float(q.get("luma") or 0.0) >= min_luma
-                and int(q.get("uniq") or 0) >= min_uniq
+                and (int(q.get("uniq") or 0) >= min_uniq or q.get("uniq") == -1)
             ):
                 try:
                     if out_path.is_file():

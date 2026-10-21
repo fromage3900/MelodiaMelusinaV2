@@ -1,0 +1,432 @@
+[
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/AnimationDoctor_20261007/RuntimeCloseout_20261009/A_Melusina_Glide_InPlace_Candidate",
+    "keys": 90,
+    "keys_checked": 90,
+    "root_x_z_min": 88.00000184774393,
+    "root_x_z_max": 88.00000184774393,
+    "minimum_head_above_spine": 50.7490797490544,
+    "max_arm_deviation_cm": 0.0004919052744032371,
+    "scope": "COMPRESSED_ALL_KEY_METRICS_NOT_VISUAL_ACCEPTANCE"
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/Locomotion/A_Melusina_JumpLoop_Mocap_RootX",
+    "keys": 91,
+    "keys_checked": 91,
+    "root_x_z_min": 60.4453525543213,
+    "root_x_z_max": 108.86084175109866,
+    "minimum_head_above_spine": 42.955534990268774,
+    "max_arm_deviation_cm": 0.0004937917373357692,
+    "scope": "COMPRESSED_ALL_KEY_METRICS_NOT_VISUAL_ACCEPTANCE"
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/Locomotion/A_Melusina_JumpStart_Mocap_RootX",
+    "keys": 91,
+    "keys_checked": 91,
+    "root_x_z_min": 56.2924213409424,
+    "root_x_z_max": 80.01295661926271,
+    "minimum_head_above_spine": 33.078739588738856,
+    "max_arm_deviation_cm": 0.0004938558410465532,
+    "scope": "COMPRESSED_ALL_KEY_METRICS_NOT_VISUAL_ACCEPTANCE"
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/ShinbiDoctor_20261007/A_Shin_Idle_stand",
+    "keys": 162,
+    "keys_checked": 162,
+    "root_x_z_min": 92.819055557251,
+    "root_x_z_max": 92.819055557251,
+    "minimum_head_above_spine": 50.761092895824135,
+    "max_arm_deviation_cm": 0.0004923819825677356,
+    "scope": "COMPRESSED_ALL_KEY_METRICS_NOT_VISUAL_ACCEPTANCE"
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/AnimationDoctor_20261007/ACFUMage_20261008/A_Melusina_ACFUMage_Idle",
+    "keys": 361,
+    "keys_checked": 361,
+    "root_x_z_min": 89.36458778381348,
+    "root_x_z_max": 89.73806190490723,
+    "minimum_head_above_spine": 51.47395085533417,
+    "max_arm_deviation_cm": 0.0004842818257380088,
+    "scope": "COMPRESSED_ALL_KEY_METRICS_NOT_VISUAL_ACCEPTANCE"
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/Locomotion/A_Melusina_Run_Mocap_RootX",
+    "keys": 36,
+    "keys_checked": 36,
+    "root_x_z_min": 72.32386970520021,
+    "root_x_z_max": 92.14264869689944,
+    "minimum_head_above_spine": 50.67494088869003,
+    "max_arm_deviation_cm": 0.0004928739681737682,
+    "scope": "COMPRESSED_ALL_KEY_METRICS_NOT_VISUAL_ACCEPTANCE"
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/Locomotion/A_Melusina_Sprint_Mocap_RootX",
+    "keys": 111,
+    "keys_checked": 111,
+    "root_x_z_min": 75.57945442199708,
+    "root_x_z_max": 90.42276954650882,
+    "minimum_head_above_spine": 50.81891690338304,
+    "max_arm_deviation_cm": 0.0004993455832877913,
+    "scope": "COMPRESSED_ALL_KEY_METRICS_NOT_VISUAL_ACCEPTANCE"
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/Locomotion/A_Melusina_Walk_Mocap_RootX",
+    "keys": 36,
+    "keys_checked": 36,
+    "root_x_z_min": 72.32386970520021,
+    "root_x_z_max": 92.14264869689944,
+    "minimum_head_above_spine": 50.67494088869003,
+    "max_arm_deviation_cm": 0.0004928739681737682,
+    "scope": "COMPRESSED_ALL_KEY_METRICS_NOT_VISUAL_ACCEPTANCE"
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/Locomotion/A_Melusina_Land_Mocap_RootX",
+    "keys": 151,
+    "keys_checked": 151,
+    "root_x_z_min": 65.27379798889162,
+    "root_x_z_max": 81.02063179016115,
+    "minimum_head_above_spine": 50.73772674350761,
+    "max_arm_deviation_cm": 0.0004941062259398166,
+    "scope": "COMPRESSED_ALL_KEY_METRICS_NOT_VISUAL_ACCEPTANCE"
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/QuaterniusRetargeted/A_Q_Melusina_Sword_Attack",
+    "keys": 47,
+    "keys_checked": 47,
+    "root_x_z_min": 53.326166152954116,
+    "root_x_z_max": 80.02825355529787,
+    "minimum_head_above_spine": 36.28314615538832,
+    "max_arm_deviation_cm": 0.0004929327403129236,
+    "scope": "COMPRESSED_ALL_KEY_METRICS_NOT_VISUAL_ACCEPTANCE"
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/QuaterniusRetargeted/A_Q_Melusina_Spell_Simple_Shoot",
+    "keys": 16,
+    "keys_checked": 16,
+    "root_x_z_min": 87.32895851135255,
+    "root_x_z_max": 87.72038459777835,
+    "minimum_head_above_spine": 49.27287308329264,
+    "max_arm_deviation_cm": 0.0004824637318705527,
+    "scope": "COMPRESSED_ALL_KEY_METRICS_NOT_VISUAL_ACCEPTANCE"
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/QuaterniusRetargeted/A_Q_Melusina_Roll",
+    "keys": 45,
+    "keys_checked": 45,
+    "root_x_z_min": 4.244145393371586,
+    "root_x_z_max": 114.57718849182132,
+    "minimum_head_above_spine": -43.25051440757803,
+    "max_arm_deviation_cm": 0.0004865785697827363,
+    "scope": "COMPRESSED_ALL_KEY_METRICS_NOT_VISUAL_ACCEPTANCE"
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/QuaterniusRetargeted/A_Q_Melusina_Interact",
+    "keys": 61,
+    "keys_checked": 61,
+    "root_x_z_min": 7603.590883255007,
+    "root_x_z_max": 7680.894105911257,
+    "minimum_head_above_spine": 48.16310934205376,
+    "max_arm_deviation_cm": 0.0004852593249768944,
+    "scope": "COMPRESSED_ALL_KEY_METRICS_NOT_VISUAL_ACCEPTANCE"
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/QuaterniusRetargeted/A_Q_Melusina_Dance_Loop",
+    "keys": 31,
+    "keys_checked": 31,
+    "root_x_z_min": 84.47700691223146,
+    "root_x_z_max": 91.11126899719241,
+    "minimum_head_above_spine": 49.300527516092785,
+    "max_arm_deviation_cm": 0.0004860980724519237,
+    "scope": "COMPRESSED_ALL_KEY_METRICS_NOT_VISUAL_ACCEPTANCE"
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/QuaterniusRetargeted/A_Q_Melusina_Hit_Head",
+    "keys": 14,
+    "keys_checked": 14,
+    "root_x_z_min": 87.47861671447755,
+    "root_x_z_max": 87.7175159454346,
+    "minimum_head_above_spine": 48.41771691349186,
+    "max_arm_deviation_cm": 0.00048570345841802975,
+    "scope": "COMPRESSED_ALL_KEY_METRICS_NOT_VISUAL_ACCEPTANCE"
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/QuaterniusRetargeted/A_Q_Melusina_Hit_Chest",
+    "keys": 11,
+    "keys_checked": 11,
+    "root_x_z_min": 85.64983558654787,
+    "root_x_z_max": 87.7175159454346,
+    "minimum_head_above_spine": 48.41769146223373,
+    "max_arm_deviation_cm": 0.00048421552074273677,
+    "scope": "COMPRESSED_ALL_KEY_METRICS_NOT_VISUAL_ACCEPTANCE"
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/Locomotion/A_Melusina_Run",
+    "keys": 18,
+    "keys_checked": 18,
+    "root_x_z_min": 80.24190711975099,
+    "root_x_z_max": 80.24190711975099,
+    "minimum_head_above_spine": 48.408644518983465,
+    "max_arm_deviation_cm": 0.0004913022153694158,
+    "scope": "COMPRESSED_ALL_KEY_METRICS_NOT_VISUAL_ACCEPTANCE"
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/QuaterniusRetargeted_V2Fixed/A_Q_Melusina_Idle_Loop",
+    "keys": 76,
+    "keys_checked": 76,
+    "root_x_z_min": 7603.659242630007,
+    "root_x_z_max": 7678.192445755007,
+    "minimum_head_above_spine": 51.54039044896945,
+    "max_arm_deviation_cm": 0.00048785888318292336,
+    "scope": "COMPRESSED_ALL_KEY_METRICS_NOT_VISUAL_ACCEPTANCE"
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/QuaterniusRetargeted/A_Q_Melusina_Death01",
+    "keys": 73,
+    "keys_checked": 73,
+    "root_x_z_min": 5.164800643920902,
+    "root_x_z_max": 87.71318244934085,
+    "minimum_head_above_spine": 7.002281538139819,
+    "max_arm_deviation_cm": 0.00048900637894711,
+    "scope": "COMPRESSED_ALL_KEY_METRICS_NOT_VISUAL_ACCEPTANCE"
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Mocap_MercyStab",
+    "keys": 820,
+    "keys_checked": 820,
+    "root_x_z_min": 80.24190711975099,
+    "root_x_z_max": 80.24190711975099,
+    "minimum_head_above_spine": 48.161267718794505,
+    "max_arm_deviation_cm": 0.0004971692655146853,
+    "scope": "COMPRESSED_ALL_KEY_METRICS_NOT_VISUAL_ACCEPTANCE"
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/Locomotion/A_Melusina_GlidePose",
+    "keys": 91,
+    "keys_checked": 91,
+    "root_x_z_min": 60.445348802099865,
+    "root_x_z_max": 108.86084175109866,
+    "minimum_head_above_spine": 42.954944282072006,
+    "max_arm_deviation_cm": 0.0004937917373357692,
+    "scope": "COMPRESSED_ALL_KEY_METRICS_NOT_VISUAL_ACCEPTANCE"
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/Locomotion/A_Melusina_Idle",
+    "keys": 79,
+    "keys_checked": 79,
+    "root_x_z_min": 80.24190711975099,
+    "root_x_z_max": 92.81906451446791,
+    "minimum_head_above_spine": -50.56014378143742,
+    "max_arm_deviation_cm": 0.0004932633246532703,
+    "scope": "COMPRESSED_ALL_KEY_METRICS_NOT_VISUAL_ACCEPTANCE"
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/Locomotion/A_Melusina_Idle_Mocap_RootX",
+    "keys": 61,
+    "keys_checked": 61,
+    "root_x_z_min": 79.95518684387208,
+    "root_x_z_max": 79.96599006652833,
+    "minimum_head_above_spine": 50.66942981743435,
+    "max_arm_deviation_cm": 0.0004907588375751004,
+    "scope": "COMPRESSED_ALL_KEY_METRICS_NOT_VISUAL_ACCEPTANCE"
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/Locomotion/A_Melusina_RunLoop_Trim",
+    "keys": 269,
+    "keys_checked": 269,
+    "root_x_z_min": 72.32386970520021,
+    "root_x_z_max": 92.36123847961429,
+    "minimum_head_above_spine": 50.12038255176046,
+    "max_arm_deviation_cm": 0.0004920388896998418,
+    "scope": "COMPRESSED_ALL_KEY_METRICS_NOT_VISUAL_ACCEPTANCE"
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/Locomotion/A_Melusina_Sprint",
+    "keys": 18,
+    "keys_checked": 18,
+    "root_x_z_min": 80.24190711975099,
+    "root_x_z_max": 92.81906451446791,
+    "minimum_head_above_spine": -48.61971437021087,
+    "max_arm_deviation_cm": 0.0004913022153694158,
+    "scope": "COMPRESSED_ALL_KEY_METRICS_NOT_VISUAL_ACCEPTANCE"
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/Locomotion/A_Melusina_Walk",
+    "keys": 30,
+    "keys_checked": 30,
+    "root_x_z_min": 80.24190711975099,
+    "root_x_z_max": 92.81906451446791,
+    "minimum_head_above_spine": -50.86650502962314,
+    "max_arm_deviation_cm": 0.0004924777558610316,
+    "scope": "COMPRESSED_ALL_KEY_METRICS_NOT_VISUAL_ACCEPTANCE"
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_BowDraw_v2_InPlace",
+    "keys": 86,
+    "keys_checked": 86,
+    "root_x_z_min": 71.90516027288373,
+    "root_x_z_max": 75.38353179282996,
+    "minimum_head_above_spine": -51.41008879428127,
+    "max_arm_deviation_cm": 0.0004971867302714372,
+    "scope": "COMPRESSED_ALL_KEY_METRICS_NOT_VISUAL_ACCEPTANCE"
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Mocap_Jump_Loop",
+    "keys": 433,
+    "keys_checked": 433,
+    "root_x_z_min": 80.24190711975099,
+    "root_x_z_max": 92.81906451446791,
+    "minimum_head_above_spine": -50.38428383473237,
+    "max_arm_deviation_cm": 0.0004946339836067182,
+    "scope": "COMPRESSED_ALL_KEY_METRICS_NOT_VISUAL_ACCEPTANCE"
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Mocap_LittleDance_001",
+    "keys": 1007,
+    "keys_checked": 1007,
+    "root_x_z_min": 80.24190711975099,
+    "root_x_z_max": 92.81906451446791,
+    "minimum_head_above_spine": -50.91743400760437,
+    "max_arm_deviation_cm": 0.0004965862445729385,
+    "scope": "COMPRESSED_ALL_KEY_METRICS_NOT_VISUAL_ACCEPTANCE"
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/ShinbiCast_20261005/A_Shin_Cast",
+    "keys": 30,
+    "keys_checked": 30,
+    "root_x_z_min": 69.76314735412599,
+    "root_x_z_max": 81.7607822418213,
+    "minimum_head_above_spine": 50.573038966696316,
+    "max_arm_deviation_cm": 0.0004814611281318548,
+    "scope": "COMPRESSED_ALL_KEY_METRICS_NOT_VISUAL_ACCEPTANCE"
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/ShinbiDoctor_20261007/A_Shin_Cast",
+    "keys": 30,
+    "keys_checked": 30,
+    "root_x_z_min": 92.819055557251,
+    "root_x_z_max": 92.81905688507273,
+    "minimum_head_above_spine": 47.55375450070994,
+    "max_arm_deviation_cm": 0.000492913946105844,
+    "scope": "COMPRESSED_ALL_KEY_METRICS_NOT_VISUAL_ACCEPTANCE"
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/ShinbiDoctor_20261007/A_Shin_Idle",
+    "keys": 271,
+    "keys_checked": 271,
+    "root_x_z_min": 92.819055557251,
+    "root_x_z_max": 92.81905688507273,
+    "minimum_head_above_spine": 50.24427276921145,
+    "max_arm_deviation_cm": 0.0004917501833592297,
+    "scope": "COMPRESSED_ALL_KEY_METRICS_NOT_VISUAL_ACCEPTANCE"
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/ShinbiDoctor_20261007/A_Shin_Idle_pose",
+    "keys": 3,
+    "keys_checked": 3,
+    "root_x_z_min": 92.819055557251,
+    "root_x_z_max": 92.81905688507273,
+    "minimum_head_above_spine": 50.97584895563057,
+    "max_arm_deviation_cm": 0.0004842818257344561,
+    "scope": "COMPRESSED_ALL_KEY_METRICS_NOT_VISUAL_ACCEPTANCE"
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/ShinbiIdles_20261005/A_Shin_Idle",
+    "keys": 271,
+    "keys_checked": 271,
+    "root_x_z_min": 80.78953742980958,
+    "root_x_z_max": 82.42455482482912,
+    "minimum_head_above_spine": 50.69192593043259,
+    "max_arm_deviation_cm": 0.0004814611281336312,
+    "scope": "COMPRESSED_ALL_KEY_METRICS_NOT_VISUAL_ACCEPTANCE"
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/ShinbiIdles_20261005/A_Shin_Idle_pose",
+    "keys": 3,
+    "keys_checked": 3,
+    "root_x_z_min": 80.36886482129783,
+    "root_x_z_max": 80.36886787414552,
+    "minimum_head_above_spine": 51.229554790624505,
+    "max_arm_deviation_cm": 0.0004814611281318548,
+    "scope": "COMPRESSED_ALL_KEY_METRICS_NOT_VISUAL_ACCEPTANCE"
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/ShinbiIdles_20261005/A_Shin_Idle_stand",
+    "keys": 162,
+    "keys_checked": 162,
+    "root_x_z_min": 80.98934364318849,
+    "root_x_z_max": 81.71277046203615,
+    "minimum_head_above_spine": 51.22864272202018,
+    "max_arm_deviation_cm": 0.00048146112813540753,
+    "scope": "COMPRESSED_ALL_KEY_METRICS_NOT_VISUAL_ACCEPTANCE"
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/SparrowDoctor_20261007/A_Spar_Mel_Primary_Fire_Fast",
+    "keys": 19,
+    "keys_checked": 19,
+    "root_x_z_min": 90.3056507110596,
+    "root_x_z_max": 91.27665138244632,
+    "minimum_head_above_spine": 51.1814973738598,
+    "max_arm_deviation_cm": 0.0004879722886137472,
+    "scope": "COMPRESSED_ALL_KEY_METRICS_NOT_VISUAL_ACCEPTANCE"
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/SparrowDoctor_20261007/A_Spar_Mel_Primary_Fire_Med",
+    "keys": 30,
+    "keys_checked": 30,
+    "root_x_z_min": 90.79214668273929,
+    "root_x_z_max": 91.2635135650635,
+    "minimum_head_above_spine": 50.20124081419465,
+    "max_arm_deviation_cm": 0.0004964405745848666,
+    "scope": "COMPRESSED_ALL_KEY_METRICS_NOT_VISUAL_ACCEPTANCE"
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/SparrowDoctor_20261007/A_Spar_Mel_Primary_Fire_Slow",
+    "keys": 31,
+    "keys_checked": 31,
+    "root_x_z_min": 90.78894233703616,
+    "root_x_z_max": 91.26786994934085,
+    "minimum_head_above_spine": 50.20016722470618,
+    "max_arm_deviation_cm": 0.0004939254848199681,
+    "scope": "COMPRESSED_ALL_KEY_METRICS_NOT_VISUAL_ACCEPTANCE"
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/SparrowDoctor_20261007/A_Spar_Mel_RMB_Drawback",
+    "keys": 75,
+    "keys_checked": 75,
+    "root_x_z_min": 86.79699897766115,
+    "root_x_z_max": 87.79563194002004,
+    "minimum_head_above_spine": 46.2304526258675,
+    "max_arm_deviation_cm": 0.0004930594922978315,
+    "scope": "COMPRESSED_ALL_KEY_METRICS_NOT_VISUAL_ACCEPTANCE"
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/SparrowDoctor_20261007/A_Spar_Mel_RMB_Fire",
+    "keys": 57,
+    "keys_checked": 57,
+    "root_x_z_min": 87.35492897033693,
+    "root_x_z_max": 91.30825233459475,
+    "minimum_head_above_spine": 46.90780209639641,
+    "max_arm_deviation_cm": 0.0004874110448014335,
+    "scope": "COMPRESSED_ALL_KEY_METRICS_NOT_VISUAL_ACCEPTANCE"
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/SparrowDoctor_20261007/A_Spar_Mel_RMB_Loop",
+    "keys": 21,
+    "keys_checked": 21,
+    "root_x_z_min": 87.56050060904623,
+    "root_x_z_max": 87.62153816223146,
+    "minimum_head_above_spine": 51.50510694904786,
+    "max_arm_deviation_cm": 0.0004855813845576762,
+    "scope": "COMPRESSED_ALL_KEY_METRICS_NOT_VISUAL_ACCEPTANCE"
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/_Archive/RetargetAttempts_20260824/MannequinRetargeted/A_Mann_Walk",
+    "keys": 30,
+    "keys_checked": 30,
+    "root_x_z_min": 70.30138587951662,
+    "root_x_z_max": 79.28822219491784,
+    "minimum_head_above_spine": 49.02967715484043,
+    "max_arm_deviation_cm": 0.0039784481935569715,
+    "scope": "COMPRESSED_ALL_KEY_METRICS_NOT_VISUAL_ACCEPTANCE"
+  }
+]

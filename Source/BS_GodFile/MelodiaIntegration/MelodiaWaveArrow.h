@@ -28,4 +28,6 @@ private:
   UPrimitiveComponent* OtherComponent, int32 BodyIndex, bool bFromSweep, const FHitResult& Hit);
  void Consume(AActor* Other);
  TWeakObjectPtr<UMelodiaWaveHarpCombatComponent> Shooter;
+ /** Input-timebase beat phase at release; the player is judged on release, not arrival. */
+ float ReleaseBeatPhase = -1.f;
 };

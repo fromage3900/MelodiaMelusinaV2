@@ -1,0 +1,545 @@
+{
+  "scope": "isolated actual V2 body with neutral material/light; no composed gameplay or floor contact acceptance",
+  "captures": [
+    {
+      "asset": "/Game/Melodia/Characters/Melusina/Animations/Locomotion/A_Melusina_Walk",
+      "requested_time": 0,
+      "view": "front",
+      "file": "walk_candidate_0_front.png",
+      "result": {
+        "ok": true,
+        "success": true,
+        "mode": "execute_file",
+        "result": "None",
+        "output": [
+          {
+            "type": "info",
+            "output": "{\"body\": \"/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Body.SK_Melusina_V2_Body\", \"clip\": \"/Game/Melodia/Characters/Melusina/Animations/Locomotion/A_Melusina_Walk.A_Melusina_Walk\", \"position\": 0.0, \"hand_l\": \"<Struct 'Vector' (0x0000021676E9D0A0) {x: 1337.689348, y: 1897.484170, z: -530.289402}>\", \"hand_r\": \"<Struct 'Vector' (0x0000021676E9D0A0) {x: 1267.164514, y: 1875.435800, z: -527.614658}>\", \"image\": \"walk_candidate_0_front.png\"}\r\n"
+          }
+        ]
+      }
+    },
+    {
+      "asset": "/Game/Melodia/Characters/Melusina/Animations/Locomotion/A_Melusina_Walk",
+      "requested_time": 0,
+      "view": "side",
+      "file": "walk_candidate_0_side.png",
+      "result": {
+        "ok": true,
+        "success": true,
+        "mode": "execute_file",
+        "result": "None",
+        "output": [
+          {
+            "type": "info",
+            "output": "{\"body\": \"/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Body.SK_Melusina_V2_Body\", \"clip\": \"/Game/Melodia/Characters/Melusina/Animations/Locomotion/A_Melusina_Walk.A_Melusina_Walk\", \"position\": 0.0, \"hand_l\": \"<Struct 'Vector' (0x0000021676E9D0A0) {x: 1337.689348, y: 1897.484170, z: -530.289402}>\", \"hand_r\": \"<Struct 'Vector' (0x0000021676E9D0A0) {x: 1267.164514, y: 1875.435800, z: -527.614658}>\", \"image\": \"walk_candidate_0_side.png\"}\r\n"
+          }
+        ]
+      }
+    },
+    {
+      "asset": "/Game/Melodia/Characters/Melusina/Animations/Locomotion/A_Melusina_Walk",
+      "requested_time": 0.5,
+      "view": "front",
+      "file": "walk_candidate_1_front.png",
+      "result": {
+        "ok": true,
+        "success": true,
+        "mode": "execute_file",
+        "result": "None",
+        "output": [
+          {
+            "type": "info",
+            "output": "{\"body\": \"/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Body.SK_Melusina_V2_Body\", \"clip\": \"/Game/Melodia/Characters/Melusina/Animations/Locomotion/A_Melusina_Walk.A_Melusina_Walk\", \"position\": 0.5, \"hand_l\": \"<Struct 'Vector' (0x0000021676E9D0A0) {x: 1343.338694, y: 1889.586981, z: -523.757609}>\", \"hand_r\": \"<Struct 'Vector' (0x0000021676E9D0A0) {x: 1272.173855, y: 1899.461822, z: -534.030373}>\", \"image\": \"walk_candidate_1_front.png\"}\r\n"
+          }
+        ]
+      }
+    },
+    {
+      "asset": "/Game/Melodia/Characters/Melusina/Animations/Locomotion/A_Melusina_Walk",
+      "requested_time": 0.5,
+      "view": "side",
+      "file": "walk_candidate_1_side.png",
+      "result": {
+        "ok": true,
+        "success": true,
+        "mode": "execute_file",
+        "result": "None",
+        "output": [
+          {
+            "type": "info",
+            "output": "{\"body\": \"/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Body.SK_Melusina_V2_Body\", \"clip\": \"/Game/Melodia/Characters/Melusina/Animations/Locomotion/A_Melusina_Walk.A_Melusina_Walk\", \"position\": 0.5, \"hand_l\": \"<Struct 'Vector' (0x0000021676E9D0A0) {x: 1343.338694, y: 1889.586981, z: -523.757609}>\", \"hand_r\": \"<Struct 'Vector' (0x0000021676E9D0A0) {x: 1272.173855, y: 1899.461822, z: -534.030373}>\", \"image\": \"walk_candidate_1_side.png\"}\r\n"
+          }
+        ]
+      }
+    },
+    {
+      "asset": "/Game/Melodia/Characters/Melusina/Animations/Locomotion/A_Melusina_Walk",
+      "requested_time": 1.0,
+      "view": "front",
+      "file": "walk_candidate_2_front.png",
+      "result": {
+        "ok": true,
+        "success": true,
+        "mode": "execute_file",
+        "result": "None",
+        "output": [
+          {
+            "type": "info",
+            "output": "{\"body\": \"/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Body.SK_Melusina_V2_Body\", \"clip\": \"/Game/Melodia/Characters/Melusina/Animations/Locomotion/A_Melusina_Walk.A_Melusina_Walk\", \"position\": 1.0, \"hand_l\": \"<Struct 'Vector' (0x0000021676E9D0A0) {x: 1337.706438, y: 1897.182778, z: -530.372738}>\", \"hand_r\": \"<Struct 'Vector' (0x0000021676E9D0A0) {x: 1267.077151, y: 1875.781954, z: -527.592896}>\", \"image\": \"walk_candidate_2_front.png\"}\r\n"
+          }
+        ]
+      }
+    },
+    {
+      "asset": "/Game/Melodia/Characters/Melusina/Animations/Locomotion/A_Melusina_Walk",
+      "requested_time": 1.0,
+      "view": "side",
+      "file": "walk_candidate_2_side.png",
+      "result": {
+        "ok": true,
+        "success": true,
+        "mode": "execute_file",
+        "result": "None",
+        "output": [
+          {
+            "type": "info",
+            "output": "{\"body\": \"/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Body.SK_Melusina_V2_Body\", \"clip\": \"/Game/Melodia/Characters/Melusina/Animations/Locomotion/A_Melusina_Walk.A_Melusina_Walk\", \"position\": 1.0, \"hand_l\": \"<Struct 'Vector' (0x0000021676E9D0A0) {x: 1337.706438, y: 1897.182778, z: -530.372738}>\", \"hand_r\": \"<Struct 'Vector' (0x0000021676E9D0A0) {x: 1267.077151, y: 1875.781954, z: -527.592896}>\", \"image\": \"walk_candidate_2_side.png\"}\r\n"
+          }
+        ]
+      }
+    },
+    {
+      "asset": "/Game/Melodia/Characters/Melusina/Animations/Locomotion/A_Melusina_Walk_Mocap_RootX",
+      "requested_time": 0,
+      "view": "front",
+      "file": "walk_bound_0_front.png",
+      "result": {
+        "ok": true,
+        "success": true,
+        "mode": "execute_file",
+        "result": "None",
+        "output": [
+          {
+            "type": "info",
+            "output": "{\"body\": \"/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Body.SK_Melusina_V2_Body\", \"clip\": \"/Game/Melodia/Characters/Melusina/Animations/Locomotion/A_Melusina_Walk_Mocap_RootX.A_Melusina_Walk_Mocap_RootX\", \"position\": 0.0, \"hand_l\": \"<Struct 'Vector' (0x0000021676E9D0A0) {x: 1336.925536, y: 1847.749065, z: -537.895741}>\", \"hand_r\": \"<Struct 'Vector' (0x0000021676E9D0A0) {x: 1277.371498, y: 1836.840251, z: -535.293177}>\", \"image\": \"walk_bound_0_front.png\"}\r\n"
+          }
+        ]
+      }
+    },
+    {
+      "asset": "/Game/Melodia/Characters/Melusina/Animations/Locomotion/A_Melusina_Walk_Mocap_RootX",
+      "requested_time": 0,
+      "view": "side",
+      "file": "walk_bound_0_side.png",
+      "result": {
+        "ok": true,
+        "success": true,
+        "mode": "execute_file",
+        "result": "None",
+        "output": [
+          {
+            "type": "info",
+            "output": "{\"body\": \"/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Body.SK_Melusina_V2_Body\", \"clip\": \"/Game/Melodia/Characters/Melusina/Animations/Locomotion/A_Melusina_Walk_Mocap_RootX.A_Melusina_Walk_Mocap_RootX\", \"position\": 0.0, \"hand_l\": \"<Struct 'Vector' (0x0000021676E9D0A0) {x: 1336.925536, y: 1847.749065, z: -537.895741}>\", \"hand_r\": \"<Struct 'Vector' (0x0000021676E9D0A0) {x: 1277.371498, y: 1836.840251, z: -535.293177}>\", \"image\": \"walk_bound_0_side.png\"}\r\n"
+          }
+        ]
+      }
+    },
+    {
+      "asset": "/Game/Melodia/Characters/Melusina/Animations/Locomotion/A_Melusina_Walk_Mocap_RootX",
+      "requested_time": 0.58,
+      "view": "front",
+      "file": "walk_bound_1_front.png",
+      "result": {
+        "ok": true,
+        "success": true,
+        "mode": "execute_file",
+        "result": "None",
+        "output": [
+          {
+            "type": "info",
+            "output": "{\"body\": \"/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Body.SK_Melusina_V2_Body\", \"clip\": \"/Game/Melodia/Characters/Melusina/Animations/Locomotion/A_Melusina_Walk_Mocap_RootX.A_Melusina_Walk_Mocap_RootX\", \"position\": 0.5799999833106995, \"hand_l\": \"<Struct 'Vector' (0x0000021676E9D0A0) {x: 1334.772517, y: 1853.519557, z: -536.544873}>\", \"hand_r\": \"<Struct 'Vector' (0x0000021676E9D0A0) {x: 1277.187683, y: 1855.774214, z: -544.876467}>\", \"image\": \"walk_bound_1_front.png\"}\r\n"
+          }
+        ]
+      }
+    },
+    {
+      "asset": "/Game/Melodia/Characters/Melusina/Animations/Locomotion/A_Melusina_Walk_Mocap_RootX",
+      "requested_time": 0.58,
+      "view": "side",
+      "file": "walk_bound_1_side.png",
+      "result": {
+        "ok": true,
+        "success": true,
+        "mode": "execute_file",
+        "result": "None",
+        "output": [
+          {
+            "type": "info",
+            "output": "{\"body\": \"/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Body.SK_Melusina_V2_Body\", \"clip\": \"/Game/Melodia/Characters/Melusina/Animations/Locomotion/A_Melusina_Walk_Mocap_RootX.A_Melusina_Walk_Mocap_RootX\", \"position\": 0.5799999833106995, \"hand_l\": \"<Struct 'Vector' (0x0000021676E9D0A0) {x: 1334.772517, y: 1853.519557, z: -536.544873}>\", \"hand_r\": \"<Struct 'Vector' (0x0000021676E9D0A0) {x: 1277.187683, y: 1855.774214, z: -544.876467}>\", \"image\": \"walk_bound_1_side.png\"}\r\n"
+          }
+        ]
+      }
+    },
+    {
+      "asset": "/Game/Melodia/Characters/Melusina/Animations/Locomotion/A_Melusina_Walk_Mocap_RootX",
+      "requested_time": 1.166667,
+      "view": "front",
+      "file": "walk_bound_2_front.png",
+      "result": {
+        "ok": true,
+        "success": true,
+        "mode": "execute_file",
+        "result": "None",
+        "output": [
+          {
+            "type": "info",
+            "output": "{\"body\": \"/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Body.SK_Melusina_V2_Body\", \"clip\": \"/Game/Melodia/Characters/Melusina/Animations/Locomotion/A_Melusina_Walk_Mocap_RootX.A_Melusina_Walk_Mocap_RootX\", \"position\": 1.1666666269302368, \"hand_l\": \"<Struct 'Vector' (0x0000021676E9D0A0) {x: 1339.171104, y: 1855.378765, z: -539.334617}>\", \"hand_r\": \"<Struct 'Vector' (0x0000021676E9D0A0) {x: 1278.968676, y: 1845.017301, z: -540.004327}>\", \"image\": \"walk_bound_2_front.png\"}\r\n"
+          }
+        ]
+      }
+    },
+    {
+      "asset": "/Game/Melodia/Characters/Melusina/Animations/Locomotion/A_Melusina_Walk_Mocap_RootX",
+      "requested_time": 1.166667,
+      "view": "side",
+      "file": "walk_bound_2_side.png",
+      "result": {
+        "ok": true,
+        "success": true,
+        "mode": "execute_file",
+        "result": "None",
+        "output": [
+          {
+            "type": "info",
+            "output": "{\"body\": \"/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Body.SK_Melusina_V2_Body\", \"clip\": \"/Game/Melodia/Characters/Melusina/Animations/Locomotion/A_Melusina_Walk_Mocap_RootX.A_Melusina_Walk_Mocap_RootX\", \"position\": 1.1666666269302368, \"hand_l\": \"<Struct 'Vector' (0x0000021676E9D0A0) {x: 1339.171104, y: 1855.378765, z: -539.334617}>\", \"hand_r\": \"<Struct 'Vector' (0x0000021676E9D0A0) {x: 1278.968676, y: 1845.017301, z: -540.004327}>\", \"image\": \"walk_bound_2_side.png\"}\r\n"
+          }
+        ]
+      }
+    },
+    {
+      "asset": "/Game/Melodia/Characters/Melusina/Animations/Locomotion/A_Melusina_Run",
+      "requested_time": 0,
+      "view": "front",
+      "file": "run_candidate_0_front.png",
+      "result": {
+        "ok": true,
+        "success": true,
+        "mode": "execute_file",
+        "result": "None",
+        "output": [
+          {
+            "type": "info",
+            "output": "{\"body\": \"/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Body.SK_Melusina_V2_Body\", \"clip\": \"/Game/Melodia/Characters/Melusina/Animations/Locomotion/A_Melusina_Run.A_Melusina_Run\", \"position\": 0.0, \"hand_l\": \"<Struct 'Vector' (0x0000021676E9D0A0) {x: 1320.587882, y: 1929.440211, z: -501.933648}>\", \"hand_r\": \"<Struct 'Vector' (0x0000021676E9D0A0) {x: 1274.805111, y: 1887.811499, z: -516.326575}>\", \"image\": \"run_candidate_0_front.png\"}\r\n"
+          }
+        ]
+      }
+    },
+    {
+      "asset": "/Game/Melodia/Characters/Melusina/Animations/Locomotion/A_Melusina_Run",
+      "requested_time": 0,
+      "view": "side",
+      "file": "run_candidate_0_side.png",
+      "result": {
+        "ok": true,
+        "success": true,
+        "mode": "execute_file",
+        "result": "None",
+        "output": [
+          {
+            "type": "info",
+            "output": "{\"body\": \"/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Body.SK_Melusina_V2_Body\", \"clip\": \"/Game/Melodia/Characters/Melusina/Animations/Locomotion/A_Melusina_Run.A_Melusina_Run\", \"position\": 0.0, \"hand_l\": \"<Struct 'Vector' (0x0000021676E9D0A0) {x: 1320.587882, y: 1929.440211, z: -501.933648}>\", \"hand_r\": \"<Struct 'Vector' (0x0000021676E9D0A0) {x: 1274.805111, y: 1887.811499, z: -516.326575}>\", \"image\": \"run_candidate_0_side.png\"}\r\n"
+          }
+        ]
+      }
+    },
+    {
+      "asset": "/Game/Melodia/Characters/Melusina/Animations/Locomotion/A_Melusina_Run",
+      "requested_time": 0.28,
+      "view": "front",
+      "file": "run_candidate_1_front.png",
+      "result": {
+        "ok": true,
+        "success": true,
+        "mode": "execute_file",
+        "result": "None",
+        "output": [
+          {
+            "type": "info",
+            "output": "{\"body\": \"/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Body.SK_Melusina_V2_Body\", \"clip\": \"/Game/Melodia/Characters/Melusina/Animations/Locomotion/A_Melusina_Run.A_Melusina_Run\", \"position\": 0.2800000011920929, \"hand_l\": \"<Struct 'Vector' (0x0000021676E9D0A0) {x: 1332.060003, y: 1902.160666, z: -509.045260}>\", \"hand_r\": \"<Struct 'Vector' (0x0000021676E9D0A0) {x: 1280.603107, y: 1920.205174, z: -504.163303}>\", \"image\": \"run_candidate_1_front.png\"}\r\n"
+          }
+        ]
+      }
+    },
+    {
+      "asset": "/Game/Melodia/Characters/Melusina/Animations/Locomotion/A_Melusina_Run",
+      "requested_time": 0.28,
+      "view": "side",
+      "file": "run_candidate_1_side.png",
+      "result": {
+        "ok": true,
+        "success": true,
+        "mode": "execute_file",
+        "result": "None",
+        "output": [
+          {
+            "type": "info",
+            "output": "{\"body\": \"/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Body.SK_Melusina_V2_Body\", \"clip\": \"/Game/Melodia/Characters/Melusina/Animations/Locomotion/A_Melusina_Run.A_Melusina_Run\", \"position\": 0.2800000011920929, \"hand_l\": \"<Struct 'Vector' (0x0000021676E9D0A0) {x: 1332.060003, y: 1902.160666, z: -509.045260}>\", \"hand_r\": \"<Struct 'Vector' (0x0000021676E9D0A0) {x: 1280.603107, y: 1920.205174, z: -504.163303}>\", \"image\": \"run_candidate_1_side.png\"}\r\n"
+          }
+        ]
+      }
+    },
+    {
+      "asset": "/Game/Melodia/Characters/Melusina/Animations/Locomotion/A_Melusina_Run",
+      "requested_time": 0.566667,
+      "view": "front",
+      "file": "run_candidate_2_front.png",
+      "result": {
+        "ok": true,
+        "success": true,
+        "mode": "execute_file",
+        "result": "None",
+        "output": [
+          {
+            "type": "info",
+            "output": "{\"body\": \"/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Body.SK_Melusina_V2_Body\", \"clip\": \"/Game/Melodia/Characters/Melusina/Animations/Locomotion/A_Melusina_Run.A_Melusina_Run\", \"position\": 0.5666670203208923, \"hand_l\": \"<Struct 'Vector' (0x0000021676E9D0A0) {x: 1324.934514, y: 1926.616662, z: -505.030401}>\", \"hand_r\": \"<Struct 'Vector' (0x0000021676E9D0A0) {x: 1278.836851, y: 1897.191261, z: -519.523151}>\", \"image\": \"run_candidate_2_front.png\"}\r\n"
+          }
+        ]
+      }
+    },
+    {
+      "asset": "/Game/Melodia/Characters/Melusina/Animations/Locomotion/A_Melusina_Run",
+      "requested_time": 0.566667,
+      "view": "side",
+      "file": "run_candidate_2_side.png",
+      "result": {
+        "ok": true,
+        "success": true,
+        "mode": "execute_file",
+        "result": "None",
+        "output": [
+          {
+            "type": "info",
+            "output": "{\"body\": \"/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Body.SK_Melusina_V2_Body\", \"clip\": \"/Game/Melodia/Characters/Melusina/Animations/Locomotion/A_Melusina_Run.A_Melusina_Run\", \"position\": 0.5666670203208923, \"hand_l\": \"<Struct 'Vector' (0x0000021676E9D0A0) {x: 1324.934514, y: 1926.616662, z: -505.030401}>\", \"hand_r\": \"<Struct 'Vector' (0x0000021676E9D0A0) {x: 1278.836851, y: 1897.191261, z: -519.523151}>\", \"image\": \"run_candidate_2_side.png\"}\r\n"
+          }
+        ]
+      }
+    },
+    {
+      "asset": "/Game/Melodia/Characters/Melusina/Animations/QuaterniusRetargeted/A_Q_Melusina_Hit_Head",
+      "requested_time": 0,
+      "view": "front",
+      "file": "hit_head_0_front.png",
+      "result": {
+        "ok": true,
+        "success": true,
+        "mode": "execute_file",
+        "result": "None",
+        "output": [
+          {
+            "type": "info",
+            "output": "{\"body\": \"/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Body.SK_Melusina_V2_Body\", \"clip\": \"/Game/Melodia/Characters/Melusina/Animations/QuaterniusRetargeted/A_Q_Melusina_Hit_Head.A_Q_Melusina_Hit_Head\", \"position\": 0.0, \"hand_l\": \"<Struct 'Vector' (0x0000021676E9D0A0) {x: 1340.591689, y: 1876.754553, z: -423.837111}>\", \"hand_r\": \"<Struct 'Vector' (0x0000021676E9D0A0) {x: 1276.327142, y: 1856.782420, z: -423.298415}>\", \"image\": \"hit_head_0_front.png\"}\r\n"
+          }
+        ]
+      }
+    },
+    {
+      "asset": "/Game/Melodia/Characters/Melusina/Animations/QuaterniusRetargeted/A_Q_Melusina_Hit_Head",
+      "requested_time": 0,
+      "view": "side",
+      "file": "hit_head_0_side.png",
+      "result": {
+        "ok": true,
+        "success": true,
+        "mode": "execute_file",
+        "result": "None",
+        "output": [
+          {
+            "type": "info",
+            "output": "{\"body\": \"/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Body.SK_Melusina_V2_Body\", \"clip\": \"/Game/Melodia/Characters/Melusina/Animations/QuaterniusRetargeted/A_Q_Melusina_Hit_Head.A_Q_Melusina_Hit_Head\", \"position\": 0.0, \"hand_l\": \"<Struct 'Vector' (0x0000021676E9D0A0) {x: 1340.591689, y: 1876.754553, z: -423.837111}>\", \"hand_r\": \"<Struct 'Vector' (0x0000021676E9D0A0) {x: 1276.327142, y: 1856.782420, z: -423.298415}>\", \"image\": \"hit_head_0_side.png\"}\r\n"
+          }
+        ]
+      }
+    },
+    {
+      "asset": "/Game/Melodia/Characters/Melusina/Animations/QuaterniusRetargeted/A_Q_Melusina_Hit_Head",
+      "requested_time": 0.216667,
+      "view": "front",
+      "file": "hit_head_1_front.png",
+      "result": {
+        "ok": true,
+        "success": true,
+        "mode": "execute_file",
+        "result": "None",
+        "output": [
+          {
+            "type": "info",
+            "output": "{\"body\": \"/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Body.SK_Melusina_V2_Body\", \"clip\": \"/Game/Melodia/Characters/Melusina/Animations/QuaterniusRetargeted/A_Q_Melusina_Hit_Head.A_Q_Melusina_Hit_Head\", \"position\": 0.21666699647903442, \"hand_l\": \"<Struct 'Vector' (0x0000021676E9D0A0) {x: 1340.111692, y: 1875.150271, z: -423.632962}>\", \"hand_r\": \"<Struct 'Vector' (0x0000021676E9D0A0) {x: 1275.821372, y: 1855.184174, z: -424.411033}>\", \"image\": \"hit_head_1_front.png\"}\r\n"
+          }
+        ]
+      }
+    },
+    {
+      "asset": "/Game/Melodia/Characters/Melusina/Animations/QuaterniusRetargeted/A_Q_Melusina_Hit_Head",
+      "requested_time": 0.216667,
+      "view": "side",
+      "file": "hit_head_1_side.png",
+      "result": {
+        "ok": true,
+        "success": true,
+        "mode": "execute_file",
+        "result": "None",
+        "output": [
+          {
+            "type": "info",
+            "output": "{\"body\": \"/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Body.SK_Melusina_V2_Body\", \"clip\": \"/Game/Melodia/Characters/Melusina/Animations/QuaterniusRetargeted/A_Q_Melusina_Hit_Head.A_Q_Melusina_Hit_Head\", \"position\": 0.21666699647903442, \"hand_l\": \"<Struct 'Vector' (0x0000021676E9D0A0) {x: 1340.111692, y: 1875.150271, z: -423.632962}>\", \"hand_r\": \"<Struct 'Vector' (0x0000021676E9D0A0) {x: 1275.821372, y: 1855.184174, z: -424.411033}>\", \"image\": \"hit_head_1_side.png\"}\r\n"
+          }
+        ]
+      }
+    },
+    {
+      "asset": "/Game/Melodia/Characters/Melusina/Animations/QuaterniusRetargeted/A_Q_Melusina_Hit_Head",
+      "requested_time": 0.433333,
+      "view": "front",
+      "file": "hit_head_2_front.png",
+      "result": {
+        "ok": true,
+        "success": true,
+        "mode": "execute_file",
+        "result": "None",
+        "output": [
+          {
+            "type": "info",
+            "output": "{\"body\": \"/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Body.SK_Melusina_V2_Body\", \"clip\": \"/Game/Melodia/Characters/Melusina/Animations/QuaterniusRetargeted/A_Q_Melusina_Hit_Head.A_Q_Melusina_Hit_Head\", \"position\": 0.43333300948143005, \"hand_l\": \"<Struct 'Vector' (0x0000021676E9D0A0) {x: 1340.597928, y: 1866.271190, z: -423.914973}>\", \"hand_r\": \"<Struct 'Vector' (0x0000021676E9D0A0) {x: 1276.333387, y: 1846.465098, z: -426.540853}>\", \"image\": \"hit_head_2_front.png\"}\r\n"
+          }
+        ]
+      }
+    },
+    {
+      "asset": "/Game/Melodia/Characters/Melusina/Animations/QuaterniusRetargeted/A_Q_Melusina_Hit_Head",
+      "requested_time": 0.433333,
+      "view": "side",
+      "file": "hit_head_2_side.png",
+      "result": {
+        "ok": true,
+        "success": true,
+        "mode": "execute_file",
+        "result": "None",
+        "output": [
+          {
+            "type": "info",
+            "output": "{\"body\": \"/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Body.SK_Melusina_V2_Body\", \"clip\": \"/Game/Melodia/Characters/Melusina/Animations/QuaterniusRetargeted/A_Q_Melusina_Hit_Head.A_Q_Melusina_Hit_Head\", \"position\": 0.43333300948143005, \"hand_l\": \"<Struct 'Vector' (0x0000021676E9D0A0) {x: 1340.597928, y: 1866.271190, z: -423.914973}>\", \"hand_r\": \"<Struct 'Vector' (0x0000021676E9D0A0) {x: 1276.333387, y: 1846.465098, z: -426.540853}>\", \"image\": \"hit_head_2_side.png\"}\r\n"
+          }
+        ]
+      }
+    },
+    {
+      "asset": "/Game/Melodia/Characters/Melusina/Animations/QuaterniusRetargeted/A_Q_Melusina_Death01",
+      "requested_time": 0,
+      "view": "front",
+      "file": "death_0_front.png",
+      "result": {
+        "ok": true,
+        "success": true,
+        "mode": "execute_file",
+        "result": "None",
+        "output": [
+          {
+            "type": "info",
+            "output": "{\"body\": \"/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Body.SK_Melusina_V2_Body\", \"clip\": \"/Game/Melodia/Characters/Melusina/Animations/QuaterniusRetargeted/A_Q_Melusina_Death01.A_Q_Melusina_Death01\", \"position\": 0.0, \"hand_l\": \"<Struct 'Vector' (0x0000021676E9D0A0) {x: 1338.325403, y: 1868.205951, z: -421.824136}>\", \"hand_r\": \"<Struct 'Vector' (0x0000021676E9D0A0) {x: 1277.030418, y: 1852.276425, z: -424.920857}>\", \"image\": \"death_0_front.png\"}\r\n"
+          }
+        ]
+      }
+    },
+    {
+      "asset": "/Game/Melodia/Characters/Melusina/Animations/QuaterniusRetargeted/A_Q_Melusina_Death01",
+      "requested_time": 0,
+      "view": "side",
+      "file": "death_0_side.png",
+      "result": {
+        "ok": true,
+        "success": true,
+        "mode": "execute_file",
+        "result": "None",
+        "output": [
+          {
+            "type": "info",
+            "output": "{\"body\": \"/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Body.SK_Melusina_V2_Body\", \"clip\": \"/Game/Melodia/Characters/Melusina/Animations/QuaterniusRetargeted/A_Q_Melusina_Death01.A_Q_Melusina_Death01\", \"position\": 0.0, \"hand_l\": \"<Struct 'Vector' (0x0000021676E9D0A0) {x: 1338.325403, y: 1868.205951, z: -421.824136}>\", \"hand_r\": \"<Struct 'Vector' (0x0000021676E9D0A0) {x: 1277.030418, y: 1852.276425, z: -424.920857}>\", \"image\": \"death_0_side.png\"}\r\n"
+          }
+        ]
+      }
+    },
+    {
+      "asset": "/Game/Melodia/Characters/Melusina/Animations/QuaterniusRetargeted/A_Q_Melusina_Death01",
+      "requested_time": 1.2,
+      "view": "front",
+      "file": "death_1_front.png",
+      "result": {
+        "ok": true,
+        "success": true,
+        "mode": "execute_file",
+        "result": "None",
+        "output": [
+          {
+            "type": "info",
+            "output": "{\"body\": \"/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Body.SK_Melusina_V2_Body\", \"clip\": \"/Game/Melodia/Characters/Melusina/Animations/QuaterniusRetargeted/A_Q_Melusina_Death01.A_Q_Melusina_Death01\", \"position\": 1.2000000476837158, \"hand_l\": \"<Struct 'Vector' (0x0000021676E9D0A0) {x: 1346.943943, y: 1927.469448, z: -599.838115}>\", \"hand_r\": \"<Struct 'Vector' (0x0000021676E9D0A0) {x: 1250.991605, y: 1914.669891, z: -596.942710}>\", \"image\": \"death_1_front.png\"}\r\n"
+          }
+        ]
+      }
+    },
+    {
+      "asset": "/Game/Melodia/Characters/Melusina/Animations/QuaterniusRetargeted/A_Q_Melusina_Death01",
+      "requested_time": 1.2,
+      "view": "side",
+      "file": "death_1_side.png",
+      "result": {
+        "ok": true,
+        "success": true,
+        "mode": "execute_file",
+        "result": "None",
+        "output": [
+          {
+            "type": "info",
+            "output": "{\"body\": \"/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Body.SK_Melusina_V2_Body\", \"clip\": \"/Game/Melodia/Characters/Melusina/Animations/QuaterniusRetargeted/A_Q_Melusina_Death01.A_Q_Melusina_Death01\", \"position\": 1.2000000476837158, \"hand_l\": \"<Struct 'Vector' (0x0000021676E9D0A0) {x: 1346.943943, y: 1927.469448, z: -599.838115}>\", \"hand_r\": \"<Struct 'Vector' (0x0000021676E9D0A0) {x: 1250.991605, y: 1914.669891, z: -596.942710}>\", \"image\": \"death_1_side.png\"}\r\n"
+          }
+        ]
+      }
+    },
+    {
+      "asset": "/Game/Melodia/Characters/Melusina/Animations/QuaterniusRetargeted/A_Q_Melusina_Death01",
+      "requested_time": 2.4,
+      "view": "front",
+      "file": "death_2_front.png",
+      "result": {
+        "ok": true,
+        "success": true,
+        "mode": "execute_file",
+        "result": "None",
+        "output": [
+          {
+            "type": "info",
+            "output": "{\"body\": \"/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Body.SK_Melusina_V2_Body\", \"clip\": \"/Game/Melodia/Characters/Melusina/Animations/QuaterniusRetargeted/A_Q_Melusina_Death01.A_Q_Melusina_Death01\", \"position\": 2.4000000953674316, \"hand_l\": \"<Struct 'Vector' (0x0000021676E9D0A0) {x: 1348.260415, y: 1927.115166, z: -581.300113}>\", \"hand_r\": \"<Struct 'Vector' (0x0000021676E9D0A0) {x: 1256.529986, y: 1908.104830, z: -584.749881}>\", \"image\": \"death_2_front.png\"}\r\n"
+          }
+        ]
+      }
+    },
+    {
+      "asset": "/Game/Melodia/Characters/Melusina/Animations/QuaterniusRetargeted/A_Q_Melusina_Death01",
+      "requested_time": 2.4,
+      "view": "side",
+      "file": "death_2_side.png",
+      "result": {
+        "ok": true,
+        "success": true,
+        "mode": "execute_file",
+        "result": "None",
+        "output": [
+          {
+            "type": "info",
+            "output": "{\"body\": \"/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Body.SK_Melusina_V2_Body\", \"clip\": \"/Game/Melodia/Characters/Melusina/Animations/QuaterniusRetargeted/A_Q_Melusina_Death01.A_Q_Melusina_Death01\", \"position\": 2.4000000953674316, \"hand_l\": \"<Struct 'Vector' (0x0000021676E9D0A0) {x: 1348.260415, y: 1927.115166, z: -581.300113}>\", \"hand_r\": \"<Struct 'Vector' (0x0000021676E9D0A0) {x: 1256.529986, y: 1908.104830, z: -584.749881}>\", \"image\": \"death_2_side.png\"}\r\n"
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -4,23 +4,23 @@
   "skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton",
   "samples": [
     {
-      "index": 3,
-      "_comment": "Fresh saved-state Morning PIE 2026-10-04 shows the existing CuteIdle V10 upright with relaxed arms and planted feet. The Idle state already uses it looping at 0.6; speed-zero now shares that pose and timing. RootX currently renders a static T-pose and is retired from runtime, despite its historical approval.",
-      "animation": "/Game/Cinematics/Shorewake/HERO01/IdleCanonicalDirect_20260909_V10/Retargeted_V10Exact/A_HERO01_A_Melusina_CuteIdle_UECanonicalDirect_V10_RetargetedExactV10",
-      "rate_scale": 0.6,
+      "index": 1,
+      "_comment": "Oct17: promoted MocapConv Shinbi standing Idle (223 pelvis/spine/leg tracks in Mocap_RootX convention + recomputed spine_01_x so chest/head/hands match Shinbi idle; eliminates 180-deg idle->walk blend inversion).",
+      "animation": "/Game/Melodia/Characters/Melusina/Animations/Locomotion/A_Shin_Idle_stand_MocapConv",
+      "rate_scale": 1.0,
       "speed": 0.0,
       "label": "Idle"
     },
     {
-      "index": 1,
-      "animation": "/Game/Melodia/Characters/Melusina/Animations/Locomotion/A_Melusina_Walk_Mocap_RootX",
-      "speed": 180.0,
+      "index": 2,
+      "animation": "/Game/Melodia/Characters/Melusina/Animations/Locomotion/A_Melusina_Walk_Mocap_RootX_SeamFix",
+      "speed": 220.0,
       "label": "Walk_Mocap"
     },
     {
-      "index": 2,
-      "animation": "/Game/Melodia/Characters/Melusina/Animations/Locomotion/A_Melusina_Run_Mocap_RootX",
-      "speed": 420.0,
+      "index": 3,
+      "animation": "/Game/Melodia/Characters/Melusina/Animations/Locomotion/A_Melusina_Run_Mocap_RootX_SeamFix",
+      "speed": 380.0,
       "label": "Run_Mocap"
     },
     {
@@ -33,10 +33,16 @@
   "axis_settings": {
     "horizontal_axis": "Speed",
     "_horizontal_range_comment": "Max raised 630 -> 750. The sprint gate records 714 uu/s; an axis capped at 630 (or the Hybrid's 650) clamps sprint and the top of the range is never reachable.",
-    "horizontal_range": [0.0, 750.0],
+    "horizontal_range": [
+      0.0,
+      750.0
+    ],
     "interpolation": {
-      "type": "linear",
-      "target_value_interpolation": "Linear"
+      "type": "spring_damper",
+      "interpolation_time": 0.2,
+      "damping_ratio": 1.0,
+      "target_weight_interpolation_speed_per_sec": 5.0,
+      "target_weight_ease_in_out": true
     }
   },
   "modifiers": {
@@ -53,12 +59,97 @@
       "/Game/Melodia/Characters/Melusina/Hair/ABP_Melusina_WaterHair"
     ],
     "required_native_fields": [
-      {"consumer": "MelodiaWaveHarpCombatComponent", "field": "CastStanceAnim", "expected_skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton"},
-      {"consumer": "MelodiaWaveHarpCombatComponent", "field": "CastShootAnim", "expected_skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton"},
-      {"consumer": "MelodiaWaveHarpCombatComponent", "field": "ChargeDrawAnim", "expected_skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton"},
-      {"consumer": "MelodiaWaveHarpCombatComponent", "field": "ChargeHoldAnim", "expected_skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton"},
-      {"consumer": "MelodiaWaveHarpCombatComponent", "field": "ChargeFireAnim", "expected_skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton"},
-      {"consumer": "MelodiaTraversalComponent", "field": "DashRollMontage", "expected_skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton"}
+      {
+        "consumer": "MelodiaWaveHarpCombatComponent",
+        "field": "CastStanceAnim",
+        "expected_skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton"
+      },
+      {
+        "consumer": "MelodiaWaveHarpCombatComponent",
+        "field": "CastShootAnim",
+        "expected_skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton"
+      },
+      {
+        "consumer": "MelodiaWaveHarpCombatComponent",
+        "field": "ChargeDrawAnim",
+        "expected_skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton"
+      },
+      {
+        "consumer": "MelodiaWaveHarpCombatComponent",
+        "field": "ChargeHoldAnim",
+        "expected_skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton"
+      },
+      {
+        "consumer": "MelodiaWaveHarpCombatComponent",
+        "field": "ChargeFireAnim",
+        "expected_skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton"
+      },
+      {
+        "consumer": "MelodiaTraversalComponent",
+        "field": "GetMelusinaRollMontage",
+        "expected_skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton",
+        "binding_kind": "static_loader"
+      },
+      {
+        "consumer": "BP_MelusinaSwordsman_Presentation.CDO",
+        "field": "introAnimationMontage",
+        "expected_skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton",
+        "binding_kind": "blueprint_cdo"
+      },
+      {
+        "consumer": "BP_MelusinaSwordsman_Presentation.CDO",
+        "field": "IdleAnimationMontage",
+        "expected_skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton",
+        "binding_kind": "blueprint_cdo"
+      },
+      {
+        "consumer": "BP_MelusinaSwordsman_Presentation.CDO",
+        "field": "idleAnimation",
+        "expected_skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton",
+        "binding_kind": "blueprint_cdo"
+      },
+      {
+        "consumer": "BP_MelusinaSwordsman_Presentation.CDO",
+        "field": "dieAnimation",
+        "expected_skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton",
+        "binding_kind": "blueprint_cdo"
+      },
+      {
+        "consumer": "BP_MelusinaSwordsman_Presentation.CDO",
+        "field": "dashForwardAnimation",
+        "expected_skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton",
+        "binding_kind": "blueprint_cdo"
+      },
+      {
+        "consumer": "BP_MelusinaSwordsman_Presentation.CDO",
+        "field": "dashBackwardAnimation",
+        "expected_skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton",
+        "binding_kind": "blueprint_cdo"
+      },
+      {
+        "consumer": "BP_MelusinaSwordsman_Presentation.CDO",
+        "field": "attackAnimationMontage",
+        "expected_skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton",
+        "binding_kind": "blueprint_cdo"
+      },
+      {
+        "consumer": "BP_MelusinaSwordsman_Presentation.CDO",
+        "field": "getHitAnimationMontage",
+        "expected_skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton",
+        "binding_kind": "blueprint_cdo"
+      },
+      {
+        "consumer": "BP_MelusinaSwordsman_Presentation.CDO",
+        "field": "itemUseAnimationMontage",
+        "expected_skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton",
+        "binding_kind": "blueprint_cdo"
+      },
+      {
+        "consumer": "BP_MelusinaSwordsman_Presentation.CDO",
+        "field": "stunAnimationMontage",
+        "expected_skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton",
+        "binding_kind": "blueprint_cdo"
+      }
     ],
     "canonical_allowlist": {
       "/Game/MelodiaIntegration/Blueprints/BP_MelusinaJRPGCharacter": "Possessed Morning pawn observed in fresh PIE 2026-10-02",
@@ -72,6 +163,113 @@
       "/Game/Melodia/Characters/Melusina/Retarget/_Archive/RTG_UE4Mannequin_To_Melusina": "Retained protected authoring shoulder pose; archive placement is not retirement"
     },
     "retired_denylist": {
+      "/Game/Melodia/Characters/Melusina/Animations/Polish_20260919/A_Melusina_BowAttackV2_A_RangeAttack": "Fresh 2026-10-11 actual-body RAW key0: arm redistribution. Arm segments cm [34.789, 9.52, 28.615]. Preserve authoring file; prohibit canonical runtime reuse.",
+      "/Game/Melodia/Characters/Melusina/Animations/A_Attack": "Noncanonical skeleton donor/source; not admitted as a direct canonical Melusina body animation. Preserve authoring file; prohibit canonical runtime reuse.",
+      "/Game/Melodia/Characters/Melusina/Animations/A_Die": "Noncanonical skeleton donor/source; not admitted as a direct canonical Melusina body animation. Preserve authoring file; prohibit canonical runtime reuse.",
+      "/Game/Melodia/Characters/Melusina/Animations/A_GetHit": "Noncanonical skeleton donor/source; not admitted as a direct canonical Melusina body animation. Preserve authoring file; prohibit canonical runtime reuse.",
+      "/Game/Melodia/Characters/Melusina/Animations/A_MeteorStorm": "Noncanonical skeleton donor/source; not admitted as a direct canonical Melusina body animation. Preserve authoring file; prohibit canonical runtime reuse.",
+      "/Game/Melodia/Characters/Melusina/Animations/A_RangeAttack": "Noncanonical skeleton donor/source; not admitted as a direct canonical Melusina body animation. Preserve authoring file; prohibit canonical runtime reuse.",
+      "/Game/Melodia/Characters/Melusina/Animations/A_ThirdPersonIdle": "Fresh 2026-10-11 actual-body RAW key0: arm redistribution. Arm segments cm [34.789, 9.52, 28.615]. Preserve authoring file; prohibit canonical runtime reuse.",
+      "/Game/Melodia/Characters/Melusina/Animations/Authored/A_Melusina_Idle_v22": "Fresh 2026-10-11 actual-body RAW key0: arm redistribution. Arm segments cm [0.19, 1.175, 0.286]. Preserve authoring file; prohibit canonical runtime reuse.",
+      "/Game/Melodia/Characters/Melusina/Animations/Cascadeur/A_BL_Melusina_Idle_Loop": "Fresh 2026-10-11 actual-body RAW key0: arm redistribution. Arm segments cm [19.041, 114.161, 28.615]. Preserve authoring file; prohibit canonical runtime reuse.",
+      "/Game/Melodia/Characters/Melusina/Animations/Cascadeur/A_Cascadeur_Melusina_BowDraw_v2_Forge_InPlace": "Fresh 2026-10-11 actual-body RAW key0: invalid root scale. Root scale [100.0, 100.0, 100.0]. Preserve authoring file; prohibit canonical runtime reuse.",
+      "/Game/Melodia/Characters/Melusina/Animations/CastCandidates_20261001/A_Q_Melusina_Pistol_Aim_Down": "Fresh 2026-10-11 actual-body RAW key0: arm redistribution. Arm segments cm [34.789, 9.52, 28.615]. Preserve authoring file; prohibit canonical runtime reuse.",
+      "/Game/Melodia/Characters/Melusina/Animations/CastCandidates_20261001/A_Q_Melusina_Pistol_Aim_Neutral": "Fresh 2026-10-11 actual-body RAW key0: arm redistribution. Arm segments cm [34.789, 9.52, 28.615]. Preserve authoring file; prohibit canonical runtime reuse.",
+      "/Game/Melodia/Characters/Melusina/Animations/CastCandidates_20261001/A_Q_Melusina_Pistol_Aim_Up": "Fresh 2026-10-11 actual-body RAW key0: arm redistribution. Arm segments cm [34.789, 9.52, 28.615]. Preserve authoring file; prohibit canonical runtime reuse.",
+      "/Game/Melodia/Characters/Melusina/Animations/CastCandidates_20261001/A_Q_Melusina_Pistol_Shoot": "Fresh 2026-10-11 actual-body RAW key0: arm redistribution. Arm segments cm [34.789, 9.52, 28.615]. Preserve authoring file; prohibit canonical runtime reuse.",
+      "/Game/Melodia/Characters/Melusina/Animations/CastCandidates_20261001/A_Q_Melusina_Spell_Simple_Enter": "Fresh 2026-10-11 actual-body RAW key0: arm redistribution. Arm segments cm [34.789, 9.52, 28.615]. Preserve authoring file; prohibit canonical runtime reuse.",
+      "/Game/Melodia/Characters/Melusina/Animations/CastCandidates_20261001/A_Q_Melusina_Spell_Simple_Exit": "Fresh 2026-10-11 actual-body RAW key0: arm redistribution. Arm segments cm [34.789, 9.52, 28.615]. Preserve authoring file; prohibit canonical runtime reuse.",
+      "/Game/Melodia/Characters/Melusina/Animations/CastCandidates_20261001/A_Q_Melusina_Spell_Simple_Idle_Loop": "Fresh 2026-10-11 actual-body RAW key0: arm redistribution. Arm segments cm [34.789, 9.52, 28.615]. Preserve authoring file; prohibit canonical runtime reuse.",
+      "/Game/Melodia/Characters/Melusina/Animations/CastCandidates_20261001/A_Q_Melusina_Spell_Simple_Shoot": "Fresh 2026-10-11 actual-body RAW key0: arm redistribution. Arm segments cm [34.789, 9.52, 28.615]. Preserve authoring file; prohibit canonical runtime reuse.",
+      "/Game/Melodia/Characters/Melusina/Animations/ContactCandidates_20261003/A_ContactProbe_RMB_Loop": "Fresh 2026-10-11 actual-body RAW key0: arm redistribution. Arm segments cm [34.789, 9.52, 28.615]. Preserve authoring file; prohibit canonical runtime reuse.",
+      "/Game/Melodia/Characters/Melusina/Animations/ContactCandidates_20261003/A_GlobalTranslationProbe_RMB_Loop": "Fresh 2026-10-11 actual-body RAW key0: arm redistribution. Arm segments cm [8.738, 10.971, 32.974]. Preserve authoring file; prohibit canonical runtime reuse.",
+      "/Game/Melodia/Characters/Melusina/Animations/ContactCandidates_20261003/A_MatchScaledGlobal_RMB_Loop": "Noncanonical skeleton donor/source; not admitted as a direct canonical Melusina body animation. Preserve authoring file; prohibit canonical runtime reuse.",
+      "/Game/Melodia/Characters/Melusina/Animations/ContactCandidates_20261003/A_OneToOneAbsolute_RMB_Loop": "Noncanonical skeleton donor/source; not admitted as a direct canonical Melusina body animation. Preserve authoring file; prohibit canonical runtime reuse.",
+      "/Game/Melodia/Characters/Melusina/Animations/ContactCandidates_20261003/A_OneToOneProbe_RMB_Loop": "Fresh 2026-10-11 actual-body RAW key0: arm redistribution. Arm segments cm [8.738, 24.182, 19.763]. Preserve authoring file; prohibit canonical runtime reuse.",
+      "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_BowDraw_v1_Mocap_RootMotionHeadTop_End_clip_Base_Layer": "Fresh 2026-10-11 actual-body RAW key0: invalid root scale. Root scale [100.0, 100.0, 100.0]. Imported endpoint/control fragment is source-only, not a whole-body candidate. Preserve authoring file; prohibit canonical runtime reuse.",
+      "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_BowDraw_v1_Mocap_RootMotionLeftHandIndex4_clip_Base_Layer": "Fresh 2026-10-11 actual-body RAW key0: invalid root scale. Root scale [100.0, 100.0, 100.0]. Imported endpoint/control fragment is source-only, not a whole-body candidate. Preserve authoring file; prohibit canonical runtime reuse.",
+      "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_BowDraw_v1_Mocap_RootMotionLeftHandMiddle4_clip_Base_Layer": "Fresh 2026-10-11 actual-body RAW key0: invalid root scale. Root scale [100.0, 100.0, 100.0]. Imported endpoint/control fragment is source-only, not a whole-body candidate. Preserve authoring file; prohibit canonical runtime reuse.",
+      "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_BowDraw_v1_Mocap_RootMotionLeftHandPinky4_clip_Base_Layer": "Fresh 2026-10-11 actual-body RAW key0: invalid root scale. Root scale [100.0, 100.0, 100.0]. Imported endpoint/control fragment is source-only, not a whole-body candidate. Preserve authoring file; prohibit canonical runtime reuse.",
+      "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_BowDraw_v1_Mocap_RootMotionLeftHandRing4_clip_Base_Layer": "Fresh 2026-10-11 actual-body RAW key0: invalid root scale. Root scale [100.0, 100.0, 100.0]. Imported endpoint/control fragment is source-only, not a whole-body candidate. Preserve authoring file; prohibit canonical runtime reuse.",
+      "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_BowDraw_v1_Mocap_RootMotionLeftHandThumb4_clip_Base_Layer": "Fresh 2026-10-11 actual-body RAW key0: invalid root scale. Root scale [100.0, 100.0, 100.0]. Imported endpoint/control fragment is source-only, not a whole-body candidate. Preserve authoring file; prohibit canonical runtime reuse.",
+      "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_BowDraw_v1_Mocap_RootMotionLeftToe_End_clip_Base_Layer": "Fresh 2026-10-11 actual-body RAW key0: invalid root scale. Root scale [100.0, 100.0, 100.0]. Imported endpoint/control fragment is source-only, not a whole-body candidate. Preserve authoring file; prohibit canonical runtime reuse.",
+      "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_BowDraw_v1_Mocap_RootMotionMelusina_Mocap_Rig_Action": "Fresh 2026-10-11 actual-body RAW key0: invalid root scale. Root scale [100.0, 100.0, 100.0]. Preserve authoring file; prohibit canonical runtime reuse.",
+      "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_BowDraw_v1_Mocap_RootMotionRightHandIndex4_clip_Base_Layer": "Fresh 2026-10-11 actual-body RAW key0: invalid root scale. Root scale [100.0, 100.0, 100.0]. Imported endpoint/control fragment is source-only, not a whole-body candidate. Preserve authoring file; prohibit canonical runtime reuse.",
+      "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_BowDraw_v1_Mocap_RootMotionRightHandMiddle4_clip_Base_Layer": "Fresh 2026-10-11 actual-body RAW key0: invalid root scale. Root scale [100.0, 100.0, 100.0]. Imported endpoint/control fragment is source-only, not a whole-body candidate. Preserve authoring file; prohibit canonical runtime reuse.",
+      "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_BowDraw_v1_Mocap_RootMotionRightHandPinky4_clip_Base_Layer": "Fresh 2026-10-11 actual-body RAW key0: invalid root scale. Root scale [100.0, 100.0, 100.0]. Imported endpoint/control fragment is source-only, not a whole-body candidate. Preserve authoring file; prohibit canonical runtime reuse.",
+      "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_BowDraw_v1_Mocap_RootMotionRightHandRing4_clip_Base_Layer": "Fresh 2026-10-11 actual-body RAW key0: invalid root scale. Root scale [100.0, 100.0, 100.0]. Imported endpoint/control fragment is source-only, not a whole-body candidate. Preserve authoring file; prohibit canonical runtime reuse.",
+      "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_BowDraw_v1_Mocap_RootMotionRightHandThumb4_clip_Base_Layer": "Fresh 2026-10-11 actual-body RAW key0: invalid root scale. Root scale [100.0, 100.0, 100.0]. Imported endpoint/control fragment is source-only, not a whole-body candidate. Preserve authoring file; prohibit canonical runtime reuse.",
+      "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_BowDraw_v1_Mocap_RootMotionRightToe_End_clip_Base_Layer": "Fresh 2026-10-11 actual-body RAW key0: invalid root scale. Root scale [100.0, 100.0, 100.0]. Imported endpoint/control fragment is source-only, not a whole-body candidate. Preserve authoring file; prohibit canonical runtime reuse.",
+      "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_BowDraw_v2_Mocap_RootMotionHeadTop_End_clip_Base_Layer": "Fresh 2026-10-11 actual-body RAW key0: invalid root scale. Root scale [100.0, 100.0, 100.0]. Imported endpoint/control fragment is source-only, not a whole-body candidate. Preserve authoring file; prohibit canonical runtime reuse.",
+      "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_BowDraw_v2_Mocap_RootMotionLeftHandIndex4_clip_Base_Layer": "Fresh 2026-10-11 actual-body RAW key0: invalid root scale. Root scale [100.0, 100.0, 100.0]. Imported endpoint/control fragment is source-only, not a whole-body candidate. Preserve authoring file; prohibit canonical runtime reuse.",
+      "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_BowDraw_v2_Mocap_RootMotionLeftHandMiddle4_clip_Base_Layer": "Fresh 2026-10-11 actual-body RAW key0: invalid root scale. Root scale [100.0, 100.0, 100.0]. Imported endpoint/control fragment is source-only, not a whole-body candidate. Preserve authoring file; prohibit canonical runtime reuse.",
+      "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_BowDraw_v2_Mocap_RootMotionLeftHandPinky4_clip_Base_Layer": "Fresh 2026-10-11 actual-body RAW key0: invalid root scale. Root scale [100.0, 100.0, 100.0]. Imported endpoint/control fragment is source-only, not a whole-body candidate. Preserve authoring file; prohibit canonical runtime reuse.",
+      "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_BowDraw_v2_Mocap_RootMotionLeftHandRing4_clip_Base_Layer": "Fresh 2026-10-11 actual-body RAW key0: invalid root scale. Root scale [100.0, 100.0, 100.0]. Imported endpoint/control fragment is source-only, not a whole-body candidate. Preserve authoring file; prohibit canonical runtime reuse.",
+      "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_BowDraw_v2_Mocap_RootMotionLeftHandThumb4_clip_Base_Layer": "Fresh 2026-10-11 actual-body RAW key0: invalid root scale. Root scale [100.0, 100.0, 100.0]. Imported endpoint/control fragment is source-only, not a whole-body candidate. Preserve authoring file; prohibit canonical runtime reuse.",
+      "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_BowDraw_v2_Mocap_RootMotionLeftToe_End_clip_Base_Layer": "Fresh 2026-10-11 actual-body RAW key0: invalid root scale. Root scale [100.0, 100.0, 100.0]. Imported endpoint/control fragment is source-only, not a whole-body candidate. Preserve authoring file; prohibit canonical runtime reuse.",
+      "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_BowDraw_v2_Mocap_RootMotionMelusina_Mocap_Rig_Action": "Fresh 2026-10-11 actual-body RAW key0: invalid root scale. Root scale [100.0, 100.0, 100.0]. Preserve authoring file; prohibit canonical runtime reuse.",
+      "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_BowDraw_v2_Mocap_RootMotionRightHandIndex4_clip_Base_Layer": "Fresh 2026-10-11 actual-body RAW key0: invalid root scale. Root scale [100.0, 100.0, 100.0]. Imported endpoint/control fragment is source-only, not a whole-body candidate. Preserve authoring file; prohibit canonical runtime reuse.",
+      "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_BowDraw_v2_Mocap_RootMotionRightHandMiddle4_clip_Base_Layer": "Fresh 2026-10-11 actual-body RAW key0: invalid root scale. Root scale [100.0, 100.0, 100.0]. Imported endpoint/control fragment is source-only, not a whole-body candidate. Preserve authoring file; prohibit canonical runtime reuse.",
+      "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_BowDraw_v2_Mocap_RootMotionRightHandPinky4_clip_Base_Layer": "Fresh 2026-10-11 actual-body RAW key0: invalid root scale. Root scale [100.0, 100.0, 100.0]. Imported endpoint/control fragment is source-only, not a whole-body candidate. Preserve authoring file; prohibit canonical runtime reuse.",
+      "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_BowDraw_v2_Mocap_RootMotionRightHandRing4_clip_Base_Layer": "Fresh 2026-10-11 actual-body RAW key0: invalid root scale. Root scale [100.0, 100.0, 100.0]. Imported endpoint/control fragment is source-only, not a whole-body candidate. Preserve authoring file; prohibit canonical runtime reuse.",
+      "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_BowDraw_v2_Mocap_RootMotionRightHandThumb4_clip_Base_Layer": "Fresh 2026-10-11 actual-body RAW key0: invalid root scale. Root scale [100.0, 100.0, 100.0]. Imported endpoint/control fragment is source-only, not a whole-body candidate. Preserve authoring file; prohibit canonical runtime reuse.",
+      "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_BowDraw_v2_Mocap_RootMotionRightToe_End_clip_Base_Layer": "Fresh 2026-10-11 actual-body RAW key0: invalid root scale. Root scale [100.0, 100.0, 100.0]. Imported endpoint/control fragment is source-only, not a whole-body candidate. Preserve authoring file; prohibit canonical runtime reuse.",
+      "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_BowKneelAim_Mocap_RootMotionHeadTop_End_clip_Base_Layer": "Fresh 2026-10-11 actual-body RAW key0: invalid root scale. Root scale [100.0, 100.0, 100.0]. Imported endpoint/control fragment is source-only, not a whole-body candidate. Preserve authoring file; prohibit canonical runtime reuse.",
+      "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_BowKneelAim_Mocap_RootMotionLeftHandIndex4_clip_Base_Layer": "Fresh 2026-10-11 actual-body RAW key0: invalid root scale. Root scale [100.0, 100.0, 100.0]. Imported endpoint/control fragment is source-only, not a whole-body candidate. Preserve authoring file; prohibit canonical runtime reuse.",
+      "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_BowKneelAim_Mocap_RootMotionLeftHandMiddle4_clip_Base_Layer": "Fresh 2026-10-11 actual-body RAW key0: invalid root scale. Root scale [100.0, 100.0, 100.0]. Imported endpoint/control fragment is source-only, not a whole-body candidate. Preserve authoring file; prohibit canonical runtime reuse.",
+      "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_BowKneelAim_Mocap_RootMotionLeftHandPinky4_clip_Base_Layer": "Fresh 2026-10-11 actual-body RAW key0: invalid root scale. Root scale [100.0, 100.0, 100.0]. Imported endpoint/control fragment is source-only, not a whole-body candidate. Preserve authoring file; prohibit canonical runtime reuse.",
+      "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_BowKneelAim_Mocap_RootMotionLeftHandRing4_clip_Base_Layer": "Fresh 2026-10-11 actual-body RAW key0: invalid root scale. Root scale [100.0, 100.0, 100.0]. Imported endpoint/control fragment is source-only, not a whole-body candidate. Preserve authoring file; prohibit canonical runtime reuse.",
+      "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_BowKneelAim_Mocap_RootMotionLeftHandThumb4_clip_Base_Layer": "Fresh 2026-10-11 actual-body RAW key0: invalid root scale. Root scale [100.0, 100.0, 100.0]. Imported endpoint/control fragment is source-only, not a whole-body candidate. Preserve authoring file; prohibit canonical runtime reuse.",
+      "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_BowKneelAim_Mocap_RootMotionLeftToe_End_clip_Base_Layer": "Fresh 2026-10-11 actual-body RAW key0: invalid root scale. Root scale [100.0, 100.0, 100.0]. Imported endpoint/control fragment is source-only, not a whole-body candidate. Preserve authoring file; prohibit canonical runtime reuse.",
+      "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_BowKneelAim_Mocap_RootMotionMelusina_Mocap_Rig_Action": "Fresh 2026-10-11 actual-body RAW key0: invalid root scale. Root scale [100.0, 100.0, 100.0]. Preserve authoring file; prohibit canonical runtime reuse.",
+      "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_BowKneelAim_Mocap_RootMotionRightHandIndex4_clip_Base_Layer": "Fresh 2026-10-11 actual-body RAW key0: invalid root scale. Root scale [100.0, 100.0, 100.0]. Imported endpoint/control fragment is source-only, not a whole-body candidate. Preserve authoring file; prohibit canonical runtime reuse.",
+      "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_BowKneelAim_Mocap_RootMotionRightHandMiddle4_clip_Base_Layer": "Fresh 2026-10-11 actual-body RAW key0: invalid root scale. Root scale [100.0, 100.0, 100.0]. Imported endpoint/control fragment is source-only, not a whole-body candidate. Preserve authoring file; prohibit canonical runtime reuse.",
+      "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_BowKneelAim_Mocap_RootMotionRightHandPinky4_clip_Base_Layer": "Fresh 2026-10-11 actual-body RAW key0: invalid root scale. Root scale [100.0, 100.0, 100.0]. Imported endpoint/control fragment is source-only, not a whole-body candidate. Preserve authoring file; prohibit canonical runtime reuse.",
+      "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_BowKneelAim_Mocap_RootMotionRightHandRing4_clip_Base_Layer": "Fresh 2026-10-11 actual-body RAW key0: invalid root scale. Root scale [100.0, 100.0, 100.0]. Imported endpoint/control fragment is source-only, not a whole-body candidate. Preserve authoring file; prohibit canonical runtime reuse.",
+      "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_BowKneelAim_Mocap_RootMotionRightHandThumb4_clip_Base_Layer": "Fresh 2026-10-11 actual-body RAW key0: invalid root scale. Root scale [100.0, 100.0, 100.0]. Imported endpoint/control fragment is source-only, not a whole-body candidate. Preserve authoring file; prohibit canonical runtime reuse.",
+      "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_BowKneelAim_Mocap_RootMotionRightToe_End_clip_Base_Layer": "Fresh 2026-10-11 actual-body RAW key0: invalid root scale. Root scale [100.0, 100.0, 100.0]. Imported endpoint/control fragment is source-only, not a whole-body candidate. Preserve authoring file; prohibit canonical runtime reuse.",
+      "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_GlideForward_Mocap_RootMotionHeadTop_End_clip_Base_Layer": "Fresh 2026-10-11 actual-body RAW key0: invalid root scale. Root scale [100.0, 100.0, 100.0]. Imported endpoint/control fragment is source-only, not a whole-body candidate. Preserve authoring file; prohibit canonical runtime reuse.",
+      "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_GlideForward_Mocap_RootMotionLeftHandIndex4_clip_Base_Layer": "Fresh 2026-10-11 actual-body RAW key0: invalid root scale. Root scale [100.0, 100.0, 100.0]. Imported endpoint/control fragment is source-only, not a whole-body candidate. Preserve authoring file; prohibit canonical runtime reuse.",
+      "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_GlideForward_Mocap_RootMotionLeftHandMiddle4_clip_Base_Layer": "Fresh 2026-10-11 actual-body RAW key0: invalid root scale. Root scale [100.0, 100.0, 100.0]. Imported endpoint/control fragment is source-only, not a whole-body candidate. Preserve authoring file; prohibit canonical runtime reuse.",
+      "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_GlideForward_Mocap_RootMotionLeftHandPinky4_clip_Base_Layer": "Fresh 2026-10-11 actual-body RAW key0: invalid root scale. Root scale [100.0, 100.0, 100.0]. Imported endpoint/control fragment is source-only, not a whole-body candidate. Preserve authoring file; prohibit canonical runtime reuse.",
+      "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_GlideForward_Mocap_RootMotionLeftHandRing4_clip_Base_Layer": "Fresh 2026-10-11 actual-body RAW key0: invalid root scale. Root scale [100.0, 100.0, 100.0]. Imported endpoint/control fragment is source-only, not a whole-body candidate. Preserve authoring file; prohibit canonical runtime reuse.",
+      "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_GlideForward_Mocap_RootMotionLeftHandThumb4_clip_Base_Layer": "Fresh 2026-10-11 actual-body RAW key0: invalid root scale. Root scale [100.0, 100.0, 100.0]. Imported endpoint/control fragment is source-only, not a whole-body candidate. Preserve authoring file; prohibit canonical runtime reuse.",
+      "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_GlideForward_Mocap_RootMotionLeftToe_End_clip_Base_Layer": "Fresh 2026-10-11 actual-body RAW key0: invalid root scale. Root scale [100.0, 100.0, 100.0]. Imported endpoint/control fragment is source-only, not a whole-body candidate. Preserve authoring file; prohibit canonical runtime reuse.",
+      "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_GlideForward_Mocap_RootMotionRightHandIndex4_clip_Base_Layer": "Fresh 2026-10-11 actual-body RAW key0: invalid root scale. Root scale [100.0, 100.0, 100.0]. Imported endpoint/control fragment is source-only, not a whole-body candidate. Preserve authoring file; prohibit canonical runtime reuse.",
+      "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_GlideForward_Mocap_RootMotionRightHandMiddle4_clip_Base_Layer": "Fresh 2026-10-11 actual-body RAW key0: invalid root scale. Root scale [100.0, 100.0, 100.0]. Imported endpoint/control fragment is source-only, not a whole-body candidate. Preserve authoring file; prohibit canonical runtime reuse.",
+      "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_GlideForward_Mocap_RootMotionRightHandPinky4_clip_Base_Layer": "Fresh 2026-10-11 actual-body RAW key0: invalid root scale. Root scale [100.0, 100.0, 100.0]. Imported endpoint/control fragment is source-only, not a whole-body candidate. Preserve authoring file; prohibit canonical runtime reuse.",
+      "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_GlideForward_Mocap_RootMotionRightHandRing4_clip_Base_Layer": "Fresh 2026-10-11 actual-body RAW key0: invalid root scale. Root scale [100.0, 100.0, 100.0]. Imported endpoint/control fragment is source-only, not a whole-body candidate. Preserve authoring file; prohibit canonical runtime reuse.",
+      "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_GlideForward_Mocap_RootMotionRightHandThumb4_clip_Base_Layer": "Fresh 2026-10-11 actual-body RAW key0: invalid root scale. Root scale [100.0, 100.0, 100.0]. Imported endpoint/control fragment is source-only, not a whole-body candidate. Preserve authoring file; prohibit canonical runtime reuse.",
+      "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_GlideForward_Mocap_RootMotionRightToe_End_clip_Base_Layer": "Fresh 2026-10-11 actual-body RAW key0: invalid root scale. Root scale [100.0, 100.0, 100.0]. Imported endpoint/control fragment is source-only, not a whole-body candidate. Preserve authoring file; prohibit canonical runtime reuse.",
+      "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_WalkElegant_Mocap_RootMotionHeadTop_End_clip_Base_Layer": "Fresh 2026-10-11 actual-body RAW key0: invalid root scale. Root scale [100.0, 100.0, 100.0]. Imported endpoint/control fragment is source-only, not a whole-body candidate. Preserve authoring file; prohibit canonical runtime reuse.",
+      "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_WalkElegant_Mocap_RootMotionLeftHandIndex4_clip_Base_Layer": "Fresh 2026-10-11 actual-body RAW key0: invalid root scale. Root scale [100.0, 100.0, 100.0]. Imported endpoint/control fragment is source-only, not a whole-body candidate. Preserve authoring file; prohibit canonical runtime reuse.",
+      "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_WalkElegant_Mocap_RootMotionLeftHandMiddle4_clip_Base_Layer": "Fresh 2026-10-11 actual-body RAW key0: invalid root scale. Root scale [100.0, 100.0, 100.0]. Imported endpoint/control fragment is source-only, not a whole-body candidate. Preserve authoring file; prohibit canonical runtime reuse.",
+      "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_WalkElegant_Mocap_RootMotionLeftHandPinky4_clip_Base_Layer": "Fresh 2026-10-11 actual-body RAW key0: invalid root scale. Root scale [100.0, 100.0, 100.0]. Imported endpoint/control fragment is source-only, not a whole-body candidate. Preserve authoring file; prohibit canonical runtime reuse.",
+      "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_WalkElegant_Mocap_RootMotionLeftHandRing4_clip_Base_Layer": "Fresh 2026-10-11 actual-body RAW key0: invalid root scale. Root scale [100.0, 100.0, 100.0]. Imported endpoint/control fragment is source-only, not a whole-body candidate. Preserve authoring file; prohibit canonical runtime reuse.",
+      "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_WalkElegant_Mocap_RootMotionLeftHandThumb4_clip_Base_Layer": "Fresh 2026-10-11 actual-body RAW key0: invalid root scale. Root scale [100.0, 100.0, 100.0]. Imported endpoint/control fragment is source-only, not a whole-body candidate. Preserve authoring file; prohibit canonical runtime reuse.",
+      "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_WalkElegant_Mocap_RootMotionLeftToe_End_clip_Base_Layer": "Fresh 2026-10-11 actual-body RAW key0: invalid root scale. Root scale [100.0, 100.0, 100.0]. Imported endpoint/control fragment is source-only, not a whole-body candidate. Preserve authoring file; prohibit canonical runtime reuse.",
+      "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_WalkElegant_Mocap_RootMotionMelusina_Mocap_Rig_Action": "Fresh 2026-10-11 actual-body RAW key0: invalid root scale. Root scale [100.0, 100.0, 100.0]. Preserve authoring file; prohibit canonical runtime reuse.",
+      "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_WalkElegant_Mocap_RootMotionRightHandIndex4_clip_Base_Layer": "Fresh 2026-10-11 actual-body RAW key0: invalid root scale. Root scale [100.0, 100.0, 100.0]. Imported endpoint/control fragment is source-only, not a whole-body candidate. Preserve authoring file; prohibit canonical runtime reuse.",
+      "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_WalkElegant_Mocap_RootMotionRightHandMiddle4_clip_Base_Layer": "Fresh 2026-10-11 actual-body RAW key0: invalid root scale. Root scale [100.0, 100.0, 100.0]. Imported endpoint/control fragment is source-only, not a whole-body candidate. Preserve authoring file; prohibit canonical runtime reuse.",
+      "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_WalkElegant_Mocap_RootMotionRightHandPinky4_clip_Base_Layer": "Fresh 2026-10-11 actual-body RAW key0: invalid root scale. Root scale [100.0, 100.0, 100.0]. Imported endpoint/control fragment is source-only, not a whole-body candidate. Preserve authoring file; prohibit canonical runtime reuse.",
+      "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_WalkElegant_Mocap_RootMotionRightHandRing4_clip_Base_Layer": "Fresh 2026-10-11 actual-body RAW key0: invalid root scale. Root scale [100.0, 100.0, 100.0]. Imported endpoint/control fragment is source-only, not a whole-body candidate. Preserve authoring file; prohibit canonical runtime reuse.",
+      "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_WalkElegant_Mocap_RootMotionRightHandThumb4_clip_Base_Layer": "Fresh 2026-10-11 actual-body RAW key0: invalid root scale. Root scale [100.0, 100.0, 100.0]. Imported endpoint/control fragment is source-only, not a whole-body candidate. Preserve authoring file; prohibit canonical runtime reuse.",
+      "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_WalkElegant_Mocap_RootMotionRightToe_End_clip_Base_Layer": "Fresh 2026-10-11 actual-body RAW key0: invalid root scale. Root scale [100.0, 100.0, 100.0]. Imported endpoint/control fragment is source-only, not a whole-body candidate. Preserve authoring file; prohibit canonical runtime reuse.",
+      "/Game/Melodia/Characters/Melusina/Animations/Polish_20260919/A_Melusina_BowAttack_A_RangeAttack": "Fresh 2026-10-11 actual-body RAW key0: arm redistribution. Arm segments cm [34.784, 9.519, 28.615]. Preserve authoring file; prohibit canonical runtime reuse.",
+      "/Game/Melodia/Characters/Melusina/Animations/Polish_20260919/A_Melusina_BowAttack_Polished": "Unreadable SequencerDataModel in fresh 2026-10-11 actual-body pose evaluation; no runtime admission until native source repaired and verified. Preserve authoring file; prohibit canonical runtime reuse.",
+      "/Game/Melodia/Characters/Melusina/Animations/A_ThirdPersonDash": "Fresh actual-V2-body RAW evaluation2026-10-11: {'frame': 0, 'side': 'l', 'reason': 'arm redistribution', 'segments_cm': [34.78938401014156, 9.520341297899323, 28.614612657395252]}. Preserve authoring file; prohibit canonical runtime reuse.",
+      "/Game/Melodia/Characters/Melusina/Animations/A_ThirdPersonJump_End": "Fresh actual-V2-body RAW evaluation2026-10-11: {'frame': 0, 'side': 'l', 'reason': 'arm redistribution', 'segments_cm': [34.78938401014156, 9.520341297899323, 28.614612657395252]}. Preserve authoring file; prohibit canonical runtime reuse.",
+      "/Game/Melodia/Characters/Melusina/Animations/A_ThirdPersonRun": "Fresh actual-V2-body RAW evaluation2026-10-11: {'frame': 0, 'side': 'l', 'reason': 'arm redistribution', 'segments_cm': [34.78938401014156, 9.520341297899323, 28.614612657395252]}. Preserve authoring file; prohibit canonical runtime reuse.",
+      "/Game/Melodia/Characters/Melusina/Animations/A_ThirdPersonWalk": "Fresh actual-V2-body RAW evaluation2026-10-11: {'frame': 0, 'side': 'l', 'reason': 'arm redistribution', 'segments_cm': [34.78938401014156, 9.520341297899323, 28.614612657395252]}. Preserve authoring file; prohibit canonical runtime reuse.",
+      "/Game/Melodia/Characters/Melusina/Animations/Cascadeur/A_CAS_Melusina_Idle_Loop": "Fresh actual-V2-body RAW evaluation2026-10-11: {'frame': 0, 'side': 'l', 'reason': 'arm redistribution', 'segments_cm': [34.78938401014161, 9.520341297899334, 28.614601302818]}. Preserve authoring file; prohibit canonical runtime reuse.",
+      "/Game/Melodia/Characters/Melusina/Animations/AnimationDoctor_20261007/ACFUMage_20261008/A_Melusina_ACFUMage_Idle": "Owner-rejected raised-shoulder silhouette; numeric arm-canon pass does not admit this idle. Preserve authoring asset; prohibit runtime reuse.",
+      "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_GlideForward_Mocap_RootMotionMelusina_Mocap_Rig_Action": "2026-10-11 fresh actual-body raw pose: root scale100 and arm lengths1577/2856/2861cm at key0. Preserve source; use separately corrected Glide candidate only after runtime acceptance.",
+      "/Game/Melodia/Characters/Melusina/Animations/SparrowArchery_20261002/A_Spar_Mel_Primary_Fire_Fast": "Frozen original; fresh key0 arm redistribution34.789/9.520/28.615cm. Source-only, never canonical runtime; corrected copies are the authorized repair lane.",
+      "/Game/Melodia/Characters/Melusina/Animations/SparrowArchery_20261002/A_Spar_Mel_Primary_Fire_Med": "Frozen original; fresh key0 arm redistribution34.789/9.520/28.615cm. Source-only, never canonical runtime; corrected copies are the authorized repair lane.",
+      "/Game/Melodia/Characters/Melusina/Animations/SparrowArchery_20261002/A_Spar_Mel_Primary_Fire_Slow": "Frozen original; fresh key0 arm redistribution34.789/9.520/28.615cm. Source-only, never canonical runtime; corrected copies are the authorized repair lane.",
+      "/Game/Melodia/Characters/Melusina/Animations/SparrowArchery_20261002/A_Spar_Mel_RMB_Drawback": "Frozen original; fresh key0 arm redistribution34.789/9.520/28.615cm. Source-only, never canonical runtime; corrected copies are the authorized repair lane.",
+      "/Game/Melodia/Characters/Melusina/Animations/SparrowArchery_20261002/A_Spar_Mel_RMB_Fire": "Frozen original; fresh key0 arm redistribution34.789/9.520/28.615cm. Source-only, never canonical runtime; corrected copies are the authorized repair lane.",
+      "/Game/Melodia/Characters/Melusina/Animations/SparrowArchery_20261002/A_Spar_Mel_RMB_Loop": "Frozen original; fresh key0 arm redistribution34.789/9.520/28.615cm. Source-only, never canonical runtime; corrected copies are the authorized repair lane.",
       "/Game/Melodia/Characters/Melusina/Animations/Locomotion/A_Melusina_Idle_Mocap_RootX": "Current clip renders a static T-pose in verified Morning PIE; preserve authoring asset, prohibit runtime reuse",
       "/Game/Melodia/Characters/Melusina/Animations/Locomotion/A_Melusina_Idle": "Explicitly rejected by this contract's speed-zero sample; preserve authoring asset, prohibit canonical runtime reference",
       "/Game/Melodia/Characters/Melusina/Animations/Authored/A_MUAL_Melusina_Idle_Loop": "Rejected runtime idle: measured root height is about 7936 cm off and twist rewrite is about 59 degrees; preserve authoring asset",
@@ -85,7 +283,11 @@
       "/Game/Melodia/Characters/Melusina/Animations/SparrowArchery_20261002/A_Spar_Mel_idle_relaxed": "Owner-rejected idle bake from Sparrow retarget; preserve source authoring only",
       "/Game/Melodia/Characters/Melusina/Animations/SparrowArchery_20261002/A_Spar_Mel_Travel_Mode_Idle_BowDown": "Owner-rejected idle bake from Sparrow retarget; preserve source authoring only",
       "/Game/Melodia/Characters/Melusina/Animations/ContactCandidates_20261003/A_Spar_Mel_idle": "Owner-rejected comparison idle bake from Sparrow retarget; preserve source authoring only",
-      "/Game/Melodia/Characters/Melusina/Animations/ContactCandidates_20261003/A_Spar_Mel_Travel_Mode_Idle_BowDown": "Owner-rejected comparison idle bake from Sparrow retarget; preserve source authoring only"
+      "/Game/Melodia/Characters/Melusina/Animations/ContactCandidates_20261003/A_Spar_Mel_Travel_Mode_Idle_BowDown": "Owner-rejected comparison idle bake from Sparrow retarget; preserve source authoring only",
+      "/Game/Melodia/Characters/Melusina/Animations/AnimationDoctor_20261007/RuntimeCloseout_20261009/A_Melusina_BattleBow_ArmCorrected_20261011": "Oct11 actual-body preview shows raised/distorted shoulder silhouette despite all-key numeric arm pass. Unbound duplicate rejected for canonical runtime; preserve diagnostics/source only. No montage promotion.",
+      "/Game/Melodia/Characters/Melusina/Animations/QuaterniusRetargeted/A_Q_Melusina_Interact": "SOURCE_ONLY_DO_NOT_BIND: actual V2 root_x Z about7678cm in both RAW and COMPRESSED entry/mid/exit samples; blank isolated preview. Oct11 quaternius_raw_compressed_compare.json. Preserve original for bounded translation repair.",
+      "/Game/Melodia/Characters/Melusina/Animations/QuaterniusRetargeted_V2Fixed/A_Q_Melusina_Idle_Loop": "SOURCE_ONLY_DO_NOT_BIND: all76 COMPRESSED actual-V2 keys have root_x Z7603.66-7678.19cm. Oct11 compressed_numeric_pass_followup.json. Preserve source; not current accepted Shinbi idle."
     }
-  }
+  },
+  "_sample_index_policy": "Indices are observed hints, not identities. Resolve each live sample by speed and current animation immediately before mutation; baking can reorder sample_data. The guarded live promotion writer already queries current rows. Never apply a stale index to the canonical blendspace."
 }

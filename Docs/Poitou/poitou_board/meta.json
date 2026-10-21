@@ -1,0 +1,281 @@
+{
+ "1_jetty_dawn": [
+  {
+   "file": "img/1_jetty_dawn/1.jpg",
+   "title": "File:Conche des cabanes - 20150810 14h26 (11049).jpg",
+   "author": "Another one of my pictures:\n\n\n\nThis photograph was taken by Medium69 (William Crochot) and released under the license st",
+   "license": "CC BY-SA 4.0",
+   "url": "https://commons.wikimedia.org/wiki/File:Conche_des_cabanes_-_20150810_14h26_(11049).jpg",
+   "desc": "Conch shacks Sansais in the Marais Poitevin, France."
+  },
+  {
+   "file": "img/1_jetty_dawn/2.jpg",
+   "title": "File:Photo conche du marais poitevin.JPEG",
+   "author": "Aggloniort",
+   "license": "CC BY-SA 3.0",
+   "url": "https://commons.wikimedia.org/wiki/File:Photo_conche_du_marais_poitevin.JPEG",
+   "desc": "photo classique rivière et marais poitevin"
+  },
+  {
+   "file": "img/1_jetty_dawn/3.jpg",
+   "title": "File:Entrée du Port de Marans - Ecluse.jpg",
+   "author": "Jmdigne",
+   "license": "CC BY-SA 4.0",
+   "url": "https://commons.wikimedia.org/wiki/File:Entr%C3%A9e_du_Port_de_Marans_-_Ecluse.jpg",
+   "desc": "Entrée du Port de Marans - Ecluse avec au fond le  clocher de l’église Notre-Dame des Marais"
+  },
+  {
+   "file": "img/1_jetty_dawn/4.jpg",
+   "title": "File:Damvix le port 02.jpg",
+   "author": "Hamon jp",
+   "license": "CC BY-SA 3.0",
+   "url": "https://commons.wikimedia.org/wiki/File:Damvix_le_port_02.jpg",
+   "desc": "The river port of Damvix, in the Marais Poitevin, Vendée, France."
+  }
+ ],
+ "2_footbridge": [
+  {
+   "file": "img/2_footbridge/1.jpg",
+   "title": "File:Le Vanneau-Passerelle.jpg",
+   "author": "Ji-Elle",
+   "license": "CC BY-SA 3.0",
+   "url": "https://commons.wikimedia.org/wiki/File:Le_Vanneau-Passerelle.jpg",
+   "desc": "A footbridge over a canal in the \"wet marsh\" area of the Marais Poitevin, in Le Vanneau, Deux-Sèvres, France."
+  },
+  {
+   "file": "img/2_footbridge/2.jpg",
+   "title": "File:Le Mazeau village.jpg",
+   "author": "Hamon jp",
+   "license": "CC BY-SA 3.0",
+   "url": "https://commons.wikimedia.org/wiki/File:Le_Mazeau_village.jpg",
+   "desc": "In the area of the Marais Poitevin (canal and flatboats visible left down under the bridge), the village of Le Mazeau in Vendée, France."
+  },
+  {
+   "file": "img/2_footbridge/3.jpg",
+   "title": "File:28. Damvix. A maze of canals.jpg",
+   "author": "Wolffoxylady",
+   "license": "CC BY-SA 4.0",
+   "url": "https://commons.wikimedia.org/wiki/File:28._Damvix._A_maze_of_canals.jpg",
+   "desc": "Damvix."
+  },
+  {
+   "file": "img/2_footbridge/4.jpg",
+   "title": "File:Canal de la Garette - 20150810 16h00 (11061).jpg",
+   "author": "Another one of my pictures:\n\n\n\nThis photograph was taken by Medium69 (William Crochot) and released under the license st",
+   "license": "CC BY-SA 4.0",
+   "url": "https://commons.wikimedia.org/wiki/File:Canal_de_la_Garette_-_20150810_16h00_(11061).jpg",
+   "desc": "Canal of the Garette à Coulon in the Marais poitevin."
+  }
+ ],
+ "3_grand_port": [
+  {
+   "file": "img/3_grand_port/1.jpg",
+   "title": "File:Coulon-Barques plates.jpg",
+   "author": "Ji-Elle",
+   "license": "CC BY-SA 3.0",
+   "url": "https://commons.wikimedia.org/wiki/File:Coulon-Barques_plates.jpg",
+   "desc": "Flat boats in Coulon (Deux-Sèvres)",
+   "query": "Coulon barques"
+  },
+  {
+   "file": "img/3_grand_port/2.jpg",
+   "title": "File:Coulon-Promenade en barque.JPG",
+   "author": "Ji-Elle",
+   "license": "CC BY-SA 3.0",
+   "url": "https://commons.wikimedia.org/wiki/File:Coulon-Promenade_en_barque.JPG",
+   "desc": "Rowing boats in Coulon (Deux-Sèvres)",
+   "query": "Coulon barques"
+  },
+  {
+   "file": "img/3_grand_port/4.jpg",
+   "title": "File:Coulon.JPG",
+   "author": "Martpan",
+   "license": "CC BY-SA 3.0",
+   "url": "https://commons.wikimedia.org/wiki/File:Coulon.JPG",
+   "desc": "Barques",
+   "query": "Coulon barques"
+  }
+ ],
+ "4_church_square": [
+  {
+   "file": "img/4_church_square/1.jpg",
+   "title": "File:Arçais-Eglise.jpg",
+   "author": "Ji-Elle",
+   "license": "CC BY-SA 3.0",
+   "url": "https://commons.wikimedia.org/wiki/File:Ar%C3%A7ais-Eglise.jpg",
+   "desc": "Church of Arçais (Deux-Sèvres)",
+   "query": "Église Arçais"
+  },
+  {
+   "file": "img/4_church_square/2.jpg",
+   "title": "File:Maillé église.jpg",
+   "author": "Hamon jp",
+   "license": "CC BY-SA 3.0",
+   "url": "https://commons.wikimedia.org/wiki/File:Maill%C3%A9_%C3%A9glise.jpg",
+   "desc": "Notre-Dame de l'Assomption' church of Maillé in Vendée.",
+   "query": "Maillé église Vendée"
+  },
+  {
+   "file": "img/4_church_square/3.jpg",
+   "title": "File:Maillé-Eglise-Portail.jpg",
+   "author": "Ji-Elle",
+   "license": "CC BY-SA 3.0",
+   "url": "https://commons.wikimedia.org/wiki/File:Maill%C3%A9-Eglise-Portail.jpg",
+   "desc": "Portail de l'église de Maillé (Vendée)",
+   "query": "Maillé église Vendée"
+  },
+  {
+   "file": "img/4_church_square/4.jpg",
+   "title": "File:Maillé-Eglise-Portail-Détail.jpg",
+   "author": "Ji-Elle",
+   "license": "CC BY-SA 3.0",
+   "url": "https://commons.wikimedia.org/wiki/File:Maill%C3%A9-Eglise-Portail-D%C3%A9tail.jpg",
+   "desc": "Détail du portail de l'église de Maillé (Vendée)",
+   "query": "Maillé église Vendée"
+  }
+ ],
+ "5_lane_to_water": [
+  {
+   "file": "img/5_lane_to_water/1.jpg",
+   "title": "File:CoulonQuaiTardy-France.jpg",
+   "author": "Gilbert Bochenek",
+   "license": "CC BY 3.0",
+   "url": "https://commons.wikimedia.org/wiki/File:CoulonQuaiTardy-France.jpg",
+   "desc": "Coulon, Quai Louis Tardy, Marais poitevin, France"
+  },
+  {
+   "file": "img/5_lane_to_water/2.jpg",
+   "title": "File:Le marais poitevin à La Garette.jpg",
+   "author": "Christophe Vigneron",
+   "license": "CC BY-SA 3.0",
+   "url": "https://commons.wikimedia.org/wiki/File:Le_marais_poitevin_%C3%A0_La_Garette.jpg",
+   "desc": "Le marais poitevin à La Garette"
+  },
+  {
+   "file": "img/5_lane_to_water/3.jpg",
+   "title": "File:Damvix 01.JPG",
+   "author": "Hamon jp",
+   "license": "CC BY-SA 3.0",
+   "url": "https://commons.wikimedia.org/wiki/File:Damvix_01.JPG",
+   "desc": "Damvix village on the Sèvres-Niortaise river, Vendée 85"
+  },
+  {
+   "file": "img/5_lane_to_water/4.jpg",
+   "title": "File:Damvix 02.JPG",
+   "author": "Hamon jp",
+   "license": "CC BY-SA 3.0",
+   "url": "https://commons.wikimedia.org/wiki/File:Damvix_02.JPG",
+   "desc": "Damvix village on the Sèvres-Niortaise river, Vendée 85"
+  }
+ ],
+ "6_tree_avenue_lock": [
+  {
+   "file": "img/6_tree_avenue_lock/1.jpg",
+   "title": "File:Canal mignon 004.jpg",
+   "author": "Tux-Man",
+   "license": "CC BY-SA 3.0",
+   "url": "https://commons.wikimedia.org/wiki/File:Canal_mignon_004.jpg",
+   "desc": "Pont du Mignon de la route D3 dans le Marais Poitevin. Le canal du Mignon (sur sa partie gauche) fixe la limite entre les départements de la Charente-"
+  },
+  {
+   "file": "img/6_tree_avenue_lock/2.jpg",
+   "title": "File:Canal Mignon 006.jpg",
+   "author": "Tux-Man",
+   "license": "CC BY-SA 3.0",
+   "url": "https://commons.wikimedia.org/wiki/File:Canal_Mignon_006.jpg",
+   "desc": "Écluse de Sazay (n° 2) avec l'ancienne maison d'éclusier du Canal du Mignon dans le Marais Poitevin en France."
+  },
+  {
+   "file": "img/6_tree_avenue_lock/3.jpg",
+   "title": "File:Marans écluse 001.jpg",
+   "author": "Tux-Man",
+   "license": "CC BY-SA 3.0",
+   "url": "https://commons.wikimedia.org/wiki/File:Marans_%C3%A9cluse_001.jpg",
+   "desc": "Barrage écluse du carreau d'Or à Marans (Charente-Maritime -France)"
+  },
+  {
+   "file": "img/6_tree_avenue_lock/4.jpg",
+   "title": "File:Conche avec lentilles d'eau de la Venise Verte.jpg",
+   "author": "Ludovic",
+   "license": "CC BY-SA 2.0",
+   "url": "https://commons.wikimedia.org/wiki/File:Conche_avec_lentilles_d%27eau_de_la_Venise_Verte.jpg",
+   "desc": "Conche avec lentilles d'eau de la Venise Verte"
+  }
+ ],
+ "7A_maillezais": [
+  {
+   "file": "img/7A_maillezais/1.jpg",
+   "title": "File:Maillezais - Cathedrale Saint-Pierre 01.jpg",
+   "author": "Selbymay",
+   "license": "CC BY-SA 3.0",
+   "url": "https://commons.wikimedia.org/wiki/File:Maillezais_-_Cathedrale_Saint-Pierre_01.jpg",
+   "desc": "Maillezais Cathedral - Vendée",
+   "query": "Abbaye de Maillezais"
+  },
+  {
+   "file": "img/7A_maillezais/2.jpg",
+   "title": "File:Remains of a voussoir (12th century) in the former Abbey of Maillezais.jpg",
+   "author": "Pierre André Leclercq",
+   "license": "CC BY-SA 4.0",
+   "url": "https://commons.wikimedia.org/wiki/File:Remains_of_a_voussoir_(12th_century)_in_the_former_Abbey_of_Maillezais.jpg",
+   "desc": "This object is classé Monument Historique in the base Palissy, database of the French furniture patrimony of the French ministry of culture, under the",
+   "query": "Abbaye de Maillezais"
+  },
+  {
+   "file": "img/7A_maillezais/3.jpg",
+   "title": "File:La cathédrale Saint-Pierre de Maillezais (5).jpg",
+   "author": "PIERRE ANDRE LECLERCQ",
+   "license": "CC BY-SA 4.0",
+   "url": "https://commons.wikimedia.org/wiki/File:La_cath%C3%A9drale_Saint-Pierre_de_Maillezais_(5).jpg",
+   "desc": "Cathédrale Saint-Pierre de Maillezais  Vendée Pays de la Loire.- France",
+   "query": "Abbaye de Maillezais"
+  },
+  {
+   "file": "img/7A_maillezais/4.jpg",
+   "title": "File:Maillezais - Cathedrale Saint-Pierre 03.jpg",
+   "author": "Selbymay",
+   "license": "CC BY-SA 3.0",
+   "url": "https://commons.wikimedia.org/wiki/File:Maillezais_-_Cathedrale_Saint-Pierre_03.jpg",
+   "desc": "Saint-Pierre cathedral of Maillezais - Vendée, France",
+   "query": "Abbaye de Maillezais"
+  }
+ ],
+ "7B_lusignan": [
+  {
+   "file": "img/7B_lusignan/1.jpg",
+   "title": "File:Château de Lusignan 101.jpg",
+   "author": "Chatsam",
+   "license": "CC BY-SA 4.0",
+   "url": "https://commons.wikimedia.org/wiki/File:Ch%C3%A2teau_de_Lusignan_101.jpg",
+   "desc": "Château de Lusignan",
+   "query": "Lusignan château"
+  },
+  {
+   "file": "img/7B_lusignan/2.jpg",
+   "title": "File:Château de Lusignan 100.jpg",
+   "author": "Chatsam",
+   "license": "CC BY-SA 4.0",
+   "url": "https://commons.wikimedia.org/wiki/File:Ch%C3%A2teau_de_Lusignan_100.jpg",
+   "desc": "Château de Lusignan",
+   "query": "Lusignan château"
+  },
+  {
+   "file": "img/7B_lusignan/3.jpg",
+   "title": "File:Les Très Riches Heures du duc de Berry mars.jpg",
+   "author": "Limbourg brothers / Barthélemy d'Eyck",
+   "license": "Public domain",
+   "url": "https://commons.wikimedia.org/wiki/File:Les_Tr%C3%A8s_Riches_Heures_du_duc_de_Berry_mars.jpg",
+   "desc": "In the foreground, a peasant ploughs a field with a plough pulled by two oxen, the man steering them with a long goatee. Winegrowers prune the vine in",
+   "query": "Lusignan château"
+  },
+  {
+   "file": "img/7B_lusignan/4.jpg",
+   "title": "File:Château de Lusignan 102.jpg",
+   "author": "Chatsam",
+   "license": "CC BY-SA 4.0",
+   "url": "https://commons.wikimedia.org/wiki/File:Ch%C3%A2teau_de_Lusignan_102.jpg",
+   "desc": "Château de Lusignan",
+   "query": "Lusignan château"
+  }
+ ]
+}

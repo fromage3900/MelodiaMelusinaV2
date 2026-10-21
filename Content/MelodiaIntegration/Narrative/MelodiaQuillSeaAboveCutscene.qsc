@@ -1,31 +1,45 @@
 @ Start
 
+$ Background {&/Game/Melodia/UI/Textures/Figma/T_Melodia_Figma_Asset_Hero_SpaceCathedral.T_Melodia_Figma_Asset_Hero_SpaceCathedral} none 0
+
 - Melusina
-  We have reached the high balcony of the cathedral. Look up at the sky...
+  Three measures home, and the staircase brings us all the way to the roof balustrade. Wait... why is the wind salt-heavy up here?
+
+      $ Voice {&/Game/Melodia/Characters/Melusina/Audio/mel_arrival_01.mel_arrival_01} 0.9
 
 - Sir Melodious
-  Behold, Melusina. The ancient wonder of our world—the Sea Above.
+  Do not look down at the courtyard, Melusina. Look up past the flying buttresses.
 
-* Gaze upward into the inverted celestial ocean. | -> WitnessSeaAbove
-* Step to the edge of the overlook railing.     | -> ApproachEdge
+- .
+  Beside Melusina's boots, the Choral Sheep tilts its head skyward, its bronze bell chiming a soft, reverent C as cyan water-light ripples across the ivory stone.
+
+      $ SFX {&/Game/Melodia/Companions/ChoralSheep/Audio/sheep_baa_PCC_small_01.sheep_baa_PCC_small_01} 0.8
+
+* Step to the balustrade rail and look into the zenith. | -> ApproachEdge
+* Hold the WaveHarp aloft to feel the sixteen-second pulse. | -> WitnessSeaAbove
 
 <@> ApproachEdge
 
 - Melusina
-  The wind carries salt and starlight. The sky isn't air at all—it's an immense canopy of luminous water.
+  That isn't cloud cover. Those are currents—kelp shadows and sapphire swells rolling upside-down across the heavens!
 
 - Sir Melodious
-  Watch the surface membrane. The biological pulse is beginning.
+  The Sea Above. The false ocean that roofs our world, held aloft by the standing-wave tension of the Great Cathedral and the breath of the Faraway Mother.
+
+- Melusina
+  Every sixteen seconds, the whole sky inhales... and the rain falls upward into the surf.
 
 -> WitnessSeaAbove
 
 <@> WitnessSeaAbove
 
 - .
-  Above the cathedral arches, an inverted ocean rolls in deep sapphire and turquoise waves. Every sixteen seconds, a deep bioluminescent pulse radiates across the celestial membrane.
+  High above the gothic spires, an immense inverted ocean rolls in sapphire and turquoise waves. On the sixteenth beat, a bioluminescent Chladni pulse radiates across the celestial membrane—sending pearlescent droplets drifting upward like inverted rain.
 
-- .
-  Small droplets break from the surface and fall upward into the sky, sparkling like inverted rain against the bell-tower shadows.
+      $ SFX {&/Game/Melodia/Audio/WaveHarp/SW_WaveHarp_Orchestra_C4.SW_WaveHarp_Orchestra_C4} 0.85
+
+- Sir Melodious
+  That is where the festival carts went, little bard. Not down the road—up the tide-line. And listen: the fourth and final chamber of your Morning House is unsealing behind us.
 
 $ Notify melodia:travel:/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/LV_SeaAbove_Prototype
 $ Notify melodia:stat:intent.sea_above.witness:melodia_resonance:5
@@ -33,16 +47,18 @@ $ Notify melodia:flag:flag.cutscene.sea_above_witnessed:true
 $ Notify melodia:flag:flag.sea_above.membrane_pulse_active:true
 
 - Melusina
-  It is breathtaking. The entire ocean breathes in rhythm above us.
+  I thought arriving late meant the song was over. It wasn't over—that was just the tuning before the overture.
+
+      $ Voice {&/Game/Melodia/Characters/Melusina/Audio/mel_halfsong_02.mel_halfsong_02} 0.9
 
 - Sir Melodious
-  And now, with the Resonant Weave and our choral companion at your side, you are ready to explore where no melody-weaver has walked before.
+  With the First Echo resolved, the Sorrow Seam upon your shoulders, and our Choral Sheep holding the root note, the Starskiff at the Shorewake dock will answer your hand.
 
 $ Notify melodia:questcomplete:quest.cutscene.sea_above:flag.cutscene.sea_above_completed:reward.cutscene.sea_above_memory:intent.cutscene.sea_above.complete:checkpoint.cutscene.sea_above.complete
 
 @ Finish
 
 - .
-  Melusina witnesses the magnificent spectacle of the Sea Above. The vertical slice journey reaches its breathtaking pinnacle.
+  All four measures of the Morning Sanctuary stand open. Above the cathedral towers, the Sea Above pulses in sixteen-second cadence—awaiting Melusina's departure aboard the Starskiff.
 
 $ End

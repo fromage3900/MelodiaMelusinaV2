@@ -190,10 +190,10 @@ def blend_spec():
 
 @register("ik_locomotion", ["N8"])
 def foot_ik_state():
-    ok = (AUDIT_LOCO / "walk_idle_runtime_proof.json").exists() and (AUDIT_LOCO / "Backups").exists()
-    return row("PASS" if ok else "FAIL",
-               "FootPlacement(Graph, root, spine_01_x, foot/toes) feet-level verified 2026-10-05; "
-               "slope/stairs test owed — queued for PIE", "")
+    return row("HOLD",
+               "CONTACT UNVERIFIED: historical files and level foot bones do not prove boot-sole, cuff or capsule contact. "
+               "Current FootPlacement pelvis owner is root_x; require fresh idle/movement/landing/slope/stair evidence "
+               "on the complete character and exact asset versions before acceptance.", "CURRENT_STATE.md")
 
 
 # ---------------- nikki_pose ----------------

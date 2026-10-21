@@ -1,0 +1,165 @@
+[
+  {
+    "source": "/Game/MelodiaIntegration/Blueprints/BP_MelusinaJRPGCharacter",
+    "target": "/Game/Melodia/Characters/Melusina/Animations/ShinbiDoctor_20261007/A_Shin_Idle",
+    "consumer": "MelodiaWaveHarpCombatComponent",
+    "field": "CastStanceAnim",
+    "required": true,
+    "expected_skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton",
+    "target_skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton",
+    "evidence": "native class CDO; live pawn overrides not yet measured"
+  },
+  {
+    "source": "/Game/MelodiaIntegration/Blueprints/BP_MelusinaJRPGCharacter",
+    "target": "/Game/Melodia/Characters/Melusina/Animations/ShinbiDoctor_20261007/A_Shin_Cast",
+    "consumer": "MelodiaWaveHarpCombatComponent",
+    "field": "CastShootAnim",
+    "required": true,
+    "expected_skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton",
+    "target_skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton",
+    "evidence": "native class CDO; live pawn overrides not yet measured"
+  },
+  {
+    "source": "/Game/MelodiaIntegration/Blueprints/BP_MelusinaJRPGCharacter",
+    "target": "/Game/Melodia/Characters/Melusina/Animations/SparrowDoctor_20261007/A_Spar_Mel_RMB_Drawback",
+    "consumer": "MelodiaWaveHarpCombatComponent",
+    "field": "ChargeDrawAnim",
+    "required": true,
+    "expected_skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton",
+    "target_skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton",
+    "evidence": "native class CDO; live pawn overrides not yet measured"
+  },
+  {
+    "source": "/Game/MelodiaIntegration/Blueprints/BP_MelusinaJRPGCharacter",
+    "target": "/Game/Melodia/Characters/Melusina/Animations/SparrowDoctor_20261007/A_Spar_Mel_RMB_Loop",
+    "consumer": "MelodiaWaveHarpCombatComponent",
+    "field": "ChargeHoldAnim",
+    "required": true,
+    "expected_skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton",
+    "target_skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton",
+    "evidence": "native class CDO; live pawn overrides not yet measured"
+  },
+  {
+    "source": "/Game/MelodiaIntegration/Blueprints/BP_MelusinaJRPGCharacter",
+    "target": "/Game/Melodia/Characters/Melusina/Animations/SparrowDoctor_20261007/A_Spar_Mel_RMB_Fire",
+    "consumer": "MelodiaWaveHarpCombatComponent",
+    "field": "ChargeFireAnim",
+    "required": true,
+    "expected_skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton",
+    "target_skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton",
+    "evidence": "native class CDO; live pawn overrides not yet measured"
+  },
+  {
+    "source": "/Game/MelodiaIntegration/Blueprints/BP_MelusinaJRPGCharacter",
+    "target": "/Game/Melodia/Characters/Melusina/Animations/Montages/AM_Melusina_Roll",
+    "consumer": "MelodiaTraversalComponent",
+    "field": "GetMelusinaRollMontage",
+    "required": true,
+    "expected_skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton",
+    "target_skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton",
+    "binding_kind": "static_loader",
+    "source_file": "Source\\BS_GodFile\\MelodiaIntegration\\MelodiaTraversalComponent.cpp",
+    "source_sha256": "92544aba53d6abe30db4d2a8ba5c077c3ba17f3454d43591ef6e21dcd44246b4",
+    "evidence": "Current C++ loader exact literal plus loaded montage skeleton readback; no live roll/action proof"
+  },
+  {
+    "source": "/Game/Experiments/MelodiaJRPG/BP_MelusinaSwordsman_Presentation",
+    "target": "/Game/TurnBasedJRPGTemplate/Animations/AM_Intro",
+    "consumer": "BP_MelusinaSwordsman_Presentation.CDO",
+    "field": "introAnimationMontage",
+    "required": true,
+    "expected_skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton",
+    "target_skeleton": "/Game/TurnBasedJRPGTemplate/Meshes/UE4_Mannequin_Skeleton",
+    "evidence": "Blueprint CDO + confirmed inherited PlayMontage target; loaded donor skeleton identity"
+  },
+  {
+    "source": "/Game/Experiments/MelodiaJRPG/BP_MelusinaSwordsman_Presentation",
+    "target": "/Game/TurnBasedJRPGTemplate/Animations/AM_Idle",
+    "consumer": "BP_MelusinaSwordsman_Presentation.CDO",
+    "field": "IdleAnimationMontage",
+    "required": true,
+    "expected_skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton",
+    "target_skeleton": "/Game/TurnBasedJRPGTemplate/Meshes/UE4_Mannequin_Skeleton",
+    "evidence": "Blueprint CDO + confirmed inherited PlayMontage target; loaded donor skeleton identity"
+  },
+  {
+    "source": "/Game/Experiments/MelodiaJRPG/BP_MelusinaSwordsman_Presentation",
+    "target": "/Game/Melodia/Characters/Melusina/Animations/ShinbiDoctor_20261007/A_Shin_Idle_stand",
+    "consumer": "BP_MelusinaSwordsman_Presentation.CDO",
+    "field": "idleAnimation",
+    "required": true,
+    "expected_skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton",
+    "target_skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton",
+    "evidence": "Saved Blueprint CDO readback, exact one-field assertion and compile0/0"
+  },
+  {
+    "source": "/Game/Experiments/MelodiaJRPG/BP_MelusinaSwordsman_Presentation",
+    "target": "/Game/TurnBasedJRPGTemplate/Animations/A_Die",
+    "consumer": "BP_MelusinaSwordsman_Presentation.CDO",
+    "field": "dieAnimation",
+    "required": true,
+    "expected_skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton",
+    "target_skeleton": "/Game/TurnBasedJRPGTemplate/Meshes/UE4_Mannequin_Skeleton",
+    "evidence": "Blueprint CDO + confirmed inherited PlayMontage target; loaded donor skeleton identity"
+  },
+  {
+    "source": "/Game/Experiments/MelodiaJRPG/BP_MelusinaSwordsman_Presentation",
+    "target": "/Game/TurnBasedJRPGTemplate/Animations/AM_Dash",
+    "consumer": "BP_MelusinaSwordsman_Presentation.CDO",
+    "field": "dashForwardAnimation",
+    "required": true,
+    "expected_skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton",
+    "target_skeleton": "/Game/TurnBasedJRPGTemplate/Meshes/UE4_Mannequin_Skeleton",
+    "evidence": "Blueprint CDO + confirmed inherited PlayMontage target; loaded donor skeleton identity"
+  },
+  {
+    "source": "/Game/Experiments/MelodiaJRPG/BP_MelusinaSwordsman_Presentation",
+    "target": "/Game/TurnBasedJRPGTemplate/Animations/AM_Dash",
+    "consumer": "BP_MelusinaSwordsman_Presentation.CDO",
+    "field": "dashBackwardAnimation",
+    "required": true,
+    "expected_skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton",
+    "target_skeleton": "/Game/TurnBasedJRPGTemplate/Meshes/UE4_Mannequin_Skeleton",
+    "evidence": "Blueprint CDO + confirmed inherited PlayMontage target; loaded donor skeleton identity"
+  },
+  {
+    "source": "/Game/Experiments/MelodiaJRPG/BP_MelusinaSwordsman_Presentation",
+    "target": "/Game/Melodia/Characters/Melusina/Animations/Polish_20260919/AM_Melusina_BowAttack_Bound",
+    "consumer": "BP_MelusinaSwordsman_Presentation.CDO",
+    "field": "attackAnimationMontage",
+    "required": true,
+    "expected_skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton",
+    "target_skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton",
+    "evidence": "Blueprint CDO + confirmed inherited PlayMontage target; loaded donor skeleton identity"
+  },
+  {
+    "source": "/Game/Experiments/MelodiaJRPG/BP_MelusinaSwordsman_Presentation",
+    "target": "/Game/TurnBasedJRPGTemplate/Animations/AM_GetHit",
+    "consumer": "BP_MelusinaSwordsman_Presentation.CDO",
+    "field": "getHitAnimationMontage",
+    "required": true,
+    "expected_skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton",
+    "target_skeleton": "/Game/TurnBasedJRPGTemplate/Meshes/UE4_Mannequin_Skeleton",
+    "evidence": "Blueprint CDO + confirmed inherited PlayMontage target; loaded donor skeleton identity"
+  },
+  {
+    "source": "/Game/Experiments/MelodiaJRPG/BP_MelusinaSwordsman_Presentation",
+    "target": "/Game/TurnBasedJRPGTemplate/Animations/AM_ItemUse",
+    "consumer": "BP_MelusinaSwordsman_Presentation.CDO",
+    "field": "itemUseAnimationMontage",
+    "required": true,
+    "expected_skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton",
+    "target_skeleton": "/Game/TurnBasedJRPGTemplate/Meshes/UE4_Mannequin_Skeleton",
+    "evidence": "Blueprint CDO + confirmed inherited PlayMontage target; loaded donor skeleton identity"
+  },
+  {
+    "source": "/Game/Experiments/MelodiaJRPG/BP_MelusinaSwordsman_Presentation",
+    "target": "/Game/TurnBasedJRPGTemplate/Animations/AM_Stun",
+    "consumer": "BP_MelusinaSwordsman_Presentation.CDO",
+    "field": "stunAnimationMontage",
+    "required": true,
+    "expected_skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton",
+    "target_skeleton": "/Game/TurnBasedJRPGTemplate/Meshes/UE4_Mannequin_Skeleton",
+    "evidence": "Blueprint CDO + confirmed inherited PlayMontage target; loaded donor skeleton identity"
+  }
+]

@@ -108,4 +108,17 @@ private:
 
 	/** Boost suppresses the idle perch - a boosted bird is never at rest. */
 	bool bIsBoosting = false;
+
+	/** Smoothed crest-raise weight [0..1] driven onto the canonical SKM_SirMelodious_ARP_v7 Crest_Raise morph. */
+	UPROPERTY(Transient, BlueprintReadOnly, Category="Melodia|Flight", meta=(AllowPrivateAccess="true"))
+	float CurrentCrestRaise = 0.0f;
+
+	/** Previous frame yaw for computing angular turn rate (yaw-rate banking). */
+	float PreviousActorYaw = 0.0f;
+	bool bHasPreviousYaw = false;
+
+	/** Approach-to-perch glide duration before settling into perched state. */
+	float PerchApproachRemaining = 0.0f;
+	FVector PerchApproachStartLoc = FVector::ZeroVector;
+	FRotator PerchApproachStartRot = FRotator::ZeroRotator;
 };

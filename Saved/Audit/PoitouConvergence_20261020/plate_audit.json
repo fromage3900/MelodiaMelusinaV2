@@ -1,0 +1,122 @@
+[
+  {
+    "name": "hero-kaleido-nave-1920x1080",
+    "png": "C:\\EnvironmentPortfolio\\my-site-kit\\public\\melodia\\vfx-showcase-2026-09-28\\hero-kaleido-nave-1920x1080.png",
+    "flags": [
+      "NEAR_BLACK"
+    ],
+    "png_kb": 1627,
+    "webp_kb": 251,
+    "size": [
+      1920,
+      1080
+    ],
+    "mean_luma": 10.2,
+    "unique_colors": 12417,
+    "magenta_pct": 0.4,
+    "status": "FLAGGED"
+  },
+  {
+    "name": "hero-melusina-morning-1920x1080",
+    "png": "C:\\EnvironmentPortfolio\\my-site-kit\\public\\melodia\\vfx-showcase-2026-09-28\\hero-melusina-morning-1920x1080.png",
+    "flags": [],
+    "png_kb": 2574,
+    "webp_kb": 241,
+    "size": [
+      1920,
+      1080
+    ],
+    "mean_luma": 58.8,
+    "unique_colors": 22280,
+    "magenta_pct": 0.0,
+    "status": "OK"
+  },
+  {
+    "name": "hero-melusina-morning-fairy-dust",
+    "png": "C:\\EnvironmentPortfolio\\my-site-kit\\public\\melodia\\vfx-showcase-2026-09-28\\hero-melusina-morning-fairy-dust.png",
+    "flags": [
+      "MISSING_MATERIAL_MAGENTA(37%)"
+    ],
+    "png_kb": 5444,
+    "webp_kb": 209,
+    "size": [
+      3840,
+      2160
+    ],
+    "mean_luma": 89.9,
+    "unique_colors": 26875,
+    "magenta_pct": 36.6,
+    "status": "FLAGGED"
+  },
+  {
+    "name": "hero-poitou-abbey-1920x1080",
+    "png": "C:\\EnvironmentPortfolio\\my-site-kit\\public\\melodia\\vfx-showcase-2026-09-28\\hero-poitou-abbey-1920x1080.png",
+    "flags": [
+      "FLAT_WEBP(32KB<40KB)"
+    ],
+    "png_kb": 1328,
+    "webp_kb": 32,
+    "size": [
+      1920,
+      1080
+    ],
+    "mean_luma": 107.4,
+    "unique_colors": 6061,
+    "magenta_pct": 0.0,
+    "status": "FLAGGED"
+  },
+  {
+    "name": "hero-sakura-dream-petal-cantata",
+    "png": "C:\\EnvironmentPortfolio\\my-site-kit\\public\\melodia\\vfx-showcase-2026-09-28\\hero-sakura-dream-petal-cantata.png",
+    "flags": [
+      "FLAT_WEBP(28KB<40KB)",
+      "NEAR_BLACK"
+    ],
+    "png_kb": 517,
+    "webp_kb": 28,
+    "size": [
+      1920,
+      1080
+    ],
+    "mean_luma": 10.6,
+    "unique_colors": 2535,
+    "magenta_pct": 2.4,
+    "status": "FLAGGED"
+  },
+  {
+    "name": "hero-sea-above-1920x1080",
+    "png": "C:\\EnvironmentPortfolio\\my-site-kit\\public\\melodia\\vfx-showcase-2026-09-28\\hero-sea-above-1920x1080.png",
+    "flags": [
+      "FLAT_WEBP(10KB<40KB)"
+    ],
+    "png_kb": 1244,
+    "webp_kb": 10,
+    "size": [
+      1920,
+      1080
+    ],
+    "mean_luma": 86.5,
+    "unique_colors": 1146,
+    "magenta_pct": 0.0,
+    "status": "FLAGGED"
+  },
+  {
+    "name": "hero-zen-forest-1920x1080",
+    "png": "C:\\EnvironmentPortfolio\\my-site-kit\\public\\melodia\\vfx-showcase-2026-09-28\\hero-zen-forest-1920x1080.png",
+    "flags": [
+      "FLAT_WEBP(3KB<40KB)",
+      "NEAR_BLACK",
+      "FLAT_IMAGE"
+    ],
+    "png_kb": 406,
+    "webp_kb": 3,
+    "size": [
+      1920,
+      1080
+    ],
+    "mean_luma": 0.0,
+    "unique_colors": 1,
+    "magenta_pct": 0.0,
+    "status": "FLAGGED"
+  }
+]

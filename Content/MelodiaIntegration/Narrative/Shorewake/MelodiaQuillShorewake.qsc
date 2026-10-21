@@ -1,42 +1,60 @@
 @ Start
 
+$ Background {&/Game/Melodia/UI/Textures/Figma/T_Melodia_Figma_Asset_Hero_CosmicOrrery.T_Melodia_Figma_Asset_Hero_CosmicOrrery} none 0
+
 - Melusina
-  The tide in the sky is turning. I can feel the shorewake pulling toward the high balcony.
+  The mooring lanterns are bobbing against the sky-current. You can feel the pull of the Sea Above right through the dock planks.
+
+      $ Voice {&/Game/Melodia/Characters/Melusina/Audio/mel_road_01.mel_road_01} 0.9
 
 - Sir Melodious
-  The celestial current is attuned to your song, Melusina. Take the Shorewake Weave and board the Starskiff when you are ready.
+  Careful near the edge! Upward gravity has a sense of humor if your hem isn't tuned for buoyancy. Look at the Starskiff's brass hull—its patina is already humming with the sixteen-second tide.
 
-* Accept the Shorewake Weave and prepare to depart. | -> AcceptWeave
-* Inquire about the Sea Above currents.             | -> InquireCurrents
+- .
+  At the prow of the moored Starskiff rests the Shorewake Weave—scale-shimmer silk that catches the cyan water-light of the inverted ocean above.
+
+* Attune the Shorewake Weave to the sixteen-second membrane pulse. | -> AcceptWeave
+* Ask Sir Melodious why the sky-tide answers a dress and a lyre. | -> InquireCurrents
 
 <@> InquireCurrents
 
 - Melusina
-  The water above reflects no stars, only resonance.
+  The water up there doesn't reflect the stars, Sir. It reflects Chladni rings—like the ones on our sheep's fleece, only miles wide.
 
 - Sir Melodious
-  It is a living sea. The Shorewake fabric will stabilize your buoyancy across the sky.
+  Because the Sea Above is not sailed by wind, Melusina. It is sailed by standing waves. The Shorewake Weave acts as a hull-keel for your body, and the Starskiff's lyre cuts the nodal channels ahead of the prow.
 
 -> AcceptWeave
 
 <@> AcceptWeave
 
 - Melusina
-  The fabric aligns with the skyward tide. The current feels weightless against my hands.
+  The scale-shimmer thread locks right into the Sorrow Seam. My hands feel weightless—like the sky is offering to hold the instrument for me.
 
+      $ SFX {&/Game/Melodia/Audio/WaveHarp/SW_WaveHarp_Orchestra_C4.SW_WaveHarp_Orchestra_C4} 0.85
+
+$ melodia_shorewake_attuned = on
 $ Notify melodia:item:give:item.outfit.shorewake:1
 $ Notify melodia:stat:intent.shorewake.resonance:melodia_resonance:5
 $ Notify melodia:flag:flag.quest.shorewake_completed:true
 
 - Sir Melodious
-  The resonance holds! The Starskiff is anchored at the overlook mooring and ready for your command.
+  And look—because we witnessed the zenith from the balcony, thefourth measure of the Morning House is singing in full unison with the dock!
 
+$ Notify melodia:flag:flag.cutscene.sea_above_witnessed:true
+$ Notify melodia:flag:flag.sea_above.membrane_pulse_active:true
+$ Notify melodia:questcomplete:quest.cutscene.sea_above:flag.cutscene.sea_above_completed:reward.cutscene.sea_above_memory:intent.cutscene.sea_above.complete:checkpoint.cutscene.sea_above.complete
 $ Notify melodia:questcomplete:quest.shorewake.initiation:flag.quest.shorewake_completed:reward.shorewake_weave:intent.shorewake.complete:checkpoint.shorewake.complete
 $ Notify melodia:flag:flag.sea_above.starskiff_ready:true
+
+- Melusina
+  No more arriving late. The Starskiff is unmoored, the sheep has the root note, and the tide is ours.
+
+      $ Voice {&/Game/Melodia/Characters/Melusina/Audio/mel_arrival_02.mel_arrival_02} 0.9
 
 @ Finish
 
 - .
-  Melusina attunes to the Shorewake. Traversal aboard the Starskiff is unlocked.
+  Melusina attunes the Shorewake Weave and unlocks the fourth threshold. The Starskiff is ready at the overlook mooring to sail into the Sea Above.
 
 $ End

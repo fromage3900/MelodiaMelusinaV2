@@ -1,0 +1,138 @@
+{
+  "schema": "melodia.sky_theme_library.v1",
+  "description": "Starter Melodia sky themes for the Sky Forge Blender addon. One theme per canonical mode, named after the recipe that established that mode's world (recipes/*.v1.json). Colors are scene-linear RGB 0..1. Extend by adding entries; never edit a theme's musical identity to match another recipe - add a new theme instead.",
+  "themes": [
+    {
+      "schema": "melodia.sky_theme.v1",
+      "theme_id": "morning_meadow_ionian",
+      "label": "Morning Meadow (Ionian)",
+      "musical": {"mode_id": "ionian", "root_pitch_class": 0, "bpm": 96},
+      "sky": {
+        "gradient": {
+          "zenith": [0.22, 0.45, 0.86],
+          "horizon": [0.94, 0.78, 0.62],
+          "nadir": [0.55, 0.48, 0.42],
+          "banding_steps": 6
+        },
+        "sun": {
+          "azimuth_deg": 95.0, "elevation_deg": 22.0,
+          "color": [1.0, 0.92, 0.72],
+          "disc_radius_deg": 4.0, "glow_strength": 0.7
+        },
+        "clouds": {
+          "coverage": 0.35, "scale": 2.2, "softness": 0.4, "seed": 11,
+          "lit_color": [1.0, 0.96, 0.9], "shadow_color": [0.78, 0.68, 0.72]
+        },
+        "stars": {"density": 0.0, "color": [1.0, 0.98, 0.9]},
+        "aurora": {"strength": 0.0, "color_a": [0.4, 0.9, 0.7], "color_b": [0.5, 0.6, 1.0]}
+      },
+      "export": {"default_resolution": [2048, 1024]}
+    },
+    {
+      "schema": "melodia.sky_theme.v1",
+      "theme_id": "sakura_dream_dorian",
+      "label": "Sakura Dream (Dorian)",
+      "musical": {"mode_id": "dorian", "root_pitch_class": 9, "bpm": 88},
+      "sky": {
+        "gradient": {
+          "zenith": [0.42, 0.36, 0.72],
+          "horizon": [0.96, 0.66, 0.74],
+          "nadir": [0.5, 0.34, 0.46],
+          "banding_steps": 5
+        },
+        "sun": {
+          "azimuth_deg": 265.0, "elevation_deg": 12.0,
+          "color": [1.0, 0.78, 0.82],
+          "disc_radius_deg": 5.5, "glow_strength": 1.1,
+          "keying": {"mode": "root_pitch_class", "semitone_degrees": 30}
+        },
+        "motion": {"cloud_drift_per_beat": 0.08, "aurora_pulse_per_beat": 0.0},
+        "clouds": {
+          "coverage": 0.45, "scale": 1.8, "softness": 0.55, "seed": 23,
+          "lit_color": [1.0, 0.84, 0.88], "shadow_color": [0.58, 0.44, 0.64]
+        },
+        "stars": {"density": 0.15, "color": [1.0, 0.9, 0.95]},
+        "aurora": {"strength": 0.0, "color_a": [0.95, 0.55, 0.75], "color_b": [0.55, 0.45, 0.9]}
+      },
+      "export": {"default_resolution": [2048, 1024]}
+    },
+    {
+      "schema": "melodia.sky_theme.v1",
+      "theme_id": "harmonic_glass_lydian",
+      "label": "Harmonic Glass Garden (Lydian)",
+      "musical": {"mode_id": "lydian", "root_pitch_class": 0, "bpm": 104},
+      "sky": {
+        "gradient": {
+          "zenith": [0.3, 0.62, 0.9],
+          "horizon": [0.72, 0.92, 0.88],
+          "nadir": [0.4, 0.56, 0.6],
+          "banding_steps": 8
+        },
+        "sun": {
+          "azimuth_deg": 150.0, "elevation_deg": 35.0,
+          "color": [0.95, 1.0, 0.9],
+          "disc_radius_deg": 3.0, "glow_strength": 0.5
+        },
+        "clouds": {
+          "coverage": 0.25, "scale": 2.8, "softness": 0.3, "seed": 7,
+          "lit_color": [0.9, 1.0, 0.98], "shadow_color": [0.55, 0.7, 0.78]
+        },
+        "stars": {"density": 0.1, "color": [0.85, 1.0, 0.95]},
+        "aurora": {"strength": 0.25, "color_a": [0.35, 0.85, 0.95], "color_b": [0.55, 0.75, 1.0]}
+      },
+      "export": {"default_resolution": [2048, 1024]}
+    },
+    {
+      "schema": "melodia.sky_theme.v1",
+      "theme_id": "fallen_moon_aeolian",
+      "label": "Fallen Moon (Aeolian)",
+      "musical": {"mode_id": "aeolian", "root_pitch_class": 4, "bpm": 72},
+      "sky": {
+        "gradient": {
+          "zenith": [0.06, 0.08, 0.2],
+          "horizon": [0.22, 0.2, 0.38],
+          "nadir": [0.1, 0.1, 0.16],
+          "banding_steps": 4
+        },
+        "sun": {
+          "azimuth_deg": 200.0, "elevation_deg": 45.0,
+          "color": [0.78, 0.82, 1.0],
+          "disc_radius_deg": 2.5, "glow_strength": 0.35
+        },
+        "clouds": {
+          "coverage": 0.3, "scale": 2.0, "softness": 0.5, "seed": 41,
+          "lit_color": [0.5, 0.55, 0.78], "shadow_color": [0.14, 0.14, 0.26]
+        },
+        "stars": {"density": 0.85, "color": [0.9, 0.92, 1.0]},
+        "aurora": {"strength": 0.4, "color_a": [0.35, 0.55, 0.95], "color_b": [0.6, 0.4, 0.85]}
+      },
+      "export": {"default_resolution": [2048, 1024]}
+    },
+    {
+      "schema": "melodia.sky_theme.v1",
+      "theme_id": "petal_cantata_phrygian",
+      "label": "Petal Cantata (Phrygian)",
+      "musical": {"mode_id": "phrygian", "root_pitch_class": 5, "bpm": 80},
+      "sky": {
+        "gradient": {
+          "zenith": [0.3, 0.14, 0.3],
+          "horizon": [0.82, 0.42, 0.36],
+          "nadir": [0.32, 0.18, 0.2],
+          "banding_steps": 7
+        },
+        "sun": {
+          "azimuth_deg": 285.0, "elevation_deg": 8.0,
+          "color": [1.0, 0.66, 0.42],
+          "disc_radius_deg": 6.5, "glow_strength": 1.4
+        },
+        "clouds": {
+          "coverage": 0.5, "scale": 1.6, "softness": 0.45, "seed": 63,
+          "lit_color": [1.0, 0.6, 0.48], "shadow_color": [0.36, 0.2, 0.34]
+        },
+        "stars": {"density": 0.3, "color": [1.0, 0.85, 0.7]},
+        "aurora": {"strength": 0.0, "color_a": [0.9, 0.4, 0.5], "color_b": [0.6, 0.3, 0.7]}
+      },
+      "export": {"default_resolution": [2048, 1024]}
+    }
+  ]
+}

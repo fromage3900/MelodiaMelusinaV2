@@ -1,6 +1,6 @@
 {
   "schema": "melodia.p1.task_ledger.v1",
-  "as_of": "2026-09-24",
+  "as_of": "2026-10-17",
   "authority": {
     "status": "OWNER_BOUNDED_LOOKDEV_ACTIVE",
     "scope": "2026-09-24 bounded lookdev queue plus the owner-directed 2026-09-29 school scope: one P0 Sea Above FieldAtlas tile, the existing Faraway Mother resonance-field integration, and the named Gate 6 Glitter Pile system. Other World Compiler, PCG, Universe Foundry, Hython, material, Niagara, and runtime work remains consume/maintain-only.",
@@ -9,7 +9,7 @@
     "execution_rule": "Do not open general PCG, World Compiler, Universe Foundry, FieldAtlas, procedural-world architecture, parallel authority, or speculative refactor work. Execute only the named P0 test-tile, Faraway Mother field, and Gate 6 Glitter Pile gates using their existing owners and contracts."
   },
   "melusina_work": {
-    "scope_as_of": "2026-10-01",
+    "scope_as_of": "2026-10-17",
     "canonical_visualization": "SYSTEM_MAP.md#melusina-runtime-system-diagram",
     "blueprint_family_visualization": "SYSTEM_MAP.md#melusina-blueprint-family",
     "foundry_boundary_visualization": "SYSTEM_MAP.md#universe-foundry-integration-boundary",
@@ -21,7 +21,8 @@
       "Rokoko",
       "Universe Foundry integrations",
       "normal gameplay movement/input",
-      "WaveHarp runtime gameplay path"
+      "WaveHarp runtime gameplay path",
+      "WaveHarp 3rd Form Carillon Chime-Scythe + ACFU component stack + First Resonance hybrid loop"
     ],
     "proof_policy": "Owner confirmation, source/editor state, live PIE, restart, and packaged proof are distinct; do not promote one tier into another.",
     "closeout_order": [
@@ -32,6 +33,18 @@
       "Promote only exact reviewed assets and dependencies; keep legacy-root retirement and mixed concurrent WIP outside this slice."
     ],
     "work_items": [
+      {
+        "id": "MELUSINA_P0_HYBRID_SCYTHE_ACFU_AND_GARMENT_CONVERGENCE_20261017",
+        "status": "cpp_compiled_and_editor_assets_saved",
+        "deliverable": "Close the P0 hybrid combat feel loop (WaveHarp 3rd-form Carillon Chime-Scythe notify-driven hit + ACMCollisionManager swipe trace + Harmonix VisualTimebase morph pulse + ATSTargeting T-key lock + MotionWarping step + damped Sequence handoff + 0.2s idle blend-out), fix Sir Melodious non-canon hull outline & BP_SirMelodiousPlayerUnit mesh/anim bug, fix Melusina hat head_x seating, fix DA_MelodiaCosmeticCatalog shirt/skirt bindings + over-skirt peplum clearance, and fix DA_Melusina_HairCollisionLimits cm-scale head/face/neck/shoulder colliders.",
+        "evidence": [
+          "UnrealEditor-BS_GodFile.dll compiled & linked (2026-10-17, 0 errors) with UAnimNotify_MelodiaScytheHit, 3-step ScytheStep chain, ACMCollisionManagerComponent::PerformSwipeTraceShot_Local blade trace, VisualTimebase morph modulation, ToggleLock (T), BeginLockStep, UpdateSequenceFeel, UpdateLockTurn, and UMelodiaWaveHarpHUDWidget resonance % + Q W O P prompt.",
+          "Saved/Audit/MelusinaPhase1_20261017/ContactSheet_Melusina_Final_Lookdev_And_ACFU_2026-10-17.png and Saved/Staging/WaveHarpScythe_20261017/ContactSheet_WaveHarp_3Forms_2026-10-17.png.",
+          "Saved/Audit/mcp_run_python/fix_hair_and_catalog_20261017T204113Z.json — DA_Melusina_HairCollisionLimits cm-scale colliders saved, ABP_Melusina_WaterHair tuned (limit_angle=36, damping=0.28, stiffness=0.16, radius=3.2 cm) and saved, DA_MelodiaCosmeticCatalog updated and saved (Cos_Shirt_MelusinaV2 -> SK_Melusina_V2_Shirt_Flared, Cos_Skirt_MelusinaV2 -> SK_Melusina_V2_Skirt_R2_SmoothChains).",
+          "Saved/Staging/WaveHarpScythe_20261017/shirt_and_accessories_rig_receipt.json — 861 shirt vertices remapped off leg bones, lower hem blended onto c_kilt_master_x/root_x, +4.938 cm minimum 360-degree radial clearance over skirt."
+        ],
+        "remaining_gate": "Foreground Orrery PIE walkthrough capture (Tools/p0_hybrid_loop_driver.py) once L_MelusinaMorning dirty external actors are saved or cleared."
+      },
       {
         "id": "MELUSINA_WAVEHARP_ANIMATION_CONVERGENCE",
         "status": "active_animation_presentation_open",

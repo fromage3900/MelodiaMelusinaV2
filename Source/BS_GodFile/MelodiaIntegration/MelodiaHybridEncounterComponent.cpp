@@ -3,6 +3,7 @@
 #include "Engine/DamageEvents.h"
 #include "Engine/World.h"
 #include "MelodiaExternalJRPGBridgeSubsystem.h"
+#include "MelodiaMusicClockSubsystem.h"
 #include "MelodiaRhythmCombatSubsystem.h"
 #include "MelodiaRhythmSkillDefinition.h"
 
@@ -49,7 +50,7 @@ void UMelodiaHybridEncounterComponent::EndPlay(const EEndPlayReason::Type EndPla
 bool UMelodiaHybridEncounterComponent::EnterSequence(const FName RhythmSkillId)
 {
 	if (PresentationMode != EMelodiaHybridPresentationMode::Flow || EncounterId.IsNone()
-		|| !IsValid(GetOwner()) || !GetOwner()->CanBeDamaged())
+		|| !IsValid(GetOwner()) || !GetOwner()->CanBeDamaged() || !IsResonanceLocked())
 	{
 		return false;
 	}
@@ -110,6 +111,8 @@ bool UMelodiaHybridEncounterComponent::CancelSequence()
 	}
 	RhythmInputHandle = FMelodiaInputContextHandle();
 	PresentationMode = EMelodiaHybridPresentationMode::Flow;
+	// A broken phrase shatters the figure; Flow must tune it again.
+	SetResonance(0.0f);
 	OnPresentationModeChanged.Broadcast(PresentationMode, GetOwner());
 	return true;
 }
@@ -139,6 +142,8 @@ bool UMelodiaHybridEncounterComponent::ExitSequence()
 	RhythmInputHandle = FMelodiaInputContextHandle();
 	SequenceSessionId = 0;
 	PresentationMode = EMelodiaHybridPresentationMode::Flow;
+	// The played figure is spent; the target answers with dissonance.
+	SetResonance(0.0f);
 	OnPresentationModeChanged.Broadcast(PresentationMode, GetOwner());
 	return true;
 }
@@ -206,7 +211,7 @@ bool UMelodiaHybridEncounterComponent::ApplyResolvedSequenceDamage(const float F
 	return true;
 }
 
-bool UMelodiaHybridEncounterComponent::ApplyResolvedFlowDamage(const float FinalDamage)
+bool UMelodiaHybridEncounterComponent::ApplyResolvedFlowDamage(const float FinalDamage, const float ActionBeatPhase)
 {
 	AActor* Target = GetOwner();
 	if (PresentationMode != EMelodiaHybridPresentationMode::Flow || !IsValid(Target) || !Target->CanBeDamaged()
@@ -215,5 +220,50 @@ bool UMelodiaHybridEncounterComponent::ApplyResolvedFlowDamage(const float Final
 		return false;
 	}
 	FDamageEvent DamageEvent;
-	return Target->TakeDamage(FinalDamage, DamageEvent, nullptr, nullptr) > 0.0f;
+	if (Target->TakeDamage(FinalDamage, DamageEvent, nullptr, nullptr) <= 0.0f)
+	{
+		return false;
+	}
+	AddFlowResonance(ActionBeatPhase);
+	return true;
+}
+
+float UMelodiaHybridEncounterComponent::GetResonanceNormalized() const
+{
+	return ResonanceHitsToLock > 0 ? FMath::Clamp(Resonance / ResonanceHitsToLock, 0.0f, 1.0f) : 1.0f;
+}
+
+bool UMelodiaHybridEncounterComponent::IsResonanceLocked() const
+{
+	return GetResonanceNormalized() >= 1.0f;
+}
+
+void UMelodiaHybridEncounterComponent::AddFlowResonance(float ActionBeatPhase)
+{
+	// No running music means no beat to miss: every hit counts as on the beat,
+	// the same degrade-to-immediate rule the music clock documents.
+	if (ActionBeatPhase < 0.0f)
+	{
+		const UMelodiaMusicClockSubsystem* MusicClock = UMelodiaMusicClockSubsystem::Get(this);
+		if (MusicClock && MusicClock->HasMusicalTime())
+		{
+			ActionBeatPhase = MusicClock->GetBeatPhase(UMelodiaMusicClockSubsystem::InputTimebase);
+		}
+	}
+	const bool bOnBeat = ActionBeatPhase < 0.0f
+		|| FMath::Min(ActionBeatPhase, 1.0f - ActionBeatPhase) <= OnBeatWindowBeats;
+	SetResonance(Resonance + (bOnBeat ? 1.0f : OffBeatResonanceFraction));
+	UE_LOG(LogTemp, Log, TEXT("MELODIA_HYBRID_RESONANCE encounter=%s on_beat=%d resonance=%.3f locked=%d"),
+		*EncounterId.ToString(), bOnBeat ? 1 : 0, GetResonanceNormalized(), IsResonanceLocked() ? 1 : 0);
+}
+
+void UMelodiaHybridEncounterComponent::SetResonance(const float NewResonance)
+{
+	const float Clamped = FMath::Clamp(NewResonance, 0.0f, static_cast<float>(ResonanceHitsToLock));
+	if (Clamped == Resonance)
+	{
+		return;
+	}
+	Resonance = Clamped;
+	OnResonanceChanged.Broadcast(GetResonanceNormalized(), IsResonanceLocked());
 }

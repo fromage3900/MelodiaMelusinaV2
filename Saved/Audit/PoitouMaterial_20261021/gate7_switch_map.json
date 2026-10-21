@@ -1,0 +1,431 @@
+{
+ "generated": "2026-10-21",
+ "gate": "7",
+ "title": "Switch map \u2014 the master is two disjoint materials, not a hybrid",
+ "evidence_level": "read-only: get_full_connection_graph reachability + master switch defaults + MI static-switch overrides",
+ "master": "/Game/EnvSandbox/Materials/Masters/M_Master_Nikki_Landscape",
+ "mi": "/Game/EnvSandbox/Poitou/Materials/MI_Poitou_Landscape_Nikki",
+ "method": "For each StaticSwitchParameter, the branch set is the UPSTREAM ancestry of its True resp. False input pin (reverse adjacency), minus the other branch's ancestry. Downstream walks are wrong here \u2014 they pull in unrelated branches that merely merge later.",
+ "headline": "bUseExtendedLayers selects between two mutually exclusive graphs at LinearInterpolate_8. It is not a feature toggle, and the material is therefore not a hybrid today.",
+ "use_extended_layers": {
+  "nodes": [
+   "MaterialExpressionStaticSwitchParameter_2",
+   "MaterialExpressionStaticSwitchParameter_3"
+  ],
+  "master_default": true,
+  "mi_value": true,
+  "true_branch_sink": "Divide_6 / Divide_7, normalized by Max_2 (A = Add_5)",
+  "false_branch_sink": "LinearInterpolate_5",
+  "true_branch_only": [
+   "GaeaLandscapeMin",
+   "GaeaLandscapeSize",
+   "Gaea_RockMask",
+   "Gaea_RockWeight",
+   "Gaea_SnowMask",
+   "Gaea_SnowWeight",
+   "Gaea_WaterMask",
+   "Gaea_WaterWeight",
+   "MudTint",
+   "Mud_Albedo",
+   "Mud_NormalMap",
+   "PathTint",
+   "Path_Albedo",
+   "Path_NormalMap",
+   "SnowStrength",
+   "SnowTint",
+   "SnowUpBias",
+   "Snow_Albedo",
+   "Snow_NormalMap",
+   "Snow_BreakupStrength",
+   "Snow_BreakupWorldSizeCM",
+   "WaterAlignTint",
+   "Water_Albedo",
+   "Water_NormalMap",
+   "bGaeaWholeLandscapeColor",
+   "bSnowCoverageBreakup"
+  ],
+  "false_branch_only": [
+   "Albedo",
+   "BaseTint",
+   "AtmosphericColor",
+   "AtmosphericEnd",
+   "AtmosphericStart",
+   "AtmosphericStrength",
+   "Ground_Albedo",
+   "Ground_NormalMap",
+   "Ground_UVScale",
+   "Grass_Albedo",
+   "Grass_NormalMap",
+   "Grass_UVScale",
+   "Rock_Albedo",
+   "Rock_NormalMap",
+   "Rock_UVScale",
+   "Rock_DetailAlbedo",
+   "Rock_DetailAlbedoReference",
+   "Rock_DetailAlbedoStrength",
+   "Rock_DetailWorldSizeCM",
+   "Rock_TriplanarBlend",
+   "Rock_TriplanarNormalStrength",
+   "TriplanarPro_AxisWeights",
+   "TriplanarPro_BlendStrength",
+   "TriplanarPro_BreakupContrast",
+   "TriplanarPro_BreakupScale",
+   "TriplanarPro_BreakupStrength",
+   "TriplanarPro_ProjectionOffset",
+   "TriplanarPro_ProjectionRotation",
+   "TriplanarPro_Scale",
+   "TriplanarPro_Sharpness",
+   "RampLow",
+   "RampMid",
+   "RampHigh",
+   "RampContrast",
+   "RampPosMid",
+   "RampStrength",
+   "NikkiPastelBloom",
+   "NikkiPastelLift",
+   "NikkiPastelPosMid",
+   "NikkiPastelRampHigh",
+   "NikkiPastelRampLow",
+   "NikkiPastelRampMid",
+   "NikkiPastelStrength",
+   "NikkiFabricSheen",
+   "NikkiIridescence",
+   "NikkiIrisTint",
+   "NikkiTwinkleAmount",
+   "NikkiTwinkleScale",
+   "NikkiStickerBandCount",
+   "NikkiStickerBandSoftness",
+   "NikkiStickerShadeColor",
+   "NikkiStickerStrength",
+   "NikkiStickerEdge_Bands",
+   "NikkiStickerEdge_Color",
+   "NikkiStickerEdge_Softness",
+   "NikkiStickerEdge_Strength",
+   "NikkiStickerEdge_Width",
+   "NikkiGlitterHalo_Amount",
+   "NikkiGlitterHalo_Color",
+   "NikkiGlitterHalo_HaloPower",
+   "NikkiGlitterHalo_HaloStrength",
+   "NikkiGlitterHalo_Intensity",
+   "NikkiGlitterHalo_Scale",
+   "NikkiGlitterHalo_TwinkleSpeed",
+   "NikkiPetal_BloomSpeed",
+   "NikkiPetal_Radius",
+   "NikkiPetal_Scale",
+   "NikkiPetal_Softness",
+   "NikkiPetal_Strength",
+   "NikkiPetal_Tint",
+   "NikkiPearl_Frequency",
+   "NikkiPearl_SecondFrequency",
+   "NikkiPearl_Strength",
+   "NikkiPearl_Tint",
+   "NikkiSDFRibbon_Color",
+   "NikkiSDFRibbon_EdgeFalloff",
+   "NikkiSDFRibbon_EdgeStrength",
+   "NikkiSDFRibbon_Scale",
+   "NikkiSDFRibbon_Sharpness",
+   "NikkiSDFRibbon_Strength",
+   "NikkiWatercolor_Bleed",
+   "NikkiWatercolor_BleedColor",
+   "NikkiWatercolor_Jitter",
+   "NikkiWatercolor_Strength",
+   "GlitterPile_Brightness",
+   "GlitterPile_Color",
+   "GlitterPile_Density",
+   "GlitterPile_FacetSharpness",
+   "GlitterPile_Gate",
+   "GlitterPile_HaloPower",
+   "GlitterPile_HaloStrength",
+   "GlitterPile_Iridescence",
+   "GlitterPile_Scale",
+   "ShadowDreamStrength",
+   "ShadowDreamTint",
+   "ShadowSoftness",
+   "MaterialExpressionCollectionParameter_0..3",
+   "bTriplanarPro_Active",
+   "bRockDetailAlbedo",
+   "bRockTriplanarNormals",
+   "bShadowDream_Active",
+   "bNikkiPastelGrade_Active",
+   "bNikkiTwinkleIris_Active",
+   "bNikkiStickerShade_Active",
+   "bNikkiStickerEdge_Active",
+   "bNikkiGlitterHalo_Active",
+   "bNikkiPetalShadow_Active",
+   "bNikkiPearlSheen_Active",
+   "bNikkiSDFRibbon_Active",
+   "bNikkiDreamWatercolor_Active",
+   "bNikkiSquishWPO_Active"
+  ]
+ },
+ "consequences": [
+  "Every Nikki feature switch the MI has ENABLED is inert: bNikkiPastelGrade_Active, bNikkiTwinkleIris_Active, bTriplanarPro_Active and bRockDetailAlbedo all sit in the dead false branch while bUseExtendedLayers = true.",
+  "The ramp convergence recorded earlier (RampContrast 1.0, RampPosMid 0.5) is correct but inert for the same reason. It applies to the false branch only.",
+  "The material cannot read as a hybrid until the extended layer colour is fed THROUGH the Nikki grade instead of replacing it."
+ ],
+ "switch_state": {
+  "bUseExtendedLayers": {
+   "nodes": 2,
+   "master": true,
+   "mi": true,
+   "gates": "the entire extended landscape path (true) vs the entire Nikki path (false)"
+  },
+  "bUseGaeaMasks": {
+   "nodes": 1,
+   "master": false,
+   "mi": false,
+   "true_branch_only": [
+    "GaeaLandscapeMin",
+    "GaeaLandscapeSize",
+    "Gaea_FlowMask",
+    "Gaea_FlowWeight"
+   ]
+  },
+  "bGaeaWholeLandscapeColor": {
+   "nodes": 5,
+   "master": false,
+   "mi": false,
+   "true_branch_only": [
+    "GaeaLandscapeMin",
+    "GaeaLandscapeSize"
+   ],
+   "false_branch_only": [
+    "Grass_UVScale",
+    "Ground_UVScale",
+    "Rock_UVScale"
+   ]
+  },
+  "bSnowFrostDistanceBand": {
+   "nodes": 1,
+   "master": false,
+   "mi": false,
+   "true_branch_only": [
+    "SnowEdgeDistanceRangeCM",
+    "SnowEdgeDistanceTexture",
+    "SnowFrostBandStrength",
+    "SnowFrostBandWidthCM",
+    "SnowFrostRoughness"
+   ]
+  },
+  "bSnowCoverageBreakup": {
+   "nodes": 1,
+   "master": false,
+   "mi": false,
+   "true_branch_only": [
+    "Snow_BreakupStrength",
+    "Snow_BreakupWorldSizeCM"
+   ]
+  },
+  "bRockDetailAlbedo": {
+   "nodes": 1,
+   "master": false,
+   "mi": true,
+   "true_branch_only": [
+    "Rock_DetailAlbedo",
+    "Rock_DetailAlbedoReference",
+    "Rock_DetailAlbedoStrength",
+    "Rock_DetailWorldSizeCM",
+    "Rock_NormalMap",
+    "Rock_TriplanarBlend",
+    "Rock_TriplanarNormalStrength",
+    "TriplanarPro_AxisWeights",
+    "TriplanarPro_BreakupContrast",
+    "TriplanarPro_BreakupScale",
+    "TriplanarPro_BreakupStrength",
+    "TriplanarPro_ProjectionOffset",
+    "TriplanarPro_ProjectionRotation",
+    "TriplanarPro_Sharpness"
+   ]
+  },
+  "bRockTriplanarNormals": {
+   "nodes": 1,
+   "master": false,
+   "mi": false,
+   "true_branch_only": [
+    "Rock_DetailAlbedo",
+    "Rock_DetailWorldSizeCM",
+    "Rock_NormalMap",
+    "Rock_TriplanarBlend",
+    "Rock_TriplanarNormalStrength",
+    "TriplanarPro_AxisWeights",
+    "TriplanarPro_BreakupContrast",
+    "TriplanarPro_BreakupScale",
+    "TriplanarPro_BreakupStrength",
+    "TriplanarPro_ProjectionOffset",
+    "TriplanarPro_ProjectionRotation",
+    "TriplanarPro_Sharpness"
+   ]
+  },
+  "bTriplanarPro_Active": {
+   "nodes": 1,
+   "master": false,
+   "mi": true,
+   "true_branch_only": [
+    "Albedo",
+    "TriplanarPro_BlendStrength",
+    "TriplanarPro_Scale"
+   ]
+  },
+  "bShadowDream_Active": {
+   "nodes": 1,
+   "master": false,
+   "mi": false,
+   "true_branch_only": [
+    "GlitterPile_*",
+    "NikkiGlitterHalo_*",
+    "NikkiPearl_*",
+    "NikkiPetal_*",
+    "NikkiSDFRibbon_*",
+    "NikkiStickerEdge_*",
+    "NikkiWatercolor_*",
+    "ShadowDreamStrength",
+    "ShadowDreamTint",
+    "ShadowSoftness",
+    "bNikkiDreamWatercolor_Active",
+    "bNikkiGlitterHalo_Active",
+    "bNikkiPearlSheen_Active",
+    "bNikkiPetalShadow_Active",
+    "bNikkiSDFRibbon_Active",
+    "bNikkiStickerEdge_Active"
+   ]
+  },
+  "bNikkiPastelGrade_Active": {
+   "nodes": 1,
+   "master": true,
+   "mi": true,
+   "true_branch_only": [
+    "NikkiPastelBloom",
+    "NikkiPastelLift",
+    "NikkiPastelPosMid",
+    "NikkiPastelRampHigh",
+    "NikkiPastelRampLow",
+    "NikkiPastelRampMid",
+    "NikkiPastelStrength"
+   ]
+  },
+  "bNikkiTwinkleIris_Active": {
+   "nodes": 1,
+   "master": true,
+   "mi": true,
+   "true_branch_only": [
+    "NikkiFabricSheen",
+    "NikkiIridescence",
+    "NikkiIrisTint",
+    "NikkiTwinkleAmount",
+    "NikkiTwinkleScale"
+   ]
+  },
+  "bNikkiStickerShade_Active": {
+   "nodes": 1,
+   "master": false,
+   "mi": false,
+   "true_branch_only": [
+    "NikkiStickerBandCount",
+    "NikkiStickerBandSoftness",
+    "NikkiStickerShadeColor",
+    "NikkiStickerStrength"
+   ]
+  },
+  "bNikkiStickerEdge_Active": {
+   "nodes": 1,
+   "master": false,
+   "mi": false,
+   "true_branch_only": [
+    "NikkiStickerEdge_Bands",
+    "NikkiStickerEdge_Color",
+    "NikkiStickerEdge_Softness",
+    "NikkiStickerEdge_Strength",
+    "NikkiStickerEdge_Width"
+   ]
+  },
+  "bNikkiGlitterHalo_Active": {
+   "nodes": 1,
+   "master": false,
+   "mi": false,
+   "true_branch_only": [
+    "NikkiGlitterHalo_Amount",
+    "NikkiGlitterHalo_Color",
+    "NikkiGlitterHalo_HaloPower",
+    "NikkiGlitterHalo_HaloStrength",
+    "NikkiGlitterHalo_Intensity",
+    "NikkiGlitterHalo_Scale",
+    "NikkiGlitterHalo_TwinkleSpeed"
+   ]
+  },
+  "bNikkiPetalShadow_Active": {
+   "nodes": 1,
+   "master": false,
+   "mi": false,
+   "true_branch_only": [
+    "NikkiPetal_BloomSpeed",
+    "NikkiPetal_Radius",
+    "NikkiPetal_Scale",
+    "NikkiPetal_Softness",
+    "NikkiPetal_Strength",
+    "NikkiPetal_Tint"
+   ]
+  },
+  "bNikkiPearlSheen_Active": {
+   "nodes": 1,
+   "master": false,
+   "mi": false,
+   "true_branch_only": [
+    "NikkiPearl_Frequency",
+    "NikkiPearl_SecondFrequency",
+    "NikkiPearl_Strength",
+    "NikkiPearl_Tint"
+   ]
+  },
+  "bNikkiSDFRibbon_Active": {
+   "nodes": 1,
+   "master": false,
+   "mi": false,
+   "true_branch_only": [
+    "NikkiSDFRibbon_Color",
+    "NikkiSDFRibbon_EdgeFalloff",
+    "NikkiSDFRibbon_EdgeStrength",
+    "NikkiSDFRibbon_Scale",
+    "NikkiSDFRibbon_Sharpness",
+    "NikkiSDFRibbon_Strength"
+   ]
+  },
+  "bNikkiDreamWatercolor_Active": {
+   "nodes": 1,
+   "master": false,
+   "mi": false,
+   "true_branch_only": [
+    "NikkiWatercolor_Bleed",
+    "NikkiWatercolor_BleedColor",
+    "NikkiWatercolor_Jitter",
+    "NikkiWatercolor_Strength"
+   ]
+  },
+  "bNikkiSquishWPO_Active": {
+   "nodes": 1,
+   "master": false,
+   "mi": false,
+   "true_branch_only": [
+    "NikkiSquish_Amount",
+    "NikkiSquish_Direction",
+    "NikkiSquish_Speed"
+   ]
+  }
+ },
+ "convergence_fork": {
+  "question": "The two looks are selected, not blended. Which hybrid is wanted?",
+  "options": {
+   "a": "Feed the extended layer colour (Divide_6) through the Nikki ramp/pastel grade so Poitou PBR gets the toon treatment. This is the only option that makes the enabled Nikki switches do anything.",
+   "b": "Keep the either/or and treat the extended branch as the shipping look; the Nikki feature block stays archived behind the switch.",
+   "c": "Move only selected Nikki features (pastel grade, twinkle iris) onto the extended branch, leaving the rest archived."
+  },
+  "recommended": "a",
+  "why": "The MI already enables bNikkiPastelGrade_Active and bNikkiTwinkleIris_Active, which means someone intended those to be visible. Today they cannot be."
+ },
+ "_superseded_20261021": {
+  "reason": "the inert annotations in this file are wrong for the Nikki switch block",
+  "wrong_claim": "switches inside the false branch of bUseExtendedLayers are inert",
+  "why_wrong": "LinearInterpolate_8.A is fed by LinearInterpolate_5 directly, independent of StaticSwitchParameter_2, so the pastel grade / ramp chain reaches BaseColor through the A slot. The switch selects the B slot only.",
+  "method_rule": "a branch is inert only if every node in it has no consumer reachable from the material output outside the switch; single-pin ancestry is insufficient",
+  "corrected_by": "hybrid_grade_and_rock_fix_20261021.json"
+ }
+}

@@ -70,18 +70,26 @@
     }
    ]
   },
-  {
-   "id": "runtime_gates",
-   "label": "Runtime gates",
-   "impls": [
-    "pie_smoke_runner.py",
-    "regression_suite.py",
-    "Melodia.Wiring suite (Automation RunTests Melodia)",
-    "campaign scripts (docs/echo/campaign_*.md)"
-   ],
-   "contract": "Monolith runtime tools are clean; Melodia.Wiring and campaign evidence are reviewed separately and recorded explicitly",
-   "ledger_id": "runtime_gates"
-  },
+   {
+    "id": "runtime_gates",
+    "label": "Runtime gates",
+    "impls": [
+     "pie_smoke_runner.py",
+     "regression_suite.py",
+     "Melodia.Wiring suite (Automation RunTests Melodia)",
+     "campaign scripts (docs/echo/campaign_*.md)"
+    ],
+    "contract": "Monolith runtime tools are clean; Melodia.Wiring and campaign evidence are reviewed separately and recorded explicitly",
+    "ledger_id": "runtime_gates",
+    "gates": [
+     {
+      "id": "sir_flight_runtime",
+      "label": "Sir flight runtime",
+      "contract": "BP_SirMelodious_Flight spawns in PIE with 0 Blueprint Runtime Errors / Accessed None; live mesh AnimClass is ABP_SirMelodious_v7; ABP compiles 0 errors; Melodia.FlightTests.SirPerchLandTakeoff passes; possessed movement input produces measured displacement (forward + vertical). Actor_setup class paths must use the full dotted _C form.",
+      "blocking": false
+     }
+    ]
+   },
   {
    "id": "orchestra",
    "label": "Orchestra convergence",

@@ -1,0 +1,1614 @@
+[
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/Polish_20260919/A_Melusina_BowAttackV2_A_RangeAttack",
+    "keys": 40,
+    "keys_checked": 1,
+    "compressed_verdict": "FAIL",
+    "max_arm_deviation_cm": 19.0407765949439,
+    "failure": {
+      "frame": 0,
+      "reason": "arm_length",
+      "side": "l",
+      "segments": [
+        34.78897140275687,
+        9.5202234050561,
+        28.61460431037364
+      ]
+    }
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/A_ThirdPersonDash",
+    "keys": 21,
+    "keys_checked": 1,
+    "compressed_verdict": "FAIL",
+    "max_arm_deviation_cm": 19.04065870210068,
+    "failure": {
+      "frame": 0,
+      "reason": "arm_length",
+      "side": "l",
+      "segments": [
+        34.78938401014156,
+        9.520341297899323,
+        28.614612657395252
+      ]
+    }
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/A_ThirdPersonIdle",
+    "keys": 79,
+    "keys_checked": 1,
+    "compressed_verdict": "FAIL",
+    "max_arm_deviation_cm": 19.04073766013296,
+    "failure": {
+      "frame": 0,
+      "reason": "arm_length",
+      "side": "l",
+      "segments": [
+        34.78910630339747,
+        9.52026233986704,
+        28.614630498114614
+      ]
+    }
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/A_ThirdPersonJump_End",
+    "keys": 6,
+    "keys_checked": 1,
+    "compressed_verdict": "FAIL",
+    "max_arm_deviation_cm": 19.04065870210068,
+    "failure": {
+      "frame": 0,
+      "reason": "arm_length",
+      "side": "l",
+      "segments": [
+        34.78938401014156,
+        9.520341297899323,
+        28.614612657395252
+      ]
+    }
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/A_ThirdPersonRun",
+    "keys": 18,
+    "keys_checked": 1,
+    "compressed_verdict": "FAIL",
+    "max_arm_deviation_cm": 19.04065870210068,
+    "failure": {
+      "frame": 0,
+      "reason": "arm_length",
+      "side": "l",
+      "segments": [
+        34.78938401014156,
+        9.520341297899323,
+        28.614612657395252
+      ]
+    }
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/A_ThirdPersonWalk",
+    "keys": 30,
+    "keys_checked": 1,
+    "compressed_verdict": "FAIL",
+    "max_arm_deviation_cm": 19.04065870210068,
+    "failure": {
+      "frame": 0,
+      "reason": "arm_length",
+      "side": "l",
+      "segments": [
+        34.78938401014156,
+        9.520341297899323,
+        28.614612657395252
+      ]
+    }
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/Authored/A_Melusina_Idle_v22",
+    "keys": 24,
+    "keys_checked": 1,
+    "compressed_verdict": "FAIL",
+    "max_arm_deviation_cm": 28.32885438410706,
+    "failure": {
+      "frame": 0,
+      "reason": "arm_length",
+      "side": "l",
+      "segments": [
+        0.19040678015934576,
+        1.1751591437374038,
+        0.2861456158929392
+      ]
+    }
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/Authored/A_MUAL_Melusina_Idle_Loop",
+    "keys": 30,
+    "keys_checked": 1,
+    "compressed_verdict": "FAIL",
+    "max_arm_deviation_cm": 2832.843773879584,
+    "failure": {
+      "frame": 0,
+      "reason": "arm_length",
+      "side": "l",
+      "segments": [
+        1577.4470396517397,
+        2856.1002428728216,
+        2861.458773879584
+      ]
+    }
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/Cascadeur/A_BL_Melusina_Idle_Loop",
+    "keys": 24,
+    "keys_checked": 1,
+    "compressed_verdict": "FAIL",
+    "max_arm_deviation_cm": 85.59971259120258,
+    "failure": {
+      "frame": 0,
+      "reason": "arm_length",
+      "side": "l",
+      "segments": [
+        19.040670379272083,
+        114.16071259120257,
+        28.614619770938404
+      ]
+    }
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/Cascadeur/A_Cascadeur_Melusina_BowDraw_v2_Forge_InPlace",
+    "keys": 83,
+    "keys_checked": 1,
+    "compressed_verdict": "FAIL",
+    "max_arm_deviation_cm": 0,
+    "failure": {
+      "frame": 0,
+      "reason": "root_scale",
+      "scale": [
+        100.0,
+        100.0,
+        100.0
+      ]
+    }
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/Cascadeur/A_CAS_Melusina_Idle_Loop",
+    "keys": 76,
+    "keys_checked": 1,
+    "compressed_verdict": "FAIL",
+    "max_arm_deviation_cm": 19.040658702100664,
+    "failure": {
+      "frame": 0,
+      "reason": "arm_length",
+      "side": "l",
+      "segments": [
+        34.78938401014161,
+        9.520341297899334,
+        28.614601302818
+      ]
+    }
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/CastCandidates_20261001/A_Q_Melusina_Pistol_Aim_Down",
+    "keys": 6,
+    "keys_checked": 1,
+    "compressed_verdict": "FAIL",
+    "max_arm_deviation_cm": 19.040656432274098,
+    "failure": {
+      "frame": 0,
+      "reason": "arm_length",
+      "side": "l",
+      "segments": [
+        34.789392549197466,
+        9.520343567725904,
+        28.614608125072166
+      ]
+    }
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/CastCandidates_20261001/A_Q_Melusina_Pistol_Aim_Neutral",
+    "keys": 6,
+    "keys_checked": 1,
+    "compressed_verdict": "FAIL",
+    "max_arm_deviation_cm": 19.040656432273728,
+    "failure": {
+      "frame": 0,
+      "reason": "arm_length",
+      "side": "l",
+      "segments": [
+        34.78939254919732,
+        9.520343567726274,
+        28.614608125072053
+      ]
+    }
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/CastCandidates_20261001/A_Q_Melusina_Pistol_Aim_Up",
+    "keys": 6,
+    "keys_checked": 1,
+    "compressed_verdict": "FAIL",
+    "max_arm_deviation_cm": 19.04065643227446,
+    "failure": {
+      "frame": 0,
+      "reason": "arm_length",
+      "side": "l",
+      "segments": [
+        34.7893925491973,
+        9.520343567725542,
+        28.614608125072554
+      ]
+    }
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/CastCandidates_20261001/A_Q_Melusina_Pistol_Shoot",
+    "keys": 20,
+    "keys_checked": 1,
+    "compressed_verdict": "FAIL",
+    "max_arm_deviation_cm": 19.040656432273728,
+    "failure": {
+      "frame": 0,
+      "reason": "arm_length",
+      "side": "l",
+      "segments": [
+        34.78939254919732,
+        9.520343567726274,
+        28.614608125072053
+      ]
+    }
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/CastCandidates_20261001/A_Q_Melusina_Spell_Simple_Enter",
+    "keys": 17,
+    "keys_checked": 1,
+    "compressed_verdict": "FAIL",
+    "max_arm_deviation_cm": 19.040656432274417,
+    "failure": {
+      "frame": 0,
+      "reason": "arm_length",
+      "side": "l",
+      "segments": [
+        34.78939254919731,
+        9.520343567725584,
+        28.614608125071918
+      ]
+    }
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/CastCandidates_20261001/A_Q_Melusina_Spell_Simple_Exit",
+    "keys": 14,
+    "keys_checked": 1,
+    "compressed_verdict": "FAIL",
+    "max_arm_deviation_cm": 19.04065643227392,
+    "failure": {
+      "frame": 0,
+      "reason": "arm_length",
+      "side": "l",
+      "segments": [
+        34.789392549197295,
+        9.520343567726082,
+        28.614608125071864
+      ]
+    }
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/CastCandidates_20261001/A_Q_Melusina_Spell_Simple_Idle_Loop",
+    "keys": 64,
+    "keys_checked": 1,
+    "compressed_verdict": "FAIL",
+    "max_arm_deviation_cm": 19.040656432274005,
+    "failure": {
+      "frame": 0,
+      "reason": "arm_length",
+      "side": "l",
+      "segments": [
+        34.78939254919734,
+        9.520343567725996,
+        28.614608125071864
+      ]
+    }
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/CastCandidates_20261001/A_Q_Melusina_Spell_Simple_Shoot",
+    "keys": 16,
+    "keys_checked": 1,
+    "compressed_verdict": "FAIL",
+    "max_arm_deviation_cm": 19.040656432274005,
+    "failure": {
+      "frame": 0,
+      "reason": "arm_length",
+      "side": "l",
+      "segments": [
+        34.789392549197295,
+        9.520343567725993,
+        28.614608125071864
+      ]
+    }
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/ContactCandidates_20261003/A_ContactProbe_RMB_Loop",
+    "keys": 21,
+    "keys_checked": 1,
+    "compressed_verdict": "FAIL",
+    "max_arm_deviation_cm": 19.040693625569652,
+    "failure": {
+      "frame": 0,
+      "reason": "arm_length",
+      "side": "l",
+      "segments": [
+        34.78932484669087,
+        9.520306374430348,
+        28.614604310374954
+      ]
+    }
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/ContactCandidates_20261003/A_GlobalTranslationProbe_RMB_Loop",
+    "keys": 21,
+    "keys_checked": 1,
+    "compressed_verdict": "FAIL",
+    "max_arm_deviation_cm": 17.590204613751844,
+    "failure": {
+      "frame": 0,
+      "reason": "arm_length",
+      "side": "l",
+      "segments": [
+        8.73840924334265,
+        10.970795386248154,
+        32.97418517357576
+      ]
+    }
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/ContactCandidates_20261003/A_OneToOneProbe_RMB_Loop",
+    "keys": 21,
+    "keys_checked": 1,
+    "compressed_verdict": "FAIL",
+    "max_arm_deviation_cm": 8.852356627600287,
+    "failure": {
+      "frame": 0,
+      "reason": "arm_length",
+      "side": "l",
+      "segments": [
+        8.73840924334265,
+        24.182273324353282,
+        19.76264337239971
+      ]
+    }
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_BowDraw_v1_Mocap_RootMotionHeadTop_End_clip_Base_Layer",
+    "keys": 91,
+    "keys_checked": 1,
+    "compressed_verdict": "FAIL",
+    "max_arm_deviation_cm": 0,
+    "failure": {
+      "frame": 0,
+      "reason": "root_scale",
+      "scale": [
+        100.0,
+        100.0,
+        100.0
+      ]
+    }
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_BowDraw_v1_Mocap_RootMotionLeftHandIndex4_clip_Base_Layer",
+    "keys": 91,
+    "keys_checked": 1,
+    "compressed_verdict": "FAIL",
+    "max_arm_deviation_cm": 0,
+    "failure": {
+      "frame": 0,
+      "reason": "root_scale",
+      "scale": [
+        100.0,
+        100.0,
+        100.0
+      ]
+    }
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_BowDraw_v1_Mocap_RootMotionLeftHandMiddle4_clip_Base_Layer",
+    "keys": 91,
+    "keys_checked": 1,
+    "compressed_verdict": "FAIL",
+    "max_arm_deviation_cm": 0,
+    "failure": {
+      "frame": 0,
+      "reason": "root_scale",
+      "scale": [
+        100.0,
+        100.0,
+        100.0
+      ]
+    }
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_BowDraw_v1_Mocap_RootMotionLeftHandPinky4_clip_Base_Layer",
+    "keys": 91,
+    "keys_checked": 1,
+    "compressed_verdict": "FAIL",
+    "max_arm_deviation_cm": 0,
+    "failure": {
+      "frame": 0,
+      "reason": "root_scale",
+      "scale": [
+        100.0,
+        100.0,
+        100.0
+      ]
+    }
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_BowDraw_v1_Mocap_RootMotionLeftHandRing4_clip_Base_Layer",
+    "keys": 91,
+    "keys_checked": 1,
+    "compressed_verdict": "FAIL",
+    "max_arm_deviation_cm": 0,
+    "failure": {
+      "frame": 0,
+      "reason": "root_scale",
+      "scale": [
+        100.0,
+        100.0,
+        100.0
+      ]
+    }
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_BowDraw_v1_Mocap_RootMotionLeftHandThumb4_clip_Base_Layer",
+    "keys": 91,
+    "keys_checked": 1,
+    "compressed_verdict": "FAIL",
+    "max_arm_deviation_cm": 0,
+    "failure": {
+      "frame": 0,
+      "reason": "root_scale",
+      "scale": [
+        100.0,
+        100.0,
+        100.0
+      ]
+    }
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_BowDraw_v1_Mocap_RootMotionLeftToe_End_clip_Base_Layer",
+    "keys": 91,
+    "keys_checked": 1,
+    "compressed_verdict": "FAIL",
+    "max_arm_deviation_cm": 0,
+    "failure": {
+      "frame": 0,
+      "reason": "root_scale",
+      "scale": [
+        100.0,
+        100.0,
+        100.0
+      ]
+    }
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_BowDraw_v1_Mocap_RootMotionMelusina_Mocap_Rig_Action",
+    "keys": 90,
+    "keys_checked": 1,
+    "compressed_verdict": "FAIL",
+    "max_arm_deviation_cm": 0,
+    "failure": {
+      "frame": 0,
+      "reason": "root_scale",
+      "scale": [
+        100.0,
+        100.0,
+        100.0
+      ]
+    }
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_BowDraw_v1_Mocap_RootMotionRightHandIndex4_clip_Base_Layer",
+    "keys": 91,
+    "keys_checked": 1,
+    "compressed_verdict": "FAIL",
+    "max_arm_deviation_cm": 0,
+    "failure": {
+      "frame": 0,
+      "reason": "root_scale",
+      "scale": [
+        100.0,
+        100.0,
+        100.0
+      ]
+    }
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_BowDraw_v1_Mocap_RootMotionRightHandMiddle4_clip_Base_Layer",
+    "keys": 91,
+    "keys_checked": 1,
+    "compressed_verdict": "FAIL",
+    "max_arm_deviation_cm": 0,
+    "failure": {
+      "frame": 0,
+      "reason": "root_scale",
+      "scale": [
+        100.0,
+        100.0,
+        100.0
+      ]
+    }
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_BowDraw_v1_Mocap_RootMotionRightHandPinky4_clip_Base_Layer",
+    "keys": 91,
+    "keys_checked": 1,
+    "compressed_verdict": "FAIL",
+    "max_arm_deviation_cm": 0,
+    "failure": {
+      "frame": 0,
+      "reason": "root_scale",
+      "scale": [
+        100.0,
+        100.0,
+        100.0
+      ]
+    }
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_BowDraw_v1_Mocap_RootMotionRightHandRing4_clip_Base_Layer",
+    "keys": 91,
+    "keys_checked": 1,
+    "compressed_verdict": "FAIL",
+    "max_arm_deviation_cm": 0,
+    "failure": {
+      "frame": 0,
+      "reason": "root_scale",
+      "scale": [
+        100.0,
+        100.0,
+        100.0
+      ]
+    }
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_BowDraw_v1_Mocap_RootMotionRightHandThumb4_clip_Base_Layer",
+    "keys": 91,
+    "keys_checked": 1,
+    "compressed_verdict": "FAIL",
+    "max_arm_deviation_cm": 0,
+    "failure": {
+      "frame": 0,
+      "reason": "root_scale",
+      "scale": [
+        100.0,
+        100.0,
+        100.0
+      ]
+    }
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_BowDraw_v1_Mocap_RootMotionRightToe_End_clip_Base_Layer",
+    "keys": 91,
+    "keys_checked": 1,
+    "compressed_verdict": "FAIL",
+    "max_arm_deviation_cm": 0,
+    "failure": {
+      "frame": 0,
+      "reason": "root_scale",
+      "scale": [
+        100.0,
+        100.0,
+        100.0
+      ]
+    }
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_BowDraw_v2_Mocap_RootMotionHeadTop_End_clip_Base_Layer",
+    "keys": 91,
+    "keys_checked": 1,
+    "compressed_verdict": "FAIL",
+    "max_arm_deviation_cm": 0,
+    "failure": {
+      "frame": 0,
+      "reason": "root_scale",
+      "scale": [
+        100.0,
+        100.0,
+        100.0
+      ]
+    }
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_BowDraw_v2_Mocap_RootMotionLeftHandIndex4_clip_Base_Layer",
+    "keys": 91,
+    "keys_checked": 1,
+    "compressed_verdict": "FAIL",
+    "max_arm_deviation_cm": 0,
+    "failure": {
+      "frame": 0,
+      "reason": "root_scale",
+      "scale": [
+        100.0,
+        100.0,
+        100.0
+      ]
+    }
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_BowDraw_v2_Mocap_RootMotionLeftHandMiddle4_clip_Base_Layer",
+    "keys": 91,
+    "keys_checked": 1,
+    "compressed_verdict": "FAIL",
+    "max_arm_deviation_cm": 0,
+    "failure": {
+      "frame": 0,
+      "reason": "root_scale",
+      "scale": [
+        100.0,
+        100.0,
+        100.0
+      ]
+    }
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_BowDraw_v2_Mocap_RootMotionLeftHandPinky4_clip_Base_Layer",
+    "keys": 91,
+    "keys_checked": 1,
+    "compressed_verdict": "FAIL",
+    "max_arm_deviation_cm": 0,
+    "failure": {
+      "frame": 0,
+      "reason": "root_scale",
+      "scale": [
+        100.0,
+        100.0,
+        100.0
+      ]
+    }
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_BowDraw_v2_Mocap_RootMotionLeftHandRing4_clip_Base_Layer",
+    "keys": 91,
+    "keys_checked": 1,
+    "compressed_verdict": "FAIL",
+    "max_arm_deviation_cm": 0,
+    "failure": {
+      "frame": 0,
+      "reason": "root_scale",
+      "scale": [
+        100.0,
+        100.0,
+        100.0
+      ]
+    }
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_BowDraw_v2_Mocap_RootMotionLeftHandThumb4_clip_Base_Layer",
+    "keys": 91,
+    "keys_checked": 1,
+    "compressed_verdict": "FAIL",
+    "max_arm_deviation_cm": 0,
+    "failure": {
+      "frame": 0,
+      "reason": "root_scale",
+      "scale": [
+        100.0,
+        100.0,
+        100.0
+      ]
+    }
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_BowDraw_v2_Mocap_RootMotionLeftToe_End_clip_Base_Layer",
+    "keys": 91,
+    "keys_checked": 1,
+    "compressed_verdict": "FAIL",
+    "max_arm_deviation_cm": 0,
+    "failure": {
+      "frame": 0,
+      "reason": "root_scale",
+      "scale": [
+        100.0,
+        100.0,
+        100.0
+      ]
+    }
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_BowDraw_v2_Mocap_RootMotionMelusina_Mocap_Rig_Action",
+    "keys": 86,
+    "keys_checked": 1,
+    "compressed_verdict": "FAIL",
+    "max_arm_deviation_cm": 0,
+    "failure": {
+      "frame": 0,
+      "reason": "root_scale",
+      "scale": [
+        100.0,
+        100.0,
+        100.0
+      ]
+    }
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_BowDraw_v2_Mocap_RootMotionRightHandIndex4_clip_Base_Layer",
+    "keys": 91,
+    "keys_checked": 1,
+    "compressed_verdict": "FAIL",
+    "max_arm_deviation_cm": 0,
+    "failure": {
+      "frame": 0,
+      "reason": "root_scale",
+      "scale": [
+        100.0,
+        100.0,
+        100.0
+      ]
+    }
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_BowDraw_v2_Mocap_RootMotionRightHandMiddle4_clip_Base_Layer",
+    "keys": 91,
+    "keys_checked": 1,
+    "compressed_verdict": "FAIL",
+    "max_arm_deviation_cm": 0,
+    "failure": {
+      "frame": 0,
+      "reason": "root_scale",
+      "scale": [
+        100.0,
+        100.0,
+        100.0
+      ]
+    }
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_BowDraw_v2_Mocap_RootMotionRightHandPinky4_clip_Base_Layer",
+    "keys": 91,
+    "keys_checked": 1,
+    "compressed_verdict": "FAIL",
+    "max_arm_deviation_cm": 0,
+    "failure": {
+      "frame": 0,
+      "reason": "root_scale",
+      "scale": [
+        100.0,
+        100.0,
+        100.0
+      ]
+    }
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_BowDraw_v2_Mocap_RootMotionRightHandRing4_clip_Base_Layer",
+    "keys": 91,
+    "keys_checked": 1,
+    "compressed_verdict": "FAIL",
+    "max_arm_deviation_cm": 0,
+    "failure": {
+      "frame": 0,
+      "reason": "root_scale",
+      "scale": [
+        100.0,
+        100.0,
+        100.0
+      ]
+    }
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_BowDraw_v2_Mocap_RootMotionRightHandThumb4_clip_Base_Layer",
+    "keys": 91,
+    "keys_checked": 1,
+    "compressed_verdict": "FAIL",
+    "max_arm_deviation_cm": 0,
+    "failure": {
+      "frame": 0,
+      "reason": "root_scale",
+      "scale": [
+        100.0,
+        100.0,
+        100.0
+      ]
+    }
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_BowDraw_v2_Mocap_RootMotionRightToe_End_clip_Base_Layer",
+    "keys": 91,
+    "keys_checked": 1,
+    "compressed_verdict": "FAIL",
+    "max_arm_deviation_cm": 0,
+    "failure": {
+      "frame": 0,
+      "reason": "root_scale",
+      "scale": [
+        100.0,
+        100.0,
+        100.0
+      ]
+    }
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_BowKneelAim_Mocap_RootMotionHeadTop_End_clip_Base_Layer",
+    "keys": 91,
+    "keys_checked": 1,
+    "compressed_verdict": "FAIL",
+    "max_arm_deviation_cm": 0,
+    "failure": {
+      "frame": 0,
+      "reason": "root_scale",
+      "scale": [
+        100.0,
+        100.0,
+        100.0
+      ]
+    }
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_BowKneelAim_Mocap_RootMotionLeftHandIndex4_clip_Base_Layer",
+    "keys": 91,
+    "keys_checked": 1,
+    "compressed_verdict": "FAIL",
+    "max_arm_deviation_cm": 0,
+    "failure": {
+      "frame": 0,
+      "reason": "root_scale",
+      "scale": [
+        100.0,
+        100.0,
+        100.0
+      ]
+    }
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_BowKneelAim_Mocap_RootMotionLeftHandMiddle4_clip_Base_Layer",
+    "keys": 91,
+    "keys_checked": 1,
+    "compressed_verdict": "FAIL",
+    "max_arm_deviation_cm": 0,
+    "failure": {
+      "frame": 0,
+      "reason": "root_scale",
+      "scale": [
+        100.0,
+        100.0,
+        100.0
+      ]
+    }
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_BowKneelAim_Mocap_RootMotionLeftHandPinky4_clip_Base_Layer",
+    "keys": 91,
+    "keys_checked": 1,
+    "compressed_verdict": "FAIL",
+    "max_arm_deviation_cm": 0,
+    "failure": {
+      "frame": 0,
+      "reason": "root_scale",
+      "scale": [
+        100.0,
+        100.0,
+        100.0
+      ]
+    }
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_BowKneelAim_Mocap_RootMotionLeftHandRing4_clip_Base_Layer",
+    "keys": 91,
+    "keys_checked": 1,
+    "compressed_verdict": "FAIL",
+    "max_arm_deviation_cm": 0,
+    "failure": {
+      "frame": 0,
+      "reason": "root_scale",
+      "scale": [
+        100.0,
+        100.0,
+        100.0
+      ]
+    }
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_BowKneelAim_Mocap_RootMotionLeftHandThumb4_clip_Base_Layer",
+    "keys": 91,
+    "keys_checked": 1,
+    "compressed_verdict": "FAIL",
+    "max_arm_deviation_cm": 0,
+    "failure": {
+      "frame": 0,
+      "reason": "root_scale",
+      "scale": [
+        100.0,
+        100.0,
+        100.0
+      ]
+    }
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_BowKneelAim_Mocap_RootMotionLeftToe_End_clip_Base_Layer",
+    "keys": 91,
+    "keys_checked": 1,
+    "compressed_verdict": "FAIL",
+    "max_arm_deviation_cm": 0,
+    "failure": {
+      "frame": 0,
+      "reason": "root_scale",
+      "scale": [
+        100.0,
+        100.0,
+        100.0
+      ]
+    }
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_BowKneelAim_Mocap_RootMotionMelusina_Mocap_Rig_Action",
+    "keys": 86,
+    "keys_checked": 1,
+    "compressed_verdict": "FAIL",
+    "max_arm_deviation_cm": 0,
+    "failure": {
+      "frame": 0,
+      "reason": "root_scale",
+      "scale": [
+        100.0,
+        100.0,
+        100.0
+      ]
+    }
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_BowKneelAim_Mocap_RootMotionRightHandIndex4_clip_Base_Layer",
+    "keys": 91,
+    "keys_checked": 1,
+    "compressed_verdict": "FAIL",
+    "max_arm_deviation_cm": 0,
+    "failure": {
+      "frame": 0,
+      "reason": "root_scale",
+      "scale": [
+        100.0,
+        100.0,
+        100.0
+      ]
+    }
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_BowKneelAim_Mocap_RootMotionRightHandMiddle4_clip_Base_Layer",
+    "keys": 91,
+    "keys_checked": 1,
+    "compressed_verdict": "FAIL",
+    "max_arm_deviation_cm": 0,
+    "failure": {
+      "frame": 0,
+      "reason": "root_scale",
+      "scale": [
+        100.0,
+        100.0,
+        100.0
+      ]
+    }
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_BowKneelAim_Mocap_RootMotionRightHandPinky4_clip_Base_Layer",
+    "keys": 91,
+    "keys_checked": 1,
+    "compressed_verdict": "FAIL",
+    "max_arm_deviation_cm": 0,
+    "failure": {
+      "frame": 0,
+      "reason": "root_scale",
+      "scale": [
+        100.0,
+        100.0,
+        100.0
+      ]
+    }
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_BowKneelAim_Mocap_RootMotionRightHandRing4_clip_Base_Layer",
+    "keys": 91,
+    "keys_checked": 1,
+    "compressed_verdict": "FAIL",
+    "max_arm_deviation_cm": 0,
+    "failure": {
+      "frame": 0,
+      "reason": "root_scale",
+      "scale": [
+        100.0,
+        100.0,
+        100.0
+      ]
+    }
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_BowKneelAim_Mocap_RootMotionRightHandThumb4_clip_Base_Layer",
+    "keys": 91,
+    "keys_checked": 1,
+    "compressed_verdict": "FAIL",
+    "max_arm_deviation_cm": 0,
+    "failure": {
+      "frame": 0,
+      "reason": "root_scale",
+      "scale": [
+        100.0,
+        100.0,
+        100.0
+      ]
+    }
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_BowKneelAim_Mocap_RootMotionRightToe_End_clip_Base_Layer",
+    "keys": 91,
+    "keys_checked": 1,
+    "compressed_verdict": "FAIL",
+    "max_arm_deviation_cm": 0,
+    "failure": {
+      "frame": 0,
+      "reason": "root_scale",
+      "scale": [
+        100.0,
+        100.0,
+        100.0
+      ]
+    }
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_GlideForward_Mocap_RootMotionHeadTop_End_clip_Base_Layer",
+    "keys": 91,
+    "keys_checked": 1,
+    "compressed_verdict": "FAIL",
+    "max_arm_deviation_cm": 0,
+    "failure": {
+      "frame": 0,
+      "reason": "root_scale",
+      "scale": [
+        100.0,
+        100.0,
+        100.0
+      ]
+    }
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_GlideForward_Mocap_RootMotionLeftHandIndex4_clip_Base_Layer",
+    "keys": 91,
+    "keys_checked": 1,
+    "compressed_verdict": "FAIL",
+    "max_arm_deviation_cm": 0,
+    "failure": {
+      "frame": 0,
+      "reason": "root_scale",
+      "scale": [
+        100.0,
+        100.0,
+        100.0
+      ]
+    }
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_GlideForward_Mocap_RootMotionLeftHandMiddle4_clip_Base_Layer",
+    "keys": 91,
+    "keys_checked": 1,
+    "compressed_verdict": "FAIL",
+    "max_arm_deviation_cm": 0,
+    "failure": {
+      "frame": 0,
+      "reason": "root_scale",
+      "scale": [
+        100.0,
+        100.0,
+        100.0
+      ]
+    }
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_GlideForward_Mocap_RootMotionLeftHandPinky4_clip_Base_Layer",
+    "keys": 91,
+    "keys_checked": 1,
+    "compressed_verdict": "FAIL",
+    "max_arm_deviation_cm": 0,
+    "failure": {
+      "frame": 0,
+      "reason": "root_scale",
+      "scale": [
+        100.0,
+        100.0,
+        100.0
+      ]
+    }
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_GlideForward_Mocap_RootMotionLeftHandRing4_clip_Base_Layer",
+    "keys": 91,
+    "keys_checked": 1,
+    "compressed_verdict": "FAIL",
+    "max_arm_deviation_cm": 0,
+    "failure": {
+      "frame": 0,
+      "reason": "root_scale",
+      "scale": [
+        100.0,
+        100.0,
+        100.0
+      ]
+    }
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_GlideForward_Mocap_RootMotionLeftHandThumb4_clip_Base_Layer",
+    "keys": 91,
+    "keys_checked": 1,
+    "compressed_verdict": "FAIL",
+    "max_arm_deviation_cm": 0,
+    "failure": {
+      "frame": 0,
+      "reason": "root_scale",
+      "scale": [
+        100.0,
+        100.0,
+        100.0
+      ]
+    }
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_GlideForward_Mocap_RootMotionLeftToe_End_clip_Base_Layer",
+    "keys": 91,
+    "keys_checked": 1,
+    "compressed_verdict": "FAIL",
+    "max_arm_deviation_cm": 0,
+    "failure": {
+      "frame": 0,
+      "reason": "root_scale",
+      "scale": [
+        100.0,
+        100.0,
+        100.0
+      ]
+    }
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_GlideForward_Mocap_RootMotionMelusina_Mocap_Rig_Action",
+    "keys": 90,
+    "keys_checked": 1,
+    "compressed_verdict": "FAIL",
+    "max_arm_deviation_cm": 0,
+    "failure": {
+      "frame": 0,
+      "reason": "root_scale",
+      "scale": [
+        100.0,
+        100.0,
+        100.0
+      ]
+    }
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_GlideForward_Mocap_RootMotionRightHandIndex4_clip_Base_Layer",
+    "keys": 91,
+    "keys_checked": 1,
+    "compressed_verdict": "FAIL",
+    "max_arm_deviation_cm": 0,
+    "failure": {
+      "frame": 0,
+      "reason": "root_scale",
+      "scale": [
+        100.0,
+        100.0,
+        100.0
+      ]
+    }
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_GlideForward_Mocap_RootMotionRightHandMiddle4_clip_Base_Layer",
+    "keys": 91,
+    "keys_checked": 1,
+    "compressed_verdict": "FAIL",
+    "max_arm_deviation_cm": 0,
+    "failure": {
+      "frame": 0,
+      "reason": "root_scale",
+      "scale": [
+        100.0,
+        100.0,
+        100.0
+      ]
+    }
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_GlideForward_Mocap_RootMotionRightHandPinky4_clip_Base_Layer",
+    "keys": 91,
+    "keys_checked": 1,
+    "compressed_verdict": "FAIL",
+    "max_arm_deviation_cm": 0,
+    "failure": {
+      "frame": 0,
+      "reason": "root_scale",
+      "scale": [
+        100.0,
+        100.0,
+        100.0
+      ]
+    }
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_GlideForward_Mocap_RootMotionRightHandRing4_clip_Base_Layer",
+    "keys": 91,
+    "keys_checked": 1,
+    "compressed_verdict": "FAIL",
+    "max_arm_deviation_cm": 0,
+    "failure": {
+      "frame": 0,
+      "reason": "root_scale",
+      "scale": [
+        100.0,
+        100.0,
+        100.0
+      ]
+    }
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_GlideForward_Mocap_RootMotionRightHandThumb4_clip_Base_Layer",
+    "keys": 91,
+    "keys_checked": 1,
+    "compressed_verdict": "FAIL",
+    "max_arm_deviation_cm": 0,
+    "failure": {
+      "frame": 0,
+      "reason": "root_scale",
+      "scale": [
+        100.0,
+        100.0,
+        100.0
+      ]
+    }
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_GlideForward_Mocap_RootMotionRightToe_End_clip_Base_Layer",
+    "keys": 91,
+    "keys_checked": 1,
+    "compressed_verdict": "FAIL",
+    "max_arm_deviation_cm": 0,
+    "failure": {
+      "frame": 0,
+      "reason": "root_scale",
+      "scale": [
+        100.0,
+        100.0,
+        100.0
+      ]
+    }
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_WalkElegant_Mocap_RootMotionHeadTop_End_clip_Base_Layer",
+    "keys": 91,
+    "keys_checked": 1,
+    "compressed_verdict": "FAIL",
+    "max_arm_deviation_cm": 0,
+    "failure": {
+      "frame": 0,
+      "reason": "root_scale",
+      "scale": [
+        100.0,
+        100.0,
+        100.0
+      ]
+    }
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_WalkElegant_Mocap_RootMotionLeftHandIndex4_clip_Base_Layer",
+    "keys": 91,
+    "keys_checked": 1,
+    "compressed_verdict": "FAIL",
+    "max_arm_deviation_cm": 0,
+    "failure": {
+      "frame": 0,
+      "reason": "root_scale",
+      "scale": [
+        100.0,
+        100.0,
+        100.0
+      ]
+    }
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_WalkElegant_Mocap_RootMotionLeftHandMiddle4_clip_Base_Layer",
+    "keys": 91,
+    "keys_checked": 1,
+    "compressed_verdict": "FAIL",
+    "max_arm_deviation_cm": 0,
+    "failure": {
+      "frame": 0,
+      "reason": "root_scale",
+      "scale": [
+        100.0,
+        100.0,
+        100.0
+      ]
+    }
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_WalkElegant_Mocap_RootMotionLeftHandPinky4_clip_Base_Layer",
+    "keys": 91,
+    "keys_checked": 1,
+    "compressed_verdict": "FAIL",
+    "max_arm_deviation_cm": 0,
+    "failure": {
+      "frame": 0,
+      "reason": "root_scale",
+      "scale": [
+        100.0,
+        100.0,
+        100.0
+      ]
+    }
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_WalkElegant_Mocap_RootMotionLeftHandRing4_clip_Base_Layer",
+    "keys": 91,
+    "keys_checked": 1,
+    "compressed_verdict": "FAIL",
+    "max_arm_deviation_cm": 0,
+    "failure": {
+      "frame": 0,
+      "reason": "root_scale",
+      "scale": [
+        100.0,
+        100.0,
+        100.0
+      ]
+    }
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_WalkElegant_Mocap_RootMotionLeftHandThumb4_clip_Base_Layer",
+    "keys": 91,
+    "keys_checked": 1,
+    "compressed_verdict": "FAIL",
+    "max_arm_deviation_cm": 0,
+    "failure": {
+      "frame": 0,
+      "reason": "root_scale",
+      "scale": [
+        100.0,
+        100.0,
+        100.0
+      ]
+    }
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_WalkElegant_Mocap_RootMotionLeftToe_End_clip_Base_Layer",
+    "keys": 91,
+    "keys_checked": 1,
+    "compressed_verdict": "FAIL",
+    "max_arm_deviation_cm": 0,
+    "failure": {
+      "frame": 0,
+      "reason": "root_scale",
+      "scale": [
+        100.0,
+        100.0,
+        100.0
+      ]
+    }
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_WalkElegant_Mocap_RootMotionMelusina_Mocap_Rig_Action",
+    "keys": 86,
+    "keys_checked": 1,
+    "compressed_verdict": "FAIL",
+    "max_arm_deviation_cm": 0,
+    "failure": {
+      "frame": 0,
+      "reason": "root_scale",
+      "scale": [
+        100.0,
+        100.0,
+        100.0
+      ]
+    }
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_WalkElegant_Mocap_RootMotionRightHandIndex4_clip_Base_Layer",
+    "keys": 91,
+    "keys_checked": 1,
+    "compressed_verdict": "FAIL",
+    "max_arm_deviation_cm": 0,
+    "failure": {
+      "frame": 0,
+      "reason": "root_scale",
+      "scale": [
+        100.0,
+        100.0,
+        100.0
+      ]
+    }
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_WalkElegant_Mocap_RootMotionRightHandMiddle4_clip_Base_Layer",
+    "keys": 91,
+    "keys_checked": 1,
+    "compressed_verdict": "FAIL",
+    "max_arm_deviation_cm": 0,
+    "failure": {
+      "frame": 0,
+      "reason": "root_scale",
+      "scale": [
+        100.0,
+        100.0,
+        100.0
+      ]
+    }
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_WalkElegant_Mocap_RootMotionRightHandPinky4_clip_Base_Layer",
+    "keys": 91,
+    "keys_checked": 1,
+    "compressed_verdict": "FAIL",
+    "max_arm_deviation_cm": 0,
+    "failure": {
+      "frame": 0,
+      "reason": "root_scale",
+      "scale": [
+        100.0,
+        100.0,
+        100.0
+      ]
+    }
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_WalkElegant_Mocap_RootMotionRightHandRing4_clip_Base_Layer",
+    "keys": 91,
+    "keys_checked": 1,
+    "compressed_verdict": "FAIL",
+    "max_arm_deviation_cm": 0,
+    "failure": {
+      "frame": 0,
+      "reason": "root_scale",
+      "scale": [
+        100.0,
+        100.0,
+        100.0
+      ]
+    }
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_WalkElegant_Mocap_RootMotionRightHandThumb4_clip_Base_Layer",
+    "keys": 91,
+    "keys_checked": 1,
+    "compressed_verdict": "FAIL",
+    "max_arm_deviation_cm": 0,
+    "failure": {
+      "frame": 0,
+      "reason": "root_scale",
+      "scale": [
+        100.0,
+        100.0,
+        100.0
+      ]
+    }
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/Mocap/A_Melusina_WalkElegant_Mocap_RootMotionRightToe_End_clip_Base_Layer",
+    "keys": 91,
+    "keys_checked": 1,
+    "compressed_verdict": "FAIL",
+    "max_arm_deviation_cm": 0,
+    "failure": {
+      "frame": 0,
+      "reason": "root_scale",
+      "scale": [
+        100.0,
+        100.0,
+        100.0
+      ]
+    }
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/Polish_20260919/A_Melusina_BowAttack_A_RangeAttack",
+    "keys": 40,
+    "keys_checked": 1,
+    "compressed_verdict": "FAIL",
+    "max_arm_deviation_cm": 19.042029677714485,
+    "failure": {
+      "frame": 0,
+      "reason": "arm_length",
+      "side": "l",
+      "segments": [
+        34.78435802759498,
+        9.518970322285515,
+        28.614604310373608
+      ]
+    }
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/SparrowArchery_20261002/A_Spar_Mel_Primary_Fire_Fast",
+    "keys": 19,
+    "keys_checked": 1,
+    "compressed_verdict": "FAIL",
+    "max_arm_deviation_cm": 19.040693625572857,
+    "failure": {
+      "frame": 0,
+      "reason": "arm_length",
+      "side": "l",
+      "segments": [
+        34.7893205617042,
+        9.520306374427141,
+        28.614604310374784
+      ]
+    }
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/SparrowArchery_20261002/A_Spar_Mel_Primary_Fire_Med",
+    "keys": 30,
+    "keys_checked": 1,
+    "compressed_verdict": "FAIL",
+    "max_arm_deviation_cm": 19.040693625572708,
+    "failure": {
+      "frame": 0,
+      "reason": "arm_length",
+      "side": "l",
+      "segments": [
+        34.789320576684325,
+        9.520306374427294,
+        28.614604310374787
+      ]
+    }
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/SparrowArchery_20261002/A_Spar_Mel_Primary_Fire_Slow",
+    "keys": 31,
+    "keys_checked": 1,
+    "compressed_verdict": "FAIL",
+    "max_arm_deviation_cm": 19.040693625572708,
+    "failure": {
+      "frame": 0,
+      "reason": "arm_length",
+      "side": "l",
+      "segments": [
+        34.789320576684325,
+        9.520306374427292,
+        28.61460431037479
+      ]
+    }
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/SparrowArchery_20261002/A_Spar_Mel_RMB_Drawback",
+    "keys": 75,
+    "keys_checked": 1,
+    "compressed_verdict": "FAIL",
+    "max_arm_deviation_cm": 19.040691718227166,
+    "failure": {
+      "frame": 0,
+      "reason": "arm_length",
+      "side": "l",
+      "segments": [
+        34.78931969489236,
+        9.520308281772834,
+        28.614604310374236
+      ]
+    }
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/SparrowArchery_20261002/A_Spar_Mel_RMB_Fire",
+    "keys": 57,
+    "keys_checked": 1,
+    "compressed_verdict": "FAIL",
+    "max_arm_deviation_cm": 19.040693625569652,
+    "failure": {
+      "frame": 0,
+      "reason": "arm_length",
+      "side": "l",
+      "segments": [
+        34.78932484669087,
+        9.520306374430348,
+        28.614604310374954
+      ]
+    }
+  },
+  {
+    "asset": "/Game/Melodia/Characters/Melusina/Animations/SparrowArchery_20261002/A_Spar_Mel_RMB_Loop",
+    "keys": 21,
+    "keys_checked": 1,
+    "compressed_verdict": "FAIL",
+    "max_arm_deviation_cm": 19.040693625569652,
+    "failure": {
+      "frame": 0,
+      "reason": "arm_length",
+      "side": "l",
+      "segments": [
+        34.78932484669087,
+        9.520306374430348,
+        28.614604310374954
+      ]
+    }
+  }
+]

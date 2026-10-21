@@ -9,12 +9,15 @@ import urllib.request
 from typing import Any
 
 OPENROUTER_URL = os.environ.get("OPENROUTER_URL", "https://openrouter.ai/api/v1/chat/completions").rstrip("/")
+KILO_URL = os.environ.get("KILO_URL", "https://api.kilo.ai/api/gateway/chat/completions").rstrip("/")
 MUSE_PRIMARY = os.environ.get("MUSE_MODEL", "meta/muse-spark-1.2")
 MUSE_FALLBACK = os.environ.get("MUSE_FALLBACK_MODEL", "deepseek/deepseek-v4-flash")
+KILO_DEFAULT = os.environ.get("KILO_MODEL", "kilo-auto/free")
 
 
 def _resolve_key() -> str | None:
-    for name in ("OPENROUTER_API_KEY", "MUSE_API_KEY", "TOKENROUTER_API_KEY", "KIMIFREE_OPENROUTER_KEY"):
+    for name in ("OPENROUTER_API_KEY", "MUSE_API_KEY", "TOKENROUTER_API_KEY", "KIMIFREE_OPENROUTER_KEY",
+                 "KILO_API_KEY"):
         value = os.environ.get(name, "").strip()
         if value:
             return value
@@ -100,3 +103,46 @@ def probe_muse(timeout: float = 20.0) -> dict[str, Any]:
         "sample": (text or err or "")[:120],
         "has_key": bool(_resolve_key()),
     }
+
+
+def chat_kilo(
+    user: str,
+    *,
+    system: str,
+    model: str = KILO_DEFAULT,
+    timeout: float = 90.0,
+    max_tokens: int = 256,
+) -> tuple[str, str | None, str]:
+    """Kilo Gateway chat (OpenAI-compatible). Returns (content, error, model_used)."""
+    key = os.environ.get("KILO_API_KEY", "").strip()
+    if not key:
+        return "", "KILO_API_KEY unset", model
+    payload: dict[str, Any] = {
+        "model": model,
+        "messages": [
+            {"role": "system", "content": system},
+            {"role": "user", "content": user},
+        ],
+        "max_tokens": max_tokens,
+    }
+    req = urllib.request.Request(
+        KILO_URL,
+        data=json.dumps(payload).encode("utf-8"),
+        headers={
+            "Authorization": f"Bearer {key}",
+            "Content-Type": "application/json",
+        },
+        method="POST",
+    )
+    try:
+        with urllib.request.urlopen(req, timeout=timeout) as resp:
+            body = json.loads(resp.read().decode("utf-8"))
+    except (urllib.error.URLError, TimeoutError, OSError, json.JSONDecodeError) as exc:
+        return "", str(exc), model
+    if isinstance(body.get("error"), dict):
+        return "", str(body["error"].get("message") or body["error"]), model
+    choices = body.get("choices") or []
+    if not choices:
+        return "", "empty choices", model
+    msg = (choices[0].get("message") or {}).get("content") or ""
+    return str(msg), None, model

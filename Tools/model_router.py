@@ -70,6 +70,10 @@ ENDPOINTS = {
     "local": LOCAL_BASE,
     "bedrock": os.environ.get("BEDROCK_MANTLE_URL", "https://bedrock-mantle.us-east-1.api.aws/v1"),
     "nous": os.environ.get("NOUS_BASE_URL", "https://inference-api.nousresearch.com/v1"),
+    # Gemini 4 Argon (owner Google key) on the OpenAI-compatible surface — same
+    # base the Claireon translating proxy uses. GEMINI_OPENAI_BASE overrides for
+    # tests; see Docs/Production/MODEL_ROUTING_CANON.md (gemini, Tier B).
+    "gemini": os.environ.get("GEMINI_OPENAI_BASE", "https://generativelanguage.googleapis.com/v1beta/openai"),
 }
 
 PRICES = {
@@ -112,6 +116,10 @@ PRICES = {
     "anthropic.claude-sonnet-5": (0.0, 0.0),
     "devstral-small": (0.0, 0.0),
     "gpt-oss:20b": (0.0, 0.0),
+    # Gemini 4 Argon — published intro rate (ai.google.dev/gemini-api/docs/pricing):
+    # $2/1M input, $10/1M output (incl. thinking) through 2026-11-30.
+    # STEPS UP 2026-12-01 to $4/1M in, $20/1M out — update this row then.
+    "gemini-4-argon": (0.000002, 0.00001),
 }
 
 BLOCKED = {
@@ -278,6 +286,9 @@ POLICY = {
     "review": [
         NOUS_DEFAULT,
         ("qwen.qwen3-235b-a22b-2507", "bedrock", "Mantle fresh-eyes, verified live 2026-09-26"),
+        # Owner Google key. Paid, so mid-chain fallback only — never the lead
+        # (NOUS_DEFAULT rule, 2026-10-05) and never in LOCAL_ONLY classes.
+        ("gemini-4-argon", "gemini", "owner Google key; 1M ctx; live-proven via Claireon 2026-10-14"),
         ("x-ai/grok-4.5", "openrouter", "fresh-eyes verifier"),
         ("meta/muse-spark-1.2", "openrouter", "multimodal review"),
         ("mistralai/mistral-medium-3-5", "openrouter", "frontier fallback"),
@@ -301,6 +312,8 @@ POLICY = {
     "docs": [
         NOUS_DEFAULT,
         ("zai.glm-4.7-flash", "bedrock", "Mantle fast/bulk, verified live 2026-09-26"),
+        # Owner Google key. Paid, so mid-chain fallback only — never the lead.
+        ("gemini-4-argon", "gemini", "owner Google key; 1M ctx; live-proven via Claireon 2026-10-14"),
         ("deepseek/deepseek-v4-flash", "openrouter", "handoff/fold-in prose"),
         ("qwen3:8b", "local", "local docs daemon"),
         ("openai/gpt-oss-20b:free", "openrouter", "free fallback"),
@@ -342,7 +355,18 @@ def load_keys():
         "local": os.environ.get("LOCAL_LLM_API_KEY", "ollama"),
         "bedrock": os.environ.get("AWS_BEARER_TOKEN_BEDROCK", ""),
         "nous": os.environ.get("NOUS_API_KEY", ""),
+        "gemini": os.environ.get("GEMINI_API_KEY", ""),
     }
+    if not keys["gemini"]:
+        # Same file set_gemini_key.ps1 writes (hidden input, never in git).
+        _gemini_file = os.path.join(
+            os.environ.get("LOCALAPPDATA") or os.path.expanduser(os.path.join("~", "AppData", "Local")),
+            "hermes", "gemini_api_key.txt")
+        try:
+            with open(_gemini_file, "r", encoding="utf-8") as fh:
+                keys["gemini"] = fh.read().strip()
+        except OSError:
+            pass
     if not keys["nous"]:
         key, base = _nous_creds()
         keys["nous"] = key

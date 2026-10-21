@@ -223,13 +223,16 @@ void UMelodiaWaveHarpHUDWidget::NativeTick(const FGeometry& MyGeometry, float In
  HitFeedback = Combat->GetHitFeedback();
  LastHitDamage = Combat->LastHitDamage;
  const bool bSequence = Combat->IsInSequence();
- bHasTarget = false; TargetHP = TargetMaxHP = 0.f;
+ bCombatLocked = Combat->IsCombatLocked();
+ bHasTarget = false; TargetHP = TargetMaxHP = 0.f; Resonance01 = 0.f;
  if (const UMelodiaHybridEncounterComponent* TargetComp = Combat->GetTarget())
  {
+  Resonance01 = TargetComp->GetResonanceNormalized();
   if (const AMelodiaWorldSlimeNode* Slime = Cast<AMelodiaWorldSlimeNode>(TargetComp->GetOwner()))
   {
    bHasTarget = !Slime->bIsDead; TargetHP = Slime->CurrentHP; TargetMaxHP = Slime->MaxHP;
   }
+  else bHasTarget = true;
  }
 
  const bool bWasPerfect = State == EMelodiaBowHUDState::Perfect;
@@ -493,17 +496,17 @@ int32 UMelodiaWaveHarpHUDWidget::NativePaint(const FPaintArgs& Args, const FGeom
   FString Prompt;
   switch (State)
   {
-  case EMelodiaBowHUDState::Idle: Prompt = TEXT("RMB  AIM"); break;
+  case EMelodiaBowHUDState::Idle: Prompt = bHasTarget ? FString::Printf(TEXT("RESONANCE %d%%    T LOCK    F SCYTHE"), FMath::RoundToInt(Resonance01 * 100.f)) : TEXT("RMB  AIM"); break;
   case EMelodiaBowHUDState::Aim: Prompt = bIsDrawing ? TEXT("LMB  RELEASE   \u2022   X  CANCEL") : TEXT("LMB  HOLD TO DRAW   \u2022   X  CANCEL"); break;
-  case EMelodiaBowHUDState::Target: Prompt = bIsDrawing ? TEXT("LMB  RELEASE   \u2022   X  CANCEL") : TEXT("LMB  HOLD TO DRAW   \u2022   TAB  PHRASE"); break;
-  case EMelodiaBowHUDState::Perfect: Prompt = TEXT("RESONANCE READY"); break;
-  case EMelodiaBowHUDState::Sequence: Prompt = TEXT("TAB  RETURN TO FLOW"); break;
+  case EMelodiaBowHUDState::Target: Prompt = bIsDrawing ? TEXT("LMB  RELEASE   \u2022   X  CANCEL") : FString::Printf(TEXT("RESONANCE %d%%    F SCYTHE    TAB PHRASE"), FMath::RoundToInt(Resonance01 * 100.f)); break;
+  case EMelodiaBowHUDState::Perfect: Prompt = FString::Printf(TEXT("RESONANCE %d%%"), FMath::RoundToInt(Resonance01 * 100.f)); break;
+  case EMelodiaBowHUDState::Sequence: Prompt = FString::Printf(TEXT("Q   W   O   P      %d%%"), FMath::RoundToInt(Resonance01 * 100.f)); break;
   }
    TextCentered(At({352.f, 338.f + Drift + Slide}), Prompt, Font(7.5f, false), Tint(Pearl, SlideA), LText);
  }
 
  // Target cartouche + score stem + target sprig (Target / Perfect only). 117 -> 234 ms punch-in.
- if (bTargetish && bHasTarget)
+ if ((bTargetish || bSequence || bCombatLocked) && bHasTarget)
  {
   const float In = SinceState < T117 && PrevState != EMelodiaBowHUDState::Target && PrevState != EMelodiaBowHUDState::Perfect
    ? EaseOut(SinceState / T117) : 1.f;

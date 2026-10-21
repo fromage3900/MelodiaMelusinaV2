@@ -45,8 +45,8 @@ from build_melusina_locomotion_stack import (  # noqa: E402
     AUDIT_DIR, MonolithError, anim, require_editor, write_report,
 )
 
-IDLE = "/Game/Melodia/Characters/Melusina/Animations/Locomotion/A_Melusina_Idle_Mocap_RootX"
-MESH = "/Game/Melodia/Characters/Melusina/SK_Melusina_V2_Body"
+IDLE = "/Game/Melodia/Characters/Melusina/Animations/Locomotion/A_Shin_Idle_stand_MocapConv"
+MESH = "/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Body"
 
 # A blink pattern only makes sense if the loop is long enough to hold one.
 # The approved mocap idle is 0.5s (melusina_idle_restore_mocap_2026-08-13.json).
@@ -80,7 +80,7 @@ def check_names():
     print("[check-names] verifying morph targets on the live mesh")
     require_editor()
     info = anim("get_skeletal_mesh_info", {"asset_path": MESH})
-    blob = json.dumps(info)
+    blob = info if isinstance(info, str) else json.dumps(info)
 
     report = {"kind": "melusina_idle_life_name_check", "mesh": MESH, "targets": {}}
     ok = True
@@ -122,8 +122,9 @@ def build(dry_run=True, breath_only=False):
         names = check_names()
         if not names["ok"]:
             raise SystemExit("Aborted: curve targets missing. Nothing written.")
-        info = anim("get_sequence_info", {"asset_path": IDLE})
-        seq_length = float(info.get("length") or info.get("sequence_length") or 0) or None
+        raw_info = anim("get_sequence_info", {"asset_path": IDLE})
+        info = json.loads(raw_info) if isinstance(raw_info, str) else raw_info
+        seq_length = float(info.get("duration") or info.get("length") or info.get("sequence_length") or 0) or None
         if not seq_length:
             raise SystemExit(
                 f"Could not read sequence length from get_sequence_info: {info}")

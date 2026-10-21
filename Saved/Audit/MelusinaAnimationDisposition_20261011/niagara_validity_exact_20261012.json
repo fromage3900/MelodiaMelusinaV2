@@ -1,0 +1,12 @@
+{
+  "matched": true,
+  "mode": "exact",
+  "asset_path": "/Game/Melodia/VFX/BP_MelodiaNiagaraDriver",
+  "graph_name": "EventGraph",
+  "missing_nodes": [],
+  "extra_nodes": [],
+  "missing_connections": [],
+  "pin_default_mismatches": [],
+  "forbidden_nodes_present": [],
+  "summary": "80/80 nodes, 133/133 connections, 0 default mismatches, 0 forbidden present"
+}

@@ -1,0 +1,109 @@
+{
+  "asset": "/Game/Melodia/Characters/Melusina/Animations/SparrowArchery_20261002/A_Spar_Mel_RMB_Loop",
+  "contract": "specs\\universal_rig\\rig_contract.v1.json",
+  "frames": 21,
+  "duration": 0.6666666865348816,
+  "root_motion": false,
+  "proof_scope": "compressed all-key numeric checks on canonical V2 body; visual/runtime/contact acceptance not established",
+  "runtime_admission": "UNVERIFIED",
+  "identity": {
+    "clip": {
+      "package": "/Game/Melodia/Characters/Melusina/Animations/SparrowArchery_20261002/A_Spar_Mel_RMB_Loop",
+      "sha256": "00cd56a0f1f198f681da4b5a4e8ab8096ec5a58ab804637ab9e6cb21cd084fa0"
+    },
+    "body": {
+      "package": "/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Body",
+      "sha256": "061998d67e6cf898ff5b99b8554b93057347575b464d70c524dfb31355d252a2"
+    },
+    "gate_sha256": "e11db58bff7fbb6f46a26309d7b96f15431019c91d0764abac5afbafe6963a70",
+    "contract_sha256": "7502fd4609d1d30cbf4144b1af8f95934058c0f7ebf2486a2eac7acd6bc31e71",
+    "policy_sha256": "2ba8703354326c79ae5c2a2536d3b10da3e9c8ded0f7a6acddc4b1de05ba3799"
+  },
+  "root_x_height_range_cm": [
+    87.56050300598146,
+    87.62153816223146
+  ],
+  "root_height_scope": "diagnostic only; compare against the motion role, not a standing-height rule",
+  "checks": {
+    "source_policy": {
+      "pass": false,
+      "reason": "Frozen original; fresh key0 arm redistribution34.789/9.520/28.615cm. Source-only, never canonical runtime; corrected copies are the authorized repair lane."
+    },
+    "root_units": {
+      "pass": true,
+      "frames_checked": 21
+    },
+    "arm_canon": {
+      "pass": false,
+      "worst": {
+        "l": {
+          "frame": 9,
+          "measured": [
+            34.789,
+            9.52,
+            28.615
+          ],
+          "max_dev_cm": 19.041
+        },
+        "r": {
+          "frame": 9,
+          "measured": [
+            34.789,
+            9.52,
+            28.615
+          ],
+          "max_dev_cm": 19.041
+        }
+      },
+      "canon": [
+        15.774,
+        28.561,
+        28.615
+      ],
+      "tol_cm": 1.0,
+      "frames_checked": 21,
+      "reject_signature_hit": true
+    },
+    "loop_seam": {
+      "pass": true,
+      "per_bone": {
+        "root": {
+          "pos_cm": 0.0,
+          "rot_deg": 0.0
+        },
+        "foot_l": {
+          "pos_cm": 0.0,
+          "rot_deg": 0.06
+        },
+        "foot_r": {
+          "pos_cm": 0.0,
+          "rot_deg": 0.05
+        },
+        "toes_01_l": {
+          "pos_cm": 0.0,
+          "rot_deg": 0.0
+        },
+        "toes_01_r": {
+          "pos_cm": 0.0,
+          "rot_deg": 0.0
+        }
+      },
+      "worst_pos_cm": 0.0,
+      "worst_rot_deg": 0.06,
+      "worst_rot_bone": "foot_l",
+      "gate_cm": 1.0,
+      "gate_deg": 5.0,
+      "applies": true
+    },
+    "foot_z": {
+      "pass": true,
+      "min_z_cm": -1.212,
+      "class": "rmb",
+      "range": [
+        -25.0,
+        15.0
+      ]
+    }
+  },
+  "verdict": "FAIL"
+}

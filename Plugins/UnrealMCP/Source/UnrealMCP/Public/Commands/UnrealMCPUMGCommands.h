@@ -79,4 +79,7 @@ private:
      * @return JSON response with the binding details
      */
     TSharedPtr<FJsonObject> HandleSetTextBlockBinding(const TSharedPtr<FJsonObject>& Params);
-}; 
+
+    /** Author the saved Melodia Studio Editor Utility Widget. Python only opens it. */
+    TSharedPtr<FJsonObject> HandleCreateMelodiaStudioWidget(const TSharedPtr<FJsonObject>& Params);
+};

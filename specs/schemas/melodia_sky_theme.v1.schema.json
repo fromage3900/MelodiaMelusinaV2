@@ -1,0 +1,126 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://melodia.local/schemas/melodia_sky_theme.v1.schema.json",
+  "title": "Melodia sky theme v1",
+  "description": "Stylized procedural sky theme for the Melodia Sky Forge Blender addon (Tools/BlenderAddons/melodia_sky_forge). Binds sky look to the project's existing musical identity schema (world_recipe.v1 identity block). Colors are Blender scene-linear RGB in 0..1 (not sRGB hex). Consumed by Blender (node-group parameters), TouchDesigner (flat manifest keys) and, later, UE (baked equirect EXR import). v1.1 additive fields: sun.keying (root-key rotates the sun), gradient.banding_profile (mode-flavored band shape), sky.motion (bpm-driven cloud drift + aurora pulse for bar-loop bakes).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "theme_id", "musical", "sky"],
+  "properties": {
+    "schema": {"const": "melodia.sky_theme.v1"},
+    "theme_id": {"type": "string", "pattern": "^[a-z][a-z0-9_]{2,63}$"},
+    "label": {"type": "string"},
+    "musical": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["mode_id", "root_pitch_class"],
+      "description": "Same identity vocabulary as specs/schemas/world_recipe.v1.schema.json identity block. BPM is advisory here (speed of any future animated sky), never a second music clock.",
+      "properties": {
+        "mode_id": {"type": "string", "enum": ["ionian", "dorian", "lydian", "aeolian", "phrygian"]},
+        "root_pitch_class": {"type": "integer", "minimum": 0, "maximum": 11},
+        "bpm": {"type": "integer", "minimum": 40, "maximum": 220}
+      }
+    },
+    "sky": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["gradient", "sun", "clouds"],
+      "properties": {
+        "gradient": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["zenith", "horizon", "nadir"],
+          "properties": {
+            "zenith": {"$ref": "#/$defs/rgb"},
+            "horizon": {"$ref": "#/$defs/rgb"},
+            "nadir": {"$ref": "#/$defs/rgb"},
+            "banding_steps": {
+              "type": "integer", "minimum": 0, "maximum": 32, "default": 0,
+              "description": "0 = smooth gradient. >=2 = FADE-style posterized bands (quantize the gradient factor before the ramp)."
+            },
+            "banding_profile": {
+              "type": "string", "enum": ["auto", "wide", "gradual", "halo", "narrow", "cracked"], "default": "auto",
+              "description": "Mode flavor of the band shape. 'auto' derives from musical.mode_id: ionian=wide, dorian=gradual, lydian=halo, aeolian=narrow, phrygian=cracked. Consumers may treat this as guidance for curve shape; banding_steps stays authoritative for step count."
+            }
+          }
+        },
+        "motion": {
+          "type": "object",
+          "additionalProperties": false,
+          "description": "Bpm-driven bar-loop motion (beat 0 renders identical to the static bake). Cloud drift = noise W evolution across one 4/4 bar; aurora pulse modulates aurora_strength.",
+          "properties": {
+            "cloud_drift_per_beat": {"type": "number", "minimum": 0, "maximum": 8, "default": 0},
+            "aurora_pulse_per_beat": {"type": "number", "minimum": 0, "maximum": 1, "default": 0}
+          }
+        },
+        "sun": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["azimuth_deg", "elevation_deg", "color"],
+          "properties": {
+            "azimuth_deg": {"type": "number", "minimum": 0, "maximum": 360},
+            "elevation_deg": {"type": "number", "minimum": -10, "maximum": 90},
+            "color": {"$ref": "#/$defs/rgb"},
+            "disc_radius_deg": {"type": "number", "minimum": 0.1, "maximum": 30, "default": 4.0},
+            "glow_strength": {"type": "number", "minimum": 0, "maximum": 4, "default": 0.6},
+            "keying": {
+              "type": "object",
+              "additionalProperties": false,
+              "description": "How the sun azimuth is derived. 'root_pitch_class' keys the sun to the musical root (pitch class x semitone_degrees, mod 360): changing the recipe's key rotates the sky. 'explicit' keeps azimuth_deg as authored.",
+              "properties": {
+                "mode": {"type": "string", "enum": ["explicit", "root_pitch_class"], "default": "explicit"},
+                "semitone_degrees": {"type": "number", "minimum": 1, "maximum": 60, "default": 30}
+              }
+            }
+          }
+        },
+        "clouds": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["coverage"],
+          "properties": {
+            "coverage": {"type": "number", "minimum": 0, "maximum": 1},
+            "scale": {"type": "number", "exclusiveMinimum": 0, "default": 2.0},
+            "softness": {"type": "number", "minimum": 0, "maximum": 1, "default": 0.35},
+            "seed": {"type": "integer", "minimum": 0, "default": 0},
+            "lit_color": {"$ref": "#/$defs/rgb"},
+            "shadow_color": {"$ref": "#/$defs/rgb"}
+          }
+        },
+        "stars": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "density": {"type": "number", "minimum": 0, "maximum": 1},
+            "color": {"$ref": "#/$defs/rgb"}
+          }
+        },
+        "aurora": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "strength": {"type": "number", "minimum": 0, "maximum": 1},
+            "color_a": {"$ref": "#/$defs/rgb"},
+            "color_b": {"$ref": "#/$defs/rgb"}
+          }
+        }
+      }
+    },
+    "export": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "default_resolution": {
+          "type": "array", "items": {"type": "integer", "minimum": 256, "maximum": 8192},
+          "minItems": 2, "maxItems": 2, "default": [2048, 1024]
+        }
+      }
+    }
+  },
+  "$defs": {
+    "rgb": {
+      "type": "array", "items": {"type": "number", "minimum": 0, "maximum": 1},
+      "minItems": 3, "maxItems": 3
+    }
+  }
+}

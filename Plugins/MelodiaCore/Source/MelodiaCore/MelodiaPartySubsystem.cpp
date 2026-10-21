@@ -90,14 +90,17 @@ void UMelodiaPartySubsystem::ParkPawn(APawn* Pawn, const bool bParked)
 	{
 		return;
 	}
-	Pawn->SetActorHiddenInGame(bParked);
+	// Owner canon 2026-10-19/20: the pawn left behind on a party switch must
+	// not vanish. Parked is inert-but-present: no collision, no actor tick,
+	// idle animation keeps playing, and the pawn is never hidden.
+	Pawn->SetActorHiddenInGame(false);
 	Pawn->SetActorEnableCollision(!bParked);
 	Pawn->SetActorTickEnabled(!bParked);
 	TArray<USkeletalMeshComponent*> Meshes;
 	Pawn->GetComponents<USkeletalMeshComponent>(Meshes);
 	for (USkeletalMeshComponent* MeshComp : Meshes)
 	{
-		MeshComp->bPauseAnims = bParked;
+		MeshComp->bPauseAnims = false;
 	}
 }
 
@@ -105,13 +108,17 @@ void UMelodiaPartySubsystem::SwitchToNext(APlayerController* PC)
 {
 	if (!PC || PartyPawnClasses.Num() < 2 || !bSirMelodiousExplorationUnlocked)
 	{
-		// Ctrl is wired end to end: LeftControl -> IA_Flight_PartySwitch ->
-		// OnPartySwitch -> here. The only reason a press can do nothing is one of
-		// these three conditions, and all three used to fail silently, which is
-		// indistinguishable from an unwired key. Name the actual cause instead.
-		// Deliberately does not unlock itself: exploration flight is gated on the
-		// stock JRPG party actually containing Sir, and that is a gameplay
-		// decision, not a wiring fallback.
+		// Ctrl reaches here through C++ bindings only: the Sir flight pawn's own
+		// IA_Flight_PartySwitch (switch-back) and the bootstrap subsystem's
+		// pawn-level hook (UMelodiaJRPGPartyBootstrapSubsystem ~ LeftControl on
+		// every non-flight, non-smoke pawn). The stock Melusina pawn and controller
+		// Blueprints never bound this before 2026-10-19 — the earlier "wired end
+		// to end" note here was aspirational, not true. The only reason a press
+		// can do nothing is one of these three conditions, and all three used to
+		// fail silently, which was indistinguishable from an unwired key. Name the
+		// actual cause instead. Deliberately does not unlock itself: exploration
+		// flight is gated on the stock JRPG party actually containing Sir, and
+		// that is a gameplay decision, not a wiring fallback.
 		UE_LOG(LogTemp, Warning,
 			TEXT("Melodia party switch declined: no_controller=%d roster_size=%d sir_unlocked=%d "
 				 "(sir_unlocked turns true only once stock partyMembers confirms Sir was recruited)"),

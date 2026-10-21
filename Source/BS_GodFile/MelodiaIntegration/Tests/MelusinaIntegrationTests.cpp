@@ -237,9 +237,9 @@ public:
 		Sample->SetBoolField(TEXT("grounded"), bGrounded);
 		Sample->SetBoolField(TEXT("gliding"), bGliding);
 		Sample->SetBoolField(TEXT("anim_gliding"), Anim && Anim->bRuntimeIsGliding);
-		Sample->SetBoolField(TEXT("anim_in_air"), Anim->bRuntimeIsInAir);
-		Sample->SetBoolField(TEXT("anim_rising"), Anim->bRuntimeIsRising);
-		Sample->SetBoolField(TEXT("anim_descending"), Anim->bRuntimeIsDescending);
+		Sample->SetBoolField(TEXT("anim_in_air"), Anim && Anim->bRuntimeIsInAir);
+		Sample->SetBoolField(TEXT("anim_rising"), Anim && (Anim->RuntimeVerticalSpeed > 0.0f));
+		Sample->SetBoolField(TEXT("anim_descending"), Anim && (Anim->RuntimeVerticalSpeed < 0.0f));
 		Sample->SetStringField(TEXT("locomotion_state"), StateName.ToString());
 		Sample->SetNumberField(TEXT("state_grace_seconds"), StateGrace);
 		Sample->SetNumberField(TEXT("contact_grace_seconds"), ContactGrace);

@@ -1,0 +1,109 @@
+{
+  "asset": "/Game/Melodia/Characters/Melusina/Animations/ShinbiDoctor_20261007/A_Shin_Idle_stand",
+  "contract": "specs\\universal_rig\\rig_contract.v1.json",
+  "frames": 162,
+  "duration": 5.366666793823242,
+  "root_motion": false,
+  "proof_scope": "compressed all-key numeric checks on canonical V2 body; visual/runtime/contact acceptance not established",
+  "runtime_admission": "UNVERIFIED",
+  "identity": {
+    "clip": {
+      "package": "/Game/Melodia/Characters/Melusina/Animations/ShinbiDoctor_20261007/A_Shin_Idle_stand",
+      "sha256": "cc2ef14c6ed7e4d1f61a1eeea19798277b1bb97274d2efd7002d8391f2b2a239"
+    },
+    "body": {
+      "package": "/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Body",
+      "sha256": "061998d67e6cf898ff5b99b8554b93057347575b464d70c524dfb31355d252a2"
+    },
+    "gate_sha256": "e11db58bff7fbb6f46a26309d7b96f15431019c91d0764abac5afbafe6963a70",
+    "contract_sha256": "7502fd4609d1d30cbf4144b1af8f95934058c0f7ebf2486a2eac7acd6bc31e71",
+    "policy_sha256": "2ba8703354326c79ae5c2a2536d3b10da3e9c8ded0f7a6acddc4b1de05ba3799"
+  },
+  "root_x_height_range_cm": [
+    92.819055557251,
+    92.819055557251
+  ],
+  "root_height_scope": "diagnostic only; compare against the motion role, not a standing-height rule",
+  "checks": {
+    "source_policy": {
+      "pass": true,
+      "reason": null
+    },
+    "root_units": {
+      "pass": true,
+      "frames_checked": 162
+    },
+    "arm_canon": {
+      "pass": true,
+      "worst": {
+        "l": {
+          "frame": 121,
+          "measured": [
+            15.774,
+            28.561,
+            28.615
+          ],
+          "max_dev_cm": 0.0
+        },
+        "r": {
+          "frame": 74,
+          "measured": [
+            15.774,
+            28.561,
+            28.615
+          ],
+          "max_dev_cm": 0.0
+        }
+      },
+      "canon": [
+        15.774,
+        28.561,
+        28.615
+      ],
+      "tol_cm": 1.0,
+      "frames_checked": 162,
+      "reject_signature_hit": false
+    },
+    "loop_seam": {
+      "pass": true,
+      "per_bone": {
+        "root": {
+          "pos_cm": 0.0,
+          "rot_deg": 0.0
+        },
+        "foot_l": {
+          "pos_cm": 0.0,
+          "rot_deg": 0.0
+        },
+        "foot_r": {
+          "pos_cm": 0.0,
+          "rot_deg": 0.0
+        },
+        "toes_01_l": {
+          "pos_cm": 0.0,
+          "rot_deg": 0.0
+        },
+        "toes_01_r": {
+          "pos_cm": 0.0,
+          "rot_deg": 0.0
+        }
+      },
+      "worst_pos_cm": 0.0,
+      "worst_rot_deg": 0.0,
+      "worst_rot_bone": "toes_01_l",
+      "gate_cm": 1.0,
+      "gate_deg": 5.0,
+      "applies": true
+    },
+    "foot_z": {
+      "pass": true,
+      "min_z_cm": 2.483,
+      "class": "idle",
+      "range": [
+        0.0,
+        6.0
+      ]
+    }
+  },
+  "verdict": "PASS"
+}

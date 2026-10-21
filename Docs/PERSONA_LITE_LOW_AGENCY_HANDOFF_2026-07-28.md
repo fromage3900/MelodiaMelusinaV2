@@ -12,7 +12,7 @@
 4. `Docs/JRPG_UI_QUILL_NEXT_IMPLEMENTATION_2026-07-28.md` only when working on active battle/dialogue UI.
 5. `_SESSION_HANDOFF.md` for detailed history and current caveats.
 
-Do not treat older roguelike, ACFU, MelodiaCore battle, or recursive-agent plans as active production instructions.
+Do not treat older roguelike, MelodiaCore battle, or recursive-agent plans as active production instructions. The turn-based ARPG / ACFU hybrid is canon (owner, 2026-10-11; `CURRENT_STATE.md` "OWNER CANON").
 
 ## Non-negotiable authority boundary
 

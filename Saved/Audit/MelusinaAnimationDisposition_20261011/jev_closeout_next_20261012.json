@@ -1,0 +1,22 @@
+{
+  "source": "jev-live",
+  "model": "jev-1.13.0",
+  "input": {
+    "bounded_pass": "One-hour Melusina stabilization closeout",
+    "verified": "Exact-body compressed all-key gate now identifies clip/body/contract/policy hashes, checks units and finite joint data, enforces exact quarantine and never grants visual admission. 59 tests pass; accepted idle positive and frozen archer negative controls pass. Removed stale bootstrap writer and delayed jump instructions. Niagara dead-actor guard exact graph/compile/replay passed. V short physical press engages780 speed limit and release restores300; sustained skim/wake not proven.",
+    "remaining": "Bound walk/run and airborne loop have endpoint foot rotation mismatches. Existing generic Walk/Run pass numeric loops and inspected isolated poses; composed trial was not accepted because it left the platform into water. Original bindings restored. Five incompatible battle fields remain. Hit/death candidates were inspected, not admitted. Boot sole/cuff/capsule acceptance and full normal-character action replay remain open.",
+    "execution_constraints": "No skeleton or frozen-original edits, no new pipeline, no unverified binding; one editor/writer."
+  },
+  "answers": {
+    "next_highest_value": {
+      "type": "choice",
+      "choice": "CORE_CONTACT_AND_SAFE_REPLAY",
+      "confidence": 0.83,
+      "probabilities": {
+        "CORE_CONTACT_AND_SAFE_REPLAY": 0.89,
+        "VERIFY_EXISTING_LOOP_CANDIDATES": 0.11,
+        "BATTLE_ROLE_DISPOSITIONS": 0.0
+      }
+    }
+  }
+}

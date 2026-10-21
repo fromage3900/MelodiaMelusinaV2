@@ -1,42 +1,73 @@
 @ Start
 
+$ Background {&/Game/Melodia/UI/Textures/Figma/T_Melodia_Figma_Asset_Hero_BaroqueGrotto.T_Melodia_Figma_Asset_Hero_BaroqueGrotto} none 0
+
+- .
+  Inside the first awakened chamber, the wall panels hum at a low, steady D-sharp. Where the half-lap stones meet, gold bow-tie key plates sit precisely on the room's acoustic antinodes.
+
 - Melusina
-  The sanctum mirror reflects a gentle shimmer. Floating within the glass is a woven garment of tidal thread.
+  I remember this mirror. And I remember the tear along that sleeve.
+
+      $ Voice {&/Game/Melodia/Characters/Melusina/Audio/mel_road_02.mel_road_02} 0.9
 
 - Sir Melodious
-  The Resonant Weave—woven from sorrow-seam silk and dawn mist. Try it on, Melusina.
+  The Resonant Weave. You left it on the loom when your voice cracked at the autumn rehearsal, and swore you would never wear a garment with a visible mend.
 
-* Don the Resonant Weave outfit. | -> EquipOutfit
-* Inspect the fabric and stitches.  | -> InspectFabric
+- Melusina
+  It's called the Sorrow Seam, Sir. Nobody wants to walk into a festival wearing their mistakes on their collarbone.
+
+- Sir Melodious
+  Look at the walls of this very room, Melusina. Where did the architect place the gold keys? Not in the smooth center of the stone—at the joints, where the pressure is highest.
+
+* Trace the gold stitches along the Sorrow Seam. | -> InspectFabric
+* Hum the room's keynote into the mirror glass. | -> HumKeynote
 
 <@> InspectFabric
 
 - Melusina
-  The seams pulse softly with the heartbeat of the sea. It carries an uplifting buoyancy.
+  Mara's luthier-stitch. She wove tidal silk right through the fray instead of hiding it. It's warm... like a cello bridge under tension.
 
 - Sir Melodious
-  Every stitch is tuned to wind and water. When you wear it, the air itself will catch your fall.
+  A seam is not a scar, little bard. It is where two halves agreed to hold the same weight. When the wind catches that stitch, weight becomes lift.
+
+-> EquipOutfit
+
+<@> HumKeynote
+
+- Melusina
+  If the room is tuned to D-sharp, then the thread should answer on the fifth...
+
+      $ SFX {&/Game/Melodia/Audio/WaveHarp/SW_WaveHarp_Orchestra_C4.SW_WaveHarp_Orchestra_C4} 0.8
+
+- .
+  As Melusina hums, the floor's Chladni medallion gleams and the reflection in the glass steps forward—draping the flared blouse and silk-chained skirt around her shoulders.
+
+- Sir Melodious
+  Ha! The silk remembered your posture better than you did. Not a single fold out of place.
 
 -> EquipOutfit
 
 <@> EquipOutfit
 
 - Melusina
-  The fabric aligns with my rhythm. I feel lighter, as if the breeze answers my steps.
+  It's lighter than it was in autumn. The hem doesn't drag—it floats on the updraft.
+
+      $ Voice {&/Game/Melodia/Characters/Melusina/Audio/mel_arrival_02.mel_arrival_02} 0.9
 
 $ Notify melodia:item:give:item.outfit.melusina_v2:1
 $ Notify melodia:stat:intent.wardrobe.elegance:melodia_elegance:3
 $ Notify melodia:flag:flag.wardrobe.outfit_equipped:true
 $ Notify melodia:flag:flag.melusina.sorrow_seam_restored:true
+$ Notify melodia:flag:challenge.first_resonance_echo.completed:true
 
 - Sir Melodious
-  Magnificent! The Sorrow Seam is restored, and the currents of the sky recognize your form. You can now Glide effortlessly across the chasm!
+  The Sorrow Seam is whole, and the second chamber door is already answering the resonance! Step off any high terrace now, and the air itself will carry your Glide.
 
 $ Notify melodia:questcomplete:quest.wardrobe.equip_outfit:flag.wardrobe.equip_completed:reward.wardrobe.first_outfit:intent.wardrobe.complete:checkpoint.wardrobe.complete
 
 @ Finish
 
 - .
-  Melusina equips the Resonant Weave. Her traversal capabilities expand with the power of Glide.
+  With the Sorrow Seam restored, the second measure of the Morning House locks into place. Beyond the gallery, a small bell chimes in solitary Middle C by the dell spring.
 
 $ End

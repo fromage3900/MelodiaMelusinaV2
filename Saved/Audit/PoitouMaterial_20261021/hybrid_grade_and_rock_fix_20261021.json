@@ -1,0 +1,199 @@
+{
+ "generated": "2026-10-21T06:40:00",
+ "session": "hybrid grade convergence + rock albedo repair",
+ "editor_play_mode_note": "PIE was active at 06:17; per-asset save/duplicate/material_query all refused with 'The Editor is currently in a play mode'. save_packages() still wrote. Cause of the earlier 'asset corruption' misdiagnosis \u2014 the material was never broken.",
+ "corrections_to_prior_evidence": [
+  {
+   "artefact": "gate7_switch_map.json",
+   "wrong_claim": "the Nikki switch block (bNikkiPastelGrade_Active, bNikkiTwinkleIris_Active, bTriplanarPro_Active, bRockDetailAlbedo) is inert because it lives in the false branch of bUseExtendedLayers",
+   "why_wrong": "LinearInterpolate_8.A is fed by LinearInterpolate_5 directly, independent of StaticSwitchParameter_2. The pastel grade / ramp chain therefore reaches BaseColor regardless of the switch, just through the A slot. Upstream-ancestry analysis on one pin cannot establish inertness when a branch has consumers outside the switch.",
+   "correct_statement": "the switch selects the B slot only (layer substitution). The Nikki grade is always evaluated as the base colour.",
+   "method_rule": "a branch is inert only if every node in it has no consumer reachable from the material output outside the switch; ancestry of one pin is insufficient"
+  },
+  {
+   "artefact": "out_degree_unwired_census (this session)",
+   "wrong_claim": "StaticSwitchParameter_25 (bNikkiSquishWPO_Active) is unwired, out-degree 0",
+   "why_wrong": "get_full_connection_graph models expression->expression edges only. Expression->material-pin edges appear under outputs[].consumers[].material_output, so a node feeding MP_WORLD_POSITION_OFFSET shows out-degree 0.",
+   "correct_statement": "StaticSwitchParameter_25 IS the node plugged into MP_WORLD_POSITION_OFFSET. Zero expressions in this material are orphaned."
+  }
+ ],
+ "mutations": [
+  {
+   "id": "rock_albedo_numerator",
+   "nodes_created": [
+    "MaterialExpressionMultiply_0",
+    "MaterialExpressionAdd_0"
+   ],
+   "wiring": "Add_0 = Add_8 + (TextureSampleParameter2D_11[Rock_Albedo] x LandscapeLayerSample_4[Rock])",
+   "then": "Divide_6.A <- Add_0"
+  },
+  {
+   "id": "rock_normal_numerator",
+   "nodes_created": [
+    "MaterialExpressionMultiply_1",
+    "MaterialExpressionAdd_13"
+   ],
+   "wiring": "Add_13 = Add_11 + (TextureSampleParameter2D_12[Rock_NormalMap] x LandscapeLayerSample_4[Rock])",
+   "then": "Divide_7.A <- Add_13"
+  },
+  {
+   "id": "denominator_guard",
+   "nodes_created": [
+    "MaterialExpressionConstant_6"
+   ],
+   "value": 0.0001,
+   "wiring": "Max_2.B <- Constant_6",
+   "reason": "Divide_6 / Divide_7 divided by max(Add_5, 0); bare terrain produced x/0"
+  },
+  {
+   "id": "hybrid_grade",
+   "nodes_created": [
+    "MaterialExpressionLinearInterpolate_11"
+   ],
+   "wiring": "LinearInterpolate_11 = lerp(A=Multiply_13[legacy albedo x BaseTint], B=Divide_6[extended layers], Alpha=Saturate_2[extended coverage]); LinearInterpolate_3.A <- LinearInterpolate_11",
+   "reason": "option (a): layers pass through the Nikki ramp + pastel grade instead of bypassing it"
+  },
+  {
+   "id": "rock_weight_unmask",
+   "asset": "MI_Poitou_Landscape_Nikki",
+   "param": "Gaea_RockWeight",
+   "from": 1,
+   "to": 0,
+   "reason": "at 1.0 the rock weight was LayerSample_Rock x Gaea_RockMask, a 32x32 stub gradient; at 0.0 lerp(1.0, mask, 0) = 1.0 so rock weight is the painted layer weight"
+  },
+  {
+   "id": "ramp_strength",
+   "asset": "MI_Poitou_Landscape_Nikki",
+   "param": "RampStrength",
+   "from": 1,
+   "to": 0.35,
+   "reason": "at 1.0 the ramp replaced albedo entirely inside the grade chain; 0.35 makes it a tint over the layers"
+  }
+ ],
+ "verification": {
+  "compilation": {
+   "px_instructions": 356,
+   "vs_instructions": 153,
+   "is_compiled": true,
+   "expression_count": 362,
+   "prior_expression_count": 356
+  },
+  "validate_material": {
+   "issue_count": 4,
+   "unchanged": true,
+   "breakdown": "3 duplicate_parameter_name warnings (deliberate fan-out, see gate8) + 1 high_expression_count info"
+  },
+  "connection_readback": {
+   "Divide_6.A": "MaterialExpressionAdd_0",
+   "Divide_7.A": "MaterialExpressionAdd_13",
+   "Max_2.B": "MaterialExpressionConstant_6",
+   "LinearInterpolate_3.A": "MaterialExpressionLinearInterpolate_11",
+   "Add_0": "A=Add_8, B=Multiply_0(Rock_Albedo x LS_Rock)",
+   "Add_13": "A=Add_11, B=Multiply_1(Rock_NormalMap x LS_Rock)",
+   "LinearInterpolate_11": "A=Multiply_13, B=Divide_6, Alpha=Saturate_2",
+   "Constant_6.r": 0.0001
+  },
+  "saved": true,
+  "backup": "/Game/EnvSandbox/Materials/Masters/_Backup/M_Master_Nikki_Landscape_PreRockFix_20261021 (duplicate_asset + save_packages, both returned true)"
+ },
+ "layer_binding_truth": {
+  "source": "MI texture_parameter_values vs master TextureSampleParameter2D bindings",
+  "real_pbr_layers": {
+   "Ground": [
+    "T_Poitou_SiltMud_D",
+    "T_Poitou_SiltMud_N"
+   ],
+   "Mud": [
+    "T_Poitou_SiltMud_D",
+    "T_Poitou_SiltMud_N"
+   ],
+   "Path": [
+    "T_Poitou_ReedBed_D",
+    "T_Poitou_ReedBed_N"
+   ],
+   "Rock": [
+    "T_Poitou_Limestone_D",
+    "T_Poitou_Limestone_N"
+   ],
+   "Grass": [
+    "T_Poitou_WetMeadow_D",
+    "T_Poitou_WetMeadow_N"
+   ],
+   "Water": [
+    "T_Poitou_DuckweedWater_D",
+    "T_Poitou_DuckweedWater_N"
+   ],
+   "Albedo": [
+    "T_Poitou_WetMeadow_D",
+    null
+   ]
+  },
+  "placeholder_layers": {
+   "Snow": [
+    "Horizontal_1_-_512x512",
+    "T_Neutral_Normal"
+   ],
+   "note": "intentionally off; SnowStrength=0, bSnowFrostDistanceBand=false"
+  },
+  "not_overridden": [
+   "Gaea_FlowMask",
+   "Gaea_RockMask",
+   "Gaea_SnowMask",
+   "Gaea_WaterMask",
+   "Rock_DetailAlbedo",
+   "SnowEdgeDistanceTexture"
+  ],
+  "note": "Ground and Mud share the SiltMud pair, and Albedo and Grass share the WetMeadow pair \u2014 two distinct Poitou materials covering four layer names."
+ },
+ "not_a_defect": {
+  "ground_grass_absent_from_extended_sums": "LandscapeLayerBlend_5 is the legacy branch holding Ground/Grass/Rock/Base; LinearInterpolate_8 blends it against Divide_6 by Saturate_2 (extended coverage). Adding Ground/Grass to the extended numerator without their weights in Add_5 would double-count them. Left alone deliberately."
+ },
+ "open_decisions": [
+  "snow: leave off (current), enable SDF frost band only, or full coverage",
+  "stylistic Nikki switches all still false: bShadowDream_Active, bNikkiPetalShadow_Active, bNikkiPearlSheen_Active, bNikkiSDFRibbon_Active, bNikkiStickerEdge_Active, bNikkiStickerShade_Active, bNikkiSquishWPO_Active, bNikkiDreamWatercolor_Active, bNikkiGlitterHalo_Active",
+  "bRockTriplanarNormals still false; Rock_NormalMap now has a real MI override so it is ready to enable"
+ ],
+ "evidence_level": "graph readback + compile stats + validated material. No visual proof: capture_scene_preview returns the editor viewport for this MI, not a material preview.",
+ "follow_up_20261021": {
+  "bRockTriplanarNormals": {
+   "asset": "MI_Poitou_Landscape_Nikki",
+   "from": false,
+   "to": true,
+   "reachability_proof": "StaticSwitchParameter_12 -> LandscapeLayerBlend_4:Layer Rock -> LinearInterpolate_9:A -> Normalize_1 -> SubstrateToonBSDF_1:Normal. blend_4 occupies the A slot of LinearInterpolate_9 (Alpha = Saturate_2), the same pattern as the albedo, so it is reached wherever extended coverage < 1.",
+   "ab_compile_proof": {
+    "mi_px_with_true": 450,
+    "mi_px_with_false": 437,
+    "delta": 13,
+    "master_px_unchanged": 356
+   },
+   "why_it_matters": "Rock_NormalMap has a real T_Poitou_Limestone_N override, and the triplanar branch avoids UV stretching on vertical rock faces.",
+   "saved": true
+  },
+  "api_notes": {
+   "mi_static_switch_read": "unreal.MaterialEditingLibrary.get_material_instance_static_switch_parameter_value(mi, name)",
+   "mi_static_switch_write": "set_material_instance_static_switch_parameter_value(mi, name, bool) - returns falsy even on success, verify by readback",
+   "mi_has_no_static_switch_parameter_values_property": "MaterialInstanceConstant does not expose static_switch_parameter_values in this build",
+   "recompile_material_rejects_instances": "RecompileMaterial takes UMaterial only; passing a MaterialInstanceConstant raises a nativize TypeError",
+   "mi_compile_stats_are_cached": "get_compilation_stats on an MI returned a stale value (437 while the switch read true); recompiling the master invalidated the cache and the correct 450 then read back twice"
+  },
+  "final_state": {
+   "master_px": 356,
+   "mi_px": 450,
+   "master_expressions": 362,
+   "mi_scalars": {
+    "RampStrength": 0.35,
+    "RampContrast": 1.0,
+    "RampPosMid": 0.5,
+    "Gaea_RockWeight": 0.0
+   },
+   "mi_static_switches": {
+    "bUseExtendedLayers": true,
+    "bNikkiPastelGrade_Active": true,
+    "bNikkiTwinkleIris_Active": true,
+    "bTriplanarPro_Active": true,
+    "bRockDetailAlbedo": true,
+    "bRockTriplanarNormals": true
+   }
+  }
+ }
+}

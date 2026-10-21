@@ -46,7 +46,14 @@ import numpy as np
 # Config
 # ---------------------------------------------------------------------------
 
-FBX_PATH = "C:/EnvironmentPortfolio/BS_GodFile/Saved/Staging/MelusinaExport_20260925/SK_Melusina_V2_Body.fbx"
+FBX_PATH = next(
+    (p for p in (
+        "C:/EnvironmentPortfolio/BS_GodFile/Saved/Staging/MelusinaExport_20260925/SK_Melusina_V2_Body.fbx",
+        "C:/EnvironmentPortfolio/BS_GodFile/Saved/Audit/MelusinaRuntimeCloseout_20261009/SkirtLayering_20261011/FreshUEExports/body_current.fbx",
+        "C:/EnvironmentPortfolio/BS_GodFile/Saved/Audit/MelusinaRuntimeCloseout_20261009/SkirtLayering_20261011/Inputs/body_readonly.fbx",
+    ) if os.path.isfile(p)),
+    "C:/EnvironmentPortfolio/BS_GodFile/Saved/Audit/MelusinaRuntimeCloseout_20261009/SkirtLayering_20261011/FreshUEExports/body_current.fbx",
+)
 OUT_DIR = "C:/EnvironmentPortfolio/BS_GodFile/Saved/Staging/MelusinaFaceSDF"
 OUT_PNG = os.path.join(OUT_DIR, "T_Melusina_FaceSDF.png")
 OUT_CONTACT = os.path.join(OUT_DIR, "T_Melusina_FaceSDF_contact.png")

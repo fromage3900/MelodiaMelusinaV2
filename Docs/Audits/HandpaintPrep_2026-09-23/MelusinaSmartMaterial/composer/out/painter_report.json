@@ -1,0 +1,11 @@
+{
+  "ok": false,
+  "exports": {},
+  "phases": [
+    "stack",
+    "resources",
+    "composer"
+  ],
+  "notes": [],
+  "error": "module 'substance_painter.export' has no attribute 'list_output_templates'"
+}

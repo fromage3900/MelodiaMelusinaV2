@@ -1,0 +1,55 @@
+{
+  "generated": "2026-10-21",
+  "gate": "4 and 2",
+  "title": "Weight normalization and Rock double-count — both already correct",
+  "evidence_level": "read-only graph trace; no mutation, no compile change, no PIE",
+  "master": "/Game/EnvSandbox/Materials/Masters/M_Master_Nikki_Landscape",
+  "result": "no mutation required — both gates close as non-defects",
+
+  "gate_4_weight_normalization": {
+    "claim_under_test": "7 layer weights accumulate with no sum normalization",
+    "trace": {
+      "accumulator": "MaterialExpressionAdd_5 = Add_3 + Add_12",
+      "Add_3": "StaticSwitchParameter_27 + Multiply_23 (Water weight x lerp7)",
+      "Add_12": "Add_4 + Multiply_45 (Rock weight x lerp19)",
+      "Add_4": "LandscapeLayerSample_2 (Mud) + LandscapeLayerSample_3 (Path)",
+      "Add_2": "Multiply_22 (Snow weight x lerp6) + Multiply_21 (Saturate_0 x SnowStrength)"
+    },
+    "clamp": {
+      "node": "MaterialExpressionSaturate_2",
+      "input": "Add_5",
+      "consumers": [
+        "LinearInterpolate_8:Alpha",
+        "LinearInterpolate_9:Alpha",
+        "LinearInterpolate_13:Alpha"
+      ]
+    },
+    "normalization": {
+      "switch": "bUseExtendedLayers",
+      "value": true,
+      "true_path": {
+        "Divide_6": "Add_8 / Max_2",
+        "Divide_7": "Add_11 / Max_2",
+        "Max_2": "A = Add_5, B unconnected (defaults 0) => max(Add_5, 0) = Add_5 for non-negative weights"
+      },
+      "feeds": [
+        "StaticSwitchParameter_2.True -> LinearInterpolate_8.B (base colour)",
+        "StaticSwitchParameter_3.True -> LinearInterpolate_9.B"
+      ]
+    },
+    "verdict": "Already normalized by divide-by-sum on the active (bUseExtendedLayers=true) path, and separately clamped by Saturate_2. Not a defect."
+  },
+
+  "gate_2_rock_double_count": {
+    "claim_under_test": "Rock is double counted: LandscapeLayerSample_4 -> Multiply_45 -> Add_12 AND blend_5/6",
+    "finding": {
+      "LandscapeLayerSample_4_consumers": ["MaterialExpressionMultiply_45:A"],
+      "LandscapeLayerBlend_4_layers": ["Ground", "Grass", "Rock", "Base"],
+      "LandscapeLayerBlend_4_role": "False branch of StaticSwitchParameter_3 — the legacy non-extended path",
+      "active_path": "bUseExtendedLayers=true selects Divide_7, so LandscapeLayerBlend_4 is inactive"
+    },
+    "verdict": "No double count on the active path. Rock enters albedo exactly once via Multiply_45 -> Add_12. The second Rock appearance is in LandscapeLayerBlend_6, which is the roughness authority — a different domain, not a duplicate weight."
+  },
+
+  "caveat": "Max_2.B is unconnected. max(Add_5, 0) is correct only while layer weights and SnowStrength-derived coverage stay non-negative. SnowStrength is 0 on the MI (gate 1), so this holds today."
+}
