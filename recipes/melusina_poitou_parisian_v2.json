@@ -1,0 +1,200 @@
+{
+  "schema": "melodia.world_recipe.v1",
+  "recipe_id": "melusina_poitou_parisian_v2",
+  "world_seed": 3900,
+  "identity": {
+    "mode_id": "dorian",
+    "root_pitch_class": 2,
+    "bpm": 128,
+    "movement_id": "liquid_cathedral",
+    "chunk": [0, 0]
+  },
+  "place": {
+    "level": "/Game/EnvSandbox/Poitou/L_Poitou_v2",
+    "anchor_cm": [52000.0, 58000.0, 300.0],
+    "up_axis_offset_cm": 0.0,
+    "clearance": {
+      "circles": [
+        {
+          "label": "abbey_high_altar",
+          "center_cm": [86884.0, 84231.0],
+          "radius_cm": 1500.0
+        },
+        {
+          "label": "village_church_square",
+          "center_cm": [52000.0, 58000.0],
+          "radius_cm": 1200.0
+        },
+        {
+          "label": "grand_port_basin",
+          "center_cm": [35000.0, 45000.0],
+          "radius_cm": 1800.0
+        }
+      ],
+      "capsules": [
+        {
+          "label": "main_towpath_canal",
+          "a_cm": [35000.0, 45000.0],
+          "b_cm": [52000.0, 58000.0],
+          "radius_cm": 450.0
+        },
+        {
+          "label": "poplar_allee_route",
+          "a_cm": [52000.0, 58000.0],
+          "b_cm": [86884.0, 84231.0],
+          "radius_cm": 450.0
+        }
+      ]
+    }
+  },
+  "field": {
+    "kind": "radial_bands",
+    "band_count": 7,
+    "inner_radius_cm": 400.0,
+    "band_width_cm": 800.0,
+    "sector_deg": [0.0, 360.0],
+    "density_per_m2": 0.65,
+    "phyllotaxis_angle_rad": 2.399963,
+    "radial_jitter_cm": 50.0,
+    "scale_range": [0.85, 1.25],
+    "chladni": {
+      "modes": [
+        [2, 3],
+        [3, 4],
+        [4, 5],
+        [5, 6],
+        [6, 7],
+        [7, 8],
+        [8, 9]
+      ],
+      "threshold": 0.35,
+      "plate_size_cm": 30000.0
+    },
+    "hero_falloff_cm": 1200.0,
+    "trail_arcs": [
+      {
+        "species_id": "poitou_poplar_allee",
+        "angle_center_deg": 45.0,
+        "span_deg": 60.0,
+        "radius_cm": 2400.0,
+        "count": 16,
+        "width_cm": 120.0
+      },
+      {
+        "species_id": "poitou_poplar_allee",
+        "angle_center_deg": 135.0,
+        "span_deg": 60.0,
+        "radius_cm": 3600.0,
+        "count": 24,
+        "width_cm": 120.0
+      }
+    ]
+  },
+  "species": [
+    {
+      "species_id": "poitou_ruin_arch",
+      "mesh": "/Game/Melodia/Meshes/Poitou/SM_Maillezais_BrokenArch",
+      "meshes": [
+        "/Game/Melodia/Meshes/Poitou/SM_Maillezais_BrokenArch"
+      ],
+      "weight": 0.05,
+      "variants": 1,
+      "height_class": 2,
+      "scale_range": [0.95, 1.05]
+    },
+    {
+      "species_id": "poitou_ruin_buttress",
+      "mesh": "/Game/Melodia/Meshes/Poitou/SM_Maillezais_ButtressStub",
+      "meshes": [
+        "/Game/Melodia/Meshes/Poitou/SM_Maillezais_ButtressStub"
+      ],
+      "weight": 0.1,
+      "variants": 1,
+      "height_class": 1,
+      "scale_range": [0.95, 1.05]
+    },
+    {
+      "species_id": "poitou_ruin_wall",
+      "mesh": "/Game/Melodia/Meshes/Poitou/SM_Maillezais_CrumbledWall",
+      "meshes": [
+        "/Game/Melodia/Meshes/Poitou/SM_Maillezais_CrumbledWall"
+      ],
+      "weight": 0.15,
+      "variants": 1,
+      "height_class": 1,
+      "scale_range": [0.95, 1.05]
+    },
+    {
+      "species_id": "poitou_poplar_allee",
+      "mesh": "/Game/EnvSandbox/Meshes/Environment/tree-high/StaticMeshes/tree-high",
+      "meshes": [
+        "/Game/EnvSandbox/Meshes/Environment/tree-high/StaticMeshes/tree-high"
+      ],
+      "weight": 0.35,
+      "variants": 1,
+      "height_class": 2,
+      "scale_range": [0.8, 1.3]
+    },
+    {
+      "species_id": "poitou_village_roomshell",
+      "mesh": "/Game/HoudiniEngine/Temp/MelodiaRoomShell_1_0/F2A21A0C/MelodiaRoomShell_1_0_238_260_0_main_geo",
+      "meshes": [
+        "/Game/HoudiniEngine/Temp/MelodiaRoomShell_1_0/F2A21A0C/MelodiaRoomShell_1_0_238_260_0_main_geo"
+      ],
+      "weight": 0.15,
+      "variants": 1,
+      "height_class": 1,
+      "scale_range": [0.95, 1.05]
+    },
+    {
+      "species_id": "poitou_ruin_rocks",
+      "mesh": "/Game/HoudiniEngine/Temp/rock_generator/084E9941/rock_generator_244_267_0_main_geo",
+      "meshes": [
+        "/Game/HoudiniEngine/Temp/rock_generator/084E9941/rock_generator_244_267_0_main_geo"
+      ],
+      "weight": 0.2,
+      "variants": 1,
+      "height_class": 0,
+      "scale_range": [0.7, 1.4]
+    }
+  ],
+  "palette": {
+    "parent_master": "/Game/EnvSandbox/Poitou/Materials/MI_Poitou_RuinStone",
+    "tint_parameter": "BaseTint",
+    "active_lane": "wind",
+    "wind": {
+      "parent": "/Game/EnvSandbox/Poitou/Materials/MI_Poitou_RuinStone",
+      "mi_prefix": "/Game/EnvSandbox/Materials/Instances/Poitou/MI_Poitou_RuinStone_",
+      "tint_parameter": "BaseTint",
+      "hue_seed_parameter": "MelodiaWindHueSeed",
+      "response_parameter": "MelodiaWindResponse",
+      "response": 0.3,
+      "static_switches_off": [],
+      "texture_overrides": {},
+      "scalar_overrides": {},
+      "note": "Poitou Marais stone and Parisian tufa variant tinting family."
+    },
+    "bands": [
+      {"label": "B0_Red", "tint": [1.0, 0.18, 0.22]},
+      {"label": "B1_Orange", "tint": [1.0, 0.45, 0.10]},
+      {"label": "B2_Gold", "tint": [1.0, 0.80, 0.20]},
+      {"label": "B3_Green", "tint": [0.35, 0.95, 0.45]},
+      {"label": "B4_Blue", "tint": [0.30, 0.55, 1.0]},
+      {"label": "B5_Indigo", "tint": [0.45, 0.30, 0.95]},
+      {"label": "B6_Violet", "tint": [0.75, 0.35, 1.0]}
+    ]
+  },
+  "signal": {
+    "source_mpc": "/Game/Melodia/_PROJECT/04_Materials/MPC_Melodia_Palette",
+    "driver_mpc": "/Game/Melodia/Cymatics/MPC_Cymatics_Driver",
+    "lanes": [
+      "Cymatic_EmissiveScale",
+      "Cymatic_IridescenceShift",
+      "Cymatic_BeatPulse",
+      "Cymatic_WindDirX",
+      "Cymatic_WindDirY",
+      "Cymatic_WindStrength"
+    ],
+    "material_function": "/Game/Melodia/_PROJECT/04_Materials/Functions/MF_MelodiaWindHueReveal"
+  }
+}
