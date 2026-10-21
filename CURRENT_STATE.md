@@ -218,6 +218,51 @@
 
 Owner-requested Dana preview uses the existing `/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal` through scoped instances in `/Game/Staging/DanaProfessor_20261016`. Saved studio: `L_Dana_UniversalToon_Studio`; source mesh/skeleton/physics copied additively from Humber with visible section material overrides. Original universal master is unchanged. MRQ portrait v03 visually reviewed: visible toon bands on face, hair, and teal shirt, neutral background, source reference pose. Images: `Saved/DanaProfessor/Renders/`; film delivery copies: `G:/film-304-toon-spine/Showcase/Dana/MelodiaUniversal/`. Build and job evidence: `Saved/DanaProfessor/stage.json` and corresponding render logs. This is still-render material proof, not rig deformation proof. No Git publication performed.
 
+## Eyewear flourish + material slots — 2026-10-16 (LANDED via lane; UE BP queued)
+
+- **Builder work (landed):** hero `Enable Flourish` now gates a 3:2 Lissajous tube halo above the bridge
+  (freq/amp dials live, default OFF); per-part material slots (Frame/Temple/Hinge/Lens) applied to
+  nested outputs (Bridge stays declared — inseparable inside front sub-tree). Default output verified
+  identical to pre-change build (5,144 verts); ON adds 1,152 halo verts. Full verify_addon 6/6 PASS.
+  Renders under `Saved/Audit/EyewearFlourish/` (gitignored staging).
+- **UE side (in-editor):** Cat-Eye frame + lens static meshes imported (fresh Accessories path, saved on
+  disk); `wardrobe_eyewear_cateye.v1.json` extended with lens mesh + UE-measured counts.
+- **Blocked 2026-10-16:** Monolith MCP namespace dropped from the agent tool catalog mid-session
+  (editor + :9316 bridge verified alive; owner restarted editor 10-15 21:30). BP wiring (glasses BP +
+  halo toggle + socket attach + MI instances) queued until the surface returns — no live-editor
+  mutation attempted without it.
+
+## Cat-Eye eyewear accessory — 2026-10-16 (mesh+manifest LANDED via lane; UE materials/attach pending)
+
+- **What:** first eyewear cosmetic `Cos_Eyewear_CatEye_Grand` (Uncommon, Accessories slot, decorative-only;
+  manifest `specs/wardrobe/wardrobe_eyewear_cateye.v1.json`): Cat-Eye hero pair in editorial gold +
+  smoked lenses, 5,144-vert frame / 320-vert lenses, 13.8 cm ISO boxing. Meshes imported to
+  `/Game/Melodia/Characters/Melusina/Accessories/` (frame + lenses static meshes, saved on disk;
+  import also dropped a 24-vert default-cube byproduct in that folder, pending owner tidy).
+- **Builder fix that made it real:** laptop rewrite had dropped Sept's `neg_pivot` right-side seat,
+  stacking both temples on +X (proven in renders); restored verbatim in pair+hero. Renders personally
+  inspected (front/persp/macro). Baseline re-cut: exactly one measurement moved (hero bbox x 0.138->0.142);
+  full gate 6/6 PASS. Staging under `Saved/Audit/EyewearCatEye/` (gitignored).
+- **Still open:** MI_Eyewear_CatEye_Gold + MI_Eyewear_CatEye_Lens instances, head-socket attach + worn-orientation
+  rotation, live-fit approval on Melusina, equip-roundtrip proof. Pair builds flat by Sept convention;
+  upright rotation belongs in staging/attach, not the builder.
+
+## Studio/GN reconcile lane -- LANDED 2026-10-13 (PR #480, 8 commits)
+
+- **Lane landed:** `refs/agents/studio-gn` (8 commits, base `origin/main@28ee209`) via `deploy/land_agent_lane.ps1`; PR #480 merged 2026-10-14T03:44:26Z, temp branch deleted in the same run. Local main coal-face untouched.
+- **What:** selective promotion from `origin/collab/laptop/melodia-studio-tidy-20261004` (105 files, never merged) — 54 new files (panel-split modules, 8 music verifiers, 39 GN builders), 43 modified paths (registrations, facade, builder revisions), `core.py` union merge, 3-file laptop-`P:`-hardcode repair. No wholesale merge; 5 laptop file-deletions deferred (files retained, orphans harmless); `registry_baseline.json` untouched.
+- **Evidence (all in-lane, Blender 5.2.1):** `MELODIA STUDIO SOURCE GATE: PASS` — registry 784, `GN_PARIS_WallDetail` 576 verts, `GN_PARIS_SlabTrim` 0 verts (documented input-dependent); `blender_smoke.py` 27/27 `[SMOKE]` PASS incl. 15 classes + clean unregister (exit-1 is the documented background-teardown bug, not a failure); `py_compile` clean; `_batch_remaining_presets.py` duplicate proved SHA256-identical before delete.
+- **Integrator notes:** eyewear consolidated 3 builders into `MEL_eyewear_hero` by laptop design (gate `baseline_lost` warning, PASS); baseline re-cut is a follow-up (new ids report as `baseline_new`, zero unexpected lost); AppData live profile still has addon 1.5.0 — reinstall from `Tools/BlenderAddons` after landing so Blender loads 1.6.0.
+- **Repo incident during landing (2026-10-13 ~23:39 UTC):** `.git/config` gained `core.bare=true`, breaking `git status` in EVERY worktree on this machine (primary + all lanes). Repaired with `git config core.bare false`; all trees verified (`is-inside-work-tree=true`, lane clean, primary dirty=404 as before). Writer unidentified -- file mtime 23:39:52, no lane command writes config. If it recurs, check concurrent agents/daemons before touching history.
+
+## Next cross-repo TD procedural art action — Chord Atelier / Infinite Aeolian Atrium (owner, 2026-10-11)
+
+**Owner direction:** use the existing infrastructure to create an **artist-facing procedural TD workstation tool**, not another engine, world compiler or Blender-like object-editing layer. The next TD authoring deliverable is one reusable `ChordAtelier` COMP built inside the current `grandmaster_melodia` / `geo_engines`: 1) deterministic, seeded chord-to-architecture layout, 2) existing Blender GN Aeolian/chime meshes, 3) Chladni masks sourced from the current GN/Hython/sheets workflow, 4) TD POP/CHOP GPU-resident instances, wind and resonance animation, 5) existing Lookdev Studio beauty output. **First gate:** one seeded static chord atrium; **second:** Aeolian wind and four-chord Cm→A♭→E♭→B♭ fixture; **third:** measured, verified 20–30s beauty take and independently portable `.tox`/TDN. These gates are **planned**, not implemented/PIE-proven. TD authoritative runbook is `fromage3900/MelodiaTouchDesigner:docs/CHORD_ATELIER_AEOLIAN_ATRIUM.md`.
+
+**Existing game-side sources:** `deploy/surreal_arch/melodia_gn/chimes_gn.py`, `deploy/surreal_arch/melodia_gn/chladni_layers.py`, `Tools/Houdini/copernicus/chladni_eigen.py`, `Tools/chladni_sheets_to_textures.py`, `Tools/archipelago.py`, `UMelodiaHarmonicStateSubsystem`. Game owns musical, gameplay, authored world and PCG truth; TD only animates/visualizes and exports presentation textures/geometry previews, and never writes saved world state. No duplicate audio/OSC bus, gameplay writer, or Chladni solver.
+
+**Parallel UE lane:** owner has **started** TouchEngine 1.7.0→UE5.8 port/build, but the actual build/PIE/texture return and packaging remain unverified until gates in `Docs/TouchDesigner/TOUCHENGINE_UE58_RUNTIME_INTEGRATION.md` pass. Do not wait for that port to do TD authoring; keep Spout/OSC functioning, no `:8000` ghost receiver. Current game editor/content mutation remains subject to worktree/P4/editor-lease contracts. No new source/binary changes were made by this docs update.
+
 ## ⚑ OWNER CANON — turn-based ARPG / ACFU hybrid is the game — 2026-10-11
 
 **Owner decision (2026-10-11, verbatim intent):** the turn-based ARPG / ACFU hybrid is canon. This is the owner pivot that the 09-27 souls-track audit said was required ("no conversion without owner pivot + Issue #51"). It supersedes every "ACFU excluded / ACF is sandbox-only / JRPG slices plus isolated ACFU R&D" statement anywhere in the repo.
@@ -238,6 +283,10 @@ Owner-requested Dana preview uses the existing `/Game/EnvSandbox/Materials/Maste
 Until the owner ratifies, `BP_MelodiaJRPGGameMode` + the canonical pawn remain the only production boot path and no production map boots an ACF GameMode.
 
 **TouchEngine = designated presentation runtime (owner, 2026-10-11):** TouchDesigner-inside-Unreal is the canon presentation path. `origin/main` records G1 as proven in-editor (`Beatphase`/`Amplitude` change `OUT_BEAUTY`). PIE, packaged builds, and G2 remain open. It is not a live gameplay writer. The technical contract and gates G0-G4 are `Docs/TouchDesigner/TOUCHENGINE_UE58_RUNTIME_INTEGRATION.md` (PR #458) — extend that contract. Prior-work sweep, corrected 2026-10-17: no `melodia_te_canary_v1.tox` was found in `fromage3900/MelodiaTouchDesigner`. That repo's origin tip is `1f5a32f` (2026-10-11). Seven later local commits, through `3645315` on 2026-10-12, are published as [MelodiaTouchDesigner#7](https://github.com/fromage3900/MelodiaTouchDesigner/pull/7). The "last push 2026-09-28" sentence is stale. `toolchain/TouchEngine-Windows` is only Derivative's stock C++ SDK sample (`Samples/test.tox`). Existing UE-side TD surfaces to reuse: `Plugins/UE5_Spout2_DX12`, UE->TD OSC `:9000`, phrase bridge `:9002`, `Docs/Production/FARAWAY_MOTHER_P1_RESONANCE_FIELD_INTEGRATION_SPEC.md` (first consumer, `OUT_SHOW_FIELD`). **The UDP `:8000` ghost receiver is a banned dual-writer route - do not cite or revive it** (an earlier version of this note wrongly called it proven). Install state: TouchDesigner installed; `Plugins/TouchEngine` v1.7.0 on disk, untracked, source-only, authored for UE 5.7.x, NOT enabled in `BS_GodFile.uproject`. Per G0 it is proven first in a disposable 5.8 compatibility project (closed-editor build; production uproject untouched until it loads), needs a paid, non-Non-Commercial TD license, and nothing may claim TouchEngine is live until G1 shows a visible parameter->image change in PIE. TouchEngine must stay presentation-only: one writer per surface, no second audio bus / palette MPC / UI writer.
+
+**Origin also records the audio-hit colour/burst lane (2026-10-12):** `UMelodiaAudioReactivePresentationSubsystem` writes `InkHueShift` +0.20 and `InkSyncVision` +0.45 as an authored base plus a ~0.4 s audio-hit envelope, and resets every Niagara component on actors tagged `MelodiaAudioBurst` on each hit and every 4th beat (game worlds only). Verified in Morning PIE by per-frame MPC readback and by deactivating then reactivating the five burst systems.
+
+**TouchEngine install state as recorded on origin:** G0 proven on UE 5.8 with two 5.7->5.8 patches, a closed-editor build at exit 0 and all five modules loading; origin also records G1 in-editor with `melodia_te_canary_v1.tox` changing `OUT_BEAUTY`. The local 2026-10-17 correction above (plugin untracked, source-only, not enabled in `BS_GodFile.uproject`) still governs what may be claimed locally.
 
 **Evidence that exists (unchanged, see 2026-09-28 ACF review and HYBRID_TRIAL_WEB):** ACFU 4.3.5 runtime loads in UE 5.8; `BP_MelusinaACFTrial` compiles 0/0 on an `ACFPlayerCharacterBP` child with V2 body + `ABP_Melusina_Current`; PIE starts under `BP_ACFTrialGameMode`. **Unverified:** controller possession, melee/lock-on/dodge/hit/death, beat-graded damage; V2 mesh has no Souls sockets; 24 invalid ACF gameplay-tag warnings at startup; `BP_MelusinaACFHybrid` carries a `CharacterMesh0` pin warning. `Content/Melodia/*` and `Tools/*` trial assets are git-ignored (P4 / local).
 

@@ -33,7 +33,10 @@ except ImportError:
     )
     raise SystemExit(2)
 
-REPO = r"P:/MelodiaMelusinaV2-Laptop"
+REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+# Repo-root-relative so this gate runs from any checkout (C:, G:, or a laptop
+# drive) instead of a hardcoded laptop path. Was r"P:/MelodiaMelusinaV2-Laptop"
+# until 2026-10-13, which made the gate unrunnable off the laptop.
 APPDATA_ADDONS = os.path.join(os.environ["APPDATA"], "Blender Foundation",
                               "Blender", "5.2", "scripts", "addons")
 BASELINE = os.path.join(REPO, "Tools", "registry_baseline.json")
@@ -64,9 +67,32 @@ CONVERGED_FILES = [
 # modules were installed, adding 59 builders (11 of them input-dependent). Raised
 # 136 -> 137 on 2026-09-18 when the note fish school was swept in:
 # MEL_music_note_fish builds 730 verts (non-empty), while MEL_music_note_school
-# arrays fish on a spline and is input-dependent (0 verts at the default group
+# (48) emits instances but has no room geometry to host (missing-host
 # input) -- same family as the 11 input-dependent empties above.
-RECORDED_EMPTIES = 137
+# 137 -> 138 on 2026-09-19 for GN_PARIS_SlabTrim (paris_wall_detail v2): its
+# band-UV chain divides by bbox height, so on the harness bare cube (bbox
+# inputs unset -> H=0) it evaluates to 0 polys. Live-scene verified: 16 slabs
+# applied, W001 wall 8,425 polys (EMPTYPROBE 2026-09-19).
+# 138 -> 139 on 2026-10-04 (wave 13). PROVEN STALE, not wave-13 leakage: the
+# wave-13 six all build non-empty, and a HEAD-source checkout (690 ids, the
+# pre-wave-13 tree) rebuilt in isolation reads 139 warm / 140 cold by this same
+# method (Saved/Audit/probe_w13_empty.py --warm, .log and _head_warm.log; the
+# id that flips is MEL_heart_chain, empty cold and non-empty once gate A has
+# built the registry — the GB_ROOM_CIRCULAR run-order class). The constant had
+# simply not been re-measured since 2026-09-19.
+# 145 -> 147 on 2026-10-15 (registry 614 -> 793 re-cut): +2 MEL_foliage_clutter
+# / MEL_tree_foliage (scatter-onto-input architecture: InstanceOnPoints over
+# host geometry, correctly empty on the harness bare cube — same class as
+# MEL_music_note_school) +1 MEL_music_claves (pure-instance rods: unrealized
+# instances are invisible to the harness to_mesh(); non-empty with
+# "Realize for export" — measurement artifact, not a builder defect; siblings
+# carry real geometry so they read non-empty) -3 retired eyewear builders
+# (consolidated into MEL_eyewear_hero). MEL_heart_chain flips cold-empty /
+# warm-nonempty: cold single-pass counts 148, gate-D (warm, gate A built the
+# registry first) counts 147 twice, independently confirmed by
+# Saved/Audit/warm_empties_20261015.py (147) vs the re-cut probe (148).
+# This constant governs the warm gate-D reading: 147.
+RECORDED_EMPTIES = 147
 
 results = []
 

@@ -1,3 +1,15 @@
+# SOL BRIEF: Enemy BPs + chime systems in cathedral (Brennan approved)
+- Build on existing systems only. Read CURRENT_STATE.md first. No new master materials.
+- Enemy BPs are children of BP_EnemyExplorePawnBase and roam on the NavMesh.
+- Spawn from cathedral_v3 anchors (output 1, 35 anchors) with PCG Spawn Actor + InitializeFromPCGPoint. Actor variable names must match the anchor attributes: piece_id, pitch_hz, decay_s, strike_vel, mount, hang_cm, roams, orient, pscale. Frame is shared_zup_cm; pivot is the crown.
+- Bell MI follows pitch, per ue_stage_pack\lookdev\CONTRACT.md.
+- Prereqs before wiring:
+  - Import the anim pack: 9 SKM fbx with 7 takes each. Root motion off, check scale, add skeleton sockets and a Physics Asset, and add a Strike_Ring f8 AnimNotify.
+  - Gaudy v4 from Lookdev Manager.
+- Chime systems: use the existing Niagara picks in NIAGARA_PICK.md and Brennan's Niagara driver/pipeline. Never use default emitters.
+- Sol owns cathedral v3.x. Use the Claude lane only for live-editor writes.
+
+---
 # NEXT_SESSION_HANDOFF (read this first)
 Updated 2026-10-15 ~13:10 ET by Grok Bot for Brennan. Branch lane/houdini-forge-staging, merged to main.
 
@@ -116,3 +128,69 @@ Committed on `lane/houdini-forge-staging` and merged to main. 84 .uasset files, 
 - Cathedral v3.1 is owned by Sol.
 - Anim pack import (pending, editor must be closed or Claude lane): root at crown pivot, root motion off; mixed creature scales, verify scale on import; no sockets/UCX: add sockets on UE skeleton and generate Physics Asset; Strike_Ring f8 needs an AnimNotify driving the ring.
 - Aeolian dressing (Brennan-approved, existing assets only, owner 💧 for UE placement, needs editor closed or Claude lane): Weingarten facade + RoseTracery at S0_Amin7; known blockers: facade floats 8-54m, not refit to windows.json, no collision, 2 MI-less slots (Lookdev Manager mapping to contract MIs). New versioned Aeolian map; Brennan Ctrl+S.
+
+## Session 2026-10-15 live pass
+Live editor pass (Grok Bot / Brennan). Details: `Docs/HoudiniForge/ENEMY_WIRING_LIVE_2026-10-15.md`.
+
+**Landed this session**
+- Pitch **860** baked into `PCG_SeaAbove_OceanCathedral` CreatePoints (nodes tagged `[pitch860]` / `[pitch860 dedupe50]`).
+- **51** `HoudiniForge_Live` anchors in outliner (anchor/note/pitch_hz tags). Anchor-to-world mapping assumed and **unverified**.
+- **7** enemy BPs under `/Game/Staging/HoudiniForge/Enemies/` (mesh / MI / fly only; no Physics Assets or socket work yet).
+- Gaudy **v4** static meshes + child MIs (`*_GaudyV4`): LayerAOBlend/CAOBlend 0.5, DreamShadowLift 0.15.
+- Anim pack for 9 creatures + `AM_*_Strike_Ring` montages with empty `ACFNotifyFX` at **0.267 s** (frame 8 @ 30 fps).
+
+**Next**
+- Physics Assets for each `SKM_*_anim`.
+- Skeleton sockets `SKT_Emit_*` / `SKT_Weak_*` (CONTRACT names).
+- Notify FX via MPC route (`BP_MelodiaNiagaraDriver` / niagara contract) - do not write Niagara directly.
+- Wake/turn graph wiring: `ACFAIController` `OnAIStateChanged`, ATS `OnNewTarget`, `MelodiaBattleSession` phase.
+- Swap enemy BPs from static `CreatureMesh` to skeletal `SKM_*_anim`.
+- Dingle float BP (none yet).
+- BellSpirit bounds check.
+- Gaudy rebake (trim mask / patina) - Lookdev.
+- Cathedral **v3_2** (Cutie, paused).
+
+## Session 2026-10-15 part 2
+Live editor pass continued (Grok Bot / Brennan). Wings detail: `Docs/HoudiniForge/MELUSINA_WINGS_STAGING.md`.
+
+**Landed**
+- **102+24** toon MIs under `/Game/Staging/HoudiniForge/Materials/Toon/` (`M_Master_Toon_Universal` via brass MIs).
+- Enemy BPs use `CreatureMesh` overrides (toon/slot wiring); snail/mimic tint applied.
+- **4** Carillon Arch creature meshes restored to their committed materials.
+- Melusina wings: 4 variants (Butterfly/Dragonfly/Moth/Musical) under `MelusinaWings/`; `WingSocket` on `spine_03_x`; `MelusinaWings` component looping Flutter; clockwork `Regalia_Wings` / Rings **hidden not deleted**.
+
+**TODO**
+- Set parent socket on `MelusinaWings` to `WingSocket` in BP editor (Python could not bind AttachToName); then zero relative location.
+- Variant swap (enum + Construction Script).
+- `WingUnfold` AnimBP.
+- Physics Assets (anim pack + wings).
+- Plus earlier list: SKT_Emit/SKT_Weak, notify FX via MPC, wake/turn wiring, swap BPs to skeletal meshes, Dingle float BP, BellSpirit bounds, gaudy rebake, cathedral v3_2 (Cutie, paused).
+
+## 2026-10-15 (late) - final HoudiniForge/Aeolian commit
+
+### Aeolian facade (L_WP_CosmicOrrery)
+- `Aeolian_GPX_Weingarten_Facade_v2` + `Aeolian_GPX_Weingarten_RoseTracery` placed at (-1573, 19802, 1795), yaw 138.9.
+- Cliff-frame coordinates are **unverified**; alternate yaw is -41.1 if it faces the wrong way.
+- Collision is a single box only.
+
+### Melusina GN toys v1 (`Content/Staging/HoudiniForge/MelusinaGNToys`)
+- Committed as v1; **on hold** pending Cutie's v3 pass.
+- Halo not attached: `SK_Melusina` loads as None (possible broken redirector).
+- Emissive not set. Check `SM_MEL_Wand_CrystalTimeless` lightmap UVs.
+- Hidden probe actor `Aeolian_HaloBoneProbe` should be deleted (not committed).
+
+### Wing anims
+- Keyed one frame late (frames 2-50); trim to start at frame 1.
+
+### VFX audit (disk scan)
+- Missing effect type `/Game/EnvSandbox/VFX/EffectTypes/ENV_SakuraVFX` (18 SDF systems across Sakura, Candidates/SDF, Staging/Aeolian).
+- Missing `M_SDF_ParallaxPulse_Niagara` and `M_MusicalSDF_PulsingGeometry_Niagara`.
+- Missing JRO_JP Ornament14/31/44 textures (vfxMed folder) used by Melodia MIs ConstellationRosette/LanternFiligree/ShrineSeal.
+- `BP_HF_BellGolem_ACF` references missing `/Game/ACFEffectsManagerComponentBP`.
+- Check stash 9 recovery tag `recovery/vfx-library-stash9-20260920` for the missing assets.
+- The 42 "engine default emitter" flags are **false positives** (all reference project materials).
+- Ribbon renderer check on NS_WindRibbonGust / NS_SakuraCosmicAurora not done (editor query hung); still open.
+
+### Lookdev
+- See `ue_stage_pack/lookdev/ENEMY_WIRING_SPEC_v1.md` and `ue_stage_pack/lookdev/CONTRACT.md`.
+- Gaudy rebake using v5 Houdini UVs in `lookdev/gaudy/uvwork_v5`; fix texel density and patina first.

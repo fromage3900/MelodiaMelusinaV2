@@ -29,6 +29,7 @@ from .core import (
     register_builder,
     safe_node,
     sock,
+    iface_default,
 )
 from .audio_terrain import _add_sound_param
 
@@ -264,7 +265,9 @@ def build_starskiff_hull_audio(group_name="MEL_starskiff_hull_audio"):
         noise.inputs["Detail"].default_value = 3.0
         w = sock(noise, "W")
         if w is not None:
-            w.default_value = float(gin.outputs["Seed"].default_value % 100) * 0.01
+            # Seed is an interface param: gin.outputs[...].default_value always
+            # reads 0, which froze the noise pattern at seed 0 for every hull.
+            w.default_value = float(iface_default(tree, "Seed", 20260903) % 100) * 0.01
     except Exception:
         pass
     link_sockets(tree, pos.outputs["Position"], noise.inputs["Vector"])

@@ -1,0 +1,10 @@
+# Melusina wings staging (2026-10-15, Grok Bot, UNSAVED until Brennan Ctrl+S)
+- Assets: /Game/Staging/HoudiniForge/MelusinaWings/<Butterfly|Dragonfly|Moth|Musical>/SK_MEL_Wings_<V> (+ _Skeleton), A_MEL_Wings_<V>_Unfold (48 f), _Flutter (48 f loop), _FoldedPose (1 f). Root bone wing_root (17 bones; Musical 25). Spans 158/230/137/135 cm (match README). Physics assets not generated.
+- MIs: /Game/Staging/HoudiniForge/Materials/Toon/MI_HF_Toon_Wings_<V>_<Slot>: Membrane/Pearls/Gems -> MI_Brass_Iridescent, RimGold/Filigree -> MI_Brass_FiligreeGold, Veins -> MI_Brass_Engraved (all under M_Master_Toon_Universal). Membrane: two-sided via MI base property override.
+- Skeleton SK_Melusina_Skeleton: socket WingSocket on spine_03_x at (-8,0,12) cm (no bone named spine_03; spine_03_x is the deform bone).
+- BP_MelusinaJRPGCharacter (/Game/MelodiaIntegration/Blueprints): new SkeletalMeshComponent MelusinaWings under CharacterMesh0, mesh SK_MEL_Wings_Butterfly, single-node anim A_MEL_Wings_Butterfly_Flutter looping. Regalia_Wings + Regalia_RingOuter/Mid/Inner set Visible=false, HiddenInGame=true (kept, not deleted). RingSpin_* rotators untouched.
+- KNOWN GAP: the SCS socket (AttachToName) could not be set via Python/Monolith; template AttachSocketName=WingSocket was set but the instance attaches to the mesh root. Fallback: relative location set to the socket's component-space position (-5.6, 12.1, 117.3) so wings sit on the back but do NOT follow spine animation. FIX in BP editor: select MelusinaWings > Details > Parent Socket = WingSocket, then zero its relative location.
+## Variant swap (TODO, easy)
+Add variable WingVariant (enum/name) + SK and anim maps; in Construction Script SetSkeletalMeshAsset + PlayAnimation(Flutter, loop).
+## WingUnfold AnimBP (TODO)
+ABP_MEL_Wings on SK_MEL_Wings_<V>_Skeleton: float WingUnfold 0-1 -> Sequence Evaluator(A_..._Unfold, ExplicitTime = WingUnfold*Length) -> Layered blend per bone (Flutter additive or blend weight = WingUnfold) -> Output. Drive WingUnfold from character (Copy Pose not needed; set via GetAnimInstance on MelusinaWings).

@@ -29,6 +29,7 @@ from .core import (
     add_float_param, add_int_param, add_bool_param, add_vector_param,
     make_group_input, sweep_profile, add_music_influence_params,
     apply_universal_music_pass, input_geometry_with_default,
+    link_float_to_vector_uniform,
 )
 
 
@@ -112,6 +113,18 @@ def build_castle_wall_segment(group_name="MEL_castle_wall_segment"):
     merlon = safe_node(tree, "GeometryNodeMeshCube", (bx - 300, by + 50))
     link_float_to_vector(tree, gin.outputs["Merlon Height"], merlon, "Size", component=2)
     link_float_to_vector(tree, gin.outputs["Thickness"], merlon, "Size", component=1)
+
+    # Merlon WIDTH. Leaving Size.X unlinked let the primitive fall back to its
+    # own default of 0 for that component: a zero-width slab whose 6 faces are
+    # all zero-area. Measured 24/42 faces degenerate (57% of the wall), and the
+    # same 24 propagated into MEL_castle_assembler (24/201) because the
+    # assembler seeds the wall segment as a child group. Width = Length/Count so
+    # the merlons fill the wall instead of leaving gaps.
+    merlon_w = safe_node(tree, "ShaderNodeMath", (bx - 420, by + 180))
+    merlon_w.operation = "DIVIDE"
+    link_sockets(tree, gin.outputs["Length"], merlon_w.inputs[0])
+    link_sockets(tree, gin.outputs["Merlon Count"], merlon_w.inputs[1])
+    link_float_to_vector(tree, merlon_w.outputs[0], merlon, "Size", component=0)
 
     # Set merlon base at wall top
     set_merlon = safe_node(tree, "GeometryNodeSetPosition", (bx - 100, by + 50))
@@ -252,7 +265,15 @@ def build_castle_gatehouse(group_name="MEL_castle_gatehouse"):
     arch = safe_node(tree, "GeometryNodeMeshCube", (bx - 400, by + 100))
     link_float_to_vector(tree, gin.outputs["Arch Width"], arch, "Size", component=0)
     link_float_to_vector(tree, gin.outputs["Arch Height"], arch, "Size", component=2)
-    arch.inputs["Size"].default_value[1] = 0.1
+    # The cutter must OVERHANG the wall on both faces. A 0.1 m slab inside a
+    # 3 m body is an enclosed internal cavity: no gateway opens and the
+    # boolean leaves coincident sliver faces (34 zero-area faces; probe
+    # 2026-10-02). Depth x 2 centred on the body cuts cleanly through.
+    arch_depth = safe_node(tree, "ShaderNodeMath", (bx - 520, by + 40))
+    arch_depth.operation = "MULTIPLY"
+    link_sockets(tree, gin.outputs["Depth"], arch_depth.inputs[0])
+    arch_depth.inputs[1].default_value = 2.0
+    link_float_to_vector(tree, arch_depth.outputs[0], arch, "Size", component=1)
 
     # Subtract arch from body
     diff = safe_node(tree, "GeometryNodeMeshBoolean", (bx - 200, by + 200))
@@ -285,17 +306,19 @@ def build_castle_gatehouse(group_name="MEL_castle_gatehouse"):
 
     # Portcullis: grid of vertical bars inside arch opening
     # Single bar
+    # NOTE: link_float_to_vector bridges through a CombineXYZ, so a later
+    # `inputs["Size"].default_value[k] = v` write is overridden by the bridge's
+    # zero defaults and the axis collapses. Pass every constant through
+    # `defaults=` on the FIRST component call (probe 2026-10-02).
     bar = safe_node(tree, "GeometryNodeMeshCube", (bx - 100, by - 200))
-    link_float_to_vector(tree, gin.outputs["Bar Thickness"], bar, "Size", component=0)
-    bar.inputs["Size"].default_value[0] = 0.06
+    link_float_to_vector(tree, gin.outputs["Bar Thickness"], bar, "Size", component=0,
+                         defaults=(0.0, 0.02, 0.0))
     link_float_to_vector(tree, gin.outputs["Arch Height"], bar, "Size", component=2)
-    bar.inputs["Size"].default_value[1] = 0.02
 
     # Horizontal rail (top + bottom)
     rail = safe_node(tree, "GeometryNodeMeshCube", (bx - 100, by - 280))
-    link_float_to_vector(tree, gin.outputs["Arch Width"], rail, "Size", component=0)
-    rail.inputs["Size"].default_value[2] = 0.08
-    rail.inputs["Size"].default_value[1] = 0.04
+    link_float_to_vector(tree, gin.outputs["Arch Width"], rail, "Size", component=0,
+                         defaults=(0.0, 0.04, 0.08))
 
     # Instance bars across arch width
     bar_line = safe_node(tree, "GeometryNodeMeshLine", (bx - 300, by - 240))
@@ -562,7 +585,7 @@ def build_castle_buttress(group_name="MEL_castle_buttress"):
     # Set Position on arch curve
     arch_pos = safe_node(tree, "GeometryNodeSetPosition", (bx + 900, by - 200))
     link_sockets(tree, arch_line.outputs["Mesh"], arch_pos.inputs["Geometry"])
-    link_sockets(tree, combine.outputs["Vector"], arch_pos.inputs["Position"])
+    link_sockets(tree, combine.outputs["Vector"], arch_pos.inputs["Offset"])
 
     # Circle profile for arch sweep (AAA railing: curve circle, MeshToCurve path)
     arch_swept = sweep_profile(
@@ -688,8 +711,8 @@ def build_castle_curtain_wall(group_name="MEL_castle_curtain_wall"):
 
     # Walkway on top
     walkway = safe_node(tree, "GeometryNodeMeshCube", (bx - 400, by + 200))
-    link_float_to_vector(tree, gin.outputs["Span"], walkway, "Size", component=0)
-    walkway.inputs["Size"].default_value[2] = 0.15
+    link_float_to_vector(tree, gin.outputs["Span"], walkway, "Size", component=0,
+                         defaults=(0.0, 0.0, 0.15))
     link_float_to_vector(tree, gin.outputs["Walkway Width"], walkway, "Size", component=1)
 
     # Move walkway to top of wall
@@ -927,9 +950,8 @@ def build_castle_drawbridge(group_name="MEL_castle_drawbridge"):
 
     # Planks: instance thin boxes along span
     plank = safe_node(tree, "GeometryNodeMeshCube", (bx - 300, by))
-    plank.inputs["Size"].default_value[0] = 0.08
-    link_float_to_vector(tree, gin.outputs["Width"], plank, "Size", component=1)
-    plank.inputs["Size"].default_value[2] = 0.04
+    link_float_to_vector(tree, gin.outputs["Width"], plank, "Size", component=1,
+                         defaults=(0.08, 0.0, 0.04))
 
     plank_line = safe_node(tree, "GeometryNodeMeshLine", (bx - 500, by))
     plank_line.mode = "END_POINTS"
@@ -993,7 +1015,7 @@ def build_castle_drawbridge(group_name="MEL_castle_drawbridge"):
     chain_c = safe_node(tree, "ShaderNodeCombineXYZ", (bx + 500, by - 280))
     link_sockets(tree, chain_sep.outputs["X"], chain_c.inputs["X"])
     link_sockets(tree, chain_z.outputs[0], chain_c.inputs["Z"])
-    link_sockets(tree, chain_c.outputs["Vector"], chain_pos_l.inputs["Position"])
+    link_sockets(tree, chain_c.outputs["Vector"], chain_pos_l.inputs["Offset"])
 
     # Chain profile (thin circle)
     chain_profile = safe_node(tree, "GeometryNodeMeshCircle", (bx + 100, by - 150))
@@ -1050,7 +1072,7 @@ def build_castle_corner_bastion(group_name="MEL_castle_corner_bastion"):
     a_x.inputs[1].default_value = 0.5
     a_c = safe_node(tree, "ShaderNodeCombineXYZ", (bx - 100, by + 400))
     link_sockets(tree, a_x.outputs[0], a_c.inputs["X"])
-    link_sockets(tree, a_c.outputs["Vector"], pos_a.inputs["Position"])
+    link_sockets(tree, a_c.outputs["Vector"], pos_a.inputs["Offset"])
 
     # Wall arm B (along Y)
     wall_b = safe_node(tree, "GeometryNodeMeshCube", (bx - 300, by + 100))
@@ -1065,7 +1087,7 @@ def build_castle_corner_bastion(group_name="MEL_castle_corner_bastion"):
     b_y.inputs[1].default_value = 0.5
     b_c = safe_node(tree, "ShaderNodeCombineXYZ", (bx - 100, by + 200))
     link_sockets(tree, b_y.outputs[0], b_c.inputs["Y"])
-    link_sockets(tree, b_c.outputs["Vector"], pos_b.inputs["Position"])
+    link_sockets(tree, b_c.outputs["Vector"], pos_b.inputs["Offset"])
 
     # Corner tower
     tower = safe_node(tree, "GeometryNodeMeshCylinder", (bx - 300, by - 100))
@@ -1178,11 +1200,12 @@ def build_castle_assembler(group_name="MEL_castle_assembler"):
     if gate_sock:
         link_sockets(tree, gate_sock, join.inputs["Geometry"])
 
-    # Scale entire castle
+    # Scale entire castle. A single-axis bridge collapses Y and Z to 0 --
+    # measured: the whole assembly fell onto the Y axis (bbox ext [0, 15, 0],
+    # 201/201 faces degenerate). Scale needs all three components.
     scale_all = safe_node(tree, "GeometryNodeTransform", (bx + 200, by + 100))
     link_sockets(tree, join.outputs["Geometry"], scale_all.inputs["Geometry"])
-    link_float_to_vector(tree, gin.outputs["Site Scale"], scale_all, "Scale", component=1)
-
+    link_float_to_vector_uniform(tree, gin.outputs["Site Scale"], scale_all, "Scale")
     shade = safe_node(tree, "GeometryNodeSetShadeSmooth", (bx + 400, by + 100))
     shade.inputs["Shade Smooth"].default_value = True
     link_sockets(tree, scale_all.outputs["Geometry"], shade.inputs["Geometry"])

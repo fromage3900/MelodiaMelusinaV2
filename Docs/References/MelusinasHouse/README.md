@@ -1,18 +1,19 @@
 # Melusina’s House — Modeling References
 
-> **Canonical plan:** `../../../melusinashouseplan.md`  
+> **Original design score (recovered Sept 2):** [OriginalDesign/melusinashouseplan_2026-09-02.md](OriginalDesign/melusinashouseplan_2026-09-02.md)  
+> **Current convergence plan:** [POITOU_START_HERE.md](../../../POITOU_START_HERE.md)  
 > **Hermes search token:** `melusinashouseplan`
 
 These are the current working concept references for the **rounder pink/blue Baroque / Rococo** version of Melusina’s house.
 
-They are visual targets, not measured architectural drawings. When a small pictured detail conflicts with the structural rules in `melusinashouseplan.md`, follow the plan and use the board for silhouette, mood, proportions, palette, and ornament language.
+They are visual targets, not measured architectural drawings. When a small pictured detail conflicts with the structural rules in the archived `melusinashouseplan_2026-09-02.md`, follow the plan and use the board for silhouette, mood, proportions, palette, and ornament language.
 
 ## ♬ Phase-2 Geometry Nodes plans
 
 After the canonical root plan, use these two implementation packets:
 
-1. `../../Plans/MELUSINAS_HOUSE_GN_ASSET_FAMILY_IMPLEMENTATION_2026-09-03.md` — roof ribbons, scallop shingles, windows/doors, Rocaille + Melusina Loop, railings, tower, grotto, drapes, shell crests, attributes, promotion rules and build order.
-2. `../../Plans/MELUSINAS_HOUSE_GN_ROOMS_AND_ACOUSTIC_ARCHITECTURE_2026-09-03.md` — Resonant Salon, bedroom, Wardrobe Rotunda, Listening Stair, Crescent Balcony, kitchen, Blue Room, Listening Tower, acoustic gather/guide/release metadata and debug flow.
+1. [`OriginalDesign/MELUSINAS_HOUSE_GN_ASSET_FAMILY_IMPLEMENTATION_2026-09-03.md`](OriginalDesign/MELUSINAS_HOUSE_GN_ASSET_FAMILY_IMPLEMENTATION_2026-09-03.md) — roof ribbons, scallop shingles, windows/doors, Rocaille + Melusina Loop, railings, tower, grotto, drapes, shell crests, attributes, promotion rules and build order.
+2. [`OriginalDesign/MELUSINAS_HOUSE_GN_ROOMS_AND_ACOUSTIC_ARCHITECTURE_2026-09-03.md`](OriginalDesign/MELUSINAS_HOUSE_GN_ROOMS_AND_ACOUSTIC_ARCHITECTURE_2026-09-03.md) — Resonant Salon, bedroom, Wardrobe Rotunda, Listening Stair, Crescent Balcony, kitchen, Blue Room, Listening Tower, acoustic gather/guide/release metadata and debug flow.
 
 Key implementation rule:
 

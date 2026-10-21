@@ -170,11 +170,21 @@ def build_audio_spectrum_towers(group_name="MEL_audio_spectrum_towers"):
     link_sockets(tree, amp, gain.inputs[0]); link_sockets(tree, gin.outputs["Audio Gain"], gain.inputs[1])
     h = safe_node(tree, "ShaderNodeMath", (310, -120)); h.operation = "MULTIPLY"
     link_sockets(tree, gain.outputs[0], h.inputs[0]); link_sockets(tree, gin.outputs["Height M"], h.inputs[1])
+    # Height FLOOR. The sampled amplitude is 0 whenever the Sound socket is
+    # unset (or the band is silent), and that 0 is fed into a PRIMITIVE's
+    # Size.Z -- unlike the sibling terrain, which feeds it into a
+    # SetPosition.Offset where 0 is a valid flat grid. A zero-size cube is a
+    # flat slab: 512/768 faces (67%) zero-area with no sound. Flooring at 1 mm
+    # keeps the "no audio = flat field" look (bbox z 0.0010 vs 0.0000) while
+    # every face stays above the zero-area threshold: measured 512 -> 0
+    # degenerate, all other extents unchanged.
+    h_floor = safe_node(tree, "ShaderNodeMath", (410, -240)); h_floor.operation = "MAXIMUM"
+    link_sockets(tree, h.outputs[0], h_floor.inputs[0]); h_floor.inputs[1].default_value = 0.001
     cube = safe_node(tree, "GeometryNodeMeshCube", (-80, 220))
     size = safe_node(tree, "ShaderNodeCombineXYZ", (140, 220))
     link_sockets(tree, gin.outputs["Tower Width M"], size.inputs["X"])
     link_sockets(tree, gin.outputs["Tower Depth M"], size.inputs["Y"])
-    link_sockets(tree, h.outputs[0], size.inputs["Z"])
+    link_sockets(tree, h_floor.outputs[0], size.inputs["Z"])
     link_sockets(tree, size.outputs["Vector"], cube.inputs["Size"])
     inst = safe_node(tree, "GeometryNodeInstanceOnPoints", (430, 100))
     link_sockets(tree, points.outputs["Points"], inst.inputs["Points"])

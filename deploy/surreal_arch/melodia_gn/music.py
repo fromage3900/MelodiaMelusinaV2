@@ -92,7 +92,7 @@ def build_music_note_head(group_name="MEL_music_note_head"):
     stem_z.operation = "MULTIPLY"
     stem_z.inputs[0].default_value = 0.25
     link_sockets(tree, gin.outputs["Scale"], stem_z.inputs[1])
-    link_float_to_vector(tree, stem_z.outputs[0], stem_pos, "Position", component=2)
+    link_float_to_vector(tree, stem_z.outputs[0], stem_pos, "Offset", component=2)
 
     # Flag: curved arc using bezier segment
     flag_bezier = safe_node(tree, "GeometryNodeCurvePrimitiveBezierSegment", (bx - 300, by - 50))

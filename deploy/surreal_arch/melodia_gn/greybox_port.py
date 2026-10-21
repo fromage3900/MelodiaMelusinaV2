@@ -196,17 +196,31 @@ def _finalize_building(tree, pieces, loc=(0, 0), label="output"):
 
 
 def _arc_floor_disc(tree, radius, t, start_ang, sweep_ang, base_x, y_off, label="level"):
-    """Filled arc sector slab of thickness t."""
+    """Filled arc sector slab of thickness t.
+
+    A FULL-TURN sweep (|sweep| >= tau) puts the arc's start and end points on
+    top of each other; Fill Curve then closes an NGON across the coincident
+    pair and emits a zero-area face. Measured on `MEL_gb_room_circular`:
+    1/152 faces degenerate, all of its verts at exactly (R, 0, 0) — the arc
+    seam. Shortening the sweep by one angular step leaves a sub-micron gap
+    that the fill closes as a normal sliver, and the disc is unchanged
+    visually (0/152 degenerate, 154 vs 155 verts). A cyclic spline does NOT
+    fix it (measured: still 1 degen) because the duplicate point is still
+    there.
+    """
     import math as _m
     arc = safe_node(tree, 'GeometryNodeCurveArc', (base_x, y_off))
     if arc is None:
         return None
+    res = max(12, int(abs(sweep_ang) / _m.pi * 20))
+    if abs(sweep_ang) >= _m.tau - 1e-6:
+        sweep_ang = _m.copysign(_m.tau - (_m.tau / res), sweep_ang)
     try:
         arc.mode = 'RADIUS'
         arc.inputs['Radius'].default_value = radius
         arc.inputs['Start Angle'].default_value = start_ang
         arc.inputs['Sweep Angle'].default_value = sweep_ang
-        arc.inputs['Resolution'].default_value = max(12, int(abs(sweep_ang) / _m.pi * 20))
+        arc.inputs['Resolution'].default_value = res
     except Exception:
         pass
     fill = safe_node(tree, 'GeometryNodeFillCurve', (base_x + 200, y_off))

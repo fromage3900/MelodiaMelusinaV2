@@ -59,7 +59,7 @@ Naming is the **desired cross-repo handoff**; confirm the parameter identifiers 
 
 ## Implementation sequence — UE lane (strict gates)
 
-### G0 — Plugin compatibility and machine preflight [not yet proven]
+### G0 — Plugin compatibility and machine preflight [PROVEN 2026-10-11 on UE 5.8; see result below]
 
 1. Record the exact UE **5.8** engine build, Windows/DirectX/RHI, TouchDesigner Commercial build, and TouchEngine-UE plugin SHA/version. The upstream official sample is currently documented for **UE 5.7.x / plugin 1.7.0**; UE 5.8 is a compatibility experiment, not supported by assertion.
 2. Work in a **disposable 5.8 compatibility project / isolated integration lane**. Keep the production `BS_GodFile.uproject` and Spout plugin untouched until loading/build succeeds.
@@ -67,13 +67,27 @@ Naming is the **desired cross-repo handoff**; confirm the parameter identifiers 
 4. Do not copy compiled binaries or third-party runtime files into Git; use existing Perforce/vendor policies for permitted binary artifacts. Record source version/patch and build steps so another workstation can reproduce.
 5. **Exit:** editor launches with the plugin enabled and the official sample or minimalist `.tox` reports load success **in UE 5.8**. On failure: stop, document exact compiler/runtime error in the task/PR, and retain Spout-only production.
 
-### G1 — Isolated `.tox` TOP canary [first actual proof]
+**G0 result (2026-10-11, owner-waived disposable-lab gate).** The owner has an active TouchDesigner Commercial license and waived the disposable-project step ("not too worried about compatibility"), so G0 ran in the production project with `BS_GodFile.uproject` enabling `TouchEngine` locally (the uproject change is intentionally NOT landed in Git/P4 until G1).
+- Closed-editor `Build.bat BS_GodFileEditor Win64 Development` exit 0. Editor 5.8 log: `TouchEngine`, `TouchEngineEditor`, `TouchEngineD3D11RHI`, `TouchEngineD3D12RHI`, `TouchEngineVulkanRHI` all loaded, no plugin error, engine initialized.
+- Two UE 5.7 -> 5.8 source breaks patched (plugin source is landed under `Plugins/TouchEngine/`):
+  1. `Public/Engine/Util/CookFrameData.h`: `UENUM ECookFrameResult` lacked `#include "CookFrameData.generated.h"`; 5.8 deletes `StaticEnum<>` without it (C2280 in `TouchEngineComponent.cpp`/`TouchFrameCooker.cpp`).
+  2. `TouchEngineD3D12RHI/.../ExportedTextureD3D12.cpp:205`: `ID3D12DynamicRHI::RHIWaitManualFence` gained a 4th arg `const TSharedPtr<std::atomic<bool>>& bHasSignalled`; pass `nullptr` (5.8 submission code null-checks it).
+- Not in Git by policy (G0 step 4): `Plugins/TouchEngine/Binaries/` (incl. `ThirdParty/Win64/TouchEngine.dll/.lib` from the Derivative 1.7.0 release). Reproduce by installing the 1.7.0 release binaries, applying the two patches above (already in the landed source) and doing a closed-editor build.
+- Still open: load/unload of a real `.tox` and crash-on-exit check belong to G1.
+
+### G1 — Isolated `.tox` TOP canary [PROVEN in editor 2026-10-11; PIE/packaged still open]
 
 1. TD side supplies a self-contained `melodia_te_canary_v1.tox`, exported from a **COMP** with only the two agreed input parameters and `OUT_BEAUTY`. It must not require the complete grandmaster network, OSC sockets, cameras or external file paths.
 2. Import it as a **TouchEngine ToxAsset** using a project-relative path under UE `Content` (never an absolute-only external path). The official plugin documentation notes that absolute `.tox` asset paths are **not packaged**.
 3. In the test project, create **a dedicated TouchEngine Actor-derived Blueprint** (`TE_MelodiaCanary`), not a reparented player/character. Assign the ToxAsset. Bind documented `On Tox Loaded`, `On Tox Failed Load` and `On End Frame` callbacks; query parameters/outputs after successful load.
 4. Bind constant/slider test values; verify `OUT_BEAUTY` changes and can be displayed on a single debug plane via UE material instance. Explicitly verify successful frame/update before replacing a texture; record dropped frames and latency.
 5. **Exit:** visible, repeatable parameter→image change in UE PIE. If Tox load fails or stops, native material/neutral texture remains visible; game input and gameplay are unaffected.
+
+**G1 result (2026-10-11, editor, UE 5.8.0 CL 55116800, TD 2025.32460 Commercial).** `Content/Melodia/TouchEngine/melodia_te_canary_v1.tox` (imported as a `ToxAsset`) loads on a fresh `TouchEngineComponent` start and exposes exactly the contract interface: input group `Canary` with `Beatphase` and `Amplitude` (TD lower-cases the P: the UE-side name is `Beatphase`, not `BeatPhase`; Double) and output `OUT_BEAUTY` (Texture). Parameter-to-image proof via a Blueprint harness (`/Game/Dev/TouchEngineG0/BP_TE_Canary_Harness`: `SetFloatByName(prefix "p/")` -> `GetTextureByName(prefix "o/")` -> canvas draw into a 256x256 RT -> pixel readback). Same RT pixels, inputs `Beatphase`/`Amplitude`:
+- 0.0/0.0 -> centre (255,224,179); (128,100) (249,244,226); (128,160) (28,34,53)
+- 0.5/1.0 -> centre (255,255,243); (128,100) (255,255,243); (128,160) (255,255,243)
+- back to 0.0/0.0 -> centre (255,224,179) again (reversible). Frame counter advanced 1 -> 126 -> 803. EXR exports: `Saved/Audit/TouchEngineG1/` (local, not in Git).
+Harness lessons: (a) the component default `CookTimeout` of 0.3 s is too short for the first cook, the adapter must raise it (5 s worked); (b) the editor only cooks between Python calls, so set inputs in one call and read in a later one; (c) never swap `ToxAsset` on a running component, and a Blueprint recompile resets the instance, restart it; (d) an unfocused first TD start can report "TouchEngine process crashed" once, retry from a fresh start; (e) do not hot-swap `.tox` assets on a live component (it contributed to an editor access violation). **Still open:** PIE and packaged-build proof, a recorded visible-motion clip with `freezedetect`, and the adapter (single writer) that drives the inputs from the real Melodia beat/amplitude (G2).
 
 ### G2 — Connect one *real* Melodia signal [no duplicated bridge]
 
@@ -119,3 +133,9 @@ UE implementer owns **only** the plugin integration, adapter, ToxAsset reference
 - Official sample (currently documents UE 5.7.x, TouchEngine-UE 1.7.0): https://github.com/TouchDesigner/TouchEngine-UE-Samples
 - Plugin getting-started, actors/components/events/ToxAssets: https://github.com/TouchDesigner/TouchEngine-UE/blob/UE5.7-Release/docs/getting-started.md
 - Existing Melodia contracts: `Docs/TouchDesigner/MELODIA_TD_AE_CROSS_REPO_CONTRACT_2026-09-08.md`, `Docs/Production/SIGNAL_VOCABULARY_2026-09-25.md`, `Docs/Production/FARAWAY_MOTHER_P1_RESONANCE_FIELD_INTEGRATION_SPEC.md`.
+
+## Next art-facing TD consumer — Chord Atelier / Infinite Aeolian Atrium
+
+**Owner-requested next authoring action (2026-10-11):** TD develops **one** reusable procedural `ChordAtelier` COMP using existing `geo_engines`, Blender GN Aeolian/chimes, Chladni/Hython field masks, native TD POP/CHOP and the Lookdev Studio. The implementation recipe and TD status are owned in `fromage3900/MelodiaTouchDesigner:docs/CHORD_ATELIER_AEOLIAN_ATRIUM.md` and `docs/CURRENT_PROJECT_STATE.md`. The game sources geometry and musical semantics from `chimes_gn.py`, `chladni_layers.py`, `Tools/chladni_sheets_to_textures.py`, `Tools/archipelago.py` and the harmonic-state subsystem.
+
+**Keep the two tracks distinct:** first build an independent deterministic seeded single-chord TD COMP, then a four-chord Aeolian atrium replay with wind/cymatic fields, reset/fallback and a measured beauty capture. That may later yield a **small, standalone TouchEngine-friendly `.tox`**, but the full procedural TD engine and arbitrary POP mesh output must **not** be assumed importable into UE by TouchEngine. For UE consumers, stick to verified TOP/CHOP/custom input/output channels and the G0–G4 canary sequence above. TouchEngine port to UE 5.8 is **owner-in-progress; successful compilation, PIE, and packaging remain unverified.** No new OSC, world authority, MPC writer or replacement of the existing Spout pipeline. Do not treat the artistic source fixture (Cm→A♭→E♭→B♭) as a change to canonical music/gameplay state.

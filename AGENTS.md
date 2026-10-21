@@ -1,6 +1,6 @@
 # BS_GodFile agent context
 
-**Front-door review:** 2026-10-05 against `main` at `e25682b3a83c5f6453a355f60a08b772309d3dad`.
+**Front-door review:** 2026-10-14 against `origin/main` at `97e576805ee5107ea14747874ba950e0de4e7ca4`.
 
 ## STATUS — one document
 
@@ -37,9 +37,7 @@ not override a newer repo-wide contract.
   [`STORAGE_ARCHITECTURE_2026-10-01.md`](docs/Production/STORAGE_ARCHITECTURE_2026-10-01.md).
   Exact casing matters: the October 1 storage/closeout records live under lowercase `docs/`; the repo also
   contains an uppercase `Docs/` tree. Do not case-normalize or case-move either tree casually on Windows.
-  **This file was over the 32 KB agent-context budget and being served truncated. Trimmed
-  2026-10-01 to 30,659 bytes by relocating three sections to linked docs — no rule was deleted.
-  If you add to it, keep the total under 32,768.**
+  **Keep this file under 32,768 bytes; oversized agent context may be truncated.**
   **Standing authorization (2026-09-30).** Requiring permission for *every* commit is what produced a
   permanently dirty tree, unpushable local commits sitting on `main`, and two agents moving `HEAD`
   under each other. That is settled now: work in a lane
@@ -75,7 +73,7 @@ not override a newer repo-wide contract.
 - **Do the job asked** (`_AGENT_WORKING_AGREEMENT.md`): the request is the scope; queue work comes
   from `CURRENT_STATE.md` §4, not from new audits.
 
-**Historical branch guard:** PR #201 is resolved/superseded by merged #213; PR #230 was closed unmerged. `cleanup/pbr-twin-landing-2026-09-10` is provenance only — never use it as a current health proxy or wholesale merge source.
+Historical refs: PR #201 resolved by #213; #230 closed unmerged. Never use `cleanup/pbr-twin-landing-2026-09-10` as a health proxy or merge source.
 
 
 ## Production-tool front door — READ BEFORE CHOOSING A NEW FRAMEWORK
@@ -94,7 +92,11 @@ Use it to select the existing lane before writing code:
 - **editor mutation:** one Unreal Editor, one Monolith writer, inspect -> mutate -> assert -> save;
 - **status:** only `CURRENT_STATE.md` may declare what is currently proven/open.
 
-If an old research/handoff file suggests creating a parallel implementation, the current front door wins unless a fresh blocker is demonstrated.
+If old research suggests a parallel implementation, this front door wins unless a fresh blocker is demonstrated.
+
+## Cymatics-first Melodia canon (binding)
+
+Melodia is fundamentally structured by music, harmony, resonance and cymatic mathematics, not merely decorated with audio-reactive effects. Before suggesting replacements, trace existing MIDI/chord mappings, Harmonic State (`UMelodiaHarmonicStateSubsystem`), Cymatics Subsystem (`UMelodiaCymaticsSubsystem`), World Field Bus (`UWorldFieldBus`), Houdini/PCG producers and runtime consumers. Follow the [World-Building Source of Truth](Docs/WorldBuilding/WORLD_BUILDING_SOURCE_OF_TRUTH.md) and [Audio-Reactive Canon](Docs/Architecture/AUDIO_REACTIVE_CANON.md). Preserve established gameplay/save authority and single-writer contracts. Do not create a new harmonic engine, World Compiler, model router, documentation authority or redundant subsystem.
 
 ## ⛔ WORKING AGREEMENT — outranks everything below in this file
 
@@ -102,26 +104,17 @@ See [`_AGENT_WORKING_AGREEMENT.md`](_AGENT_WORKING_AGREEMENT.md) — binding. Do
 
 ---
 
-## Skills created 2026-08-30
+## Existing skills
 
-| Skill | Purpose |
-|-------|---------|
-| `melodia-daemon-monitor` | Diagnose and repair failing cron jobs (provider misconfig, HTTP 402, null provider) |
-| `melodia-mesh-catalog` | Catalog static meshes, find duplicates, propose reorganization (read-only) |
-| `melodia-cathedral-builder` | Recursive overnight evolution loop — wool modes, weight lab, cathedral geometry |
+`melodia-daemon-monitor` (cron repair); `melodia-mesh-catalog` (read-only static-mesh catalog); `melodia-cathedral-builder` (wool modes, weight lab, cathedral geometry).
 
 ## Ollama daemon lane
 
-Qwen3 8B is pulled and available for local daemon work. `Tools/model_router.py` daemon lane is functional with `qwen3:8b` as primary researcher and `qwen3-coder:30b` for code/audit tasks. Daemons using this lane produce reports in `Saved/Daemon/proposals/` for human review.
+`Tools/model_router.py` routes local daemons through `qwen3:8b` (research) and `qwen3-coder:30b` (code/audit); proposals in `Saved/Daemon/proposals/` require human review.
 
-## Toolchain discovery — read first before any emerging-toolchain / render / audio work
+## Toolchain discovery — emerging-toolchain, render, or audio work
 
-> **Read [`CURRENT_STATE.md`](CURRENT_STATE.md) → `PROVEN CREATIVE CAPABILITY SURFACE` first.** It is the
-> live status authority and tells you which affordances are live-proven, source/tool-proven, or scaffolded.
-> Then use [`Docs/Research/EMERGING_TOOLCHAIN_MASTER_INDEX_2026-08-31.md`](Docs/Research/EMERGING_TOOLCHAIN_MASTER_INDEX_2026-08-31.md)
-> as the detailed inventory for SpeedTree, Houdini/Copernicus, PCG, cymatics, audio reactivity and external tools.
-> The index is a reference inventory, not a second status authority. Extend PRESENT lanes, finish SCAFFOLDED
-> lanes with evidence, and never promote research-only or external work as live.
+Read [`CURRENT_STATE.md`](CURRENT_STATE.md) → `PROVEN CREATIVE CAPABILITY SURFACE` for evidence level, then [`EMERGING_TOOLCHAIN_MASTER_INDEX_2026-08-31.md`](Docs/Research/EMERGING_TOOLCHAIN_MASTER_INDEX_2026-08-31.md) for the SpeedTree, Houdini/Copernicus, PCG, cymatics and audio inventory. This index is not a status authority. Extend PRESENT lanes, prove SCAFFOLDED lanes, and never promote research-only or external work to live.
 
 ## Core vision - the stable core is for authored content
 
@@ -156,21 +149,11 @@ The first promotion proof should be approximately: canonical Melusina → real F
 
 ## Default decision rule - author content before changing architecture
 
-> Can the requested experience be authored using the systems listed in
-> `CURRENT_STATE.md` -> `PROVEN CREATIVE CAPABILITY SURFACE`?
+Can the experience be authored through `CURRENT_STATE.md` → `PROVEN CREATIVE CAPABILITY SURFACE`? If yes, author it as content/data through existing seams. Architecture requires a demonstrated blocker against its owner; a parallel implementation is a defect.
 
-If yes, author the content. Do not alter architecture. A boss, side quest, rhythm skill, cymatic
-biome, wardrobe ability, and procedural setpiece are normally content/data authored through the
-existing seams. Architecture work requires a demonstrated blocker recorded against the relevant
-owner seam. A new parallel implementation is a defect, not progress.
+See the binding [`AUTHORING_AUTHORITY_AND_MODEL_LANES.md`](Docs/Production/AUTHORING_AUTHORITY_AND_MODEL_LANES.md) before gameplay/lane work for ownership, model lanes and the UI-artist skill. Choose a class with `python Tools/model_router.py pick <class> --detail`; gameplay queue: `CURRENT_STATE.md` §4.
 
-**Full authority map, stable ownership list, model-lane table, and the UI-artist skill pointer:
-[`AUTHORING_AUTHORITY_AND_MODEL_LANES.md`](Docs/Production/AUTHORING_AUTHORITY_AND_MODEL_LANES.md)** —
-binding, read before gameplay or lane work. Pick a task class with
-`python Tools/model_router.py pick <class> --detail`; gameplay queue is `CURRENT_STATE.md` §4.
-
-The rhythm-JRPG loop is the **production authority spine until the owner-directed FLOW/SEQUENCE
-promotion gate passes.** Shape: OMORI. Music-as-key: Zelda. Wardrobe bar: Infinity Nikki.
+The rhythm-JRPG remains the production spine until FLOW/SEQUENCE passes its owner proof gate. Shape: OMORI. Music-as-key: Zelda. Wardrobe bar: Infinity Nikki.
 
 ## 🚀 Rider & UE 5.8 Engineering Protocols
 

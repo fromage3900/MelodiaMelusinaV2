@@ -233,8 +233,9 @@ def build_dreamy_gothic_arch(group_name="MEL_dreamy_gothic_arch"):
     scale_arch = safe_node(tree, "GeometryNodeTransform", (bx + 400, by))
     if scale_arch is not None and arch_path is not None:
         link_sockets(tree, arch_path, scale_arch.inputs["Geometry"])
-        # Scale: X = Arch Width, Z = Arch Height, Y = 0 (2D in XZ plane)
-        scale_combine = _make_combine_xyz(tree, x=None, y=0.0, z=None, loc=(bx + 200, by))
+        # Scale: X = Arch Width, Z = Arch Height, Y = 1 (path is planar in XZ;
+        # a Y scale of 0 would collapse the swept tube's cross-section).
+        scale_combine = _make_combine_xyz(tree, x=None, y=1.0, z=None, loc=(bx + 200, by))
         if scale_combine is not None:
             link_sockets(tree, gin.outputs["Arch Width"], scale_combine.inputs["X"])
             link_sockets(tree, gin.outputs["Arch Height"], scale_combine.inputs["Z"])
@@ -256,13 +257,15 @@ def build_dreamy_gothic_arch(group_name="MEL_dreamy_gothic_arch"):
         label="arch",
     )
 
-    # Scale the swept arch mesh: X = Arch Thickness * 0.5, Z = Arch Thickness * 0.5
+    # Scale the swept arch mesh: X = Arch Thickness * 0.5, Z = Arch Thickness * 0.5,
+    # Y = Arch Thickness * 0.5 (round limb; Y=0 collapsed the tube to zero-area faces).
     if arch_mesh is not None and half_thick is not None:
         scale_mesh = safe_node(tree, "GeometryNodeTransform", (bx + 900, by))
         link_sockets(tree, arch_mesh, scale_mesh.inputs["Geometry"])
-        th_combine = _make_combine_xyz(tree, x=None, y=0.0, z=None, loc=(bx + 750, by))
+        th_combine = _make_combine_xyz(tree, x=None, y=None, z=None, loc=(bx + 750, by))
         if th_combine is not None:
             link_sockets(tree, half_thick.outputs["Value"], th_combine.inputs["X"])
+            link_sockets(tree, half_thick.outputs["Value"], th_combine.inputs["Y"])
             link_sockets(tree, half_thick.outputs["Value"], th_combine.inputs["Z"])
             link_sockets(tree, th_combine.outputs["Vector"], scale_mesh.inputs["Scale"])
             color_node(th_combine, "math")
@@ -339,9 +342,10 @@ def build_dreamy_gothic_arch(group_name="MEL_dreamy_gothic_arch"):
             if gold_mesh is not None and gold_half_depth is not None:
                 gold_scale_mesh = safe_node(tree, "GeometryNodeTransform", (bx + 900, by + 300))
                 link_sockets(tree, gold_mesh, gold_scale_mesh.inputs["Geometry"])
-                gd_combine = _make_combine_xyz(tree, x=None, y=0.0, z=None, loc=(bx + 750, by + 300))
+                gd_combine = _make_combine_xyz(tree, x=None, y=None, z=None, loc=(bx + 750, by + 300))
                 if gd_combine is not None:
                     link_sockets(tree, gold_half_depth.outputs["Value"], gd_combine.inputs["X"])
+                    link_sockets(tree, gold_half_depth.outputs["Value"], gd_combine.inputs["Y"])
                     link_sockets(tree, gold_half_depth.outputs["Value"], gd_combine.inputs["Z"])
                     link_sockets(tree, gd_combine.outputs["Vector"], gold_scale_mesh.inputs["Scale"])
                     color_node(gd_combine, "math")
