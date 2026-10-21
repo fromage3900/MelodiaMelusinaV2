@@ -844,3 +844,158 @@ edit (ask-first, `Content/Materials/` is on the never-touch list):
 2. **Faux appareil** - acceptable for distant walls? (P4 above assumes yes.)
 3. **`p4 submit -c 292`** - the Kenney retirement is still an unsubmitted Perforce changelist.
 4. The two stale remote branches, and the primary checkout's reconciliation with `origin/main`.
+## 12. BRIEFING FOR THE NEXT AGENT (2026-10-21) - the traps, the measurements, the rules
+
+Read this before writing a single generator. Everything here was paid for in an outage.
+
+### 12.1 The rule that matters
+
+**ADDITIVE ONLY. New files and new HDA outputs. Never mutate an asset a live level depends on.**
+On 2026-10-21 a session rebound the material slots of 18 existing Poitou mesh packages while
+`L_Poitou_v2` was live. The level's `Poitou_Layout_v6` Houdini cook then finished "with errors",
+the actor produced nothing, and the owner's working game level stopped. The pre-session state was
+measured (18:34) and is in `Saved/Audit/PoitouConvergence_20261020/poitou_mesh_slots.json`;
+`Tools/Editor/poitou_restore_mesh_bindings.py` restores it exactly. Jev's ruling
+(`JevPoitouLevelAudit_20261021.json`) is `NEW_ASSETS_ONLY_NO_EXISTING_MUTATION`.
+
+Corollaries that cost me time:
+* **Never remove content before its replacement is live.** I removed the near poplar rows'
+  instance (627 trees) because a generated poplar existed - but the generated poplar was not wired
+  to the UE output slots, so the trees simply vanished.
+* **The 8 MIs stay unbound.** Authoring a material is additive; binding it to a live mesh is a
+  separate, owner-approved step.
+* **`p4 revert` on the Poitou meshes would DELETE them** - they are open for ADD. Check
+  `p4 opened` before touching anything in `Content/`.
+
+### 12.2 The axis trap (the one that cost the most)
+
+The retired Kenney pack is **Y-up**; the Poitou authored pack and every in-theme mesh is **Z-up**
+with its pivot at the base. Houdini is Y-up and the Houdini Engine maps
+`UE X -> Houdini X`, `UE Z -> Houdini Y (up)`, `UE Y -> Houdini Z`. So the divisor triple written
+into `set(scale.x, scale.y, scale.z)` is
+
+    (srcX, srcZ, srcY)
+
+and **the .y (up) divisor must equal the mesh's measured Z size**. A .y divisor that matches some
+other axis is an axis-order error: right in one direction, grossly wrong in the others. That is
+what the 18x-wrong pollard ash was. `Tools/Editor/poitou_intheme_assets.py` PARSES `inst.vex` and
+enforces this; do not hand-maintain a divisor table.
+
+Measured sizes (metres, 2026-10-21, after the restore) - divide by these, never by eye:
+
+| key | asset | srcX | srcY | srcZ (height) |
+|---|---|---|---|---|
+| POP | SM_EuropeanHornbeam_04 | 4.1249 | 2.7299 | 6.7970 |
+| ASH | SM_AshTetard_Canal_03_Sculpted | 2.2012 | 2.1764 | 2.2930 |
+| GRS | SM_KikuyuGrass_01 | 0.7528 | 0.7960 | 0.4623 |
+| CANOE | SM_Marais_Barque_4m6_Sculpted | 4.5024 | 1.4416 | 0.3028 |
+| HOUSE | SM_Melusina_ClayHouse_v07 | 12.6613 | 9.4577 | 6.9265 |
+| SPIRE | SM_Poitou_Cymatic_Spire_Sculpted | 3.6553 | 3.6545 | 15.2443 |
+| RUBBLE | SM_Maillezais_CrumbledWall_Sculpted | 11.9784 | 1.5333 | 6.7375 |
+| ARCH | SM_Maillezais_BrokenArch_Sculpted | 8.4525 | 1.8155 | 13.2064 |
+| BUTTRESS | SM_Maillezais_ButtressStub_Sculpted | 1.6173 | 2.2697 | 9.8036 |
+| GROUND | SM_GrassGroundPatch_01 | 3.3966 | 4.9005 | 0.1893 |
+
+**A save can move a mesh's bounds** (re-saving these meshes moved the crumbled wall's thickness
+126.5 -> 153.3 cm). Re-measure after any save, and let the audit re-derive.
+
+### 12.3 VEX in this Houdini build (22.0.368) - the landmines
+
+* **A UTF-8 BOM in a .vex file is a fatal parse error** ("Unknown token"). PowerShell
+  `Set-Content -Encoding UTF8` writes one. Write the file with
+  `[System.IO.File]::WriteAllText($p, $t, (New-Object System.Text.UTF8Encoding($false)))`.
+* No 2-D array literals: `int f[6][4] = {{0,1,3,2},...}` is a syntax error. Use a flat array and
+  index `f[k*4+j]`.
+* `fmod` does not exist; `mod` is integer-only. Use `c % 3` / `float(c % 2)`.
+* `addvertex(geohandle, point, prim)` - the third argument is the PRIM index, not a position. You
+  must `addpoint()` first, then `addvertex(0, pt, -1)`.
+* Prefer `setpointattrib` over `setvertexattrib`: the vertex overloads are a minefield, and each
+  generated box owns its own points anyway.
+* Brace literals inside expressions can fail to parse (`{0,1,0}`) - use `set(0,1,0)`.
+* `push()` is ambiguous - assign to a typed local first, then push.
+* `pr.attribValue("group")` THROWS on a prim with no group. Write your own prim string attribute
+  (`element`) and read that; the gate reads `element`.
+* Report every node error immediately after the cook. A single failed wrangle silently empties
+  every downstream output, and the HDA still "cooks".
+
+### 12.4 Houdini Engine for Unreal - the boundaries
+
+* **A commandlet does NOT cook.** `-run=pythonscript` loads the map and the actors are there, but
+  the plugin's cook never runs (no editor tick). A headless check can only READ the editor's log.
+* **UE rotates `Saved/Logs/BS_GodFile.log`** every time a second Unreal process starts, so the
+  editor's live log may be `BS_GodFile_2.log`. A log-reading tool must scan every log in
+  `Saved/Logs/` and keep the NEWEST cook line per actor.
+* **A check that finds no evidence must FAIL.** Mine reported "all OK" when it had found zero cook
+  lines. That false green is the worst possible outcome; make "no evidence" a hard failure.
+* **`Tools/Editor/poitou_he_cook_check.py`** is that check: it reports each Houdini actor's cook
+  result (`FinishedCooking.` vs `... with errors`). Run it AFTER the owner cooks.
+* **One new HDA output = one new output slot on the UE-side Houdini Engine asset**, which is an
+  editor operation. So the generated elements ship as ONE merged output (`output_generated`),
+  tagged by prim group and material - not one output per element.
+* The Houdini Engine asset exposes **no editable properties to Python** (every candidate fails
+  with "Failed to find property"), and there is no Python-callable reimport. You cannot re-embed
+  an HDA headlessly.
+* `unreal.SystemLibrary.delay()` needs latent info and does not work in a commandlet - use
+  `time.sleep`.
+* Copying a `static_materials` element ALIASES it: mutating the "copy" mutates slot 0. Build new
+  slots with `unreal.StaticMaterial()`.
+* `unreal.load_asset` on a missing path returns None; `pr.attribValue` on a missing attribute
+  raises. Guard both.
+
+### 12.5 The kit, and what is already built
+
+`Tools/Poitou/snip/kit.vex` is the shared grammar and every generator includes it:
+`kit_box`, `kit_wall_stone`, `kit_wall`, `kit_arch`, `kit_buttress`, `kit_slope`, `kit_gable`,
+`kit_ribbon`, `kit_taper`, `kit_faux_mask`. It fixes the canon's constants: 0.6 m module and
+course (1 beat), 2.4 m bay (1 bar), 14.4 m = 6 bays, 0.45 m ashlar leaf over 0.9 m rubble core, a
+chaine/arase band every 3 courses through the full thickness, a rusticated refend base, 2 cm dry
+joints, semicircular arches only, and the vertex paint convention R=lime-wash G=damp B=moss A=ivy.
+
+Shipped generators, all gated by name (18 element groups): `revet.vex` (canal-du-Midi section,
+329,439 prims), `abbey.vex` (Maillezais: 7-bay nave, 1080 westwork, narthex, gallery on belt
+arches, splayed buttresses, apse, gable roof), `found.vex` (soubassement under every house),
+`lane.vex` (2.4 m ribbons with kerbs that dodge the houses), `cross.vex` (deck, parapet, piers -
+the old receipt had none), `roof.vex` (low-pitch canal tile), `poplar_gen.vex` (tapering trunk +
+columnar crown). **596,382 generated prims.** The near poplar rows still instance the hornbeam
+until the generated poplar is wired to the level.
+
+### 12.6 What the gate does NOT check yet - the real gap
+
+The gate asserts **emission**: outputs cook, instances are in-theme, divisors match measured
+meshes, every named element group is present, every material is a project material. It does NOT
+assert **placement or appearance**. A generator can emit the right number of prims in the wrong
+place and the gate stays green. That is exactly how tonight's work was allowed to look finished.
+
+**The next gate must assert placement**, headlessly:
+* the revetment's minimum distance to the canal centreline curve, and its height band against
+  `ign_water`;
+* the abbey's footprint against the canon centre (830, 870) and its rotation against `abbey_rot`;
+* the crossing count within a band, and that each crossing's deck actually spans a canal;
+* the roof pitch in degrees per house, against the canal-tile pitch;
+* the lane width (2.4 m) and the lane's clearance from every house footprint;
+* the poplar's crown aspect ratio (columnar, not broad) and its height band 25-35 m;
+* and, once the owner has the editor open, **one screenshot from the P0 route's approach** -
+  the abbey silhouette over the canal. Numbers prove the maths; the picture proves the world.
+
+### 12.7 The UE-side work that needs the editor (and only the editor)
+
+1. **Cook the level's Houdini actors** (the plugin's `Temp/` scratch was cleared and the failing
+   cook must re-run), then `poitou_he_cook_check.py` must report `Poitou_Layout_v6: OK`.
+2. **Add two output slots** to `poitou_layout_live_v6.uasset`: `output_masonry` (the revetment) and
+   `output_generated` (the element set).
+3. **Bind the 8 new MIs** to the meshes, as an owner-approved step (Jev: new assets only until
+   then).
+4. The toon master does not read the vertex **A** channel yet, and has no faux-appareil input -
+   a material edit, which is ask-first (`Content/Materials/` is on the never-touch list).
+
+### 12.8 The backlog, in priority order
+
+P0.1 `house.vex` (wall, round-arched tufa door surround, oak door, shutters, chimney) - the 105
+village houses are one instanced mesh with no generated detail. P0.2 `church.vex` (nave, porch,
+bell tower, slate spire). P0.3 `door.vex` (the door and the fence - the last elements with no
+in-theme equivalent; both become masonry). P1.1 `quay.vex` (the maison eclusiere, 11-12 x 7-8 m,
+and the quay walls). P1.2 `jetty.vex` (tarred-oak pilings, the "black keys"). P1.3 `bank.vex`
+(steps to the water, mooring rings). P2.1 `reed.vex`. P2.2 `ivy.vex` (the A channel). P2.3
+`quoin.vex`. P3.1 `clos.vex` (the walled garden, fig trees, vine rows). P3.2 `boat.vex`. P3.3
+`bird.vex` (the AE layer already exists). P4 the faux-appareil mask writer.
+Each one must earn a named group in the gate. Full table in section 11.2.

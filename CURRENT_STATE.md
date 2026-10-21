@@ -1,44 +1,62 @@
 # Melodia Melusina ? Current State
 
 
-## ⚑ HANDOFF — the Poitou level cooks an empty HDA (2026-10-21, session close)
+## ⚑ POITOU LEVEL RESTORED — the regression was mine, and the gate missed it (2026-10-21)
 
-**The one thing to know:** the level `L_Poitou_v2` is not empty because of the generators. Its
-`Poitou_Layout_v6` actor cooks its **stale embedded HDA** (`poitou_layout_roomshell_candidate`) and
-that cook finishes **"with errors"**, so it produces nothing. The eight `Poitou_RoomShell_00..07`
-actors and the three `Poitou_RuinRocks_00..02` actors cook fine — only `Poitou_Layout_v6` fails.
-Evidence: `Saved/Logs/BS_GodFile.log` — `HAPI Asynchronous Cooking Started for Poitou_Layout_v6` →
-`Warning: Poitou_Layout_v6 FinishedCooking with errors - will try to process the available results`,
-while `Poitou_RoomShell_07 FinishedCooking.` succeeds minutes earlier.
+**What broke the level.** This session bound in-theme materials to **18 existing Poitou mesh
+packages** in `Content/` while `L_Poitou_v2` was live (slot 0 rebound, and five of them grown to
+two static material slots). The level's `Poitou_Layout_v6` Houdini cook then finished **"with
+errors"** and the actor produced nothing — while the other ten Houdini actors in the same level
+cooked clean. The owner's working game level stopped producing content. It was not the HDA
+sources, and it was not the retired Kenney pack: it was a mutation of assets a live level depends
+on. **Content is never removed or rebound before its replacement is live, and existing assets a
+live level depends on are not touched without the owner's sign-off.**
 
-**The fix (needs the editor, ~60 seconds, owner):**
-1. In `L_Poitou_v2`, select the `Poitou_Layout_v6` actor.
-2. In the Houdini Engine panel, **Re-instantiate** it from `Tools/Poitou/hda/poitou_layout_live.hdalc`
-   (the HDA this session built and gated; 68,875 B, built 19:08).
-3. **Cook** the actor, then save the level.
-   *If the panel is mid-"Select an asset to instantiate", that is the same action.*
-4. Optionally add two output slots on the actor for the new generated outputs: `output_masonry`
-   (the canal revetment, 329,439 prims) and `output_generated` (the element set, 266,943 prims).
+**Why the gate did not catch it.** The Houdini-side in-theme gate was green the whole time because
+it proves the *HDA* is healthy — it says nothing about whether the *level* is fed. That gap was
+real and I had built a whole programme on top of it. It is now closed:
+`Tools/Editor/poitou_he_cook_check.py` reads each Houdini actor's cook result out of the log
+(`Poitou_Layout_v6 FinishedCooking.` vs `... with errors`) and fails on any actor that cooked with
+errors. **That is the check that should have existed before the first generator was written.**
 
-**Why it could not be done headlessly:** the Houdini Engine asset (`HoudiniAsset`,
-`/Game/EnvSandbox/Poitou/HDA/poitou_layout_live_v6`) exposes **no** editable properties to Python —
-`hda_file_path`, `source_file_path`, `outputs` and every other candidate all fail with *"Failed to
-find property"*, and there is no Python-callable reimport/reload. Re-embedding an HDA is a C++/editor
-operation. The editor is also the owner's live session, and the level is ask-first.
+**Jev ruled on the restore** (live, closed candidate sets — receipt
+`Saved/Audit/PoitouConvergence_20261020/JevPoitouLevelAudit_20261021.json`):
 
-**What IS proven and green (headless, reproducible):**
-- `Tools/Poitou/run_intheme_gate.ps1 -Build -Measure` → **PASS, 0 failures**.
-  `output_masonry` 329,439 prims · `output_generated` 266,943 prims across **18 named element
-  groups** · `output_points` 14,260 in-theme instances · `output_skirt_mesh` 14,000 prims.
-- 0 of 10 instanced meshes missing or mismatched against their measured size.
-- 8 MIs authored on the one toon master; 18 Poitou meshes re-bound off `WorldGridMaterial`.
-- Landed on `feature/poitou-intheme-architecture-20261021` → `5968b4ee9` (local
-  `refs/agents/poitou-intheme-architecture-20261021`).
+| question | Jev's choice |
+|---|---|
+| restore order | `RESTORE_ALL_18_FROM_SNAPSHOT` |
+| proof | `HEADLESS_COOK_CHECK_ONLY` |
+| standing rule | `NEW_ASSETS_ONLY_NO_EXISTING_MUTATION` |
+| scope | `REPAIR_AND_PROVE_LEVEL_FIRST_THEN_EXPAND` |
 
-**Still owed, in order:** (1) the editor re-instantiate + cook above — the level is empty until it
-happens; (2) the two output slots for the generated geometry; (3) `p4 submit -c 292`; (4) the
-13-generator backlog in §11 of the build contract; (5) the stale remote branches and the primary
-checkout's reconciliation with `origin/main`.
+**The restore is done, from measurement not judgement.** The pre-session state of those 18 meshes
+was measured at 18:34, before any change, and written to
+`Saved/Audit/PoitouConvergence_20261020/poitou_mesh_slots.json` — every mesh, its slot count and its
+slot-0 material. `Tools/Editor/poitou_restore_mesh_bindings.py` restores exactly that record
+(slot 0 to the recorded material, the array to the recorded slot count) and nothing else. All 18
+are restored; receipt `Saved/Audit/PoitouConvergence_20261020/mesh_binding_restore.json`. The HDA
+side was restored too: the near poplar rows instance again, because the generated poplar is not
+wired to the UE output slots yet and removing 627 trees before their replacement arrives is the
+same mistake in the other direction. **Do not `p4 revert` the Poitou meshes: they are open for ADD,
+so a revert would delete them.**
+
+**What the owner has to do — one step, and it is the editor's anyway.** The Houdini Engine plugin's
+scratch (`Content/HoudiniEngine/Temp/`) was cleared, and the failing cook must re-run, so the
+level's Houdini actors need a **Cook** (all of them; the RoomShell actors regenerate their temp
+output). `Content/HoudiniEngine/Bake/` is referenced by the level and was not touched. After that
+cook, `Tools/Editor/poitou_he_cook_check.py` reports `Poitou_Layout_v6: OK` — that is the proof,
+and it needs no judgement.
+
+**The standing rule from here, per Jev and the owner's own instruction: new assets only.** The
+missing materials stay as NEW assets (7 MIs plus `M_Poitou_Stone_Plinth`, authored on the one toon
+master, not yet in Perforce). Binding them to the live meshes is a separate, owner-approved step —
+not part of a generator session. The generators themselves stay additive: new files and new HDA
+outputs, `Tools/` only, no content mutation.
+
+**What is NOT lost:** the HDA graph in the asset is intact and was never edited; the level map was
+never edited; the editor session was never closed or reloaded. The v6 sources, the shared masonry
+kit, the seven generators, the in-theme repoint, the scale contract and the offline programme are
+all committed on `feature/poitou-intheme-architecture-20261021`.
 
 ## ⚑ Poitou in-theme procedural architecture programme — THE KIT, SEVEN GENERATORS, GREEN GATE — 2026-10-21
 
