@@ -1,5 +1,36 @@
 # Melodia Melusina ? Current State
 
+## Magician's Library import + material audit — MISSING PACK CONTENT CONFIRMED, NO ASSET MUTATED — 2026-10-21
+
+**The owner's instinct is right: the kit is roughly half present. But the material layer is mostly fine.** The pack is the Fab **"Magician's Library Environment and VFX Pack"** (Coreb Games, `https://www.fab.com/listings/25a46fa5-1f75-44e0-806c-026cfc1d45f8`, last updated 2024-08-09). Its own description advertises *"**7+ Fully Functional BPs** (Ancient Book Generator, Crystal VFX with Dynamic Material and Niagara Effects, Hidden Door with Dissolve Material Function, Interactive Book with Flipping Animation, Interactive Painting, Lighting Props (Lantern, Wall Lantern, Candle), Poison Pot), **+40 Building Props**, **+53 Interior and Mystical Props**"*.
+
+| What | We have | Pack advertises |
+|---|---|---|
+| Static meshes | **53** (52 props + `SM_Wick`) | ~93 (40 building + 53 interior/mystical) |
+| Functional Blueprints | **0** | 7+ |
+| Niagara / VFX | **0** | crystal VFX + Niagara effects |
+| Material functions | **0** | `MF_SplitDissolve` (the Hidden Door's dissolve) |
+
+**Evidence.** Asset Registry census of all three trees (`/Game/EnvSandbox/Library/Migrated/MagiciansLibrary` 308 assets, `/Game/Library/Migrated/MagiciansLibrary` 356, `/Game/00_Archive/MagicianLabSource_2026-08-31` 198) → 53 / 53 / 1 static meshes, **0 `BP_*`, 0 `NS_*`, 0 material functions**. The archive holds only `m_<prop>` masters + `t_<prop>_ao/base/normal` per prop — **no geometry and no BPs** — so the missing half **cannot be regenerated from this repo**; the owner's Fab download is the only source.
+
+**Not missing:** the 153 textures map **1:1** onto the 52 props (AO + Base + Normal each). There is no prop imported as textures-without-geometry, so the import that happened was internally consistent — it was simply a **partial** import of the pack.
+
+**What is already right** (52 of 53 meshes): the material-instance layer is real. Each prop carries an MI parented **directly to `/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal`** with its own textures bound (`Albedo`→`T_<Prop>_Base`, `NormalMap`→`T_<Prop>_Normal`, `ORM`→`T_<Prop>_AO`, `LayerA_TextureWeight=1.0`). **"Converted to the Universal toon Master" is done** — that part of the worry is largely unfounded.
+
+**What is wrong, and is fixable without the owner (in the canonical `/Game/EnvSandbox/Library/Migrated/MagiciansLibrary` tree):**
+
+1. **8 meshes are on the wrong material.** `SM_Bookshelf` → the **master** `M_Bookshelf` (a flat 7-expression graph) instead of `MI_M_Bookshelf`, so it **bypasses the toon master entirely** — while `MI_M_Bookshelf` sits correctly textured and **unreferenced**. `SM_Lantern`, `SM_Wick`, `candle1_L` → `MI_Zen_LanternWarm` (a Zen-environment instance binding `T_Default_Albedo/Normal/ORM`, i.e. **no prop texture**); their correctly-textured `MI_M_Lantern` / `MI_M_Candle` are unreferenced. `SM_Outside_Wall` → `Outside_Wall/_Loose/MI_SM_Outside_Wall`. `SM_Kit_Ornament_A/B/C` → `MI_M_Deco1/2/3` (folder/name drift). `SM_Desk2` → `MI_M_Desk_2` (name only).
+2. **51 orphan flat `M_*` masters** — the abandoned flat-conversion route from `Content/Python/add_nikki_params_to_magicians.py` (7–8 expression graphs: TextureSample → SubstrateToonBSDF + injected `BaseTint`/`TintStrength`). 50 have **zero** referencers; the 51st (`M_Bookshelf`) is live only because of defect 1. Re-point the Bookshelf and the whole set becomes provably dead.
+3. **No LODs, no simple collision.** `get_num_lods()` = **1** for all 53; `get_simple_collision_count()` = **0** for all 53; all 53 are `CTF_USE_COMPLEX_AS_SIMPLE` (triangle mesh as collision). 50 carry one convex hull; `SM_Carpet3` and `SM_Wick` carry none.
+4. **Two noise-height stragglers.** `MI_M_Bookshelf.HeightMap` and `MI_Zen_LanternWarm.HeightMap` still resolve to `Perlin_1_-_512x512` instead of `T_Neutral_Height`; every other Magicians instance is on the neutral map. This is the exact defect class the 2026-08-14 `route_neutral_maps` pass fixed across 1,255 instances.
+5. **The duplicate tree was never purged.** `Saved/Audit/magician_purge_final_spec_2026-09-01.json` planned to delete `/Game/Library/Migrated/MagiciansLibrary` (356 assets) and is still `SPEC_READY`; the folder still holds all 356 files. **Do not run that delete script as written** — 10 of its meshes are live-referenced by PCG graphs (`PCG_ClusteringScatter`, `PCG_SimpleScatter`, `PCG_PathScatter`, `PCG_Cyberpunk_Alley`), and their material slots already point across into the EnvSandbox tree. Re-point the PCG graphs first, then delete with fixups.
+6. **Naming.** `candle1_L` has no `SM_` prefix (the archive spells it `candle1_l`). `SM_Kit_Ornament_A/B/C` sit in `Deco1/2/3` folders whose instances are still `MI_M_Deco1/2/3`. Rename via `IAssetTools` (redirector-safe), never filesystem moves.
+7. **The library has never been dressed.** 44 of 53 canonical meshes have **zero external referencers**; the 9 that are used are consumed by PCG graphs and one Morning external actor. There is no Magician's Library level. That alone makes the kit *feel* half-absent, independently of the genuinely missing content.
+
+**Evidence level: registry-verified audit — NO asset was mutated.** Read-only reflection in the live editor (Monolith 0.20.3, UE 5.8). Receipts `Saved/Audit/magicians_library_audit_20261021.json` (+ `magicians_library_audit.json`, `magicians_library_deep.json`); read-only scripts `Content/Python/magicians_library_audit.py`, `Content/Python/magicians_library_deep.py`.
+
+**Owner decision owed.** The missing ~40 building props, the remainder of the interior/mystical props, all 7 functional BPs and `MF_SplitDissolve` require a **re-import from the owner's Fab download** (already licensed — Personal CAD 56.25 / Professional CAD 98.45; see `Docs/SOURCES_MATRIX.md`). Nothing in this repo can substitute for it. Until that lands, defects 1–4 and 6 are the complete remediation list and need no new assets.
+
 ## P0 CANON LANDED on origin/main + the owed build is DONE — 2026-10-21
 
 - **Landed.** PR #497, squash commit **`9393751c7`** on `origin/main` — *"canon: full-french world identity, P0 golden walk, and the reconciled P0 lines"*. The P0 canon, the world's identity document, the corrected build spec, the M00–M09 pacing contract, the plate-audit tool and its receipt are all on the canonical branch. `origin/main` now carries: `Docs/MELODIA_MELUSINA_WORLD_IDENTITY_CANON_2026-10-20.md`, `Docs/Plans/POITOU_P0_GOLDEN_WALK_2026-10-21.md`, `specs/p0/poitou_p0_golden_walk.v1.json`, `Tools/audit_showcase_plates.py`, the `Docs/Poitou/` tree (73 files), the TouchEngine plugin, the story-door / playable-decor / seam-portal / live-voice sources, and the narrative rewrite that carries the missing Sir unlock beat. The superseded `specs/progression/melodia_first_day_pacing.v1.json` is gone.

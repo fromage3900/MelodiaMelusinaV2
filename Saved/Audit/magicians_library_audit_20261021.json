@@ -1,0 +1,135 @@
+{
+  "schema": "melodia.audit.magicians_library_audit.v1",
+  "generated": "2026-10-21T17:40:00Z",
+  "mode": "editor_registry_read + disk_scan + pack_manifest_fetch",
+  "editor": {
+    "monolith_version": "0.20.3",
+    "server_port": 9316,
+    "engine": "++UE5+Release-5.8-CL-55116800",
+    "project": "BS_GodFile"
+  },
+  "pack": {
+    "title": "Magician's Library Environment and VFX Pack",
+    "seller": "Coreb Games",
+    "fab_listing": "https://www.fab.com/listings/25a46fa5-1f75-44e0-806c-026cfc1d45f8",
+    "license": "Fab Marketplace EULA (Personal CAD 56.25 / Professional CAD 98.45)",
+    "published": "2023-04-19",
+    "last_update": "2024-08-09",
+    "advertised_manifest": {
+      "quote": "7+ Fully Functional BPs (Ancient Book Generator, Crystal VFX with Dynamic Material and Niagara Effects, Hidden Door with Dissolve Material Function, Interactive Book with Flipping Animation, Interactive Painting, Lighting Props (Lantern, Wall Lantern, Candle), Poison Pot), +40 Building Props, +53 Interior and Mystical Props",
+      "functional_blueprints": "7+",
+      "building_props": 40,
+      "interior_and_mystical_props": 53,
+      "static_props_total_min": 93,
+      "source": "Fab listing description + Coreb pack documentation (docs.google.com/document/d/1Df5q7C5jzmd8eV_T12l5UaHZ8BW2K97Oy0hwZazzl7o)"
+    }
+  },
+  "trees": {
+    "canonical": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary",
+    "duplicate": "/Game/Library/Migrated/MagiciansLibrary",
+    "archive_source": "/Game/00_Archive/MagicianLabSource_2026-08-31"
+  },
+  "coverage": {
+    "canonical": {
+      "assets": 308,
+      "static_meshes": 53,
+      "materials": 102,
+      "textures": 153,
+      "blueprints": 0,
+      "niagara_systems": 0,
+      "material_functions": 0
+    },
+    "duplicate": {
+      "assets": 356,
+      "static_meshes": 53,
+      "materials": 150,
+      "textures": 153,
+      "blueprints": 0,
+      "niagara_systems": 0,
+      "material_functions": 0
+    },
+    "archive_source": {
+      "assets": 198,
+      "static_meshes": 1,
+      "materials": 44,
+      "textures": 153,
+      "note": "archive holds m_<prop> masters + t_<prop>_ao/base/normal per prop; geometry and BPs are absent (drained to the two library trees on/around 2026-09-01)"
+    },
+    "verdict": "MISSING CONTENT CONFIRMED",
+    "static_prop_coverage": "53 / ~93 advertised (~57%)",
+    "blueprint_coverage": "0 / 7+ functional BPs (0%)",
+    "vfx_coverage": "0 (no Niagara; no MF_SplitDissolve)",
+    "texture_to_mesh_ratio": "1:1 — every imported texture set has exactly one mesh; no prop was imported as textures-without-geometry"
+  },
+  "findings": {
+    "F1_import_missing_content": {
+      "severity": "P0",
+      "statement": "The pack's ~40 building props, the remainder of its 53 interior/mystical props, and all 7 functional Blueprints (BP_HiddenDoor, Interactive Book, Interactive Painting, Book Generator, Crystal VFX + Niagara, Lighting Props Lantern/Wall Lantern/Candle, Poison Pot) plus the MF_SplitDissolve material function are absent from this project.",
+      "evidence": "Asset Registry census of all three MagiciansLibrary trees returns 0 BP_* , 0 NS_* , 0 material functions. Fab listing description quotes the advertised manifest.",
+      "remedy": "Owner action: the pack's source files are in the owner's Fab library. Re-import the missing mesh/BP/VFX set from the Fab download. No local source copy exists — the archive holds materials+textures only, so nothing can be regenerated from the repo.",
+      "blocking": true
+    },
+    "F2_duplicate_tree_never_purged": {
+      "severity": "P1",
+      "statement": "The 2026-09-01 purge of /Game/Library/Migrated/MagiciansLibrary (356 assets) was authored as SPEC_READY but never executed. The same 53 meshes and 153 textures exist in both trees.",
+      "evidence": "Saved/Audit/magician_purge_final_spec_2026-09-01.json (status SPEC_READY); disk scan 2026-10-21 still shows 356 files under Content/Library/Migrated/MagiciansLibrary.",
+      "remedy": "Do NOT re-run the 2026-09-01 delete script as written. 10 meshes in the duplicate tree are live-referenced by PCG graphs (PCG_ClusteringScatter, PCG_SimpleScatter, PCG_PathScatter, PCG_Cyberpunk_Alley). Re-point those PCG graphs at the canonical tree first, then delete with fixups.",
+      "blocking": false
+    },
+    "F3_slot_misassignment_8_meshes": {
+      "severity": "P1",
+      "statement": "8 of 53 canonical meshes are not on their own prop material instance.",
+      "cases": [
+        {"mesh": "SM_Bookshelf", "assigned": "M_Bookshelf", "assigned_kind": "MASTER (flat 7-expression graph)", "defect": "bypasses M_Master_Toon_Universal entirely", "correct_asset_exists": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Bookshelf/MI_M_Bookshelf (unreferenced, correctly textured)"},
+        {"mesh": "SM_Lantern", "assigned": "/Game/EnvSandbox/Materials/Instances/Environment/Zen/MI_Zen_LanternWarm", "defect": "binds T_Default_Albedo/Normal/ORM — no prop texture; also a cross-environment instance shared with Zen content"},
+        {"mesh": "SM_Wick", "assigned": "MI_Zen_LanternWarm", "defect": "same default-texture instance; MI_M_Candle exists unused"},
+        {"mesh": "candle1_L", "assigned": "MI_Zen_LanternWarm", "defect": "same default-texture instance"},
+        {"mesh": "SM_Outside_Wall", "assigned": ".../Outside_Wall/_Loose/MI_SM_Outside_Wall", "defect": "wrong name pattern (MI_SM_*) and lives in a _Loose strays folder"},
+        {"mesh": "SM_Kit_Ornament_A", "assigned": ".../Deco1/MI_M_Deco1", "defect": "folder/asset name drift — mesh renamed to Kit_Ornament_A, MI and folder still Deco1"},
+        {"mesh": "SM_Kit_Ornament_B", "assigned": ".../Deco2/MI_M_Deco2", "defect": "same drift"},
+        {"mesh": "SM_Kit_Ornament_C", "assigned": ".../Deco3/MI_M_Deco3", "defect": "same drift"},
+        {"mesh": "SM_Desk2", "assigned": ".../Desk2/MI_M_Desk_2", "defect": "name mismatch only (MI_M_Desk2 expected); material family is correct"}
+      ],
+      "note": "8 rows listed; SM_Desk2 is the 9th mismatch row returned by the audit (name-only). Mesh set is 8 distinct meshes plus the name-only mismatch."
+    },
+    "F4_orphan_flat_masters": {
+      "severity": "P2",
+      "statement": "51 flat 'M_*' masters in the canonical tree (7-8 expression graphs: TextureSample -> SubstrateToonBSDF with injected BaseTint/TintStrength) are the abandoned flat-conversion route from Content/Python/add_nikki_params_to_magicians.py. 50 of 51 have zero referencers; only M_Bookshelf is still live (and it is the one mesh that bypasses the toon master).",
+      "evidence": "Asset Registry referencer census + MaterialEditingLibrary.get_material_expressions shape read on all 51.",
+      "remedy": "After F3 re-points SM_Bookshelf to MI_M_Bookshelf, the whole flat M_* set becomes provably orphaned and can be archived/deleted."
+    },
+    "F5_no_lods_no_simple_collision": {
+      "severity": "P1",
+      "statement": "Import quality: every mesh has LODCount = 1 (no LODs generated) and 0 simple collision primitives. All 53 use CollisionTraceFlag CTF_USE_COMPLEX_AS_SIMPLE; 50 carry 1 convex hull, 2 (SM_Carpet3, SM_Wick) carry 0 convex hulls.",
+      "evidence": "StaticMesh.get_num_lods() = 1 for 52/52 SM_*; EditorStaticMeshLibrary.get_simple_collision_count() = 0 for 53/53; get_collision_complexity() = CTF_USE_COMPLEX_AS_SIMPLE for 53/53.",
+      "remedy": "Generate LODs and simple (box/convex) collision for the prop set before any level dressing."
+    },
+    "F6_noise_height_map_residue": {
+      "severity": "P2",
+      "statement": "Two live instances still carry an abstract Perlin height map instead of T_Neutral_Height: MI_M_Bookshelf.HeightMap = /Game/Textures/sbs_-_noise_texture_pack_-_512x512/512x512/Perlin/Perlin_1_-_512x512, and the same on MI_Zen_LanternWarm. All other Magicians instances resolve HeightMap to /Game/EnvSandbox/Textures/Utility/T_Neutral_Height.",
+      "evidence": "MaterialInstanceConstant.get_texture_parameter_value('HeightMap') read on MI_M_Box, MI_M_Bookshelf, MI_M_Lantern, MI_Zen_LanternWarm.",
+      "note": "This is the defect class the 2026-08-14 handoff (route_neutral_maps) fixed across 1,255 MIs; the Magicians Library kept two stragglers."
+    },
+    "F7_naming_convention": {
+      "severity": "P2",
+      "statement": "candle1_L violates the SM_ prefix convention (1 of 53). Archive spells it candle1_l (lower-case L). SM_Kit_Ornament_A/B/C sit in folders named Deco1/Deco2/Deco3 whose material instances are still MI_M_Deco1/2/3.",
+      "remedy": "Rename via IAssetTools (redirector-safe), not filesystem moves."
+    },
+    "F8_library_never_dressed": {
+      "severity": "P2",
+      "statement": "44 of 53 canonical meshes have zero external referencers. The 9 that are used are consumed by PCG graphs and one Morning external actor, not by a dressed Magician's Library level. No Magician's Library level exists in the project.",
+      "evidence": "find_package_referencers_for_asset per mesh (external referencers only).",
+      "note": "Explains the 'the kit feels half there' impression independently of the genuinely missing content."
+    }
+  },
+  "verified_good": {
+    "material_instance_layer": "52 of 53 canonical meshes carry a MaterialInstanceConstant parented directly to /Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal — the conversion to the Universal toon master is real and in place.",
+    "texture_binding": "Live instances bind their own prop textures: MI_M_Box Albedo=T_Box_Base / NormalMap=T_Box_Normal / ORM=T_Box_AO, LayerA_TextureWeight=1.0. Same pattern verified on MI_M_Bookshelf and MI_M_Lantern.",
+    "texture_completeness": "153 textures = 52 props x (AO+Base+Normal) with no prop missing its mesh and no mesh missing its textures."
+  },
+  "receipts": [
+    "Saved/Audit/magicians_library_audit.json",
+    "Saved/Audit/magicians_library_deep.json"
+  ],
+  "status": "AUDIT_COMPLETE"
+}
