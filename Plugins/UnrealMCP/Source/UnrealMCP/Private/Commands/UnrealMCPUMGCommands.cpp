@@ -17,7 +17,12 @@
 #include "Components/CanvasPanelSlot.h"
 #include "JsonObjectConverter.h"
 #include "Kismet2/BlueprintEditorUtils.h"
+#include "Components/Border.h"
 #include "Components/Button.h"
+#include "Components/VerticalBox.h"
+#include "Components/MultiLineEditableTextBox.h"
+#include "EditorUtilityWidgetBlueprint.h"
+#include "EditorUtilityWidgetBlueprintFactory.h"
 #include "K2Node_FunctionEntry.h"
 #include "K2Node_CallFunction.h"
 #include "K2Node_VariableGet.h"
@@ -32,7 +37,11 @@ FUnrealMCPUMGCommands::FUnrealMCPUMGCommands()
 
 TSharedPtr<FJsonObject> FUnrealMCPUMGCommands::HandleCommand(const FString& CommandName, const TSharedPtr<FJsonObject>& Params)
 {
-	if (CommandName == TEXT("create_umg_widget_blueprint"))
+	if (CommandName == TEXT("create_widget_blueprint"))
+	{
+		return HandleCreateMelodiaStudioWidget(Params);
+	}
+	else if (CommandName == TEXT("create_umg_widget_blueprint"))
 	{
 		return HandleCreateUMGWidgetBlueprint(Params);
 	}
@@ -541,4 +550,144 @@ TSharedPtr<FJsonObject> FUnrealMCPUMGCommands::HandleSetTextBlockBinding(const T
 	Response->SetBoolField(TEXT("success"), true);
 	Response->SetStringField(TEXT("binding_name"), BindingName);
 	return Response;
-} 
+}
+
+namespace
+{
+	UCanvasPanelSlot* PlaceOnCanvas(UCanvasPanel* Canvas, UWidget* Widget, float X, float Y, float W, float H)
+	{
+		if (!Canvas || !Widget)
+		{
+			return nullptr;
+		}
+		Widget->bIsVariable = true;
+		UCanvasPanelSlot* Slot = Canvas->AddChildToCanvas(Widget);
+		if (!Slot)
+		{
+			return nullptr;
+		}
+		Slot->SetAnchors(FAnchors(0.f, 0.f, 0.f, 0.f));
+		Slot->SetAlignment(FVector2D(0.f, 0.f));
+		Slot->SetPosition(FVector2D(X, Y));
+		Slot->SetSize(FVector2D(W, H));
+		return Slot;
+	}
+
+	void StyleText(UTextBlock* Text, const FString& Value, int32 Size, const FLinearColor& Color)
+	{
+		if (!Text)
+		{
+			return;
+		}
+		Text->SetText(FText::FromString(Value));
+		FSlateFontInfo Font = Text->GetFont();
+		Font.Size = Size;
+		Text->SetFont(Font);
+		Text->SetColorAndOpacity(FSlateColor(Color));
+	}
+}
+
+TSharedPtr<FJsonObject> FUnrealMCPUMGCommands::HandleCreateMelodiaStudioWidget(const TSharedPtr<FJsonObject>& Params)
+{
+	const FString SavePath = TEXT("/Game/Melodia/Tools/EUW_MelodiaStudio");
+	UEditorUtilityWidgetBlueprint* WidgetBlueprint = Cast<UEditorUtilityWidgetBlueprint>(UEditorAssetLibrary::LoadAsset(SavePath));
+	if (!WidgetBlueprint)
+	{
+		UPackage* Package = CreatePackage(*SavePath);
+		if (!Package)
+		{
+			return FUnrealMCPCommonUtils::CreateErrorResponse(TEXT("Failed to create Melodia Studio package"));
+		}
+		UEditorUtilityWidgetBlueprintFactory* Factory = NewObject<UEditorUtilityWidgetBlueprintFactory>();
+		UObject* Created = Factory->FactoryCreateNew(
+			UEditorUtilityWidgetBlueprint::StaticClass(),
+			Package,
+			TEXT("EUW_MelodiaStudio"),
+			RF_Public | RF_Standalone,
+			nullptr,
+			GWarn);
+		WidgetBlueprint = Cast<UEditorUtilityWidgetBlueprint>(Created);
+		if (!WidgetBlueprint)
+		{
+			return FUnrealMCPCommonUtils::CreateErrorResponse(TEXT("Editor utility widget factory returned nothing"));
+		}
+		FAssetRegistryModule::AssetCreated(WidgetBlueprint);
+	}
+
+	if (!WidgetBlueprint->WidgetTree)
+	{
+		return FUnrealMCPCommonUtils::CreateErrorResponse(TEXT("Melodia Studio widget has no tree"));
+	}
+
+	if (WidgetBlueprint->WidgetTree->FindWidget(TEXT("StudioFrame")))
+	{
+		TSharedPtr<FJsonObject> Existing = MakeShared<FJsonObject>();
+		Existing->SetBoolField(TEXT("success"), true);
+		Existing->SetStringField(TEXT("path"), SavePath);
+		Existing->SetStringField(TEXT("status"), TEXT("already_authored"));
+		return Existing;
+	}
+
+	const FLinearColor Plum(0.141f, 0.106f, 0.180f, 1.f);
+	const FLinearColor Ivory(0.973f, 0.925f, 0.839f, 1.f);
+	const FLinearColor Gold(0.788f, 0.659f, 0.416f, 1.f);
+	const FLinearColor Lavender(0.624f, 0.580f, 0.776f, 1.f);
+	const FLinearColor* Fills[] = { &Gold, &Lavender, &Ivory };
+
+	UCanvasPanel* Canvas = WidgetBlueprint->WidgetTree->ConstructWidget<UCanvasPanel>(UCanvasPanel::StaticClass(), TEXT("StudioPie"));
+	WidgetBlueprint->WidgetTree->RootWidget = Canvas;
+
+	UBorder* Frame = WidgetBlueprint->WidgetTree->ConstructWidget<UBorder>(UBorder::StaticClass(), TEXT("StudioFrame"));
+	Frame->SetBrushColor(Ivory);
+	PlaceOnCanvas(Canvas, Frame, 0.f, 0.f, 900.f, 680.f);
+
+	UTextBlock* Title = WidgetBlueprint->WidgetTree->ConstructWidget<UTextBlock>(UTextBlock::StaticClass(), TEXT("StudioTitle"));
+	StyleText(Title, TEXT("Melodia Studio"), 20, Plum);
+	PlaceOnCanvas(Canvas, Title, 360.f, 16.f, 200.f, 28.f);
+
+	UTextBlock* SliceLabel = WidgetBlueprint->WidgetTree->ConstructWidget<UTextBlock>(UTextBlock::StaticClass(), TEXT("StudioSliceLabel"));
+	StyleText(SliceLabel, TEXT("Choose a slice"), 16, FLinearColor(0.431f, 0.353f, 0.651f, 1.f));
+	PlaceOnCanvas(Canvas, SliceLabel, 340.f, 236.f, 220.f, 28.f);
+
+	static const TCHAR* Sections[] = {
+		TEXT("Connection"), TEXT("World"), TEXT("PIE"), TEXT("Wardrobe"), TEXT("Sir"), TEXT("Dressing"),
+		TEXT("Look"), TEXT("Flora"), TEXT("PCG"), TEXT("Niagara"), TEXT("Capture"), TEXT("Materials"),
+		TEXT("Modifiers"), TEXT("MRQ"), TEXT("Portfolio"), TEXT("Material Loops"), TEXT("Grandmaster"), TEXT("Help")
+	};
+	constexpr int32 SectionCount = UE_ARRAY_COUNT(Sections);
+	for (int32 Index = 0; Index < SectionCount; ++Index)
+	{
+		const FString Label = Sections[Index];
+		const FString WidgetName = FString::Printf(TEXT("Slice_%s"), *Label.Replace(TEXT(" "), TEXT("_")));
+		const float Angle = -PI / 2.f + (2.f * PI * static_cast<float>(Index) / static_cast<float>(SectionCount));
+		const float X = 450.f + FMath::Cos(Angle) * 210.f - 64.f;
+		const float Y = 250.f + FMath::Sin(Angle) * 200.f - 16.f;
+
+		UButton* Button = WidgetBlueprint->WidgetTree->ConstructWidget<UButton>(UButton::StaticClass(), *WidgetName);
+		Button->SetBackgroundColor(*Fills[Index % 3]);
+		UTextBlock* ButtonText = WidgetBlueprint->WidgetTree->ConstructWidget<UTextBlock>(UTextBlock::StaticClass(), *(WidgetName + TEXT("_Label")));
+		StyleText(ButtonText, Label, 11, Plum);
+		Button->AddChild(ButtonText);
+		PlaceOnCanvas(Canvas, Button, X, Y, 128.f, 32.f);
+	}
+
+	UVerticalBox* Actions = WidgetBlueprint->WidgetTree->ConstructWidget<UVerticalBox>(UVerticalBox::StaticClass(), TEXT("StudioActions"));
+	PlaceOnCanvas(Canvas, Actions, 24.f, 500.f, 852.f, 80.f);
+
+	UMultiLineEditableTextBox* Result = WidgetBlueprint->WidgetTree->ConstructWidget<UMultiLineEditableTextBox>(
+		UMultiLineEditableTextBox::StaticClass(), TEXT("StudioResult"));
+	Result->SetText(FText::FromString(TEXT("Melodia Studio. The pie is a view. Compile stays on the command line.")));
+	Result->SetIsReadOnly(true);
+	PlaceOnCanvas(Canvas, Result, 24.f, 590.f, 852.f, 70.f);
+
+	WidgetBlueprint->MarkPackageDirty();
+	FBlueprintEditorUtils::MarkBlueprintAsStructurallyModified(WidgetBlueprint);
+	FKismetEditorUtilities::CompileBlueprint(WidgetBlueprint);
+	UEditorAssetLibrary::SaveAsset(SavePath, false);
+
+	TSharedPtr<FJsonObject> ResultObj = MakeShared<FJsonObject>();
+	ResultObj->SetBoolField(TEXT("success"), true);
+	ResultObj->SetStringField(TEXT("path"), SavePath);
+	ResultObj->SetNumberField(TEXT("slices"), SectionCount);
+	return ResultObj;
+}

@@ -47,6 +47,7 @@ public class UnrealMCP : ModuleRules
 				"Slate",
 				"SlateCore",
 				"UMG",
+				"Blutility",
 				"Kismet",
 				"KismetCompiler",
 				"BlueprintGraph",
@@ -75,4 +76,4 @@ public class UnrealMCP : ModuleRules
 			}
 		);
 	}
-} 
+}
