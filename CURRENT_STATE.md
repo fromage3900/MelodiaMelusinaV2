@@ -1,5 +1,37 @@
 # Melodia Melusina ? Current State
 
+## Magician's Library — THE MISSING HALF OF THE KIT IS NOW IN, toon-converted, LOD'd and de-duplicated — 2026-10-21
+
+**Your instinct was right: the kit was about half present. It is now whole.** The owner found the pack staged at `G:\ueprojects\MagiciansLibraryEnvironm` (a standalone UE **5.6** project, `Content/MagicianLabatory/`). It was imported **wholesale at its native virtual path** `/Game/MagicianLabatory` — which preserves every internal reference (BP→mesh, map→external actors) with zero remapping.
+
+| | Before | After |
+|---|---|---|
+| Static meshes | 53 (52 props + wick) | **189** (53 migrated + 136 pack) |
+| Functional Blueprints | 0 | **14** (7 pack BPs + 2 third-person + WBP×2 + …) |
+| Niagara systems | 0 | **8** |
+| Material functions | 0 | **7** (incl. `MF_SplitDissolve`) |
+| Maps | 0 | **2** (`L_MagicianLibrary`, `L_Overview` + HLOD) |
+| Pack assets in project | 0 | **1,090** |
+
+**The toon conversion is now real for the whole kit.** 135 new instances were created on `M_Master_Toon_Universal` with each prop's own `T_<Prop>_Base` / `_Normal` / `_AO` bound and `LayerA_TextureWeight=1.0`. **All 189 meshes verify as `MaterialInstanceConstant` parented directly to the Universal toon Master** — canonical tree **53/53 OK**, pack tree **136/136 OK**, zero Perlin-noise height maps, zero unconverted masters in use.
+
+**Repairs to the migrated set** (`/Game/EnvSandbox/Library/Migrated/MagiciansLibrary`): the **9 wrong material slots are fixed** (`SM_Bookshelf` off its flat master, `SM_Lantern`/`SM_Wick`/`SM_Candle1_L` off the Zen instance, `SM_Outside_Wall` off the `_Loose` shell, the `Kit_Ornament` and `SM_Desk2` name drift); **50 orphan flat masters archived** to `_Archive/FlatMasters_20261021/` (0 left live); **5 noise-height stragglers neutralised** (plus the shared Zen instance, which had **zero** external users); `candle1_L` → **`SM_Candle1_L`**; 5 pre-rename leftovers deleted.
+
+**Import quality, both trees:** every mesh went from **LODCount 1 → 4** and **0 simple-collision primitives → 1** (2 where a second hull was added), with collision complexity back to `CTF_USE_DEFAULT` instead of `CTF_USE_COMPLEX_AS_SIMPLE`.
+
+**The duplicate tree is gone from the active path.** The 2026-09-01 purge spec (still `SPEC_READY`, never executed) was unsafe because 22 assets outside it still referenced it. UE's own directory move fixed the references: `/Game/Library/Migrated/MagiciansLibrary` (356) → **`/Game/Library/_Archive/MagiciansLibrary_20261021`**, and the old path no longer exists. **Owed:** the 4 PCG graphs (`PCG_ClusteringScatter`, `PCG_SimpleScatter`, `PCG_PathScatter`, `PCG_Cyberpunk_Alley`) and 18 material instances now point into the archive. Visually identical (the archived meshes carry the same toon instances), but pointing them at the canonical tree needs one **Replace References** pass in the editor — PCG stores its mesh list two levels deep (`node → settings_interface → mesh_selector_parameters → mesh_entries[].mesh`) and the Python wrapper does not expose it as a settable property. **Follow-up, not a blocker.**
+
+**Two environment findings that cost real time and will cost the next session the same:**
+- **The interactive editor is the wrong surface for bulk asset work on this machine.** It OOM'd twice (39.5 GiB peak, "paging file is too small") because **two editors were running at once**; with one editor it sits at 8–10 GB. The pagefile is a **fixed 8 GB on C:** and cannot be raised without admin.
+- **Use the headless commandlet**: `UnrealEditor-Cmd.exe <project> -run=pythonscript -script=<file> -unattended -nullrhi` boots in **19 s** and peaks at **3.0 GB**. It is the right surface for asset edits, **except** for anything needing an editor subsystem — `StaticMeshEditorSubsystem` (LOD building, simple collision) does **not** exist in commandlet mode, and the deprecated `EditorStaticMeshLibrary` LOD/collision calls are **no-op stubs returning −1** in UE 5.8. Those need the live editor.
+- **A Perforce checkout modal kills the interactive editor.** Moving/renaming a P4-controlled asset pops a blocking dialog; the editor died mid-write and left **43 assets truncated to ~1.5 KB**. All were restored from Perforce (`p4 revert`) and the work redone. **Pre-checkout with `p4 edit` before any editor-side move.**
+
+**Disk:** C: was down to **2.06 GB free** (the 6.78 GB pack import on top of a 46.5 GB worktree pile). The stale `poitou-convergence-2026-10-20` worktree (17 GB, **already landed in `origin/main`**, only 3 dirty doc files) was removed — its branch ref survives and its uncommitted docs are preserved at `Saved/Audit/poitou_convergence_uncommitted_20261021/` with a `MANIFEST.json`. C: is back to **14.1 GB free**. `melusina-airi-bridge-p0` (18.5 GB) and `lane-melusina-boot-fit-luna` (7.5 GB) were left alone: they hold real uncommitted work.
+
+**Evidence level: registry-verified in the live editor — no PIE/runtime proof, because no Magician's Library level is dressed yet.** The pack's two maps are imported but have not been opened. Perforce holds 276 added + ~400 edited files in the **default changelist, un-submitted** (the submit is the owner's). Receipts: `Saved/Audit/magicians_verify.json`, `magicians_toon_convert*.json`, `magicians_fix_migrated.json`, `magicians_neutral_height.json`, `magicians_mesh_finish.json`, `magicians_repoint_duplicates.json`, `magicians_library_audit*.json`. Scripts: `Content/Python/magicians_{verify,toon_convert,fix_migrated,neutral_height,mesh_finish,repoint_duplicates,library_audit,library_deep}.py`.
+
+**Owner decisions still open:** (1) Replace References for the 4 PCG graphs onto the canonical meshes; (2) whether the pack's own 135 `M_*` masters stay live in `/Game/MagicianLabatory` (kept for pack fidelity) or get archived; (3) whether to dress a level from `L_MagicianLibrary` — **44 of 53 canonical meshes still have zero users**, which is why the library reads as "absent" even now that it is complete; (4) the Perforce submit.
+
 ## Magician's Library import + material audit — MISSING PACK CONTENT CONFIRMED, NO ASSET MUTATED — 2026-10-21
 
 **The owner's instinct is right: the kit is roughly half present. But the material layer is mostly fine.** The pack is the Fab **"Magician's Library Environment and VFX Pack"** (Coreb Games, `https://www.fab.com/listings/25a46fa5-1f75-44e0-806c-026cfc1d45f8`, last updated 2024-08-09). Its own description advertises *"**7+ Fully Functional BPs** (Ancient Book Generator, Crystal VFX with Dynamic Material and Niagara Effects, Hidden Door with Dissolve Material Function, Interactive Book with Flipping Animation, Interactive Painting, Lighting Props (Lantern, Wall Lantern, Candle), Poison Pot), **+40 Building Props**, **+53 Interior and Mystical Props**"*.

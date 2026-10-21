@@ -1,0 +1,61 @@
+{
+  "generated": "2026-10-21T22:55:53.676071+00:00",
+  "mode": "apply",
+  "steps": {
+    "N1_repoint": [
+      {
+        "mesh": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Candle/SM_Candle1_L",
+        "want": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Candle/MI_M_Candle",
+        "result": "repointed"
+      },
+      {
+        "mesh": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Candle/SM_Wick",
+        "want": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Candle/MI_M_Wick",
+        "result": "already_correct"
+      }
+    ],
+    "N2_neutralise": [
+      {
+        "mi": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Candle/MI_M_Candle.MI_M_Candle",
+        "height_before": "/Game/Textures/sbs_-_noise_texture_pack_-_512x512/512x512/Perlin/Perlin_1_-_512x512.Perlin_1_-_512x512",
+        "height_after": "/Game/EnvSandbox/Textures/Utility/T_Neutral_Height",
+        "result": "fixed"
+      },
+      {
+        "mi": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Desk2/MI_M_Desk2.MI_M_Desk2",
+        "height_before": "/Game/Textures/sbs_-_noise_texture_pack_-_512x512/512x512/Perlin/Perlin_1_-_512x512.Perlin_1_-_512x512",
+        "height_after": "/Game/EnvSandbox/Textures/Utility/T_Neutral_Height",
+        "result": "fixed"
+      },
+      {
+        "mi": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Outside_Wall/_Loose/MI_SM_Outside_Wall.MI_SM_Outside_Wall",
+        "height_before": "/Game/Textures/sbs_-_noise_texture_pack_-_512x512/512x512/Perlin/Perlin_1_-_512x512.Perlin_1_-_512x512",
+        "height_after": "/Game/EnvSandbox/Textures/Utility/T_Neutral_Height",
+        "result": "fixed"
+      },
+      {
+        "mi": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Polygon2/MI_M_Polygon2.MI_M_Polygon2",
+        "height_before": "/Game/Textures/sbs_-_noise_texture_pack_-_512x512/512x512/Perlin/Perlin_1_-_512x512.Perlin_1_-_512x512",
+        "height_after": "/Game/EnvSandbox/Textures/Utility/T_Neutral_Height",
+        "result": "fixed"
+      },
+      {
+        "mi": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Shelf_Prop/MI_M_Shelf_Prop.MI_M_Shelf_Prop",
+        "height_before": "/Game/Textures/sbs_-_noise_texture_pack_-_512x512/512x512/Perlin/Perlin_1_-_512x512.Perlin_1_-_512x512",
+        "height_after": "/Game/EnvSandbox/Textures/Utility/T_Neutral_Height",
+        "result": "fixed"
+      }
+    ],
+    "N3_zen_instance": {
+      "instance": "/Game/EnvSandbox/Materials/Instances/Environment/Zen/MI_Zen_LanternWarm",
+      "height_before": "/Game/Textures/sbs_-_noise_texture_pack_-_512x512/512x512/Perlin/Perlin_1_-_512x512.Perlin_1_-_512x512",
+      "referencers": [
+        "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Candle/SM_Candle1_L",
+        "/Game/Library/Migrated/MagiciansLibrary/Candle/SM_Wick"
+      ],
+      "referencers_outside_magicians": [],
+      "result": "fixed",
+      "height_after": "/Game/EnvSandbox/Textures/Utility/T_Neutral_Height"
+    }
+  }
+}

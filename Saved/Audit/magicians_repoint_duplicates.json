@@ -1,0 +1,355 @@
+{
+  "generated": "2026-10-21T23:13:38.713027+00:00",
+  "mode": "apply",
+  "referencers": [
+    {
+      "referencer": "/Game/EnvSandbox/Materials/Instances/Environment/ImportedPacks/MI_Env_CastleKit",
+      "dup_refs": [
+        "/Game/Library/Migrated/MagiciansLibrary/Microscope/T_Microscope_Normal.T_Microscope_Normal"
+      ],
+      "hits": [],
+      "applied": 0
+    },
+    {
+      "referencer": "/Game/EnvSandbox/Materials/Instances/Environment/Stylized/MI_ZenTrim_FlowersLots",
+      "dup_refs": [
+        "/Game/Library/Migrated/MagiciansLibrary/Microscope/T_Microscope_Normal.T_Microscope_Normal"
+      ],
+      "hits": [],
+      "applied": 0
+    },
+    {
+      "referencer": "/Game/EnvSandbox/Materials/Instances/Environment/Triplanar/MI_Triplanar_CliffWarm",
+      "dup_refs": [
+        "/Game/Library/Migrated/MagiciansLibrary/Microscope/T_Microscope_Normal.T_Microscope_Normal"
+      ],
+      "hits": [],
+      "applied": 0
+    },
+    {
+      "referencer": "/Game/EnvSandbox/Materials/Instances/Environment/Triplanar/MI_Triplanar_MossStone",
+      "dup_refs": [
+        "/Game/Library/Migrated/MagiciansLibrary/Microscope/T_Microscope_Normal.T_Microscope_Normal"
+      ],
+      "hits": [],
+      "applied": 0
+    },
+    {
+      "referencer": "/Game/EnvSandbox/Materials/Instances/Environment/Triplanar/MI_Universal_TriplanarCliff",
+      "dup_refs": [
+        "/Game/Library/Migrated/MagiciansLibrary/Microscope/T_Microscope_Normal.T_Microscope_Normal"
+      ],
+      "hits": [],
+      "applied": 0
+    },
+    {
+      "referencer": "/Game/EnvSandbox/Materials/Instances/Melusina/MI_Melusina_FloralBrickGrayScale",
+      "dup_refs": [
+        "/Game/Library/Migrated/MagiciansLibrary/Microscope/T_Microscope_Normal.T_Microscope_Normal"
+      ],
+      "hits": [],
+      "applied": 0
+    },
+    {
+      "referencer": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal_NikkiChain",
+      "dup_refs": [
+        "/Game/Library/Migrated/MagiciansLibrary/Microscope/T_Microscope_Normal.T_Microscope_Normal"
+      ],
+      "hits": [],
+      "applied": 0
+    },
+    {
+      "referencer": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal_NikkiChainIntegratedV1",
+      "dup_refs": [
+        "/Game/Library/Migrated/MagiciansLibrary/Microscope/T_Microscope_Normal.T_Microscope_Normal"
+      ],
+      "hits": [],
+      "applied": 0
+    },
+    {
+      "referencer": "/Game/EnvSandbox/Materials/_Archive/Masters_BACKUP_20260821/M_Master_Toon_Universal_BACKUP_20260728",
+      "dup_refs": [
+        "/Game/Library/Migrated/MagiciansLibrary/Microscope/T_Microscope_Normal.T_Microscope_Normal"
+      ],
+      "hits": [],
+      "applied": 0
+    },
+    {
+      "referencer": "/Game/EnvSandbox/PCG/Styles/Cyberpunk/PCG_Cyberpunk_Alley",
+      "dup_refs": [
+        "/Game/Library/Migrated/MagiciansLibrary/GlassBottle/SM_GlassBottle_Object1715.SM_GlassBottle_Object1715"
+      ],
+      "hits": [],
+      "applied": 0
+    },
+    {
+      "referencer": "/Game/EnvSandbox/PCG/Universal/PCG_ClusteringScatter",
+      "dup_refs": [
+        "/Game/Library/Migrated/MagiciansLibrary/Box/SM_Box.SM_Box",
+        "/Game/Library/Migrated/MagiciansLibrary/Carpet/SM_Carpet.SM_Carpet",
+        "/Game/Library/Migrated/MagiciansLibrary/Deco1/SM_Deco1.SM_Deco1",
+        "/Game/Library/Migrated/MagiciansLibrary/Deco2/SM_Deco2.SM_Deco2",
+        "/Game/Library/Migrated/MagiciansLibrary/Deco4/SM_Deco4.SM_Deco4",
+        "/Game/Library/Migrated/MagiciansLibrary/Deco5/SM_Deco5.SM_Deco5",
+        "/Game/Library/Migrated/MagiciansLibrary/Deco6/SM_Deco6.SM_Deco6",
+        "/Game/Library/Migrated/MagiciansLibrary/Deco7/SM_Deco7.SM_Deco7"
+      ],
+      "hits": [],
+      "applied": 0
+    },
+    {
+      "referencer": "/Game/EnvSandbox/PCG/Universal/PCG_PathScatter",
+      "dup_refs": [
+        "/Game/Library/Migrated/MagiciansLibrary/Deco2/SM_Deco2.SM_Deco2",
+        "/Game/Library/Migrated/MagiciansLibrary/Deco4/SM_Deco4.SM_Deco4",
+        "/Game/Library/Migrated/MagiciansLibrary/Lantern/SM_Lantern.SM_Lantern"
+      ],
+      "hits": [],
+      "applied": 0
+    },
+    {
+      "referencer": "/Game/EnvSandbox/PCG/Universal/PCG_SimpleScatter",
+      "dup_refs": [
+        "/Game/Library/Migrated/MagiciansLibrary/Box/SM_Box.SM_Box",
+        "/Game/Library/Migrated/MagiciansLibrary/Deco1/SM_Deco1.SM_Deco1",
+        "/Game/Library/Migrated/MagiciansLibrary/Deco3/SM_Deco3.SM_Deco3"
+      ],
+      "hits": [],
+      "applied": 0
+    },
+    {
+      "referencer": "/Game/Melodia/Characters/MaraVell/Materials/MI_Mara_Skin_007",
+      "dup_refs": [
+        "/Game/Library/Migrated/MagiciansLibrary/Microscope/T_Microscope_Normal.T_Microscope_Normal"
+      ],
+      "hits": [],
+      "applied": 0
+    },
+    {
+      "referencer": "/Game/Melodia/Characters/Melusina/Materials/MI_Melusina_Gradient__Radial__002",
+      "dup_refs": [
+        "/Game/Library/Migrated/MagiciansLibrary/Microscope/T_Microscope_Normal.T_Microscope_Normal"
+      ],
+      "hits": [],
+      "applied": 0
+    },
+    {
+      "referencer": "/Game/Melodia/Characters/Melusina/Materials/MI_Melusina_Material_023",
+      "dup_refs": [
+        "/Game/Library/Migrated/MagiciansLibrary/Microscope/T_Microscope_Normal.T_Microscope_Normal"
+      ],
+      "hits": [],
+      "applied": 0
+    },
+    {
+      "referencer": "/Game/Melodia/Characters/Melusina/Materials/MI_Melusina_SBW_MELUSINA_007",
+      "dup_refs": [
+        "/Game/Library/Migrated/MagiciansLibrary/Microscope/T_Microscope_Normal.T_Microscope_Normal"
+      ],
+      "hits": [],
+      "applied": 0
+    },
+    {
+      "referencer": "/Game/Melodia/Characters/Melusina/Materials/MI_Melusina_SKIRT_003",
+      "dup_refs": [
+        "/Game/Library/Migrated/MagiciansLibrary/Microscope/T_Microscope_Normal.T_Microscope_Normal"
+      ],
+      "hits": [],
+      "applied": 0
+    },
+    {
+      "referencer": "/Game/Melodia/Characters/Melusina/Materials/MI_Melusina_bow_002",
+      "dup_refs": [
+        "/Game/Library/Migrated/MagiciansLibrary/Microscope/T_Microscope_Normal.T_Microscope_Normal"
+      ],
+      "hits": [],
+      "applied": 0
+    },
+    {
+      "referencer": "/Game/Melodia/Characters/Melusina/Materials/MI_Melusina_frontpanel_001",
+      "dup_refs": [
+        "/Game/Library/Migrated/MagiciansLibrary/Microscope/T_Microscope_Normal.T_Microscope_Normal"
+      ],
+      "hits": [],
+      "applied": 0
+    },
+    {
+      "referencer": "/Game/Melodia/Characters/Melusina/Materials/MI_Melusina_skirtpanel_002",
+      "dup_refs": [
+        "/Game/Library/Migrated/MagiciansLibrary/Microscope/T_Microscope_Normal.T_Microscope_Normal"
+      ],
+      "hits": [],
+      "applied": 0
+    },
+    {
+      "referencer": "/Game/Melodia/Characters/Melusina/Materials/MI_Melusina_sleeve_003",
+      "dup_refs": [
+        "/Game/Library/Migrated/MagiciansLibrary/Microscope/T_Microscope_Normal.T_Microscope_Normal"
+      ],
+      "hits": [],
+      "applied": 0
+    }
+  ],
+  "unmapped": [
+    "/Game/Library/Migrated/MagiciansLibrary/Bookshelf/M_Bookshelf",
+    "/Game/Library/Migrated/MagiciansLibrary/Bookshelf/MI_Bookshelf",
+    "/Game/Library/Migrated/MagiciansLibrary/Box/_Loose/MI_SM_Box",
+    "/Game/Library/Migrated/MagiciansLibrary/Box/M_Box",
+    "/Game/Library/Migrated/MagiciansLibrary/Box/MI_Box",
+    "/Game/Library/Migrated/MagiciansLibrary/Candle/_Loose/MI_SM_Wick",
+    "/Game/Library/Migrated/MagiciansLibrary/Candle/candle1_L",
+    "/Game/Library/Migrated/MagiciansLibrary/Candle/M_Candle",
+    "/Game/Library/Migrated/MagiciansLibrary/Candle/MI_Candle",
+    "/Game/Library/Migrated/MagiciansLibrary/Carpet/_Loose/MI_SM_Carpet",
+    "/Game/Library/Migrated/MagiciansLibrary/Carpet/M_Carpet",
+    "/Game/Library/Migrated/MagiciansLibrary/Carpet/MI_Carpet",
+    "/Game/Library/Migrated/MagiciansLibrary/Carpet2/_Loose/MI_SM_Carpet2",
+    "/Game/Library/Migrated/MagiciansLibrary/Carpet2/M_Carpet2",
+    "/Game/Library/Migrated/MagiciansLibrary/Carpet2/MI_Carpet2",
+    "/Game/Library/Migrated/MagiciansLibrary/Carpet3/_Loose/MI_SM_Carpet3",
+    "/Game/Library/Migrated/MagiciansLibrary/Carpet3/M_Carpet3",
+    "/Game/Library/Migrated/MagiciansLibrary/Carpet3/MI_Carpet3",
+    "/Game/Library/Migrated/MagiciansLibrary/Deco1/_Loose/MI_SM_Deco1",
+    "/Game/Library/Migrated/MagiciansLibrary/Deco1/M_Deco1",
+    "/Game/Library/Migrated/MagiciansLibrary/Deco1/MI_Deco1",
+    "/Game/Library/Migrated/MagiciansLibrary/Deco2/_Loose/MI_SM_Deco2",
+    "/Game/Library/Migrated/MagiciansLibrary/Deco2/M_Deco2",
+    "/Game/Library/Migrated/MagiciansLibrary/Deco2/MI_Deco2",
+    "/Game/Library/Migrated/MagiciansLibrary/Deco3/_Loose/MI_SM_Deco3",
+    "/Game/Library/Migrated/MagiciansLibrary/Deco3/M_Deco3",
+    "/Game/Library/Migrated/MagiciansLibrary/Deco3/MI_Deco3",
+    "/Game/Library/Migrated/MagiciansLibrary/Deco4/_Loose/MI_SM_Deco4",
+    "/Game/Library/Migrated/MagiciansLibrary/Deco4/M_Deco4",
+    "/Game/Library/Migrated/MagiciansLibrary/Deco4/MI_Deco4",
+    "/Game/Library/Migrated/MagiciansLibrary/Deco5/_Loose/MI_SM_Deco5",
+    "/Game/Library/Migrated/MagiciansLibrary/Deco5/M_Deco5",
+    "/Game/Library/Migrated/MagiciansLibrary/Deco5/MI_Deco5",
+    "/Game/Library/Migrated/MagiciansLibrary/Deco6/_Loose/MI_SM_Deco6",
+    "/Game/Library/Migrated/MagiciansLibrary/Deco6/M_Deco6",
+    "/Game/Library/Migrated/MagiciansLibrary/Deco6/MI_Deco6",
+    "/Game/Library/Migrated/MagiciansLibrary/Deco7/_Loose/MI_SM_Deco7",
+    "/Game/Library/Migrated/MagiciansLibrary/Deco7/M_Deco7",
+    "/Game/Library/Migrated/MagiciansLibrary/Deco7/MI_Deco7",
+    "/Game/Library/Migrated/MagiciansLibrary/Desk/_Loose/MI_SM_Desk",
+    "/Game/Library/Migrated/MagiciansLibrary/Desk/M_Desk",
+    "/Game/Library/Migrated/MagiciansLibrary/Desk/MI_Desk",
+    "/Game/Library/Migrated/MagiciansLibrary/Desk2/_Loose/MI_SM_Desk2",
+    "/Game/Library/Migrated/MagiciansLibrary/Desk2/M_Desk_2",
+    "/Game/Library/Migrated/MagiciansLibrary/Desk2/MI_Desk_2",
+    "/Game/Library/Migrated/MagiciansLibrary/Desk3/_Loose/MI_SM_Desk3",
+    "/Game/Library/Migrated/MagiciansLibrary/Desk3/M_Desk3",
+    "/Game/Library/Migrated/MagiciansLibrary/Desk3/MI_Desk3",
+    "/Game/Library/Migrated/MagiciansLibrary/Desk4/_Loose/MI_SM_Desk4",
+    "/Game/Library/Migrated/MagiciansLibrary/Desk4/M_Desk4",
+    "/Game/Library/Migrated/MagiciansLibrary/Desk4/MI_Desk4",
+    "/Game/Library/Migrated/MagiciansLibrary/DeskDrawer/_Loose/MI_SM_Desk_Drawer",
+    "/Game/Library/Migrated/MagiciansLibrary/DeskDrawer/M_Desk_Drawer",
+    "/Game/Library/Migrated/MagiciansLibrary/DeskDrawer/MI_Desk_Drawer",
+    "/Game/Library/Migrated/MagiciansLibrary/Drawer/_Loose/MI_SM_Drawer_Box002",
+    "/Game/Library/Migrated/MagiciansLibrary/Drawer/M_Drawer_Box002",
+    "/Game/Library/Migrated/MagiciansLibrary/Drawer/MI_Drawer_Box002",
+    "/Game/Library/Migrated/MagiciansLibrary/Entrance/_Loose/MI_SM_Entrance",
+    "/Game/Library/Migrated/MagiciansLibrary/Entrance/M_Entrance",
+    "/Game/Library/Migrated/MagiciansLibrary/Entrance/MI_Entrance",
+    "/Game/Library/Migrated/MagiciansLibrary/Flag/_Loose/MI_SM_Flag",
+    "/Game/Library/Migrated/MagiciansLibrary/Flag/M_Flag",
+    "/Game/Library/Migrated/MagiciansLibrary/Flag/MI_Flag",
+    "/Game/Library/Migrated/MagiciansLibrary/GlassBottle/_Loose/MI_SM_GlassBottle_Object1715",
+    "/Game/Library/Migrated/MagiciansLibrary/GlassBottle/M_GlassBottle_Object1715",
+    "/Game/Library/Migrated/MagiciansLibrary/GlassBottle/MI_GlassBottle_Object1715",
+    "/Game/Library/Migrated/MagiciansLibrary/GlassBottle2/_Loose/MI_SM_GlassBottle2",
+    "/Game/Library/Migrated/MagiciansLibrary/GlassBottle2/M_GlassBottle2",
+    "/Game/Library/Migrated/MagiciansLibrary/GlassBottle2/MI_GlassBottle2",
+    "/Game/Library/Migrated/MagiciansLibrary/GlassBottle3/_Loose/MI_SM_GlassBottle3",
+    "/Game/Library/Migrated/MagiciansLibrary/GlassBottle3/M_GlassBottle3",
+    "/Game/Library/Migrated/MagiciansLibrary/GlassBottle3/MI_GlassBottle3",
+    "/Game/Library/Migrated/MagiciansLibrary/GlassBottle4/_Loose/MI_SM_GlassBottle4",
+    "/Game/Library/Migrated/MagiciansLibrary/GlassBottle4/M_GlassBottle4",
+    "/Game/Library/Migrated/MagiciansLibrary/GlassBottle4/MI_GlassBottle4",
+    "/Game/Library/Migrated/MagiciansLibrary/GlassBottle5/_Loose/MI_SM_GlassBottle5",
+    "/Game/Library/Migrated/MagiciansLibrary/GlassBottle5/M_GlassBottle5",
+    "/Game/Library/Migrated/MagiciansLibrary/GlassBottle5/MI_GlassBottle5",
+    "/Game/Library/Migrated/MagiciansLibrary/GlassBottle6/_Loose/MI_SM_GlassBottle6",
+    "/Game/Library/Migrated/MagiciansLibrary/GlassBottle6/M_GlassBottle6",
+    "/Game/Library/Migrated/MagiciansLibrary/GlassBottle6/MI_GlassBottle6",
+    "/Game/Library/Migrated/MagiciansLibrary/Globe/_Loose/MI_SM_Globe",
+    "/Game/Library/Migrated/MagiciansLibrary/Globe/M_Globe",
+    "/Game/Library/Migrated/MagiciansLibrary/Globe/MI_Globe",
+    "/Game/Library/Migrated/MagiciansLibrary/Globe2/_Loose/MI_SM_Globe2",
+    "/Game/Library/Migrated/MagiciansLibrary/Globe2/M_Globe2",
+    "/Game/Library/Migrated/MagiciansLibrary/Globe2/MI_Globe2",
+    "/Game/Library/Migrated/MagiciansLibrary/HallDeco/_Loose/MI_SM_HallDeco",
+    "/Game/Library/Migrated/MagiciansLibrary/HallDeco/M_HallDeco",
+    "/Game/Library/Migrated/MagiciansLibrary/HallDeco/MI_HallDeco",
+    "/Game/Library/Migrated/MagiciansLibrary/Hallpillar/_Loose/MI_SM_Hallpillar",
+    "/Game/Library/Migrated/MagiciansLibrary/Hallpillar/M_Hallpillar",
+    "/Game/Library/Migrated/MagiciansLibrary/Hallpillar/MI_Hallpillar",
+    "/Game/Library/Migrated/MagiciansLibrary/Hallwall/_Loose/MI_SM_Hallwall",
+    "/Game/Library/Migrated/MagiciansLibrary/Hallwall/M_Hallwall",
+    "/Game/Library/Migrated/MagiciansLibrary/Hallwall/MI_Hallwall",
+    "/Game/Library/Migrated/MagiciansLibrary/HallwallGlass/_Loose/MI_SM_HallwallGlass",
+    "/Game/Library/Migrated/MagiciansLibrary/HallwallGlass/M_HallwallGlass",
+    "/Game/Library/Migrated/MagiciansLibrary/HallwallGlass/MI_HallwallGlass",
+    "/Game/Library/Migrated/MagiciansLibrary/HallwallGlassBar/_Loose/MI_SM_HallwallGlassBar",
+    "/Game/Library/Migrated/MagiciansLibrary/HallwallGlassBar/M_HallwallGlassBar",
+    "/Game/Library/Migrated/MagiciansLibrary/HallwallGlassBar/MI_HallwallGlassBar",
+    "/Game/Library/Migrated/MagiciansLibrary/Lantern/_Loose/MI_SM_Lantern",
+    "/Game/Library/Migrated/MagiciansLibrary/Lantern/M_Lantern",
+    "/Game/Library/Migrated/MagiciansLibrary/Lantern/MI_Lantern",
+    "/Game/Library/Migrated/MagiciansLibrary/LanternGlass/_Loose/MI_SM_LanternGlass",
+    "/Game/Library/Migrated/MagiciansLibrary/LanternGlass/M_LanternGlass",
+    "/Game/Library/Migrated/MagiciansLibrary/LanternGlass/MI_LanternGlass",
+    "/Game/Library/Migrated/MagiciansLibrary/Microscope/_Loose/MI_SM_Microscope",
+    "/Game/Library/Migrated/MagiciansLibrary/Microscope/M_Microscope",
+    "/Game/Library/Migrated/MagiciansLibrary/Microscope/MI_Microscope",
+    "/Game/Library/Migrated/MagiciansLibrary/Platform/_Loose/MI_SM_Platform",
+    "/Game/Library/Migrated/MagiciansLibrary/Platform/M_Platform",
+    "/Game/Library/Migrated/MagiciansLibrary/Platform/MI_Platform",
+    "/Game/Library/Migrated/MagiciansLibrary/Polygon/_Loose/MI_SM_Polygon",
+    "/Game/Library/Migrated/MagiciansLibrary/Polygon/M_Polygon",
+    "/Game/Library/Migrated/MagiciansLibrary/Polygon/MI_Polygon",
+    "/Game/Library/Migrated/MagiciansLibrary/Polygon2/_Loose/MI_SM_Polygon2",
+    "/Game/Library/Migrated/MagiciansLibrary/Polygon2/M_Polygon2",
+    "/Game/Library/Migrated/MagiciansLibrary/Polygon2/MI_Polygon2",
+    "/Game/Library/Migrated/MagiciansLibrary/PotTable/_Loose/MI_SM_Pot_Table",
+    "/Game/Library/Migrated/MagiciansLibrary/PotTable/M_Pot_Table",
+    "/Game/Library/Migrated/MagiciansLibrary/PotTable/MI_Pot_Table",
+    "/Game/Library/Migrated/MagiciansLibrary/Shelf/_Loose/MI_SM_Shelf",
+    "/Game/Library/Migrated/MagiciansLibrary/Shelf/M_Shelf",
+    "/Game/Library/Migrated/MagiciansLibrary/Shelf/MI_Shelf",
+    "/Game/Library/Migrated/MagiciansLibrary/Shelf6/_Loose/MI_SM_Shelf6",
+    "/Game/Library/Migrated/MagiciansLibrary/Shelf6/M_Shelf6",
+    "/Game/Library/Migrated/MagiciansLibrary/Shelf6/MI_Shelf6",
+    "/Game/Library/Migrated/MagiciansLibrary/Shelf_2/_Loose/MI_SM_Shelf_2",
+    "/Game/Library/Migrated/MagiciansLibrary/Shelf_2/M_Shelf_2",
+    "/Game/Library/Migrated/MagiciansLibrary/Shelf_2/MI_Shelf_2",
+    "/Game/Library/Migrated/MagiciansLibrary/Shelf_3/_Loose/MI_SM_Shelf_3",
+    "/Game/Library/Migrated/MagiciansLibrary/Shelf_3/M_Shelf_3",
+    "/Game/Library/Migrated/MagiciansLibrary/Shelf_3/MI_Shelf_3",
+    "/Game/Library/Migrated/MagiciansLibrary/Shelf_4/_Loose/MI_SM_Shelf_4",
+    "/Game/Library/Migrated/MagiciansLibrary/Shelf_4/M_Shelf_4",
+    "/Game/Library/Migrated/MagiciansLibrary/Shelf_4/MI_Shelf_4",
+    "/Game/Library/Migrated/MagiciansLibrary/Shelf_5/_Loose/MI_SM_Shelf_5",
+    "/Game/Library/Migrated/MagiciansLibrary/Shelf_5/M_Shelf_5",
+    "/Game/Library/Migrated/MagiciansLibrary/Shelf_5/MI_Shelf_5",
+    "/Game/Library/Migrated/MagiciansLibrary/Shelf_Prop/_Loose/MI_SM_Shelf_Prop",
+    "/Game/Library/Migrated/MagiciansLibrary/Shelf_Prop/M_Shelf_Prop",
+    "/Game/Library/Migrated/MagiciansLibrary/Shelf_Prop/MI_Shelf_Prop",
+    "/Game/Library/Migrated/MagiciansLibrary/WallLamp/_Loose/MI_SM_Wall_Lamp",
+    "/Game/Library/Migrated/MagiciansLibrary/WallLamp/M_Wall_Lamp",
+    "/Game/Library/Migrated/MagiciansLibrary/WallLamp/MI_Wall_Lamp",
+    "/Game/Library/Migrated/MagiciansLibrary/WallLampGlass/_Loose/MI_SM_Wall_Lamp_Glass",
+    "/Game/Library/Migrated/MagiciansLibrary/WallLampGlass/M_Wall_Lamp_Glass",
+    "/Game/Library/Migrated/MagiciansLibrary/WallLampGlass/MI_Wall_Lamp_Glass"
+  ],
+  "total_hits": 0,
+  "n_referencers": 22,
+  "n_unmapped_dup_assets": 150,
+  "archive": {
+    "from": "/Game/Library/Migrated/MagiciansLibrary",
+    "to": "/Game/Library/_Archive/MagiciansLibrary_20261021",
+    "result": "moved",
+    "dup_exists_after": false,
+    "archive_exists_after": true
+  }
+}

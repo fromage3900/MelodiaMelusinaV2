@@ -1,0 +1,990 @@
+{
+  "generated": "2026-10-21T23:06:20.049626+00:00",
+  "mode": "apply",
+  "slice": "128:189",
+  "total_meshes": 189,
+  "processed": 61,
+  "counters": {
+    "ok": 61
+  },
+  "subsystem_available": true,
+  "seconds": 18.8,
+  "rows": [
+    {
+      "tree": "pack_native",
+      "mesh": "/Game/MagicianLabatory/Source/Props/CenterRing/CenterRing20/SM_CenterRing20.SM_CenterRing20",
+      "lod_before": 1,
+      "collision_before": [
+        null,
+        null
+      ],
+      "set_lods_return": 4,
+      "result": "ok",
+      "lod_after": 4,
+      "collision_after": [
+        null,
+        null
+      ]
+    },
+    {
+      "tree": "pack_native",
+      "mesh": "/Game/MagicianLabatory/Source/Props/CenterRing/CenterRing21/SM_CenterRing21.SM_CenterRing21",
+      "lod_before": 1,
+      "collision_before": [
+        null,
+        null
+      ],
+      "set_lods_return": 4,
+      "result": "ok",
+      "lod_after": 4,
+      "collision_after": [
+        null,
+        null
+      ]
+    },
+    {
+      "tree": "pack_native",
+      "mesh": "/Game/MagicianLabatory/Source/Props/CenterRing/CenterRing22/SM_CenterRing22.SM_CenterRing22",
+      "lod_before": 1,
+      "collision_before": [
+        null,
+        null
+      ],
+      "set_lods_return": 4,
+      "result": "ok",
+      "lod_after": 4,
+      "collision_after": [
+        null,
+        null
+      ]
+    },
+    {
+      "tree": "pack_native",
+      "mesh": "/Game/MagicianLabatory/Source/Props/CenterRing/CenterRing23/SM_CenterRing23.SM_CenterRing23",
+      "lod_before": 1,
+      "collision_before": [
+        null,
+        null
+      ],
+      "set_lods_return": 4,
+      "result": "ok",
+      "lod_after": 4,
+      "collision_after": [
+        null,
+        null
+      ]
+    },
+    {
+      "tree": "pack_native",
+      "mesh": "/Game/MagicianLabatory/Source/Props/CenterRing/CenterRing24/SM_CenterRing24.SM_CenterRing24",
+      "lod_before": 1,
+      "collision_before": [
+        null,
+        null
+      ],
+      "set_lods_return": 4,
+      "result": "ok",
+      "lod_after": 4,
+      "collision_after": [
+        null,
+        null
+      ]
+    },
+    {
+      "tree": "pack_native",
+      "mesh": "/Game/MagicianLabatory/Source/Props/CenterRing/CenterRing25/SM_CenterRing25.SM_CenterRing25",
+      "lod_before": 1,
+      "collision_before": [
+        null,
+        null
+      ],
+      "set_lods_return": 4,
+      "result": "ok",
+      "lod_after": 4,
+      "collision_after": [
+        null,
+        null
+      ]
+    },
+    {
+      "tree": "pack_native",
+      "mesh": "/Game/MagicianLabatory/Source/Props/CenterRing/CenterRing26/SM_CenterRing26.SM_CenterRing26",
+      "lod_before": 1,
+      "collision_before": [
+        null,
+        null
+      ],
+      "set_lods_return": 4,
+      "result": "ok",
+      "lod_after": 4,
+      "collision_after": [
+        null,
+        null
+      ]
+    },
+    {
+      "tree": "pack_native",
+      "mesh": "/Game/MagicianLabatory/Source/Props/CenterRing/CenterRing27/SM_CenterRing27.SM_CenterRing27",
+      "lod_before": 1,
+      "collision_before": [
+        null,
+        null
+      ],
+      "set_lods_return": 4,
+      "result": "ok",
+      "lod_after": 4,
+      "collision_after": [
+        null,
+        null
+      ]
+    },
+    {
+      "tree": "pack_native",
+      "mesh": "/Game/MagicianLabatory/Source/Props/CenterRing/CenterRing3/SM_CenterRing3.SM_CenterRing3",
+      "lod_before": 1,
+      "collision_before": [
+        null,
+        null
+      ],
+      "set_lods_return": 4,
+      "result": "ok",
+      "lod_after": 4,
+      "collision_after": [
+        null,
+        null
+      ]
+    },
+    {
+      "tree": "pack_native",
+      "mesh": "/Game/MagicianLabatory/Source/Props/CenterRing/CenterRing4/SM_CenterRing4.SM_CenterRing4",
+      "lod_before": 1,
+      "collision_before": [
+        null,
+        null
+      ],
+      "set_lods_return": 4,
+      "result": "ok",
+      "lod_after": 4,
+      "collision_after": [
+        null,
+        null
+      ]
+    },
+    {
+      "tree": "pack_native",
+      "mesh": "/Game/MagicianLabatory/Source/Props/CenterRing/CenterRing5/SM_CenterRing5.SM_CenterRing5",
+      "lod_before": 1,
+      "collision_before": [
+        null,
+        null
+      ],
+      "set_lods_return": 4,
+      "result": "ok",
+      "lod_after": 4,
+      "collision_after": [
+        null,
+        null
+      ]
+    },
+    {
+      "tree": "pack_native",
+      "mesh": "/Game/MagicianLabatory/Source/Props/CenterRing/CenterRing6/SM_CenterRing6.SM_CenterRing6",
+      "lod_before": 1,
+      "collision_before": [
+        null,
+        null
+      ],
+      "set_lods_return": 4,
+      "result": "ok",
+      "lod_after": 4,
+      "collision_after": [
+        null,
+        null
+      ]
+    },
+    {
+      "tree": "pack_native",
+      "mesh": "/Game/MagicianLabatory/Source/Props/CenterRing/CenterRing7/SM_CenterRing7.SM_CenterRing7",
+      "lod_before": 1,
+      "collision_before": [
+        null,
+        null
+      ],
+      "set_lods_return": 4,
+      "result": "ok",
+      "lod_after": 4,
+      "collision_after": [
+        null,
+        null
+      ]
+    },
+    {
+      "tree": "pack_native",
+      "mesh": "/Game/MagicianLabatory/Source/Props/CenterRing/CenterRing8/SM_CenterRing8.SM_CenterRing8",
+      "lod_before": 1,
+      "collision_before": [
+        null,
+        null
+      ],
+      "set_lods_return": 4,
+      "result": "ok",
+      "lod_after": 4,
+      "collision_after": [
+        null,
+        null
+      ]
+    },
+    {
+      "tree": "pack_native",
+      "mesh": "/Game/MagicianLabatory/Source/Props/CenterRing/CenterRing9/SM_CenterRing9.SM_CenterRing9",
+      "lod_before": 1,
+      "collision_before": [
+        null,
+        null
+      ],
+      "set_lods_return": 4,
+      "result": "ok",
+      "lod_after": 4,
+      "collision_after": [
+        null,
+        null
+      ]
+    },
+    {
+      "tree": "pack_native",
+      "mesh": "/Game/MagicianLabatory/Source/Props/Deco1/SM_Deco1.SM_Deco1",
+      "lod_before": 1,
+      "collision_before": [
+        null,
+        null
+      ],
+      "set_lods_return": 4,
+      "result": "ok",
+      "lod_after": 4,
+      "collision_after": [
+        null,
+        null
+      ]
+    },
+    {
+      "tree": "pack_native",
+      "mesh": "/Game/MagicianLabatory/Source/Props/Deco2/SM_Deco2.SM_Deco2",
+      "lod_before": 1,
+      "collision_before": [
+        null,
+        null
+      ],
+      "set_lods_return": 4,
+      "result": "ok",
+      "lod_after": 4,
+      "collision_after": [
+        null,
+        null
+      ]
+    },
+    {
+      "tree": "pack_native",
+      "mesh": "/Game/MagicianLabatory/Source/Props/Deco3/SM_Deco3.SM_Deco3",
+      "lod_before": 1,
+      "collision_before": [
+        null,
+        null
+      ],
+      "set_lods_return": 4,
+      "result": "ok",
+      "lod_after": 4,
+      "collision_after": [
+        null,
+        null
+      ]
+    },
+    {
+      "tree": "pack_native",
+      "mesh": "/Game/MagicianLabatory/Source/Props/Deco4/SM_Deco4.SM_Deco4",
+      "lod_before": 1,
+      "collision_before": [
+        null,
+        null
+      ],
+      "set_lods_return": 4,
+      "result": "ok",
+      "lod_after": 4,
+      "collision_after": [
+        null,
+        null
+      ]
+    },
+    {
+      "tree": "pack_native",
+      "mesh": "/Game/MagicianLabatory/Source/Props/Deco5/SM_Deco5.SM_Deco5",
+      "lod_before": 1,
+      "collision_before": [
+        null,
+        null
+      ],
+      "set_lods_return": 4,
+      "result": "ok",
+      "lod_after": 4,
+      "collision_after": [
+        null,
+        null
+      ]
+    },
+    {
+      "tree": "pack_native",
+      "mesh": "/Game/MagicianLabatory/Source/Props/Deco6/SM_Deco6.SM_Deco6",
+      "lod_before": 1,
+      "collision_before": [
+        null,
+        null
+      ],
+      "set_lods_return": 4,
+      "result": "ok",
+      "lod_after": 4,
+      "collision_after": [
+        null,
+        null
+      ]
+    },
+    {
+      "tree": "pack_native",
+      "mesh": "/Game/MagicianLabatory/Source/Props/Deco7/SM_Deco7.SM_Deco7",
+      "lod_before": 1,
+      "collision_before": [
+        null,
+        null
+      ],
+      "set_lods_return": 4,
+      "result": "ok",
+      "lod_after": 4,
+      "collision_after": [
+        null,
+        null
+      ]
+    },
+    {
+      "tree": "pack_native",
+      "mesh": "/Game/MagicianLabatory/Source/Props/Desk/SM_Desk.SM_Desk",
+      "lod_before": 1,
+      "collision_before": [
+        null,
+        null
+      ],
+      "set_lods_return": 4,
+      "result": "ok",
+      "lod_after": 4,
+      "collision_after": [
+        null,
+        null
+      ]
+    },
+    {
+      "tree": "pack_native",
+      "mesh": "/Game/MagicianLabatory/Source/Props/Desk2/SM_Desk2.SM_Desk2",
+      "lod_before": 1,
+      "collision_before": [
+        null,
+        null
+      ],
+      "set_lods_return": 4,
+      "result": "ok",
+      "lod_after": 4,
+      "collision_after": [
+        null,
+        null
+      ]
+    },
+    {
+      "tree": "pack_native",
+      "mesh": "/Game/MagicianLabatory/Source/Props/Desk3/SM_Desk3.SM_Desk3",
+      "lod_before": 1,
+      "collision_before": [
+        null,
+        null
+      ],
+      "set_lods_return": 4,
+      "result": "ok",
+      "lod_after": 4,
+      "collision_after": [
+        null,
+        null
+      ]
+    },
+    {
+      "tree": "pack_native",
+      "mesh": "/Game/MagicianLabatory/Source/Props/Desk4/SM_Desk4.SM_Desk4",
+      "lod_before": 1,
+      "collision_before": [
+        null,
+        null
+      ],
+      "set_lods_return": 4,
+      "result": "ok",
+      "lod_after": 4,
+      "collision_after": [
+        null,
+        null
+      ]
+    },
+    {
+      "tree": "pack_native",
+      "mesh": "/Game/MagicianLabatory/Source/Props/DeskDrawer/SM_Desk_Drawer.SM_Desk_Drawer",
+      "lod_before": 1,
+      "collision_before": [
+        null,
+        null
+      ],
+      "set_lods_return": 4,
+      "result": "ok",
+      "lod_after": 4,
+      "collision_after": [
+        null,
+        null
+      ]
+    },
+    {
+      "tree": "pack_native",
+      "mesh": "/Game/MagicianLabatory/Source/Props/Drawer/SM_Drawer_Box002.SM_Drawer_Box002",
+      "lod_before": 1,
+      "collision_before": [
+        null,
+        null
+      ],
+      "set_lods_return": 4,
+      "result": "ok",
+      "lod_after": 4,
+      "collision_after": [
+        null,
+        null
+      ]
+    },
+    {
+      "tree": "pack_native",
+      "mesh": "/Game/MagicianLabatory/Source/Props/Entrance/SM_Entrance.SM_Entrance",
+      "lod_before": 1,
+      "collision_before": [
+        null,
+        null
+      ],
+      "set_lods_return": 4,
+      "result": "ok",
+      "lod_after": 4,
+      "collision_after": [
+        null,
+        null
+      ]
+    },
+    {
+      "tree": "pack_native",
+      "mesh": "/Game/MagicianLabatory/Source/Props/Flag/SM_Flag.SM_Flag",
+      "lod_before": 1,
+      "collision_before": [
+        null,
+        null
+      ],
+      "set_lods_return": 4,
+      "result": "ok",
+      "lod_after": 4,
+      "collision_after": [
+        null,
+        null
+      ]
+    },
+    {
+      "tree": "pack_native",
+      "mesh": "/Game/MagicianLabatory/Source/Props/GlassBottle/SM_GlassBottle_Object1715.SM_GlassBottle_Object1715",
+      "lod_before": 1,
+      "collision_before": [
+        null,
+        null
+      ],
+      "set_lods_return": 4,
+      "result": "ok",
+      "lod_after": 4,
+      "collision_after": [
+        null,
+        null
+      ]
+    },
+    {
+      "tree": "pack_native",
+      "mesh": "/Game/MagicianLabatory/Source/Props/GlassBottle2/SM_GlassBottle2.SM_GlassBottle2",
+      "lod_before": 1,
+      "collision_before": [
+        null,
+        null
+      ],
+      "set_lods_return": 4,
+      "result": "ok",
+      "lod_after": 4,
+      "collision_after": [
+        null,
+        null
+      ]
+    },
+    {
+      "tree": "pack_native",
+      "mesh": "/Game/MagicianLabatory/Source/Props/GlassBottle3/SM_GlassBottle3.SM_GlassBottle3",
+      "lod_before": 1,
+      "collision_before": [
+        null,
+        null
+      ],
+      "set_lods_return": 4,
+      "result": "ok",
+      "lod_after": 4,
+      "collision_after": [
+        null,
+        null
+      ]
+    },
+    {
+      "tree": "pack_native",
+      "mesh": "/Game/MagicianLabatory/Source/Props/GlassBottle4/SM_GlassBottle4.SM_GlassBottle4",
+      "lod_before": 1,
+      "collision_before": [
+        null,
+        null
+      ],
+      "set_lods_return": 4,
+      "result": "ok",
+      "lod_after": 4,
+      "collision_after": [
+        null,
+        null
+      ]
+    },
+    {
+      "tree": "pack_native",
+      "mesh": "/Game/MagicianLabatory/Source/Props/GlassBottle5/SM_GlassBottle5.SM_GlassBottle5",
+      "lod_before": 1,
+      "collision_before": [
+        null,
+        null
+      ],
+      "set_lods_return": 4,
+      "result": "ok",
+      "lod_after": 4,
+      "collision_after": [
+        null,
+        null
+      ]
+    },
+    {
+      "tree": "pack_native",
+      "mesh": "/Game/MagicianLabatory/Source/Props/GlassBottle6/SM_GlassBottle6.SM_GlassBottle6",
+      "lod_before": 1,
+      "collision_before": [
+        null,
+        null
+      ],
+      "set_lods_return": 4,
+      "result": "ok",
+      "lod_after": 4,
+      "collision_after": [
+        null,
+        null
+      ]
+    },
+    {
+      "tree": "pack_native",
+      "mesh": "/Game/MagicianLabatory/Source/Props/Globe/SM_Globe.SM_Globe",
+      "lod_before": 1,
+      "collision_before": [
+        null,
+        null
+      ],
+      "set_lods_return": 4,
+      "result": "ok",
+      "lod_after": 4,
+      "collision_after": [
+        null,
+        null
+      ]
+    },
+    {
+      "tree": "pack_native",
+      "mesh": "/Game/MagicianLabatory/Source/Props/Globe2/SM_Globe2.SM_Globe2",
+      "lod_before": 1,
+      "collision_before": [
+        null,
+        null
+      ],
+      "set_lods_return": 4,
+      "result": "ok",
+      "lod_after": 4,
+      "collision_after": [
+        null,
+        null
+      ]
+    },
+    {
+      "tree": "pack_native",
+      "mesh": "/Game/MagicianLabatory/Source/Props/HallDeco/SM_HallDeco.SM_HallDeco",
+      "lod_before": 1,
+      "collision_before": [
+        null,
+        null
+      ],
+      "set_lods_return": 4,
+      "result": "ok",
+      "lod_after": 4,
+      "collision_after": [
+        null,
+        null
+      ]
+    },
+    {
+      "tree": "pack_native",
+      "mesh": "/Game/MagicianLabatory/Source/Props/Hallpillar/SM_Hallpillar.SM_Hallpillar",
+      "lod_before": 1,
+      "collision_before": [
+        null,
+        null
+      ],
+      "set_lods_return": 4,
+      "result": "ok",
+      "lod_after": 4,
+      "collision_after": [
+        null,
+        null
+      ]
+    },
+    {
+      "tree": "pack_native",
+      "mesh": "/Game/MagicianLabatory/Source/Props/Hallwall/SM_Hallwall.SM_Hallwall",
+      "lod_before": 1,
+      "collision_before": [
+        null,
+        null
+      ],
+      "set_lods_return": 4,
+      "result": "ok",
+      "lod_after": 4,
+      "collision_after": [
+        null,
+        null
+      ]
+    },
+    {
+      "tree": "pack_native",
+      "mesh": "/Game/MagicianLabatory/Source/Props/HallwallGlass/SM_HallwallGlass.SM_HallwallGlass",
+      "lod_before": 1,
+      "collision_before": [
+        null,
+        null
+      ],
+      "set_lods_return": 4,
+      "result": "ok",
+      "lod_after": 4,
+      "collision_after": [
+        null,
+        null
+      ]
+    },
+    {
+      "tree": "pack_native",
+      "mesh": "/Game/MagicianLabatory/Source/Props/HallwallGlassBar/SM_HallwallGlassBar.SM_HallwallGlassBar",
+      "lod_before": 1,
+      "collision_before": [
+        null,
+        null
+      ],
+      "set_lods_return": 4,
+      "result": "ok",
+      "lod_after": 4,
+      "collision_after": [
+        null,
+        null
+      ]
+    },
+    {
+      "tree": "pack_native",
+      "mesh": "/Game/MagicianLabatory/Source/Props/Lantern/SM_Lantern.SM_Lantern",
+      "lod_before": 1,
+      "collision_before": [
+        null,
+        null
+      ],
+      "set_lods_return": 4,
+      "result": "ok",
+      "lod_after": 4,
+      "collision_after": [
+        null,
+        null
+      ]
+    },
+    {
+      "tree": "pack_native",
+      "mesh": "/Game/MagicianLabatory/Source/Props/LanternGlass/SM_LanternGlass.SM_LanternGlass",
+      "lod_before": 1,
+      "collision_before": [
+        null,
+        null
+      ],
+      "set_lods_return": 4,
+      "result": "ok",
+      "lod_after": 4,
+      "collision_after": [
+        null,
+        null
+      ]
+    },
+    {
+      "tree": "pack_native",
+      "mesh": "/Game/MagicianLabatory/Source/Props/Microscope/SM_Microscope.SM_Microscope",
+      "lod_before": 1,
+      "collision_before": [
+        null,
+        null
+      ],
+      "set_lods_return": 4,
+      "result": "ok",
+      "lod_after": 4,
+      "collision_after": [
+        null,
+        null
+      ]
+    },
+    {
+      "tree": "pack_native",
+      "mesh": "/Game/MagicianLabatory/Source/Props/Outside_Wall/SM_Outside_Wall.SM_Outside_Wall",
+      "lod_before": 1,
+      "collision_before": [
+        null,
+        null
+      ],
+      "set_lods_return": 4,
+      "result": "ok",
+      "lod_after": 4,
+      "collision_after": [
+        null,
+        null
+      ]
+    },
+    {
+      "tree": "pack_native",
+      "mesh": "/Game/MagicianLabatory/Source/Props/Platform/SM_Platform.SM_Platform",
+      "lod_before": 1,
+      "collision_before": [
+        null,
+        null
+      ],
+      "set_lods_return": 4,
+      "result": "ok",
+      "lod_after": 4,
+      "collision_after": [
+        null,
+        null
+      ]
+    },
+    {
+      "tree": "pack_native",
+      "mesh": "/Game/MagicianLabatory/Source/Props/Polygon/SM_Polygon.SM_Polygon",
+      "lod_before": 1,
+      "collision_before": [
+        null,
+        null
+      ],
+      "set_lods_return": 4,
+      "result": "ok",
+      "lod_after": 4,
+      "collision_after": [
+        null,
+        null
+      ]
+    },
+    {
+      "tree": "pack_native",
+      "mesh": "/Game/MagicianLabatory/Source/Props/Polygon2/SM_Polygon2.SM_Polygon2",
+      "lod_before": 1,
+      "collision_before": [
+        null,
+        null
+      ],
+      "set_lods_return": 4,
+      "result": "ok",
+      "lod_after": 4,
+      "collision_after": [
+        null,
+        null
+      ]
+    },
+    {
+      "tree": "pack_native",
+      "mesh": "/Game/MagicianLabatory/Source/Props/Pot/SM_Pot.SM_Pot",
+      "lod_before": 1,
+      "collision_before": [
+        null,
+        null
+      ],
+      "set_lods_return": 4,
+      "result": "ok",
+      "lod_after": 4,
+      "collision_after": [
+        null,
+        null
+      ]
+    },
+    {
+      "tree": "pack_native",
+      "mesh": "/Game/MagicianLabatory/Source/Props/PotTable/SM_Pot_Table.SM_Pot_Table",
+      "lod_before": 1,
+      "collision_before": [
+        null,
+        null
+      ],
+      "set_lods_return": 4,
+      "result": "ok",
+      "lod_after": 4,
+      "collision_after": [
+        null,
+        null
+      ]
+    },
+    {
+      "tree": "pack_native",
+      "mesh": "/Game/MagicianLabatory/Source/Props/Shelf/SM_Shelf.SM_Shelf",
+      "lod_before": 1,
+      "collision_before": [
+        null,
+        null
+      ],
+      "set_lods_return": 4,
+      "result": "ok",
+      "lod_after": 4,
+      "collision_after": [
+        null,
+        null
+      ]
+    },
+    {
+      "tree": "pack_native",
+      "mesh": "/Game/MagicianLabatory/Source/Props/Shelf6/SM_Shelf6.SM_Shelf6",
+      "lod_before": 1,
+      "collision_before": [
+        null,
+        null
+      ],
+      "set_lods_return": 4,
+      "result": "ok",
+      "lod_after": 4,
+      "collision_after": [
+        null,
+        null
+      ]
+    },
+    {
+      "tree": "pack_native",
+      "mesh": "/Game/MagicianLabatory/Source/Props/Shelf_2/SM_Shelf_2.SM_Shelf_2",
+      "lod_before": 1,
+      "collision_before": [
+        null,
+        null
+      ],
+      "set_lods_return": 4,
+      "result": "ok",
+      "lod_after": 4,
+      "collision_after": [
+        null,
+        null
+      ]
+    },
+    {
+      "tree": "pack_native",
+      "mesh": "/Game/MagicianLabatory/Source/Props/Shelf_3/SM_Shelf_3.SM_Shelf_3",
+      "lod_before": 1,
+      "collision_before": [
+        null,
+        null
+      ],
+      "set_lods_return": 4,
+      "result": "ok",
+      "lod_after": 4,
+      "collision_after": [
+        null,
+        null
+      ]
+    },
+    {
+      "tree": "pack_native",
+      "mesh": "/Game/MagicianLabatory/Source/Props/Shelf_4/SM_Shelf_4.SM_Shelf_4",
+      "lod_before": 1,
+      "collision_before": [
+        null,
+        null
+      ],
+      "set_lods_return": 4,
+      "result": "ok",
+      "lod_after": 4,
+      "collision_after": [
+        null,
+        null
+      ]
+    },
+    {
+      "tree": "pack_native",
+      "mesh": "/Game/MagicianLabatory/Source/Props/Shelf_5/SM_Shelf_5.SM_Shelf_5",
+      "lod_before": 1,
+      "collision_before": [
+        null,
+        null
+      ],
+      "set_lods_return": 4,
+      "result": "ok",
+      "lod_after": 4,
+      "collision_after": [
+        null,
+        null
+      ]
+    },
+    {
+      "tree": "pack_native",
+      "mesh": "/Game/MagicianLabatory/Source/Props/Shelf_Prop/SM_Shelf_Prop.SM_Shelf_Prop",
+      "lod_before": 1,
+      "collision_before": [
+        null,
+        null
+      ],
+      "set_lods_return": 4,
+      "result": "ok",
+      "lod_after": 4,
+      "collision_after": [
+        null,
+        null
+      ]
+    },
+    {
+      "tree": "pack_native",
+      "mesh": "/Game/MagicianLabatory/Source/Props/WallLamp/SM_Wall_Lamp.SM_Wall_Lamp",
+      "lod_before": 1,
+      "collision_before": [
+        null,
+        null
+      ],
+      "set_lods_return": 4,
+      "result": "ok",
+      "lod_after": 4,
+      "collision_after": [
+        null,
+        null
+      ]
+    },
+    {
+      "tree": "pack_native",
+      "mesh": "/Game/MagicianLabatory/Source/Props/WallLampGlass/SM_Wall_Lamp_Glass.SM_Wall_Lamp_Glass",
+      "lod_before": 1,
+      "collision_before": [
+        null,
+        null
+      ],
+      "set_lods_return": 4,
+      "result": "ok",
+      "lod_after": 4,
+      "collision_after": [
+        null,
+        null
+      ]
+    }
+  ]
+}

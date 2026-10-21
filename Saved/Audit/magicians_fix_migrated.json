@@ -1,0 +1,391 @@
+{
+  "generated": "2026-10-21T22:52:31.566594+00:00",
+  "mode": "apply",
+  "argv": [
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\Python\\magicians_fix_migrated.py"
+  ],
+  "canonical": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary",
+  "steps": {
+    "S3_renames": [
+      {
+        "tree": "canonical",
+        "old": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Deco1/MI_M_Deco1",
+        "new": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Deco1/MI_M_Kit_Ornament_A",
+        "result": "target already exists"
+      },
+      {
+        "tree": "canonical",
+        "old": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Deco2/MI_M_Deco2",
+        "new": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Deco2/MI_M_Kit_Ornament_B",
+        "result": "target already exists"
+      },
+      {
+        "tree": "canonical",
+        "old": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Deco3/MI_M_Deco3",
+        "new": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Deco3/MI_M_Kit_Ornament_C",
+        "result": "target already exists"
+      },
+      {
+        "tree": "canonical",
+        "old": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Desk2/MI_M_Desk_2",
+        "new": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Desk2/MI_M_Desk2",
+        "result": "target already exists"
+      },
+      {
+        "tree": "canonical",
+        "old": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Candle/candle1_L",
+        "new": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Candle/SM_Candle1_L",
+        "result": "target already exists"
+      },
+      {
+        "tree": "pack",
+        "old": "/Game/MagicianLabatory/Source/Props/Candle/candle1_L",
+        "new": "/Game/MagicianLabatory/Source/Props/Candle/SM_Candle1_L",
+        "result": "target already exists"
+      },
+      {
+        "tree": "pack",
+        "old": "/Game/MagicianLabatory/Source/Props/Candle/MI_M_candle1_L",
+        "new": "/Game/MagicianLabatory/Source/Props/Candle/MI_M_Candle1_L",
+        "result": "target already exists"
+      }
+    ],
+    "S1_slots": [
+      {
+        "mesh": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Bookshelf/SM_Bookshelf",
+        "want_mi": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Bookshelf/MI_M_Bookshelf",
+        "before": [
+          "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Bookshelf/MI_M_Bookshelf.MI_M_Bookshelf"
+        ],
+        "slot_changed": false,
+        "after": [
+          "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Bookshelf/MI_M_Bookshelf.MI_M_Bookshelf"
+        ]
+      },
+      {
+        "mesh": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Lantern/SM_Lantern",
+        "want_mi": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Lantern/MI_M_Lantern",
+        "before": [
+          "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Lantern/MI_M_Lantern.MI_M_Lantern"
+        ],
+        "slot_changed": false,
+        "after": [
+          "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Lantern/MI_M_Lantern.MI_M_Lantern"
+        ]
+      },
+      {
+        "mesh": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Candle/SM_Wick",
+        "want_mi": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Candle/MI_M_Wick",
+        "before": [
+          "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Candle/MI_M_Wick.MI_M_Wick"
+        ],
+        "slot_changed": false,
+        "after": [
+          "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Candle/MI_M_Wick.MI_M_Wick"
+        ]
+      },
+      {
+        "mesh": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Candle/candle1_L",
+        "want_mi": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Candle/MI_M_Candle",
+        "before": [
+          "/Game/EnvSandbox/Materials/Instances/Environment/Zen/MI_Zen_LanternWarm.MI_Zen_LanternWarm"
+        ],
+        "slot_changed": true,
+        "after": [
+          "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Candle/MI_M_Candle.MI_M_Candle"
+        ]
+      },
+      {
+        "mesh": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Outside_Wall/SM_Outside_Wall",
+        "want_mi": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Outside_Wall/MI_M_Outside_Wall",
+        "before": [
+          "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Outside_Wall/MI_M_Outside_Wall.MI_M_Outside_Wall"
+        ],
+        "slot_changed": false,
+        "after": [
+          "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Outside_Wall/MI_M_Outside_Wall.MI_M_Outside_Wall"
+        ]
+      },
+      {
+        "mesh": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Deco1/SM_Kit_Ornament_A",
+        "want_mi": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Deco1/MI_M_Kit_Ornament_A",
+        "before": [
+          "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Deco1/MI_M_Kit_Ornament_A.MI_M_Kit_Ornament_A"
+        ],
+        "slot_changed": false,
+        "after": [
+          "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Deco1/MI_M_Kit_Ornament_A.MI_M_Kit_Ornament_A"
+        ]
+      },
+      {
+        "mesh": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Deco2/SM_Kit_Ornament_B",
+        "want_mi": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Deco2/MI_M_Kit_Ornament_B",
+        "before": [
+          "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Deco2/MI_M_Kit_Ornament_B.MI_M_Kit_Ornament_B"
+        ],
+        "slot_changed": false,
+        "after": [
+          "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Deco2/MI_M_Kit_Ornament_B.MI_M_Kit_Ornament_B"
+        ]
+      },
+      {
+        "mesh": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Deco3/SM_Kit_Ornament_C",
+        "want_mi": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Deco3/MI_M_Kit_Ornament_C",
+        "before": [
+          "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Deco3/MI_M_Kit_Ornament_C.MI_M_Kit_Ornament_C"
+        ],
+        "slot_changed": false,
+        "after": [
+          "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Deco3/MI_M_Kit_Ornament_C.MI_M_Kit_Ornament_C"
+        ]
+      },
+      {
+        "mesh": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Desk2/SM_Desk2",
+        "want_mi": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Desk2/MI_M_Desk2",
+        "before": [
+          "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Desk2/MI_M_Desk2.MI_M_Desk2"
+        ],
+        "slot_changed": false,
+        "after": [
+          "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Desk2/MI_M_Desk2.MI_M_Desk2"
+        ]
+      }
+    ],
+    "S2_noise_height": [
+      {
+        "mi": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Bookshelf/MI_M_Bookshelf",
+        "height_before": "/Game/EnvSandbox/Textures/Utility/T_Neutral_Height.T_Neutral_Height"
+      }
+    ],
+    "S4_archive_flat_masters": [
+      {
+        "asset": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Bookshelf/M_Bookshelf.M_Bookshelf",
+        "referencers": [],
+        "result": "renamed"
+      },
+      {
+        "asset": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Box/M_Box.M_Box",
+        "referencers": [],
+        "result": "renamed"
+      },
+      {
+        "asset": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Candle/M_Candle.M_Candle",
+        "referencers": [],
+        "result": "renamed"
+      },
+      {
+        "asset": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Carpet/M_Carpet.M_Carpet",
+        "referencers": [],
+        "result": "renamed"
+      },
+      {
+        "asset": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Carpet2/M_Carpet2.M_Carpet2",
+        "referencers": [],
+        "result": "renamed"
+      },
+      {
+        "asset": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Carpet3/M_Carpet3.M_Carpet3",
+        "referencers": [],
+        "result": "renamed"
+      },
+      {
+        "asset": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Deco1/M_Deco1.M_Deco1",
+        "referencers": [],
+        "result": "renamed"
+      },
+      {
+        "asset": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Deco2/M_Deco2.M_Deco2",
+        "referencers": [],
+        "result": "renamed"
+      },
+      {
+        "asset": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Deco3/M_Deco3.M_Deco3",
+        "referencers": [],
+        "result": "renamed"
+      },
+      {
+        "asset": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Deco4/M_Deco4.M_Deco4",
+        "referencers": [],
+        "result": "renamed"
+      },
+      {
+        "asset": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Deco5/M_Deco5.M_Deco5",
+        "referencers": [],
+        "result": "renamed"
+      },
+      {
+        "asset": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Deco6/M_Deco6.M_Deco6",
+        "referencers": [],
+        "result": "renamed"
+      },
+      {
+        "asset": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Deco7/M_Deco7.M_Deco7",
+        "referencers": [],
+        "result": "renamed"
+      },
+      {
+        "asset": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Desk/M_Desk.M_Desk",
+        "referencers": [],
+        "result": "renamed"
+      },
+      {
+        "asset": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Desk2/M_Desk_2.M_Desk_2",
+        "referencers": [],
+        "result": "renamed"
+      },
+      {
+        "asset": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Desk3/M_Desk3.M_Desk3",
+        "referencers": [],
+        "result": "renamed"
+      },
+      {
+        "asset": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Desk4/M_Desk4.M_Desk4",
+        "referencers": [],
+        "result": "renamed"
+      },
+      {
+        "asset": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/DeskDrawer/M_Desk_Drawer.M_Desk_Drawer",
+        "referencers": [],
+        "result": "renamed"
+      },
+      {
+        "asset": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Drawer/M_Drawer_Box002.M_Drawer_Box002",
+        "referencers": [],
+        "result": "renamed"
+      },
+      {
+        "asset": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Entrance/M_Entrance.M_Entrance",
+        "referencers": [],
+        "result": "renamed"
+      },
+      {
+        "asset": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Flag/M_Flag.M_Flag",
+        "referencers": [],
+        "result": "renamed"
+      },
+      {
+        "asset": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/GlassBottle/M_GlassBottle_Object1715.M_GlassBottle_Object1715",
+        "referencers": [],
+        "result": "renamed"
+      },
+      {
+        "asset": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/GlassBottle2/M_GlassBottle2.M_GlassBottle2",
+        "referencers": [],
+        "result": "renamed"
+      },
+      {
+        "asset": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/GlassBottle3/M_GlassBottle3.M_GlassBottle3",
+        "referencers": [],
+        "result": "renamed"
+      },
+      {
+        "asset": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/GlassBottle4/M_GlassBottle4.M_GlassBottle4",
+        "referencers": [],
+        "result": "renamed"
+      },
+      {
+        "asset": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/GlassBottle5/M_GlassBottle5.M_GlassBottle5",
+        "referencers": [],
+        "result": "renamed"
+      },
+      {
+        "asset": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/GlassBottle6/M_GlassBottle6.M_GlassBottle6",
+        "referencers": [],
+        "result": "renamed"
+      },
+      {
+        "asset": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Globe/M_Globe.M_Globe",
+        "referencers": [],
+        "result": "renamed"
+      },
+      {
+        "asset": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Globe2/M_Globe2.M_Globe2",
+        "referencers": [],
+        "result": "renamed"
+      },
+      {
+        "asset": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/HallDeco/M_HallDeco.M_HallDeco",
+        "referencers": [],
+        "result": "renamed"
+      },
+      {
+        "asset": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Hallpillar/M_Hallpillar.M_Hallpillar",
+        "referencers": [],
+        "result": "renamed"
+      },
+      {
+        "asset": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Hallwall/M_Hallwall.M_Hallwall",
+        "referencers": [],
+        "result": "renamed"
+      },
+      {
+        "asset": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/HallwallGlass/M_HallwallGlass.M_HallwallGlass",
+        "referencers": [],
+        "result": "renamed"
+      },
+      {
+        "asset": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/HallwallGlassBar/M_HallwallGlassBar.M_HallwallGlassBar",
+        "referencers": [],
+        "result": "renamed"
+      },
+      {
+        "asset": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Lantern/M_Lantern.M_Lantern",
+        "referencers": [],
+        "result": "renamed"
+      },
+      {
+        "asset": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/LanternGlass/M_LanternGlass.M_LanternGlass",
+        "referencers": [],
+        "result": "renamed"
+      },
+      {
+        "asset": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Microscope/M_Microscope.M_Microscope",
+        "referencers": [],
+        "result": "renamed"
+      },
+      {
+        "asset": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Platform/M_Platform.M_Platform",
+        "referencers": [],
+        "result": "renamed"
+      },
+      {
+        "asset": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Polygon/M_Polygon.M_Polygon",
+        "referencers": [],
+        "result": "renamed"
+      }
+    ],
+    "S5_superseded_leftovers": [
+      {
+        "asset": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Candle/candle1_L",
+        "exists": true,
+        "result": "deleted"
+      },
+      {
+        "asset": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Deco1/MI_M_Deco1",
+        "exists": true,
+        "result": "deleted"
+      },
+      {
+        "asset": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Deco2/MI_M_Deco2",
+        "exists": true,
+        "result": "deleted"
+      },
+      {
+        "asset": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Deco3/MI_M_Deco3",
+        "exists": true,
+        "result": "deleted"
+      },
+      {
+        "asset": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Desk2/MI_M_Desk_2",
+        "exists": true,
+        "result": "deleted"
+      }
+    ]
+  },
+  "counters": {
+    "rename_fail": 7,
+    "slot_repointed": 1,
+    "archived": 39,
+    "leftover_deleted": 5
+  }
+}

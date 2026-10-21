@@ -1,0 +1,231 @@
+{
+  "generated": "2026-10-21T22:26:47.416513+00:00",
+  "mode": "apply",
+  "slice": "0:12",
+  "master": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
+  "roots": [
+    "/Game/MagicianLabatory/Source/Building",
+    "/Game/MagicianLabatory/Source/Props"
+  ],
+  "counters": {
+    "created_or_updated": 12
+  },
+  "rows": [
+    {
+      "mesh": "/Game/MagicianLabatory/Source/Building/Floor1F/Floor1F/SM_Floor_1.SM_Floor_1",
+      "folder": "/Game/MagicianLabatory/Source/Building/Floor1F/Floor1F",
+      "mi": "/Game/MagicianLabatory/Source/Building/Floor1F/Floor1F/MI_M_Floor_1",
+      "textures": {
+        "base": "/Game/MagicianLabatory/Source/Building/Floor1F/Floor1F/T_Floor_1_Base.T_Floor_1_Base",
+        "normal": "/Game/MagicianLabatory/Source/Building/Floor1F/Floor1F/T_Floor_1_Normal.T_Floor_1_Normal",
+        "ao": "/Game/MagicianLabatory/Source/Building/Floor1F/Floor1F/T_Floor_1_AO.T_Floor_1_AO"
+      },
+      "has_base_normal": true,
+      "result": "ok",
+      "bound": {
+        "Albedo": "base",
+        "NormalMap": "normal",
+        "ORM": "ao"
+      },
+      "slot_changed": true
+    },
+    {
+      "mesh": "/Game/MagicianLabatory/Source/Building/Floor1F/Floor1F2/SM_Floor_2.SM_Floor_2",
+      "folder": "/Game/MagicianLabatory/Source/Building/Floor1F/Floor1F2",
+      "mi": "/Game/MagicianLabatory/Source/Building/Floor1F/Floor1F2/MI_M_Floor_2",
+      "textures": {
+        "base": "/Game/MagicianLabatory/Source/Building/Floor1F/Floor1F2/T_Floor_2_Base.T_Floor_2_Base",
+        "normal": "/Game/MagicianLabatory/Source/Building/Floor1F/Floor1F2/T_Floor_2_Normal.T_Floor_2_Normal",
+        "ao": "/Game/MagicianLabatory/Source/Building/Floor1F/Floor1F2/T_Floor_2_AO.T_Floor_2_AO"
+      },
+      "has_base_normal": true,
+      "result": "ok",
+      "bound": {
+        "Albedo": "base",
+        "NormalMap": "normal",
+        "ORM": "ao"
+      },
+      "slot_changed": true
+    },
+    {
+      "mesh": "/Game/MagicianLabatory/Source/Building/Floor1F/Floor1F3/SM_Floor_3.SM_Floor_3",
+      "folder": "/Game/MagicianLabatory/Source/Building/Floor1F/Floor1F3",
+      "mi": "/Game/MagicianLabatory/Source/Building/Floor1F/Floor1F3/MI_M_Floor_3",
+      "textures": {
+        "base": "/Game/MagicianLabatory/Source/Building/Floor1F/Floor1F3/T_Floor_3_Base.T_Floor_3_Base",
+        "normal": "/Game/MagicianLabatory/Source/Building/Floor1F/Floor1F3/T_Floor_3_Normal.T_Floor_3_Normal",
+        "ao": "/Game/MagicianLabatory/Source/Building/Floor1F/Floor1F3/T_Floor_3_AO.T_Floor_3_AO"
+      },
+      "has_base_normal": true,
+      "result": "ok",
+      "bound": {
+        "Albedo": "base",
+        "NormalMap": "normal",
+        "ORM": "ao"
+      },
+      "slot_changed": true
+    },
+    {
+      "mesh": "/Game/MagicianLabatory/Source/Building/Floor1F/Floor1F4/SM_Floor_4.SM_Floor_4",
+      "folder": "/Game/MagicianLabatory/Source/Building/Floor1F/Floor1F4",
+      "mi": "/Game/MagicianLabatory/Source/Building/Floor1F/Floor1F4/MI_M_Floor_4",
+      "textures": {
+        "base": "/Game/MagicianLabatory/Source/Building/Floor1F/Floor1F4/T_Floor_4_Base.T_Floor_4_Base",
+        "normal": "/Game/MagicianLabatory/Source/Building/Floor1F/Floor1F4/T_Floor_4_Normal.T_Floor_4_Normal",
+        "ao": "/Game/MagicianLabatory/Source/Building/Floor1F/Floor1F4/T_Floor_4_AO.T_Floor_4_AO"
+      },
+      "has_base_normal": true,
+      "result": "ok",
+      "bound": {
+        "Albedo": "base",
+        "NormalMap": "normal",
+        "ORM": "ao"
+      },
+      "slot_changed": true
+    },
+    {
+      "mesh": "/Game/MagicianLabatory/Source/Building/Floor1F/Floor1F5/SM_Floor_5.SM_Floor_5",
+      "folder": "/Game/MagicianLabatory/Source/Building/Floor1F/Floor1F5",
+      "mi": "/Game/MagicianLabatory/Source/Building/Floor1F/Floor1F5/MI_M_Floor_5",
+      "textures": {
+        "base": "/Game/MagicianLabatory/Source/Building/Floor1F/Floor1F5/T_Floor_5_Base.T_Floor_5_Base",
+        "normal": "/Game/MagicianLabatory/Source/Building/Floor1F/Floor1F5/T_Floor_5_Normal.T_Floor_5_Normal",
+        "ao": "/Game/MagicianLabatory/Source/Building/Floor1F/Floor1F5/T_Floor_5_AO.T_Floor_5_AO"
+      },
+      "has_base_normal": true,
+      "result": "ok",
+      "bound": {
+        "Albedo": "base",
+        "NormalMap": "normal",
+        "ORM": "ao"
+      },
+      "slot_changed": true
+    },
+    {
+      "mesh": "/Game/MagicianLabatory/Source/Building/Floor1F/Floor1F6/SM_Floor_6.SM_Floor_6",
+      "folder": "/Game/MagicianLabatory/Source/Building/Floor1F/Floor1F6",
+      "mi": "/Game/MagicianLabatory/Source/Building/Floor1F/Floor1F6/MI_M_Floor_6",
+      "textures": {
+        "base": "/Game/MagicianLabatory/Source/Building/Floor1F/Floor1F6/T_Floor_6_Base.T_Floor_6_Base",
+        "normal": "/Game/MagicianLabatory/Source/Building/Floor1F/Floor1F6/T_Floor_6_Normal.T_Floor_6_Normal",
+        "ao": "/Game/MagicianLabatory/Source/Building/Floor1F/Floor1F6/T_Floor_6_AO.T_Floor_6_AO"
+      },
+      "has_base_normal": true,
+      "result": "ok",
+      "bound": {
+        "Albedo": "base",
+        "NormalMap": "normal",
+        "ORM": "ao"
+      },
+      "slot_changed": true
+    },
+    {
+      "mesh": "/Game/MagicianLabatory/Source/Building/Floor1F/Floor1F7/SM_Floor_7.SM_Floor_7",
+      "folder": "/Game/MagicianLabatory/Source/Building/Floor1F/Floor1F7",
+      "mi": "/Game/MagicianLabatory/Source/Building/Floor1F/Floor1F7/MI_M_Floor_7",
+      "textures": {
+        "base": "/Game/MagicianLabatory/Source/Building/Floor1F/Floor1F7/T_Floor_7_Base.T_Floor_7_Base",
+        "normal": "/Game/MagicianLabatory/Source/Building/Floor1F/Floor1F7/T_Floor_7_Normal.T_Floor_7_Normal",
+        "ao": "/Game/MagicianLabatory/Source/Building/Floor1F/Floor1F7/T_Floor_7_AO.T_Floor_7_AO"
+      },
+      "has_base_normal": true,
+      "result": "ok",
+      "bound": {
+        "Albedo": "base",
+        "NormalMap": "normal",
+        "ORM": "ao"
+      },
+      "slot_changed": true
+    },
+    {
+      "mesh": "/Game/MagicianLabatory/Source/Building/Floor1F/Floor1F8/SM_Floor_8.SM_Floor_8",
+      "folder": "/Game/MagicianLabatory/Source/Building/Floor1F/Floor1F8",
+      "mi": "/Game/MagicianLabatory/Source/Building/Floor1F/Floor1F8/MI_M_Floor_8",
+      "textures": {
+        "base": "/Game/MagicianLabatory/Source/Building/Floor1F/Floor1F8/T_Floor_8_Base.T_Floor_8_Base",
+        "normal": "/Game/MagicianLabatory/Source/Building/Floor1F/Floor1F8/T_Floor_8_Normal.T_Floor_8_Normal",
+        "ao": "/Game/MagicianLabatory/Source/Building/Floor1F/Floor1F8/T_Floor_8_AO.T_Floor_8_AO"
+      },
+      "has_base_normal": true,
+      "result": "ok",
+      "bound": {
+        "Albedo": "base",
+        "NormalMap": "normal",
+        "ORM": "ao"
+      },
+      "slot_changed": true
+    },
+    {
+      "mesh": "/Game/MagicianLabatory/Source/Building/Floor1F/Floor1F9/SM_Floor_9.SM_Floor_9",
+      "folder": "/Game/MagicianLabatory/Source/Building/Floor1F/Floor1F9",
+      "mi": "/Game/MagicianLabatory/Source/Building/Floor1F/Floor1F9/MI_M_Floor_9",
+      "textures": {
+        "base": "/Game/MagicianLabatory/Source/Building/Floor1F/Floor1F9/T_Floor_9_Base.T_Floor_9_Base",
+        "normal": "/Game/MagicianLabatory/Source/Building/Floor1F/Floor1F9/T_Floor_9_Normal.T_Floor_9_Normal",
+        "ao": "/Game/MagicianLabatory/Source/Building/Floor1F/Floor1F9/T_Floor_9_AO.T_Floor_9_AO"
+      },
+      "has_base_normal": true,
+      "result": "ok",
+      "bound": {
+        "Albedo": "base",
+        "NormalMap": "normal",
+        "ORM": "ao"
+      },
+      "slot_changed": true
+    },
+    {
+      "mesh": "/Game/MagicianLabatory/Source/Building/Floor2F/Floor2F/SM_Floor_Pannel.SM_Floor_Pannel",
+      "folder": "/Game/MagicianLabatory/Source/Building/Floor2F/Floor2F",
+      "mi": "/Game/MagicianLabatory/Source/Building/Floor2F/Floor2F/MI_M_Floor_Pannel",
+      "textures": {
+        "base": "/Game/MagicianLabatory/Source/Building/Floor2F/Floor2F/T_Floor_pannel_Base.T_Floor_pannel_Base",
+        "normal": "/Game/MagicianLabatory/Source/Building/Floor2F/Floor2F/T_Floor_pannel_Normal.T_Floor_pannel_Normal",
+        "ao": "/Game/MagicianLabatory/Source/Building/Floor2F/Floor2F/T_Floor_pannel_AO.T_Floor_pannel_AO"
+      },
+      "has_base_normal": true,
+      "result": "ok",
+      "bound": {
+        "Albedo": "base",
+        "NormalMap": "normal",
+        "ORM": "ao"
+      },
+      "slot_changed": true
+    },
+    {
+      "mesh": "/Game/MagicianLabatory/Source/Building/Floor2F/Floor2F2/SM_Floor_Pannel2.SM_Floor_Pannel2",
+      "folder": "/Game/MagicianLabatory/Source/Building/Floor2F/Floor2F2",
+      "mi": "/Game/MagicianLabatory/Source/Building/Floor2F/Floor2F2/MI_M_Floor_Pannel2",
+      "textures": {
+        "base": "/Game/MagicianLabatory/Source/Building/Floor2F/Floor2F2/T_Floor_Pannel2_Base.T_Floor_Pannel2_Base",
+        "normal": "/Game/MagicianLabatory/Source/Building/Floor2F/Floor2F2/T_Floor_Pannel2_Normal.T_Floor_Pannel2_Normal",
+        "ao": "/Game/MagicianLabatory/Source/Building/Floor2F/Floor2F2/T_Floor_Pannel2_AO.T_Floor_Pannel2_AO"
+      },
+      "has_base_normal": true,
+      "result": "ok",
+      "bound": {
+        "Albedo": "base",
+        "NormalMap": "normal",
+        "ORM": "ao"
+      },
+      "slot_changed": true
+    },
+    {
+      "mesh": "/Game/MagicianLabatory/Source/Building/Floor2F/Floor2F3/SM_Floor_Pannel3.SM_Floor_Pannel3",
+      "folder": "/Game/MagicianLabatory/Source/Building/Floor2F/Floor2F3",
+      "mi": "/Game/MagicianLabatory/Source/Building/Floor2F/Floor2F3/MI_M_Floor_Pannel3",
+      "textures": {
+        "base": "/Game/MagicianLabatory/Source/Building/Floor2F/Floor2F3/T_Floor_pannel3_Base.T_Floor_pannel3_Base",
+        "normal": "/Game/MagicianLabatory/Source/Building/Floor2F/Floor2F3/T_Floor_pannel3_Normal.T_Floor_pannel3_Normal",
+        "ao": "/Game/MagicianLabatory/Source/Building/Floor2F/Floor2F3/T_Floor_pannel3_AO.T_Floor_pannel3_AO"
+      },
+      "has_base_normal": true,
+      "result": "ok",
+      "bound": {
+        "Albedo": "base",
+        "NormalMap": "normal",
+        "ORM": "ao"
+      },
+      "slot_changed": true
+    }
+  ]
+}
