@@ -43,6 +43,10 @@ OUT = Path(os.environ.get("ECV_OUT", str(ROOT / "Saved" / "Audit" / "ue4_asset_u
 FOLDER = os.environ.get("ECV_FOLDER", "/Game/EnchantedInteriors")
 SKIP_MB = float(os.environ.get("ECV_SKIP_MB", "300"))
 SKIP_DIRS = [d for d in os.environ.get("ECV_SKIP_DIRS", "Materials").split(",") if d]
+# Optional shard by first character of the asset name, so two commandlets can
+# work on disjoint halves of the same folder without ever touching the same file.
+SHARD_MIN = os.environ.get("ECV_SHARD_MIN", "")
+SHARD_MAX = os.environ.get("ECV_SHARD_MAX", "")
 
 LINES = []
 
@@ -78,12 +82,26 @@ def _size_map():
     if not content.exists():
         return out
     for p in content.rglob("*.uasset"):
-        rel = "/" + p.relative_to(content).as_posix()[:-len(".uasset")]
+        rel = "/Game/" + p.relative_to(content).as_posix()[:-len(".uasset")]
         out[rel] = p.stat().st_size
     for p in content.rglob("*.umap"):
-        rel = "/" + p.relative_to(content).as_posix()[:-len(".umap")]
+        rel = "/Game/" + p.relative_to(content).as_posix()[:-len(".umap")]
         out[rel] = p.stat().st_size
     return out
+
+
+def _is_stamped(path: Path) -> bool:
+    """True when the package already carries the UE 5.8 engine-version stamp.
+
+    Loading a UE4.26 package is the expensive part (it rebuilds the mesh data), so
+    a package that is already stamped must not be loaded again.
+    """
+    try:
+        with open(path, "rb") as fh:
+            head = fh.read(4096)
+        return b"++UE5+Release-5.8" in head
+    except Exception:
+        return False
 
 
 def main():
@@ -98,9 +116,18 @@ def main():
         pkg = str(a.package_name)
         if any(f"/{d}/" in pkg for d in SKIP_DIRS):
             continue
+        name = str(a.asset_name)
+        # shard on the STEM, not the full name: every pack asset is prefixed
+        # "KB3D_ECI_", so a shard on the raw name would put all of them in one half
+        stem_key = name[len("KB3D_ECI_"):] if name.startswith("KB3D_ECI_") else name
+        if SHARD_MIN and stem_key < SHARD_MIN:
+            continue
+        if SHARD_MAX and stem_key >= SHARD_MAX:
+            continue
         size = sizes.get(pkg, 0)
-        assets.append((size, pkg, str(a.asset_name), str(a.asset_class_path.asset_name)))
-    log(f"packages to process: {len(assets)} (skipping dirs: {SKIP_DIRS})")
+        assets.append((size, pkg, name, str(a.asset_class_path.asset_name)))
+    log(f"packages to process: {len(assets)} (skipping dirs: {SKIP_DIRS}, "
+        f"shard: {SHARD_MIN or '-'}..{SHARD_MAX or '-'})")
 
     assets.sort(key=lambda t: t[0])          # ascending: cheap first, monsters last
     total_bytes = sum(a[0] for a in assets)
@@ -111,6 +138,10 @@ def main():
             report["skipped"].append({"package": pkg, "mb": round(size / 1024 / 1024, 1),
                                       "reason": f"above --skip-mb ({SKIP_MB})"})
             log(f"SKIP {name} ({size/1024/1024:.0f} MB > {SKIP_MB} MB)")
+            continue
+        local = ROOT / "Content" / Path(pkg.replace("/Game/", ""))
+        if _is_stamped(local):
+            report["already_stamped"] = report.get("already_stamped", 0) + 1
             continue
         try:
             obj = unreal.EditorAssetLibrary.load_asset(pkg)
