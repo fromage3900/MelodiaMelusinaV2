@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env python
+#!/usr/bin/env python
 """Headless in-theme gate for the Poitou layout HDA.
 
 Run under hython, in an isolated process (see run_intheme_gate.ps1):
@@ -110,6 +110,27 @@ REQUIRED_OUTPUTS = (
     "output_skirt_mesh",
     "output_water",
     "output_masonry",
+    "output_generated",
+)
+
+# The generated element set, by the prim group each generator writes.
+# A generator that silently stops emitting is the failure mode this is
+# here to catch: the level still cooks, it is just quietly missing a
+# church.
+REQUIRED_GENERATED_GROUPS = (
+    "nave_wall",       # the abbey nave
+    "westwork",        # the 1080 westwork
+    "gallery_arcade",  # the gallery on belt arches
+    "buttress",        # the 13th-c. buttresses
+    "apse",            # the semicircular apse
+    "narthex",         # the narthex in front of the westwork
+    "foundation",      # the soubassement under the houses
+    "lane",            # the village lane ribbons
+    "crossing_deck",   # the lane crossings
+    "crossing_parapet",
+    "roof",            # the village roofs
+    "poplar_trunk",    # the generated canal-bank poplars
+    "poplar_crown",
 )
 
 
@@ -269,35 +290,50 @@ def main():
         report["scale_check"] = "not measured yet - run Tools/Editor/poitou_intheme_assets.py"
         failures.append("no scale cache - run Tools/Editor/poitou_intheme_assets.py before trusting this gate")
 
-    # ---- 5. the GENERATED masonry is real and in-theme ----------------
-    # The revetment is geometry the HDA BUILDS (every stone is generated
-    # on the French-Romanesque grammar), not meshes it places, so it is
-    # checked on its own terms: it must cook non-empty, and every
-    # material it assigns must be a project material, never an engine
-    # default.  The generator node is checked directly; output_masonry is
-    # the UE-facing output of the same geometry.
-    mas = find_out(node, "output_masonry")
-    gen = find_out(node, "REVETMENT_coursed_ashlar")
-    src = gen if gen is not None else mas
-    if src is None:
-        failures.append("no masonry generator in the HDA (REVETMENT_coursed_ashlar / output_masonry)")
-    else:
+    # ---- 5. the GENERATED geometry is real, in-theme and complete ------
+    # The revetment and the element set are geometry the HDA BUILDS (every
+    # stone is generated on the shared kit's French-Romanesque grammar),
+    # not meshes it places, so they are checked on their own terms: they
+    # must cook non-empty, every material they assign must be a project
+    # material, and every element in the programme must actually emit.
+    for _out_name, _fallback in (("output_masonry", "REVETMENT_coursed_ashlar"),
+                                 ("output_generated", "merge_generated_elements")):
+        src = find_out(node, _out_name)
+        if src is None:
+            src = find_out(node, _fallback)
+        if src is None:
+            failures.append("no generated geometry node for %s" % _out_name)
+            continue
         mg = src.geometry()
         prims = len(mg.prims()) if mg is not None else 0
         mats = {}
-        for pr in mg.prims():
-            a = pr.attribValue("unreal_material")
-            if a:
-                mats[a] = mats.get(a, 0) + 1
-        report["masonry"] = {"prims": prims, "materials": mats, "node": src.name()}
-        log("masonry: %d prims from %s, materials=%s" % (prims, src.name(), json.dumps(mats)))
+        groups = {}
+        if mg is not None:
+            for pr in mg.prims():
+                a = pr.attribValue("unreal_material")
+                if a:
+                    mats[a] = mats.get(a, 0) + 1
+                try:
+                    g = pr.attribValue("element") or ""
+                except Exception:
+                    g = ""
+                if g:
+                    groups[g] = groups.get(g, 0) + 1
+        report.setdefault("generated", {})[_out_name] = {
+            "prims": prims, "materials": mats, "groups": groups}
+        log("generated %-18s %d prims, %d group(s)" % (_out_name, prims, len(groups)))
         if prims == 0:
-            failures.append("the masonry generator cooked empty - no revetment geometry")
+            failures.append("%s cooked empty - the generator produced no geometry" % _out_name)
         for m, n in mats.items():
             if m.startswith("/Engine/"):
-                failures.append("masonry uses an engine default material: %s x%d" % (m, n))
+                failures.append("%s uses an engine default material: %s x%d" % (_out_name, m, n))
             elif not m.startswith("/Game/"):
-                failures.append("masonry uses a non-project material: %s" % m)
+                failures.append("%s uses a non-project material: %s" % (_out_name, m))
+        if _out_name == "output_generated":
+            for g in REQUIRED_GENERATED_GROUPS:
+                if groups.get(g, 0) == 0:
+                    failures.append("the generated element set has no '%s' prims - "
+                                    "that generator is not emitting" % g)
 
     report["failures"] = failures
     report["result"] = "PASS" if not failures else "FAIL"

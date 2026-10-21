@@ -301,8 +301,33 @@ o4 = geo.createNode("output", "output_water"); o4.parm("outputidx").set(4); o4.s
 # module, 0.6 m course, staggered joints, chaine/arase band every 3
 # courses, 0.45 m ashlar leaf over a 0.9 m rubble core, refend base).
 rc = geo.createNode("resample", "revetment_resample"); rc.setInput(0, CANALS); rc.parm("length").set(0.6)
-rv = wrangle("REVETMENT_coursed_ashlar", open(os.path.join(HERE, "snip", "revet.vex")).read(), 0, [rc, TERRAIN])
+rv = wrangle("REVETMENT_coursed_ashlar", _S("kit.vex") + _S("revet.vex"), 0, [rc, TERRAIN])
 o5 = geo.createNode("output", "output_masonry"); o5.parm("outputidx").set(5); o5.setInput(0, rv)
+
+# --- output 6: the GENERATED element set, all off the SAME kit ------------
+# snip/kit.vex is the shared masonry grammar (0.6 m module and course,
+# 2.4 m bay, ashlar leaf over rubble core, chaine/arase bands, refends,
+# arches, vertex paint).  Every generator includes it, so the canal
+# revetment, the abbey, the foundations, the lanes, the crossings, the
+# roofs and the poplars are the SAME building system, not seven styles.
+#
+# They ship as ONE output, not seven: the UE-side Houdini Engine asset
+# would otherwise need a new output slot per generator (and the editor is
+# not ours to touch), and one merged output keeps the element set as one
+# assembly - which is how the level is actually dressed.  The elements are
+# told apart by prim group and by their material.
+_KIT = _S("kit.vex")
+ab_g = wrangle("ABBEY_maillezais", _KIT + _S("abbey.vex"), 0, [geo.createNode("null", "empty_abbey"), TERRAIN])
+fd_g = wrangle("FOUNDATIONS_soubassement", _KIT + _S("found.vex"), 0, [POINTS, TERRAIN])
+ln_g = wrangle("LANES_ribbons", _KIT + _S("lane.vex"), 0, [POINTS, TERRAIN])
+cr_res = geo.createNode("resample", "crossing_resample"); cr_res.setInput(0, CANALS); cr_res.parm("length").set(2.0)
+cr_g = wrangle("CROSSINGS_bridges", _KIT + _S("cross.vex"), 0, [cr_res, TERRAIN, POINTS])
+rf_g = wrangle("ROOFS_tiles", _KIT + _S("roof.vex"), 0, [POINTS, TERRAIN])
+pl_g = wrangle("POPLAR_columnar", _KIT + _S("poplar_gen.vex"), 0, [POINTS, TERRAIN])
+gen = geo.createNode("merge", "merge_generated_elements")
+for _i, _n in enumerate([ab_g, fd_g, ln_g, cr_g, rf_g, pl_g]):
+    gen.setInput(_i, _n)
+o6 = geo.createNode("output", "output_generated"); o6.parm("outputidx").set(6); o6.setInput(0, gen)
 los = wrangle("abbey_sightline", r"""
 vector e=@P+{0,1.7,0}; vector a=set(830, volumesample(1,"height",{830,0,870})+12, 870); int ok=1;
 for(float k=0.02;k<0.98;k+=0.01){ vector s=lerp(e,a,k); if(volumesample(1,"height",s)>s.y){ ok=0; break; } }
@@ -375,22 +400,69 @@ f_mas.addParmTemplate(hou.FloatParmTemplate("revetment_barrier_height", "Central
 f_mas.addParmTemplate(hou.StringParmTemplate("masonry_ashlar_material", "Ashlar facing material", 1, default_value=("/Game/Melodia/Meshes/Poitou/M_Tufa_Stone_Blocks.M_Tufa_Stone_Blocks",)))
 f_mas.addParmTemplate(hou.StringParmTemplate("masonry_core_material", "Rubble core material", 1, default_value=("/Game/Melodia/Meshes/Poitou/M_Limestone_Rubble_Core.M_Limestone_Rubble_Core",)))
 f_mas.addParmTemplate(hou.StringParmTemplate("masonry_band_material", "Chaine / arase band material", 1, default_value=("/Game/EnvSandbox/Poitou/Materials/MI_Poitou_Arase_Brick.MI_Poitou_Arase_Brick",)))
+f_mas.addParmTemplate(hou.StringParmTemplate("masonry_roof_material", "Roof tile material", 1, default_value=("/Game/EnvSandbox/Poitou/Materials/MI_Poitou_Tile.MI_Poitou_Tile",)))
+f_mas.addParmTemplate(hou.StringParmTemplate("foundation_material", "Foundation / plinth material", 1, default_value=("/Game/Melodia/Meshes/Poitou/M_Poitou_Stone_Plinth.M_Poitou_Stone_Plinth",)))
+f_mas.addParmTemplate(hou.StringParmTemplate("lane_material", "Lane surface material", 1, default_value=("/Game/EnvSandbox/Poitou/Materials/MI_Poitou_Ruin_Limestone.MI_Poitou_Ruin_Limestone",)))
+f_mas.addParmTemplate(hou.StringParmTemplate("roof_material", "Village roof material", 1, default_value=("/Game/EnvSandbox/Poitou/Materials/MI_Poitou_Tile.MI_Poitou_Tile",)))
+f_mas.addParmTemplate(hou.StringParmTemplate("poplar_bark_material", "Poplar bark material", 1, default_value=("/Game/Melodia/Meshes/Poitou/M_Ash_Bark.M_Ash_Bark",)))
+f_mas.addParmTemplate(hou.StringParmTemplate("poplar_foliage_material", "Poplar foliage material", 1, default_value=("/Game/EnvSandbox/Poitou/Materials/MI_Poitou_Poplar_Band1.MI_Poitou_Poplar_Band1",)))
+f_mas.addParmTemplate(hou.FloatParmTemplate("lane_length", "Village lane length (m)", 1, default_value=(160.0,)))
+# --- the Maillezais abbey (the canon's landmark) ---
+f_mas.addParmTemplate(hou.IntParmTemplate("abbey_bays", "Abbey nave bays", 1, default_value=(7,), min=1, max=24))
+f_mas.addParmTemplate(hou.FloatParmTemplate("abbey_bay_length", "Abbey bay length (m)", 1, default_value=(2.4,)))
+f_mas.addParmTemplate(hou.FloatParmTemplate("abbey_nave_width", "Abbey nave width (m)", 1, default_value=(14.4,)))
+f_mas.addParmTemplate(hou.FloatParmTemplate("abbey_wall_height", "Abbey wall height (m)", 1, default_value=(13.2,)))
+f_mas.addParmTemplate(hou.FloatParmTemplate("abbey_gallery_height", "Abbey gallery sill (m)", 1, default_value=(7.2,)))
+f_mas.addParmTemplate(hou.FloatParmTemplate("abbey_westwork_height", "Abbey westwork height (m)", 1, default_value=(15.6,)))
+f_mas.addParmTemplate(hou.FloatParmTemplate("abbey_portal_span", "Abbey portal span (m)", 1, default_value=(3.6,)))
 for f in (f_live, f_ctl, f_rise, f_iles, f_v, f_hz, f_mas): ptg.append(f)
 
 d.setParmTemplateGroup(ptg)
 d.save(hpath, hda)
 hda.matchCurrentDefinition()
 print("HDA", hpath)
+# report every node error BEFORE the test cook, so a generator that fails
+# to compile is named instead of surfacing as a dead output
+for _n in hda.allSubChildren():
+    if _n.errors():
+        print("  NODE ERROR", _n.path(), _n.errors())
 # --- test cook both resolutions ---
+def _stat(node_name):
+    n = hda.node(node_name)
+    if n is None:
+        return "MISSING"
+    g = n.geometry()
+    if g is None:
+        return "NO-GEOMETRY"
+    return "%d pts / %d prims" % (len(g.points()), len(g.prims()))
+
 for fr in (0, 1):
     hda.parm("full_res").set(fr)
-    t0 = time.time(); g = hda.node("output_landscape").geometry(); hda.node("output_points").geometry(); hda.node("output_route_curve").geometry()
-    hv = [p for p in g.prims() if p.attribValue("name") == "height"][0]
-    print("full_res", fr, "cook %.2fs" % (time.time() - t0), "res", hv.resolution(), "layers", [p.attribValue("name") for p in g.prims()],
-          "pts", len(hda.node("output_points").geometry().points()), "route_pts", len(hda.node("output_route_curve").geometry().points()), "skirt_prims", len(hda.node("output_skirt_mesh").geometry().prims()), "water_prims", len(hda.node("output_water").geometry().prims()))
-    rg=hda.node("output_route_curve").geometry(); los=[p.attribValue("abbey_los") for p in rg.points()]; print("  abbey_sightline_pct %.1f" % (100.0*sum(los)/max(1,len(los))))
-    cw=hda.node("IN_CANALS").geometry(); print("  canal widths", sorted(set(round(p.attribValue("width"),2) for p in cw.prims())))
-    from collections import Counter; print("  types", dict(Counter(p.attribValue("type") for p in hda.node("output_points").geometry().points())))
+    t0 = time.time()
+    for _o in ("output_landscape", "output_points", "output_route_curve",
+               "output_skirt_mesh", "output_water", "output_masonry",
+               "output_generated"):
+        print("  cook[%d] %-20s %s" % (fr, _o, _stat(_o)))
+    g = hda.node("output_landscape").geometry()
+    if g is not None:
+        hv = [p for p in g.prims() if p.attribValue("name") == "height"][0]
+        print("full_res", fr, "cook %.2fs" % (time.time() - t0), "res", hv.resolution(),
+              "layers", [p.attribValue("name") for p in g.prims()])
+    rg = hda.node("output_route_curve").geometry()
+    if rg is not None:
+        los = [p.attribValue("abbey_los") for p in rg.points()]
+        print("  abbey_sightline_pct %.1f" % (100.0*sum(los)/max(1,len(los))))
+    cw = hda.node("IN_CANALS").geometry()
+    if cw is not None:
+        print("  canal widths", sorted(set(round(p.attribValue("width"),2) for p in cw.prims())))
+    op = hda.node("output_points").geometry()
+    if op is not None:
+        from collections import Counter
+        print("  types", dict(Counter(p.attribValue("type") for p in op.points())))
+    # every node error, now that the graph has cooked
+    for _n in hda.allSubChildren():
+        if _n.errors():
+            print("  NODE ERROR", _n.name(), str(_n.errors())[:300])
 mg = None
 _mn = hda.node("output_masonry")
 if _mn is None:
@@ -410,7 +482,7 @@ if _rv is not None:
         mm = Counter(pr.attribValue("unreal_material") for pr in _rg.prims()); print("  revetment materials", dict(mm))
 if _mn is not None:
     mg = _mn.geometry()
-    print("  masonry output prims", (len(mg.prims()), len(mg.vertices())) if mg is not None else "NONE")
+    print("  masonry output prims", (len(mg.prims()), len(mg.points())) if mg is not None else "NONE")
 else:
     print("  masonry output NOT FOUND")
 hda.parm("full_res").set(0)

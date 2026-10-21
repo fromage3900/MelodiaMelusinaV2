@@ -722,3 +722,125 @@ the audit and the gate. The external v6 folder is no longer a build input.
 Lombardy poplar). Whether faux appareil is acceptable for distant walls. The six lost element
 builders (foundations / lanes / crossings / roofs), which survive only as receipts. And the UE-side
 HDA asset needs a sixth output slot for `output_masonry`, which needs the editor.
+## 11. The offline HDA programme - the lens, and what we build next
+
+> This section is the execution plan for the whole Poitou programme. It lives here, in the build
+> contract, because a plan document is not a second authority - AGENTS.md is explicit that there
+> is one status document (`CURRENT_STATE.md`) and one build contract (this file). Everything below
+> is executed HEADLESS: no editor, no GPU, no human in the loop until the gate is green.
+
+### 11.0 The lens - the rule every generator is judged by
+
+**Geometry is the silhouette. Paint is the finish. One kit, many assemblies.**
+
+This is the Infinity Nikki lesson applied to Poitou, and it is the reason the programme is a
+programme and not a shopping list of assets:
+
+* **The silhouette is BUILT.** Coursing, arches, buttress steps, roof pitch, the columnar crown of
+  a poplar, the step of a quay - all geometry, all on the governing meter (0.6 m beat, 2.4 m bay),
+  all generated in the HDA.
+* **The finish is PAINTED.** Lime-wash, the damp band, moss, ivy, the per-course tile hue - all
+  vertex paint read by the ONE toon master. A surface can carry four zones without four textures.
+* **False joints are PAINT, never geometry.** Faux appareil belongs in the master, on the paint
+  layer, wherever the silhouette does not need it. That is the single biggest cost saving in the
+  programme and it is free.
+* **One kit, many assemblies.** Every generator includes `snip/kit.vex`. The canal revetment, the
+  abbey, the houses, the quay and the poplars are ONE building system with different parameters -
+  not seven styles that happen to coexist in a level.
+* **The gate is the discipline.** A generator is done when it compiles, cooks non-empty, emits the
+  element groups the gate names, and uses project materials only. A generator that silently stops
+  emitting is a FAILURE, not a smaller level. The gate is what makes expanding the geometry safe:
+  every generator added since 2026-10-21 was caught by it, twice, before it shipped.
+
+### 11.1 Where the programme stands (measured 2026-10-21)
+
+`Tools/Poitou/snip/kit.vex` is the shared grammar: `kit_box`, `kit_wall_stone`, `kit_wall`,
+`kit_arch`, `kit_buttress`, `kit_slope`, `kit_gable`, `kit_ribbon`, `kit_taper`, `kit_faux_mask`.
+It fixes the constants the canon fixes: 0.6 m module and course, 2.4 m bay, 14.4 m = 6 bays,
+0.45 m ashlar leaf over a 0.9 m rubble core, a chaine/arase band every 3 courses through the full
+thickness, a rusticated refend base, 2 cm dry joints, semicircular arches only, and the vertex paint
+convention R=lime-wash G=damp B=moss A=ivy.
+
+Seven generators ship, all off that kit, all gated:
+
+| generator | element | measured output |
+|---|---|---|
+| `revet.vex` | the canal-du-Midi section: two retaining walls + the central barrier | **329,439 prims** |
+| `abbey.vex` | Maillezais: 7-bay nave, 1080 westwork, narthex, gallery on belt arches, splayed buttresses, apse, gable roof | 13,860 nave + 13,266 westwork + 5,580 apse + 504 arcade + 504 lancets + 288 buttresses + 36 portal + 144 roof + 54 apse roof |
+| `found.vex` | the soubassement under every village house | **150,984 prims** |
+| `lane.vex` | the village lane ribbons with kerbs, dodging the houses | **13,536 prims** |
+| `cross.vex` | the lane crossings - deck, parapet, piers | 30 + 60 + 60 prims |
+| `roof.vex` | the village roofs, low-pitch canal tile, per-course hue jitter | **13,080 prims** |
+| `poplar_gen.vex` | the canal-bank poplar, generated: tapering trunk + columnar crown | 33,858 + 18,810 prims |
+
+**596,382 generated prims in total**, and the gate asserts every one of the 18 element groups is
+present by name. The near poplar rows are no longer instanced at all: the poplar is generated,
+because the in-theme tree meshes are broad-crowned European trees and a stretched hornbeam is not
+a poplar. The far horizon bands stay instanced - at 1.3-2.6 km a columnar poplar is a smudge and
+a real tree reads as a tree.
+
+### 11.2 The backlog, in priority order
+
+Priority is by what a still of the P0 walk must contain. P0 is the walk (bedroom -> house ->
+village -> canal -> departure), so the village and the canal outrank everything else.
+
+| # | generator | what it must emit | the gate assertion | why it is worth it |
+|---|---|---|---|---|
+| **P0.1** | `house.vex` | the village house shell: walls in courses, a round-arched tufa door surround, an oak door, shutters, a chimney, the soubassement under it | `house_wall`, `house_door_surround`, `house_door_leaf`, `house_shutter`, `house_chimney` | the 105 village houses are ONE instanced mesh with no generated detail, and the village is beat 3 of the walk |
+| **P0.2** | `church.vex` | the village church: nave, porch, bell tower, slate spire | `church_nave`, `church_tower`, `church_spire` | the church is the heart of the village; the route passes it |
+| **P0.3** | `door.vex` | the door and the fence - the last two elements with NO in-theme equivalent (owner decision 3). Both become masonry: a tufa-framed round-arched opening, and a low rubble wall with an iron rail | `door_surround`, `door_leaf`, `fence_wall`, `fence_rail` | closes the last substitution gap in the programme |
+| **P1.1** | `quay.vex` | the maison eclusiere (11-12 x 7-8 m) and the quay walls | `lock_house`, `quay_wall` | the canal-du-Midi section is beat 4, and the lock house is the building the whole canal system exists for |
+| **P1.2** | `jetty.vex` | the tarred-oak pilings and the plank walkway (the palette's "black keys") | `jetty_piling`, `jetty_deck` | the water's edge is where the eye goes, and the barques need somewhere to lie |
+| **P1.3** | `bank.vex` | the steps down to the water, the mooring rings, the towpath edging | `bank_step`, `mooring_ring` | the bank is where the level is read from eye height |
+| **P2.1** | `reed.vex` | the reed beds as generated geometry along the canal | `reed_clump` | today the reeds are an instanced grass card; the marsh is a whole beat of the mood |
+| **P2.2** | `ivy.vex` | the ivy on the ruin (vertex channel A) and the moss breakup | `ivy_mat` | the canon's A channel is unused; ivy is what makes a ruin romantic |
+| **P2.3** | `quoin.vex` | the dressed quoins and the tufa string courses on the house corners | `quoin`, `string_course` | cheap, and it is what makes a rendered-rubble wall read as built |
+| **P3.1** | `clos.vex` | the walled garden (clos) with the fig trees and the vine rows | `clos_wall`, `fig_tree`, `vine_row` | the clos is the Poitou house garden and it is what makes a house a home |
+| **P3.2** | `boat.vex` | the barque hull, generated: tarred oak, iron hardware | `boat_hull`, `boat_iron` | six barques are placed; they should be built, not instanced |
+| **P3.3** | `bird.vex` | the flock, against the existing AE layer (`Tools/Poitou/ae_poitou_flockloop.py`) | `bird` | the marsh is alive; the AE layer already exists |
+| **P4** | `appareil.vex` | the faux-appareil mask writer for distant walls | the `faux_joint` attribute is present on the masonry | a PAINT feature, not geometry - the cheap path to distant walls |
+
+### 11.3 How we execute it - headless, one command, gated
+
+```
+Tools\Poitou\run_intheme_gate.ps1 -Build -Measure
+```
+
+1. **BUILD** - `hython Tools/Poitou/build_poitou_hda.py` cooks the v6 HDA from the repo sources and
+   writes `Tools/Poitou/hda/poitou_layout_live.hdalc` + the test hip. Every node error is printed.
+2. **MEASURE** - `UnrealEditor-Cmd -run=pythonscript Tools/Editor/poitou_intheme_assets.py` parses
+   `snip/inst.vex`, measures every instanced mesh in Unreal and checks the axis contract.
+3. **GATE** - `hython Tools/Poitou/poitou_intheme_gate.py` cooks the HDA and asserts: every output
+   cooks non-empty; every instance is in-theme; the vocabulary is complete; every scale divisor
+   matches its measured mesh; every generated element group named in 11.2 is present; every
+   material a generator assigns is a project material. The receipt lands in
+   `Saved/Audit/PoitouConvergence_20261020/intheme_gate.json`.
+
+**A generator is done when the gate is green.** Not when it "looks right" - a screenshot is the
+editor's job, and the editor is the owner's.
+
+### 11.4 The UE-side wiring (needs the editor, and only the editor)
+
+The HDA now has two generated outputs: `output_masonry` (the revetment) and `output_generated` (the
+element set). The UE-side Houdini Engine asset `poitou_layout_live_v6.uasset` needs **two** output
+slots added and wired, and the two generated outputs need `unreal_material` mapping to material
+slots. That is the one piece of this programme that cannot be done headlessly, because the editor
+is the owner's live session.
+
+### 11.5 The paint layer (the part that makes the geometry cheap)
+
+The toon master already carries the layer stack - lime-wash, the damp band, moss, weathering - and
+the generators write R/G/B/A per stone. Two things are still owed there, and both need a material
+edit (ask-first, `Content/Materials/` is on the never-touch list):
+
+* the **A channel** is not read by the master yet, so the generated ivy is invisible until it is;
+* **faux appareil** needs a joint-mask input in the master, fed by the `faux_joint` vertex
+  attribute the kit writes.
+
+### 11.6 Open owner decisions (unchanged, still owed)
+
+1. **The poplar** - the tree is now generated, which settles the art gap, but a Poitou poplar
+   deserves a real trunk profile rather than a stack of drums.
+2. **Faux appareil** - acceptable for distant walls? (P4 above assumes yes.)
+3. **`p4 submit -c 292`** - the Kenney retirement is still an unsubmitted Perforce changelist.
+4. The two stale remote branches, and the primary checkout's reconciliation with `origin/main`.

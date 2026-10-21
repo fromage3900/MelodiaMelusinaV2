@@ -1,0 +1,46 @@
+// =====================================================================
+// POITOU POPLAR - the canal-bank poplar, generated.
+// ---------------------------------------------------------------------
+// The Poitou canal-bank row IS a poplar row: tall, narrow, columnar, and
+// the thing that reads at a glance along the bief.  There is no poplar
+// mesh in the project, so the tree is GENERATED here instead of instanced:
+// a tapering trunk and a columnar crown of stacked drums, with the
+// silhouette doing the work and the material carrying the paint.
+//
+// The row height comes from the layout (25-35 m near, 24-34 m on the far
+// bands); the crown is narrow, which is what makes it a poplar and not a
+// hornbeam.
+//
+// Input 0: the layout points (type "poplar" / "poplar_band")
+// Input 1: the terrain
+// =====================================================================
+
+string MAT_BARK    = chs("../poplar_bark_material");
+string MAT_FOLIAGE = chs("../poplar_foliage_material");
+
+int np = npoints(0);
+for(int i=0;i<np;i++){
+    string t = point(0, "type", i);
+    if(t != "poplar" && t != "poplar_band") continue;
+    vector P = point(0, "P", i);
+    float hm = point(0, "height_m", i);
+    if(hm < 4.0) hm = 25.0;
+    float band = (t == "poplar_band") ? 1.0 : 0.0;
+    // the far bands are a silhouette only: fewer, coarser drums
+    int drums = (band > 0.5) ? 5 : 9;
+    int crown_drums = (band > 0.5) ? 3 : 5;
+    float y0 = volumesample(1, "height", P) - 0.2;
+    // a slight lean and a per-tree twist, so the row is not a fence
+    float seed = float(i)*1.7;
+    float lean = (rand(seed)-0.5)*0.06;
+    vector axis = set(lean, 1.0, (rand(seed+3.1)-0.5)*0.06);
+    vector base = P; base.y = y0;
+    // the trunk: 45% of the height, tapering from 0.42 m to 0.16 m
+    float trunk_h = hm*0.45;
+    kit_taper(base, axis, trunk_h, 0.42, 0.16, drums, rand(seed+7.7)*1.2,
+              MAT_BARK, 0.2, 0.5, 0.3, 0.0, "poplar_trunk");
+    // the crown: columnar, from 45% to 100%, 1.7 m across at the base
+    vector cb = base + normalize(axis)*trunk_h;
+    kit_taper(cb, axis, hm*0.55, 1.70, 0.85, crown_drums, rand(seed+11.3)*1.4,
+              MAT_FOLIAGE, 0.1, 0.0, 0.45, 0.0, "poplar_crown");
+}

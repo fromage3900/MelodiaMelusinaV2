@@ -1,0 +1,288 @@
+// =====================================================================
+// POITOU ABBEY - Maillezais, generated from the kit.
+// ---------------------------------------------------------------------
+// The canon, as researched:
+//   * a 7-bay nave (the last 3 bays remodelled in the Gothic; the first 4
+//     Romanesque), 2.4 m bays on the governing meter;
+//   * the 1080 westwork with a narthex in front of it;
+//   * galleries on belt arches - a blind arcade at gallery level;
+//   * the 13th-century buttresses with splayed base bevels;
+//   * tuffeau (tufa) masonry, semicircular arches only;
+//   * a semicircular apse at the east end.
+// The abbey stands on the levelled pad on the rise, at the canon centre.
+//
+// Geometry is the silhouette, paint is the finish: the coursing, the
+// arches, the buttress steps and the roof pitch are built; the lime wash,
+// the damp band and the moss are written as vertex paint.
+// =====================================================================
+
+string MAT_TUFA   = chs("../masonry_ashlar_material");
+string MAT_CORE  = chs("../masonry_core_material");
+string MAT_BRICK = chs("../masonry_band_material");
+string MAT_ROOF  = chs("../masonry_roof_material");
+
+float CENTRE_X = 830.0;
+float CENTRE_Z = 870.0;
+float ar   = radians(chf("../CONTROLS/abbey_rot"));
+vector along  = set(cos(ar), 0, sin(ar));     // the nave axis
+vector across = set(-sin(ar), 0, cos(ar));    // across the nave
+vector centre = set(CENTRE_X, 0, CENTRE_Z);
+
+int   BAYS   = chi("../abbey_bays");           // 7
+float BAYLEN = chf("../abbey_bay_length");     // 2.4
+float NAVEW  = chf("../abbey_nave_width");     // 14.4
+float WALLH  = chf("../abbey_wall_height");    // 13.2
+float GALLH  = chf("../abbey_gallery_height"); // 7.2  (gallery sill)
+float WESTH  = chf("../abbey_westwork_height");
+float PORTAL = chf("../abbey_portal_span");
+
+float NAVELEN = float(BAYS) * BAYLEN;
+float HALFW   = NAVEW * 0.5;
+float THICK   = POITOU_LEAF + POITOU_CORE;
+
+// the levelled pad the abbey stands on
+float pad = volumesample(1, "height", centre);
+float base = pad;
+
+// ---------------------------------------------------------------------
+// the nave walls, with lancet windows cut through them
+// ---------------------------------------------------------------------
+for(int side=0; side<2; side++){
+    float sgn = (side==0) ? -1.0 : 1.0;
+    vector normal = across * sgn;               // the outward face
+    vector wbase  = centre + across*(HALFW*sgn);
+    // the wall runs along the nave; the westwork takes the first bay
+    float runlen = NAVELEN;
+    int nc = max(1, int(floor(WALLH/POITOU_COURSE)));
+    int nm = max(1, int(floor(runlen/POITOU_MODULE)));
+    for(int c=0;c<nc;c++){
+        float yb = base + c*POITOU_COURSE;
+        float ch = min(POITOU_COURSE, base+WALLH-yb);
+        if(ch <= 0.01) break;
+        int banded = (c % POITOU_BANDN == 0);
+        float refend = (c==0) ? POITOU_PROUD : 0.0;
+        float stagger = (c % 2) ? POITOU_MODULE*0.5 : 0.0;
+        float ash_h = banded ? ch - POITOU_BANDH : ch;
+        float damp = clamp(1.0 - (c*POITOU_COURSE)/0.8, 0.0, 1.0);
+        float moss = clamp((c*POITOU_COURSE+ch - 0.6)/0.6, 0.0, 1.0) * (sgn<0 ? 1.0 : 0.5);
+        for(int m=0;m<nm;m++){
+            float u0 = m*POITOU_MODULE + stagger;
+            if(u0 >= runlen) break;
+            float u1 = u0 + POITOU_MODULE;
+            float uc = (u0+u1)*0.5;
+            float yc = yb + ash_h*0.5;
+            // ---- openings ------------------------------------------------
+            // a lancet window per bay at gallery level
+            int skip = 0;
+            float sill = base + GALLH + 0.6;
+            float head = sill + 2.4;
+            for(int b=0;b<BAYS;b++){
+                float bc = (float(b)+0.5)*BAYLEN;
+                if(abs(uc-bc) < 0.55 && yc > sill && yc < head) skip = 1;
+            }
+            // the gallery arcade: a blind arch band at gallery level
+            float g0 = base + GALLH, g1 = base + GALLH + 1.2;
+            if(yc > g0 && yc < g1) skip = 1;
+            if(skip) continue;
+            vector ctr = wbase + along*(uc);
+            ctr.y = yb;
+            kit_wall_stone(ctr, along, normal, set(u0, u1, ash_h),
+                           set(damp, moss, refend), banded,
+                           MAT_TUFA, MAT_CORE, MAT_BRICK, "nave_wall");
+        }
+    }
+    // ---- the gallery arcade: small semicircular arches on the face -----
+    for(int b=0;b<BAYS;b++){
+        float bc = (float(b)+0.5)*BAYLEN;
+        vector spring = wbase + along*bc;
+        spring.y = base + GALLH + 1.2;
+        kit_arch(spring, along, normal, 1.8, 0.45, 0.4, 0.9,
+                 MAT_TUFA, 1.0, 0.0, 0.3, 0.0, "gallery_arcade");
+    }
+    // ---- the lancet window heads --------------------------------------
+    for(int b=0;b<BAYS;b++){
+        float bc = (float(b)+0.5)*BAYLEN;
+        float sill = base + GALLH + 0.6;
+        vector spring = wbase + along*bc;
+        spring.y = sill + 1.2;
+        kit_arch(spring, along, normal, 1.1, 0.45, 0.45, 0.55,
+                 MAT_TUFA, 1.0, 0.0, 0.35, 0.0, "lancet_head");
+    }
+    // ---- the buttresses, splayed at the base --------------------------
+    for(int b=0;b<=BAYS;b++){
+        float u = float(b)*BAYLEN;
+        vector bp = wbase + along*u;
+        bp.y = base;
+        kit_buttress(bp, along, normal, 1.2, GALLH+1.2, 2.4, 3,
+                     MAT_TUFA, 1.0, 0.2, 0.45, 0.0, "buttress");
+    }
+}
+
+// ---------------------------------------------------------------------
+// the westwork (1080) and its narthex
+// ---------------------------------------------------------------------
+{
+    vector wbase = centre - along*(NAVELEN*0.5);
+    // the westwork block: two bays long, taller than the nave
+    float wlen = BAYLEN*2.0;
+    for(int side=0; side<2; side++){
+        float sgn = (side==0) ? -1.0 : 1.0;
+        vector normal = across*sgn;
+        vector wb = wbase + across*(HALFW*sgn);
+        int nc = max(1, int(floor(WESTH/POITOU_COURSE)));
+        int nm = max(1, int(floor(wlen/POITOU_MODULE)));
+        for(int c=0;c<nc;c++){
+            float yb = base + c*POITOU_COURSE;
+            float ch = min(POITOU_COURSE, base+WESTH-yb);
+            if(ch <= 0.01) break;
+            int banded = (c % POITOU_BANDN == 0);
+            float refend = (c==0) ? POITOU_PROUD : 0.0;
+            float stagger = (c % 2) ? POITOU_MODULE*0.5 : 0.0;
+            float ash_h = banded ? ch - POITOU_BANDH : ch;
+            float yc = yb + ash_h*0.5;
+            float damp = clamp(1.0 - (c*POITOU_COURSE)/0.8, 0.0, 1.0);
+            float moss = clamp((c*POITOU_COURSE+ch-0.6)/0.6, 0.0, 1.0);
+            for(int m=0;m<nm;m++){
+                float u0 = m*POITOU_MODULE + stagger;
+                if(u0 >= wlen) break;
+                float u1 = u0 + POITOU_MODULE;
+                float uc = (u0+u1)*0.5;
+                // the portal: a tall arched opening on the west face
+                int skip = 0;
+                if(side==0){
+                    float psill = base + 0.0;
+                    float phead = base + PORTAL;
+                    if(abs(uc - wlen*0.5) < PORTAL*0.5 && yc > psill && yc < phead) skip = 1;
+                }
+                if(skip) continue;
+                vector ctr = wb + along*(u0+POITOU_MODULE*0.5);
+                ctr.y = yb;
+                kit_wall_stone(ctr, along, normal, set(u0, u1, ash_h),
+                               set(damp, moss, refend), banded,
+                               MAT_TUFA, MAT_CORE, MAT_BRICK, "westwork");
+            }
+        }
+    }
+    // the west face of the westwork, with the portal arch over it
+    {
+        vector normal = -along;
+        vector wb = wbase - along*(0.0);
+        int nc = max(1, int(floor(WESTH/POITOU_COURSE)));
+        int nm = max(1, int(floor(NAVEW/POITOU_MODULE)));
+        for(int c=0;c<nc;c++){
+            float yb = base + c*POITOU_COURSE;
+            float ch = min(POITOU_COURSE, base+WESTH-yb);
+            if(ch <= 0.01) break;
+            int banded = (c % POITOU_BANDN == 0);
+            float refend = (c==0) ? POITOU_PROUD : 0.0;
+            float stagger = (c % 2) ? POITOU_MODULE*0.5 : 0.0;
+            float ash_h = banded ? ch - POITOU_BANDH : ch;
+            float yc = yb + ash_h*0.5;
+            float damp = clamp(1.0 - (c*POITOU_COURSE)/0.8, 0.0, 1.0);
+            float moss = clamp((c*POITOU_COURSE+ch-0.6)/0.6, 0.0, 1.0);
+            for(int m=0;m<nm;m++){
+                float u0 = m*POITOU_MODULE + stagger;
+                if(u0 >= NAVEW) break;
+                float u1 = u0 + POITOU_MODULE;
+                float uc = (u0+u1)*0.5;
+                int skip = 0;
+                if(abs(uc - NAVEW*0.5) < PORTAL*0.5 && yc < base+PORTAL) skip = 1;
+                if(skip) continue;
+                vector ctr = wb + across*(uc - NAVEW*0.5);
+                ctr.y = yb;
+                kit_wall_stone(ctr, across, normal, set(u0, u1, ash_h),
+                               set(damp, moss, refend), banded,
+                               MAT_TUFA, MAT_CORE, MAT_BRICK, "westwork");
+            }
+        }
+        // the portal arch
+        vector spring = wbase + across*0.0;
+        spring.y = base + PORTAL;
+        kit_arch(spring, across, -along, PORTAL, 0.6, 0.6, PORTAL*0.5,
+                 MAT_TUFA, 1.0, 0.1, 0.2, 0.0, "portal");
+    }
+    // the narthex: a lower block in front of the westwork
+    {
+        float nlen = BAYLEN*1.0;
+        vector nbase = wbase - along*(nlen*0.5);
+        for(int side=0; side<2; side++){
+            float sgn = (side==0) ? -1.0 : 1.0;
+            vector normal = across*sgn;
+            vector nb = nbase + across*(HALFW*0.6*sgn);
+            kit_wall(nb, along, normal, nlen, base, base+4.8, THICK,
+                     MAT_TUFA, MAT_CORE, MAT_BRICK, POITOU_BANDN, 1, 0.0, "narthex");
+        }
+        vector nf = nbase - along*(0.0);
+        kit_wall(nf, across, -along, NAVEW*0.6, base, base+4.8, THICK,
+                 MAT_TUFA, MAT_CORE, MAT_BRICK, POITOU_BANDN, 1, 0.0, "narthex");
+    }
+}
+
+// ---------------------------------------------------------------------
+// the apse: a semicircular east end, in radial wall segments
+// ---------------------------------------------------------------------
+{
+    vector ac = centre + along*(NAVELEN*0.5);
+    int SEG = 9;
+    float R = HALFW;
+    for(int s=0;s<SEG;s++){
+        float a0 = PI*0.5 + PI*float(s)/float(SEG);
+        float a1 = PI*0.5 + PI*float(s+1)/float(SEG);
+        vector p0 = ac + across*(R*cos(a0)) + set(0,0,R*sin(a0));
+        vector p1 = ac + across*(R*cos(a1)) + set(0,0,R*sin(a1));
+        vector seg = p1-p0; float sl = length(seg);
+        if(sl < 0.05) continue;
+        vector dir = seg/sl;
+        vector nrm = normalize(cross(dir, set(0,1,0)));
+        // the face points outward, away from the nave
+        vector mid = (p0+p1)*0.5;
+        vector outward = normalize(mid - ac);
+        kit_wall(mid - dir*(sl*0.5) + set(0, base, 0), dir, outward, sl, base, base+8.4, THICK,
+                 MAT_TUFA, MAT_CORE, MAT_BRICK, POITOU_BANDN, 1, 0.0, "apse");
+    }
+    // the apse roof: a half cone of tile courses
+    for(int s=0;s<SEG;s++){
+        float a0 = PI*0.5 + PI*float(s)/float(SEG);
+        float a1 = PI*0.5 + PI*float(s+1)/float(SEG);
+        vector p0 = ac + across*(R*cos(a0)) + set(0,0,R*sin(a0));
+        vector p1 = ac + across*(R*cos(a1)) + set(0,0,R*sin(a1));
+        vector mid = (p0+p1)*0.5; mid.y = base + 8.4;
+        vector seg = p1-p0; float sl = length(seg);
+        if(sl < 0.05) continue;
+        vector dir = seg/sl;
+        vector radial = normalize(mid - ac);
+        // a slab stepping in and up toward the apex
+        float rr = R*0.72;
+        vector rc = ac + radial*rr; rc.y = base + 11.4;
+        kit_box(rc, dir, set(0,1,0), radial, set(sl, 0.35, R*0.30),
+                MAT_ROOF, 0.2, 0.0, 0.6, 0.0, "apse_roof");
+    }
+}
+
+// ---------------------------------------------------------------------
+// the nave roof: a gable, ridge along the nave axis
+// ---------------------------------------------------------------------
+{
+    float eave = base + WALLH;
+    float ridge = base + WALLH + 5.4;
+    for(int side=0; side<2; side++){
+        float sgn = (side==0) ? -1.0 : 1.0;
+        vector ea = centre - along*(NAVELEN*0.5) + across*(HALFW*sgn);
+        vector eb = centre + along*(NAVELEN*0.5) + across*(HALFW*sgn);
+        ea.y = eave; eb.y = eave;
+        // the slope rises from the eave line to the ridge line
+        int rows = 12;
+        for(int r=0;r<rows;r++){
+            float f0 = float(r)/float(rows), f1 = float(r+1)/float(rows);
+            float y0 = eave + (ridge-eave)*f0, y1 = eave + (ridge-eave)*f1;
+            float x0 = HALFW*(1.0-f0), x1 = HALFW*(1.0-f1);
+            vector c = centre + across*(sgn*(x0+x1)*0.5);
+            c.y = (y0+y1)*0.5;
+            float slope = length(across*(x0-x1) + set(0,y1-y0,0));
+            vector slopeDir = normalize(across*(sgn*(x1-x0)) + set(0,y1-y0,0));
+            vector nrm = normalize(cross(slopeDir, along));
+            kit_box(c, along, slopeDir, nrm, set(NAVELEN, slope/1.0, 0.30),
+                    MAT_ROOF, 0.2, 0.0, 0.55, 0.0, "nave_roof");
+        }
+    }
+}
