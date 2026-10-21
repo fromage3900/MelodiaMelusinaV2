@@ -35,6 +35,7 @@
 [CmdletBinding()]
 param(
   [switch] $DryRun,
+  [switch] $ShowStats,
   [int] $Width = 3840,
   [int] $Height = 2160
 )
@@ -61,6 +62,7 @@ $pct = [math]::Round([math]::Min($Width / $panelW, $Height / $panelH) * 100.0)
 $pct = [math]::Max(100, [math]::Min(200, $pct))
 
 $execCmds = "r.ScreenPercentage $pct"
+if ($ShowStats) { $execCmds += ",stat unit" }
 $args = @(
   "`"$($Proj.FullName)`"",
   '-game',

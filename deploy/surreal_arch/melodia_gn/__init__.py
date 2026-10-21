@@ -152,5 +152,12 @@ _STACK_DESC = _core_mod.TREE_DESCRIPTIONS
 _STACK_CATMAP = _core_mod.TREE_CATEGORY_MAP
 _STACK_LABMAP = _core_mod.TREE_LABEL_MAP
 
+from . import blooms  # bloom family
+from . import trees     # tree primitive
+from . import grown_flower  # noqa: F401 - procedural grown flower builders
+from . import music_rail_aaa  # noqa: F401 - procedural music rail_aaa builders
+
 # ── leaf-card / hedge family (landing/blooms-v0.1) ───────────────────
 from . import hedge_clutter  # noqa: F401 - procedural hedge + foliage clutter
+
+from . import topiary_cards  # noqa: F401 - MEL_topiary_* with Leaf/Music/Bloom card collections

@@ -921,6 +921,138 @@ def build_foliage_clutter(group_name="MEL_foliage_clutter"):
     ])
 
 
+# ── MEL_topiary_heart ────────────────────────────────────────────────────
+def build_topiary_heart(group_name="MEL_topiary_heart"):
+    """Clipped heart topiary: two upper lobes + a pointed lower lobe, dense
+    leaf clusters over the heart-shaped shell. Cute Valentine's cap piece."""
+    tree, gin, gout = new_geometry_tree(group_name)
+    heart_size = add_float_param(tree, "Heart Size", 0.7, 0.1, 3.0)
+    crown_h = add_float_param(tree, "Crown Height", 1.1, 0.4, 4.0)
+    trunk_r = add_float_param(tree, "Trunk Radius", 0.05, 0.01, 0.3)
+    leaf_size = add_float_param(tree, "Leaf Size", 0.08, 0.01, 0.3)
+    leaves_per_cluster = add_int_param(tree, "Leaves Per Cluster", 5, 1, 12)
+    density = add_float_param(tree, "Foliage Density", 280.0, 10.0, 900.0)
+    seed = add_int_param(tree, "Seed", 44, 0, 99999999)
+    leaf_shape = add_float_param(tree, "Leaf Shape", 0.0, 0.0, 1.0)
+    trunk_geo = _topiary_trunk(tree, (-1200, 300), trunk_r, crown_h)
+
+    def _lobe(loc, sx, sy, sz, tx, ty, tz):
+        sh = safe_node(tree, "GeometryNodeMeshUVSphere", loc)
+        color_node(sh, "curve")
+        if "Segments" in sh.inputs:
+            sh.inputs["Segments"].default_value = 16
+        if "Rings" in sh.inputs:
+            sh.inputs["Rings"].default_value = 10
+        if "Radius" in sh.inputs:
+            sh.inputs["Radius"].default_value = 1.0
+        xf = safe_node(tree, "GeometryNodeTransform", (loc[0] + 200, loc[1]))
+        color_node(xf, "geometry")
+        link_sockets(tree, sh.outputs["Mesh"], xf.inputs["Geometry"])
+        link_sockets(tree, _combine(tree, (loc[0] + 100, loc[1] - 60), x=heart_size, y=_math(tree, "MULTIPLY", (loc[0] + 50, loc[1] - 80), heart_size, _const(tree, (loc[0], loc[1] - 100), sx)),
+                                    z=_math(tree, "MULTIPLY", (loc[0] + 50, loc[1] - 100), heart_size, _const(tree, (loc[0], loc[1] - 120), sz))),
+                     xf.inputs["Scale"])
+        link_sockets(tree, _combine(tree, (loc[0] + 100, loc[1] - 160), x=_const(tree, (loc[0], loc[1] - 180), tx),
+                                    y=_const(tree, (loc[0], loc[1] - 200), ty),
+                                    z=_const(tree, (loc[0], loc[1] - 220), tz)), xf.inputs["Translation"])
+        return xf.outputs["Geometry"]
+
+    left = _lobe((-1100, -150), 1.0, 1.0, 1.0, -0.28, 0.0, 0.18)
+    right = _lobe((-1100, -320), 1.0, 1.0, 1.0, 0.28, 0.0, 0.18)
+    bottom = _lobe((-1100, -490), 0.85, 0.75, 1.1, 0.0, 0.0, -0.32)
+    shell = _join_all(tree, (-800, -300), [left, right, bottom])
+
+    dist = safe_node(tree, "GeometryNodeDistributePointsOnFaces", (-550, -300))
+    color_node(dist, "instance")
+    link_sockets(tree, shell, dist.inputs["Mesh"])
+    try:
+        dist.distribute_method = "RANDOM"
+    except Exception:
+        pass
+    if "Density" in dist.inputs:
+        link_sockets(tree, density, dist.inputs["Density"])
+    if "Seed" in dist.inputs:
+        link_sockets(tree, seed, dist.inputs["Seed"])
+
+    cluster = _topiary_cluster(tree, (-400, -470), leaf_size, leaves_per_cluster, seed, petal=leaf_shape)
+    scatter = safe_node(tree, "GeometryNodeInstanceOnPoints", (-200, -300))
+    color_node(scatter, "instance")
+    link_sockets(tree, dist.outputs["Points"], scatter.inputs["Points"])
+    link_sockets(tree, cluster, scatter.inputs["Instance"])
+    if "Rotation" in scatter.inputs:
+        link_sockets(tree, _scatter_orient(tree, (-350, -420), seed, 31.0), scatter.inputs["Rotation"])
+    foliage = _realize(tree, (50, -300), scatter.outputs["Instances"], label="foliage")
+
+    body = _join_all(tree, (250, -300), [shell, foliage])
+    return _topiary_finish(tree, (450, -300), group_name, trunk_geo, body, "Heart Crown")
+
+
+# ── MEL_topiary_chladni ────────────────────────────────────────────────
+def build_topiary_chladni(group_name="MEL_topiary_chladni"):
+    """Cymatic crown topiary: four lobes arranged after a (2,2) Chladni
+    nodal pattern, dense leaf clusters. A sound-shaped crown."""
+    tree, gin, gout = new_geometry_tree(group_name)
+    crown_size = add_float_param(tree, "Crown Size", 0.65, 0.1, 3.0)
+    crown_h = add_float_param(tree, "Crown Height", 1.0, 0.4, 4.0)
+    trunk_r = add_float_param(tree, "Trunk Radius", 0.05, 0.01, 0.3)
+    leaf_size = add_float_param(tree, "Leaf Size", 0.07, 0.01, 0.3)
+    leaves_per_cluster = add_int_param(tree, "Leaves Per Cluster", 5, 1, 12)
+    density = add_float_param(tree, "Foliage Density", 300.0, 10.0, 900.0)
+    seed = add_int_param(tree, "Seed", 77, 0, 99999999)
+    leaf_shape = add_float_param(tree, "Leaf Shape", 0.0, 0.0, 1.0)
+    trunk_geo = _topiary_trunk(tree, (-1200, 300), trunk_r, crown_h)
+
+    def _lobe(loc, tx, ty, tz):
+        sh = safe_node(tree, "GeometryNodeMeshUVSphere", loc)
+        color_node(sh, "curve")
+        if "Segments" in sh.inputs: sh.inputs["Segments"].default_value = 14
+        if "Rings" in sh.inputs: sh.inputs["Rings"].default_value = 9
+        if "Radius" in sh.inputs: sh.inputs["Radius"].default_value = 1.0
+        xf = safe_node(tree, "GeometryNodeTransform", (loc[0]+200, loc[1]))
+        color_node(xf, "geometry")
+        link_sockets(tree, sh.outputs["Mesh"], xf.inputs["Geometry"])
+        link_sockets(tree, _combine(tree, (loc[0]+100, loc[1]-60), x=crown_size, y=crown_size, z=crown_size), xf.inputs["Scale"])
+        link_sockets(tree, _combine(tree, (loc[0]+100, loc[1]-160), x=_const(tree, (loc[0], loc[1]-180), tx), y=_const(tree, (loc[0], loc[1]-200), ty), z=_const(tree, (loc[0], loc[1]-220), tz)), xf.inputs["Translation"])
+        return xf.outputs["Geometry"]
+
+    a = _lobe((-1100,-150), -0.32, 0.0, 0.22)
+    b = _lobe((-1100,-320), 0.32, 0.0, 0.22)
+    c = _lobe((-1100,-490), -0.32, 0.0, -0.20)
+    d = _lobe((-1100,-660), 0.32, 0.0, -0.20)
+    shell = _join_all(tree, (-800,-380), [a, b, c, d])
+
+    dist = safe_node(tree, "GeometryNodeDistributePointsOnFaces", (-550,-380))
+    color_node(dist, "instance")
+    link_sockets(tree, shell, dist.inputs["Mesh"])
+    try: dist.distribute_method = "RANDOM"
+    except Exception: pass
+    if "Density" in dist.inputs: link_sockets(tree, density, dist.inputs["Density"])
+    if "Seed" in dist.inputs: link_sockets(tree, seed, dist.inputs["Seed"])
+    cluster = _topiary_cluster(tree, (-400,-470), leaf_size, leaves_per_cluster, seed, petal=leaf_shape)
+    scatter = safe_node(tree, "GeometryNodeInstanceOnPoints", (-200,-380))
+    color_node(scatter, "instance")
+    link_sockets(tree, dist.outputs["Points"], scatter.inputs["Points"])
+    link_sockets(tree, cluster, scatter.inputs["Instance"])
+    if "Rotation" in scatter.inputs:
+        link_sockets(tree, _scatter_orient(tree, (-350,-470), seed, 31.0), scatter.inputs["Rotation"])
+    foliage = _realize(tree, (50,-380), scatter.outputs["Instances"], label="foliage")
+    body = _join_all(tree, (250,-380), [shell, foliage])
+    return _topiary_finish(tree, (450,-380), group_name, trunk_geo, body, "Chladni Crown")
+
+
+register_builder(
+    "MEL_topiary_chladni", build_topiary_chladni,
+    "Cymatic Topiary",
+    "Cymatic crown topiary: four lobes arranged after a (2,2) Chladni nodal pattern.",
+    category="flora",
+)
+
+register_builder(
+    "MEL_topiary_heart", build_topiary_heart,
+    "Topiary Heart",
+    "Clipped heart topiary: two upper lobes + a pointed lower lobe, dense leaf clusters.",
+    category="flora",
+)
+
 register_builder(
     "MEL_foliage_clutter", build_foliage_clutter,
     "Foliage Clutter",
