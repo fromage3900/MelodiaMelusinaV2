@@ -6,6 +6,8 @@
 #include "MelodiaJRPGPartyBootstrapSubsystem.generated.h"
 
 class UWorld;
+class APawn;
+class APlayerController;
 struct FActorsInitializedParams;
 
 /**
@@ -57,6 +59,28 @@ private:
 	 */
 	UFUNCTION()
 	void HandleNarrativeFlagChanged(FName FlagId, bool bValue);
+
+	/**
+	 * Binds the exploration party-switch key (LeftControl) on the CONTROLLER
+	 * through the legacy action-name pipeline (UPlayerInput AddActionMapping +
+	 * UInputComponent::BindAction) that MelodiaTraversalComponent uses. The
+	 * binding is possess-safe: a possess swing (intro scripts, presentation
+	 * seed, the party switch itself) can clear pawn-level bindings, which is
+	 * the defect class that silently killed the earlier pawn-level hooks, so
+	 * the delegate lives on the controller's InputComponent, which is pushed
+	 * every frame and survives every possess. Bound once per controller;
+	 * re-seeded on map travel via the seed path. The Sir flight pawn and the
+	 * smoke test pawn keep their own Ctrl switch-back bindings on their pawn
+	 * components; this controller binding declines while they are possessed
+	 * so a single press never double-fires.
+	 */
+	void EnsurePartySwitchBinding();
+
+	void HandlePartySwitchKey();
+
+	void OnControllerPawnChanged(APawn* NewPawn);
+
+	TWeakObjectPtr<APlayerController> PartySwitchBoundController;
 
 	bool bSeededForCurrentWorld = false;
 	TWeakObjectPtr<UWorld> SeededWorld;

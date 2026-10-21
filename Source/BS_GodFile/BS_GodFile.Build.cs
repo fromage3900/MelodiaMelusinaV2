@@ -36,7 +36,10 @@ public class BS_GodFile : ModuleRules
 			"HarmonixMetasound"  // UMusicClockComponent
 		});
 
-		PrivateDependencyModuleNames.AddRange(new string[] { "UMG", "Slate", "SlateCore", "ApplicationCore", "HTTP", "Json", "NiagaraUIRenderer", "Sockets", "Networking" });
+		PrivateDependencyModuleNames.AddRange(new string[] { "UMG", "Slate", "SlateCore", "ApplicationCore", "HTTP", "Json", "NiagaraUIRenderer", "Sockets", "Networking",
+			// MelodiaLiveVoiceSubsystem binds UADSGraphNode::OnUnvoicedLine so silent
+			// dialogue nodes can be spoken live. ADS never depends on BS_GodFile (no cycle).
+			"AscentDialogueSystem" });
 
 		if (Target.bBuildEditor)
 		{

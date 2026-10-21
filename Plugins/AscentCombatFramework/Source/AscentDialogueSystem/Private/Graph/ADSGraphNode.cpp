@@ -26,6 +26,8 @@
 #include "ADSDialogueSubsystem.h"
 #include <Engine/Engine.h>
 
+FOnADSUnvoicedLine UADSGraphNode::OnUnvoicedLine;
+
 void UADSGraphNode::ActivateNode()
 {
 	Super::ActivateNode();
@@ -56,8 +58,11 @@ void UADSGraphNode::ActivateNode()
 			}
 		}
 		else {
-			// No sound assigned is a valid case: the node simply plays no audio.
-			UE_LOG(LogTemp, Verbose, TEXT("No SoundToPlay assigned for node: %s (skipping audio playback)"), *GetName());
+			// No sound assigned: offer the line to any live-voice listener
+			// (e.g. Melodia's dev-gated runtime TTS). With no listener bound
+			// this is exactly the old silent behaviour.
+			OnUnvoicedLine.Broadcast(Text.ToString(), PartecipantTag.ToString(), participant->GetOwner());
+			UE_LOG(LogTemp, Verbose, TEXT("No SoundToPlay assigned for node: %s (offered to live voice)"), *GetName());
 		}
 	}
 }

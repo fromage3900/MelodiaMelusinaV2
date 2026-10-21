@@ -233,6 +233,11 @@ bool UMelodiaNarrativeSubsystem::SetQuestActive(const FName QuestId, const bool 
 	return true;
 }
 
+bool UMelodiaNarrativeSubsystem::GetNarrativeFlag(const FName FlagId) const
+{
+	return NarrativeRecord.Flags.FindRef(FlagId);
+}
+
 bool UMelodiaNarrativeSubsystem::SetNarrativeFlag(const FName FlagId, const bool Value)
 {
 	const FString Intent = FString::Printf(TEXT("SetNarrativeFlag(%s)"), *FlagId.ToString());

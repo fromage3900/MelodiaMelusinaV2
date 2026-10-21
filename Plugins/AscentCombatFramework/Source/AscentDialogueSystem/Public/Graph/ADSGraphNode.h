@@ -17,6 +17,15 @@ class UAGSCondition;
 class UAGSAction;
 
 /**
+ * Fired when a dialogue node activates with NO authored SoundToPlay, so an
+ * external live-voice system (e.g. Melodia's dev-gated ElevenLabs subsystem
+ * in the game module) may speak the line at runtime. Authored audio always
+ * wins: this never fires when SoundToPlay is set. ADS itself stays
+ * provider-agnostic and never makes network calls.
+ */
+DECLARE_MULTICAST_DELEGATE_ThreeParams(FOnADSUnvoicedLine, const FString&, const FString&, AActor*);
+
+/**
  * Base class for all Dialogue Graph Nodes inside the Ascent Dialogue System.
  * Represents a single node of dialogue with associated participant, text, and optional sound.
  */
@@ -27,6 +36,9 @@ class ASCENTDIALOGUESYSTEM_API UADSGraphNode : public UAGSGraphNode {
     friend class UADSDialogue;
 
 public:
+    /** Broadcast for lines with no authored audio. See FOnADSUnvoicedLine. */
+    static FOnADSUnvoicedLine OnUnvoicedLine;
+
     /**
      * Returns the dialogue participant associated with this node.
      *
