@@ -1,0 +1,57 @@
+{
+  "generated": "2026-10-21",
+  "gate": "6",
+  "title": "Per-layer roughness for Water / Mud / Path",
+  "evidence_level": "graph mutation + readback + compile + validation; no visual capture, no PIE",
+  "master": "/Game/EnvSandbox/Materials/Masters/M_Master_Nikki_Landscape",
+  "backup": "/Game/EnvSandbox/Materials/Masters/_Backup/M_Master_Nikki_Landscape_PreGate6_20261021",
+
+  "before": {
+    "authority": "MaterialExpressionLandscapeLayerBlend_6 -> MaterialExpressionLinearInterpolate_4.Alpha (A = RoughnessMin)",
+    "layers": ["Ground", "Grass", "Rock", "Base"],
+    "water_mud_path_roughness": "no path at all — not a shared value, absent"
+  },
+
+  "applied": {
+    "new_parameters": {
+      "Water_Roughness": {"node": "MaterialExpressionScalarParameter_7", "default": 0.15},
+      "Mud_Roughness": {"node": "MaterialExpressionScalarParameter_10", "default": 0.6},
+      "Path_Roughness": {"node": "MaterialExpressionScalarParameter_12", "default": 0.75}
+    },
+    "blend_layers_after": ["Ground", "Grass", "Rock", "Base", "Water", "Mud", "Path"],
+    "connections_verified": {
+      "Layer Ground": "MaterialExpressionScalarParameter_19",
+      "Layer Grass": "MaterialExpressionScalarParameter_21",
+      "Layer Rock": "MaterialExpressionScalarParameter_23",
+      "Layer Base": "MaterialExpressionScalarParameter_19",
+      "Layer Water": "MaterialExpressionScalarParameter_7",
+      "Layer Mud": "MaterialExpressionScalarParameter_10",
+      "Layer Path": "MaterialExpressionScalarParameter_12"
+    }
+  },
+
+  "compilation": {
+    "is_compiled": true,
+    "num_pixel_shader_instructions": 353,
+    "num_vertex_shader_instructions": 153,
+    "num_samplers": 10,
+    "estimated_vs_texture_samples": 3,
+    "estimated_ps_texture_samples": 11,
+    "expression_count": 356
+  },
+
+  "validation": {
+    "issue_count": 4,
+    "issues": [
+      "duplicate_parameter_name: Rock_NormalMap (2)",
+      "duplicate_parameter_name: bUseExtendedLayers (2)",
+      "duplicate_parameter_name: bGaeaWholeLandscapeColor (5)",
+      "high_expression_count: 356"
+    ],
+    "regression": "none — identical issue set to the pre-change master"
+  },
+
+  "implementation_note": "unreal.LandscapeLayer is not constructible from Python. The three new FLayerBlendInput entries are .copy() of an existing entry with layer_name reassigned, then wired with MaterialEditingLibrary.connect_material_expressions(param, '', blend, 'Layer <Name>'). Do not rebuild the Layers array from scratch.",
+
+  "gotcha": "MaterialEditingLibrary.recompile_material returned False even though the material compiled (get_compilation_stats reports is_compiled: true). Known falsy-return quirk — verify by stats, never by the return value."
+}

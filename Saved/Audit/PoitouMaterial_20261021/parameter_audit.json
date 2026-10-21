@@ -1,0 +1,1603 @@
+{
+  "material": "/Game/EnvSandbox/Materials/Masters/M_Master_Nikki_Landscape",
+  "generator": "monolith graph reachability + MI static-switch state",
+  "total_expressions": 353,
+  "parameters": 168,
+  "active_now": 102,
+  "inactive_behind_switch": 66,
+  "affects_no_output": 0,
+  "rows": [
+    {
+      "param": "Ground_UVScale",
+      "node": "MaterialExpressionScalarParameter_15",
+      "cls": "ScalarParameter",
+      "outputs": [
+        "FrontMaterial",
+        "WorldPositionOffset"
+      ],
+      "active_now": true
+    },
+    {
+      "param": "Ground_Albedo",
+      "node": "MaterialExpressionTextureSampleParameter2D_6",
+      "cls": "TextureSampleParameter2D",
+      "outputs": [
+        "FrontMaterial",
+        "WorldPositionOffset"
+      ],
+      "active_now": true
+    },
+    {
+      "param": "Ground_NormalMap",
+      "node": "MaterialExpressionTextureSampleParameter2D_7",
+      "cls": "TextureSampleParameter2D",
+      "outputs": [
+        "FrontMaterial"
+      ],
+      "active_now": true
+    },
+    {
+      "param": "Ground_Roughness",
+      "node": "MaterialExpressionScalarParameter_19",
+      "cls": "ScalarParameter",
+      "outputs": [
+        "FrontMaterial"
+      ],
+      "active_now": true
+    },
+    {
+      "param": "Grass_UVScale",
+      "node": "MaterialExpressionScalarParameter_20",
+      "cls": "ScalarParameter",
+      "outputs": [
+        "FrontMaterial",
+        "WorldPositionOffset"
+      ],
+      "active_now": true
+    },
+    {
+      "param": "Grass_Albedo",
+      "node": "MaterialExpressionTextureSampleParameter2D_8",
+      "cls": "TextureSampleParameter2D",
+      "outputs": [
+        "FrontMaterial",
+        "WorldPositionOffset"
+      ],
+      "active_now": true
+    },
+    {
+      "param": "Grass_NormalMap",
+      "node": "MaterialExpressionTextureSampleParameter2D_9",
+      "cls": "TextureSampleParameter2D",
+      "outputs": [
+        "FrontMaterial"
+      ],
+      "active_now": true
+    },
+    {
+      "param": "Grass_Roughness",
+      "node": "MaterialExpressionScalarParameter_21",
+      "cls": "ScalarParameter",
+      "outputs": [
+        "FrontMaterial"
+      ],
+      "active_now": true
+    },
+    {
+      "param": "Rock_UVScale",
+      "node": "MaterialExpressionScalarParameter_22",
+      "cls": "ScalarParameter",
+      "outputs": [
+        "FrontMaterial",
+        "WorldPositionOffset"
+      ],
+      "active_now": true
+    },
+    {
+      "param": "Rock_Albedo",
+      "node": "MaterialExpressionTextureSampleParameter2D_11",
+      "cls": "TextureSampleParameter2D",
+      "outputs": [
+        "FrontMaterial",
+        "WorldPositionOffset"
+      ],
+      "active_now": true
+    },
+    {
+      "param": "Rock_NormalMap",
+      "node": "MaterialExpressionTextureSampleParameter2D_12",
+      "cls": "TextureSampleParameter2D",
+      "outputs": [
+        "FrontMaterial"
+      ],
+      "active_now": true
+    },
+    {
+      "param": "Rock_Roughness",
+      "node": "MaterialExpressionScalarParameter_23",
+      "cls": "ScalarParameter",
+      "outputs": [
+        "FrontMaterial"
+      ],
+      "active_now": true
+    },
+    {
+      "param": "BaseTint",
+      "node": "MaterialExpressionVectorParameter_5",
+      "cls": "VectorParameter",
+      "outputs": [
+        "FrontMaterial",
+        "WorldPositionOffset"
+      ],
+      "active_now": true
+    },
+    {
+      "param": "RampLow",
+      "node": "MaterialExpressionVectorParameter_6",
+      "cls": "VectorParameter",
+      "outputs": [
+        "FrontMaterial",
+        "WorldPositionOffset"
+      ],
+      "active_now": true
+    },
+    {
+      "param": "RampMid",
+      "node": "MaterialExpressionVectorParameter_7",
+      "cls": "VectorParameter",
+      "outputs": [
+        "FrontMaterial",
+        "WorldPositionOffset"
+      ],
+      "active_now": true
+    },
+    {
+      "param": "RampHigh",
+      "node": "MaterialExpressionVectorParameter_8",
+      "cls": "VectorParameter",
+      "outputs": [
+        "FrontMaterial",
+        "WorldPositionOffset"
+      ],
+      "active_now": true
+    },
+    {
+      "param": "RampPosMid",
+      "node": "MaterialExpressionScalarParameter_24",
+      "cls": "ScalarParameter",
+      "outputs": [
+        "FrontMaterial",
+        "WorldPositionOffset"
+      ],
+      "active_now": true
+    },
+    {
+      "param": "RampContrast",
+      "node": "MaterialExpressionScalarParameter_25",
+      "cls": "ScalarParameter",
+      "outputs": [
+        "FrontMaterial",
+        "WorldPositionOffset"
+      ],
+      "active_now": true
+    },
+    {
+      "param": "RampStrength",
+      "node": "MaterialExpressionScalarParameter_27",
+      "cls": "ScalarParameter",
+      "outputs": [
+        "FrontMaterial",
+        "WorldPositionOffset"
+      ],
+      "active_now": true
+    },
+    {
+      "param": "RoughnessMin",
+      "node": "MaterialExpressionScalarParameter_28",
+      "cls": "ScalarParameter",
+      "outputs": [
+        "FrontMaterial"
+      ],
+      "active_now": true
+    },
+    {
+      "param": "RoughnessMax",
+      "node": "MaterialExpressionScalarParameter_29",
+      "cls": "ScalarParameter",
+      "outputs": [
+        "FrontMaterial"
+      ],
+      "active_now": true
+    },
+    {
+      "param": "IridescenceRoughnessAtten",
+      "node": "MaterialExpressionScalarParameter_30",
+      "cls": "ScalarParameter",
+      "outputs": [
+        "FrontMaterial"
+      ],
+      "active_now": true
+    },
+    {
+      "param": "MetallicScale",
+      "node": "MaterialExpressionScalarParameter_31",
+      "cls": "ScalarParameter",
+      "outputs": [
+        "FrontMaterial"
+      ],
+      "active_now": true
+    },
+    {
+      "param": "AtmosphericStart",
+      "node": "MaterialExpressionScalarParameter_32",
+      "cls": "ScalarParameter",
+      "outputs": [
+        "FrontMaterial"
+      ],
+      "active_now": true
+    },
+    {
+      "param": "AtmosphericEnd",
+      "node": "MaterialExpressionScalarParameter_33",
+      "cls": "ScalarParameter",
+      "outputs": [
+        "FrontMaterial"
+      ],
+      "active_now": true
+    },
+    {
+      "param": "AtmosphericStrength",
+      "node": "MaterialExpressionScalarParameter_34",
+      "cls": "ScalarParameter",
+      "outputs": [
+        "FrontMaterial"
+      ],
+      "active_now": true
+    },
+    {
+      "param": "AtmosphericColor",
+      "node": "MaterialExpressionVectorParameter_9",
+      "cls": "VectorParameter",
+      "outputs": [
+        "FrontMaterial"
+      ],
+      "active_now": true
+    },
+    {
+      "param": "NikkiEmissiveStrength",
+      "node": "MaterialExpressionScalarParameter_35",
+      "cls": "ScalarParameter",
+      "outputs": [
+        "FrontMaterial"
+      ],
+      "active_now": true
+    },
+    {
+      "param": "EmissiveFloor",
+      "node": "MaterialExpressionScalarParameter_36",
+      "cls": "ScalarParameter",
+      "outputs": [
+        "FrontMaterial"
+      ],
+      "active_now": true
+    },
+    {
+      "param": "bTriplanarPro_Active",
+      "node": "MaterialExpressionStaticSwitchParameter_13",
+      "cls": "StaticSwitchParameter",
+      "outputs": [
+        "FrontMaterial",
+        "WorldPositionOffset"
+      ],
+      "active_now": true,
+      "switch_value": true
+    },
+    {
+      "param": "TriplanarPro_Scale",
+      "node": "MaterialExpressionScalarParameter_81",
+      "cls": "ScalarParameter",
+      "outputs": [
+        "FrontMaterial",
+        "WorldPositionOffset"
+      ],
+      "active_now": true
+    },
+    {
+      "param": "TriplanarPro_Sharpness",
+      "node": "MaterialExpressionScalarParameter_82",
+      "cls": "ScalarParameter",
+      "outputs": [
+        "FrontMaterial",
+        "WorldPositionOffset"
+      ],
+      "active_now": true
+    },
+    {
+      "param": "TriplanarPro_BlendStrength",
+      "node": "MaterialExpressionScalarParameter_83",
+      "cls": "ScalarParameter",
+      "outputs": [
+        "FrontMaterial",
+        "WorldPositionOffset"
+      ],
+      "active_now": true
+    },
+    {
+      "param": "TriplanarPro_BreakupStrength",
+      "node": "MaterialExpressionScalarParameter_84",
+      "cls": "ScalarParameter",
+      "outputs": [
+        "FrontMaterial",
+        "WorldPositionOffset"
+      ],
+      "active_now": true
+    },
+    {
+      "param": "TriplanarPro_BreakupScale",
+      "node": "MaterialExpressionScalarParameter_85",
+      "cls": "ScalarParameter",
+      "outputs": [
+        "FrontMaterial",
+        "WorldPositionOffset"
+      ],
+      "active_now": true
+    },
+    {
+      "param": "TriplanarPro_BreakupContrast",
+      "node": "MaterialExpressionScalarParameter_86",
+      "cls": "ScalarParameter",
+      "outputs": [
+        "FrontMaterial",
+        "WorldPositionOffset"
+      ],
+      "active_now": true
+    },
+    {
+      "param": "TriplanarPro_ProjectionOffset",
+      "node": "MaterialExpressionVectorParameter_15",
+      "cls": "VectorParameter",
+      "outputs": [
+        "FrontMaterial",
+        "WorldPositionOffset"
+      ],
+      "active_now": true
+    },
+    {
+      "param": "TriplanarPro_ProjectionRotation",
+      "node": "MaterialExpressionVectorParameter_16",
+      "cls": "VectorParameter",
+      "outputs": [
+        "FrontMaterial",
+        "WorldPositionOffset"
+      ],
+      "active_now": true
+    },
+    {
+      "param": "TriplanarPro_AxisWeights",
+      "node": "MaterialExpressionVectorParameter_27",
+      "cls": "VectorParameter",
+      "outputs": [
+        "FrontMaterial",
+        "WorldPositionOffset"
+      ],
+      "active_now": true
+    },
+    {
+      "param": "Albedo",
+      "node": "MaterialExpressionTextureObjectParameter_0",
+      "cls": "TextureObjectParameter",
+      "outputs": [
+        "FrontMaterial",
+        "WorldPositionOffset"
+      ],
+      "active_now": true
+    },
+    {
+      "param": "bNikkiStickerShade_Active",
+      "node": "MaterialExpressionStaticSwitchParameter_14",
+      "cls": "StaticSwitchParameter",
+      "outputs": [
+        "WorldPositionOffset",
+        "FrontMaterial"
+      ],
+      "active_now": true,
+      "switch_value": false
+    },
+    {
+      "param": "NikkiStickerBandCount",
+      "node": "MaterialExpressionScalarParameter_87",
+      "cls": "ScalarParameter",
+      "outputs": [
+        "WorldPositionOffset",
+        "FrontMaterial"
+      ],
+      "active_now": false
+    },
+    {
+      "param": "NikkiStickerBandSoftness",
+      "node": "MaterialExpressionScalarParameter_88",
+      "cls": "ScalarParameter",
+      "outputs": [
+        "WorldPositionOffset",
+        "FrontMaterial"
+      ],
+      "active_now": false
+    },
+    {
+      "param": "NikkiStickerStrength",
+      "node": "MaterialExpressionScalarParameter_89",
+      "cls": "ScalarParameter",
+      "outputs": [
+        "WorldPositionOffset",
+        "FrontMaterial"
+      ],
+      "active_now": false
+    },
+    {
+      "param": "NikkiStickerShadeColor",
+      "node": "MaterialExpressionVectorParameter_28",
+      "cls": "VectorParameter",
+      "outputs": [
+        "WorldPositionOffset",
+        "FrontMaterial"
+      ],
+      "active_now": false
+    },
+    {
+      "param": "bNikkiTwinkleIris_Active",
+      "node": "MaterialExpressionStaticSwitchParameter_15",
+      "cls": "StaticSwitchParameter",
+      "outputs": [
+        "WorldPositionOffset",
+        "FrontMaterial"
+      ],
+      "active_now": true,
+      "switch_value": true
+    },
+    {
+      "param": "NikkiFabricSheen",
+      "node": "MaterialExpressionScalarParameter_90",
+      "cls": "ScalarParameter",
+      "outputs": [
+        "WorldPositionOffset",
+        "FrontMaterial"
+      ],
+      "active_now": true
+    },
+    {
+      "param": "NikkiIridescence",
+      "node": "MaterialExpressionScalarParameter_91",
+      "cls": "ScalarParameter",
+      "outputs": [
+        "WorldPositionOffset",
+        "FrontMaterial"
+      ],
+      "active_now": true
+    },
+    {
+      "param": "NikkiTwinkleScale",
+      "node": "MaterialExpressionScalarParameter_92",
+      "cls": "ScalarParameter",
+      "outputs": [
+        "WorldPositionOffset",
+        "FrontMaterial"
+      ],
+      "active_now": true
+    },
+    {
+      "param": "NikkiTwinkleAmount",
+      "node": "MaterialExpressionScalarParameter_93",
+      "cls": "ScalarParameter",
+      "outputs": [
+        "WorldPositionOffset",
+        "FrontMaterial"
+      ],
+      "active_now": true
+    },
+    {
+      "param": "NikkiIrisTint",
+      "node": "MaterialExpressionVectorParameter_29",
+      "cls": "VectorParameter",
+      "outputs": [
+        "WorldPositionOffset",
+        "FrontMaterial"
+      ],
+      "active_now": true
+    },
+    {
+      "param": "bNikkiPastelGrade_Active",
+      "node": "MaterialExpressionStaticSwitchParameter_16",
+      "cls": "StaticSwitchParameter",
+      "outputs": [
+        "WorldPositionOffset",
+        "FrontMaterial"
+      ],
+      "active_now": true,
+      "switch_value": true
+    },
+    {
+      "param": "NikkiPastelStrength",
+      "node": "MaterialExpressionScalarParameter_94",
+      "cls": "ScalarParameter",
+      "outputs": [
+        "WorldPositionOffset",
+        "FrontMaterial"
+      ],
+      "active_now": true
+    },
+    {
+      "param": "NikkiPastelLift",
+      "node": "MaterialExpressionScalarParameter_95",
+      "cls": "ScalarParameter",
+      "outputs": [
+        "WorldPositionOffset",
+        "FrontMaterial"
+      ],
+      "active_now": true
+    },
+    {
+      "param": "NikkiPastelPosMid",
+      "node": "MaterialExpressionScalarParameter_96",
+      "cls": "ScalarParameter",
+      "outputs": [
+        "WorldPositionOffset",
+        "FrontMaterial"
+      ],
+      "active_now": true
+    },
+    {
+      "param": "NikkiPastelBloom",
+      "node": "MaterialExpressionScalarParameter_97",
+      "cls": "ScalarParameter",
+      "outputs": [
+        "WorldPositionOffset",
+        "FrontMaterial"
+      ],
+      "active_now": true
+    },
+    {
+      "param": "NikkiPastelRampLow",
+      "node": "MaterialExpressionVectorParameter_30",
+      "cls": "VectorParameter",
+      "outputs": [
+        "WorldPositionOffset",
+        "FrontMaterial"
+      ],
+      "active_now": true
+    },
+    {
+      "param": "NikkiPastelRampMid",
+      "node": "MaterialExpressionVectorParameter_31",
+      "cls": "VectorParameter",
+      "outputs": [
+        "WorldPositionOffset",
+        "FrontMaterial"
+      ],
+      "active_now": true
+    },
+    {
+      "param": "NikkiPastelRampHigh",
+      "node": "MaterialExpressionVectorParameter_32",
+      "cls": "VectorParameter",
+      "outputs": [
+        "WorldPositionOffset",
+        "FrontMaterial"
+      ],
+      "active_now": true
+    },
+    {
+      "param": "bShadowDream_Active",
+      "node": "MaterialExpressionStaticSwitchParameter_17",
+      "cls": "StaticSwitchParameter",
+      "outputs": [
+        "FrontMaterial"
+      ],
+      "active_now": true,
+      "switch_value": false
+    },
+    {
+      "param": "ShadowDreamStrength",
+      "node": "MaterialExpressionScalarParameter_98",
+      "cls": "ScalarParameter",
+      "outputs": [
+        "FrontMaterial"
+      ],
+      "active_now": false
+    },
+    {
+      "param": "ShadowSoftness",
+      "node": "MaterialExpressionScalarParameter_99",
+      "cls": "ScalarParameter",
+      "outputs": [
+        "FrontMaterial"
+      ],
+      "active_now": false
+    },
+    {
+      "param": "ShadowDreamTint",
+      "node": "MaterialExpressionVectorParameter_33",
+      "cls": "VectorParameter",
+      "outputs": [
+        "FrontMaterial"
+      ],
+      "active_now": false
+    },
+    {
+      "param": "bNikkiSDFRibbon_Active",
+      "node": "MaterialExpressionStaticSwitchParameter_19",
+      "cls": "StaticSwitchParameter",
+      "outputs": [
+        "FrontMaterial"
+      ],
+      "active_now": false,
+      "switch_value": false
+    },
+    {
+      "param": "NikkiSDFRibbon_Scale",
+      "node": "MaterialExpressionScalarParameter_101",
+      "cls": "ScalarParameter",
+      "outputs": [
+        "FrontMaterial"
+      ],
+      "active_now": false
+    },
+    {
+      "param": "NikkiSDFRibbon_Sharpness",
+      "node": "MaterialExpressionScalarParameter_102",
+      "cls": "ScalarParameter",
+      "outputs": [
+        "FrontMaterial"
+      ],
+      "active_now": false
+    },
+    {
+      "param": "NikkiSDFRibbon_Strength",
+      "node": "MaterialExpressionScalarParameter_103",
+      "cls": "ScalarParameter",
+      "outputs": [
+        "FrontMaterial"
+      ],
+      "active_now": false
+    },
+    {
+      "param": "NikkiSDFRibbon_EdgeFalloff",
+      "node": "MaterialExpressionScalarParameter_104",
+      "cls": "ScalarParameter",
+      "outputs": [
+        "FrontMaterial"
+      ],
+      "active_now": false
+    },
+    {
+      "param": "NikkiSDFRibbon_EdgeStrength",
+      "node": "MaterialExpressionScalarParameter_105",
+      "cls": "ScalarParameter",
+      "outputs": [
+        "FrontMaterial"
+      ],
+      "active_now": false
+    },
+    {
+      "param": "NikkiSDFRibbon_Color",
+      "node": "MaterialExpressionVectorParameter_34",
+      "cls": "VectorParameter",
+      "outputs": [
+        "FrontMaterial"
+      ],
+      "active_now": false
+    },
+    {
+      "param": "bNikkiPearlSheen_Active",
+      "node": "MaterialExpressionStaticSwitchParameter_20",
+      "cls": "StaticSwitchParameter",
+      "outputs": [
+        "FrontMaterial"
+      ],
+      "active_now": false,
+      "switch_value": false
+    },
+    {
+      "param": "NikkiPearl_Frequency",
+      "node": "MaterialExpressionScalarParameter_106",
+      "cls": "ScalarParameter",
+      "outputs": [
+        "FrontMaterial"
+      ],
+      "active_now": false
+    },
+    {
+      "param": "NikkiPearl_SecondFrequency",
+      "node": "MaterialExpressionScalarParameter_107",
+      "cls": "ScalarParameter",
+      "outputs": [
+        "FrontMaterial"
+      ],
+      "active_now": false
+    },
+    {
+      "param": "NikkiPearl_Strength",
+      "node": "MaterialExpressionScalarParameter_108",
+      "cls": "ScalarParameter",
+      "outputs": [
+        "FrontMaterial"
+      ],
+      "active_now": false
+    },
+    {
+      "param": "NikkiPearl_Tint",
+      "node": "MaterialExpressionVectorParameter_35",
+      "cls": "VectorParameter",
+      "outputs": [
+        "FrontMaterial"
+      ],
+      "active_now": false
+    },
+    {
+      "param": "bNikkiDreamWatercolor_Active",
+      "node": "MaterialExpressionStaticSwitchParameter_21",
+      "cls": "StaticSwitchParameter",
+      "outputs": [
+        "FrontMaterial"
+      ],
+      "active_now": false,
+      "switch_value": false
+    },
+    {
+      "param": "NikkiWatercolor_Bleed",
+      "node": "MaterialExpressionScalarParameter_109",
+      "cls": "ScalarParameter",
+      "outputs": [
+        "FrontMaterial"
+      ],
+      "active_now": false
+    },
+    {
+      "param": "NikkiWatercolor_Jitter",
+      "node": "MaterialExpressionScalarParameter_110",
+      "cls": "ScalarParameter",
+      "outputs": [
+        "FrontMaterial"
+      ],
+      "active_now": false
+    },
+    {
+      "param": "NikkiWatercolor_Strength",
+      "node": "MaterialExpressionScalarParameter_111",
+      "cls": "ScalarParameter",
+      "outputs": [
+        "FrontMaterial"
+      ],
+      "active_now": false
+    },
+    {
+      "param": "NikkiWatercolor_BleedColor",
+      "node": "MaterialExpressionVectorParameter_36",
+      "cls": "VectorParameter",
+      "outputs": [
+        "FrontMaterial"
+      ],
+      "active_now": false
+    },
+    {
+      "param": "bNikkiStickerEdge_Active",
+      "node": "MaterialExpressionStaticSwitchParameter_22",
+      "cls": "StaticSwitchParameter",
+      "outputs": [
+        "FrontMaterial"
+      ],
+      "active_now": false,
+      "switch_value": false
+    },
+    {
+      "param": "NikkiStickerEdge_Width",
+      "node": "MaterialExpressionScalarParameter_112",
+      "cls": "ScalarParameter",
+      "outputs": [
+        "FrontMaterial"
+      ],
+      "active_now": false
+    },
+    {
+      "param": "NikkiStickerEdge_Bands",
+      "node": "MaterialExpressionScalarParameter_113",
+      "cls": "ScalarParameter",
+      "outputs": [
+        "FrontMaterial"
+      ],
+      "active_now": false
+    },
+    {
+      "param": "NikkiStickerEdge_Softness",
+      "node": "MaterialExpressionScalarParameter_114",
+      "cls": "ScalarParameter",
+      "outputs": [
+        "FrontMaterial"
+      ],
+      "active_now": false
+    },
+    {
+      "param": "NikkiStickerEdge_Strength",
+      "node": "MaterialExpressionScalarParameter_115",
+      "cls": "ScalarParameter",
+      "outputs": [
+        "FrontMaterial"
+      ],
+      "active_now": false
+    },
+    {
+      "param": "NikkiStickerEdge_Color",
+      "node": "MaterialExpressionVectorParameter_37",
+      "cls": "VectorParameter",
+      "outputs": [
+        "FrontMaterial"
+      ],
+      "active_now": false
+    },
+    {
+      "param": "bNikkiGlitterHalo_Active",
+      "node": "MaterialExpressionStaticSwitchParameter_23",
+      "cls": "StaticSwitchParameter",
+      "outputs": [
+        "FrontMaterial"
+      ],
+      "active_now": false,
+      "switch_value": false
+    },
+    {
+      "param": "NikkiGlitterHalo_Scale",
+      "node": "MaterialExpressionScalarParameter_116",
+      "cls": "ScalarParameter",
+      "outputs": [
+        "FrontMaterial"
+      ],
+      "active_now": false
+    },
+    {
+      "param": "NikkiGlitterHalo_Amount",
+      "node": "MaterialExpressionScalarParameter_117",
+      "cls": "ScalarParameter",
+      "outputs": [
+        "FrontMaterial"
+      ],
+      "active_now": false
+    },
+    {
+      "param": "NikkiGlitterHalo_Intensity",
+      "node": "MaterialExpressionScalarParameter_118",
+      "cls": "ScalarParameter",
+      "outputs": [
+        "FrontMaterial"
+      ],
+      "active_now": false
+    },
+    {
+      "param": "NikkiGlitterHalo_HaloStrength",
+      "node": "MaterialExpressionScalarParameter_119",
+      "cls": "ScalarParameter",
+      "outputs": [
+        "FrontMaterial"
+      ],
+      "active_now": false
+    },
+    {
+      "param": "NikkiGlitterHalo_HaloPower",
+      "node": "MaterialExpressionScalarParameter_120",
+      "cls": "ScalarParameter",
+      "outputs": [
+        "FrontMaterial"
+      ],
+      "active_now": false
+    },
+    {
+      "param": "NikkiGlitterHalo_TwinkleSpeed",
+      "node": "MaterialExpressionScalarParameter_121",
+      "cls": "ScalarParameter",
+      "outputs": [
+        "FrontMaterial"
+      ],
+      "active_now": false
+    },
+    {
+      "param": "NikkiGlitterHalo_Color",
+      "node": "MaterialExpressionVectorParameter_38",
+      "cls": "VectorParameter",
+      "outputs": [
+        "FrontMaterial"
+      ],
+      "active_now": false
+    },
+    {
+      "param": "bNikkiPetalShadow_Active",
+      "node": "MaterialExpressionStaticSwitchParameter_24",
+      "cls": "StaticSwitchParameter",
+      "outputs": [
+        "FrontMaterial"
+      ],
+      "active_now": false,
+      "switch_value": false
+    },
+    {
+      "param": "NikkiPetal_Scale",
+      "node": "MaterialExpressionScalarParameter_122",
+      "cls": "ScalarParameter",
+      "outputs": [
+        "FrontMaterial"
+      ],
+      "active_now": false
+    },
+    {
+      "param": "NikkiPetal_Radius",
+      "node": "MaterialExpressionScalarParameter_123",
+      "cls": "ScalarParameter",
+      "outputs": [
+        "FrontMaterial"
+      ],
+      "active_now": false
+    },
+    {
+      "param": "NikkiPetal_Softness",
+      "node": "MaterialExpressionScalarParameter_124",
+      "cls": "ScalarParameter",
+      "outputs": [
+        "FrontMaterial"
+      ],
+      "active_now": false
+    },
+    {
+      "param": "NikkiPetal_Strength",
+      "node": "MaterialExpressionScalarParameter_125",
+      "cls": "ScalarParameter",
+      "outputs": [
+        "FrontMaterial"
+      ],
+      "active_now": false
+    },
+    {
+      "param": "NikkiPetal_BloomSpeed",
+      "node": "MaterialExpressionScalarParameter_126",
+      "cls": "ScalarParameter",
+      "outputs": [
+        "FrontMaterial"
+      ],
+      "active_now": false
+    },
+    {
+      "param": "NikkiPetal_Tint",
+      "node": "MaterialExpressionVectorParameter_39",
+      "cls": "VectorParameter",
+      "outputs": [
+        "FrontMaterial"
+      ],
+      "active_now": false
+    },
+    {
+      "param": "NikkiSquish_Amount",
+      "node": "MaterialExpressionScalarParameter_127",
+      "cls": "ScalarParameter",
+      "outputs": [
+        "WorldPositionOffset"
+      ],
+      "active_now": false
+    },
+    {
+      "param": "NikkiSquish_Speed",
+      "node": "MaterialExpressionScalarParameter_128",
+      "cls": "ScalarParameter",
+      "outputs": [
+        "WorldPositionOffset"
+      ],
+      "active_now": false
+    },
+    {
+      "param": "NikkiSquish_Direction",
+      "node": "MaterialExpressionVectorParameter_40",
+      "cls": "VectorParameter",
+      "outputs": [
+        "WorldPositionOffset"
+      ],
+      "active_now": false
+    },
+    {
+      "param": "bNikkiSquishWPO_Active",
+      "node": "MaterialExpressionStaticSwitchParameter_25",
+      "cls": "StaticSwitchParameter",
+      "outputs": [
+        "WorldPositionOffset"
+      ],
+      "active_now": true,
+      "switch_value": false
+    },
+    {
+      "param": "GlitterPile_Scale",
+      "node": "MaterialExpressionScalarParameter_0",
+      "cls": "ScalarParameter",
+      "outputs": [
+        "FrontMaterial"
+      ],
+      "active_now": false
+    },
+    {
+      "param": "GlitterPile_Density",
+      "node": "MaterialExpressionScalarParameter_1",
+      "cls": "ScalarParameter",
+      "outputs": [
+        "FrontMaterial"
+      ],
+      "active_now": false
+    },
+    {
+      "param": "GlitterPile_FacetSharpness",
+      "node": "MaterialExpressionScalarParameter_2",
+      "cls": "ScalarParameter",
+      "outputs": [
+        "FrontMaterial"
+      ],
+      "active_now": false
+    },
+    {
+      "param": "GlitterPile_Brightness",
+      "node": "MaterialExpressionScalarParameter_3",
+      "cls": "ScalarParameter",
+      "outputs": [
+        "FrontMaterial"
+      ],
+      "active_now": false
+    },
+    {
+      "param": "GlitterPile_Iridescence",
+      "node": "MaterialExpressionScalarParameter_4",
+      "cls": "ScalarParameter",
+      "outputs": [
+        "FrontMaterial"
+      ],
+      "active_now": false
+    },
+    {
+      "param": "GlitterPile_HaloStrength",
+      "node": "MaterialExpressionScalarParameter_5",
+      "cls": "ScalarParameter",
+      "outputs": [
+        "FrontMaterial"
+      ],
+      "active_now": false
+    },
+    {
+      "param": "GlitterPile_HaloPower",
+      "node": "MaterialExpressionScalarParameter_6",
+      "cls": "ScalarParameter",
+      "outputs": [
+        "FrontMaterial"
+      ],
+      "active_now": false
+    },
+    {
+      "param": "GlitterPile_Color",
+      "node": "MaterialExpressionVectorParameter_2",
+      "cls": "VectorParameter",
+      "outputs": [
+        "FrontMaterial"
+      ],
+      "active_now": false
+    },
+    {
+      "param": "GlitterPile_Gate",
+      "node": "MaterialExpressionScalarParameter_8",
+      "cls": "ScalarParameter",
+      "outputs": [
+        "FrontMaterial"
+      ],
+      "active_now": false
+    },
+    {
+      "param": "Snow_Albedo",
+      "node": "MaterialExpressionTextureSampleParameter2D_0",
+      "cls": "TextureSampleParameter2D",
+      "outputs": [
+        "FrontMaterial"
+      ],
+      "active_now": true
+    },
+    {
+      "param": "Snow_NormalMap",
+      "node": "MaterialExpressionTextureSampleParameter2D_2",
+      "cls": "TextureSampleParameter2D",
+      "outputs": [
+        "FrontMaterial"
+      ],
+      "active_now": true
+    },
+    {
+      "param": "Water_Albedo",
+      "node": "MaterialExpressionTextureSampleParameter2D_4",
+      "cls": "TextureSampleParameter2D",
+      "outputs": [
+        "FrontMaterial"
+      ],
+      "active_now": true
+    },
+    {
+      "param": "Water_NormalMap",
+      "node": "MaterialExpressionTextureSampleParameter2D_10",
+      "cls": "TextureSampleParameter2D",
+      "outputs": [
+        "FrontMaterial"
+      ],
+      "active_now": true
+    },
+    {
+      "param": "Mud_Albedo",
+      "node": "MaterialExpressionTextureSampleParameter2D_13",
+      "cls": "TextureSampleParameter2D",
+      "outputs": [
+        "FrontMaterial"
+      ],
+      "active_now": true
+    },
+    {
+      "param": "Mud_NormalMap",
+      "node": "MaterialExpressionTextureSampleParameter2D_14",
+      "cls": "TextureSampleParameter2D",
+      "outputs": [
+        "FrontMaterial"
+      ],
+      "active_now": true
+    },
+    {
+      "param": "Path_Albedo",
+      "node": "MaterialExpressionTextureSampleParameter2D_15",
+      "cls": "TextureSampleParameter2D",
+      "outputs": [
+        "FrontMaterial"
+      ],
+      "active_now": true
+    },
+    {
+      "param": "Path_NormalMap",
+      "node": "MaterialExpressionTextureSampleParameter2D_16",
+      "cls": "TextureSampleParameter2D",
+      "outputs": [
+        "FrontMaterial"
+      ],
+      "active_now": true
+    },
+    {
+      "param": "Gaea_SnowMask",
+      "node": "MaterialExpressionTextureSampleParameter2D_19",
+      "cls": "TextureSampleParameter2D",
+      "outputs": [
+        "FrontMaterial"
+      ],
+      "active_now": true
+    },
+    {
+      "param": "Gaea_WaterMask",
+      "node": "MaterialExpressionTextureSampleParameter2D_20",
+      "cls": "TextureSampleParameter2D",
+      "outputs": [
+        "FrontMaterial"
+      ],
+      "active_now": true
+    },
+    {
+      "param": "Gaea_FlowMask",
+      "node": "MaterialExpressionTextureSampleParameter2D_21",
+      "cls": "TextureSampleParameter2D",
+      "outputs": [
+        "FrontMaterial"
+      ],
+      "active_now": false
+    },
+    {
+      "param": "SnowStrength",
+      "node": "MaterialExpressionScalarParameter_9",
+      "cls": "ScalarParameter",
+      "outputs": [
+        "FrontMaterial"
+      ],
+      "active_now": true
+    },
+    {
+      "param": "SnowUpBias",
+      "node": "MaterialExpressionScalarParameter_11",
+      "cls": "ScalarParameter",
+      "outputs": [
+        "FrontMaterial"
+      ],
+      "active_now": true
+    },
+    {
+      "param": "Wetness",
+      "node": "MaterialExpressionScalarParameter_14",
+      "cls": "ScalarParameter",
+      "outputs": [
+        "FrontMaterial"
+      ],
+      "active_now": true
+    },
+    {
+      "param": "WetRoughness",
+      "node": "MaterialExpressionScalarParameter_37",
+      "cls": "ScalarParameter",
+      "outputs": [
+        "FrontMaterial"
+      ],
+      "active_now": true
+    },
+    {
+      "param": "CymaticsLandscapeAmount",
+      "node": "MaterialExpressionScalarParameter_38",
+      "cls": "ScalarParameter",
+      "outputs": [
+        "FrontMaterial"
+      ],
+      "active_now": true
+    },
+    {
+      "param": "Gaea_SnowWeight",
+      "node": "MaterialExpressionScalarParameter_39",
+      "cls": "ScalarParameter",
+      "outputs": [
+        "FrontMaterial"
+      ],
+      "active_now": true
+    },
+    {
+      "param": "Gaea_WaterWeight",
+      "node": "MaterialExpressionScalarParameter_40",
+      "cls": "ScalarParameter",
+      "outputs": [
+        "FrontMaterial"
+      ],
+      "active_now": true
+    },
+    {
+      "param": "Gaea_FlowWeight",
+      "node": "MaterialExpressionScalarParameter_41",
+      "cls": "ScalarParameter",
+      "outputs": [
+        "FrontMaterial"
+      ],
+      "active_now": false
+    },
+    {
+      "param": "SnowTint",
+      "node": "MaterialExpressionVectorParameter_4",
+      "cls": "VectorParameter",
+      "outputs": [
+        "FrontMaterial"
+      ],
+      "active_now": true
+    },
+    {
+      "param": "MudTint",
+      "node": "MaterialExpressionVectorParameter_10",
+      "cls": "VectorParameter",
+      "outputs": [
+        "FrontMaterial"
+      ],
+      "active_now": true
+    },
+    {
+      "param": "PathTint",
+      "node": "MaterialExpressionVectorParameter_11",
+      "cls": "VectorParameter",
+      "outputs": [
+        "FrontMaterial"
+      ],
+      "active_now": true
+    },
+    {
+      "param": "WaterAlignTint",
+      "node": "MaterialExpressionVectorParameter_12",
+      "cls": "VectorParameter",
+      "outputs": [
+        "FrontMaterial"
+      ],
+      "active_now": true
+    },
+    {
+      "param": "bUseExtendedLayers",
+      "node": "MaterialExpressionStaticSwitchParameter_2",
+      "cls": "StaticSwitchParameter",
+      "outputs": [
+        "FrontMaterial"
+      ],
+      "active_now": true,
+      "switch_value": true
+    },
+    {
+      "param": "bUseExtendedLayers",
+      "node": "MaterialExpressionStaticSwitchParameter_3",
+      "cls": "StaticSwitchParameter",
+      "outputs": [
+        "FrontMaterial"
+      ],
+      "active_now": true,
+      "switch_value": true
+    },
+    {
+      "param": "bUseGaeaMasks",
+      "node": "MaterialExpressionStaticSwitchParameter_4",
+      "cls": "StaticSwitchParameter",
+      "outputs": [
+        "FrontMaterial"
+      ],
+      "active_now": true,
+      "switch_value": false
+    },
+    {
+      "param": "GaeaLandscapeMin",
+      "node": "MaterialExpressionVectorParameter_13",
+      "cls": "VectorParameter",
+      "outputs": [
+        "FrontMaterial",
+        "WorldPositionOffset"
+      ],
+      "active_now": true
+    },
+    {
+      "param": "GaeaLandscapeSize",
+      "node": "MaterialExpressionVectorParameter_14",
+      "cls": "VectorParameter",
+      "outputs": [
+        "FrontMaterial",
+        "WorldPositionOffset"
+      ],
+      "active_now": true
+    },
+    {
+      "param": "bGaeaWholeLandscapeColor",
+      "node": "MaterialExpressionStaticSwitchParameter_7",
+      "cls": "StaticSwitchParameter",
+      "outputs": [
+        "FrontMaterial",
+        "WorldPositionOffset"
+      ],
+      "active_now": true,
+      "switch_value": false
+    },
+    {
+      "param": "bGaeaWholeLandscapeColor",
+      "node": "MaterialExpressionStaticSwitchParameter_8",
+      "cls": "StaticSwitchParameter",
+      "outputs": [
+        "FrontMaterial",
+        "WorldPositionOffset"
+      ],
+      "active_now": true,
+      "switch_value": false
+    },
+    {
+      "param": "bGaeaWholeLandscapeColor",
+      "node": "MaterialExpressionStaticSwitchParameter_9",
+      "cls": "StaticSwitchParameter",
+      "outputs": [
+        "FrontMaterial",
+        "WorldPositionOffset"
+      ],
+      "active_now": true,
+      "switch_value": false
+    },
+    {
+      "param": "bGaeaWholeLandscapeColor",
+      "node": "MaterialExpressionStaticSwitchParameter_10",
+      "cls": "StaticSwitchParameter",
+      "outputs": [
+        "FrontMaterial"
+      ],
+      "active_now": true,
+      "switch_value": false
+    },
+    {
+      "param": "bGaeaWholeLandscapeColor",
+      "node": "MaterialExpressionStaticSwitchParameter_11",
+      "cls": "StaticSwitchParameter",
+      "outputs": [
+        "FrontMaterial"
+      ],
+      "active_now": true,
+      "switch_value": false
+    },
+    {
+      "param": "Rock_NormalMap",
+      "node": "MaterialExpressionTextureObjectParameter_1",
+      "cls": "TextureObjectParameter",
+      "outputs": [
+        "FrontMaterial",
+        "WorldPositionOffset"
+      ],
+      "active_now": true
+    },
+    {
+      "param": "Rock_TriplanarNormalStrength",
+      "node": "MaterialExpressionScalarParameter_42",
+      "cls": "ScalarParameter",
+      "outputs": [
+        "FrontMaterial",
+        "WorldPositionOffset"
+      ],
+      "active_now": true
+    },
+    {
+      "param": "Rock_DetailWorldSizeCM",
+      "node": "MaterialExpressionScalarParameter_43",
+      "cls": "ScalarParameter",
+      "outputs": [
+        "FrontMaterial",
+        "WorldPositionOffset"
+      ],
+      "active_now": true
+    },
+    {
+      "param": "Rock_TriplanarBlend",
+      "node": "MaterialExpressionScalarParameter_45",
+      "cls": "ScalarParameter",
+      "outputs": [
+        "FrontMaterial",
+        "WorldPositionOffset"
+      ],
+      "active_now": true
+    },
+    {
+      "param": "bRockTriplanarNormals",
+      "node": "MaterialExpressionStaticSwitchParameter_12",
+      "cls": "StaticSwitchParameter",
+      "outputs": [
+        "FrontMaterial"
+      ],
+      "active_now": true,
+      "switch_value": false
+    },
+    {
+      "param": "Rock_DetailAlbedo",
+      "node": "MaterialExpressionTextureObjectParameter_2",
+      "cls": "TextureObjectParameter",
+      "outputs": [
+        "FrontMaterial",
+        "WorldPositionOffset"
+      ],
+      "active_now": true
+    },
+    {
+      "param": "Rock_DetailAlbedoReference",
+      "node": "MaterialExpressionScalarParameter_46",
+      "cls": "ScalarParameter",
+      "outputs": [
+        "FrontMaterial",
+        "WorldPositionOffset"
+      ],
+      "active_now": true
+    },
+    {
+      "param": "Rock_DetailAlbedoStrength",
+      "node": "MaterialExpressionScalarParameter_47",
+      "cls": "ScalarParameter",
+      "outputs": [
+        "FrontMaterial",
+        "WorldPositionOffset"
+      ],
+      "active_now": true
+    },
+    {
+      "param": "bRockDetailAlbedo",
+      "node": "MaterialExpressionStaticSwitchParameter_26",
+      "cls": "StaticSwitchParameter",
+      "outputs": [
+        "FrontMaterial",
+        "WorldPositionOffset"
+      ],
+      "active_now": true,
+      "switch_value": true
+    },
+    {
+      "param": "Snow_BreakupWorldSizeCM",
+      "node": "MaterialExpressionScalarParameter_48",
+      "cls": "ScalarParameter",
+      "outputs": [
+        "FrontMaterial"
+      ],
+      "active_now": false
+    },
+    {
+      "param": "Snow_BreakupStrength",
+      "node": "MaterialExpressionScalarParameter_49",
+      "cls": "ScalarParameter",
+      "outputs": [
+        "FrontMaterial"
+      ],
+      "active_now": false
+    },
+    {
+      "param": "bSnowCoverageBreakup",
+      "node": "MaterialExpressionStaticSwitchParameter_27",
+      "cls": "StaticSwitchParameter",
+      "outputs": [
+        "FrontMaterial"
+      ],
+      "active_now": true,
+      "switch_value": false
+    },
+    {
+      "param": "CymaticsLandscapeMaxEmission",
+      "node": "MaterialExpressionScalarParameter_50",
+      "cls": "ScalarParameter",
+      "outputs": [
+        "FrontMaterial"
+      ],
+      "active_now": true
+    },
+    {
+      "param": "SnowEdgeDistanceTexture",
+      "node": "MaterialExpressionTextureSampleParameter2D_23",
+      "cls": "TextureSampleParameter2D",
+      "outputs": [
+        "FrontMaterial"
+      ],
+      "active_now": false
+    },
+    {
+      "param": "SnowEdgeDistanceRangeCM",
+      "node": "MaterialExpressionScalarParameter_51",
+      "cls": "ScalarParameter",
+      "outputs": [
+        "FrontMaterial"
+      ],
+      "active_now": false
+    },
+    {
+      "param": "SnowFrostBandWidthCM",
+      "node": "MaterialExpressionScalarParameter_52",
+      "cls": "ScalarParameter",
+      "outputs": [
+        "FrontMaterial"
+      ],
+      "active_now": false
+    },
+    {
+      "param": "SnowFrostBandStrength",
+      "node": "MaterialExpressionScalarParameter_55",
+      "cls": "ScalarParameter",
+      "outputs": [
+        "FrontMaterial"
+      ],
+      "active_now": false
+    },
+    {
+      "param": "SnowFrostRoughness",
+      "node": "MaterialExpressionScalarParameter_56",
+      "cls": "ScalarParameter",
+      "outputs": [
+        "FrontMaterial"
+      ],
+      "active_now": false
+    },
+    {
+      "param": "bSnowFrostDistanceBand",
+      "node": "MaterialExpressionStaticSwitchParameter_28",
+      "cls": "StaticSwitchParameter",
+      "outputs": [
+        "FrontMaterial"
+      ],
+      "active_now": true,
+      "switch_value": false
+    },
+    {
+      "param": "Gaea_RockMask",
+      "node": "MaterialExpressionTextureSampleParameter2D_24",
+      "cls": "TextureSampleParameter2D",
+      "outputs": [
+        "FrontMaterial"
+      ],
+      "active_now": true
+    },
+    {
+      "param": "Gaea_RockWeight",
+      "node": "MaterialExpressionScalarParameter_57",
+      "cls": "ScalarParameter",
+      "outputs": [
+        "FrontMaterial"
+      ],
+      "active_now": true
+    }
+  ]
+}

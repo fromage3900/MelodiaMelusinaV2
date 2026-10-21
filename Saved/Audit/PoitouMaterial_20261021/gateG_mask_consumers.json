@@ -1,0 +1,45 @@
+{
+ "material": "/Game/EnvSandbox/Materials/Masters/M_Master_Nikki_Landscape",
+ "expression_count": 353,
+ "params": {
+  "Snow_Albedo": {
+   "expressions": [
+    "MaterialExpressionTextureSampleParameter2D_0"
+   ],
+   "downstream": []
+  },
+  "Gaea_SnowMask": {
+   "expressions": [
+    "MaterialExpressionTextureSampleParameter2D_19"
+   ],
+   "downstream": []
+  },
+  "Gaea_WaterMask": {
+   "expressions": [
+    "MaterialExpressionTextureSampleParameter2D_20"
+   ],
+   "downstream": []
+  },
+  "Gaea_FlowMask": {
+   "expressions": [
+    "MaterialExpressionTextureSampleParameter2D_21"
+   ],
+   "downstream": []
+  },
+  "Gaea_RockMask": {
+   "expressions": [
+    "MaterialExpressionTextureSampleParameter2D_24"
+   ],
+   "downstream": []
+  }
+ },
+ "property_roots": {
+  "MP_BASE_COLOR": null,
+  "MP_EMISSIVE_COLOR": null,
+  "MP_ROUGHNESS": null,
+  "MP_NORMAL": null,
+  "MP_SPECULAR": null,
+  "MP_METALLIC": null,
+  "MP_AMBIENT_OCCLUSION": null
+ }
+}
