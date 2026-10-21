@@ -52,8 +52,27 @@ AMelodiaSirMelodiousIntroActor::AMelodiaSirMelodiousIntroActor()
 	ReunionLight->SetCastShadows(false);
 	ReunionLight->SetVisibility(false);
 
-	// The armature-bearing delivery is authoritative. Keep the earlier component
-	// assembly below solely as a recovery fallback for an incomplete checkout.
+	// The ARP v7 delivery (with treble-clef crest, tie, and 22-feather chains) is authoritative.
+	// Fall back to the earlier Rigged mesh and component assembly only on an incomplete checkout.
+	ConstructorHelpers::FObjectFinder<USkeletalMesh> V7MeshFinder(
+		TEXT("/Game/Melodia/Characters/SirMelodious/ARP_v7/SKM_SirMelodious_ARP_v7.SKM_SirMelodious_ARP_v7"));
+	ConstructorHelpers::FClassFinder<UAnimInstance> V7AnimFinder(
+		TEXT("/Game/Melodia/Characters/SirMelodious/ARP_v7/ABP_SirMelodious_v7"));
+	if (V7MeshFinder.Succeeded())
+	{
+		USkeletalMeshComponent* RiggedComponent = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("SirMelodiousRigged"));
+		RiggedComponent->SetupAttachment(Root);
+		RiggedComponent->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+		RiggedComponent->SetCastShadow(true);
+		RiggedComponent->SetSkeletalMesh(V7MeshFinder.Object);
+		if (V7AnimFinder.Succeeded())
+		{
+			RiggedComponent->SetAnimInstanceClass(V7AnimFinder.Class);
+		}
+		PresentationMeshes.Add(RiggedComponent);
+		return;
+	}
+
 	ConstructorHelpers::FObjectFinder<USkeletalMesh> RiggedMeshFinder(
 		TEXT("/Game/Melodia/Characters/SirMelodious/Rigged/SK_SirMelodious_Rigged.SK_SirMelodious_Rigged"));
 	if (RiggedMeshFinder.Succeeded())
