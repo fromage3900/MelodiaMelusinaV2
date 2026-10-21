@@ -68,6 +68,14 @@ public:
 	UFUNCTION(BlueprintPure, Category="Melodia|Flight")
 	float GetVerticalSpeedCap() const { return bIsBoosting ? VerticalSpeedBoosted : VerticalSpeed; }
 
+	/**
+	 * Smoothed crest-raise weight [0..1] currently written to the morph.
+	 * Exposed so a PIE proof can read the mechanic instead of inferring it
+	 * from a picture.
+	 */
+	UFUNCTION(BlueprintPure, Category="Melodia|Flight")
+	float GetCrestRaise() const { return CurrentCrestRaise; }
+
 	UPROPERTY(BlueprintReadOnly, Category="Melodia|Flight|Input")
 	TObjectPtr<UInputMappingContext> FlightMappingContext;
 
