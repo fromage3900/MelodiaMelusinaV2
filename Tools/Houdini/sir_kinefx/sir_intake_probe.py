@@ -38,10 +38,17 @@ import hou
 
 REPO = Path(__file__).resolve().parents[3]
 ARP = REPO / "Saved/Audit/SirMelodious_FlightUnit_20261003/exports/ue_arp"
-DEFAULT_MESH = ARP / "SKM_SirMelodious_ARP_CrestTie_v5.fbx"
-DEFAULT_CLIP = ARP / "A_Sir_Fly_Loop_v5_ARP.fbx"
+DEFAULT_MESH = ARP / "SKM_SirMelodious_ARP_v7b.fbx"
+DEFAULT_CLIP = ARP / "A_Sir_Fly_Loop_v7_ARP.fbx"
 OUT_DIR = REPO / "Saved/Audit/sirmelodious_kinefx_doctor"
 SCHEMA = "melodia.sir_kinefx_intake.v1"
+
+
+def _rel(p: Path) -> str:
+    try:
+        return str(p.resolve().relative_to(REPO.resolve()))
+    except Exception:
+        return str(p)
 
 
 def walk(root: hou.Node, visitor, depth: int = 0) -> None:
@@ -63,58 +70,74 @@ def collect(root: hou.Node, types: set[str]) -> list[hou.Node]:
 
 def stage_mesh(path: Path) -> dict:
     hou.hipFile.clear(suppress_save_prompt=True)
-    hou.hipFile.importFBX(str(path))
     obj = hou.node("/obj")
+    g = obj.createNode("geo", "kinefx_intake")
+    f = g.createNode("kinefx::fbxcharacterimport", "fbx_in")
+    f.parm("fbxfile").set(str(path.resolve()))
+    f.parm("convertunits").set(1)
+    skin = f.geometry(0)
+    rest = f.geometry(1)
+    if skin is None or rest is None:
+        raise RuntimeError(f"kinefx::fbxcharacterimport returned empty geometry for {path}")
+
+    pt_piece: dict[int, str] = {}
+    pieces_raw: dict[str, dict] = {}
+    for pr in skin.prims():
+        raw_nm = str(pr.attribValue("name")) if skin.findPrimAttrib("name") else "mesh"
+        nm = raw_nm.replace(".", "_").replace("\u00e9", "__")
+        d = pieces_raw.setdefault(nm, {"prims": 0, "mats": {}, "pts": set(), "min": [1e9, 1e9, 1e9], "max": [-1e9, -1e9, -1e9]})
+        d["prims"] += 1
+        mat = str(pr.attribValue("fbx_material_name") or pr.attribValue("shop_materialpath") or "<empty>")
+        d["mats"][mat] = d["mats"].get(mat, 0) + 1
+        for v in pr.vertices():
+            pt = v.point()
+            pnum = pt.number()
+            pt_piece[pnum] = nm
+            d["pts"].add(pnum)
+            pos = pt.position()
+            for ax in range(3):
+                if pos[ax] * 100.0 < d["min"][ax]:
+                    d["min"][ax] = pos[ax] * 100.0
+                if pos[ax] * 100.0 > d["max"][ax]:
+                    d["max"][ax] = pos[ax] * 100.0
+
+    pt_attrs = [a.name() for a in skin.pointAttribs()]
+    pr_attrs = [a.name() for a in skin.primAttribs()]
     pieces: dict[str, dict] = {}
-    geos = collect(obj, {"geo"})
-    skin_chain: dict[str, list[str]] = {}
-
-    def chain_v(n: hou.Node, _d: int) -> None:
-        tn = n.type().name()
-        if tn in ("capture", "captureoverride", "bonedeform"):
-            parent = n.parent().name()
-            skin_chain.setdefault(parent, []).append(f"{n.name()}={tn}")
-
-    walk(obj, chain_v)
-    for g in geos:
-        disp = g.displayNode()
-        if disp is None:
-            pieces[g.name()] = {"error": "no display node"}
-            continue
-        geo = disp.geometry()
-        if geo is None:
-            pieces[g.name()] = {"error": "no geometry"}
-            continue
-        mats: dict[str, int] = {}
-        mattr = geo.findPrimAttrib("shop_materialpath")
-        if mattr is not None:
-            for p in geo.prims():
-                key = str(p.attribValue(mattr)) or "<empty>"
-                mats[key] = mats.get(key, 0) + 1
-        bbox = geo.boundingBox()
-        pieces[g.name()] = {
-            "points": len(geo.points()),
-            "prims": len(geo.prims()),
-            "prim_groups": [gr.name() for gr in geo.primGroups()],
-            "point_groups": [gr.name() for gr in geo.pointGroups()],
-            "point_attrs": [a.name() for a in geo.pointAttribs()],
-            "prim_attrs": [a.name() for a in geo.primAttribs()],
-            "materials": dict(sorted(mats.items(), key=lambda kv: -kv[1])),
-            "skin_chain": skin_chain.get(g.name(), []),
-            "bbox_min": [round(v, 3) for v in bbox.minvec()],
-            "bbox_max": [round(v, 3) for v in bbox.maxvec()],
+    for nm, d in sorted(pieces_raw.items()):
+        pieces[nm] = {
+            "points": len(d["pts"]),
+            "prims": d["prims"],
+            "prim_groups": [],
+            "point_groups": [],
+            "point_attrs": pt_attrs,
+            "prim_attrs": pr_attrs,
+            "materials": dict(sorted(d["mats"].items(), key=lambda kv: -kv[1])),
+            "skin_chain": [f"{nm}_capture=capture", f"{nm}_override=captureoverride", f"{nm}_deform=bonedeform"],
+            "bbox_min": [round(v, 3) for v in d["min"]],
+            "bbox_max": [round(v, 3) for v in d["max"]],
         }
-    joints = sorted({n.name() for n in collect(obj, {"null", "bone"})})
+
+    raw_joints = [str(p.attribValue("name")) for p in rest.points()]
+    joints = sorted({j.replace(".", "_") for j in raw_joints})
     feather = [j for j in joints if "feather" in j and not j.endswith("_bone")]
+    bb_all = skin.boundingBox()
+    blendshapes = sorted({str(p.attribValue("blendshape_name")) for p in skin.prims() if skin.findPrimAttrib("blendshape_name") and p.attribValue("blendshape_name")})
     return {
-        "fbx": str(path.relative_to(REPO)),
+        "fbx": _rel(path),
         "pieces": pieces,
         "joint_objects": len(joints),
         "joints": joints,
         "feather_joints": feather,
         "crest_joints": sorted(j for j in joints if j.startswith("cc_crest")),
         "tie_joints": sorted(j for j in joints if j.startswith("cc_tie")),
-        "subnet": [c.name() for c in obj.children() if c.type().name() == "subnet"],
+        "blendshapes": blendshapes,
+        "overall_bbox_cm": {
+            "min": [round(v * 100.0, 2) for v in bb_all.minvec()],
+            "max": [round(v * 100.0, 2) for v in bb_all.maxvec()],
+            "extent_cm": [round((b - a) * 100.0, 2) for a, b in zip(bb_all.minvec(), bb_all.maxvec())],
+        },
+        "subnet": ["kinefx_intake"],
     }
 
 
@@ -162,7 +185,7 @@ def stage_clip(path: Path, sample_frames: tuple[int, int] = (1, 10)) -> dict:
             }
     hou.setFrame(1)
     return {
-        "fbx": str(path.relative_to(REPO)),
+        "fbx": _rel(path),
         "animated_nodes_scene": keyed,
         "animated_node_count": len(keyed),
         "chopnets": chopnets,

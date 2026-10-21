@@ -93,3 +93,15 @@ OLLAMA_HOST = "http://127.0.0.1:11434"
 
 [mcp_servers.unreal-mcp]
 url = "http://127.0.0.1:8000/mcp"
+
+[mcp_servers.jev]
+command = "C:/Python314/python.exe"
+args = ["C:/Users/froma/.claude/mcp_servers/jev_mcp.py"]
+
+[mcp_servers.melodia_bridge]
+command = "C:/Python314/python.exe"
+args = ["C:/Users/froma/.claude/mcp_servers/melodia_bridge_mcp.py"]
+
+[mcp_servers.model_hub]
+command = "C:/Python314/python.exe"
+args = ["C:/Users/froma/.claude/mcp_servers/model_hub_mcp.py"]

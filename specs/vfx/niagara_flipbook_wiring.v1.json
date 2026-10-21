@@ -1,0 +1,163 @@
+{
+  "schema": "melodia.vfx.wiring.v1",
+  "title": "Niagara/flipbook material-wiring execution spec (Fix A + twin SHIP + defaults sweep)",
+  "state": "prepared-offline",
+  "date_prepared": "2026-10-16",
+  "authority_refs": [
+    "Docs/VFX/PLAYBOOK_FLIPBOOK_FIXA.md",
+    "Docs/VFX/Playbooks/PLAYBOOK_SURREALFABRIC_FLIPBOOK_MASTER.md",
+    "Docs/Audits/TWIN_STATIC_GLINT_FLIPBOOK_2026-09-17.md",
+    "Saved/Audit/vfx_niagara_full_audit_repair.json",
+    "Saved/Audit/VFX_FIXA_ClickSparkle_CursorTrail_2026-10-10.md",
+    "Docs/Production/T3D_MONOLITH_REFERENCE.md",
+    "Saved/Audit/OfflineNiagaraPrep_20261016/flipbook_bake_offline_manifest_20261017.json",
+    "Content/Python/expand_glitter_pile.py"
+  ],
+  "execution_contract": {
+    "surface": "One BS_GodFile editor session via Monolith (:9316). Never the HumberToonShader editor (foreign project, was the only listener on 2026-10-16).",
+    "tool": "Tools/apply_vfx_flipbook_wiring.py (--audit read-only default; --apply only rows revalidated live)",
+    "no_save_packages": true,
+    "no_recompile_material": true,
+    "save_rule": "Owner Ctrl+S of dirty packages only",
+    "idempotency": "Every row is re-read live before applying; already-satisfied rows are skipped and logged.",
+    "guards": [
+      "Refuse to run unless monolith selftest passes AND the connected project is BS_GodFile (MelodiaMelusinaV2).",
+      "Never pass overwrite=true to batch_retarget_animations anywhere (editor-fatal). This spec does not touch retargets.",
+      "Never edit M_Niagara_MelodiaFlipbook (master) or any master; MI-only rows are permitted, masters are excluded from target paths.",
+      "Never delete; twin archive happens in a dedicated owner Content PR."
+    ]
+  },
+  "families": {
+    "A_renderer_binding_repair": {
+      "purpose": "Close the 5 renderer-material bindings that failed with ok:false / materials_bound:0 in the 2026-10-11 pass. All target materials verified to exist on disk offline.",
+      "monolith_pattern": "niagara_query set_renderer_material {asset_path, emitter, renderer_index, material}; read-back via get_emitter_summary renderers; record receipt.",
+      "rows": [
+        {
+          "system": "/Game/EnvSandbox/VFX/Candidates/AdvancedReplacements/NS_ConstellationDraw_AdvancedCandidate",
+          "target_material": "/Game/EnvSandbox/VFX/Materials/MI_Niagara_AuroraRibbon.MI_Niagara_AuroraRibbon",
+          "evidence": "receipt ok:false 2026-10-11"
+        },
+        {
+          "system": "/Game/EnvSandbox/VFX/Systems/Sakura/NS_SakuraPetals_v2",
+          "target_material": "/Game/EnvSandbox/VFX/Materials/MI_Niagara_Petal_Instance.MI_Niagara_Petal_Instance",
+          "evidence": "receipt ok:false 2026-10-11"
+        },
+        {
+          "system": "/Game/Melodia/VFX/NS_Morning_GlitterGlint",
+          "target_material": "/Game/Melodia/VFX/Materials/MI_Niagara_Melusina_StarSparkle.MI_Niagara_Melusina_StarSparkle",
+          "evidence": "receipt ok:false 2026-10-11"
+        },
+        {
+          "system": "/Game/Melodia/VFX/NS_Morning_PetalDrift",
+          "target_material": "/Game/Melodia/VFX/Materials/M_Niagara_Morning_PetalCard.M_Niagara_Morning_PetalCard",
+          "evidence": "receipt ok:false 2026-10-11"
+        },
+        {
+          "system": "/Game/Melodia/Companions/ChoralSheep/VFX/NS_ChoralSheep_PetalCascade",
+          "target_material": "/Game/Melodia/Companions/ChoralSheep/VFX/Materials/MI_NS_ChoralSheep_PetalLoop.MI_NS_ChoralSheep_PetalLoop",
+          "evidence": "receipt ok:false 2026-10-11"
+        }
+      ]
+    },
+    "B_fix_a_flipbook_policy": {
+      "purpose": "Extend the owner-proven Fix A rule (material owns scrub; SubUVAnimation disabled; SubImageSize 1x1; never double-scrub) to every Niagara system consuming a flipbook that is not yet confirmed compliant. Row list is populated by the live audit pass; offline candidates are documented in Saved/Audit/OfflineNiagaraPrep_20261016/audit_prep.json.",
+      "monolith_pattern": "niagara_query: set_module_enabled {asset_path, emitter, module, enabled:false} for the SubUVAnimation update module; set_emitter_property/set_module_input_value SubImageSize -> [1,1]; set_static_switch_value only where Sprite Size Mode fixes are needed (does not belong to this family).",
+      "proven_prototypes": [
+        "/Game/Melodia/VFX/NS_Melodia_ClickSparkle",
+        "/Game/Melodia/VFX/NS_Melodia_CursorTrail"
+      ],
+      "row_rule": {
+        "only_if": "system consumes a flipbook-based MI AND live read-back shows SubUVAnimation enabled OR SubImageSize != (1,1)",
+        "then": [
+          { "action": "disable_subuv_animation" },
+          { "action": "set_subimagesize_1x1" }
+        ],
+        "always_log": "before/after values, node ids where returned"
+      }
+    },
+    "C_editor_defaults_sweep": {
+      "purpose": "Ensure no Niagara system renderer references an editor-default material. Detection only in this pass; remaps ONLY when an explicit mapping row exists, never implicit guesses.",
+      "sweep_scope_default": [
+        "/Game/Melodia/VFX/NS_*",
+        "/Game/Melodia/Companions/**/VFX/NS_*",
+        "/Game/Melodia/Characters/**/VFX/NS_*",
+        "/Game/EnvSandbox/VFX/Systems/** (audit only)"
+      ],
+      "detection_markers": [
+        "niagara/defaultassets", "defaultsystem", "fountainlightweight",
+        "minimallightweight", "radialburst", "directionalburst",
+        "engine/basicshapes/basicshapematerial"
+      ],
+      "remap_rows": [],
+      "remap_rule": "Only rows present in remap_rows may be rewritten; any other default hit is log-only for owner triage (fix_niagara_render_faults.py precedent: explicit mapping per emitter only)."
+    },
+    "D_twin_ship_reparent_ownership": {
+      "purpose": "Retarget remaining consumers off /Game/_PROJECT/ (DUPLICATE twin) onto /Game/Melodia/_PROJECT/ (SHIP). These rows are owner-class actions (twin audit steps 1-5); the agent tool only AUDITS and lists consumers, never reparents in this family.",
+      "ship_authority": {
+        "flipbook_master": "/Game/Melodia/_PROJECT/VFX/Materials/M_Niagara_MelodiaFlipbook",
+        "static_glint": "/Game/Melodia/_PROJECT/VFX/Materials/MI_Niagara_Melodia_Static_Glint"
+      },
+      "open_twin_breaks": [
+        {
+          "consumer": "/Game/Melodia/_PROJECT/VFX/Materials/MI_Niagara_Melodia_Static_Glint",
+          "current_parent_suspected": "/Game/_PROJECT/VFX/Materials/M_Niagara_MelodiaFlipbook",
+          "intended_parent": "/Game/Melodia/_PROJECT/VFX/Materials/M_Niagara_MelodiaFlipbook",
+          "evidence": "TWIN audit 2026-09-17 fold-in + offline file-size hint (both copies are real MIs, 8.4KB vs 11.0KB)"
+        },
+        {
+          "consumer": "/Game/Melodia/VFX/Materials/MI_Niagara_Kawaii_SparklePulse_Flipbook",
+          "current_parent_documented": "/Game/_PROJECT/VFX/Materials/M_Niagara_MelodiaFlipbook",
+          "intended_parent": "/Game/Melodia/_PROJECT/VFX/Materials/M_Niagara_MelodiaFlipbook",
+          "evidence": "VFX_FIXA receipt 2026-10-10 states the parent path explicitly as the twin"
+        },
+        {
+          "consumer": "all MI_Niagara_Melodia_Static_* family members and any NS renderer binding them (beat-map systems NS_Melusina_ImpactBurst/Ripple/Sigil/StarPop/Splash are prime candidates)",
+          "current_parent": "/Game/_PROJECT/VFX/Materials/* (whole DUPLICATE tree)",
+          "intended": "Melodia SHIP equivalents once redirected/created; live Asset Registry enumeration required",
+          "evidence": "TWIN audit 'Related Content Static_* MIs should eventually reparent to Melodia Flipbook SHIP (owner batch)'"
+        }
+      ],
+      "do_not": [
+        "recreate the twin family at SHIP without owner decision on redirect placement",
+        "cold-delete anything",
+        "archive Content/_PROJECT in any lane other than the dedicated owner Content PR"
+      ]
+    },
+    "E_glitter_pile_bake_queue": {
+      "purpose": "Offline-baked 6x5/12fps glitter-pile flipbook atlases (pile + ring variants, 5 maps each, full + Compact) waiting for owner import into Content/. Complements (never replaces) the shader-side MF_MelodiaGlitterPile work.",
+      "bake_manifest": "Saved/Audit/OfflineNiagaraPrep_20261016/flipbook_bake_offline_manifest_20261017.json",
+      "staging_source": "Saved/OfflinePrep/flipbooks/GlitterPileAtlas/<variant>/*.png",
+      "proposed_ship_paths": "PENDING OWNER NAME CONFIRMATION (e.g. /Game/Melodia/VFX/Flipbooks/T_GlitterPile_pile_Atlas_6x5_BaseColor). No Content/ import may run without it.",
+      "import_contract": {
+        "sRGB": false,
+        "compression": "per playbook §2.3 grayscale/packed rule per map",
+        "texturegroup": "TEXTUREGROUP_Effects",
+        "fix_a_policy": "materials own scrub — SubUVAnimation off, SubImageSize [1,1]"
+      },
+      "wiring_rows_after_import": [
+        {
+          "action": "set_renderer_material",
+          "candidates_offline": "NS_Morning_GlitterGlint (family A row), NS_Melodia_LeafPileLoop family, beat-map pile-like systems — live enumeration required; no implicit remap.",
+          "guaranteed_rows": []
+        }
+      ],
+      "state": "baked-with-evidence; import blocked on owner path/name decision",
+      "evidence": "determinism 0/10 sha diffs per variant across two runs; ring modality proven by per-cell radial band check (annulus-bounded vs pile field coverage)"
+    }
+  },
+  "receipt_contract": {
+    "path": "Saved/Audit/vfx_flipbook_wiring_<timestamp>.json",
+    "must_record": [
+      "per-row before/after live read-back",
+      "rows skipped as already satisfied",
+      "rows refused with reason",
+      "dirty package list for owner Ctrl+S",
+      "editor project name + PID asserted by guard"
+    ]
+  },
+  "gates_definition_for_ledger": {
+    "gate_id": "vfx_flipbook_wiring_20261016",
+    "pass_condition": "audit receipt exists with zero editor-default hits in /Game/Melodia/** NS systems AND family A rows re-read as bound to intended materials AND Fix A policy rows read SubUVAnimation=disabled, SubImageSize=(1,1)",
+    "run_via": "python Tools/echo_run.py spec (ledger row via record_gate.py only after live pass)"
+  }
+}

@@ -236,18 +236,18 @@ set_image("MenuCornerTop", CORNER, "#E0C27CD6")
 set_image("MenuCornerBottom", CORNER, "#E0C27C8F")
 
 anchor("MenuCrest", "top_left", {"left": 102, "top": 104, "right": 72, "bottom": 72}, 4)
-anchor("MenuKicker", "top_left", {"left": 190, "top": 111, "right": 430, "bottom": 24}, 5)
+anchor("MenuKicker", "top_left", {"left": 190, "top": 111, "right": 430, "bottom": 28}, 5)
 anchor("TitleText", "top_left", {"left": 100, "top": 172, "right": 520, "bottom": 82}, 5)
 anchor("MenuSubtitle", "top_left", {"left": 104, "top": 263, "right": 510, "bottom": 54}, 5)
 anchor("MenuDivider", "top_left", {"left": 101, "top": 328, "right": 520, "bottom": 35}, 4)
-anchor("MenuSectionLabel", "top_left", {"left": 104, "top": 367, "right": 510, "bottom": 22}, 5)
+anchor("MenuSectionLabel", "top_left", {"left": 104, "top": 367, "right": 510, "bottom": 26}, 5)
 
 set_image("MenuCrest", CREST, "#E4C982F2")
 set_image("MenuDivider", DIVIDER, "#D8B86FC7")
-set_text("MenuKicker", "THE COSMIC ORRERY", 16, "#D9BC78FF", "Left", "Bold")
+set_text("MenuKicker", "THE COSMIC ORRERY", 18, "#F0D48EFF", "Left", "Bold")
 set_text("TitleText", "MELODIA", 68, "#FFF7EDFF", "Left", "Bold")
 set_text("MenuSubtitle", "Tune a fractured world back into harmony.", 21, "#DED2E5FF")
-set_text("MenuSectionLabel", "CHOOSE YOUR RESONANCE", 14, "#BFA9C9E8", "Left", "Bold")
+set_text("MenuSectionLabel", "CHOOSE YOUR RESONANCE", 18, "#D0BBE0F0", "Left", "Bold")
 
 # Keep all four native callback names and their current hierarchy. Styling and
 # padding are presentation-only; AOrreryMainMenuGameMode still clears/binds the
@@ -259,6 +259,12 @@ anchor(
     7,
     {"x": 0, "y": 0.5},
 )
+button_tooltips = {
+    "Btn_Continue": "Resume your last resonant memory.",
+    "Btn_NewGame": "Begin a new journey in the world of Melodia.",
+    "Btn_LoadGame": "Select a saved harmonic memory slot.",
+    "Btn_Settings": "Adjust audio, display, and gameplay controls.",
+}
 for button, label, display in (
     ("Btn_Continue", "BtnLabel_Continue", "CONTINUE"),
     ("Btn_NewGame", "BtnLabel_NewGame", "BEGIN A NEW DREAM"),
@@ -267,20 +273,37 @@ for button, label, display in (
 ):
     skin_button(button)
     set_text(label, display, 19, "#FFF8EFFF", "Center", "Bold")
+    ui(
+        "set_widget_property",
+        widget_name=button,
+        property_name="ToolTipText",
+        value=button_tooltips.get(button, ""),
+        compile=False,
+    )
 
 anchor("SaveStateText", "bottom_left", {"left": 104, "top": -150, "right": 510, "bottom": 50}, 8)
-set_text("SaveStateText", "Listening for your last resonance…", 16, "#D7CADDEB")
+set_text("SaveStateText", "Listening for your last resonance…", 18, "#E6D8ECEB")
 
 # Right-side typography and watermark provide hierarchy without competing with
-# the 3D level. Their low alpha allows the Orrery to remain the hero image.
-anchor("MenuWorldRosette", "center_right", {"left": -440, "top": -220, "right": 430, "bottom": 430}, -1)
-anchor("MenuWorldKicker", "top_right", {"left": -540, "top": 80, "right": 470, "bottom": 22}, 3)
+# the 3D level. Their high contrast and >=18pt scale guarantee accessibility.
+anchor("MenuWorldRosette", "center_right", {"left": -440, "top": -220, "right": 430, "bottom": 430}, 0)
+anchor("MenuWorldKicker", "top_right", {"left": -540, "top": 80, "right": 470, "bottom": 26}, 3)
 anchor("MenuWorldTitle", "top_right", {"left": -660, "top": 111, "right": 590, "bottom": 52}, 3)
-anchor("MenuCornerNote", "bottom_right", {"left": -610, "top": -72, "right": 550, "bottom": 28}, 8)
-set_image("MenuWorldRosette", ROSETTE, "#D7B97320")
-set_text("MenuWorldKicker", "A WORLD OUT OF TUNE", 14, "#D6B974A8", "Right", "Bold")
-set_text("MenuWorldTitle", "LISTEN · REMEMBER · RESTORE", 21, "#F3E8F0C7", "Right")
-set_text("MenuCornerNote", "ENTER  SELECT     ·     ESC  BACK", 14, "#E4D7E09C", "Right", "Bold")
+anchor("MenuCornerNote", "bottom_right", {"left": -610, "top": -72, "right": 550, "bottom": 32}, 8)
+set_image("MenuWorldRosette", ROSETTE, "#D7B97330")
+set_text("MenuWorldKicker", "A WORLD OUT OF TUNE", 18, "#D6B974E0", "Right", "Bold")
+set_text("MenuWorldTitle", "LISTEN · REMEMBER · RESTORE", 21, "#F3E8F0F0", "Right")
+set_text("MenuCornerNote", "ENTER  SELECT     ·     ESC  BACK", 18, "#E4D7E0D0", "Right", "Bold")
+
+# Orrery Celestial Presentation: Anchor stationary celestial center-right
+anchor("OrreryCore", "center_right", {"left": -500, "top": -200, "right": 400, "bottom": 400}, 0, {"x": 0.5, "y": 0.5})
+set_image("OrreryCore", ROSETTE, "#E4C98230")
+
+astral_tints = ("#FFD777C0", "#86E4FFC0", "#FF93B5C0", "#D6B875C0")
+for i, tint in enumerate(astral_tints, 1):
+    astral_name = f"OrbitAstral{i}"
+    anchor(astral_name, "center_right", {"left": -500, "top": -200, "right": 32, "bottom": 32}, 1, {"x": 0.5, "y": 0.5})
+    set_image(astral_name, CREST, tint)
 
 compiled = payload(ui("compile_widget"))
 if compiled.get("error_count", 0) or compiled.get("errors"):

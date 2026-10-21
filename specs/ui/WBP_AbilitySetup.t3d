@@ -1,0 +1,133 @@
+Begin Object Class=/Script/UMGEditor.WidgetBlueprint Name="WBP_AbilitySetup"
+   Begin Object Class=/Script/UMG.CanvasPanel Name="CanvasPanel_Root"
+   End Object
+   Begin Object Class=/Script/UMG.CanvasPanelSlot Name="Slot_Backdrop"
+      SlotSize=(X=1440.0,Y=900.0)
+      LayoutData=(Offsets=(Right=1440.0,Bottom=900.0),Anchors=(Minimum=(X=0.0,Y=0.0),Maximum=(X=1.0,Y=1.0)))
+   End Object
+   Begin Object Class=/Script/UMG.Image Name="Backdrop_Ivory"
+      Slot=/Script/UMG.CanvasPanelSlot'Slot_Backdrop'
+      Brush=(ImageSize=(X=1440.0,Y=900.0),DrawAs=Image,ResourceObject=MaterialInstanceConstant'/Game/Melodia/UI/Materials/MI_UI_Nikki_Card_Ivory',TintColor=(SpecifiedColor=(R=0.141,G=0.106,B=0.180,A=0.940)))
+   End Object
+   Begin Object Class=/Script/UMG.CanvasPanelSlot Name="Slot_Sheen"
+      SlotSize=(X=1440.0,Y=900.0)
+      LayoutData=(Offsets=(Right=1440.0,Bottom=900.0),Anchors=(Minimum=(X=0.0,Y=0.0),Maximum=(X=1.0,Y=1.0)))
+   End Object
+   Begin Object Class=/Script/UMG.Image Name="Sheen_Iris"
+      Slot=/Script/UMG.CanvasPanelSlot'Slot_Sheen'
+      Brush=(ImageSize=(X=1440.0,Y=900.0),DrawAs=Image,ResourceObject=MaterialInstanceConstant'/Game/Melodia/UI/Materials/MI_UI_Stardust_Iris',TintColor=(SpecifiedColor=(R=0.624,G=0.580,B=0.776,A=0.120)))
+   End Object
+   Begin Object Class=/Script/UMG.CanvasPanelSlot Name="Slot_Header"
+      SlotSize=(X=900.0,Y=80.0)
+      LayoutData=(Offsets=(Left=270.0,Top=36.0,Right=1170.0,Bottom=116.0),Anchors=(Minimum=(X=0.5,Y=0.0),Maximum=(X=0.5,Y=0.0)))
+   End Object
+   Begin Object Class=/Script/UMG.TextBlock Name="Header_AbilitySetup"
+      Slot=/Script/UMG.CanvasPanelSlot'Slot_Header'
+      bIsVariable=True
+      Text="Ability Setup"
+   End Object
+   Begin Object Class=/Script/UMG.CanvasPanelSlot Name="Slot_Wheel"
+      SlotSize=(X=560.0,Y=560.0)
+      LayoutData=(Offsets=(Left=140.0,Top=170.0,Right=700.0,Bottom=730.0),Anchors=(Minimum=(X=0.0,Y=0.0),Maximum=(X=0.0,Y=0.0)))
+   End Object
+   Begin Object Class=/Script/UMG.Overlay Name="AbilityWheel"
+      Slot=/Script/UMG.CanvasPanelSlot'Slot_Wheel'
+      bIsVariable=True
+   End Object
+   Begin Object Class=/Script/UMG.OverlaySlot Name="Slot_Ability_Glide"
+      HorizontalAlignment=HAlign_Center
+      VerticalAlignment=VAlign_Top
+   End Object
+   Begin Object Class=/Script/UMG.Button Name="AbilitySlot_Glide"
+      Slot=/Script/UMG.OverlaySlot'Slot_Ability_Glide'
+      bIsVariable=True
+   End Object
+   Begin Object Class=/Script/UMG.OverlaySlot Name="Slot_Ability_Dash"
+      HorizontalAlignment=HAlign_Right
+      VerticalAlignment=VAlign_Center
+   End Object
+   Begin Object Class=/Script/UMG.Button Name="AbilitySlot_Dash"
+      Slot=/Script/UMG.OverlaySlot'Slot_Ability_Dash'
+      bIsVariable=True
+   End Object
+   Begin Object Class=/Script/UMG.OverlaySlot Name="Slot_Ability_Swim"
+      HorizontalAlignment=HAlign_Center
+      VerticalAlignment=VAlign_Bottom
+   End Object
+   Begin Object Class=/Script/UMG.Button Name="AbilitySlot_Swim"
+      Slot=/Script/UMG.OverlaySlot'Slot_Ability_Swim'
+      bIsVariable=True
+   End Object
+   Begin Object Class=/Script/UMG.OverlaySlot Name="Slot_Ability_Sail"
+      HorizontalAlignment=HAlign_Left
+      VerticalAlignment=VAlign_Center
+   End Object
+   Begin Object Class=/Script/UMG.Button Name="AbilitySlot_Sail"
+      Slot=/Script/UMG.OverlaySlot'Slot_Ability_Sail'
+      bIsVariable=True
+   End Object
+   Begin Object Class=/Script/UMG.CanvasPanelSlot Name="Slot_Detail"
+      SlotSize=(X=560.0,Y=560.0)
+      LayoutData=(Offsets=(Left=740.0,Top=170.0,Right=1300.0,Bottom=730.0),Anchors=(Minimum=(X=0.0,Y=0.0),Maximum=(X=0.0,Y=0.0)))
+   End Object
+   Begin Object Class=/Script/UMG.Overlay Name="AbilityDetail"
+      Slot=/Script/UMG.CanvasPanelSlot'Slot_Detail'
+      bIsVariable=True
+   End Object
+   Begin Object Class=/Script/UMG.OverlaySlot Name="Slot_DetailName"
+      HorizontalAlignment=HAlign_Left
+      VerticalAlignment=VAlign_Top
+   End Object
+   Begin Object Class=/Script/UMG.TextBlock Name="AbilityDetail_Name"
+      Slot=/Script/UMG.OverlaySlot'Slot_DetailName'
+      bIsVariable=True
+   End Object
+   Begin Object Class=/Script/UMG.OverlaySlot Name="Slot_DetailDesc"
+      HorizontalAlignment=HAlign_Fill
+      VerticalAlignment=VAlign_Top
+      Padding=(Top=48.0)
+   End Object
+   Begin Object Class=/Script/UMG.TextBlock Name="AbilityDetail_Desc"
+      Slot=/Script/UMG.OverlaySlot'Slot_DetailDesc'
+      bIsVariable=True
+      AutoWrapText=True
+   End Object
+   Begin Object Class=/Script/UMG.OverlaySlot Name="Slot_OutfitRow"
+      HorizontalAlignment=HAlign_Fill
+      VerticalAlignment=VAlign_Top
+      Padding=(Top=220.0)
+   End Object
+   Begin Object Class=/Script/UMG.HorizontalBox Name="AbilityOutfitRow"
+      Slot=/Script/UMG.OverlaySlot'Slot_OutfitRow'
+      bIsVariable=True
+   End Object
+   Begin Object Class=/Script/UMG.OverlaySlot Name="Slot_CustomStyle"
+      HorizontalAlignment=HAlign_Fill
+      VerticalAlignment=VAlign_Top
+      Padding=(Top=380.0)
+   End Object
+   Begin Object Class=/Script/UMG.Button Name="CustomStylingButton"
+      Slot=/Script/UMG.OverlaySlot'Slot_CustomStyle'
+      bIsVariable=True
+   End Object
+   Begin Object Class=/Script/UMG.OverlaySlot Name="Slot_SaveRow"
+      HorizontalAlignment=HAlign_Fill
+      VerticalAlignment=VAlign_Bottom
+   End Object
+   Begin Object Class=/Script/UMG.HorizontalBox Name="SaveRow"
+      Slot=/Script/UMG.OverlaySlot'Slot_SaveRow'
+      bIsVariable=True
+   End Object
+   Begin Object Class=/Script/UMG.HorizontalBoxSlot Name="Slot_SaveButton"
+   End Object
+   Begin Object Class=/Script/UMG.Button Name="SaveLoadoutButton"
+      Slot=/Script/UMG.HorizontalBoxSlot'Slot_SaveButton'
+      bIsVariable=True
+   End Object
+   Begin Object Class=/Script/UMG.HorizontalBoxSlot Name="Slot_CloseButton"
+   End Object
+   Begin Object Class=/Script/UMG.Button Name="CloseButton"
+      Slot=/Script/UMG.HorizontalBoxSlot'Slot_CloseButton'
+      bIsVariable=True
+   End Object
+End Object
