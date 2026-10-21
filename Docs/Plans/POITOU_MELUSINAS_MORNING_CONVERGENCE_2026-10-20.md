@@ -5,6 +5,8 @@
 **Type:** executable creative convergence plan, **not a new status authority or engine**. Status remains in [CURRENT_STATE.md](../../CURRENT_STATE.md).  
 **Objective:** one coherent, artist-approved and playable P0 opening environment. Protect completed generators; converge, stage, verify, capture.
 
+> **Companion experience score:** [Poitou P0 Golden Walk (M00–M09)](POITOU_P0_GOLDEN_WALK_2026-10-21.md). This specifies the *bounded playable exploration route*; this document retains artistic / terrain / house convergence ownership. Preserve the separate existing First Dream golden-run contract.
+
 ## 0. Locked creative identity (the central decision)
 
 **Poitou** is the new fictional art-direction name for the existing **Melusina's Morning** opening area, regionally rooted in **Poitou / Marais Poitevin (Venise Verte)**. Regionalism defines land, water, human craft, ecology and local atmosphere; **Melusina's own house keeps its established extravagant fantasy identity**. A French region does **not** mean every building becomes generic Haussmann/Parisian.
