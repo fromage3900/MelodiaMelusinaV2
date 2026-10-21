@@ -12,7 +12,7 @@
 
 **One governing meter, both docs defer to it:** grid **0.6 m** = 1 beat, bar/bay **2.4 m** = 1 bar of 4/4, **128 BPM 4/4** (beat 0.469 s, bar 1.875 s, walk 1.28 m/s). The older "2.4 m = allegro 3/4 / 3.6 m = andante 4/4" phrasing is superseded everywhere.
 
-**The P0 route is Poitou "Melusina's First Day"** — 7 beats, ~1.6 km, 06:00→19:30, 15–20 min: jetty → footbridge → grand port → church square → lane → poplar allée + lock → ruin on rise. Each beat teaches one thing; the music is in the architecture. Pacing contract `specs/progression/melodia_first_day_pacing.v1.json`. **Live level is `/Game/EnvSandbox/Poitou/L_Poitou_v2`** (`L_MelusinaMorning` is now a 37 KB shell). **Zen Forest is NOT core canon** pending owner decision. The route has **no rhythm-combat beat** — a First Day design fact that does *not* change the hybrid canon below; the four hybrid ownership questions remain unratified (`CURRENT_STATE.md` "OWNER CANON").
+**The P0 route is the Poitou P0 Golden Walk, M00-M09** - an 8-12 min exploration-led opening (target 10:00): bedroom -> house -> village -> canal -> departure. Authority `Docs/Plans/POITOU_P0_GOLDEN_WALK_2026-10-21.md`; machine form `specs/p0/poitou_p0_golden_walk.v1.json`. **Two proofs, not one:** this experience P0, and the separate integration P0 `specs/p0/core_p0_dream_golden_run.v1.json` (Morning -> KaleidoNave -> encounter -> save/restart), which must stay intact. Every M00-M09 beat is `PROPOSED`. **Live level is `/Game/EnvSandbox/Poitou/L_Poitou_v2`**; `L_MelusinaMorning` is a 37 KB shell and the house leg's ownership is an open owner decision. **Zen Forest is NOT core canon.** No combat beat in the walk - that does *not* change the hybrid canon below; the four ownership questions remain unratified (`CURRENT_STATE.md` "OWNER CANON").
 
 ## ⚑ MELUSINA RUNTIME RIG + RETARGET CANON — 2026-10-05
 
@@ -45,7 +45,7 @@ Hermes loads this file, not `CLAUDE.md`, so the binding rules are repeated here.
   editor at once. `MelodiaIntegrationMap` is the cluttered test level: never tidy it, never `load_level` away from it uninvited; PIE stop → immediate `load_level` crashes the editor. Save approved editor work immediately. Never bulk `load_asset` (use Asset Registry tags).
 - **Delegated output is not evidence.** Open the artifact (image, log, JSON) yourself before claiming
   a result. A subagent once reported a "smooth" SDF bake that was scattered dots.
-- **Orchestration & Model Tier Discipline.** Hermes runs long jobs, Jev routes, Claude verifies; the one plan is [`.hermes/plans/2026-09-26_hermes-orchestrator-infra-plan.md`](.hermes/plans/2026-09-26_hermes-orchestrator-infra-plan.md). Extend it; do not start a parallel orchestration/router/lease framework. Model tiers are governed by [`MODEL_ROUTING_CANON.md`](Docs/Production/MODEL_ROUTING_CANON.md) and [`model_tiers.v1.json`](specs/orchestration/model_tiers.v1.json). Before spending frontier calls, query `python Tools/model_router.py tier <task>`; lower-tier bulk work must not burn frontier tokens, and local/bulk tiers must not alter `Source/**`, schemas, or contracts. Parallel repo work = jcode swarm under `.jcode/swarm-prompt.md` (one worktree per worker, patches only, no editor access).
+- **Orchestration & Model Tier Discipline.** Hermes runs long jobs, Jev routes, Claude verifies; the plan is [`.hermes/plans/2026-09-26_hermes-orchestrator-infra-plan.md`](.hermes/plans/2026-09-26_hermes-orchestrator-infra-plan.md). Extend it; do not start a parallel orchestration/router/lease framework. Model tiers are governed by [`MODEL_ROUTING_CANON.md`](Docs/Production/MODEL_ROUTING_CANON.md) and [`model_tiers.v1.json`](specs/orchestration/model_tiers.v1.json). Before spending frontier calls, query `python Tools/model_router.py tier <task>`; lower-tier bulk work must not burn frontier tokens, and local/bulk tiers must not alter `Source/**`, schemas, or contracts. Parallel repo work = jcode swarm under `.jcode/swarm-prompt.md` (one worktree per worker, patches only, no editor access).
 - **Do the job asked** (`_AGENT_WORKING_AGREEMENT.md`): the request is the scope; queue work comes
   from `CURRENT_STATE.md` §4, not from new audits.
 
@@ -67,7 +67,7 @@ If old research suggests a parallel implementation, this front door wins unless 
 
 ## Cymatics-first Melodia canon (binding)
 
-Melodia is structured by music, harmony, resonance and cymatic mathematics, not merely decorated with audio-reactive effects. Before suggesting replacements, trace the existing MIDI/chord mappings, Harmonic State (`UMelodiaHarmonicStateSubsystem`), Cymatics Subsystem (`UMelodiaCymaticsSubsystem`), World Field Bus (`UWorldFieldBus`), Houdini/PCG producers and runtime consumers. Follow the [World-Building Source of Truth](Docs/WorldBuilding/WORLD_BUILDING_SOURCE_OF_TRUTH.md) and [Audio-Reactive Canon](Docs/Architecture/AUDIO_REACTIVE_CANON.md). Preserve established gameplay/save authority and single-writer contracts; never create a new harmonic engine, World Compiler, model router, documentation authority or redundant subsystem.
+Melodia is structured by music, harmony, resonance and cymatic mathematics, not merely decorated with audio-reactive effects. Before suggesting replacements, trace the existing MIDI/chord mappings, Harmonic State (`UMelodiaHarmonicStateSubsystem`), Cymatics Subsystem (`UMelodiaCymaticsSubsystem`), World Field Bus (`UWorldFieldBus`), Houdini/PCG producers and runtime consumers. Follow the [World-Building Source of Truth](Docs/WorldBuilding/WORLD_BUILDING_SOURCE_OF_TRUTH.md) and [Audio-Reactive Canon](Docs/Architecture/AUDIO_REACTIVE_CANON.md). Preserve gameplay/save authority and single-writer contracts; never create a new harmonic engine, World Compiler, model router, documentation authority or redundant subsystem.
 
 ## ⛔ WORKING AGREEMENT — outranks everything below in this file
 
@@ -77,11 +77,11 @@ See [`_AGENT_WORKING_AGREEMENT.md`](_AGENT_WORKING_AGREEMENT.md) — binding. Do
 
 ## Existing skills and local lanes
 
-`melodia-daemon-monitor` (cron repair), `melodia-mesh-catalog` (read-only mesh catalog), `melodia-cathedral-builder` (wool modes, weight lab). `Tools/model_router.py` routes local daemons through `qwen3:8b` / `qwen3-coder:30b`; daemon proposals need human review.
+`melodia-daemon-monitor` (cron repair), `melodia-mesh-catalog` (read-only mesh catalog), `melodia-cathedral-builder` (wool/weight lab). `Tools/model_router.py` routes local daemons through `qwen3:8b` / `qwen3-coder:30b`; daemon proposals need human review.
 
 ## Toolchain discovery - emerging-toolchain, render, or audio work
 
-Read [`CURRENT_STATE.md`](CURRENT_STATE.md) for `PROVEN CREATIVE CAPABILITY SURFACE` evidence level, then [`EMERGING_TOOLCHAIN_MASTER_INDEX_2026-08-31.md`](Docs/Research/EMERGING_TOOLCHAIN_MASTER_INDEX_2026-08-31.md) for the SpeedTree, Houdini/PCG, cymatics and audio inventory. That index is not a status authority: extend PRESENT lanes, prove SCAFFOLDED lanes, never promote research-only work to live.
+Read [`CURRENT_STATE.md`](CURRENT_STATE.md) for `PROVEN CREATIVE CAPABILITY SURFACE` evidence level, then [`EMERGING_TOOLCHAIN_MASTER_INDEX_2026-08-31.md`](Docs/Research/EMERGING_TOOLCHAIN_MASTER_INDEX_2026-08-31.md) for the SpeedTree, Houdini/PCG, cymatics and audio inventory. Not a status authority: extend PRESENT lanes, prove SCAFFOLDED lanes, never promote research-only work to live.
 
 ## Core vision - the stable core is for authored content
 
@@ -91,7 +91,7 @@ Melodia is an authored rhythm-JRPG with a working gameplay core and a growing pr
 
 `Quill encounter intent -> Phoenix / TurnBased JRPG selected action -> rhythm execution -> typed terminal result -> Quill resumes exactly once -> consequence / reward / checkpoint`
 
-Use the exact evidence levels in `CURRENT_STATE.md`. The scoped battle and grade-to-damage seams are live-proven; a fresh packaged golden run and the long-chain persistence proof are separate open gates, not reasons to reopen the owners.
+Use the exact evidence levels in `CURRENT_STATE.md`. The scoped battle and grade-to-damage seams are live-proven; a packaged golden run and the long-chain persistence proof are separate open gates, not reasons to reopen the owners.
 
 ### Owner-directed runtime migration - 2026-10-01
 
@@ -130,7 +130,7 @@ Core rules (full detail in the runbook above):
 Pipeline: `Spec Change -> T3D Inject -> Compile -> Fingerprint -> Regression Test -> Promote`. Full reference: [`T3D_PIPELINE_FULL_REFERENCE.md`](Docs/Production/T3D_PIPELINE_FULL_REFERENCE.md) and [`T3D_MONOLITH_REFERENCE.md`](Docs/Production/T3D_MONOLITH_REFERENCE.md).
 
 - **Ledger, not prose.** A lane is "done" only when `record_gate.py <id> pass` has a row. Manifest `specs/echo_pipeline.json`; runner `Tools/echo_run.py`; control panel `Tools/project_state.py --view integration | staleness`; contract `Docs/ECHO_PIPELINE_2026-08-09.md`.
-- **Read-only verifiers, each answering a question a compile cannot:** `bp_live_path.py` (is it reachable at all?), `bp_sweep.py` (five shipped defect classes), `graph_reachability.py` (dead islands *inside* a graph), `ui_style_audit.py`, `t3d_dashboard.py`. `Docs/T3D_Baseline/test_canonical.py` and `Tools/test_ui_style_audit.py` have committed assertions - loosening a check is how you blind one. Run them after touching those tools.
+- **Read-only verifiers, each answering a question a compile cannot:** `bp_live_path.py` (reachable at all?), `bp_sweep.py` (five shipped defect classes), `graph_reachability.py` (dead islands *inside* a graph), `ui_style_audit.py`, `t3d_dashboard.py`. `Docs/T3D_Baseline/test_canonical.py` and `Tools/test_ui_style_audit.py` have committed assertions - loosening a check is how you blind one. Run them after touching those tools.
 - **A probe is not play evidence.** Real-input runtime claims need real input through `BP_BattleUI::OnKeyDown` (or a documented injection path), an accompanying JSON assertion report, and the committed harness being the harness that ran. A probe-only green run is a HOLD.
 - **The HUD is shared.** `UMelodiaRhythmHUDWidget` has two drivers; the ambient lane must only clear a highway it set (`bExecutionDrivingHighway`). Two writers on one surface with no ownership is the defect class this whole section exists to prevent.
 
@@ -235,11 +235,11 @@ Root cause is unfixed: `D_DamageType` is a Blueprint user-defined enum whose enu
 2. Does the registry still see it? Force a rescan: `ar.scan_paths_synchronous([folder], force_rescan=True)` - a `delete_asset` in this session hides an asset that is perfectly intact on disk.
 3. Compare `does_asset_exist` / `find_asset_data` against `load_asset`. Valid metadata plus a failed load means **in-session state, not file damage** - restart the editor.
 4. Check for a redirector: the canonical path may resolve elsewhere; `unreal.load_package` returns the package it actually resolved to.
-5. Only then look for backups (`Saved/Recovery/`, `CompatibilityLabs/`, per-asset `_OLD` variants). **Never delete or overwrite a candidate backup while diagnosing.**
+5. Only then look for backups (`Saved/Recovery/`, `CompatibilityLabs/`, per-asset `_OLD` variants). **Never delete a candidate backup while diagnosing.**
 
 ## Safe working rules
 
-**Full text with rationale and incident history: [`UNREAL_EDITOR_SAFE_RULES_FULL.md`](Docs/Production/UNREAL_EDITOR_SAFE_RULES_FULL.md)** — all 26 rules are binding; read it before editor work. Index of the ones that bite hardest:
+**Full text: [`UNREAL_EDITOR_SAFE_RULES_FULL.md`](Docs/Production/UNREAL_EDITOR_SAFE_RULES_FULL.md)** — all 26 rules are binding; read it before editor work. The ones that bite hardest:
 
 **Destroying work** (never run, even "to undo something") is the table above: `git clean`, `git checkout -- .`, `delete_asset`, FBX import over an existing asset. Ask the owner first.
 

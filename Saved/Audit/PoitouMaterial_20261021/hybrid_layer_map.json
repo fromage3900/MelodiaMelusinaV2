@@ -1,0 +1,25 @@
+{
+  "generated": "2026-10-21",
+  "superseded_by": "gateG_layer_and_texture_bindings.json",
+  "why_superseded": "This file originally compared the Nikki master against M_Poitou_Landscape_Painterly's layer names and concluded the Nikki paint lane was dead. That comparison used the wrong reference: L_Poitou_v2 does not use the painterly layer family at all. Its real target layers are the Houdini LandscapeLayerInfoObjects Base/Grass/Ground/Mud/Path/Rock/Water.",
+  "method": "MaterialEditingLibrary.get_material_expressions -> LandscapeLayerSample.parameter_name",
+  "nikki_master": "/Game/EnvSandbox/Materials/Masters/M_Master_Nikki_Landscape",
+  "painterly_master": "/Game/EnvSandbox/Poitou/Materials/M_Poitou_Landscape_Painterly",
+  "nikki_layer_samples": ["Mud", "Path", "Rock", "Snow", "Water"],
+  "painterly_layer_samples": [
+    "canal_banks", "mask_debris", "mask_flow", "mask_wetness", "mist_marsh_reeds",
+    "ruin_rise", "tree_rows_poplar_ash", "village_buildings", "water", "wet_meadow_grass"
+  ],
+  "landscape_target_layers_referenced_by_map": ["Base", "Grass", "Ground", "Mud", "Path", "Rock", "Water"],
+  "nikki_coverage_of_real_layers": {
+    "sampled": ["Mud", "Path", "Rock", "Water"],
+    "unsampled": ["Base", "Grass", "Ground"],
+    "no_layer": ["Snow"]
+  },
+  "painterly_coverage_of_real_layers": {
+    "sampled": [],
+    "note": "Different layer family; zero overlap with the map's LandscapeLayerInfoObjects."
+  },
+  "verdict": "The Nikki paint lane reads 4 of 7 real baked layers. It is partial, not dead. The painterly master is a different layer family and is not assigned to any landscape.",
+  "evidence_level": "graph-read only; no mutation, no PIE"
+}

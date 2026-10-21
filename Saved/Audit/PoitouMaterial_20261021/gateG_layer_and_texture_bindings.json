@@ -1,0 +1,93 @@
+{
+  "generated": "2026-10-21",
+  "gate": "G",
+  "evidence_level": "graph/asset-registry read-only; no mutation, no PIE, no screenshot",
+  "method": [
+    "AssetRegistry.get_dependencies(/Game/EnvSandbox/Poitou/L_Poitou_v2)",
+    "unreal.load_asset(...).get_class() on every referenced LandscapeLayerInfoObject",
+    "MaterialEditingLibrary.get_material_expressions -> LandscapeLayerSample parameter_name",
+    "MI_Poitou_Landscape_Nikki texture_parameter_values / scalar_parameter_values"
+  ],
+  "landscape_material_in_use": "/Game/EnvSandbox/Poitou/Materials/MI_Poitou_Landscape_Nikki",
+  "landscape_target_layers": {
+    "source": "LandscapeLayerInfoObject assets referenced by L_Poitou_v2",
+    "class": "LandscapeLayerInfoObject",
+    "prefix": "/Game/HoudiniEngine/Bake/Poitou_Layout_RoomShell_Candidate_449_514_0_Landscape_",
+    "names": ["Base", "Grass", "Ground", "Mud", "Path", "Rock", "Water"],
+    "count": 7
+  },
+  "li_poitou_assets_not_referenced_by_map": {
+    "count": 18,
+    "folders": [
+      "/Game/EnvSandbox/Poitou/LayerInfo",
+      "/Game/EnvSandbox/Poitou/Materials/LayerInfo"
+    ],
+    "names": [
+      "LI_Poitou_Base", "LI_Poitou_Grass", "LI_Poitou_Ground", "LI_Poitou_Mud",
+      "LI_Poitou_Path", "LI_Poitou_Rock", "LI_Poitou_Water",
+      "LI_Poitou_canal_banks", "LI_Poitou_mist_marsh_reeds", "LI_Poitou_mist_volume",
+      "LI_Poitou_ruin_rise", "LI_Poitou_tree_rows_poplar_ash",
+      "LI_Poitou_village_buildings", "LI_Poitou_water", "LI_Poitou_wet_meadow_grass",
+      "LI_Poitou_mask_debris", "LI_Poitou_mask_flow", "LI_Poitou_mask_wetness"
+    ],
+    "note": "Present on disk but zero references from L_Poitou_v2; not the landscape's target layer set."
+  },
+  "masters": {
+    "nikki": {
+      "path": "/Game/EnvSandbox/Materials/Masters/M_Master_Nikki_Landscape",
+      "layer_samples": ["Mud", "Path", "Rock", "Snow", "Water"]
+    },
+    "painterly": {
+      "path": "/Game/EnvSandbox/Poitou/Materials/M_Poitou_Landscape_Painterly",
+      "expression_count": 287,
+      "layer_sample_nodes": 21,
+      "layer_sample_names": [
+        "canal_banks", "mask_debris", "mask_flow", "mask_wetness", "mist_marsh_reeds",
+        "ruin_rise", "tree_rows_poplar_ash", "village_buildings", "water", "wet_meadow_grass"
+      ]
+    }
+  },
+  "coverage": {
+    "sampled_real_layers": ["Mud", "Path", "Rock", "Water"],
+    "unsampled_real_layers": ["Base", "Grass", "Ground"],
+    "sampled_without_layer": ["Snow"],
+    "verdict": "4 of 7 baked layers are read by the Nikki master. Snow is correctly absent (slope/SDF lane). Base/Grass/Ground are baked, referenced by the map, and never sampled."
+  },
+  "mi_texture_parameter_overrides": {
+    "Albedo": "T_Poitou_WetMeadow_D",
+    "Rock_Albedo": "T_Poitou_Limestone_D",
+    "Rock_NormalMap": "T_Poitou_Limestone_N",
+    "Ground_Albedo": "T_Poitou_SiltMud_D",
+    "Ground_NormalMap": "T_Poitou_SiltMud_N",
+    "Grass_Albedo": "T_Poitou_WetMeadow_D",
+    "Grass_NormalMap": "T_Poitou_WetMeadow_N",
+    "Mud_Albedo": "T_Poitou_SiltMud_D",
+    "Mud_NormalMap": "T_Poitou_SiltMud_N",
+    "Path_Albedo": "T_Poitou_ReedBed_D",
+    "Path_NormalMap": "T_Poitou_ReedBed_N",
+    "Water_Albedo": "T_Poitou_DuckweedWater_D",
+    "Water_NormalMap": "T_Poitou_DuckweedWater_N"
+  },
+  "placeholder_slots": {
+    "Gaea_SnowMask": {"mi_override": false, "effective": "master default sbs Horizontal_1_-_512x512"},
+    "Gaea_WaterMask": {"mi_override": false, "effective": "master default sbs Horizontal_1_-_512x512"},
+    "Gaea_FlowMask": {"mi_override": false, "effective": "master default sbs Horizontal_1_-_512x512"},
+    "Gaea_RockMask": {"mi_override": false, "effective": "master default sbs Horizontal_1_-_512x512"},
+    "Snow_Albedo": {"mi_override": false, "effective": "master default sbs Horizontal_1_-_512x512"}
+  },
+  "scalar_overrides": {
+    "RoughnessMin": 0.3951990008354187,
+    "RampPosMid": 0.05,
+    "RampContrast": 0.1,
+    "RampStrength": 1.0,
+    "Gaea_SnowWeight": 0.33192,
+    "Rock_DetailAlbedoReference": 8.039026260375977,
+    "CymaticsLandscapeMaxEmission": 0.448001,
+    "NikkiIridescence": 0.0,
+    "NikkiPastelBloom": 0.0,
+    "CymaticsLandscapeAmount": 0.455157,
+    "SnowStrength": 0.0,
+    "RefractionDepthBias": 0.0
+  },
+  "verdict": "No texture should be bound to the four Gaea_*Mask slots. They duplicate what LandscapeLayerSample already reads from the landscape; the sbs gradient is a master default, not an MI override. The real gaps are (a) the four mask parameters being texture-driven at all, and (b) Base/Grass/Ground being baked but unsampled. The Gaea Glacier bakes remain unusable for Poitou (wrong geography). The per-material _SDF maps remain unverified (PF_B8G8R8A8, 2048^2, sRGB off; source format 1 not inspectable via MCP)."
+}

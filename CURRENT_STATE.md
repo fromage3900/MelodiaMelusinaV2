@@ -27,18 +27,28 @@ The earlier "2.4 m = allegro 3/4 / 3.6 m = andante 4/4" phrasing was internally 
 
 | Land | Status |
 |---|---|
-| **Poitou Abbey** — Sunlit Maillezais Sanctuary (`L_Poitou_v2`) | **The live level** (replaced Morning 2026-10-21, `46669de7b`). Morning is now a 37 KB shell. |
-| **Melusina Morning** — Meadow Cantata (`L_MelusinaMorning`) | Identity of the overture; the map is a shell. |
-| **Kaleido Nave** — Starlight Cathedral (`L_KaleidoNave`) | Canonical. |
+| **Poitou Abbey** — Sunlit Maillezais Sanctuary (`L_Poitou_v2`) | **The live level** (replaced Morning 2026-10-21, `46669de7b`). Carries the P0 golden walk's village and canal legs. |
+| **Melusina Morning** — Meadow Cantata (`L_MelusinaMorning`) | **Now a 37 KB shell** — but the golden walk's *house* leg is authored against Morning ownership, and the integration P0's player route still starts at `L_MelusinaMorning`. House-leg map ownership is an **open owner decision**, not a settled fact. |
+| **Kaleido Nave** — Starlight Cathedral (`L_KaleidoNave`) | Canonical; the integration P0's second map. |
 | **Zen Forest** — Tranquil Shaded Canopy (`L_ZenForestTest`) | **NOT core canon, pending owner decision** (Japanese cedar — not French). Neither promoted nor deleted; must not be described as a canonical French land. |
 
-### The P0 route — Poitou "Melusina's First Day"
+### The P0 route — Poitou P0 Golden Walk, M00–M09 (owner, 2026-10-21)
 
-7 beats, ~1.6 km, 06:00 mist → 19:30 dusk, 15–20 min: jetty → footbridge → grand port → church square → Quéreux lane → poplar allée + lock → ruin on rise. **Each beat teaches exactly one thing; the music is in the architecture** (beat 2: step = note on the piano footbridge, `A_MEL_Walk_PianoStep_128`, 1 bar = 1.875 s).
+**Authoritative document:** [`Docs/Plans/POITOU_P0_GOLDEN_WALK_2026-10-21.md`](Docs/Plans/POITOU_P0_GOLDEN_WALK_2026-10-21.md) — committed to `origin/main` as `6f2dfc6bc` (Brennan Shepherd, 2026-10-21 03:58). **Machine form:** [`specs/p0/poitou_p0_golden_walk.v1.json`](specs/p0/poitou_p0_golden_walk.v1.json) (10 windows, targets sum 600 s, validates against the progression schema's `$defs/pacing`).
 
-**Duration arithmetic (checkable):** 1600 m at Melusina's 2.2 m/s walk = 12.1 min with no stops. The 15–20 min window therefore only closes with 3–8 min of stops/interaction — **if the route is walked straight through it overruns its own budget.**
+**The route:** an **8–12-minute, exploration-led playable opening**, target 10:00. Bedroom wake → notice → first resonance → threshold → the house hums → open the front door → village orientation → one conversation → follow the water → departure / First Dream handoff. At most **three** mandatory player actions (one inspection, one forgiving resonance response, one existing Quill choice); normal traversal and door use don't count.
 
-**This route has no rhythm-combat beat.** That is a design fact of the First Day route, *not* a change to the turn-based ARPG / ACFU hybrid canon (still the combat identity, still pending owner ratification of its four ownership questions — see OWNER CANON, 2026-10-11, below). The design spec lists the whole combat animation set as "Combat (out of scope)". **No owner decision has been recorded about this**, so it is flagged here, not resolved.
+**Two different proofs — do not conflate them:**
+1. **Experience P0** (this route): strongest art/animation/audio and responsive interaction. No forced combat and no new gameplay mechanic required before the village departure.
+2. **Integration P0** — [`specs/p0/core_p0_dream_golden_run.v1.json`](specs/p0/core_p0_dream_golden_run.v1.json): Morning → `L_KaleidoNave` → stock JRPG encounter → Quill consequence → canonical save → editor/process restart → Continue → repeatability check. **It must remain intact and must not be replaced or silently rewritten with this scenic route.**
+
+A green experience walk does **not** certify combat/save/packaged proof; a green integration map does **not** certify the experience. **Every M00–M09 beat is `PROPOSED` until proved in the live editor** — this route certifies nothing yet.
+
+**The wider Poitou beat sheet is a different envelope.** [`Docs/Poitou/CONVERGENCE_PLAN.md`](Docs/Poitou/CONVERGENCE_PLAN.md) (7 beats, ~1.6 km, 06:00→19:30, 15–20 min: jetty → footbridge → grand port → church square → lane → poplar allée + lock → ruin on rise) is the **world design** plan for Poitou as a deep backdrop. It is **not** the P0 playable envelope, and it is not a second P0.
+
+**Open conflict between the two, flagged not resolved:** the golden walk's house leg is authored against **Morning** ownership, and `L_MelusinaMorning.umap` is now a **37 KB shell** with Poitou as the live level (`46669de7b`). The house leg needs an explicit live-audit decision before PASS B. The golden walk also requires an inventory-and-reconcile of the older Dreamstate prologue / `UMelodiaOpeningFlowSubsystem` bindings against the live map.
+
+**Combat:** this route has **no rhythm-combat beat** — that is a design fact of the golden walk, *not* a change to the turn-based ARPG / ACFU hybrid canon (still the combat identity, still pending owner ratification of its four ownership questions — see OWNER CANON, 2026-10-11, below). The integration P0 still exercises the stock encounter.
 
 ### Evidence levels — stated plainly
 
@@ -46,7 +56,8 @@ The earlier "2.4 m = allegro 3/4 / 3.6 m = andante 4/4" phrasing was internally 
 |---|---|
 | The canon documents exist and are versioned | **source-committed** (this change) |
 | The two P0 lines are one line instead of two stranded tips | **source-committed** — merge `0e8c68616` on `refs/agents/canon-full-french-20261021`, 0 deletions, 3 additions, 6 conflicts resolved to the union |
-| The First Day route plays | **DESIGN ONLY.** No beat is runtime-proven; the `*_FirstDay` gate duplicates are not authored; the grounding gate has not run against the beat stops |
+| The M00–M09 golden walk plays | **DESIGN ONLY.** Every beat is `PROPOSED`; none is runtime-proven. No receipt exists under `Saved/Audit/poitou_p0_walk/`. The house leg's map ownership is unresolved after Morning became a 37 KB shell. |
+| The integration P0 golden run | **unchanged and still owed** — `specs/p0/core_p0_dream_golden_run.v1.json` is intact; it was not replaced by the scenic route |
 | The lookbook plates | **6 of 7 FAIL the project's own gate** (`Tools/audit_showcase_plates.py`, receipt `Saved/Audit/PoitouConvergence_20261020/plate_audit.json`). Poitou = unlit black silhouette; Zen Forest = solid black (`mean_luma 0.0`, `unique_colors 1`); Kaleido = magenta default-material in a void; Sea Above = flat gradient. `site-plates.json` statuses corrected from "reviewed" to the audit verdict. **Re-renders owed.** |
 | The AbbeyBuilder HDA parameter contract | **verified by introspection** — hython 22.0.368, `hou.hda.definitionsInFile` → `parmTemplateGroup`, 2026-10-21. The spec's old 9-row table named 9 parameters that **do not exist**; the real 9 are in the spec §4.1 now |
 | The live layout HDA parameters | **verified by live readback** (`Saved/Audit/PoitouConvergence_20261020/live_parameters_before.txt`, `live_requested_parameters.json`) |
@@ -56,9 +67,12 @@ The earlier "2.4 m = allegro 3/4 / 3.6 m = andante 4/4" phrasing was internally 
 
 1. **Zen Forest** — keep as a labelled "beyond" tier / translate it French / retire it. Biggest lever on "full french".
 2. **Maillezais dimensions vs the bar** — `abbey_len` 105 m / 2.4 = **43.75 bays**, `abbey_wid` 32 m / 2.4 = **13.33 bays**. Either the dimension wins (105 → 105.6 m = 44 bays; 32 → 33.6 m = 14 bays) or the bar wins (43 bays = 103.2 m; 13 bays = 31.2 m). "Zero slop" forbids a fractional bay count and geometry is being generated now.
-3. **The First Day route has no combat beat** — ratify the hybrid ownership table and record the route as combat-free, or restore an encounter beat to the route.
+3. **The P0 golden walk has no combat beat** — the route is exploration-only by design, while the integration P0 still exercises the stock encounter. Ratify the hybrid ownership table and record the split, so "combat-free experience P0 / combat-bearing integration P0" is a stated decision rather than an accident.
 4. **Tempo authority** — Poitou is 128 BPM, every other world recipe is 96, and `UMelodiaMusicClockSubsystem` is documented as *global tempo, per-zone key*. Confirm the clock's tempo authority before authoring any tempo-locked clip; a clip authored against the wrong tempo is a rewrite.
 5. **Lookbook plates** — re-render the four failing canonical plates, or publish them labelled as environment studies rather than portfolio heroes.
+6. **The house leg's map ownership** — the golden walk's bedroom → house is authored against `L_MelusinaMorning`, which is now a 37 KB shell. Decide whether the house returns to Morning, moves into Poitou, or is staged as an isolated interior slice — and **one canonical player route, no duplicate Morning maps**.
+7. **Sir's presence at M01** — the golden walk's empty-perch cue is deliberately ambiguous; the owner decides whether Sir is briefly present or absent.
+8. **A single canal-facing exit image** — the owner's own first-session item; it anchors the route's framing.
 
 ### Editor-blocked gates (the editor was live with another agent's MCP session at 2026-10-21 06:36)
 

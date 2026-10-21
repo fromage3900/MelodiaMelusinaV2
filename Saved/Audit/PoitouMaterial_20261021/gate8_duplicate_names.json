@@ -1,0 +1,61 @@
+{
+  "generated": "2026-10-21",
+  "gate": "8",
+  "title": "Duplicate parameter names — all three groups are deliberate fan-out, not defects",
+  "evidence_level": "read-only graph + MI override read; no mutation, no compile change",
+  "master": "/Game/EnvSandbox/Materials/Masters/M_Master_Nikki_Landscape",
+  "mi": "/Game/EnvSandbox/Poitou/Materials/MI_Poitou_Landscape_Nikki",
+  "result": "no mutation required — validator warnings are false positives for this pattern",
+
+  "groups": {
+    "Rock_NormalMap": {
+      "nodes": [
+        {
+          "node": "MaterialExpressionTextureSampleParameter2D_12",
+          "class": "TextureSampleParameter2D",
+          "texture": "T_Neutral_Normal",
+          "consumers": ["MaterialExpressionLinearInterpolate_15:A", "MaterialExpressionStaticSwitchParameter_12:False"]
+        },
+        {
+          "node": "MaterialExpressionTextureObjectParameter_1",
+          "class": "TextureObjectParameter",
+          "texture": "T_Neutral_Normal",
+          "consumers": ["MaterialExpressionMaterialFunctionCall_5:NormalTex (T2d)"]
+        }
+      ],
+      "mi_override": "T_Poitou_Limestone_N",
+      "why_not_renamed": "Both nodes share the name, so one MI override feeds the sampler AND the texture-object input. Renaming either node detaches it from the override and silently reverts that branch to T_Neutral_Normal. The duplicate is the mechanism."
+    },
+    "bUseExtendedLayers": {
+      "nodes": [
+        {"node": "MaterialExpressionStaticSwitchParameter_2", "default": true, "consumers": ["MaterialExpressionLinearInterpolate_8:B"]},
+        {"node": "MaterialExpressionStaticSwitchParameter_3", "default": true, "consumers": ["MaterialExpressionLinearInterpolate_9:B"]}
+      ],
+      "mi_override": "not readable via static_switch_parameter_values (UE stores static switches in StaticParameters); both master defaults are true",
+      "why_not_renamed": "One logical control driving both the base-colour and the second lerp branch. Splitting the name would leave half the graph permanently on its default."
+    },
+    "bGaeaWholeLandscapeColor": {
+      "nodes": [
+        {"node": "MaterialExpressionStaticSwitchParameter_7", "default": false},
+        {"node": "MaterialExpressionStaticSwitchParameter_8", "default": false},
+        {"node": "MaterialExpressionStaticSwitchParameter_9", "default": false},
+        {"node": "MaterialExpressionStaticSwitchParameter_10", "default": false},
+        {"node": "MaterialExpressionStaticSwitchParameter_11", "default": false}
+      ],
+      "why_not_renamed": "Five switches, one name, all default false, inside the Gaea lane which is itself off (bUseGaeaMasks=false)."
+    }
+  },
+
+  "rule_derived": "A duplicate_parameter_name group whose members all share the same default is deliberate fan-out and must not be renamed. A group whose members disagree on default value is the actual defect. validate_material's duplicate_parameter_name check cannot distinguish the two, so it must be triaged by hand, not auto-fixed.",
+
+  "validator_state_after": {
+    "issue_count": 4,
+    "issues": [
+      "duplicate_parameter_name: Rock_NormalMap (2) — false positive, see above",
+      "duplicate_parameter_name: bUseExtendedLayers (2) — false positive, see above",
+      "duplicate_parameter_name: bGaeaWholeLandscapeColor (5) — false positive, see above",
+      "high_expression_count: 356 — informational"
+    ],
+    "note": "All four remaining issues are either intentional fan-out or informational. The master has no real validation defect."
+  }
+}

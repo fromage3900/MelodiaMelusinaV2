@@ -1,0 +1,66 @@
+{
+  "landscapes": [
+    {
+      "label": "Landscape",
+      "material": "/Game/EnvSandbox/Poitou/Materials/MI_Poitou_Landscape_Nikki.MI_Poitou_Landscape_Nikki"
+    },
+    {
+      "label": "poitou_layout_live_v6_357_422_0_Landscape",
+      "material": "/Game/EnvSandbox/Poitou/Materials/MI_Poitou_Landscape_Nikki.MI_Poitou_Landscape_Nikki"
+    },
+    {
+      "label": "Poitou_Layout_RoomShell_Candidate_15_80_0_Landscape",
+      "material": "/Game/EnvSandbox/Poitou/Materials/MI_Poitou_Landscape_Nikki.MI_Poitou_Landscape_Nikki"
+    }
+  ],
+  "evidence": {
+    "step": "gate-1",
+    "asset": "/Game/EnvSandbox/Poitou/Materials/MI_Poitou_Landscape_Nikki",
+    "parameter": "SnowStrength",
+    "before": -0.5768309831619263,
+    "after": 0.0,
+    "px_instructions_before": 446,
+    "px_instructions_after": 433,
+    "why": "Add_2 = (dead Snow layer sample x Lerp) + (slopeMask x SnowStrength); negative strength made coverage negative on every up-facing surface, and coverage multiplies into colour (Multiply_25/Multiply_34), so it subtracts colour terrain-wide.",
+    "not_proven": "no landscape capture, no PIE; material-plane preview only",
+    "captures": [
+      "Saved/Audit/PoitouMaterial_20261021/before_snowstrength_neg.png",
+      "Saved/Audit/PoitouMaterial_20261021/after_snowstrength_0.png"
+    ],
+    "next": "gate 4 layer weight normalization",
+    "capture_failed": true,
+    "capture_reason": "capture_scene_preview returned the editor viewport (123ms/211ms vs 352ms real preview) for the after shots; before/after PNGs are not a valid A/B",
+    "placeholder_masks": {
+      "Gaea_SnowMask": "/Game/Textures/sbs_-_gradient_texture_pack_-_512x512/512x512/Basic/Horizontal_1_-_512x512",
+      "Gaea_WaterMask": "same gradient",
+      "Gaea_FlowMask": "same gradient",
+      "Gaea_RockMask": "same gradient",
+      "Snow_Albedo": "same gradient"
+    },
+    "ramp": {
+      "RampContrast": 0.1,
+      "RampPosMid": 0.05,
+      "RampLow": [
+        0.2,
+        0.15,
+        0.3
+      ],
+      "RampMid": [
+        0.85,
+        0.6,
+        0.75
+      ],
+      "RampHigh": [
+        1.0,
+        0.95,
+        0.9
+      ]
+    },
+    "layers": {
+      "Ground_Roughness": 0.8,
+      "Grass_Roughness": 0.8,
+      "Rock_Roughness": 0.8,
+      "Water_Mud_Path_roughness": "no parameter"
+    }
+  }
+}
