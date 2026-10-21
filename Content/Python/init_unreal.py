@@ -220,16 +220,13 @@ def _load_livelink_module():
         mod = importlib.util.module_from_spec(spec)
         sys.modules["livelink_unreal"] = mod
         spec.loader.exec_module(mod)
-        mod.register_menus = register_livelink_menus
+        mod.register_menus = _register_melodia_studio
         return mod
     unreal.log_error(
         "[LiveLink] Missing Content/Python/livelink_unreal.py or .pyc — "
         "copy from your 3DRedbox purchase, restart UE"
     )
     return None
-
-
-m = _load_livelink_module()
 
 
 def _register_osc_bridge() -> None:
@@ -413,22 +410,62 @@ def _register_melodia_menu() -> None:
         unreal.log_error(f"[Melodia] menu failed: {exc}")
 
 
+def _retire_legacy_tool_menus() -> None:
+    """Drop the old Live Link, World Compiler, and Melodia tool trees."""
+    menus = unreal.ToolMenus.get()
+    for stale in (
+        "LevelEditor.MainMenu.LiveLink.BlenderLiveLink",
+        "LevelEditor.MainMenu.LiveLink",
+        "LevelEditor.MainMenu.WorldCompiler",
+        "LevelEditor.MainMenu.Melodia",
+        "LevelEditor.MainMenu.MelodiaStudio",
+    ):
+        if menus.find_menu(stale):
+            menus.remove_menu(stale)
+
+
+def _register_melodia_studio() -> None:
+    """One opener. The pie is the tool surface."""
+    try:
+        menus = unreal.ToolMenus.get()
+        main = menus.find_menu("LevelEditor.MainMenu")
+        if not main:
+            unreal.log_warning("[Melodia Studio] LevelEditor.MainMenu not found")
+            return
+        _retire_legacy_tool_menus()
+        owner = "BSGodFile_MelodiaStudio"
+        main.add_sub_menu(owner, "MelodiaStudio", "MelodiaStudio", "Melodia Studio", "Melodia Studio")
+        menu = menus.extend_menu("LevelEditor.MainMenu.MelodiaStudio")
+        menu.add_section("Open", "Open")
+        py_dir = _SCRIPT_DIR.replace("\\", "/")
+        entry = unreal.ToolMenuEntry(name="OpenMelodiaStudio", type=unreal.MultiBlockType.MENU_ENTRY)
+        entry.set_label("Open Melodia Studio")
+        entry.set_string_command(
+            unreal.ToolMenuStringCommandType.PYTHON,
+            unreal.Name(""),
+            f"import sys; p=r'{py_dir}'; sys.path.insert(0,p) if p not in sys.path else None; "
+            "import importlib, melodia_studio_panel as studio; "
+            "importlib.reload(studio); studio.open_studio()",
+        )
+        menu.add_menu_entry("Open", entry)
+        menus.refresh_all_widgets()
+        unreal.log("[Melodia Studio] menu is one opener. The pie holds the tools.")
+    except Exception as exc:
+        unreal.log_error(f"[Melodia Studio] menu failed: {exc}")
+
+
+m = _load_livelink_module()
+
+
 def startup():
     if m is None:
         print("[init_unreal] LiveLink module not found, skipping LiveLink only", flush=True)
     else:
         if hasattr(m, "startup"):
             m.startup()
-        register_livelink_menus()
-        unreal.log(
-            "[LiveLink] v3.1 loaded — LiveLink menu has Start/Stop/Status "
-            "(no floating panel; start Blender server first)"
-        )
-    _register_gmm()
+        unreal.log("[LiveLink] client loaded. Open it from Melodia Studio > Connection.")
     _register_osc_bridge()
-    _register_agent_bridge()
-    _register_world_compiler()
-    _register_melodia_menu()
+    _register_melodia_studio()
 
 
 def shutdown():

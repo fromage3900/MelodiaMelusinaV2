@@ -186,6 +186,19 @@ for m in mats:
     m.use_fake_user = True
     m.asset_mark()
     m.asset_data.description = "Resonant Blooms starter material"
+# ---- Lane 2: pack Melodia foliage textures ----
+try:
+    _spec = importlib.util.spec_from_file_location("pack_textures", ROOT / "Tools" / "foliage_pipeline" / "pack_textures.py")
+    _pt = importlib.util.module_from_spec(_spec)
+    _spec.loader.exec_module(_pt)
+    _copied = _pt.copy_to_release(OUT / "Textures" / "MelodiaFoliage")
+    _imgs = _pt.import_and_pack()
+    _packed = sum(1 for _i in bpy.data.images if getattr(_i, "packed_file", None) is not None)
+    _cards = _pt.dress_cards(OUT)
+    print("TEXTURES_COPIED", len(_copied), "TEXTURES_PACKED", len(_imgs), "PACKED_VERIFY", _packed, "CARDS_DRESSED", len(_cards))
+except Exception as _e:
+    print("TEXTURE_PACK_SKIP", repr(_e))
+
 bpy.ops.wm.save_as_mainfile(filepath=str(OUT / "ResonantBlooms.blend"), compress=True)
 demo_scene(trees, mats)
 render(OUT / "previews" / "demo_hero.png", "CYCLES")

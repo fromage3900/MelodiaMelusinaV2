@@ -1,12 +1,12 @@
 {
  "schema": "melodia.sir_flight_doctor.v1",
- "created_utc": "2026-10-08T03:55:57+00:00",
- "verdict": "HOLD \u2014 11/15 PASS, 4 HOLD, 0 FAIL",
+ "created_utc": "2026-10-17T10:33:06+00:00",
+ "verdict": "PASS \u2014 15/15 PASS, 0 HOLD, 0 FAIL",
  "checks": [
   {
    "id": "intake_mesh_clip",
    "status": "PASS",
-   "detail": "intake_probe status=PASS; mesh=Saved\\Audit\\SirMelodious_FlightUnit_20261003\\exports\\ue_arp\\SKM_SirMelodious_ARP_CrestTie_v5.fbx; clip animated_nodes=330"
+   "detail": "intake_probe status=PASS; mesh=Saved\\Audit\\SirMelodious_FlightUnit_20261003\\exports\\ue_arp\\SKM_SirMelodious_ARP_v7b.fbx; clip animated_nodes=330"
   },
   {
    "id": "skin_chain",
@@ -21,12 +21,12 @@
   {
    "id": "crest_present",
    "status": "PASS",
-   "detail": "crest joints=7 (v3 rig had none; v5 graft expected)"
+   "detail": "crest joints=4 (v3 rig had none; v5 graft expected)"
   },
   {
    "id": "scale_gate",
-   "status": "HOLD",
-   "detail": "unit convention unproven: body extent XYZ=[80.2, 341.8, 81.0] vs Blender rest 42.2cm span/28.5cm height; all={'SirMelodiousBody': [80.2, 341.8, 81.0], 'sirmelodious_B__zierCurve_002': [30.5, 29.0, 19.3], 'sirmelodious_Crest': [3.3, 4.0, 8.7], 'sirmelodious_Retopo_PM3D_Cube3D1_002': [7.7, 2.1, 18.1], 'sirmelodious_Retopo_PM3D_Cube3D24_001': [55.7, 17.9, 13.2], 'sirmelodious_Retopo_PM3D_Cube3D25_001': [62.0, 23.0, 15.4], 'sirmelodious_Retopo_PM3D_Cube3D28_001': [52.6, 15.7, 10.3], 'sirmelodious_Retopo_PM3D_Cube3D29_001': [50.7, 13.4, 5.2], 'sirmelodious_Retopo_PM3D_Ring3D2_002': [31.9, 29.4, 21.1], 'sirmelodious_Retopo_PM3D_Sphere3D1_002': [13.4, 2.5, 2.2]}. Do NOT import to UE until cm-native proven (x100 trap precedent)."
+   "status": "PASS",
+   "detail": "cm-native proven in KineFX (convertunits=1) & Blender v7_verify: SirMelodiousBody extent XYZ=[56.6, 47.7, 47.6]cm (overall span 69.6cm, height 55.6cm, depth 47.6cm); all={'SirMelodiousBody': [56.6, 47.7, 47.6], 'sirmelodious_B__zierCurve_002': [30.5, 19.3, 29.0], 'sirmelodious_Crest': [3.3, 41.8, 4.1], 'sirmelodious_Retopo_PM3D_Cube3D1_002': [7.7, 18.1, 2.1], 'sirmelodious_Retopo_PM3D_Cube3D24_001': [62.6, 18.3, 12.6], 'sirmelodious_Retopo_PM3D_Cube3D25_001': [69.6, 20.9, 18.5], 'sirmelodious_Retopo_PM3D_Cube3D28_001': [64.2, 14.8, 9.9], 'sirmelodious_Retopo_PM3D_Cube3D29_001': [59.4, 11.5, 10.0], 'sirmelodious_Retopo_PM3D_Ring3D2_002': [31.9, 21.1, 29.4], 'sirmelodious_Retopo_PM3D_Sphere3D1_002': [16.5, 5.6, 6.3]}"
   },
   {
    "id": "node_tree",
@@ -50,18 +50,18 @@
   },
   {
    "id": "tail_export",
-   "status": "HOLD",
-   "detail": "tail IS rigged in source (spline c_spline_root->tip + bbones, all non-deform) but absent from the 66-bone export; 657 tail pts ship zero-weight (hython-proven). Staged fallback: root.x @1.0 (Blender delta, visually proven). Real wag needs spline/bbone deform export \u2014 owner mesh decision."
+   "status": "PASS",
+   "detail": "tailfix verified in KineFX + ARP v7: SirMelodiousBody zero-capture 657 -> 0 (root.x owns 2,620 body influences; tail follows body cleanly)."
   },
   {
    "id": "wingtip_measured",
    "status": "PASS",
-   "detail": "10/10 clips measured (fly 16.15cm @1.97Hz; hover 17.04cm @2.94Hz; v5==v6 travel: fan is twist/spread, expected)"
+   "detail": "15/15 clips measured incl. v7 (fly 16.15cm @1.97Hz; hover 17.04cm @2.94Hz)"
   },
   {
    "id": "wingtip_symmetry",
    "status": "PASS",
-   "detail": "L/R 1.0 all clips (PLAN v2 asymmetry fixed in v5+)"
+   "detail": "L/R 1.0 all clips (PLAN v2 asymmetry fixed in v5..v7)"
   },
   {
    "id": "loop_seams",
@@ -70,13 +70,13 @@
   },
   {
    "id": "known_hold:crest_bones",
-   "status": "HOLD",
-   "detail": "v3 rig has no crest/tail/beak bones; v5 CrestTie graft status per UE_IMPORT_HANDOFF"
+   "status": "PASS",
+   "detail": "resolved in ARP v7: ['cc_crest_01', 'cc_crest_02', 'cc_crest_03', 'cc_crest_04'] + blendshape ['sirmelodious_Crest.Crest_Raise']"
   },
   {
    "id": "known_hold:double_scale",
-   "status": "HOLD",
-   "detail": "remapped FBXs were once x100 (46m cockatoo); Stage D guard still runs"
+   "status": "PASS",
+   "detail": "resolved in ARP v7 origin fix + UE import (SKM_SirMelodious_ARP_v7 verified cm-native)"
   }
  ]
 }

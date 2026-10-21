@@ -1,0 +1,246 @@
+Begin Object Class=/Script/UMGEditor.WidgetBlueprint Name="WBP_Melodia_OverworldHUD"
+   Begin Object Class=/Script/UMG.CanvasPanel Name="CanvasPanel_Root"
+   End Object
+   Begin Object Class=/Script/UMG.CanvasPanelSlot Name="Slot_Backdrop"
+      SlotSize=(X=1440.0,Y=900.0)
+      LayoutData=(Offsets=(Right=1440.0,Bottom=900.0),Anchors=(Minimum=(X=0.0,Y=0.0),Maximum=(X=1.0,Y=1.0)))
+   End Object
+   Begin Object Class=/Script/UMG.Image Name="Backdrop_Vignette"
+      Slot=/Script/UMG.CanvasPanelSlot'Slot_Backdrop'
+      Brush=(ImageSize=(X=1440.0,Y=900.0),DrawAs=Image,ResourceObject=MaterialInstanceConstant'/Game/Melodia/UI/Materials/MI_UI_Nikki_Card_Ivory',TintColor=(SpecifiedColor=(R=0.141,G=0.106,B=0.180,A=0.120)))
+   End Object
+   Begin Object Class=/Script/UMG.CanvasPanelSlot Name="Slot_Vitals"
+      SlotSize=(X=420.0,Y=140.0)
+      LayoutData=(Offsets=(Left=24.0,Top=20.0,Right=444.0,Bottom=160.0),Anchors=(Minimum=(X=0.0,Y=0.0),Maximum=(X=0.0,Y=0.0)))
+   End Object
+   Begin Object Class=/Script/UMG.Overlay Name="VitalsBlock"
+      Slot=/Script/UMG.CanvasPanelSlot'Slot_Vitals'
+   End Object
+   Begin Object Class=/Script/UMG.OverlaySlot Name="Slot_VitalityBar"
+      HorizontalAlignment=HAlign_Fill
+      VerticalAlignment=VAlign_Top
+   End Object
+   Begin Object Class=/Script/UMG.ProgressBar Name="VitalityBar"
+      Slot=/Script/UMG.OverlaySlot'Slot_VitalityBar'
+      bIsVariable=True
+      FillColorAndOpacity=(SpecifiedColor=(R=0.850,G=0.320,B=0.420,A=1.0))
+   End Object
+   Begin Object Class=/Script/UMG.OverlaySlot Name="Slot_ResonanceBar"
+      HorizontalAlignment=HAlign_Fill
+      VerticalAlignment=VAlign_Top
+      Padding=(Top=36.0)
+   End Object
+   Begin Object Class=/Script/UMG.ProgressBar Name="ResonanceBar"
+      Slot=/Script/UMG.OverlaySlot'Slot_ResonanceBar'
+      bIsVariable=True
+      FillColorAndOpacity=(SpecifiedColor=(R=0.350,G=0.600,B=0.950,A=1.0))
+   End Object
+   Begin Object Class=/Script/UMG.OverlaySlot Name="Slot_VitalsText"
+      HorizontalAlignment=HAlign_Left
+      VerticalAlignment=VAlign_Top
+      Padding=(Top=72.0)
+   End Object
+   Begin Object Class=/Script/UMG.TextBlock Name="VitalsText"
+      Slot=/Script/UMG.OverlaySlot'Slot_VitalsText'
+      bIsVariable=True
+   End Object
+   Begin Object Class=/Script/UMG.OverlaySlot Name="Slot_PlayerName"
+      HorizontalAlignment=HAlign_Left
+      VerticalAlignment=VAlign_Top
+      Padding=(Top=96.0)
+   End Object
+   Begin Object Class=/Script/UMG.TextBlock Name="PlayerName"
+      Slot=/Script/UMG.OverlaySlot'Slot_PlayerName'
+      bIsVariable=True
+   End Object
+   Begin Object Class=/Script/UMG.OverlaySlot Name="Slot_PlayerLevel"
+      HorizontalAlignment=HAlign_Right
+      VerticalAlignment=VAlign_Top
+      Padding=(Top=96.0)
+   End Object
+   Begin Object Class=/Script/UMG.TextBlock Name="PlayerLevel"
+      Slot=/Script/UMG.OverlaySlot'Slot_PlayerLevel'
+      bIsVariable=True
+   End Object
+   Begin Object Class=/Script/UMG.CanvasPanelSlot Name="Slot_Area"
+      SlotSize=(X=640.0,Y=120.0)
+      LayoutData=(Offsets=(Left=400.0,Top=16.0,Right=1040.0,Bottom=136.0),Anchors=(Minimum=(X=0.5,Y=0.0),Maximum=(X=0.5,Y=0.0)))
+   End Object
+   Begin Object Class=/Script/UMG.Overlay Name="AreaBlock"
+      Slot=/Script/UMG.CanvasPanelSlot'Slot_Area'
+   End Object
+   Begin Object Class=/Script/UMG.OverlaySlot Name="Slot_AreaName"
+      HorizontalAlignment=HAlign_Center
+      VerticalAlignment=VAlign_Top
+   End Object
+   Begin Object Class=/Script/UMG.TextBlock Name="AreaName"
+      Slot=/Script/UMG.OverlaySlot'Slot_AreaName'
+      bIsVariable=True
+   End Object
+   Begin Object Class=/Script/UMG.OverlaySlot Name="Slot_AreaTitle"
+      HorizontalAlignment=HAlign_Center
+      VerticalAlignment=VAlign_Top
+      Padding=(Top=32.0)
+   End Object
+   Begin Object Class=/Script/UMG.TextBlock Name="AreaTitle"
+      Slot=/Script/UMG.OverlaySlot'Slot_AreaTitle'
+      bIsVariable=True
+   End Object
+   Begin Object Class=/Script/UMG.OverlaySlot Name="Slot_ChapterLine"
+      HorizontalAlignment=HAlign_Center
+      VerticalAlignment=VAlign_Top
+      Padding=(Top=64.0)
+   End Object
+   Begin Object Class=/Script/UMG.TextBlock Name="ChapterLine"
+      Slot=/Script/UMG.OverlaySlot'Slot_ChapterLine'
+      bIsVariable=True
+   End Object
+   Begin Object Class=/Script/UMG.CanvasPanelSlot Name="Slot_Title"
+      SlotSize=(X=560.0,Y=90.0)
+      LayoutData=(Offsets=(Left=440.0,Top=140.0,Right=1000.0,Bottom=230.0),Anchors=(Minimum=(X=0.5,Y=0.0),Maximum=(X=0.5,Y=0.0)))
+   End Object
+   Begin Object Class=/Script/UMG.Overlay Name="TitleBlock"
+      Slot=/Script/UMG.CanvasPanelSlot'Slot_Title'
+      bIsVariable=True
+   End Object
+   Begin Object Class=/Script/UMG.OverlaySlot Name="Slot_TitleResonance"
+      HorizontalAlignment=HAlign_Fill
+      VerticalAlignment=VAlign_Bottom
+   End Object
+   Begin Object Class=/Script/UMG.ProgressBar Name="TitleResonance"
+      Slot=/Script/UMG.OverlaySlot'Slot_TitleResonance'
+      bIsVariable=True
+   End Object
+   Begin Object Class=/Script/UMG.OverlaySlot Name="Slot_TitleResonanceText"
+      HorizontalAlignment=HAlign_Center
+      VerticalAlignment=VAlign_Bottom
+   End Object
+   Begin Object Class=/Script/UMG.TextBlock Name="TitleResonanceText"
+      Slot=/Script/UMG.OverlaySlot'Slot_TitleResonanceText'
+      bIsVariable=True
+   End Object
+   Begin Object Class=/Script/UMG.CanvasPanelSlot Name="Slot_Quest"
+      SlotSize=(X=380.0,Y=260.0)
+      LayoutData=(Offsets=(Left=1036.0,Top=120.0,Right=1416.0,Bottom=380.0),Anchors=(Minimum=(X=1.0,Y=0.0),Maximum=(X=1.0,Y=0.0)))
+   End Object
+   Begin Object Class=/Script/UMG.Overlay Name="QuestCard"
+      Slot=/Script/UMG.CanvasPanelSlot'Slot_Quest'
+      bIsVariable=True
+   End Object
+   Begin Object Class=/Script/UMG.OverlaySlot Name="Slot_QuestHeader"
+      HorizontalAlignment=HAlign_Left
+      VerticalAlignment=VAlign_Top
+   End Object
+   Begin Object Class=/Script/UMG.TextBlock Name="QuestHeader"
+      Slot=/Script/UMG.OverlaySlot'Slot_QuestHeader'
+      bIsVariable=True
+   End Object
+   Begin Object Class=/Script/UMG.OverlaySlot Name="Slot_QuestTitle"
+      HorizontalAlignment=HAlign_Left
+      VerticalAlignment=VAlign_Top
+      Padding=(Top=28.0)
+   End Object
+   Begin Object Class=/Script/UMG.TextBlock Name="QuestTitle"
+      Slot=/Script/UMG.OverlaySlot'Slot_QuestTitle'
+      bIsVariable=True
+   End Object
+   Begin Object Class=/Script/UMG.OverlaySlot Name="Slot_QuestBody"
+      HorizontalAlignment=HAlign_Fill
+      VerticalAlignment=VAlign_Top
+      Padding=(Top=60.0)
+   End Object
+   Begin Object Class=/Script/UMG.TextBlock Name="QuestBody"
+      Slot=/Script/UMG.OverlaySlot'Slot_QuestBody'
+      bIsVariable=True
+      AutoWrapText=True
+   End Object
+   Begin Object Class=/Script/UMG.OverlaySlot Name="Slot_QuestMotifs"
+      HorizontalAlignment=HAlign_Left
+      VerticalAlignment=VAlign_Bottom
+      Padding=(Bottom=32.0)
+   End Object
+   Begin Object Class=/Script/UMG.TextBlock Name="QuestMotifs"
+      Slot=/Script/UMG.OverlaySlot'Slot_QuestMotifs'
+      bIsVariable=True
+   End Object
+   Begin Object Class=/Script/UMG.OverlaySlot Name="Slot_QuestProgress"
+      HorizontalAlignment=HAlign_Fill
+      VerticalAlignment=VAlign_Bottom
+   End Object
+   Begin Object Class=/Script/UMG.ProgressBar Name="QuestProgress"
+      Slot=/Script/UMG.OverlaySlot'Slot_QuestProgress'
+      bIsVariable=True
+   End Object
+   Begin Object Class=/Script/UMG.CanvasPanelSlot Name="Slot_Minimap"
+      SlotSize=(X=220.0,Y=220.0)
+      LayoutData=(Offsets=(Left=1196.0,Top=400.0,Right=1416.0,Bottom=620.0),Anchors=(Minimum=(X=1.0,Y=0.0),Maximum=(X=1.0,Y=0.0)))
+   End Object
+   Begin Object Class=/Script/UMG.Overlay Name="MinimapBlock"
+      Slot=/Script/UMG.CanvasPanelSlot'Slot_Minimap'
+   End Object
+   Begin Object Class=/Script/UMG.OverlaySlot Name="Slot_MinimapBezel"
+      HorizontalAlignment=HAlign_Fill
+      VerticalAlignment=VAlign_Fill
+   End Object
+   Begin Object Class=/Script/UMG.Image Name="Minimap_Bezel"
+      Slot=/Script/UMG.OverlaySlot'Slot_MinimapBezel'
+      bIsVariable=True
+      Brush=(ImageSize=(X=220.0,Y=220.0),DrawAs=Image,ResourceObject=MaterialInstanceConstant'/Game/Melodia/UI/Materials/MI_UI_Stardust_Iris',TintColor=(SpecifiedColor=(R=0.788,G=0.659,B=0.416,A=1.0)))
+   End Object
+   Begin Object Class=/Script/UMG.OverlaySlot Name="Slot_MinimapNorth"
+      HorizontalAlignment=HAlign_Center
+      VerticalAlignment=VAlign_Top
+   End Object
+   Begin Object Class=/Script/UMG.Image Name="Minimap_NorthStar"
+      Slot=/Script/UMG.OverlaySlot'Slot_MinimapNorth'
+      bIsVariable=True
+      Brush=(ImageSize=(X=32.0,Y=32.0),DrawAs=Image)
+   End Object
+   Begin Object Class=/Script/UMG.CanvasPanelSlot Name="Slot_SysRow"
+      SlotSize=(X=380.0,Y=72.0)
+      LayoutData=(Offsets=(Left=1036.0,Top=808.0,Right=1416.0,Bottom=880.0),Anchors=(Minimum=(X=1.0,Y=1.0),Maximum=(X=1.0,Y=1.0)))
+   End Object
+   Begin Object Class=/Script/UMG.HorizontalBox Name="SysRow"
+      Slot=/Script/UMG.CanvasPanelSlot'Slot_SysRow'
+   End Object
+   Begin Object Class=/Script/UMG.HorizontalBoxSlot Name="Slot_Sys1"
+   End Object
+   Begin Object Class=/Script/UMG.Button Name="Sys_1"
+      Slot=/Script/UMG.HorizontalBoxSlot'Slot_Sys1'
+      bIsVariable=True
+   End Object
+   Begin Object Class=/Script/UMG.HorizontalBoxSlot Name="Slot_Sys2"
+   End Object
+   Begin Object Class=/Script/UMG.Button Name="Sys_2"
+      Slot=/Script/UMG.HorizontalBoxSlot'Slot_Sys2'
+      bIsVariable=True
+   End Object
+   Begin Object Class=/Script/UMG.HorizontalBoxSlot Name="Slot_SysJournal"
+   End Object
+   Begin Object Class=/Script/UMG.Button Name="Sys_Journal"
+      Slot=/Script/UMG.HorizontalBoxSlot'Slot_SysJournal'
+      bIsVariable=True
+   End Object
+   Begin Object Class=/Script/UMG.HorizontalBoxSlot Name="Slot_SysSettings"
+   End Object
+   Begin Object Class=/Script/UMG.Button Name="Sys_Settings"
+      Slot=/Script/UMG.HorizontalBoxSlot'Slot_SysSettings'
+      bIsVariable=True
+   End Object
+   Begin Object Class=/Script/UMG.CanvasPanelSlot Name="Slot_Prompt"
+      SlotSize=(X=480.0,Y=64.0)
+      LayoutData=(Offsets=(Left=480.0,Top=760.0,Right=960.0,Bottom=824.0),Anchors=(Minimum=(X=0.5,Y=1.0),Maximum=(X=0.5,Y=1.0)))
+   End Object
+   Begin Object Class=/Script/UMG.Overlay Name="InteractPrompt"
+      Slot=/Script/UMG.CanvasPanelSlot'Slot_Prompt'
+      bIsVariable=True
+   End Object
+   Begin Object Class=/Script/UMG.CanvasPanelSlot Name="Slot_Reticle"
+      SlotSize=(X=64.0,Y=64.0)
+      LayoutData=(Offsets=(Left=688.0,Top=418.0,Right=752.0,Bottom=482.0),Anchors=(Minimum=(X=0.5,Y=0.5),Maximum=(X=0.5,Y=0.5)))
+   End Object
+   Begin Object Class=/Script/UMG.Overlay Name="Reticle"
+      Slot=/Script/UMG.CanvasPanelSlot'Slot_Reticle'
+      bIsVariable=True
+   End Object
+End Object
