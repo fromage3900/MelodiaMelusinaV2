@@ -36,13 +36,9 @@ parm, prove the geometry moved, then restore and re-prove the golden pins.
 
 Everything below this line is 2026-09-02 provenance (dates, blockers), not current status.
 
-## Quick Start (next 5 min)
+## Quick Start (2026-09-02 provenance; superseded by current evidence above)
 
-1. **License (blocking):** Open `Houdini License Administrator` → Sign in SideFX → **Houdini Engine for Unreal FREE** (10 licenses/studio). Until `hserver -l` shows a license, HDAs will not cook. Apprentice cannot cook Engine HDAs.
-   ```powershell
-   & "C:\Program Files\Side Effects Software\Houdini 22.0.368\bin\hserver.exe" -l
-   # want: Used Licenses: Houdini Engine ...  (not "None")
-   ```
+1. **Houdini session:** establish current readiness through the live Houdini Engine API and an actual HDA cook. Do not use an `hserver -l` snapshot or a `.hipnc` file's session mode as a verdict about the owner's license or entitlement.
 
 2. **First HDA (ArpeggioStair):** Open Houdini 22.0.368 → File/New → `hda/ArpeggioStair_1.0.hda`
    - See `Docs/WorldGen/HOUDINI_ENGINE_SMOKE_SPEC_2026-08-27.md` §4 for parameter list (seed, stepCount 16, laneCount 4, spacing, baseMidiNote, scale, heightPerDegree).
@@ -66,9 +62,7 @@ Everything below this line is 2026-09-02 provenance (dates, blockers), not curre
 - `Docs/WorldGen/CALYSTO_MESHPARTITION_ADAPTER_SPEC_2026-08-27.md` — Calysto 70 biomes → MeshPartition without Landscape
 - `Docs/WorldGen/HOUDINI_ENGINE_SMOKE_SPEC_2026-08-27.md` — install + HDA spec + UE wiring
 
-## Blockers today
+## Historical blockers (2026-09-02; not current status)
 
-- `hserver` shows **0 licenses** — get FREE Engine license first.
-- Do not create `ALandscape` — P0 is MeshTerrain-only. HDA must output meshes/HISM.
-
-Next: verify UE5.8 compiles `HoudiniEngine` modules on next editor launch, then cook first HDA.
+- The old “0 licenses” blocker and instruction to acquire a license are withdrawn. `CURRENT_STATE.md` is the sole authority for current Houdini/UE evidence.
+- The MeshTerrain-only note is specific to the 2026-09-02 field-atlas lane, not a cathedral constraint.
