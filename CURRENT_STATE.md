@@ -1,6 +1,45 @@
 # Melodia Melusina ? Current State
 
 
+## ⚑ HANDOFF — the Poitou level cooks an empty HDA (2026-10-21, session close)
+
+**The one thing to know:** the level `L_Poitou_v2` is not empty because of the generators. Its
+`Poitou_Layout_v6` actor cooks its **stale embedded HDA** (`poitou_layout_roomshell_candidate`) and
+that cook finishes **"with errors"**, so it produces nothing. The eight `Poitou_RoomShell_00..07`
+actors and the three `Poitou_RuinRocks_00..02` actors cook fine — only `Poitou_Layout_v6` fails.
+Evidence: `Saved/Logs/BS_GodFile.log` — `HAPI Asynchronous Cooking Started for Poitou_Layout_v6` →
+`Warning: Poitou_Layout_v6 FinishedCooking with errors - will try to process the available results`,
+while `Poitou_RoomShell_07 FinishedCooking.` succeeds minutes earlier.
+
+**The fix (needs the editor, ~60 seconds, owner):**
+1. In `L_Poitou_v2`, select the `Poitou_Layout_v6` actor.
+2. In the Houdini Engine panel, **Re-instantiate** it from `Tools/Poitou/hda/poitou_layout_live.hdalc`
+   (the HDA this session built and gated; 68,875 B, built 19:08).
+3. **Cook** the actor, then save the level.
+   *If the panel is mid-"Select an asset to instantiate", that is the same action.*
+4. Optionally add two output slots on the actor for the new generated outputs: `output_masonry`
+   (the canal revetment, 329,439 prims) and `output_generated` (the element set, 266,943 prims).
+
+**Why it could not be done headlessly:** the Houdini Engine asset (`HoudiniAsset`,
+`/Game/EnvSandbox/Poitou/HDA/poitou_layout_live_v6`) exposes **no** editable properties to Python —
+`hda_file_path`, `source_file_path`, `outputs` and every other candidate all fail with *"Failed to
+find property"*, and there is no Python-callable reimport/reload. Re-embedding an HDA is a C++/editor
+operation. The editor is also the owner's live session, and the level is ask-first.
+
+**What IS proven and green (headless, reproducible):**
+- `Tools/Poitou/run_intheme_gate.ps1 -Build -Measure` → **PASS, 0 failures**.
+  `output_masonry` 329,439 prims · `output_generated` 266,943 prims across **18 named element
+  groups** · `output_points` 14,260 in-theme instances · `output_skirt_mesh` 14,000 prims.
+- 0 of 10 instanced meshes missing or mismatched against their measured size.
+- 8 MIs authored on the one toon master; 18 Poitou meshes re-bound off `WorldGridMaterial`.
+- Landed on `feature/poitou-intheme-architecture-20261021` → `5968b4ee9` (local
+  `refs/agents/poitou-intheme-architecture-20261021`).
+
+**Still owed, in order:** (1) the editor re-instantiate + cook above — the level is empty until it
+happens; (2) the two output slots for the generated geometry; (3) `p4 submit -c 292`; (4) the
+13-generator backlog in §11 of the build contract; (5) the stale remote branches and the primary
+checkout's reconciliation with `origin/main`.
+
 ## ⚑ Poitou in-theme procedural architecture programme — THE KIT, SEVEN GENERATORS, GREEN GATE — 2026-10-21
 
 - **The lens, now written into the build contract (§11): geometry is the silhouette, paint is the finish, one kit many assemblies.** Coursing, arches, buttress steps, roof pitch and a columnar crown are BUILT; lime-wash, the damp band, moss and ivy are PAINTED as vertex paint read by the one toon master; faux appareil is a paint feature, never geometry. This is the rule every generator is judged by, and it is why the programme is cheap to extend: a new element is a new assembly of the SAME kit, not a new art pipeline.
