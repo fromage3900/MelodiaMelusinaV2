@@ -25,8 +25,31 @@ The primary objectives achieved tonight are:
 Infold Games (*Infinity Nikki*) achieves its world-building aesthetic by refusing the traditional compromise between stylized fairy-tale whimsy and authentic structural logic. Rather than cartoonishly warping architecture or pasting disembodied musical symbols across buildings, their pipeline adheres to rigorous real-world classical architectural treatises (Vignola, Durand, Haussmann) while exaggerating silhouette readability, micro-detail crispness, and light-catching surface relief.
 
 The core rule: **The architectural rhythm IS the music.**
-- A 2.4-meter bay spacing represents an allegro 3/4 cadence.
-- A 3.6-meter bay spacing represents an andante 4/4 cadence.
+
+> **Governing meter (single source of truth — supersedes any earlier statement of this rule
+> anywhere in the repo, including the two-line version this section used to carry).**
+>
+> | Unit | Value | Musical meaning |
+> |---|---|---|
+> | Grid | **0.6 m** | 1 beat @ 128 BPM, 4/4 — `wall_thickness` 1.8 m = 3 grid units |
+> | Bar / bay | **2.4 m** | 1 bar of 4/4 @ 128 BPM (4 beats) — `bay_length` = 2.4, `wall_height` 14.4 m = 6 bays |
+> | Long module | 3.6 m | 6 beats = 1.5 bars of 4/4 = 2 bars of 3/4 (same beat length) |
+> | Tempo | **128 BPM, 4/4** | 1 beat = 0.469 s, 1 bar = 1.875 s, walk = 1.28 m/s |
+>
+> The earlier "2.4 m = allegro 3/4 / 3.6 m = andante 4/4" phrasing was internally inconsistent
+> (2.4 : 3.6 = 2 : 3, which is 4 beats : 6 beats, not 3 : 4) and contradicted the Poitou build
+> grid, which fixes one tempo and one speed. **One tempo, one grid, one bar — 0.6 m / 2.4 m /
+> 128 BPM 4/4.** This is the meter `Recipes/melodia_poitou_parisian_v2.json` (`bpm: 128`),
+> `Docs/Poitou/current_state.md` ("Grid 0.6 m, bar = 2.4 m, 128 BPM"), the AE animation layer
+> (`Tools/Poitou/ae_first_day_animation_layer.md`, "1 bar = 1.875 s", `A_MEL_Walk_PianoStep_128`)
+> and the AbbeyBuilder HDA (`bay_length` 2.4 m) already assume.
+>
+> **OPEN — owner decision (one number).** The Maillezais canon dimensions do not tile on the
+> bar: `abbey_len` 105 m / 2.4 = **43.75 bays**, `abbey_wid` 32 m / 2.4 = **13.33 bays**.
+> Either the dimension wins (105 → 105.6 m = 44 bays, 32 → 33.6 m = 14 bays) or the bar wins
+> (43 × 2.4 = 103.2 m, 13 × 2.4 = 31.2 m). "Zero slop" (§3) forbids a fractional bay count,
+> so this cannot stay open while geometry is generated.
+
 - Balcony ironwork incorporates wave-harmonic frequency curves into classical French rocaille and art-nouveau foliate tracery.
 - Limestone cornices mirror acoustic harmonic node profiles derived from physical Chladni sound-figure experiments.
 
@@ -47,6 +70,12 @@ The core rule: **The architectural rhythm IS the music.**
 ```
 
 ### 1.2 The 4-Tier Vertical Hierarchy (Haussmannian & Romanesque Sockets)
+
+> **Status: TARGET socket contract, not implemented.** The AbbeyBuilder HDA exposes no
+> per-tier datum controls. Its real vertical controls are `wall_height` (14.4 m = 6 bays) and
+> `wall_thickness` (1.8 m = 3 grid units) — a single mass, not four stacked tiers. The tier
+> datums below are the design intent the socket system must eventually express; nothing in
+> the current HDA realises them, and no tier should be described as built until it is.
 
 Every architectural structure in the Melusina universe—from urban Parisian residential blocks to rural Poitou monastic outbuildings—is assembled using a strict 4-tier vertical socket contract:
 
@@ -192,61 +221,145 @@ In Unreal Engine 5.8 with Nanite-enabled static meshes, the engine can evaluate 
 
 ## 4. Live Houdini Engine & HDA Convergence Architecture
 
-### 4.1 Asset Details: `HDA_Poitou_AbbeyBuilder_1.0.hda`
-- **File System Location**:
-  - Authoring: `BS_GodFile/hda/HDA_Poitou_AbbeyBuilder_1.0.hda`
-  - Engine Content Mirror: `BS_GodFile/Content/HDA/HDA_Poitou_AbbeyBuilder_1.0.hda`
-- **Hython Compiler**: Native SideFX Houdini 22.0.368 (`hython.exe`).
-- **Compiled Primitive Stats**: 512 points, 336 polygons, 16,754 bytes binary package.
-- **SessionSync Launcher**: [tools/launch_houdini_engine_sessionsync.py](file:///c:/EnvironmentPortfolio/tools/launch_houdini_engine_sessionsync.py).
+> **There are two HDAs in this pipeline and they do different jobs.** This section previously
+> described one asset ("the AbbeyBuilder") as though it generated the abbey *and* the terrain.
+> It does not. Read this before changing any HDA parameter.
 
-### 4.2 Promoted Parameter Contract
+| | `poitou_layout_live` | `HDA_Poitou_AbbeyBuilder_1.0` |
+|---|---|---|
+| Job | **Layout.** Terrain, canals, ditches, islands, lanes, rise, horizon bands, water, mist, and the abbey's *placement* | **Shell.** The abbey ruin mass itself |
+| Asset | `hda/` + `Saved/Audit/PoitouConvergence_20261020/poitou_layout_live_before_ign_20261020_224959.hdalc` | `hda/HDA_Poitou_AbbeyBuilder_1.0.hda` (16,754 B) + `Content/HDA/` mirror |
+| Builder | `Tools/Poitou/build_poitou_hda.py` | not built by any repo tool (added by `ada95ab74`) |
+| Key abbey controls | `abbey_len` 105, `abbey_wid` 32, `abbey_rot` 20 (metres / degrees) | `bay_count` 8, `bay_length` 2.4 → an **8-bay, 19.2 m** shell module |
 
-| Parameter Name | Data Type | Default | Range | Function |
-| :--- | :--- | :--- | :--- | :--- |
-| `nave_length` | Float | `105.0` | `20.0 - 250.0` | Total longitudinal footprint in meters (Maillezais canon = 105m). |
-| `nave_width` | Float | `32.0` | `10.0 - 80.0` | Total transversal nave width including side aisles (Maillezais canon = 32m). |
-| `bay_spacing` | Float | `7.2` | `2.4 - 12.0` | Architectural cadence (7.2m = exactly 3 × 2.4m Parisian modules). |
-| `decay_amount` | Float | `0.45` | `0.0 - 1.0` | Procedural ruin slider: 0.0 = fully intact, 1.0 = total rubble foundation. |
-| `broken_arch_seed` | Integer | `42` | `1 - 9999` | Deterministic Voronoi fracture seed for missing voussoirs and arch spandrels. |
-| `buttress_count` | Integer | `8` | `2 - 32` | Number of stepped exterior flying buttress piers flanking the nave. |
-| `limestone_erosion`| Float | `0.35` | `0.0 - 1.0` | High-frequency noise displacement mimicking coastal salt-spray weathering. |
-| `tracery_style` | Integer | `0` | `0 - 1` | `0` = Poitou Romanesque (semicircular/stilted), `1` = Rayonnant Gothic (cusped trefoil). |
-| `export_unreal_nanite`| Toggle | `1` | `0 / 1` | Automatically tags `unreal_nanite_enabled=1` and `unreal_collision_mode=complex`. |
+**Do not author against the parameter table this section used to carry.** The names
+`nave_length`, `nave_width`, `bay_spacing`, `decay_amount`, `broken_arch_seed`,
+`buttress_count`, `limestone_erosion`, `tracery_style` and `export_unreal_nanite` **do not
+exist** in the asset. Two of the numbers were real but attached to the wrong names (`0.45`
+is `decay_intensity`, not `decay_amount`; `8` is `bay_count`, not `buttress_count`), and the
+`decay_seed` default is 1337, not 42.
+
+### 4.1 `HDA_Poitou_AbbeyBuilder_1.0` — real parameter contract
+
+Read from the asset itself with Houdini 22.0.368 `hython` on 2026-10-21
+(`hou.hda.definitionsInFile` → `parmTemplateGroup`), not from documentation:
+
+| Parameter | Type | Label | Default | Note |
+|---|---|---|---|---|
+| `preview_mode` | Toggle | Preview Mode (<50ms) | 0 | fast cook variant |
+| `bay_count` | Int | Bay Count | 8 | × `bay_length` = 19.2 m nave |
+| `bay_length` | Float | Bay Length (m) | **2.4** | = 1 bar of 4/4 @ 128 BPM (§1.1) |
+| `wall_height` | Float | Wall Height (m) | **14.4** | = 6 bays |
+| `wall_thickness` | Float | Wall Thickness (m) | 1.8 | = 3 grid units (0.6 m) |
+| `window_style` | Menu | Window Style | 1 | menu, not an int range |
+| `buttress_tiers` | Int | Buttress Tiers | 3 | |
+| `decay_intensity` | Float | Decay Intensity | 0.45 | procedural ruin slider |
+| `decay_seed` | Int | Decay Seed | 1337 | |
+
+The node type is `HDA_Poitou_AbbeyBuilder`, description *"Poitou Maillezais Abbey Ruin
+Builder (BS_GodFile UE5.8)"*. The asset's own documented stat (512 points / 336 polygons) is
+consistent with an 8-bay shell module, not with a 105 m cathedral — the 105 m / 32 m
+Maillezais dimensions are the *layout* HDA's `abbey_len` / `abbey_wid`, and the two must be
+told apart.
+
+### 4.1a `poitou_layout_live` — real parameter contract
+
+Read live from the running Houdini Engine session, not from the recipe
+(`Saved/Audit/PoitouConvergence_20261020/live_parameters_before.txt`,
+`live_requested_parameters.json`, 2026-10-20). 61 exposed parameters. The ones that matter
+for the canon: `abbey_len` 105.0 / `abbey_wid` 32.0 / `abbey_rot` 20.0, `bank_drop` 0.5,
+`ditch_spacing` 17.5 / `ditch_warp` 12.0 / `ditch_halfw` 1.2 / `ditch_ymax` 420.0 /
+`ditch_depth` 0.8, `ue_canal_width` 6.0 / `ue_canal_depth` 1.2, `lane_spacing` 12.0,
+`shell_cluster_radius` 21.0, `rise_centerx` 830 / `rise_centery` 860 / `rise_radius` 140 /
+`rise_height` 20 / `rise_plateau` 50, `iles_count` 4 / `iles_seed` 3 / `iles_radius` 70 /
+`iles_hmin` 4 / `iles_hmax` 12, `band0_dist` 1300 / `band1_dist` 1900 / `band2_dist` 2600 /
+`band_spacing` 9 / `band_gap` 0.45, `spire_dist` 2300 / `spire_angle` 35 / `spire_height` 40 /
+`spire_count` 2, `mist_strength` 1.0, `water_res` 2.0, `water_drop` 0.25, `skirt_extent` 6000,
+`swell_amp` 10 / `swell_ramp` 1500 / `swell_freq` 0.0012, `seed` 1. Toggles: `full_res`,
+`nikki_layers`, `ign_calib`, `instance_preview`, `use_ue_input0/1`, `real_meshes`,
+`snap_canals`, `horizon_on`. Strings: `landscape_material`, `layerinfo_dir`,
+`water_material`, `skirt_material`. Ints: `iles_count`, `radial_lanes` 5, `spire_count`.
+
+> **Tempo is a separate axis.** The layout's `bpm` is 128 (`Recipes/melodia_poitou_parisian_v2.json`);
+> every other world recipe is 96. `UMelodiaMusicClockSubsystem` is documented as *global tempo,
+> per-zone key* — confirm the clock's tempo authority before authoring any 128 BPM-locked clip
+> (`A_MEL_Walk_PianoStep_128`), because a clip authored against the wrong tempo is a rewrite.
+
+### 4.2 Authoring and launching
+
+- **Houdini Engine (in-editor):** `Houdini Engine > Restart Session` if the session is dead.
+  `Content/HDA/MelodiaRoomShell_1.0.hda` is the other live in-editor HDA and is a *different*
+  asset from the Poitou pair above.
+- **HDA authoring source of record:** `C:\Users\froma\agent-tools\poitou_houdini\`
+  (outside the repo) plus the in-repo `Tools/Poitou/build_poitou_hda.py`. **These two carry
+  different parameter sets** — the in-repo builder uses `abbey_len`/`abbey_wid`/`bank_drop`/
+  `ditch_*`/`band*`/`spire_*`; treat the repo copy as the source of truth and the external
+  folder as a scratch workspace until they are reconciled.
+- **Hython compiler:** SideFX Houdini 22.0.368 (`hython.exe`).
 
 ---
 
-## 5. Canonical Multi-Level Staging & Lookbook Verification Tonight
+## 5. Canonical Multi-Level Staging & Lookbook Verification
 
-The 4 canonical Melusina environments have been staged, verified in live Unreal Engine 5.8, lighting-tuned, and registered into the public lookbook portfolio (`my-site-kit/content/site-plates.json`):
+> **Corrected 2026-10-21. This section previously claimed all 4 canonical environments were
+> "staged, verified in live Unreal Engine 5.8, lighting-tuned, and registered into the public
+> lookbook portfolio" with zero-slop plates. That claim was false and is replaced below by
+> what is actually true. Evidence: `Saved/Audit/PoitouConvergence_20261020/plate_audit.json`
+> (the repo's own `Tools/audit_showcase_plates.py`, run against the published plates).
+
+**Live level set (2026-10-21, commit `46669de7b`):** `L_MelusinaMorning.umap` is now a
+**37 KB shell**. The live level is `/Game/EnvSandbox/Poitou/L_Poitou_v2` (36 MB, 169 actors:
+114 `BP_Door2_0_C`, 22 static mesh actors, 13 Houdini asset actors, 3 landscapes, PCG world,
+Oceanology lake, PlayerStart, 2 cine cameras). `EditorStartupMap` / `GameDefaultMap` remain
+`L_MelodiaMainMenu`.
+
+**Lookbook plate audit — 6 of 7 published plates FAIL the project's own gate:**
+
+| Plate | Verdict |
+|---|---|
+| `hero-poitou-abbey-1920x1080` | **FAIL** `FLAT_WEBP(32KB<40KB)` — an unlit black silhouette on a flat white ground plane; no `Poitou_Sun`, no marsh, no water |
+| `hero-zen-forest-1920x1080` | **FAIL** `FLAT_WEBP(3KB)`, `NEAR_BLACK`, `FLAT_IMAGE` — `mean_luma = 0.0`, `unique_colors = 1`: a solid black rectangle |
+| `hero-kaleido-nave-1920x1080` | **FAIL** `NEAR_BLACK` (mean luma 10.2) — magenta default-material geometry in a void |
+| `hero-sea-above-1920x1080` | **FAIL** `FLAT_WEBP(10KB)` — a flat blue gradient, sky only, zero geometry |
+| `hero-melusina-morning-fairy-dust` | **FAIL** `MISSING_MATERIAL_MAGENTA(37%)` — the UE default-material tell |
+| `hero-sakura-dream-petal-cantata` | **FAIL** `FLAT_WEBP(28KB)`, `NEAR_BLACK` |
+| `hero-melusina-morning-1920x1080` | ok by the luma gate — **but its caption and alt text do not describe the image** (caption says "dawn-kissed flower islands … pastel light"; the plate is an orange sky over classical columns and a black mass). Caption correction is owed. |
+
+**Consequence:** `my-site-kit/content/site-plates.json` marked all five showcase slots
+`"status": "reviewed_environment_study"`. That status is wrong for the plates above and has
+been corrected. **No plate may be published as reviewed until `Tools/audit_showcase_plates.py`
+exits 0.** The tool exits 1 on any flag and is the deploy gate for the portfolio.
+
+The 4 canonical Melusina environments and their actual state:
 
 ### Level 1: Poitou Abbey — Sunlit Maillezais Sanctuary (`L_Poitou_v2`)
-- **Map Path**: `/Game/EnvSandbox/Poitou/L_Poitou_v2`
+- **Map Path**: `/Game/EnvSandbox/Poitou/L_Poitou_v2` — **the live level**
 - **Identity & Anchor**: Poitou-Charentes Romanesque Cathedral ruins on coastal marshland.
 - **Lighting Tuning**:
   - `Poitou_Sun`: Directional Light set to 45.0 lux, warm golden daylight (`#FFE8C8`, 5500K color temperature), cast shadows enabled.
   - `Poitou_SkyLight`: Real-time capture with lilac ambient bounce (`#8A93C8` at 2.8 lux).
   - `Poitou_HeightFog`: Soft morning mist with exponential decay at 0.005.
 - **Physical Verification**: 18 abbey static mesh actors grounded on landscape surface (Z=2011 to Z=1755); Universal PBR material `MI_Poitou_RuinStone` assigned.
-- **Lookbook Plate**: `hero-poitou-abbey-1920x1080.webp` / `hero-poitou-abbey-1920x1080.png`.
+- **Lookbook Plate**: `hero-poitou-abbey-1920x1080.webp` / `hero-poitou-abbey-1920x1080.png` — **FAILS the plate audit; re-render owed.** The published plate does not show the lighting described above.
 
 ### Level 2: Melusina Morning — Meadow Cantata (`L_MelusinaMorning`)
-- **Map Path**: `/Game/Melodia/Levels/Opening/L_MelusinaMorning`
+- **Map Path**: `/Game/Melodia/Levels/Opening/L_MelusinaMorning` — **now a 37 KB shell, not the live level.** The level was replaced by Poitou on 2026-10-21 (`46669de7b`); this entry is retained as the identity of the overture/movement, not as a staged level.
 - **Identity & Anchor**: Breton Coastal Romanesque pastoral meadow, dry-stone dikes, maritime pine canopy.
 - **Atmosphere**: Early dawn mist settling across undulating wildflower meadows and crystal pavilions.
-- **Lookbook Plate**: `hero-melusina-morning-1920x1080.webp` / `hero-melusina-morning-1920x1080.png`.
+- **Lookbook Plate**: `hero-melusina-morning-1920x1080.webp` / `hero-melusina-morning-1920x1080.png` — passes the luma gate, but the caption/alt text do not match the image and need rewriting.
 
 ### Level 3: Kaleido Nave — Starlight Cathedral (`L_KaleidoNave`)
 - **Map Path**: `/Game/EnvSandbox/Environments/L_KaleidoNave`
 - **Identity & Anchor**: Monumental crystalline interior sanctuary, Rayonnant Gothic tracery, refractive caustics.
 - **Atmosphere**: Vaulted crystal ceilings casting radiant chromatic caustics across mirrored marble sanctuary floors.
-- **Lookbook Plate**: `hero-kaleido-nave-1920x1080.webp` / `hero-kaleido-nave-1920x1080.png`.
+- **Lookbook Plate**: `hero-kaleido-nave-1920x1080.webp` / `hero-kaleido-nave-1920x1080.png` — **FAILS the plate audit (`NEAR_BLACK`, luma 10.2); re-render owed.**
 
 ### Level 4: Zen Forest — Tranquil Shaded Canopy (`L_ZenForestTest`)
 - **Map Path**: `/Game/ZenForestTest`
 - **Identity & Anchor**: High-fidelity Japanese cedar forest pathway, mossy stone lanterns, and drifting sakura petals.
 - **Atmosphere**: Peaceful forest sanctum where soft ambient breezes guide drifting cherry petals through ancient cedar groves.
-- **Lookbook Plate**: `hero-zen-forest-1920x1080.webp` / `hero-zen-forest-1920x1080.png`.
+- **Lookbook Plate**: `hero-zen-forest-1920x1080.webp` / `hero-zen-forest-1920x1080.png` — **FAILS the plate audit (solid black, luma 0.0); re-render owed.**
+- **⚑ STATUS: NOT CORE CANON — pending owner decision.** `Docs/MELODIA_MELUSINA_WORLD_IDENTITY_CANON_2026-10-20.md` §5 lists this land as *"Japanese cedar — NOT French"* and §8 open question 2 calls it *"the biggest lever on 'full french'"*, and its §6 forbids importing non-French pastiche into the core lands. This section previously filed it as canonical Level 4 with no flag. **It is not core canon until the owner decides** (keep as a labelled "beyond" tier / translate to French / retire). Until then it is neither promoted nor deleted — it simply must not be described as one of the canonical French lands.
 
 ---
 
@@ -271,8 +384,8 @@ The operational decisions governing this deployment were formally audited and ce
 
 1. **Parametric Abbey & Building Prototyping (Houdini Engine)**:
    - Launch Houdini: `python tools/launch_houdini_engine_sessionsync.py`.
-   - In Unreal Engine 5.8: Drag `Content/HDA/HDA_Poitou_AbbeyBuilder_1.0` into the level viewport.
-   - Adjust `decay_amount`, `nave_length`, and `bay_spacing` in the Details Panel. Changes cook interactively in real time.
+   - In Unreal Engine 5.8: the live layout HDA is `poitou_layout_live` (already in `L_Poitou_v2`); `Content/HDA/HDA_Poitou_AbbeyBuilder_1.0` is the separate 8-bay shell module and is **not** yet placed in the level.
+   - Adjust `decay_intensity`, `bay_count`/`bay_length`, and `wall_height` in the Details Panel - those are the real control names (section 4.1). Changes cook interactively in real time.
 2. **Re-compiling Spatial Heatmaps & Point Bundles**:
    - Edit recipe: `BS_GodFile/recipes/melusina_poitou_parisian_v2.json`.
    - Execute: `python Tools/world_compiler.py compile BS_GodFile/recipes/melusina_poitou_parisian_v2.json`.
@@ -280,6 +393,8 @@ The operational decisions governing this deployment were formally audited and ce
 3. **Deploying Multi-Camera Renders to Webfront**:
    - Execute: `python tools/stage_nikki_canon_renders.py`.
    - Review updated lookbook plates in `my-site-kit/content/site-plates.json`.
+   - **Gate before publish:** `python Tools/audit_showcase_plates.py` must exit 0. It flags black, flat-gradient and missing-material plates (6 of the 7 currently published fail). A plate is not "reviewed" because it was written to the manifest.
+   - Note: `site-plates.json` `slots.*.path` pointed at `../generated/assets/unreal/hero-<name>-1920x1080.webp`, which does not exist - the files are named without the size suffix, and the resolving field is `plates[].asset_path` (`/melodia/vfx-showcase-2026-09-28/...`). The `path` values have been corrected to the on-disk names.
 
 ---
 
@@ -306,6 +421,8 @@ Baseline measured on `L_Poitou_v2` (2026-10-21): 604 static/landscape components
 
 **Requirement:** every HDA / Houdini Engine output the pawn can touch generates complex-as-simple collision in the same cook, or ships a baked collision proxy authored in Houdini. No exemption for "it is only decoration".
 
+**Gate status: OPEN.** The requirement is stated; the baseline measured one paragraph above **violates it** (`SM_hero_house`, no collision data, pawn walks through the house). The fix belongs in the room-shell HDA output, not in a runtime pass — and per the standing rule recorded in `CURRENT_STATE.md` (2026-10-20), **collision is an art/rig decision and must not be authored by a demo or automation pass**.
+
 ### 9.2 The shipping path bakes; the live cook is authoring only
 Â§7.1's interactive cook is an authoring loop and must not be the shipping path.
 - Live-cooked Houdini Engine actors cannot be cooked for a build, and their geometry can arrive **after** the pawn has landed â€” the floor is not there in the first frames.
@@ -317,6 +434,7 @@ Baseline measured on `L_Poitou_v2` (2026-10-21): 604 static/landscape components
 A curated hybrid keeps working generations; they must be parked, not live.
 - Baseline on `L_Poitou_v2`: `Poitou_Layout_v6` **and** `Poitou_Layout_v6_Recovery` are both live, alongside two landscape generations (`poitou_layout_live_v6_357_422`, `Poitou_Layout_RoomShell_Candidate_601_71`).
 - **Requirement:** exactly one layout and one landscape generation are live (cooking, colliding, visible). The rest are parked outside the level or disabled. A parked generation costs nothing; a live one doubles the cooks and makes "which is canonical" a question every reader has to re-ask.
+- **Gate status: OPEN.** The baseline above still has two live layout generations. Note also that `Poitou_Layout_v6_Recovery` carries the ISM tree instances (`tree-high` 596x, `tree_fat` 184x); those were repointed to `SM_MossyTree_01` in the map, but they are **cook output** - a recook restores the Kenney proxies. Confirmed live on 2026-10-21: the editor log shows `Failed to find object '.../tree-high.tree-high'` and `LogHoudiniEngineEditor: Warning: Null Object found for instance` during a Poitou cook. The durable fix is the HDA's instance-asset assignment, not the map.
 
 ### 9.4 Mechanical acceptance: the grounding proof
 `Tools/Editor/check_pawn_grounding.py` runs automatically once per PIE session and writes a receipt to `Saved/Audit/GroundingProof/`. It is the gate for 9.1 and 9.2:

@@ -1,6 +1,74 @@
 # Melodia Melusina ? Current State
 
+## ⚑ P0 CANON — "full french" world identity + the Poitou First Day route — 2026-10-21
+
+**This section is the current status authority for the paradigm shift and the P0 route shape.** It supersedes the six-phase First Dream route description in `README.md` / `QUICKSTART.md` / `SYSTEM_MAP.md` (those are correct in saying the six-phase chain is "not mandatory pacing"; they are now out of date in *which* route is the P0 route).
+
+### The canon, in one line
+
+> **Melodia Melusina is a French cathedral-world where architecture is music and water remembers — the living legend of Mélusina, made into a place you can walk.**
+
+- **Creative identity (north star):** `Docs/MELODIA_MELUSINA_WORLD_IDENTITY_CANON_2026-10-20.md` — v0.2, tracked as of this change. Seeded from the capstone meeting with Paul Neale, 2026-10-20 ("full french"). Tone words: **sunlit, reverent, grieving**. Mythos: the real Mélusina legend (Jean d'Arras, c. 1400) — water fairy bound to a well, sings in the Maillezais cloister, transformation on the seventh day, harbinger of loss — mapped onto systems the project already owns.
+- **Build spec:** `Docs/Production/MELUSINA_FINAL_ENVIRONMENT_CONVERGENCE_GOAL.md` — corrected this pass (§1.1 meter, §1.2 status, §4 real HDA contracts, §5 level set + plate truth, §7 workflow, §9 gate status).
+- **Pacing contract:** `specs/progression/melodia_first_day_pacing.v1.json` — 7 contiguous beat windows, 0–20 min, targets sum 1200 s. Its `pacing` object validates against `specs/schemas/melodia_progression_package.v1.schema.json#/$defs/pacing`.
+
+### The governing meter — ONE statement, both docs now defer to it
+
+| Unit | Value | Meaning |
+|---|---|---|
+| Grid | **0.6 m** | 1 beat @ 128 BPM 4/4 |
+| Bar / bay | **2.4 m** | 1 bar of 4/4 (4 beats); `bay_length` 2.4, `wall_height` 14.4 = 6 bays, `wall_thickness` 1.8 = 3 grid units |
+| Long module | 3.6 m | 6 beats = 1.5 bars of 4/4 |
+| Tempo | **128 BPM, 4/4** | 1 beat 0.469 s, 1 bar 1.875 s, walk 1.28 m/s |
+
+The earlier "2.4 m = allegro 3/4 / 3.6 m = andante 4/4" phrasing was internally inconsistent (2.4 : 3.6 = 2 : 3 = 4 beats : 6 beats, not 3 : 4) and contradicted the build grid. It is superseded everywhere.
+
+### Canonical lands
+
+| Land | Status |
+|---|---|
+| **Poitou Abbey** — Sunlit Maillezais Sanctuary (`L_Poitou_v2`) | **The live level** (replaced Morning 2026-10-21, `46669de7b`). Morning is now a 37 KB shell. |
+| **Melusina Morning** — Meadow Cantata (`L_MelusinaMorning`) | Identity of the overture; the map is a shell. |
+| **Kaleido Nave** — Starlight Cathedral (`L_KaleidoNave`) | Canonical. |
+| **Zen Forest** — Tranquil Shaded Canopy (`L_ZenForestTest`) | **NOT core canon, pending owner decision** (Japanese cedar — not French). Neither promoted nor deleted; must not be described as a canonical French land. |
+
+### The P0 route — Poitou "Melusina's First Day"
+
+7 beats, ~1.6 km, 06:00 mist → 19:30 dusk, 15–20 min: jetty → footbridge → grand port → church square → Quéreux lane → poplar allée + lock → ruin on rise. **Each beat teaches exactly one thing; the music is in the architecture** (beat 2: step = note on the piano footbridge, `A_MEL_Walk_PianoStep_128`, 1 bar = 1.875 s).
+
+**Duration arithmetic (checkable):** 1600 m at Melusina's 2.2 m/s walk = 12.1 min with no stops. The 15–20 min window therefore only closes with 3–8 min of stops/interaction — **if the route is walked straight through it overruns its own budget.**
+
+**This route has no rhythm-combat beat.** That is a design fact of the First Day route, *not* a change to the turn-based ARPG / ACFU hybrid canon (still the combat identity, still pending owner ratification of its four ownership questions — see OWNER CANON, 2026-10-11, below). The design spec lists the whole combat animation set as "Combat (out of scope)". **No owner decision has been recorded about this**, so it is flagged here, not resolved.
+
+### Evidence levels — stated plainly
+
+| Thing | Level |
+|---|---|
+| The canon documents exist and are versioned | **source-committed** (this change) |
+| The two P0 lines are one line instead of two stranded tips | **source-committed** — merge `0e8c68616` on `refs/agents/canon-full-french-20261021`, 0 deletions, 3 additions, 6 conflicts resolved to the union |
+| The First Day route plays | **DESIGN ONLY.** No beat is runtime-proven; the `*_FirstDay` gate duplicates are not authored; the grounding gate has not run against the beat stops |
+| The lookbook plates | **6 of 7 FAIL the project's own gate** (`Tools/audit_showcase_plates.py`, receipt `Saved/Audit/PoitouConvergence_20261020/plate_audit.json`). Poitou = unlit black silhouette; Zen Forest = solid black (`mean_luma 0.0`, `unique_colors 1`); Kaleido = magenta default-material in a void; Sea Above = flat gradient. `site-plates.json` statuses corrected from "reviewed" to the audit verdict. **Re-renders owed.** |
+| The AbbeyBuilder HDA parameter contract | **verified by introspection** — hython 22.0.368, `hou.hda.definitionsInFile` → `parmTemplateGroup`, 2026-10-21. The spec's old 9-row table named 9 parameters that **do not exist**; the real 9 are in the spec §4.1 now |
+| The live layout HDA parameters | **verified by live readback** (`Saved/Audit/PoitouConvergence_20261020/live_parameters_before.txt`, `live_requested_parameters.json`) |
+| Collision / grounding / party switch / ACF melee | unchanged from their entries below — still not runtime-proven |
+
+### Owner decisions owed (one line each)
+
+1. **Zen Forest** — keep as a labelled "beyond" tier / translate it French / retire it. Biggest lever on "full french".
+2. **Maillezais dimensions vs the bar** — `abbey_len` 105 m / 2.4 = **43.75 bays**, `abbey_wid` 32 m / 2.4 = **13.33 bays**. Either the dimension wins (105 → 105.6 m = 44 bays; 32 → 33.6 m = 14 bays) or the bar wins (43 bays = 103.2 m; 13 bays = 31.2 m). "Zero slop" forbids a fractional bay count and geometry is being generated now.
+3. **The First Day route has no combat beat** — ratify the hybrid ownership table and record the route as combat-free, or restore an encounter beat to the route.
+4. **Tempo authority** — Poitou is 128 BPM, every other world recipe is 96, and `UMelodiaMusicClockSubsystem` is documented as *global tempo, per-zone key*. Confirm the clock's tempo authority before authoring any tempo-locked clip; a clip authored against the wrong tempo is a rewrite.
+5. **Lookbook plates** — re-render the four failing canonical plates, or publish them labelled as environment studies rather than portfolio heroes.
+
+### Editor-blocked gates (the editor was live with another agent's MCP session at 2026-10-21 06:36)
+
+The closed-editor build, the Sir party-switch PIE proof, the ACF-melee-into-`ResolveWorldFlowAttack` wiring, and the plate re-renders all need the editor, and one editor is one mutating surface. None of them were started.
+
+---
+
 ## Code recovery lanes — 2026-10-21
+
+- **The three lanes and the demo/shirt line are now ONE line.** Merge `0e8c68616` on `refs/agents/canon-full-french-20261021` lands `shirt-hem-2026-10-20` (7b882b021, which carried the §9 curation gate, `Tools/Editor/check_pawn_grounding.py` and the Poitou-replaces-Morning status) onto the reconverged base `d43af8f63` (which carried the code-recovery, content-recovery and narrative-rewrite lanes). Six conflicts were resolved to the union of both sides; the working tree already held that hand resolution, so each resolved file was verified byte-for-byte against it. **Net delta 0 deletions, 3 additions.** `refs/agents/code-recovery-20261021`, `refs/agents/content-recovery-20261021` and `refs/agents/party-switch-20261021` remain as-is and are now contained in this merge.
 
 - **Three lane refs now hold the work that was sitting uncommitted. Nothing is merged and nothing is compiled.** All three are based on `origin/main` `7ec332f4a`; local `main` moved to `c1dc2248e` (owner audio commit) while the lanes were being cut.
   - `refs/agents/code-recovery-20261021` → `1433cb47e`, 8 commits / 29 files: possess-safe controller party-switch binding + `ParkPawn` no-hide, Sir v7 intro mesh + crest/perch declarations, narrative flag getter + story door, seam portal, foley bank repoint + grade hit sounds, ADS unvoiced-line delegate + live voice + `Build.cs`, playable decor node + `SetMidiNote`, Melodia Studio MCP command.
