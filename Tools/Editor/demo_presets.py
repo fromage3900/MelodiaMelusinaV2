@@ -1,22 +1,24 @@
 """Demo presentation helpers - session-scoped, no shared asset is modified.
 
-Three things the owner needs for a live screenshare / PIE demo:
+TWO things only, both proven harmless to gameplay:
 
   1. The Choral Sheep is not presentation-ready -> hide him.
   2. Ambient/random audio must not run -> mute.
-  3. The pawn must not fall through the floor -> collision.
 
-Applied to the PIE world at runtime, so nothing in the shared Morning level
-(which has 137 external-actor packages already dirty from other lanes) is
-touched, and nothing survives the PIE session.
+WHAT WAS REMOVED AND WHY (2026-10-20, after it broke the pawn):
+  * Collision forcing - the preset used to set every static mesh component in
+    the level to QUERY_AND_PHYSICS + BlockAll, and it added BOX hulls to 57
+    mesh assets. That broke her movement and must not come back. Collision is
+    an art/rig decision and belongs in the assets, not in a demo preset.
+  * The PlayerStart teleport - PIE spawns the player at the editor camera
+    (LastExecutedPlayModeLocation=PlayLocation_CurrentCameraLocation), but
+    teleporting the pawn during PIE is a behaviour change and is not worth
+    the risk in a live demo.
 
-WHY IT RE-APPLIES CONTINUOUSLY (not once):
-  PIE reloads the map ~0.25 s in this project (Saved/SaveGames/SaveMetadata.sav
-  is missing, so [AscentSaveSystemEditor] cannot load P0_Shorewake_Validation
-  and reloads the current map). A one-shot pass therefore applies to the first
-  world instance and is undone by the reload - the sheep comes back and the
-  streamed-in floors lose their collision. The preset re-applies on a timer,
-  and also re-places the pawn if it has fallen.
+The sheep hide and the mute are re-applied on a timer, because PIE reloads the
+map ~0.25 s in this project (Saved/SaveGames/SaveMetadata.sav is missing, so
+[AscentSaveSystemEditor] reloads the current map) and a one-shot pass is undone
+by the reload.
 
 Usage (in the running editor):
 
@@ -37,7 +39,6 @@ SHEEP_WORDS = ("sheep", "choral", "ewe", "lamb")
 NEVER_HIDE = ("camera", "manager", "trigger", "player")
 
 REAPPLY_EVERY_TICKS = 20
-FALL_THRESHOLD_CM = 200.0
 
 _state = {"world": None, "handle": None, "ticks": 0, "applied": []}
 
@@ -132,95 +133,15 @@ def _mute(world):
     return True, notes
 
 
-def _ensure_collision(world):
-    """Turn collision on for static geometry that has it switched off. The
-    asset must own collision data; this enables the component."""
-    fixed = []
-    try:
-        actors = unreal.GameplayStatics.get_all_actors_of_class(world, unreal.Actor)
-    except Exception as e:
-        return fixed, ["enumeration failed: %s" % e]
-    for a in actors:
-        try:
-            comps = a.get_components_by_class(unreal.ActorComponent)
-        except Exception:
-            continue
-        for c in comps:
-            cn = c.get_class().get_name().lower()
-            if 'staticmesh' not in cn and 'houdini' not in cn:
-                continue
-            try:
-                if 'NO_COLLISION' not in str(c.get_collision_enabled()):
-                    continue
-                c.set_collision_enabled(unreal.CollisionEnabled.QUERY_AND_PHYSICS)
-                c.set_collision_profile_name('BlockAll')
-                fixed.append(a.get_name())
-            except Exception:
-                pass
-    return fixed, []
-
-
-def _player_start(world):
-    for a in unreal.GameplayStatics.get_all_actors_of_class(world, unreal.Actor):
-        if a.get_class().get_name() in ("PlayerStart", "APlayerStart"):
-            return a
-    return None
-
-
-def _melusina(world):
-    for p in unreal.GameplayStatics.get_all_actors_of_class(world, unreal.Pawn):
-        if p.get_class().get_name().startswith("BP_Melusina"):
-            return p
-    return None
-
-
-def _place_on_player_start(world):
-    """PIE spawns the player wherever the editor camera was
-    (LastExecutedPlayModeLocation=PlayLocation_CurrentCameraLocation), which
-    puts the camera inside the room shell. Put the pawn back on the
-    PlayerStart - and keep putting it back if it falls through the floor."""
-    st = _player_start(world)
-    if not st:
-        return None, ["no PlayerStart in level"]
-    pawn = _melusina(world)
-    if not pawn:
-        return None, ["no pawn"]
-    loc = st.get_actor_location()
-    try:
-        pz = pawn.get_actor_location().z
-        fell = (pz - loc.z) < -FALL_THRESHOLD_CM
-    except Exception:
-        fell = False
-    if not fell:
-        return "standing", []
-    try:
-        pawn.set_actor_location_and_rotation(loc, st.get_actor_rotation(), False, None)
-    except Exception as e:
-        return None, ["teleport failed: %s" % e]
-    return "respawned on PlayerStart (was below the floor)", []
-
-
 def _apply_now(world, first=False):
     hidden, hnotes = _hide_sheep(world)
     muted, mnotes = _mute(world)
-    coll, cnotes = _ensure_collision(world)
-    spawn, snotes = _place_on_player_start(world)
     if first:
-        _state["applied"] = [world.get_name(), hidden, muted, spawn, len(coll)]
-        unreal.log("demo_presets: applied to {} | sheep hidden: {} | muted: {} | spawn: {} | "
-                   "collision enabled on {} components | notes: {}".format(
-                       world.get_name(), hidden if hidden else "none found", muted, spawn,
-                       len(coll), hnotes + mnotes + cnotes + snotes))
-    else:
-        bits = []
-        if hidden:
-            bits.append("sheep re-hidden: %d" % len(hidden))
-        if coll:
-            bits.append("collision re-enabled: %d" % len(coll))
-        if spawn and spawn.startswith("respawned"):
-            bits.append(spawn)
-        if bits:
-            unreal.log("demo_presets: " + " | ".join(bits))
+        _state["applied"] = [world.get_name(), hidden, muted]
+        unreal.log("demo_presets: applied to {} | sheep hidden: {} | muted: {} | notes: {}".format(
+            world.get_name(), hidden if hidden else "none found", muted, hnotes + mnotes))
+    elif hidden:
+        unreal.log("demo_presets: sheep re-hidden: {}".format(len(hidden)))
 
 
 def _tick(delta):
