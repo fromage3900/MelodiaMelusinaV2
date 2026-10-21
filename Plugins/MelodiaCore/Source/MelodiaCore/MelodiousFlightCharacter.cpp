@@ -1,8 +1,10 @@
 #include "MelodiousFlightCharacter.h"
 
 #include "Camera/CameraComponent.h"
+#include "Components/SkeletalMeshComponent.h"
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
+#include "Engine/SkeletalMesh.h"
 #include "InputModifiers.h"
 #include "InputMappingContext.h"
 #include "InputAction.h"
@@ -40,6 +42,11 @@ void AMelodiousFlightCharacter::BeginPlay()
 	Super::BeginPlay();
 	GetCharacterMovement()->SetMovementMode(MOVE_Flying);
 
+	// CruiseSpeed is authored on the BP child, so the fly speed has to be
+	// applied here rather than in the constructor, which runs before the
+	// Blueprint defaults are applied.
+	GetCharacterMovement()->MaxFlySpeed = CruiseSpeed;
+
 	if (UMelodiaPartySubsystem* Party = UMelodiaPartySubsystem::Get(this))
 	{
 		Party->RegisterPawn(this, 1);
@@ -67,13 +74,29 @@ void AMelodiousFlightCharacter::CreateInputMappingContext()
 	LeftMapping.Modifiers.Add(NewObject<UInputModifierNegate>(FlightMappingContext));
 	FlightMappingContext->MapKey(MoveRightAction, EKeys::D);
 
+	// Gamepad: left stick steers exactly like WASD. The stick reports -Y when
+	// pushed up, so it needs the same negation as the S key.
+	FEnhancedActionKeyMapping& StickForward = FlightMappingContext->MapKey(MoveAction, EKeys::Gamepad_LeftY);
+	StickForward.Modifiers.Add(NewObject<UInputModifierNegate>(FlightMappingContext));
+	FlightMappingContext->MapKey(MoveRightAction, EKeys::Gamepad_LeftX);
+
 	LookAction = NewObject<UInputAction>(this, TEXT("IA_Flight_Look"));
 	LookAction->ValueType = EInputActionValueType::Axis2D;
 	FlightMappingContext->MapKey(LookAction, EKeys::Mouse2D);
+	FlightMappingContext->MapKey(LookAction, EKeys::Gamepad_Right2D);
 
 	AscendAction = NewObject<UInputAction>(this, TEXT("IA_Flight_Ascend"));
 	AscendAction->ValueType = EInputActionValueType::Boolean;
 	FlightMappingContext->MapKey(AscendAction, EKeys::SpaceBar);
+	FlightMappingContext->MapKey(AscendAction, EKeys::Gamepad_RightTrigger);
+
+	// Descend is its own action, not the inverse of ascend: the pair has to
+	// be separately bindable so a gamepad trigger and a keyboard key can sit
+	// on them independently, and so the axis can report which way it is held.
+	DescendAction = NewObject<UInputAction>(this, TEXT("IA_Flight_Descend"));
+	DescendAction->ValueType = EInputActionValueType::Boolean;
+	FlightMappingContext->MapKey(DescendAction, EKeys::LeftAlt);
+	FlightMappingContext->MapKey(DescendAction, EKeys::Gamepad_LeftTrigger);
 
 	BoostAction = NewObject<UInputAction>(this, TEXT("IA_Flight_Boost"));
 	BoostAction->ValueType = EInputActionValueType::Boolean;
@@ -100,6 +123,11 @@ void AMelodiousFlightCharacter::SetupPlayerInputComponent(UInputComponent* Playe
 	EIC->BindAction(MoveRightAction, ETriggerEvent::Triggered, this, &AMelodiousFlightCharacter::OnMoveRightTriggered);
 	EIC->BindAction(LookAction, ETriggerEvent::Triggered, this, &AMelodiousFlightCharacter::OnLookTriggered);
 	EIC->BindAction(AscendAction, ETriggerEvent::Triggered, this, &AMelodiousFlightCharacter::OnAscendTriggered);
+	EIC->BindAction(AscendAction, ETriggerEvent::Completed, this, &AMelodiousFlightCharacter::OnAscendTriggered);
+	EIC->BindAction(AscendAction, ETriggerEvent::Canceled, this, &AMelodiousFlightCharacter::OnAscendTriggered);
+	EIC->BindAction(DescendAction, ETriggerEvent::Triggered, this, &AMelodiousFlightCharacter::OnDescendTriggered);
+	EIC->BindAction(DescendAction, ETriggerEvent::Completed, this, &AMelodiousFlightCharacter::OnDescendTriggered);
+	EIC->BindAction(DescendAction, ETriggerEvent::Canceled, this, &AMelodiousFlightCharacter::OnDescendTriggered);
 	EIC->BindAction(BoostAction, ETriggerEvent::Started, this, &AMelodiousFlightCharacter::OnBoostStarted);
 	EIC->BindAction(BoostAction, ETriggerEvent::Completed, this, &AMelodiousFlightCharacter::OnBoostCompleted);
 	EIC->BindAction(BoostAction, ETriggerEvent::Canceled, this, &AMelodiousFlightCharacter::OnBoostCompleted);
@@ -120,6 +148,17 @@ void AMelodiousFlightCharacter::SetupPlayerInputComponent(UInputComponent* Playe
 void AMelodiousFlightCharacter::UnPossessed()
 {
 	RemoveMappingContextOnUnpossess(FlightMappingContext);
+
+	// A boost that is interrupted by handing control back to the party must
+	// not leave his cruise speed doubled for the next time he is possessed.
+	bIsAscending = false;
+	bIsDescending = false;
+	bIsBoosting = false;
+	if (UCharacterMovementComponent* Movement = GetCharacterMovement())
+	{
+		Movement->MaxFlySpeed = CruiseSpeed;
+	}
+
 	Super::UnPossessed();
 }
 
@@ -160,9 +199,29 @@ void AMelodiousFlightCharacter::OnLookTriggered(const FInputActionValue& Value)
 
 void AMelodiousFlightCharacter::OnAscendTriggered(const FInputActionValue& Value)
 {
+	// Boolean action: a non-zero value means the key is held, a zero value
+	// means it was released. Both directions of the same binding are handled
+	// here so the flag always matches the key.
+	bIsAscending = Value.Get<bool>();
+	if (!bIsAscending)
+	{
+		return;
+	}
 	LeavePerch();
 	SecondsSinceSteering = 0.0f;
 	AddMovementInput(FVector::UpVector, 1.0f);
+}
+
+void AMelodiousFlightCharacter::OnDescendTriggered(const FInputActionValue& Value)
+{
+	bIsDescending = Value.Get<bool>();
+	if (!bIsDescending)
+	{
+		return;
+	}
+	LeavePerch();
+	SecondsSinceSteering = 0.0f;
+	AddMovementInput(FVector::UpVector, -1.0f);
 }
 
 void AMelodiousFlightCharacter::OnBoostStarted()
@@ -180,9 +239,116 @@ void AMelodiousFlightCharacter::OnBoostCompleted()
 	GetCharacterMovement()->MaxFlySpeed = CruiseSpeed;
 }
 
+void AMelodiousFlightCharacter::ApplyHeightAxis()
+{
+	UCharacterMovementComponent* Movement = GetCharacterMovement();
+	if (!Movement)
+	{
+		return;
+	}
+
+	// The climb rate is capped independently of MaxFlySpeed. Without this the
+	// horizontal speed cap doubles the climb rate while boosting, and holding
+	// the key puts him out of the playable volume in two seconds.
+	const float Cap = GetVerticalSpeedCap();
+	if (Movement->Velocity.Z > Cap)
+	{
+		Movement->Velocity.Z = Cap;
+	}
+	else if (Movement->Velocity.Z < -Cap)
+	{
+		Movement->Velocity.Z = -Cap;
+	}
+}
+
+void AMelodiousFlightCharacter::UpdateCrestRaise(float DeltaSeconds)
+{
+	USkeletalMeshComponent* Mesh = GetMesh();
+	if (!Mesh)
+	{
+		return;
+	}
+
+	if (!bWarnedMissingCrestMorph)
+	{
+		// A morph that is not on the mesh is a silent no-op, so say so once
+		// instead of leaving a crest that never moves.
+		bWarnedMissingCrestMorph = true;
+		const USkeletalMesh* Asset = Mesh->GetSkeletalMeshAsset();
+		bool bFound = false;
+		if (Asset)
+		{
+			for (const FMorphTarget& MorphTarget : Asset->GetMorphTargets())
+			{
+				if (MorphTarget.GetFName() == CrestMorphName)
+				{
+					bFound = true;
+					break;
+				}
+			}
+		}
+		if (!bFound)
+		{
+			UE_LOG(LogTemp, Warning, TEXT("Melodia: crest morph '%s' is not on %s; the crest raise will not show."),
+				*CrestMorphName.ToString(), *GetNameSafe(Asset));
+		}
+	}
+
+	const float Yaw = GetActorRotation().Yaw;
+	if (!bHasPreviousYaw)
+	{
+		PreviousActorYaw = Yaw;
+		bHasPreviousYaw = true;
+	}
+
+	const float DeltaYaw = FMath::FindDeltaAngleDegrees(PreviousActorYaw, Yaw);
+	PreviousActorYaw = Yaw;
+
+	const float TurnRate = FMath::Abs(DeltaYaw) / FMath::Max(DeltaSeconds, KINDA_SMALL_NUMBER);
+	const float Target = FMath::Clamp(TurnRate / FMath::Max(CrestRaiseTurnRate, 1.0f), 0.0f, 1.0f);
+	CurrentCrestRaise = FMath::FInterpTo(CurrentCrestRaise, Target, DeltaSeconds, CrestRaiseRiseSpeed);
+
+	Mesh->SetMorphTarget(CrestMorphName, CurrentCrestRaise);
+}
+
+void AMelodiousFlightCharacter::UpdatePerchApproach(float DeltaSeconds)
+{
+	if (!bIsPerchApproaching || !CurrentPerch)
+	{
+		return;
+	}
+
+	PerchApproachRemaining = FMath::Max(0.0f, PerchApproachRemaining - DeltaSeconds);
+	const float Alpha = (PerchApproachDuration <= 0.0f)
+		? 1.0f
+		: FMath::Clamp(1.0f - (PerchApproachRemaining / PerchApproachDuration), 0.0f, 1.0f);
+
+	const FVector Target = CurrentPerch->GetLandingLocation();
+	const FRotator TargetRot = CurrentPerch->GetLandingRotation();
+	const FVector Location = FMath::Lerp(PerchApproachStartLoc, Target, Alpha);
+	const FRotator Rotation = FMath::Lerp(PerchApproachStartRot, TargetRot, Alpha);
+
+	SetActorLocationAndRotation(Location, Rotation, false, nullptr, ETeleportType::TeleportPhysics);
+
+	if (PerchApproachRemaining <= 0.0f)
+	{
+		SettleOnPerch(CurrentPerch);
+	}
+}
+
 void AMelodiousFlightCharacter::Tick(float DeltaSeconds)
 {
 	Super::Tick(DeltaSeconds);
+
+	UpdateCrestRaise(DeltaSeconds);
+
+	if (bIsPerchApproaching)
+	{
+		// A glide-in in progress owns him: no idle-perch re-trigger, and the
+		// steering inputs still cancel it through LeavePerch().
+		UpdatePerchApproach(DeltaSeconds);
+		return;
+	}
 
 	if (bIsPerched)
 	{
@@ -192,10 +358,12 @@ void AMelodiousFlightCharacter::Tick(float DeltaSeconds)
 		return;
 	}
 
+	ApplyHeightAxis();
+
 	SecondsSinceSteering += DeltaSeconds;
 	if (!bIsBoosting && SecondsSinceSteering >= PerchIdleDelay)
 	{
-		TryLandOnNearestPerch();
+		BeginPerchApproach();
 	}
 }
 
@@ -238,6 +406,59 @@ ASirPerchPoint* AMelodiousFlightCharacter::FindNearestPerch(float& OutDistance) 
 	return Best;
 }
 
+bool AMelodiousFlightCharacter::BeginPerchApproach()
+{
+	if (bIsPerched || bIsPerchApproaching)
+	{
+		return false;
+	}
+
+	float Distance = 0.0f;
+	ASirPerchPoint* Perch = FindNearestPerch(Distance);
+	if (!Perch)
+	{
+		return false;
+	}
+
+	CurrentPerch = Perch;
+	PerchApproachStartLoc = GetActorLocation();
+	PerchApproachStartRot = GetActorRotation();
+	PerchApproachRemaining = FMath::Max(0.0f, PerchApproachDuration);
+	bIsPerchApproaching = true;
+
+	UE_LOG(LogTemp, Verbose, TEXT("Melodia: Sir gliding to perch %s at %s (%.0f units)."),
+		*GetNameSafe(Perch), *Perch->GetLandingLocation().ToCompactString(), Distance);
+	return true;
+}
+
+void AMelodiousFlightCharacter::SettleOnPerch(ASirPerchPoint* Perch)
+{
+	if (!Perch)
+	{
+		return;
+	}
+
+	// Land exactly on the spot so he settles instead of overshooting it, and
+	// keep MOVE_Flying so there is no gravity/falling transition to tune.
+	SetActorLocationAndRotation(Perch->GetLandingLocation(), Perch->GetLandingRotation(), false, nullptr, ETeleportType::TeleportPhysics);
+
+	if (UCharacterMovementComponent* Movement = GetCharacterMovement())
+	{
+		Movement->SetMovementMode(MOVE_Flying);
+		Movement->StopMovementImmediately();
+		Movement->Velocity = FVector::ZeroVector;
+	}
+
+	CurrentPerch = Perch;
+	bIsPerched = true;
+	bIsPerchApproaching = false;
+	PerchApproachRemaining = 0.0f;
+	SecondsSinceSteering = 0.0f;
+
+	UE_LOG(LogTemp, Verbose, TEXT("Melodia: Sir perched on %s at %s."),
+		*GetNameSafe(Perch), *Perch->GetLandingLocation().ToCompactString());
+}
+
 bool AMelodiousFlightCharacter::TryLandOnNearestPerch()
 {
 	if (bIsPerched)
@@ -252,35 +473,23 @@ bool AMelodiousFlightCharacter::TryLandOnNearestPerch()
 		return false;
 	}
 
-	// Teleport onto the spot so he settles instead of overshooting it, and
-	// keep MOVE_Flying so there is no gravity/falling transition to tune.
-	SetActorLocation(Perch->GetLandingLocation(), false, nullptr, ETeleportType::TeleportPhysics);
-	SetActorRotation(Perch->GetLandingRotation());
-
-	if (UCharacterMovementComponent* Movement = GetCharacterMovement())
-	{
-		Movement->SetMovementMode(MOVE_Flying);
-		Movement->StopMovementImmediately();
-		Movement->Velocity = FVector::ZeroVector;
-	}
-
-	CurrentPerch = Perch;
-	bIsPerched = true;
-	SecondsSinceSteering = 0.0f;
-
-	UE_LOG(LogTemp, Verbose, TEXT("Melodia: Sir perched on %s at %s (%.0f units)."),
-		*GetNameSafe(Perch), *Perch->GetLandingLocation().ToCompactString(), Distance);
+	SettleOnPerch(Perch);
 	return true;
 }
 
 void AMelodiousFlightCharacter::LeavePerch()
 {
-	if (!bIsPerched)
+	// Any steering input during the glide-in is a takeoff too, so the
+	// approach is cancelled here as well as the settled state.
+	bIsPerchApproaching = false;
+	PerchApproachRemaining = 0.0f;
+
+	if (!bIsPerched && !CurrentPerch)
 	{
 		return;
 	}
+
 	UE_LOG(LogTemp, Verbose, TEXT("Melodia: Sir left perch %s."), *GetNameSafe(CurrentPerch));
 	CurrentPerch = nullptr;
 	bIsPerched = false;
 }
-

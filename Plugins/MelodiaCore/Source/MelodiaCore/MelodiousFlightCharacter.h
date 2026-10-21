@@ -11,8 +11,14 @@ class ASirPerchPoint;
 
 /**
  * Sir Melodious free-flight exploration pawn. Always airborne (MOVE_Flying);
- * WASD steers along the camera (including pitch), Space ascends, Shift boosts,
- * Ctrl hands control back to the party subsystem.
+ * WASD steers along the camera (including pitch), Space ascends, Left Alt
+ * descends, Shift boosts, Ctrl hands control back to the party subsystem.
+ *
+ * The height axis is a real axis, not a single key: ascend and descend are
+ * separate actions, the climb rate is capped independently of the horizontal
+ * fly speed, and releasing the key holds altitude (flying has no gravity).
+ * Gamepad is a first-class path: left stick steers, right stick looks,
+ * right trigger ascends, left trigger descends.
  */
 UCLASS(Blueprintable)
 class MELODIACORE_API AMelodiousFlightCharacter : public AMelodiaCharacterBase
@@ -33,6 +39,35 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|Flight")
 	float BoostSpeed = 1600.0f;
 
+	// ------------------------------------------------------------------
+	// Height axis
+	// ------------------------------------------------------------------
+
+	/**
+	 * Maximum climb/descent rate in cm/s, applied to the vertical component
+	 * only. This is deliberately independent of MaxFlySpeed: without it the
+	 * horizontal speed cap doubles the climb rate whenever he boosts, and he
+	 * is unrecoverable.
+	 */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|Flight", meta=(ClampMin="1.0"))
+	float VerticalSpeed = 420.0f;
+
+	/** Climb rate while boosting. */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|Flight", meta=(ClampMin="1.0"))
+	float VerticalSpeedBoosted = 700.0f;
+
+	/** True while an ascend input is held. */
+	UPROPERTY(BlueprintReadOnly, Category="Melodia|Flight|Input")
+	bool bIsAscending = false;
+
+	/** True while a descend input is held. */
+	UPROPERTY(BlueprintReadOnly, Category="Melodia|Flight|Input")
+	bool bIsDescending = false;
+
+	/** The vertical rate the height axis is currently allowing, in cm/s. */
+	UFUNCTION(BlueprintPure, Category="Melodia|Flight")
+	float GetVerticalSpeedCap() const { return bIsBoosting ? VerticalSpeedBoosted : VerticalSpeed; }
+
 	UPROPERTY(BlueprintReadOnly, Category="Melodia|Flight|Input")
 	TObjectPtr<UInputMappingContext> FlightMappingContext;
 
@@ -48,8 +83,32 @@ public:
 	UPROPERTY(BlueprintReadOnly, Category="Melodia|Flight|Input")
 	TObjectPtr<UInputAction> AscendAction;
 
+	/** Descend is a separate action, not the inverse of ascend. */
+	UPROPERTY(BlueprintReadOnly, Category="Melodia|Flight|Input")
+	TObjectPtr<UInputAction> DescendAction;
+
 	UPROPERTY(BlueprintReadOnly, Category="Melodia|Flight|Input")
 	TObjectPtr<UInputAction> BoostAction;
+
+	// ------------------------------------------------------------------
+	// Crest / banking
+	// ------------------------------------------------------------------
+
+	/**
+	 * Morph target driven by the crest raise. The canonical v7 ARP carries a
+	 * "Crest_Raise" morph; the name is exposed so a different mesh can be
+	 * pointed at a different morph without a recompile.
+	 */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|Flight")
+	FName CrestMorphName = TEXT("Crest_Raise");
+
+	/** Yaw rate, in degrees per second, that maps to a full crest raise. */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|Flight", meta=(ClampMin="1.0"))
+	float CrestRaiseTurnRate = 120.0f;
+
+	/** How fast the crest weight ramps toward its target, per second. */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|Flight", meta=(ClampMin="0.01"))
+	float CrestRaiseRiseSpeed = 6.0f;
 
 	// ------------------------------------------------------------------
 	// Perching (D1: authored perches). Sir settles onto the nearest
@@ -65,8 +124,20 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|Perch", meta=(ClampMin="0.0"))
 	float PerchIdleDelay = 1.5f;
 
+	/**
+	 * Seconds of glide-in before he settles onto the perch. A perch that
+	 * snaps him into place reads as a teleport; the glide is what makes it
+	 * read as a bird landing.
+	 */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|Perch", meta=(ClampMin="0.0"))
+	float PerchApproachDuration = 0.9f;
+
 	UPROPERTY(BlueprintReadOnly, Category="Melodia|Perch")
 	bool bIsPerched = false;
+
+	/** True while he is gliding in toward a perch but has not settled yet. */
+	UPROPERTY(BlueprintReadOnly, Category="Melodia|Perch")
+	bool bIsPerchApproaching = false;
 
 	/**
 	 * BlueprintPure reader for bIsPerched.
@@ -99,9 +170,25 @@ private:
 	void OnMoveRightTriggered(const FInputActionValue& Value);
 	void OnLookTriggered(const FInputActionValue& Value);
 	void OnAscendTriggered(const FInputActionValue& Value);
+	void OnDescendTriggered(const FInputActionValue& Value);
 	void OnBoostStarted();
 	void OnBoostCompleted();
 	void CreateInputMappingContext();
+
+	/** Clamps the vertical velocity to the height axis' rate cap. */
+	void ApplyHeightAxis();
+
+	/** Ramps the crest morph from the current turn rate. */
+	void UpdateCrestRaise(float DeltaSeconds);
+
+	/** Advances the glide-in toward the perch, if one is in progress. */
+	void UpdatePerchApproach(float DeltaSeconds);
+
+	/** Starts the glide-in toward the nearest perch. False if there is none. */
+	bool BeginPerchApproach();
+
+	/** Puts him on the perch exactly, ending any glide-in. */
+	void SettleOnPerch(ASirPerchPoint* Perch);
 
 	/** Seconds since the last steering input; drives the idle perch. */
 	float SecondsSinceSteering = 0.0f;
@@ -116,6 +203,9 @@ private:
 	/** Previous frame yaw for computing angular turn rate (yaw-rate banking). */
 	float PreviousActorYaw = 0.0f;
 	bool bHasPreviousYaw = false;
+
+	/** One-shot: the crest morph was not found on the mesh he is wearing. */
+	bool bWarnedMissingCrestMorph = false;
 
 	/** Approach-to-perch glide duration before settling into perched state. */
 	float PerchApproachRemaining = 0.0f;
