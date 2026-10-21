@@ -293,3 +293,36 @@ All 13 assets comprising the Poitou Sanctuary Pack have been rebuilt according t
 - **Melusina Paint Pipeline**: 4-channel `vcol_melodia` baked onto every vertex (R: Cavity Wear, G: Decoration Curvature, B: Audio Elevation, A: Chladni Resonant Node).
 - **Unreal Engine 5.8 Collision**: 100% per-poly raytracing verified (`ECollisionTraceFlag::CTF_UseComplexAsSimple`).
 
+## 9. Curation Gate: Curated-Hybrid Acceptance (Poitou)
+
+The Poitou level is a **curated hybrid**: the sanctuary pack and hero assets are hand-sculpted (Blender 5.2.1 + Higgsas GN, Â§8), while the core level, room shell and layout are generated live through Houdini Engine (Â§4, Â§7.1). Curated means a human chooses what ships; it does **not** mean the generated side inherits the sculpted side's guarantees. Three clauses make the hybrid shippable, and one tool proves them.
+
+### 9.1 Collision ownership follows the authoring side
+Â§3.2's zero-proxy standard is verified on the **sculpted** pack (`SM_Maillezais_BrokenArch`, `SM_Maillezais_ButtressStub`, `SM_Maillezais_CrumbledWall` -> `UseComplexAsSimple`, `has_per_poly_collision: true`). The **generated** side must meet the same standard, because it is the surface the pawn actually stands on.
+
+Baseline measured on `L_Poitou_v2` (2026-10-21): 604 static/landscape components â€” **442 `QUERY_AND_PHYSICS`, 161 `NO_COLLISION`**.
+- Most of the 161 are correct by design: her cosmetics (brows, lashes, iris, regalia, FX rings, wand, violin), decoration (grass, ground cover), the lake's debug cube, the bubble-preview sphere.
+- **One is not:** the room shell's `SM_hero_house` (`/Game/Melodia/Kit/MorningPlaza/SM_hero_house/StaticMeshes/SM_hero_house`) carries **no collision data at all** (`simple_collision_count = -1`, `CTF_USE_DEFAULT`, component `NO_COLLISION`). She can walk through the house.
+
+**Requirement:** every HDA / Houdini Engine output the pawn can touch generates complex-as-simple collision in the same cook, or ships a baked collision proxy authored in Houdini. No exemption for "it is only decoration".
+
+### 9.2 The shipping path bakes; the live cook is authoring only
+Â§7.1's interactive cook is an authoring loop and must not be the shipping path.
+- Live-cooked Houdini Engine actors cannot be cooked for a build, and their geometry can arrive **after** the pawn has landed â€” the floor is not there in the first frames.
+- Baseline: **28 HAPI cook events** in one editor session, with the room shell cooking during PIE.
+
+**Requirement:** for any shippable level, Houdini Engine actors are baked to static meshes (or the level ships pre-cooked outputs), and the spawn is gated so the pawn cannot land before its supporting surface exists.
+
+### 9.3 One live generation
+A curated hybrid keeps working generations; they must be parked, not live.
+- Baseline on `L_Poitou_v2`: `Poitou_Layout_v6` **and** `Poitou_Layout_v6_Recovery` are both live, alongside two landscape generations (`poitou_layout_live_v6_357_422`, `Poitou_Layout_RoomShell_Candidate_601_71`).
+- **Requirement:** exactly one layout and one landscape generation are live (cooking, colliding, visible). The rest are parked outside the level or disabled. A parked generation costs nothing; a live one doubles the cooks and makes "which is canonical" a question every reader has to re-ask.
+
+### 9.4 Mechanical acceptance: the grounding proof
+`Tools/Editor/check_pawn_grounding.py` runs automatically once per PIE session and writes a receipt to `Saved/Audit/GroundingProof/`. It is the gate for 9.1 and 9.2:
+- **PASS** requires all three: the pawn settles (no descent across the sample window) **and** the character movement reports a blocking floor **and** that surface's component has collision enabled (and, for a mesh surface, its asset carries collision data).
+- It names the surface she stands on, so "she fell through" becomes a named asset instead of a screenshot.
+- **INCONCLUSIVE** is a real outcome: if the editor game thread is blocked (a modal dialog freezes PIE, or an asset editor window has no docked tabs), the proof says so instead of guessing.
+
+Baseline reference reading (2026-10-21, clean session): she stands on the room shell at `floor_dist = 2.15 cm`, with the landscape surface 108 cm below her.
+
