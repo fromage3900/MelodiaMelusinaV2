@@ -1,0 +1,137 @@
+// =====================================================================
+// Poitou canal revetment - coursed ashlar masonry, GENERATED in Houdini.
+// ---------------------------------------------------------------------
+// The canal-du-Midi section, as researched for the Poitou canon:
+//   * TWO masonry retaining walls, one per bank, faced in ashlar;
+//   * a CENTRAL impermeable stone barrier (the chaussee) - which is why
+//     a canal-du-Midi canal reads as CUT, not as a natural watercourse.
+// This is generated geometry, not instances: every stone is built here.
+//
+// The masonry is French-Romanesque, on the governing meter:
+//   * 0.6 m module length and 0.6 m course height (1 beat = 1 module);
+//   * alternate courses staggered by half a module, so the joints never
+//     stack - the thing that makes coursing read as masonry at a glance;
+//   * a chaine / arase band every 3 courses: a brick course running
+//     through the FULL wall thickness, standing 0.06 m proud of the face;
+//   * 0.45 m ashlar facing leaf over a 0.9 m rubble core;
+//   * the base course is a refend: rusticated, standing 0.06 m proud;
+//   * 2 cm dry joints between stones - lime mortar, never cement;
+//   * vertex paint R = lime-wash, G = damp, B = moss, A = ivy.
+// =====================================================================
+
+float MOD   = 0.6;    // module length (m) - one beat
+float CHH   = 0.6;    // course height (m) - one beat
+float LEAF  = 0.45;   // ashlar facing leaf (m)
+float CORE  = 0.9;    // rubble core (m)
+float THK   = LEAF + CORE;
+int   BANDN = 3;      // a chaine/arase band every N courses
+float BANDH = 0.15;   // the brick course itself (m)
+float PRID  = 0.06;   // how far a band / refend stands proud of the face
+float JOINT = 0.02;   // dry joint between stones (m)
+
+string MAT_ASHLAR = chs("../masonry_ashlar_material");
+string MAT_CORE   = chs("../masonry_core_material");
+string MAT_BRICK  = chs("../masonry_band_material");
+
+// ---- helpers -------------------------------------------------------------
+// One box, with the vertex paint the master reads.
+int addbox(vector c; vector ax; vector ay; vector az; vector sz;
+           string mat; float lime; float damp; float moss; float ivy){
+    int v[];
+    resize(v, 8);
+    for(int i=0;i<8;i++){
+        vector s = set((i&1)?0.5:-0.5, (i&2)?0.5:-0.5, (i&4)?0.5:-0.5);
+        vector p = c + ax*(s.x*sz.x) + ay*(s.y*sz.y) + az*(s.z*sz.z);
+        int pt = addpoint(0, p);
+        setpointattrib(0, "Cd", pt, set(lime, damp, moss));
+        setpointattrib(0, "Alpha", pt, ivy);
+        int vi = addvertex(0, pt, -1);
+        v[i]=vi;
+    }
+    // the six quad faces of a box, as a flat list (VEX has no 2d literal)
+    int f[] = { 0,1,3,2,  4,6,7,5,  0,4,5,1,  2,3,7,6,  0,2,6,4,  1,5,7,3 };
+    for(int k=0;k<6;k++){
+        int pr = addprim(0,"poly", v[f[k*4+0]], v[f[k*4+1]], v[f[k*4+2]], v[f[k*4+3]]);
+        setprimattrib(0, "unreal_material", pr, mat);
+    }
+    return 6;
+}
+
+// ---- the revetment -------------------------------------------------------
+int npr = nprimitives(0);
+for(int pi=0; pi<npr && chi("../revetment_on"); pi++){
+    float w = prim(0, "width", pi);
+    int pts[] = primpoints(0, pi);
+    for(int k=0; k<len(pts)-1; k++){
+        vector p0 = point(0,"P",pts[k]);
+        vector p1 = point(0,"P",pts[k+1]);
+        vector seg = p1-p0;
+        float slen = length(seg);
+        if(slen < 1e-3) continue;
+        vector t  = seg/slen;
+        vector n  = normalize(cross(t, set(0,1,0)));
+        vector pm = (p0+p1)*0.5;
+        float half = w*0.5;
+
+        // the revetment is driven by the water level, not by the terrain
+        // carve, so it is continuous along the whole canal
+        float bed  = chf("../ign_water") - chf("../revetment_bed_drop");
+        float top  = volumesample(1, "height", pm + n*half);
+        top = min(max(top, bed + chf("../revetment_min_height")),
+                  bed + chf("../revetment_max_height"));
+        if(top <= bed) continue;
+        int nc = max(1, int(floor((top-bed)/CHH)));
+
+        // --- the central impermeable barrier (the chaussee) --------------
+        // a low rubble wall on the centreline, under the water surface
+        {
+            float bh = min(chf("../revetment_barrier_height"), top-bed);
+            float bw = 0.6;
+            addbox(pm + set(0, bed + bh*0.5, 0),
+                   t, set(0,1,0), n, set(slen-JOINT, bh, bw),
+                   MAT_CORE, 0.2, 1.0, 0.25, 0.0);
+        }
+
+        for(int sgn_i=0; sgn_i<2; sgn_i++){
+            float sgn = (sgn_i==0) ? -1.0 : 1.0;
+            for(int c=0; c<nc; c++){
+                float y0 = bed + c*CHH;
+                if(y0 >= top) break;
+                float chgt = min(CHH, top-y0);
+                // the joints stagger by half a module on alternate courses
+                float off = float(c % 2) * MOD * 0.5;
+                vector cc = pm + t*off;
+                // the face of the wall is the canal edge; the wall runs away
+                // from the canal on the bank side
+                vector face = cc + n*sgn*half;
+                // damp fades out over 0.8 m above the bed; moss gathers at
+                // the top and on the shaded (north) face
+                float damp = clamp(1.0 - (y0-bed)/0.8, 0.0, 1.0);
+                float moss = clamp((y0+chgt - (top-0.5))/0.5, 0.0, 1.0) * (sgn<0 ? 1.0 : 0.45);
+                int banded = (c % BANDN == 0);
+                float refend = (c==0) ? PRID : 0.0;   // rusticated base course
+
+                // the ashlar facing leaf
+                float ash_h = chgt;
+                float ash_y = y0;
+                if(banded) ash_h = chgt - BANDH;
+                if(ash_h > 0.01){
+                    vector ac = face + n*sgn*(LEAF*0.5 - refend*0.5) + set(0, ash_y+ash_h*0.5, 0);
+                    addbox(ac, t, set(0,1,0), n, set(slen-JOINT, ash_h-0.01, LEAF+refend),
+                           MAT_ASHLAR, 1.0, damp, moss, 0.0);
+                    // the rubble core behind the leaf
+                    vector rc2 = face + n*sgn*(LEAF + CORE*0.5) + set(0, ash_y+ash_h*0.5, 0);
+                    addbox(rc2, t, set(0,1,0), n, set(slen-JOINT, ash_h-0.01, CORE),
+                           MAT_CORE, 0.25, damp*0.8, moss*0.6, 0.0);
+                }
+                // the chaine / arase band: a brick course through the full
+                // wall thickness, standing proud of the face
+                if(banded){
+                    vector bc = face + n*sgn*(THK*0.5 - PRID) + set(0, y0+BANDH*0.5, 0);
+                    addbox(bc, t, set(0,1,0), n, set(slen-JOINT, BANDH-0.01, THK+2*PRID),
+                           MAT_BRICK, 0.15, damp, moss*0.5, 0.0);
+                }
+            }
+        }
+    }
+}

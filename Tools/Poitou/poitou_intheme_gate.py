@@ -28,15 +28,20 @@ What it asserts
   OFF-PALETTE      every instance must resolve under a known in-theme root.
   ENGINE-BLOCKOUT  no instance may be an /Engine/BasicShapes/ primitive - those
                     are the preview placeholders.
-  DEAD-ABBEY       v6 deletes the abbey footprint and the rubble outright when
-                    real meshes are on, so the abbey is currently NOT generated
-                    at all. The gate reports it as a failure, because a Poitou
-                    level with no abbey in it is not the level the canon asks for.
+  DEAD-ABBEY       the abbey must be IN the level. v6 used to delete the abbey
+                    footprint and the rubble outright when real meshes were on,
+                    so the abbey was not generated at all. The in-theme repoint
+                    (2026-10-21) replaces the placeholder cube with the real
+                    Maillezais tufa ruin - the broken westwork arch, the
+                    collapsed nave wall runs and the buttress stubs - and stops
+                    deleting them.
   DIVISOR-MISMATCH the scale divisor in inst.vex is compared against the real
                     size of the mesh it divides by. The real sizes are measured
                     on the Unreal side (Tools/Editor/poitou_intheme_assets.py)
                     and cached in inst_scale_cache.json; this gate compares
-                    against that cache and fails on a mismatch.
+                    against that cache and fails on a mismatch. The cache also
+                    carries the sha256 of the inst.vex it was measured from, so
+                    a stale cache cannot pass a changed file.
 
 It also writes the divisor table it parsed, so the Unreal-side measurement can
 be checked against a single source.
@@ -50,6 +55,7 @@ import json
 import os
 import re
 import sys
+import hashlib
 
 import hou
 
@@ -59,10 +65,13 @@ OUT_DIR = os.path.join(ROOT, "Saved", "Audit", "PoitouConvergence_20261020")
 RECEIPT = os.path.join(OUT_DIR, "intheme_gate.json")
 SCALE_CACHE = os.path.join(OUT_DIR, "inst_scale_cache.json")
 
-# The LIVE v6 sources live here. The repo copy of build_poitou_hda.py is the
-# older v5 builder: building from it silently regresses (13 landscape layers
-# instead of 20, no IGN calibration, horizon_on=True, wrong landscape material).
-V6_ROOT = os.environ.get("MELODIA_POITOU_V6_ROOT", r"C:\Users\froma\agent-tools\poitou_houdini")
+# The build path is the REPO.  Until 2026-10-21 the repo held a v5 builder and
+# the live v6 sources lived in an external folder, so building from the repo
+# silently regressed (13 landscape layers instead of 20, no IGN calibration,
+# horizon_on=False, wrong landscape material) and the gate was reading an
+# inst.vex that was not the one the HDA cooked.  The repo is now the single
+# source of truth; MELODIA_POITOU_V6_ROOT still overrides it for a scratch build.
+V6_ROOT = os.environ.get("MELODIA_POITOU_V6_ROOT", HERE)
 HDA_PATH = os.path.join(V6_ROOT, "hda", "poitou_layout_live.hdalc")
 HIPLC_PATH = os.path.join(V6_ROOT, "hda", "poitou_layout_live_test.hiplc")
 INST_VEX = os.path.join(V6_ROOT, "snip", "inst.vex")
@@ -87,6 +96,11 @@ REQUIRED_VOCABULARY = {
     "building": "village house",
     "barque": "marsh barque",
     "abbey_maillezais_footprint": "Maillezais abbey",
+    "abbey_maillezais_wall": "Maillezais collapsed nave wall",
+    "abbey_maillezais_buttress": "Maillezais buttress stub",
+    "reed_marsh": "marsh reed bed",
+    "reed_bank": "canal-bank reeds",
+    "meadow_grass_clump": "meadow grass",
 }
 
 REQUIRED_OUTPUTS = (
@@ -95,6 +109,7 @@ REQUIRED_OUTPUTS = (
     "output_route_curve",
     "output_skirt_mesh",
     "output_water",
+    "output_masonry",
 )
 
 
@@ -235,12 +250,54 @@ def main():
     if os.path.isfile(SCALE_CACHE):
         cache = json.load(open(SCALE_CACHE, encoding="utf-8"))
         report["scale_check"] = cache
+        # the cache must have been measured from THIS inst.vex
+        cached_hash = cache.get("inst_vex_sha256")
+        if INST_VEX and os.path.isfile(INST_VEX):
+            live_hash = hashlib.sha256(open(INST_VEX, "rb").read()).hexdigest()
+            if cached_hash and cached_hash != live_hash:
+                failures.append("the scale cache was measured from a different inst.vex "
+                                "(cache %s, live %s) - re-run Tools/Editor/poitou_intheme_assets.py"
+                                % (cached_hash[:12], live_hash[:12]))
         for entry in cache.get("entries", []):
             if entry.get("mismatch"):
-                failures.append("scale divisor mismatch: %s divides by %s but the mesh measures %s" % (
-                    entry.get("label"), entry.get("divisor"), entry.get("measured")))
+                failures.append("scale divisor mismatch: %s divides by %s but the mesh measures %s (%s)" % (
+                    entry.get("key"), entry.get("divisor_m"), entry.get("measured_m"),
+                    entry.get("verdict")))
+            elif classify(entry.get("package") or "") != "IN-THEME":
+                failures.append("scale cache names an off-palette mesh: %s" % entry.get("package"))
     else:
         report["scale_check"] = "not measured yet - run Tools/Editor/poitou_intheme_assets.py"
+        failures.append("no scale cache - run Tools/Editor/poitou_intheme_assets.py before trusting this gate")
+
+    # ---- 5. the GENERATED masonry is real and in-theme ----------------
+    # The revetment is geometry the HDA BUILDS (every stone is generated
+    # on the French-Romanesque grammar), not meshes it places, so it is
+    # checked on its own terms: it must cook non-empty, and every
+    # material it assigns must be a project material, never an engine
+    # default.  The generator node is checked directly; output_masonry is
+    # the UE-facing output of the same geometry.
+    mas = find_out(node, "output_masonry")
+    gen = find_out(node, "REVETMENT_coursed_ashlar")
+    src = gen if gen is not None else mas
+    if src is None:
+        failures.append("no masonry generator in the HDA (REVETMENT_coursed_ashlar / output_masonry)")
+    else:
+        mg = src.geometry()
+        prims = len(mg.prims()) if mg is not None else 0
+        mats = {}
+        for pr in mg.prims():
+            a = pr.attribValue("unreal_material")
+            if a:
+                mats[a] = mats.get(a, 0) + 1
+        report["masonry"] = {"prims": prims, "materials": mats, "node": src.name()}
+        log("masonry: %d prims from %s, materials=%s" % (prims, src.name(), json.dumps(mats)))
+        if prims == 0:
+            failures.append("the masonry generator cooked empty - no revetment geometry")
+        for m, n in mats.items():
+            if m.startswith("/Engine/"):
+                failures.append("masonry uses an engine default material: %s x%d" % (m, n))
+            elif not m.startswith("/Game/"):
+                failures.append("masonry uses a non-project material: %s" % m)
 
     report["failures"] = failures
     report["result"] = "PASS" if not failures else "FAIL"

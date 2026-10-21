@@ -1,0 +1,153 @@
+// =====================================================================
+// Poitou P0 - instance placement   (v7: in-theme repoint)
+// ---------------------------------------------------------------------
+// Every mesh named below is a PROJECT asset.  The retired Kenney pack
+// (/Game/EnvSandbox/Meshes/Environment/, Perforce changelist 292) is
+// gone, so the 12,572 instances this HDA places must name in-theme
+// assets that actually resolve.
+//
+// AXIS CONVENTION - measured, not assumed (2026-10-21):
+//   Every in-theme UE asset is Z-up with its pivot at the base
+//   (bounds.min.z ~= 0, bounds.max.z = height).  Houdini is Y-up and the
+//   Houdini Engine maps   UE X -> Houdini X,
+//                          UE Z -> Houdini Y  (up),
+//                          UE Y -> Houdini Z.
+//   Therefore the divisor triple written into set(scale.x, scale.y, scale.z)
+//   is   (srcX, srcZ, srcY):
+//     - slot .x divides by the mesh's X size,
+//     - slot .y (the UP slot) divides by the mesh's Z size,
+//     - slot .z divides by the mesh's Y size.
+//   The .y slot is the one that matters: a .y divisor that is not the
+//   mesh's Z size is a HEIGHT error, and that is exactly the bug that
+//   made the pollard ash 18x wrong and the level read as a graveyard.
+//
+// SIZES below are metres, measured with Tools/Editor/poitou_intheme_assets.py
+// and re-checked by Tools/Poitou/poitou_intheme_gate.py (which fails the
+// build if a divisor stops matching the mesh it divides).
+//
+//   key       asset                                srcX     srcY     srcZ
+//   POP       SM_EuropeanHornbeam_04              4.1249   2.7299   6.7970
+//   ASH       SM_AshTetard_Canal_03_Sculpted      2.2012   2.1764   2.2930
+//   GRS       SM_KikuyuGrass_01                   0.7528   0.7960   0.4623
+//   CANOE     SM_Marais_Barque_4m6_Sculpted       4.5024   1.4416   0.3028
+//   HOUSE     SM_Melusina_ClayHouse_v07          12.6613   9.4577   6.9265
+//   SPIRE     SM_Poitou_Cymatic_Spire_Sculpted     3.6553   3.6545  15.2443
+//   RUBBLE    SM_Maillezais_CrumbledWall_Sculpted 11.9769   1.2652   6.7369
+//   ARCH      SM_Maillezais_BrokenArch_Sculpted    8.4525   1.8155  13.2064
+//   BUTTRESS  SM_Maillezais_ButtressStub_Sculpted  1.6173   2.2694   9.6885
+//   GROUND    SM_GrassGroundPatch_01               3.3966   4.9005   0.1893
+// =====================================================================
+p@orient = quaternion(radians(f@yaw), {0,1,0});
+string t = s@type; vector sc = v@scale; if(length(sc)==0) sc={1,1,1};
+string CUBE="/Engine/BasicShapes/Cube.Cube", SPH="/Engine/BasicShapes/Sphere.Sphere";
+
+// ---- in-theme assets (see the table above for the sizes) ----
+string POP="/Game/Custom/IvyTest/SM_EuropeanHornbeam_04.SM_EuropeanHornbeam_04";
+string ASH="/Game/Melodia/Meshes/Poitou/SM_AshTetard_Canal_03_Sculpted.SM_AshTetard_Canal_03_Sculpted";
+string GRS="/Game/Megascans/3D_Plants/KikuyuGrass/SM_KikuyuGrass_01.SM_KikuyuGrass_01";
+string CANOE="/Game/Melodia/Meshes/Poitou/SM_Marais_Barque_4m6_Sculpted.SM_Marais_Barque_4m6_Sculpted";
+string HOUSE="/Game/EnvSandbox/Poitou/House/Clay/SM_Melusina_ClayHouse_v07.SM_Melusina_ClayHouse_v07";
+string SPIRE="/Game/Melodia/Meshes/Poitou/SM_Poitou_Cymatic_Spire_Sculpted.SM_Poitou_Cymatic_Spire_Sculpted";
+string RUBBLE="/Game/Melodia/Meshes/Poitou/SM_Maillezais_CrumbledWall_Sculpted.SM_Maillezais_CrumbledWall_Sculpted";
+string ARCH="/Game/Melodia/Meshes/Poitou/SM_Maillezais_BrokenArch_Sculpted.SM_Maillezais_BrokenArch_Sculpted";
+string BUTTRESS="/Game/Melodia/Meshes/Poitou/SM_Maillezais_ButtressStub_Sculpted.SM_Maillezais_ButtressStub_Sculpted";
+string GROUND="/Game/Custom/RS_Assets/MossyRock_29/SM_GrassGroundPatch_01.SM_GrassGroundPatch_01";
+
+// ---- in-theme materials ----
+string MAT_POPLAR1="/Game/EnvSandbox/Poitou/Materials/MI_Poitou_Poplar_Band1.MI_Poitou_Poplar_Band1";
+string MAT_ASH="/Game/Melodia/Meshes/Poitou/M_Ash_Bark.M_Ash_Bark";
+string MAT_TUFA="/Game/Melodia/Meshes/Poitou/M_Tufa_Stone_Blocks.M_Tufa_Stone_Blocks";
+string MAT_OAK="/Game/Melodia/Meshes/Poitou/M_Barque_Oak_Planks.M_Barque_Oak_Planks";
+string MAT_LIME="/Game/EnvSandbox/Poitou/Materials/MI_Poitou_LimeWash.MI_Poitou_LimeWash";
+string MAT_GRASS="/Game/EnvSandbox/Poitou/Materials/MI_Poitou_BankGrass.MI_Poitou_BankGrass";
+string MAT_FARSTONE="/Game/EnvSandbox/Poitou/Materials/MI_Poitou_FarStone.MI_Poitou_FarStone";
+
+int real=chi("../real_meshes"); float lift=0; string mat="";
+if(t=="poplar"||t=="poplar_band"){
+  // canal-bank poplar row: 4.5 m crown, height_m tall.  Near rows and the
+  // far horizon bands are the SAME species and the same height band
+  // (25-35 m near, 24-34 m far), so they use the same mesh.
+  s@unreal_instance=real?POP:"/Engine/BasicShapes/Cone.Cone";
+  sc= real?set(4.5/4.1249,f@height_m/6.7970,4.5/2.7299):set(4,f@height_m,4);
+  lift=real?0:f@height_m*0.5; mat=real?MAT_POPLAR1:"";
+  if(t=="poplar_band") mat=sprintf("/Game/EnvSandbox/Poitou/Materials/MI_Poitou_Poplar_Band%d.MI_Poitou_Poplar_Band%d",i@band+1,i@band+1);
+}
+else if(t=="ash_tetard"){
+  // pollard ash (tetard): 6 m spread, height_m tall.
+  s@unreal_instance=real?ASH:"/Engine/BasicShapes/Cylinder.Cylinder";
+  sc=real?set(6/2.2012,f@height_m/2.2930,6/2.1764):set(2.5,f@height_m,2.5);
+  lift=real?0:f@height_m*0.5; mat=real?MAT_ASH:"";
+}
+else if(t=="parcel_row_tree"){
+  s@unreal_instance=real?POP:"/Engine/BasicShapes/Cylinder.Cylinder";
+  sc=real?set(3.5/4.1249,16/6.7970,3.5/2.7299):set(2.5,10,2.5);
+  lift=real?0:5; mat=real?MAT_POPLAR1:"";
+}
+else if(t=="building"){
+  // village house: the layout's scale IS the wanted world size in metres.
+  s@unreal_instance=real?HOUSE:CUBE;
+  sc=real?set(sc.x/12.6613,sc.y/6.9265,sc.z/9.4577):sc;
+  lift=real?0:sc.y*0.5; mat=real?MAT_LIME:"";
+}
+else if(t=="abbey_maillezais_footprint"){
+  // The abbey is no longer a placeholder cube and is no longer deleted.
+  // The Maillezais westwork: the broken arch (8.45 x 13.21 x 1.82 m).
+  s@unreal_instance=real?ARCH:CUBE;
+  sc=real?set(sc.x/8.4525,sc.y/13.2064,sc.z/1.8155):sc;
+  lift=real?0:0; mat=real?MAT_TUFA:"";
+}
+else if(t=="abbey_maillezais_wall"){
+  // A collapsed run of the nave wall (11.98 x 6.74 x 1.27 m).
+  s@unreal_instance=real?RUBBLE:CUBE;
+  sc=real?set(sc.x/11.9769,sc.y/6.7369,sc.z/1.2652):sc;
+  lift=real?0:0; mat=real?MAT_TUFA:"";
+}
+else if(t=="abbey_maillezais_buttress"){
+  // A 13th-c. buttress stub (1.62 x 2.27 x 9.69 m).
+  s@unreal_instance=real?BUTTRESS:CUBE;
+  sc=real?set(sc.x/1.6173,sc.y/9.6885,sc.z/2.2694):sc;
+  lift=real?0:0; mat=real?MAT_TUFA:"";
+}
+else if(t=="barque"){
+  // marsh barque, 4.6 x 1.55 m.  The old Kenney canoe carried its length
+  // on its Y axis and needed a +90 yaw; the in-theme barque carries its
+  // length on X, so the +90 is dropped and the world heading is unchanged.
+  s@unreal_instance=real?CANOE:CUBE;
+  if(real){ sc=set(4.6/4.5024,0.5/0.3028,1.55/1.4416); p@orient=quaternion(radians(f@yaw),{0,1,0}); mat=MAT_OAK; }
+  else lift=sc.y*0.5;
+}
+else if(t=="rubble"){
+  // collapsed masonry: a fallen length of the ruined abbey wall.
+  s@unreal_instance=real?RUBBLE:CUBE;
+  sc=real?set(1.5/11.9769,0.8/6.7369,1.5/1.2652)*v@scale.x:set(1.5,0.8,1.5)*v@scale.x;
+  lift=real?0:0.8*v@scale.x*0.5; mat=real?MAT_TUFA:"";
+}
+else if(startswith(t,"reed")){
+  // marsh reeds: a tall tuft (1.43 x 1.71 x 1.46 m).
+  s@unreal_instance=real?GRS:"/Engine/BasicShapes/Cylinder.Cylinder";
+  sc=real?set(1.43/0.7528,1.71/0.4623,1.46/0.7960)*v@scale.x:set(0.6,1.8,0.6)*v@scale.x;
+  lift=real?0:0.9*v@scale.x; mat=real?MAT_GRASS:"";
+}
+else if(t=="meadow_grass_clump"){
+  // meadow turf: the same grass mesh, low and wide (0.95 x 0.60 x 1.00 m).
+  s@unreal_instance=real?GRS:"/Engine/BasicShapes/Cylinder.Cylinder";
+  sc=real?set(0.95/0.7528,0.60/0.4623,1.00/0.7960)*v@scale.x:set(0.6,0.4,0.6)*v@scale.x;
+  lift=real?0:0.2*v@scale.x; mat=real?MAT_GRASS:"";
+}
+else if(t=="far_spire"){
+  // horizon spire: uniform, height_m tall.
+  s@unreal_instance=real?SPIRE:CUBE;
+  sc=real?set(f@height_m/15.2443,f@height_m/15.2443,f@height_m/15.2443):set(1,1,1);
+  lift=real?7.0*(f@height_m/15.2443):0; mat=real?MAT_FARSTONE:"";
+}
+else {
+  // anything else: a mossy ground patch.
+  s@unreal_instance=real?GROUND:SPH;
+  sc=real?set(2.5/3.3966,0.35/0.1893,2.5/4.9005)*v@scale.x:set(1.2,0.5,1.2)*v@scale.x;
+  lift=real?0:0.25*v@scale.x; mat=real?MAT_GRASS:"";
+}
+if(mat!="") s@unreal_material=mat;
+if(!chi("../instance_preview")) s@unreal_instance="";
+v@scale = sc; @P.y += lift;
+s@unreal_split_attr = t + (t=="poplar_band" ? itoa(i@band) : "");
+if(t=="building" && chf("../shell_cluster_radius")>0 && distance(set(@P.x,0,@P.z),{520,0,580})<chf("../shell_cluster_radius")) removepoint(0,@ptnum);

@@ -1,0 +1,3 @@
+s@unreal_landscape_layer_name=s@name;
+if(s@name=="height"){ s@unreal_material=chs("../landscape_material"); s@unreal_landscape_material=chs("../landscape_material"); }
+else if(s@name!="route_mask" && s@name!="Ground") s@unreal_landscape_layer_info=sprintf("%s/LI_Poitou_%s.LI_Poitou_%s",chs("../layerinfo_dir"),s@name,s@name);

@@ -692,3 +692,33 @@ continuous walkthrough shows the abbey, the canal stonework and the paths in the
    where the camera never gets close?
 
 
+
+### 10.6 Landed 2026-10-21 — the gate is green, the masonry is generated
+
+The in-theme gate (`Tools/Poitou/poitou_intheme_gate.py`, headless hython) **passes**. The baseline
+recorded in 10.1 is closed on every line it names:
+
+| baseline failure (10.1) | now |
+|---|---|
+| 12,547 of 12,572 instances named the retired Kenney pack | **0** — every instance names an in-theme asset that resolves |
+| `output_skirt_mesh` cooked empty | **14,000 prims** — `horizon_on` now defaults True |
+| no `poplar_band` points | **1,911** far poplar bands + 2 far spires |
+| the abbey was deleted outright | **32 pieces of real Maillezais tufa ruin** (2 arches, 16 nave wall runs, 14 buttresses) |
+| the scale divisors were wrong | **0 of 10 mismatched** — the audit parses `inst.vex` and enforces the `(srcX, srcZ, srcY)` axis rule |
+| `M_Poitou_Stone_Plinth` never authored | authored, plus 7 more MIs; **18 meshes re-bound** off `WorldGridMaterial` |
+
+**The masonry generator is the new thing.** `Tools/Poitou/snip/revet.vex` generates the canal-du-Midi
+section in Houdini rather than placing meshes: two retaining walls and the central impermeable
+barrier, 0.6 m module / 0.6 m course, joints staggered half a module, a chaine-arase brick band
+every 3 courses through the full thickness, a 0.45 m ashlar leaf over a 0.9 m rubble core, a
+refend base, 2 cm dry joints, vertex paint R=lime-wash G=damp B=moss A=ivy — **329,439 prims** in
+three project materials. It ships as `output_masonry` (output index 5).
+
+**The build path is now the repo.** `Tools/Poitou/build_poitou_hda.py` + `snip/` + `layout_v0.json`
+are the source of truth; `Tools/Poitou/run_intheme_gate.ps1 -Build -Measure` reproduces the HDA,
+the audit and the gate. The external v6 folder is no longer a build input.
+
+**Still open (owner).** A Poitou poplar mesh (the hornbeam is a real European tree, not a columnar
+Lombardy poplar). Whether faux appareil is acceptable for distant walls. The six lost element
+builders (foundations / lanes / crossings / roofs), which survive only as receipts. And the UE-side
+HDA asset needs a sixth output slot for `output_masonry`, which needs the editor.

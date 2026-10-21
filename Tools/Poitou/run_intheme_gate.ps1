@@ -15,6 +15,7 @@
 [CmdletBinding()]
 param(
     [switch]$Build,
+    [switch]$Measure,
     [int]$TimeoutSec = 600
 )
 
@@ -22,14 +23,22 @@ $ErrorActionPreference = "Continue"
 
 $Root    = Split-Path -Parent (Split-Path -Parent (Split-Path -Parent $PSScriptRoot))
 $hython  = "C:\Program Files\Side Effects Software\Houdini 22.0.368\bin\hython.exe"
+$ue      = "C:\Program Files\Epic Games\UE_5.8\Engine\Binaries\Win64\UnrealEditor-Cmd.exe"
 $Gate    = Join-Path $PSScriptRoot "poitou_intheme_gate.py"
-$V6Root  = "C:\Users\froma\agent-tools\poitou_houdini"
+$Builder = Join-Path $PSScriptRoot "build_poitou_hda.py"
+$MeasureScript = Join-Path $Root "Tools\Editor\poitou_intheme_assets.py"
+# The REPO is the build path.  The live v6 sources used to live in an
+# external folder (C:\Users\froma\agent-tools\poitou_houdini) and the repo
+# held a stale v5 builder, so building from the repo silently regressed the
+# level.  2026-10-21: the repo is the single source of truth.
+$V6Root  = $PSScriptRoot
 $Receipt = Join-Path $Root "Saved\Audit\PoitouConvergence_20261020\intheme_gate.json"
 
 if (-not (Test-Path $hython)) { Write-Host "hython not found at $hython"; exit 2 }
 if (-not (Test-Path $V6Root))  { Write-Host "v6 source root not found at $V6Root"; exit 2 }
 
 $env:MELODIA_POITOU_V6_ROOT = $V6Root
+$env:MELODIA_POITOU_REPO = $Root
 
 function Invoke-Isolated {
     param([string]$Exe, [string[]]$ArgList, [string]$Tag, [int]$Timeout)
@@ -49,11 +58,19 @@ function Invoke-Isolated {
 }
 
 if ($Build) {
-    Write-Host "=== rebuilding the v6 HDA (this OVERWRITES the live v6 binary) ==="
-    $builder = Join-Path $V6Root "build_poitou_hda.py"
-    $r = Invoke-Isolated $hython @($builder) "poitou_v6_build" $TimeoutSec
+    Write-Host "=== rebuilding the Poitou layout HDA from the repo builder ==="
+    $r = Invoke-Isolated $hython @($Builder) "poitou_build" $TimeoutSec
     Write-Host $r.output
     if ($r.code -ne 0) { Write-Host "BUILD FAILED (exit $($r.code))"; exit $r.code }
+}
+
+if ($Measure) {
+    Write-Host "=== measuring every instanced mesh against its divisor (headless UE) ==="
+    $r = Invoke-Isolated $ue @("$Root\BS_GodFile.uproject", "-run=pythonscript",
+        "-script=$MeasureScript", "-unattended", "-nopause", "-nosplash", "-nullrhi",
+        "-stdout", "-FullStdOutLogOutput") "poitou_measure" ($TimeoutSec * 3)
+    $r.output -split "`n" | ForEach-Object { if ($_ -match "intheme_assets") { Write-Host $_ } }
+    if ($r.status -ne "OK") { Write-Host $r.status; exit 124 }
 }
 
 Write-Host "=== Poitou in-theme gate (headless) ==="
