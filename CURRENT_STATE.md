@@ -1,5 +1,28 @@
 # Melodia Melusina ? Current State
 
+## Sir's expanded height axis + flight mechanics — IMPLEMENTED, NOT YET PROVEN — 2026-10-21
+
+**The gap this closes.** Sir's height manipulation was ascend-only with no rate limit, and three of his designed mechanics existed as *header members that were never implemented*: `CurrentCrestRaise` (crest raise), `PreviousActorYaw`/`bHasPreviousYaw` (yaw-rate banking), and `PerchApproachRemaining`/`PerchApproachStartLoc`/`PerchApproachStartRot` (the glide-in to a perch, which was an instant teleport). The 2026-10-19 record of "dedicated descend controls (Left Alt / gamepad left trigger) alongside Space / right-trigger ascent" came from a **Live Coding patch that was never committed** — so it was in neither the source nor the DLL.
+
+**What is now in the source** (`Plugins/MelodiaCore/Source/MelodiaCore/MelodiousFlightCharacter.{h,cpp}`, lane `feature/sir-height-mechanics-20261021` @ `20426b593`):
+- **Descend is its own action** — `IA_Flight_Descend` on **Left Alt** and **gamepad left trigger**. It is not the inverse of ascend, so the two are separately bindable and the axis can report which way it is held.
+- **Ascend** also takes the **gamepad right trigger**.
+- **`VerticalSpeed` (420 cm/s) / `VerticalSpeedBoosted` (700 cm/s)** cap the climb rate *independently* of `MaxFlySpeed`. Without a separate cap, the horizontal speed cap doubles the climb rate while boosting and holding the key puts him out of the playable volume in two seconds. Both are UPROPERTYs, so the BP can tune them.
+- **Releasing the key holds altitude** — flying has no gravity, so the axis stops rather than sinking him.
+- **Gamepad is a first-class path**: left stick steers (with the same negation as the S key), right stick looks.
+- **Crest raise is implemented**: the crest morph is driven from the yaw rate, ramped over `CrestRaiseRiseSpeed`, written to `CrestMorphName` (**`Crest_Raise`, confirmed present in `SKM_SirMelodious_ARP_v7_Pure`**). A morph that is not on the mesh is reported once instead of silently doing nothing. `GetCrestRaise()` is a BlueprintPure accessor so a PIE proof can *read* the mechanic.
+- **The perch glides in** over `PerchApproachDuration` (0.9 s) instead of teleporting; steering during the glide cancels it. `TryLandOnNearestPerch()` keeps its old meaning (it still settles him now) so no Blueprint caller changes behaviour.
+- **`UnPossessed` restores `CruiseSpeed`** — a boost interrupted by handing control back no longer leaves his fly speed doubled next time he is possessed.
+- `MaxFlySpeed` is now applied in `BeginPlay`, not only in the constructor, so the BP child's `CruiseSpeed` override is respected.
+
+**Evidence level: source-committed on a lane — NOT compiled, NOT runtime-proven.** The closed-editor build needs the editor closed (this is a header change) and the PIE proof needs the editor idle; at the time of writing the editor was in **active use by another session** (a PIE run on the integration map, then loading `L_MelusinaMorning`), so neither was started and the editor was not taken. The lane was deliberately **not** landed on `origin/main` — uncompiled gameplay code does not go to main.
+
+**Harness is ready** for the proof: `Tools/Editor/sir_flight_probe.py` (in-editor per-frame sampler → `Saved/Audit/SirFlight_20261021/sir_flight_probe.json`: pawn Z, vertical velocity, `MaxFlySpeed`, height-axis flags, perch state, crest weight) and `Tools/Editor/sir_flight_keys.py` (real key holds through the editor's own `PostMessage` window path — the mechanism the accepted bubble-sprint proof used).
+
+**Two compile bugs were caught by reading the engine headers before building**, and fixed: `FMath::Lerp` on a `FRotator` needs a free `operator*(float, FRotator)` that is not guaranteed, so the glide interpolates components; and `USkeletalMesh::GetMorphTargets()` returns `TArray<TObjectPtr<UMorphTarget>>`, not `FMorphTarget` — the asset-level morphs are `UMorphTarget` objects.
+
+**The proof that is owed, in order:** (1) closed-editor `BS_GodFileEditor Win64 Development`; (2) PIE, recruit + possess Sir; (3) hold Space → Z rises at no more than `VerticalSpeed`; (4) hold Left Alt → Z falls; (5) release → Z holds; (6) Shift → `MaxFlySpeed` becomes `BoostSpeed` and the cap becomes `VerticalSpeedBoosted`; (7) idle → the perch glides in and `IsPerched()` becomes true; (8) steer → he leaves the perch; (9) Ctrl → control returns to Melusina; (10) the crest weight rises while yawing and falls when the turn stops.
+
 ## P0 CANON LANDED on origin/main + the owed build is DONE — 2026-10-21
 
 - **Landed.** PR #497, squash commit **`9393751c7`** on `origin/main` — *"canon: full-french world identity, P0 golden walk, and the reconciled P0 lines"*. The P0 canon, the world's identity document, the corrected build spec, the M00–M09 pacing contract, the plate-audit tool and its receipt are all on the canonical branch. `origin/main` now carries: `Docs/MELODIA_MELUSINA_WORLD_IDENTITY_CANON_2026-10-20.md`, `Docs/Plans/POITOU_P0_GOLDEN_WALK_2026-10-21.md`, `specs/p0/poitou_p0_golden_walk.v1.json`, `Tools/audit_showcase_plates.py`, the `Docs/Poitou/` tree (73 files), the TouchEngine plugin, the story-door / playable-decor / seam-portal / live-voice sources, and the narrative rewrite that carries the missing Sir unlock beat. The superseded `specs/progression/melodia_first_day_pacing.v1.json` is gone.
@@ -89,6 +112,24 @@ A green experience walk does **not** certify combat/save/packaged proof; a green
 The closed-editor build, the Sir party-switch PIE proof, the ACF-melee-into-`ResolveWorldFlowAttack` wiring, and the plate re-renders all need the editor, and one editor is one mutating surface. None of them were started.
 
 ---
+
+## WaveHarp hold fix — COMPILED + PIE-MEASURED — 2026-10-21
+
+**The weapon now stands vertical in the character's frame and is clear of her body.** The "weapon / arm / head crossing" that has been open since 2026-10-04 was a **hold** defect, not a mesh defect, and the cause was deeper than the grip rotation: `UpdateInstruments` composed `BowGrip * Mesh->GetSocketTransform(InstrumentSocket)` — the socket's **WORLD** transform — so a world-fixed grip offset drifted as she turned and could only be right at one heading, even though the `InstrumentSocket` contract claims the instruments "follow the hand and arm instead of the world".
+
+**Shipped (C++ `MelodiaWaveHarpCombatComponent`):**
+- `bGripFollowsCharacter` (**default true**) → the hold is composed in the body's frame: `BowGrip * GetSocketTransform(InstrumentSocket, RTS_Component) * Mesh->GetComponentTransform()`.
+- `bAutoCalibrateHold` (default true) → on the first settled pose the component measures the hand socket and solves `Grip = Target * Socket^-1`, so the instrument's local +Z is body-up and its local +Y is body-forward (the bow's belly still faces the aim direction, the scythe's blade still sweeps forward). No authored number, no BP override, no re-bake.
+- `CalibrateHold()` + console `Melodia.WaveHarp.RecalibrateHold`.
+- **UE 5.8 API notes for whoever touches this next:** the transform-space enum is `ERelativeTransformSpace` with **`RTS_Component`** (there is no `RTS_Relative` in 5.8), and `UPlayerInput` has `ActionMappings`, not `ActionKeyMappings`.
+
+**PIE proof** (`MelodiaIntegrationMap`, view target `BP_MelusinaJRPGCharacter_C_1`, `ABP_Melusina_Current`): the instrument's **world rotation pitch = 0.0** (long axis vertical), the grip **65.2 cm from the torso axis** and **60.0–63.1 cm from the head socket**, horizontal footprint 31.7 × 7.9 cm; `MELODIA_WAVEHARP hold calibrated: socket=… grip=…` in the log; **0 Blueprint Runtime Error, 0 Accessed None, 0 LogChooser**; 18–21 captured frames, 0 invalid (`Saved/Screenshots/Monolith/WaveHarpHold9/`, `WaveHarpHoldSide/`). Compare the shipped hold, measured offline against a 170 cm Melusina proxy: it drove the weapon **7.01 cm through the torso**. **Evidence level: PIE-measured on the live pawn.**
+
+**Build unblock (another lane's file, behaviour-preserving):** the module build failed on `MelodiaJRPGPartyBootstrapSubsystem.cpp` (the party-switch lane's in-flight work, hidden behind my own errors): line 714 `PlayerInput->ActionKeyMappings` → `ActionMappings` (the 5.8 member name; `ActionKeyMappings` does not exist in 5.8) and line 735 `PC->OnNewPawn.AddUObject(...)` → `PC->GetOnNewPawnNotifier().AddUObject(...)` (`OnNewPawn` is protected in 5.8). Both are renames/accessor changes, but **that lane must re-verify its own feature** — its binding path had never been compiled before.
+
+**⚑ D8 — the scythe sockets in `SK_Melusina_Skeleton` are ~90–100× too far out.** Live PIE read: `Scythe_BladeStart/BladeMid/BladeTip/Scythe_Pommel` sit **2.2–4.5 thousand cm** from the weapon origin, while the source authored them at (6.8,0,32), (26.5,0,36), (43.5,0,17.5), (1.5,0,−40.5) cm. So the scythe melee trace (`PerformSwipeTraceShot_Local` between `Scythe_BladeStart` and `Scythe_BladeTip`) sweeps a **~42 m arc** and can essentially never connect, and `ScytheRibbon` is a 42 m ribbon. Structural cause: **the scythe form is a morph, so static skeleton sockets cannot follow the blade at all** — the trace has to come from the morphed geometry, or the scythe needs a bone-driven rig. This is part of the Form 2 rebuild, not a side fix.
+
+**Not done:** the henshin bake (D3), the idle-shimmer drivers (D4), the toon outline hull (D7), the Carillon Halo + morph-aware scythe trace (D1/D6/D8), the bowstring/arrow fixes (D2/D5), and the form-select input — all still open in `specs/weapons/waveharp_3form_henshin_bake.v1.json` (`revised_plan_order`).
 
 ## Code recovery lanes — 2026-10-21
 

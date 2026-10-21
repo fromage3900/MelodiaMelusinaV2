@@ -2,6 +2,7 @@
 
 #include "Camera/CameraComponent.h"
 #include "Components/SkeletalMeshComponent.h"
+#include "Animation/MorphTarget.h"
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
 #include "Engine/SkeletalMesh.h"
@@ -278,9 +279,9 @@ void AMelodiousFlightCharacter::UpdateCrestRaise(float DeltaSeconds)
 		bool bFound = false;
 		if (Asset)
 		{
-			for (const FMorphTarget& MorphTarget : Asset->GetMorphTargets())
+			for (const TObjectPtr<UMorphTarget>& MorphTarget : Asset->GetMorphTargets())
 			{
-				if (MorphTarget.GetFName() == CrestMorphName)
+				if (MorphTarget && MorphTarget->GetFName() == CrestMorphName)
 				{
 					bFound = true;
 					break;
@@ -326,7 +327,12 @@ void AMelodiousFlightCharacter::UpdatePerchApproach(float DeltaSeconds)
 	const FVector Target = CurrentPerch->GetLandingLocation();
 	const FRotator TargetRot = CurrentPerch->GetLandingRotation();
 	const FVector Location = FMath::Lerp(PerchApproachStartLoc, Target, Alpha);
-	const FRotator Rotation = FMath::Lerp(PerchApproachStartRot, TargetRot, Alpha);
+	// Component-wise: FMath::Lerp on a FRotator needs a free operator*(float, FRotator),
+	// which is not guaranteed on every engine build.
+	const FRotator Rotation(
+		FMath::Lerp(PerchApproachStartRot.Pitch, TargetRot.Pitch, Alpha),
+		FMath::Lerp(PerchApproachStartRot.Yaw, TargetRot.Yaw, Alpha),
+		FMath::Lerp(PerchApproachStartRot.Roll, TargetRot.Roll, Alpha));
 
 	SetActorLocationAndRotation(Location, Rotation, false, nullptr, ETeleportType::TeleportPhysics);
 
