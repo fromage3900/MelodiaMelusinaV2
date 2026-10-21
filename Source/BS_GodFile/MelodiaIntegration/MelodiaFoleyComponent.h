@@ -184,6 +184,14 @@ protected:
 	UPROPERTY(Transient)
 	TObjectPtr<USoundCue> LoadedCues[5] = { nullptr, nullptr, nullptr, nullptr, nullptr };
 
+	/** Wave-bank fallback (2026-10-17): the SC_FS_* cue files exist on disk but
+	 *  are invisible to the asset registry, while the SW_FS_* waves register
+	 *  fine. When a cue slot is null we pick a random wave from this bank --
+	 *  same random+ pitch behaviour the cue's Random node would have given. */
+	/** Flat bank: index = surface * 6 + (sample - 1). */
+	UPROPERTY(Transient)
+	TArray<TObjectPtr<class USoundWave>> LoadedWaves;
+
 	float GaitAccumulator = 0.0f;
 	float PrevVelocityZ = 0.0f;
 	bool bWasGrounded = true;
