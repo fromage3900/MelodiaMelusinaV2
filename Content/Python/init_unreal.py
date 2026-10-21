@@ -457,6 +457,27 @@ def _register_melodia_studio() -> None:
 m = _load_livelink_module()
 
 
+def _register_demo_presets() -> None:
+    """Opt-in demo presentation preset (Choral Sheep / preview proxies hidden,
+    audio muted through the project sound mix).
+
+    Gated on Saved/DemoMode.flag: with no flag there is no behaviour change for
+    any other lane. Create that file to switch the preset on for this workspace.
+    """
+    root = os.path.dirname(os.path.dirname(_SCRIPT_DIR))
+    flag = os.path.join(root, "Saved", "DemoMode.flag")
+    preset = os.path.join(root, "Tools", "Editor", "demo_presets.py")
+    if not os.path.isfile(flag) or not os.path.isfile(preset):
+        return
+    try:
+        ns = {"__name__": "demo_presets"}
+        with open(preset, encoding="utf-8-sig") as fh:
+            exec(compile(fh.read(), preset, "exec"), ns)
+        unreal.log("[DemoPresets] installed (Saved/DemoMode.flag present)")
+    except Exception as exc:
+        unreal.log_error(f"[DemoPresets] install failed: {exc}")
+
+
 def startup():
     if m is None:
         print("[init_unreal] LiveLink module not found, skipping LiveLink only", flush=True)
@@ -466,6 +487,7 @@ def startup():
         unreal.log("[LiveLink] client loaded. Open it from Melodia Studio > Connection.")
     _register_osc_bridge()
     _register_melodia_studio()
+    _register_demo_presets()
 
 
 def shutdown():

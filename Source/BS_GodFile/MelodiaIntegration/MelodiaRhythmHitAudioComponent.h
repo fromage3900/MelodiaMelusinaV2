@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
@@ -101,7 +101,7 @@ protected:
 	TObjectPtr<USoundBase> HitMiss = nullptr;
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Melodia|Rhythm|Audio|SonicIdentity")
 	bool bPreferSonicIdentity = true;
-	/** +/- fraction of base volume, per hit. */
+/** +/- fraction of base volume, per hit. */
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Melodia|Rhythm|Audio", meta = (ClampMin = "0.0", ClampMax = "0.5"))
 	float VolumeJitter = 0.12f;
 
@@ -130,3 +130,4 @@ protected:
 	int32 DroppedHitCount = 0;
 	bool bAudioReady = false;
 };
+

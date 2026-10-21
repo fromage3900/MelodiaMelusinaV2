@@ -106,6 +106,13 @@
 
 **Room Shell — live UE gate (current priority, 2026-10-20).** UE 5.8 / Houdini Engine 3.0 / H22.0.368. After the editor restart, `HoudiniPublicAPI.create_session()` returned with `is_session_valid() == true`; this is runtime session evidence and does not revise the owner's license history. On `/Game/Melodia/Levels/Opening/L_MelusinaMorning`, with no PIE, the existing `/Game/Staging/ResonantCathedral_20261017/HDA/MelodiaRoomShell_1_0` instantiated as a live Houdini Asset Actor. After the default cook completed across an editor-call boundary, `room_w=7.0`, `decor=1` produced output 0 (`HoudiniStaticMesh`) and UE actor bounds 754 x 954 x 890.991 cm. Then `room_w=8.0` and `decor=3` both set successfully; `recook()` returned true, synchronous processing after another editor-call boundary completed, and bounds became 854 x 954 x 921.801 cm (+100 cm X). HAPI remained valid. This proves the live width control changes generated geometry; the HDA asset is ready for placement with its exposed per-instance controls. The test actor and its exact generated `/Game/HoudiniEngine/Temp/...` mesh package were deleted successfully. No map was saved, no persistent actor was staged, and Morning's existing `BP_MelusinaRoomShell_C` / PCG actor was untouched. Editor cook is proven; materials/lookdev, door and traversal integration, and packaged-game recooking remain open. Two unrelated packages were dirty at transient cleanup (`/Game/MelodiaIntegration/Blueprints/BP_MelusinaJRPGCharacter`, `/Game/FluidNinjaLive/NinjaLiveComponent`); they were not touched or saved. A later read-only editor check returned zero dirty packages.
 
+## Stained-glass cymatic window — 2026-10-21 (proof + install route set; HDA source / builder / registry entry staged; live cook queued)
+
+- Source: `Tools/Houdini/melodia_stained_glass_window.py` (reuses `room_shell.py` traceries + `chladni_eigen.py`); builder: `Tools/Houdini/cathedral/build_stained_glass_window_hda.py`; target HDA: `Content/HDA/MelodiaStainedGlassWindow_1.0.hda`; registry entry `melodia_stained_glass_window` to add to `hda_registry.v1.json`; material bindings to existing masters (`M_LF_StainedGlass`, `M_Master_Toon_Universal`'s `Cymatic_*` scalars, `MPC_Cymatics_Driver` — one writer, per DATA_FLOW.md).
+- Design choices (user confirmed): proof-then-install into Melusina's house (`L_MelusinaMorning`, ask-first — save after viewport review only); per-room note hue family (mapped from `NOTE_HUE_TABLE`); material-level reactivity via existing cymatic master (not new tick). HDA controls: `window_w/h`, `rise`, `tracery_family`, `glass_family`/`note`, `mode_n`/`mode_m`, `seed`, `engine_y_up/flip`.
+- Gate receipt still required (Gate 2 hython): `parm_drive` on `note=G` -> mode(3,4) must change manifest; outputs pinned after green cook. Live Proof (editor): same Room-Shell standard — import -> cook params -> recook -> bounds change -> save `L_MelusinaMorning`. Editor currently holds a blocking modal (`MODAL_OPEN` 06:34:53, asset-editor-no-tabs); Poitou PIE running 10:16–now — live HDA proof queued after either session clears or via new editor session.
+- Evidence level: source/builder/registry-entry only (no HDA cooked yet; no `.hda` written to `Content/HDA/`; no Morning save yet — both queued pending gate + live proof).
+
 **Cathedral Hero (queued behind Room Shell).** The Apprentice/non-commercial hero source and the existing `CrystalCathedralV3.hda` were rejected by the live Indie HAPI session with the explicit Apprentice-versus-Indie asset mismatch; that is a source-format/session mismatch, not a claim that the owner's license is unavailable. A separate Indie-compatible V3 HDA was rebuilt from `Tools/Houdini/cathedral/build_crystal_cathedral_v3_hda.py` (18 controls; headless geometry gates passed) and imported at `/Game/Melodia/HoudiniFoundry/CathedralHero/Authoring_20261020/CrystalCathedralV3_IndieCookable_20261020`. Its UE live cook is still pending while Room Shell takes priority.
 **Room-family visual checkpoint:** generated and opened `native/variants/rooms_s1_elevations.png` from actual configured source curves. Geometric choir foils, crossing library lancets and panel return tracery read distinctly while retaining the same three architectural strata; lower/middle bands remain deliberately related. This is a dimensioned source elevation comparison, not an assembled-room beauty render or occupancy proof. Reproduce with `C:/Python314/python.exe room_family_sheet.py` (the bundled document runtime lacks matplotlib).
 
@@ -218,51 +225,6 @@
 
 Owner-requested Dana preview uses the existing `/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal` through scoped instances in `/Game/Staging/DanaProfessor_20261016`. Saved studio: `L_Dana_UniversalToon_Studio`; source mesh/skeleton/physics copied additively from Humber with visible section material overrides. Original universal master is unchanged. MRQ portrait v03 visually reviewed: visible toon bands on face, hair, and teal shirt, neutral background, source reference pose. Images: `Saved/DanaProfessor/Renders/`; film delivery copies: `G:/film-304-toon-spine/Showcase/Dana/MelodiaUniversal/`. Build and job evidence: `Saved/DanaProfessor/stage.json` and corresponding render logs. This is still-render material proof, not rig deformation proof. No Git publication performed.
 
-## Eyewear flourish + material slots — 2026-10-16 (LANDED via lane; UE BP queued)
-
-- **Builder work (landed):** hero `Enable Flourish` now gates a 3:2 Lissajous tube halo above the bridge
-  (freq/amp dials live, default OFF); per-part material slots (Frame/Temple/Hinge/Lens) applied to
-  nested outputs (Bridge stays declared — inseparable inside front sub-tree). Default output verified
-  identical to pre-change build (5,144 verts); ON adds 1,152 halo verts. Full verify_addon 6/6 PASS.
-  Renders under `Saved/Audit/EyewearFlourish/` (gitignored staging).
-- **UE side (in-editor):** Cat-Eye frame + lens static meshes imported (fresh Accessories path, saved on
-  disk); `wardrobe_eyewear_cateye.v1.json` extended with lens mesh + UE-measured counts.
-- **Blocked 2026-10-16:** Monolith MCP namespace dropped from the agent tool catalog mid-session
-  (editor + :9316 bridge verified alive; owner restarted editor 10-15 21:30). BP wiring (glasses BP +
-  halo toggle + socket attach + MI instances) queued until the surface returns — no live-editor
-  mutation attempted without it.
-
-## Cat-Eye eyewear accessory — 2026-10-16 (mesh+manifest LANDED via lane; UE materials/attach pending)
-
-- **What:** first eyewear cosmetic `Cos_Eyewear_CatEye_Grand` (Uncommon, Accessories slot, decorative-only;
-  manifest `specs/wardrobe/wardrobe_eyewear_cateye.v1.json`): Cat-Eye hero pair in editorial gold +
-  smoked lenses, 5,144-vert frame / 320-vert lenses, 13.8 cm ISO boxing. Meshes imported to
-  `/Game/Melodia/Characters/Melusina/Accessories/` (frame + lenses static meshes, saved on disk;
-  import also dropped a 24-vert default-cube byproduct in that folder, pending owner tidy).
-- **Builder fix that made it real:** laptop rewrite had dropped Sept's `neg_pivot` right-side seat,
-  stacking both temples on +X (proven in renders); restored verbatim in pair+hero. Renders personally
-  inspected (front/persp/macro). Baseline re-cut: exactly one measurement moved (hero bbox x 0.138->0.142);
-  full gate 6/6 PASS. Staging under `Saved/Audit/EyewearCatEye/` (gitignored).
-- **Still open:** MI_Eyewear_CatEye_Gold + MI_Eyewear_CatEye_Lens instances, head-socket attach + worn-orientation
-  rotation, live-fit approval on Melusina, equip-roundtrip proof. Pair builds flat by Sept convention;
-  upright rotation belongs in staging/attach, not the builder.
-
-## Studio/GN reconcile lane -- LANDED 2026-10-13 (PR #480, 8 commits)
-
-- **Lane landed:** `refs/agents/studio-gn` (8 commits, base `origin/main@28ee209`) via `deploy/land_agent_lane.ps1`; PR #480 merged 2026-10-14T03:44:26Z, temp branch deleted in the same run. Local main coal-face untouched.
-- **What:** selective promotion from `origin/collab/laptop/melodia-studio-tidy-20261004` (105 files, never merged) — 54 new files (panel-split modules, 8 music verifiers, 39 GN builders), 43 modified paths (registrations, facade, builder revisions), `core.py` union merge, 3-file laptop-`P:`-hardcode repair. No wholesale merge; 5 laptop file-deletions deferred (files retained, orphans harmless); `registry_baseline.json` untouched.
-- **Evidence (all in-lane, Blender 5.2.1):** `MELODIA STUDIO SOURCE GATE: PASS` — registry 784, `GN_PARIS_WallDetail` 576 verts, `GN_PARIS_SlabTrim` 0 verts (documented input-dependent); `blender_smoke.py` 27/27 `[SMOKE]` PASS incl. 15 classes + clean unregister (exit-1 is the documented background-teardown bug, not a failure); `py_compile` clean; `_batch_remaining_presets.py` duplicate proved SHA256-identical before delete.
-- **Integrator notes:** eyewear consolidated 3 builders into `MEL_eyewear_hero` by laptop design (gate `baseline_lost` warning, PASS); baseline re-cut is a follow-up (new ids report as `baseline_new`, zero unexpected lost); AppData live profile still has addon 1.5.0 — reinstall from `Tools/BlenderAddons` after landing so Blender loads 1.6.0.
-- **Repo incident during landing (2026-10-13 ~23:39 UTC):** `.git/config` gained `core.bare=true`, breaking `git status` in EVERY worktree on this machine (primary + all lanes). Repaired with `git config core.bare false`; all trees verified (`is-inside-work-tree=true`, lane clean, primary dirty=404 as before). Writer unidentified -- file mtime 23:39:52, no lane command writes config. If it recurs, check concurrent agents/daemons before touching history.
-
-## Next cross-repo TD procedural art action — Chord Atelier / Infinite Aeolian Atrium (owner, 2026-10-11)
-
-**Owner direction:** use the existing infrastructure to create an **artist-facing procedural TD workstation tool**, not another engine, world compiler or Blender-like object-editing layer. The next TD authoring deliverable is one reusable `ChordAtelier` COMP built inside the current `grandmaster_melodia` / `geo_engines`: 1) deterministic, seeded chord-to-architecture layout, 2) existing Blender GN Aeolian/chime meshes, 3) Chladni masks sourced from the current GN/Hython/sheets workflow, 4) TD POP/CHOP GPU-resident instances, wind and resonance animation, 5) existing Lookdev Studio beauty output. **First gate:** one seeded static chord atrium; **second:** Aeolian wind and four-chord Cm→A♭→E♭→B♭ fixture; **third:** measured, verified 20–30s beauty take and independently portable `.tox`/TDN. These gates are **planned**, not implemented/PIE-proven. TD authoritative runbook is `fromage3900/MelodiaTouchDesigner:docs/CHORD_ATELIER_AEOLIAN_ATRIUM.md`.
-
-**Existing game-side sources:** `deploy/surreal_arch/melodia_gn/chimes_gn.py`, `deploy/surreal_arch/melodia_gn/chladni_layers.py`, `Tools/Houdini/copernicus/chladni_eigen.py`, `Tools/chladni_sheets_to_textures.py`, `Tools/archipelago.py`, `UMelodiaHarmonicStateSubsystem`. Game owns musical, gameplay, authored world and PCG truth; TD only animates/visualizes and exports presentation textures/geometry previews, and never writes saved world state. No duplicate audio/OSC bus, gameplay writer, or Chladni solver.
-
-**Parallel UE lane:** owner has **started** TouchEngine 1.7.0→UE5.8 port/build, but the actual build/PIE/texture return and packaging remain unverified until gates in `Docs/TouchDesigner/TOUCHENGINE_UE58_RUNTIME_INTEGRATION.md` pass. Do not wait for that port to do TD authoring; keep Spout/OSC functioning, no `:8000` ghost receiver. Current game editor/content mutation remains subject to worktree/P4/editor-lease contracts. No new source/binary changes were made by this docs update.
-
 ## ⚑ OWNER CANON — turn-based ARPG / ACFU hybrid is the game — 2026-10-11
 
 **Owner decision (2026-10-11, verbatim intent):** the turn-based ARPG / ACFU hybrid is canon. This is the owner pivot that the 09-27 souls-track audit said was required ("no conversion without owner pivot + Issue #51"). It supersedes every "ACFU excluded / ACF is sandbox-only / JRPG slices plus isolated ACFU R&D" statement anywhere in the repo.
@@ -283,10 +245,6 @@ Owner-requested Dana preview uses the existing `/Game/EnvSandbox/Materials/Maste
 Until the owner ratifies, `BP_MelodiaJRPGGameMode` + the canonical pawn remain the only production boot path and no production map boots an ACF GameMode.
 
 **TouchEngine = designated presentation runtime (owner, 2026-10-11):** TouchDesigner-inside-Unreal is the canon presentation path. `origin/main` records G1 as proven in-editor (`Beatphase`/`Amplitude` change `OUT_BEAUTY`). PIE, packaged builds, and G2 remain open. It is not a live gameplay writer. The technical contract and gates G0-G4 are `Docs/TouchDesigner/TOUCHENGINE_UE58_RUNTIME_INTEGRATION.md` (PR #458) — extend that contract. Prior-work sweep, corrected 2026-10-17: no `melodia_te_canary_v1.tox` was found in `fromage3900/MelodiaTouchDesigner`. That repo's origin tip is `1f5a32f` (2026-10-11). Seven later local commits, through `3645315` on 2026-10-12, are published as [MelodiaTouchDesigner#7](https://github.com/fromage3900/MelodiaTouchDesigner/pull/7). The "last push 2026-09-28" sentence is stale. `toolchain/TouchEngine-Windows` is only Derivative's stock C++ SDK sample (`Samples/test.tox`). Existing UE-side TD surfaces to reuse: `Plugins/UE5_Spout2_DX12`, UE->TD OSC `:9000`, phrase bridge `:9002`, `Docs/Production/FARAWAY_MOTHER_P1_RESONANCE_FIELD_INTEGRATION_SPEC.md` (first consumer, `OUT_SHOW_FIELD`). **The UDP `:8000` ghost receiver is a banned dual-writer route - do not cite or revive it** (an earlier version of this note wrongly called it proven). Install state: TouchDesigner installed; `Plugins/TouchEngine` v1.7.0 on disk, untracked, source-only, authored for UE 5.7.x, NOT enabled in `BS_GodFile.uproject`. Per G0 it is proven first in a disposable 5.8 compatibility project (closed-editor build; production uproject untouched until it loads), needs a paid, non-Non-Commercial TD license, and nothing may claim TouchEngine is live until G1 shows a visible parameter->image change in PIE. TouchEngine must stay presentation-only: one writer per surface, no second audio bus / palette MPC / UI writer.
-
-**Origin also records the audio-hit colour/burst lane (2026-10-12):** `UMelodiaAudioReactivePresentationSubsystem` writes `InkHueShift` +0.20 and `InkSyncVision` +0.45 as an authored base plus a ~0.4 s audio-hit envelope, and resets every Niagara component on actors tagged `MelodiaAudioBurst` on each hit and every 4th beat (game worlds only). Verified in Morning PIE by per-frame MPC readback and by deactivating then reactivating the five burst systems.
-
-**TouchEngine install state as recorded on origin:** G0 proven on UE 5.8 with two 5.7->5.8 patches, a closed-editor build at exit 0 and all five modules loading; origin also records G1 in-editor with `melodia_te_canary_v1.tox` changing `OUT_BEAUTY`. The local 2026-10-17 correction above (plugin untracked, source-only, not enabled in `BS_GodFile.uproject`) still governs what may be claimed locally.
 
 **Evidence that exists (unchanged, see 2026-09-28 ACF review and HYBRID_TRIAL_WEB):** ACFU 4.3.5 runtime loads in UE 5.8; `BP_MelusinaACFTrial` compiles 0/0 on an `ACFPlayerCharacterBP` child with V2 body + `ABP_Melusina_Current`; PIE starts under `BP_ACFTrialGameMode`. **Unverified:** controller possession, melee/lock-on/dodge/hit/death, beat-graded damage; V2 mesh has no Souls sockets; 24 invalid ACF gameplay-tag warnings at startup; `BP_MelusinaACFHybrid` carries a `CharacterMesh0` pin warning. `Content/Melodia/*` and `Tools/*` trial assets are git-ignored (P4 / local).
 
@@ -2630,3 +2588,190 @@ OPEN: screenshot shows pale landscape, purple foliage and dark village materials
 - **Resolution:** the preset's collision half was removed permanently, and the pawn was verified stable afterwards. `Tools/Editor/demo_presets.py` now does **two things only**: hides the Choral Sheep and mutes the audio through the project's own sound mix. No collision, no teleport, no gameplay changes.
 - **Standing rule (durable):** **collision is an art/rig decision and must not be authored by a demo or automation pass.** The House-T floors and walls genuinely have no collision data (`simple_count = -1`, `CTF_USE_DEFAULT`) and still need it - but that fix belongs in the **room-shell HDA output** (generate collision in Houdini) or in a reviewed art pass, never in a runtime preset.
 - **Also recorded:** the earlier one-shot preset was defeated by the PIE map reload (the reloaded world has the same name), and my sheep filter briefly matched `"ram"` inside `"ca*ram*era"` and hid the camera manager - both fixed, and the stale callbacks were purged.
+
+## Poitou replaces Morning — demo state re-verified 2026-10-21
+
+- **The Morning level was replaced.** `L_MelusinaMorning.umap` is now a 37 KB shell; the live level is `/Game/EnvSandbox/Poitou/L_Poitou_v2` (35 MB, 169 actors: 114 `BP_Door2_0_C`, 22 StaticMeshActors, 13 HoudiniAssetActors, 3 Landscapes, PCG world, Oceanology lake, 1 PlayerStart, 2 CineCameras). `EditorStartupMap` and `GameDefaultMap` remain `L_MelodiaMainMenu`, so a demo opens Poitou from the editor or via the menu.
+- **She is healthy in Poitou:** verified in PIE at (41440, 70800, 512.2) with **0.0 cm drop over 2 s** — the fall-through regression did not survive the level replacement.
+- **No sheep in Poitou** (0 sheep-like actors), so the "hide the sheep" blocker was solved by the replacement; the preset's sheep hide is a no-op there.
+- **Collision census in Poitou:** 604 static/landscape components — 442 `QUERY_AND_PHYSICS`, 161 `NO_COLLISION`. Nearly all 161 are *correct* (her cosmetics: brows, lashes, iris, regalia, FX rings, wand, violin; decoration: grass and ground cover; the lake's debug cube; the bubble-preview sphere). **One real gap:** the room shell's `SM_hero_house` (`/Game/Melodia/Kit/MorningPlaza/SM_hero_house/StaticMeshes/SM_hero_house`) is `NO_COLLISION`, so she can walk through the house walls. That fix belongs in the **Houdini output** (generate collision in the HDA), not in a runtime pass.
+- **No cleanup is owed for the 2026-10-20 collision incident:** the BOX hulls were never written to disk — the affected mesh assets' mtimes are unchanged (2026-07-15 / 10-03 / 10-09 / 10-17), `save_asset` returned False for them, and the editor restart discarded the in-memory edits. Verified by mtime, not assumed.
+- **Demo preset, final scope:** `Tools/Editor/demo_presets.py` does **two things only** — hide the Choral Sheep and mute the audio through the project's own sound mix (`SM_MelodiaUserPreferences`, Master/Music/SFX at 0). No collision, no teleport, no gameplay change. Verified in Poitou: `demo_presets: applied to L_Poitou_v2 | sheep hidden: none found | muted: True`.
+- **Audio in Poitou:** the level has 0 dedicated audio actors, and the preset still mutes Master/Music/SFX so nothing can intrude on a screenshare.
+
+## Poitou tree assets + Nikki landscape master — 2026-10-21
+
+### Kenney / art-tree meshes replaced with Megascan (done, saved)
+
+- `L_Poitou_v2` referenced exactly two proxy tree meshes: `tree-high` and `tree_fat`. **Neither comes from PCG** — the only Poitou PCG graph (`PCG_Poitou_CanalBank`) contains no tree strings, and the canal-bank PCG actors already use Megascan ground cover. The producers are **`HZN_Poitou_Band1/2/3`** (plain Actors, tag `nikki_horizon`, `HISM_Poplar`: 4,943 + 3,540 + 2,869 = **11,352 instances**) and **`Poitou_Layout_v6_Recovery`** (`InstancedStaticMeshComponent_15` 596 × `tree-high`, `_16` 184 × `tree_fat`).
+- All five components were repointed to `/Game/Megascans/3D_Assets/MossyTree/SM_MossyTree_01` (15,077 tris, Nanite) with instance scale ×**1.6162** to preserve the 297 cm proxy silhouette — **12,132 instances** total. `L_Poitou_v2` saved; re-query reports **0 actors** on `tree-high` and `tree_fat`.
+- **Durable caveat:** the HZN bands are saved actors and will persist. The Houdini ISM components are cook output — a recook can restore `tree-high`/`tree_fat`. The permanent fix for those belongs in the Houdini graph's instance asset assignment, not in the map.
+
+### `M_Master_Nikki_Landscape` — cleaned, audited, gated
+
+- Dead-expression cleanup: **427 → 353 expressions** (74 unreachable non-comment nodes removed); 335 live, 18 comments. `validate_material` issues **133 → 4** (shared-name switches `Rock_NormalMap`, `bUseExtendedLayers`, `bGaeaWholeLandscapeColor`, plus one `high_expression_count` info). Backup: `/Game/EnvSandbox/Materials/Masters/_Backup/M_Master_Nikki_Landscape_PreParamFix_20261021`.
+- Parameter audit (`Saved/Audit/PoitouMaterial_20261021/parameter_audit.json`): **168 parameters — 102 active, 66 wired-but-behind-an-OFF-switch, 0 affecting no output.** Four fully-dead parameters were removed rather than rewired.
+- Snow SDF chain verified structurally: bake → `T_Glacier_SnowEdge_SDF16` (R32_FLOAT, 1009², sRGB off, clamp) → `Custom_3` → `LinearInterpolate_18` → `StaticSwitchParameter_28` → `SubstrateToonBSDF.Roughness`. **A/B compile proof: 353 → 375 pixel instructions** with `bSnowFrostDistanceBand` on — the lane is live, not dead.
+- UV alignment verified: `(WorldPosition − GaeaLandscapeMin) / GaeaLandscapeSize` with `Min = −249,752.22`, `Size = 499,504.4375` vs bake `499,504.4517`; all three landscape footprints (−120k…−20k, 0…100k, 120k…220k) sit inside the ±249,752 SDF footprint. Mapping is correct for all three.
+
+### What still gates it
+
+| # | Gate | Status |
+|---|---|---|
+| 1 | Coverage `Add_2 = (Snow layer weight × Interp_6) + (Saturate_0 × SnowStrength)`; no Snow target layer exists ⇒ first term ≡ 0, and MI `SnowStrength = −0.5768` ⇒ coverage ≤ 0 always. A negative alpha also extrapolates any downstream unclamped `Lerp`, which is a candidate cause of the pale landscape. | **blocker** |
+| 4 | 7 layer weights accumulate with no sum normalization (`bUseExtendedLayers` adds `Add_12` on top) | high |
+| 3 | SDF reaches **Roughness only** — no albedo, no normal | high |
+| 6 | No per-layer roughness authority; normals additive with no final `Normalize` | high |
+| 2 | Rock double-counted (`LandscapeLayerSample_4 → Multiply_45 → Add_12` *and* `blend_5/6`) | medium |
+| 7 | 66 of 168 parameters inert behind OFF switches | packaging |
+| 8 | 3 duplicated parameter names | medium |
+
+**Correction recorded in the same pass:** an earlier read called `Custom_3` an unnormalised cm alpha. Its full body is `float d=(Encoded*2.0-1.0)*max(RangeCM,1.0); float w=max(WidthCM,1.0); float aa=max(fwidth(d),1.0); return (1.0-smoothstep(max(w-aa,0.0),w+aa,abs(d)))*saturate(Strength);` — it already returns a clamped, anti-aliased 0..1 band. **The SDF lane is correctly wired and merely switched off; there is no gate 5.** The previous claim came from a 120-char truncated snippet, not the node body.
+
+### Gate 1 closed — `SnowStrength` sign
+
+- Coverage is a **slope mask**, not paint: `Saturate_0 = saturate((dot(N, up) − C) × SnowUpBias)`, `Multiply_21 = Saturate_0 × SnowStrength`, and `Add_2` feeds `Add_3`, `Multiply_25` and `Multiply_34`. The last two multiply **textures by coverage**, so a negative `SnowStrength` subtracts colour across every up-facing surface — a direct cause of the washed/pale read.
+- **Applied:** MI `SnowStrength −0.5768309831619263 → 0.0` (master default), saved. Pixel instructions **446 → 433** (the zero branch constant-folds), so the change provably reaches the shader. Evidence: `Saved/Audit/PoitouMaterial_20261021/gate1_snow_strength.json`.
+- **Visual proof NOT obtained:** `capture_scene_preview` returned the editor viewport (twice, 123 ms / 211 ms vs 352 ms on a real preview) instead of the material preview scene, so the before/after PNGs are not a valid comparison. Gate 1 is arithmetic+compile-proven only.
+
+### Bigger finding from the PBR probe — the mask lane is placeholders
+
+`inspect_material_pbr` on the MI shows **all four Gaea masks bound to the same placeholder gradient**:
+
+| Parameter | Bound texture |
+|---|---|
+| `Gaea_SnowMask` | `/Game/Textures/sbs_-_gradient_texture_pack_-_512x512/512x512/Basic/Horizontal_1_-_512x512` |
+| `Gaea_WaterMask` | same gradient |
+| `Gaea_FlowMask` | same gradient |
+| `Gaea_RockMask` | same gradient |
+| `Snow_Albedo` | same gradient |
+
+So the "Gaea-driven" snow/water/flow/rock lane is not reading baked data at all — it is a horizontal gradient. That outranks the arithmetic gates for "usable landscape material": no amount of clamping makes a gradient into a mask. The real SDF (`T_Glacier_SnowEdge_SDF16`) is separate and correct.
+
+Also from the probe: `Ground_Roughness`/`Grass_Roughness`/`Rock_Roughness` are **all `0.8`** and Water/Mud/Path have no roughness parameter (gate 6 is partial, not total); `Wetness = 0.1` / `WetRoughness = 0.45` already exist; and the toon ramp is running `RampContrast = 0.1`, `RampPosMid = 0.05` between `RampLow (0.20,0.15,0.30)`, `RampMid (0.85,0.60,0.75)`, `RampHigh (1.0,0.95,0.90)` — a near-linear pink→white wash, a second direct cause of the pale read.
+
+### Gate G — the hybrid is a merge, not a texture re-bind
+
+- **A real paintable lane already exists and is orphaned:** `M_Poitou_Landscape_Painterly` is 287 expressions with **21 `LandscapeLayerSample` nodes + `LandscapeLayerBlend_2`** and no texture parameters. `M_Poitou_Landscape` (3 expressions) and `M_Glacier_Landscape_Layered` (13 expressions) are pure layer-blend stubs (`LandscapeLayerCoords` + `LandscapeLayerBlend`). Neither painterly master is assigned to any landscape — **all three Poitou landscapes use `MI_Poitou_Landscape_Nikki`**, the look master whose `Gaea_*Mask` lane is placeholder-bound.
+- **The Gaea bakes are unusable, and not for the geography reason.** Measured on the assets: `Snow_Out`, `Snow_Snow`, `Glacier_Snow`, `W_Glacier_Rock/Snow/Water` are all **32×32** (`TC_HDR_COMPRESSED` / `TC_MASKS`) — stubs, not bakes. The only real Gaea texture in the project is `T_Glacier_SnowEdge_SDF16` (1009², `R32_FLOAT`). The 5 km-footprint argument still holds, but resolution settles it first.
+- **Per-material `_SDF` maps are real but unverified:** 8 families (`Limestone`, `WetMeadow`, `SiltMud`, `DuckweedWater`, `LimeWash`, `Oak`, `ReedBed`, `RoofTile`), `PF_B8G8R8A8`, 2048², sRGB off — a linear distance/height encoding, but MCP channel inspection cannot read source format 1, so the exact channel semantics are **not yet proven**.
+- **Conclusion:** the "hybrid" is the Nikki look master driving the Poitou painterly layer stack — not binding a second, placeholder/baked texture set. Macro masks (snow, rock, flow, shore) should be **derived from the Poitou terrain** (slope / height / curvature / layer weights); the per-material `_SDF` maps are the micro-detail lane for crevice moss, edge wear and wetness pooling once their encoding is confirmed.
+
+### Layer set and mask bindings — measured (read-only, 2026-10-21)
+
+Evidence: `Saved/Audit/PoitouMaterial_20261021/gateG_layer_and_texture_bindings.json`.
+
+**The landscape's real target layers** are the Houdini bake `LandscapeLayerInfoObject`s referenced by `L_Poitou_v2`:
+`/Game/HoudiniEngine/Bake/Poitou_Layout_RoomShell_Candidate_449_514_0_Landscape_{Base,Grass,Ground,Mud,Path,Rock,Water}` — **7 layers**. `LI_Poitou_*` assets do exist on disk (18 of them, split across `Poitou/LayerInfo/` and `Poitou/Materials/LayerInfo/`), but **the map references none of them**, so they are not this landscape's layer set.
+
+| Master | `LandscapeLayerSample` names | Coverage of the 7 real layers |
+|---|---|---|
+| `M_Master_Nikki_Landscape` | `Mud`, `Path`, `Rock`, `Snow`, `Water` | **4 of 7** — `Mud`, `Path`, `Rock`, `Water`; `Snow` has no layer (correct: it is the slope/SDF lane); **`Base`, `Grass`, `Ground` are baked and never sampled** |
+| `M_Poitou_Landscape_Painterly` | `canal_banks`, `mask_debris`, `mask_flow`, `mask_wetness`, `mist_marsh_reeds`, `ruin_rise`, `tree_rows_poplar_ash`, `village_buildings`, `water`, `wet_meadow_grass` | **0 of 7** — a different layer family, also absent from the map |
+
+- **The paint lane is alive but partial**, not dead: four of seven weights are read. `M_Poitou_Landscape_Painterly` is not an upgrade path — adopting it would mean repainting the landscape onto a different layer family, which is a content decision, not a wiring fix.
+- **The placeholder masks are master defaults, not MI settings.** `MI_Poitou_Landscape_Nikki` carries **no texture-parameter override** for `Gaea_SnowMask`, `Gaea_WaterMask`, `Gaea_FlowMask`, `Gaea_RockMask` or `Snow_Albedo` — the sbs gradient is simply what the master falls back to. Per-layer albedo/normal *are* overridden and are real Poitou PBR: WetMeadow (`Albedo`, `Grass_*`), Limestone (`Rock_*`), SiltMud (`Ground_*`, `Mud_*`), ReedBed (`Path_*`), DuckweedWater (`Water_*`).
+- **So gate G is "no texture to bind".** Those four slots duplicate what `LandscapeLayerSample` already reads from the landscape. Next step is to read their consumers in the master and decide per parameter: drive from the matching layer sample, or delete. The genuine coverage gap is the three unsampled baked layers `Base`/`Grass`/`Ground`.
+
+- **The lane is switched off.** `bUseGaeaMasks` master default is **false**, so the four mask samples, their `lerp(constant, mask, GaeaWeight)` chains and every `Multiply`/`Add` consumer are inert. `Gaea_WaterWeight = 0`, `Gaea_FlowWeight = 0`, `Gaea_SnowWeight = 1`, `Gaea_RockWeight = 1`. The placeholder gradients never reach a shader. Gate G closes as **nothing to bind and nothing to fix** — the lane is an unused scaffold, and its 32×32 stubs mean it must stay off until real masks are baked.
+- **The pale wash had a third cause, now fixed.** MI `RampContrast 0.1 → 1.0` and `RampPosMid 0.05 → 0.5` (restoring the master's `1.0` / `0.5`), saved. The MI had overridden a 3-stop `RampLow (0.20,0.15,0.30) → RampMid (0.85,0.60,0.75) → RampHigh (1.0,0.95,0.90)` ramp into a near-linear pink→white wash. `get_compilation_stats` on the MI: **446 px instructions**, 3 VS / 11 PS texture samples.
+
+### Gate 6 closed — per-layer roughness (2026-10-21)
+
+- The roughness authority is `LandscapeLayerBlend_6`, feeding `LinearInterpolate_4.Alpha` (A = `RoughnessMin`). It had only four pins — `Ground`, `Grass`, `Rock`, `Base` — so Water/Mud/Path had **no roughness path at all**, not merely a shared value.
+- **Applied:** three `ScalarParameter` nodes created — `Water_Roughness` 0.15, `Mud_Roughness` 0.60, `Path_Roughness` 0.75 — and the blend extended 4 → 7 layers, each new layer wired to its parameter. Readback confirms `Layer Water → ScalarParameter_7`, `Layer Mud → _10`, `Layer Path → _12`.
+- Compiles: `is_compiled: true`, **353 px instructions**, 153 VS, 10 samplers, 356 expressions. `validate_material` unchanged at the same 4 pre-existing issues (3 duplicate names + `high_expression_count`) — no new issues. Saved.
+- Backup of the pre-change master: `/Game/EnvSandbox/Materials/Masters/_Backup/M_Master_Nikki_Landscape_PreGate6_20261021`. Evidence: `Saved/Audit/PoitouMaterial_20261021/gate6_roughness.json`.
+- Implementation note: `unreal.LandscapeLayer` is **not** constructible from Python; the new entries are `.copy()`s of an existing `LayerBlendInput` with `layer_name` reassigned. Do not try to rebuild the `Layers` array from scratch.
+
+### Gates 4 and 2 closed — already correct (read-only trace, 2026-10-21)
+
+- **Gate 4 is not a defect.** The weight sum `Add_5 = Add_3 + Add_12` (snow coverage + Water + Mud + Path + Rock) is clamped by `Saturate_2` before driving three lerp alphas (`LinearInterpolate_8/9/13`). And with `bUseExtendedLayers = true` — master default **and** the MI — base colour comes from `StaticSwitchParameter_2.True = Divide_6 = Add_8 / Max_2` with `Max_2.A = Add_5`, i.e. a genuine divide-by-sum normalization. `Divide_7 = Add_11 / Max_2` does the same for the second channel pair. **No mutation made.**
+- **Gate 2 is moot.** `LandscapeLayerBlend_4` (Ground/Grass/Rock/Base) is the **False** branch of `StaticSwitchParameter_3` — the legacy path. With `bUseExtendedLayers = true` it is inactive, so Rock enters the active albedo path exactly once, via `Multiply_45 → Add_12`. There is no double count.
+- Evidence: `Saved/Audit/PoitouMaterial_20261021/gate4_weight_trace.json`. No material change.
+- Caveat worth keeping: `Max_2.B` is unconnected, so `Max_2 = max(Add_5, 0) = Add_5` while weights stay non-negative. The division is correct today; a negative weight reaching `Add_5` would break it. Not worth changing now.
+
+### Gate 8 closed — duplicate parameter names are deliberate fan-out (2026-10-21)
+
+`validate_material` reports three `duplicate_parameter_name` warnings. All three are the **same intentional pattern**: one named parameter fanned out to several nodes so a single MI override drives all of them.
+
+| Parameter | Nodes | Defaults | Consumers |
+|---|---|---|---|
+| `Rock_NormalMap` | `TextureSampleParameter2D_12`, `TextureObjectParameter_1` | both `T_Neutral_Normal` | `LinearInterpolate_15:A`, `StaticSwitchParameter_12:False` / `MaterialFunctionCall_5:NormalTex` |
+| `bUseExtendedLayers` | `StaticSwitchParameter_2`, `_3` | both `true` | `LinearInterpolate_8:B` / `LinearInterpolate_9:B` |
+| `bGaeaWholeLandscapeColor` | `StaticSwitchParameter_7..11` | all `false` | Gaea lane (off) |
+
+- The MI overrides `Rock_NormalMap` with `T_Poitou_Limestone_N`. Because both nodes share the name, the sampler **and** the texture-object input both receive Limestone_N — renaming either would silently revert that branch to `T_Neutral_Normal`. Renaming is strictly worse than the warning.
+- Same for the switches: one `bUseExtendedLayers` control driving two branches is the intent; splitting the name would leave half the graph un-switched.
+- **Rule derived:** a duplicate group whose members all share the same default is fan-out and must be left alone. A group with *differing* defaults is the real defect. `validate_material`'s `duplicate_parameter_name` cannot distinguish them.
+- No mutation. Evidence: `Saved/Audit/PoitouMaterial_20261021/gate8_duplicate_names.json`.
+
+### Gate 7 — the master is two materials, not a hybrid (2026-10-21)
+
+`bUseExtendedLayers` is **not** a feature toggle. It selects between two mutually exclusive graphs at `LinearInterpolate_8`:
+
+- **`true`** (master default **and** MI) → `Divide_6`/`Divide_7`, the Poitou landscape path: `Mud/Path/Water/Snow_Albedo`, `Snow_NormalMap`, `SnowStrength`, `SnowUpBias`, `Snow_Breakup*`, `Gaea_*Mask`, `Gaea_*Weight`, `MudTint`, `PathTint`, `WaterAlignTint`, `bSnowCoverageBreakup`.
+- **`false`** → `LinearInterpolate_5`, the Nikki path: `Ramp*`, `NikkiPastel*`, `NikkiTwinkle*`, `NikkiSticker*`, `NikkiGlitterHalo*`, `NikkiPetal*`, `NikkiPearl*`, `NikkiSDFRibbon*`, `NikkiWatercolor*`, `NikkiSquish*`, `GlitterPile*`, `ShadowDream*`, `TriplanarPro*`, `Ground/Grass/Rock_Albedo/NormalMap`, `Atmospheric*`, `BaseTint`.
+
+- **CORRECTION 2026-10-21 — the two bullets that stood here were wrong.** They claimed every MI-enabled Nikki switch was inert and the ramp fix was unreached. In fact `LinearInterpolate_8.A` is fed by `LinearInterpolate_5` **directly**, independent of `StaticSwitchParameter_2`, so the pastel-grade / twinkle-iris / ramp chain reaches `SubstrateToonBSDF.BaseColor` through the **A** slot regardless of the switch. The switch selects the **B** slot only. `bNikkiPastelGrade_Active`, `bNikkiTwinkleIris_Active`, `bTriplanarPro_Active` and `bRockDetailAlbedo` were live all along, and `RampContrast 1.0` / `RampPosMid 0.5` were reaching the shader.
+- **Why the method failed:** pin-ancestry tells you what a branch *contains*, not whether it is *reached*. A branch is inert only if every node in it has no consumer reachable from the material output outside the switch. Single-pin ancestry cannot see those external consumers.
+- `bUseGaeaMasks` gates only `Gaea_FlowMask`/`Gaea_FlowWeight`/`GaeaLandscapeMin/Size`. The rest of the Gaea lane sits under `bGaeaWholeLandscapeColor` (false) and `bUseExtendedLayers`.
+- `bSnowFrostDistanceBand` (false) gates `SnowEdgeDistanceTexture`, `SnowEdgeDistanceRangeCM`, `SnowFrostBand*`, `SnowFrostRoughness` — the SDF lane is intact and switched off.
+- Live MI switch state: extended `true`, pastelGrade `true`, twinkleIris `true`, triplanarPro `true`, rockDetailAlbedo `true`, everything else `false`.
+
+Full map, per-switch branch contents and master-vs-MI state: `Saved/Audit/PoitouMaterial_20261021/gate7_switch_map.json` — **its `inert` annotations are superseded by the correction above.**
+
+**Method note (revised):** branch membership is the **upstream** ancestry of a switch's True/False input pin (a downstream walk drags in unrelated branches that merely merge later). But ancestry is **not** proof of inertness — you must also prove no node in that branch has a consumer outside the switch.
+
+**The convergence fork was resolved by the owner as (a)** — feed the layer colour through the Nikki grade. Implemented 2026-10-21 (below).
+
+### Hybrid grade + rock repair — 2026-10-21
+
+The owner's read was "the material works, a lot of it is just stale; mud and soil render, other functions don't wire." Checked directly rather than assumed: **no expression in the material is orphaned.** An out-degree census flagged only `bNikkiSquishWPO_Active`, and that was a false positive — it *is* the node plugged into `MP_WORLD_POSITION_OFFSET`; `get_full_connection_graph` models expression→expression edges only, so expression→material-pin edges look like out-degree 0. What was actually broken was the layer arithmetic.
+
+| Defect | Fix |
+|---|---|
+| Rock's weight sat in the divisor (`Add_12 → Add_5`) but **no rock albedo/normal existed in the dividend** `Add_8`/`Add_11` — painted rock diluted toward black | `Add_0 = Add_8 + (Rock_Albedo × LS_Rock)` → `Divide_6.A`; `Add_13 = Add_11 + (Rock_NormalMap × LS_Rock)` → `Divide_7.A` |
+| Rock's weight was `LS_Rock × Gaea_RockMask` because `Gaea_RockWeight = 1` — a **32×32 stub gradient** decided where rock existed | MI `Gaea_RockWeight 1.0 → 0.0`; `lerp(1.0, mask, 0) = 1.0`, so weight is the painted layer weight |
+| `Divide_6`/`Divide_7` divided by `max(Add_5, 0)` — bare terrain did `x/0` | `Max_2.B ← Constant 1e-4` |
+| Grade chain took legacy albedo (`Multiply_13`), so layers bypassed ramp + pastel grade | `LinearInterpolate_11 = lerp(Multiply_13, Divide_6, Saturate_2)` → `LinearInterpolate_3.A` (option **a**) |
+| Ramp replaced albedo outright inside the grade chain (`RampStrength = 1.0`) | MI `RampStrength 1.0 → 0.35` — the ramp tints the layers instead of substituting for them |
+
+- Verified: `is_compiled: true`, **356 px instructions**, 153 VS, **362 expressions** (was 356), `validate_material` unchanged at the same 4 pre-existing issues (3 fan-out duplicate names + `high_expression_count`). All six connections read back. Saved. Backup: `/Game/EnvSandbox/Materials/Masters/_Backup/M_Master_Nikki_Landscape_PreRockFix_20261021` (this time `duplicate_asset` + `save_packages` both returned true).
+- **Layer binding truth** (MI overrides vs master): all six Poitou layers carry real PBR on **both** albedo and normal — SiltMud (`Ground_*`, `Mud_*`), ReedBed (`Path_*`), Limestone (`Rock_*`), WetMeadow (`Grass_*`, `Albedo`), DuckweedWater (`Water_*`). Ground/Mud share one material and Albedo/Grass share another. **Snow is the only unbound layer** (`Horizontal_1_-_512x512` + `T_Neutral_Normal`) — consistent with `SnowStrength = 0`.
+- **Deliberately NOT changed:** `Ground`/`Grass`/`Base` are absent from the extended sums because they are the legacy `LandscapeLayerBlend_5` branch, and `LinearInterpolate_8` blends that against `Divide_6` by extended coverage. Adding them to the extended numerator without their weights in `Add_5` would double-count. The two-branch split is intentional.
+- **Known limitation, not fixed:** because Rock now appears in the extended numerator *and* remains inside `LandscapeLayerBlend_5`, a mixed Ground+Rock surface over-weights Rock (0.25 G + 0.75 R at a 50/50 paint). Before this pass it under-weighted and darkened instead (0.25 G + 0.25 R). The two-branch lerp is only exact when legacy and extended layers don't mix; fixing it properly means removing Rock from `blend_5`, which is a look decision.
+- **Ready but still off:** `bRockTriplanarNormals` — `Rock_NormalMap` now has a real `T_Poitou_Limestone_N` override, so the triplanar normal branch has real data if wanted.
+
+**Still open:** gate 3 (snow to albedo/normal; `SnowStrength = 0`, `bSnowFrostDistanceBand = false`), and every stylistic Nikki switch remains false by owner default. **Gates 1, 2, 4, 6, 7, 8 and G are closed.**
+
+**Evidence level:** source/graph/compile-proven. No valid visual capture, no PIE, no packaged run this pass.
+
+## Demo preset installed (opt-in) + route (a) status — 2026-10-21
+
+- **The demo preset is now installed durably, opt-in.** `Content/Python/init_unreal.py` gained `_register_demo_presets()`, which installs `Tools/Editor/demo_presets.py` at editor startup **only when `Saved/DemoMode.flag` exists** — with no flag there is zero behaviour change for any other lane. The flag is created in this workspace (it is under `Saved/`, which is git-ignored, so it stays local on purpose). Removing the flag restores normal behaviour.
+- **Preset scope is final:** hide the Choral Sheep + hide presentation proxies that park on the player (the bubble-sprint preview sphere spawns at Melusina's exact position in Poitou and engulfs her) + mute audio through the project's own sound mix. **No collision, no teleport** — those broke her on 2026-10-20 and were removed permanently.
+- **Route (a) (17 additive shirt-hem bones) is approved and in progress.** Backup taken first: `Saved/Audit/ShirtBones_20261020/SK_Melusina_Skeleton.BAK_before_hem_bones.uasset` (145,688 B, byte-identical to the live skeleton at that moment). The canonical skeleton is **unchanged on disk** (mtime 10-15, 145,688 B) — no mutation has landed.
+- **Why the first import attempt failed (and it was not the import):** the editor had already crashed at 01:31 local inside another lane's flow — a blocking Interchange reimport prompt (`Would you like to import them? | What Changed? | Don't ask again`) on the Poitou meshes (`SM_Poitou_Acoustic_OrganChimney_Sculpted`, `SM_Poitou_Cymatic_Spire_Sculpted`, `SM_Poitou_LockGate_Sculpted`) with the callstack in `UnrealEditor-EnhancedInput.dll`. The subsequent import attempts only saw a dead MCP port. **Lesson for this lane: never import while a modal is pending, and treat "MCP unresponsive" as a possible modal, not a hang** (per the repo's editor-safety rules).
+- **Next:** relaunch the editor, import `SK_Melusina_V2_Shirt_HemRig_Legal.fbx` **against the canonical `SK_Melusina_Skeleton`** so the 17 hem bones are added to it (the wardrobe requires same-skeleton + LeaderPose), then bind `Cos_Shirt_MelusinaV2` to the new mesh and add the second KawaiiPhysics node on `ABP_Melusina_Current` rooted at `c_shirt_hem_master_x`.
+
+## Route (a) — prepared to one manual step, and why that step is manual — 2026-10-21
+
+- **Route (a) is prepared; one owner action remains.** The legal FBX (481 joints = 464 canonical body bones + 17 hem bones) is staged with its own **482-bone source skeleton** `SK_Melusina_V2_Shirt_HemRig_Legal_Skeleton` (464 body + 17 hem + the UE wrapper root).
+- **Why the step is manual (source-verified tonight):**
+  - UE 5.8 imports FBX through **Interchange**, which **drops bones that are not already in the destination skeleton** (it warns and skips them). Importing the legal FBX directly against `SK_Melusina_Skeleton` therefore produced a mesh on the canonical skeleton with **no hem bones** — i.e. an unweighted hem band. That artefact was **deleted**, not shipped.
+  - There is **no Python API that adds bones to an existing `USkeleton`**: `unreal.Skeleton.copy_bones_from_skeleton(target_mesh, options, debug)` is a **DynamicMesh** operation (it copies bone attributes onto a mesh), not a skeleton merge.
+  - The supported route is the editor's **Skeletal Mesh Editor -> Skeleton Tree -> "Copy Bones From Skeleton..."**, which adds the missing bones to the mesh's skeleton. That is an edit to the frozen canonical skeleton, so it is the owner's call.
+- **Prepared sequence:** `Tools/Editor/stage_shirt_hem_bones.py` (done — source skeleton staged) -> owner copies the bones in the Skeletal Mesh Editor and saves the skeleton -> `Tools/Editor/apply_shirt_hem_bones.py` (re-imports the legal FBX against the canonical skeleton now that the bones exist, verifies the hem bones and the weight set, cleans up the staging assets, and prints the hand-off) -> bind `Cos_Shirt_MelusinaV2` in `DA_MelodiaCosmeticCatalog` -> second KawaiiPhysics node on `ABP_Melusina_Current` rooted at `c_shirt_hem_master_x` -> PIE gate (walk/stop, arm raise, hold pose).
+- **The canonical skeleton is untouched:** 465 bones before and after every attempt, and the file on disk is **byte-identical** to `Saved/Audit/ShirtBones_20261020/SK_Melusina_Skeleton.BAK_before_hem_bones.uasset` (145,688 B, mtime 10-15).
+- **Also done this session:** the demo presentation preset is installed durably and opt-in (`Content/Python/init_unreal.py` -> `Tools/Editor/demo_presets.py`, gated on `Saved/DemoMode.flag`; the log confirms `[DemoPresets] installed (Saved/DemoMode.flag present)` at startup).
+
+## Poitou curation gate + grounding proof tool — 2026-10-21
+
+- **Added §9 "Curation Gate: Curated-Hybrid Acceptance (Poitou)"** to `Docs/Production/MELUSINA_FINAL_ENVIRONMENT_CONVERGENCE_GOAL.md`, for the curated hybrid (hand-sculpted sanctuary pack + hero assets, Houdini Engine for the core level/room shell/layout):
+  - **9.1 Collision ownership follows the authoring side.** The zero-proxy standard is verified on the *sculpted* pack (§3.2 audit), so the *generated* side must meet it too — because that is the surface the pawn stands on. Baseline: 604 components, 442 `QUERY_AND_PHYSICS`, 161 `NO_COLLISION`; most of the 161 are correct by design (cosmetics, grass, ground cover, lake debug cube, bubble preview), but the room shell's **`SM_hero_house` has no collision data at all** (`simple_collision_count = -1`, `CTF_USE_DEFAULT`, component `NO_COLLISION`).
+  - **9.2 The shipping path bakes.** The interactive Houdini Engine cook is authoring-only: live-cooked actors cannot be cooked for a build and their geometry can arrive after the pawn lands. Baseline: **28 HAPI cook events** in one session, with the room shell cooking during PIE. Shippable levels bake to static meshes and gate the spawn.
+  - **9.3 One live generation.** `Poitou_Layout_v6` and `Poitou_Layout_v6_Recovery` are both live, with two landscape generations live alongside them; exactly one of each may be live, the rest parked.
+- **New tool `Tools/Editor/check_pawn_grounding.py`** — the mechanical gate for 9.1/9.2. It runs automatically once per PIE session and writes a receipt to `Saved/Audit/GroundingProof/`. PASS requires all three: she settles, the character movement reports a blocking floor, and that surface's component has collision enabled (and, for a mesh surface, its asset carries collision data). It names the surface she stands on, so "she fell through" becomes a named asset instead of a screenshot. **INCONCLUSIVE** is a real verdict: if the editor game thread is blocked (a modal dialog freezes PIE), the proof says so instead of guessing.
+- **Baseline reference reading (clean session):** she stands on the room shell at `floor_dist = 2.15 cm`, with the landscape surface 108 cm below her.
+- **Editor-state hazard found tonight (cost several PIE sessions):** a recurring modal dialog — *"This asset editor has no docked tabs."* — blocks the editor game thread, freezes PIE and makes the MCP port refuse connections. It is not a hang and not a crash. Close the empty asset-editor window; the repo's editor-safety rules already cover this (`MODAL_OPEN` in the log is a modal, not a hang).
