@@ -6,6 +6,10 @@
 >
 > **Status and evidence authority:** [CURRENT_STATE.md](CURRENT_STATE.md) — this page is a navigation entrypoint, **not** a second status document.
 
+## P0 playable opening — golden walk
+
+**[Poitou P0 Golden Walk: Bedroom → House → Village → Canal](Docs/Plans/POITOU_P0_GOLDEN_WALK_2026-10-21.md)** — short authored experience with M00–M09 beats, route caps, Luna/Sol tasks, per-transition verification and separate First Dream full-stack golden-run proof. Start here for gameplay level design; no new systems.
+
 ## In one sentence
 
 **Poitou is Melusina's Morning situated in the Marais Poitevin, with its original pearl-pink / blue-lavender round-Rococo instrument-house fully preserved.** The landscape is real-world anchored; the house remains singularly Melusina.
