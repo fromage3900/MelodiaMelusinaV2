@@ -1,4 +1,4 @@
-#include "MelodiaRhythmHitAudioComponent.h"
+﻿#include "MelodiaRhythmHitAudioComponent.h"
 
 #include "Kismet/GameplayStatics.h"
 
@@ -60,8 +60,20 @@ void UMelodiaRhythmHitAudioComponent::PlayHit(int32 LaneIndex, EMelodiaSkillGrad
 {
 	// CreateSound2D builds the component without starting it, so the grade
 	// parameters below still land before Play.
-	UAudioComponent* Audio = HitMetaSound
-		? UGameplayStatics::CreateSound2D(this, HitMetaSound, 1.0f, 1.0f, 0.0f, HitConcurrency, false, false)
+	USoundBase* SoundToPlay = HitMetaSound;
+	if (bPreferSonicIdentity)
+	{
+		switch (Grade)
+		{
+		case EMelodiaSkillGrade::Perfect: if (HitPerfect) SoundToPlay = HitPerfect; break;
+		case EMelodiaSkillGrade::Great:   if (HitGreat)   SoundToPlay = HitGreat;   break;
+		case EMelodiaSkillGrade::Good:    if (HitGood)    SoundToPlay = HitGood;    break;
+		case EMelodiaSkillGrade::Miss:    if (HitMiss)    SoundToPlay = HitMiss;    break;
+		default: break;
+		}
+	}
+	UAudioComponent* Audio = SoundToPlay
+		? UGameplayStatics::CreateSound2D(this, SoundToPlay, 1.0f, 1.0f, 0.0f, HitConcurrency, false, false)
 		: nullptr;
 	if (!Audio)
 	{
@@ -118,3 +130,4 @@ void UMelodiaRhythmHitAudioComponent::HandleVoiceFinished(UAudioComponent* Finis
 	ActiveVoices.Remove(Finished);
 	Finished->DestroyComponent();
 }
+

@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
@@ -90,8 +90,18 @@ protected:
 	/** +/- cents of random pitch per hit. Breaks up 4-on-the-bar repetition. */
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Melodia|Rhythm|Audio", meta = (ClampMin = "0.0", ClampMax = "200.0"))
 	float PitchJitterCents = 25.0f;
-
-	/** +/- fraction of base volume, per hit. */
+	// SonicIdentity grade assets (optional override)
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Melodia|Rhythm|Audio|SonicIdentity")
+	TObjectPtr<USoundBase> HitPerfect = nullptr;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Melodia|Rhythm|Audio|SonicIdentity")
+	TObjectPtr<USoundBase> HitGreat = nullptr;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Melodia|Rhythm|Audio|SonicIdentity")
+	TObjectPtr<USoundBase> HitGood = nullptr;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Melodia|Rhythm|Audio|SonicIdentity")
+	TObjectPtr<USoundBase> HitMiss = nullptr;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Melodia|Rhythm|Audio|SonicIdentity")
+	bool bPreferSonicIdentity = true;
+/** +/- fraction of base volume, per hit. */
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Melodia|Rhythm|Audio", meta = (ClampMin = "0.0", ClampMax = "0.5"))
 	float VolumeJitter = 0.12f;
 
@@ -120,3 +130,4 @@ protected:
 	int32 DroppedHitCount = 0;
 	bool bAudioReady = false;
 };
+
