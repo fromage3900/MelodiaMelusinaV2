@@ -1,14 +1,53 @@
 #include "MelodiaJRPGPartyBootstrapSubsystem.h"
 
+#include "Components/InputComponent.h"
 #include "Engine/Engine.h"
 #include "Engine/GameInstance.h"
 #include "Engine/World.h"
+#include "GameFramework/Pawn.h"
 #include "GameFramework/PlayerController.h"
 #include "MelodiaPartySubsystem.h"
 #include "MelodiaOpeningFlowSubsystem.h"
 #include "MelodiaNarrativeSubsystem.h"
+#include "InputCoreTypes.h"
+#include "MelodiousFlightCharacter.h"
+#include "MelodiaSmokeCharacter.h"
+#include "GameFramework/PlayerInput.h"
 #include "UObject/StructOnScope.h"
 #include "UObject/UnrealType.h"
+
+#if !UE_BUILD_SHIPPING
+/** [Melodia DEBUG] Full Sir recruitment through the stock party (the same path the
+ *  authored rescue beats drive) plus the exploration-flight unlock, so a PIE session
+ *  can exercise the switch without having played the rescue beats. Never in shipping. */
+static FAutoConsoleCommandWithWorld GMelodiaDebugRecruitSirFlight(
+	TEXT("Melodia.Party.RecruitSirFlight"),
+	TEXT("Runs the stock-party Sir recruitment and unlocks exploration flight for this session."),
+	FConsoleCommandWithWorldDelegate::CreateLambda([](UWorld* World)
+	{
+		UGameInstance* GameInstance = World ? World->GetGameInstance() : nullptr;
+		UMelodiaJRPGPartyBootstrapSubsystem* Bootstrap = GameInstance ? GameInstance->GetSubsystem<UMelodiaJRPGPartyBootstrapSubsystem>() : nullptr;
+		if (!Bootstrap)
+		{
+			UE_LOG(LogTemp, Warning, TEXT("[Melodia DEBUG] RecruitSirFlight: no game-instance bootstrap here (%s)."),
+				World ? TEXT("world has no game instance") : TEXT("no focused world"));
+			return;
+		}
+		if (Bootstrap->RecruitSirMelodiousThroughStockParty())
+		{
+			UE_LOG(LogTemp, Warning, TEXT("[Melodia DEBUG] RecruitSirFlight: stock party accepted Sir; Ctrl now switches."));
+		}
+		else if (GameInstance->GetSubsystem<UMelodiaPartySubsystem>()
+			&& GameInstance->GetSubsystem<UMelodiaPartySubsystem>()->IsSirMelodiousExplorationUnlocked())
+		{
+			UE_LOG(LogTemp, Warning, TEXT("[Melodia DEBUG] RecruitSirFlight: unlock already open; Ctrl now switches."));
+		}
+		else
+		{
+			UE_LOG(LogTemp, Error, TEXT("[Melodia DEBUG] RecruitSirFlight: the stock party contract refused; see the recruitment log above."));
+		}
+	}));
+#endif
 
 namespace
 {
@@ -468,6 +507,7 @@ void UMelodiaJRPGPartyBootstrapSubsystem::SeedOnNextTick()
 		SeededWorld = World;
 	}
 	TryRecruitSirMelodious();
+	EnsurePartySwitchBinding();
 }
 
 void UMelodiaJRPGPartyBootstrapSubsystem::HandleOpeningPhaseChanged(const EMelodiaOpeningPhase NewPhase, const EMelodiaOpeningPhase PreviousPhase)
@@ -650,4 +690,91 @@ bool UMelodiaJRPGPartyBootstrapSubsystem::TrySeedPresentationUnit()
 	bSeededForCurrentWorld = true;
 	UE_LOG(LogTemp, Log, TEXT("Melodia JRPG party bootstrap replaced the starter unit with Melusina through stock party contracts."));
 	return true;
+}
+
+void UMelodiaJRPGPartyBootstrapSubsystem::EnsurePartySwitchBinding()
+{
+	UGameInstance* GameInstance = GetGameInstance();
+	UWorld* World = GameInstance ? GameInstance->GetWorld() : nullptr;
+	APlayerController* PC = World ? World->GetFirstPlayerController() : nullptr;
+	if (!World || !World->IsGameWorld() || !PC)
+	{
+		return;
+	}
+	if (PartySwitchBoundController.Get() == PC)
+	{
+		return;
+	}
+
+	// Register the action mapping once (idempotent by name + key): duplicates
+	// would fire the action twice per press and double-hop the switch.
+	if (PC->PlayerInput)
+	{
+		bool bMappingExists = false;
+		for (const FInputActionKeyMapping& Mapping : PC->PlayerInput->ActionKeyMappings)
+		{
+			if (Mapping.ActionName == FName("MelodiaPartySwitch") && Mapping.Key == EKeys::LeftControl)
+			{
+				bMappingExists = true;
+				break;
+			}
+		}
+		if (!bMappingExists)
+		{
+			PC->PlayerInput->AddActionMapping(FInputActionKeyMapping(FName("MelodiaPartySwitch"), EKeys::LeftControl));
+		}
+	}
+	else
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Melodia party switch mapping not registered: controller has no PlayerInput."));
+	}
+
+	// Every possess swing names itself in the log. If something later wipes a
+	// binding or yanks possession during the intro, the sequence is visible by
+	// name instead of being reconstructed from silence.
+	PC->OnNewPawn.AddUObject(this, &UMelodiaJRPGPartyBootstrapSubsystem::OnControllerPawnChanged);
+
+	// Bind on the controller's InputComponent, never the pawn's. A pawn
+	// InputComponent's bindings do not survive a possess swing; the
+	// controller's component is pushed for every frame of play and holds.
+	if (UInputComponent* PCInput = PC->InputComponent)
+	{
+		PCInput->BindAction(FName("MelodiaPartySwitch"), IE_Pressed, this, &UMelodiaJRPGPartyBootstrapSubsystem::HandlePartySwitchKey);
+		PartySwitchBoundController = PC;
+		UE_LOG(LogTemp, Log, TEXT("Melodia party switch bound: LeftControl -> SwitchToNext on controller %s (possess-safe)."), *PC->GetName());
+	}
+	else
+	{
+		// No controller InputComponent yet (before first possession). The
+		// possess event above re-runs this function, which binds then.
+		UE_LOG(LogTemp, Log, TEXT("Melodia party switch deferring bind: controller %s has no InputComponent yet."), *PC->GetName());
+	}
+}
+
+void UMelodiaJRPGPartyBootstrapSubsystem::OnControllerPawnChanged(APawn* NewPawn)
+{
+	UE_LOG(LogTemp, Log, TEXT("Melodia possess swing: controller %s now holds %s."),
+		*GetNameSafe(this), NewPawn ? *NewPawn->GetName() : TEXT("nothing"));
+	EnsurePartySwitchBinding();
+}
+
+void UMelodiaJRPGPartyBootstrapSubsystem::HandlePartySwitchKey()
+{
+	UGameInstance* GameInstance = GetGameInstance();
+	UWorld* World = GameInstance ? GameInstance->GetWorld() : nullptr;
+	APlayerController* PC = World ? World->GetFirstPlayerController() : nullptr;
+	UMelodiaPartySubsystem* Party = GameInstance ? GameInstance->GetSubsystem<UMelodiaPartySubsystem>() : nullptr;
+	if (!PC || !Party)
+	{
+		return;
+	}
+	UE_LOG(LogTemp, Log, TEXT("Melodia party switch key received: active_index=%d sir_unlocked=%d."),
+		Party->ActiveIndex, Party->IsSirMelodiousExplorationUnlocked() ? 1 : 0);
+	// While the flight pawn (index 1) is possessed, its own binding owns Ctrl;
+	// skipping here prevents a double SwitchToNext (a silent hop-and-hop-back).
+	if (Party->ActiveIndex != 0)
+	{
+		return;
+	}
+	Party->SwitchToNext(PC);
 }
