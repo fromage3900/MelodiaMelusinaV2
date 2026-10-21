@@ -1,30 +1,50 @@
 @ Start
 
+$ Background {&/Game/Melodia/UI/Textures/Figma/T_Melodia_Figma_Asset_Hero_SakuraDream.T_Melodia_Figma_Asset_Hero_SakuraDream} none 0
+
 - Melusina
-  A melody slime — and it's keeping time. Stay close, and sing when I sing.
+  Hold on—there's a melody slime right in the middle of the courtyard path. And it's pulsing in 4/4 time.
+
+      $ Voice {&/Game/Melodia/Characters/Melusina/Audio/mel_intro_greeting.mel_intro_greeting} 0.9
 
 - Sir Melodious
-  Watch its pulse. Strike on the rising wave, and mind the downbeat.
+  That is the First Resonance knot that sealed the house's opening chamber! Watch its lilac coat: every beat it tries to form a Chladni figure and drops the third bar.
+
+- Melusina
+  So if I tune it on the downbeat three times, the figure locks and we can resolve the phrase?
+
+- Sir Melodious
+  Precisely. Strike on the rising wave, lock the resonance figure, and bring the first measure home!
 
 $ Notify melodia:battle:melodia_slime_tutorial
 
 ? if: {melodia_battle_result} == victory
 
+  - .
+    Pearl nodal curves flash across the slime's crest and dissolve into a warm, ringing C-major chord. Across the lawn, the first brass door of the Morning House unseals and rises over one bar of music.
+
+        $ SFX {&/Game/Melodia/Audio/WaveHarp/SW_WaveHarp_Orchestra_C4.SW_WaveHarp_Orchestra_C4} 0.85
+
   - Melusina
-    The wave broke in our favor. The dream remembers this song.
+    The wave broke in our favor! And look—the first door of the house just opened.
+
+        $ Voice {&/Game/Melodia/Characters/Melusina/Audio/mel_halfsong_02.mel_halfsong_02} 0.9
 
   $ melodia_slime_tutorial_resolved = on
   $ Notify melodia:quest:quest.slime_tutorial.first_tide
   $ Notify melodia:reward:reward.slime_tutorial.tidecall
+  $ Notify melodia:questcomplete:quest.first_dream:flag.first_dream.quest.completed:reward.first_resonance_echo:intent.first_dream.complete:checkpoint.first_dream.complete
+  $ Notify melodia:flag:flag.p0.playthrough.completed:true
 
 ? else:
 
   ? if: {melodia_battle_result} == defeat
 
     - Sir Melodious
-      The tide pulled us under. Breathe, and we shall catch the next wave.
+      The tide pulled us off-tempo. Breathe, listen for the downbeat, and we shall catch the next wave.
 
     $ melodia_slime_tutorial_resolved = on
+    $ Notify melodia:flag:flag.p0.playthrough.attempted:true
 
   ? else:
 
@@ -34,6 +54,7 @@ $ Notify melodia:battle:melodia_slime_tutorial
         We stepped back in good time. The slime keeps its rhythm for our return.
 
       $ melodia_slime_tutorial_resolved = on
+      $ Notify melodia:flag:flag.p0.playthrough.fled:true
 
     ? else:
 
@@ -53,7 +74,7 @@ $ Notify melodia:battle:melodia_slime_tutorial
   $ Notify melodia:flag:flag.slime_tutorial.completed:true
 
   - .
-    The first tide resolves. Melusina wakes with its melody safely remembered.
+    The first tide and the First Dream resolve together. Within the Morning House, the first story chamber stands open.
 
 ? else:
 

@@ -1,26 +1,52 @@
 @ Start
 
-- Melusina
-  The festival banners are down. Someone else already packed their cart.
-  The road is kind like that - it always lets you be just a little too late.
+$ Background {&/Game/Melodia/UI/Textures/Figma/T_Melodia_Figma_Asset_Hero_SakuraDream.T_Melodia_Figma_Asset_Hero_SakuraDream} none 0
 
 - Melusina
-  The perch is empty again. I know a small absence can fill a whole room.
+  The festival banners are already down. Someone else packed the last cart before the dew even dried.
+  The road is kind like that—it always lets you be just a little too late.
+
+      $ Voice {&/Game/Melodia/Characters/Melusina/Audio/mel_road_01.mel_road_01} 0.9
+
+- Melusina
+  And the bedside perch is empty again. It is impressive how a small absence can take up an entire room.
 
       $ Voice {&/Game/Melodia/Characters/Melusina/Audio/mel_perch_01.mel_perch_01} 0.9
 
-- Melusina
-  Sir flew off for snacks again. He does that. He always comes back.
+- .
+  Across the courtyard, the four brass-inlaid doors of the Morning House stand sealed. Every key-plate along the wall hums with an unfinished bar of music—four measures left behind when the choir departed for the Sea Above.
 
-* Follow the quiet chirp. | melodia_met_melodious = on | -> Reunion
-* Wait and listen. | -> Listening
+- Melusina
+  Sir flew off for snacks again. Or to audit the roof tiles. He always comes back when the kettle gives up.
+
+      $ Voice {&/Game/Melodia/Characters/Melusina/Audio/mel_snackrun_01.mel_snackrun_01} 0.9
+
+- .
+  A sharp, bright chirp rings from the window arch, seven semitones above the fountain's murmur.
+
+      $ SFX {&/Game/Audio/Aud_Source/fx_Amb_SoundScape/Birds/amb_ss_palette_bird01_mid_01.amb_ss_palette_bird01_mid_01} 0.85
+
+* Answer the chirp with a fifth on the WaveHarp. | melodia_met_melodious = on | -> Reunion
+* Wait by the fountain and let him finish the phrase. | -> Listening
 
 <@> Reunion
 
 ? if: {melodia_met_melodious} == on
 
   - Melusina
-    The quiet petal answers. I can follow it without pretending the room is full.
+    There. A clean fifth. I can answer the room without pretending it's full.
+
+        $ Voice {&/Game/Melodia/Characters/Melusina/Audio/mel_reunion_01.mel_reunion_01} 0.9
+        $ SFX {&/Game/Melodia/Audio/WaveHarp/SW_WaveHarp_Orchestra_C4.SW_WaveHarp_Orchestra_C4} 0.75
+
+  - Sir Melodious
+    A touch sharp on the attack, little bard, but the courtyard forgives you. I was not foraging—I was inspecting the locks.
+
+  - Melusina
+    The house locked itself.
+
+  - Sir Melodious
+    The house is an instrument, Melusina. When the choir sailed for the high tide without playing the closing cadence, all four chambers sealed on the rest.
 
 ? else:
 
@@ -34,19 +60,39 @@
 <@> Listening
 
 - Melusina
-  I will listen first. The answer can come when the echo has made room for it.
+  I'll let him have the downbeat. If you rush a bird, he lectures you about tempo for three miles.
+
+      $ Voice {&/Game/Melodia/Characters/Melusina/Audio/mel_halfsong_01.mel_halfsong_01} 0.9
+
+- Sir Melodious
+  I heard that! And it was four miles, because you were dragging the third measure.
+
+      $ SFX {&/Game/Audio/Aud_Source/fx_Amb_SoundScape/Birds/amb_ss_palette_bird01_mid_03.amb_ss_palette_bird01_mid_03} 0.85
+
+- Melusina
+  Morning, Sir. Why are the four inner chambers sealed?
+
+- Sir Melodious
+  Because a house built on resonance does not open to iron keys. It opens to the four measures the festival left behind: an Echo, a Seam, a Chorister, and the Tide Above.
 
 -> Departure
 
 <@> Departure
 
 - Melusina
-  I'll keep the seat warm. Arriving late isn't the same as being unwanted.
+  I'll keep the seat warm. Arriving late isn't the same as being unwanted—it just means we get the quiet part of the score to ourselves.
+
+      $ Voice {&/Game/Melodia/Characters/Melusina/Audio/mel_arrival_01.mel_arrival_01} 0.9
+
+- Sir Melodious
+  Then bring your WaveHarp. Something restless has knotted itself around the first measure out in the sanctuary.
 
 - Melusina
   The dream is restless. Stay close, and sing when I sing.
 
       $ Voice {&/Game/Melodia/Characters/Melusina/Audio/mel_battle_entry.mel_battle_entry} 0.9
+
+$ Notify melodia:flag:melodia_smoke_complete:true
 
 $ %melodia_morning_sir.BeginWindowDeparture
 $ End

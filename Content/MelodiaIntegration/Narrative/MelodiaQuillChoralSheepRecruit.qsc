@@ -1,47 +1,94 @@
 @ Start
 
+$ Background {&/Game/Melodia/UI/Textures/Figma/T_Melodia_Figma_Asset_Hero_SakuraDream.T_Melodia_Figma_Asset_Hero_SakuraDream} none 0
+
+- .
+  Down by the Dell Spring, a lone Choral Sheep stands knee-deep in sweet clover. Every few seconds it gives a small, indignant bleat—and the bronze bell at its throat rings a single, lonely Middle C.
+
+      $ SFX {&/Game/Melodia/Companions/ChoralSheep/Audio/sheep_baa_PCC_01.sheep_baa_PCC_01} 0.85
+
 - Melusina
-  Look, Sir Melodious! A small creature is grazing by the resonance spring. Its wool glows with iridescent chromatic sheen.
+  Oh, look at him. The rest of the flock crossed the Piano Walkway hours ago, and he's still here arguing with the water.
 
 - Sir Melodious
-  A Choral Sheep! A motif creature of the first octave. Listen to the small bell around its fleece—it chimes in middle C.
+  He is not arguing, Melusina. He is a motif creature of the first octave—a Root-C chorister. And a single note cannot cross a harmony bridge by itself.
 
-* Sing a gentle call in middle C. | -> CallResponse
-* Approach slowly and offer resonant grass. | -> ApproachSlowly
+- Melusina
+  So they just left him behind because he didn't have a third and a fifth? That's ruthless. Even for sheep.
+
+- Sir Melodious
+  Watch his fleece. Right now it is quiet pearl-and-blush wool. If you startle him or sing out of key, he will tuck his ears and sulk until Tuesday. How do we approach?
+
+* Kneel in the clover and let him set the tempo first. | -> ApproachSlowly
+* Match his bell with a soft Root C on the WaveHarp. | -> CallResponse
 
 <@> ApproachSlowly
 
 - Melusina
-  Softly now... here is sweet dew clover.
+  Easy, little soloist. Nobody's here to critique your intonation. Have some dew-clover and tell me where the rest of your choir went.
+
+- .
+  The Choral Sheep flicks one ear, sniffs Melusina's outstretched sleeve, and nudges her wrist with its nose. Its bronze bell gives a hopeful chime in Middle C.
+
+      $ SFX {&/Game/Melodia/Companions/ChoralSheep/Audio/sheep_baa_PCC_small_01.sheep_baa_PCC_small_01} 0.85
 
 - Sir Melodious
-  It tilts its head, listening for your melodic pitch before it trusts us.
+  Well done. Creature before technicality—he trusts your silence. Now give him back his keynote so his fleece can wake.
 
 -> CallResponse
 
 <@> CallResponse
 
 - Melusina
-  Do-mi-sol... (Melusina sings a warm, clear triad matching the bell cadence).
+  All right. Your note first: Middle C, steady and warm.
+
+      $ SFX {&/Game/Melodia/Companions/ChoralSheep/Audio/sheep_baa_PCC_lead_01.sheep_baa_PCC_lead_01} 0.9
 
 - .
-  The Choral Sheep bleats in harmonized resonance, a pure and joyful C-major chord echoing from its fleece.
-
-$ Notify melodia:stat:intent.choral_sheep.call_response:melodia_harmony:2
-
-- Sir Melodious
-  It has answered your pitch! The bond of resonance is struck. It wants to travel with us!
-
-$ Notify melodia:flag:flag.companion.choral_sheep_recruited:true
+  As the sheep sings Root C, hidden pearlescent embroidery wakes beneath its Nikki wool—standing-wave nodal rings organizing across its fleece like silver thread woven through blush silk.
 
 - Melusina
-  Welcome to our ensemble, little one. We will explore the resonant world together.
+  His wool—it's drawing the standing wave! Look at the Chladni rings forming along his flank!
+
+- Sir Melodious
+  One note makes a motif, Melusina, but a motif is still lonely. Give him the Major Third—sing the E above his C!
+
+* Sing the E-natural third and let Sir Melodious crown the Fifth (G). | -> BuildTriad
+* Hold the E-natural third gently so the sheep leads the resolution. | -> BuildTriad
+
+<@> BuildTriad
+
+- Melusina
+  Do... Mi...
+
+      $ Voice {&/Game/Melodia/Characters/Melusina/Audio/mel_halfsong_01.mel_halfsong_01} 0.9
+      $ SFX {&/Game/Melodia/Companions/ChoralSheep/Audio/sheep_baa_PCE_lead_01.sheep_baa_PCE_lead_01} 0.85
+
+- .
+  The fleece pattern shifts—two frequencies interfering in delicate lilac filigree across the wool. Perched on Melusina's forearm, Sir Melodious lifts his crest and whistles a crystal-clear G.
+
+      $ SFX {&/Game/Melodia/Companions/ChoralSheep/Audio/sheep_baa_PCG_lead_01.sheep_baa_PCG_lead_01} 0.9
+
+- .
+  C — E — G. The triad locks. Diamond wool-motes spiral upward from the sheep's back as the interference resolves into a single, luminous harmonic field—rippling outward from the creature into the dell water and ringing the third brass door of the Morning House!
+
+$ %ReactiveToMusic.TryBeginHarmonize
+$ Notify melodia:stat:intent.choral_sheep.call_response:melodia_harmony:2
+$ Notify melodia:flag:flag.companion.choral_sheep_recruited:true
+
+- Sir Melodious
+  Creature, Motif, Harmony, World! Look how the pond and the house answer when the chord stabilizes!
+
+- Melusina
+  You weren't out of tune at all—you were just waiting for a trio. Come on, little C-Root. Let's go open the high balcony.
+
+      $ Voice {&/Game/Melodia/Characters/Melusina/Audio/mel_reunion_01.mel_reunion_01} 0.9
 
 $ Notify melodia:questcomplete:quest.companion.choral_sheep:flag.companion.choral_sheep_completed:reward.companion.choral_sheep:intent.companion.choral_sheep.complete:checkpoint.companion.choral_sheep.complete
 
 @ Finish
 
 - .
-  The Choral Sheep joins Melusina's party as a faithful motif companion, ready to chime during exploration and rhythm battles.
+  The Choral Sheep trots happily into Melusina's ensemble, its Chladni fleece glowing in C-major resonance as the third chamber door of the Morning House rises open.
 
 $ End
