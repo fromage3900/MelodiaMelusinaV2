@@ -303,9 +303,6 @@ o4 = geo.createNode("output", "output_water"); o4.parm("outputidx").set(4); o4.s
 rc = geo.createNode("resample", "revetment_resample"); rc.setInput(0, CANALS); rc.parm("length").set(0.6)
 rv = wrangle("REVETMENT_coursed_ashlar", open(os.path.join(HERE, "snip", "revet.vex")).read(), 0, [rc, TERRAIN])
 o5 = geo.createNode("output", "output_masonry"); o5.parm("outputidx").set(5); o5.setInput(0, rv)
-print("  DIAG o5.outputidx=", o5.parm("outputidx").rawValue(), "errors=", o5.errors(),
-      "maxval=", o5.parm("outputidx").parmTemplate().maxValue(),
-      "geo.outputNames=", geo.outputNames() if hasattr(geo,"outputNames") else "n/a")
 los = wrangle("abbey_sightline", r"""
 vector e=@P+{0,1.7,0}; vector a=set(830, volumesample(1,"height",{830,0,870})+12, 870); int ok=1;
 for(float k=0.02;k<0.98;k+=0.01){ vector s=lerp(e,a,k); if(volumesample(1,"height",s)>s.y){ ok=0; break; } }
@@ -315,7 +312,6 @@ o2.setInput(0, los)
 o0.setDisplayFlag(True)
 
 geo.layoutChildren()
-print("  geo children:", sorted(n.name() for n in geo.children()))
 
 # --- create HDA ---
 HDADIR = os.path.join(HERE, "hda"); os.makedirs(HDADIR, exist_ok=True)
@@ -405,7 +401,6 @@ if _mn is None:
             if _ch.name()=="output_masonry": _mn=_ch; break
             _stack.append(_ch)
         if _mn: break
-print("  hda children:", sorted(n.name() for n in hda.children()))
 _rv = hda.node("REVETMENT_coursed_ashlar")
 if _rv is not None:
     print("  REVETMENT errors:", _rv.errors())
