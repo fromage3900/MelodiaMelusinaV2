@@ -444,3 +444,251 @@ A curated hybrid keeps working generations; they must be parked, not live.
 
 Baseline reference reading (2026-10-21, clean session): she stands on the room shell at `floor_dist = 2.15 cm`, with the landscape surface 108 cm below her.
 
+---
+
+## 10. In-theme procedural architecture programme (headless) — 2026-10-21
+
+**Intent.** Every element of Poitou is created in theme, procedurally, in the v6 layout HDA, with a
+masonry system that is actually French-Romanesque. Not "more instances of better meshes": real
+generated geometry.
+
+**Authority.** This section is the build contract for the programme. The world identity is
+`Docs/MELODIA_MELUSINA_WORLD_IDENTITY_CANON_2026-10-20.md`; the style contract is
+`Docs/Poitou/poitou_layout/style_contract.md`; the asset graveyard retirement is
+`Docs/Production/KENNEY_GRAVEYARD_RETIREMENT_2026-10-21.md`.
+
+### 10.1 The measured baseline — what the level is today
+
+`Tools/Poitou/poitou_intheme_gate.py` (headless, hython) cooks the live v6 HDA and asserts that
+every generated instance is in-theme, exists, and is the size its scale divisor assumes. It fails
+today, and the failure is the programme's backlog:
+
+```
+output output_landscape     points=9        prims=9
+output output_points        points=12572    prims=9
+output output_route_curve   points=261      prims=1
+output output_skirt_mesh    points=0        prims=0      (expected: horizon_on is off)
+output output_water         points=12247    prims=9781
+point types: poplar 628 · ash_tetard 196 · reed_bank 1554 · meadow_grass_clump 4414 ·
+             reed_marsh 5669 · barque 6 · building 105
+
+FAIL: 9 problems
+  - poplar          628  -> tree-high           RETIRED-PACK
+  - ash_tetard      196  -> tree_fat             RETIRED-PACK
+  - reed_bank      1554  -> grass_leafsLarge     RETIRED-PACK
+  - meadow_grass_clump 4414 -> grass_leafsLarge  RETIRED-PACK
+  - reed_marsh     5669  -> grass_leafsLarge     RETIRED-PACK
+  - barque            6  -> canoe               RETIRED-PACK
+  - no 'poplar_band' points
+  - no 'abbey_maillezais_footprint' points
+```
+
+**12,547 of the layout's 12,572 instance points — 99.8% — point at the retired Kenney pack.**
+The only in-theme instance is `building` × 105 → `SM_hero_house`, which is the *Morning* house
+mesh (not a Poitou house) and carries no collision (§9.1).
+
+**The abbey is not generated at all.** v6's `inst.vex` ends with
+`if(real && (t=="rubble" || t=="abbey_maillezais_footprint")) removepoint(0,@ptnum);` — with real
+meshes on, the abbey footprint cube and every rubble cube are *deleted*. The layout HDA therefore
+produces a heightfield, a water plane, a horizon skirt, a route curve and a field of instance
+points, and **not one piece of architecture**.
+
+**The scale divisors are wrong** (`Tools/Editor/poitou_intheme_assets.py`, Unreal side):
+
+| mesh | divisor in `inst.vex` | measured | verdict |
+|---|---|---|---|
+| `tree-high` (poplar) | 1.02 / 2.97 / 1.02 m | **does not load** | MISSING |
+| `tree_fat` (ash) | 0.76 / 1.15 / 0.65 m | 1356.0 × 1631.0 × 1594.3 cm | **SIZE-ERROR, ~18×** |
+| `grass_leafsLarge` (reeds) | absolute `set(3,12,3)` | 47.6 × 48.7 × 14.3 cm | **SIZE-ERROR** |
+| `canoe` (barque) | 0.30 / 0.18 / 1.15 m | 30.0 × 115.0 × 18.3 cm | AXIS-ORDER (size right, axis mapping ambiguous) |
+| `SM_hero_house` | 5.57 / 3.27 / 4.01 m | 557.2 × 401.5 × 326.7 cm | AXIS-ORDER (size right, axis mapping ambiguous) |
+
+`inst.vex` divides Y by the mesh's Z and Z by the mesh's Y, because the source meshes are
+authored Z-up and Houdini is Y-up. For the house that is a 23% error; for the ash, 18×.
+
+> **This is why the level read as a graveyard: the props were the wrong SIZE, not just the wrong
+> art.** A retarget that swaps the mesh without re-deriving the divisor reproduces the same
+> failure, so the divisor is part of the asset contract from now on.
+
+### 10.2 The two things that block everything else
+
+**(a) The repo's builder is the wrong version.** `Tools/Poitou/build_poitou_hda.py` is the **v5**
+builder; the live **v6** builder is `C:\Users\froma\agent-tools\poitou_houdini\build_poitou_hda.py`
+(29,308 B vs 26,393 B). Building from the repo copy silently regresses: 13 landscape layers
+instead of 20, no IGN calibration, `horizon_on=True` instead of False, and the wrong landscape
+material. `patch_nikki.py` (4,350 B) is the exact v5→v6 source diff. **The repo copy must become
+the v6 source of truth** — the build spec already says to treat the repo copy as the source of
+truth and the external folder as scratch, but the repo copy is currently the *older* one.
+
+**(b) The materials do not exist.** The generator vocabulary names ~30 material instances and
+**six exist**:
+
+- Present: `MI_Poitou_LimeWash` (#E6DFCC / 0.88), `MI_Poitou_Tile` (#C07A57 / 0.80),
+  `MI_Poitou_Slate` (#4E555C / 0.55), `MI_Poitou_Oak` (#A58A66 / 0.80), `MI_Poitou_Tar`
+  (#26221E / 0.65), `MI_Poitou_RuinStone` (#9A9384 / 0.85).
+- **Missing and needed first:** `M_Poitou_Stone_Plinth` — the **third slot on every Poitou stone
+  mesh** in the sculpt manifest, and it does not exist in the project. The `Foundations` receipt
+  admits it: *"RuinStone is reused pending limestone material review."*
+- Missing and needed by the generators: `MI_Poitou_Quoin_Limestone`, `MI_Poitou_Church_Ashlar`,
+  `MI_Poitou_Wall_LimeRender` (+`_Coastal`), `MI_Poitou_Wall_BarnRubble`, `MI_Poitou_Church_Carved`,
+  `MI_Poitou_Church_SpireSlate`, `MI_Poitou_Church_Louvres`, `MI_Poitou_Ruin_Limestone`,
+  `MI_Poitou_Ruin_BrokenEdge`, `MI_Poitou_Ruin_GothicTracery`, `MI_Poitou_Wall_Quereux`,
+  `MI_Poitou_Plinth_DampStone`, `MI_Poitou_Trim_Wood`, `MI_Poitou_Cladding_Poplar`,
+  `MI_Poitou_Roof_Slate_Logis`, `MI_Poitou_Roof_TigeDeBotte`, `MI_Poitou_Shutter_*` (4),
+  `MI_Poitou_Walk_OakDeck`, `MI_Poitou_Walk_TarredKey`, `MI_Poitou_Walk_Rail`, `MI_Poitou_Walk_Pile`,
+  `MI_Poitou_Bridge_StoneBief`, `MI_Poitou_Duckweed`.
+
+**No new master** (the 2026-10-20 v2 decision): every one is an MI of
+`/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal`, using the 8-layer master spec
+(L0–L7 + toon) and the vertex-paint convention **R = lime-wash, G = extra damp, B = moss,
+A = reserved (ivy on ruin / peel override)**.
+
+### 10.3 The research the generators build on
+
+**Maillezais — the canon anchor, and the real building.**
+- 7-bay nave; everything except the 7th bay is 11th-century Romanesque.
+- **Westwork (massif d'entrée) with narthex, c. 1080**, two towers.
+- **Galleries in the side aisles of the first four bays**, carried on vaults and supported
+  **yoke-by-yoke by belt arches** — the generator needs a *bel/force* arch, not a plain wall.
+- **Five massive buttresses on the north wall, added in the 13th century, "at their bases,
+  slope-like bevels were attached to the outside to enlarge the contact area"** — that is the
+  foundation typology: a **splayed buttress base**, not a flat plinth.
+- Gothic pointed-arch windows added in bays 5–7, c. 1300 — so a *semicircular-arches-only* rule
+  is right for the Romanesque core and the Gothic phase is a later overlay.
+- Ruined, and **used as a stone quarry** after the Revolution.
+- **The abbey was an island until the monks dug the canals in the 13th century.** The canal and
+  the abbey are **one project**, not two — the layout must read that way.
+- The outdoor area west of the abbey presents medieval construction as "adventure archaeology":
+  a giant mason's head, hands and feet scattered as workshops.
+
+**Tuffeau.** A local limestone of the Loire Valley: *"chalky or sandy, fine-grained limestone, white
+to yellowish-cream"*. The repo's `M_Tufa_Stone_Blocks` and `M_Chauvigny_Stone` (Saint-Savin) are the
+right names.
+
+**The masonry system — `appareil`.** This is the "proper brick generation", and it is a real
+technical vocabulary, not a texture:
+- **Grand appareil** — dressed ashlar in horizontal courses, **dry joints** ("joints vifs"), no
+  mortar. The upper tier and the openings.
+- **Appareil à moellons quadrangulaires** — squared rubble in horizontal courses with
+  *"une volonté évidente de faire alterner les joints"*: stone laid in a brick bond.
+- **Opus mixtum à bandes** — alternating courses of rubble and courses of brick.
+- **Chaînage d'angle / arases** — *"l'emploi de briques disposées en chaînages (ou arases) de deux
+  ou trois rangées, à intervalles réguliers dans une maçonnerie"* answers *"favoriser la dilatation de
+  la construction, assurer la régularité de la construction et son homogénéité, les rangées de
+  briques occupant toute l'épaisseur du mur"*. **This is the single best rule for the generator:
+  a brick band every 2–3 courses, through the full wall thickness.**
+- **Appareil en épis** — herringbone, for revetments and insets.
+- **Bonds** — English / Flemish / American; **"dog's tooth"** (alternating headers and stretchers
+  forming a zig-zag) for door and window jambs.
+- **Refends** — the deep vertical grooves of a rusticated base course, already named in the world
+  identity canon.
+- **Soubassement** (footing), **arase** (levelling course), **chaînage d'angle** (corner bonding).
+- **Rendered rubble**: *"moellons équarris sur une seule face en parement et non assisés"*, with
+  the opening frame standing **2–3 cm proud** of the render. Lime mortars only — *"Proscrire
+  l'utilisation du ciment, et utiliser un mortier de chaux (chaux aérienne, ou chaux hydraulique
+  naturelle NHL)"*.
+- **Faux appareil** — painted false joints. Provins: *"faux appareil jaune à joints rouges et
+  blancs"*; Maulnes: *"faux-joints gravés très fins imitant un appareil régulier de pierre de
+  taille"*. This is the cheap, high-yield path: a Poitou facade can carry a *painted* ashlar
+  pattern instead of modelled coursing.
+
+**The canal.** Canal du Midi: 360 km, 328 works, 1667–1694, Riquet. The section is the generator
+spec: *"780 m long at the top and 140 m at the base, made up of 153,000 m³ of mixed stone and earth
+between **two masonry retaining walls and a central impermeable stone barrier**."* The works that
+line it: *"écluses, ponts, épanchoirs mais également moulins, lavoirs, maisons d'éclusiers, ports et
+auberges."* The **maison éclusière** typology was fixed c. 1750 with *"variations locales très
+limitées"*; at the end of the 17th century they were single-storey, **11–12 m long and 7–8 m deep**.
+UNESCO: the canal is remarkable *"for both great aesthetic concern in terms of architecture and in
+terms of man-made landscapes"* — **the canal's engineering and its buildings are one work.**
+
+### 10.4 The programme, in order
+
+**Phase 0 — Recover and reconcile (blocks everything).**
+1. Reconcile the v6 builder and v6 `snip/*.vex` into the repo, using `patch_nikki.py` as the diff, and
+   make the repo copy the single source of truth. After this, `Tools/Poitou/build_poitou_hda.py`
+   builds v6 and the external folder is scratch.
+2. Recover the **missing builder scripts** for the 2026-10-21 HDAs. Their `.hdalc` binaries and
+   `receipt.json` survive under `Saved/Audit/PoitouConvergence_20261020/`; the builders do not.
+   Only `extend_roomshell_full_town.py` (43,918 B) survives.
+3. One build path, one hash, one receipt.
+
+**Phase 1 — The material gap (blocks the masonry).**
+1. Author `M_Poitou_Stone_Plinth` — it is the third slot on every Poitou stone mesh.
+2. Author the masonry MIs listed in §10.2, as MIs of `M_Master_Toon_Universal`, no new master.
+3. Port the technique of `Tools/Houdini/surreal_brick_aaa.py` (SDF rounded-box bricks, per-brick
+   inset/shift/colour variation, mortar gaps, bevel + crest highlight) to a Poitou trim set at the
+   2.4 m bay tile scale, targeting `M_Tufa_Stone_Blocks` + `M_Limestone_Rubble_Core` +
+   `M_Mortar_Joints` — the three that already exist — so the wall is legible before the new MIs land.
+
+**Phase 2 — The masonry system.**
+Base: `Tools/Houdini/cathedral/build_poitou_abbey_hda.py` already implements a working version of
+the bay/buttress/decay grammar (2.4 m bays, 0.6 m tufa, stepped buttresses, `preview_mode`) and is
+**not wired into the v6 layout**. Extend it with the `appareil` rules:
+
+| Element | Rule |
+|---|---|
+| module | 0.6 m tufa module, 0.6 m course height, 0.45 m ashlar facing leaves, 0.9 m rubble core, **1.8 m double-leaf wall** |
+| bay | 2.4 m; **wall run 14.4 m = 6 bays exactly** |
+| courses | grand appareil (dry-jointed ashlar) in the upper tier and around openings; appareil à moellons quadrangulaires below; **opus mixtum à bandes with a brick band every 2–3 courses through the full thickness** |
+| openings | **semicircular arches only** in the Romanesque core; the Gothic phase is a later overlay |
+| base | refends rustication at the base tier; **splayed buttress base** (the 13th-c. Maillezais bevel) |
+| render | rendered rubble with the opening frame 2–3 cm proud; lime mortars, never cement |
+| cheap path | faux appareil — painted false joints (Provins, Maulnes) |
+
+The generator's module envelope must match `SM_Maillezais_CrumbledWall` (12.02 × 2.26 × 10.505 m
+blockout / 13.729 × 2.32 × 9.485 m converged): a ~12–14 m long, 2.3 m thick, ~10 m tall
+double-leaf wall module. **14.4 m = 6 × 2.4 m exactly** resolves the fractional-bay problem the
+build spec flags as an open owner decision, and the 105 m × 32 m canon footprint should snap to a
+whole number of 14.4 m runs.
+
+**Phase 3 — The element generators.** Each becomes a new output node in the v6 HDA, authored
+headlessly. Foundations, lane ribbons, crossing bridges and roofs **already exist as HDAs** — the
+gap is not generating them but upgrading flat primitives into in-theme masonry.
+
+| Element | Base | In-theme target | Today |
+|---|---|---|---|
+| Foundations / soubassement | `Poitou_GroundedFoundations` (104 lots, 624 plinth polys, max relief 1.496 m) | `M_Poitou_Stone_Plinth` + `M_Tufa_Stone_Blocks` | flat, `RuinStone` reused, not imported |
+| Wall runs / ashlar | new, from the abbey HDA grammar | `M_Tufa_Stone_Blocks` + `M_Limestone_Rubble_Core` + `M_Mortar_Joints` | absent |
+| Railings / balustrade | `deploy/surreal_architecture_gen.py::build_railing` (line 3696) | `M_Wrought_Iron` + `M_Wrought_Iron_Hinges` (**both exist**) | absent |
+| Canal stonework | extend `Poitou_LocalBanks`; two retaining walls + a central impermeable barrier | `MI_Poitou_Bridge_StoneBief` + tufa | absent |
+| Paved pathways | `Poitou_ConnectingLanes` (104 lots, 71 connected, 1753 m, 2.4 m, 907 polys) | `MI_Poitou_Walk_OakDeck` / `_TarredKey` / `_Rail` / `_Pile` | flat ribbons, no kerbs, no collision, intersections unverified |
+| Crossing bridges | `Poitou_LaneCrossings` (**`crossings: []` — none met the criteria**) | `MI_Poitou_Bridge_StoneBief` | none |
+| Roofs | `Poitou_SolidRoofs` (104, 10,192 polys, 0 non-manifold) + `Poitou_StudioRoofs` (114 curved) | `MI_Poitou_Roof_Slate_Logis`, `_TigeDeBotte` | not live-imported |
+| Lock gate / abbey | `SM_Poitou_LockGate_Pair`, `SM_Maillezais_*` | `M_Wrought_Iron`, `M_Tarred_Oak` | abbey not generated at all |
+| Poplar / ash rows | `inst.vex` repoint | `SM_MossyTree_01`, `SM_AshTetard_*` | 628 + 196 instances on the retired pack |
+| Barque | `inst.vex` repoint | `SM_Marais_Barque_4m6_Sculpted` (4.50 m, the 4m6 slot) | 6 on the retired pack |
+| Door / fence / reeds | — | — | **no in-theme equivalent exists — must be authored** |
+
+**Phase 4 — The gates, all headless.**
+1. `Tools/Poitou/poitou_intheme_gate.py` (hython): no retired-pack instance, no `/Engine/BasicShapes`
+   blockout, every named instance in-theme, every output cooks, the required vocabulary complete,
+   **and the scale divisors match the measured meshes**. Writes
+   `Saved/Audit/PoitouConvergence_20261021/intheme_gate.json`; exits non-zero on any failure.
+2. `Tools/Editor/poitou_intheme_assets.py` (Unreal commandlet): measures every instanced mesh and
+   every replacement candidate, classifies each as MISSING / SIZE-ERROR / AXIS-ORDER, and writes
+   `inst_scale_cache.json` for the gate to compare.
+3. `Tools/Poitou/run_intheme_gate.ps1`: the **wedge-proof** runner. A bare `hython --version` in a
+   shared console hung >60 s and wedged the shell on 2026-08-28, so every hython call goes through
+   `Start-Process` + a hard timeout + a forced kill — the pattern already used by
+   `Tools/Houdini/sea_above_reef/probe_hython_license.ps1`.
+4. The per-lot audit shape is already proven by `ScaleAudit/hda_scale_foundation_audit.json`:
+   floor centre, shell dimensions, roof footprint error, per-corner ground sample, foundation
+   exposure, terrain intrusion.
+
+**Phase 5 — Acceptance.** The programme is done when the gate passes on the v6 source, the
+foundations/lanes/crossings/roofs receipts report real masonry rather than flat ribbons, and one
+continuous walkthrough shows the abbey, the canal stonework and the paths in theme at 1:1.
+
+### 10.5 Open owner decisions
+
+1. **The bay.** 14.4 m = 6 × 2.4 m exactly. Does the 105 m canon footprint snap to a whole number
+   of 14.4 m runs, and does the 32 m width snap to 2.4 m bays? (This is the same fractional-bay
+   question the build spec already carries.)
+2. **The poplar.** `SM_MossyTree_01` is the Megascan the owner already used for the far bands, so
+   near and far would read as one species — but it is a Megascan, not a Poitou poplar.
+3. **The door, the fence and the reeds** have no in-theme equivalent. Author, or accept a
+   substitute.
+4. **Faux appareil** — is painted false-joint coursing acceptable in place of modelled masonry
+   where the camera never gets close?
+
+
