@@ -853,6 +853,44 @@ Placed and verified in the level, then saved (`EditorLoadingAndSavingUtils.save_
 
 **A headless save of the house map is silently overwritten by the artist's next save** if they have the level open. My first bind placed all six actors headlessly and verified them on disk; the owner's editor then saved its older in-memory copy and they were gone. The bind therefore now runs **inside the editor that owns the level** and never reloads it — a reload there would discard the artist's unsaved work. Same rule as the dressing script: **the editor that has the level open is the authority on that file.**
 
+## The house dressing is now hand-editable and the automation stops fighting you — 2026-10-21
+
+**The dressing is ordinary level actors, so you can move, rotate, scale, re-mesh or delete any of them in the editor and the state is saved with the map.** The problem was on the automation side: my placement helper *moved actors back to the manifest position* whenever they drifted, so every manual tweak you made would have been reverted by the next run. That is fixed.
+
+**The rule now: the automation creates, you decide.**
+
+- `melusina_house_p0_dressing.py` and `melusina_house_p0_bind.py` are **create-only**. An actor that already exists is **left exactly as you left it** — the bind records it as `left_as_edited`. Nothing is ever moved or deleted by a routine run.
+- Re-applying the written manifest to the level is now an **explicit** command, never automatic: `MAGICIANS_RESYNC=1` (bind) or `MAGICIANS_OPS=resync` (toolkit). It is deliberately destructive to manual position edits — that is the point of making it opt-in.
+- The **manifest is the creation record, not the level of truth**. The map is the level of truth; the manifest says where things were *put*, and `specs/p0/melusina_house_p0_dressing.v1.json` is versioned so the original intent is never lost.
+
+### Finding and bulk-editing the dressing
+
+All **100 dressing and P0 actors now carry tags** (verified in the live editor, saved to the map):
+
+| Tag | Meaning |
+|---|---|
+| `MagDressing` | the 94 Magician's Library / pack props |
+| `MagP0` | the 6 P0 system actors |
+| `Room_bedroom` / `Room_landing` / `Room_salon` | which room the actor is in (position-derived, so it survives a manual move) |
+| `Prop_<name>` | which prop it is (`Prop_SM_Desk`, `Prop_BP_Crystal`, `Prop_Explore_Desk`, …) |
+
+So in the **World Outliner** you can search a tag, select a room's worth of props at once, and move/scale/re-mesh the whole set in one operation. The room tag is derived from the actor's **position** against the spec's room footprints, so it stays right when you move a prop.
+
+### The toolkit
+
+`Content/Python/magicians_dressing_ops.py` — run in the editor with the level open:
+
+| Command | What it does |
+|---|---|
+| `MAGICIANS_OPS=list` | the full inventory: label, class, room, prop, location, mesh, tags → `Saved/Audit/magicians_dressing_ops.json` |
+| `MAGICIANS_OPS=tag` | (re)apply the tags |
+| `MAGICIANS_OPS=select` `[room]` | select the dressing (of one room) so you can move it as a group |
+| `MAGICIANS_OPS=remove` `[room]` | delete a room's dressing (destructive) |
+| `MAGICIANS_OPS=resync` `[room]` | re-apply the manifest's positions (destructive to manual edits) |
+| `MAGICIANS_OPS=stats` | one-line summary |
+
+**Two limits worth knowing.** The tags and the manifest are the *only* record of intent — the manifest is committed, so it survives, but a prop you delete by hand stays deleted unless you re-run the create pass. And the dressing is **not** yet a Blueprint class: you multi-select actors and set the mesh once (UE applies it to all selected), but there is no single parent class to edit. If you would rather have one — `BP_MagiciansProp` with the mesh, room and role as editable properties — that is a small follow-up and I would do it as a **migration that preserves the current transforms and labels**, so nothing you have moved would move.
+
 ## The P0 house is now bound to the EXISTING P0 systems — six real actors, no new mechanic — 2026-10-21
 
 **The pack's Blueprints are presentation. The P0's authority is Melodia's own.** Six real project actors now sit in `L_MelusinaHouse_P0` at the P0's named focal points, each wired to the subsystem the P0 score already names. No new quest, flag, intent, reward or timing engine was created.

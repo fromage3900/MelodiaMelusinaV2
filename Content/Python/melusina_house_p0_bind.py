@@ -38,6 +38,7 @@ the level open is overwritten by their next save).
 from __future__ import annotations
 
 import json
+import os
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -85,19 +86,28 @@ def _actors_by_label():
     return out
 
 
+RESYNC = os.environ.get("MAGICIANS_RESYNC") == "1"
+
+
 def place(cls, label, loc, rot, kind):
-    """Spawn or correct an actor at an exact location. Returns a record or None."""
+    """Spawn an actor, or LEAVE AN EXISTING ONE ALONE.
+
+    The dressing is hand-editable: a manual move must survive a re-run, so an
+    existing actor is never moved unless MAGICIANS_RESYNC=1 is set explicitly.
+    """
     have = _actors_by_label()
     actor = have.get(label)
     if actor is not None:
         cur = actor.get_actor_location()
-        if (abs(cur.x - loc[0]) > 1 or abs(cur.y - loc[1]) > 1
-                or abs(cur.z - loc[2]) > 1):
+        drifted = (abs(cur.x - loc[0]) > 1 or abs(cur.y - loc[1]) > 1
+                   or abs(cur.z - loc[2]) > 1)
+        if RESYNC and drifted:
             actor.set_actor_location(unreal.Vector(loc[0], loc[1], loc[2]), False, True)
             actor.set_actor_rotation(unreal.Rotator(rot[0], rot[1], rot[2]), False)
-            return {"label": label, "class": kind, "action": "moved",
+            return {"label": label, "class": kind, "action": "resynced",
                     "from": [round(cur.x), round(cur.y), round(cur.z)], "to": list(loc)}
-        return {"label": label, "class": kind, "action": "already_in_place", "to": list(loc)}
+        return {"label": label, "class": kind, "action": "left_as_edited",
+                "to": [round(cur.x), round(cur.y), round(cur.z)]}
     actor = unreal.EditorLevelLibrary.spawn_actor_from_class(
         cls, unreal.Vector(loc[0], loc[1], loc[2]), unreal.Rotator(rot[0], rot[1], rot[2]))
     if actor is None:
