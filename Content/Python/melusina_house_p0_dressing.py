@@ -72,10 +72,15 @@ D = []
 BP_ROWS = []
 
 
-def add_bp(name, path, x, y, z, rot, role, cite, room=None):
-    """A Blueprint actor placement (the functional interactables)."""
+def add_bp(name, path, x, y, z, rot, role, cite, room=None, label=None):
+    """A Blueprint actor placement (the functional interactables).
+
+    The default label is the one the level already uses ("MagBP_<name>"), so an
+    apply recognises the existing actor instead of spawning a duplicate.
+    """
     BP_ROWS.append({"mesh_name": name, "tree": "bp", "mesh": path, "x": x, "y": y,
-                    "z": z, "rot_z": rot, "role": role, "cite": cite, "room": room})
+                    "z": z, "rot_z": rot, "role": role, "cite": cite, "room": room,
+                    "label": label or ("MagBP_" + name)})
 
 
 def add(mesh, x, y, rot, surface, role, cite, tree="canon", folder=None):
@@ -266,6 +271,18 @@ add_bp("BP_Lantern", "/Game/MagicianLabatory/BP/Lighting/BP/BP_Lantern", -150, -
 add_bp("BP_WallLantern", "/Game/MagicianLabatory/BP/Lighting/BP/BP_WallLantern", 80, -1200, 290, 0,
     "functional wall lantern on the salon west wall",
     "P0 M04 the house hums; REF_01 board: lamps", room="salon")
+
+# --- the candle flames that sit inside the two functional lanterns -----------
+# Recorded with their REAL labels (UE auto-numbered them) so an apply skips
+# them instead of spawning a third flame.
+add_bp("BP_CandleFlame", "/Game/MagicianLabatory/BP/Lighting/BP/BP_CandleFlame",
+    -150, -880, 26, 0,
+    "candle flame inside the passage lantern",
+    "P0 M03 threshold / M04 the house hums", room="landing", label="BP_CandleFlame0")
+add_bp("BP_CandleFlame", "/Game/MagicianLabatory/BP/Lighting/BP/BP_CandleFlame",
+    80, -1200, 314, 0,
+    "candle flame inside the salon wall lantern",
+    "P0 M04 the house hums; REF_01 board: lamps", room="salon", label="BP_CandleFlame2")
 
 # ---------------------------------------------------------------- ECV LAYER
 # Enchanted Interiors (Kitbash3D, UE4.26+) converted onto M_Master_Toon_Universal
@@ -484,7 +501,20 @@ def main() -> int:
         r["surface_z"] = r.get("z", 0)
         r["actor_z"] = r.get("z", 0)
         r["size"] = None
+        r["label"] = r.get("label") or ("MagBP_" + r["mesh_name"])
         rows.append(r)
+
+    # FINAL LABELS, computed once and stored, so the contract and the apply agree.
+    # A second prop of the same mesh in the same room gets an ordinal - without
+    # it the two would share a label and the second could never be placed.
+    label_counts = {}
+    for r in rows:
+        if r.get("label"):
+            continue
+        base_label = "Mag_%s_%s" % (r["room"], r["mesh_name"])
+        n = label_counts.get(base_label, 0) + 1
+        label_counts[base_label] = n
+        r["label"] = base_label if n == 1 else "%s_%d" % (base_label, n)
 
     spec = {
         "contract_id": "melodia.melusina_house_p0.dressing.v1",
@@ -597,10 +627,13 @@ def main() -> int:
             continue
         loc = unreal.Vector(r["x"], r["y"], r["actor_z"])
         rot = unreal.Rotator(0, 0, r["rot_z"])
-        base_label = "Mag_%s_%s" % (r["room"], r["mesh_name"])
-        n = label_counts.get(base_label, 0) + 1
-        label_counts[base_label] = n
-        label = base_label if n == 1 else "%s_%d" % (base_label, n)
+        if r.get("label"):
+            label = r["label"]
+        else:
+            base_label = "Mag_%s_%s" % (r["room"], r["mesh_name"])
+            n = label_counts.get(base_label, 0) + 1
+            label_counts[base_label] = n
+            label = base_label if n == 1 else "%s_%d" % (base_label, n)
         actor = existing.get(label)
         if actor is not None:
             # A prop that is already there is the owner's: do not touch it unless

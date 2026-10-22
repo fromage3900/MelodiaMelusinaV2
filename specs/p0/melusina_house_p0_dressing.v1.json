@@ -2,7 +2,7 @@
   "contract_id": "melodia.melusina_house_p0.dressing.v1",
   "kind": "level_dressing_contract",
   "schema_version": "1.0",
-  "generated": "2026-10-22T01:33:09.311315+00:00",
+  "generated": "2026-10-22T01:44:25.680050+00:00",
   "package": {
     "package_id": "package.melusina_house_p0.dressing",
     "display_name": "Melusina P0 house dressing (Magician's Library)",
@@ -111,15 +111,15 @@
   },
   "placement_rule": "surface_z is the height of the surface the prop's BASE rests on (0 = room floor, 82 = desk top, 186 = shelf top, 107 = pot table top, 95 = candle top). The apply step measures each mesh's bounds and lifts the actor by -(centre.z - height/2) so the base actually sits on that surface.",
   "counts": {
-    "placements": 95,
+    "placements": 97,
     "by_room": {
       "bedroom": 37,
-      "landing": 10,
-      "salon": 48
+      "landing": 11,
+      "salon": 49
     },
     "by_layer": {
       "base": 68,
-      "functional_blueprints": 8,
+      "functional_blueprints": 10,
       "enchanted_interiors": 19
     }
   },
@@ -175,7 +175,8 @@
         82
       ],
       "room": "bedroom",
-      "actor_z": 41.0
+      "actor_z": 41.0,
+      "label": "Mag_bedroom_SM_Desk"
     },
     {
       "mesh_name": "SM_Desk_Drawer",
@@ -194,7 +195,8 @@
         22
       ],
       "room": "bedroom",
-      "actor_z": 19.2
+      "actor_z": 19.2,
+      "label": "Mag_bedroom_SM_Desk_Drawer"
     },
     {
       "mesh_name": "SM_Shelf_Prop",
@@ -213,7 +215,8 @@
         51
       ],
       "room": "bedroom",
-      "actor_z": 107.5
+      "actor_z": 107.5,
+      "label": "Mag_bedroom_SM_Shelf_Prop"
     },
     {
       "mesh_name": "SM_Globe",
@@ -232,7 +235,8 @@
         20
       ],
       "room": "bedroom",
-      "actor_z": 81.9
+      "actor_z": 81.9,
+      "label": "Mag_bedroom_SM_Globe"
     },
     {
       "mesh_name": "SM_Microscope",
@@ -251,7 +255,8 @@
         36
       ],
       "room": "bedroom",
-      "actor_z": 82.2
+      "actor_z": 82.2,
+      "label": "Mag_bedroom_SM_Microscope"
     },
     {
       "mesh_name": "SM_Candle1_L",
@@ -270,7 +275,8 @@
         13
       ],
       "room": "bedroom",
-      "actor_z": 71.1
+      "actor_z": 71.1,
+      "label": "Mag_bedroom_SM_Candle1_L"
     },
     {
       "mesh_name": "SM_Wick",
@@ -289,7 +295,8 @@
         2
       ],
       "room": "bedroom",
-      "actor_z": 73.4
+      "actor_z": 73.4,
+      "label": "Mag_bedroom_SM_Wick"
     },
     {
       "mesh_name": "SM_GlassBottle4",
@@ -308,7 +315,8 @@
         23
       ],
       "room": "bedroom",
-      "actor_z": 93.5
+      "actor_z": 93.5,
+      "label": "Mag_bedroom_SM_GlassBottle4"
     },
     {
       "mesh_name": "SM_GlassBottle5",
@@ -327,7 +335,8 @@
         25
       ],
       "room": "bedroom",
-      "actor_z": 94.5
+      "actor_z": 94.5,
+      "label": "Mag_bedroom_SM_GlassBottle5"
     },
     {
       "mesh_name": "SM_GlassBottle6",
@@ -346,7 +355,8 @@
         21
       ],
       "room": "bedroom",
-      "actor_z": 92.5
+      "actor_z": 92.5,
+      "label": "Mag_bedroom_SM_GlassBottle6"
     },
     {
       "mesh_name": "SM_Bookshelf",
@@ -365,7 +375,8 @@
         250
       ],
       "room": "bedroom",
-      "actor_z": 125.0
+      "actor_z": 125.0,
+      "label": "Mag_bedroom_SM_Bookshelf"
     },
     {
       "mesh_name": "SM_Shelf",
@@ -384,7 +395,8 @@
         186
       ],
       "room": "bedroom",
-      "actor_z": 93.0
+      "actor_z": 93.0,
+      "label": "Mag_bedroom_SM_Shelf"
     },
     {
       "mesh_name": "SM_Shelf_2",
@@ -403,7 +415,8 @@
         186
       ],
       "room": "bedroom",
-      "actor_z": 93.0
+      "actor_z": 93.0,
+      "label": "Mag_bedroom_SM_Shelf_2"
     },
     {
       "mesh_name": "SM_GlassBottle2",
@@ -422,7 +435,8 @@
         15
       ],
       "room": "bedroom",
-      "actor_z": 193.5
+      "actor_z": 193.5,
+      "label": "Mag_bedroom_SM_GlassBottle2"
     },
     {
       "mesh_name": "SM_GlassBottle3",
@@ -441,7 +455,8 @@
         17
       ],
       "room": "bedroom",
-      "actor_z": 194.5
+      "actor_z": 194.5,
+      "label": "Mag_bedroom_SM_GlassBottle3"
     },
     {
       "mesh_name": "SM_Box",
@@ -460,7 +475,8 @@
         10
       ],
       "room": "bedroom",
-      "actor_z": 255.0
+      "actor_z": 255.0,
+      "label": "Mag_bedroom_SM_Box"
     },
     {
       "mesh_name": "SM_Carpet",
@@ -479,7 +495,8 @@
         4
       ],
       "room": "bedroom",
-      "actor_z": 4.2
+      "actor_z": 4.2,
+      "label": "Mag_bedroom_SM_Carpet"
     },
     {
       "mesh_name": "SM_Desk3",
@@ -498,7 +515,8 @@
         77
       ],
       "room": "bedroom",
-      "actor_z": 38.5
+      "actor_z": 38.5,
+      "label": "Mag_bedroom_SM_Desk3"
     },
     {
       "mesh_name": "SM_Pot_Table",
@@ -517,7 +535,8 @@
         107
       ],
       "room": "landing",
-      "actor_z": 53.5
+      "actor_z": 53.5,
+      "label": "Mag_landing_SM_Pot_Table"
     },
     {
       "mesh_name": "SM_Pot",
@@ -536,7 +555,8 @@
         57
       ],
       "room": "landing",
-      "actor_z": 135.4
+      "actor_z": 135.4,
+      "label": "Mag_landing_SM_Pot"
     },
     {
       "mesh_name": "SM_Kit_Ornament_A",
@@ -555,7 +575,8 @@
         177
       ],
       "room": "bedroom",
-      "actor_z": 88.5
+      "actor_z": 88.5,
+      "label": "Mag_bedroom_SM_Kit_Ornament_A"
     },
     {
       "mesh_name": "SM_Kit_Ornament_B",
@@ -574,7 +595,8 @@
         275
       ],
       "room": "bedroom",
-      "actor_z": 188.4
+      "actor_z": 188.4,
+      "label": "Mag_bedroom_SM_Kit_Ornament_B"
     },
     {
       "mesh_name": "SM_Kit_Ornament_C",
@@ -593,7 +615,8 @@
         188
       ],
       "room": "bedroom",
-      "actor_z": 88.7
+      "actor_z": 88.7,
+      "label": "Mag_bedroom_SM_Kit_Ornament_C"
     },
     {
       "mesh_name": "SM_Deco4",
@@ -612,7 +635,8 @@
         248
       ],
       "room": "bedroom",
-      "actor_z": 188.8
+      "actor_z": 188.8,
+      "label": "Mag_bedroom_SM_Deco4"
     },
     {
       "mesh_name": "SM_Deco5",
@@ -631,7 +655,8 @@
         236
       ],
       "room": "bedroom",
-      "actor_z": 188.4
+      "actor_z": 188.4,
+      "label": "Mag_bedroom_SM_Deco5"
     },
     {
       "mesh_name": "SM_Flag",
@@ -650,7 +675,8 @@
         207
       ],
       "room": "bedroom",
-      "actor_z": 20.9
+      "actor_z": 20.9,
+      "label": "Mag_bedroom_SM_Flag"
     },
     {
       "mesh_name": "SM_Drawer_Box002",
@@ -669,7 +695,8 @@
         24
       ],
       "room": "bedroom",
-      "actor_z": 12.0
+      "actor_z": 12.0,
+      "label": "Mag_bedroom_SM_Drawer_Box002"
     },
     {
       "mesh_name": "SM_Hallpillar",
@@ -688,7 +715,8 @@
         699
       ],
       "room": "bedroom",
-      "actor_z": 349.5
+      "actor_z": 349.5,
+      "label": "Mag_bedroom_SM_Hallpillar"
     },
     {
       "mesh_name": "SM_Hallpillar",
@@ -707,7 +735,8 @@
         699
       ],
       "room": "landing",
-      "actor_z": 349.5
+      "actor_z": 349.5,
+      "label": "Mag_landing_SM_Hallpillar"
     },
     {
       "mesh_name": "SM_Wood_Pillar",
@@ -726,7 +755,8 @@
         1690
       ],
       "room": "landing",
-      "actor_z": 845.0
+      "actor_z": 845.0,
+      "label": "Mag_landing_SM_Wood_Pillar"
     },
     {
       "mesh_name": "SM_Hallwall",
@@ -745,7 +775,8 @@
         670
       ],
       "room": "bedroom",
-      "actor_z": 335.0
+      "actor_z": 335.0,
+      "label": "Mag_bedroom_SM_Hallwall"
     },
     {
       "mesh_name": "SM_HallwallGlass",
@@ -764,7 +795,8 @@
         426
       ],
       "room": "bedroom",
-      "actor_z": 193.6
+      "actor_z": 193.6,
+      "label": "Mag_bedroom_SM_HallwallGlass"
     },
     {
       "mesh_name": "SM_HallwallGlassBar",
@@ -783,7 +815,8 @@
         396
       ],
       "room": "bedroom",
-      "actor_z": 198.0
+      "actor_z": 198.0,
+      "label": "Mag_bedroom_SM_HallwallGlassBar"
     },
     {
       "mesh_name": "SM_HallDeco",
@@ -802,7 +835,8 @@
         216
       ],
       "room": "bedroom",
-      "actor_z": 108.0
+      "actor_z": 108.0,
+      "label": "Mag_bedroom_SM_HallDeco"
     },
     {
       "mesh_name": "SM_Lantern",
@@ -821,7 +855,8 @@
         58
       ],
       "room": "landing",
-      "actor_z": 13.4
+      "actor_z": 13.4,
+      "label": "Mag_landing_SM_Lantern"
     },
     {
       "mesh_name": "SM_LanternGlass",
@@ -840,7 +875,8 @@
         25
       ],
       "room": "landing",
-      "actor_z": 57.3
+      "actor_z": 57.3,
+      "label": "Mag_landing_SM_LanternGlass"
     },
     {
       "mesh_name": "SM_CenterRing4",
@@ -859,7 +895,8 @@
         2
       ],
       "room": "salon",
-      "actor_z": -5.8
+      "actor_z": -5.8,
+      "label": "Mag_salon_SM_CenterRing4"
     },
     {
       "mesh_name": "SM_CenterRing9",
@@ -878,7 +915,8 @@
         0
       ],
       "room": "salon",
-      "actor_z": -0.5
+      "actor_z": -0.5,
+      "label": "Mag_salon_SM_CenterRing9"
     },
     {
       "mesh_name": "SM_CenterRing10",
@@ -897,7 +935,8 @@
         1
       ],
       "room": "salon",
-      "actor_z": 2.4
+      "actor_z": 2.4,
+      "label": "Mag_salon_SM_CenterRing10"
     },
     {
       "mesh_name": "SM_CenterRing13",
@@ -916,7 +955,8 @@
         2
       ],
       "room": "salon",
-      "actor_z": 6.9
+      "actor_z": 6.9,
+      "label": "Mag_salon_SM_CenterRing13"
     },
     {
       "mesh_name": "SM_CenterRing5",
@@ -935,7 +975,8 @@
         14
       ],
       "room": "salon",
-      "actor_z": 14.1
+      "actor_z": 14.1,
+      "label": "Mag_salon_SM_CenterRing5"
     },
     {
       "mesh_name": "SM_Platform",
@@ -954,7 +995,8 @@
         143
       ],
       "room": "salon",
-      "actor_z": 0.0
+      "actor_z": 0.0,
+      "label": "Mag_salon_SM_Platform"
     },
     {
       "mesh_name": "SM_Carpet3",
@@ -973,7 +1015,8 @@
         0
       ],
       "room": "salon",
-      "actor_z": 0.0
+      "actor_z": 0.0,
+      "label": "Mag_salon_SM_Carpet3"
     },
     {
       "mesh_name": "SM_Desk2",
@@ -992,7 +1035,8 @@
         88
       ],
       "room": "salon",
-      "actor_z": 44.0
+      "actor_z": 44.0,
+      "label": "Mag_salon_SM_Desk2"
     },
     {
       "mesh_name": "SM_Globe2",
@@ -1011,7 +1055,8 @@
         34
       ],
       "room": "salon",
-      "actor_z": 88.1
+      "actor_z": 88.1,
+      "label": "Mag_salon_SM_Globe2"
     },
     {
       "mesh_name": "SM_Lantern",
@@ -1030,7 +1075,8 @@
         58
       ],
       "room": "salon",
-      "actor_z": 13.4
+      "actor_z": 13.4,
+      "label": "Mag_salon_SM_Lantern"
     },
     {
       "mesh_name": "SM_LanternGlass",
@@ -1049,7 +1095,8 @@
         25
       ],
       "room": "salon",
-      "actor_z": 57.3
+      "actor_z": 57.3,
+      "label": "Mag_salon_SM_LanternGlass"
     },
     {
       "mesh_name": "SM_Wall_Lamp",
@@ -1068,7 +1115,8 @@
         43
       ],
       "room": "salon",
-      "actor_z": -1.9
+      "actor_z": -1.9,
+      "label": "Mag_salon_SM_Wall_Lamp"
     },
     {
       "mesh_name": "SM_Wall_Lamp_Glass",
@@ -1087,7 +1135,8 @@
         25
       ],
       "room": "salon",
-      "actor_z": 31.6
+      "actor_z": 31.6,
+      "label": "Mag_salon_SM_Wall_Lamp_Glass"
     },
     {
       "mesh_name": "SM_Shelf6",
@@ -1106,7 +1155,8 @@
         28
       ],
       "room": "salon",
-      "actor_z": 27.8
+      "actor_z": 27.8,
+      "label": "Mag_salon_SM_Shelf6"
     },
     {
       "mesh_name": "SM_Box",
@@ -1125,7 +1175,8 @@
         10
       ],
       "room": "salon",
-      "actor_z": 33.0
+      "actor_z": 33.0,
+      "label": "Mag_salon_SM_Box"
     },
     {
       "mesh_name": "SM_Kit_Ornament_C",
@@ -1144,7 +1195,8 @@
         188
       ],
       "room": "salon",
-      "actor_z": 88.7
+      "actor_z": 88.7,
+      "label": "Mag_salon_SM_Kit_Ornament_C"
     },
     {
       "mesh_name": "SM_Entrance",
@@ -1163,7 +1215,8 @@
         700
       ],
       "room": "salon",
-      "actor_z": 166.9
+      "actor_z": 166.9,
+      "label": "Mag_salon_SM_Entrance"
     },
     {
       "mesh_name": "SM_Floor_Pannel",
@@ -1182,7 +1235,8 @@
         3
       ],
       "room": "salon",
-      "actor_z": 1.5
+      "actor_z": 1.5,
+      "label": "Mag_salon_SM_Floor_Pannel"
     },
     {
       "mesh_name": "SM_Floor_Pannel2",
@@ -1201,7 +1255,8 @@
         3
       ],
       "room": "salon",
-      "actor_z": 1.5
+      "actor_z": 1.5,
+      "label": "Mag_salon_SM_Floor_Pannel2"
     },
     {
       "mesh_name": "SM_Floor_Pannel3",
@@ -1220,7 +1275,8 @@
         4
       ],
       "room": "salon",
-      "actor_z": 2.0
+      "actor_z": 2.0,
+      "label": "Mag_salon_SM_Floor_Pannel3"
     },
     {
       "mesh_name": "SM_Stair1",
@@ -1239,7 +1295,8 @@
         184
       ],
       "room": "salon",
-      "actor_z": 92.0
+      "actor_z": 92.0,
+      "label": "Mag_salon_SM_Stair1"
     },
     {
       "mesh_name": "SM_Stair2",
@@ -1258,7 +1315,8 @@
         218
       ],
       "room": "salon",
-      "actor_z": 109.0
+      "actor_z": 109.0,
+      "label": "Mag_salon_SM_Stair2"
     },
     {
       "mesh_name": "SM_Stair3",
@@ -1277,7 +1335,8 @@
         150
       ],
       "room": "salon",
-      "actor_z": 75.0
+      "actor_z": 75.0,
+      "label": "Mag_salon_SM_Stair3"
     },
     {
       "mesh_name": "SM_Rail",
@@ -1296,7 +1355,8 @@
         28
       ],
       "room": "salon",
-      "actor_z": 14.0
+      "actor_z": 14.0,
+      "label": "Mag_salon_SM_Rail"
     },
     {
       "mesh_name": "SM_Rail2",
@@ -1315,7 +1375,8 @@
         18
       ],
       "room": "salon",
-      "actor_z": 9.0
+      "actor_z": 9.0,
+      "label": "Mag_salon_SM_Rail2"
     },
     {
       "mesh_name": "SM_Stair_Pillar1",
@@ -1334,7 +1395,8 @@
         135
       ],
       "room": "salon",
-      "actor_z": 67.7
+      "actor_z": 67.7,
+      "label": "Mag_salon_SM_Stair_Pillar1"
     },
     {
       "mesh_name": "SM_Stair_Pillar5",
@@ -1353,7 +1415,8 @@
         154
       ],
       "room": "salon",
-      "actor_z": 86.6
+      "actor_z": 86.6,
+      "label": "Mag_salon_SM_Stair_Pillar5"
     },
     {
       "mesh_name": "SM_Stair_Pillar11",
@@ -1372,7 +1435,8 @@
         104
       ],
       "room": "salon",
-      "actor_z": 51.2
+      "actor_z": 51.2,
+      "label": "Mag_salon_SM_Stair_Pillar11"
     },
     {
       "mesh_name": "SM_Pillar",
@@ -1391,7 +1455,8 @@
         736
       ],
       "room": "salon",
-      "actor_z": 368.0
+      "actor_z": 368.0,
+      "label": "Mag_salon_SM_Pillar"
     },
     {
       "mesh_name": "SM_Wood_Pillar",
@@ -1410,7 +1475,8 @@
         1690
       ],
       "room": "salon",
-      "actor_z": 845.0
+      "actor_z": 845.0,
+      "label": "Mag_salon_SM_Wood_Pillar"
     },
     {
       "mesh_name": "SM_Wall",
@@ -1429,7 +1495,8 @@
         366
       ],
       "room": "salon",
-      "actor_z": -30.3
+      "actor_z": -30.3,
+      "label": "Mag_salon_SM_Wall"
     },
     {
       "mesh_name": "SM_WoodWall",
@@ -1448,7 +1515,8 @@
         188
       ],
       "room": "salon",
-      "actor_z": 94.0
+      "actor_z": 94.0,
+      "label": "Mag_salon_SM_WoodWall"
     },
     {
       "mesh_name": "KB3D_ECI_PropCandleHolder_A_Main",
@@ -1467,7 +1535,8 @@
         8
       ],
       "room": "bedroom",
-      "actor_z": 81.0
+      "actor_z": 81.0,
+      "label": "Mag_bedroom_KB3D_ECI_PropCandleHolder_A_Main"
     },
     {
       "mesh_name": "KB3D_ECI_PropBookShelf_A_Main",
@@ -1486,7 +1555,8 @@
         104
       ],
       "room": "bedroom",
-      "actor_z": 52.0
+      "actor_z": 52.0,
+      "label": "Mag_bedroom_KB3D_ECI_PropBookShelf_A_Main"
     },
     {
       "mesh_name": "KB3D_ECI_PropBookStack_A_Main",
@@ -1505,7 +1575,8 @@
         8
       ],
       "room": "bedroom",
-      "actor_z": 254.0
+      "actor_z": 254.0,
+      "label": "Mag_bedroom_KB3D_ECI_PropBookStack_A_Main"
     },
     {
       "mesh_name": "KB3D_ECI_PropChest_B_Main",
@@ -1524,7 +1595,8 @@
         71
       ],
       "room": "bedroom",
-      "actor_z": 35.5
+      "actor_z": 35.5,
+      "label": "Mag_bedroom_KB3D_ECI_PropChest_B_Main"
     },
     {
       "mesh_name": "KB3D_ECI_PropAppleBowl_A_Main",
@@ -1543,7 +1615,8 @@
         18
       ],
       "room": "bedroom",
-      "actor_z": 91.0
+      "actor_z": 91.0,
+      "label": "Mag_bedroom_KB3D_ECI_PropAppleBowl_A_Main"
     },
     {
       "mesh_name": "KB3D_ECI_PropStandingLantern_A_Main",
@@ -1562,7 +1635,8 @@
         194
       ],
       "room": "landing",
-      "actor_z": 97.0
+      "actor_z": 97.0,
+      "label": "Mag_landing_KB3D_ECI_PropStandingLantern_A_Main"
     },
     {
       "mesh_name": "KB3D_ECI_PropBannerPole_A_Main",
@@ -1581,7 +1655,8 @@
         906
       ],
       "room": "landing",
-      "actor_z": 453.0
+      "actor_z": 453.0,
+      "label": "Mag_landing_KB3D_ECI_PropBannerPole_A_Main"
     },
     {
       "mesh_name": "KB3D_ECI_PropAppleBowl_A_Main",
@@ -1600,7 +1675,8 @@
         18
       ],
       "room": "landing",
-      "actor_z": 116.0
+      "actor_z": 116.0,
+      "label": "Mag_landing_KB3D_ECI_PropAppleBowl_A_Main"
     },
     {
       "mesh_name": "KB3D_ECI_PropChandelier_A_Main",
@@ -1619,7 +1695,8 @@
         335
       ],
       "room": "salon",
-      "actor_z": 367.5
+      "actor_z": 367.5,
+      "label": "Mag_salon_KB3D_ECI_PropChandelier_A_Main"
     },
     {
       "mesh_name": "KB3D_ECI_PropChandelier_C_Main",
@@ -1638,7 +1715,8 @@
         117
       ],
       "room": "salon",
-      "actor_z": 388.5
+      "actor_z": 388.5,
+      "label": "Mag_salon_KB3D_ECI_PropChandelier_C_Main"
     },
     {
       "mesh_name": "KB3D_ECI_PropRoundTable_A_Main",
@@ -1657,7 +1735,8 @@
         79
       ],
       "room": "salon",
-      "actor_z": 39.5
+      "actor_z": 39.5,
+      "label": "Mag_salon_KB3D_ECI_PropRoundTable_A_Main"
     },
     {
       "mesh_name": "KB3D_ECI_PropChair_A_Main",
@@ -1676,7 +1755,8 @@
         126
       ],
       "room": "salon",
-      "actor_z": 63.0
+      "actor_z": 63.0,
+      "label": "Mag_salon_KB3D_ECI_PropChair_A_Main"
     },
     {
       "mesh_name": "KB3D_ECI_PropAcolyteChair_A_Main",
@@ -1695,7 +1775,8 @@
         136
       ],
       "room": "salon",
-      "actor_z": 68.0
+      "actor_z": 68.0,
+      "label": "Mag_salon_KB3D_ECI_PropAcolyteChair_A_Main"
     },
     {
       "mesh_name": "KB3D_ECI_PropAppleBowl_A_Main",
@@ -1714,7 +1795,8 @@
         18
       ],
       "room": "salon",
-      "actor_z": 88.0
+      "actor_z": 88.0,
+      "label": "Mag_salon_KB3D_ECI_PropAppleBowl_A_Main"
     },
     {
       "mesh_name": "KB3D_ECI_PropCandleStackLit_A_Main",
@@ -1733,7 +1815,8 @@
         28
       ],
       "room": "salon",
-      "actor_z": 102.0
+      "actor_z": 102.0,
+      "label": "Mag_salon_KB3D_ECI_PropCandleStackLit_A_Main"
     },
     {
       "mesh_name": "KB3D_ECI_PropAppleBowl_A_Main",
@@ -1752,7 +1835,8 @@
         18
       ],
       "room": "salon",
-      "actor_z": 97.0
+      "actor_z": 97.0,
+      "label": "Mag_salon_KB3D_ECI_PropAppleBowl_A_Main_2"
     },
     {
       "mesh_name": "KB3D_ECI_PropBookShelf_A_Main",
@@ -1771,7 +1855,8 @@
         104
       ],
       "room": "salon",
-      "actor_z": 52.0
+      "actor_z": 52.0,
+      "label": "Mag_salon_KB3D_ECI_PropBookShelf_A_Main"
     },
     {
       "mesh_name": "KB3D_ECI_PropStandingLantern_A_Main",
@@ -1790,7 +1875,8 @@
         194
       ],
       "room": "salon",
-      "actor_z": 97.0
+      "actor_z": 97.0,
+      "label": "Mag_salon_KB3D_ECI_PropStandingLantern_A_Main"
     },
     {
       "mesh_name": "KB3D_ECI_PropBookStack_A_Main",
@@ -1809,7 +1895,8 @@
         8
       ],
       "room": "salon",
-      "actor_z": 4.0
+      "actor_z": 4.0,
+      "label": "Mag_salon_KB3D_ECI_PropBookStack_A_Main"
     },
     {
       "mesh_name": "BP_CandleFlame",
@@ -1822,6 +1909,7 @@
       "role": "M02 RESONANT OBJECT - the living flame on the desk candle",
       "cite": "P0 M02 first resonance; rooms doc SS2 bedroom clutter",
       "room": "bedroom",
+      "label": "MagBP_BP_CandleFlame",
       "surface_z": 95,
       "actor_z": 95,
       "size": null
@@ -1837,6 +1925,7 @@
       "role": "M01 desk/field-journal interactive - the interactive book in the bedroom",
       "cite": "P0 M01 notice: one strong visual line from bed to the focal point; the inspection fires exactly once",
       "room": "bedroom",
+      "label": "MagBP_BP_InteractiveBook",
       "surface_z": 0,
       "actor_z": 0,
       "size": null
@@ -1852,6 +1941,7 @@
       "role": "M04 THE SALON INTERACTABLE - the crystal on the off-centre instrument dais, with its Niagara rays",
       "cite": "P0 M04 the house hums: one oval salon (one interactable); rooms doc SS1 off-center instrument anchor",
       "room": "salon",
+      "label": "MagBP_BP_Crystal",
       "surface_z": 249,
       "actor_z": 249,
       "size": null
@@ -1867,6 +1957,7 @@
       "role": "the salon's painting on the north wall (2.6 x 3.3 m framed canvas)",
       "cite": "rooms doc SS1 salon; REF_02 board",
       "room": "salon",
+      "label": "MagBP_BP_InteractivePainting",
       "surface_z": 170,
       "actor_z": 170,
       "size": null
@@ -1882,6 +1973,7 @@
       "role": "poison-pot effect in the salon's west nook",
       "cite": "rooms doc SS1 salon; house plan interior layout: music / prayer nook",
       "room": "salon",
+      "label": "MagBP_BP_PoisonPot",
       "surface_z": 1,
       "actor_z": 1,
       "size": null
@@ -1897,6 +1989,7 @@
       "role": "the hidden door - the rooms behind closed doors",
       "cite": "P0 score: House = one vestibule/landing + one resonant salon + one exit, other rooms behind closed doors",
       "room": "salon",
+      "label": "MagBP_BP_HiddenDoor",
       "surface_z": 0,
       "actor_z": 0,
       "size": null
@@ -1912,6 +2005,7 @@
       "role": "functional lantern in the passage (the pack's Lighting BP, flame included)",
       "cite": "P0 M03 threshold / M04 the house hums",
       "room": "landing",
+      "label": "MagBP_BP_Lantern",
       "surface_z": 0,
       "actor_z": 0,
       "size": null
@@ -1927,8 +2021,41 @@
       "role": "functional wall lantern on the salon west wall",
       "cite": "P0 M04 the house hums; REF_01 board: lamps",
       "room": "salon",
+      "label": "MagBP_BP_WallLantern",
       "surface_z": 290,
       "actor_z": 290,
+      "size": null
+    },
+    {
+      "mesh_name": "BP_CandleFlame",
+      "tree": "bp",
+      "mesh": "/Game/MagicianLabatory/BP/Lighting/BP/BP_CandleFlame",
+      "x": -150,
+      "y": -880,
+      "z": 26,
+      "rot_z": 0,
+      "role": "candle flame inside the passage lantern",
+      "cite": "P0 M03 threshold / M04 the house hums",
+      "room": "landing",
+      "label": "BP_CandleFlame0",
+      "surface_z": 26,
+      "actor_z": 26,
+      "size": null
+    },
+    {
+      "mesh_name": "BP_CandleFlame",
+      "tree": "bp",
+      "mesh": "/Game/MagicianLabatory/BP/Lighting/BP/BP_CandleFlame",
+      "x": 80,
+      "y": -1200,
+      "z": 314,
+      "rot_z": 0,
+      "role": "candle flame inside the salon wall lantern",
+      "cite": "P0 M04 the house hums; REF_01 board: lamps",
+      "room": "salon",
+      "label": "BP_CandleFlame2",
+      "surface_z": 314,
+      "actor_z": 314,
       "size": null
     }
   ],
