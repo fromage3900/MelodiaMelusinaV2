@@ -24,6 +24,15 @@ Commands (env var MAGICIANS_OPS, optional MAGICIANS_OPS_ARG):
   resync [room]        re-apply the manifest's positions to the dressing actors
                        (destructive to manual position edits - that is the point)
   stats                one-line summary of what is in the house
+  snapshot             PROTECT THE WORK. Saves the level, copies the .umap to
+                       Saved/Audit/melusina_house_p0_backups/, and writes the
+                       full dressing state to
+                       specs/p0/melusina_house_p0_dressing_state.json - a
+                       small, git-committable, human-readable record of every
+                       position, rotation, mesh and tag you have set by hand.
+  restore              rebuild the dressing from that state file (after a map
+                       loss). Missing actors are spawned; existing ones are
+                       put back exactly as recorded.
 
 Run in the editor that has the level open.
 """
@@ -162,6 +171,129 @@ def _spec_index():
     return idx
 
 
+def _rot(a):
+    r = a.get_actor_rotation()
+    return [round(r.pitch, 2), round(r.yaw, 2), round(r.roll, 2)]
+
+
+def _scale(a):
+    s = a.get_actor_scale3d()
+    return [round(s.x, 4), round(s.y, 4), round(s.z, 4)]
+
+
+STATE = PROJECT_ROOT / "specs" / "p0" / "melusina_house_p0_dressing_state.json"
+BACKUPS = PROJECT_ROOT / "Saved" / "Audit" / "melusina_house_p0_backups"
+
+
+def _umap_path():
+    content = unreal.Paths.convert_relative_path_to_full(unreal.Paths.project_content_dir())
+    return os.path.join(content, "Melodia", "Levels", "Opening", "L_MelusinaHouse_P0.umap")
+
+
+def _snapshot(actors, dressing, p0):
+    """Save the level, back up the .umap, and write the dressing state as data."""
+    import shutil
+    import datetime as _dt
+    rows = []
+    for a in dressing + p0:
+        l = _label(a)
+        rows.append({
+            "label": l,
+            "kind": "p0" if l.startswith("P0_") else "dressing",
+            "class": a.get_class().get_path_name(),
+            "mesh": _mesh_of(a),
+            "location": _loc(a),
+            "rotation": _rot(a),
+            "scale": _scale(a),
+            "room": _room_of(l, a),
+            "prop": _prop_of(l),
+            "tags": _tags(a),
+        })
+    state = {
+        "schema": "melodia.melusina_house_p0.dressing_state.v1",
+        "kind": "level_dressing_state",
+        "generated": datetime.now(timezone.utc).isoformat(),
+        "level": MAP,
+        "note": "The artist's live state of the P0 house dressing. The map is the "
+                "level of truth; this file is the reproducible record of it. "
+                "Restore with MAGICIANS_OPS=restore.",
+        "count": len(rows),
+        "actors": rows,
+    }
+    STATE.parent.mkdir(parents=True, exist_ok=True)
+    STATE.write_text(json.dumps(state, indent=2), encoding="utf-8")
+    backed = None
+    try:
+        BACKUPS.mkdir(parents=True, exist_ok=True)
+        stamp = _dt.datetime.now().strftime("%Y%m%d_%H%M%S")
+        dst = os.path.join(str(BACKUPS), "L_MelusinaHouse_P0_%s.umap" % stamp)
+        shutil.copy2(_umap_path(), dst)
+        backed = dst
+    except Exception as ex:
+        backed = "ERR " + str(ex)[:140]
+    return "snapshot: %d actors -> %s ; umap backup -> %s" % (len(rows), STATE.name, backed)
+
+
+def _restore():
+    """Rebuild the dressing from the state file."""
+    try:
+        state = json.load(open(STATE, encoding="utf-8"))
+    except Exception as ex:
+        return "restore: no state file (%s)" % str(ex)[:120]
+    have = _all_actors()
+    by_label = {_label(a): a for a in have}
+    spawned = restored = 0
+    for rec in state.get("actors", []):
+        l = rec["label"]
+        a = by_label.get(l)
+        if a is None:
+            cls = None
+            cpath = rec.get("class") or ""
+            try:
+                cls = unreal.load_class(None, cpath)
+            except Exception:
+                cls = None
+            if cls is None:
+                try:
+                    cls = unreal.load_object(None, cpath)
+                except Exception:
+                    cls = None
+            if cls is None:
+                continue
+            loc = rec.get("location") or [0, 0, 0]
+            rot = rec.get("rotation") or [0, 0, 0]
+            a = unreal.EditorLevelLibrary.spawn_actor_from_class(
+                cls, unreal.Vector(loc[0], loc[1], loc[2]),
+                unreal.Rotator(rot[0], rot[1], rot[2]))
+            if a is None:
+                continue
+            a.set_actor_label(l)
+            spawned += 1
+        mesh = rec.get("mesh")
+        if mesh:
+            m = unreal.load_asset(mesh)
+            if m is not None:
+                try:
+                    c = a.get_component_by_class(unreal.StaticMeshComponent)
+                    if c:
+                        c.set_static_mesh(m)
+                except Exception:
+                    pass
+        loc = rec.get("location") or [0, 0, 0]
+        rot = rec.get("rotation") or [0, 0, 0]
+        sc = rec.get("scale") or [1, 1, 1]
+        try:
+            a.set_actor_location(unreal.Vector(loc[0], loc[1], loc[2]), False, True)
+            a.set_actor_rotation(unreal.Rotator(rot[0], rot[1], rot[2]), False)
+            a.set_actor_scale3d(unreal.Vector(sc[0], sc[1], sc[2]))
+        except Exception:
+            pass
+        if rec.get("tags"):
+            _set_tags(a, rec["tags"])
+        restored += 1
+    return "restore: %d actors restored (%d spawned) from %s" % (restored, spawned, STATE.name)
+
+
 def main() -> int:
     cmd = (os.environ.get("MAGICIANS_OPS") or "list").strip().lower()
     arg = (os.environ.get("MAGICIANS_OPS_ARG") or "").strip()
@@ -223,6 +355,10 @@ def main() -> int:
             a.set_actor_location(unreal.Vector(x, y, z), False, True)
             n += 1
         out["actions"].append("resynced %d dressing actors to the manifest" % n)
+    elif cmd == "snapshot":
+        out["actions"].append(_snapshot(actors, dressing, p0))
+    elif cmd == "restore":
+        out["actions"].append(_restore())
     else:
         out["actions"].append("unknown command: " + cmd)
 
