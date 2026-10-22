@@ -853,7 +853,31 @@ Placed and verified in the level, then saved (`EditorLoadingAndSavingUtils.save_
 
 **A headless save of the house map is silently overwritten by the artist's next save** if they have the level open. My first bind placed all six actors headlessly and verified them on disk; the owner's editor then saved its older in-memory copy and they were gone. The bind therefore now runs **inside the editor that owns the level** and never reloads it — a reload there would discard the artist's unsaved work. Same rule as the dressing script: **the editor that has the level open is the authority on that file.**
 
-## Your house edits are now protected three ways — snapshot, restore, and a committed map — 2026-10-21
+## The Magician's Library work is isolated in its own Perforce changelist - CL 300 - 2026-10-21
+
+**You reconnected to Perforce, so the Perforce state of the Magician's Library work is now correct and reviewable.** The work was sitting in the **default changelist** mixed with ~1,000 unrelated opens (other sessions' Houdini bakes, the Melodia library, `__ExternalActors__` trees), where it was impossible to submit without sweeping in other people's work. It is now in **change 300**, alone.
+
+**CL 300 - "Magician's Library: pack import, toon conversion, duplicate-tree archive, and the P0 house dressing":**
+
+| Path | Open action | Files | What it is |
+|---|---|---|---|
+| `Content/MagicianLabatory/...` | **add** | 819 | the rest of the Fab pack - 271 of its 1,090 files were already in the depot from change 299, these 819 were local-only and are now tracked |
+| `Content/EnvSandbox/Library/Migrated/MagiciansLibrary/...` | **edit** | 98 | the toon-converted canonical set (the 189 meshes on `M_Master_Toon_Universal`, their textures, the LOD and collision passes) |
+| `Content/Library/Migrated/MagiciansLibrary/...` | **delete** | 356 | the **duplicate** tree, being retired from the active path |
+| `Content/Library/_Archive/MagiciansLibrary_20261021/...` | **add** | 356 | where that duplicate tree now lives - the same 356 files, the same names, one-to-one |
+| `Content/Melodia/Levels/Opening/L_MelusinaHouse_P0.umap` | **edit** | 1 | the P0 house, with your dressing and the P0 system actors |
+
+**The archive move is now represented correctly in Perforce.** A move in Perforce is *delete the old path + add the new path* - not *edit*. The old tree had been sitting as 356 `edit` opens, which would have told the depot the files still existed at the old path and never recorded the archive. It was corrected by reverting them (which restored the depot copies, so nothing was lost) and re-opening them as `delete`; the archive path was reconciled in as `add`. **Verified one-to-one: every depot file under the old path has an archive counterpart and vice versa, no orphans in either direction.**
+
+**Nothing outside the Magician's Library was touched.** The eight files under `Content/Library/Migrated/Melodia/**` are a *different* tree, were never opened in this changelist, and remain untouched and unsubmitted.
+
+**To submit it:** `p4 submit -c 300`. It is ~6.8 GB of binary, so it will take a while and needs LFS bandwidth - and I am not doing it, because a submit is yours under the repo's rules.
+
+**Two Perforce gotchas worth knowing** (both cost time here):
+- `p4 change -i` reads the spec from **stdin**, not from a file argument - and with a `Change: new` spec it **sweeps the whole default changelist into the new one** rather than only the files you name. The safe path is `p4 reopen -c <cl> <path>` on explicit paths.
+- `p4 revert` on a file that is open for edit **restores the depot copy to disk**. That is safe, but it means a "move" needs the order *revert -> delete*, and the local file reappears at the old path before it is deleted. The archive copy is never at risk.
+
+## Your house edits are now protected three ways - snapshot, restore, and a committed map - 2026-10-21
 
 **The worry is fair and it was real.** Until now your live dressing work existed in exactly one place: the bytes of `L_MelusinaHouse_P0.umap` in the working tree, plus the 2,877-file unsubmitted Perforce changelist. An editor crash, a `p4 revert`, or another process saving the map could have taken it all. It already happened once tonight — a headless save of mine was overwritten by your editor's save, and the six P0 actors I had placed were gone.
 
@@ -872,7 +896,7 @@ Placed and verified in the level, then saved (`EditorLoadingAndSavingUtils.save_
 
 **A suggested rhythm while you work:** tweak in the editor → `snapshot` → keep going. The state file diffs in git, so a colleague can see exactly what moved; the backup is your undo; and `restore` rebuilds from the record if the map is ever lost.
 
-**Still yours to do, and it is the one thing I cannot do for you:** the Perforce changelist is **un-submitted** with 2,877 files open in the default changelist. Until a subset of it is submitted, the depot has no copy of the house map. `p4 opened` will show you what is in there. (Submitting is your call under the repo's rules — I do not submit.)
+**Still yours to do, and it is the one thing I cannot do for you:** the Perforce work is **un-submitted**. Until it is submitted, the depot has no copy of the house map's current state. (Submitting is your call under the repo's rules — I do not submit.) The Magician's Library work is now isolated in **its own changelist** so you can submit it without sweeping in unrelated work — see the section below.
 
 ## The house dressing is now hand-editable and the automation stops fighting you — 2026-10-21
 
