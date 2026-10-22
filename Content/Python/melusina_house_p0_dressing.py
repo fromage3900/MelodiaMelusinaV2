@@ -532,6 +532,10 @@ def main() -> int:
             existing[lbl] = a
 
     spawned, moved, kept, skipped = [], [], [], []
+    # A label must be unique per placement: the same mesh twice in one room (two
+    # fruit bowls in the salon) would otherwise share a label, and the second one
+    # could never be placed - the census found exactly that.
+    label_counts = {}
     for r in rows:
         mesh = unreal.load_asset(r["mesh"])
         if mesh is None:
@@ -539,7 +543,10 @@ def main() -> int:
             continue
         loc = unreal.Vector(r["x"], r["y"], r["actor_z"])
         rot = unreal.Rotator(0, 0, r["rot_z"])
-        label = "Mag_%s_%s" % (r["room"], r["mesh_name"])
+        base_label = "Mag_%s_%s" % (r["room"], r["mesh_name"])
+        n = label_counts.get(base_label, 0) + 1
+        label_counts[base_label] = n
+        label = base_label if n == 1 else "%s_%d" % (base_label, n)
         actor = existing.get(label)
         if actor is not None:
             # A prop that is already there is the owner's: do not touch it unless

@@ -2,7 +2,7 @@
   "contract_id": "melodia.melusina_house_p0.dressing.v1",
   "kind": "level_dressing_contract",
   "schema_version": "1.0",
-  "generated": "2026-10-22T00:48:25.779140+00:00",
+  "generated": "2026-10-22T00:57:49.191375+00:00",
   "package": {
     "package_id": "package.melusina_house_p0.dressing",
     "display_name": "Melusina P0 house dressing (Magician's Library)",
