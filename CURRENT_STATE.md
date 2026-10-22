@@ -853,6 +853,27 @@ Placed and verified in the level, then saved (`EditorLoadingAndSavingUtils.save_
 
 **A headless save of the house map is silently overwritten by the artist's next save** if they have the level open. My first bind placed all six actors headlessly and verified them on disk; the owner's editor then saved its older in-memory copy and they were gone. The bind therefore now runs **inside the editor that owns the level** and never reloads it — a reload there would discard the artist's unsaved work. Same rule as the dressing script: **the editor that has the level open is the authority on that file.**
 
+## Your house edits are now protected three ways — snapshot, restore, and a committed map — 2026-10-21
+
+**The worry is fair and it was real.** Until now your live dressing work existed in exactly one place: the bytes of `L_MelusinaHouse_P0.umap` in the working tree, plus the 2,877-file unsubmitted Perforce changelist. An editor crash, a `p4 revert`, or another process saving the map could have taken it all. It already happened once tonight — a headless save of mine was overwritten by your editor's save, and the six P0 actors I had placed were gone.
+
+**So your edits are now data, not just map bytes.**
+
+| Protection | Where | What it gives you |
+|---|---|---|
+| **State file** | `specs/p0/melusina_house_p0_dressing_state.json` (59 KB) | every dressing and P0 actor's **label, class, mesh, location, rotation, scale, room, prop and tags** — small, git-committed, diffable, human-readable. This is the *reproducible record* of your hand edits |
+| **Map backup** | `Saved/Audit/melusina_house_p0_backups/L_MelusinaHouse_P0_<timestamp>.umap` | a full binary copy of the map at snapshot time, so even a corrupted map is recoverable |
+| **The map itself in git** | `Content/Melodia/Levels/Opening/L_MelusinaHouse_P0.umap` | the levels tree is **git-allowlisted** (`.gitignore: !Content/Melodia/Levels/**`) and every other Melodia level is already tracked in git **and** Perforce — `L_MelusinaMorning`, `L_MelodiaMainMenu`, `l_melodia_dreamstate..umap` all are. The house map was the odd one out. It is now committed like the rest |
+
+**New toolkit commands** (`Content/Python/magicians_dressing_ops.py`, run in the editor with the level open):
+
+- `MAGICIANS_OPS=snapshot` — saves the level, copies the .umap to the backup folder, and writes the state file. **Run this whenever you have work you care about.**
+- `MAGICIANS_OPS=restore` — rebuilds the dressing from the state file: missing actors are spawned, existing ones are put back exactly as recorded. **This is your recovery path if the map is lost or corrupted.** Verified: `restore: 97 actors restored (0 spawned)` — a clean no-op against a healthy level, which proves the state file and the level agree.
+
+**A suggested rhythm while you work:** tweak in the editor → `snapshot` → keep going. The state file diffs in git, so a colleague can see exactly what moved; the backup is your undo; and `restore` rebuilds from the record if the map is ever lost.
+
+**Still yours to do, and it is the one thing I cannot do for you:** the Perforce changelist is **un-submitted** with 2,877 files open in the default changelist. Until a subset of it is submitted, the depot has no copy of the house map. `p4 opened` will show you what is in there. (Submitting is your call under the repo's rules — I do not submit.)
+
 ## The house dressing is now hand-editable and the automation stops fighting you — 2026-10-21
 
 **The dressing is ordinary level actors, so you can move, rotate, scale, re-mesh or delete any of them in the editor and the state is saved with the map.** The problem was on the automation side: my placement helper *moved actors back to the manifest position* whenever they drifted, so every manual tweak you made would have been reverted by the next run. That is fixed.
