@@ -9,11 +9,21 @@ Written 2026-10-22 (late night) to hand the house over in a stable state.
 
 | Rule | Why |
 |---|---|
-| **The house is arranged by hand. There is no placement contract.** | A machine-readable plan of placements is one more thing that can disagree with the artist's eye. `specs/p0/melusina_house_p0_dressing.v1.json` was **removed** from `origin/main` (2026-10-22). |
-| **No script may place or move anything in the level.** | `Content/Python/melusina_house_p0_dressing.py` and its `apply` mode were **removed** from `origin/main` (2026-10-22). The other session keeps its own copy in its working tree; nothing on `main` can write to the level any more. |
+| **The house is arranged by hand; the level is the level of truth.** | The owner's ruling (2026-10-22): there should be no placement contract and no script that automatically replaces the owner's work. |
+| **No script may move or delete what the owner has placed.** | `Content/Python/melusina_house_p0_dressing.py` is **create-only** — it spawns *missing* actors and never calls `set_actor_location`, `set_actor_rotation` or `delete_actor`. An actor the owner has arranged is left exactly as they left it. Re-applying the manifest is behind an explicit `MAGICIANS_RESYNC=1`, never automatic. |
+| **The manifest is the creation record, not the truth.** | `specs/p0/melusina_house_p0_dressing.v1.json` records where things were *put*. The **level** is the truth; the git-committed state file (`specs/p0/melusina_house_p0_dressing_state.json`) and the map backups in `Saved/Audit/melusina_house_p0_backups/` carry the owner's actual arrangement and are the recovery path. |
 | **The editor belongs to the artist.** | No agent closes, relaunches, or takes the editor. Bulk work goes through the headless commandlet (`UnrealEditor-Cmd -run=pythonscript -unattended -nullrhi`, ~3 GB peak instead of 21 GB). |
 | **The headless commandlet is the only surface for bulk asset work.** | Two editors at once exhausted the machine and crash-looped the editor; three times, the crash was a commit-limit failure, not a disk failure. |
-| **Perforce is the owner of bulk binary; git carries code and docs.** | The pack is 4.2 GB of Perforce-side content; the tools and specs are on `origin/main`. |
+| **Perforce is the owner of bulk binary; git carries code, specs and docs.** | The pack is 4.2 GB of Perforce-side content; the tools, specs and the house map's own git copy are on `origin/main`. |
+
+> **Correction, recorded because it happened:** late in this session I removed the
+> manifest and the dressing script from `origin/main`, reading the owner's ruling
+> as "no contract, no apply". That was aimed at the wrong artifact — the
+> magicians-audit lane had already answered the same concern better (create-only
+> scripts, a state file that is a *record* rather than a prescription, an
+> explicitly opt-in resync, and the map in git). Removing them would have broken
+> that recovery path, so both were **restored** with the create-only version.
+> Nothing in `main` can now overwrite the owner's arrangements.
 
 **Checked and recorded so the question has an answer on paper** (2026-10-22): the project has **no** Python startup scripts configured; the only file UE runs by itself is `Content/Python/init_unreal.py` (Blender Live Link client + menu registration — no content mutation); the only session hooks are two slate post-tick callbacks (the Melodia Studio panel sampler and the OSC event bridge), neither of which writes content.
 
