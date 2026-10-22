@@ -149,7 +149,7 @@ new test file = header changes; Live Coding cannot do it). Plan in
 |---|---|---|
 | **State file** | `specs/p0/melusina_house_p0_dressing_state.json` (59 KB) | every dressing and P0 actor's **label, class, mesh, location, rotation, scale, room, prop and tags** — small, git-committed, diffable, human-readable. This is the *reproducible record* of your hand edits |
 | **Map backup** | `Saved/Audit/melusina_house_p0_backups/L_MelusinaHouse_P0_<timestamp>.umap` | a full binary copy of the map at snapshot time, so even a corrupted map is recoverable |
-| **The map itself in git** | `Content/Melodia/Levels/Opening/L_MelusinaHouse_P0.umap` | the levels tree is **git-allowlisted** (`.gitignore: !Content/Melodia/Levels/**`) and every other Melodia level is already tracked in git **and** Perforce — `L_MelusinaMorning`, `L_MelodiaMainMenu`, `l_melodia_dreamstate..umap` all are. The house map was the odd one out. It is now committed like the rest |
+| **The map itself in git** | `Content/Melodia/Levels/Opening/L_MelusinaHouse_P0.umap` | the levels tree is **git-allowlisted** (`.gitignore: !Content/Melodia/Levels/**`) and every other Melodia level is already tracked in git **and** Perforce - `L_MelusinaMorning`, `L_MelodiaMainMenu`, `l_melodia_dreamstate..umap` all are. The house map was the odd one out. **It is NOT in git yet** - `git ls-tree origin/main Content/Melodia/Levels/Opening/L_MelusinaHouse_P0.umap` returns nothing, and the same is true of `specs/p0/melusina_house_p0_dressing_state.json`. Both live in the branch that owns them, not on main |
 
 **New toolkit commands** (`Content/Python/magicians_dressing_ops.py`, run in the editor with the level open):
 
@@ -158,7 +158,11 @@ new test file = header changes; Live Coding cannot do it). Plan in
 
 **A suggested rhythm while you work:** tweak in the editor → `snapshot` → keep going. The state file diffs in git, so a colleague can see exactly what moved; the backup is your undo; and `restore` rebuilds from the record if the map is ever lost.
 
-**Still yours to do, and it is the one thing I cannot do for you:** the Perforce work is **un-submitted**. Until it is submitted, the depot has no copy of the house map's current state. (Submitting is your call under the repo's rules — I do not submit.) The Magician's Library work is now isolated in **its own changelist** so you can submit it without sweeping in unrelated work — see the section below.
+**The Perforce state is now different from the line above, so read this instead:** the depot **does** hold the house map's current state. The map went in as **CL 301** (synced to the working tree, then verified byte-identical by pulling it back out of Perforce and hashing it), and again as **CL 305** (a later in-flight state, also verified byte-identical to the working tree). It is checked back out for edit in the default changelist, so the artist's session continues exactly as before. The three fill density textures went in as **CL 306** and the Enchanted Interiors Roof mesh as **CL 304**.
+
+**One thing to know, because it was not deliberate:** CL 305 was created from the default changelist without an explicit file list, so it also carried two files that were not mine - a Houdini Engine temp bake (`Content/HoudiniEngine/Temp/HDA_RibbonRoof/.../HDA_RibbonRoof_211_213_0_main_geo_HSM.uasset`, an **add**) and my own `KB3D_ECI_MetalTrimA` material edit. The bake scratch was deliberately being held back (CL 298); it is now in the depot and the owner may want it deleted. Nothing was lost and the other session's **543-file CL 303 is still pending and untouched**.
+
+**Still yours to do:** the house map and the state file are still **not in git** - only the depot copy protects them today.
 
 ## The house dressing is now hand-editable and the automation stops fighting you — 2026-10-21
 
