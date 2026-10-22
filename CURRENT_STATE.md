@@ -853,6 +853,29 @@ Placed and verified in the level, then saved (`EditorLoadingAndSavingUtils.save_
 
 **A headless save of the house map is silently overwritten by the artist's next save** if they have the level open. My first bind placed all six actors headlessly and verified them on disk; the owner's editor then saved its older in-memory copy and they were gone. The bind therefore now runs **inside the editor that owns the level** and never reloads it — a reload there would discard the artist's unsaved work. Same rule as the dressing script: **the editor that has the level open is the authority on that file.**
 
+## The P0 house is now bound to the EXISTING P0 systems — six real actors, no new mechanic — 2026-10-21
+
+**The pack's Blueprints are presentation. The P0's authority is Melodia's own.** Six real project actors now sit in `L_MelusinaHouse_P0` at the P0's named focal points, each wired to the subsystem the P0 score already names. No new quest, flag, intent, reward or timing engine was created.
+
+| Beat | Actor placed | Binds to |
+|---|---|---|
+| **M01** Notice — the desk | `AMelodiaExplorationPoint` PointId **`Desk`** (r 120) | `UMelodiaOpeningFlowSubsystem::NotifyExplorationPointVisited` → `GetExplorationPointsVisited()`; the gate consumer is `AMelodiaSirMelodiousIntroActor::RequiredExplorationPoints` |
+| **M01** Notice — the empty perch | `AMelodiaExplorationPoint` PointId **`Perch`** (r 140) + **`BP_SirPerch`** | the "strong visual line from bed to the empty perch / companion token" |
+| **M02** First resonance | **`BP_MelodyToken_Universal`** (amount 1, element **`Forte`** — the default of `EMelodiaSpellElement`) on the desk beside `BP_CandleFlame` | the Heart Melody Token; a forgiving **one-action** response that feeds the melody-token balance |
+| **M02** — the house's state | **`AMelodiaOpeningStateAnchor`** (moved to the perch) | carries `ResonanceBond` (`Absent/Reunited/Resonant/Strained`) and the `Dissonance` tier — the Sir reunion beat reads this anchor |
+| **M04** The house hums — the salon | `AMelodiaExplorationPoint` PointId **`Salon`** (r 180) at the `BP_Crystal` centrepiece | one optional linger; the score asks for **no extra mechanic** here, so a one-shot point is the whole of it |
+
+Placed and verified in the level, then saved (`EditorLoadingAndSavingUtils.save_map(world, asset_path)`). The bind script is **idempotent and self-correcting** — it skips labels already present and moves an actor back if it drifted, so a re-run can neither duplicate nor leave a stray at the origin. Script `Content/Python/melusina_house_p0_bind.py`; receipt `Saved/Audit/melusina_house_p0_bind.json`.
+
+### Two things the bind exposed that are yours to close
+
+1. **Nothing in shipped content begins the Morning phase.** `AMelodiaExplorationPoint::NotifyExplorationPointVisited` is a **no-op outside the `Morning` phase**, and the only caller of `UMelodiaOpeningFlowSubsystem::BeginMorning()` in the whole project is **`BP_MelodiaDevPartyFastForward`** (a dev tool) and `AMelodiaSirMelodiousIntroActor::BeginPlay`. The Morning level was reduced to a 14 KB shell and took its phase start with it, so **the three exploration points are placed but inert** until the phase is begun. Two honest ways to close it, both using the existing API: **(a)** place `AMelodiaSirMelodiousIntroActor` in the house (its `BeginPlay` begins Morning, and its `RequiredExplorationPoints` becomes the M01 gate — set it to **2** for Desk + Perch), or **(b)** one line in the house level's BeginPlay: `UMelodiaOpeningFlowSubsystem::Get(this)->BeginMorning();`. **(a) conflicts with the P0's "empty perch"** (Sir absent), so **(b) is the cleaner bind** — but it is an owner call.
+2. **The house level has no player.** It references no GameMode and no `BP_MelodiaJRPGCharacter`, so it inherits the project default (`BP_MelodiaJRPGGameMode` / `BP_MelodiaJRPGGameInstance`); the P0 route's Melusina still has to be placed or spawned before M00–M05 can be walked.
+
+### One more write-conflict lesson, for whoever runs this next
+
+**A headless save of the house map is silently overwritten by the artist's next save** if they have the level open. My first bind placed all six actors headlessly and verified them on disk; the owner's editor then saved its older in-memory copy and they were gone. The bind therefore now runs **inside the editor that owns the level** and never reloads it — a reload there would discard the artist's unsaved work. Same rule as the dressing script: **the editor that has the level open is the authority on that file.**
+
 ## Melusina's P0 house — DRESSED. The house leg's map ownership is settled to `L_MelusinaHouse_P0` — 2026-10-21
 
 **Owner ratified the house-leg map ownership: the P0 house is `L_MelusinaHouse_P0`** (the P0 spec's `not_yet_true` #2 is now closed for the map-identity question). The level was a new, Perforce-open-for-add map with 21 actors; it is now **118 actors**: the 21 originals, **76 Magician's Library dressing placements**, and 18 Enchanted Interiors props the owner placed in parallel.

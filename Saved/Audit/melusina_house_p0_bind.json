@@ -1,0 +1,91 @@
+{
+  "generated": "2026-10-22T01:35:24.233842+00:00",
+  "level": "/Game/Melodia/Levels/Opening/L_MelusinaHouse_P0",
+  "placed": [
+    {
+      "label": "P0_Explore_Desk",
+      "class": "AMelodiaExplorationPoint",
+      "action": "already_in_place",
+      "to": [
+        -900,
+        -880,
+        41
+      ],
+      "point_id": "Desk",
+      "trigger_radius_cm": 120,
+      "cite": "M01 notice: the desk focal point (BP_InteractiveBook + candle on the desk)"
+    },
+    {
+      "label": "P0_Explore_Perch",
+      "class": "AMelodiaExplorationPoint",
+      "action": "already_in_place",
+      "to": [
+        -860,
+        -300,
+        90
+      ],
+      "point_id": "Perch",
+      "trigger_radius_cm": 140,
+      "cite": "M01 notice: the empty perch / companion token (BP_SirPerch)"
+    },
+    {
+      "label": "P0_Explore_Salon",
+      "class": "AMelodiaExplorationPoint",
+      "action": "already_in_place",
+      "to": [
+        1000,
+        -1300,
+        200
+      ],
+      "point_id": "Salon",
+      "trigger_radius_cm": 180,
+      "cite": "M04 the house hums: optional linger at the oval salon centrepiece (BP_Crystal)"
+    },
+    {
+      "label": "P0_MelodyToken_Heart",
+      "class": "BP_MelodyToken_Universal",
+      "action": "already_in_place",
+      "to": [
+        -885,
+        -958,
+        82
+      ],
+      "amount": 1,
+      "element": "Forte",
+      "cite": "M02 first resonance: a forgiving one-action musical response; the house audibly answers"
+    },
+    {
+      "label": "P0_SirPerch_Empty",
+      "class": "BP_SirPerch",
+      "action": "already_in_place",
+      "to": [
+        -860,
+        -300,
+        0
+      ],
+      "facing_yaw": 200,
+      "cite": "M01 notice: strong visual line from bed to empty perch/companion token"
+    },
+    {
+      "label": "P0_OpeningStateAnchor",
+      "class": "AMelodiaOpeningStateAnchor",
+      "action": "moved",
+      "from": [
+        0,
+        0,
+        0
+      ],
+      "to": [
+        -840,
+        -360,
+        0
+      ],
+      "bond_state": "Absent",
+      "dissonance_tier": "Clear",
+      "cite": "M02 first resonance: the house's bond (Absent -> Reunited/Resonant) and its dissonance tier live on the opening state anchor; the Sir reunion beat reads this anchor"
+    }
+  ],
+  "errors": [],
+  "level_already_open": true,
+  "save": "save_map"
+}
