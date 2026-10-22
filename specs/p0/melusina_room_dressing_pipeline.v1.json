@@ -91,7 +91,7 @@
       { "item": "PCGEx room shell graph with splines and bounds", "state": "SHIPPED", "where": "Content/EnvSandbox/PCG/House/PCG_MelusinaRoomShell_PCGex.uasset" },
       { "item": "PCG grid scatter graph (piano keys)", "state": "SHIPPED", "where": "Content/EnvSandbox/PCG/House/PCG_MelusinaHouse_MorningDell.uasset" },
       { "item": "PCG fill graphs for the house", "state": "MISSING", "where": "design only: specs/p0/melusina_house_p0_fill.v1.json" },
-      { "item": "Room density textures", "state": "MISSING", "where": "dressing_heatmap_{bedroom,landing,salon}.png" },
+      { "item": "Room density textures", "state": "DERIVED_FIRST_PASS", "where": "Content/EnvSandbox/PCG/House/Textures/dressing_heatmap_{bedroom,landing,salon}.png (P4 CL 306) - derived from the artist's own 97 placements with the P0 route corridor cut back 4 m; generator Tools/build_house_density_maps.py; still needs the artist's paint" },
       { "item": "UMelodiaDressingSubsystem", "state": "SCAFFOLD", "where": "Source/BS_GodFile/MelodiaIntegration/MelodiaDressingSubsystem.cpp - logs and returns true" },
       { "item": "UMelodiaDressingCatalog class", "state": "MISSING", "where": "no C++ class holds the catalogue" },
       { "item": "DA_MelodiaDressingCatalog asset", "state": "MISSING", "where": "path reserved by GetDressingCatalogPath(); content derived in specs/p0/melusina_dressing_catalog.v1.json" },
@@ -177,7 +177,7 @@
       "size": "L",
       "definition_of_done": [
         "one PCG graph per room (or one graph with three room subgraphs), built to the node chain in the fill contract",
-        "the density textures exist and are painted like the Poitou zone heatmaps",
+        "the density textures exist and are painted like the Poitou zone heatmaps - a derived first pass now exists (DERIVED_FIRST_PASS); the artist's paint is what closes this",
         "the fill is additive: a re-run adds, it never moves a hand-placed actor",
         "the exclusions hold: no prop on the route or its 4 m buffer, none in the medallion footprint, none in a door swing, none crowding a contract placement",
         "no more than 3 fill species legible in any one frame"
