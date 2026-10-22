@@ -1,6 +1,51 @@
 # Melodia Melusina ? Current State
 
 
+## ⚑ THE LIVE-UE RESEARCH + THE STAGING PIPELINE (2026-10-21) - how a frontier model spends its whole quota on CONTENT
+
+- **The environment finding: the Houdini build is behind UE 5.8.** The workstation runs **Houdini
+  22.0.368**. SideFX added Unreal 5.8 support in **22.0.355** (2026-06-18) and has shipped UE
+  5.8 fixes since - including a **landscape spline assertion fix** (22.0.470), a Session Sync UI
+  stall fix (22.0.470), PCG output re-use (22.0.470), the plugin no longer loading `.hdalc` files
+  (22.0.371 - we build `.hdalc`), and a **lock feature for Houdini Asset Components** (22.0.470)
+  that would have prevented this session''s outage. The plugin releases track the Houdini build
+  exactly: **HEU 4.0.3 = Houdini 22.0.566, 4.0.2 = 22.0.459, 4.0.1 = 22.0.429**, all on HAPI 9.0
+  and all shipping UE5.8 binaries. **Owner action: upgrade Houdini to 22.0.471+ and the plugin to
+  4.0.3, in that order, so the HAPI stays paired.**
+- **Session Sync is the live workflow.** The plugin''s `Open Houdini Session Sync` gives a live
+  Houdini GUI with two-way HDA/input/curve/output sync - and the documented use case is ours:
+  kitbash in Unreal, bring it into Houdini to build and re-UV, keep the context. The canon curves
+  are Unreal splines, so a designer moves a spline point and the masonry re-courses in place.
+- **The attribute set the kit must emit** (section 14.3): `unreal_nanite_enabled` +
+  `unreal_nanite_position_precision` + `unreal_nanite_trim_relative_error` (the 2 cm dry joints
+  are BELOW Nanite''s default error and will be eaten), `unreal_output_name`,
+  `unreal_collision_mode`, the generic `unreal_uproperty_*` channel (the HDA can set any property on
+  the generated component and on the Houdini Asset Component itself), `unreal_output_curve` (a
+  curve prim outputs as a **SplineComponent** - the CAD-like return path),
+  `unreal_output_dynamic_mesh` (22.0.470 experimental live-editable output),
+  `unreal_level_path` + `unreal_bake_folder` + `unreal_bake_actor` + `unreal_bake_outliner_folder`
+  (the staging lever), the landscape attributes including
+  `unreal_landscape_partition_grid_size` (world partition, for the near/mid/far band plan), and
+  `unreal_pdg_params` for the PCG HDA node.
+- **The CAD-like systems SideFX already ships, to adopt rather than re-author:** **Labs Building
+  Generator 4.0** (blockout -> floors, walls, corners and ledges replaced by a user module library
+  - the CAD loop, and our module library can be the style contract''s `MEL_wall_*` set);
+  **Project Titan / Titan Evo** and the 2026-10-08 bridge tutorial (arch, deck, railings, piers,
+  trim sheets - the canal crossing); "Procedural building from modules" (2025-04-08); "City
+  Building with OSM Data" (real data -> buildings/roads/props, the way the IGN DEM already is);
+  Copernicus Baker for baking the detail into a trim-sheet material. **Project Vitruvius** and
+  **Dryad** are SideFX''s next architecture/environment toolset - watch, do not wait.
+- **The staging pipeline that makes the quota usable** (section 14.5): every generator writes into
+  the EXISTING merged `output_generated` and adds a named prim group, so **a generator never needs
+  an editor slot, never touches the UE asset and never touches the level.** The owner does ONE
+  cook at the end and the whole set appears; the bake attributes then stage it as named,
+  Perforce-ready assets. The generator contract cards are in
+  `Tools/Poitou/GENERATOR_CARDS.md` - the template plus CARD 1 (`bond.vex`, the brick bond and the
+  rubble core, which Jev ruled is the first real gap) fully written, so the next model starts at
+  step 1 with nothing to re-derive.
+- **Standing safety rail:** once the owner is happy with the level, **lock the level''s Houdini
+  Asset Components** (22.0.470 added the lock, including lock-on-load). A locked component cannot
+  be modified or cooked by accident - which is exactly the failure this session caused.
 ## ⚑ THE PROGRAMME AUDIT + THE FRONTIER MODEL''S PLAN (2026-10-21)
 
 - **Jev audited the programme against its original goal and the project''s own reference docs**

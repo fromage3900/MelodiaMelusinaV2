@@ -1133,3 +1133,160 @@ re-run), add two output slots to `poitou_layout_live_v6.uasset` (`output_masonry
   "finished".
 * **Keep the discipline**: additive only, no content mutation, no removal before the replacement
   is live, a check that fails on no evidence, and the owner's editor never touched.
+## 14. THE LIVE-UE / Houdini research, and the staging pipeline that lets a frontier model burn its whole quota on CONTENT (2026-10-21)
+
+Researched against SideFX docs and the 22.0 changelog on 2026-10-21. This section is what makes
+section 13 executable without an editor: the point is that a frontier model can author a dozen
+generators, gate them, and stage them, and the owner does ONE cook at the end.
+
+### 14.1 The finding that changes the environment first: the Houdini build is behind UE 5.8
+
+The workstation runs **Houdini 22.0.368**. SideFX added Unreal 5.8 support in **22.0.355**
+(2026-06-18) and has shipped UE 5.8 fixes since:
+
+| build | date | what it fixes for us |
+|---|---|---|
+| 22.0.355 | 2026-06-18 | **UE 5.8 support at all** |
+| 22.0.359 | 2026-06-22 | crash when the UE 5.8 plugin shows collision presets |
+| 22.0.371 | 2026-07 | the plugin stopped loading `.hdalc`/`.hdanc`/`.otl` files - **we build `.hdalc`** |
+| 22.0.401 | 2026-08 | nanite meshes get incorrect data when the same mesh is used in two HDAs with different Nanite settings; cooks are cancelled if a parameter is edited mid-cook |
+| 22.0.470 | 2026-10-11 | **landscape spline assertion in Unreal 5.8**; a UI stall with Session Sync; PCG outputs not re-used between cooks; **a LOCK feature for Houdini Asset Components** |
+| 22.0.471 | 2026-10-12 | `unreal_pdg_asset` to skip the PDG scan on large HDAs; a toggle to stop automatic cooks when an HDA is modified inside Session Sync |
+
+The plugin releases track the Houdini build exactly: **HEU 4.0.3 = Houdini 22.0.566, HEU 4.0.2 =
+22.0.459, HEU 4.0.1 = 22.0.429** - all shipping UE5.8 binaries, all on **HAPI 9.0**.
+
+**Recommendation (owner decision, one action):** upgrade the Houdini install to **22.0.471+** and the
+plugin to **4.0.3**, in that order, so the plugin's HAPI and the Houdini build stay paired. 22.0.368
+predates UE 5.8 support by two patches and the UE 5.8 landscape-spline fix by four. It also predates
+the **Houdini Asset Component lock**, which is the feature that would have prevented the incident
+of this session (see 14.5).
+
+### 14.2 Session Sync is the live workflow - and it is what makes CAD-like work possible
+
+`Houdini Engine > Open Houdini Session Sync` (or connect to a running Houdini) gives a **live
+session with a Houdini GUI**: HDAs, inputs, curves and outputs synchronise **both ways**, so a
+change in Houdini appears in Unreal and vice versa. The documented use case is precisely ours:
+*"you kitbash a building in Unreal, you can then bring them into Houdini to build interiors, add
+building parts, re-UV it... the ivy tool case - the iterations to the tool would require constant
+back and forth; instead send the assets from Unreal into Houdini to iterate the tool while
+retaining the context of the assets."*
+
+Two settings matter: **Sync With Houdini Cook** (keep the assets synced with cook changes) and
+**Cook Using Houdini Time** (otherwise the viewport goes out of sync with the cook).
+
+**This is the workflow the P0 walk wants:** the canon curves (canal, route, lanes) are **Unreal
+splines**; the HDA consumes them as input; the designer moves a spline point in the viewport and
+the masonry re-courses in place, in seconds, with the Houdini window open beside Unreal.
+
+### 14.3 The attribute set the kit must emit (from the official attribute table)
+
+The generators currently emit `unreal_material` only. The spec'd set, all of it cheap:
+
+| attribute | type | why it matters here |
+|---|---|---|
+| `unreal_nanite_enabled` | int | without it 596,382 prims arrive with NO Nanite |
+| `unreal_nanite_position_precision` | int | 0.6 m masonry wants coarse precision, not the UE default |
+| `unreal_nanite_percent_triangles` | int | and the trim/fallback relative error pair below |
+| `unreal_nanite_trim_relative_error` / `unreal_nanite_fallback_relative_error` | float | the 2 cm dry joints are below Nanite's default error - they will be eaten unless the error is tightened |
+| `unreal_output_name` | string | names the generated mesh, so a bake lands as a named asset |
+| `unreal_collision_mode` | int | 0 = complex collision; the revetment and the abbey need it |
+| `unreal_uproperty_*` | any | **the generic UProperty channel**: the HDA can set ANY property on the generated component, and on the Houdini Asset Component itself (e.g. `i@unreal_uproperty_bUseOutputNodes = 1`) |
+| `unreal_output_curve` (+`_linear`, `_closed`) | int | a curve prim with this set outputs as a **SplineComponent** - the CAD-like return path: the HDA can hand a wall run back to Unreal as an editable spline |
+| `unreal_output_dynamic_mesh` | int | 22.0.470 experimental: output as a **Dynamic Mesh** instead of a static mesh - a live-editable generated mesh in the editor |
+| `unreal_level_path` | string | bake outputs to a named level (supports string tokens) - **the staging lever** |
+| `unreal_bake_folder`, `unreal_bake_actor`, `unreal_bake_actor_class`, `unreal_bake_outliner_folder` | string | where a bake lands and under what actor/class - **the staging pipeline** |
+| `unreal_landscape_output_mode` | int | 0 generate, 1 modify an edit layer on the existing landscape |
+| `unreal_landscape_layer_info` | string | point a heightfield mask at an existing LayerInfo - the landscape layers the Poitou masks already have |
+| `unreal_landscape_section_size` + `unreal_landscape_sections_per_component` | int | the landscape's tile budget |
+| `unreal_landscape_partition_grid_size` | int | **world partition** - the level has an HLOD/near-150-mid-800-far>800 band plan (Nikkie rules 5, 6) and this is the attribute that drives it |
+| `unreal_pdg_params` | - | makes the HDA output PCG data instead of Unreal objects; the PCG HDA node syncs parameters, inputs and outputs |
+
+**PDG**: the HDA PCG node merges all outputs into one stream, each internally tagged `output_0`,
+`output_1`; downstream PCG nodes isolate them with **Filter Data By Tag**. If an HDA modifies an
+existing landscape, enable **Ignore Landscape Tracking** on the PCG Component or UE will build a
+dependency loop.
+
+### 14.4 The CAD-like architectural systems SideFX already ships - adopt, do not re-author
+
+* **SideFX Labs "Building Generator 4.0"** (`labs--building_generator-4.0`): *"converts simple
+  blockout geometry into detailed, modular buildings... slices them into floors, identifies
+  structural regions such as walls, corners, and ledges, and replaces those regions with
+  high-resolution modules sourced from a user-defined module library."* Floor Overrides, full floor
+  height, wall-face modules, concave/convex corner modules, top and bottom ledges, sideslop
+  modules. **This is the CAD-like loop the project wants: a blockout becomes a building.** The
+  module library can be the style contract's `MEL_wall_*` set, and our `house.vex` becomes a
+  configuration of it rather than a new generator.
+* **"Procedural building from modules"** (SideFX tutorial, 2025-04-08): dynamic instantiation sized
+  for Unreal, point-cloud transfer, corner and roof adjustment, door modules.
+* **Project Titan / Titan Evo** (2022, and the 2026-10-08 tutorials): the production reference for
+  exactly our elements - the **bridge** tutorial (main arch, supporting structure, deck,
+  railings, platforms, chains, gears; each part a flexible system; then trim sheets and tileable
+  materials for UE5) is the canal crossing and the parapet; plus Building, Fence, Platform,
+  Scaffold, Stacking, Cables, Pipes, Foliage, Lamps.
+* **"City Building with OSM Data"**: OSM in, buildings/roads/props out, points carrying attributes
+  for UE instancing. **The Poitou canal and lane network could be driven from real data** the way
+  the IGN RGE ALTI DEM already is.
+* **Copernicus Baker / Pre Process Baker** (2026-10-08): bake high-resolution detail into texture
+  maps and drive a layered procedural material - the route from our 2 cm dry joints and vertex
+  paint to a real trim-sheet material.
+* **Project Vitruvius** (SideFX, upcoming): architecture and urban environments. **Project Dryad**:
+  procedural environments. Watch both; do not wait for them.
+
+### 14.5 The staging pipeline - why a frontier model needs no editor at all
+
+**The insight that makes the whole quota usable: every generator writes into the EXISTING merged
+outputs.** `output_generated` already exists in the HDA and already carries 18 named element
+groups. A new generator adds a new group, not a new HDA output - so **SOL never needs an editor
+slot, never touches the UE asset, and never touches the level.** The owner does one cook at the
+end and the whole set appears.
+
+The pipeline, in order, per generator:
+
+1. **Author** `Tools/Poitou/snip/<name>.vex`, including `snip/kit.vex` in its snippet. Git only.
+2. **Wire** it into `Tools/Poitou/build_poitou_hda.py` as one more wrangle into the existing
+   `merge_generated_elements` node. Git only. **No new output index.**
+3. **Name its group** and add that group to `REQUIRED_GENERATED_GROUPS` in
+   `Tools/Poitou/poitou_intheme_gate.py`. Git only.
+4. **Build + gate** headlessly: `Tools/Poitou/run_intheme_gate.ps1 -Build -Measure`. The gate
+   fails if the group is missing, if a material is not a project material, or if an instance's
+   divisor does not match its measured mesh.
+5. **Stage**: the generator's output name and bake folder are set by the attributes in 14.3, so the
+   owner's single cook produces named, bake-ready assets under
+   `Content/HoudiniEngine/Bake/<HDA>/<group>/`, ready to `p4 add` as a batch. **Baking is what
+   turns a generator into staged content, and it is the only step that needs the editor.**
+6. **Perforce**: the bake folder and the new material assets are added in one changelist; the
+   generator sources are git. The 8 MIs are still unbound until the owner approves the binding.
+
+**The generator contract card.** Each generator gets a card so that no context has to be re-derived
+(the card is the whole point of this section - the next model reads the card, not the canon):
+
+```
+NAME            : <file>.vex            KIT FUNCTIONS : kit_wall_stone, kit_arch, ...
+GROUPS          : <group names the gate must see>
+OUTPUT          : merged into output_generated (never a new output index)
+MATERIALS       : <existing project material paths only>
+PARMS           : <the parms it reads, and their defaults>
+ACCEPTANCE      : the gate line it must satisfy, and the placement assertion it must pass
+DO NOT TOUCH    : existing Content assets, the level, the UE-side HDA asset, the owner's editor
+TRAPS           : the axis rule, the VEX landmines (section 12.3), the attribute set (14.3)
+```
+
+**And the standing safety rail that this session lacked:** once the owner is happy, **lock the
+level's Houdini Asset Components** (22.0.470 added the lock, including lock-on-load). A locked
+component cannot be modified or cooked by accident, which is exactly the failure this session
+caused.
+
+### 14.6 What a frontier model should be given, and what it should not be asked to rediscover
+
+**Given, read-only, in this order:** contract section 12 (traps + the measured size table) ->
+section 13 (the ordered plan) -> this section -> the one card for the generator it is building.
+**Not to be asked to rediscover:** the axis rule, the VEX landmines, the palette authority (the
+style contract wins), the additive-only rule, the fact that the level's cook is a separate fact
+from the Houdini-side gate, and the fact that the previous session's 18-mesh mutation was the
+outage.
+
+**Where the frontier model's advantage actually is, and it is not in writing VEX:** the placement
+maths (is the abbey where the walk sees it, is the revetment on the canal, does the lane dodge
+the houses), the visual judgement against the lookbook plates, and holding the style contract, the
+Nikkie rules and the kit in mind at once. The VEX is the cheap part; the last session proved that.
