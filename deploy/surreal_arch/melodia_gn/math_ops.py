@@ -1,4 +1,4 @@
-﻿"""Math operation GN group builders — add, subtract, power scale, exponent blend, named attributes."""
+"""Math operation GN group builders — add, subtract, power scale, exponent blend, named attributes."""
 
 from __future__ import annotations
 

@@ -1,4 +1,4 @@
-﻿"""Wire Fabric Sheen, Sparkle, and Rune Glow Audio Pulsation (Feature F12).
+"""Wire Fabric Sheen, Sparkle, and Rune Glow Audio Pulsation (Feature F12).
 
 Wired Targets:
 - M_Master_Toon_Universal (Substrate Toon BSDF + ToonProfiles)

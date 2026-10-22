@@ -1,4 +1,4 @@
-﻿"""Build universal PCG graphs under /Game/EnvSandbox/PCG/Universal/.
+"""Build universal PCG graphs under /Game/EnvSandbox/PCG/Universal/.
 
   python Content/Python/setup_pcg_universal.py
   python Content/Python/setup_pcg_universal.py --force

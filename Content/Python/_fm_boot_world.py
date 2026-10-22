@@ -1,4 +1,4 @@
-﻿import unreal, json
+import unreal, json
 EAL = unreal.EditorAssetLibrary
 LES = unreal.get_editor_subsystem(unreal.LevelEditorSubsystem)
 cands = [

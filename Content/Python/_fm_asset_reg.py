@@ -1,4 +1,4 @@
-﻿import unreal, json
+import unreal, json
 EAL = unreal.EditorAssetLibrary
 paths = [
     "/Game/Melodia/Levels/Opening/L_MelusinaMorning",

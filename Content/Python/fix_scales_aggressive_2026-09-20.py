@@ -1,4 +1,4 @@
-﻿"""Aggressive scale cleanup: any StaticMeshActor / dress / BP with max scale >= 3 gets normalized."""
+"""Aggressive scale cleanup: any StaticMeshActor / dress / BP with max scale >= 3 gets normalized."""
 import unreal, json
 from pathlib import Path
 from datetime import datetime, timezone

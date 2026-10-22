@@ -1,4 +1,4 @@
-﻿"""Add a pro triplanar overlay lane to M_Master_Toon_Landscape_HeightBlend.
+"""Add a pro triplanar overlay lane to M_Master_Toon_Landscape_HeightBlend.
 
 This is the landscape analogue of upgrade_universal_triplanar_substance.py:
 * creates a reusable material function with world-aligned projection, axis blend,

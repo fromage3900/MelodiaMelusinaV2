@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env python3
+#!/usr/bin/env python3
 """
 Gaea MCP server — headless Gaea 2 terrain graph inspect + Swarm build via MCP.
 

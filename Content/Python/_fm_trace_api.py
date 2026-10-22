@@ -1,4 +1,4 @@
-﻿import unreal, json
+import unreal, json
 # probe line trace APIs
 out = {}
 sl = unreal.SystemLibrary

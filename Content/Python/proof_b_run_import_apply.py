@@ -1,4 +1,4 @@
-﻿"""Proof B live apply for UE console (absolute path)."""
+"""Proof B live apply for UE console (absolute path)."""
 from __future__ import annotations
 
 import json

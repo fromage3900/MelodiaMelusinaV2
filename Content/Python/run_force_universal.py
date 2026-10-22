@@ -1,4 +1,4 @@
-﻿"""Rebuild M_Master_Toon_Universal — forces --force so UE argv quirks cannot skip.
+"""Rebuild M_Master_Toon_Universal — forces --force so UE argv quirks cannot skip.
 
 Run in UE Output Log (editor open, close master material tab first):
   py "G:/EnvironmentPortfolio/BS_GodFile/Content/Python/run_force_universal.py"

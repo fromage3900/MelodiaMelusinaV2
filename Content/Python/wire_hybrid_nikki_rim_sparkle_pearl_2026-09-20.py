@@ -1,4 +1,4 @@
-﻿"""Wire MF_NikkiRimGlow + MF_NikkiSparkle + MF_NikkiPearlSheen into M_MelodiaPlant_Wind_NikkiToon.
+"""Wire MF_NikkiRimGlow + MF_NikkiSparkle + MF_NikkiPearlSheen into M_MelodiaPlant_Wind_NikkiToon.
 
 Keeps SpeedTree WPO / SharedBend chain untouched. Color chain only:
   (existing BaseColor / DreamGrade) -> RimGlow -> Sparkle -> PearlSheen -> BaseColor out

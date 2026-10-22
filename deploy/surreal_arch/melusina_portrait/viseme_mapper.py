@@ -1,4 +1,4 @@
-﻿"""Viseme mapper — phoneme-to-viseme lookup with auto-detection of rig blendshapes.
+"""Viseme mapper — phoneme-to-viseme lookup with auto-detection of rig blendshapes.
 
 Subdivides the standard anime-style 15-viseme set into blendshape weight maps
 for Pixar-style facial rigs. Auto-scans armature shape keys to bind visemes

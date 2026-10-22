@@ -1,4 +1,4 @@
-﻿"""Stage 4 hero corners on L_MelusinaMorning — each with own PCG graph + camera.
+"""Stage 4 hero corners on L_MelusinaMorning — each with own PCG graph + camera.
 
 Corners (meadow-cluster distinct, not empty AABB void):
   1. MeadowChorus  — existing WC_morning_rainbow_bloom_Field (PointField) + new hero cam

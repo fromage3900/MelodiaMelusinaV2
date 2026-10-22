@@ -1,4 +1,4 @@
-﻿"""Wire Water Bioluminescence & Niagara Event Harmony (Feature F13).
+"""Wire Water Bioluminescence & Niagara Event Harmony (Feature F13).
 
 Wired Targets & Configurations:
 - UMelodiaWaterRippleMaterialBridgeComponent

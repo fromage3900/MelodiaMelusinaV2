@@ -1,4 +1,4 @@
-﻿import unreal, json
+import unreal, json
 out = {}
 out["has_LES"] = hasattr(unreal, "LandscapeEditorSubsystem")
 out["has_ImportHelper"] = hasattr(unreal, "LandscapeImportHelper")

@@ -1,4 +1,4 @@
-﻿"""Melusina Voice Server ΓÇö serve the Melusina Unified Feminine TTS model as an HTTP API.
+"""Melusina Voice Server ΓÇö serve the Melusina Unified Feminine TTS model as an HTTP API.
 
 Uses the pre-trained Style-Bert-VITS2 ONNX model from Downloads.
 Drop-in compatible with VOICEVOX API format so the existing dialogue

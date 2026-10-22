@@ -1,4 +1,4 @@
-﻿import unreal, json
+import unreal, json
 w = unreal.get_editor_subsystem(unreal.UnrealEditorSubsystem).get_editor_world()
 print("WORLD", w.get_path_name() if w else None)
 print("PROJECT", unreal.Paths.project_dir())

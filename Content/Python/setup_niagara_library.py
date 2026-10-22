@@ -1,4 +1,4 @@
-﻿"""BS_GodFile EnvSandbox Niagara starter library.
+"""BS_GodFile EnvSandbox Niagara starter library.
 
 USAGE
 -----

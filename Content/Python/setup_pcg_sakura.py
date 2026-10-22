@@ -1,4 +1,4 @@
-﻿"""Sakura PCG â€” thin style wrapper on universal portfolio graphs.
+"""Sakura PCG â€” thin style wrapper on universal portfolio graphs.
 
   py Content/Python/setup_pcg_sakura.py
   py Content/Python/setup_pcg_sakura.py --rebuild

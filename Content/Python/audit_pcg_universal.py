@@ -1,4 +1,4 @@
-﻿"""Audit universal PCG graphs and smoke-test greybox preset.
+"""Audit universal PCG graphs and smoke-test greybox preset.
 
   python Content/Python/audit_pcg_universal.py
 """

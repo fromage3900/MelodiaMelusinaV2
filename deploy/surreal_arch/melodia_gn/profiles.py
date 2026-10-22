@@ -1,4 +1,4 @@
-﻿"""Profile GN group builders — column, baluster, post, rail, star finial, lissajous curve."""
+"""Profile GN group builders — column, baluster, post, rail, star finial, lissajous curve."""
 
 from __future__ import annotations
 

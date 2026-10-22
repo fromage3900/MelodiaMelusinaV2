@@ -1,4 +1,4 @@
-﻿import unreal, json
+import unreal, json
 from datetime import datetime, timezone
 LVL = "/Game/EnvSandbox/Monoliths/FarawayMother/Prototype/LV_FarawayMother_Prototype"
 LES = unreal.get_editor_subsystem(unreal.LevelEditorSubsystem)

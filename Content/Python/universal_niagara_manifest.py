@@ -1,4 +1,4 @@
-﻿"""Disk-only manifest and readiness report for the universal Niagara portfolio kit.
+"""Disk-only manifest and readiness report for the universal Niagara portfolio kit.
 
 This script does not import Unreal or modify assets. It parses
 setup_niagara_library.py and compares the authored system specs against the
