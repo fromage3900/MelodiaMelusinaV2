@@ -1,0 +1,405 @@
+{
+  "contract_id": "melodia.p0.melusina_room_dressing_pipeline.v1",
+  "kind": "level_pipeline_plan",
+  "schema_version": "1.0",
+  "package": {
+    "package_id": "package.melusina_room_dressing_pipeline",
+    "display_name": "Melodia - room-aware dressing and game-ready level pipeline",
+    "content_kind": "level_pipeline_plan",
+    "status": "proposed_owner_review",
+    "created": "2026-10-22",
+    "scope": "the P0 house leg (L_MelusinaHouse_P0) first, the pattern second"
+  },
+  "purpose": "A scoped plan to make a Melodia room (a) placeable in one action, (b) dressable in a way that is aware of the room it sits in, (c) physically settled rather than posed, and (d) carry the gameplay loop. It also records the research and the shipped-game case studies the plan is built on.",
+  "authority": {
+    "level": "/Game/Melodia/Levels/Opening/L_MelusinaHouse_P0",
+    "route": "POITOU P0 Golden Walk house leg (M00-M05)",
+    "authoritative_document": "Docs/Plans/POITOU_P0_GOLDEN_WALK_2026-10-21.md",
+    "status_document": "CURRENT_STATE.md",
+    "style_contract": "Docs/Poitou/style_contract.md",
+    "fill_contract": "specs/p0/melusina_house_p0_fill.v1.json",
+    "dressing_state": "specs/p0/melusina_house_p0_dressing_state.json",
+    "dressing_catalogue_seed": "specs/p0/melusina_dressing_catalog.v1.json",
+    "note": "This plan creates no new authority. Houdini keeps the room, PCG keeps the scatter, the dressing subsystem keeps the human art pass, and the artist keeps the gameplay."
+  },
+  "meter": {
+    "module_m": 0.6,
+    "bay_m": 2.4,
+    "bpm": 128,
+    "note": "the same governing meter as the world canon: 0.6 m = 1 beat, 2.4 m = 1 bar of 4/4. The kit's standard doorway/bay system is built on it (see case study BS-04)."
+  },
+  "authority_rules": [
+    "one writer per surface: Houdini writes the shell, PCG writes the fill, the dressing pass writes the art pass, the artist writes the interactables",
+    "nothing an agent or a script does may move, replace or delete a hand-placed actor; the fill is additive only",
+    "the fill never re-enters a kit's own materials: everything it spawns uses the converted M_Master_Toon_Universal instances",
+    "the art pass is editor-only by design and is never a shipping dependency; a shipping level gets baked or runtime-generated content, decided in W8",
+    "no second PCG authority, no second dressing authority, no new world compiler"
+  ],
+  "layers": [
+    {
+      "layer": "room_shell",
+      "tool": "Houdini Engine - melodia::room_shell (Content/HDA/MelodiaRoomShell_1.0.hda, 33 params)",
+      "owns": "the shell, the openings, the bead swags, the chair rail, the skirting, the floor medallion and the acoustic tuning",
+      "never_does": "place a prop, place an interactable, decide gameplay",
+      "state": "SHIPPED",
+      "evidence": "13 Houdini shell actors in the house level (Saved/Audit/house_level_audit.json: houdini_shells)"
+    },
+    {
+      "layer": "dressing_surfaces",
+      "tool": "PCGEx - PCG_MelusinaRoomShell_PCGex (PCGExCreateSpline + PCGExShapeBoundsSource + PCGExFilters)",
+      "owns": "the room's named dressing surfaces (shelf tops, table tops, console tops) and the room's interior bounds",
+      "never_does": "decide which prop, or how many",
+      "state": "SHIPPED_GRAPH_EXISTS_SURFACES_NOT_PUBLISHED",
+      "evidence": "node names read out of the asset: PCGExCreateSpline, PCGExShapeBoundsSource, PCGExFilters, PCGExShapePointLookAt"
+    },
+    {
+      "layer": "fill",
+      "tool": "PCG - one graph per room + a density texture per room",
+      "owns": "scatter: books, candles, jars, bowls, cloth",
+      "never_does": "place anything that must contact a surface (a desk-top prop floats or sinks without a pivot correction)",
+      "state": "CONTRACT_ONLY",
+      "evidence": "specs/p0/melusina_house_p0_fill.v1.json - node chain designed, no node built"
+    },
+    {
+      "layer": "art_pass",
+      "tool": "UMelodiaDressingSubsystem (C++) - the Dash role: hero clutter, physically dropped debris, composition cleanup",
+      "owns": "the final human composition pass around a camera focus",
+      "never_does": "delete foreign assets; report only",
+      "state": "SCAFFOLD",
+      "evidence": "Source/BS_GodFile/MelodiaIntegration/MelodiaDressingSubsystem.cpp - all four functions log and return; none places, drops, traces or loads anything"
+    },
+    {
+      "layer": "gameplay",
+      "tool": "hand-placed interactables (project-owned Blueprints) + Quill narrative + Phoenix combat",
+      "owns": "the beat actions: M01 book, M02 resonance, M03 threshold, M04 medallion, M05 door",
+      "state": "BORROWED_CARRIERS",
+      "evidence": "the house's M01/M02/M04 carriers are Fab-pack Blueprints (BP_InteractiveBook, BP_CandleFlame, BP_Crystal under /Game/MagicianLabatory); the project's own carriers are BP_MelodyToken_Universal and BP_SirPerch"
+    },
+    {
+      "layer": "loop_bridge",
+      "tool": "MelodiaPCGNarrativeChallengeBridgeComponent + MelodiaPCGWaterGameplayBridgeComponent (C++)",
+      "owns": "the seam between generated content and the narrative/gameplay state",
+      "never_does": "become a second writer of narrative or combat state",
+      "state": "SHIPPED_UNPROVEN_ON_THE_HOUSE_LEG"
+    }
+  ],
+  "capability_audit": {
+    "verified_on": "2026-10-22",
+    "method": "read the source and the assets, not the docs; engine grep for native room support",
+    "rows": [
+      { "item": "Houdini room shell HDA", "state": "SHIPPED", "where": "Content/HDA/MelodiaRoomShell_1.0.hda" },
+      { "item": "PCGEx room shell graph with splines and bounds", "state": "SHIPPED", "where": "Content/EnvSandbox/PCG/House/PCG_MelusinaRoomShell_PCGex.uasset" },
+      { "item": "PCG grid scatter graph (piano keys)", "state": "SHIPPED", "where": "Content/EnvSandbox/PCG/House/PCG_MelusinaHouse_MorningDell.uasset" },
+      { "item": "PCG fill graphs for the house", "state": "MISSING", "where": "design only: specs/p0/melusina_house_p0_fill.v1.json" },
+      { "item": "Room density textures", "state": "MISSING", "where": "dressing_heatmap_{bedroom,landing,salon}.png" },
+      { "item": "UMelodiaDressingSubsystem", "state": "SCAFFOLD", "where": "Source/BS_GodFile/MelodiaIntegration/MelodiaDressingSubsystem.cpp - logs and returns true" },
+      { "item": "UMelodiaDressingCatalog class", "state": "MISSING", "where": "no C++ class holds the catalogue" },
+      { "item": "DA_MelodiaDressingCatalog asset", "state": "MISSING", "where": "path reserved by GetDressingCatalogPath(); content derived in specs/p0/melusina_dressing_catalog.v1.json" },
+      { "item": "BP_MelodiaRoomShell (the room kit Blueprint)", "state": "MISSING", "where": "named by the style contract; the house is hand-assembled instead" },
+      { "item": "PCG <-> narrative/gameplay bridge components", "state": "SHIPPED", "where": "Source/BS_GodFile/MelodiaIntegration/MelodiaPCG*BridgeComponent.*" },
+      { "item": "Native PCG 'Room' concept (room data assets, room layouts)", "state": "ABSENT_IN_THIS_ENGINE_BUILD", "where": "verified by grepping the UE 5.8 PCG plugin headers: no PCGRoom*/RoomLayout*/PCGCreateRoom classes exist, so room-awareness must be built from splines + bounds + filters" },
+      { "item": "Physically settled placement (the BP_PhysicsSpawner behaviour)", "state": "SCAFFOLD", "where": "PhysicallyDrop() logs and returns true; it enables no simulation" },
+      { "item": "House gameplay carriers", "state": "BORROWED", "where": "Magician's Laboratory pack BPs; ours are BP_MelodyToken_Universal and BP_SirPerch" },
+      { "item": "Runtime proof of the house leg", "state": "ABSENT", "where": "the route has never been walked; the audit is static" },
+      { "item": "Dressing catalogue content", "state": "SEED_READY", "where": "specs/p0/melusina_dressing_catalog.v1.json - 4 families, 97 props, derived from the artist's own placements" }
+    ]
+  },
+  "work_items": [
+    {
+      "id": "W1",
+      "title": "Dressing catalogue: the C++ class and the asset",
+      "why": "The art pass has no catalogue to read, so the whole Dash role is dark. GetDressingCatalogPath() reserves a path for an asset that does not exist and no class holds the data.",
+      "owner_role": "build agent (C++ + commandlet)",
+      "depends_on": [],
+      "size": "M",
+      "definition_of_done": [
+        "a UMelodiaDressingCatalog : UDataAsset exists with a gameplay-tag family -> hero prop set map",
+        "the asset DA_MelodiaDressingCatalog exists at the reserved path, populated from specs/p0/melusina_dressing_catalog.v1.json",
+        "DressHeroClutter loads the catalogue and places at least one prop of the requested family around a focus in PIE",
+        "an offline probe (Tools/test_dressing.py) asserts the catalogue loads and returns a non-empty family"
+      ],
+      "evidence_required": "PIE capture + probe output + a ledger row",
+      "blocker": "the C++ tree currently carries 39 dirty paths from another session (Source/, Plugins/) - a build now would compile someone else's in-flight code. Needs a clean compile window."
+    },
+    {
+      "id": "W2",
+      "title": "PhysicallyDrop for real - the settled-placement behaviour",
+      "why": "This is the capability the BP_PhysicsSpawner was for: props that fall and come to rest instead of being posed. It is also the cheapest way to make a room read as inhabited.",
+      "owner_role": "build agent (C++)",
+      "depends_on": [],
+      "size": "S",
+      "definition_of_done": [
+        "actors passed in are positioned at focus + offset, have simulation enabled, and come to rest on the room's collision (the HDA shell's, not a proxy floor)",
+        "restitution is honoured",
+        "the actors are excluded from the dressing contract (they are not hand-placed placements)",
+        "PIE proves the same props settle in different positions across two runs"
+      ],
+      "evidence_required": "two PIE captures (before/after settle) + probe output",
+      "blocker": null
+    },
+    {
+      "id": "W3",
+      "title": "FindCompositionOccluders for real - the camera-clean report",
+      "why": "The artist needs to know what is blocking the framed shot (M03's staircase, M04's medallion) without a script deleting it. The rule stays report-only.",
+      "owner_role": "build agent (C++)",
+      "depends_on": [],
+      "size": "S",
+      "definition_of_done": [
+        "returns the props that occlude a camera focus inside a radius, as a report",
+        "mutates nothing: no actor is moved, hidden or deleted",
+        "the report names the M03 staircase and the M04 medallion rings in the house leg"
+      ],
+      "evidence_required": "the report JSON from a PIE run against the house leg",
+      "blocker": null
+    },
+    {
+      "id": "W4",
+      "title": "BP_MelodiaRoomShell - the room kit Blueprint",
+      "why": "The house is hand-assembled: a Houdini actor per room, PCG graphs dropped separately, interactables from two different packs. There is no 'place a room' action.",
+      "owner_role": "build agent + artist (design)",
+      "depends_on": ["W5"],
+      "size": "L",
+      "definition_of_done": [
+        "dropping one Blueprint into a level produces: the room shell instance, the room's named dressing surfaces, the room's fill volume, and a gameplay-carrier slot",
+        "the room type is one property (bedroom / landing / salon)",
+        "two instances of the same type produce the same result, and the shell's pivot, footprint and transition metrics are identical between them",
+        "the kit's metrics are frozen: changing a pivot or a footprint after layout is a breaking change (case study BS-04)"
+      ],
+      "evidence_required": "two placed instances in PIE + the audit re-run",
+      "blocker": "the artist must confirm the room type list and the carrier slot contract"
+    },
+    {
+      "id": "W5",
+      "title": "The fill graphs and the room density textures",
+      "why": "The fill contract is designed but not built; without it the room has no scatter layer and the artist has no lever short of hand placement.",
+      "owner_role": "build agent (PCG) + artist (density painting)",
+      "depends_on": [],
+      "size": "L",
+      "definition_of_done": [
+        "one PCG graph per room (or one graph with three room subgraphs), built to the node chain in the fill contract",
+        "the density textures exist and are painted like the Poitou zone heatmaps",
+        "the fill is additive: a re-run adds, it never moves a hand-placed actor",
+        "the exclusions hold: no prop on the route or its 4 m buffer, none in the medallion footprint, none in a door swing, none crowding a contract placement",
+        "no more than 3 fill species legible in any one frame"
+      ],
+      "evidence_required": "a screenshot of each room with the PCG preview + the audit re-run showing 0 issues",
+      "blocker": "the shell's PCGEx graph must expose the named surfaces as sample points"
+    },
+    {
+      "id": "W6",
+      "title": "House-resident gameplay carriers",
+      "why": "The house's beat actions currently ride on borrowed Fab-pack Blueprints (BP_InteractiveBook, BP_CandleFlame, BP_Crystal). The loop the project is selling should not depend on a pack's naming.",
+      "owner_role": "build agent + artist (placement)",
+      "depends_on": [],
+      "size": "M",
+      "definition_of_done": [
+        "M01 book, M02 resonant object and M04 medallion interactable are project-owned Blueprints with the same interaction contract the borrowed ones had",
+        "the project-owned token family (BP_MelodyToken_Universal) is the candidate for the M02 resonant object, matching the P0 spec's 'one existing compatible actor' requirement",
+        "the beat still reads and still triggers its narrative notification"
+      ],
+      "evidence_required": "PIE per beat + the Quill notification in the log",
+      "blocker": "the artist's arrangement of the interactables is authoritative - the carrier is replaced in place, never re-placed"
+    },
+    {
+      "id": "W7",
+      "title": "Walk the route - the gate",
+      "why": "Nothing in the house leg is runtime-proven. Static audits pass; a walk is the only honest proof.",
+      "owner_role": "owner (artist) + build agent (instrumentation)",
+      "depends_on": ["W4", "W5", "W6"],
+      "size": "M",
+      "definition_of_done": [
+        "M00 -> M09 walked in PIE with the beat actions performed",
+        "each beat has a capture",
+        "the audit is re-run after the walk: 0 issues",
+        "the walk's findings are recorded against this contract"
+      ],
+      "evidence_required": "captures + audit JSON",
+      "blocker": null
+    },
+    {
+      "id": "W8",
+      "title": "Shipping decisions for a generated level",
+      "why": "Editor-only answers do not make a shipping level. These are choices, and they are the owner's.",
+      "owner_role": "owner decides; build agent implements",
+      "depends_on": ["W5"],
+      "size": "M",
+      "questions": [
+        "PCG bake or runtime generation for a shipping level (the art pass is editor-only by design, so the runtime path must be baked or data-driven)",
+        "static vs movable: 82 of 84 dressing actors are currently MOVABLE - no static lighting, no occlusion culling, and they cost per-instance",
+        "save and multiplayer behaviour for generated content",
+        "the 23 base actors still on the Fab pack's own materials (including the M04 medallion rings) - convert or accept"
+      ],
+      "definition_of_done": [
+        "each question has a recorded answer in this contract",
+        "the runtime consequence of each answer is proven once"
+      ],
+      "evidence_required": "the decision record + the runtime proof",
+      "blocker": null
+    },
+    {
+      "id": "W9",
+      "title": "Source-control hygiene for the house leg",
+      "why": "Of the three durability layers, only one is landed. The map's git copy and the dressing state file are in the branch that owns them, not on main.",
+      "owner_role": "owner + the session that owns the branch",
+      "depends_on": [],
+      "size": "S",
+      "definition_of_done": [
+        "L_MelusinaHouse_P0.umap is in origin/main",
+        "specs/p0/melusina_house_p0_dressing_state.json is in origin/main",
+        "the P4 changelists holding the other session's in-flight work are submitted by that session (CL 300: 1,691 files; default: 543)"
+      ],
+      "evidence_required": "git ls-tree output",
+      "blocker": "not the build agent's to close - the map and the state file belong to another session's branch"
+    }
+  ],
+  "critical_path": ["W1", "W5", "W4", "W6", "W7"],
+  "parallel_tracks": {
+    "W2": "independent of everything - no catalogue needed",
+    "W3": "independent of everything - no catalogue needed",
+    "W8": "starts as soon as the artist has seen one filled room (W5)",
+    "W9": "belongs to the owner and the other session"
+  },
+  "case_studies": [
+    {
+      "id": "BS-01",
+      "game": "Fortnite (Unreal Editor for Fortnite) - Scene Graph, by Epic Games",
+      "status": "shipped platform, Scene Graph is Beta (Epic warns: use caution when shipping with it)",
+      "url": "https://dev.epicgames.com/documentation/fortnite/getting-started-in-scene-graph-in-fortnite",
+      "verified": "page fetched 2026-10-22",
+      "mechanic": "Levels are built as prefab assemblies. A prefab is a hierarchy of entities with components; the docs' own example builds 'two castle room prefabs' and then a castle and a village by swapping children. Geometry, sound cues and behaviour all live in the same reusable assembly, and each instance can override individual component values.",
+      "quotes": [
+        "Anything you build in Scene Graph can be reused many times over, and with less memory.",
+        "You can quickly put together set pieces and game mechanics by harnessing the physical data from meshes, sound cues, and much more.",
+        "Editing prefabs doesn't affect the stability and memory of the original object or its copies."
+      ],
+      "steal": [
+        "the room prefab as the unit of reuse - one assembly that carries geometry AND gameplay, which is exactly the 'BP that places geometry and carries the gameplay loop' the project needs",
+        "per-instance overrides as the artist's art-direction lever: change the floor in one room without touching the kit or the other instances",
+        "instancing for memory: the same reason PCG beats hand-placed actors"
+      ],
+      "do_not_steal": [
+        "Verse as the authoring language - the project already has C++ and Blueprints",
+        "Scene Graph itself: it is Beta, and the project must not add a platform-specific authoring authority"
+      ]
+    },
+    {
+      "id": "BS-02",
+      "game": "Unreal Engine 5 - Epic community tutorial: 'Procedural Room Generation with Splines and PCG in Unreal Engine'",
+      "status": "Epic community tutorial (author content)",
+      "url": "https://dev.epicgames.com/community/learning/tutorials/eZVR/procedural-room-generation-with-splines-and-pcg-in-unreal-engine",
+      "verified": "listing confirmed 2026-10-22 (the tutorial page itself is script-rendered and did not return text; the quote is Epic's own listing text)",
+      "mechanic": "A reusable Blueprint Actor that generates complete rooms from splines: the spline defines the room, PCG samples it and spawns the contents.",
+      "quotes": [
+        "This intermediate-to-advanced tutorial teaches you to create a reusable Blueprint Actor that automatically generates complete rooms from any ..."
+      ],
+      "steal": [
+        "the shape of BP_MelodiaRoomShell (W4): one Blueprint that takes a room and produces it",
+        "spline-driven room definition, which is what PCG_MelusinaRoomShell_PCGex already does for the surfaces"
+      ],
+      "do_not_steal": [
+        "the 'any room' promise - a Melodia room is not generic; its shell, medallion and acoustic tuning are authored, not parameterised into existence"
+      ]
+    },
+    {
+      "id": "BS-03",
+      "game": "THE FINALS (Embark Studios) - procedural buildings, by SideFX",
+      "status": "shipped live-service game",
+      "url": "https://www.sidefx.com/community/making-the-procedural-buildings-of-the-finals-using-houdini/",
+      "verified": "listing confirmed 2026-10-22 (SideFX's article body is behind their site chrome; the quote is SideFX's own listing text)",
+      "mechanic": "A Houdini toolset that generates the game's buildings procedurally while keeping the artists in control of the result; the procedural structure then carries cover, traversal and combat space, and the art direction rides on top of it.",
+      "quotes": [
+        "Houdini toolset that could automate the repetitive work while still giving artists creative control."
+      ],
+      "steal": [
+        "the division of labour this project already chose: Houdini automates the repetitive shell work, the 33-parameter room shell is the artist's control surface, and gameplay is authored on top of the procedural structure",
+        "the reminder that procedural structure is where gameplay lives - the shell's openings and the medallion are beat geometry, not decoration"
+      ],
+      "do_not_steal": [
+        "full-building procedural generation: Melodia's house is an authored place with an authored route"
+      ]
+    },
+    {
+      "id": "BS-04",
+      "game": "Bethesda open worlds (Oblivion, Fallout 3/4, Skyrim) - Joel Burgess, level designer, interviewed by 80 Level",
+      "status": "shipped games; interview published 2018-08-07",
+      "url": "https://80.lv/articles/building-huge-open-worlds-modularity-kits-art-fatigue",
+      "verified": "article fetched 2026-10-22",
+      "mechanic": "Modular kits with a shared logic, a standard doorway system between kits, and a deliberate anti-repetition discipline.",
+      "quotes": [
+        "Everyone knows that a kit-based level can look bland, and 'show the grid' in ways that make it obvious the environment is modular.",
+        "the better you can mix and match pieces within a kit and other kits in the game, the more combinations you can come up with to break up the monotony",
+        "One big saving grace in these kinds of games with many logically-distinct kits is to use a standard doorway system to connect them.",
+        "it's generally bad news to change certain aspects of a kit once levels are built with it. Things like pivot point location, base footprint size, and transition metrics can be a disaster",
+        "I think it's most critical to focus on functional polish early, and then allow for visual polish in the later stages of development."
+      ],
+      "steal": [
+        "the standard doorway/bay system between room types - Melodia already has the meter (0.6 m module, 2.4 m bay); the room kit must expose one standard portal so a bedroom and a salon can be joined without bespoke geometry",
+        "FREEZE RULE: pivot, footprint and transition metrics are fixed before layout. A change after layout breaks every room that used the kit - so this becomes a durable rule in W4",
+        "the anti-repetition split: base layer (kit) + fill layer (scatter) + hero layer (the art pass) - three layers that mix so the grid does not show",
+        "functional polish first: the room must work before it is pretty, and the walk (W7) is the functional gate"
+      ],
+      "do_not_steal": [
+        "hard-binding a kit to one gameplay meaning: 'I generally stay away from hard associations between kits and certain gameplay or artistic decision' - the carrier is a swappable slot (W4), not a fixed child"
+      ]
+    },
+    {
+      "id": "BS-05",
+      "game": "Deep Rock Galactic (Ghost Ship Games) - Epic Project Spotlight",
+      "status": "shipped game; Epic's own spotlight",
+      "url": "https://www.unrealengine.com/spotlights/how-ghost-ship-games-found-success-with-deep-rock-galactic",
+      "verified": "Epic listing confirmed 2026-10-22 (the spotlight page itself did not fetch; the description below is Epic's own text for the video)",
+      "mechanic": "Static and procedural maps are analysed together for player engagement rather than treated as competing approaches.",
+      "quotes": [
+        "Static and procedural maps analysed for player engagement | Featuring Deep Rock Galactic & Darktide."
+      ],
+      "steal": [
+        "judging the authored room and the generated fill together, in the walk - not separately. The walk (W7) is the engagement test for both layers at once"
+      ],
+      "do_not_steal": [
+        "the fully procedural level: the house leg stays authored"
+      ]
+    },
+    {
+      "id": "BS-06",
+      "game": "Unreal Engine 5 - Epic PCG Development Guides (reference)",
+      "status": "official documentation",
+      "url": "https://dev.epicgames.com/documentation/en-us/unreal-engine/pcg-development-guides",
+      "verified": "page fetched 2026-10-22",
+      "mechanic": "The canonical reference for PCG graphs and their best-practice patterns (shape grammar, splines, filters, spawners).",
+      "steal": [
+        "the node vocabulary and the best-practice patterns the fill graphs (W5) are built from"
+      ],
+      "do_not_steal": []
+    }
+  ],
+  "research_notes": [
+    "There is no native 'room' concept in this engine build's PCG plugin: no PCGRoomData, RoomLayout or PCGCreateRoom classes exist in the UE 5.8 PCG headers. Room-awareness therefore has to be built from splines + a bounds source + filters - which is what PCG_MelusinaRoomShell_PCGex already does. This kills the idea of 'use PCG Rooms' and justifies the spline approach in the fill contract.",
+    "The commercial tools this project modelled the Dash role on (Polygonflow Dash, Magpie) are absent and paid; the native subsystem is the fallback, and it must be built as a real implementation rather than left as the current scaffold.",
+    "BP_PhysicsSpawner does not exist in this repository, in Content or in git history. The capability it stood for - props that fall and settle - is the contract of UMelodiaDressingSubsystem::PhysicallyDrop, which is currently a scaffold. That is W2."
+  ],
+  "definition_of_done_for_the_house_leg": [
+    "the artist places a room by dropping one Blueprint and choosing a room type",
+    "the fill regenerates from a density edit without any hand-placed actor moving",
+    "the art pass has a catalogue and can drop debris that settles",
+    "every beat M00-M09 is walkable in PIE, with captures",
+    "the level cooks with the generated content present"
+  ],
+  "out_of_scope": [
+    "a new procedural or dressing authority of any kind",
+    "replacing the Houdini room shell with something else",
+    "the commercial Dash/Magpie plugins",
+    "the Kenney pack and the Alpha toon master (retired 2026-10-21)",
+    "the other P4 changelists that belong to another session"
+  ],
+  "open_questions_for_owner": [
+    "W1/W2/W3 need a C++ build. The tree has 39 dirty Source/ and Plugins/ paths from another session right now - do you want me to wait for a clean window, or land the catalogue as data only (the seed is already written) and let the class come later?",
+    "W4's carrier slot: should a room type own its interactable as a fixed child (Bethesda-style kit), or should the carrier stay an independent actor that the room references? The artist's arrangement argues for independent.",
+    "W5's density textures are painted by hand. Do you want to paint them, or should the first pass be derived from your own 97 placements (a density map that reproduces what you already placed)?",
+    "W8: the 82 movable dressing actors - is making them static part of 'game-ready', or do you want them movable for the art pass?"
+  ],
+  "not_yet_true": [
+    "no item in this plan has been implemented; this is the scoped plan, not a receipt",
+    "the fill graphs, the density textures, the room kit Blueprint and the catalogue asset do not exist",
+    "the house leg has never been walked in PIE"
+  ]
+}

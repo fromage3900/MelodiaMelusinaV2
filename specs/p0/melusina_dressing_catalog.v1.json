@@ -1,0 +1,2501 @@
+{
+  "contract_id": "melodia.p0.melusina_dressing_catalog.v1",
+  "kind": "dressing_catalog_seed",
+  "schema_version": "1.0",
+  "package": {
+    "package_id": "package.melusina_dressing_catalog",
+    "display_name": "Melodia dressing catalogue - seed content",
+    "content_kind": "dressing_catalog_seed",
+    "status": "seed_content_ready_asset_pending"
+  },
+  "purpose": "The content of DA_MelodiaDressingCatalog, derived from the props the artist already placed, keyed by the gameplay-tag family the artist already used. This is the catalogue the art pass (Dash role) reads: family tag -> hero prop set, so a dressing pass places existing library assets instead of inventing a new authority.",
+  "authority": {
+    "source_of_truth": "the map itself (/Game/Melodia/Levels/Opening/L_MelusinaHouse_P0). This file is its reproducible record, never a competing one.",
+    "generator": "Tools/build_dressing_catalog_seed.py",
+    "inputs": [
+      "specs/p0/melusina_house_p0_dressing_state.json",
+      "Saved/Audit/house_level_audit.json"
+    ],
+    "target_asset": "/Game/MelodiaIntegration/Config/DA_MelodiaDressingCatalog",
+    "asset_path_reserved_by": "UMelodiaDressingSubsystem::GetDressingCatalogPath() (Source/BS_GodFile/MelodiaIntegration/MelodiaDressingSubsystem.cpp)",
+    "guardrail": "read-only derivation: the generator never touches Content, never opens the editor and never moves an actor."
+  },
+  "tag_vocabulary": {
+    "family_tag": "Room_<room> - the gameplay-tag family the catalogue is keyed by. One family per room: a dressing pass asks for a room, not a mesh.",
+    "prop_tag": "Prop_<mesh leaf name> - one hero prop inside a family.",
+    "layer": {
+      "base": "the Magician's Library architecture and furniture.",
+      "enchanted_interiors": "Kitbash3D Enchanted Interiors props, converted onto M_Master_Toon_Universal on 2026-10-21.",
+      "functional": "hand-placed interactables that carry the gameplay."
+    }
+  },
+  "totals": {
+    "families": 4,
+    "props": 97,
+    "placements": 97
+  },
+  "families": [
+    {
+      "family": "Room_bedroom",
+      "room": "bedroom",
+      "description": "",
+      "props": [
+        {
+          "prop_tag": "Prop_BP_CandleFlame",
+          "mesh": null,
+          "materials": [],
+          "count": 1,
+          "layer": "base",
+          "kind": "dressing",
+          "placements": [
+            {
+              "label": "MagBP_BP_CandleFlame",
+              "location": [
+                -910,
+                -930,
+                95
+              ],
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        {
+          "prop_tag": "Prop_BP_InteractiveBook",
+          "mesh": "/Game/MagicianLabatory/BP/InteractiveBook/StaticMesh/SM_Book",
+          "materials": [],
+          "count": 1,
+          "layer": "base",
+          "kind": "dressing",
+          "placements": [
+            {
+              "label": "MagBP_BP_InteractiveBook",
+              "location": [
+                -697,
+                -150,
+                194
+              ],
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        {
+          "prop_tag": "Prop_Explore_Desk",
+          "mesh": null,
+          "materials": [],
+          "count": 1,
+          "layer": "base",
+          "kind": "p0",
+          "placements": [
+            {
+              "label": "P0_Explore_Desk",
+              "location": [
+                -900,
+                -880,
+                41
+              ],
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        {
+          "prop_tag": "Prop_Explore_Perch",
+          "mesh": null,
+          "materials": [],
+          "count": 1,
+          "layer": "base",
+          "kind": "p0",
+          "placements": [
+            {
+              "label": "P0_Explore_Perch",
+              "location": [
+                -860,
+                -300,
+                90
+              ],
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        {
+          "prop_tag": "Prop_KB3D_ECI_PropAppleBowl_A_Main",
+          "mesh": "/Game/EnchantedInteriors/Geometries/KB3D_ECI_PropAppleBowl_A_Main",
+          "materials": [
+            "/Game/EnchantedInteriors/Materials/KB3D_ECI_FoodAtlas",
+            "/Game/EnchantedInteriors/Materials/KB3D_ECI_WoodBrightOldA"
+          ],
+          "count": 1,
+          "layer": "enchanted_interiors",
+          "kind": "dressing",
+          "placements": [
+            {
+              "label": "Mag_bedroom_KB3D_ECI_PropAppleBowl_A_Main",
+              "location": [
+                -859,
+                -920,
+                91
+              ],
+              "rotation": [
+                0.0,
+                -90.05,
+                0.0
+              ]
+            }
+          ]
+        },
+        {
+          "prop_tag": "Prop_KB3D_ECI_PropBookShelf_A_Main",
+          "mesh": "/Game/EnchantedInteriors/Geometries/KB3D_ECI_PropBookShelf_A_Main",
+          "materials": [
+            "/Game/EnchantedInteriors/Materials/KB3D_ECI_BooksAtlas",
+            "/Game/EnchantedInteriors/Materials/KB3D_ECI_WoodPolishedA"
+          ],
+          "count": 1,
+          "layer": "enchanted_interiors",
+          "kind": "dressing",
+          "placements": [
+            {
+              "label": "Mag_bedroom_KB3D_ECI_PropBookShelf_A_Main",
+              "location": [
+                -520,
+                -1040,
+                52
+              ],
+              "rotation": [
+                0.0,
+                0.0,
+                -0.0
+              ]
+            }
+          ]
+        },
+        {
+          "prop_tag": "Prop_KB3D_ECI_PropBookStack_A_Main",
+          "mesh": "/Game/EnchantedInteriors/Geometries/KB3D_ECI_PropBookStack_A_Main",
+          "materials": [
+            "/Game/EnchantedInteriors/Materials/KB3D_ECI_BooksAtlas"
+          ],
+          "count": 1,
+          "layer": "enchanted_interiors",
+          "kind": "dressing",
+          "placements": [
+            {
+              "label": "Mag_bedroom_KB3D_ECI_PropBookStack_A_Main",
+              "location": [
+                -1130,
+                -840,
+                234
+              ],
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        {
+          "prop_tag": "Prop_KB3D_ECI_PropCandleHolder_A_Main",
+          "mesh": "/Game/EnchantedInteriors/Geometries/KB3D_ECI_PropCandleHolder_A_Main",
+          "materials": [
+            "/Game/EnchantedInteriors/Materials/KB3D_ECI_CandlesAtlas"
+          ],
+          "count": 1,
+          "layer": "enchanted_interiors",
+          "kind": "dressing",
+          "placements": [
+            {
+              "label": "Mag_bedroom_KB3D_ECI_PropCandleHolder_A_Main",
+              "location": [
+                -880,
+                -250,
+                81
+              ],
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        {
+          "prop_tag": "Prop_KB3D_ECI_PropChest_B_Main",
+          "mesh": "/Game/EnchantedInteriors/Geometries/KB3D_ECI_PropChest_B_Main",
+          "materials": [
+            "/Game/EnchantedInteriors/Materials/KB3D_ECI_MetalTrimA",
+            "/Game/EnchantedInteriors/Materials/KB3D_ECI_WoodDamageGradientA"
+          ],
+          "count": 1,
+          "layer": "enchanted_interiors",
+          "kind": "dressing",
+          "placements": [
+            {
+              "label": "Mag_bedroom_KB3D_ECI_PropChest_B_Main",
+              "location": [
+                -520,
+                -870,
+                36
+              ],
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        {
+          "prop_tag": "Prop_MelodyToken_Heart",
+          "mesh": "/Engine/BasicShapes/Sphere",
+          "materials": [],
+          "count": 1,
+          "layer": "base",
+          "kind": "p0",
+          "placements": [
+            {
+              "label": "P0_MelodyToken_Heart",
+              "location": [
+                -885,
+                -958,
+                82
+              ],
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        {
+          "prop_tag": "Prop_SM_Bookshelf",
+          "mesh": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Bookshelf/SM_Bookshelf",
+          "materials": [
+            "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Bookshelf/MI_M_Bookshelf"
+          ],
+          "count": 1,
+          "layer": "base",
+          "kind": "dressing",
+          "placements": [
+            {
+              "label": "Mag_bedroom_SM_Bookshelf",
+              "location": [
+                -1130,
+                -890,
+                245
+              ],
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        {
+          "prop_tag": "Prop_SM_Box",
+          "mesh": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Box/SM_Box",
+          "materials": [
+            "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Box/MI_M_Box"
+          ],
+          "count": 1,
+          "layer": "base",
+          "kind": "dressing",
+          "placements": [
+            {
+              "label": "Mag_bedroom_SM_Box",
+              "location": [
+                -1130,
+                -800,
+                235
+              ],
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        {
+          "prop_tag": "Prop_SM_Candle1_L",
+          "mesh": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Candle/SM_Candle1_L",
+          "materials": [
+            "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Candle/MI_M_Candle"
+          ],
+          "count": 1,
+          "layer": "base",
+          "kind": "dressing",
+          "placements": [
+            {
+              "label": "Mag_bedroom_SM_Candle1_L",
+              "location": [
+                -910,
+                -930,
+                71
+              ],
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        {
+          "prop_tag": "Prop_SM_Carpet",
+          "mesh": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Carpet/SM_Carpet",
+          "materials": [
+            "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Carpet/MI_M_Carpet"
+          ],
+          "count": 1,
+          "layer": "base",
+          "kind": "dressing",
+          "placements": [
+            {
+              "label": "Mag_bedroom_SM_Carpet",
+              "location": [
+                -720,
+                -760,
+                4
+              ],
+              "rotation": [
+                0.0,
+                90.0,
+                -0.0
+              ]
+            }
+          ]
+        },
+        {
+          "prop_tag": "Prop_SM_Deco4",
+          "mesh": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Deco4/SM_Deco4",
+          "materials": [
+            "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Deco4/MI_M_Deco4"
+          ],
+          "count": 1,
+          "layer": "base",
+          "kind": "dressing",
+          "placements": [
+            {
+              "label": "Mag_bedroom_SM_Deco4",
+              "location": [
+                -1145,
+                -330,
+                189
+              ],
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        {
+          "prop_tag": "Prop_SM_Deco5",
+          "mesh": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Deco5/SM_Deco5",
+          "materials": [
+            "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Deco5/MI_M_Deco5"
+          ],
+          "count": 1,
+          "layer": "base",
+          "kind": "dressing",
+          "placements": [
+            {
+              "label": "Mag_bedroom_SM_Deco5",
+              "location": [
+                -700,
+                -960,
+                188
+              ],
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        {
+          "prop_tag": "Prop_SM_Desk",
+          "mesh": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Desk/SM_Desk",
+          "materials": [
+            "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Desk/MI_M_Desk"
+          ],
+          "count": 1,
+          "layer": "base",
+          "kind": "dressing",
+          "placements": [
+            {
+              "label": "Mag_bedroom_SM_Desk",
+              "location": [
+                -900,
+                -935,
+                41
+              ],
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        {
+          "prop_tag": "Prop_SM_Desk3",
+          "mesh": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Desk3/SM_Desk3",
+          "materials": [
+            "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Desk3/MI_M_Desk3"
+          ],
+          "count": 1,
+          "layer": "base",
+          "kind": "dressing",
+          "placements": [
+            {
+              "label": "Mag_bedroom_SM_Desk3",
+              "location": [
+                -880,
+                -250,
+                38
+              ],
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        {
+          "prop_tag": "Prop_SM_Desk_Drawer",
+          "mesh": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/DeskDrawer/SM_Desk_Drawer",
+          "materials": [
+            "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/DeskDrawer/MI_M_Desk_Drawer"
+          ],
+          "count": 1,
+          "layer": "base",
+          "kind": "dressing",
+          "placements": [
+            {
+              "label": "Mag_bedroom_SM_Desk_Drawer",
+              "location": [
+                -900,
+                -935,
+                19
+              ],
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        {
+          "prop_tag": "Prop_SM_Drawer_Box002",
+          "mesh": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Drawer/SM_Drawer_Box002",
+          "materials": [
+            "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Drawer/MI_M_Drawer_Box002"
+          ],
+          "count": 1,
+          "layer": "base",
+          "kind": "dressing",
+          "placements": [
+            {
+              "label": "Mag_bedroom_SM_Drawer_Box002",
+              "location": [
+                -520,
+                -600,
+                12
+              ],
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        {
+          "prop_tag": "Prop_SM_Flag",
+          "mesh": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Flag/SM_Flag",
+          "materials": [
+            "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Flag/MI_M_Flag"
+          ],
+          "count": 1,
+          "layer": "base",
+          "kind": "dressing",
+          "placements": [
+            {
+              "label": "Mag_bedroom_SM_Flag",
+              "location": [
+                -1000,
+                -955,
+                21
+              ],
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        {
+          "prop_tag": "Prop_SM_GlassBottle2",
+          "mesh": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/GlassBottle2/SM_GlassBottle2",
+          "materials": [
+            "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/GlassBottle2/MI_M_GlassBottle2"
+          ],
+          "count": 1,
+          "layer": "base",
+          "kind": "dressing",
+          "placements": [
+            {
+              "label": "Mag_bedroom_SM_GlassBottle2",
+              "location": [
+                -625,
+                -145,
+                194
+              ],
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        {
+          "prop_tag": "Prop_SM_GlassBottle3",
+          "mesh": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/GlassBottle3/SM_GlassBottle3",
+          "materials": [
+            "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/GlassBottle3/MI_M_GlassBottle3"
+          ],
+          "count": 1,
+          "layer": "base",
+          "kind": "dressing",
+          "placements": [
+            {
+              "label": "Mag_bedroom_SM_GlassBottle3",
+              "location": [
+                -605,
+                -140,
+                194
+              ],
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        {
+          "prop_tag": "Prop_SM_GlassBottle4",
+          "mesh": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/GlassBottle4/SM_GlassBottle4",
+          "materials": [
+            "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/GlassBottle4/MI_M_GlassBottle4"
+          ],
+          "count": 1,
+          "layer": "base",
+          "kind": "dressing",
+          "placements": [
+            {
+              "label": "Mag_bedroom_SM_GlassBottle4",
+              "location": [
+                -945,
+                -950,
+                94
+              ],
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        {
+          "prop_tag": "Prop_SM_GlassBottle5",
+          "mesh": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/GlassBottle5/SM_GlassBottle5",
+          "materials": [
+            "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/GlassBottle5/MI_M_GlassBottle5"
+          ],
+          "count": 1,
+          "layer": "base",
+          "kind": "dressing",
+          "placements": [
+            {
+              "label": "Mag_bedroom_SM_GlassBottle5",
+              "location": [
+                -930,
+                -952,
+                94
+              ],
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        {
+          "prop_tag": "Prop_SM_GlassBottle6",
+          "mesh": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/GlassBottle6/SM_GlassBottle6",
+          "materials": [
+            "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/GlassBottle6/MI_M_GlassBottle6"
+          ],
+          "count": 1,
+          "layer": "base",
+          "kind": "dressing",
+          "placements": [
+            {
+              "label": "Mag_bedroom_SM_GlassBottle6",
+              "location": [
+                -915,
+                -950,
+                92
+              ],
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        {
+          "prop_tag": "Prop_SM_Globe",
+          "mesh": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Globe/SM_Globe",
+          "materials": [
+            "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Globe/MI_M_Globe"
+          ],
+          "count": 1,
+          "layer": "base",
+          "kind": "dressing",
+          "placements": [
+            {
+              "label": "Mag_bedroom_SM_Globe",
+              "location": [
+                -870,
+                -945,
+                82
+              ],
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        {
+          "prop_tag": "Prop_SM_HallDeco",
+          "mesh": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/HallDeco/SM_HallDeco",
+          "materials": [
+            "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/HallDeco/MI_M_HallDeco"
+          ],
+          "count": 1,
+          "layer": "base",
+          "kind": "dressing",
+          "placements": [
+            {
+              "label": "Mag_bedroom_SM_HallDeco",
+              "location": [
+                -430,
+                -620,
+                479
+              ],
+              "rotation": [
+                0.0,
+                90.0,
+                -0.0
+              ]
+            }
+          ]
+        },
+        {
+          "prop_tag": "Prop_SM_Hallpillar",
+          "mesh": "/Game/MagicianLabatory/Source/Props/Hallpillar/SM_Hallpillar",
+          "materials": [
+            "/Game/MagicianLabatory/Source/Props/Hallpillar/MI_M_Hallpillar"
+          ],
+          "count": 1,
+          "layer": "base",
+          "kind": "dressing",
+          "placements": [
+            {
+              "label": "Mag_bedroom_SM_Hallpillar",
+              "location": [
+                -430,
+                -300,
+                350
+              ],
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        {
+          "prop_tag": "Prop_SM_Hallwall",
+          "mesh": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Hallwall/SM_Hallwall",
+          "materials": [
+            "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Hallwall/MI_M_Hallwall"
+          ],
+          "count": 1,
+          "layer": "base",
+          "kind": "dressing",
+          "placements": [
+            {
+              "label": "Mag_bedroom_SM_Hallwall",
+              "location": [
+                -430,
+                -950,
+                335
+              ],
+              "rotation": [
+                0.0,
+                90.0,
+                -0.0
+              ]
+            }
+          ]
+        },
+        {
+          "prop_tag": "Prop_SM_HallwallGlass",
+          "mesh": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/HallwallGlass/SM_HallwallGlass",
+          "materials": [
+            "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/HallwallGlass/MI_M_HallwallGlass"
+          ],
+          "count": 1,
+          "layer": "base",
+          "kind": "dressing",
+          "placements": [
+            {
+              "label": "Mag_bedroom_SM_HallwallGlass",
+              "location": [
+                -430,
+                -300,
+                194
+              ],
+              "rotation": [
+                0.0,
+                90.0,
+                -0.0
+              ]
+            }
+          ]
+        },
+        {
+          "prop_tag": "Prop_SM_HallwallGlassBar",
+          "mesh": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/HallwallGlassBar/SM_HallwallGlassBar",
+          "materials": [
+            "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/HallwallGlassBar/MI_M_HallwallGlassBar"
+          ],
+          "count": 1,
+          "layer": "base",
+          "kind": "dressing",
+          "placements": [
+            {
+              "label": "Mag_bedroom_SM_HallwallGlassBar",
+              "location": [
+                -430,
+                -300,
+                198
+              ],
+              "rotation": [
+                0.0,
+                90.0,
+                -0.0
+              ]
+            }
+          ]
+        },
+        {
+          "prop_tag": "Prop_SM_Kit_Ornament_A",
+          "mesh": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Deco1/SM_Kit_Ornament_A",
+          "materials": [
+            "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Deco1/MI_M_Kit_Ornament_A"
+          ],
+          "count": 1,
+          "layer": "base",
+          "kind": "dressing",
+          "placements": [
+            {
+              "label": "Mag_bedroom_SM_Kit_Ornament_A",
+              "location": [
+                -1140,
+                -420,
+                88
+              ],
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        {
+          "prop_tag": "Prop_SM_Kit_Ornament_B",
+          "mesh": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Deco2/SM_Kit_Ornament_B",
+          "materials": [
+            "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Deco2/MI_M_Kit_Ornament_B"
+          ],
+          "count": 1,
+          "layer": "base",
+          "kind": "dressing",
+          "placements": [
+            {
+              "label": "Mag_bedroom_SM_Kit_Ornament_B",
+              "location": [
+                -1140,
+                -520,
+                188
+              ],
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        {
+          "prop_tag": "Prop_SM_Kit_Ornament_C",
+          "mesh": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Deco3/SM_Kit_Ornament_C",
+          "materials": [
+            "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Deco3/MI_M_Kit_Ornament_C"
+          ],
+          "count": 1,
+          "layer": "base",
+          "kind": "dressing",
+          "placements": [
+            {
+              "label": "Mag_bedroom_SM_Kit_Ornament_C",
+              "location": [
+                -1100,
+                -140,
+                89
+              ],
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        {
+          "prop_tag": "Prop_SM_Microscope",
+          "mesh": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Microscope/SM_Microscope",
+          "materials": [
+            "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Microscope/MI_M_Microscope"
+          ],
+          "count": 1,
+          "layer": "base",
+          "kind": "dressing",
+          "placements": [
+            {
+              "label": "Mag_bedroom_SM_Microscope",
+              "location": [
+                -904,
+                -920,
+                82
+              ],
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        {
+          "prop_tag": "Prop_SM_Shelf",
+          "mesh": "/Game/EnchantedInteriors/Geometries/KB3D_ECI_IntWizardOffice_A_TableA",
+          "materials": [],
+          "count": 1,
+          "layer": "base",
+          "kind": "dressing",
+          "placements": [
+            {
+              "label": "Mag_bedroom_SM_Shelf",
+              "location": [
+                -640,
+                -145,
+                93
+              ],
+              "rotation": [
+                0.0,
+                0.0,
+                -0.0
+              ]
+            }
+          ]
+        },
+        {
+          "prop_tag": "Prop_SM_Shelf_Prop",
+          "mesh": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Shelf_Prop/SM_Shelf_Prop",
+          "materials": [
+            "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Shelf_Prop/MI_M_Shelf_Prop"
+          ],
+          "count": 1,
+          "layer": "base",
+          "kind": "dressing",
+          "placements": [
+            {
+              "label": "Mag_bedroom_SM_Shelf_Prop",
+              "location": [
+                -955,
+                -915,
+                108
+              ],
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        {
+          "prop_tag": "Prop_SM_Wick",
+          "mesh": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Candle/SM_Wick",
+          "materials": [
+            "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Candle/MI_M_Wick"
+          ],
+          "count": 1,
+          "layer": "base",
+          "kind": "dressing",
+          "placements": [
+            {
+              "label": "Mag_bedroom_SM_Wick",
+              "location": [
+                -910,
+                -930,
+                73
+              ],
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        {
+          "prop_tag": "Prop_SirPerch_Empty",
+          "mesh": null,
+          "materials": [],
+          "count": 1,
+          "layer": "base",
+          "kind": "p0",
+          "placements": [
+            {
+              "label": "P0_SirPerch_Empty",
+              "location": [
+                -860,
+                -300,
+                0
+              ],
+              "rotation": [
+                0.0,
+                -160.0,
+                0.0
+              ]
+            }
+          ]
+        }
+      ],
+      "prop_count": 40,
+      "placement_count": 40
+    },
+    {
+      "family": "Room_landing",
+      "room": "landing",
+      "description": "",
+      "props": [
+        {
+          "prop_tag": "Prop_BP_Lantern",
+          "mesh": "/Game/MagicianLabatory/Source/Props/Lantern/SM_Lantern",
+          "materials": [],
+          "count": 1,
+          "layer": "base",
+          "kind": "dressing",
+          "placements": [
+            {
+              "label": "MagBP_BP_Lantern",
+              "location": [
+                -150,
+                -880,
+                170
+              ],
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        {
+          "prop_tag": "Prop_KB3D_ECI_PropAppleBowl_A_Main",
+          "mesh": "/Game/EnchantedInteriors/Geometries/KB3D_ECI_PropAppleBowl_A_Main",
+          "materials": [
+            "/Game/EnchantedInteriors/Materials/KB3D_ECI_FoodAtlas",
+            "/Game/EnchantedInteriors/Materials/KB3D_ECI_WoodBrightOldA"
+          ],
+          "count": 1,
+          "layer": "enchanted_interiors",
+          "kind": "dressing",
+          "placements": [
+            {
+              "label": "Mag_landing_KB3D_ECI_PropAppleBowl_A_Main",
+              "location": [
+                -330,
+                -900,
+                116
+              ],
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        {
+          "prop_tag": "Prop_KB3D_ECI_PropBannerPole_A_Main",
+          "mesh": "/Game/EnchantedInteriors/Geometries/KB3D_ECI_PropBannerPole_A_Main",
+          "materials": [
+            "/Game/EnchantedInteriors/Materials/KB3D_ECI_FlagsBannersB",
+            "/Game/EnchantedInteriors/Materials/KB3D_ECI_MetalDarkWorn",
+            "/Game/EnchantedInteriors/Materials/KB3D_ECI_MetalTrimA",
+            "/Game/EnchantedInteriors/Materials/KB3D_ECI_RopesTrimM",
+            "/Game/EnchantedInteriors/Materials/KB3D_ECI_WoodBrightOldA",
+            "/Game/EnchantedInteriors/Materials/KB3D_ECI_WoodGrayBrightOldA"
+          ],
+          "count": 1,
+          "layer": "enchanted_interiors",
+          "kind": "dressing",
+          "placements": [
+            {
+              "label": "Mag_landing_KB3D_ECI_PropBannerPole_A_Main",
+              "location": [
+                -46,
+                -23,
+                424
+              ],
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        {
+          "prop_tag": "Prop_KB3D_ECI_PropStandingLantern_A_Main",
+          "mesh": "/Game/EnchantedInteriors/Geometries/KB3D_ECI_PropStandingLantern_A_Main",
+          "materials": [
+            "/Game/EnchantedInteriors/Materials/KB3D_ECI_MetalTrimA"
+          ],
+          "count": 1,
+          "layer": "enchanted_interiors",
+          "kind": "dressing",
+          "placements": [
+            {
+              "label": "Mag_landing_KB3D_ECI_PropStandingLantern_A_Main",
+              "location": [
+                -400,
+                -450,
+                97
+              ],
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        {
+          "prop_tag": "Prop_SM_Hallpillar",
+          "mesh": "/Game/MagicianLabatory/Source/Props/Hallpillar/SM_Hallpillar",
+          "materials": [
+            "/Game/MagicianLabatory/Source/Props/Hallpillar/MI_M_Hallpillar"
+          ],
+          "count": 1,
+          "layer": "base",
+          "kind": "dressing",
+          "placements": [
+            {
+              "label": "Mag_landing_SM_Hallpillar",
+              "location": [
+                -350,
+                -800,
+                350
+              ],
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        {
+          "prop_tag": "Prop_SM_Pot",
+          "mesh": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Pot/SM_Pot",
+          "materials": [
+            "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Pot/MI_M_Pot"
+          ],
+          "count": 1,
+          "layer": "base",
+          "kind": "dressing",
+          "placements": [
+            {
+              "label": "Mag_landing_SM_Pot",
+              "location": [
+                -330,
+                -900,
+                135
+              ],
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        {
+          "prop_tag": "Prop_SM_Pot_Table",
+          "mesh": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/PotTable/SM_Pot_Table",
+          "materials": [
+            "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/PotTable/MI_M_Pot_Table"
+          ],
+          "count": 1,
+          "layer": "base",
+          "kind": "dressing",
+          "placements": [
+            {
+              "label": "Mag_landing_SM_Pot_Table",
+              "location": [
+                -330,
+                -900,
+                54
+              ],
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        {
+          "prop_tag": "Prop_SM_Wood_Pillar",
+          "mesh": "/Game/MagicianLabatory/Source/Building/Wood_Pillar/SM_Wood_Pillar",
+          "materials": [
+            "/Game/MagicianLabatory/Source/Building/Wood_Pillar/MI_M_Wood_Pillar"
+          ],
+          "count": 1,
+          "layer": "base",
+          "kind": "dressing",
+          "placements": [
+            {
+              "label": "Mag_landing_SM_Wood_Pillar",
+              "location": [
+                -200,
+                -250,
+                845
+              ],
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        }
+      ],
+      "prop_count": 8,
+      "placement_count": 8
+    },
+    {
+      "family": "Room_salon",
+      "room": "salon",
+      "description": "",
+      "props": [
+        {
+          "prop_tag": "Prop_BP_Crystal",
+          "mesh": "/Game/MagicianLabatory/BP/Crystal/StaticMesh/SM_Crystal7",
+          "materials": [],
+          "count": 1,
+          "layer": "base",
+          "kind": "dressing",
+          "placements": [
+            {
+              "label": "MagBP_BP_Crystal",
+              "location": [
+                1000,
+                -1300,
+                249
+              ],
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        {
+          "prop_tag": "Prop_BP_HiddenDoor",
+          "mesh": "/Game/MagicianLabatory/BP/HiddenDoor/StaticMesh/SM_HiddenDoor",
+          "materials": [],
+          "count": 1,
+          "layer": "base",
+          "kind": "dressing",
+          "placements": [
+            {
+              "label": "MagBP_BP_HiddenDoor",
+              "location": [
+                900,
+                -25,
+                0
+              ],
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        {
+          "prop_tag": "Prop_BP_InteractivePainting",
+          "mesh": "/Game/MagicianLabatory/BP/InteractivePainting/StaticMesh/SM_Frame",
+          "materials": [],
+          "count": 1,
+          "layer": "base",
+          "kind": "dressing",
+          "placements": [
+            {
+              "label": "MagBP_BP_InteractivePainting",
+              "location": [
+                600,
+                -25,
+                170
+              ],
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        {
+          "prop_tag": "Prop_BP_PoisonPot",
+          "mesh": "/Game/MagicianLabatory/Source/Props/Pot/SM_Pot",
+          "materials": [],
+          "count": 1,
+          "layer": "base",
+          "kind": "dressing",
+          "placements": [
+            {
+              "label": "MagBP_BP_PoisonPot",
+              "location": [
+                200,
+                -1550,
+                1
+              ],
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        {
+          "prop_tag": "Prop_BP_WallLantern",
+          "mesh": "/Game/MagicianLabatory/Source/Props/WallLamp/SM_Wall_Lamp",
+          "materials": [],
+          "count": 1,
+          "layer": "base",
+          "kind": "dressing",
+          "placements": [
+            {
+              "label": "MagBP_BP_WallLantern",
+              "location": [
+                80,
+                -1200,
+                290
+              ],
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        {
+          "prop_tag": "Prop_Explore_Salon",
+          "mesh": null,
+          "materials": [],
+          "count": 1,
+          "layer": "base",
+          "kind": "p0",
+          "placements": [
+            {
+              "label": "P0_Explore_Salon",
+              "location": [
+                1000,
+                -1300,
+                200
+              ],
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        {
+          "prop_tag": "Prop_KB3D_ECI_PropAcolyteChair_A_Main",
+          "mesh": "/Game/EnchantedInteriors/Geometries/KB3D_ECI_PropAcolyteChair_A_Main",
+          "materials": [
+            "/Game/EnchantedInteriors/Materials/KB3D_ECI_ChairAtlasA"
+          ],
+          "count": 1,
+          "layer": "enchanted_interiors",
+          "kind": "dressing",
+          "placements": [
+            {
+              "label": "Mag_salon_KB3D_ECI_PropAcolyteChair_A_Main",
+              "location": [
+                490,
+                -450,
+                68
+              ],
+              "rotation": [
+                0.0,
+                -90.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        {
+          "prop_tag": "Prop_KB3D_ECI_PropAppleBowl_A_Main",
+          "mesh": "/Game/EnchantedInteriors/Geometries/KB3D_ECI_PropAppleBowl_A_Main",
+          "materials": [
+            "/Game/EnchantedInteriors/Materials/KB3D_ECI_FoodAtlas",
+            "/Game/EnchantedInteriors/Materials/KB3D_ECI_WoodBrightOldA"
+          ],
+          "count": 1,
+          "layer": "enchanted_interiors",
+          "kind": "dressing",
+          "placements": [
+            {
+              "label": "Mag_salon_KB3D_ECI_PropAppleBowl_A_Main",
+              "location": [
+                420,
+                -450,
+                88
+              ],
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        {
+          "prop_tag": "Prop_KB3D_ECI_PropBookShelf_A_Main",
+          "mesh": "/Game/EnchantedInteriors/Geometries/KB3D_ECI_PropBookShelf_A_Main",
+          "materials": [
+            "/Game/EnchantedInteriors/Materials/KB3D_ECI_BooksAtlas",
+            "/Game/EnchantedInteriors/Materials/KB3D_ECI_WoodPolishedA"
+          ],
+          "count": 1,
+          "layer": "enchanted_interiors",
+          "kind": "dressing",
+          "placements": [
+            {
+              "label": "Mag_salon_KB3D_ECI_PropBookShelf_A_Main",
+              "location": [
+                600,
+                -80,
+                52
+              ],
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        {
+          "prop_tag": "Prop_KB3D_ECI_PropBookStack_A_Main",
+          "mesh": "/Game/EnchantedInteriors/Geometries/KB3D_ECI_PropBookStack_A_Main",
+          "materials": [
+            "/Game/EnchantedInteriors/Materials/KB3D_ECI_BooksAtlas"
+          ],
+          "count": 1,
+          "layer": "enchanted_interiors",
+          "kind": "dressing",
+          "placements": [
+            {
+              "label": "Mag_salon_KB3D_ECI_PropBookStack_A_Main",
+              "location": [
+                1060,
+                -1300,
+                4
+              ],
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        {
+          "prop_tag": "Prop_KB3D_ECI_PropCandleStackLit_A_Main",
+          "mesh": "/Game/EnchantedInteriors/Geometries/KB3D_ECI_PropCandleStackLit_A_Main",
+          "materials": [
+            "/Game/EnchantedInteriors/Materials/KB3D_ECI_CandlesAtlas",
+            "/Game/EnchantedInteriors/Materials/KB3D_ECI_VFXFireAndSmoke"
+          ],
+          "count": 1,
+          "layer": "enchanted_interiors",
+          "kind": "dressing",
+          "placements": [
+            {
+              "label": "Mag_salon_KB3D_ECI_PropCandleStackLit_A_Main",
+              "location": [
+                330,
+                -300,
+                102
+              ],
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        {
+          "prop_tag": "Prop_KB3D_ECI_PropChair_A_Main",
+          "mesh": "/Game/EnchantedInteriors/Geometries/KB3D_ECI_PropChair_A_Main",
+          "materials": [
+            "/Game/EnchantedInteriors/Materials/KB3D_ECI_MetalTrimA",
+            "/Game/EnchantedInteriors/Materials/KB3D_ECI_WoodDamageGradientA",
+            "/Game/EnchantedInteriors/Materials/KB3D_ECI_WoodHeartwoodAtlas"
+          ],
+          "count": 1,
+          "layer": "enchanted_interiors",
+          "kind": "dressing",
+          "placements": [
+            {
+              "label": "Mag_salon_KB3D_ECI_PropChair_A_Main",
+              "location": [
+                350,
+                -450,
+                63
+              ],
+              "rotation": [
+                0.0,
+                90.0,
+                -0.0
+              ]
+            }
+          ]
+        },
+        {
+          "prop_tag": "Prop_KB3D_ECI_PropChandelier_A_Main",
+          "mesh": "/Game/EnchantedInteriors/Geometries/KB3D_ECI_PropChandelier_A_Main",
+          "materials": [
+            "/Game/EnchantedInteriors/Materials/KB3D_ECI_CandlesAtlas",
+            "/Game/EnchantedInteriors/Materials/KB3D_ECI_MetalTrimA",
+            "/Game/EnchantedInteriors/Materials/KB3D_ECI_VFXFireAndSmoke"
+          ],
+          "count": 1,
+          "layer": "enchanted_interiors",
+          "kind": "dressing",
+          "placements": [
+            {
+              "label": "Mag_salon_KB3D_ECI_PropChandelier_A_Main",
+              "location": [
+                700,
+                -900,
+                548
+              ],
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        {
+          "prop_tag": "Prop_KB3D_ECI_PropChandelier_C_Main",
+          "mesh": "/Game/EnchantedInteriors/Geometries/KB3D_ECI_PropChandelier_C_Main",
+          "materials": [
+            "/Game/EnchantedInteriors/Materials/KB3D_ECI_CandlesAtlas",
+            "/Game/EnchantedInteriors/Materials/KB3D_ECI_MetalTrimA",
+            "/Game/EnchantedInteriors/Materials/KB3D_ECI_VFXFireAndSmoke"
+          ],
+          "count": 1,
+          "layer": "enchanted_interiors",
+          "kind": "dressing",
+          "placements": [
+            {
+              "label": "Mag_salon_KB3D_ECI_PropChandelier_C_Main",
+              "location": [
+                1100,
+                -1600,
+                388
+              ],
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        {
+          "prop_tag": "Prop_KB3D_ECI_PropRoundTable_A_Main",
+          "mesh": "/Game/EnchantedInteriors/Geometries/KB3D_ECI_PropRoundTable_A_Main",
+          "materials": [
+            "/Game/EnchantedInteriors/Materials/KB3D_ECI_MetalTrimA",
+            "/Game/EnchantedInteriors/Materials/KB3D_ECI_WoodDamageGradientA"
+          ],
+          "count": 1,
+          "layer": "enchanted_interiors",
+          "kind": "dressing",
+          "placements": [
+            {
+              "label": "Mag_salon_KB3D_ECI_PropRoundTable_A_Main",
+              "location": [
+                420,
+                -450,
+                40
+              ],
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        {
+          "prop_tag": "Prop_KB3D_ECI_PropStandingLantern_A_Main",
+          "mesh": "/Game/EnchantedInteriors/Geometries/KB3D_ECI_PropStandingLantern_A_Main",
+          "materials": [
+            "/Game/EnchantedInteriors/Materials/KB3D_ECI_MetalTrimA"
+          ],
+          "count": 1,
+          "layer": "enchanted_interiors",
+          "kind": "dressing",
+          "placements": [
+            {
+              "label": "Mag_salon_KB3D_ECI_PropStandingLantern_A_Main",
+              "location": [
+                980,
+                -1700,
+                97
+              ],
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        {
+          "prop_tag": "Prop_SM_Box",
+          "mesh": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Box/SM_Box",
+          "materials": [
+            "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Box/MI_M_Box"
+          ],
+          "count": 1,
+          "layer": "base",
+          "kind": "dressing",
+          "placements": [
+            {
+              "label": "Mag_salon_SM_Box",
+              "location": [
+                850,
+                -1700,
+                33
+              ],
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        {
+          "prop_tag": "Prop_SM_Carpet3",
+          "mesh": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Carpet3/SM_Carpet3",
+          "materials": [
+            "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Carpet3/MI_M_Carpet3"
+          ],
+          "count": 1,
+          "layer": "base",
+          "kind": "dressing",
+          "placements": [
+            {
+              "label": "Mag_salon_SM_Carpet3",
+              "location": [
+                250,
+                -1020,
+                3
+              ],
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        {
+          "prop_tag": "Prop_SM_CenterRing10",
+          "mesh": "/Game/MagicianLabatory/Source/Props/CenterRing/CenterRing10/SM_CenterRing10",
+          "materials": [
+            "/Game/MagicianLabatory/Source/Props/CenterRing/CenterRing10/MI_M_CenterRing10"
+          ],
+          "count": 1,
+          "layer": "base",
+          "kind": "dressing",
+          "placements": [
+            {
+              "label": "Mag_salon_SM_CenterRing10",
+              "location": [
+                700,
+                -900,
+                2
+              ],
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        {
+          "prop_tag": "Prop_SM_CenterRing13",
+          "mesh": "/Game/MagicianLabatory/Source/Props/CenterRing/CenterRing13/SM_CenterRing13",
+          "materials": [
+            "/Game/MagicianLabatory/Source/Props/CenterRing/CenterRing13/MI_M_CenterRing13"
+          ],
+          "count": 1,
+          "layer": "base",
+          "kind": "dressing",
+          "placements": [
+            {
+              "label": "Mag_salon_SM_CenterRing13",
+              "location": [
+                700,
+                -900,
+                7
+              ],
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        {
+          "prop_tag": "Prop_SM_CenterRing4",
+          "mesh": "/Game/MagicianLabatory/Source/Props/CenterRing/CenterRing4/SM_CenterRing4",
+          "materials": [
+            "/Game/MagicianLabatory/Source/Props/CenterRing/CenterRing4/MI_M_CenterRing4"
+          ],
+          "count": 1,
+          "layer": "base",
+          "kind": "dressing",
+          "placements": [
+            {
+              "label": "Mag_salon_SM_CenterRing4",
+              "location": [
+                700,
+                -900,
+                -6
+              ],
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        {
+          "prop_tag": "Prop_SM_CenterRing5",
+          "mesh": "/Game/MagicianLabatory/Source/Props/CenterRing/CenterRing5/SM_CenterRing5",
+          "materials": [
+            "/Game/MagicianLabatory/Source/Props/CenterRing/CenterRing5/MI_M_CenterRing5"
+          ],
+          "count": 1,
+          "layer": "base",
+          "kind": "dressing",
+          "placements": [
+            {
+              "label": "Mag_salon_SM_CenterRing5",
+              "location": [
+                700,
+                -900,
+                14
+              ],
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        {
+          "prop_tag": "Prop_SM_CenterRing9",
+          "mesh": "/Game/MagicianLabatory/Source/Props/CenterRing/CenterRing9/SM_CenterRing9",
+          "materials": [
+            "/Game/MagicianLabatory/Source/Props/CenterRing/CenterRing9/MI_M_CenterRing9"
+          ],
+          "count": 1,
+          "layer": "base",
+          "kind": "dressing",
+          "placements": [
+            {
+              "label": "Mag_salon_SM_CenterRing9",
+              "location": [
+                700,
+                -900,
+                0
+              ],
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        {
+          "prop_tag": "Prop_SM_Desk2",
+          "mesh": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Desk2/SM_Desk2",
+          "materials": [
+            "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Desk2/MI_M_Desk2"
+          ],
+          "count": 1,
+          "layer": "base",
+          "kind": "dressing",
+          "placements": [
+            {
+              "label": "Mag_salon_SM_Desk2",
+              "location": [
+                300,
+                -300,
+                44
+              ],
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        {
+          "prop_tag": "Prop_SM_Entrance",
+          "mesh": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Entrance/SM_Entrance",
+          "materials": [
+            "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Entrance/MI_M_Entrance"
+          ],
+          "count": 1,
+          "layer": "base",
+          "kind": "dressing",
+          "placements": [
+            {
+              "label": "Mag_salon_SM_Entrance",
+              "location": [
+                1320,
+                -1600,
+                167
+              ],
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        {
+          "prop_tag": "Prop_SM_Floor_Pannel",
+          "mesh": "/Game/MagicianLabatory/Source/Building/Floor2F/Floor2F/SM_Floor_Pannel",
+          "materials": [
+            "/Game/MagicianLabatory/Source/Building/Floor2F/Floor2F/MI_M_Floor_Pannel"
+          ],
+          "count": 1,
+          "layer": "base",
+          "kind": "dressing",
+          "placements": [
+            {
+              "label": "Mag_salon_SM_Floor_Pannel",
+              "location": [
+                300,
+                -1450,
+                2
+              ],
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        {
+          "prop_tag": "Prop_SM_Floor_Pannel2",
+          "mesh": "/Game/MagicianLabatory/Source/Building/Floor2F/Floor2F2/SM_Floor_Pannel2",
+          "materials": [
+            "/Game/MagicianLabatory/Source/Building/Floor2F/Floor2F2/MI_M_Floor_Pannel2"
+          ],
+          "count": 1,
+          "layer": "base",
+          "kind": "dressing",
+          "placements": [
+            {
+              "label": "Mag_salon_SM_Floor_Pannel2",
+              "location": [
+                1150,
+                -1450,
+                2
+              ],
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        {
+          "prop_tag": "Prop_SM_Floor_Pannel3",
+          "mesh": "/Game/MagicianLabatory/Source/Building/Floor2F/Floor2F3/SM_Floor_Pannel3",
+          "materials": [
+            "/Game/MagicianLabatory/Source/Building/Floor2F/Floor2F3/MI_M_Floor_Pannel3"
+          ],
+          "count": 1,
+          "layer": "base",
+          "kind": "dressing",
+          "placements": [
+            {
+              "label": "Mag_salon_SM_Floor_Pannel3",
+              "location": [
+                500,
+                -1600,
+                2
+              ],
+              "rotation": [
+                0.0,
+                90.0,
+                -0.0
+              ]
+            }
+          ]
+        },
+        {
+          "prop_tag": "Prop_SM_Globe2",
+          "mesh": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Globe2/SM_Globe2",
+          "materials": [
+            "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Globe2/MI_M_Globe2"
+          ],
+          "count": 1,
+          "layer": "base",
+          "kind": "dressing",
+          "placements": [
+            {
+              "label": "Mag_salon_SM_Globe2",
+              "location": [
+                300,
+                -300,
+                88
+              ],
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        {
+          "prop_tag": "Prop_SM_Kit_Ornament_C",
+          "mesh": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Deco3/SM_Kit_Ornament_C",
+          "materials": [
+            "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Deco3/MI_M_Kit_Ornament_C"
+          ],
+          "count": 1,
+          "layer": "base",
+          "kind": "dressing",
+          "placements": [
+            {
+              "label": "Mag_salon_SM_Kit_Ornament_C",
+              "location": [
+                300,
+                -1750,
+                89
+              ],
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        {
+          "prop_tag": "Prop_SM_Lantern",
+          "mesh": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Lantern/SM_Lantern",
+          "materials": [
+            "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Lantern/MI_M_Lantern"
+          ],
+          "count": 1,
+          "layer": "base",
+          "kind": "dressing",
+          "placements": [
+            {
+              "label": "Mag_salon_SM_Lantern",
+              "location": [
+                380,
+                -1400,
+                13
+              ],
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        {
+          "prop_tag": "Prop_SM_LanternGlass",
+          "mesh": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/LanternGlass/SM_LanternGlass",
+          "materials": [
+            "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/LanternGlass/MI_M_LanternGlass"
+          ],
+          "count": 1,
+          "layer": "base",
+          "kind": "dressing",
+          "placements": [
+            {
+              "label": "Mag_salon_SM_LanternGlass",
+              "location": [
+                380,
+                -1400,
+                57
+              ],
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        {
+          "prop_tag": "Prop_SM_Pillar",
+          "mesh": "/Game/MagicianLabatory/Source/Building/Pillar/SM_Pillar",
+          "materials": [
+            "/Game/MagicianLabatory/Source/Building/Pillar/MI_M_Pillar"
+          ],
+          "count": 1,
+          "layer": "base",
+          "kind": "dressing",
+          "placements": [
+            {
+              "label": "Mag_salon_SM_Pillar",
+              "location": [
+                120,
+                -1700,
+                368
+              ],
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        {
+          "prop_tag": "Prop_SM_Platform",
+          "mesh": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Platform/SM_Platform",
+          "materials": [
+            "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Platform/MI_M_Platform"
+          ],
+          "count": 1,
+          "layer": "base",
+          "kind": "dressing",
+          "placements": [
+            {
+              "label": "Mag_salon_SM_Platform",
+              "location": [
+                1000,
+                -1300,
+                0
+              ],
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        {
+          "prop_tag": "Prop_SM_Rail",
+          "mesh": "/Game/MagicianLabatory/Source/Building/Rail/SM_Rail",
+          "materials": [
+            "/Game/MagicianLabatory/Source/Building/Rail/MI_M_Rail"
+          ],
+          "count": 1,
+          "layer": "base",
+          "kind": "dressing",
+          "placements": [
+            {
+              "label": "Mag_salon_SM_Rail",
+              "location": [
+                950,
+                -560,
+                14
+              ],
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        {
+          "prop_tag": "Prop_SM_Rail2",
+          "mesh": "/Game/MagicianLabatory/Source/Building/Rail2/SM_Rail2",
+          "materials": [
+            "/Game/MagicianLabatory/Source/Building/Rail2/MI_M_Rail2"
+          ],
+          "count": 1,
+          "layer": "base",
+          "kind": "dressing",
+          "placements": [
+            {
+              "label": "Mag_salon_SM_Rail2",
+              "location": [
+                860,
+                -250,
+                9
+              ],
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        {
+          "prop_tag": "Prop_SM_Shelf6",
+          "mesh": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Shelf6/SM_Shelf6",
+          "materials": [
+            "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/Shelf6/MI_M_Shelf6"
+          ],
+          "count": 1,
+          "layer": "base",
+          "kind": "dressing",
+          "placements": [
+            {
+              "label": "Mag_salon_SM_Shelf6",
+              "location": [
+                850,
+                -1700,
+                28
+              ],
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        {
+          "prop_tag": "Prop_SM_Stair1",
+          "mesh": "/Game/MagicianLabatory/Source/Building/Stair1/SM_Stair1",
+          "materials": [
+            "/Game/MagicianLabatory/Source/Building/Stair1/MI_M_Stair1"
+          ],
+          "count": 1,
+          "layer": "base",
+          "kind": "dressing",
+          "placements": [
+            {
+              "label": "Mag_salon_SM_Stair1",
+              "location": [
+                1250,
+                -300,
+                92
+              ],
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        {
+          "prop_tag": "Prop_SM_Stair2",
+          "mesh": "/Game/MagicianLabatory/Source/Building/Stair2/SM_Stair2",
+          "materials": [
+            "/Game/MagicianLabatory/Source/Building/Stair2/MI_M_Stair2"
+          ],
+          "count": 1,
+          "layer": "base",
+          "kind": "dressing",
+          "placements": [
+            {
+              "label": "Mag_salon_SM_Stair2",
+              "location": [
+                1250,
+                -560,
+                109
+              ],
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        {
+          "prop_tag": "Prop_SM_Stair3",
+          "mesh": "/Game/MagicianLabatory/Source/Building/Stair3/SM_Stair3",
+          "materials": [
+            "/Game/MagicianLabatory/Source/Building/Stair3/MI_M_Stair3"
+          ],
+          "count": 1,
+          "layer": "base",
+          "kind": "dressing",
+          "placements": [
+            {
+              "label": "Mag_salon_SM_Stair3",
+              "location": [
+                1250,
+                -830,
+                75
+              ],
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        {
+          "prop_tag": "Prop_SM_Stair_Pillar1",
+          "mesh": "/Game/MagicianLabatory/Source/Building/Stair_Pillar1/SM_Stair_Pillar1",
+          "materials": [
+            "/Game/MagicianLabatory/Source/Building/Stair_Pillar1/MI_M_Stair_Pillar1"
+          ],
+          "count": 1,
+          "layer": "base",
+          "kind": "dressing",
+          "placements": [
+            {
+              "label": "Mag_salon_SM_Stair_Pillar1",
+              "location": [
+                1080,
+                -250,
+                68
+              ],
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        {
+          "prop_tag": "Prop_SM_Stair_Pillar11",
+          "mesh": "/Game/MagicianLabatory/Source/Building/Stair_Pillar11/SM_Stair_Pillar11",
+          "materials": [
+            "/Game/MagicianLabatory/Source/Building/Stair_Pillar11/MI_M_Stair_Pillar11"
+          ],
+          "count": 1,
+          "layer": "base",
+          "kind": "dressing",
+          "placements": [
+            {
+              "label": "Mag_salon_SM_Stair_Pillar11",
+              "location": [
+                1250,
+                -160,
+                51
+              ],
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        {
+          "prop_tag": "Prop_SM_Stair_Pillar5",
+          "mesh": "/Game/MagicianLabatory/Source/Building/Stair_Pillar5/SM_Stair_Pillar5",
+          "materials": [
+            "/Game/MagicianLabatory/Source/Building/Stair_Pillar5/MI_M_Stair_Pillar5"
+          ],
+          "count": 1,
+          "layer": "base",
+          "kind": "dressing",
+          "placements": [
+            {
+              "label": "Mag_salon_SM_Stair_Pillar5",
+              "location": [
+                1250,
+                -900,
+                87
+              ],
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        {
+          "prop_tag": "Prop_SM_Wall",
+          "mesh": "/Game/MagicianLabatory/Source/Building/Wall/SM_Wall",
+          "materials": [
+            "/Game/MagicianLabatory/Source/Building/Wall/MI_M_Wall"
+          ],
+          "count": 1,
+          "layer": "base",
+          "kind": "dressing",
+          "placements": [
+            {
+              "label": "Mag_salon_SM_Wall",
+              "location": [
+                1330,
+                -1100,
+                -30
+              ],
+              "rotation": [
+                0.0,
+                90.0,
+                -0.0
+              ]
+            }
+          ]
+        },
+        {
+          "prop_tag": "Prop_SM_Wall_Lamp",
+          "mesh": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/WallLamp/SM_Wall_Lamp",
+          "materials": [
+            "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/WallLamp/MI_M_Wall_Lamp"
+          ],
+          "count": 1,
+          "layer": "base",
+          "kind": "dressing",
+          "placements": [
+            {
+              "label": "Mag_salon_SM_Wall_Lamp",
+              "location": [
+                70,
+                -1200,
+                -2
+              ],
+              "rotation": [
+                0.0,
+                90.0,
+                -0.0
+              ]
+            }
+          ]
+        },
+        {
+          "prop_tag": "Prop_SM_Wall_Lamp_Glass",
+          "mesh": "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/WallLampGlass/SM_Wall_Lamp_Glass",
+          "materials": [
+            "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary/WallLampGlass/MI_M_Wall_Lamp_Glass"
+          ],
+          "count": 1,
+          "layer": "base",
+          "kind": "dressing",
+          "placements": [
+            {
+              "label": "Mag_salon_SM_Wall_Lamp_Glass",
+              "location": [
+                70,
+                -1200,
+                32
+              ],
+              "rotation": [
+                0.0,
+                90.0,
+                -0.0
+              ]
+            }
+          ]
+        },
+        {
+          "prop_tag": "Prop_SM_WoodWall",
+          "mesh": "/Game/MagicianLabatory/Source/Building/WoodWall/SM_WoodWall",
+          "materials": [
+            "/Game/MagicianLabatory/Source/Building/WoodWall/MI_M_WoodWall"
+          ],
+          "count": 1,
+          "layer": "base",
+          "kind": "dressing",
+          "placements": [
+            {
+              "label": "Mag_salon_SM_WoodWall",
+              "location": [
+                700,
+                -1770,
+                94
+              ],
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        {
+          "prop_tag": "Prop_SM_Wood_Pillar",
+          "mesh": "/Game/MagicianLabatory/Source/Building/Wood_Pillar/SM_Wood_Pillar",
+          "materials": [
+            "/Game/MagicianLabatory/Source/Building/Wood_Pillar/MI_M_Wood_Pillar"
+          ],
+          "count": 1,
+          "layer": "base",
+          "kind": "dressing",
+          "placements": [
+            {
+              "label": "Mag_salon_SM_Wood_Pillar",
+              "location": [
+                1330,
+                -1750,
+                845
+              ],
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        }
+      ],
+      "prop_count": 48,
+      "placement_count": 48
+    },
+    {
+      "family": "Room_unassigned",
+      "room": "unassigned",
+      "description": "",
+      "props": [
+        {
+          "prop_tag": "Prop_OpeningStateAnchor",
+          "mesh": null,
+          "materials": [],
+          "count": 1,
+          "layer": "base",
+          "kind": "p0",
+          "placements": [
+            {
+              "label": "P0_OpeningStateAnchor",
+              "location": [
+                0,
+                0,
+                0
+              ],
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        }
+      ],
+      "prop_count": 1,
+      "placement_count": 1
+    }
+  ],
+  "rules": [
+    "a family is a room, not a mesh list - the art pass asks for a room and gets that room's hero props",
+    "a prop keeps its mesh and its material instance exactly as placed; the catalogue never re-points a prop at a different master",
+    "a placement is recorded so the catalogue can be reconciled against the map, not so the map can be overwritten from the catalogue",
+    "the catalogue is the fill layer's source of truth for WHICH props exist; the fill contract (specs/p0/melusina_house_p0_fill.v1.json) is the source of truth for WHERE and HOW MANY of them are placed",
+    "no gameplay tag is invented here: the families use the tags the artist already set on the actors"
+  ],
+  "not_yet_true": [
+    "the DataAsset itself does not exist - there is no UMelodiaDressingCatalog class, so this content cannot yet be loaded by the subsystem",
+    "UMelodiaDressingSubsystem::DressHeroClutter is a scaffold: it logs and returns true, it does not place anything",
+    "no family has been validated by an actual dressing pass - the catalogue records what exists, not what looks right"
+  ]
+}

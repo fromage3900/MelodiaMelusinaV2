@@ -1,5 +1,527 @@
 # Melodia Melusina ? Current State
+## ROOM-AWARE DRESSING + GAME-READY LEVELS - the scoped plan, the research and the shipped-game case studies - 2026-10-22
 
+**Owner ask:** "how would an environment artist use Houdini + PCG for room-aware dressing and natural placement, like we did with our BP_PhysicsSpawner, and what else remains before we have solid infrastructure for game-ready levels and BPs that place geometry and carry the gameplay loop?" Answered in three artifacts, all landed: the **plan**, the **research**, the **case studies**.
+
+- **The plan: `specs/p0/melusina_room_dressing_pipeline.v1.json`** - 9 work items (W1-W9), critical path **W1 -> W5 -> W4 -> W6 -> W7**, plus two independent tracks (W2, W3) and one that belongs to the owner (W9). Each item carries a definition of done, the evidence it needs, and its blocker.
+- **The catalogue seed: `specs/p0/melusina_dressing_catalog.v1.json`** - 4 families, 97 props, derived from the artist's own placements by `Tools/build_dressing_catalog_seed.py` (read-only: it never touches Content, never opens the editor, never moves an actor). It is the *content* of the `DA_MelodiaDressingCatalog` that the art pass reads.
+
+### Three facts the audit changed (evidence: source read + engine grep, 2026-10-22)
+
+1. **The art pass is a SCAFFOLD, not an implementation.** All four `UMelodiaDressingSubsystem` functions log and return: `DressHeroClutter` places nothing, `PhysicallyDrop` enables no simulation, `FindCompositionOccluders` returns an empty array, and `GetDressingCatalogPath()` points at an asset that does not exist. **`BP_PhysicsSpawner` does not exist in this repo** (not in Content, not in git history) - the capability it stood for is `PhysicallyDrop`, and it is not built yet. That is W2.
+2. **The catalogue is the single highest-leverage missing file.** There is no `UMelodiaDressingCatalog` C++ class, so there is nowhere to hold a family -> hero-prop-set map. The content now exists as data (W1).
+3. **There is NO native PCG "room" concept in this engine build.** Grepping the UE 5.8 PCG plugin headers finds no `PCGRoom*`, `RoomLayout*` or `PCGCreateRoom` class. Room-awareness has to be built from **splines + a bounds source + filters** - which is exactly what `PCG_MelusinaRoomShell_PCGex` already does (PCGExCreateSpline + PCGExShapeBoundsSource + PCGExFilters). This kills "use PCG Rooms" and justifies the fill contract's spline approach.
+
+### What is already there vs what is missing
+
+| Layer | State | Where |
+|---|---|---|
+| Houdini room shell (33 params) | **SHIPPED** | `Content/HDA/MelodiaRoomShell_1.0.hda`, 13 shells in the house |
+| PCGEx room graph (splines + bounds + filters) | **SHIPPED** | `PCG_MelusinaRoomShell_PCGex` |
+| PCG fill graphs + room density textures | **CONTRACT ONLY** | `specs/p0/melusina_house_p0_fill.v1.json` - designed, not built |
+| Art pass (hero clutter / drop / occluders) | **SCAFFOLD** | `MelodiaDressingSubsystem.cpp` |
+| Catalogue class + `DA_MelodiaDressingCatalog` | **MISSING** (content ready) | W1 |
+| `BP_MelodiaRoomShell` - the room kit Blueprint | **MISSING** | W4 - the house is hand-assembled; there is no "place a room" action |
+| PCG <-> narrative/gameplay bridge components | **SHIPPED, unproven on the house leg** | `MelodiaPCG*BridgeComponent.*` |
+| House beat carriers (M01 book, M02 resonance, M04 crystal) | **BORROWED** | they are Fab-pack BPs (`BP_InteractiveBook`, `BP_CandleFlame`, `BP_Crystal` under `/Game/MagicianLabatory`); ours are `BP_MelodyToken_Universal` and `BP_SirPerch` |
+| Runtime proof of the house leg | **ABSENT** | the route has never been walked; the audit is static |
+
+### Case studies (all fetched 2026-10-22, quoted in the plan)
+
+- **BS-01 Fortnite / UEFN Scene Graph (Epic)** - a level is a hierarchy of reusable **prefab assemblies** that carry geometry *and* gameplay, with per-instance overrides as the artist's lever. "Anything you build in Scene Graph can be reused many times over, and with less memory." -> the room kit (W4) is that prefab. https://dev.epicgames.com/documentation/fortnite/getting-started-in-scene-graph-in-fortnite
+- **BS-02 Epic community tutorial - "Procedural Room Generation with Splines and PCG"** - "a reusable Blueprint Actor that automatically generates complete rooms" -> the shape of `BP_MelodiaRoomShell`. https://dev.epicgames.com/community/learning/tutorials/eZVR/procedural-room-generation-with-splines-and-pcg-in-unreal-engine
+- **BS-03 THE FINALS (Embark, SideFX)** - "Houdini toolset that could automate the repetitive work while still giving artists creative control" -> the 33-parameter shell is that control surface, and the procedural structure is where gameplay lives. https://www.sidefx.com/community/making-the-procedural-buildings-of-the-finals-using-houdini/
+- **BS-04 Bethesda open worlds (Oblivion / Fallout / Skyrim) - Joel Burgess** - two rules we adopt verbatim: **a standard doorway system between kits** (we have the meter: 0.6 m module, 2.4 m bay) and **freeze the kit's pivot / footprint / transition metrics before layout** ("it's generally bad news to change certain aspects of a kit once levels are built with it"). Plus the anti-repetition split: base layer + fill layer + hero layer. https://80.lv/articles/building-huge-open-worlds-modularity-kits-art-fatigue
+- **BS-05 Deep Rock Galactic (Ghost Ship, Epic spotlight)** - "Static and procedural maps analysed for player engagement" -> judge the authored room and the generated fill together, in the walk. https://www.unrealengine.com/spotlights/how-ghost-ship-games-found-success-with-deep-rock-galactic
+- **BS-06 Epic PCG Development Guides** - the node vocabulary and best-practice patterns the fill graphs are built from. https://dev.epicgames.com/documentation/en-us/unreal-engine/pcg-development-guides
+
+### Definition of done for the house leg
+
+The artist places a room by dropping one Blueprint and choosing a room type; the fill regenerates from a density edit without any hand-placed actor moving; the art pass has a catalogue and can drop debris that settles; every beat M00-M09 is walkable in PIE with captures; the level cooks with the generated content present.
+
+### Four questions the owner has to answer
+
+1. **W1/W2/W3 need a C++ build, and the tree has 39 dirty `Source/` + `Plugins/` paths from another session right now** - wait for a clean compile window, or land the catalogue as data only (already done) and the class later?
+2. **W4's carrier slot** - a fixed child of the room kit (Bethesda-style), or an independent actor the room references? The artist's arrangement argues for independent.
+3. **W5's density textures** - hand-painted, or derived from your own 97 placements as a first pass?
+4. **W8** - are the 82 movable dressing actors part of "game-ready", or do they stay movable for the art pass?
+
+*Evidence level: plan + offline audit + engine grep + fetched sources. **Nothing in the plan is implemented**, and the route is still un-walked.*
+
+## MATERIAL LOOK + THE OWED C++ BUILD - the preset mechanism already exists, and the 3-form weapon's C++ plan - 2026-10-22
+
+### Material look: the audit found a project-native preset mechanism, so the earlier proposal was WITHDRAWN
+
+Offline audit (`.uasset` name-table scan, no editor, no mutation): **1,087 masters / 3,779 instances**;
+`M_Master_Toon_Universal` alone carries **1,632**.
+
+- **The presets already exist**: `ToonProfile` (a Substrate Toon settings data asset), **37 of them** in
+  `/Game/EnvSandbox/Materials/ToonProfiles/`. The masters are Substrate Toon
+  (`MaterialExpressionSubstrateToonBSDF_*`) and each master holds a `ToonProfile` reference:
+  `M_Master_Toon_Universal -> TP_Melusina`, `M_Master_Nikki -> TP_Character`,
+  `M_Master_Toon_Landscape_HeightBlend -> TP_Foliage`.
+  Profile fields (measured): `DiffuseRamp`, `SpecularIndirectRamp`, `DiffuseIndirectScale`,
+  `SpecularIndirectScale`, `ShadowExtinctionCoefficient`, `ShadowHatchingPatternDistributionRamp`,
+  `ShadowHatchingPatternStrength`, `ColorCurves`.
+- **The "shadow dream" is the third-party pack's**: **15 of the 37 are redirectors** into
+  `/Game/_304FilmSpine/ToonProfiles/`, including **`TP_NikkiDream`**. The look is DATA, so the fix is
+  "stop assigning the pack profiles", not 1,632 instance edits.
+- **Two palette authorities exist**: `MPC_Melodia_Palette` (canonical, written by the C++
+  `UMelodiaAudioReactivePresentationSubsystem`) and `MPC_Portfolio_Palette` (legacy, written by the
+  one-off `Content/Python/author_musical_dream_mis.py` - the source of the infinity-Nikki pastel
+  "dream" defaults). Retire the second. The palette carries `ShadowDreamBias` (the literal "shadow
+  dream", **not consumed by the toon master today**), `Melusina_InkNavy`/`DeepTeal` (the shadow side is
+  teal-navy, the identity canon wants **plum**) and **no lilac at all** (the canon wants it).
+- **The toon master's MF vocabulary**: `MF_NikkiDreamGrade` (the single grade - keep, re-preset),
+  `MF_Impressionist_Impasto` (painterly tier), `MF_Madoka`/`MF_Itto` (other stylistic families - stop
+  inheriting), plus the functional `MF_ColorRamp3` / `MF_DF_ContactBlend` /
+  `MF_MeshBlend_Activator_Index` / `MF_NormalAdjust` / `MF_SpaceParallax` / `MF_ClothWindDrape`.
+  `Cymatic_BeatPulse` / `Cymatic_EmissiveScale` live on `MPC_Cymatics_Driver` (sole writer
+  `UMelodiaCymaticsWriterSubsystem`) - a preset must NOT override them per instance.
+- **Correction**: my previous proposal (six `MI_Toon_*` presets, MI-parented-to-MI) would have
+  **duplicated** `ToonProfile`. Withdrawn and deleted; the canon is now
+  `specs/materials/toon_profile_canon.v1.json`, and the gate **extends the existing
+  `Content/Python/check_toon_profile.py`** instead of creating a parallel tool.
+- Evidence level: **measured offline** (census in `Saved/Audit/material_presets/`). NOT yet
+  visually A/B'd - the owner edits one profile and three MPC values, then looks at 3-4 hero assets.
+
+### The owed C++ build: fold the 3-form weapon, and only that
+
+The build must be **closed-editor `BS_GodFileEditor Win64 Development`** (new enum + new component +
+new test file = header changes; Live Coding cannot do it). Plan in
+`specs/weapons/waveharp_3form_henshin_bake.v1.json` -> `cxx_build_plan`.
+
+- **Tier 0 (fold now)**: C1 form as a type with **one** entry point (`SetForm`; the f90 `FormHandoff`
+  notify confirms, never swaps - Lyra's rule); C2 head swap on form change (owner-confirmed topology);
+  C3 curve-driven `FormAlpha`/`ScytheAlpha` instead of `FInterpConstantTo` (kills D3); C4 socket
+  offsets as the **measured local offsets** (Bow_Grip 13 cm, Cymatic_Projection 121 cm, blade
+  21.9/37.08/32.77 cm - kills D8's 42 m trace); C5 form 2 melee resolves through
+  `UMelodiaExternalJRPGBridgeSubsystem::ResolveWorldFlowAttack` exactly like the arrow does (one HP,
+  one grader, judged at the action on `UMelodiaMusicClockSubsystem::InputTimebase`); C6 the deliberate
+  form-select input with the transition lock.
+- **Tier 1 (fold if the window allows)**: C7 music-clock idle shimmer (D4); C8 per-form grip offsets
+  reusing the existing hold solver; C9 existing-system VFX wiring from C++ (user parameters only, no
+  new Niagara graphs); C10 `Tests/MelodiaWaveHarpFormTests.cpp` in the existing
+  `IMPLEMENT_SIMPLE_AUTOMATION_TEST` pattern; C11 `Melodia.WaveHarp.SetForm` / `.DumpForm` console
+  commands for the PIE receipt.
+- **Do not fold**: new Niagara systems, a Lyra-style equipment framework, `batch_retarget_animations`
+  with `overwrite=true`, any Python touch of `Content/TurnBasedJRPGTemplate/Blueprints/Skills/`,
+  a second palette MPC or a second toon master.
+
+## The Magician's Library work is isolated in its own Perforce changelist - CL 300 - 2026-10-21
+
+**You reconnected to Perforce, so the Perforce state of the Magician's Library work is now correct and reviewable.** The work was sitting in the **default changelist** mixed with ~1,000 unrelated opens (other sessions' Houdini bakes, the Melodia library, `__ExternalActors__` trees), where it was impossible to submit without sweeping in other people's work. It is now in **change 300**, alone.
+
+**CL 300 - "Magician's Library: pack import, toon conversion, duplicate-tree archive, and the P0 house dressing":**
+
+| Path | Open action | Files | What it is |
+|---|---|---|---|
+| `Content/MagicianLabatory/...` | **add** | 819 | the rest of the Fab pack - 271 of its 1,090 files were already in the depot from change 299, these 819 were local-only and are now tracked (1,090 on disk = 271 in depot + 819 open, no orphans either way) |
+| `Content/Library/Migrated/MagiciansLibrary/...` | **delete** | 356 | the **duplicate** tree, being retired from the active path |
+| `Content/Library/_Archive/MagiciansLibrary_20261021/...` | **add** | 356 | where that duplicate tree now lives - the same 356 files, the same names, one-to-one |
+| `Content/EnvSandbox/Library/Migrated/MagiciansLibrary/...` | **edit** / **add** / **delete** | 53 / 52 / 55 | the toon-converted canonical set (the 189 meshes on `M_Master_Toon_Universal`, their textures, the LOD and collision passes) |
+| `Content/Melodia/Levels/Opening/L_MelusinaHouse_P0.umap` | **edit** | 1 | the P0 house, with your dressing and the P0 system actors |
+
+**CL 300 holds 1,692 files. The default changelist holds 543 - the owner's other work - and contains ZERO Magician files.**
+
+**The archive move is now represented correctly in Perforce.** A move in Perforce is *delete the old path + add the new path* - not *edit*. The old tree had been sitting as 356 `edit` opens, which would have told the depot the files still existed at the old path and never recorded the archive. It was corrected by reverting them (which restored the depot copies, so nothing was lost) and re-opening them as `delete`; the archive path was reconciled in as `add`. **Verified one-to-one: every depot file under the old path has an archive counterpart and vice versa, no orphans in either direction.** The old path is now empty on disk; the archive holds all 356 files.
+
+**The canonical tree has the same shape, and was reconciled the same way.** Its 55 `delete` opens are 50 flat masters moved into `_Archive/FlatMasters_20261021/` plus the 5 documented renames (`candle1_L` -> `SM_Candle1_L`, `MI_M_Deco1/2/3` -> `MI_M_Kit_Ornament_A/B/C`, `MI_M_Desk_2` -> `MI_M_Desk2`); its 52 `add` opens are those 50 flat masters at their new path plus 2 material instances. **Every delete was paired to a replacement and confirmed present on disk before the reconcile ran, and the 5 renames' new names are all in the depot.** No file was lost: 0 zero-byte assets across every touched tree.
+
+**Nothing outside the Magician's Library was touched.** The eight files under `Content/Library/Migrated/Melodia/**` are a *different* tree, were never opened in this changelist, and remain untouched and unsubmitted.
+
+**The house map was re-opened after the editor released it.** The map reached the depot as **rev 2 (change 301)**, but the local file still carries the artist's newer hand edits and had lost its Perforce open when the editor closed - so a `p4 sync` or `p4 revert` would have discarded them silently. It has been re-opened for edit in CL 300 and `p4 diff` confirms the local file still differs from depot rev 2. **Check that the map is open in CL 300 before you sync.** The git snapshot, the state file and the `.umap` backup cover it three more ways, but the cheapest protection is the open itself.
+
+**To submit it:** `p4 submit -c 300`. It is ~6.8 GB of binary, so it will take a while and needs LFS bandwidth - and I am not doing it, because a submit is yours under the repo's rules.
+
+**Two Perforce gotchas worth knowing** (both cost time here):
+- `p4 change -i` reads the spec from **stdin**, not from a file argument - and with a `Change: new` spec it **sweeps the whole default changelist into the new one** rather than only the files you name. The safe path is `p4 reopen -c <cl> <path>` on explicit paths.
+- `p4 revert` on a file that is open for edit **restores the depot copy to disk**. That is safe, but it means a "move" needs the order *revert -> delete*, and the local file reappears at the old path before it is deleted. The archive copy is never at risk.
+
+## Your house edits are now protected three ways — snapshot, restore, and a committed map — 2026-10-21
+
+**The worry is fair and it was real.** Until now your live dressing work existed in exactly one place: the bytes of `L_MelusinaHouse_P0.umap` in the working tree, plus the 2,877-file unsubmitted Perforce changelist. An editor crash, a `p4 revert`, or another process saving the map could have taken it all. It already happened once tonight — a headless save of mine was overwritten by your editor's save, and the six P0 actors I had placed were gone.
+
+**So your edits are now data, not just map bytes.**
+
+| Protection | Where | What it gives you |
+|---|---|---|
+| **State file** | `specs/p0/melusina_house_p0_dressing_state.json` (59 KB) | every dressing and P0 actor's **label, class, mesh, location, rotation, scale, room, prop and tags** — small, git-committed, diffable, human-readable. This is the *reproducible record* of your hand edits |
+| **Map backup** | `Saved/Audit/melusina_house_p0_backups/L_MelusinaHouse_P0_<timestamp>.umap` | a full binary copy of the map at snapshot time, so even a corrupted map is recoverable |
+| **The map itself in git** | `Content/Melodia/Levels/Opening/L_MelusinaHouse_P0.umap` | the levels tree is **git-allowlisted** (`.gitignore: !Content/Melodia/Levels/**`) and every other Melodia level is already tracked in git **and** Perforce — `L_MelusinaMorning`, `L_MelodiaMainMenu`, `l_melodia_dreamstate..umap` all are. The house map was the odd one out. It is now committed like the rest |
+
+**New toolkit commands** (`Content/Python/magicians_dressing_ops.py`, run in the editor with the level open):
+
+- `MAGICIANS_OPS=snapshot` — saves the level, copies the .umap to the backup folder, and writes the state file. **Run this whenever you have work you care about.**
+- `MAGICIANS_OPS=restore` — rebuilds the dressing from the state file: missing actors are spawned, existing ones are put back exactly as recorded. **This is your recovery path if the map is lost or corrupted.** Verified: `restore: 97 actors restored (0 spawned)` — a clean no-op against a healthy level, which proves the state file and the level agree.
+
+**A suggested rhythm while you work:** tweak in the editor → `snapshot` → keep going. The state file diffs in git, so a colleague can see exactly what moved; the backup is your undo; and `restore` rebuilds from the record if the map is ever lost.
+
+**Still yours to do, and it is the one thing I cannot do for you:** the Perforce work is **un-submitted**. Until it is submitted, the depot has no copy of the house map's current state. (Submitting is your call under the repo's rules — I do not submit.) The Magician's Library work is now isolated in **its own changelist** so you can submit it without sweeping in unrelated work — see the section below.
+
+## The house dressing is now hand-editable and the automation stops fighting you — 2026-10-21
+
+**The dressing is ordinary level actors, so you can move, rotate, scale, re-mesh or delete any of them in the editor and the state is saved with the map.** The problem was on the automation side: my placement helper *moved actors back to the manifest position* whenever they drifted, so every manual tweak you made would have been reverted by the next run. That is fixed.
+
+**The rule now: the automation creates, you decide.**
+
+- `melusina_house_p0_dressing.py` and `melusina_house_p0_bind.py` are **create-only**. An actor that already exists is **left exactly as you left it** — the bind records it as `left_as_edited`. Nothing is ever moved or deleted by a routine run.
+- Re-applying the written manifest to the level is now an **explicit** command, never automatic: `MAGICIANS_RESYNC=1` (bind) or `MAGICIANS_OPS=resync` (toolkit). It is deliberately destructive to manual position edits — that is the point of making it opt-in.
+- The **manifest is the creation record, not the level of truth**. The map is the level of truth; the manifest says where things were *put*, and `specs/p0/melusina_house_p0_dressing.v1.json` is versioned so the original intent is never lost.
+
+### Finding and bulk-editing the dressing
+
+All **100 dressing and P0 actors now carry tags** (verified in the live editor, saved to the map):
+
+| Tag | Meaning |
+|---|---|
+| `MagDressing` | the 94 Magician's Library / pack props |
+| `MagP0` | the 6 P0 system actors |
+| `Room_bedroom` / `Room_landing` / `Room_salon` | which room the actor is in (position-derived, so it survives a manual move) |
+| `Prop_<name>` | which prop it is (`Prop_SM_Desk`, `Prop_BP_Crystal`, `Prop_Explore_Desk`, …) |
+
+So in the **World Outliner** you can search a tag, select a room's worth of props at once, and move/scale/re-mesh the whole set in one operation. The room tag is derived from the actor's **position** against the spec's room footprints, so it stays right when you move a prop.
+
+### The toolkit
+
+`Content/Python/magicians_dressing_ops.py` — run in the editor with the level open:
+
+| Command | What it does |
+|---|---|
+| `MAGICIANS_OPS=list` | the full inventory: label, class, room, prop, location, mesh, tags → `Saved/Audit/magicians_dressing_ops.json` |
+| `MAGICIANS_OPS=tag` | (re)apply the tags |
+| `MAGICIANS_OPS=select` `[room]` | select the dressing (of one room) so you can move it as a group |
+| `MAGICIANS_OPS=remove` `[room]` | delete a room's dressing (destructive) |
+| `MAGICIANS_OPS=resync` `[room]` | re-apply the manifest's positions (destructive to manual edits) |
+| `MAGICIANS_OPS=stats` | one-line summary |
+
+**Two limits worth knowing.** The tags and the manifest are the *only* record of intent — the manifest is committed, so it survives, but a prop you delete by hand stays deleted unless you re-run the create pass. And the dressing is **not** yet a Blueprint class: you multi-select actors and set the mesh once (UE applies it to all selected), but there is no single parent class to edit. If you would rather have one — `BP_MagiciansProp` with the mesh, room and role as editable properties — that is a small follow-up and I would do it as a **migration that preserves the current transforms and labels**, so nothing you have moved would move.
+
+## The P0 house is now bound to the EXISTING P0 systems — six real actors, no new mechanic — 2026-10-21
+
+**The pack's Blueprints are presentation. The P0's authority is Melodia's own.** Six real project actors now sit in `L_MelusinaHouse_P0` at the P0's named focal points, each wired to the subsystem the P0 score already names. No new quest, flag, intent, reward or timing engine was created.
+
+| Beat | Actor placed | Binds to |
+|---|---|---|
+| **M01** Notice — the desk | `AMelodiaExplorationPoint` PointId **`Desk`** (r 120) | `UMelodiaOpeningFlowSubsystem::NotifyExplorationPointVisited` → `GetExplorationPointsVisited()`; the gate consumer is `AMelodiaSirMelodiousIntroActor::RequiredExplorationPoints` |
+| **M01** Notice — the empty perch | `AMelodiaExplorationPoint` PointId **`Perch`** (r 140) + **`BP_SirPerch`** | the "strong visual line from bed to the empty perch / companion token" |
+| **M02** First resonance | **`BP_MelodyToken_Universal`** (amount 1, element **`Forte`** — the default of `EMelodiaSpellElement`) on the desk beside `BP_CandleFlame` | the Heart Melody Token; a forgiving **one-action** response that feeds the melody-token balance |
+| **M02** — the house's state | **`AMelodiaOpeningStateAnchor`** | carries `ResonanceBond` (`Absent/Reunited/Resonant/Strained`) and the `Dissonance` tier — the Sir reunion beat reads this anchor. It declares **no Root component**, so it is a **position-less state holder** found by `TActorIterator` — its transform is irrelevant by design |
+| **M04** The house hums — the salon | `AMelodiaExplorationPoint` PointId **`Salon`** (r 180) at the `BP_Crystal` centrepiece | one optional linger; the score asks for **no extra mechanic** here, so a one-shot point is the whole of it |
+
+Placed and verified in the level, then saved (`EditorLoadingAndSavingUtils.save_map(world, asset_path)`). The bind script is **idempotent and self-correcting** — it skips labels already present and moves an actor back if it drifted, so a re-run can neither duplicate nor leave a stray at the origin. Script `Content/Python/melusina_house_p0_bind.py`; receipt `Saved/Audit/melusina_house_p0_bind.json`.
+
+### Two things the bind exposed that are yours to close
+
+1. **Nothing in shipped content begins the Morning phase.** `AMelodiaExplorationPoint::NotifyExplorationPointVisited` is a **no-op outside the `Morning` phase**, and the only caller of `UMelodiaOpeningFlowSubsystem::BeginMorning()` in the whole project is **`BP_MelodiaDevPartyFastForward`** (a dev tool) and `AMelodiaSirMelodiousIntroActor::BeginPlay`. The Morning level was reduced to a 14 KB shell and took its phase start with it, so **the three exploration points are placed but inert** until the phase is begun. Two honest ways to close it, both using the existing API: **(a)** place `AMelodiaSirMelodiousIntroActor` in the house (its `BeginPlay` begins Morning, and its `RequiredExplorationPoints` becomes the M01 gate — set it to **2** for Desk + Perch), or **(b)** one line in the house level's BeginPlay: `UMelodiaOpeningFlowSubsystem::Get(this)->BeginMorning();`. **(a) conflicts with the P0's "empty perch"** (Sir absent), so **(b) is the cleaner bind** — but it is an owner call.
+2. **The house level has no player.** It references no GameMode and no `BP_MelodiaJRPGCharacter`, so it inherits the project default (`BP_MelodiaJRPGGameMode` / `BP_MelodiaJRPGGameInstance`); the P0 route's Melusina still has to be placed or spawned before M00–M05 can be walked.
+
+### One more write-conflict lesson, for whoever runs this next
+
+**A headless save of the house map is silently overwritten by the artist's next save** if they have the level open. My first bind placed all six actors headlessly and verified them on disk; the owner's editor then saved its older in-memory copy and they were gone. The bind therefore now runs **inside the editor that owns the level** and never reloads it — a reload there would discard the artist's unsaved work. Same rule as the dressing script: **the editor that has the level open is the authority on that file.**
+
+## Melusina's P0 house — DRESSED. The house leg's map ownership is settled to `L_MelusinaHouse_P0` — 2026-10-21
+
+**Owner ratified the house-leg map ownership: the P0 house is `L_MelusinaHouse_P0`** (the P0 spec's `not_yet_true` #2 is now closed for the map-identity question). The level was a new, Perforce-open-for-add map with 21 actors; it is now **118 actors**: the 21 originals, **76 Magician's Library dressing placements**, and 18 Enchanted Interiors props the owner placed in parallel.
+
+### The dressing is IN the level, not just in a spec
+
+`specs/p0/melusina_house_p0_dressing.v1.json` (76 placements, every one citing the plan role it serves) → applied to `L_MelusinaHouse_P0`, verified by a headless census: **94 dressing-labelled actors, 94 distinct labels, zero duplicates**; 68 mesh actors + 8 Blueprint actors + the owner's 18 KB3D props. Receipt: `Saved/Audit/melusina_house_p0_dressing.json`.
+
+- **Bedroom (M00–M02)** — writing desk + field journal, globe, microscope, candle, ink jars, built-in shelf run on the west wall, two wall shelves, rug, bedside table, plant table, chest, wall ornaments, wall banner, and **`BP_InteractiveBook`** as the M01 desk interactive.
+- **Landing (M03)** — two columns, timber post, wall segment, glass screen + frame, ornament, `BP_Lantern`.
+- **Oval salon (M04)** — **five concentric `CentreRing` medallions (765→374 cm)** as the "circular rug / slightly sunken centre" landmark, the off-centre instrument dais with **`BP_Crystal` (the salon's one interactable)**, console table, entry rug, `BP_WallLantern`, `BP_InteractivePainting` on the north wall, `BP_PoisonPot` in the west nook, `BP_HiddenDoor` (the rooms behind closed doors), floor inlays, the front doors, and the **grand staircase framed** from the Building set — framed only, not walkable, which is exactly what M04 asks.
+- **M02's resonant object = `BP_CandleFlame`**, the living flame on the desk candle (owner's call to use a different BP). The pack's seven functional Blueprints are now in the house rather than sitting unused.
+- Placement is **geometry-aware**: the apply step measures each mesh's bounds and lifts the actor by `-(centre.z − height/2)`, so props stand on their surface (desk top 82 cm, shelf top 186 cm, dais 143 cm) instead of floating. The script is now **idempotent** — it skips any label already present, so a re-run cannot duplicate.
+
+**Still not proven:** nothing here is runtime-proven. The route has not been walked, there is no receipt under `Saved/Audit/poitou_p0_walk/`, and the orientation of the wall-facing pieces (`SM_Entrance`, the ornaments, the painting) needs an eye in the viewport.
+
+### What I got wrong, and the two rules that came out of it
+
+**I opened and closed the Unreal editor repeatedly tonight — every one of those was me.** The first bulk edit ran through the interactive editor, hit a **Perforce checkout modal**, hung, and when I killed and relaunched it I created a duplicate editor twice. Two concurrent editors exhausted the machine's **8 GB fixed pagefile** and the editor OOM'd mid-write, **truncating 43 asset files to ~1.5 KB**. All 43 were **restored from Perforce** and re-verified; the house map was checked actor-by-actor and was intact. Nothing is lost, but the cause was mine, not the project's.
+
+**Two durable rules, now recorded:**
+1. **The headless commandlet is the only surface for bulk asset work**: `UnrealEditor-Cmd.exe <project> -run=pythonscript -script=<file> -unattended -nullrhi` — separate process, no window, **3 GB peak instead of 21 GB**. The interactive editor belongs to the artist.
+2. **Pre-checkout with `p4 edit` before any editor-side move.** A Perforce checkout modal on a move is what hung the editor in the first place; and `EditorLevelLibrary.save_current_level()` **silently no-ops in a scripted context** — the working call is `EditorLoadingAndSavingUtils.save_map(world, asset_path)`, which returns a real bool.
+
+**A duplicate-placement incident, disclosed.** The mesh pass ran twice (once in the commandlet, once after the editor closed), so **68 dressing actors existed twice**. The dedupe removed one copy of each of 88 duplicated labels — which included **20 of the owner's Enchanted Interiors props, each of which had been placed twice** (bookshelf, book stack, apple bowl, candle holder, chest, banner pole, standing lantern, acolyte chair, candle stack, chair, two chandeliers, round table). All 18 prop types survive with one copy each at their original positions; the second copy of each was removed. If any was meant to appear twice, it needs re-pasting. The dedupe is now a first-class guard in the dressing script, and the spec/receipt record the final one-copy-per-label state.
+### The Enchanted Interiors layer on top of the base dressing — landed, one prop short
+
+The house leg now dresses from **two** sources. The base contract (76 placements, Magician's Library) landed as `specs/p0/melusina_house_p0_dressing.v1.json`; **PR #503 and #504 (lane `house-dressing-ecv-20261022b`) add 19 Enchanted Interiors props on top** — the Kitbash3D pack converted onto `M_Master_Toon_Universal` on 2026-10-21 and imported at `/Game/EnchantedInteriors`. Contract now reads **87 placements (68 base + 19 enchanted_interiors), 0 unresolved meshes**, every prop measured from its asset bounds.
+
+What the ECV layer adds: the **chandelier hanging over the M04 circular medallion** (the salon's one landmark, now lit from above), a small chandelier by the front doors, the sitting group in front of the salon entry (round table + two chairs + a bowl), a candle cluster and a bowl on the console table, a bookcase on the salon's north wall, a standing lantern by the south bench, a book stack by the instrument dais; in the bedroom a candle cluster on the bedside table, a free-standing bookcase, a book stack on the west shelf run, a second trunk and a fruit bowl on the writing desk; in the landing a standing lantern, a banner pole and a bowl on the pot table. All **additive** — no base placement is moved or edited (Jev packet 2026-10-21: `NEW_ASSETS_ONLY_NO_EXISTING_MUTATION`).
+
+**Geometry decisions that came out of measuring, not guessing:**
+- the two chandeliers use `surface_z` as the height of their **lowest point** — the salon shell is 563 cm, so a 335 cm chandelier hangs from 200 cm (top at 535 cm); placed by its base its top would have been 855 cm, through the roof;
+- the landing lantern sits at x=-400 because the bedroom and landing shells **overlap between -450 and -425**, and -430 counts as bedroom;
+- the bowls were moved clear of the globe and the desk items;
+- `KB3D_ECI_PropTableFabric_A_Main` was dropped: it measures **1008 cm**, a banquet table, wrong scale beside the oval salon's dais.
+
+**The apply was corrected against the project's own recorded rules (PR #504):** it saves with `EditorLoadingAndSavingUtils.save_map()` because `EditorLevelLibrary.save_current_level()` silently no-ops in a scripted context, and it now **skips a label that is already present** — those props are the owner's own hand-placed ones and a scripted pass must not move them (`DRESSING_MOVE_EXISTING=1` opts into moving).
+
+**The census tool and the one remaining gap.** `Tools/Editor/census_house_dressing_placed.py` is a READ-ONLY dump of what is actually in `L_MelusinaHouse_P0`. It found: **86 dressing actors, 86 distinct labels, zero duplicates, 18 of them Enchanted Interiors props** — and that the contract carries **19** ECV placements. **The fruit bowl on the console table (255,-280, top 88 cm) was never placed.** The next apply adds exactly that one and touches nothing else.
+
+### The PCG fill layer — `specs/p0/melusina_house_p0_fill.v1.json` — 2026-10-22
+
+**The house is three layers, and the third one is the fill.** The question "how do we use PCG and volumes for detailed mesh layout" has an answer that is mostly *already in the project's mechanisms*:
+
+| Layer | Owner | What |
+|---|---|---|
+| shell | Houdini `melodia::room_shell` (33 params) | walls, openings, bead swags, chair rail, skirting, floor medallion — already procedural |
+| dressing | the contract, 97 placements | the hero props and everything that must **contact** a surface |
+| **fill** | **PCG + a volume per room** | books, candles, jars, bowls, cloth — scatter with no contact requirement |
+
+**The split is forced by one fact:** PCG spawns on a surface *without correcting the mesh pivot*, so a desk-top or shelf-top prop would float or sink. That is why the contact-critical props stay hand-placed and PCG takes the scatter it is good at.
+
+**How the fill is built** (contract in `specs/p0/melusina_house_p0_fill.v1.json`): one `PCGVolume` per room carrying a `PCGDensityData` texture — the old *density volume* is deprecated in UE 5.8 — then `Surface Sampler` (or a `Grid Sampler` on the 0.6 m module) → `Density Filter` → `Static Mesh Spawner` per species → `Mesh Bounds Overlap` → route exclusion. The fill graph is meant to be a **subgraph of the shell's own PCGEx graph**, inheriting the shell's bounds instead of guessing them: the house already has `PCG_MelusinaRoomShell_PCGex` (PCGEx spline + bounds sources) and `PCG_RoomShell_Morning` / `PCG_MelusinaHouse_MorningDell`, which **already contain `PCGStaticMeshSpawnerSettings`**.
+
+**Nine species rows across the three P0 rooms**, each with mesh, the converted instance, the surface it sits on, density, rotation rule and count range — e.g. books on the west shelf run (top 250 cm) and the north shelves (186 cm) at density 0.35, candle clusters on the desk (82) / bedside (77) / chest (71) at 0.22, and in the salon books on the north bookcase at 0.30 with the **M04 medallion footprint excluded** so the landmark stays legible.
+
+**Exclusions are the Poitou conventions, not new ones:** the route spline (`BP_PathSplineProvider`) and its 4 m buffer, the medallion and its five rings, every hand-placed actor's bounds, the door swings, the stair. The density-texture authoring and the `dressing_table.json` species→mesh→MI shape are the World Compiler's existing pattern, reused.
+
+**Design contract only** — no PCG node in it has been built, the density textures do not exist yet, and the fill's look is unproven until the room is lit and photographed. The Enchanted Interiors pack has never been seen inside this house.
+
+### ONE contract — the base meshes + the functional interactables + the Enchanted Interiors layer — 2026-10-22
+
+**The two contracts were complementary, not conflicting, and are now one file.** The base contract's 76 placements are the 68 mesh placements **plus eight functional Blueprint interactables** — the gameplay-facing actors the P0 score asks for: M01 the interactive book, M02 the resonant candle flame, M04 the salon crystal, plus the painting, the hidden door, the poison pot and the two functional lanterns. **PR #505+ folded them into the contract, so it now reads 97 placements: 68 base meshes + 10 Blueprint actors (the eight plus the two candle flames that sit inside the lanterns) + 19 Enchanted Interiors props — 97 unique labels, 0 unresolved meshes.**
+
+Three label bugs were found and fixed by comparing the contract against the level (the census is the arbiter):
+- the level labels the Blueprint actors **`MagBP_<name>`**, not `Mag_<room>_<name>` — the wrong convention would have **spawned duplicates** of every interactable;
+- the salon's **two fruit bowls** shared one label, so the second could never be placed. Labels are now computed once, when the contract is built, and the ordinal is part of that computation, so the contract and the apply cannot disagree;
+- `BP_ROWS` was never initialised, so the script died at import and the plan run left the **previous** spec in place — the contract looked fine while nothing had been recomputed.
+
+**Reconciled against the live level:** level **96 dressing actors, 96 distinct labels, zero duplicates**; contract **97 placements, 97 unique labels**; **missing: exactly one** — `Mag_salon_KB3D_ECI_PropAppleBowl_A_Main_2`, the console-table fruit bowl. The next apply adds that one actor and touches nothing else.
+
+## ⚑ VITRUVIUS / DRYAD / SIDEFX LABS - the real availability picture (2026-10-21)
+
+- **Correction: Project Vitruvius and Project Dryad are NOT tools.** Vitruvius is an *"upcoming
+  toolset"* for architecture and urban environments; Dryad is an *"experimental initiative"* for
+  natural environments. Both are **SideFX Labs research initiatives with no release and no ETA** -
+  a SideFX intern at Pixar prototyped Vitruvius'' architecture tools in 2023-24 and a 2024 EPC
+  workshop covered it. **They cannot be used and must not be planned against.** If a brief names
+  them, treat them as a direction, not a dependency. (Section 15 of the build contract.)
+- **What IS real: SideFX Labs**, public on GitHub (`sideeffects/SideFXLabs`, 1.53 GB, pushed
+  2026-10-21), released **per Houdini build**, no account needed for the tarball route. The
+  blocker is **version-locking, not access**: the oldest 22.0.x tag is 22.0.382, there is no
+  22.0.368 tag (our build), and Houdini refuses to load an HDA saved by a newer Houdini.
+- **One upgrade, two things - and neither is needed tonight.** The Launcher has **Houdini 22.0.466
+  already staged locally** (with houdini_installer.exe), and 22.0.466 is an **exact Labs tag**
+  and is matched by a plugin release (HEU 4.0.2 = 22.0.459, 4.0.3 = 22.0.566). Installing it would
+  buy **SideFX Labs** and the **Houdini Asset Component lock** (22.0.470) - and nothing we are
+  missing for UE 5.8, which already works on 22.0.368. It is a machine-level change with the
+  owner's editor live: **the owner's call, on a quiet machine, not tonight.**
+
+- **The environment: we do NOT need a Houdini upgrade for UE 5.8.** An earlier draft of this file
+  said the build "is behind UE 5.8" and recommended an upgrade; that was wrong and is corrected
+  here. The workstation runs **Houdini 22.0.368**. SideFX added Unreal 5.8 support in **22.0.355**
+  (2026-06-18), and 22.0.368 is **thirteen patches NEWER**, so UE 5.8 already works here - as does
+  the 22.0.359 fix for the UE 5.8 collision-preset crash. The installed plugin is **HEU 3.0 built
+  for H22.0.368** (`Plugins/HoudiniEngine/HoudiniEngine.uplugin`: `VersionName: 3.0 - H22.0.368`),
+  paired and correct. What we genuinely lack is everything dated AFTER our build: the **Houdini
+  Asset Component lock** (22.0.470 - a locked component cannot be modified or cooked by accident,
+  which is exactly this session's failure), a UE 5.8 **landscape spline assertion** fix, a Session
+  Sync UI-stall fix, PCG output re-use, and **SideFX Labs** (needs >= 22.0.382). **Do not upgrade
+  tonight** - it is a machine-level change with the owner's editor live, and it buys optional
+  things only. If it is ever done, the Launcher has **Houdini 22.0.466 staged already**, 22.0.466
+  is an exact Labs tag, and the matching plugin is HEU 4.0.2 (Houdini 22.0.459) or 4.0.3 (Houdini
+  22.0.566) - take the one whose HAPI matches the Houdini build.
+- **Session Sync is the live workflow.** The plugin''s `Open Houdini Session Sync` gives a live
+  Houdini GUI with two-way HDA/input/curve/output sync - and the documented use case is ours:
+  kitbash in Unreal, bring it into Houdini to build and re-UV, keep the context. The canon curves
+  are Unreal splines, so a designer moves a spline point and the masonry re-courses in place.
+- **The attribute set the kit must emit** (section 14.3): `unreal_nanite_enabled` +
+  `unreal_nanite_position_precision` + `unreal_nanite_trim_relative_error` (the 2 cm dry joints
+  are BELOW Nanite''s default error and will be eaten), `unreal_output_name`,
+  `unreal_collision_mode`, the generic `unreal_uproperty_*` channel (the HDA can set any property on
+  the generated component and on the Houdini Asset Component itself), `unreal_output_curve` (a
+  curve prim outputs as a **SplineComponent** - the CAD-like return path),
+  `unreal_output_dynamic_mesh` (22.0.470 experimental live-editable output),
+  `unreal_level_path` + `unreal_bake_folder` + `unreal_bake_actor` + `unreal_bake_outliner_folder`
+  (the staging lever), the landscape attributes including
+  `unreal_landscape_partition_grid_size` (world partition, for the near/mid/far band plan), and
+  `unreal_pdg_params` for the PCG HDA node.
+- **The CAD-like systems SideFX already ships, to adopt rather than re-author:** **Labs Building
+  Generator 4.0** (blockout -> floors, walls, corners and ledges replaced by a user module library
+  - the CAD loop, and our module library can be the style contract''s `MEL_wall_*` set);
+  **Project Titan / Titan Evo** and the 2026-10-08 bridge tutorial (arch, deck, railings, piers,
+  trim sheets - the canal crossing); "Procedural building from modules" (2025-04-08); "City
+  Building with OSM Data" (real data -> buildings/roads/props, the way the IGN DEM already is);
+  Copernicus Baker for baking the detail into a trim-sheet material. **Project Vitruvius** and
+  **Dryad** are SideFX''s next architecture/environment toolset - watch, do not wait.
+- **The staging pipeline that makes the quota usable** (section 14.5): every generator writes into
+  the EXISTING merged `output_generated` and adds a named prim group, so **a generator never needs
+  an editor slot, never touches the UE asset and never touches the level.** The owner does ONE
+  cook at the end and the whole set appears; the bake attributes then stage it as named,
+  Perforce-ready assets. The generator contract cards are in
+  `Tools/Poitou/GENERATOR_CARDS.md` - the template plus CARD 1 (`bond.vex`, the brick bond and the
+  rubble core, which Jev ruled is the first real gap) fully written, so the next model starts at
+  step 1 with nothing to re-derive.
+- **Standing safety rail:** once the owner is happy with the level, **lock the level''s Houdini
+  Asset Components** (22.0.470 added the lock, including lock-on-load). A locked component cannot
+  be modified or cooked by accident - which is exactly the failure this session caused.
+## ⚑ THE PROGRAMME AUDIT + THE FRONTIER MODEL''S PLAN (2026-10-21)
+
+- **Jev audited the programme against its original goal and the project''s own reference docs**
+  (packet `Tools/Poitou/jev_poitou_programme_audit_20261021.py`, receipt
+  `Saved/Audit/PoitouConvergence_20261020/JevPoitouProgrammeAudit_20261021.json`). Rulings:
+  canals `PARTIAL_NEEDS_LOCKHOUSE_JETTY_AND_STEPS`; foundations
+  `SHALLOW_NEEDS_REAL_FOUNDATION_TYPES`; brick `NEED_BOND_AND_RUBBLE_CORE_PATTERN`; order
+  `WIRE_AND_PROVE_FIRST_THEN_SPEC_FEATURES`; systems `REUSE_EXISTING_SYSTEMS_FIRST`; the poplar
+  question waits on `CHECK_THE_MASTER_SHADING_MODEL_FIRST_THEN_DECIDE`; palette
+  `STYLE_CONTRACT_IS_AUTHORITY_REWRITE_THE_MIS`.
+- **The audited gaps, in the reference docs'' own terms.** The chains/arase band is a plain course
+  of boxes - there is no brick BOND and the rubble core is a plain box, so "brick generation" is a
+  band, not a system. The foundations are one generic ring (the style contract wants the balais
+  barn plinth and a 0.4-0.8 m damp baseboard; the generator lays 1.2 m). The canal has its
+  retaining walls and nothing else (no lock house, jetty, quay, steps; the contract wants the quay
+  0.6-1.5 m above the water and the generator runs 0.9-2.4 m). The HE convergence spec's
+  `unreal_nanite_enabled` / `unreal_collision_mode` / `unreal_output_name` attributes and the
+  dual-stage preview cook are not emitted or implemented. `cross.vex` duplicates the piano-walkway
+  system that already exists. The whole musical-motif band layer (style contract section 4) is
+  unimplemented. The style contract and the MA palette disagree by 2-4% per slot. 6 of the 7
+  lookbook plates still fail the repo''s own gate.
+- **The full ordered plan is section 13 of the build contract**
+  (`Docs/Production/MELUSINA_FINAL_ENVIRONMENT_CONVERGENCE_GOAL.md`): Stage 0 the owner''s editor
+  cook, Stage 1 wire and prove and make the gate assert PLACEMENT, Stage 2 the three original goals
+  done properly, Stage 3 reuse the systems the project already owns, Stage 4 the identity layer
+  (the musical motif bands - the cheapest AAA win left), Stage 5 materials in Jev''s order, Stage 6
+  the spec''d HDA suite and the lookbook. Section 12 is the trap briefing and the measurements.
+- **The one thing that gates everything else:** the owner must re-cook the level''s Houdini actors
+  and add the two output slots. Until then the level is unproven and nothing is visible.
+## ⚑ POITOU LEVEL RESTORED — the regression was mine, and the gate missed it (2026-10-21)
+
+**What broke the level.** This session bound in-theme materials to **18 existing Poitou mesh
+packages** in `Content/` while `L_Poitou_v2` was live (slot 0 rebound, and five of them grown to
+two static material slots). The level's `Poitou_Layout_v6` Houdini cook then finished **"with
+errors"** and the actor produced nothing — while the other ten Houdini actors in the same level
+cooked clean. The owner's working game level stopped producing content. It was not the HDA
+sources, and it was not the retired Kenney pack: it was a mutation of assets a live level depends
+on. **Content is never removed or rebound before its replacement is live, and existing assets a
+live level depends on are not touched without the owner's sign-off.**
+
+**Why the gate did not catch it.** The Houdini-side in-theme gate was green the whole time because
+it proves the *HDA* is healthy — it says nothing about whether the *level* is fed. That gap was
+real and I had built a whole programme on top of it. It is now closed:
+`Tools/Editor/poitou_he_cook_check.py` reads each Houdini actor's cook result out of the log
+(`Poitou_Layout_v6 FinishedCooking.` vs `... with errors`) and fails on any actor that cooked with
+errors. **That is the check that should have existed before the first generator was written.**
+
+**Jev ruled on the restore** (live, closed candidate sets — receipt
+`Saved/Audit/PoitouConvergence_20261020/JevPoitouLevelAudit_20261021.json`):
+
+| question | Jev's choice |
+|---|---|
+| restore order | `RESTORE_ALL_18_FROM_SNAPSHOT` |
+| proof | `HEADLESS_COOK_CHECK_ONLY` |
+| standing rule | `NEW_ASSETS_ONLY_NO_EXISTING_MUTATION` |
+| scope | `REPAIR_AND_PROVE_LEVEL_FIRST_THEN_EXPAND` |
+
+**The restore is done, from measurement not judgement.** The pre-session state of those 18 meshes
+was measured at 18:34, before any change, and written to
+`Saved/Audit/PoitouConvergence_20261020/poitou_mesh_slots.json` — every mesh, its slot count and its
+slot-0 material. `Tools/Editor/poitou_restore_mesh_bindings.py` restores exactly that record
+(slot 0 to the recorded material, the array to the recorded slot count) and nothing else. All 18
+are restored; receipt `Saved/Audit/PoitouConvergence_20261020/mesh_binding_restore.json`. The HDA
+side was restored too: the near poplar rows instance again, because the generated poplar is not
+wired to the UE output slots yet and removing 627 trees before their replacement arrives is the
+same mistake in the other direction. **Do not `p4 revert` the Poitou meshes: they are open for ADD,
+so a revert would delete them.**
+
+**What the owner has to do — one step, and it is the editor's anyway.** The Houdini Engine plugin's
+scratch (`Content/HoudiniEngine/Temp/`) was cleared, and the failing cook must re-run, so the
+level's Houdini actors need a **Cook** (all of them; the RoomShell actors regenerate their temp
+output). `Content/HoudiniEngine/Bake/` is referenced by the level and was not touched. After that
+cook, `Tools/Editor/poitou_he_cook_check.py` reports `Poitou_Layout_v6: OK` — that is the proof,
+and it needs no judgement.
+
+**The standing rule from here, per Jev and the owner's own instruction: new assets only.** The
+missing materials stay as NEW assets (7 MIs plus `M_Poitou_Stone_Plinth`, authored on the one toon
+master, not yet in Perforce). Binding them to the live meshes is a separate, owner-approved step —
+not part of a generator session. The generators themselves stay additive: new files and new HDA
+outputs, `Tools/` only, no content mutation.
+
+**What is NOT lost:** the HDA graph in the asset is intact and was never edited; the level map was
+never edited; the editor session was never closed or reloaded. The v6 sources, the shared masonry
+kit, the seven generators, the in-theme repoint, the scale contract and the offline programme are
+all committed on `feature/poitou-intheme-architecture-20261021`.
+
+## ⚑ KENNEY IS GONE — submitted (P4 change 292) — 2026-10-21
+
+- **The Kenney Retro Fantasy pack is deleted, permanently, in the depot.** `p4 submit -c 292` → **change 292 submitted**: 2,506 files removed (1,543 static meshes + 963 material instances), all under `Content/EnvSandbox/Meshes/Environment/**` and `Content/EnvSandbox/Materials/Instances/Kenney/**`. Owner-endorsed ("those assets are proxies and needed to be killed"). Local disk already reflects it: `Meshes/Environment` 2,618 → 119 uassets, `Materials/Instances/Kenney` → 0.
+- **The audit trail is `Saved/Audit/AssetGraveyard_20261021/`** (`census.json`, `referencers.json`, `p4_delete_receipt.json`); the write-up is `Docs/Production/KENNEY_GRAVEYARD_RETIREMENT_2026-10-21.md`. The cut list came from the Asset Registry (zero referrers), headless through the Python commandlet — no live-editor session touched.
+- The 19 referenced meshes and 10 pack materials with unsubmitted local edits were held back and survive.
+
+## ⚑ 95 ASSETS WERE UN-SMUDGED LFS POINTERS — the real "gutted" mechanism — 2026-10-21
+
+- **What it looked like:** 95 `.uasset`/`.umap` files across the project were 130-byte Git LFS pointer text, not UE assets. The editor's own log says it plainly — `LogAssetRegistry: Error: Package is unloadable: .../M_KB3D_ECV_AtlasFlowersA.uasset`. A material that cannot load is a grey/default material in the viewport and in every render. **This is what made the library look gutted: 50 of the 72 enchanted-vehicle materials were unreadable**, along with 11 `ScoreKit_GP` meshes, 3 `PianoKey_AAA` meshes, `BP_ScoreWagon`, and 30 `L_FallenMoon` external actors.
+- **Root cause:** the LFS objects were never materialised into the working tree (the blobs *were* in the local LFS store — only the checkout was missing). Not a git-history problem, not a Perforce problem, not a delete.
+- **Fix: `git lfs checkout`, offline from `.git/lfs/objects`, 24.7 MB.** **0 pointer files remain**; `git status` is unchanged for all of them.
+- **Lesson for the next pack:** *a tracked asset is not a present asset.* `Tools/Editor/audit_enchanted_vehicle_materials.py` now reports `bytes` per instance so a stub cannot masquerade as a converted material again.
+
+## ⚑ ENCHANTED VEHICLES — converged onto the one toon master; the orphan duplicate set is RETIRED — 2026-10-21
+
+The duplicate set the owner spotted is real. Audit: `Saved/Audit/enchanted_vehicle_materials_audit.json` (tool: `Tools/Editor/audit_enchanted_vehicle_materials.py`).
+
+| Set | Package | Count | Referenced by | Parent | Maps routed |
+|---|---|---|---|---|---|
+| **A** | `/Game/KitBash_EnchantedVehicles/M_KB3D_ECV_<Stem>` | 72 | **the 172 vehicle meshes** | **72 × Universal** | **all of them** |
+| **B** | `/Game/Melodia/Imported/EnchantedVehicles/MI_KB3D_ECV_<Stem>` | 73 | nothing | 73 × Universal | opacity + emissive missing on 15 |
+
+- **Set A was the good conversion and is now canon-clean.** Every stem routed its own maps and was `BLEND_Masked`, but **17 were still parented to `M_Master_Toon_Universal_Alpha`** — the master that was converged away into `M_Master_Toon_Universal` on 2026-09-05 (commit `44398419e`, 109 instances reparented; the Alpha master left on disk, orphaned, owner-ask-first to delete). That commit's rule: *nothing should be reparented back to it.*
+- **Fixed 2026-10-21 by `Tools/Editor/converge_vehicle_materials_to_universal.py`** (headless, `-run=pythonscript`, no editor needed): the 17 were reparented to `M_Master_Toon_Universal` carrying `BlendMode=Masked + TwoSided=true` as per-instance base property overrides plus the master's `bUseOpacityMap` static switch, then every map was re-applied from the stem's own textures. **Receipt: `Saved/Audit/vehicle_material_convergence_run.json` — 72 instances, 17 reparented, 0 failures; the independent offline audit now reads set A = 72/72 `ok`.**
+- **Set B is RETIRED** — owner-approved 2026-10-21 ("no proxies, no slop"). `Tools/Editor/retire_orphan_vehicle_materials.py` proved **zero referencers** for all 73 before deleting anything, then deleted them; **P4 change 293 submitted** (73 deletes, only those files in the changelist). The `Copper` / `Copper_Toon` duplicate went with the set.
+- **UE 5.8 API trap, now encoded in every script here:** `MaterialEditingLibrary.set_material_instance_texture_parameter_value` (and the scalar/vector/static-switch siblings) take a **plain `FName`**, while the matching *getters* take a `MaterialParameterInfo`. Passing a struct to the setter fails with `Cannot nativize 'MaterialParameterInfo' as 'ParameterName'`. `unreal.BlendMode.BLEND_MASKED`; `unreal.MaterialParameterAssociation.GLOBAL_PARAMETER`; UE 5.8 has **no** `b_use_opacity_map` base-override field — the opacity mask is the `bUseOpacityMap` **static switch** on the master.
+
+## ⚑ THE DEPRECATED ALPHA MASTER IS GONE — one toon master only — 2026-10-21
+
+- **The project now has exactly ONE toon master.** `M_Master_Toon_Universal_Alpha` was deleted on 2026-10-21 and the deletion is on `origin/main` (PR #499, commit `2ac23ba0c`).
+- **Why it was still there:** commit `44398419e` (2026-09-05) converged the Alpha master into `M_Master_Toon_Universal` and reparented 109 instances, but the master itself stayed on disk — "left on disk but orphaned ... nothing should be reparented to it or it re-forks the divergence this closes".
+- **The truth about its users — a string scan lies.** An offline grep reports **~215** "users". The asset registry says **five**: `M_Outline`, `M_Iris_002`, `M_Material_015`, `M_Material_023`, `M_Halftone_Circles___Circles__3_Inputs__001` — all root-level, all its own children, and all with **zero referencers of their own**. The other hits are stale editor-only data inside saved packages. `Tools/Editor/query_alpha_master_usage.py` → `Saved/Audit/alpha_master_usage.json` is the authoritative method; the string scan is not.
+- **Closed out by `Tools/Editor/closeout_alpha_master.py`** → `Saved/Audit/alpha_master_closeout.json`: 5 instances processed, 5 deleted (unreferenced root-level slop), master deleted with 0 referencers left.
+- **A note on deleting assets in UE:** `delete_asset` on an asset nothing references deletes it cleanly; on a referenced one it leaves a redirector pointing at nothing. Always prove the referencer count first — which is why both retirement scripts do it in-script and refuse to touch anything with referencers.
+
+## ⚑ ENCHANTED INTERIORS (Kitbash3D UE4.26+) — imported and CONVERTED; the pack is being brought back in stamped form — 2026-10-21
+
+- **New pack at `C:\Users\froma\Downloads\Kitbash3D - Enchanted Interiors_UE4.262B`** → copied to `Content/EnchantedInteriors/` (2,337 files, 4.21 GB: 1,696 static meshes, 265 textures, 295 actor BPs). It is a UE4 *project*, not FBX, so it was copied at package level, not re-imported. The pack's `Main.umap` was **not** copied — it is an empty starter level (sky + light, zero `KB3D_ECI_*` references).
+- **The pack's own 80 `KB3D_ECI_*` materials were deliberately NOT imported** (they are `kb3d_master_*` proxy instances). One MaterialInstance per texture stem is authored on `M_Master_Toon_Universal` at **the same package path the pack material occupied** (`/Game/EnchantedInteriors/Materials/KB3D_ECI_<Stem>`), so all 1,696 meshes resolve their material slots to the new instance **with no mesh re-save and no re-import**.
+- **Map routing:** `basecolor→Albedo`, `normal→NormalMap`, `arm→ORM` (KitBash ARM = AO/Roughness/Metallic packed), `emissive→EmissiveColor`, `opacity→Opacity`. 17 stems carry opacity or refraction and get `BlendMode=Masked + TwoSided=true` + the master's `bUseOpacityMap` switch.
+- **CONVERSION DONE AND VERIFIED ON DISK.** `Tools/Editor/convert_enchanted_interiors_materials.py` → `Saved/Audit/enchanted_interiors_conversion.json` (**80 instances, 260 map routes, 0 real failures** — the only notes are 5 × "refraction: no master param", correct: the master has no refraction parameter). Independent offline audit `Tools/Editor/audit_enchanted_interiors_materials.py` → `Saved/Audit/enchanted_interiors_audit.json`: **80 stems, 80 instances, 80 clean, 0 issues, 0 unresolved material references across 1,992 meshes + actor BPs checked.**
+- **The UE4→UE5.8 stamping is done in a scratch project, not in the live one.** Every pack package is UE4.26 with **no engine version stamp**, so UE5's asset-registry scan *loads and rebuilds* all 1,696 meshes at startup — that build storm is what crash-looped the editor (next section). The fix is to stamp the packages in a throwaway project (`C:\EnvironmentPortfolio\Staging\ECI_scratch`, with a stub master at the real master's path so no reference is broken) and **move** the stamped files back into the live `Content/` — a move, not a copy, so C: free space does not double. Tool: `Tools/Editor/upgrade_ue4_assets_in_place.py` (loads and re-saves each package one at a time, ascending size, skips anything already stamped) and `Tools/Editor/bring_back_enchanted_interiors.ps1` (moves the stamped packages back, deciding by the **engine-version stamp in the package header**, not by mtime — the originals kept their 2025 import timestamps).
+- **The pagefile is raised, and the held-out meshes are being built.** `C:\pagefile.sys` is now **32,768 MB initial / 65,536 MB maximum** (was 8,192 / 16,384); Windows grows the file on demand, so the commit limit rises as a build presses on it (a reboot makes it 64 + 32 GB immediately). A `D:` pagefile is still optional and was never applied - the elevated `wmic` create was declined at the UAC prompt. The three held-out meshes went back into the scratch project on 2026-10-22: **`KB3D_ECI_IntNecromancersLair_A_Roof` is BUILT and stamped** (2,064 MB build; the rebuilt file is 75.6 MB) and went home in **CL 304**; **`_NicheA` (7,691 MB) is building now** and `_NicheC` follows.
+- **Storage:** `Content/EnchantedInteriors/` is gitignored (`.gitignore:113 Content/*`), so the 4.21 GB is Perforce-side bulk, not LFS. `origin/main` is untouched by it. **Added to Perforce in CL 294 + CL 295** (1,710 files).
+
+### Where the pack actually stands — 2026-10-22 (COMPLETE)
+
+- **LIVE in `Content/EnchantedInteriors/`: 2,334 files, 2,334 stamped for UE 5.8** — every package carries the `++UE5+Release-5.8` version stamp, so the UE5 registry scan no longer loads and rebuilds them. That is all **296 actor BPs, 1,693 meshes, 80 material instances and 265 textures**. The pack is whole and in Perforce (CL 294 + 295 + 296 = 2,334 files in the depot).
+- **Stamping was done in bounded batches** by `Tools/Editor/stamp_enchanted_interiors_batches.ps1` (45 packages per process, smallest first) with a memory guard that stops before the commit limit leaves the artist's editor without headroom, and a receipt-freshness check so a run that dies at startup cannot be mistaken for a success. The last batch reported `processed=0, already_stamped=269` — nothing left to stamp — and moved 269 packages home.
+- **The three pathological meshes are being brought home, one at a time.** `KB3D_ECI_IntNecromancersLair_A_Roof` is **done** (built, stamped, in the depot as CL 304, live in `Content/EnchantedInteriors/Geometries/`); `_NicheA` (7,691 MB) is building in the scratch project and `_NicheC` follows. The live pack is **2,335 of 2,337** while that runs. The build must happen with the artist's editor closed: a failed 7.7 GB build in a second UE process can take the artist's session down with it.
+- **Disk is no longer the constraint** (the owner freed C: to ~72 GB on 2026-10-22) and the **pagefile is now 32/64 GB** on C:, so the commit limit can reach ~128 GB as the file grows. The remaining risk is a build that needs more headroom than the machine gives, not storage.
+- **The editor is the artist's.** All bulk work goes through the headless commandlet (`UnrealEditor-Cmd -run=pythonscript -unattended -nullrhi`, ~3 GB peak instead of 21 GB); the interactive editor is never closed or relaunched by an agent.
+
+## ⚑ EDITOR — relaunched clean on L_Poitou_v2, owner's session closed cleanly, RC disabled — 2026-10-21
+
+- **The editor was relaunched clean on the live P0 level:** `BS_GodFile.uproject /Game/EnvSandbox/Poitou/L_Poitou_v2` — engine initialized in **27.82 s**, **0 static-mesh builds**, **0 fatals**, Monolith bridge on 9316. The owner's Poitou staging session then ran and **exited cleanly** (orderly shutdown at 19:42, no crash folder) with **`L_Poitou_v2.umap` saved at 19:42:12** — that work is on disk and in the P4 default changelist. The editor is closed at the time of writing; the pack closeout relaunches it.
+- **Three separate editor failures were diagnosed, not guessed:**
+  1. **Save-cascade crash** — a `save_packages` call on another session's in-flight MagiciansLibrary migration fired P4 `edit` / `integrate` / `resolve` *during* save; the P4 `resolve` error is the last log line before the socket dropped. **Damage: none to assets** (0 zero-byte `.uasset`/`.umap`, 0 stray `.tmp`; UE writes via `Saved\*.tmp` → atomic move). The one unsaved package (`BP_Lantern`, another session's lighting BP) never reached disk — that work is lost and must be redone by whoever owned it.
+  2. **Commit-limit crash-loop** — `Fatal error: Ran out of memory allocating 532.8 MiB … The paging file is too small for this operation to complete`, stack `UnrealEditor_QuadricMeshReduction`. **This machine has 64 GB RAM but a pagefile fixed at 8–16 GB on C:**, so the commit limit is **71.8 GB**. DDC grew 0 MB and free disk moved 17.0 → 16.7 GB during the churn — that is how disk was ruled out. Two single meshes (`KB3D_ECI_IntNecromancersLair_A_NicheA`/`_NicheC`) need **7,691 MB each** to build; 247 meshes with estimates summed to **25.3 GB** of simultaneous build demand. **A second session hit the same wall independently on 2026-10-21** (recorded under the ResonantCathedral entry).
+  3. **Registry-scan build storm** — the trigger for (2): because the pack's packages carry no engine version stamp, the UE5 asset-registry scan *loads* them, and loading a static mesh triggers its build. Nothing in the editor can be configured around that; the packages have to be stamped (needs the memory) or out of `Content/`.
+- **THE STRUCTURAL FIX NEEDS AN ELEVATED SHELL.** The session is not elevated (`Access denied` on the WMI write) and the UAC prompt was declined, so this is the one outstanding owner click:
+  `wmic pagefileset "name=C:\pagefile.sys" initialsize=32768,maxsize=98304`
+  — **note this FAILS on C:** because C: only has ~13 GB free ("Value out of range"). The working form is a pagefile on **D:** (852 GB free), e.g. `wmic pagefileset "name=D:\pagefile.sys" initialsize=16384,maxsize=65536`, or `AutomaticManagedPagefile = true`. That lifts the commit limit and lets the two 7.7 GB meshes be built.
+- **Revision control is OFF in the editor** (per owner): `Saved/Config/WindowsEditor/SourceControlSettings.ini` → `Provider=None` (backup `SourceControlSettings.ini.bak-2026-10-21-eoc`; the P4 connection details are preserved in the file for switching back). The editor log confirms **`SourceControl: Revision control is disabled`** three times at startup. The editor must not run P4 checkouts on save — Perforce work is done from the CLI, deliberately, with the owner's sign-off. **All P4 work in this session went through the CLI**, and every changelist was checked to contain only its own files (CL 293 initially swept another session's 2,877 opens and they were all moved back to the default changelist before submitting).
+- **Note for the next session:** the in-flight MagiciansLibrary migration (`Content/EnvSandbox/Library/Migrated/MagiciansLibrary/**`, with a `_Archive/FlatMasters_20261021/` move) was interrupted by the first crash and needs a state check before anyone resumes it.
+
+## ⚑ Poitou in-theme procedural architecture programme — THE KIT, SEVEN GENERATORS, GREEN GATE — 2026-10-21
+
+- **The lens, now written into the build contract (§11): geometry is the silhouette, paint is the finish, one kit many assemblies.** Coursing, arches, buttress steps, roof pitch and a columnar crown are BUILT; lime-wash, the damp band, moss and ivy are PAINTED as vertex paint read by the one toon master; faux appareil is a paint feature, never geometry. This is the rule every generator is judged by, and it is why the programme is cheap to extend: a new element is a new assembly of the SAME kit, not a new art pipeline.
+- **`Tools/Poitou/snip/kit.vex` is the shared grammar, and every generator includes it.** It fixes the canon's constants — 0.6 m module and course (1 beat), 2.4 m bay (1 bar), 14.4 m = 6 bays, 0.45 m ashlar leaf over 0.9 m rubble core, a chaine/arase band every 3 courses through the full thickness, a rusticated refend base, 2 cm dry joints, semicircular arches only, vertex paint R=lime-wash G=damp B=moss A=ivy — and provides `kit_wall`, `kit_wall_stone`, `kit_arch`, `kit_buttress`, `kit_gable`, `kit_ribbon`, `kit_taper`, `kit_box`. The canal revetment, the abbey, the houses, the quay and the poplars are one building system with different parameters, not seven styles that coexist.
+- **Seven generators ship, all headless, all gated — 596,382 generated prims.** `revet.vex` the canal-du-Midi section (two retaining walls + the central impermeable barrier) **329,439 prims**; `abbey.vex` Maillezais — 7-bay nave, the 1080 westwork, the narthex, the gallery on belt arches, the 13th-c. buttresses with splayed bases, the apse, the gable roof — 13,860 nave + 13,266 westwork + 5,580 apse + 504 arcade + 504 lancet heads + 288 buttresses + 36 portal + 144 roof + 54 apse roof; `found.vex` the soubassement under every house **150,984**; `lane.vex` the lane ribbons with kerbs, dodging the houses **13,536**; `cross.vex` the lane crossings (deck, parapet, piers) 30/60/60; `roof.vex` the low-pitch canal-tile roofs with per-course hue jitter **13,080**; `poplar_gen.vex` the canal-bank poplar, generated as a tapering trunk and a columnar crown 33,858 + 18,810.
+- **The gate PASSES and it polices the generators by name.** It asserts every output cooks non-empty, every instance is in-theme, the vocabulary is complete, every scale divisor matches its measured mesh, every material a generator assigns is a project material, and **every one of the 18 element groups is present** — so a generator that silently stops emitting is a failure, not a smaller level. It caught two real faults on the way in: the crossing generator was reading unsampled canal points (and so found zero crossings, exactly like the old receipt), and the poplar generator's file had been shadowed by the tree-row scatter.
+- **The scale contract caught asset drift.** Binding materials re-saved the Poitou meshes and their bounds recomputed; the crumbled wall's thickness moved 126.5 → 153.3 cm and the buttress's height 968.9 → 980.4 cm. The audit measured it, the gate failed it, and the divisors were re-derived. That is the whole point of parsing `inst.vex` instead of keeping a table: **the divisor is part of the asset contract, and the toolchain checks it.**
+- **The near poplar rows are no longer instanced at all.** The in-theme tree meshes are broad-crowned European trees, and a stretched hornbeam is not a poplar; the poplar is now generated. The far horizon bands (1,911, at 1.3-2.6 km) stay instanced, because at that distance a columnar poplar is a smudge and a real tree reads as a tree.
+- **The offline execution plan is §11 of the build contract** (`Docs/Production/MELUSINA_FINAL_ENVIRONMENT_CONVERGENCE_GOAL.md`): the lens, the measured state, the backlog of 13 further generators in priority order (P0 house/church/door, P1 lock-house/jetty/bank, P2 reeds/ivy/quoins, P3 clos/boat/birds, P4 faux appareil) with the gate assertion each must earn, the one-command headless protocol, and the UE-side wiring that needs the editor.
+- **Owner decisions still open:** a Poitou poplar profile (the generated tree is drums, which is the right silhouette but not a real trunk); whether faux appareil is acceptable for distant walls; `p4 submit -c 292`; the two stale remote branches; the primary checkout's reconciliation with `origin/main`.
+- **Evidence level:** the gate is a headless cook of the real HDA and the materials are real saved assets. **Nothing here is PIE-proven or visually verified** — the UE-side HDA asset still needs two output slots wired (the editor is the owner's live session), and the P0 walk, the abbey's look and the poplar's read all still need eyes on them.
 ## Magusina's P0 house — the planning is COMPLETE in origin/main; your working tree was missing 7 of the house documents — 2026-10-21
 
 **The reason the planning looked unfinished: the checkout, not the plan.** Local `main` is **49 ahead / 44 behind `origin/main`** and diverged *before* the P0 canon landed, so **seven house/P0 documents that exist in `origin/main` are simply not in the working tree**:
@@ -35,38 +557,6 @@ Read them with `git show origin/main:<path>`. `Docs/Poitou/` (73 files) **is** p
 
 **Owed, and not fixable with props:** the P0 **M02 resonant object must be an existing compatible actor** (the candle is the visual candidate, not an interactive); the P0 **M04 salon interactable** is not in the prop pack (the medallion is the landmark, not the interactable); the house-leg map ownership needs one owner call; and the dressing remains **design-contract level — nothing is runtime-proven** until the level is opened and the route is walked (no receipt exists under `Saved/Audit/poitou_p0_walk/`).
 
-## Magician's Library — THE MISSING HALF OF THE KIT IS NOW IN, toon-converted, LOD'd and de-duplicated — 2026-10-21
-
-**Your instinct was right: the kit was about half present. It is now whole.** The owner found the pack staged at `G:\ueprojects\MagiciansLibraryEnvironm` (a standalone UE **5.6** project, `Content/MagicianLabatory/`). It was imported **wholesale at its native virtual path** `/Game/MagicianLabatory` — which preserves every internal reference (BP→mesh, map→external actors) with zero remapping.
-
-| | Before | After |
-|---|---|---|
-| Static meshes | 53 (52 props + wick) | **189** (53 migrated + 136 pack) |
-| Functional Blueprints | 0 | **14** (7 pack BPs + 2 third-person + WBP×2 + …) |
-| Niagara systems | 0 | **8** |
-| Material functions | 0 | **7** (incl. `MF_SplitDissolve`) |
-| Maps | 0 | **2** (`L_MagicianLibrary`, `L_Overview` + HLOD) |
-| Pack assets in project | 0 | **1,090** |
-
-**The toon conversion is now real for the whole kit.** 135 new instances were created on `M_Master_Toon_Universal` with each prop's own `T_<Prop>_Base` / `_Normal` / `_AO` bound and `LayerA_TextureWeight=1.0`. **All 189 meshes verify as `MaterialInstanceConstant` parented directly to the Universal toon Master** — canonical tree **53/53 OK**, pack tree **136/136 OK**, zero Perlin-noise height maps, zero unconverted masters in use.
-
-**Repairs to the migrated set** (`/Game/EnvSandbox/Library/Migrated/MagiciansLibrary`): the **9 wrong material slots are fixed** (`SM_Bookshelf` off its flat master, `SM_Lantern`/`SM_Wick`/`SM_Candle1_L` off the Zen instance, `SM_Outside_Wall` off the `_Loose` shell, the `Kit_Ornament` and `SM_Desk2` name drift); **50 orphan flat masters archived** to `_Archive/FlatMasters_20261021/` (0 left live); **5 noise-height stragglers neutralised** (plus the shared Zen instance, which had **zero** external users); `candle1_L` → **`SM_Candle1_L`**; 5 pre-rename leftovers deleted.
-
-**Import quality, both trees:** every mesh went from **LODCount 1 → 4** and **0 simple-collision primitives → 1** (2 where a second hull was added), with collision complexity back to `CTF_USE_DEFAULT` instead of `CTF_USE_COMPLEX_AS_SIMPLE`.
-
-**The duplicate tree is gone from the active path.** The 2026-09-01 purge spec (still `SPEC_READY`, never executed) was unsafe because 22 assets outside it still referenced it. UE's own directory move fixed the references: `/Game/Library/Migrated/MagiciansLibrary` (356) → **`/Game/Library/_Archive/MagiciansLibrary_20261021`**, and the old path no longer exists. **Owed:** the 4 PCG graphs (`PCG_ClusteringScatter`, `PCG_SimpleScatter`, `PCG_PathScatter`, `PCG_Cyberpunk_Alley`) and 18 material instances now point into the archive. Visually identical (the archived meshes carry the same toon instances), but pointing them at the canonical tree needs one **Replace References** pass in the editor — PCG stores its mesh list two levels deep (`node → settings_interface → mesh_selector_parameters → mesh_entries[].mesh`) and the Python wrapper does not expose it as a settable property. **Follow-up, not a blocker.**
-
-**Two environment findings that cost real time and will cost the next session the same:**
-- **The interactive editor is the wrong surface for bulk asset work on this machine.** It OOM'd twice (39.5 GiB peak, "paging file is too small") because **two editors were running at once**; with one editor it sits at 8–10 GB. The pagefile is a **fixed 8 GB on C:** and cannot be raised without admin.
-- **Use the headless commandlet**: `UnrealEditor-Cmd.exe <project> -run=pythonscript -script=<file> -unattended -nullrhi` boots in **19 s** and peaks at **3.0 GB**. It is the right surface for asset edits, **except** for anything needing an editor subsystem — `StaticMeshEditorSubsystem` (LOD building, simple collision) does **not** exist in commandlet mode, and the deprecated `EditorStaticMeshLibrary` LOD/collision calls are **no-op stubs returning −1** in UE 5.8. Those need the live editor.
-- **A Perforce checkout modal kills the interactive editor.** Moving/renaming a P4-controlled asset pops a blocking dialog; the editor died mid-write and left **43 assets truncated to ~1.5 KB**. All were restored from Perforce (`p4 revert`) and the work redone. **Pre-checkout with `p4 edit` before any editor-side move.**
-
-**Disk:** C: was down to **2.06 GB free** (the 6.78 GB pack import on top of a 46.5 GB worktree pile). The stale `poitou-convergence-2026-10-20` worktree (17 GB, **already landed in `origin/main`**, only 3 dirty doc files) was removed — its branch ref survives and its uncommitted docs are preserved at `Saved/Audit/poitou_convergence_uncommitted_20261021/` with a `MANIFEST.json`. C: is back to **14.1 GB free**. `melusina-airi-bridge-p0` (18.5 GB) and `lane-melusina-boot-fit-luna` (7.5 GB) were left alone: they hold real uncommitted work.
-
-**Evidence level: registry-verified in the live editor — no PIE/runtime proof, because no Magician's Library level is dressed yet.** The pack's two maps are imported but have not been opened. Perforce holds 276 added + ~400 edited files in the **default changelist, un-submitted** (the submit is the owner's). Receipts: `Saved/Audit/magicians_verify.json`, `magicians_toon_convert*.json`, `magicians_fix_migrated.json`, `magicians_neutral_height.json`, `magicians_mesh_finish.json`, `magicians_repoint_duplicates.json`, `magicians_library_audit*.json`. Scripts: `Content/Python/magicians_{verify,toon_convert,fix_migrated,neutral_height,mesh_finish,repoint_duplicates,library_audit,library_deep}.py`.
-
-**Owner decisions still open:** (1) Replace References for the 4 PCG graphs onto the canonical meshes; (2) whether the pack's own 135 `M_*` masters stay live in `/Game/MagicianLabatory` (kept for pack fidelity) or get archived; (3) whether to dress a level from `L_MagicianLibrary` — **44 of 53 canonical meshes still have zero users**, which is why the library reads as "absent" even now that it is complete; (4) the Perforce submit.
-
 ## Magician's Library import + material audit — MISSING PACK CONTENT CONFIRMED, NO ASSET MUTATED — 2026-10-21
 
 **The owner's instinct is right: the kit is roughly half present. But the material layer is mostly fine.** The pack is the Fab **"Magician's Library Environment and VFX Pack"** (Coreb Games, `https://www.fab.com/listings/25a46fa5-1f75-44e0-806c-026cfc1d45f8`, last updated 2024-08-09). Its own description advertises *"**7+ Fully Functional BPs** (Ancient Book Generator, Crystal VFX with Dynamic Material and Niagara Effects, Hidden Door with Dissolve Material Function, Interactive Book with Flipping Animation, Interactive Painting, Lighting Props (Lantern, Wall Lantern, Candle), Poison Pot), **+40 Building Props**, **+53 Interior and Mystical Props**"*.
@@ -97,6 +587,43 @@ Read them with `git show origin/main:<path>`. `Docs/Poitou/` (73 files) **is** p
 **Evidence level: registry-verified audit — NO asset was mutated.** Read-only reflection in the live editor (Monolith 0.20.3, UE 5.8). Receipts `Saved/Audit/magicians_library_audit_20261021.json` (+ `magicians_library_audit.json`, `magicians_library_deep.json`); read-only scripts `Content/Python/magicians_library_audit.py`, `Content/Python/magicians_library_deep.py`.
 
 **Owner decision owed.** The missing ~40 building props, the remainder of the interior/mystical props, all 7 functional BPs and `MF_SplitDissolve` require a **re-import from the owner's Fab download** (already licensed — Personal CAD 56.25 / Professional CAD 98.45; see `Docs/SOURCES_MATRIX.md`). Nothing in this repo can substitute for it. Until that lands, defects 1–4 and 6 are the complete remediation list and need no new assets.
+
+## ⚑ ASSET GRAVEYARD — SUPERSEDED: the Kenney pack is submitted (change 292), see the top of this file — 2026-10-21
+
+- **The Kenney Retro Fantasy pack is gone from the working tree.** 2,506 files (1,543 static meshes + 963 material instances) are **open for delete in Perforce changelist `292`**, which is **pending and NOT submitted**. Local disk: `Content/EnvSandbox/Meshes/Environment` went **2,618 → 119** uassets, `Content/EnvSandbox/Materials/Instances/Kenney` → **0**. That is **98.5% of the pack** (the ask was 75%).
+- **Nothing is lost and nothing is submitted.** One command restores it: `p4 revert -c 292`. Review with `p4 opened -c 292`. **The submit is the owner's call** (`p4 submit -c 292`).
+- **The pack was Perforce-owned, not git** (`//Melodia/main/Content/EnvSandbox/Meshes/Environment/...`, added in change 79; the client view maps onto the local folder). 0 of 1,530 pack assets are git-tracked, so this consumed **no git-LFS storage** and does not change the storage architecture. `Saved/Audit/` is also Perforce-mapped — worth knowing before adding anything there.
+- **The cut list came from the Asset Registry, not a name heuristic.** `Tools/Editor/asset_graveyard_referencers.py` runs **headlessly** through the Python commandlet (`UnrealEditor-Cmd.exe -run=pythonscript -unattended -nullrhi`), so it never touches a live editor session. UE 5.8 exposes `ar.get_referencers(pkg, unreal.AssetRegistryDependencyOptions())` — there is **no** `unreal.AssetRegistryDependencyType` in 5.8.
+- **The cut is a fixpoint, not a flat list.** A material instance whose only referencer is a mesh being deleted goes with it — that is why 963 MIs go rather than being stranded. Held back: the 19 meshes that are referenced or named by the HDA, and 10 pack materials with **unsubmitted local edits** (preserved intact).
+- **Two real defects found while measuring, both now on record** (full detail in [`Docs/Production/KENNEY_GRAVEYARD_RETIREMENT_2026-10-21.md`](Docs/Production/KENNEY_GRAVEYARD_RETIREMENT_2026-10-21.md)):
+  - **`tree-high` no longer loads at all** — the HDA's poplar branch is already emitting broken instances.
+  - **The HDA's scale divisors are stale by ~18x for the ash.** `tree-high`/`tree_fat` were rescaled in place and never re-submitted; the VEX still divides by the original 0.76/1.15/0.65 m, but `tree_fat` now measures 1356 × 1631 × 1594 cm. **The level reads as a graveyard because the props are the wrong size, not just the wrong art.**
+- **The HDA repoint is written up but NOT applied.** `Tools/Poitou/snip/inst.vex` names four pack meshes and would re-emit them on the next cook. The replacements are measured and chosen (`SM_MossyTree_01` for the poplar, `SM_AshTetard_Canal_03_Sculpted` for the pollard ash, `SM_Marais_Barque_4m6_Sculpted` for the barque, `SM_GrassGroundPatch_01` for the reeds) — but **which source axis is "up" cannot be settled from bounds alone**, and the current VEX already disagrees with itself about the axis order. Shipping a rewritten divisor without a visual check would install a second scale bug. The repoint goes in with the recook and the PIE look, in one editor session.
+- **19 meshes survive and need redirecting**, all in-theme kill candidates except where there is no in-theme equivalent: the **114 doors** in `L_Poitou_v2` and the **canal fence** (no in-theme door or fence exists); the **reeds** (no in-theme reed); **Melusina's own violin**, which the canonical `BP_MelusinaJRPGCharacter` references and which measures 0.5 × 0.1 × 1.5 cm — a token, not an instrument. `L_KaleidoNave` / `ZenForestTest` / `L_ZenForestACFTrial` keep the bush/rock/stone set; `L_MelusinaMorning` (now a 37 KB shell) keeps 9 external-actor rock references for its rebuild.
+- **Owner decisions:** (1) author an in-theme door, or keep the pack door; (2) author a fence, or accept `SM_Poitou_BridgeParapet`; (3) author a reed, or accept `SM_GrassGroundPatch_01`; (4) is the poplar the Megascan `SM_MossyTree_01` or a Poitou poplar; (5) is Melusina's violin even visible; (6) submit `p4 submit -c 292`.
+
+## Sir's expanded height axis + flight mechanics — IMPLEMENTED, NOT YET PROVEN — 2026-10-21
+
+**The gap this closes.** Sir's height manipulation was ascend-only with no rate limit, and three of his designed mechanics existed as *header members that were never implemented*: `CurrentCrestRaise` (crest raise), `PreviousActorYaw`/`bHasPreviousYaw` (yaw-rate banking), and `PerchApproachRemaining`/`PerchApproachStartLoc`/`PerchApproachStartRot` (the glide-in to a perch, which was an instant teleport). The 2026-10-19 record of "dedicated descend controls (Left Alt / gamepad left trigger) alongside Space / right-trigger ascent" came from a **Live Coding patch that was never committed** — so it was in neither the source nor the DLL.
+
+**What is now in the source** (`Plugins/MelodiaCore/Source/MelodiaCore/MelodiousFlightCharacter.{h,cpp}`, lane `feature/sir-height-mechanics-20261021` @ `20426b593`):
+- **Descend is its own action** — `IA_Flight_Descend` on **Left Alt** and **gamepad left trigger**. It is not the inverse of ascend, so the two are separately bindable and the axis can report which way it is held.
+- **Ascend** also takes the **gamepad right trigger**.
+- **`VerticalSpeed` (420 cm/s) / `VerticalSpeedBoosted` (700 cm/s)** cap the climb rate *independently* of `MaxFlySpeed`. Without a separate cap, the horizontal speed cap doubles the climb rate while boosting and holding the key puts him out of the playable volume in two seconds. Both are UPROPERTYs, so the BP can tune them.
+- **Releasing the key holds altitude** — flying has no gravity, so the axis stops rather than sinking him.
+- **Gamepad is a first-class path**: left stick steers (with the same negation as the S key), right stick looks.
+- **Crest raise is implemented**: the crest morph is driven from the yaw rate, ramped over `CrestRaiseRiseSpeed`, written to `CrestMorphName` (**`Crest_Raise`, confirmed present in `SKM_SirMelodious_ARP_v7_Pure`**). A morph that is not on the mesh is reported once instead of silently doing nothing. `GetCrestRaise()` is a BlueprintPure accessor so a PIE proof can *read* the mechanic.
+- **The perch glides in** over `PerchApproachDuration` (0.9 s) instead of teleporting; steering during the glide cancels it. `TryLandOnNearestPerch()` keeps its old meaning (it still settles him now) so no Blueprint caller changes behaviour.
+- **`UnPossessed` restores `CruiseSpeed`** — a boost interrupted by handing control back no longer leaves his fly speed doubled next time he is possessed.
+- `MaxFlySpeed` is now applied in `BeginPlay`, not only in the constructor, so the BP child's `CruiseSpeed` override is respected.
+
+**Evidence level: source-committed on a lane — NOT compiled, NOT runtime-proven.** The closed-editor build needs the editor closed (this is a header change) and the PIE proof needs the editor idle; at the time of writing the editor was in **active use by another session** (a PIE run on the integration map, then loading `L_MelusinaMorning`), so neither was started and the editor was not taken. The lane was deliberately **not** landed on `origin/main` — uncompiled gameplay code does not go to main.
+
+**Harness is ready** for the proof: `Tools/Editor/sir_flight_probe.py` (in-editor per-frame sampler → `Saved/Audit/SirFlight_20261021/sir_flight_probe.json`: pawn Z, vertical velocity, `MaxFlySpeed`, height-axis flags, perch state, crest weight) and `Tools/Editor/sir_flight_keys.py` (real key holds through the editor's own `PostMessage` window path — the mechanism the accepted bubble-sprint proof used).
+
+**Two compile bugs were caught by reading the engine headers before building**, and fixed: `FMath::Lerp` on a `FRotator` needs a free `operator*(float, FRotator)` that is not guaranteed, so the glide interpolates components; and `USkeletalMesh::GetMorphTargets()` returns `TArray<TObjectPtr<UMorphTarget>>`, not `FMorphTarget` — the asset-level morphs are `UMorphTarget` objects.
+
+**The proof that is owed, in order:** (1) closed-editor `BS_GodFileEditor Win64 Development`; (2) PIE, recruit + possess Sir; (3) hold Space → Z rises at no more than `VerticalSpeed`; (4) hold Left Alt → Z falls; (5) release → Z holds; (6) Shift → `MaxFlySpeed` becomes `BoostSpeed` and the cap becomes `VerticalSpeedBoosted`; (7) idle → the perch glides in and `IsPerched()` becomes true; (8) steer → he leaves the perch; (9) Ctrl → control returns to Melusina; (10) the crest weight rises while yawing and falls when the turn stops.
 
 ## P0 CANON LANDED on origin/main + the owed build is DONE — 2026-10-21
 
@@ -167,8 +694,8 @@ A green experience walk does **not** certify combat/save/packaged proof; a green
 | The M00–M09 golden walk plays | **DESIGN ONLY.** Every beat is `PROPOSED`; none is runtime-proven. No receipt exists under `Saved/Audit/poitou_p0_walk/`. The house leg's map ownership is unresolved after Morning became a 37 KB shell. |
 | The integration P0 golden run | **unchanged and still owed** — `specs/p0/core_p0_dream_golden_run.v1.json` is intact; it was not replaced by the scenic route |
 | The lookbook plates | **6 of 7 FAIL the project's own gate** (`Tools/audit_showcase_plates.py`, receipt `Saved/Audit/PoitouConvergence_20261020/plate_audit.json`). Poitou = unlit black silhouette; Zen Forest = solid black (`mean_luma 0.0`, `unique_colors 1`); Kaleido = magenta default-material in a void; Sea Above = flat gradient. `site-plates.json` statuses corrected from "reviewed" to the audit verdict. **Re-renders owed.** |
-| The AbbeyBuilder HDA parameter contract | **verified by introspection** — hython 22.0.368, `hou.hda.definitionsInFile` → `parmTemplateGroup`, 2026-10-21. The spec's old 9-row table named 9 parameters that **do not exist**; the real 9 are in the spec §4.1 now |
-| The live layout HDA parameters | **verified by live readback** (`Saved/Audit/PoitouConvergence_20261020/live_parameters_before.txt`, `live_requested_parameters.json`) |
+| The AbbeyBuilder HDA parameter contract | **verified by introspection** — hython 22.0.368, `hou.hda.definitionsInFile` → `parmTemplateGroup`, 2026-10-21. CORRECTED 2026-10-21 - that 9-row table is `Docs/Poitou/poitou_layout/HOUDINI_ENGINE_LIVE_CONVERGENCE_SPEC.md` 3.1, and it **matches** the builder's own `ParmTemplate` calls (`build_poitou_abbey_hda.py:198-206`) exactly, so the table was never wrong. The CamelCase names in `Docs/Poitou/poitou_layout/CONVERGENCE_PLAN.md` 4.1 (`BayRhythm`, `WindowStyle`, `ButtressTierCount`, `FractureSeed`) are prose labels, not parm identifiers. Registry entry `poitou_abbey_builder` now records the verified 9. |
+| The live layout HDA parameters | **verified by live readback** (`Saved/Audit/PoitouConvergence_20261020/live_parameters_before.txt`, `live_requested_parameters.json`) - NOTE 2026-10-21: that readback is 2026-10-20 22:24 and predates the `f_live_6` folder (revetment/foundation/roof/abbey-bay controls). Newest source `Tools/Poitou/hda/poitou_layout_live.hdalc` (2026-10-21 19:49, node `poitou_layout_live_v6`) re-verified by hython introspection 2026-10-21: installs clean, 7 folders, 89 leaf parms |
 | Collision / grounding / party switch / ACF melee | unchanged from their entries below — still not runtime-proven |
 
 ### Owner decisions owed (one line each)
@@ -187,6 +714,121 @@ A green experience walk does **not** certify combat/save/packaged proof; a green
 The closed-editor build, the Sir party-switch PIE proof, the ACF-melee-into-`ResolveWorldFlowAttack` wiring, and the plate re-renders all need the editor, and one editor is one mutating surface. None of them were started.
 
 ---
+
+## WaveHarp hold fix — COMPILED + PIE-MEASURED — 2026-10-21
+
+**The weapon now stands vertical in the character's frame and is clear of her body.** The "weapon / arm / head crossing" that has been open since 2026-10-04 was a **hold** defect, not a mesh defect, and the cause was deeper than the grip rotation: `UpdateInstruments` composed `BowGrip * Mesh->GetSocketTransform(InstrumentSocket)` — the socket's **WORLD** transform — so a world-fixed grip offset drifted as she turned and could only be right at one heading, even though the `InstrumentSocket` contract claims the instruments "follow the hand and arm instead of the world".
+
+**Shipped (C++ `MelodiaWaveHarpCombatComponent`):**
+- `bGripFollowsCharacter` (**default true**) → the hold is composed in the body's frame: `BowGrip * GetSocketTransform(InstrumentSocket, RTS_Component) * Mesh->GetComponentTransform()`.
+- `bAutoCalibrateHold` (default true) → on the first settled pose the component measures the hand socket and solves `Grip = Target * Socket^-1`, so the instrument's local +Z is body-up and its local +Y is body-forward (the bow's belly still faces the aim direction, the scythe's blade still sweeps forward). No authored number, no BP override, no re-bake.
+- `CalibrateHold()` + console `Melodia.WaveHarp.RecalibrateHold`.
+- **UE 5.8 API notes for whoever touches this next:** the transform-space enum is `ERelativeTransformSpace` with **`RTS_Component`** (there is no `RTS_Relative` in 5.8), and `UPlayerInput` has `ActionMappings`, not `ActionKeyMappings`.
+
+**PIE proof** (`MelodiaIntegrationMap`, view target `BP_MelusinaJRPGCharacter_C_1`, `ABP_Melusina_Current`): the instrument's **world rotation pitch = 0.0** (long axis vertical), the grip **65.2 cm from the torso axis** and **60.0–63.1 cm from the head socket**, horizontal footprint 31.7 × 7.9 cm; `MELODIA_WAVEHARP hold calibrated: socket=… grip=…` in the log; **0 Blueprint Runtime Error, 0 Accessed None, 0 LogChooser**; 18–21 captured frames, 0 invalid (`Saved/Screenshots/Monolith/WaveHarpHold9/`, `WaveHarpHoldSide/`). Compare the shipped hold, measured offline against a 170 cm Melusina proxy: it drove the weapon **7.01 cm through the torso**. **Evidence level: PIE-measured on the live pawn.**
+
+**Build unblock (another lane's file, behaviour-preserving):** the module build failed on `MelodiaJRPGPartyBootstrapSubsystem.cpp` (the party-switch lane's in-flight work, hidden behind my own errors): line 714 `PlayerInput->ActionKeyMappings` → `ActionMappings` (the 5.8 member name; `ActionKeyMappings` does not exist in 5.8) and line 735 `PC->OnNewPawn.AddUObject(...)` → `PC->GetOnNewPawnNotifier().AddUObject(...)` (`OnNewPawn` is protected in 5.8). Both are renames/accessor changes, but **that lane must re-verify its own feature** — its binding path had never been compiled before.
+
+**⚑ D8 — the scythe sockets in `SK_Melusina_Skeleton` are ~90–100× too far out.** Live PIE read: `Scythe_BladeStart/BladeMid/BladeTip/Scythe_Pommel` sit **2.2–4.5 thousand cm** from the weapon origin, while the source authored them at (6.8,0,32), (26.5,0,36), (43.5,0,17.5), (1.5,0,−40.5) cm. So the scythe melee trace (`PerformSwipeTraceShot_Local` between `Scythe_BladeStart` and `Scythe_BladeTip`) sweeps a **~42 m arc** and can essentially never connect, and `ScytheRibbon` is a 42 m ribbon. Structural cause: **the scythe form is a morph, so static skeleton sockets cannot follow the blade at all** — the trace has to come from the morphed geometry, or the scythe needs a bone-driven rig. This is part of the Form 2 rebuild, not a side fix.
+
+**Not done:** the henshin bake (D3), the idle-shimmer drivers (D4), the toon outline hull (D7), the Carillon Halo + morph-aware scythe trace (D1/D6/D8), the bowstring/arrow fixes (D2/D5), and the form-select input — all still open in `specs/weapons/waveharp_3form_henshin_bake.v1.json` (`revised_plan_order`).
+
+## WaveHarp: offline Houdini forge for the cymatic instrument family — 2026-10-21
+
+**The weapon was hand-patched; this is the first properly forged version of it.** The shipped WaveHarp is a frankensteined asset: a big concert-lyre frame that has to double as a bow, a polearm and a floating astrolabe, with the third form invented by a vertex formula (`Tools/build_waveharp_chime_scythe.py` → `compute_scythe_pose`) and baked into 36 morphs around it. The concept sheet names **five** authored forms that share one language — a halo/disc head on a slender shaft, dangling teardrop charms, a spiral shell base, a crystal core, pearl + rose gold + pastel glass — and our asset had the *materials* but none of that *shape language*.
+
+**New offline lane (no editor, no UE, no PIE):** `Tools/Houdini/waveharp/`
+- `build_cymatic_instrument.py` — deterministic **hython** forge (Houdini 22.0.368) for the whole family: a shared shaft/grip/spiral-base spec plus a per-form head. Six forms: **A** Lyre of Harmonic Bloom · **B** Resonant Bell Staff · **C** Wave Harp of Tides · **D** Monolith Conduit (the sanctioned melee/offense form) · **E** Prism Drum · **Carillon** (the project-specific melee head: a ring of chimes carrying a **real crescent blade surface**).
+- `cymatic_instrument.params.json` — the recipe. **A new form is a parameter change, not new modelling.**
+- `obj_to_fbx.py` — the house Apprentice path (Houdini cannot export FBX/Alembic via ROP): OBJ → headless Blender → FBX, with material slots named after the UE instances and **the sockets authored as empties at positions computed FROM THE GEOMETRY**.
+- `render_family_sheet.py` — the family contact sheet.
+
+**Gates (all pass, every build):** unit sanity (a 100× error fails — this project has lost days to those), no degenerate faces, **every socket inside the mesh AABB (the D8 guard)**, no empty material group, blade thickness ≥ 0.4 cm, and **determinism** (re-running reproduces the geometry sha256 for all six forms ✓).
+
+**Defects this addresses:** **D1** Form 2 now has a real blade surface (a lens ribbon swept along a Bézier spine, tapered root→tip, 0.5 cm solid) instead of a rotated harp limb; **D6** the third form is no longer a formula baked into 36 morphs but a member of a parameter family; **D8** the sockets are derived from the geometry and gated, so the 42 m melee-trace sweep cannot recur.
+
+**Known debts (deliberately left for the next pass):** the charms currently hang inside the halo's radius so they read as floating beads; form C's strings are vertical tubes rather than a fanned array; the chime cones do not read in a side view; greybox shading only (no toon outline yet, D7); and — the big one — **the family is six separate assets, not one mesh with morph targets**. If the weapon must *transform in hand*, the shipping topology has to be one mesh with morphs, and that is a decision, not a detail.
+
+**Contract:** `specs/weapons/cymatic_instrument_family.v1.json` (tracked). **Evidence:** `Saved/Audit/waveharp/` — 6 OBJs, 6 FBXs, 2 manifests, `ContactSheet_CymaticInstrumentFamily.png`; all gates pass; **no UE import, no editor mutation, no PIE — nothing runtime-proven.** New files under `Tools/*` are gitignored by the `Tools/*` blanket rule and need `git add -f` to land.
+
+## ⚑ AUDIT — the project already owns the instrument language; the forged family is demoted — 2026-10-21
+
+**The concept's five instrument forms are already in the project.** The `GNToys` lane (`/Game/Staging/HoudiniForge/MelusinaGNToys/`) holds **five wands** — `SM_MEL_Wand_BellChime` (142.5 cm; RimGold shaft 20×20×121 cm + Filigree 64.8 cm + Pearls 101 cm + Gems + Ribbon), `_OrreryScepter` (143.5 cm, 29.7 wide — the disc/orrery head = the concept's **D. Monolith Conduit**), `_CrystalTimeless` (124.9), `_HeartMelody` (100.9), `_StarPrincess` (108.9) — plus **`SM_MEL_Halo_Orrery_Open`** (46.6 × 43.5 × 28.4 cm, 13.5k polys: `MI_Brass_FiligreeGold` + `MI_HF_Toon_Wings_Butterfly_Pearls` + Gems — a real, detailed halo head), `SK_MEL_Halo_Orrery` (closed) + `SK_MEL_Halo_Orrery_Skeleton` + **`A_MEL_Halo_Orrery_Unfold` (an authored unfold animation)**, and the transformation ribbon `MEL_Ribbon_Transform_P0to1` + `SM_MEL_Ribbon_Transform_P100` with `MI_HF_Toon_Ribbon_Transform_*`. Measured via the AssetRegistry + UE mesh bounds, then exported read-only to `Saved/Audit/waveharp/` and rendered offline. **No production referencers** (the unfold anim is named in the Poitou First Day animation-layer doc).
+
+**Consequence: the from-scratch family I forged this session is demoted.** The `Tools/Houdini/waveharp/` forge (six forms, all gates pass) is a *duplicate weapon language* — exactly the frankensteining the owner flagged. It keeps its **gates** (unit sanity, sockets-inside-AABB, determinism), the **concept→form mapping** and the **D1/D6/D8 defect mapping**, but only **one part survives: the crescent blade** — a real blade surface, which the project genuinely lacks. The procedural shaft/grip/base is dropped: the wands already own that language, in the same `MI_HF_Toon_Wand_*` material set the concept describes (filigree, pearls, gems, ribbon, rim gold).
+
+**New Form 2 (the melee) = an existing wand shaft + the existing 46.6 cm halo orrery head + the new crescent blade**, in the existing material language — and the Henshin already has infrastructure: the halo orrery's `Unfold` animation and the `Ribbon_Transform` P0→P1.
+
+**Not reusable at weapon scale:** the `Carillon/Parts` + `Carillon/Creatures` kit (bells 0.4–1.8 cm, creatures 6–9.9 cm) is **miniature scale** — the "Little Guys" lane (`SM_LG_*`), *not* a unit bug; useless for a handheld head.
+
+**Evidence:** `Saved/Audit/waveharp/ContactSheet_ExistingWandFamily.png` (the 5 wands + the halo orrery, offline render), `ContactSheet_CarillonParts.png`, `existing_wand_family.json`, `carillon_parts/*.fbx`, `existing_wands/*.fbx` — all read-only exports, no project mutation. Audit recorded in `specs/weapons/cymatic_instrument_family.v1.json` → `existing_asset_audit` + `plan_change_2026_10_21`, and in `specs/weapons/waveharp_3form_henshin_bake.v1.json` → `existing_asset_audit` + the revised plan order.
+
+## WaveHarp: the two new parts + the composed Carillon heads (offline) — 2026-10-21
+
+**Owner decisions (2026-10-21):** the **head-swap** transformation is correct (a form change swaps the *head*; the body is shared — no morph-mesh bake), **and** the weapon needs a **large focal point gemstone**.
+
+**New parts forged offline (Houdini, cm-native, gated):** `Tools/Houdini/waveharp/build_focal_parts.py` → `Saved/Audit/waveharp/focal_parts/`
+- **`SM_Cymatic_FocalGem`** — a large faceted **brilliant-cut oval** (table / crown / girdle / pavilion / culet, 16 segments, zig-zag facet jitter) **16.74 × 16.74 × 20.0 cm**, with a gold **collet**: a cup, a rim ring and four prongs. Material slot: **`MI_HF_Toon_Wand_BellChime_Gems`** (the weapon family's own crystal material — *no new material needed*).
+- **`SM_Cymatic_CrescentBlade`** — a **real blade surface**: a lens ribbon swept along a quadratic Bézier spine, tapered 2.8 cm root → 0.35 cm tip, **0.6 cm solid**, 43 cm reach, 19.6 cm drop. Material slot: **`MI_HF_Toon_Wand_BellChime_RimGold`**.
+
+**Heads assembled (headless Blender, `assemble_carillon_head.py`):** the existing 46.6 cm halo orrery + the new parts →
+- `Saved/Audit/waveharp/SM_MEL_Head_Carillon.fbx` — the **caster** head (halo + focal gem)
+- `Saved/Audit/waveharp/SM_MEL_Head_Carillon_Melee.fbx` — the **melee** head (halo + focal gem + crescent blade)
+- `Saved/Audit/waveharp/ContactSheet_CarillonHead.png` — the two-head sheet
+
+**Why this closes the loop:** the concept's **D. Monolith Conduit** is built around *one large cut crystal* — the focal stone is the piece the project genuinely lacked, and the crescent blade is the piece the shipped asset genuinely lacked (D1: its "blade" is a rotated harp limb). Both now exist **in the project's existing material language**, composed onto the **existing** halo head, so the weapon stops being a pile of unrelated parts.
+
+**Still owed on these heads (owner art direction):** the blade root wants a collar/eye where it meets the rim; the blade should sit on the *swing* arc rather than the XZ plane; the gem's bezel is a simple cup + ring + prongs; the toon outline hull (D7) is not baked yet; and the melee trace still has to read the new blade (D8).
+
+**Evidence level:** offline forge + offline assembly + offline render. **Not imported into UE, not runtime-proven, no project mutation.** Recorded in `specs/weapons/cymatic_instrument_family.v1.json` → `focal_parts_and_head` and `specs/weapons/waveharp_3form_henshin_bake.v1.json` → `focal_parts_and_head` + `topology_decision`.
+
+## ⚑ ASSET READINESS RULE — an asset is 95% done before it touches Unreal — 2026-10-21
+
+**Owner correction (2026-10-21): the heads were not UE-ready, and the lane had stopped at "the FBX exists".** A file that exists is not an asset that is ready: the blockout had **no UVs** (so every UV-driven toon/SDF material would render wrong), **no toon outline hull**, **no sockets**, and unreviewed material slots — yet it was heading for production `Content/`. Unreal is the **integration** step, not the last mile of authoring.
+
+**Rule now in the spec** (`specs/weapons/*.v1.json` → `asset_readiness_rule`): an asset must pass these **offline** before it may be imported — UVs on every loop · the toon outline hull baked into the mesh in its own slot · normals calculated (flat where the art wants facets) · sockets authored **from the geometry** so a trace can never be 100× off · material slots bound to **existing** project instances (no invented materials) · a **validation pass** that re-reads the exported file and asserts all of it · a bake manifest (file, stats, slots, sockets, exact import settings) · a preview render in the real material language. `Tools/Houdini/waveharp/validate_heads.py` exits non-zero on any failed gate, so a "ready" file cannot be produced by accident.
+
+**The two Carillon heads now pass 18/18 gates** (`Saved/Audit/waveharp/ue_ready/`, validator `waveharp_head_validation.json`):
+- **`SM_MEL_Head_Carillon`** — the caster head (46.6 × 43.5 × 28.4 cm, 27,920 tris, 84,724 loops all with UVs, 3 outline hulls, 6 slots, 3 sockets).
+- **`SM_MEL_Head_Carillon_Melee`** — the melee head (50.0 × 43.5 × 53.1 cm, 28,904 tris, 88,660 loops all with UVs, 4 outline hulls, 7 slots, **7 sockets** including `Scythe_BladeStart/Mid/Tip` taken from the blade's forged arc — so the melee trace can never be the 42 m arc the shipped asset had).
+- Gate results: UVs on every loop ✓ · outline hull baked ✓ · normals ✓ · sockets ✓ · slots bound to existing project instances ✓ · unit sanity ✓ · no degenerate faces ✓ · no NaN ✓.
+- Preview: `Saved/Audit/waveharp/ContactSheet_CarillonHead_UEReady.png`.
+
+**Nothing was imported into Unreal.** The earlier import attempt was aborted mid-call and wrote **nothing** — production `Content/` is untouched (verified). The import is a later, owner-approved step with the settings recorded in the bake manifest (`material_import: find_existing`, `combine_meshes: true`, static, no skeletal, no lightmap UVs, no auto-collision).
+
+## WaveHarp: the complete wands + offline VFX (no Unreal touched) — 2026-10-21
+
+**Lookdev first — the names misled me.** The GNToys "wand" family is **five slender pearl STAFFS with a gold spiral vine, pearl bands and a head** (plus a bell stand): `OrreryScepter` 133.6 cm (a vine-wrapped staff with an armillary head — the concept's **D. Monolith Conduit** language) · `CrystalTimeless` 124.9 (a big cut crystal on a staff) · `StarPrincess` 103.2 · `HeartMelody` 92.5 · **`BellChime` 122.9 is a BELL ON A STAND, not a weapon**. My first assembly put the Carillon head on the BellChime and the render caught it (the head floated above a cup). `SM_MEL_Halo_Orrery_Open` (46.6 × 43.5 × 28.4 cm) is the **real, detailed halo head** the Carillon head is built from. Lookdev sheet: `ContactSheet_ExistingWands_Lookdev.png`.
+
+**The complete wands — assembled, skeletal, validated 8/8 gates each** (`Saved/Audit/waveharp/ue_ready/`):
+- The **existing `OrreryScepter` shaft** with its own armillary head **trimmed off** at z = 107 cm (the cut capped) + a Carillon head seated at z = 105.
+- **`SM_MEL_Wand_Carillon_Caster`** — 30,181 tris, 46.7 × 43.5 × 137.2 cm, bones `root / SOCKET_Bow_Grip / SOCKET_Grip_Main / SOCKET_Cymatic_Projection`.
+- **`SM_MEL_Wand_Carillon_Melee`** — 31,165 tris, 50.0 × 43.5 × 137.2 cm, the same bones **plus `Scythe_BladeStart / Mid / Tip` and `Scythe_Pommel`**, taken from the blade's forged arc.
+- **Why skeletal:** UE's *static* mesh import drops empties, so a static prop cannot carry a socket. The bones ARE the sockets and the mesh is weighted to the root — so the melee trace can never be the 42 m arc the shipped asset had (**D8**).
+- **Both forms share the shaft, the bone names and the rest transforms**, so the form change is a genuine **head swap on one staff** — the topology the owner approved. Preview: `ContactSheet_CarillonWand_Complete.png`.
+
+**Offline VFX — built before Unreal.** The rule is the project's own language: the existing `NS_Melusina_*` systems plus the SDF card vocabulary in `/Game/Melodia/VFX/Textures/SDF/`; no new particle systems, no bespoke materials.
+- **`SM_Cymatic_BladeTrailRibbon`** — a Niagara ribbon mesh that rides the blade's **exact forged arc** (the same spine the blade was built on), so the trail cannot drift off the cutting edge → `NS_Melusina_SwingTrail`.
+- **`T_Cymatic_HaloBloom`** — a 12-frame flipbook sheet (1024×768, 4 cols, 12 fps) of the focal stone flaring while a sparkle ring expands out of the halo → `NS_Melusina_StarPop`.
+- **Still UE-side (integration, not authoring):** the emitters that consume them (the systems already exist), any new SDF material instances, and the gameplay wiring.
+
+**Owner art direction still owed:** the halo reads big on a 107 cm shaft; the gem bezel and the blade root collar are still simple; the blade's swing plane wants agreeing. Then the import (settings recorded in the bake manifest) + the head-swap wiring + the form-select input.
+
+**Evidence level:** offline only — forged, assembled, validated (18/18 head gates, 8/8 wand gates), previewed. **Nothing imported into Unreal; production `Content/` untouched.**
+
+## WaveHarp: the wands are IMPORTED (and what the import taught) — 2026-10-21
+
+**Imported into Unreal** — two static meshes in `/Game/Melodia/Characters/Melusina/Weapons/WaveHarp/`, material slots pointed at the **canonical** project instances (the importer's duplicate `MI_*` copies were deleted):
+- **`SM_MEL_Wand_Carillon_Caster`** — 30,181 tris, **46.65 × 43.54 × 137.24 cm** (shaft + halo + focal gem), 7 slots.
+- **`SM_MEL_Wand_Carillon_Melee`** — 31,165 tris, **50.01 × 43.54 × 137.24 cm** (+ the crescent blade), 8 slots.
+
+**The sockets are local offsets, not bones.** MEASURED: Blender's FBX **armature** export is unit-path-unsafe in UE — the importer applies an extra ×100 to the bones while the mesh goes through the unit path, so a skeleton import lands the sockets 100× out (or 1/100× with a different `global_scale`). Fighting that was the wrong move: the wand ships as a **static mesh** and the sockets are **local offsets authored by the forge** (`SOCKET_Bow_Grip` 13 cm, `SOCKET_Cymatic_Projection` 121 cm, `Scythe_BladeStart/Mid/Tip` 21.9/37.1/32.8 cm — the blade's forged arc). The melee trace is the weapon's world transform × those offsets, so the trace **provably follows the blade** (closes **D8**). The component will carry them as `FVector` properties.
+
+**Import lessons (cost me two cycles, both now in the spec):** UE's *static* FBX import creates **one mesh per FBX node** (`combine_meshes` does not combine statics — join on the export side); export with `mesh_smooth_type='FACE'` or UE warns "No smoothing group information"; the importer creates **duplicate `MI_*` instances** when the canonical material lives in another folder; and **Monolith's HTTP responses can be dropped** (`socket_send_failure`) — a call that returns empty may still have succeeded, so verify with the asset registry, never the response body.
+
+**Incident (self-inflicted, recovered):** a cleanup pass with an **incomplete keep-list deleted the shipped `SK_ME_WaveHarp_Scythe` and `SK_ME_WaveHarp_Skeleton`**. Both were restored immediately from git (15.83 MB + 0.02 MB, verified by size) and the weapon folder is git-clean apart from the new assets. **Lesson: enumerate a folder and allow-list every shipped asset before any bulk delete — one missing entry in a keep-list is a deletion.** Two stale material instances (`MI_Brass_FiligreeGold_1`, `MI_Brass_FiligreeGold_001`) legitimately have no canonical counterpart and were kept.
+
+**Still UE-side:** the head swap + form-select input (C++, build owed), wiring the socket offsets onto the component, the Niagara parameter work (human, per the wiring sheet), and the in-UE look check against the real `MI_HF_Toon_*` materials.
 
 ## Code recovery lanes — 2026-10-21
 
@@ -296,12 +938,22 @@ The closed-editor build, the Sir party-switch PIE proof, the ACF-melee-into-`Res
 
 **Room Shell — live UE gate (current priority, 2026-10-20).** UE 5.8 / Houdini Engine 3.0 / H22.0.368. After the editor restart, `HoudiniPublicAPI.create_session()` returned with `is_session_valid() == true`; this is runtime session evidence and does not revise the owner's license history. On `/Game/Melodia/Levels/Opening/L_MelusinaMorning`, with no PIE, the existing `/Game/Staging/ResonantCathedral_20261017/HDA/MelodiaRoomShell_1_0` instantiated as a live Houdini Asset Actor. After the default cook completed across an editor-call boundary, `room_w=7.0`, `decor=1` produced output 0 (`HoudiniStaticMesh`) and UE actor bounds 754 x 954 x 890.991 cm. Then `room_w=8.0` and `decor=3` both set successfully; `recook()` returned true, synchronous processing after another editor-call boundary completed, and bounds became 854 x 954 x 921.801 cm (+100 cm X). HAPI remained valid. This proves the live width control changes generated geometry; the HDA asset is ready for placement with its exposed per-instance controls. The test actor and its exact generated `/Game/HoudiniEngine/Temp/...` mesh package were deleted successfully. No map was saved, no persistent actor was staged, and Morning's existing `BP_MelusinaRoomShell_C` / PCG actor was untouched. Editor cook is proven; materials/lookdev, door and traversal integration, and packaged-game recooking remain open. Two unrelated packages were dirty at transient cleanup (`/Game/MelodiaIntegration/Blueprints/BP_MelusinaJRPGCharacter`, `/Game/FluidNinjaLive/NinjaLiveComponent`); they were not touched or saved. A later read-only editor check returned zero dirty packages.
 
-## Stained-glass cymatic window — 2026-10-21 (proof + install route set; HDA source / builder / registry entry staged; live cook queued)
+## Stained-glass cymatic window — 2026-10-21 (HDA + registry entry LANDED and Gate-0 clean; three instances live-placed in Poitou; hython Gate-2 cook still unproven)
 
-- Source: `Tools/Houdini/melodia_stained_glass_window.py` (reuses `room_shell.py` traceries + `chladni_eigen.py`); builder: `Tools/Houdini/cathedral/build_stained_glass_window_hda.py`; target HDA: `Content/HDA/MelodiaStainedGlassWindow_1.0.hda`; registry entry `melodia_stained_glass_window` to add to `hda_registry.v1.json`; material bindings to existing masters (`M_LF_StainedGlass`, `M_Master_Toon_Universal`'s `Cymatic_*` scalars, `MPC_Cymatics_Driver` — one writer, per DATA_FLOW.md).
+- Source: `Tools/Houdini/melodia_stained_glass_window.py` (reuses `room_shell.py` traceries + `chladni_eigen.py`); builder: `Tools/Houdini/cathedral/build_stained_glass_window_hda.py`; target HDA: `Content/HDA/MelodiaStainedGlassWindow_1.0.hda`; registry entry `melodia_stained_glass_window` (registered 2026-10-21, Gate 0 PASS); material bindings to existing masters (`M_LF_StainedGlass`, `M_Master_Toon_Universal`'s `Cymatic_*` scalars, `MPC_Cymatics_Driver` — one writer, per DATA_FLOW.md).
 - Design choices (user confirmed): proof-then-install into Melusina's house (`L_MelusinaMorning`, ask-first — save after viewport review only); per-room note hue family (mapped from `NOTE_HUE_TABLE`); material-level reactivity via existing cymatic master (not new tick). HDA controls: `window_w/h`, `rise`, `tracery_family`, `glass_family`/`note`, `mode_n`/`mode_m`, `seed`, `engine_y_up/flip`.
 - Gate receipt still required (Gate 2 hython): `parm_drive` on `note=G` -> mode(3,4) must change manifest; outputs pinned after green cook. Live Proof (editor): same Room-Shell standard — import -> cook params -> recook -> bounds change -> save `L_MelusinaMorning`. Editor currently holds a blocking modal (`MODAL_OPEN` 06:34:53, asset-editor-no-tabs); Poitou PIE running 10:16–now — live HDA proof queued after either session clears or via new editor session.
-- Evidence level: source/builder/registry-entry only (no HDA cooked yet; no `.hda` written to `Content/HDA/`; no Morning save yet — both queued pending gate + live proof).
+- Evidence level (corrected 2026-10-21): the HDA file EXISTS and is registered. Gate 0 PASS on `Content/HDA/MelodiaStainedGlassWindow_1.0.hda` (13,457 bytes, 2,516-byte network, 0 inlined op defs, DialogScript label matches). Gate 2 hython cook remains UNPROVEN - `parm_drive` and output pins are still OWED. Three instances (`MelodiaStainedGlassWindow_1_0/_1_1/_1_2`) are live-placed in `L_Poitou_v2`, not `L_MelusinaMorning`; their generated meshes resolve to `/Game/HoudiniEngine/Temp/...`, i.e. transient cook output rather than baked assets, so they require a recook. No Morning save yet — the live proof is still queued.
+
+**HDA registry audit - 2026-10-21 (Gate 0, `Tools/Houdini/hda_verify/hda_audit.py`, receipt `Saved/Audit/hda_verify/20261021_224426/hda_inventory.json`).** Result `PASS 8 / WARN 58 / FAIL 9`, overall FAIL, and all 9 FAILs are pre-existing. Fixed in this pass: `melodia_stained_glass_window` pointed at `hda/MelodiaStainedGlassWindow_1.0.hda`, which has never existed (the HDA only ever lived at `Content/HDA/`), and its `label` did not match the HDA's own DialogScript description; both now resolve and the entry passes. `hda/HDA_Poitou_AbbeyBuilder_1.0.hda` (16,754 bytes, 52,141-byte network, `Content/HDA` mirror byte-identical) was committed but entirely unregistered; it now has a `poitou_abbey_builder` entry whose 9 controls were cross-checked against `build_poitou_abbey_hda.py:198-206`. Exact point/prim pins for both entries stay OWED until a Gate 2 hython cook runs - the `parm_drive` rows are test assertions, not cook receipts. Still open and untouched: 8 `hda/backup/HDA_Poitou_AbbeyBuilder_1.0_bak*.hda` hold real networks where `globs.stub` expects empty shells (`bak12` is byte-identical to the registered HDA and the other 7 are earlier builds, so no build is lost), and `Content/HDA/ArpeggioStair_1.0.hda` has drifted from `hda/ArpeggioStair_1.0.hda`. Also unregistered: 54 backup/vendor HDAs and `Content/HDA/MelodiaRoomShell_1.0.hda`.
+
+**Poitou cook state - 2026-10-21, disk + engine log (no editor opened, no cook run).** The authoring side is not what fails; the saved level loads with missing generated geometry. `Saved/Logs/BS_GodFile.log` records 16 `LoadErrors` at `2026.10.22-00.45.24` (log time is UTC) of the form "While trying to load package `/Game/EnvSandbox/Poitou/L_Poitou_v2`, a dependent package `/Game/HoudiniEngine/Temp/...` was not available": 8 `MelodiaRoomShell_1_0` meshes, 3 `MelodiaStainedGlassWindow_1_0` meshes and 3 `rock_generator` meshes. All 14 referenced Temp packages are ABSENT from `Content/HoudiniEngine/Temp/` (0 of 14 present). The only surviving Poitou Houdini geometry is 19 baked `MelodiaRoomShell_1_0_*_main_geo_*` packages in `Content/HoudiniEngine/Bake/`, and those carry different cook IDs (`230_252`...`242_264`) than the level's Temp references (`419_423`...`441`, `1737_1758`), so they do not substitute. That same session logged HAPI cooks for 14 house HDA assets and ZERO Poitou cooks, so nothing regenerated the missing meshes on load. `Saved/Audit/PoitouConvergence_20261020/he_cook_check.json` (19:47) agrees: `ok: false`, `cooks: []`, `cook_result: {}` across 2,646 log lines with 15 Houdini actors present. `he_asset_props.json` returns `ok: true` while all 14 `HoudiniAsset` property lookups failed with "Failed to find property" - that inspection path is blind, its `ok` flag is not evidence. Fix direction: bake the Poitou Houdini actors (or recook on load) so their output lives in `/Game/HoudiniEngine/Bake/` instead of `/Game/HoudiniEngine/Temp/`. Secondary skew: the live Houdini source `Tools/Poitou/hda/poitou_layout_live.hdalc` was edited at 19:49, after the level's 19:42 save and ~14 h after the newest imported HDA asset (05:43); the level references `Candidates/Poitou_Layout_RoomShell_Candidate` rather than any `poitou_layout_live*` asset; and five competing `poitou_layout_live*` variants sit unregistered in `Content/EnvSandbox/Poitou/HDA/` with no recorded owner.
+
+**Unrelated to Houdini, same log, flagged not diagnosed.** The same session produced 128 dependency `LoadErrors` in total, the other 112 of them missing textures/child assets under unrelated packs (`Zen` ornament masks, `Copernicus` brass BaseColor/ORM/Normal/Height/Emissive, `EnchantedInteriors` `KB3D_ECI_IntKingsHall_A` children, `MagiciansLibrary` normal maps, `AvatarGarden` grass atlas, Violin string textures). `M_Poitou_Landscape_Painterly` also fails to compile its material instance for `PCD3D_SM6` (6x, on `L_MelusinaHouse_P0.umap`) and falls back to Default Material. Missing dependencies look like moved/deleted assets, but a stale asset registry produces the same error, so this is not evidence of deletion and nothing was inferred from it. It does mean the project does not currently load clean.
+
+**Poitou owner decisions - 2026-10-21 (recorded, not yet executed).** (1) Live layout = the most recent source: `Tools/Poitou/hda/poitou_layout_live.hdalc` (2026-10-21 19:49, node `poitou_layout_live_v6`, 7 folders / 89 leaf parms per hython introspection). Its `f_live_6` folder carries the updated work - revetment controls, `foundation_material`, `masonry_roof_material` / `roof_material`, `abbey_bays` / `abbey_bay_length` / `abbey_nave_width` / `abbey_wall_height` / `abbey_gallery_height` / `abbey_westwork_height` / `abbey_portal_span`, `lane_material` / `lane_length`, poplar bark/foliage slots. Kenney is killed: 0 case-insensitive `kenney` hits in the live `.hdalc` binary, and its material slots resolve to native Poitou/Melodia assets (tufa blocks, limestone rubble core, arase brick, tile, stone plinth, ash bark, poplar). The level still references `Candidates/Poitou_Layout_RoomShell_Candidate`, not this source - pointing the level at the live layout (or re-importing it) is the queued step. (2) Bake policy = **recook, not bake**: Poitou Houdini actors stay live-cooked for artistic iteration, Temp output accepted as transient. Consequence recorded: on any machine/session where the recook does not run (as in the 00:45 session, 14 house cooks and zero Poitou cooks), the level loads with holes - the 14 missing Temp packages are that failure mode, not a broken HDA.
+
+**Poitou protection snapshot - 2026-10-21.** Poitou had no equivalent of the house's `MAGICIANS_OPS` snapshot/restore path. `Saved/Audit/poitou_protection_20261021/` now holds byte copies plus a SHA256 manifest of `L_Poitou_v2.umap`, `poitou_layout_live.hdalc`, all six Poitou HDA `.uasset` files, both Abbey `.hda` copies and `MelodiaRoomShell_1.0.hda`, with the Poitou receipts. 11 files, 8.3 MB; re-hashed after writing, 0 mismatches; taken with no editor process running. `protection_manifest.json` carries the restore procedure. This is a recovery point, not a merge source.
 
 **Cathedral Hero (queued behind Room Shell).** The Apprentice/non-commercial hero source and the existing `CrystalCathedralV3.hda` were rejected by the live Indie HAPI session with the explicit Apprentice-versus-Indie asset mismatch; that is a source-format/session mismatch, not a claim that the owner's license is unavailable. A separate Indie-compatible V3 HDA was rebuilt from `Tools/Houdini/cathedral/build_crystal_cathedral_v3_hda.py` (18 controls; headless geometry gates passed) and imported at `/Game/Melodia/HoudiniFoundry/CathedralHero/Authoring_20261020/CrystalCathedralV3_IndieCookable_20261020`. Its UE live cook is still pending while Room Shell takes priority.
 **Room-family visual checkpoint:** generated and opened `native/variants/rooms_s1_elevations.png` from actual configured source curves. Geometric choir foils, crossing library lancets and panel return tracery read distinctly while retaining the same three architectural strata; lower/middle bands remain deliberately related. This is a dimensioned source elevation comparison, not an assembled-room beauty render or occupancy proof. Reproduce with `C:/Python314/python.exe room_family_sheet.py` (the bundled document runtime lacks matplotlib).
@@ -2965,3 +3617,36 @@ The owner's read was "the material works, a lot of it is just stale; mud and soi
 - **New tool `Tools/Editor/check_pawn_grounding.py`** — the mechanical gate for 9.1/9.2. It runs automatically once per PIE session and writes a receipt to `Saved/Audit/GroundingProof/`. PASS requires all three: she settles, the character movement reports a blocking floor, and that surface's component has collision enabled (and, for a mesh surface, its asset carries collision data). It names the surface she stands on, so "she fell through" becomes a named asset instead of a screenshot. **INCONCLUSIVE** is a real verdict: if the editor game thread is blocked (a modal dialog freezes PIE), the proof says so instead of guessing.
 - **Baseline reference reading (clean session):** she stands on the room shell at `floor_dist = 2.15 cm`, with the landscape surface 108 cm below her.
 - **Editor-state hazard found tonight (cost several PIE sessions):** a recurring modal dialog — *"This asset editor has no docked tabs."* — blocks the editor game thread, freezes PIE and makes the MCP port refuse connections. It is not a hang and not a crash. Close the empty asset-editor window; the repo's editor-safety rules already cover this (`MODAL_OPEN` in the log is a modal, not a hang).
+
+## Magician's Library — THE MISSING HALF OF THE KIT IS NOW IN, toon-converted, LOD'd and de-duplicated — 2026-10-21
+
+**Your instinct was right: the kit was about half present. It is now whole.** The owner found the pack staged at `G:\ueprojects\MagiciansLibraryEnvironm` (a standalone UE **5.6** project, `Content/MagicianLabatory/`). It was imported **wholesale at its native virtual path** `/Game/MagicianLabatory` — which preserves every internal reference (BP→mesh, map→external actors) with zero remapping.
+
+| | Before | After |
+|---|---|---|
+| Static meshes | 53 (52 props + wick) | **189** (53 migrated + 136 pack) |
+| Functional Blueprints | 0 | **14** (7 pack BPs + 2 third-person + WBP×2 + …) |
+| Niagara systems | 0 | **8** |
+| Material functions | 0 | **7** (incl. `MF_SplitDissolve`) |
+| Maps | 0 | **2** (`L_MagicianLibrary`, `L_Overview` + HLOD) |
+| Pack assets in project | 0 | **1,090** |
+
+**The toon conversion is now real for the whole kit.** 135 new instances were created on `M_Master_Toon_Universal` with each prop's own `T_<Prop>_Base` / `_Normal` / `_AO` bound and `LayerA_TextureWeight=1.0`. **All 189 meshes verify as `MaterialInstanceConstant` parented directly to the Universal toon Master** — canonical tree **53/53 OK**, pack tree **136/136 OK**, zero Perlin-noise height maps, zero unconverted masters in use.
+
+**Repairs to the migrated set** (`/Game/EnvSandbox/Library/Migrated/MagiciansLibrary`): the **9 wrong material slots are fixed** (`SM_Bookshelf` off its flat master, `SM_Lantern`/`SM_Wick`/`SM_Candle1_L` off the Zen instance, `SM_Outside_Wall` off the `_Loose` shell, the `Kit_Ornament` and `SM_Desk2` name drift); **50 orphan flat masters archived** to `_Archive/FlatMasters_20261021/` (0 left live); **5 noise-height stragglers neutralised** (plus the shared Zen instance, which had **zero** external users); `candle1_L` → **`SM_Candle1_L`**; 5 pre-rename leftovers deleted.
+
+**Import quality, both trees:** every mesh went from **LODCount 1 → 4** and **0 simple-collision primitives → 1** (2 where a second hull was added), with collision complexity back to `CTF_USE_DEFAULT` instead of `CTF_USE_COMPLEX_AS_SIMPLE`.
+
+**The duplicate tree is gone from the active path.** The 2026-09-01 purge spec (still `SPEC_READY`, never executed) was unsafe because 22 assets outside it still referenced it. UE's own directory move fixed the references: `/Game/Library/Migrated/MagiciansLibrary` (356) → **`/Game/Library/_Archive/MagiciansLibrary_20261021`**, and the old path no longer exists. **Owed:** the 4 PCG graphs (`PCG_ClusteringScatter`, `PCG_SimpleScatter`, `PCG_PathScatter`, `PCG_Cyberpunk_Alley`) and 18 material instances now point into the archive. Visually identical (the archived meshes carry the same toon instances), but pointing them at the canonical tree needs one **Replace References** pass in the editor — PCG stores its mesh list two levels deep (`node → settings_interface → mesh_selector_parameters → mesh_entries[].mesh`) and the Python wrapper does not expose it as a settable property. **Follow-up, not a blocker.**
+
+**Two environment findings that cost real time and will cost the next session the same:**
+- **The interactive editor is the wrong surface for bulk asset work on this machine.** It OOM'd twice (39.5 GiB peak, "paging file is too small") because **two editors were running at once**; with one editor it sits at 8–10 GB. The pagefile is a **fixed 8 GB on C:** and cannot be raised without admin.
+- **Use the headless commandlet**: `UnrealEditor-Cmd.exe <project> -run=pythonscript -script=<file> -unattended -nullrhi` boots in **19 s** and peaks at **3.0 GB**. It is the right surface for asset edits, **except** for anything needing an editor subsystem — `StaticMeshEditorSubsystem` (LOD building, simple collision) does **not** exist in commandlet mode, and the deprecated `EditorStaticMeshLibrary` LOD/collision calls are **no-op stubs returning −1** in UE 5.8. Those need the live editor.
+- **A Perforce checkout modal kills the interactive editor.** Moving/renaming a P4-controlled asset pops a blocking dialog; the editor died mid-write and left **43 assets truncated to ~1.5 KB**. All were restored from Perforce (`p4 revert`) and the work redone. **Pre-checkout with `p4 edit` before any editor-side move.**
+
+**Disk:** C: was down to **2.06 GB free** (the 6.78 GB pack import on top of a 46.5 GB worktree pile). The stale `poitou-convergence-2026-10-20` worktree (17 GB, **already landed in `origin/main`**, only 3 dirty doc files) was removed — its branch ref survives and its uncommitted docs are preserved at `Saved/Audit/poitou_convergence_uncommitted_20261021/` with a `MANIFEST.json`. C: is back to **14.1 GB free**. `melusina-airi-bridge-p0` (18.5 GB) and `lane-melusina-boot-fit-luna` (7.5 GB) were left alone: they hold real uncommitted work.
+
+**Evidence level: registry-verified in the live editor — no PIE/runtime proof, because no Magician's Library level is dressed yet.** The pack's two maps are imported but have not been opened. Perforce holds 276 added + ~400 edited files in the **default changelist, un-submitted** (the submit is the owner's). Receipts: `Saved/Audit/magicians_verify.json`, `magicians_toon_convert*.json`, `magicians_fix_migrated.json`, `magicians_neutral_height.json`, `magicians_mesh_finish.json`, `magicians_repoint_duplicates.json`, `magicians_library_audit*.json`. Scripts: `Content/Python/magicians_{verify,toon_convert,fix_migrated,neutral_height,mesh_finish,repoint_duplicates,library_audit,library_deep}.py`.
+
+**Owner decisions still open:** (1) Replace References for the 4 PCG graphs onto the canonical meshes; (2) whether the pack's own 135 `M_*` masters stay live in `/Game/MagicianLabatory` (kept for pack fidelity) or get archived; (3) whether to dress a level from `L_MagicianLibrary` — **44 of 53 canonical meshes still have zero users**, which is why the library reads as "absent" even now that it is complete; (4) the Perforce submit.
+
