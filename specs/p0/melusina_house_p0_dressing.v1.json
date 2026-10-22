@@ -2,7 +2,7 @@
   "contract_id": "melodia.melusina_house_p0.dressing.v1",
   "kind": "level_dressing_contract",
   "schema_version": "1.0",
-  "generated": "2026-10-22T00:57:49.191375+00:00",
+  "generated": "2026-10-22T01:33:09.311315+00:00",
   "package": {
     "package_id": "package.melusina_house_p0.dressing",
     "display_name": "Melusina P0 house dressing (Magician's Library)",
@@ -30,6 +30,13 @@
       ],
       "source": "Magician's Library (canon + Building/CentreRing pack)",
       "role": "the house's architecture and identity: shelves, desk, medallion rings, stair, doors"
+    },
+    "functional_blueprints": {
+      "tree": [
+        "bp"
+      ],
+      "source": "the Magician's Library functional Blueprints",
+      "role": "the gameplay-facing actors the P0 score asks for: M01 the interactive book, M02 the resonant candle flame, M04 the salon crystal, plus the painting, the hidden door, the poison pot and the two lanterns"
     },
     "enchanted_interiors": {
       "tree": [
@@ -104,14 +111,15 @@
   },
   "placement_rule": "surface_z is the height of the surface the prop's BASE rests on (0 = room floor, 82 = desk top, 186 = shelf top, 107 = pot table top, 95 = candle top). The apply step measures each mesh's bounds and lifts the actor by -(centre.z - height/2) so the base actually sits on that surface.",
   "counts": {
-    "placements": 87,
+    "placements": 95,
     "by_room": {
-      "bedroom": 35,
-      "landing": 9,
-      "salon": 43
+      "bedroom": 37,
+      "landing": 10,
+      "salon": 48
     },
     "by_layer": {
       "base": 68,
+      "functional_blueprints": 8,
       "enchanted_interiors": 19
     }
   },
@@ -1802,6 +1810,126 @@
       ],
       "room": "salon",
       "actor_z": 4.0
+    },
+    {
+      "mesh_name": "BP_CandleFlame",
+      "tree": "bp",
+      "mesh": "/Game/MagicianLabatory/BP/Lighting/BP/BP_CandleFlame",
+      "x": -910,
+      "y": -930,
+      "z": 95,
+      "rot_z": 0,
+      "role": "M02 RESONANT OBJECT - the living flame on the desk candle",
+      "cite": "P0 M02 first resonance; rooms doc SS2 bedroom clutter",
+      "room": "bedroom",
+      "surface_z": 95,
+      "actor_z": 95,
+      "size": null
+    },
+    {
+      "mesh_name": "BP_InteractiveBook",
+      "tree": "bp",
+      "mesh": "/Game/MagicianLabatory/BP/InteractiveBook/BP/BP_InteractiveBook",
+      "x": -700,
+      "y": -150,
+      "z": 0,
+      "rot_z": 0,
+      "role": "M01 desk/field-journal interactive - the interactive book in the bedroom",
+      "cite": "P0 M01 notice: one strong visual line from bed to the focal point; the inspection fires exactly once",
+      "room": "bedroom",
+      "surface_z": 0,
+      "actor_z": 0,
+      "size": null
+    },
+    {
+      "mesh_name": "BP_Crystal",
+      "tree": "bp",
+      "mesh": "/Game/MagicianLabatory/BP/Crystal/BP/BP_Crystal",
+      "x": 1000,
+      "y": -1300,
+      "z": 249,
+      "rot_z": 0,
+      "role": "M04 THE SALON INTERACTABLE - the crystal on the off-centre instrument dais, with its Niagara rays",
+      "cite": "P0 M04 the house hums: one oval salon (one interactable); rooms doc SS1 off-center instrument anchor",
+      "room": "salon",
+      "surface_z": 249,
+      "actor_z": 249,
+      "size": null
+    },
+    {
+      "mesh_name": "BP_InteractivePainting",
+      "tree": "bp",
+      "mesh": "/Game/MagicianLabatory/BP/InteractivePainting/BP/BP_InteractivePainting",
+      "x": 600,
+      "y": -25,
+      "z": 170,
+      "rot_z": 0,
+      "role": "the salon's painting on the north wall (2.6 x 3.3 m framed canvas)",
+      "cite": "rooms doc SS1 salon; REF_02 board",
+      "room": "salon",
+      "surface_z": 170,
+      "actor_z": 170,
+      "size": null
+    },
+    {
+      "mesh_name": "BP_PoisonPot",
+      "tree": "bp",
+      "mesh": "/Game/MagicianLabatory/BP/PoisonPot/BP/BP_PoisonPot",
+      "x": 200,
+      "y": -1550,
+      "z": 1,
+      "rot_z": 0,
+      "role": "poison-pot effect in the salon's west nook",
+      "cite": "rooms doc SS1 salon; house plan interior layout: music / prayer nook",
+      "room": "salon",
+      "surface_z": 1,
+      "actor_z": 1,
+      "size": null
+    },
+    {
+      "mesh_name": "BP_HiddenDoor",
+      "tree": "bp",
+      "mesh": "/Game/MagicianLabatory/BP/HiddenDoor/BP/BP_HiddenDoor",
+      "x": 900,
+      "y": -25,
+      "z": 0,
+      "rot_z": 0,
+      "role": "the hidden door - the rooms behind closed doors",
+      "cite": "P0 score: House = one vestibule/landing + one resonant salon + one exit, other rooms behind closed doors",
+      "room": "salon",
+      "surface_z": 0,
+      "actor_z": 0,
+      "size": null
+    },
+    {
+      "mesh_name": "BP_Lantern",
+      "tree": "bp",
+      "mesh": "/Game/MagicianLabatory/BP/Lighting/BP/BP_Lantern",
+      "x": -150,
+      "y": -880,
+      "z": 0,
+      "rot_z": 0,
+      "role": "functional lantern in the passage (the pack's Lighting BP, flame included)",
+      "cite": "P0 M03 threshold / M04 the house hums",
+      "room": "landing",
+      "surface_z": 0,
+      "actor_z": 0,
+      "size": null
+    },
+    {
+      "mesh_name": "BP_WallLantern",
+      "tree": "bp",
+      "mesh": "/Game/MagicianLabatory/BP/Lighting/BP/BP_WallLantern",
+      "x": 80,
+      "y": -1200,
+      "z": 290,
+      "rot_z": 0,
+      "role": "functional wall lantern on the salon west wall",
+      "cite": "P0 M04 the house hums; REF_01 board: lamps",
+      "room": "salon",
+      "surface_z": 290,
+      "actor_z": 290,
+      "size": null
     }
   ],
   "not_yet_true": [

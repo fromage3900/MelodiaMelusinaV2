@@ -69,6 +69,13 @@ ECV = "/Game/EnchantedInteriors"
 
 # (mesh_path, x, y, rot_z_deg, surface_z, role, plan_citation)
 D = []
+BP_ROWS = []
+
+
+def add_bp(name, path, x, y, z, rot, role, cite, room=None):
+    """A Blueprint actor placement (the functional interactables)."""
+    BP_ROWS.append({"mesh_name": name, "tree": "bp", "mesh": path, "x": x, "y": y,
+                    "z": z, "rot_z": rot, "role": role, "cite": cite, "room": room})
 
 
 def add(mesh, x, y, rot, surface, role, cite, tree="canon", folder=None):
@@ -227,6 +234,38 @@ add("SM_Wall", 1330, -1100, 90, 0, "salon wall screen (386 cm)",
 add("SM_WoodWall", 700, -1770, 0, 0, "low timber wall, south (969 cm)",
     "REF_02 board: Floor, mouldings & ornaments", tree="pack", folder="Building/WoodWall")
 
+
+# --- functional Blueprint interactables (the P0 gameplay actors) --------------
+# The Magician's Library functional Blueprints, placed as the P0 score asks:
+# M01 notice (the interactive book), M02 resonant object (the living flame on the
+# desk candle), M04 salon interactable (the crystal on the instrument dais),
+# plus the painting, the hidden door, the poison pot and the two lanterns.
+# These are Blueprint actors, not meshes: the apply spawns their generated class.
+
+add_bp("BP_CandleFlame", "/Game/MagicianLabatory/BP/Lighting/BP/BP_CandleFlame", -910, -930, 95, 0,
+    "M02 RESONANT OBJECT - the living flame on the desk candle",
+    "P0 M02 first resonance; rooms doc SS2 bedroom clutter", room="bedroom")
+add_bp("BP_InteractiveBook", "/Game/MagicianLabatory/BP/InteractiveBook/BP/BP_InteractiveBook", -700, -150, 0, 0,
+    "M01 desk/field-journal interactive - the interactive book in the bedroom",
+    "P0 M01 notice: one strong visual line from bed to the focal point; the inspection fires exactly once", room="bedroom")
+add_bp("BP_Crystal", "/Game/MagicianLabatory/BP/Crystal/BP/BP_Crystal", 1000, -1300, 249, 0,
+    "M04 THE SALON INTERACTABLE - the crystal on the off-centre instrument dais, with its Niagara rays",
+    "P0 M04 the house hums: one oval salon (one interactable); rooms doc SS1 off-center instrument anchor", room="salon")
+add_bp("BP_InteractivePainting", "/Game/MagicianLabatory/BP/InteractivePainting/BP/BP_InteractivePainting", 600, -25, 170, 0,
+    "the salon's painting on the north wall (2.6 x 3.3 m framed canvas)",
+    "rooms doc SS1 salon; REF_02 board", room="salon")
+add_bp("BP_PoisonPot", "/Game/MagicianLabatory/BP/PoisonPot/BP/BP_PoisonPot", 200, -1550, 1, 0,
+    "poison-pot effect in the salon's west nook",
+    "rooms doc SS1 salon; house plan interior layout: music / prayer nook", room="salon")
+add_bp("BP_HiddenDoor", "/Game/MagicianLabatory/BP/HiddenDoor/BP/BP_HiddenDoor", 900, -25, 0, 0,
+    "the hidden door - the rooms behind closed doors",
+    "P0 score: House = one vestibule/landing + one resonant salon + one exit, other rooms behind closed doors", room="salon")
+add_bp("BP_Lantern", "/Game/MagicianLabatory/BP/Lighting/BP/BP_Lantern", -150, -880, 0, 0,
+    "functional lantern in the passage (the pack's Lighting BP, flame included)",
+    "P0 M03 threshold / M04 the house hums", room="landing")
+add_bp("BP_WallLantern", "/Game/MagicianLabatory/BP/Lighting/BP/BP_WallLantern", 80, -1200, 290, 0,
+    "functional wall lantern on the salon west wall",
+    "P0 M04 the house hums; REF_01 board: lamps", room="salon")
 
 # ---------------------------------------------------------------- ECV LAYER
 # Enchanted Interiors (Kitbash3D, UE4.26+) converted onto M_Master_Toon_Universal
@@ -428,14 +467,23 @@ def main() -> int:
             r["mesh"] = canon.get(r["mesh_name"])
         elif r["tree"] == "ecv":
             r["mesh"] = "%s/Geometries/%s" % (ECV, r["mesh_name"])
+        elif r["tree"] == "bp":
+            r["mesh"] = "%s/%s/%s" % (BP, r.get("folder") or "BP", r["mesh_name"])
         else:
             r["mesh"] = pack.get(r["mesh_name"])
         if not r["mesh"] and r.get("folder"):
             r["mesh"] = "%s/%s" % (PACK, r["folder"])
         b = mesh_bounds(r["mesh"]) if r["mesh"] else None
         r["size"] = b["size"] if b else None
-        r["room"] = room_of(r["x"], r["y"])
+        r["room"] = room_of(r["x"], r["y"]) or r.get("room")
         r["actor_z"] = actor_z_for(r["mesh"], r["surface_z"]) if r["mesh"] else r["surface_z"]
+        rows.append(r)
+
+    for b in BP_ROWS:
+        r = dict(b)
+        r["surface_z"] = r.get("z", 0)
+        r["actor_z"] = r.get("z", 0)
+        r["size"] = None
         rows.append(r)
 
     spec = {
@@ -468,6 +516,11 @@ def main() -> int:
                 "source": "Magician's Library (canon + Building/CentreRing pack)",
                 "role": "the house's architecture and identity: shelves, desk, medallion rings, stair, doors",
             },
+            "functional_blueprints": {
+                "tree": ["bp"],
+                "source": "the Magician's Library functional Blueprints",
+                "role": "the gameplay-facing actors the P0 score asks for: M01 the interactive book, M02 the resonant candle flame, M04 the salon crystal, plus the painting, the hidden door, the poison pot and the two lanterns",
+            },
             "enchanted_interiors": {
                 "tree": ["ecv"],
                 "source": "Kitbash3D Enchanted Interiors, converted to M_Master_Toon_Universal",
@@ -482,6 +535,7 @@ def main() -> int:
             "by_room": {k: sum(1 for r in rows if r["room"] == k) for k in ROOMS},
             "by_layer": {
                 "base": sum(1 for r in rows if r.get("tree") in ("canon", "pack")),
+                "functional_blueprints": sum(1 for r in rows if r.get("tree") == "bp"),
                 "enchanted_interiors": sum(1 for r in rows if r.get("tree") == "ecv"),
             },
         },
@@ -568,13 +622,32 @@ def main() -> int:
             except Exception as ex:
                 skipped.append({"mesh": r["mesh"], "reason": "move failed: %s" % ex})
                 continue
-        actor = unreal.EditorLevelLibrary.spawn_actor_from_class(unreal.StaticMeshActor, loc, rot)
-        if actor is None:
-            skipped.append({"mesh": r["mesh"], "reason": "spawn failed"})
-            continue
-        comp = actor.static_mesh_component
-        comp.set_static_mesh(mesh)
-        comp.set_mobility(unreal.ComponentMobility.MOVABLE)
+        if r.get("tree") == "bp":
+            # a Blueprint actor: spawn its generated class, not a StaticMeshActor
+            bp = unreal.load_asset(r["mesh"])
+            gen = None
+            try:
+                if bp is not None:
+                    cdo = unreal.get_default_object(bp)
+                    gen = cdo.generated_class()
+            except Exception as ex:
+                skipped.append({"mesh": r["mesh"], "reason": "bp class failed: %s" % ex})
+                continue
+            if gen is None:
+                skipped.append({"mesh": r["mesh"], "reason": "bp has no generated class"})
+                continue
+            actor = unreal.EditorLevelLibrary.spawn_actor_from_class(gen, loc, rot)
+            if actor is None:
+                skipped.append({"mesh": r["mesh"], "reason": "spawn failed"})
+                continue
+        else:
+            actor = unreal.EditorLevelLibrary.spawn_actor_from_class(unreal.StaticMeshActor, loc, rot)
+            if actor is None:
+                skipped.append({"mesh": r["mesh"], "reason": "spawn failed"})
+                continue
+            comp = actor.static_mesh_component
+            comp.set_static_mesh(mesh)
+            comp.set_mobility(unreal.ComponentMobility.MOVABLE)
         actor.set_actor_label(label)
         spawned.append({"mesh": r["mesh"], "label": actor.get_actor_label(),
                         "loc": [r["x"], r["y"], r["actor_z"]], "rot_z": r["rot_z"],
