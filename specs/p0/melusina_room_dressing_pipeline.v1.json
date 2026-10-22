@@ -162,6 +162,7 @@
       "definition_of_done": [
         "dropping one Blueprint into a level produces: the room shell instance, the room's named dressing surfaces, the room's fill volume, and a gameplay-carrier slot",
         "the room type is one property (bedroom / landing / salon)",
+        "the carrier is a FIXED CHILD of the kit (Jev, 2026-10-22, 3/3 agreement, mean 0.607): dropping the room brings its interactable with it, so one action places a complete, playable room",
         "two instances of the same type produce the same result, and the shell's pivot, footprint and transition metrics are identical between them",
         "the kit's metrics are frozen: changing a pivot or a footprint after layout is a breaking change (case study BS-04)"
       ],
@@ -188,9 +189,10 @@
     {
       "id": "W6",
       "title": "House-resident gameplay carriers",
+      "status": "DEFERRED by the 2026-10-22 Jev decision (3/3 agreement): the borrowed Fab-pack carriers satisfy the beat contract today, so the walk does not wait on this",
       "why": "The house's beat actions currently ride on borrowed Fab-pack Blueprints (BP_InteractiveBook, BP_CandleFlame, BP_Crystal). The loop the project is selling should not depend on a pack's naming.",
       "owner_role": "build agent + artist (placement)",
-      "depends_on": [],
+      "depends_on": ["W7"],
       "size": "M",
       "definition_of_done": [
         "M01 book, M02 resonant object and M04 medallion interactable are project-owned Blueprints with the same interaction contract the borrowed ones had",
@@ -225,9 +227,9 @@
       "size": "M",
       "questions": [
         "PCG bake or runtime generation for a shipping level (the art pass is editor-only by design, so the runtime path must be baked or data-driven)",
-        "static vs movable: 82 of 84 dressing actors are currently MOVABLE - no static lighting, no occlusion culling, and they cost per-instance",
         "save and multiplayer behaviour for generated content",
-        "the 23 base actors still on the Fab pack's own materials (including the M04 medallion rings) - convert or accept"
+        "the 23 base actors still on the Fab pack's own materials (including the M04 medallion rings) - convert or accept",
+        "the static/movable conversion of the 82 dressing actors is NOT a question here: it is decided - it happens AFTER the walk, once the composition stops changing (Jev, 2026-10-22, 3/3 agreement)"
       ],
       "definition_of_done": [
         "each question has a recorded answer in this contract",
@@ -252,7 +254,8 @@
       "blocker": "not the build agent's to close - the map and the state file belong to another session's branch"
     }
   ],
-  "critical_path": ["W1", "W5", "W4", "W6", "W7"],
+  "critical_path": ["W1", "W5", "W4", "W7"],
+  "critical_path_note": "W6 (project-owned carriers) was deferred by the 2026-10-22 Jev decision - the borrowed Fab-pack carriers satisfy the beat contract today, so the walk no longer waits on them.",
   "parallel_tracks": {
     "W2": "independent of everything - no catalogue needed",
     "W3": "independent of everything - no catalogue needed",
@@ -391,12 +394,57 @@
     "the Kenney pack and the Alpha toon master (retired 2026-10-21)",
     "the other P4 changelists that belong to another session"
   ],
-  "open_questions_for_owner": [
-    "W1/W2/W3 need a C++ build. The tree has 39 dirty Source/ and Plugins/ paths from another session right now - do you want me to wait for a clean window, or land the catalogue as data only (the seed is already written) and let the class come later?",
-    "W4's carrier slot: should a room type own its interactable as a fixed child (Bethesda-style kit), or should the carrier stay an independent actor that the room references? The artist's arrangement argues for independent.",
-    "W5's density textures are painted by hand. Do you want to paint them, or should the first pass be derived from your own 97 placements (a density map that reproduces what you already placed)?",
-    "W8: the 82 movable dressing actors - is making them static part of 'game-ready', or do you want them movable for the art pass?"
-  ],
+  "open_questions_for_owner": [],
+  "decisions": {
+    "resolved_by": "Jev (jev-live), 3 samples, closed candidate sets",
+    "receipt": "Saved/Audit/house_dressing/JevHouseDressingDecisions_20261022_aggregate.json",
+    "packet": "Tools/house_dressing/jev_house_dressing_decisions_20261022.py",
+    "sampler": "Tools/house_dressing/jev_house_dressing_decisions_aggregate.py",
+    "method": "three independent samples; the mean distribution and the run-to-run agreement are the evidence, not a single draw",
+    "answers": {
+      "carrier_slot": {
+        "choice": "A",
+        "mean_distribution": { "A": 0.607, "B": 0.253, "C": 0.087, "D": 0.053 },
+        "agreement": 1.0,
+        "verdict": "DECIDED",
+        "meaning": "the gameplay carrier is a FIXED CHILD of the room kit: dropping the room brings its interactable with it, so one action places a complete, playable room"
+      },
+      "density_paint": {
+        "choice": "B",
+        "mean_distribution": { "A": 0.33, "B": 0.367, "C": 0.273, "D": 0.03 },
+        "agreement": 0.667,
+        "verdict": "NEAR_TIE - the owner's call",
+        "meaning": "Jev could not separate paint-over-the-derived-pass (A) from paint-from-scratch (B) from use-as-is-then-repaint (C). This is the one question Jev has least to add to"
+      },
+      "mobility": {
+        "choice": "B",
+        "mean_distribution": { "A": 0.06, "B": 0.447, "C": 0.31, "D": 0.183 },
+        "agreement": 1.0,
+        "verdict": "DECIDED_BY_AGREEMENT",
+        "meaning": "keep the 82 movable dressing actors movable THROUGH the walk; the static conversion is a later pass, once the composition stops changing. Converting before the walk would fight the art pass"
+      },
+      "carrier_ownership": {
+        "choice": "B",
+        "mean_distribution": { "A": 0.41, "B": 0.497, "C": 0.093, "D": 0.0 },
+        "agreement": 1.0,
+        "verdict": "DECIDED_BY_AGREEMENT",
+        "meaning": "keep the borrowed Fab-pack carriers for the walk - they satisfy the beat contract today - and migrate to project-owned Blueprints in a later, separate pass"
+      },
+      "first_build": {
+        "choice": "A",
+        "mean_distribution": { "A": 0.487, "B": 0.1, "C": 0.393, "D": 0.02 },
+        "agreement": 0.667,
+        "verdict": "NEAR_TIE - W5 and W4 are effectively tied",
+        "meaning": "build W5 (the fill graphs + the density paint) first: editor-side, no C++, and it is what shows the artist whether the pipeline is worth continuing. W4 (the room kit) is second"
+      }
+    },
+    "tension_to_watch": "carrier_slot says the carrier is a fixed child of the kit, and carrier_ownership says the kit's default carrier stays a borrowed Fab-pack actor. Those combine into a kit whose default child is someone else's asset. If that reads wrong, option C on carrier_ownership (replace only the M02 resonant object with the project's token family) is the narrow fix that keeps the beat and keeps the loop mostly ours.",
+    "still_the_owners_call": [
+      "density_paint: paint over the derived pass, paint from scratch, or use the derived field as-is for the first graph build and repaint after. Jev's spread is 0.33 / 0.37 / 0.27 - it has no answer to give.",
+      "whether the C++ work (W1/W2/W3) waits for a clean compile window - the owner answered 'def wait' on 2026-10-22."
+    ],
+    "packet_lesson": "the first run of this packet sent criteria={option: None} - the option descriptions never reached the service, so it answered 'A' to all five questions with no confidence. The criteria TEXT must be transmitted. And this model's answer carries choice + confidence + a full probability distribution and NO reason field; a receipt that looks for .reason/.score records nulls that read as 'no confidence' when the confidence was there all along."
+  },
   "not_yet_true": [
     "no item in this plan has been implemented; this is the scoped plan, not a receipt",
     "the fill graphs, the density textures, the room kit Blueprint and the catalogue asset do not exist",

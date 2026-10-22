@@ -1,0 +1,59 @@
+{
+  "schema": "melodia.jev.house_dressing_decisions.v1",
+  "source": "jev-live",
+  "sample": 1,
+  "model": "jev-1.14.0",
+  "state_verified_at": "2026-10-22, offline audit + plan + depot evidence",
+  "answers": {
+    "carrier_slot": {
+      "choice": "A",
+      "confidence": 0.44,
+      "probabilities": {
+        "A": 0.58,
+        "B": 0.28,
+        "C": 0.08,
+        "D": 0.06
+      }
+    },
+    "density_paint": {
+      "choice": "B",
+      "confidence": 0.16,
+      "probabilities": {
+        "A": 0.34,
+        "B": 0.37,
+        "C": 0.26,
+        "D": 0.03
+      }
+    },
+    "mobility": {
+      "choice": "B",
+      "confidence": 0.25,
+      "probabilities": {
+        "A": 0.06,
+        "B": 0.44,
+        "C": 0.32,
+        "D": 0.18
+      }
+    },
+    "carrier_ownership": {
+      "choice": "B",
+      "confidence": 0.29,
+      "probabilities": {
+        "A": 0.42,
+        "B": 0.47,
+        "C": 0.11,
+        "D": 0.0
+      }
+    },
+    "first_build": {
+      "choice": "A",
+      "confidence": 0.36,
+      "probabilities": {
+        "A": 0.52,
+        "B": 0.09,
+        "C": 0.37,
+        "D": 0.02
+      }
+    }
+  }
+}

@@ -1,0 +1,140 @@
+{
+  "schema": "melodia.jev.house_dressing_decisions_aggregate.v1",
+  "source": "jev-live",
+  "state_verified_at": "2026-10-22, offline audit + plan + depot evidence",
+  "samples": 3,
+  "sample_receipts": [
+    "JevHouseDressingDecisions_20261022_s1.json",
+    "JevHouseDressingDecisions_20261022_s2.json",
+    "JevHouseDressingDecisions_20261022_s3.json"
+  ],
+  "criteria": {
+    "carrier_slot": {
+      "A": "The carrier is a FIXED CHILD of the kit: dropping the room brings its interactable with it, at a transform the kit defines. One action places a complete, playable room.",
+      "B": "The carrier stays an INDEPENDENT actor that the artist placed; the kit only references it (a slot) and never owns, parents or moves it. The artist's arrangement of the interactables stays exactly as it is.",
+      "C": "The carrier is a child, but its transform is authored IN THE LEVEL and the kit only supplies the default: the kit proposes, the level disposes.",
+      "D": "The kit owns NO carrier at all: interactables remain hand-placed actors, and the kit is geometry plus fill only. The loop stays in the artist's hands and the level is not 'complete' when it is dropped in."
+    },
+    "density_paint": {
+      "A": "PAINT OVER the derived pass. It is a legitimate starting field - density gathers where the furniture already is - and it saves painting from black. The artist's paint is what makes it authored.",
+      "B": "PAINT FROM SCRATCH. The derived field encodes the BASE layer (desks, shelves), which is not the fill's density; painting over it risks baking the base arrangement into the scatter.",
+      "C": "USE IT AS-IS for the first graph build to prove the pipeline end to end, then repaint once the graph is visible. Proof before authorship.",
+      "D": "DO NOT PAINT AT ALL: derive the field from the fill contract's per-species densities instead (a uniform field per species, modulated by the room bounds), and let the art direction come from the species table alone."
+    },
+    "mobility": {
+      "A": "CONVERT BEFORE the walk: make the dressing static as part of making the leg game-ready. The artist can unlock any actor temporarily to move it. Static lighting and occlusion are worth it for a shipping level.",
+      "B": "AFTER the walk: keep them movable for the art pass, because the walk and the art pass are exactly when things still move. Static conversion is a later, separate pass once the composition stops changing.",
+      "C": "SPLIT BY LAYER: the base layer (64 actors: desks, shelves, architecture) goes static now - it will not move again - while the fill and hero props stay movable. The static set is decided by the layer, not by a blanket rule.",
+      "D": "NOT PART OF 'GAME-READY': mobility is a cook and performance-budget decision taken with the perf target, not a level-status decision. The walk gate stays free of it."
+    },
+    "carrier_ownership": {
+      "A": "REPLACE ALL of them with project-owned Blueprints before the walk: the loop the project ships must not depend on a pack's naming or a pack's roadmap.",
+      "B": "KEEP the borrowed carriers for the walk - they satisfy the beat contract today - and migrate to project-owned in a later, separate pass.",
+      "C": "REPLACE ONLY the M02 resonant object with the project's token family (the beat asks for 'one existing compatible actor'), and keep the book and the crystal as they are for now.",
+      "D": "KEEP them permanently and document the pack dependency openly: the house leg ships with pack actors, the project's token family is used elsewhere."
+    },
+    "first_build": {
+      "A": "W5 (the fill graphs + the density paint) first: it is editor-side, needs no C++, and it is what makes a room look dressed - the fastest visible win and the thing that shows the artist whether the pipeline is worth continuing.",
+      "B": "W1 (the catalogue class and asset) first: the art pass is entirely dark without it, the catalogue content is already derived and ready, and it unlocks W2 and W3 in the same build.",
+      "C": "W4 (the room kit Blueprint) first: it is the single 'place a room' action the whole pipeline is missing, and everything else hangs off it.",
+      "D": "W6 (the carriers) first: the borrowed Fab-pack actors are the largest dependency risk on the leg, and replacing them makes the loop ours before anything else is built on top of them."
+    }
+  },
+  "aggregate": {
+    "carrier_slot": {
+      "question": "In the room kit Blueprint (BP_MelodiaRoomShell), how should the room's gameplay carrier - the interactable that carries the beat - be owned?",
+      "picks": [
+        "A",
+        "A",
+        "A"
+      ],
+      "mean_distribution": {
+        "A": 0.607,
+        "B": 0.253,
+        "C": 0.087,
+        "D": 0.053
+      },
+      "mean_confidence": 0.477,
+      "leader": "A",
+      "leader_share_of_mean": 0.607,
+      "agreement": 1.0,
+      "verdict": "DECIDED"
+    },
+    "density_paint": {
+      "question": "The three room density textures now exist as a DERIVED first pass (the artist's own 97 placements splatted with a 12 m kernel, the P0 route corridor cut back 4 m). What should happen to them?",
+      "picks": [
+        "B",
+        "B",
+        "A"
+      ],
+      "mean_distribution": {
+        "A": 0.33,
+        "B": 0.367,
+        "C": 0.273,
+        "D": 0.03
+      },
+      "mean_confidence": 0.17,
+      "leader": "B",
+      "leader_share_of_mean": 0.367,
+      "agreement": 0.667,
+      "verdict": "NEAR_TIE_OWNER_CALL"
+    },
+    "mobility": {
+      "question": "82 of the 84 dressing actors are MOVABLE, which means no static lighting and no occlusion culling on them. Does 'game-ready level' require the static conversion, and if so, when?",
+      "picks": [
+        "B",
+        "B",
+        "B"
+      ],
+      "mean_distribution": {
+        "A": 0.06,
+        "B": 0.447,
+        "C": 0.31,
+        "D": 0.183
+      },
+      "mean_confidence": 0.26,
+      "leader": "B",
+      "leader_share_of_mean": 0.447,
+      "agreement": 1.0,
+      "verdict": "NEAR_TIE_OWNER_CALL"
+    },
+    "carrier_ownership": {
+      "question": "The house's beat carriers are borrowed Fab-pack Blueprints (BP_InteractiveBook, BP_CandleFlame, BP_Crystal, BP_HiddenDoor, BP_Lantern). The project's own are BP_MelodyToken_Universal and BP_SirPerch. What should happen to that?",
+      "picks": [
+        "B",
+        "B",
+        "B"
+      ],
+      "mean_distribution": {
+        "A": 0.41,
+        "B": 0.497,
+        "C": 0.093,
+        "D": 0.0
+      },
+      "mean_confidence": 0.327,
+      "leader": "B",
+      "leader_share_of_mean": 0.497,
+      "agreement": 1.0,
+      "verdict": "NEAR_TIE_OWNER_CALL"
+    },
+    "first_build": {
+      "question": "The plan's critical path is W1 (catalogue class + asset) -> W5 (fill graphs) -> W4 (room kit) -> W6 (carriers) -> W7 (the walk). W1 and W3 need a C++ build and the tree is dirty from another session. What should be built FIRST, tomorrow, given the editor is the artist's and the walk is the gate?",
+      "picks": [
+        "A",
+        "A",
+        "C"
+      ],
+      "mean_distribution": {
+        "A": 0.487,
+        "B": 0.1,
+        "C": 0.393,
+        "D": 0.02
+      },
+      "mean_confidence": 0.32,
+      "leader": "A",
+      "leader_share_of_mean": 0.487,
+      "agreement": 0.667,
+      "verdict": "NEAR_TIE_OWNER_CALL"
+    }
+  }
+}
