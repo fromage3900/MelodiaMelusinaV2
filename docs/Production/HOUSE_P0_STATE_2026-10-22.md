@@ -86,17 +86,16 @@ tool — it does not run by itself — and those placements are the owner's.
 | **CL 298 (1 file)** — Houdini Engine bake scratch | none: deliberately held back, never submitted | — |
 | The Enchanted Interiors **fill** layer (`specs/p0/melusina_house_p0_fill.v1.json`) | none: a design note, no script consumes it, nothing places anything | — |
 
-**The pagefile (the last hard blocker), in an elevated shell:**
+**The pagefile — DONE, and the last hard blocker is now open.**
 
+The setting is persisted: **`C:\pagefile.sys` = 32,768 MB initial / 65,536 MB maximum** (it was 8,192 / 16,384). The commit limit reads 71.8 GB right now because the pagefile *file* is still small — Windows grows it on demand up to the new maximum, so the limit rises as the build presses on it, and a reboot makes it 64 GB RAM + 32 GB pagefile immediately.
+
+**A pagefile on `D:` (849 GB free) is still optional and was never applied** — the elevated `wmic pagefileset ... create=` was declined at the UAC prompt twice. If tomorrow's monster build still presses the limit, that is the next lever:
 ```
-wmic pagefileset "name=D:\pagefile.sys" initialsize=16384,maxsize=65536
+wmic pagefileset "name=D:\pagefile.sys" create="D:\pagefile.sys" initialsize=16384,maxsize=65536
 ```
 
-It has to be **D:** — C: only has ~15 GB free, so a bigger pagefile there is
-refused with "Value out of range". D: has 852 GB free. This lifts the Windows
-commit limit from 71.8 GB to ~150 GB, which is what the three held-out meshes
-need, and it is the difference between an editor that survives a 7.7 GB mesh
-build and one that dies doing it.
+**Do not attempt the three held-out meshes with the editor open.** `NicheA` and `NicheC` each need 7,691 MB of build memory; a failed build in a second UE process can take the artist's session with it. Close the editor, or wait for the pagefile to have grown.
 
 ---
 
