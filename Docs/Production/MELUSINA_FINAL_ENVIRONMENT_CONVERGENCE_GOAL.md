@@ -1406,3 +1406,109 @@ the Labs Building Generator can be dropped in behind the same interface if it ea
 5. **The placement assertions and one screenshot** - so the work is judged, not just counted.
 6. **Then** the Houdini + plugin + Labs upgrade, as an owner action on a quiet machine, and only
    if Labs then earns its place against our own implementation.
+## 16. THE BUILDING SCHEMA + THE ARCHITECT-GRADE TOOLKIT (2026-10-21) - the brief for the frontier model
+
+### 16.1 The building schema already exists in this project - use it, do not invent another
+
+The Parisian architecture kit is **Blender Geometry Nodes, authored in Python**, and it is
+**already schema-driven**. Source is local: `deploy/surreal_arch/melodia_gn/` (208 Python files).
+
+| file | size | what it holds |
+|---|---|---|
+| `walls_kit.py` | 85 KB | `MEL_wall_straight/_corner/_with_door/_with_window/_multi_window/_t_join`, `MEL_retaining_wall`, `MEL_half_timber_wall` |
+| `euro_kit.py` | 79 KB | `MEL_wall_arched_window`, `MEL_gothic_arch`, `MEL_buttress`, `MEL_baroque_facade`, `MEL_niche`, `MEL_vault`, `MEL_venetian_bridge` |
+| `buildings_kit.py` | 67 KB | `MEL_modular_house`, `MEL_auto_building` - **both PROPS-dict driven**, plus `MEL_raycast_facade` |
+| `nikki_quarter.py` | 59 KB | `MEL_nikki_quarter` Mode 0 Townhouse (the Nikkie blockout) |
+| `paris_wall_detail.py` | 35 KB | `GN_PARIS_WallDetail` (the trim pass; baseboard = the damp plinth) and `GN_PARIS_SlabTrim` |
+| `recursive_castle.py` | 16 KB | `MEL_math_gothic_cathedral` (nave, vault, buttress reach, rose window) |
+| `presets.py` | **197 KB** | **the preset/PROPS data - this is the schema itself** |
+
+**The schema is the seam, and it already has two consumers.** The Parisian GN builders take a
+**PROPS dict**; the Poitou Houdini kit takes **HDA parms**. Those are two dialects of the same
+thing. The right move - and it is the answer to "the building schema" - is **one machine-readable
+style definition per architectural style**, read by BOTH:
+
+```
+style.json  (per style: Poitou, Paris-Haussmann, Lusignan, Melodia-house)
+  identity   : style id, era, region
+  mass       : floors, floor height, depth, width, roof mode, roof pitch, eave overhang, seed
+  bays       : bay length (2.4 m), module (0.6 m), rhythm per floor
+  openings   : per-face opening count, width, height, sill, head type (round | lancet), shutters
+  wall       : thickness, leaf split (0.45 ashlar / 0.9 rubble), material zone, trim pass
+  foundation : soubassement height (0.4-0.8 m), baseboard, step to the water
+  roof       : pitch, tile module, per-course hue jitter, ridge, ornament scale (1.3-1.5x)
+  identity   : the musical motif set for that style (style contract section 4)
+```
+
+The level grammar is vertical (floors) and the bucket grammar horizontal (modules within a
+floor) - the same two-tier model the reference implementation of this pattern uses (kiryha's
+Procedural City wiki: *a single input quad is automatically partitioned floor-by-floor and
+window-by-window based on rules*, with the style as a JSON definition). **Write `style.json` once
+per style, and let the Parisian GN builders and the Poitou Houdini kit both read it.** That is
+what makes it one architecture instead of two, and it is how a "building schema" becomes a real
+asset rather than a doc.
+
+**Verification exists on the GN side:** `python Tools/verify_melusina_house_gn_catalog.py`, plus
+`MELUSINA_HOUSE_GN_START_HERE.md` (the agent entry point) and
+`Docs/MelodiaStudio/MELUSINA_HOUSE_GN_FOUNDATION_TO_SHELL_ROADMAP_2026-09-04.md`.
+
+### 16.2 The architect-grade open-source toolkit, ranked by what it buys us
+
+Everything here is free or open; the licence column is the one that decides commercial use.
+
+| # | system | licence | what it buys us here | install |
+|---|---|---|---|---|
+| 1 | **zenv** (`CorvaeOboro/zenv`, 175*) | **CC0** - free commercially, no attribution | **The brick and rubble tools we owe.** `z GEN BRICKMAIN 01` (brick variation generator, low + hi-poly for baking), `z GEN STONE BRICK CIRCLE` (**voronoi-fractured stone brick circle, noise + bevel to resemble stone** - that is our rubble core), `z GEN PILLAR`, `z HELIX ALONG CURVE` (railings), `z GEN HEXA STRUCTURE` (trusses), `z DRIP GRUNGE`, `z GLASS BOOLEAN`, `z WIRE OVERLAPING OFFSET` (wires from curves on the ground), `z GEN STAIRWAY` | copy `zenv.json` into `C:/Users/<user>/Documents/houdini22.0/packages/`, edit the path, or set `HOUDINI_PATH` |
+| 2 | **SideFX Labs** (`sideeffects/SideFXLabs`) | free with Houdini | **Building Generator 4.0** (blockout -> floors -> walls/corners/ledges from a module library; facade + corner + ledge module patterns, floor overrides), **Road Generator**, Foliage, and the shelf tools | needs Houdini **>= 22.0.382**; `https://github.com/sideeffects/SideFXLabs/tarball/refs/tags/<ver>` (see 15.2 - the version lock) |
+| 3 | **qLib** (`qLab/qLib`, 175*) | **New BSD** | The production-grade general library: attributes/groups, boundary geometry, a common deformer framework, high-performance reimplementations, shelf tools. "Driven by and used in real production environments"; backwards-compatibility and VEX/multithreading are explicit design goals | `https://github.com/qLab/qLib/archive/master.zip` -> `HOUDINI_PATH` |
+| 4 | **kiryha's Procedural City** (wiki + hip) | open reference | **The shape-grammar reference implementation**: mass model -> facade segmentation, two-tier level/bucket grammar, JSON style definitions, module library, assembly. This is the pattern our `style.json` should copy | read the wiki; the hip is in the repo |
+| 5 | **Esri CityEngine for Houdini** + **Palladio** | plugin **Apache 2.0**; **CGA rule packages need a commercial CityEngine licence for commercial work** | The genuine CAD-grade parametric architecture: CGA rules encode an architectural style; rule packages (RPK) drive facades, massing and parcel subdivision procedurally, and stay procedural in Houdini. **A Poitou RPK would be a real architectural asset** - but the licence is the blocker, so it is a decision, not a task | clone + build (CMake); CityEngine SDK required |
+| 6 | **ntLib** (`nitzan-treg/ntLib`, 121*) | **MIT** | An SDF growth solver (ivy/lichen growth on the ruin), extrude-subdivision, and a **Chladni noise node** - which is our cymatics language | clone -> `HOUDINI_PATH` |
+| 7 | **MLOPs**, **AeLib**, **mifthtools**, **jhorikawa/HoudiniHowtos** | open | The wider ecosystem zenv itself recommends; worth a skim for the UV/QA/shelf tools | `HOUDINI_PATH` |
+| 8 | **Project Titan / Titan Evo** + the **2026-10-08 bridge tutorial** | free download | The production reference for exactly our remaining elements: the **building**, **fence**, **platform**, **scaffold**, **cables**, **pipes** tools, and the bridge tutorial (arch, deck, railings, piers, chains - then trim sheets and tileable materials for UE5) | SideFX site, free |
+| 9 | **OSM data** | open data (ODbL) | The network source for the canal and lane system, the way the IGN RGE ALTI DEM already drives the terrain | direct download, no account |
+
+**The order to install them, and the order to use them:** zenv and qLib first (CC0/BSD, no version
+lock, they work on 22.0.368 today, and zenv answers CARD 1 directly); then the schema work, which
+is the real leverage; then Labs when Houdini is upgraded; CityEngine only if the owner licenses it.
+
+### 16.3 The boundary to respect: the Parisian kit is Blender, the Poitou masonry is Houdini
+
+`MEL_*` are **Blender Geometry Nodes** builders; the Poitou masonry is **Houdini**. They are not
+two competing architectures to be merged - they are two ends of one pipeline, and the schema is the
+seam:
+
+```
+style.json  --->  MEL_modular_house / MEL_auto_building / MEL_nikki_quarter   (Blender GN:
+                  massing, openings, cornice, shutters, roof - the house)      the house body)
+       |
+       +-------->  Poitou kit (Houdini: the masonry grammar, the soubassement, the canal
+                   revetment, the quay, the abbey, the roofs - the stone)        the stone)
+```
+
+**Do not build a second architecture.** The house body comes from the Parisian GN builders (with
+their PROPS dict, now fed by `style.json`); the stone comes from the Poitou kit; the two are
+dressed by the same palette and the same vertex-paint zones. The one thing that must not happen
+is a third system invented in the gap - which is what `cross.vex` did when it duplicated the
+piano-walkway system, and what Jev's `REUSE_EXISTING_SYSTEMS_FIRST` ruling is there to prevent.
+
+### 16.4 What the frontier model does with all of this, in order
+
+1. **Read** `MELUSINA_HOUSE_GN_START_HERE.md` and `Docs/Poitou/gn_parisian_audit.md` - they are the
+   map of the existing Parisian system, and the audit already classified every builder A/B/C.
+2. **Install zenv + qLib** into `C:/Users/<user>/Documents/houdini22.0/packages/` (or `HOUDINI_PATH`).
+   Both work on Houdini 22.0.368 as it stands; neither needs an account.
+3. **Write `style.json` for Poitou** (16.1) - the machine-readable style contract, with the
+   musical-motif set from style contract section 4 in the `identity` block.
+4. **CARD 1 with zenv's help**: the brick bond (`z GEN BRICKMAIN 01` for the variation and the
+   low/hi bake sets) and the rubble core (`z GEN STONE BRICK CIRCLE`'s voronoi fracture). The kit
+   still owns the grammar - zenv supplies the stone vocabulary.
+5. **Feed `style.json` to the Parisian builders** so the houses and the stone share one spec, and
+   extend the kit to read the same file for the soubassement, the wall leaf split and the roof.
+6. **Then** the house shell as a Houdini output that consumes the Parisian result (or the reverse
+   - but only one direction, decided once and written down).
+7. **Then** the lock house and the jetty from the Titan bridge tutorial; the road network from the
+   Labs Road Generator or OSM; the quay from `MEL_retaining_wall`.
+8. **Throughout**: the gate asserts the named element groups, the placement assertions are the
+   real acceptance, and every generator writes into the existing merged output - no editor, no
+   Content mutation, no level mutation.
