@@ -999,3 +999,137 @@ and the quay walls). P1.2 `jetty.vex` (tarred-oak pilings, the "black keys"). P1
 `quoin.vex`. P3.1 `clos.vex` (the walled garden, fig trees, vine rows). P3.2 `boat.vex`. P3.3
 `bird.vex` (the AE layer already exists). P4 the faux-appareil mask writer.
 Each one must earn a named group in the gate. Full table in section 11.2.
+## 13. THE UPDATED PLAN - what the frontier model does next (2026-10-21)
+
+Jev audited the programme against its original goal and this contract's own reference docs
+(receipt `Saved/Audit/PoitouConvergence_20261020/JevPoitouProgrammeAudit_20261021.json`, packet
+`Tools/Poitou/jev_poitou_programme_audit_20261021.py`). Its rulings are the order below.
+
+| Jev question | ruling |
+|---|---|
+| canals | `PARTIAL_NEEDS_LOCKHOUSE_JETTY_AND_STEPS` |
+| house foundations | `SHALLOW_NEEDS_REAL_FOUNDATION_TYPES` |
+| brick generation | `NEED_BOND_AND_RUBBLE_CORE_PATTERN` |
+| priority order | `WIRE_AND_PROVE_FIRST_THEN_SPEC_FEATURES` |
+| reuse vs bespoke | `REUSE_EXISTING_SYSTEMS_FIRST` |
+| poplar + toon-master conflict | `CHECK_THE_MASTER_SHADING_MODEL_FIRST_THEN_DECIDE` |
+| palette authority | `STYLE_CONTRACT_IS_AUTHORITY_REWRITE_THE_MIS` |
+
+### Stage 0 - the owner, in the editor (~10 min). Nothing else is visible until this happens.
+
+Cook the level's Houdini actors (the plugin's scratch was cleared and the failing cook must
+re-run), add two output slots to `poitou_layout_live_v6.uasset` (`output_masonry`,
+`output_generated`), and cook. `Tools/Editor/poitou_he_cook_check.py` then prints
+`Poitou_Layout_v6: OK` or it does not. **That is the proof, and it is one line.**
+
+### Stage 1 - wire, prove, and make the gate assert PLACEMENT (Jev: WIRE_AND_PROVE_FIRST)
+
+1. **Emit the spec'd attributes on every generated prim.** The HE convergence spec gives the
+   exact VEX and the generators emit none of it:
+   `s@unreal_material` (done), `i@unreal_nanite_enabled = 1`,
+   `i@unreal_collision_mode = 0` (complex collision), `s@unreal_output_name = "SM_..."`. Without
+   them, 596,382 prims arrive without Nanite and without collision. This is a few lines in
+   `kit_box` and it is the single cheapest quality-per-hour item in the programme.
+2. **Extend the gate from emission to placement.** Deterministic assertions, each a test not a
+   question: the revetment's minimum distance to the canal centreline and its height band against
+   `ign_water`; the abbey footprint against the canon centre (830, 870) and `abbey_rot`; each
+   crossing's deck actually spanning a canal; the roof pitch in degrees per house; the lane width
+   (2.4 m) and its clearance from every house; the poplar's crown aspect and 25-35 m band; and the
+   Nikkie rules that are cheap to assert - albedo 0.08-0.85 linear (rule 3), a secondary landmark
+   within 200 m (rule 8), vignettes <=6 m separated by >=12 m quiet (rules 5, 10), >=2 layered
+   historical styles per zone (rule 18), ornament scale 1.3-1.5x (rule 13), the abbey readable
+   from >=70% of the walkable area (rule 7 - the HDA's own sightline check already reads 93.9%).
+3. **One screenshot from the P0 route's approach** (the abbey silhouette over the canal, and the
+   canal leg with its revetment). Numbers prove the maths; the picture proves the world. This is
+   the step the last session skipped, and it is why 596,382 prims have never been judged.
+
+### Stage 2 - the three original goals, done properly
+
+4. **BRICK: a real bond, not a band** (Jev). The kit gains `kit_bond_course` - header/stretcher
+   alternation, per-brick length and value jitter, a proper half-lap return - and `kit_rubble_core`
+   replaces the plain core box with a rubble pattern (voronoi or jittered cells at the leaf/core
+   interface). The chaine/arase band becomes one instance of the same bond system, not a special
+   case. **This is the "brick generation" the original goal asked for.**
+5. **FOUNDATIONS: real types, not one ring** (Jev). The style contract names them: the balais barn
+   plinth with its half-timber wall (W 4.8-9.6, H 3.0-5.0, step drop 0.6-1.2 toward the water); the
+   damp baseboard at **0.4-0.8 m** (the generator currently lays 1.2 m); the quereux variants; the
+   bank steps down to the water. And the house walls get their openings - see Stage 3.
+6. **CANALS: the rest of the canal-du-Midi section** (Jev). The maison eclusiere (11-12 x 7-8 m);
+   the quay at **0.6-1.5 m above the water** (the generator currently runs 0.9-2.4 m); the
+   tarred-oak jetty and pilings (the palette's "black keys"); the mooring rings; the duckweed
+   surface on the conches.
+
+### Stage 3 - REUSE the systems the project already owns (Jev: REUSE_EXISTING_SYSTEMS_FIRST)
+
+7. **The lane crossings become the existing piano-walkway system**, not a bespoke generator:
+   `DA_PianoWalkway_Poitou` (a variant of the existing `DA_PianoWalkway_MorningMeadow`),
+   `MI_PianoKey_Poitou_Oak` / `_Tarred`, and `PCG_PianoKeyRun_2Oct` for the short footbridges. The
+   style contract says this explicitly; `cross.vex` invented a parallel system and should be
+   replaced, not extended.
+8. **The house walls use the MEL_* builders**: `MEL_wall_straight/_corner/_with_door/_with_window/
+   _multi_window/_t_join` for the quereux walls, enclos and gable fills, round arches only, never
+   an ogive; `MEL_half_timber_wall` for the balais barns and the jetty sheds; `MEL_retaining_wall`
+   for the quays and levees; and the `GN_PARIS_WallDetail` trim pass with the baseboard on.
+9. **The village church comes from `MEL_math_gothic_cathedral` (lowered) and the `SM_Cathedral_*`
+   kit**, not from a new church generator.
+10. **The abbey becomes the spec'd `HDA_Poitou_AbbeyBuilder`**: an Unreal spline input 0 and a
+    volume brush input 1 that crumbles the ruin where the brush is, `preview_mode` for a <45 ms
+    proxy cook, `bay_count` 7-8, `wall_thickness` 1.8, `window_style` as a menu (Romanesque round /
+    Early Gothic lancet / Rayonnant rose), `buttress_tiers` 3, `decay_intensity` 0.45. The
+    generator as built is fixed geometry at a hardcoded centre with no brush and no decay.
+
+### Stage 4 - the identity layer: the cheapest AAA win, and it is the "musical but French" contract
+
+11. **The musical motif bands (style contract section 4) are entirely unimplemented and they are
+    cheap**, because they ride the silhouette the kit already builds: the bay rhythm as the
+    far-band metre; poplar spacing 6-7 m as the metre; bell-tower louvres reading as dark stripes;
+    rail posts at bar spacing; archivolt "chords"; octave dark boards on the bridges; organ-pipe
+    louvre gradation; and in the near band, carved capitals, corbel musicians, ironwork shutter
+    hinges as clef scrolls, and door knockers. **This is half the art direction and it is the
+    cheapest thing left.**
+12. **Nikkie rule 13, ornament scale 1.3-1.5x** on buttress finials, lamps and flowers; **rule 8**,
+    a secondary landmark within 200 m of any point; **rule 10**, vignettes within 6 m separated by
+    >=12 m of quiet; **rule 18**, >=2 layered historical styles per zone (the Romanesque/Gothic
+    stone ruin with the later timber and marsh houses).
+
+### Stage 5 - materials, in Jev's order
+
+13. **Check `M_Master_Toon_Universal`'s shading model FIRST** (Jev). Nikkie rule 2 forbids unlit
+    toon on environment, and the whole material programme is MIs of that master. If it is unlit,
+    every Poitou surface is wrong and the 8 MIs need a different parent - that decision changes
+    the material work, so it comes first.
+14. **Rewrite the 8 MIs to the STYLE CONTRACT palette** (Jev: the contract is the authority). The
+    contract and the MA proposal differ by 2-4% per slot: lime wash #E9E3D3 (not #E6DFCC),
+    limestone quoin #D8CBAE, roof tile #B56A4A, shutter green #8FAE9B, tar #2A2622, moss #5E6B3A,
+    oak #A88D6A. The MIs stay UNBOUND until the owner approves the binding.
+15. **The master must read the vertex A channel (ivy) and a faux-appareil joint mask.** That is a
+    material edit - ask-first, `Content/Materials/` is on the never-touch list. Until then the
+    kit's `kit_faux_mask` writes attributes nothing reads.
+16. **Decide the poplar** after 13: if the master is lit, keep the generated poplar as the hero
+    (rule 9 says foliage is PCG-only, so the far bands should go back to PCG and the near row
+    becomes the hero).
+
+### Stage 6 - the spec'd HDA suite and the lookbook
+
+17. **Dual-stage cooking**: `preview_mode` for a <45 ms proxy and a production Nanite bake
+    (800-1200 ms). Without it the editor cannot iterate the level, which is the whole point of
+    the live convergence spec.
+18. **PDG/TOPs offload** for heavy variation (20 crumbled-buttress variations, randomised stone
+    piles) so the viewport never blocks.
+19. **The lookbook is unfinished**: 6 of the 7 `poitou_board` plates fail the repo's own lookbook
+    gate, and Nikkie rule 16 wants a weekly benchmark against 3 locked reference frames. Fixing
+    the plates is what lets the next agent judge its own output.
+
+### 13.1 What a frontier model can do with this that the last session could not
+
+* **Hold the whole system at once**: the kit, the seven generators, the gate, the style contract
+  and the Nikkie rules, and see that a new element is a small delta on a tested kernel rather than
+  a new art pipeline.
+* **Do the placement maths and the visual judgement**: the last session could prove that 596,382
+  prims exist and could not say whether they look like a Poitou canal. That is the gap the
+  placement assertions and the one screenshot close.
+* **Say what is wrong with a picture**: the lookbook plates and the reference board are the
+  benchmark, and a model that can read them against a frame is the difference between "gated" and
+  "finished".
+* **Keep the discipline**: additive only, no content mutation, no removal before the replacement
+  is live, a check that fails on no evidence, and the owner's editor never touched.

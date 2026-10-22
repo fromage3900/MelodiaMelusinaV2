@@ -1,6 +1,35 @@
 # Melodia Melusina ? Current State
 
 
+## ⚑ THE PROGRAMME AUDIT + THE FRONTIER MODEL''S PLAN (2026-10-21)
+
+- **Jev audited the programme against its original goal and the project''s own reference docs**
+  (packet `Tools/Poitou/jev_poitou_programme_audit_20261021.py`, receipt
+  `Saved/Audit/PoitouConvergence_20261020/JevPoitouProgrammeAudit_20261021.json`). Rulings:
+  canals `PARTIAL_NEEDS_LOCKHOUSE_JETTY_AND_STEPS`; foundations
+  `SHALLOW_NEEDS_REAL_FOUNDATION_TYPES`; brick `NEED_BOND_AND_RUBBLE_CORE_PATTERN`; order
+  `WIRE_AND_PROVE_FIRST_THEN_SPEC_FEATURES`; systems `REUSE_EXISTING_SYSTEMS_FIRST`; the poplar
+  question waits on `CHECK_THE_MASTER_SHADING_MODEL_FIRST_THEN_DECIDE`; palette
+  `STYLE_CONTRACT_IS_AUTHORITY_REWRITE_THE_MIS`.
+- **The audited gaps, in the reference docs'' own terms.** The chains/arase band is a plain course
+  of boxes - there is no brick BOND and the rubble core is a plain box, so "brick generation" is a
+  band, not a system. The foundations are one generic ring (the style contract wants the balais
+  barn plinth and a 0.4-0.8 m damp baseboard; the generator lays 1.2 m). The canal has its
+  retaining walls and nothing else (no lock house, jetty, quay, steps; the contract wants the quay
+  0.6-1.5 m above the water and the generator runs 0.9-2.4 m). The HE convergence spec's
+  `unreal_nanite_enabled` / `unreal_collision_mode` / `unreal_output_name` attributes and the
+  dual-stage preview cook are not emitted or implemented. `cross.vex` duplicates the piano-walkway
+  system that already exists. The whole musical-motif band layer (style contract section 4) is
+  unimplemented. The style contract and the MA palette disagree by 2-4% per slot. 6 of the 7
+  lookbook plates still fail the repo''s own gate.
+- **The full ordered plan is section 13 of the build contract**
+  (`Docs/Production/MELUSINA_FINAL_ENVIRONMENT_CONVERGENCE_GOAL.md`): Stage 0 the owner''s editor
+  cook, Stage 1 wire and prove and make the gate assert PLACEMENT, Stage 2 the three original goals
+  done properly, Stage 3 reuse the systems the project already owns, Stage 4 the identity layer
+  (the musical motif bands - the cheapest AAA win left), Stage 5 materials in Jev''s order, Stage 6
+  the spec''d HDA suite and the lookbook. Section 12 is the trap briefing and the measurements.
+- **The one thing that gates everything else:** the owner must re-cook the level''s Houdini actors
+  and add the two output slots. Until then the level is unproven and nothing is visible.
 ## ⚑ POITOU LEVEL RESTORED — the regression was mine, and the gate missed it (2026-10-21)
 
 **What broke the level.** This session bound in-theme materials to **18 existing Poitou mesh
