@@ -152,7 +152,8 @@ def _build_mf(name, description, inputs, hlsl):
         node, _ = _mk_fn(function, unreal.MaterialExpressionFunctionInput, "Input_" + iname,
                           -1500, -500 + i * 90)
         _set(node, "input_name", iname)
-        _set(node, "input_type", itype)
+        _set(node, "input_type", unreal.FunctionInputType.FUNCTION_INPUT_VECTOR3
+             if itype == "float3" else unreal.FunctionInputType.FUNCTION_INPUT_SCALAR)
         _set(node, "sort_priority", i)
         fn_inputs[iname] = node
 
@@ -331,9 +332,9 @@ def master_surgery(material, functions: dict):
     _vector_param(material, "MeluGouache_HighlightTint", (0.88, 0.84, 0.76, 1), g, 900, 360)
     _vector_param(material, "MeluGouache_KeyLightDir", (0, 0, 1, 0), g, 900, 420)
     gran_tex = _texture_param(material, "MeluGouache_GranulationTex",
-                              "/Game/Materials/Textures/Gouache/T_Gouache_Granulation", g, 400, 1100)
+                              "/Game/EnvSandbox/Materials/Textures/Gouache/T_Gouache_Rebelle_Granulation", g, 400, 1100)
     blotch_tex = _texture_param(material, "MeluGouache_BlotchTex",
-                                "/Game/Materials/Textures/Gouache/T_Gouache_WashBlotch", g, 620, 1100)
+                                "/Game/EnvSandbox/Materials/Textures/Gouache/T_Gouache_Rebelle_Blotch", g, 620, 1100)
     _scalar_param(material, "MeluGouache_UVTiling", 6.0, g, 510, 1220, 0.1, 64.0)
 
     tc, _ = _mk_master(material, unreal.MaterialExpressionTextureCoordinate, "WashUV", 300, 1220)
@@ -348,7 +349,7 @@ def master_surgery(material, functions: dict):
     _connect(vn, "", ndot, "A")
     _connect(_param(material, "MeluGouache_KeyLightDir"), "", ndot, "B")
     nsat, _ = _mk_master(material, unreal.MaterialExpressionSaturate, "WashNDotLSat", 300, 620)
-    _connect(ndot, "", nsat, "Input")
+    _connect(ndot, "", nsat, "")
 
     gw_call, _ = _mk_master(material, unreal.MaterialExpressionMaterialFunctionCall, "WashCall", 700, 240)
     _set(gw_call, "material_function", functions["wash"])
@@ -379,7 +380,7 @@ def master_surgery(material, functions: dict):
 
     _connect(tail_src, "", gw_sw, "False")
     _connect(gw_call, "Color", gw_sw, "True")
-    _connect(gw_sw, "", sd_lerp, "A")
+    _connect(gw_sw, "", final_node, final_pin)
 
     MEL.recompile_material(material)
     unreal.EditorAssetLibrary.save_loaded_asset(material)
