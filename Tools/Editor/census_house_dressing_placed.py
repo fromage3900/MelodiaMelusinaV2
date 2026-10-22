@@ -37,11 +37,6 @@ def main() -> int:
         except Exception:
             continue
         cls = a.get_class().get_name()
-        if not (lbl.startswith("Mag_") or "KB3D_ECI" in lbl):
-            others += 1
-            continue
-        loc = a.get_actor_location()
-        rot = a.get_actor_rotation()
         mesh_path = None
         try:
             comp = a.static_mesh_component
@@ -49,10 +44,27 @@ def main() -> int:
                 mesh_path = comp.static_mesh.get_path_name()
         except Exception:
             pass
+        # a Blueprint actor has no static mesh; find its own class path instead
+        bp_path = None
+        if mesh_path is None:
+            try:
+                gen = a.get_class()
+                if gen is not None and gen.get_path_name():
+                    bp_path = gen.get_path_name()
+            except Exception:
+                pass
+        is_dressing = (lbl.startswith("Mag_") or "KB3D_ECI" in lbl
+                       or (bp_path and "/MagicianLabatory/BP/" in bp_path))
+        if not is_dressing:
+            others += 1
+            continue
+        loc = a.get_actor_location()
+        rot = a.get_actor_rotation()
         dressing.append({
             "label": lbl,
             "class": cls,
             "mesh": mesh_path,
+            "bp": bp_path,
             "location_cm": [round(loc.x, 1), round(loc.y, 1), round(loc.z, 1)],
             "rot_z": round(rot.yaw, 1),
         })
