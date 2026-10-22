@@ -1,0 +1,123 @@
+# Melusina's P0 house — state, durability and tomorrow's first moves
+
+Written 2026-10-22 (late night) to hand the house over in a stable state.
+**Authority for status stays `CURRENT_STATE.md`**; this is the working note.
+
+---
+
+## 1. The rules this session established
+
+| Rule | Why |
+|---|---|
+| **The house is arranged by hand. There is no placement contract.** | A machine-readable plan of placements is one more thing that can disagree with the artist's eye. `specs/p0/melusina_house_p0_dressing.v1.json` was **removed** from `origin/main` (2026-10-22). |
+| **No script may place or move anything in the level.** | `Content/Python/melusina_house_p0_dressing.py` and its `apply` mode were **removed** from `origin/main` (2026-10-22). The other session keeps its own copy in its working tree; nothing on `main` can write to the level any more. |
+| **The editor belongs to the artist.** | No agent closes, relaunches, or takes the editor. Bulk work goes through the headless commandlet (`UnrealEditor-Cmd -run=pythonscript -unattended -nullrhi`, ~3 GB peak instead of 21 GB). |
+| **The headless commandlet is the only surface for bulk asset work.** | Two editors at once exhausted the machine and crash-looped the editor; three times, the crash was a commit-limit failure, not a disk failure. |
+| **Perforce is the owner of bulk binary; git carries code and docs.** | The pack is 4.2 GB of Perforce-side content; the tools and specs are on `origin/main`. |
+
+**Checked and recorded so the question has an answer on paper** (2026-10-22): the project has **no** Python startup scripts configured; the only file UE runs by itself is `Content/Python/init_unreal.py` (Blender Live Link client + menu registration — no content mutation); the only session hooks are two slate post-tick callbacks (the Melodia Studio panel sampler and the OSC event bridge), neither of which writes content.
+
+---
+
+## 2. What is actually in the house (read-only audit)
+
+`Tools/Editor/audit_house_level.py` → `Saved/Audit/house_level_audit.json`.
+Run: `UnrealEditor-Cmd <proj> -run=pythonscript -script=Tools/Editor/audit_house_level.py -unattended -nullrhi`
+
+```
+169 actors total
+  92 StaticMeshActor · 29 PCG piano-key actors · 13 HoudiniAssetActor (room shells)
+   3 story doors · 3 candle flames · 3 exploration points · 1 PlayerStart
+  84 dressing actors   20 Enchanted Interiors + 64 base (Magician's Library)
+  13 functional interactables
+  0 issues: no empty material slots, no broken references, no duplicate labels
+```
+
+**Everything the Enchanted Interiors layer touches wears a converted
+`M_Master_Toon_Universal` instance — all 20 of them.** No kit proxies.
+
+**Two findings worth a decision, not a fix:**
+
+1. **23 of the 64 base dressing actors still wear the Magician's Library pack's own
+   materials** — and that set includes the **M04 landmark itself** (the five
+   `CentreRing` medallion rings), the staircase, the pillars, the walls and the
+   floor panels. So the salon's *hero architecture* is in the Fab pack's look
+   while its props are in ours. Either that is the intent, or the medallion
+   especially wants our toon master.
+2. **82 of the 84 dressing actors are `MOVABLE`** — no static-lighting or
+   occlusion benefit. Harmless for a showcase, worth a pass if the house ever
+   becomes a lit interior.
+
+**Also noted:** the other session's `Content/Python/melusina_house_p0_bind.py`
+positions the P0 interactables (the crystal in the medallion's sunken centre, the
+book on the shelf top, the passage lantern hung at 170 cm). It is a **manual**
+tool — it does not run by itself — and those placements are the owner's.
+
+---
+
+## 3. Durability — what is safe, what is not
+
+**Secured in Perforce (submitted, 2026-10-21/22):**
+
+| Change | What |
+|---|---|
+| **CL 292** | Kenney pack retired, 2,506 files deleted |
+| **CL 293** | 73 orphaned duplicate vehicle instances retired |
+| **CL 294 / 295 / 296** | the Enchanted Interiors pack — 2,334 files, all stamped for UE 5.8 |
+| **CL 299** | **735 assets that had NO depot copy at all** — the house map, the Poitou meshes the live level references, the Copernicus prototype, the Poitou textures, the Choral Sheep materials. They existed only on this workstation. |
+
+**Still only on this disk, or in flight:**
+
+| Item | Risk | Fix |
+|---|---|---|
+| **996 files open for edit in the P4 default changelist** (the other session's in-flight work) | their depot copies are older than their local edits | that session submits, or the work is lost. **Not mine to touch.** |
+| **1,307 dirty paths in the primary checkout** (including `CURRENT_STATE.md`, which another session is editing) | a `git checkout`/`reset` would discard it | the owner commits it; another session is mid-edit on that file |
+| **3 meshes in `C:\EnvironmentPortfolio\Staging\ECI_hold\`** (`NicheA`, `NicheC`, `Roof`) | they need 7.7 GB / 7.7 GB / 2.1 GB to build, which the current pagefile cannot give | **the pagefile** — see below |
+| **CL 298 (1 file)** — Houdini Engine bake scratch | none: deliberately held back, never submitted | — |
+| The Enchanted Interiors **fill** layer (`specs/p0/melusina_house_p0_fill.v1.json`) | none: a design note, no script consumes it, nothing places anything | — |
+
+**The pagefile (the last hard blocker), in an elevated shell:**
+
+```
+wmic pagefileset "name=D:\pagefile.sys" initialsize=16384,maxsize=65536
+```
+
+It has to be **D:** — C: only has ~15 GB free, so a bigger pagefile there is
+refused with "Value out of range". D: has 852 GB free. This lifts the Windows
+commit limit from 71.8 GB to ~150 GB, which is what the three held-out meshes
+need, and it is the difference between an editor that survives a 7.7 GB mesh
+build and one that dies doing it.
+
+---
+
+## 4. Tomorrow, in order
+
+1. **Raise the pagefile** (elevated, one command, above). Then bring the three
+   held-out meshes home and let them build:
+   `Content/EnchantedInteriors/Geometries/KB3D_ECI_IntNecromancersLair_A_NicheA|NicheC|Roof`
+2. **Look at the house.** Walk `L_MelusinaHouse_P0` and decide the two findings in
+   §2: the 23 base actors on the pack's own materials (the M04 landmark is in
+   that set), and the 82 movable dressing actors.
+3. **The P0 golden walk house leg** — the route from the bed to the front door has
+   never been walked. That is the actual gate: `M01` the book, `M02` the flame,
+   `M03` the threshold, `M04` the salon, `M05` the door.
+4. **The fill layer**, when you want it: `specs/p0/melusina_house_p0_fill.v1.json`
+   is the design for the PCG pass (books, candles, jars, bowls, cloth — density
+   driven, one PCG volume per room, route excluded). Nothing builds it yet.
+5. **Commit `CURRENT_STATE.md`** (it carries this session's record and another
+   session is editing the same file — yours to land).
+
+---
+
+## 5. Honest note on this session
+
+Two things I got wrong and fixed, both recorded in the code and in git:
+
+* My own tooling had three silent bugs that made a pack-stamping loop look
+  successful while doing nothing (a package path without its file extension, a
+  `Path("/Game/...")` that is absolute on Windows, and a run log that was
+  written over the receipt so a crashed run read as a success).
+* I closed the editor three times before being told it was the artist's. No
+  asset was lost — the house map's room shells survived every headless pass
+  (7 `MelodiaRoomShell` references intact) — but the rule is now written down
+  above and in `CURRENT_STATE.md`.
