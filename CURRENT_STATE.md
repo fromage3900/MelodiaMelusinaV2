@@ -1,4 +1,9 @@
 # Melodia Melusina ? Current State
+
+## Poitou college simulation lab — proposed experiments, 2026-10-22
+
+Owner requested a researched school-session plan: [Poitou college lab](Docs/Plans/POITOU_COLLEGE_LAB_2026-10-22.md). Priorities are a local lock/river FLIP vignette and reusable flow/foam/wetness maps, protected IGN erosion masks, modular abbey destruction, mist flipbooks and architectural preset wedges. All are **PROPOSED**, with pilot measurements and separate Unreal integration gates; this documentation does not certify the town cook, restore geometry, or land binary assets. Use the latest local source-built Poitou HDA and preserve today's canals, roads, roofs, foundations and fences; do not replace it with the historical Candidate. School hardware, license tier and format compatibility must be checked before scaling jobs.
+
 **This is the only status document.** If any other file states what works, what is open, or what
 to do next, that file is wrong: fix this one instead. Update it in the same commit as the change it
 describes. Handoffs, plans, receipts and session notes go in the commit or PR message, never in a
