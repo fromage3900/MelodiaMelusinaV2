@@ -5,6 +5,7 @@
 #include "MelodiaDressingSubsystem.generated.h"
 
 class AActor;
+class UMelodiaDressingCatalog;
 
 /**
  * Dash-capability — native environment dressing / art-pass subsystem.
@@ -18,6 +19,9 @@ class AActor;
  *
  * Editorial / presentation-only. Editor trial priority; no shipping dependency.
  * Plan: Docs/Research/DASH_MAGPIE_NATIVE_INTEGRATION_2026-08-31.md
+ *
+ * The catalogue it reads is UMelodiaDressingCatalog, whose content is derived
+ * from the artist's own placements (specs/p0/melusina_dressing_catalog.v1.json).
  */
 UCLASS()
 class BS_GODFILE_API UMelodiaDressingSubsystem final : public UGameInstanceSubsystem
@@ -25,7 +29,13 @@ class BS_GODFILE_API UMelodiaDressingSubsystem final : public UGameInstanceSubsy
 	GENERATED_BODY()
 
 public:
-	/** Place Count tagged hero props from the dressing catalog around CameraFocus. */
+	/**
+	 * Place Count tagged hero props from the dressing catalog around CameraFocus.
+	 *
+	 * The family is named the way the artist names it ("Room_salon") or by the
+	 * catalogue's gameplay tag. Props are placed in a golden-angle ring around
+	 * the focus; the ones flagged to settle are dropped and left to rest.
+	 */
 	UFUNCTION(BlueprintCallable, Category = "Melodia|Dressing")
 	bool DressHeroClutter(AActor* CameraFocus, const FName& FamilyTag, int32 Count);
 
@@ -43,6 +53,10 @@ public:
 	/** Catalog asset path for the dressing hero-prop families. */
 	UFUNCTION(BlueprintPure, Category = "Melodia|Dressing")
 	FSoftObjectPath GetDressingCatalogPath() const;
+
+	/** The loaded catalogue, or nullptr when it is absent. */
+	UFUNCTION(BlueprintPure, Category = "Melodia|Dressing")
+	UMelodiaDressingCatalog* LoadDressingCatalog() const;
 
 private:
 	FName ActiveFamily = NAME_None;
