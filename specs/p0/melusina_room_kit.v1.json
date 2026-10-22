@@ -26,11 +26,36 @@
     "note": "the standard doorway system between room types (case study BS-04: a shared portal system is what makes different kits combinable without bespoke geometry)"
   },
   "inputs": [
-    { "name": "RoomType", "type": "enum: Bedroom | Landing | Salon", "default": "Bedroom", "note": "the one property that chooses the room" },
-    { "name": "Seed", "type": "int32", "default": 0, "note": "the room's deterministic seed; the same seed and type must reproduce the same room" },
-    { "name": "FillDensityScale", "type": "float", "default": 1.0, "range": "0..2", "note": "scales the fill without touching the density texture" },
-    { "name": "bEnableFill", "type": "bool", "default": true },
-    { "name": "bEnableArtPass", "type": "bool", "default": false, "note": "off by default: the art pass is a manual pass, never something a placed room triggers" }
+    {
+      "name": "RoomType",
+      "type": "enum: Bedroom | Landing | Salon",
+      "default": "Bedroom",
+      "note": "the one property that chooses the room"
+    },
+    {
+      "name": "Seed",
+      "type": "int32",
+      "default": 0,
+      "note": "the room's deterministic seed; the same seed and type must reproduce the same room"
+    },
+    {
+      "name": "FillDensityScale",
+      "type": "float",
+      "default": 1.0,
+      "range": "0..2",
+      "note": "scales the fill without touching the density texture"
+    },
+    {
+      "name": "bEnableFill",
+      "type": "bool",
+      "default": true
+    },
+    {
+      "name": "bEnableArtPass",
+      "type": "bool",
+      "default": false,
+      "note": "off by default: the art pass is a manual pass, never something a placed room triggers"
+    }
   ],
   "children": [
     {
@@ -92,5 +117,13 @@
     "the Blueprint does not exist - this is a contract for it",
     "the kit has never been placed in an editor",
     "the standard portal has never been drawn between two room types"
-  ]
+  ],
+  "story_tags": {
+    "rule": "every room type carries a STORY TAG: what the clutter in that room says about the person who lived there. It is the environment half of 'fashion as narrative' (Infold, folded in 2026-10-22) and the reason the fill species were chosen the way they were - books, candles and jars are a scholar's leftover, not decoration.",
+    "examples": {
+      "Bedroom": "the scholar's own clutter breaking the clean system",
+      "Landing": "a threshold, barely lived in",
+      "Salon": "the library reaching into the salon - the house's scholarship on display"
+    }
+  }
 }

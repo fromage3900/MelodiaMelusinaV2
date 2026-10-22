@@ -90,6 +90,25 @@ The world's look is **French Romanesque-Gothic rising from water**, rendered in 
 high-craft "stylized realism" tradition of Infold (*Infinity Nikki*): rigorous real
 classical architecture, exaggerated for silhouette and light.
 
+**What "the Infold tradition" means technically (researched 2026-10-22; provenance and
+sources in `Docs/Research/INFINITY_NIKKI_ANIME_JRPG_ART_DIRECTION_2026-10-22.md`):**
+Infold's own lead programmer describes their material system as *"a re-engineered fabric
+algorithm that preserves the advantages of four-layer UV blending textures, while requiring
+only minimal parameter adjustments"*. **Melodia already speaks that language** - the
+four-layer toon blend and its `MF_ColorRamp3` / `MF_DF_ContactBlend` / `MF_ClothWindDrape`
+functions are the same family of idea. So the look is not a new shader stack to build: it
+is the existing one, used with the discipline Infold describes. A garment tier reuses the
+four-layer blend driven by the wind lane; it does not introduce a second material
+authority.
+
+Two more of their rules, both adopted:
+- **Fashion as narrative.** Infold: *"Each piece tells a story... It's fashion as
+  narrative."* Here: a garment that carries no capability is **not yet Melodia clothing**
+  (the wardrobe bar), and a room's clutter says who lived there rather than filling space.
+- **Slow enough to breathe.** Infold's pacing note - *"we want to let players breathe and
+  appreciate all the details"* - is the same argument as the P0 golden walk's ten-minute
+  opening with 0:40 beats. The walk is the design, not a delay before the design.
+
 **The signature image:** a limestone cathedral-ruin *rooted in a marsh* — pointed arches and
 a rose window still standing, water lapping the foundation, pollard ash and reed bed in the
 reflection, morning mist lifting off a canal toward a lime-washed village.
