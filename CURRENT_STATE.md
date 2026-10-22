@@ -1,4 +1,100 @@
 # Melodia Melusina ? Current State
+## THE OVERNIGHT PASS - the form system grew a stage machine, the water chorus, and two gates - 2026-10-22
+
+### What the night added (all compiled with MSVC 14.44, UBT's own toolchain)
+
+- **The stage machine.** The form change is no longer a pop: `EMelodiaWaveHarpFormStage`
+  is IDLE -> PREPARE -> TRANSFORM -> AFTERMATH. The middle is covered so the head can
+  change, and the weight lands in the aftermath. Jev picked this structure
+  (`state_vocabulary = B`); the owner's later instruction (more spectacle than a hard
+  cut) was applied *under* it - owner's word is canon, and Jev's structure was kept.
+- **The VFX beats are data.** `FMelodiaWaveHarpVfxBeat` (stage, existing system, socket,
+  scale, user parameters, offset) and `TArray<FMelodiaWaveHarpVfxBeat> FormVfxBeats`:
+  the whole look of the transformation is editable without touching C++ (Jev's
+  `next_cxx_increment = A`).
+- **THE WATER CHORUS - `MelodiaWaterChorus.h/.cpp`.** A PLAIN C++ class (no UCLASS, no
+  UPROPERTY): it adds no reflected surface, so it needs no UHT pass, and it owns no new
+  authority. It reads the palette and writes nothing.
+  - it binds the world's FluidNinja Live Actors **by ROLE** (density, strength, beat,
+    input, colour), so a renamed upstream parameter is a log line, not a silent no-op;
+  - on every downbeat: **rain disperses over the horizon**, **bubbles dot the skyline**,
+    **her hair globulates**, **the puddles answer** at her feet;
+  - **the puddles sing**: the bass band from `MPC_Melodia_Palette` drives the bound
+    fluid strength, so the water moves *with* the music;
+  - **the water transform**: the form change bursts the whole register (globules, splash,
+    pond mist) around her.
+  - every system it dispatches already exists in the project (`NS_Uni_RainRipples`,
+    `NS_Melusina_Globules`, `NS_Melusina_Splash`, `NS_Morning_PondMist`). It authors no
+    graphs. `bEnableWaterChorus` is **OFF** until the surfaces are placed in the level.
+  - contract: `specs/vfx/surreal_water_chorus.v1.json`; gate:
+    `Tools/waveharp/check_surreal_water_contract.py` (**15/15 green**).
+- **The instrument is alive (D4).** The pluck, the overtone, the sway and the resonance
+  are driven by the **music clock**, not by a frame-based sine - the same conclusion the
+  reference games reached independently (the animation owns the motion), and what the
+  audio-reactive canon already demands of the materials.
+- **One hold per form (C8).** The character-frame grip solver now keeps a solved hold per
+  form: the three heads sit at different points on the shaft, and one grip cannot hold
+  three heads.
+- **The effect budget follows the screen.** The blade ribbon and the flourish scale with
+  the camera distance, the way the reference scales its fur layers.
+
+### The gates earned their keep tonight
+
+- `Tools/waveharp/check_waveharp_form_contract.py` (**15/15**) compares the C++ socket
+  defaults against the bake manifest, proves the crescent is a crescent, counts the
+  `CurrentForm` assignment sites, refuses the unit-path-unsafe skeleton sockets, checks
+  the ring and checks that every asset the component names exists.
+- `Tools/waveharp/check_surreal_water_contract.py` (**15/15**) proved the water contract
+  AND CAUGHT A REAL BUG: the rain system is at
+  `/Game/EnvSandbox/VFX/Systems/Universal/NS_Uni_RainRipples`, not where the C++ said, so
+  the rain would never have spawned. Fixed, recompiled, green.
+- The earlier gate run also caught the skeleton sockets still driving the **ribbon** (a
+  42 m trail) - the same defect as the trace, in a second place.
+
+### Two build lessons worth keeping
+
+1. **UHT's generated header is keyed to LINE NUMBERS.** Any header edit invalidates it,
+   so the loop is: edit header -> replay UHT (3 s) -> compile (2 min). Replay it with
+   `dotnet <UE>/Engine/Binaries/DotNET/UnrealBuildTool/UnrealBuildTool.dll
+   -Mode=UnrealHeaderTool <uproject> <uhtmanifest> -WarningsAsErrors -installed`.
+2. **The UHT manifest is a build artifact that goes stale when another lane adds a
+   header** - it failed on `UMelodiaDressingCatalog` (the house-dressing lane). The
+   manifest was repaired (a generated file, not their source) and UHT then ran clean.
+   Note for the next agent: **a stale manifest is the first thing to check when UHT
+   reports a type it "cannot find"**.
+
+### The G: sync (additive, with backups)
+
+`Tools/sync/sync_to_gdrive.py` copies C: -> G: **without ever deleting anything on G:**,
+and **backs up every file it overwrites** into `G:/_sync_backup_20261022/`. The files
+that exist only on G: are left alone and reported - they may be the only copy. The
+receipt is `Saved/Audit/gdrive_sync_20261022.json`.
+
+## ⚑ REPO REVIEW 2026-10-22 — the doc and CI gates were RED on `main`; three are now green, two are not — 2026-10-22
+
+**Three of the repository's own CI gates were failing on `origin/main` before this review, and two of them were failing in a way that could never be fixed by editing the offending file.** Every failure below was reproduced on a pristine checkout of `origin/main`, so none of it was caused by the work that triggered the review.
+
+| Gate | Was | Now |
+|---|---|---|
+| `python Tools/doc_lint.py --ci` | **36 errors, 1 warning** | **0 errors, 0 warnings** (769 docs) |
+| `python Tools/validate_agent_frontdoor.py` | **FAIL** (2 missing capability signals in `AGENTS.md`) | **PASS** |
+| `python -m pytest` (CI scope, `Content/Python`) | 323 passed | 323 passed |
+| `ruff format --check` | **CRASHED** (panic, exit 101 — 14 files) | **no longer crashes** |
+| `ruff check` | 18,150 findings | 18,134 findings — **still red, deliberately not attempted** |
+
+**What was actually wrong, and what was fixed at the cause:**
+
+1. **`doc_lint` had a bug that flagged every section link in the repo.** It resolved `FILE.md#anchor` as a literal filename, so any link with an anchor was reported as broken. It now splits the fragment, checks the file, and then verifies the anchor's heading actually exists — a *stricter* check that also catches links to a section that was renamed. With that fixed, 36 real errors were exposed and each was fixed at its cause: wrong relative depth in `Docs/Production/*` and `Docs/References/MelusinasHouse/*`, a `SYSTEM_MAP.md` anchor that did not exist, and a `CURRENT_STATE.md` link to a Kenney write-up that only existed on an unlanded lane.
+2. **Four files were tracked twice**, under both `Docs/x` and `docs/x` (same blob, two index entries) because `core.ignorecase` is true. On a case-sensitive filesystem a fresh clone produced two divergent copies of the same document. The lowercase entries are gone; the files are untouched on disk and every reference already pointed at the `Docs/` spelling.
+3. **The front door had drifted from the canon `CLAUDE.md` still carries.** `AGENTS.md` said "is structured by" where the canon is "is *fundamentally* structured by", and "never create" where the canon is "*Do not* create". Both are verbatim again — the guard's phrases now match, and the canon text was not weakened to satisfy the guard. `AGENTS.md` is under a hard **32,768-byte** agent-context limit and the corrections pushed it to 32,778, so "unpushable local commits *sitting on* `main`" was tightened to "on `main`". **It now sits at 32,766 bytes with 2 bytes of headroom — know that before the next edit.**
+4. **`ruff format --check` was crashing, not checking.** A UTF-8 BOM made ruff's diff renderer panic (`Annotation range 0..82 is beyond the end of buffer 79`); 14 files were affected, and 63 BOM files existed in the CI scope. The BOM is also not valid Python. Two real defects were hiding behind the crash: `Tools/BlenderAddons/blender_brutalist_gn/ui/panel_main.py` had a quote in the wrong place (`"icon':` where its three siblings read `"icon":`) so the whole Blender panel module failed to parse, and `Tools/BlenderAddons/rust_gpu_sdf_addon/engine_fix_temp.py` was an abandoned, mis-indented scratch fragment whose logic `engine.py` has since superseded with Blender 4.1+ Attribute API support. Both fixed. **0 syntax errors across all 2,798 Python files in scope; 0 ruff panics.**
+5. **Forty orphaned session documents were archived** to `Docs/_Archive/2026-10-21/`, the convention this repo already used for `Docs/_Archive/2026-06/`. Each was verified first: **zero inbound references** (path *and* basename, in any tracked file — doc, tool, spec or workflow), session-shaped, its subject live elsewhere, and no open work stranded in it. Every archived file was then proved against its `origin/main` source: **38 are byte-identical, 2 differ only in the target of a markdown link** because the move changed the depth those relative links resolve from. No prose was altered anywhere.
+6. **Fourteen byte-identical duplicate documents were removed** after proving each had an identical copy retained at its canonical path, and `Docs/Poitou/current_state.md` was renamed `poitou_v2_state_2026-10-20.md` because its basename shadowed `CURRENT_STATE.md` and broke the one-status-document rule.
+
+**What is still red, and why it was not attempted here:** `ruff check` reports **18,134 findings** and `ruff format --check` wants to reformat **1,878 files**. Both are pre-existing on `origin/main` and are a repo-wide cleanup, not a defect — fixing the crash only unblocks the gate, it does not make it green. Note also that **CI does not pin a ruff version** (`ruff` is taken from the runner's `PATH`), so the finding count is not reproducible across runner images. That is worth deciding on separately.
+
+**The lane:** `refs/agents/docs-archive-20261021` — 3 commits, 0 files of binary. It is **8 commits behind `origin/main`** and the branch-lifecycle guard will refuse to land it as-is; it needs a fresh branch from current `origin/main` and a reconverge of the bounded delta, which is the integrator's call.
+
 ## THE NIGHT SHIFT - the house pipeline, built offline, and the 02:00 build - 2026-10-21/22
 
 **Owner:** *"set up and overnight /loop and keep expanding these systems offline for a few hours and then pack it up for a clean offline c++ build at around 2:00am, and fold in top Infinity Nikki / Anime JRPG research in between ticks."* Done offline; no editor was touched; the build is armed for 02:00.
@@ -15,6 +111,13 @@
 | The density textures | `Content/EnvSandbox/PCG/House/Textures/dressing_heatmap_*.png` | P4 CL 306, derived from the artist's placements |
 | The import helper | `Content/Python/melusia_house_fill_import.py` | written, NOT run - the editor belongs to the artist |
 | The research | `Docs/Research/INFINITY_NIKKI_ANIME_JRPG_ART_DIRECTION_2026-10-22.md` | Infold + the anime-JRPG wardrobe catalogue, with the folds applied |
+
+**THE BUILD IS GREEN.** `BS_GodFileEditor Win64 Development` - every module compiled and linked, `Result: Succeeded`, and a second invocation says `Target is up to date` (exit 0). The editor target DLL was written at 00:33. Two failures were between the tree and that result, and they were not the same failure:
+
+- **Ours:** `LNK2019` on `Z_Construct_UClass_UPhysicalMaterial` - `UPhysicalMaterial` lives in **PhysicsCore**, which Engine only depends on privately, so the symbol was never exported to this module. Fixed by adding `"PhysicsCore"` to `PrivateDependencyModuleNames` (no cycle). **Committed.**
+- **Theirs, and it was 8 hours stale:** the other session's *uncommitted* `MelodiousFlightCharacter.cpp` had `error C4458: declaration of 'Mesh' hides class member` - a local `Mesh` shadowing `ACharacter::Mesh` in `UpdateCrestRaise`. That file had not been touched since 16:25 and had been failing every build since. Fixed **in their working tree** with a mechanical rename (`Mesh` -> `CharacterMesh`, four uses in one function). **Not committed** - it sits inside their 226-line crest-raise feature, which is theirs to commit. HEAD's version of that file has no such local, so **main is not broken** and their working tree is left exactly as they had it, plus the rename.
+
+**The mesh build was stopped, and it was mine.** The Enchanted Interiors `NicheA`/`NicheC` commandlet had been running 2h45m with no file written, competing with the compile for memory (the commit limit sat at 82%). It was stopped so the build could have the machine; both meshes stay unstamped in the scratch project with their 2025 timestamps intact, nothing half-saved. The pack is **2,335 of 2,337** (the Roof came home in CL 304); the last two are a job for a night with the editor closed and nothing else running.
 
 **Two corrections that would have cost a morning.** (1) The fill contract named a `PCGDensityData` asset - **that class does not exist in UE 5.8**: `APCGVolume` carries no density asset, and the density is a `$Density` ATTRIBUTE produced inside the graph by PCGEx (`PCGExGetTextureData` -> `PCGExSampleTexture`), with `PCGExSelectorDensityWeighted` choosing the species by it. And `PCGExGetTextureData`'s `ColorChannel` defaults to **ALPHA** - a grayscale density texture has its value in RGB, so the channel must be R or the whole field reads 1.0 and the room fills evenly. (2) The Jev packet's first run sent `criteria={option: None}`, so the option descriptions never reached the service and it answered "A" to all five questions - a receipt that looked fine and carried no judgement. Both are fixed and both lessons are written into the workflow doc.
 
@@ -1140,7 +1243,7 @@ The closed-editor build, the Sir party-switch PIE proof, the ACF-melee-into-`Res
 
 **Poitou owner decisions - 2026-10-21 (recorded, not yet executed).** (1) Live layout = the most recent source: `Tools/Poitou/hda/poitou_layout_live.hdalc` (2026-10-21 19:49, node `poitou_layout_live_v6`, 7 folders / 89 leaf parms per hython introspection). Its `f_live_6` folder carries the updated work - revetment controls, `foundation_material`, `masonry_roof_material` / `roof_material`, `abbey_bays` / `abbey_bay_length` / `abbey_nave_width` / `abbey_wall_height` / `abbey_gallery_height` / `abbey_westwork_height` / `abbey_portal_span`, `lane_material` / `lane_length`, poplar bark/foliage slots. Kenney is killed: 0 case-insensitive `kenney` hits in the live `.hdalc` binary, and its material slots resolve to native Poitou/Melodia assets (tufa blocks, limestone rubble core, arase brick, tile, stone plinth, ash bark, poplar). The level still references `Candidates/Poitou_Layout_RoomShell_Candidate`, not this source - pointing the level at the live layout (or re-importing it) is the queued step. (2) Bake policy = **recook, not bake**: Poitou Houdini actors stay live-cooked for artistic iteration, Temp output accepted as transient. Consequence recorded: on any machine/session where the recook does not run (as in the 00:45 session, 14 house cooks and zero Poitou cooks), the level loads with holes - the 14 missing Temp packages are that failure mode, not a broken HDA. (3) Assembly authority, verified 2026-10-21: `Tools/Poitou/build_poitou_hda.py` (38,773 bytes) builds every wrangle as `kit.vex` + feature snip - size-arithmetic, section headers and identifier sets all match the live HDA, and `inst.vex` is byte-identical inside and out. No fork, no orphans: `lane/cross/village/poplar/hz/lscape/skf/skcut` all assemble into their named wrangles. The builder is git-invisible (`Tools/*` ignore) - same force-add decision owed as the cathedral builders; lose that file and the HDA cannot be rebuilt from git.
 
-**Poitou lock generator - night of 2026-10-21 (in progress, headless).** `Tools/Poitou/snip/lock.vex` written to spec (kit functions only, ~340 lines: chamber walls leaf+core+band on the bed, mitre gate pairs + sills + beams, coping, bollards, lamp, 7 piano treads with `s@note`, timber jetty, lockhouse in 2 styles past the 12 m quiet gap). `build_poitou_hda.py` wired (`LOCK_chamber_steps = kit + lock`, merged into `output_generated`, new `f_lock` folder, 12 parms). Rebuild + test cook running headless; gates queued (`poitou_lock_gate.py`: 11 groups, 4.8 m chamber measure, notes == steps, `lock_steps_n` drive, `lock_on` kill). All artefacts live under git-invisible `Tools/*` - nothing staged or committed. **Tomorrow's Education-licence editor queue:** (1) open `L_Poitou_v2` and recook with the live HDA (V6+lock) so the 14 missing Temp packages regenerate; (2) owner call: level points at `Candidates/...RoomShell` while the live source is `poitou_layout_live.hdalc` - reconcile or re-import; (3) Gate 2 hython pins still owed for stained glass + abbey; (4) confirm recook policy holds (no bake) after the Temp regeneration.
+**Poitou lock generator - PASSED 2026-10-22 (headless, 18/18).** `Tools/Poitou/snip/lock.vex` written to spec (kit functions only, ~340 lines: chamber walls leaf+core+band on the bed, mitre gate pairs + sills + beams, coping, bollards, lamp, 7 piano treads with `s@note`, timber jetty, lockhouse in 2 styles past the 12 m quiet gap). `build_poitou_hda.py` wired (`LOCK_chamber_steps = kit + lock`, merged into `output_generated`, new `f_lock` folder, 12 parms). Gate `Tools/Poitou/gates/lock_gate.py` → receipt `Saved/Audit/PoitouConvergence_20261020/lock_gate.json`: **18/18 PASS** (11 groups at exact designed counts, wall-centre separation 6.150 m, notes [0..6], 7→5 drive 42→30 prims, `lock_on=0` kills all lock output, site on bief (350.6, 3.33, 457.7)). Two real bugs fixed: bank height was sampled mid-channel (coping underwater) - now at channel edge + towpath; and **H22 killed the `addvertex(-1)+addprim(verts)` idiom, so every V6 wrangle prim was vertex-less - 1.5M prims of ghost geometry, and all prior "verified" counts were metadata.** Kit rewritten to point-list `addprim` (`kit_box`, `kit_arch`, `kit_taper`); global census now 4.0 verts/prim everywhere (masonry 1.33M refs, generated 1.11M). First real-vertex Poitou cook. All artefacts live under git-invisible `Tools/*` - nothing staged or committed; force-add decisions (kit + builders + lock.vex + gates) still owed. **Tomorrow's Education-licence editor queue:** (1) open `L_Poitou_v2` and recook with the live HDA (V6+lock) so the 14 missing Temp packages regenerate; (2) owner call: level points at `Candidates/...RoomShell` while the live source is `poitou_layout_live.hdalc` - reconcile or re-import; (3) Gate 2 hython pins still owed for stained glass + abbey; (4) confirm recook policy holds (no bake) after the Temp regeneration.
 
 **Poitou protection snapshot - 2026-10-21.** Poitou had no equivalent of the house's `MAGICIANS_OPS` snapshot/restore path. `Saved/Audit/poitou_protection_20261021/` now holds byte copies plus a SHA256 manifest of `L_Poitou_v2.umap`, `poitou_layout_live.hdalc`, all six Poitou HDA `.uasset` files, both Abbey `.hda` copies and `MelodiaRoomShell_1.0.hda`, with the Poitou receipts. 11 files, 8.3 MB; re-hashed after writing, 0 mismatches; taken with no editor process running. `protection_manifest.json` carries the restore procedure. This is a recovery point, not a merge source.
 
