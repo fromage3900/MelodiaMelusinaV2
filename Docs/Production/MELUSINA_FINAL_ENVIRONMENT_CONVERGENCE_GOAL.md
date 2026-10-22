@@ -1139,10 +1139,18 @@ Researched against SideFX docs and the 22.0 changelog on 2026-10-21. This sectio
 section 13 executable without an editor: the point is that a frontier model can author a dozen
 generators, gate them, and stage them, and the owner does ONE cook at the end.
 
-### 14.1 The finding that changes the environment first: the Houdini build is behind UE 5.8
+### 14.1 The environment: what our Houdini build already has, and what an upgrade would buy
 
-The workstation runs **Houdini 22.0.368**. SideFX added Unreal 5.8 support in **22.0.355**
-(2026-06-18) and has shipped UE 5.8 fixes since:
+**CORRECTION (2026-10-21, later the same day): an earlier draft of this section claimed our build
+"predates UE 5.8 support by two patches". That was wrong, and it is corrected here because the
+next agent would otherwise act on it.** The workstation runs **Houdini 22.0.368**. SideFX added
+Unreal 5.8 support in **22.0.355** (2026-06-18), and 22.0.368 is **thirteen patches newer**, so
+**we are already past the UE 5.8 support line** and past the 22.0.359 fix for the UE 5.8
+collision-preset crash. The installed plugin is **HEU 3.0 built for H22.0.368**
+(`Plugins/HoudiniEngine/HoudiniEngine.uplugin`: `VersionName: 3.0 - H22.0.368`) - paired and
+correct. **No upgrade is needed to make UE 5.8 work.**
+
+What we genuinely lack is everything dated AFTER our build:
 
 | build | date | what it fixes for us |
 |---|---|---|
@@ -1156,11 +1164,23 @@ The workstation runs **Houdini 22.0.368**. SideFX added Unreal 5.8 support in **
 The plugin releases track the Houdini build exactly: **HEU 4.0.3 = Houdini 22.0.566, HEU 4.0.2 =
 22.0.459, HEU 4.0.1 = 22.0.429** - all shipping UE5.8 binaries, all on **HAPI 9.0**.
 
-**Recommendation (owner decision, one action):** upgrade the Houdini install to **22.0.471+** and the
-plugin to **4.0.3**, in that order, so the plugin's HAPI and the Houdini build stay paired. 22.0.368
-predates UE 5.8 support by two patches and the UE 5.8 landscape-spline fix by four. It also predates
-the **Houdini Asset Component lock**, which is the feature that would have prevented the incident
-of this session (see 14.5).
+**Recommendation, in proportion to what it buys:** **do not upgrade tonight.** An upgrade means
+reinstalling Houdini, bumping the plugin, and re-validating a working pipeline on a machine with a
+live editor, and it buys OPTIONAL things only:
+
+| what | build | worth it? |
+|---|---|---|
+| the **Houdini Asset Component lock** (including lock-on-load) | 22.0.470 | **yes** - a locked component cannot be modified or cooked by accident, and that is exactly the failure this session caused |
+| the UE 5.8 **landscape spline assertion** fix and the SessionSync UI-stall fix | 22.0.470 | yes, if/when we drive landscape splines and Session Sync |
+| PCG outputs correctly re-used between cooks | 22.0.470 | yes if we lean on PCG |
+| nanite mesh data correct when one mesh is used by two HDAs with different settings | 22.0.401 | low - we use each in-theme mesh in one HDA |
+| **SideFX Labs** (needs >= 22.0.382) | see 15.2 | only if it earns its place against our own implementation |
+
+**If and when the owner does it:** the Launcher has **Houdini 22.0.466 already staged locally**,
+22.0.466 is an exact Labs tag, and the matching plugin releases are **HEU 4.0.2 (Houdini 22.0.459)**
+or **4.0.3 (Houdini 22.0.566)** - take the one whose HAPI matches the Houdini build, and install
+Labs from the public GitHub tarball for that exact tag. Do it in a planned window with the editor
+closed, not mid-session.
 
 ### 14.2 Session Sync is the live workflow - and it is what makes CAD-like work possible
 
