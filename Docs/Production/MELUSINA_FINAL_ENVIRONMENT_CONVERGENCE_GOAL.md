@@ -40,7 +40,7 @@ The core rule: **The architectural rhythm IS the music.**
 > (2.4 : 3.6 = 2 : 3, which is 4 beats : 6 beats, not 3 : 4) and contradicted the Poitou build
 > grid, which fixes one tempo and one speed. **One tempo, one grid, one bar — 0.6 m / 2.4 m /
 > 128 BPM 4/4.** This is the meter `Recipes/melodia_poitou_parisian_v2.json` (`bpm: 128`),
-> `Docs/Poitou/current_state.md` ("Grid 0.6 m, bar = 2.4 m, 128 BPM"), the AE animation layer
+> `Docs/Poitou/poitou_v2_state_2026-10-20.md` ("Grid 0.6 m, bar = 2.4 m, 128 BPM"), the AE animation layer
 > (`Tools/Poitou/ae_first_day_animation_layer.md`, "1 bar = 1.875 s", `A_MEL_Walk_PianoStep_128`)
 > and the AbbeyBuilder HDA (`bay_length` 2.4 m) already assume.
 >

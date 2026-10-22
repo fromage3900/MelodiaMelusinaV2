@@ -91,15 +91,53 @@ def check_broken_links(md_files: list[Path]) -> list[dict]:
             # Skip anchor-only links within the same file
             if link_path.startswith("#"):
                 continue
+            # Split off a "#anchor" suffix before resolving: a link to
+            # "FILE.md#section" points at FILE.md, not at a file literally
+            # named "FILE.md#section".
+            file_part, _, anchor = link_path.partition("#")
+            if not file_part:
+                # "#anchor" only, already handled above; guard against empty
+                continue
             # Resolve relative to the md file's directory
-            resolved = (md.parent / link_path).resolve()
+            resolved = (md.parent / file_part).resolve()
             if not resolved.exists():
                 broken.append({
                     "file": str(md.relative_to(REPO)),
                     "link": link_path,
                     "text": link_text,
                 })
+                continue
+            # The anchor must exist in the target file, otherwise the link
+            # lands the reader at the top of a long document.
+            if anchor and resolved.suffix.lower() == ".md":
+                if not _has_anchor(resolved, anchor):
+                    broken.append({
+                        "file": str(md.relative_to(REPO)),
+                        "link": link_path,
+                        "text": link_text,
+                    })
     return broken
+
+
+def _slugify_heading(heading: str) -> str:
+    """GitHub-style heading slug: lowercase, spaces to dashes, drop punctuation."""
+    slug = heading.strip().lower()
+    slug = re.sub(r"[^\w\s-]", "", slug)
+    slug = re.sub(r"[\s]+", "-", slug)
+    return slug.strip("-")
+
+
+def _has_anchor(md_path: Path, anchor: str) -> bool:
+    """True if the markdown file has a heading whose slug matches the anchor."""
+    try:
+        content = md_path.read_text(encoding="utf-8", errors="ignore")
+    except Exception:
+        return True  # unreadable: do not invent a failure
+    for line in content.split("\n"):
+        m = re.match(r"^#{1,6}\s+(.*?)\s*#*$", line)
+        if m and _slugify_heading(m.group(1)) == anchor:
+            return True
+    return False
 
 
 # ── Check 2: Duplicate doc basenames ────────────────────────────────

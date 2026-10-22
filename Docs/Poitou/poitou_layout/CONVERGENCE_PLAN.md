@@ -1,7 +1,7 @@
 # Poitou: "Melusina's First Day" — Convergence Plan (v2, Live Houdini Engine & Environment Pipeline)
 
 **Scope:** `L_Poitou_v2.umap`, 1.0 km² core playable footprint, 7-beat narrative & acoustic progression.  
-**Stylistic Mandate:** "Musical but French" ([style_contract.md](file:///c:/EnvironmentPortfolio/BS_GodFile/Docs/Poitou/poitou_layout/style_contract.md)), 2.4 m bay rhythm, 0.6 m architectural module, Romanesque/Gothic transition (Maillezais Abbey anchor), Marais Poitevin canal hydrology.  
+**Stylistic Mandate:** "Musical but French" ([style_contract.md](../style_contract.md)), 2.4 m bay rhythm, 0.6 m architectural module, Romanesque/Gothic transition (Maillezais Abbey anchor), Marais Poitevin canal hydrology.  
 **Engineering Directive:** Stock Unreal Engine 5.8 + live Houdini Engine 22.0.368 SessionSync + PCG/Lumen/Nanite. Zero new C++ required. Sub-second procedural iteration turnaround.
 
 ---
@@ -51,7 +51,7 @@ flowchart TD
 
 ## 2. Infold / Infinity Nikki Research Foundations
 
-Sourced from production interviews, GDC lectures, and Unreal Engine developer case studies ([INFOLD_PIPELINE_FACTS.md](file:///c:/EnvironmentPortfolio/BS_GodFile/Docs/Poitou/research/INFOLD_PIPELINE_FACTS.md), [INFINITY_NIKKI_BRIEF_v2.md](file:///c:/EnvironmentPortfolio/BS_GodFile/Docs/Poitou/research/INFINITY_NIKKI_BRIEF_v2.md)):
+Sourced from production interviews, GDC lectures, and Unreal Engine developer case studies ([INFOLD_PIPELINE_FACTS.md](../INFOLD_PIPELINE_FACTS.md), [INFINITY_NIKKI_BRIEF_v2.md](../INFINITY_NIKKI_BRIEF_v2.md)):
 
 1. **The "Impossible Triangle" of Map Design (PR Peng, GDC 2026):**  
    Every beat explicitly balances **Aesthetics**, **World Consistency**, and **Platforming Function**. Art refuses sharp, rigid rectilinear water edges purely for gameplay; instead, natural meanders, marsh reeds, and organic stone embankments buffer traversal zones.

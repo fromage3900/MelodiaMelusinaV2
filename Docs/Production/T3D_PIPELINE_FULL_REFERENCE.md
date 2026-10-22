@@ -120,7 +120,7 @@ looked correct in every graph read:
 
 Full reference (toon profiles, Niagara MPC, inject snippets, `ci_gates.json`, Monolith
 blueprint/material/editor/project/niagara actions):
-[`Docs/Production/T3D_MONOLITH_REFERENCE.md`](Docs/Production/T3D_MONOLITH_REFERENCE.md).
+[`Docs/Production/T3D_MONOLITH_REFERENCE.md`](T3D_MONOLITH_REFERENCE.md).
 
 ---
 

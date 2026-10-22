@@ -1,4 +1,11 @@
 # Melodia Melusina ? Current State
+**This is the only status document.** If any other file states what works, what is open, or what
+to do next, that file is wrong: fix this one instead. Update it in the same commit as the change it
+describes. Handoffs, plans, receipts and session notes go in the commit or PR message, never in a
+new file.
+
+**Updated:** 2026-10-22 · **Engine:** UE 5.8 · Blender 5.2 LTS · C++20 · Python 3.11
+
 ## THE OVERNIGHT PASS - the form system grew a stage machine, the water chorus, and two gates - 2026-10-22
 
 ### What the night added (all compiled with MSVC 14.44, UBT's own toolchain)
