@@ -47,6 +47,12 @@ SKIP_DIRS = [d for d in os.environ.get("ECV_SKIP_DIRS", "Materials").split(",") 
 # work on disjoint halves of the same folder without ever touching the same file.
 SHARD_MIN = os.environ.get("ECV_SHARD_MIN", "")
 SHARD_MAX = os.environ.get("ECV_SHARD_MAX", "")
+# Optional cap on how many packages ONE process handles. The pack's mesh builds
+# are the memory hogs (a single 273 MB mesh needs 7.7 GB to build), so a bounded
+# batch keeps a second UE process well inside the commit limit while another
+# editor session is open. Re-run until the count stops changing; already-stamped
+# packages are skipped, so each pass converges.
+MAX_FILES = int(os.environ.get("ECV_MAX_FILES", "0")) or None
 
 LINES = []
 
@@ -130,6 +136,11 @@ def main():
         f"shard: {SHARD_MIN or '-'}..{SHARD_MAX or '-'})")
 
     assets.sort(key=lambda t: t[0])          # ascending: cheap first, monsters last
+    if MAX_FILES:
+        # a bounded batch keeps a second UE process inside the commit limit while
+        # another editor session is open; re-run until the count stops changing
+        assets = assets[:MAX_FILES]
+        log(f"batch capped to {len(assets)} packages (smallest first)")
     total_bytes = sum(a[0] for a in assets)
     log(f"total on disk: {total_bytes/1024/1024:.0f} MB")
 
