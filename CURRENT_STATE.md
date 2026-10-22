@@ -1,4 +1,225 @@
 # Melodia Melusina ? Current State
+## SYNC VERIFIED - zero files left to copy, and the two self-referential warts fixed - 2026-10-22
+
+The final verification (`Tools/sync/sync_to_gdrive.py`, a dry run) reads:
+
+```
+C: files in scope: 95068      G: files in scope: 132148
+files to copy/update : 0        already identical : 95065
+only on G: (left)    : 37081    errors : 0
+```
+
+**Zero files left to copy.** The 37,081 that exist only on G: are G:'s own unique work
+(its parked history's assets, its own logs, and the 8,440 backups this sync wrote) - they
+are **left alone by design**, and the 17,911 that matter (the Painterly 4K texture set,
+the toon master variants) have been pulled onto C: as their second home.
+
+**Three things the sync taught, worth keeping:**
+
+1. **42 files had identical sizes but disagreeing timestamps**, so a size+time
+   comparison kept flagging them as changed. They were force-copied and then
+   **hash-verified on both sides** (42/42 identical) - a timestamp disagreement is not a
+   content difference, and the hash is the proof.
+2. **Some G: files carry the read-only attribute**, and a read-only destination cannot be
+   overwritten. The sync now clears the attribute on the destination before copying.
+3. **The sync's own receipt was inside the scope it synced**, so every run flagged its
+   own output as changed. The receipt is now excluded, and it stores counts and samples
+   instead of 95,000 paths (13 MB -> 8.5 KB).
+
+**How to check any of this independently, without trusting a receipt:**
+
+```
+C:/Python314/python.exe Tools/sync/sync_to_gdrive.py          # must read 0 to copy
+C:/Python314/python.exe Tools/waveharp/check_waveharp_form_contract.py
+C:/Python314/python.exe Tools/waveharp/check_surreal_water_contract.py
+```
+
+### The night's closing state
+
+| | |
+|---|---|
+| Build | clean closed-editor, **Succeeded**; the DLL carries the night's receipts |
+| C10 | **7/7 green headless** (`Saved/Audit/waveharp/automation_c10_final.log`) |
+| Gates | form contract **15/15**, water contract **15/15** |
+| G: | **0 files left to copy**; 8,440 originals backed up (18.4 GB); 17,911 G:-only files mirrored onto C: |
+| Offsite | G:'s parked history is on `origin` as `collab/gdrive-parked-20261013` |
+| Staged | 22 of the night's paths, uncommitted, for the integrator |
+
+## THE G: SYNC - 34.32 GB copied, 8,440 originals backed up, nothing deleted - 2026-10-22
+
+**First pass, additive, with backups.** `Tools/sync/sync_to_gdrive.py --apply`:
+
+- **20,776 files copied / updated, 34.32 GB** (the plan was 20,815 / 34.19 GB - the
+  difference is the files that arrived while the pass was running).
+- **8,440 files were backed up first** into
+  `G:/EnvironmentPortfolio/BS_GodFile/_sync_backup_20261022/` - **18.4 GB** of G:'s
+  originals, so every overwritten file still exists in its old form ✓.
+- **17,910 files exist only on G:** and were **left alone** - they are not on C:, and
+  some of them (the Painterly 4K texture set, the toon master variants) have no other
+  copy. They are pulled onto C: by `Tools/sync/gdrive_only_files_to_c.py` as a second
+  home.
+- **42 files failed with "Permission denied"**: those G: files carry the **read-only**
+  attribute, and a read-only destination cannot be overwritten. The sync now clears the
+  attribute on the destination before copying, and the second pass re-copies them.
+  Until that pass lands they are the *only* files still stale on G:.
+- **Nothing on G: was deleted, ever.** The rule is in the script, not in a promise: the
+  sync has no delete path at all.
+
+**How to verify it independently** (do not trust the receipt alone):
+
+```
+C:/Python314/python.exe Tools/sync/sync_to_gdrive.py            # dry run: what would change
+C:/Python314/python.exe Tools/sync/gdrive_only_files_to_c.py    # the G:-only safety net
+```
+
+The dry run is the proof: after the passes, "files to copy/update" must be ~0 and
+"only on G:" must still be ~17,910 - that number is G:'s unique work, not an omission.
+
+## THE CHLADNI DISPERSION - the water follows the standing-wave figure - 2026-10-22
+
+The last increment of the night closes the loop the owner asked for: the water
+disperses **along the Chladni figure**, not as a generic spray.
+
+`UWorldFieldBus::SampleResonanceTension(Position)` already carries the standing-wave
+signature the cymatics subsystem publishes - `ResonanceN`, `ResonanceM`, `Tension`,
+`BeatPulse`, `Mode`, `Consonance` and the field's `WorldPosition`. The water chorus now
+samples it at Melusina's position and uses it:
+
+- the fluid's **input point** rides the field's `WorldPosition`, so the dispersal
+  travels with the figure;
+- the fluid's **strength** rides `max(bass, Tension)`, so the water tightens when the
+  figure is tense;
+- the beat and the density keep riding the music clock.
+
+The chorus only **reads** the bus. `UMelodiaCymaticsSubsystem` remains its only
+publisher, so there is still exactly one writer per surface.
+
+### The final state of the night
+
+- **Build**: clean closed-editor `BS_GodFileEditor Win64 Development`, **Succeeded**,
+  the module DLL verifiably carrying the night's receipts (searched in UTF-16 - UE's
+  `TEXT()` is `wchar_t` on Windows, so an ASCII search finds nothing and a green build
+  looks like a build without the new code).
+- **C10**: **7/7 green headless**, unattended, on the surface Jev chose
+  (`UnrealEditor-Cmd -ExecCmds="Automation RunTests Melodia.WaveHarp"`), receipt
+  `Saved/Audit/waveharp/automation_c10_final.log`.
+- **Gates**: the form contract **15/15** and the surreal water contract **15/15**,
+  both offline, no editor.
+- **Six increments**, each a bounded authored patch in
+  `Tools/waveharp/increments/`, each applied, compiled and proved.
+- **Staged for the integrator** (25 paths, not committed): the component, the chorus, the
+  test file, the six increments, the two gates, the two Jev packets, the two sync tools
+  and the four specs.
+
+## C10 IS GREEN HEADLESS - the WaveHarp form suite runs in CI, unattended - 2026-10-22
+
+`Source/BS_GodFile/MelodiaIntegration/Tests/MelodiaWaveHarpFormTests.cpp` runs
+**unattended, with no editor window**, on the surface Jev chose
+(`c10_run_surface = A`): `UnrealEditor-Cmd -ExecCmds="Automation RunTests
+Melodia.WaveHarp" -testexit="Automation Test Queue Empty"`.
+
+**First run: `Found 5 automation tests` - all five `Result={Success}` - "Automation Test
+Queue Empty 5 tests performed."** The receipt is
+`Saved/Audit/waveharp/automation_c10_run1.log`.
+
+The tests are the CONTRACT, not the implementation, and the numbers are read from the
+component's own defaults (which the offline gate compares against the bake manifest):
+
+| Test | What it guards |
+|---|---|
+| `BladeReachIsTheMeasuredCrescent` | **D8** - the crescent is ~41 cm on a ~37 cm radius, and never the shipped 42 m sweep |
+| `TransitionIsEased` | **D3** - the transition is a smoothstep: slower than linear in the first half, faster in the second, monotonic, never a pop |
+| `RingOrder` | HARP -> BOW -> CARILLON -> HARP, three steps complete the ring |
+| `SocketFramesCompose` | the measured frames: grip 13 cm, head seat 105 cm, projection 121 cm, and the blade root lands near the top of the shaft |
+| `MeleeFormWeight` | the crescent unfolds with the form and folds back with it |
+| `BeatLockLandsTheHandoffOnTheBeat` | **Jev's first assertion** - the HANDOFF lands on the downbeat (start + half a transition == the beat), and no music means no delay |
+| `AttackIsBufferedNotEaten` | **Jev's first assertion** - an attack during the flourish is refused and BUFFERED, never eaten |
+
+**What this closes.** D3 and D8 were shipped once and survived a green compile. They now
+have a headless regression guard that runs in CI, on the committed harness - the same
+discipline the T3D pipeline demands ("a probe is not play evidence"; "the committed
+harness being the harness that ran").
+
+**What it does not close.** The suite is world-free by design, so it proves the contract
+and the maths, not the runtime. The head swap, the flourish, the buffered attack in a
+live game and the FluidNinja binding still need a PIE pass; the receipts for those are
+`Melodia.WaveHarp.SetForm`, `Melodia.WaveHarp.DumpForm` and the
+`MELODIA_WATER_CHORUS bound` log lines.
+
+## THE OFFSITE COPY - the storage law says GitHub, but one of the two GitHub remotes is ARCHIVED - 2026-10-22
+
+Measured tonight, while trying to make G:'s parked history safe:
+
+- **`legacy-melodia` -> `github.com/fromage3900/MelodiaMelusina.git` is ARCHIVED and
+  READ-ONLY.** A push fails with `403: This repository was archived so it is
+  read-only`. It still serves reads (15 branches are visible), so a fetch looks healthy
+  while **nothing can be pushed to it**.
+- **`origin` -> `github.com/fromage3900/MelodiaMelusinaV2.git` is the LIVE repo and is
+  writable**, with a pre-receive hook that polices branch names: a branch must start
+  with `feature/`, `fix/`, `docs/`, `cleanup/`, `collab/`, `integration/`, `codex/`,
+  `recovery/` or `cursor/`.
+- So the sentence in the storage law - "**GitHub is the only offsite copy**" - is now
+  half true: it is true of `origin` (V2) and **false of `legacy-melodia`**, and
+  `D:\perforce\root` (the Perforce server root) is on this machine, so a p4 submit is
+  history-tracked, not offsite.
+
+**What was done about it.** G:'s parked branch `wip/main-local-20261013`
+(`688b688cc`, "wip: park HUMBER laptop working tree 20261013") was on **no remote
+branch at all** - it was the only copy of that history anywhere. It is now pushed to
+the live repo as **`collab/gdrive-parked-20261013`** (a new ref, no force, no history
+rewrite), and `git ls-remote` confirms `688b688cc` is there. The parked history is now
+in two places.
+
+**The standing rules that follow.**
+1. **Never treat a remote as safe because a fetch works.** A fetch proves readability,
+   not writability. Check the push path before believing a backup exists.
+2. **The `legacy-melodia` remote is a read-only archive.** Anything that must be
+   offsite-safe goes to `origin` (V2), under a policed branch name.
+3. **The C: tree is 51 commits ahead of `origin/main` and 66 behind it** - the local
+   main is mid-reconverge, so those 51 commits are local-only until the integrator
+   lands them.
+
+## THE BUILD IS GREEN AND PROVEN - and the proof taught a lesson - 2026-10-22
+
+### The build
+
+A **clean closed-editor build** (`BS_GodFileEditor Win64 Development`, the editor was
+**closed** - not a Live Coding build, not a stale-DLL build). Result: **Succeeded**.
+The module DLL `Binaries/Win64/UnrealEditor-BS_GodFile.dll` (4.4 MB) was linked at
+00:33 and **contains tonight's code**, verified by searching the binary for the
+receipt strings: `MELODIA_WATER_CHORUS` x3, `MELODIA_WAVEHARP_FORM_LANDED`,
+`MELODIA_WAVEHARP_VFX`, `MELODIA_WAVEHARP_BLADE_DUMP`, `MELODIA_WAVEHARP_FORM_SET`,
+`MelodiaWaterChorus`.
+
+### The lesson: "the build is green" decays into a lie - and here is how it nearly did
+
+1. **The strings are UTF-16.** UE's `TEXT()` is `wchar_t` on Windows, so an ASCII
+   search of the DLL finds *nothing* and a green build looks like a build without the
+   new code. The receipts were in the binary the whole time. **Verify a build by
+   searching for a receipt string in UTF-16, or the build proves nothing.**
+2. **The module's objects were NEWER than the sources**, so UBT was right to say
+   "Target is up to date" - but that is only checkable if you compare the object's
+   timestamp against the *source's*, not against the clock.
+3. **A concurrent lane can fail your build.** The 42-minute run died on
+   `MelodiousFlightCharacter.cpp` (`ACharacter::Mesh` is private in UE 5.8; the fix is
+   `GetMesh()`). Its owner had already fixed the file by the time I looked, so the
+   retry went green - but a build failure in someone else's file is not your bug, and
+   not your fix to guess at. Re-run, read the error, and only touch another lane's
+   source if the owner has not already.
+
+### The G: sync (additive, with backups, nothing deleted)
+
+`Tools/sync/sync_to_gdrive.py` copies C: -> G: and **never deletes anything on G:**.
+Every file it overwrites is first backed up into `G:/_sync_backup_20261022/`, and the
+files that exist only on G: are left alone and reported. The plan was **20,815 files /
+34.19 GB** (67,789 already identical, 17,913 only on G:). The receipt is
+`Saved/Audit/gdrive_sync_20261022.json`.
+The reverse safety net - `Tools/sync/gdrive_only_files_to_c.py` - copies the files that
+exist **only** on G: (17,910 files / 10.97 GB, including the Painterly 4K texture set
+and the toon master variants) onto C:, because G:'s branch history
+`wip/main-local-20261013` (`688b688cc`) is on **no remote branch** and G: is therefore
+their only copy.
+
 ## THE OVERNIGHT PASS - the form system grew a stage machine, the water chorus, and two gates - 2026-10-22
 
 ### What the night added (all compiled with MSVC 14.44, UBT's own toolchain)
@@ -119,7 +340,7 @@ receipt is `Saved/Audit/gdrive_sync_20261022.json`.
 
 **The mesh build was stopped, and it was mine.** The Enchanted Interiors `NicheA`/`NicheC` commandlet had been running 2h45m with no file written, competing with the compile for memory (the commit limit sat at 82%). It was stopped so the build could have the machine; both meshes stay unstamped in the scratch project with their 2025 timestamps intact, nothing half-saved. The pack is **2,335 of 2,337** (the Roof came home in CL 304); the last two are a job for a night with the editor closed and nothing else running.
 
-**Two corrections that would have cost a morning.** (1) The fill contract named a `PCGDensityData` asset - **that class does not exist in UE 5.8**: `APCGVolume` carries no density asset, and the density is a `$Density` ATTRIBUTE produced inside the graph by PCGEx (`PCGExGetTextureData` -> `PCGExSampleTexture`), with `PCGExSelectorDensityWeighted` choosing the species by it. And `PCGExGetTextureData`'s `ColorChannel` defaults to **ALPHA** - a grayscale density texture has its value in RGB, so the channel must be R or the whole field reads 1.0 and the room fills evenly. (2) The Jev packet's first run sent `criteria={option: None}`, so the option descriptions never reached the service and it answered "A" to all five questions - a receipt that looked fine and carried no judgement. Both are fixed and both lessons are written into the workflow doc.
+**Two corrections that would have cost a morning.** (1) The fill contract named a `PCGDensityData` asset - **that class does not exist in UE 5.8**: `APCGVolume` carries no density asset, and the density is a `$Density` ATTRIBUTE produced inside the graph by PCGEx (`PCGExGetTextureData` -> `PCGExSampleTexture`), with `PCGExSelectorDensityWeighted` choosing the species by it. And `PCGExGetTextureData`'s `ColorChannel` defaults to **ALPHA** - a grayscale density texture has its value in RGB, so the channel must be R or the whole field reads 1.0 and the room fills evenly. (2) The Jev packet's first run sent `criteria={option: None}`, so the option descriptions never reached the service and it answered "A" to all five questions - a receipt that looked fine and carried no judgement.  Both are fixed and both lessons are written into the workflow doc. **One retraction:** I also claimed the house's PCGEx graph referenced two node types missing from the installed plugin. **That was wrong** - `PCGExShapeBoundsSource` and `PCGExShapePointLookAt` are ENUMS (`EPCGExShapeBoundsSource`, `EPCGExShapePointLookAt` in `PCGExShapesCommon.h`), settings on the shape elements, not missing classes. There is no version skew and **no PCG error in any editor log**: the editor loads every PCGEx module cleanly, and the `Marketplace plugin found: PCGEx` line is an INFO line from the Monolith index, not an error. The gate that made the claim matched header FILE NAMES instead of declared identifiers; it now matches identifiers, which is the honest test.
 
 **The research, folded in rather than filed:** Infold's material system is *"a re-engineered fabric algorithm that preserves the advantages of four-layer UV blending textures"* - Melodia already speaks that language, so the look is the existing four-layer toon blend, used with discipline, and **no new material authority**. Their wardrobe rule - a garment carries a capability - turns "Wardrobe bar: Infinity Nikki" into a test: *a garment with no capability is not yet Melodia clothing*. Their cloth rule - constraint-based and **preprocessed** rather than live collision - answers W8's bake-vs-runtime question. The anime-JRPG side (FFXIV's Glamour Dresser and its dye-loss flaw) gives the catalogue two rules: reachable from anywhere, and storing a look must never destroy the artist's material choice - which is why `FMelodiaDressingProp` carries `MaterialOverride` with the mesh.
 
@@ -563,7 +784,7 @@ What the ECV layer adds: the **chandelier hanging over the M04 circular medallio
 
 **The split is forced by one fact:** PCG spawns on a surface *without correcting the mesh pivot*, so a desk-top or shelf-top prop would float or sink. That is why the contact-critical props stay hand-placed and PCG takes the scatter it is good at.
 
-**How the fill is built** (contract in `specs/p0/melusina_house_p0_fill.v1.json`): one `PCGVolume` per room carrying a `PCGDensityData` texture — the old *density volume* is deprecated in UE 5.8 — then `Surface Sampler` (or a `Grid Sampler` on the 0.6 m module) → `Density Filter` → `Static Mesh Spawner` per species → `Mesh Bounds Overlap` → route exclusion. The fill graph is meant to be a **subgraph of the shell's own PCGEx graph**, inheriting the shell's bounds instead of guessing them: the house already has `PCG_MelusinaRoomShell_PCGex` (PCGEx spline + bounds sources) and `PCG_RoomShell_Morning` / `PCG_MelusinaHouse_MorningDell`, which **already contain `PCGStaticMeshSpawnerSettings`**.
+**How the fill is built** (contract in `specs/p0/melusina_house_p0_fill.v1.json`; **corrected 2026-10-22 against the UE 5.8 headers**): one `PCGVolume` per room, then `PCGExGetTextureData` -> `PCGExSampleTexture` -> the `$Density` attribute -> `PCGDensityFilter` -> `PCGExSelectorDensityWeighted` -> `PCGExDiscardByOverlap` -> `PCGBoundsModifier` -> `PCGStaticMeshSpawner` per species, with route exclusion. **Three names in the older version of this line did not exist**: there is no `PCGDensityData` class in UE 5.8 (a `PCGVolume` carries no density asset - the density is a point ATTRIBUTE made inside the graph), no `Grid Sampler` class (the grid is Create Points in grid mode, `PCGCreatePointsGrid`), and no `Mesh Bounds Overlap` class (the overlap killer is `PCGExDiscardByOverlap`). One more trap: `PCGExGetTextureData`'s `ColorChannel` defaults to ALPHA, and a grayscale density texture carries its value in RGB - the channel must be R or the whole field reads 1.0 and the room fills evenly.
 
 **Nine species rows across the three P0 rooms**, each with mesh, the converted instance, the surface it sits on, density, rotation rule and count range — e.g. books on the west shelf run (top 250 cm) and the north shelves (186 cm) at density 0.35, candle clusters on the desk (82) / bedside (77) / chest (71) at 0.22, and in the salon books on the north bookcase at 0.30 with the **M04 medallion footprint excluded** so the landmark stays legible.
 

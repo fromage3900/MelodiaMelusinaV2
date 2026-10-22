@@ -187,6 +187,48 @@ def test_fill_contract_rules() -> None:
     check(species_total == 9, f"the fill contract has {species_total} species rows, not 9")
 
 
+def _normalise_identifier(identifier: str) -> str:
+    """Strip UE's decoration so a node can be matched against its declarations.
+
+    UE spells the same thing several ways: UPCGDensityFilterSettings (the
+    settings class), FPCGDensityFilterElement (the element), EPCGExShapeBounds-
+    Source (an enum). A contract that says 'PCGDensityFilter' means all three.
+    """
+    name = identifier
+    if len(name) > 1 and name[0] in "UEF" and name[1:3] == "PC":
+        name = name[1:]
+    # UE stacks decorations: UPCGExSelectorDensityWeightedFactoryProvider-
+    # Settings -> ...Factory -> ...FactoryData. Strip until nothing more comes
+    # off, longest suffix first.
+    for suffix in ("ProviderSettings", "FactoryProviderSettings", "FactoryData",
+                   "Settings", "Element", "Factory", "Data"):
+        if name.endswith(suffix) and len(name) > len(suffix):
+            name = name[: -len(suffix)]
+    return name.lower()
+
+
+def declared_identifiers(roots: list[pathlib.Path]) -> set[str]:
+    """Every class / struct / enum identifier the headers under these roots declare.
+
+    This is the honest form of 'does this node exist': a node may live in a
+    header with a different file name, and a setting enum is a real identifier
+    even though it is not a node.
+    """
+    pattern = re.compile(r"\b(?:class|struct|enum\s+class)\s+(?:[A-Z0-9_]+_API\s+)?([UEF]?(?:PCG|PCGEx)\w+)")
+    names: set[str] = set()
+    for root in roots:
+        if not root.exists():
+            continue
+        for header in root.rglob("*.h"):
+            try:
+                text = header.read_text(encoding="utf-8", errors="ignore")
+            except OSError:
+                continue
+            for match in pattern.finditer(text):
+                names.add(_normalise_identifier(match.group(1)))
+    return names
+
+
 def test_contracts_name_nodes_that_exist() -> None:
     """Every PCG node the contracts name must exist in the engine or the plugin.
 
@@ -215,15 +257,18 @@ def test_contracts_name_nodes_that_exist() -> None:
         pathlib.Path(r"C:\Program Files\Epic Games\UE_5.8\Engine\Plugins\PCG\Source"),
         REPO_ROOT / "Plugins" / "PCGExtendedToolkit" / "Source",
     ]
-    headers: list[str] = []
-    for root in search_roots:
-        if root.exists():
-            headers.extend(str(p) for p in root.rglob("*.h"))
+
+    # Match the IDENTIFIERS the headers DECLARE - classes, structs and enums -
+    # not file names. A first version of this gate matched file names, and it
+    # wrongly reported a missing node type for two ENUMS on the shape elements
+    # (EPCGExShapeBoundsSource, EPCGExShapePointLookAt). File names are not
+    # types; declared identifiers are.
+    declared = declared_identifiers(search_roots)
 
     for node in sorted(named):
         stem = node.split(".")[-1]
-        found = any(pathlib.Path(h).stem == stem for h in headers)
-        check(found, f"the fill contract names the node '{node}' but no {stem}.h exists in the PCG plugin or PCGExtendedToolkit")
+        found = _normalise_identifier(stem) in declared
+        check(found, f"the fill contract names '{node}' but nothing declares it in the PCG plugin or PCGExtendedToolkit")
 
     # The correction must still be recorded: the old, non-existent class must not
     # come back as if it were real.

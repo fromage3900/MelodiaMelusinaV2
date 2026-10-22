@@ -24,18 +24,19 @@
   "node_chain": [
     {
       "order": 1,
-      "node": "PCGExBoundsFilter",
+      "node": "PCGExDataBoundsFilter",
       "display_name": "Shape Bounds Source (the house graph's name for it)",
       "role": "the room's interior bounds, inherited from the shell subgraph",
       "parameters": "room-specific: the shell's own bounds, never a hand-typed box",
-      "note": "the house's own PCGEx graph names a node 'PCGExShapeBoundsSource' - that class does NOT exist in the installed PCGExtendedToolkit 0.76. The bounds family in this build is PCGExBounds* (PCGExBoundsFilter, PCGExBoundsToPoints, PCGExBoundsCommon). The graph needs a version check before it is trusted."
+      "note": "the room's interior bounds, as a data-bounds filter over the shell's bounds (UPCGExDataBoundsFilterFactory). The house's own graph uses the shape elements with EPCGExShapeBoundsSource/EPCGExShapePointLookAt settings - those are ENUMS, not node types."
     },
     {
       "order": 2,
       "node": "PCGExCreateSpline",
       "display_name": "Create Spline",
       "role": "the room's named dressing surfaces, authored by the artist",
-      "parameters": "one spline per surface; the spline carries the surface NAME as an attribute"
+      "parameters": "one spline per surface; the spline carries the surface NAME as an attribute",
+      "note": "element class UPCGExCreateSplineSettings. The sibling shape elements are UPCGExCreateShapesSettings and UPCGExCreateShapeGridSettings - the grid shape is how a room's floor gets its module grid."
     },
     {
       "order": 3,
@@ -180,7 +181,6 @@
     "no node in this contract has been built - it is a design contract",
     "the density textures are a derived first pass and still need the artist's paint",
     "the shell's graph does not yet publish the named surfaces as scene proxies",
-    "the shell's graph references two node types that are missing from the installed plugin - a version check in the editor is needed before it is trusted",
     "the import helper is written but never run: the editor belongs to the artist"
   ],
   "mechanism_correction": {
@@ -197,12 +197,19 @@
   },
   "node_class_verification": {
     "checked_on": "2026-10-22",
-    "how": "every node class in this chain was matched against a real header in the engine's PCG plugin or the project's PCGExtendedToolkit 0.76",
-    "version_skew_found": "the house's own PCG_MelusinaRoomShell_PCGex references two node types that do not exist in the installed plugin: PCGExShapeBoundsSource and PCGExShapePointLookAt. The graph's node list was read out of the asset's name table, so these may be stale types from a different plugin version - the graph needs a version check in the editor before it is trusted.",
-    "renamed_in_this_contract": {
-      "Grid Sampler": "PCGCreatePointsGrid (Create Points in grid mode) - there is no GridSampler class",
-      "Mesh Bounds Overlap": "PCGExDiscardByOverlap - there is no MeshBoundsOverlap class",
-      "PCGExShapeBoundsSource": "the PCGExBounds* family in 0.76 (PCGExBoundsFilter / PCGExBoundsToPoints / PCGExBoundsCommon)"
+    "how": "every node in the chain is matched against the identifiers the engine's PCG plugin and the project's PCGExtendedToolkit actually DECLARE (classes, structs and enums), read out of the headers",
+    "corrected": "an earlier version of this file claimed the house graph referenced two node types missing from the installed plugin. THAT WAS WRONG. PCGExShapeBoundsSource and PCGExShapePointLookAt are ENUMS (EPCGExShapeBoundsSource, EPCGExShapePointLookAt in PCGExShapesCommon.h) - settings on the shape elements - not missing node classes. There is no version skew here and no PCGEx error: the editor loads every PCGEx module cleanly.",
+    "real_class_names": {
+      "PCGExCreateSpline": "UPCGExCreateSplineSettings (the element) + its factory",
+      "PCGExCreateShapes": "UPCGExCreateShapesSettings, UPCGExCreateShapeGridSettings, UPCGExCreateShapeCircleSettings, UPCGExCreateShapePolygonSettings, UPCGExCreateShapeFiblatSettings",
+      "PCGExBoundsFilter": "UPCGExBoundsFilterFactory / UPCGExBoundsFilterProviderSettings",
+      "PCGExDataBoundsFilter": "UPCGExDataBoundsFilterFactory / UPCGExDataBoundsFilterProviderSettings",
+      "PCGExPointsToBounds": "UPCGExPointsToBoundsSettings",
+      "PCGExBoundsToPoints": "UPCGExBoundsToPointsSettings"
+    },
+    "the_enums_that_decorate_the_shape_nodes": {
+      "EPCGExShapeBoundsSource": "where a shape's bounds come from (PCGExShapeConfigBase.h)",
+      "EPCGExShapePointLookAt": "how a shape's points are oriented (PCGExShapesCommon.h)"
     }
   }
 }
