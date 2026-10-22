@@ -1,0 +1,184 @@
+{
+  "contract_id": "melodia.p0.melusina_house_p0.fill.v1",
+  "kind": "level_fill_contract",
+  "schema_version": "1.0",
+  "package": {
+    "package_id": "package.melusina_house_p0.fill",
+    "display_name": "Melusina P0 house - PCG fill layer",
+    "content_kind": "level_fill_contract",
+    "status": "design_contract_runtime_pending"
+  },
+  "authority": {
+    "level": "/Game/Melodia/Levels/Opening/L_MelusinaHouse_P0",
+    "route": "POITOU P0 Golden Walk house leg (M00-M05)",
+    "dressing_contract": "specs/p0/melusina_house_p0_dressing.v1.json (97 placements: 68 base meshes + 10 functional Blueprints + 19 Enchanted Interiors props)",
+    "authoritative_document": "Docs/Plans/POITOU_P0_GOLDEN_WALK_2026-10-21.md",
+    "house_visual_score": "Docs/References/MelusinasHouse/OriginalDesign/melusinashouseplan_2026-09-02.md",
+    "room_plan": "Docs/References/MelusinasHouse/OriginalDesign/MELUSINAS_HOUSE_GN_ROOMS_AND_ACOUSTIC_ARCHITECTURE_2026-09-03.md",
+    "style_contract": "Docs/Poitou/style_contract.md",
+    "prop_source": "/Game/EnchantedInteriors - Kitbash3D Enchanted Interiors, converted onto M_Master_Toon_Universal on 2026-10-21; 284 prop meshes and 80 converted instances are available to the fill",
+    "pcg_precedent": "the Poitou World Compiler already emits per-zone grayscale density heatmaps plus a dressing_table.json (species -> mesh, per-band MI path, packer attributes); the house fill uses the same table shape and the same exclusion convention",
+    "note": "This contract covers ONLY the scatter layer. It never moves a hand-placed dressing actor and it never touches the Houdini room shell."
+  },
+  "layer_split": {
+    "houdini": "melodia::room_shell (Content/HDA/MelodiaRoomShell_1.0.hda) owns the shell, the openings, the bead swags, the chair rail, the skirting and the floor medallion - 33 parameters, already procedural",
+    "contract": "specs/p0/melusina_house_p0_dressing.v1.json owns the 97 hand-placed placements: the hero props and everything that must CONTACT a surface (desk top 82, shelf top 186/250, console top 88, sitting table 79, bedside 77, chandelier bottom 200)",
+    "pcg": "THIS CONTRACT: the fill - books, candles, jars, bowls, cloth - placed by density, with no contact requirement",
+    "why_pcg_does_not_replace_the_contract": "PCG spawns on a surface without correcting the mesh pivot, so a desk-top or shelf-top prop would float or sink; the fill is therefore limited to scatter whose placement tolerance is looser than a contact"
+  },
+  "meter": {
+    "module_m": 0.6,
+    "bay_m": 2.4,
+    "note": "the fill snaps to the same 0.6 m module as the house; a bay is one 4/4 bar at 128 BPM"
+  },
+  "rooms": {
+    "bedroom": {
+      "beat": "M00-M02 wake, notice, first resonance",
+      "volume": "the bedroom shell interior, x [-1150,-450], y [-995,-100], z 0",
+      "density_texture": "dressing_heatmap_bedroom.png (grayscale, white = maximum; authored like the Poitou zone heatmaps)",
+      "species": [
+        {
+          "species": "books_on_shelf",
+          "mesh": "/Game/EnchantedInteriors/Geometries/KB3D_ECI_PropBookStack_A_Main",
+          "mi": "/Game/EnchantedInteriors/Materials/KB3D_ECI_BooksAtlas",
+          "surface": "west shelf run top (250 cm) and north shelves (186 cm)",
+          "density": 0.35,
+          "rotation": "aligned to the shelf run, 4 orientations",
+          "count": [12, 26],
+          "note": "scholar's clutter breaking the clean system (rooms doc SS2)"
+        },
+        {
+          "species": "candle_cluster",
+          "mesh": "/Game/EnchantedInteriors/Geometries/KB3D_ECI_PropCandleHolder_A_Main",
+          "mi": "/Game/EnchantedInteriors/Materials/KB3D_ECI_CandlesAtlas",
+          "surface": "desk top (82 cm), bedside table (77 cm), chest (71 cm)",
+          "density": 0.22,
+          "rotation": "free",
+          "count": [3, 6],
+          "note": "the warm layer; one warm light source FAMILY per room (candles OR lanterns OR chandelier)"
+        },
+        {
+          "species": "jar_and_bottle",
+          "mesh": "/Game/EnchantedInteriors/Geometries/KB3D_ECI_PropBowl_A_Main",
+          "mi": "/Game/EnchantedInteriors/Materials/KB3D_ECI_MetalTrimA",
+          "surface": "desk top (82 cm), shelf tops",
+          "density": 0.18,
+          "rotation": "free",
+          "count": [4, 9]
+        }
+      ],
+      "fill_budget": "no more than 3 fill species legible in any one frame"
+    },
+    "landing": {
+      "beat": "M03 threshold",
+      "volume": "the landing interior, x [-450,60], y [-995,-100], z 0",
+      "density_texture": "dressing_heatmap_landing.png",
+      "species": [
+        {
+          "species": "runner_cloth",
+          "mesh": "/Game/EnchantedInteriors/Geometries/KB3D_ECI_PropCarpet_A_Main",
+          "mi": "/Game/EnchantedInteriors/Materials/KB3D_ECI_FurDeerB",
+          "surface": "floor",
+          "density": 0.14,
+          "rotation": "aligned to the passage axis",
+          "count": [1, 2]
+        },
+        {
+          "species": "candle_lamp",
+          "mesh": "/Game/EnchantedInteriors/Geometries/KB3D_ECI_PropCandleLamp_A_Main",
+          "mi": "/Game/EnchantedInteriors/Materials/KB3D_ECI_CandlesAtlas",
+          "surface": "plant table pot (107 cm)",
+          "density": 0.3,
+          "rotation": "free",
+          "count": [1, 3]
+        },
+        {
+          "species": "basket_and_crate",
+          "mesh": "/Game/EnchantedInteriors/Geometries/KB3D_ECI_PropAppleBasket_A_Main",
+          "mi": "/Game/EnchantedInteriors/Materials/KB3D_ECI_WoodHeartwoodAtlas",
+          "surface": "floor, against the wall",
+          "density": 0.12,
+          "rotation": "aligned to the wall",
+          "count": [1, 3]
+        }
+      ],
+      "fill_budget": "the landing is a threshold, not a room - keep it sparse"
+    },
+    "salon": {
+      "beat": "M04 the house hums",
+      "volume": "the oval salon interior, x [60,1350], y [-1780,0], z 0",
+      "density_texture": "dressing_heatmap_salon.png",
+      "species": [
+        {
+          "species": "books_on_case",
+          "mesh": "/Game/EnchantedInteriors/Geometries/KB3D_ECI_PropBookStack_B_Main",
+          "mi": "/Game/EnchantedInteriors/Materials/KB3D_ECI_BooksAtlas",
+          "surface": "the north-wall bookcase top (104 cm) and the floor beside it",
+          "density": 0.3,
+          "rotation": "aligned to the case",
+          "count": [8, 18],
+          "note": "Melusina's library reaches into the salon (rooms doc SS1)"
+        },
+        {
+          "species": "candle_cluster",
+          "mesh": "/Game/EnchantedInteriors/Geometries/KB3D_ECI_PropCandleStackLit_A_Main",
+          "mi": "/Game/EnchantedInteriors/Materials/KB3D_ECI_CandlesAtlas",
+          "surface": "console table (88 cm), sitting table (79 cm)",
+          "density": 0.2,
+          "rotation": "free",
+          "count": [2, 5]
+        },
+        {
+          "species": "fruit_bowl",
+          "mesh": "/Game/EnchantedInteriors/Geometries/KB3D_ECI_PropAppleBowl_A_Main",
+          "mi": "/Game/EnchantedInteriors/Materials/KB3D_ECI_MetalTrimA",
+          "surface": "sitting table (79 cm), console table (88 cm)",
+          "density": 0.16,
+          "rotation": "free",
+          "count": [1, 3]
+        }
+      ],
+      "fill_budget": "the M04 landmark (the circular medallion and its five concentric rings) must stay legible: the fill keeps out of the medallion footprint"
+    }
+  },
+  "pcg_graph": {
+    "shared": [
+      "PCGVolume per room, carrying a PCGDensityData asset (the old density volume is deprecated in UE 5.8)",
+      "one PCG graph per room, or one graph with three room subgraphs",
+      "the fill graph is a SUBGRAPH of the room shell's own PCGEx graph, so it inherits the shell bounds instead of guessing them"
+    ],
+    "node_chain": [
+      "PCGExShapeBoundsSource (or the shell's own bounds source) -> the room's surfaces",
+      "Surface Sampler on the named surfaces (shelf tops, table tops, console tops) for contact-free scatter; Grid Sampler on the 0.6 m module for floor fill",
+      "Density Filter: room density texture x the per-species weight above",
+      "Static Mesh Spawner per species: mesh, material (the converted instance, or an override), density, rotation rule",
+      "Mesh Bounds Overlap: kill prop-on-prop and prop-through-wall",
+      "Bounds Modifier / attribute exclusion: the route spline and its 4 m buffer, the door swing, the medallion footprint",
+      "optional: Attribute Filter on the exclusion spline (PCGEx spline filters)"
+    ],
+    "exclusion_source": "BP_PathSplineProvider in the house level is the route spline; bake it into the density texture the way Poitou bakes its route path and 4 m buffer to zero, or use PCGEx's spline filters",
+    "preview": "the PCG editor preview shows the spawn live, so the density texture is painted while the room is visible"
+  },
+  "exclusions": [
+    "the route from the bed to the front door, plus a 4 m buffer (P0 score: the walk must never snag furniture)",
+    "the M04 medallion footprint and the five concentric rings",
+    "every hand-placed dressing actor's bounds - the fill never crowds a contract placement",
+    "walls and the door swing (Bounds Modifier)",
+    "the stair run and the stair newels (the grand staircase is framed, not walkable)"
+  ],
+  "rules": [
+    "fill is additive: it may add actors, never move or delete a contract placement",
+    "no more than 3 fill species legible in any one frame (the style contract's four-layer analogue)",
+    "cute accents stay under 5% of any frame; pearl plaster and warm wood carry the room",
+    "everything the fill spawns uses the converted M_Master_Toon_Universal instances; the kit's own materials never re-enter",
+    "the fill never competes with a light source family: one family per room, chosen in the contract",
+    "snap to the 0.6 m module; a prop never lands on a wall or in a door swing"
+  ],
+  "not_yet_true": [
+    "no PCG node in this contract has been built yet - it is a design contract and certifies nothing until the graph runs and the room is photographed",
+    "the density textures do not exist; they are to be authored like the Poitou zone heatmaps",
+    "the surface samplers need the shell's PCGEx graph to expose the named surfaces (shelf tops, table tops) as scene proxies",
+    "the fill is additive to the 97-placement dressing contract; if that contract changes, the fill's counts and densities need a pass",
+    "the Enchanted Interiors pack has never been lit inside this house - the fill's look is unproven until the room is seen with the toon master"
+  ]
+}
