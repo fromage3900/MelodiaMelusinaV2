@@ -81,8 +81,10 @@ tool — it does not run by itself — and those placements are the owner's.
 | Item | Risk | Fix |
 |---|---|---|
 | **996 files open for edit in the P4 default changelist** (the other session's in-flight work) | their depot copies are older than their local edits | that session submits, or the work is lost. **Not mine to touch.** |
-| **1,307 dirty paths in the primary checkout** (including `CURRENT_STATE.md`, which another session is editing) | a `git checkout`/`reset` would discard it | the owner commits it; another session is mid-edit on that file |
-| **3 meshes in `C:\EnvironmentPortfolio\Staging\ECI_hold\`** (`NicheA`, `NicheC`, `Roof`) | they need 7.7 GB / 7.7 GB / 2.1 GB to build, which the current pagefile cannot give | **the pagefile** — see below |
+| **The house map is in the depot (CL 299) but NOT yet in git** | `git ls-tree origin/main Content/Melodia/Levels/Opening/L_MelusinaHouse_P0.umap` returns nothing — the levels tree in main has `L_MelusinaMorning`, its HLODs and `l_melodia_dreamstate..umap`, but not the house map | whoever owns that branch lands it; the depot copy is the safety net in the meantime |
+| **`specs/p0/melusina_house_p0_dressing_state.json` is in the other session's working tree, not in main** | the git-committed record of the owner's placement is not yet reviewable by anyone else | same — the owner lands it with the map |
+| **1,308 dirty paths in the primary checkout** (including `CURRENT_STATE.md`, which another session is editing) | a `git checkout`/`reset` would discard it | the owner commits it; another session is mid-edit on that file |
+| **3 meshes in `C:\EnvironmentPortfolio\Staging\ECI_hold\`** (`NicheA`, `NicheC`, `Roof`) | they need 7.7 GB / 7.7 GB / 2.1 GB to build, which the current pagefile cannot give | the pagefile — see below |
 | **CL 298 (1 file)** — Houdini Engine bake scratch | none: deliberately held back, never submitted | — |
 | The Enchanted Interiors **fill** layer (`specs/p0/melusina_house_p0_fill.v1.json`) | none: a design note, no script consumes it, nothing places anything | — |
 
