@@ -1,6 +1,36 @@
 # Melodia Melusina ? Current State
 
 
+## ⚑ VITRUVIUS / DRYAD / SIDEFX LABS - the real availability picture (2026-10-21)
+
+- **Correction: Project Vitruvius and Project Dryad are NOT tools.** Vitruvius is an *"upcoming
+  toolset"* for architecture and urban environments; Dryad is an *"experimental initiative"* for
+  natural environments. Both are **SideFX Labs research initiatives with no release and no ETA** -
+  a SideFX intern at Pixar prototyped Vitruvius'' architecture tools in 2023-24 and a 2024 EPC
+  workshop covered it. **They cannot be used and must not be planned against.** If a brief names
+  them, treat them as a direction, not a dependency. (Section 15 of the build contract.)
+- **What IS real: SideFX Labs**, public on GitHub (`sideeffects/SideFXLabs`, 1.53 GB, pushed
+  2026-10-21), released **per Houdini build**, no account needed for the tarball route. The
+  blocker is **version-locking, not access**: the oldest 22.0.x tag is 22.0.382, there is no
+  22.0.368 tag (our build), and Houdini refuses to load an HDA saved by a newer Houdini.
+- **One owner action unlocks three things.** The Launcher has **Houdini 22.0.466 already staged
+  locally** (with `houdini_installer.exe`), and 22.0.466 is past the UE 5.8 support line
+  (22.0.355), is an **exact Labs tag**, and is matched by a plugin release (HEU 4.0.2 = 22.0.459,
+  4.0.3 = 22.0.566). Install Houdini 22.0.466+ (or 22.0.471+ for the UE 5.8 landscape-spline fix
+  and the Asset-Component lock), the matching plugin, and Labs for that build from GitHub. It is a
+  machine-level change with the owner''s editor live: **the owner''s call, on a quiet machine.**
+- **The CAD-like pattern is free to copy and buildable tonight with no install.** Labs Building
+  Generator 4.0''s pattern is: *blockout -> slice into floors -> identify walls, corners and
+  ledges -> replace them from a user module library*, with facade/corner/ledge module patterns and
+  floor overrides. **Our module library already exists** - the style contract''s
+  `MEL_wall_straight/_corner/_with_door/_with_window/_multi_window/_t_join`,
+  `MEL_half_timber_wall`, `MEL_retaining_wall` - so the kit can grow that shape and the generator
+  becomes configuration rather than invention. That is the same call Jev made
+  (`REUSE_EXISTING_SYSTEMS_FIRST`), and it carries no version risk.
+- **Also real and usable tonight: OSM data** (the "City Building with OSM Data" route) for the
+  canal and lane network, the way the IGN RGE ALTI DEM already drives the terrain; and the
+  **2026-10-08 Project Titan bridge tutorial** (arch, deck, railings, piers, trim sheets) for the
+  canal crossing.
 ## ⚑ THE LIVE-UE RESEARCH + THE STAGING PIPELINE (2026-10-21) - how a frontier model spends its whole quota on CONTENT
 
 - **The environment finding: the Houdini build is behind UE 5.8.** The workstation runs **Houdini

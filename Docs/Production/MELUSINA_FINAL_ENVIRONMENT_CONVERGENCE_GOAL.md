@@ -1290,3 +1290,99 @@ outage.
 maths (is the abbey where the walk sees it, is the revetment on the canal, does the lane dodge
 the houses), the visual judgement against the lookbook plates, and holding the style contract, the
 Nikkie rules and the kit in mind at once. The VEX is the cheap part; the last session proved that.
+## 15. VITRUVIUS, DRYAD, AND SIDEFX LABS - what is real, what is not, and what we can do tonight (2026-10-21)
+
+### 15.1 Correction first: Vitruvius and Dryad are NOT tools
+
+I named them last section as if they were usable. They are not, and the honest position is:
+
+* **PROJECT VITRUVIUS** - *"an **upcoming toolset** designed to enhance procedural workflows for
+  creating architecture and urban environments in Houdini. It provides tools for generating and
+  customizing buildings, cities, and other architectural structures."* It is a **SideFX Labs
+  research initiative**, not a shipped tool. A SideFX intern at Pixar (2023-2024) "researched,
+  planned, and prototyped architecture generation tools for Project Vitruvius"; a 2024 EPC workshop
+  covered "Road Networks" and "project VITRUVIUS from SideFX Labs". **There is no release, no
+  package, and no ETA. It cannot be used tonight and should not be planned against.**
+* **PROJECT DRYAD** - *"an **experimental initiative** focused on advancing procedural workflows for
+  creating natural environments... detailed landscapes, forests, and terrains."* Same status:
+  **an initiative, not a tool.** Also not plannable.
+
+**Do not put either in a plan.** If a frontier model sees "Project Vitruvius" in a brief and
+assumes it is an installable tool, it will burn quota chasing a thing that does not exist. The
+realisable version of the same idea is **SideFX Labs' shipped toolset**, which already contains
+the building/city/road workflow.
+
+### 15.2 What IS real: SideFX Labs, and why it cannot be installed on our Houdini tonight
+
+`sideeffects/SideFXLabs` is **public** (1,251 stars, default branch `Development`, **1.53 GB** of
+source, last pushed 2026-10-21) and is released **per Houdini build**, e.g.
+`https://github.com/sideeffects/SideFXLabs/tarball/refs/tags/22.0.466`. **No SideFX account is
+needed for the GitHub route** (the account is only needed for the Launcher's package install).
+
+**The blocker is version-locking, not access.** The oldest 22.0.x tag is **22.0.382**; there is no
+22.0.368 tag (our build), and **Houdini refuses to load an HDA saved by a newer Houdini**. So
+Labs cannot load on 22.0.368 - it would need 22.0.382+.
+
+**And the good news is that the same upgrade we already want fixes this.** The Launcher's product
+folder shows **Houdini 22.0.466 already staged locally** (with `houdini_installer.exe` and
+`hserver.iso`), and 22.0.466 is:
+* **past the UE 5.8 support line** (22.0.355, 2026-06-18) - and
+* **an exact Labs tag** (22.0.466), and
+* matched by a plugin release (**HEU 4.0.2 = 22.0.459, 4.0.3 = 22.0.566**; take the one whose
+  HAPI matches).
+
+**One owner action unlocks three things:** install Houdini 22.0.466+ (or 22.0.471+ for the UE 5.8
+landscape-spline fix and the Asset-Component lock), the matching Houdini Engine plugin, and
+SideFX Labs for that exact build from the public GitHub tarball. It is a machine-level change
+with the owner's editor live, so it is the owner's call and needs a quiet machine - not something
+an agent should do unasked.
+
+### 15.3 The CAD-like pattern we can implement in OUR kit tonight, with no install
+
+The point of Labs is not the code, it is the **pattern**, and the pattern is free to copy:
+
+> **Building Generator 4.0:** *"converts simple blockout geometry into detailed, modular
+> buildings. The node analyzes incoming building volumes, slices them into floors, identifies
+> structural regions such as walls, corners, and ledges, and replaces those regions with
+> high-resolution modules sourced from a user-defined module library."*
+> Its parms: full floor height, seed, simple ledges, **facade module pattern**, **concave/convex
+> corner modules**, **top ledge**, **bottom ledge**, **sideslop module**, and **floor overrides**.
+
+**Our module library already exists**: the style contract's `MEL_wall_straight / _corner /
+_with_door / _with_window / _multi_window / _t_join`, `MEL_half_timber_wall`,
+`MEL_retaining_wall`. So the kit can grow the same shape - a **module pattern per wall type**,
+corner resolution, ledges, and floor overrides - and the generator becomes *configuration* rather
+than invention. That is the CAD-like loop: a blockout (a house footprint) becomes a building.
+
+**This is the version we can build tonight, with zero installs and zero version risk**, and it is
+the same decision Jev already made (`REUSE_EXISTING_SYSTEMS_FIRST`). When Houdini is upgraded,
+the Labs Building Generator can be dropped in behind the same interface if it earns its place.
+
+### 15.4 The same for the other two references
+
+* **"City Building with OSM Data"** (SideFX): OSM in, buildings/roads/props out, points carrying
+  attributes for UE instancing. **The Poitou canal and lane network could come from real data** the
+  way the IGN RGE ALTI DEM already does - and OSM needs no account and no install.
+* **"Procedural building from modules"** (2025-04-08): dynamic instantiation sized for Unreal, a
+  point cloud for the transfer, corner and roof adjustment, door modules.
+* **Project Titan / Titan Evo** and the **2026-10-08 bridge tutorial** (main arch, supporting
+  structure, deck, railings, platforms, chains, gears; each part a flexible system; then trim
+  sheets and tileable materials for UE5): that is the **canal crossing and the parapet** -
+  Titan's **Fence** and **Platform/Fence** tools are the same shape as our missing `fence`/`door`
+  elements.
+* **Copernicus Baker / Pre Process Baker**: bake the high-resolution detail into texture maps and
+  drive a layered procedural material - the route from our 2 cm dry joints and vertex paint to a
+  real trim-sheet material.
+
+### 15.5 The honest "tonight" list, in order
+
+1. **The owner cooks the level and adds the two output slots** - nothing else is visible until
+   that happens, and it is the only step that needs the editor.
+2. **CARD 1: the brick bond + the rubble core** (`Tools/Poitou/GENERATOR_CARDS.md`) - the first
+   real gap in the original goal, and it makes every wall in the level better at once.
+3. **The attribute set** (section 14.3) - Nanite plus the trim relative error, or the joints get
+   eaten; `unreal_output_name`; collision mode; and the bake attributes so the output stages.
+4. **The module-library pattern in the kit** (15.3) - the CAD-like loop, ours, no install.
+5. **The placement assertions and one screenshot** - so the work is judged, not just counted.
+6. **Then** the Houdini + plugin + Labs upgrade, as an owner action on a quiet machine, and only
+   if Labs then earns its place against our own implementation.
