@@ -67,10 +67,15 @@ TOKEN = {"x": -885, "y": -958, "z": 82, "amount": 1, "element": "Forte",
                  "the house audibly answers"}
 PERCH = {"x": -860, "y": -300, "z": 0, "facing": 200,
          "cite": "M01 notice: strong visual line from bed to empty perch/companion token"}
-ANCHOR = {"x": -840, "y": -360, "z": 0,
+# The opening state anchor is a POSITION-LESS state holder: AMelodiaOpeningStateAnchor
+# declares no Root component (only the ResonanceBond and Dissonance components), so
+# its transform is irrelevant and SetActorLocation is a no-op by design. It is found
+# by TActorIterator, not by proximity.
+ANCHOR = {"x": 0, "y": 0, "z": 0,
           "cite": "M02 first resonance: the house's bond (Absent -> Reunited/Resonant) "
                   "and its dissonance tier live on the opening state anchor; the "
-                  "Sir reunion beat reads this anchor"}
+                  "Sir reunion beat reads this anchor (it is a position-less state "
+                  "holder - no Root component - found by TActorIterator)"}
 
 
 def _actors_by_label():
@@ -179,21 +184,32 @@ def main() -> int:
                 rec["cite"] = PERCH["cite"]
                 out["placed"].append(rec)
 
-        # ---- M02: the opening state anchor (bond + dissonance)
+        # ---- M02: the opening state anchor (bond + dissonance).
+        # It has no Root component, so it is NOT positioned: it is a state holder
+        # found by TActorIterator. Moving it is a no-op, so do not try.
         acls = unreal.load_class(None, ANCHOR_CLASS)
         if acls is None:
             out["errors"].append("could not load " + ANCHOR_CLASS)
         else:
-            rec = place(acls, "P0_OpeningStateAnchor",
-                         (ANCHOR["x"], ANCHOR["y"], ANCHOR["z"]), (0, 0, 0),
-                         "AMelodiaOpeningStateAnchor")
-            if rec is None:
+            have = _actors_by_label()
+            actor = have.get("P0_OpeningStateAnchor")
+            if actor is None:
+                actor = unreal.EditorLevelLibrary.spawn_actor_from_class(
+                    acls, unreal.Vector(0, 0, 0), unreal.Rotator(0, 0, 0))
+                if actor is not None:
+                    actor.set_actor_label("P0_OpeningStateAnchor")
+            if actor is None:
                 out["errors"].append("anchor spawn failed")
             else:
-                rec["bond_state"] = "Absent"
-                rec["dissonance_tier"] = "Clear"
-                rec["cite"] = ANCHOR["cite"]
-                out["placed"].append(rec)
+                out["placed"].append({
+                    "label": "P0_OpeningStateAnchor",
+                    "class": "AMelodiaOpeningStateAnchor",
+                    "action": "present",
+                    "loc": [0, 0, 0],
+                    "positionless": True,
+                    "bond_state": "Absent",
+                    "dissonance_tier": "Clear",
+                    "cite": ANCHOR["cite"]})
 
         saved = False
         for saver in ("save_map", "save_current_level"):
