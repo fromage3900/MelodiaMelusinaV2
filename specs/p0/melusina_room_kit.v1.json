@@ -1,0 +1,96 @@
+{
+  "contract_id": "melodia.p0.melusina_room_kit.v1",
+  "kind": "room_kit_contract",
+  "schema_version": "1.0",
+  "package": {
+    "package_id": "package.melusina_room_kit",
+    "display_name": "BP_MelodiaRoomShell - the room kit",
+    "content_kind": "room_kit_contract",
+    "status": "design_contract_runtime_pending"
+  },
+  "purpose": "Define the one action that places a room: drop the Blueprint, choose the room type, and get a shell, its dressing surfaces, its fill volume and its gameplay carrier - with the shell's metrics frozen so a second instance is identical to the first.",
+  "authority": {
+    "level": "/Game/Melodia/Levels/Opening/L_MelusinaHouse_P0",
+    "shell": "Content/HDA/MelodiaRoomShell_1.0.hda (melodia::room_shell, 33 params)",
+    "surfaces": "Content/EnvSandbox/PCG/House/PCG_MelusinaRoomShell_PCGex.uasset (PCGExCreateSpline + PCGExShapeBoundsSource + PCGExFilters)",
+    "fill_contract": "specs/p0/melusina_house_p0_fill.v1.json",
+    "fill_graphs": "specs/p0/melusina_house_p0_fill_graphs.v1.json",
+    "catalogue": "specs/p0/melusina_dressing_catalog.v1.json (UMelodiaDressingCatalog)",
+    "plan": "specs/p0/melusina_room_dressing_pipeline.v1.json (W4)",
+    "decision": "the carrier is a FIXED CHILD of the kit - Jev, 2026-10-22, 3/3 samples, mean distribution A .607 / B .253 / C .087 / D .053"
+  },
+  "meter": {
+    "module_m": 0.6,
+    "bay_m": 2.4,
+    "bpm": 128,
+    "note": "the standard doorway system between room types (case study BS-04: a shared portal system is what makes different kits combinable without bespoke geometry)"
+  },
+  "inputs": [
+    { "name": "RoomType", "type": "enum: Bedroom | Landing | Salon", "default": "Bedroom", "note": "the one property that chooses the room" },
+    { "name": "Seed", "type": "int32", "default": 0, "note": "the room's deterministic seed; the same seed and type must reproduce the same room" },
+    { "name": "FillDensityScale", "type": "float", "default": 1.0, "range": "0..2", "note": "scales the fill without touching the density texture" },
+    { "name": "bEnableFill", "type": "bool", "default": true },
+    { "name": "bEnableArtPass", "type": "bool", "default": false, "note": "off by default: the art pass is a manual pass, never something a placed room triggers" }
+  ],
+  "children": [
+    {
+      "name": "RoomShell",
+      "type": "HoudiniAssetActor (melodia::room_shell)",
+      "owns": "the shell, the openings, the bead swags, the chair rail, the skirting, the floor medallion, the acoustic tuning",
+      "never_does": "place a prop or an interactable"
+    },
+    {
+      "name": "DressingSurfaces",
+      "type": "PCGEx graph (subgraph of PCG_MelusinaRoomShell_PCGex)",
+      "owns": "the named dressing surfaces of this room - shelf tops, table tops, console tops - and the room's interior bounds",
+      "never_does": "decide which prop, or how many"
+    },
+    {
+      "name": "FillVolume",
+      "type": "PCGVolume (one per room) + PCGDensityData",
+      "owns": "where the fill may spawn at all",
+      "never_does": "place anything that must contact a surface"
+    },
+    {
+      "name": "CarrierSlot",
+      "type": "a FIXED CHILD actor - the gameplay carrier for this room's beat",
+      "owns": "the beat's interactable: its transform, its mesh, its narrative notification",
+      "never_does": "move after the room is placed; the kit never re-places it",
+      "note": "Jev's decision. The kit proposes; the artist can replace the child in the level without changing the kit."
+    }
+  ],
+  "frozen_metrics": {
+    "rule": "these are FIXED once a layout exists. Changing a pivot, a footprint or a transition metric breaks every room that used the kit (case study BS-04: 'it's generally bad news to change certain aspects of a kit once levels are built with it').",
+    "pivot": "the floor centre of the room's origin bay, z = 0",
+    "footprint": "an integer number of bays: the room's shell is aligned to the 2.4 m bay grid, so two rooms of the same type occupy the same footprint",
+    "transition": "ONE standard portal per room type, on the bay grid: a 2.4 m opening aligned to the module, at a fixed offset from the pivot. Every room type shares the portal logic, so a bedroom and a salon can be joined without bespoke geometry",
+    "modification_policy": "a change to any of these is a NEW kit version, not an edit; the old version stays for the rooms already built with it"
+  },
+  "placement_rules": [
+    "placing a room MAY add actors (shell, surfaces, fill, carrier) and MAY NOT move, replace or delete a hand-placed actor",
+    "the fill is additive: a re-run adds, it never moves a contract placement",
+    "the carrier child may be REPLACED in the level by the artist; the kit never re-places it",
+    "two instances of the same room type and seed produce the same shell metrics and the same fill points - the difference between them is the artist's own work"
+  ],
+  "what_placing_a_room_produces": {
+    "checklist": [
+      "one HoudiniAssetActor with the room's parameters set",
+      "one PCGEx subgraph exposing the room's named surfaces and its interior bounds",
+      "one PCGVolume with the room's PCGDensityData (the derived texture)",
+      "one carrier child, tagged with the beat it serves (M01/M02/M03/M04/M05)",
+      "one entry in the house's dressing census with layer = 'kit'"
+    ],
+    "census_rule": "the kit's actors are recorded as layer 'kit' so the census can tell a placed room from hand-placed dressing"
+  },
+  "verification": [
+    "two instances of the same type in one level produce identical pivots, footprints and portal offsets",
+    "a re-run of the fill adds and never moves: the dressing census is byte-identical before and after",
+    "the carrier child is the actor the beat needs, and the beat still fires its narrative notification",
+    "the room's fill respects the route exclusion: nothing spawns on the walk corridor"
+  ],
+  "not_yet_true": [
+    "the Blueprint does not exist - this is a contract for it",
+    "the kit has never been placed in an editor",
+    "the standard portal has never been drawn between two room types"
+  ]
+}

@@ -44,7 +44,10 @@
           "surface": "west shelf run top (250 cm) and north shelves (186 cm)",
           "density": 0.35,
           "rotation": "aligned to the shelf run, 4 orientations",
-          "count": [12, 26],
+          "count": [
+            12,
+            26
+          ],
           "note": "scholar's clutter breaking the clean system (rooms doc SS2)"
         },
         {
@@ -54,7 +57,10 @@
           "surface": "desk top (82 cm), bedside table (77 cm), chest (71 cm)",
           "density": 0.22,
           "rotation": "free",
-          "count": [3, 6],
+          "count": [
+            3,
+            6
+          ],
           "note": "the warm layer; one warm light source FAMILY per room (candles OR lanterns OR chandelier)"
         },
         {
@@ -64,7 +70,10 @@
           "surface": "desk top (82 cm), shelf tops",
           "density": 0.18,
           "rotation": "free",
-          "count": [4, 9]
+          "count": [
+            4,
+            9
+          ]
         }
       ],
       "fill_budget": "no more than 3 fill species legible in any one frame"
@@ -81,7 +90,10 @@
           "surface": "floor",
           "density": 0.14,
           "rotation": "aligned to the passage axis",
-          "count": [1, 2]
+          "count": [
+            1,
+            2
+          ]
         },
         {
           "species": "candle_lamp",
@@ -90,7 +102,10 @@
           "surface": "plant table pot (107 cm)",
           "density": 0.3,
           "rotation": "free",
-          "count": [1, 3]
+          "count": [
+            1,
+            3
+          ]
         },
         {
           "species": "basket_and_crate",
@@ -99,7 +114,10 @@
           "surface": "floor, against the wall",
           "density": 0.12,
           "rotation": "aligned to the wall",
-          "count": [1, 3]
+          "count": [
+            1,
+            3
+          ]
         }
       ],
       "fill_budget": "the landing is a threshold, not a room - keep it sparse"
@@ -116,7 +134,10 @@
           "surface": "the north-wall bookcase top (104 cm) and the floor beside it",
           "density": 0.3,
           "rotation": "aligned to the case",
-          "count": [8, 18],
+          "count": [
+            8,
+            18
+          ],
           "note": "Melusina's library reaches into the salon (rooms doc SS1)"
         },
         {
@@ -126,7 +147,10 @@
           "surface": "console table (88 cm), sitting table (79 cm)",
           "density": 0.2,
           "rotation": "free",
-          "count": [2, 5]
+          "count": [
+            2,
+            5
+          ]
         },
         {
           "species": "fruit_bowl",
@@ -135,7 +159,10 @@
           "surface": "sitting table (79 cm), console table (88 cm)",
           "density": 0.16,
           "rotation": "free",
-          "count": [1, 3]
+          "count": [
+            1,
+            3
+          ]
         }
       ],
       "fill_budget": "the M04 landmark (the circular medallion and its five concentric rings) must stay legible: the fill keeps out of the medallion footprint"
@@ -143,21 +170,38 @@
   },
   "pcg_graph": {
     "shared": [
-      "PCGVolume per room, carrying a PCGDensityData asset (the old density volume is deprecated in UE 5.8)",
+      "APCGVolume per room. IMPORTANT: in UE 5.8 the volume is an AVolume with a UPCGComponent and carries NO density asset - there is no PCGDensityData class in this engine build (verified against the PCG plugin headers). The density arrives INSIDE the graph.",
       "one PCG graph per room, or one graph with three room subgraphs",
-      "the fill graph is a SUBGRAPH of the room shell's own PCGEx graph, so it inherits the shell bounds instead of guessing them"
+      "the fill graph is a SUBGRAPH of the room shell's own PCGEx graph, so it inherits the shell bounds instead of guessing them",
+      "the texture path reaches the graph as a point attribute: PCGExGetTextureData reads SourceType=TexturePath from SourceAttributeName (default 'AssetPath')"
     ],
     "node_chain": [
       "PCGExShapeBoundsSource (or the shell's own bounds source) -> the room's surfaces",
-      "Surface Sampler on the named surfaces (shelf tops, table tops, console tops) for contact-free scatter; Grid Sampler on the 0.6 m module for floor fill",
-      "Density Filter: room density texture x the per-species weight above",
-      "Static Mesh Spawner per species: mesh, material (the converted instance, or an override), density, rotation rule",
+      "Surface Sampler on the named surfaces (shelf tops, table tops, console tops) for contact-free scatter; Grid Sampler on the 0.6 m module for floor fill. The points need a UV attribute (the room's local UV) for the texture sample.",
+      "PCGExGetTextureData -> pulls the room's density texture into the graph (Filter = Bilinear, Transform = the room's XY bounds, TexelSize = 50 cm)",
+      "PCGExSampleTexture -> samples it per point using the UV attribute and writes the value into the $Density attribute",
+      "GOTCHA: PCGExGetTextureData's ColorChannel defaults to ALPHA. A grayscale density texture carries its value in RGB with alpha = 1, so the channel must be set to R (or RGB) or the whole field reads 1.0 and every point passes the filter.",
+      "PCGDensityFilter (LowerBound / UpperBound, bKeepZeroDensityPoints) -> culls the points the field says nothing about. In 5.8 this node filters the $Density ATTRIBUTE; there is no density data asset to point it at.",
+      "PCGExSelectorDensityWeighted -> picks the species per point, weighted by the density (Mode = WeightModulation for 'more density prefers the higher-weight species', RandomnessModulation for a blend; OutOfRangePolicy = Clamp; DensitySource = $Density)",
       "Mesh Bounds Overlap: kill prop-on-prop and prop-through-wall",
       "Bounds Modifier / attribute exclusion: the route spline and its 4 m buffer, the door swing, the medallion footprint",
       "optional: Attribute Filter on the exclusion spline (PCGEx spline filters)"
     ],
     "exclusion_source": "BP_PathSplineProvider in the house level is the route spline; bake it into the density texture the way Poitou bakes its route path and 4 m buffer to zero, or use PCGEx's spline filters",
-    "preview": "the PCG editor preview shows the spawn live, so the density texture is painted while the room is visible"
+    "preview": "the PCG editor preview shows the spawn live, so the density texture is painted while the room is visible",
+    "density_mechanism": {
+      "verified_against": "the UE 5.8 PCG plugin headers, 2026-10-22",
+      "no_density_asset": "APCGVolume (PCGVolume.h) holds only a UPCGComponent. There is no PCGDensityData class in this build - the earlier contract text that named it was wrong and is corrected here.",
+      "engine_nodes": [
+        "PCGDensityFilter (LowerBound, UpperBound, bInvertFilter, bNormalizeOutputDensity, bKeepZeroDensityPoints) - filters the $Density attribute"
+      ],
+      "pcgex_nodes": [
+        "PCGExGetTextureData (SourceType, SourceAttributeName, Filter, Transform, ColorChannel, TexelSize)",
+        "PCGExSampleTexture (UVSource, success/failure tagging, prune options)",
+        "PCGExSelectorDensityWeighted (Mode, DensitySource, DensityInfluence, OutOfRangePolicy, per-entry weights)"
+      ],
+      "the_gotcha": "ColorChannel defaults to Alpha. A grayscale density texture has its value in RGB and alpha 1.0 - set the channel to R or the field reads 1.0 everywhere."
+    }
   },
   "density_textures": {
     "status": "DERIVED_FIRST_PASS_READY_TO_PAINT",
@@ -194,6 +238,7 @@
     "the density textures exist as a DERIVED first pass (see density_textures) and still need the artist's paint; they are not the authored field",
     "the surface samplers need the shell's PCGEx graph to expose the named surfaces (shelf tops, table tops) as scene proxies",
     "the fill is additive to the 97-placement dressing contract; if that contract changes, the fill's counts and densities need a pass",
-    "the Enchanted Interiors pack has never been lit inside this house - the fill's look is unproven until the room is seen with the toon master"
+    "the Enchanted Interiors pack has never been lit inside this house - the fill's look is unproven until the room is seen with the toon master",
+    "the density texture has to become an asset with the right settings (sRGB off, TC_GrayScale, no mips) and reach the graph as a texture path attribute - the import recipe is in specs/p0/melusina_house_p0_fill_graphs.v1.json and has never been run"
   ]
 }

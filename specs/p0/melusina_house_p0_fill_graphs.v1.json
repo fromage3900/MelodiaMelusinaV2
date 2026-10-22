@@ -1,0 +1,184 @@
+{
+  "contract_id": "melodia.p0.melusina_house_p0_fill_graphs.v1",
+  "kind": "fill_graph_contract",
+  "schema_version": "1.0",
+  "package": {
+    "package_id": "package.melusina_house_p0_fill_graphs",
+    "display_name": "The house fill graphs - one per room",
+    "content_kind": "fill_graph_contract",
+    "status": "design_contract_runtime_pending"
+  },
+  "purpose": "The node-by-node contract for the three PCG fill graphs, with the parameters each node needs, so the graphs can be built once and stay consistent between rooms.",
+  "authority": {
+    "fill_contract": "specs/p0/melusina_house_p0_fill.v1.json (the species rows, the densities, the exclusions and the rules)",
+    "host_graph": "Content/EnvSandbox/PCG/House/PCG_MelusinaRoomShell_PCGex.uasset - the fill graph is a SUBGRAPH of this, so it inherits the shell's bounds instead of guessing them",
+    "density_textures": "Content/EnvSandbox/PCG/House/Textures/dressing_heatmap_{bedroom,landing,salon}.png (derived first pass, P4 CL 306)",
+    "room_kit": "specs/p0/melusina_room_kit.v1.json",
+    "plan": "specs/p0/melusina_room_dressing_pipeline.v1.json (W5 - Jev's first_build answer)"
+  },
+  "shared_structure": {
+    "one_graph_per_room": "or one graph with three room subgraphs; either way the node chain below is identical and only the volume, the density and the species rows change",
+    "subgraph_of_the_shell": "the fill graph lives inside PCG_MelusinaRoomShell_PCGex as a subgraph, so the room's interior bounds come from the shell's own bounds source",
+    "preview": "the PCG editor preview shows the spawn live, so the density texture is painted while the room is visible"
+  },
+  "node_chain": [
+    {
+      "order": 1,
+      "node": "PCGExShapeBoundsSource",
+      "role": "the room's interior bounds, inherited from the shell subgraph",
+      "parameters": "room-specific: the shell's own bounds, never a hand-typed box"
+    },
+    {
+      "order": 2,
+      "node": "PCGExCreateSpline (x N)",
+      "role": "the room's named dressing surfaces, authored by the artist",
+      "parameters": "one spline per surface; the spline carries the surface NAME as an attribute"
+    },
+    {
+      "order": 3,
+      "node": "Surface Sampler / Grid Sampler",
+      "role": "sample the surfaces for scatter; the grid covers the floor on the 0.6 m module",
+      "parameters": "Surface Sampler: the splines from step 2, 0.5 m spacing. Grid Sampler: 60 cm cells over the room bounds. Both must publish a UV attribute for the room's local XY - the texture sample needs it."
+    },
+    {
+      "order": 4,
+      "node": "PCGExGetTextureData",
+      "role": "pull the room's density texture into the graph",
+      "parameters": "SourceType = TexturePath; SourceAttributeName = 'AssetPath' (a point attribute holding the texture path); Filter = Bilinear; Transform = the room's XY bounds; TexelSize = 50 cm; ColorChannel = R (NOT the default Alpha)"
+    },
+    {
+      "order": 5,
+      "node": "PCGExSampleTexture",
+      "role": "sample the texture per point",
+      "parameters": "UVSource = the UV attribute from step 3; the sampled value is written into $Density"
+    },
+    {
+      "order": 6,
+      "node": "PCGDensityFilter",
+      "role": "cull the points the field says nothing about",
+      "parameters": "LowerBound = 0.05, UpperBound = 1.0, bKeepZeroDensityPoints = false. This node filters the $Density attribute - there is no density asset to point it at."
+    },
+    {
+      "order": 7,
+      "node": "PCGExSelectorDensityWeighted",
+      "role": "choose the species per point, weighted by the density",
+      "parameters": "Mode = WeightModulation ('more density prefers the higher-weight species'); DensitySource = $Density; DensityInfluence = 1.0; OutOfRangePolicy = Clamp; the per-entry weights are the fill contract's species rows"
+    },
+    {
+      "order": 8,
+      "node": "Mesh Bounds Overlap",
+      "role": "kill prop-on-prop and prop-through-wall",
+      "parameters": "overlap resolution by pulling, sample count 2"
+    },
+    {
+      "order": 9,
+      "node": "Bounds Modifier (exclusion)",
+      "role": "cull everything the walk or the beat must not share",
+      "parameters": "the exclusion sources listed under exclusions"
+    },
+    {
+      "order": 10,
+      "node": "Static Mesh Spawner (x species)",
+      "role": "spawn one species",
+      "parameters": "mesh + material instance from the fill contract's species row; rotation rule per species; the mesh MUST be the converted Enchanted Interiors instance on M_Master_Toon_Universal"
+    }
+  ],
+  "rooms": {
+    "bedroom": {
+      "volume": "x [-1150,-450], y [-995,-100], z 0",
+      "density_asset": "DA_Density_House_Bedroom (wraps dressing_heatmap_bedroom.png)",
+      "species_rows": [
+        "books_on_shelf",
+        "candle_cluster",
+        "jar_and_bottle"
+      ],
+      "fill_budget": "no more than 3 fill species legible in any one frame"
+    },
+    "landing": {
+      "volume": "x [-450,60], y [-995,-100], z 0",
+      "density_asset": "DA_Density_House_Landing",
+      "species_rows": [
+        "runner_cloth",
+        "candle_lamp",
+        "basket_and_crate"
+      ],
+      "fill_budget": "the landing is a threshold, not a room - keep it sparse"
+    },
+    "salon": {
+      "volume": "x [60,1350], y [-1780,0], z 0",
+      "density_asset": "DA_Density_House_Salon",
+      "species_rows": [
+        "books_on_case",
+        "candle_cluster",
+        "fruit_bowl"
+      ],
+      "fill_budget": "the M04 landmark (the medallion and its five rings) must stay legible: the fill keeps out of the medallion footprint"
+    }
+  },
+  "exclusions": [
+    {
+      "source": "the route spline (BP_PathSplineProvider)",
+      "rule": "the walk corridor plus a 4 m buffer - the P0 score says the walk must never snag on furniture",
+      "note": "the derived density textures already have this corridor cut from the reconstructed route; the graph's own spline filter is the authoritative one"
+    },
+    {
+      "source": "the M04 medallion footprint",
+      "rule": "the medallion and its five concentric rings stay clear"
+    },
+    {
+      "source": "the contract placements' bounds",
+      "rule": "the fill never crowds a hand-placed prop"
+    },
+    {
+      "source": "the walls and the door swings",
+      "rule": "Bounds Modifier"
+    },
+    {
+      "source": "the stair run and the stair newels",
+      "rule": "the grand staircase is framed, not walkable"
+    }
+  ],
+  "density_texture_import": {
+    "why": "a PCGDensityData samples a Texture2D, so the PNG has to become an asset with the right settings - a colour texture would wash the field out",
+    "recipe": {
+      "sRGB": false,
+      "compression": "TC_GrayScale (Grayscale)",
+      "mip_gen_settings": "NoMipmaps",
+      "texture_group": "PCG",
+      "filter": "Default (bilinear) - the field is meant to be smooth",
+      "address": "Clamp - the field must not tile at the room edges"
+    },
+    "uv_convention": "the texture's X maps to world X and its Y maps to world Y over the room's volume, with V increasing towards +Y (UE textures are top-down origin by default, so the import must be flipped on V)",
+    "helper": "Content/Python/melodia_house_fill_import.py - the artist runs it in the editor with the level open. It imports the three PNGs with this recipe and creates the three PCGDensityData assets. It is NOT run by an agent: it writes into Content/ and the editor belongs to the artist."
+  },
+  "graph_settings": {
+    "bGenerated": "true - the fill regenerates on demand",
+    "cleanup": "the fill is additive: regenerating removes the actors IT created and never touches anything else",
+    "seed": "the room's seed from the kit (RoomKit.Seed) so a room is reproducible",
+    "runtime_generation": "off for now - a shipping level bakes the fill; the decision is W8"
+  },
+  "verification": [
+    "the graph runs in the PCG preview and the spawn is visible",
+    "a screenshot of each room shows no more than 3 fill species legible",
+    "the audit re-run after the fill reports 0 issues and the contract placements have not moved",
+    "the dressing census is byte-identical before and after a regeneration (the fill is additive)"
+  ],
+  "not_yet_true": [
+    "no node in this contract has been built - it is a design contract",
+    "the density textures are a derived first pass and still need the artist's paint",
+    "the shell's graph does not yet publish the named surfaces as scene proxies",
+    "the import helper is written but never run: the editor belongs to the artist"
+  ],
+  "mechanism_correction": {
+    "found": "2026-10-22, by reading the UE 5.8 PCG plugin headers",
+    "wrong_before": "the contract said a PCGVolume carries a PCGDensityData asset and that the old density volume is deprecated",
+    "true_now": [
+      "APCGVolume is an AVolume with a UPCGComponent and carries NO density asset",
+      "there is no PCGDensityData class in this engine build",
+      "the density is a $Density ATTRIBUTE inside the graph, produced by PCGExGetTextureData -> PCGExSampleTexture",
+      "PCGDensityFilter filters that attribute (LowerBound / UpperBound)",
+      "the species choice is weighted by the density with PCGExSelectorDensityWeighted"
+    ],
+    "the_gotcha": "PCGExGetTextureData's ColorChannel defaults to ALPHA; a grayscale density texture carries its value in RGB with alpha = 1, so the channel must be R or the field reads 1.0 everywhere and every point survives the filter"
+  }
+}
