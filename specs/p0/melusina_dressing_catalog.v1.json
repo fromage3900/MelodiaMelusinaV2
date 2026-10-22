@@ -30,9 +30,9 @@
     }
   },
   "totals": {
-    "families": 4,
-    "props": 97,
-    "placements": 97
+    "families": 3,
+    "props": 91,
+    "placements": 91
   },
   "families": [
     {
@@ -77,52 +77,6 @@
                 -697,
                 -150,
                 194
-              ],
-              "rotation": [
-                0.0,
-                0.0,
-                0.0
-              ]
-            }
-          ]
-        },
-        {
-          "prop_tag": "Prop_Explore_Desk",
-          "mesh": null,
-          "materials": [],
-          "count": 1,
-          "layer": "base",
-          "kind": "p0",
-          "placements": [
-            {
-              "label": "P0_Explore_Desk",
-              "location": [
-                -900,
-                -880,
-                41
-              ],
-              "rotation": [
-                0.0,
-                0.0,
-                0.0
-              ]
-            }
-          ]
-        },
-        {
-          "prop_tag": "Prop_Explore_Perch",
-          "mesh": null,
-          "materials": [],
-          "count": 1,
-          "layer": "base",
-          "kind": "p0",
-          "placements": [
-            {
-              "label": "P0_Explore_Perch",
-              "location": [
-                -860,
-                -300,
-                90
               ],
               "rotation": [
                 0.0,
@@ -251,29 +205,6 @@
                 -520,
                 -870,
                 36
-              ],
-              "rotation": [
-                0.0,
-                0.0,
-                0.0
-              ]
-            }
-          ]
-        },
-        {
-          "prop_tag": "Prop_MelodyToken_Heart",
-          "mesh": "/Engine/BasicShapes/Sphere",
-          "materials": [],
-          "count": 1,
-          "layer": "base",
-          "kind": "p0",
-          "placements": [
-            {
-              "label": "P0_MelodyToken_Heart",
-              "location": [
-                -885,
-                -958,
-                82
               ],
               "rotation": [
                 0.0,
@@ -1005,33 +936,10 @@
               ]
             }
           ]
-        },
-        {
-          "prop_tag": "Prop_SirPerch_Empty",
-          "mesh": null,
-          "materials": [],
-          "count": 1,
-          "layer": "base",
-          "kind": "p0",
-          "placements": [
-            {
-              "label": "P0_SirPerch_Empty",
-              "location": [
-                -860,
-                -300,
-                0
-              ],
-              "rotation": [
-                0.0,
-                -160.0,
-                0.0
-              ]
-            }
-          ]
         }
       ],
-      "prop_count": 40,
-      "placement_count": 40
+      "prop_count": 36,
+      "placement_count": 36
     },
     {
       "family": "Room_landing",
@@ -1357,29 +1265,6 @@
                 80,
                 -1200,
                 290
-              ],
-              "rotation": [
-                0.0,
-                0.0,
-                0.0
-              ]
-            }
-          ]
-        },
-        {
-          "prop_tag": "Prop_Explore_Salon",
-          "mesh": null,
-          "materials": [],
-          "count": 1,
-          "layer": "base",
-          "kind": "p0",
-          "placements": [
-            {
-              "label": "P0_Explore_Salon",
-              "location": [
-                1000,
-                -1300,
-                200
               ],
               "rotation": [
                 0.0,
@@ -2450,40 +2335,8 @@
           ]
         }
       ],
-      "prop_count": 48,
-      "placement_count": 48
-    },
-    {
-      "family": "Room_unassigned",
-      "room": "unassigned",
-      "description": "",
-      "props": [
-        {
-          "prop_tag": "Prop_OpeningStateAnchor",
-          "mesh": null,
-          "materials": [],
-          "count": 1,
-          "layer": "base",
-          "kind": "p0",
-          "placements": [
-            {
-              "label": "P0_OpeningStateAnchor",
-              "location": [
-                0,
-                0,
-                0
-              ],
-              "rotation": [
-                0.0,
-                0.0,
-                0.0
-              ]
-            }
-          ]
-        }
-      ],
-      "prop_count": 1,
-      "placement_count": 1
+      "prop_count": 47,
+      "placement_count": 47
     }
   ],
   "rules": [

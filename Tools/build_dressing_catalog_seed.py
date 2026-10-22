@@ -80,6 +80,12 @@ def build() -> dict:
 
     families: dict[str, dict] = {}
     for actor in state.get("actors", []):
+        # The project's own P0 machinery (the opening state anchor, the
+        # exploration points, the token, the perch) is gameplay and level
+        # equipment, not hero clutter. It never enters the catalogue - a
+        # dressing pass must not be able to spawn a state anchor.
+        if actor.get("kind") == "p0":
+            continue
         room = actor.get("room") or "unassigned"
         prop = actor.get("prop") or "unassigned"
         family_tag = f"Room_{room}"
