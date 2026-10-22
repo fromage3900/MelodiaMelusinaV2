@@ -159,6 +159,21 @@
     "exclusion_source": "BP_PathSplineProvider in the house level is the route spline; bake it into the density texture the way Poitou bakes its route path and 4 m buffer to zero, or use PCGEx's spline filters",
     "preview": "the PCG editor preview shows the spawn live, so the density texture is painted while the room is visible"
   },
+  "density_textures": {
+    "status": "DERIVED_FIRST_PASS_READY_TO_PAINT",
+    "generator": "Tools/build_house_density_maps.py",
+    "receipt": "Saved/Audit/house_density_maps.json",
+    "files": {
+      "bedroom": "Content/EnvSandbox/PCG/House/Textures/dressing_heatmap_bedroom.png (1400x1790 px, 0.5 m/px, bounds x [-1150,-450] y [-995,-100])",
+      "landing": "Content/EnvSandbox/PCG/House/Textures/dressing_heatmap_landing.png (1020x1790 px, 0.5 m/px, bounds x [-450,60] y [-995,-100])",
+      "salon": "Content/EnvSandbox/PCG/House/Textures/dressing_heatmap_salon.png (2580x3560 px, 0.5 m/px, bounds x [60,1350] y [-1780,0])"
+    },
+    "derivation": "the artist's own 97 placements, splatted with a 12 m kernel so grouped furniture becomes a density REGION rather than isolated specks, then the P0 route corridor cut back 4 m; normalised so the peak is white, gamma 0.7",
+    "route_used": "M00 Explore_Desk -> M01 MelodyToken_Heart -> M02 BP_CandleFlame -> M03 BP_Lantern -> M04 BP_Crystal -> M05 BP_HiddenDoor (the golden-walk beat order, reconstructed from the carriers the artist placed)",
+    "what_it_is": "a first pass that agrees with the artist's own composition: density gathers where the furniture is, and the walk corridor stays clear",
+    "what_is_still_the_artist_s": "the field is painted by hand in the end - this only saves starting from black. The route polyline here is reconstructed from carrier positions, not read from BP_PathSplineProvider, so the graph's own spline filter remains the authoritative exclusion",
+    "perforce": "CL 306"
+  },
   "exclusions": [
     "the route from the bed to the front door, plus a 4 m buffer (P0 score: the walk must never snag furniture)",
     "the M04 medallion footprint and the five concentric rings",
@@ -176,7 +191,7 @@
   ],
   "not_yet_true": [
     "no PCG node in this contract has been built yet - it is a design contract and certifies nothing until the graph runs and the room is photographed",
-    "the density textures do not exist; they are to be authored like the Poitou zone heatmaps",
+    "the density textures exist as a DERIVED first pass (see density_textures) and still need the artist's paint; they are not the authored field",
     "the surface samplers need the shell's PCGEx graph to expose the named surfaces (shelf tops, table tops) as scene proxies",
     "the fill is additive to the 97-placement dressing contract; if that contract changes, the fill's counts and densities need a pass",
     "the Enchanted Interiors pack has never been lit inside this house - the fill's look is unproven until the room is seen with the toon master"
