@@ -1,4 +1,4 @@
-﻿"Inspect NS_Uni_WaterMist Niagara system structure."
+"Inspect NS_Uni_WaterMist Niagara system structure."
 import unreal
 
 SYSTEM_PATH = "/Game/EnvSandbox/VFX/Systems/Universal/NS_Uni_WaterMist"

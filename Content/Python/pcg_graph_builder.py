@@ -1,4 +1,4 @@
-﻿"""Shared PCG graph construction utilities for portfolio scripts."""
+"""Shared PCG graph construction utilities for portfolio scripts."""
 from __future__ import annotations
 
 import pcg_portfolio_standards as std

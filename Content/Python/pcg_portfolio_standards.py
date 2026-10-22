@@ -1,4 +1,4 @@
-﻿"""EnvSandbox universal PCG portfolio standards â€” paths, tags, presets, ISM bands."""
+"""EnvSandbox universal PCG portfolio standards â€” paths, tags, presets, ISM bands."""
 from __future__ import annotations
 
 PCG_ROOT = "/Game/EnvSandbox/PCG"

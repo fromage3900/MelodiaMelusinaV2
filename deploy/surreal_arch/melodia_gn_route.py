@@ -1,4 +1,4 @@
-﻿"""Melodia GN routing — default path for new ornament / music / castle arches."""
+"""Melodia GN routing — default path for new ornament / music / castle arches."""
 
 from __future__ import annotations
 

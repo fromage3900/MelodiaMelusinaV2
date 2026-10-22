@@ -1,4 +1,4 @@
-﻿"""PBR routing pipeline (2026-08-14) â€” resumable, chunked, audit-per-phase.
+"""PBR routing pipeline (2026-08-14) â€” resumable, chunked, audit-per-phase.
 
 Phases (--phase):
   B   build pack texture catalog from Imports/, import needed textures (sRGB-correct)

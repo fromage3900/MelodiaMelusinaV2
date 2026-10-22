@@ -1,4 +1,4 @@
-﻿"""Build the Melusina ABP-driven VFX set (Infinity Nikki lens).
+"""Build the Melusina ABP-driven VFX set (Infinity Nikki lens).
 
 Systems created (all quiet at rest, driven by User.* params the ABPs write):
   NS_Melusina_EyeSparkle  - SDF star on master_eye_L/R (body), User.MelusinaSparkleRate

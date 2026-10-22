@@ -1,4 +1,4 @@
-﻿"""Fix extreme mesh scales on L_MelusinaMorning.
+"""Fix extreme mesh scales on L_MelusinaMorning.
 
 Policy:
 - scale ~100 (80–200 uniform-ish) → divide by 100 (cm/m import blowup)

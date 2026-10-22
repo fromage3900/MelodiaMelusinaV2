@@ -1,4 +1,4 @@
-﻿"""Phoneme reader — parse USTX / UST voice-synth files into timed PhonemeEvent lists.
+"""Phoneme reader — parse USTX / UST voice-synth files into timed PhonemeEvent lists.
 
 USTX (OpenUTAU JSON):
   {"notes": [{"position": 0, "duration": 240, "tone": 60, "lyric": "a"}, ...]}

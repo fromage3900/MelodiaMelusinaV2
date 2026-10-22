@@ -1,4 +1,4 @@
-﻿"""Upgrade HeroCorner PCG graphs to proper flora/dress/PCGEx sources and reframe cams."""
+"""Upgrade HeroCorner PCG graphs to proper flora/dress/PCGEx sources and reframe cams."""
 from __future__ import annotations
 import json, math
 from datetime import datetime, timezone

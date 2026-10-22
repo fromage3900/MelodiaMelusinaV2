@@ -1,4 +1,4 @@
-﻿# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 """Phase B — Melusinas Study Blender source inventory. READ-ONLY: never save the .blend."""
 from __future__ import annotations
 import json, hashlib, sys, traceback

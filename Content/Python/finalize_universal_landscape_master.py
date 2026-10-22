@@ -1,4 +1,4 @@
-﻿"""Finalize wiring for the universal landscape master.
+"""Finalize wiring for the universal landscape master.
 
 Single entry point that:
 1. Adds the pro triplanar overlay lane (upgrade_landscape_triplanar_pro)

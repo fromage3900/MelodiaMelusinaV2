@@ -1,4 +1,4 @@
-﻿"""Curated starter MI_* set for M_Master_Toon_Universal (10 showcase instances).
+"""Curated starter MI_* set for M_Master_Toon_Universal (10 showcase instances).
 
 Each instance isolates ONE master capability (Nikki, flower shadow, nebula, magic, etc.).
 Legacy MI_Universal_* under Instances/Environment are deprecated — not deleted; use

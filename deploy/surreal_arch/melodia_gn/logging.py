@@ -1,4 +1,4 @@
-﻿"""Structured logging for melodia_gn — replaces silent error swallowing.
+"""Structured logging for melodia_gn — replaces silent error swallowing.
 
 Levels:
   debug   — only printed when melodia_gn_debug is enabled in addon prefs

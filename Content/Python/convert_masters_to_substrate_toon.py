@@ -1,4 +1,4 @@
-﻿"""Convert portfolio material masters to UE 5.8 Substrate Toon BSDF output.
+"""Convert portfolio material masters to UE 5.8 Substrate Toon BSDF output.
 
 Strategy C: preserve existing graph logic; replace shading root with
 MaterialExpressionSubstrateToonBSDF wired to MP_FRONT_MATERIAL.

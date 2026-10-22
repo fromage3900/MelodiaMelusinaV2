@@ -1,4 +1,4 @@
-﻿"""MMD Retarget Tool ΓÇö batch retarget .vmd motions onto a ZunZun armature.
+"""MMD Retarget Tool ΓÇö batch retarget .vmd motions onto a ZunZun armature.
 
 Bone name mapping from standard MMD skeleton to ZunZun family rig.
 Works with MMD Tools Blender addon for .pmx/.vmd import.

@@ -1,4 +1,4 @@
-﻿"""Convert Rainbow SpeedTree MIs onto MelodiaPlant_Wind_NikkiToon hybrid + fix placements.
+"""Convert Rainbow SpeedTree MIs onto MelodiaPlant_Wind_NikkiToon hybrid + fix placements.
 
 Hybrid = duplicate of M_MelodiaPlant_Wind (SpeedTree wind intact) + MF_NikkiDreamGrade
 wired into BaseColor. Band MIs reparented with wind snapshot restored + Nikki defaults.
