@@ -52,7 +52,7 @@
     "grid_m": 0.6,
     "bar_m": 2.4,
     "walk_speed_mps": 1.28,
-    "source": "Tools/Poitou/ae_first_day_animation_layer.md; Docs/Poitou/current_state.md; Recipes/melusina_poitou_parisian_v2.json (bpm 128); HDA bay_length 2.4 m",
+    "source": "Tools/Poitou/ae_first_day_animation_layer.md; Docs/Poitou/poitou_v2_state_2026-10-20.md; Recipes/melusina_poitou_parisian_v2.json (bpm 128); HDA bay_length 2.4 m",
     "note": "Single governing meter for the Poitou world. The earlier '2.4 m = allegro 3/4 / 3.6 m = andante 4/4' phrasing is superseded. Tempo authority of UMelodiaMusicClockSubsystem (global tempo, per-zone key) must be confirmed before authoring any tempo-locked clip."
   },
   "pacing": {

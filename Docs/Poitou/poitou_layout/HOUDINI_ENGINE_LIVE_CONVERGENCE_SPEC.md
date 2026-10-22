@@ -3,7 +3,7 @@
 **Target Engine:** Unreal Engine 5.8 (L_Poitou_v2)  
 **Target DCC:** SideFX Houdini 22.0.368 (Interactive SessionSync + Headless hython)  
 **Plugin:** `Plugins/HoudiniEngine` (22.0.368 API / UE 5.8)  
-**Style System:** "Musical but French" ([style_contract.md](file:///c:/EnvironmentPortfolio/BS_GodFile/Docs/Poitou/poitou_layout/style_contract.md)), 2.4 m bay rhythm, 0.6 m tufa stone module, Romanesque/Gothic Maillezais abbey ruins, Marais Poitevin canal hydrology.
+**Style System:** "Musical but French" ([style_contract.md](../style_contract.md)), 2.4 m bay rhythm, 0.6 m tufa stone module, Romanesque/Gothic Maillezais abbey ruins, Marais Poitevin canal hydrology.
 
 ---
 

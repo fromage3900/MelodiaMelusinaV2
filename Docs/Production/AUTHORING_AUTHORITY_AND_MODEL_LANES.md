@@ -46,13 +46,13 @@ proof remains separately tracked in `CURRENT_STATE.md`.
 
 Shape: OMORI. Music-as-key: Zelda. Visual/wardrobe bar: Infinity Nikki.
 
-Status and scope: [`CURRENT_STATE.md`](CURRENT_STATE.md).
+Status and scope: [`CURRENT_STATE.md`](../../CURRENT_STATE.md).
 
 **Model lanes:** pick a task class before writing (`triage|audit|code|cpp|mcp|playtest|author|
 deep|review|orchestrator|vision|daemon|docs`, plus the production lanes `wardrobe_catalog|
 beatmap_author|quill_author|asset_qa|anim_bindings|spout_beauty`). Router: `python Tools/model_router.py pick
-<class> --detail`. Policy + local daemon models: [`Docs/Production/MODEL_LANES_2026-08-12.md`](Docs/Production/MODEL_LANES_2026-08-12.md).
-Gameplay queue: [`CURRENT_STATE.md`](CURRENT_STATE.md) §4. The handoff files this line used to point
+<class> --detail`. Policy + local daemon models: [`Docs/Production/MODEL_LANES_2026-08-12.md`](MODEL_LANES_2026-08-12.md).
+Gameplay queue: [`CURRENT_STATE.md`](../../CURRENT_STATE.md) §4. The handoff files this line used to point
 at were removed in the 2026-09-10 docs collapse.
 
 | Class | Use for | Must not |

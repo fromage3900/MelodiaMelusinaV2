@@ -10,8 +10,8 @@
 
 **Date:** 2026-09-03  
 **Discovery tokens:** `melusinashouseplan`, `Melusina house GN`, `house asset families`, `round baroque`, `pink blue architecture`, `rocaille`, `scallop shingles`, `Listening Tower`, `Blue Room`  
-**Parent plan:** [`/melusinashouseplan.md`](../../melusinashouseplan.md)  
-**GN taxonomy:** [`Docs/Production/GN_TAXONOMY_2026-08-29.md`](../Production/GN_TAXONOMY_2026-08-29.md)  
+**Parent plan:** [`/melusinashouseplan.md`](melusinashouseplan_2026-09-02.md)  
+**GN taxonomy:** [`Docs/Production/GN_TAXONOMY_2026-08-29.md`](../../../Production/GN_TAXONOMY_2026-08-29.md)  
 **Target:** Blender 5.2 / Melodia Studio / `deploy/surreal_arch/`
 
 > **Goal:** turn the concept-sheet architecture into a modular production kit without exploding the global Geometry Nodes registry.
