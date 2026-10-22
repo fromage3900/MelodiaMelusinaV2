@@ -412,6 +412,7 @@ def layout_ascii(rows, step=100):
 
 
 def main() -> int:
+    MOVE_EXISTING = os.environ.get("DRESSING_MOVE_EXISTING", "") == "1"
     mode = (os.environ.get("MAGICIANS_MODE") or
             (sys.argv[1].strip().lower() if len(sys.argv) > 1 else "plan"))
     if mode not in ("plan", "apply"):
@@ -530,7 +531,7 @@ def main() -> int:
         if lbl.startswith("Mag_"):
             existing[lbl] = a
 
-    spawned, moved, skipped = [], [], []
+    spawned, moved, kept, skipped = [], [], [], []
     for r in rows:
         mesh = unreal.load_asset(r["mesh"])
         if mesh is None:
@@ -541,6 +542,12 @@ def main() -> int:
         label = "Mag_%s_%s" % (r["room"], r["mesh_name"])
         actor = existing.get(label)
         if actor is not None:
+            # A prop that is already there is the owner's: do not touch it unless
+            # the run explicitly opts in. DRESSING_MOVE_EXISTING=1 moves it.
+            if not MOVE_EXISTING:
+                kept.append({"mesh": r["mesh"], "label": label,
+                             "loc": [r["x"], r["y"], r["actor_z"]], "room": r["room"]})
+                continue
             try:
                 actor.set_actor_location(loc, False, True)
                 actor.set_actor_rotation(rot, False)
@@ -567,16 +574,18 @@ def main() -> int:
                         "room": r["room"], "role": r["role"]})
     saved = False
     try:
-        unreal.EditorLevelLibrary.save_current_level()
-        saved = True
+        # EditorLevelLibrary.save_current_level() silently no-ops in a scripted
+        # context; save_map returns a real bool.
+        saved = bool(unreal.EditorLoadingAndSavingUtils.save_map(world, MAP))
     except Exception as ex:
         saved = str(ex)[:200]
     out = {"generated": datetime.now(timezone.utc).isoformat(), "mode": mode,
            "level": MAP, "spawned": len(spawned), "moved": len(moved),
-           "skipped": skipped, "save": saved, "placements": spawned + moved}
+           "kept_existing": len(kept), "skipped": skipped, "save": saved,
+           "placements": spawned + moved + kept}
     RECEIPT.write_text(json.dumps(out, indent=2), encoding="utf-8")
-    print("DRESSING|apply|spawned=%d|moved=%d|skipped=%d|save=%s"
-          % (len(spawned), len(moved), len(skipped), saved))
+    print("DRESSING|apply|spawned=%d|moved=%d|kept=%d|skipped=%d|save=%s"
+          % (len(spawned), len(moved), len(kept), len(skipped), saved))
     return 0
 
 
