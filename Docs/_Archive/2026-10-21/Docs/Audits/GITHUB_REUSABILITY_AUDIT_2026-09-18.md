@@ -2,7 +2,7 @@
 
 **Purpose.** A durable, re-runnable audit of what `fromage3900/MelodiaMelusinaV2` actually holds and
 whether it can carry this project long-term. This is an audit snapshot, **not** a status document —
-current status lives only in [`CURRENT_STATE.md`](../../CURRENT_STATE.md).
+current status lives only in [`CURRENT_STATE.md`](../../../../../CURRENT_STATE.md).
 
 **Method.** Read-only against the workstation checkout (`C:/EnvironmentPortfolio/BS_GodFile`, branch
 `cleanup/pbr-twin-landing-2026-09-10`; working tree and index untouched) plus the GitHub API (`gh`)
