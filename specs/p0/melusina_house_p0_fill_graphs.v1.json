@@ -24,61 +24,74 @@
   "node_chain": [
     {
       "order": 1,
-      "node": "PCGExShapeBoundsSource",
+      "node": "PCGExBoundsFilter",
+      "display_name": "Shape Bounds Source (the house graph's name for it)",
       "role": "the room's interior bounds, inherited from the shell subgraph",
-      "parameters": "room-specific: the shell's own bounds, never a hand-typed box"
+      "parameters": "room-specific: the shell's own bounds, never a hand-typed box",
+      "note": "the house's own PCGEx graph names a node 'PCGExShapeBoundsSource' - that class does NOT exist in the installed PCGExtendedToolkit 0.76. The bounds family in this build is PCGExBounds* (PCGExBoundsFilter, PCGExBoundsToPoints, PCGExBoundsCommon). The graph needs a version check before it is trusted."
     },
     {
       "order": 2,
-      "node": "PCGExCreateSpline (x N)",
+      "node": "PCGExCreateSpline",
+      "display_name": "Create Spline",
       "role": "the room's named dressing surfaces, authored by the artist",
       "parameters": "one spline per surface; the spline carries the surface NAME as an attribute"
     },
     {
       "order": 3,
-      "node": "Surface Sampler / Grid Sampler",
+      "node": "PCGSurfaceSampler / PCGCreatePointsGrid",
+      "display_name": "Surface Sampler / Create Points (grid mode)",
       "role": "sample the surfaces for scatter; the grid covers the floor on the 0.6 m module",
-      "parameters": "Surface Sampler: the splines from step 2, 0.5 m spacing. Grid Sampler: 60 cm cells over the room bounds. Both must publish a UV attribute for the room's local XY - the texture sample needs it."
+      "parameters": "Surface Sampler: the splines from step 2, 0.5 m spacing. Grid: PCGCreatePointsGrid with 60 cm cells over the room bounds. Both must publish a UV attribute for the room's local XY - the texture sample needs it.",
+      "note": "there is no 'Grid Sampler' class in this build: the grid is the grid mode of Create Points (PCGCreatePointsGrid)."
     },
     {
       "order": 4,
       "node": "PCGExGetTextureData",
+      "display_name": "Get Texture Data",
       "role": "pull the room's density texture into the graph",
-      "parameters": "SourceType = TexturePath; SourceAttributeName = 'AssetPath' (a point attribute holding the texture path); Filter = Bilinear; Transform = the room's XY bounds; TexelSize = 50 cm; ColorChannel = R (NOT the default Alpha)"
+      "parameters": "SourceType = TexturePath; SourceAttributeName = 'AssetPath'; Filter = Bilinear; Transform = the room's XY bounds; TexelSize = 50 cm; ColorChannel = R (NOT the default Alpha)"
     },
     {
       "order": 5,
       "node": "PCGExSampleTexture",
+      "display_name": "Sample Texture",
       "role": "sample the texture per point",
       "parameters": "UVSource = the UV attribute from step 3; the sampled value is written into $Density"
     },
     {
       "order": 6,
       "node": "PCGDensityFilter",
+      "display_name": "Density Filter",
       "role": "cull the points the field says nothing about",
-      "parameters": "LowerBound = 0.05, UpperBound = 1.0, bKeepZeroDensityPoints = false. This node filters the $Density attribute - there is no density asset to point it at."
+      "parameters": "LowerBound = 0.05, UpperBound = 1.0, bKeepZeroDensityPoints = false. It filters the $Density attribute - there is no density asset to point it at."
     },
     {
       "order": 7,
       "node": "PCGExSelectorDensityWeighted",
+      "display_name": "Selector (Density Weighted)",
       "role": "choose the species per point, weighted by the density",
-      "parameters": "Mode = WeightModulation ('more density prefers the higher-weight species'); DensitySource = $Density; DensityInfluence = 1.0; OutOfRangePolicy = Clamp; the per-entry weights are the fill contract's species rows"
+      "parameters": "Mode = WeightModulation; DensitySource = $Density; DensityInfluence = 1.0; OutOfRangePolicy = Clamp; the per-entry weights are the fill contract's species rows"
     },
     {
       "order": 8,
-      "node": "Mesh Bounds Overlap",
+      "node": "PCGExDiscardByOverlap",
+      "display_name": "Discard By Overlap",
       "role": "kill prop-on-prop and prop-through-wall",
-      "parameters": "overlap resolution by pulling, sample count 2"
+      "parameters": "the spawned mesh bounds against the room's collision",
+      "note": "there is no 'Mesh Bounds Overlap' class in this build; PCGExDiscardByOverlap is the overlap killer."
     },
     {
       "order": 9,
-      "node": "Bounds Modifier (exclusion)",
+      "node": "PCGBoundsModifier",
+      "display_name": "Bounds Modifier",
       "role": "cull everything the walk or the beat must not share",
       "parameters": "the exclusion sources listed under exclusions"
     },
     {
       "order": 10,
-      "node": "Static Mesh Spawner (x species)",
+      "node": "PCGStaticMeshSpawner",
+      "display_name": "Static Mesh Spawner",
       "role": "spawn one species",
       "parameters": "mesh + material instance from the fill contract's species row; rotation rule per species; the mesh MUST be the converted Enchanted Interiors instance on M_Master_Toon_Universal"
     }
@@ -167,6 +180,7 @@
     "no node in this contract has been built - it is a design contract",
     "the density textures are a derived first pass and still need the artist's paint",
     "the shell's graph does not yet publish the named surfaces as scene proxies",
+    "the shell's graph references two node types that are missing from the installed plugin - a version check in the editor is needed before it is trusted",
     "the import helper is written but never run: the editor belongs to the artist"
   ],
   "mechanism_correction": {
@@ -180,5 +194,15 @@
       "the species choice is weighted by the density with PCGExSelectorDensityWeighted"
     ],
     "the_gotcha": "PCGExGetTextureData's ColorChannel defaults to ALPHA; a grayscale density texture carries its value in RGB with alpha = 1, so the channel must be R or the field reads 1.0 everywhere and every point survives the filter"
+  },
+  "node_class_verification": {
+    "checked_on": "2026-10-22",
+    "how": "every node class in this chain was matched against a real header in the engine's PCG plugin or the project's PCGExtendedToolkit 0.76",
+    "version_skew_found": "the house's own PCG_MelusinaRoomShell_PCGex references two node types that do not exist in the installed plugin: PCGExShapeBoundsSource and PCGExShapePointLookAt. The graph's node list was read out of the asset's name table, so these may be stale types from a different plugin version - the graph needs a version check in the editor before it is trusted.",
+    "renamed_in_this_contract": {
+      "Grid Sampler": "PCGCreatePointsGrid (Create Points in grid mode) - there is no GridSampler class",
+      "Mesh Bounds Overlap": "PCGExDiscardByOverlap - there is no MeshBoundsOverlap class",
+      "PCGExShapeBoundsSource": "the PCGExBounds* family in 0.76 (PCGExBoundsFilter / PCGExBoundsToPoints / PCGExBoundsCommon)"
+    }
   }
 }

@@ -187,12 +187,86 @@ def test_fill_contract_rules() -> None:
     check(species_total == 9, f"the fill contract has {species_total} species rows, not 9")
 
 
+def test_contracts_name_nodes_that_exist() -> None:
+    """Every PCG node the contracts name must exist in the engine or the plugin.
+
+    This is the gate that would have caught the PCGDensityData mistake: the fill
+    contract named a class that does not exist in UE 5.8, and nobody would have
+    found out until someone opened the editor and looked for it.
+    """
+    graph_spec = load_json(REPO_ROOT / "specs" / "p0" / "melusina_house_p0_fill_graphs.v1.json")
+    kit_spec = load_json(REPO_ROOT / "specs" / "p0" / "melusina_room_kit.v1.json")
+
+    # Collect the node names the contracts use.
+    named: set[str] = set()
+    for entry in graph_spec.get("node_chain", []):
+        node = entry.get("node", "")
+        for part in node.split(" / "):
+            part = part.strip()
+            if part:
+                named.add(part)
+    for entry in graph_spec.get("mechanism_correction", {}).get("true_now", []):
+        for candidate in ("PCGExGetTextureData", "PCGExSampleTexture", "PCGExSelectorDensityWeighted", "PCGDensityFilter"):
+            if candidate in entry:
+                named.add(candidate)
+
+    # Where to look: the engine's PCG plugin and this project's PCGExtendedToolkit.
+    search_roots = [
+        pathlib.Path(r"C:\Program Files\Epic Games\UE_5.8\Engine\Plugins\PCG\Source"),
+        REPO_ROOT / "Plugins" / "PCGExtendedToolkit" / "Source",
+    ]
+    headers: list[str] = []
+    for root in search_roots:
+        if root.exists():
+            headers.extend(str(p) for p in root.rglob("*.h"))
+
+    for node in sorted(named):
+        stem = node.split(".")[-1]
+        found = any(pathlib.Path(h).stem == stem for h in headers)
+        check(found, f"the fill contract names the node '{node}' but no {stem}.h exists in the PCG plugin or PCGExtendedToolkit")
+
+    # The correction must still be recorded: the old, non-existent class must not
+    # come back as if it were real.
+    fill = load_json(FILL_PATH)
+    mechanism = fill.get("pcg_graph", {}).get("density_mechanism", {})
+    check(bool(mechanism), "the fill contract no longer records how the density actually works")
+    # PCGDensityData may appear ONLY in a sentence that says it does not exist.
+    live = {k: v for k, v in fill.get("pcg_graph", {}).items()
+            if k not in ("density_mechanism", "mechanism_correction")}
+    for key, value in live.items():
+        blob = json.dumps(value)
+        for match in re.finditer(r"PCGDensityData", blob):
+            lead = blob[max(0, match.start() - 60):match.start()].lower()
+            check(("no " in lead or "not " in lead),
+                  f"the fill contract's pcg_graph.{key} uses PCGDensityData as if it existed")
+    check("Alpha" in json.dumps(mechanism), "the ColorChannel=Alpha gotcha is no longer recorded")
+
+
+def test_room_kit_contract() -> None:
+    kit = load_json(REPO_ROOT / "specs" / "p0" / "melusina_room_kit.v1.json")
+    children = " ".join(child.get("type", "") + child.get("name", "") for child in kit.get("children", []))
+    check("CarrierSlot" in children, "the room kit has no carrier slot")
+    check("FIXED CHILD" in children.upper(), "the room kit's carrier is not a fixed child (Jev, 2026-10-22)")
+    meter = kit.get("meter", {})
+    check(meter.get("module_m") == 0.6, "the room kit's module is not 0.6 m")
+    check(meter.get("bay_m") == 2.4, "the room kit's bay is not 2.4 m")
+    check(meter.get("bpm") == 128, "the room kit's tempo is not 128 BPM")
+    frozen = kit.get("frozen_metrics", {})
+    for key in ("pivot", "footprint", "transition"):
+        check(key in frozen, f"the room kit does not freeze the '{key}' metric")
+    check(bool(kit.get("story_tags")), "the room kit carries no story tags (Infold's 'fashion as narrative', 2026-10-22)")
+    rules = " ".join(kit.get("placement_rules", []))
+    check("never move" in rules or "never moves" in rules,
+          "the room kit does not say that it may not move a hand-placed actor")
+
+
 def main() -> int:
     print("=" * 68)
     print("DRESSING PIPELINE - OFFLINE DATA GATE (no engine)")
     print("=" * 68)
     for test in (test_seed_shape, test_family_tags_exist_in_cpp, test_generator_is_read_only,
-                 test_density_textures, test_fill_contract_rules):
+                 test_density_textures, test_fill_contract_rules,
+                 test_contracts_name_nodes_that_exist, test_room_kit_contract):
         name = test.__name__
         before = len(failures)
         try:
