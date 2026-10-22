@@ -861,13 +861,17 @@ Placed and verified in the level, then saved (`EditorLoadingAndSavingUtils.save_
 
 | Path | Open action | Files | What it is |
 |---|---|---|---|
-| `Content/MagicianLabatory/...` | **add** | 819 | the rest of the Fab pack - 271 of its 1,090 files were already in the depot from change 299, these 819 were local-only and are now tracked |
-| `Content/EnvSandbox/Library/Migrated/MagiciansLibrary/...` | **edit** | 98 | the toon-converted canonical set (the 189 meshes on `M_Master_Toon_Universal`, their textures, the LOD and collision passes) |
+| `Content/MagicianLabatory/...` | **add** | 819 | the rest of the Fab pack - 271 of its 1,090 files were already in the depot from change 299, these 819 were local-only and are now tracked (1,090 on disk = 271 in depot + 819 open, no orphans either way) |
 | `Content/Library/Migrated/MagiciansLibrary/...` | **delete** | 356 | the **duplicate** tree, being retired from the active path |
 | `Content/Library/_Archive/MagiciansLibrary_20261021/...` | **add** | 356 | where that duplicate tree now lives - the same 356 files, the same names, one-to-one |
+| `Content/EnvSandbox/Library/Migrated/MagiciansLibrary/...` | **edit** / **add** / **delete** | 53 / 52 / 55 | the toon-converted canonical set (the 189 meshes on `M_Master_Toon_Universal`, their textures, the LOD and collision passes) |
 | `Content/Melodia/Levels/Opening/L_MelusinaHouse_P0.umap` | **edit** | 1 | the P0 house, with your dressing and the P0 system actors |
 
-**The archive move is now represented correctly in Perforce.** A move in Perforce is *delete the old path + add the new path* - not *edit*. The old tree had been sitting as 356 `edit` opens, which would have told the depot the files still existed at the old path and never recorded the archive. It was corrected by reverting them (which restored the depot copies, so nothing was lost) and re-opening them as `delete`; the archive path was reconciled in as `add`. **Verified one-to-one: every depot file under the old path has an archive counterpart and vice versa, no orphans in either direction.**
+**CL 300 holds 1,692 files. The default changelist holds 543 - the owner's other work - and contains ZERO Magician files.**
+
+**The archive move is now represented correctly in Perforce.** A move in Perforce is *delete the old path + add the new path* - not *edit*. The old tree had been sitting as 356 `edit` opens, which would have told the depot the files still existed at the old path and never recorded the archive. It was corrected by reverting them (which restored the depot copies, so nothing was lost) and re-opening them as `delete`; the archive path was reconciled in as `add`. **Verified one-to-one: every depot file under the old path has an archive counterpart and vice versa, no orphans in either direction.** The old path is now empty on disk; the archive holds all 356 files.
+
+**The canonical tree has the same shape, and was reconciled the same way.** Its 55 `delete` opens are 50 flat masters moved into `_Archive/FlatMasters_20261021/` plus the 5 documented renames (`candle1_L` -> `SM_Candle1_L`, `MI_M_Deco1/2/3` -> `MI_M_Kit_Ornament_A/B/C`, `MI_M_Desk_2` -> `MI_M_Desk2`); its 52 `add` opens are those 50 flat masters at their new path plus 2 material instances. **Every delete was paired to a replacement and confirmed present on disk before the reconcile ran, and the 5 renames' new names are all in the depot.** No file was lost: 0 zero-byte assets across every touched tree.
 
 **Nothing outside the Magician's Library was touched.** The eight files under `Content/Library/Migrated/Melodia/**` are a *different* tree, were never opened in this changelist, and remain untouched and unsubmitted.
 
