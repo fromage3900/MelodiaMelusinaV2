@@ -875,6 +875,8 @@ Placed and verified in the level, then saved (`EditorLoadingAndSavingUtils.save_
 
 **Nothing outside the Magician's Library was touched.** The eight files under `Content/Library/Migrated/Melodia/**` are a *different* tree, were never opened in this changelist, and remain untouched and unsubmitted.
 
+**The house map was re-opened after the editor released it.** The map reached the depot as **rev 2 (change 301)**, but the local file still carries the artist's newer hand edits and had lost its Perforce open when the editor closed - so a `p4 sync` or `p4 revert` would have discarded them silently. It has been re-opened for edit in CL 300 and `p4 diff` confirms the local file still differs from depot rev 2. **Check that the map is open in CL 300 before you sync.** The git snapshot, the state file and the `.umap` backup cover it three more ways, but the cheapest protection is the open itself.
+
 **To submit it:** `p4 submit -c 300`. It is ~6.8 GB of binary, so it will take a while and needs LFS bandwidth - and I am not doing it, because a submit is yours under the repo's rules.
 
 **Two Perforce gotchas worth knowing** (both cost time here):
