@@ -1,4 +1,4 @@
-﻿"""Wire Dynamic Caustics and Wave Height Displacement Audio Modulation (Feature F11).
+"""Wire Dynamic Caustics and Wave Height Displacement Audio Modulation (Feature F11).
 
 Wired Targets:
 - M_Water_Master_Grand_v10_Upgrade & M_Water_Master_Grand_v7

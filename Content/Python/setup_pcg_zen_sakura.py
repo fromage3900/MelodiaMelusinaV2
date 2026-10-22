@@ -1,4 +1,4 @@
-﻿"""Apply the expanded Zen/Sakura PCG stack to a neutral or Sakura level.
+"""Apply the expanded Zen/Sakura PCG stack to a neutral or Sakura level.
 
 This is the end-to-end wrapper for the universal PCG expansion:
 build graphs -> load level -> ensure ground -> spawn layered PCG volumes -> generate -> report.

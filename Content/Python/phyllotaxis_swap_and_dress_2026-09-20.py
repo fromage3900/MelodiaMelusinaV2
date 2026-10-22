@@ -1,4 +1,4 @@
-﻿"""Swap WestRim→Phyllotaxis, shrink HeroCorner PCG volumes, base-dress WestRim+EastBank."""
+"""Swap WestRim→Phyllotaxis, shrink HeroCorner PCG volumes, base-dress WestRim+EastBank."""
 from __future__ import annotations
 import json, math, random
 from datetime import datetime, timezone

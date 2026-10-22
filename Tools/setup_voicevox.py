@@ -1,4 +1,4 @@
-﻿"""VOICEVOX Installer & Setup ΓÇö downloads and configures VOICEVOX for ZunZun integration.
+"""VOICEVOX Installer & Setup ΓÇö downloads and configures VOICEVOX for ZunZun integration.
 
 Downloads VOICEVOX (free text-to-speech engine) and the Zundamon/Zunko voice libraries.
 

@@ -1,4 +1,4 @@
-﻿"""ZunZun Studio ΓÇö Blender setup script for all ZunZun family character models.
+"""ZunZun Studio ΓÇö Blender setup script for all ZunZun family character models.
 
 Creates a studio layout with all available models imported and arranged.
 Run from Blender's Scripting workspace or via command line:

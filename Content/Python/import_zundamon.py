@@ -1,4 +1,4 @@
-﻿"""Zundamon Unreal Import Script ΓÇö run in UE Python console or via MCP.
+"""Zundamon Unreal Import Script ΓÇö run in UE Python console or via MCP.
 
 Imports the Zundamon FBX, creates materials, and sets up the skeletal mesh.
 Run: Window ΓåÆ Developer Tools ΓåÆ Python Console

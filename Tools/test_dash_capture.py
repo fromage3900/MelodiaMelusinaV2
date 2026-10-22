@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env python3
+#!/usr/bin/env python3
 """Dash capture probe â€” offline contract check for UMelodiaCaptureRenderSubsystem.
 
 No editor, no .uasset writes. Validates:

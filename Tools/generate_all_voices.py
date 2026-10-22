@@ -1,4 +1,4 @@
-﻿"""ZunZun Family Voice Generator ΓÇö batch VOICEVOX for all 7 characters.
+"""ZunZun Family Voice Generator ΓÇö batch VOICEVOX for all 7 characters.
 
 Reads dialogue JSON files from each character folder,
 calls VOICEVOX API with the correct speaker ID per character,

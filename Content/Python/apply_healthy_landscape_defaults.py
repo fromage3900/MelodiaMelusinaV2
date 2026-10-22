@@ -1,4 +1,4 @@
-﻿"""Apply healthy PBR texture defaults to the landscape master and its instances.
+"""Apply healthy PBR texture defaults to the landscape master and its instances.
 
 Run inside the UE editor Python interpreter:
 

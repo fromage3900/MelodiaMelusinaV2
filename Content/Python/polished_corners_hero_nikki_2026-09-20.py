@@ -1,4 +1,4 @@
-﻿"""Polished corners stills: hero Nikki on hybrid bands + 3 locked beauty cams + soft expose."""
+"""Polished corners stills: hero Nikki on hybrid bands + 3 locked beauty cams + soft expose."""
 from __future__ import annotations
 import json, math
 from datetime import datetime, timezone

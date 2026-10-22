@@ -1,4 +1,4 @@
-﻿"""magicians_repoint_duplicates.py â€” move live references off the duplicate tree.
+"""magicians_repoint_duplicates.py â€” move live references off the duplicate tree.
 
 The 2026-09-01 purge spec wanted /Game/Library/Migrated/MagiciansLibrary deleted
 as a duplicate of the canonical

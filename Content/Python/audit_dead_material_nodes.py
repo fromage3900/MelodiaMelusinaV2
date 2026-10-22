@@ -1,4 +1,4 @@
-﻿"""Audit dead material function calls and broken texture refs (editor).
+"""Audit dead material function calls and broken texture refs (editor).
 
   py "G:/EnvironmentPortfolio/BS_GodFile/Content/Python/audit_dead_material_nodes.py"
 

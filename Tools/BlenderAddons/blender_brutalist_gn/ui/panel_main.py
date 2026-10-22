@@ -19,7 +19,7 @@ class BRUTALIST_GN_PT_main(bpy.types.Panel):
         # Category buttons
         categories = {
             "walls": {"label": "Walls", "icon": 'MOD_SOLIDIFY'},
-            "structures": {"label": "Structures", "icon': 'OUTLINER_OB_MESH'},
+            "structures": {"label": "Structures", "icon": 'OUTLINER_OB_MESH'},
             "details": {"label": "Details", "icon": 'NODETREE'},
             "complexes": {"label": "Complexes", "icon": 'GROUP'},
         }

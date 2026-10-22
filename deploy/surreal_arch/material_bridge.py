@@ -1,4 +1,4 @@
-﻿"""Material Bridge — Blender material slot ↔ Unreal material instance crosswalk.
+"""Material Bridge — Blender material slot ↔ Unreal material instance crosswalk.
 
 Solves the #1 friction point in the Blender→Unreal pipeline:
   - Browse known UE material instances from Blender

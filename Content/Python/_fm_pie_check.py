@@ -1,4 +1,4 @@
-﻿import unreal, json
+import unreal, json
 out = {}
 try:
     ues = unreal.get_editor_subsystem(unreal.UnrealEditorSubsystem)

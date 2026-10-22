@@ -1,4 +1,4 @@
-﻿"""Patch monolith Layer 2 world pipeline to surreal_world package."""
+"""Patch monolith Layer 2 world pipeline to surreal_world package."""
 
 from __future__ import annotations
 

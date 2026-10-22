@@ -1,4 +1,4 @@
-﻿"""UI search, filtered picker, and VIEW_3D panels."""
+"""UI search, filtered picker, and VIEW_3D panels."""
 
 from __future__ import annotations
 

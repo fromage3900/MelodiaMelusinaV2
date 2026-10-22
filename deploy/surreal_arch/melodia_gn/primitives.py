@@ -1,4 +1,4 @@
-﻿"""Primitive GN group builders — circular array, linear array, grid array, bounding box, instance on spline."""
+"""Primitive GN group builders — circular array, linear array, grid array, bounding box, instance on spline."""
 
 from __future__ import annotations
 
