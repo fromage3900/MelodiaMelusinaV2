@@ -62,6 +62,10 @@ ROOMS = {
 
 CANON = "/Game/EnvSandbox/Library/Migrated/MagiciansLibrary"
 PACK = "/Game/MagicianLabatory/Source"
+# Second dressing source: the Kitbash3D Enchanted Interiors pack converted onto
+# M_Master_Toon_Universal on 2026-10-21, imported at /Game/EnchantedInteriors.
+# Its prop meshes live under Geometries/ and are named <ActorName>_Main.
+ECV = "/Game/EnchantedInteriors"
 
 # (mesh_path, x, y, rot_z_deg, surface_z, role, plan_citation)
 D = []
@@ -224,6 +228,88 @@ add("SM_WoodWall", 700, -1770, 0, 0, "low timber wall, south (969 cm)",
     "REF_02 board: Floor, mouldings & ornaments", tree="pack", folder="Building/WoodWall")
 
 
+# ---------------------------------------------------------------- ECV LAYER
+# Enchanted Interiors (Kitbash3D, UE4.26+) converted onto M_Master_Toon_Universal
+# on 2026-10-21, imported at /Game/EnchantedInteriors. This layer sits ON TOP of
+# the Magician's Library base dressing: it adds the warmth, the candles and the
+# "cute" layer the P0 house leg needs, without touching a single base placement.
+# Every entry below is a NEW actor (Jev additive policy 2026-10-21:
+# NEW_ASSETS_ONLY_NO_EXISTING_MUTATION).
+#
+# ECV prop meshes are named <ActorName>_Main under /Game/EnchantedInteriors/Geometries.
+# surface_z is the height the prop's LOWEST POINT rests at, so a hanging piece uses
+# it as the height of its bottom: the salon's shell is 563 cm tall, so a 335 cm
+# chandelier hangs from 200 cm (top at 535 cm) and a 117 cm one from 330 cm.
+
+# --- bedroom: a candle on the bedside table, a bookcase, a second trunk, a bowl
+add("KB3D_ECI_PropCandleHolder_A_Main", -880, -250, 0, 77,
+    "candle cluster on the bedside table (48x22x77)",
+    "rooms doc SS2 domestic imperfection; house plan: ribbons, sheet music, jars - the bedroom is lived in",
+    tree="ecv")
+add("KB3D_ECI_PropBookShelf_A_Main", -560, -930, 0, 0,
+    "free-standing bookcase, south-east of the bedroom",
+    "house plan GN_MH_11: built-in shelf following wall curvature - this one is the free-standing companion",
+    tree="ecv")
+add("KB3D_ECI_PropBookStack_A_Main", -1100, -790, 0, 250,
+    "book stack on the west shelf run (top 250 cm)",
+    "rooms doc SS2: scholar's clutter breaking the clean system", tree="ecv")
+add("KB3D_ECI_PropChest_B_Main", -520, -870, 0, 0,
+    "second trunk, south-east corner",
+    "rooms doc SS2: the room must feel lived in", tree="ecv")
+add("KB3D_ECI_PropAppleBowl_A_Main", -820, -955, 0, 82,
+    "small fruit bowl on the writing desk (top 82 cm)",
+    "house plan: field-journal worktable; rooms doc SS2 domestic imperfection", tree="ecv")
+
+# --- landing: a lantern by the threshold, a banner pole, a bowl on the pot table
+add("KB3D_ECI_PropStandingLantern_A_Main", -400, -450, 0, 0,
+    "standing lantern by the threshold (landing side of the shared wall line)",
+    "P0 M03 threshold: first reveal of curving pink architecture - a warm pool before the salon",
+    tree="ecv")
+add("KB3D_ECI_PropBannerPole_A_Main", -240, -700, 0, 0,
+    "banner pole in the landing",
+    "REF_01 board: porch depth, shell crests, lamps, drapes, flowers", tree="ecv")
+add("KB3D_ECI_PropAppleBowl_A_Main", -330, -900, 0, 107,
+    "fruit bowl on the plant table pot (top 107 cm)",
+    "rooms doc SS2: domestic imperfection in a formal space", tree="ecv")
+
+# --- salon: the chandelier over the M04 landmark, the sitting group, the shelves
+add("KB3D_ECI_PropChandelier_A_Main", 700, -900, 0, 200,
+    "chandelier hanging over the circular floor medallion (bottom 200 cm, top 535 cm under the 563 cm shell)",
+    "P0 M04 landmark: the oval salon's one visual landmark, now lit from above; house plan ceiling-score logic",
+    tree="ecv")
+add("KB3D_ECI_PropChandelier_C_Main", 1100, -1600, 0, 330,
+    "small chandelier by the front doors (bottom 330 cm)",
+    "P0 M05: purposeful pause before the exterior reveal - a warm doorway", tree="ecv")
+add("KB3D_ECI_PropRoundTable_A_Main", 420, -450, 0, 0,
+    "round table, the sitting group in front of the salon entry",
+    "house plan: center entry + sitting / circular rug", tree="ecv")
+add("KB3D_ECI_PropChair_A_Main", 350, -450, 90, 0,
+    "chair at the sitting table",
+    "house plan: center entry + sitting / circular rug", tree="ecv")
+add("KB3D_ECI_PropAcolyteChair_A_Main", 490, -450, -90, 0,
+    "second chair at the sitting table",
+    "house plan: center entry + sitting / circular rug", tree="ecv")
+add("KB3D_ECI_PropAppleBowl_A_Main", 420, -450, 0, 79,
+    "fruit bowl on the sitting table (top 79 cm)",
+    "rooms doc SS2: domestic imperfection - a table with something on it", tree="ecv")
+add("KB3D_ECI_PropCandleStackLit_A_Main", 330, -300, 0, 88,
+    "candle cluster on the console table (top 88 cm)",
+    "P0 M04: the house hums - a lit console reads as inhabited", tree="ecv")
+add("KB3D_ECI_PropAppleBowl_A_Main", 255, -280, 0, 88,
+    "fruit bowl on the console table (top 88 cm)",
+    "rooms doc SS2: domestic imperfection", tree="ecv")
+add("KB3D_ECI_PropBookShelf_A_Main", 600, -80, 0, 0,
+    "bookcase along the salon's north wall",
+    "house plan: Melusina's library reaches into the salon; rooms doc SS1 Resonant Salon",
+    tree="ecv")
+add("KB3D_ECI_PropStandingLantern_A_Main", 980, -1700, 0, 0,
+    "standing lantern by the south bench",
+    "P0 M04: warm pool at the seated end of the oval salon", tree="ecv")
+add("KB3D_ECI_PropBookStack_A_Main", 1060, -1300, 0, 0,
+    "book stack on the floor beside the instrument dais",
+    "P0 M04: the off-centre instrument dais needs company, not isolation", tree="ecv")
+
+
 def mesh_bounds(path):
     a = unreal.load_asset(path)
     if a is None:
@@ -339,6 +425,8 @@ def main() -> int:
         r = dict(d)
         if r["tree"] == "canon":
             r["mesh"] = canon.get(r["mesh_name"])
+        elif r["tree"] == "ecv":
+            r["mesh"] = "%s/Geometries/%s" % (ECV, r["mesh_name"])
         else:
             r["mesh"] = pack.get(r["mesh_name"])
         if not r["mesh"] and r.get("folder"):
@@ -367,14 +455,34 @@ def main() -> int:
             "house_visual_score": "Docs/References/MelusinasHouse/OriginalDesign/melusinashouseplan_2026-09-02.md",
             "room_plan": "Docs/References/MelusinasHouse/OriginalDesign/MELUSINAS_HOUSE_GN_ROOMS_AND_ACOUSTIC_ARCHITECTURE_2026-09-03.md",
             "reference_boards": "Docs/References/MelusinasHouse/ (REF_01 exterior, REF_02 build sheet, REF_03 cutaway - REF_03 is a corrupt JPEG in git)",
-            "prop_source": "Fab 'Magician's Library Environment and VFX Pack' (Coreb Games), imported at /Game/MagicianLabatory",
+            "prop_source": [
+                "Fab 'Magician's Library Environment and VFX Pack' (Coreb Games), imported at /Game/MagicianLabatory - base dressing (tree=canon/pack)",
+                "Kitbash3D 'Enchanted Interiors' (UE4.26+), converted onto M_Master_Toon_Universal on 2026-10-21, imported at /Game/EnchantedInteriors - layer on top (tree=ecv)",
+            ],
             "note": "Every placement carries the plan role it serves. The house leg is bounded by the P0 score to bedroom -> landing -> oval salon -> front doors; other rooms of the 9-room constellation stay behind closed doors.",
+        },
+        "layers": {
+            "base": {
+                "tree": ["canon", "pack"],
+                "source": "Magician's Library (canon + Building/CentreRing pack)",
+                "role": "the house's architecture and identity: shelves, desk, medallion rings, stair, doors",
+            },
+            "enchanted_interiors": {
+                "tree": ["ecv"],
+                "source": "Kitbash3D Enchanted Interiors, converted to M_Master_Toon_Universal",
+                "role": "the warm and cute layer on top: chandeliers over the M04 landmark, candle clusters, the sitting group, bookcases, a banner and a lantern",
+                "policy": "additive only - no base placement is moved or edited (Jev NEW_ASSETS_ONLY_NO_EXISTING_MUTATION, 2026-10-21)",
+            },
         },
         "rooms": ROOMS,
         "placement_rule": "surface_z is the height of the surface the prop's BASE rests on (0 = room floor, 82 = desk top, 186 = shelf top, 107 = pot table top, 95 = candle top). The apply step measures each mesh's bounds and lifts the actor by -(centre.z - height/2) so the base actually sits on that surface.",
         "counts": {
             "placements": len(rows),
             "by_room": {k: sum(1 for r in rows if r["room"] == k) for k in ROOMS},
+            "by_layer": {
+                "base": sum(1 for r in rows if r.get("tree") in ("canon", "pack")),
+                "enchanted_interiors": sum(1 for r in rows if r.get("tree") == "ecv"),
+            },
         },
         "layout_ascii": layout_ascii(rows),
         "layout_svg": "Saved/Audit/melusina_house_p0_dressing_layout.svg (local artifact; the repo pre-commit hook refuses .svg, so layout_ascii is the git-reviewable copy)",
@@ -386,6 +494,9 @@ def main() -> int:
             "the P0 M04 salon interactable is not supplied by the prop pack; the circular medallion is the landmark, not the interactable",
             "the grand staircase is framed from the Building set but is not a walkable route; P0 M04 only requires it framed",
             "SM_Entrance and the wall-facing ornaments need an orientation check against the room's facing",
+            "the Enchanted Interiors layer (tree=ecv) is a DESIGN proposal on top of the base dressing: hanging pieces use surface_z as the HEIGHT OF THEIR LOWEST POINT (the two chandeliers hang at 200 cm and 330 cm so their tops stay under the salon's 563 cm shell), and every ECV mesh still needs a visual check in the editor - the pack was converted onto M_Master_Toon_Universal on 2026-10-21 but has never been lit in this room",
+            "KB3D_ECI_PropTableFabric_A_Main was considered for the salon but dropped: it measures 1008 cm long, which is a banquet table, not a companion to the oval salon's instrument dais",
+            "the Enchanted Interiors pack does not supply a piano, a music box or a window chime, so P0 M02's resonant object is still open; the candle cluster on the bedside table is the visual candidate, not the interactive",
         ],
     }
     SPEC.parent.mkdir(parents=True, exist_ok=True)
@@ -398,10 +509,28 @@ def main() -> int:
     if mode != "apply":
         return 0
 
-    # ---- apply: spawn the dressing in the house level
-    unreal.EditorLevelLibrary.load_level(MAP)
+    # ---- apply: place the dressing in the house level
+    # SAFETY: never reload the level if it is already open - reloading would
+    # discard whatever the owner has unsaved in this session.
     world = unreal.EditorLevelLibrary.get_editor_world()
-    spawned, skipped = [], []
+    cur_name = world.get_path_name() if world else ""
+    if not cur_name.startswith(MAP):
+        unreal.EditorLevelLibrary.load_level(MAP)
+        world = unreal.EditorLevelLibrary.get_editor_world()
+
+    # IDEMPOTENCE: an actor that is already there is MOVED to the corrected
+    # position, never duplicated. The level already carries a first pass of this
+    # dressing, and a re-apply must correct it in place.
+    existing = {}
+    for a in unreal.EditorLevelLibrary.get_all_level_actors():
+        try:
+            lbl = a.get_actor_label()
+        except Exception:
+            continue
+        if lbl.startswith("Mag_"):
+            existing[lbl] = a
+
+    spawned, moved, skipped = [], [], []
     for r in rows:
         mesh = unreal.load_asset(r["mesh"])
         if mesh is None:
@@ -409,6 +538,22 @@ def main() -> int:
             continue
         loc = unreal.Vector(r["x"], r["y"], r["actor_z"])
         rot = unreal.Rotator(0, 0, r["rot_z"])
+        label = "Mag_%s_%s" % (r["room"], r["mesh_name"])
+        actor = existing.get(label)
+        if actor is not None:
+            try:
+                actor.set_actor_location(loc, False, True)
+                actor.set_actor_rotation(rot, False)
+                comp = actor.static_mesh_component
+                if comp is not None and comp.static_mesh != mesh:
+                    comp.set_static_mesh(mesh)
+                moved.append({"mesh": r["mesh"], "label": label,
+                              "loc": [r["x"], r["y"], r["actor_z"]], "rot_z": r["rot_z"],
+                              "room": r["room"], "role": r["role"]})
+                continue
+            except Exception as ex:
+                skipped.append({"mesh": r["mesh"], "reason": "move failed: %s" % ex})
+                continue
         actor = unreal.EditorLevelLibrary.spawn_actor_from_class(unreal.StaticMeshActor, loc, rot)
         if actor is None:
             skipped.append({"mesh": r["mesh"], "reason": "spawn failed"})
@@ -416,7 +561,7 @@ def main() -> int:
         comp = actor.static_mesh_component
         comp.set_static_mesh(mesh)
         comp.set_mobility(unreal.ComponentMobility.MOVABLE)
-        actor.set_actor_label("Mag_%s_%s" % (r["room"], r["mesh_name"]))
+        actor.set_actor_label(label)
         spawned.append({"mesh": r["mesh"], "label": actor.get_actor_label(),
                         "loc": [r["x"], r["y"], r["actor_z"]], "rot_z": r["rot_z"],
                         "room": r["room"], "role": r["role"]})
@@ -427,10 +572,11 @@ def main() -> int:
     except Exception as ex:
         saved = str(ex)[:200]
     out = {"generated": datetime.now(timezone.utc).isoformat(), "mode": mode,
-           "level": MAP, "spawned": len(spawned), "skipped": skipped,
-           "save": saved, "placements": spawned}
+           "level": MAP, "spawned": len(spawned), "moved": len(moved),
+           "skipped": skipped, "save": saved, "placements": spawned + moved}
     RECEIPT.write_text(json.dumps(out, indent=2), encoding="utf-8")
-    print("DRESSING|apply|spawned=%d|skipped=%d|save=%s" % (len(spawned), len(skipped), saved))
+    print("DRESSING|apply|spawned=%d|moved=%d|skipped=%d|save=%s"
+          % (len(spawned), len(moved), len(skipped), saved))
     return 0
 
 
