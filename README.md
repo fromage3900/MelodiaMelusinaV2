@@ -7,7 +7,7 @@
 ![Unreal Engine 5.8](https://img.shields.io/badge/Unreal_Engine-5.8_%2B_C%2B%2B-informational?logo=unrealengine&logoColor=white&color=0a1929)
 ![Blender 5.2](https://img.shields.io/badge/Blender-5.2_LTS-critical?logo=blender&logoColor=white&color=e87d0d)
 ![Assets](https://img.shields.io/badge/uasset-6%2C582_tracked-5e3a8c)
-![Maps](https://img.shields.io/badge/umap-64_tracked-3a5a3a)
+![Maps](https://img.shields.io/badge/umap-65_tracked-3a5a3a)
 ![Plugins](https://img.shields.io/badge/Plugins-22_project-8c3a3a)
 ![Model Context Protocol](https://img.shields.io/badge/Model_Context_Protocol-1330_actions-3a8c5e)
 
@@ -141,7 +141,7 @@ The six-phase route below is the proven **First Dream integration song** used to
 | `Source/BS_GodFile/` | 233 C++/header source files — battle logic, narrative subsystem, wardrobe subsystem, UI bridge |
 | `Tools/` | 962 Python automation scripts — build validation, gate ledger, asset injectors, regression runners |
 | `deploy/` | MCP server implementations (`melodia_mcp_server.py`, `agent_bridge_mcp.py`), daemons, build graphs |
-| `specs/` | 192 JSON contract schemas — MCP schemas, tool policies, P0 golden run contracts |
+| `specs/` | 193 JSON contract schemas — MCP schemas, tool policies, P0 golden run contracts |
 | `Plugins/` | 25 active plugins — Monolith, QuillScript, MelodiaWardrobe, UEBlueprintMCP, KawaiiPhysics |
 | `Docs/` | Architecture, pipelines, research, evidence, art references, and credits |
 | `Saved/` | Gate ledgers (`gate_ledger.json`), audit manifests, and test execution reports |
