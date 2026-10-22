@@ -1,5 +1,11 @@
 # Melodia Melusina ? Current State
 
+## Workstation Git divergence alert — corrected 2026-10-22
+
+**Current disposition: earlier C: ahead/behind and dirty-tree alarms are WITHDRAWN as live blockers.** The owner reports the checkout issue was fixed and identifies the earlier claim as false. Previous C:/G: comparison tables and local-main warnings below are historical snapshots only; they must not be carried into Git Watch, agent handoffs or merge decisions as current facts. GitHub alone cannot inspect local C:/G: working trees. To assert any *new* local divergence, first run a fresh read-only `git status --short --branch` and `git rev-list --left-right --count origin/main...HEAD` in the exact checkout. Do not reset, rebase, delete or overwrite a workstation to satisfy an old report.
+
+The latest documented additive C:→G: file-sync dry run reports **0 files left to copy**, with overwritten originals backed up; that is a file-copy result, not a Git-history equivalence certificate. G:'s parked history was subsequently preserved on `origin` at `collab/gdrive-parked-20261013`. Verify both workstations again before making any fresh synchronization claim.
+
 ## Poitou college simulation lab — proposed experiments, 2026-10-22
 
 Owner requested a researched school-session plan: [Poitou college lab](Docs/Plans/POITOU_COLLEGE_LAB_2026-10-22.md). Priorities are a local lock/river FLIP vignette and reusable flow/foam/wetness maps, protected IGN erosion masks, modular abbey destruction, mist flipbooks and architectural preset wedges. All are **PROPOSED**, with pilot measurements and separate Unreal integration gates; this documentation does not certify the town cook, restore geometry, or land binary assets. Use the latest local source-built Poitou HDA and preserve today's canals, roads, roofs, foundations and fences; do not replace it with the historical Candidate. School hardware, license tier and format compatibility must be checked before scaling jobs.
@@ -302,9 +308,7 @@ in two places.
    not writability. Check the push path before believing a backup exists.
 2. **The `legacy-melodia` remote is a read-only archive.** Anything that must be
    offsite-safe goes to `origin` (V2), under a policed branch name.
-3. **The C: tree is 51 commits ahead of `origin/main` and 66 behind it** - the local
-   main is mid-reconverge, so those 51 commits are local-only until the integrator
-   lands them.
+3. **Superseded checkout alarm:** A prior report described a divergent C: tree and unlanded local commits. The owner has since corrected the report; **do not treat the old ahead/behind counts or local-only-commit warning as current**. Recheck that checkout directly if a new reconciliation action is proposed.
 
 ## THE BUILD IS GREEN AND PROVEN - and the proof taught a lesson - 2026-10-22
 
@@ -473,7 +477,9 @@ receipt is `Saved/Audit/gdrive_sync_20261022.json`.
 
 **The 02:00 build** - `Build.bat BS_GodFileEditor Win64 Development` with the editor closed. It will compile the other session's 21 dirty `Source/` + 19 `Plugins/` paths too; a failure in one of THEIR files is reported, not fixed.
 
-## THE PORTABLE G: COPY IS A DIVERGENT TWIN, NOT A MIRROR - measured 2026-10-22
+## Historical C:/G: pre-sync comparison — superseded, not current status (2026-10-22)
+
+**ARCHIVED SNAPSHOT ONLY:** The following inventory and ahead/behind table describe an earlier point-in-time comparison. Later additive synchronization and preservation of G:'s parked history superseded its warnings; the owner also corrected the C: divergence claim. No item in this section is an active Git/build/sync blocker without a fresh machine-level check. Retained only to explain the earlier decision sequence.
 
 `G:\EnvironmentPortfolio\BS_GodFile` is a **complete runnable Melodia project** (Content/,
 Source/, Plugins/, Config/, specs/, Tools/, RawArt/) and it is the owner's portable SSD
@@ -484,7 +490,7 @@ have **diverged**: neither side is a superset of the other.
 |---|---|---|
 | branch | `lane-poitou-sanctuary-convergence` | `wip/main-local-20261013` |
 | HEAD | `0d1c47a8d` 2026-10-21 20:37 | `688b688cc` 2026-10-13 21:38 |
-| against origin/main | **51 ahead, 66 behind** | its HEAD is on **no remote branch** |
+| against origin/main (old, withdrawn claim) | **superseded — recheck locally** | **superseded — parked history now on `origin`** |
 | dirty tree | ~1,350 changed paths, many lanes | 384 changed paths |
 
 ### What is missing from G:
@@ -1382,7 +1388,7 @@ Read them with `git show origin/main:<path>`. `Docs/Poitou/` (73 files) **is** p
 - **Landing mechanics — the guard was satisfied, not bypassed.** `deploy/land_agent_lane.ps1` was **blocked** by the repository's own LFS budget gate: the delta is **762 MB** and the tool's temporary `docs/land-…` branch carries the strict **50 MB** limit. Rather than bypass it (no `MELODIA_LFS_LIMIT_MB`, no `lfs.allowincompletepush`, no limit override), the delta was measured per commit range, split into **five stages** on an `integration/` branch (512 MB auto-limit), and every stage was pre-verified with `git_safe_push.py --check-only` → `LFS budget gate OK`. Git is already the established owner for these binaries: `origin/main` tracks **8,729 `.uasset`/`.umap` + 1,246 other binaries** in LFS, and the Perforce cutover is still a pilot — so this is the status quo, not a new ownership decision.
 - **THE OWED BUILD IS DONE — the "never compiled" claim is CLOSED.** Closed-editor `BS_GodFileEditor Win64 Development`: **`Result: Succeeded`, `BUILD_EXIT_CODE=0`**. UBT reported *"Target is up to date / 0 actions"*, so the green line was **not** trusted: both DLLs were opened and the symbols read directly. `UnrealEditor-MelodiaCore.dll` relinked **15:53:48** and contains `ParkPawn`, `SwitchToNext`, `MelodiousFlightCharacter`, `MelodiaSirMelodiousIntroActor`. `UnrealEditor-BS_GodFile.dll` relinked **15:58:42** (4,491,776 → 4,506,624 B) and contains `MelodiaStoryDoorActor`, `MelodiaStoryDoorComponent`, `MelodiaSeamPortal`, `MelodiaPlayableDecorNode`, `MelodiaLiveVoiceSubsystem`, `EnsurePartySwitchBinding`. `RecruitSirMelodiousThroughStockParty()` and the `Melodia.Party.RecruitSirFlight` console command are present in source and compiled. **The possess-safe party switch and the `ParkPawn` no-hide flip ARE compiled.** The earlier *"committed but NEVER COMPILED"* note is superseded.
 - **Still owed — the Sir party-switch PIE proof.** The editor was released and taken, then **relaunched by another session 70 seconds later**; two editors is the banned state (39 unsaved packages, 2026-08-08), so mine was closed and the other session's editor was left running. The proof (console `Melodia.Party.RecruitSirFlight` → accept → Ctrl → Sir possessed) runs when one session owns the editor.
-- **The primary checkout still needs reconciliation — and it is not the owning session's to do silently.** Local `main` sits at `df0910344` (another lane's local-only commit, **not** an ancestor of `origin/main`) with **699 dirty paths, 320 of which `origin/main` also changes**. A plain merge there is refused by git, and a mixed-worktree reconciliation is behind the repo's destructive-operation approval gate. `origin/main` is canonical and correct; the primary is left alone deliberately.
+- **Historical primary-checkout warning (2026-10-21; superseded as a live blocker):** An earlier session reported a divergent local main and a large dirty worktree. The owner later corrected the checkout/divergence alarm. Do **not** repeat the old counts or prescribe a merge/reset from this snapshot; obtain live `git status` and ahead/behind evidence in the owning workstation if this becomes relevant again. `origin/main` remains canonical.
 - **Also corrected in the landed spec:** the lookbook claim. `origin/main` no longer says four levels were "verified … with zero-slop plates" — it carries the plate audit instead (6 of 7 published plates FAIL the project's own gate) and names `Tools/audit_showcase_plates.py` as the gate. `my-site-kit/content/site-plates.json` was corrected in place (broken `path` values repaired, "reviewed" statuses replaced with the audit verdict; backup `site-plates.json.bak_20261021`).
 
 ## ⚑ P0 CANON — "full french" world identity + the Poitou First Day route — 2026-10-21
