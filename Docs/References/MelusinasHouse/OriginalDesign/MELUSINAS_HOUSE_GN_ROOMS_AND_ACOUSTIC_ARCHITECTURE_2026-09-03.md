@@ -10,7 +10,7 @@
 
 **Date:** 2026-09-03  
 **Discovery tokens:** `melusinashouseplan`, `Melusina house rooms`, `Listening Stair`, `Resonant Salon`, `Wardrobe Rotunda`, `Blue Room`, `acoustic architecture`, `music house geometry nodes`  
-**Parent:** [`/melusinashouseplan.md`](../../melusinashouseplan.md)  
+**Parent:** [`/melusinashouseplan.md`](melusinashouseplan_2026-09-02.md)  
 **Sibling:** [`MELUSINAS_HOUSE_GN_ASSET_FAMILY_IMPLEMENTATION_2026-09-03.md`](MELUSINAS_HOUSE_GN_ASSET_FAMILY_IMPLEMENTATION_2026-09-03.md)
 
 > **Design premise:** the house is not just decorated with music. Its curves describe how sound is gathered, guided, held and released.
