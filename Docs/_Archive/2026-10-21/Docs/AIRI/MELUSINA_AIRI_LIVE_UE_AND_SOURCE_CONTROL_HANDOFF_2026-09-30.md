@@ -2,15 +2,15 @@
 
 **Purpose:** owner-run execution plan for finishing the lightweight Melusina AIRI embodiment and bringing AIRI into day-to-day Unreal and repository work.
 
-**Status authority:** [`CURRENT_STATE.md`](../../CURRENT_STATE.md) remains the only live status record. This file is a plan and handoff, not proof that any gate has passed. Update the status record only when fresh evidence exists.
+**Status authority:** [`CURRENT_STATE.md`](../../../../../CURRENT_STATE.md) remains the only live status record. This file is a plan and handoff, not proof that any gate has passed. Update the status record only when fresh evidence exists.
 
 ## Read these first
 
-- [`MELUSINA_AIRI_ARCHITECTURE.md`](MELUSINA_AIRI_ARCHITECTURE.md) — ownership boundaries and integration design.
-- [`MELUSINA_AIRI_PROTOCOL.md`](MELUSINA_AIRI_PROTOCOL.md) — v1 envelopes, allowlists, limits, and endpoints.
-- [`MELUSINA_AIRI_P0_STATUS.md`](MELUSINA_AIRI_P0_STATUS.md) — acceptance criteria and outstanding runtime proof.
-- [`BRANCH_WORKSTATION_POLICY.md`](../Production/BRANCH_WORKSTATION_POLICY.md) — current main-only and Git-operation rules.
-- [`RIDER_UE58_CANONICAL_WORKFLOW.md`](../Production/RIDER_UE58_CANONICAL_WORKFLOW.md) — native UE build/debug path.
+- [`MELUSINA_AIRI_ARCHITECTURE.md`](../../../../AIRI/MELUSINA_AIRI_ARCHITECTURE.md) — ownership boundaries and integration design.
+- [`MELUSINA_AIRI_PROTOCOL.md`](../../../../AIRI/MELUSINA_AIRI_PROTOCOL.md) — v1 envelopes, allowlists, limits, and endpoints.
+- [`MELUSINA_AIRI_P0_STATUS.md`](../../../../AIRI/MELUSINA_AIRI_P0_STATUS.md) — acceptance criteria and outstanding runtime proof.
+- [`BRANCH_WORKSTATION_POLICY.md`](../../../../Production/BRANCH_WORKSTATION_POLICY.md) — current main-only and Git-operation rules.
+- [`RIDER_UE58_CANONICAL_WORKFLOW.md`](../../../../Production/RIDER_UE58_CANONICAL_WORKFLOW.md) — native UE build/debug path.
 
 The older P0 plan and original pasted request mention a feature branch. The current project policy supersedes that: continue in the existing local `main` checkout, preserve its work, and do not create a branch, worktree, or PR.
 
