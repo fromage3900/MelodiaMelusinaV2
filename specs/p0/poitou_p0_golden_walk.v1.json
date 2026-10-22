@@ -1,0 +1,217 @@
+{
+  "contract_id": "melodia.poitou.p0_golden_walk.v1",
+  "kind": "chapter_pacing_contract",
+  "schema_version": "1.0",
+  "package": {
+    "package_id": "package.poitou.p0_golden_walk",
+    "definition_version": "1.0",
+    "display_name": "Poitou P0 Golden Walk (M00-M09)",
+    "content_kind": "chapter_pacing_contract",
+    "status": "design_contract_runtime_pending"
+  },
+  "authority": {
+    "authoritative_document": "Docs/Plans/POITOU_P0_GOLDEN_WALK_2026-10-21.md",
+    "author": "Brennan Shepherd, committed to origin/main as 6f2dfc6bc (2026-10-21 03:58)",
+    "status_authority": "CURRENT_STATE.md",
+    "creative_identity": "Docs/MELODIA_MELUSINA_WORLD_IDENTITY_CANON_2026-10-20.md",
+    "pacing_shape_ref": "specs/schemas/melodia_progression_package.v1.schema.json#/$defs/pacing",
+    "note": "This file is the machine-readable form of the owner's authoritative score, not a competing plan. Where this file and Docs/Plans/POITOU_P0_GOLDEN_WALK_2026-10-21.md disagree, the document wins."
+  },
+  "scope": {
+    "proof_kind": "experience_p0",
+    "route": "Bedroom -> House -> Poitou village -> Canal landing -> departure / First Dream handoff",
+    "target_minutes": 10,
+    "min_minutes": 8,
+    "max_minutes": 12,
+    "player_verb_budget": 3,
+    "mandatory_player_verbs": [
+      "inspect one bedroom focal point (companion/perch or meaningful object)",
+      "perform one forgiving resonance response",
+      "initiate one existing Quill choice at the approved existing NPC placement"
+    ],
+    "runtime_status": "DESIGN CONTRACT. Every beat is PROPOSED until proved in the live editor. This file certifies nothing.",
+    "separates_from": {
+      "proof_kind": "integration_p0",
+      "contract": "specs/p0/core_p0_dream_golden_run.v1.json",
+      "rule": "The experience P0 and the integration P0 are two different proofs. A green experience walk does not certify combat/save/packaged proof; a green integration map does not certify the experience. The First Dream golden-run integration P0 must remain intact and must not be replaced or silently rewritten with this scenic route."
+    },
+    "hard_exclusions": [
+      "no new combat, swimming, fishing, flight, traversal unlock, escort AI, second World Compiler, separate save authority, village economy, interiors for every home, or Sea Above assets",
+      "no new level/quest/subsystem authority",
+      "at most three mandatory player actions; normal traversal and door use do not count",
+      "no mandatory pixel-hunt, wait timer, or punitive rhythm fail - a failed resonance input invites a retry",
+      "no duplicate Morning maps - one canonical player route"
+    ],
+    "conflict_flag": "L_MelusinaMorning was reduced to a 37 KB shell on 2026-10-21 and Poitou became the live level, while this route's house leg is authored against Morning ownership. The house leg needs an explicit live-audit decision before PASS B (see acceptance.not_yet_true)."
+  },
+  "meter": {
+    "bpm": 128,
+    "time_signature": "4/4",
+    "beat_seconds": 0.46875,
+    "bar_seconds": 1.875,
+    "grid_m": 0.6,
+    "bar_m": 2.4,
+    "walk_speed_mps": 1.28,
+    "source": "Tools/Poitou/ae_first_day_animation_layer.md; Docs/Poitou/current_state.md; Recipes/melusina_poitou_parisian_v2.json (bpm 128); HDA bay_length 2.4 m",
+    "note": "Single governing meter for the Poitou world. The earlier '2.4 m = allegro 3/4 / 3.6 m = andante 4/4' phrasing is superseded. Tempo authority of UMelodiaMusicClockSubsystem (global tempo, per-zone key) must be confirmed before authoring any tempo-locked clip."
+  },
+  "pacing": {
+    "target_minutes": {
+      "minimum": 8,
+      "maximum": 12
+    },
+    "beat_windows": [
+      {
+        "beat_id": "beat.poitou_p0.m00_wake",
+        "start_minute": 0,
+        "end_minute": 0.667,
+        "target_seconds": 40,
+        "readability_obligations": [
+          "Camera releases control after a short playable intro and the skip path leaves no stuck cursor or input.",
+          "Melusina is grounded in one contained authored bedroom with one stained-glass window; light and hush read as a calm pastel dawn."
+        ]
+      },
+      {
+        "beat_id": "beat.poitou_p0.m01_notice",
+        "start_minute": 0.667,
+        "end_minute": 1.75,
+        "target_seconds": 65,
+        "readability_obligations": [
+          "One strong visual line runs from bed to the focal point; other desk/window inspections stay optional.",
+          "The inspection fires exactly once and stays legible without UI spam.",
+          "A short musical motif suggests something missing without becoming a long expository cutscene."
+        ]
+      },
+      {
+        "beat_id": "beat.poitou_p0.m02_first_resonance",
+        "start_minute": 1.75,
+        "end_minute": 2.75,
+        "target_seconds": 60,
+        "readability_obligations": [
+          "Exactly one accepted event and one audiovisual response; a second activation does not duplicate state.",
+          "The response is forgiving and accessible - failure invites a retry, it never punishes."
+        ]
+      },
+      {
+        "beat_id": "beat.poitou_p0.m03_threshold",
+        "start_minute": 2.75,
+        "end_minute": 3.333,
+        "target_seconds": 35,
+        "readability_obligations": [
+          "The bedroom door opens onto the larger house with correct collision, spawn, facing and input returned.",
+          "No duplicated pawn; the map split is decided only after a live audit."
+        ]
+      },
+      {
+        "beat_id": "beat.poitou_p0.m04_house_hums",
+        "start_minute": 3.333,
+        "end_minute": 4.583,
+        "target_seconds": 75,
+        "readability_obligations": [
+          "One curved landing and one oval salon; the grand staircase is framed without requiring the player to go upstairs.",
+          "House identity is clear with FX disabled; no snagged furniture or stair collision on the route."
+        ]
+      },
+      {
+        "beat_id": "beat.poitou_p0.m05_front_door",
+        "start_minute": 4.583,
+        "end_minute": 5.167,
+        "target_seconds": 35,
+        "readability_obligations": [
+          "No black-void or frame pop on the exterior reveal; normal control returns; the toon/watercolor treatment stays stable."
+        ]
+      },
+      {
+        "beat_id": "beat.poitou_p0.m06_village_orientation",
+        "start_minute": 5.167,
+        "end_minute": 6.583,
+        "target_seconds": 85,
+        "readability_obligations": [
+          "Three naive testers independently reach a visible landmark with no minimap dependency.",
+          "No water fallthrough; the route edge is legible canals, hedges, walls, bridges and doors rather than an invisible barrier in camera view."
+        ]
+      },
+      {
+        "beat_id": "beat.poitou_p0.m07_one_conversation",
+        "start_minute": 6.583,
+        "end_minute": 7.917,
+        "target_seconds": 80,
+        "readability_obligations": [
+          "One Quill choice at an approved existing NPC placement - no new NPC system; one intent/flag transaction; movement returns on exit; no replay reward.",
+          "Warmth and a clear next-place cue, not a lore dump."
+        ]
+      },
+      {
+        "beat_id": "beat.poitou_p0.m08_follow_the_water",
+        "start_minute": 7.917,
+        "end_minute": 9.333,
+        "target_seconds": 85,
+        "readability_obligations": [
+          "Walkable canal edge among pollarded ash with no forced swimming; the camera sees a clear destination and the house/village recall.",
+          "The musical ecology responds visibly but subtly, through the existing single-writer water/material/Niagara paths."
+        ]
+      },
+      {
+        "beat_id": "beat.poitou_p0.m09_departure",
+        "start_minute": 9.333,
+        "end_minute": 10.0,
+        "target_seconds": 40,
+        "readability_obligations": [
+          "An existing trigger or Quill beat hands off to the approved First Dream continuation; no new quest IDs guessed, no invented checkpoint.",
+          "The transition target and persistence are explicitly confirmed by test, not assumed."
+        ]
+      }
+    ],
+    "rules": [
+      "pacing_flex_is_reserve_time_for_looking_not_added_mandatory_interactions",
+      "if_p0_is_too_long_cut_optional_inspections_and_the_second_house_linger_before_cutting_wake_house_reveal_or_canal_arrival",
+      "one_visual_landmark_per_leg_bedroom_house_entrance_village_jetty",
+      "at_most_one_short_optional_fork_with_a_visible_return",
+      "route_must_remain_legible_with_every_shimmer_and_glow_effect_disabled",
+      "sound_orients_but_no_navigation_only_new_music_subsystem",
+      "no_beat_may_be_declared_proved_before_a_live_editor_receipt_exists"
+    ]
+  },
+  "acceptance": {
+    "passes": [
+      {
+        "id": "A",
+        "name": "Route-only clay, no mechanics",
+        "owner": "Luna + owner",
+        "gate": "three testers find the jetty with no quest HUD; annotated overhead map plus a walking video"
+      },
+      {
+        "id": "B",
+        "name": "Physical transitions",
+        "owner": "Luna placement; Sol only if broken",
+        "gate": "three consecutive full traversal attempts with no teleport to a stale Zen or Dreamstate route"
+      },
+      {
+        "id": "C",
+        "name": "Two interaction moments",
+        "owner": "Luna; owner reviews",
+        "gate": "each fires exactly once, no doubled dialogue or reward, first interaction has a visible response, no softlock"
+      },
+      {
+        "id": "D",
+        "name": "Artistic polish",
+        "owner": "owner + Luna",
+        "gate": "three hero stills plus one uninterrupted ~10-minute capture; emotion and wayfinding survive the VFX-off pass"
+      },
+      {
+        "id": "E",
+        "name": "Integration + proof",
+        "owner": "Sol / owner",
+        "gate": "the First Dream golden run stays an independent full-stack QA run with fresh-slot receipts and recorded per-phase pass/fail"
+      }
+    ],
+    "not_yet_true": [
+      "no beat has been runtime-proven; every M00-M09 beat is PROPOSED",
+      "the house leg's map ownership is unresolved after L_MelusinaMorning became a 37 KB shell",
+      "the Sir presence/absence cue is an open owner decision",
+      "the older Dreamstate prologue and UMelodiaOpeningFlowSubsystem bindings have not been inventoried and reconciled",
+      "no P0 beat is covered by a fresh-slot receipt under Saved/Audit/poitou_p0_walk/"
+    ],
+    "evidence_record": "One run sheet under Saved/Audit/poitou_p0_walk/: run_id, date, operator, UE build hash and editor PID, map path and starting save slot, M00-M09 PASS/FAIL/NOT_RUN with actual duration and actor name, input focus and spawn per boundary, original/target actor and map, Quill intent and consumed IDs as actually emitted, rhythm cue repeat count, terrain/World Compiler source bundle and recipe hash, stop reason and owner sign-off, three hero frames and an uninterrupted walkthrough link."
+  }
+}
