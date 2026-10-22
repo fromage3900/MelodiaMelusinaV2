@@ -1,5 +1,40 @@
 # Melodia Melusina ? Current State
 
+## Magusina's P0 house — the planning is COMPLETE in origin/main; your working tree was missing 7 of the house documents — 2026-10-21
+
+**The reason the planning looked unfinished: the checkout, not the plan.** Local `main` is **49 ahead / 44 behind `origin/main`** and diverged *before* the P0 canon landed, so **seven house/P0 documents that exist in `origin/main` are simply not in the working tree**:
+
+| Missing document | What it holds |
+|---|---|
+| `Docs/Plans/POITOU_P0_GOLDEN_WALK_2026-10-21.md` | **the authoritative P0 score** (M00–M09, room-by-room route, acceptance gates A–E) |
+| `Docs/Plans/POITOU_MELUSINAS_MORNING_CONVERGENCE_2026-10-20.md` | house/terrain/world convergence plan; the locked creative identity |
+| `Docs/References/MelusinasHouse/OriginalDesign/melusinashouseplan_2026-09-02.md` | house **visual/modeling score** (Borromini concave→convex→concave facade, three ribbon roof masses, 13.2 × 9.8 m footprint, 3.42 m wall baseline) |
+| `Docs/References/MelusinasHouse/OriginalDesign/MELUSINAS_HOUSE_GN_ROOMS_AND_ACOUSTIC_ARCHITECTURE_2026-09-03.md` | **the 9-room constellation** + per-room contents (Resonant Salon, Melusina's Bedroom, Wardrobe Rotunda, Listening Stair, Crescent Balcony, Kitchen, Blue Room, Listening Tower) + acoustic gather/guide/release grammar + the implementation order and the "tonight-sized slice" |
+| `Docs/References/MelusinasHouse/OriginalDesign/MELUSINAS_HOUSE_GN_ASSET_FAMILY_IMPLEMENTATION_2026-09-03.md` | GN asset families A–J (roof ribbon, scallop shingles, windows/doors, rocaille, railings, tower, grotto, drapes, **floral/domestic scatter**, shell crests) |
+| `MELUSINA_HOUSE_GN_START_HERE.md` (repo root) | the live agent entrypoint + the real `MEL_*` builder IDs |
+| `HOUSE_GN_FINAL_PLAN_2026-09-18.md` (repo root) | Paris→Nikki build-out plan; research verdicts; **detail density order: silhouette → trim → microrelief → colour story** |
+
+Read them with `git show origin/main:<path>`. `Docs/Poitou/` (73 files) **is** present locally; only these seven are missing. Reconciling the divergent local `main` is the owner's call — the checkout reconciliation is deliberately not done silently.
+
+**The plan's own gate says dressing comes last, and it is not open yet.** The live GN ledger (`MELUSINA_HOUSE_GN_FOUNDATION_TO_SHELL_ROADMAP_2026-09-04.md`) shows every house row as **"Artist approved: pending"** and the **"House dressing family — defer until silhouette"**. The rooms doc's tonight-slice says outright: *"Do **not** start the kitchen clutter or final bedroom dressing before the core circulation reads."* In UE the house leg's shell is a **Houdini `MelodiaRoomShell` bake** (`MelodiaRoomShell_1_0_3_5_0_main_geo_508A1C1F`, 13.6 × 18.4 × 5.6 m salon; `..._2C3698E7`, 7.5 × 9.5 × 3.8 m bedroom) — **not** the Blender `MEL_mh6_room_shell`, so the GN dressing family's placement rules cannot be inherited one-for-one.
+
+**The house leg's map ownership is still the open decision** (P0 spec `not_yet_true` #2). `L_MelusinaHouse_P0` is a **new, Perforce-open-for-add, not-yet-submitted** map with 21 actors (bed, 3 Magician's Library lanterns, 3 KitBash props, 2 Houdini shells, story door, lights, UDS, oceanology). The convergence plan names `/Game/Melodia/Levels/Opening/L_MelusinaMorning` as the house path and forbids duplicate Morning maps. **The owner has now called it "Melusina's updated P0 house", which reads as settling this to `L_MelusinaHouse_P0` — confirm before it is treated as settled.**
+
+**One board is lost: `REF_03_CUTAWAY_INTERIOR_FLOW.jpg` is a corrupt JPEG in git** (premature end of data segment; recovers to a black frame). It is the board that carried the interior flow and hero-prop priorities. The originals live in the originating chat session per the board README — **re-export needed**. REF_01 (exterior) and REF_02 (the master build sheet) are intact and were read for this work.
+
+### The dressing is now a contract, not a guess
+
+`specs/p0/melusina_house_p0_dressing.v1.json` + `Content/Python/melusina_house_p0_dressing.py` (read-only plan mode / headless apply mode) + layout diagram `Saved/Audit/melusina_house_p0_dressing_layout.svg`.
+
+**68 placements, every one carrying the plan role it serves** — bedroom 30, landing 6, salon 32. Scope is the P0 score's own three rooms: **bedroom → landing/vestibule → oval salon → front doors**. Sources: canonical Magician's Library (`/Game/EnvSandbox/Library/Migrated/MagiciansLibrary`) for interior props, pack Building set for stairs/rails/pillars/walls, pack `CentreRing` for the salon's circular floor medallion.
+
+- **Bedroom** (M00–M02): writing desk + field journal, globe, microscope, candle (**M02 resonant-object visual candidate**), ink jars, built-in shelf run on the west wall, two wall shelves, rug, bedside table, plant table, chest, wall ornaments, wall banner.
+- **Landing** (M03): two columns, timber post, wall segment, glass screen + frame, ornament, hanging lantern.
+- **Oval salon** (M04): **five concentric `CentreRing` medallions (765 cm down to 374 cm) as the "circular rug / slightly sunken centre"** — this is the M04 landmark; off-centre instrument-anchor dais; console table; entry rug; lantern + sconce; bench; floor inlays; and the **grand staircase framed** from the Building set (treads, balustrade, newels, column, timber post, wall screen) — framed only, not walkable, which is exactly what M04 asks for.
+- Placement is **geometry-aware**: the apply step measures each mesh's bounds and lifts the actor by `-(centre.z − height/2)` so every prop's base actually stands on its surface (desk top 82 cm, shelf top 186 cm, pot table 107 cm) instead of floating. Verified: 0 unresolved meshes, no prop in the player route bed→door→salon centre.
+
+**Owed, and not fixable with props:** the P0 **M02 resonant object must be an existing compatible actor** (the candle is the visual candidate, not an interactive); the P0 **M04 salon interactable** is not in the prop pack (the medallion is the landmark, not the interactable); the house-leg map ownership needs one owner call; and the dressing remains **design-contract level — nothing is runtime-proven** until the level is opened and the route is walked (no receipt exists under `Saved/Audit/poitou_p0_walk/`).
+
 ## Magician's Library — THE MISSING HALF OF THE KIT IS NOW IN, toon-converted, LOD'd and de-duplicated — 2026-10-21
 
 **Your instinct was right: the kit was about half present. It is now whole.** The owner found the pack staged at `G:\ueprojects\MagiciansLibraryEnvironm` (a standalone UE **5.6** project, `Content/MagicianLabatory/`). It was imported **wholesale at its native virtual path** `/Game/MagicianLabatory` — which preserves every internal reference (BP→mesh, map→external actors) with zero remapping.
