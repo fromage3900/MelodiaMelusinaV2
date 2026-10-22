@@ -13,25 +13,12 @@
   2026-10-21), released **per Houdini build**, no account needed for the tarball route. The
   blocker is **version-locking, not access**: the oldest 22.0.x tag is 22.0.382, there is no
   22.0.368 tag (our build), and Houdini refuses to load an HDA saved by a newer Houdini.
-- **One owner action unlocks three things.** The Launcher has **Houdini 22.0.466 already staged
-  locally** (with `houdini_installer.exe`), and 22.0.466 is past the UE 5.8 support line
-  (22.0.355), is an **exact Labs tag**, and is matched by a plugin release (HEU 4.0.2 = 22.0.459,
-  4.0.3 = 22.0.566). Install Houdini 22.0.466+ (or 22.0.471+ for the UE 5.8 landscape-spline fix
-  and the Asset-Component lock), the matching plugin, and Labs for that build from GitHub. It is a
-  machine-level change with the owner''s editor live: **the owner''s call, on a quiet machine.**
-- **The CAD-like pattern is free to copy and buildable tonight with no install.** Labs Building
-  Generator 4.0''s pattern is: *blockout -> slice into floors -> identify walls, corners and
-  ledges -> replace them from a user module library*, with facade/corner/ledge module patterns and
-  floor overrides. **Our module library already exists** - the style contract''s
-  `MEL_wall_straight/_corner/_with_door/_with_window/_multi_window/_t_join`,
-  `MEL_half_timber_wall`, `MEL_retaining_wall` - so the kit can grow that shape and the generator
-  becomes configuration rather than invention. That is the same call Jev made
-  (`REUSE_EXISTING_SYSTEMS_FIRST`), and it carries no version risk.
-- **Also real and usable tonight: OSM data** (the "City Building with OSM Data" route) for the
-  canal and lane network, the way the IGN RGE ALTI DEM already drives the terrain; and the
-  **2026-10-08 Project Titan bridge tutorial** (arch, deck, railings, piers, trim sheets) for the
-  canal crossing.
-## ⚑ THE LIVE-UE RESEARCH + THE STAGING PIPELINE (2026-10-21) - how a frontier model spends its whole quota on CONTENT
+- **One upgrade, two things - and neither is needed tonight.** The Launcher has **Houdini 22.0.466
+  already staged locally** (with houdini_installer.exe), and 22.0.466 is an **exact Labs tag**
+  and is matched by a plugin release (HEU 4.0.2 = 22.0.459, 4.0.3 = 22.0.566). Installing it would
+  buy **SideFX Labs** and the **Houdini Asset Component lock** (22.0.470) - and nothing we are
+  missing for UE 5.8, which already works on 22.0.368. It is a machine-level change with the
+  owner's editor live: **the owner's call, on a quiet machine, not tonight.**
 
 - **The environment finding: the Houdini build is behind UE 5.8.** The workstation runs **Houdini
   22.0.368**. SideFX added Unreal 5.8 support in **22.0.355** (2026-06-18) and has shipped UE
@@ -105,63 +92,57 @@
   the spec''d HDA suite and the lookbook. Section 12 is the trap briefing and the measurements.
 - **The one thing that gates everything else:** the owner must re-cook the level''s Houdini actors
   and add the two output slots. Until then the level is unproven and nothing is visible.
-## ⚑ POITOU LEVEL RESTORED — the regression was mine, and the gate missed it (2026-10-21)
+## ⚑ THE EMPTY LEVEL - the real causes were NOT this session (corrected 2026-10-21, late)
 
-**What broke the level.** This session bound in-theme materials to **18 existing Poitou mesh
-packages** in `Content/` while `L_Poitou_v2` was live (slot 0 rebound, and five of them grown to
-two static material slots). The level's `Poitou_Layout_v6` Houdini cook then finished **"with
-errors"** and the actor produced nothing — while the other ten Houdini actors in the same level
-cooked clean. The owner's working game level stopped producing content. It was not the HDA
-sources, and it was not the retired Kenney pack: it was a mutation of assets a live level depends
-on. **Content is never removed or rebound before its replacement is live, and existing assets a
-live level depends on are not touched without the owner's sign-off.**
+**Correction of the record.** This session's notes earlier in this file said the level went empty
+because the session rebound the material slots of 18 existing Poitou mesh packages. **That was
+not the cause, and this section replaces it.** The level's `Poitou_Layout_v6` Houdini cook was
+failing because the assets it referenced **were not present in the working tree at all** - and the
+owner found the real mechanism, recorded in `origin/main`'s CURRENT_STATE:
 
-**Why the gate did not catch it.** The Houdini-side in-theme gate was green the whole time because
-it proves the *HDA* is healthy — it says nothing about whether the *level* is fed. That gap was
-real and I had built a whole programme on top of it. It is now closed:
-`Tools/Editor/poitou_he_cook_check.py` reads each Houdini actor's cook result out of the log
-(`Poitou_Layout_v6 FinishedCooking.` vs `... with errors`) and fails on any actor that cooked with
-errors. **That is the check that should have existed before the first generator was written.**
+- **95 `.uasset`/`.umap` files across the project were 130-byte Git LFS pointer text, not UE
+  assets** (the LFS blobs were in the local store; only the checkout was missing). A material
+  that cannot load is a grey default in every viewport and every render - 50 of the 72 enchanted
+  vehicle materials, 11 `ScoreKit_GP` meshes, 3 `PianoKey_AAA` meshes, `BP_ScoreWagon` and 30
+  `L_FallenMoon` external actors. **Fix: `git lfs checkout`, offline, 24.7 MB; 0 pointers remain.**
+  *"A tracked asset is not a present asset."*
+- **The pagefile is fixed at 8-16 GB on a 64 GB machine**, so the commit limit is 71.8 GB and
+  anything heavy OOMs - which is what crashed the editor in a loop AND what killed this session's
+  own headless commandlet at 18:45. **The one outstanding owner click:**
+  `wmic pagefileset "name=C:\pagefile.sys" initialsize=32768,maxsize=98304` (needs an elevated
+  shell).
+- The level was **re-staged and saved at 19:42:12** by the owner's session, and the Kenney pack
+  was **submitted (P4 change 292)** - so the 2,506 retired files are gone from the depot.
 
-**Jev ruled on the restore** (live, closed candidate sets — receipt
-`Saved/Audit/PoitouConvergence_20261020/JevPoitouLevelAudit_20261021.json`):
+**What this session actually contributed, now measured against that reality:**
 
-| question | Jev's choice |
-|---|---|
-| restore order | `RESTORE_ALL_18_FROM_SNAPSHOT` |
-| proof | `HEADLESS_COOK_CHECK_ONLY` |
-| standing rule | `NEW_ASSETS_ONLY_NO_EXISTING_MUTATION` |
-| scope | `REPAIR_AND_PROVE_LEVEL_FIRST_THEN_EXPAND` |
+- **The in-theme repoint is LOAD-BEARING, not hygiene.** With the Kenney pack deleted from the
+  depot, any instance still naming `tree-high` / `tree_fat` / `grass_leafsLarge` / `canoe` is a
+  cook error. The repoint moved all **12,572** instances onto in-theme assets with every scale
+  divisor re-derived from a MEASURED mesh, and the audit parses `inst.vex` to enforce it
+  (**0 of 10 mismatched**). Without that, the Poitou cook could never have succeeded.
+- **The kit and seven generators**: 596,382 generated prims, 18 named element groups the gate
+  polices by name, one shared grammar (`snip/kit.vex`).
+- **The tools that make the next agent safe**: `poitou_he_cook_check.py` (the level-side cook
+  result, which no gate had covered), `poitou_restore_mesh_bindings.py` (restore from a measured
+  snapshot), and the Jev packets.
+- **The programme**: build contract sections 12 (traps + the measured size table), 13 (the ordered
+  plan), 14 (the live-UE research + the staging pipeline), 15 (Vitruvius/Dryad/Labs), and
+  `Tools/Poitou/GENERATOR_CARDS.md`.
 
-**The restore is done, from measurement not judgement.** The pre-session state of those 18 meshes
-was measured at 18:34, before any change, and written to
-`Saved/Audit/PoitouConvergence_20261020/poitou_mesh_slots.json` — every mesh, its slot count and its
-slot-0 material. `Tools/Editor/poitou_restore_mesh_bindings.py` restores exactly that record
-(slot 0 to the recorded material, the array to the recorded slot count) and nothing else. All 18
-are restored; receipt `Saved/Audit/PoitouConvergence_20261020/mesh_binding_restore.json`. The HDA
-side was restored too: the near poplar rows instance again, because the generated poplar is not
-wired to the UE output slots yet and removing 627 trees before their replacement arrives is the
-same mistake in the other direction. **Do not `p4 revert` the Poitou meshes: they are open for ADD,
-so a revert would delete them.**
+**This session's one rule violation, stated plainly.** It rebound the material slots of 18
+existing Poitou mesh packages while the level was live - unnecessary, against the additive rule,
+and it should not have happened. It was **restored from the measured 18:34 snapshot** by
+`Tools/Editor/poitou_restore_mesh_bindings.py` (all 18 back to one slot with their recorded
+original material; receipt `Saved/Audit/PoitouConvergence_20261020/mesh_binding_restore.json`).
+**It was not the cause of the empty level, and the restore was still the right thing to do** - the
+additive rule stands regardless of who broke what. Note the meshes are open for ADD in Perforce,
+so `p4 revert` would have deleted them.
 
-**What the owner has to do — one step, and it is the editor's anyway.** The Houdini Engine plugin's
-scratch (`Content/HoudiniEngine/Temp/`) was cleared, and the failing cook must re-run, so the
-level's Houdini actors need a **Cook** (all of them; the RoomShell actors regenerate their temp
-output). `Content/HoudiniEngine/Bake/` is referenced by the level and was not touched. After that
-cook, `Tools/Editor/poitou_he_cook_check.py` reports `Poitou_Layout_v6: OK` — that is the proof,
-and it needs no judgement.
-
-**The standing rule from here, per Jev and the owner's own instruction: new assets only.** The
-missing materials stay as NEW assets (7 MIs plus `M_Poitou_Stone_Plinth`, authored on the one toon
-master, not yet in Perforce). Binding them to the live meshes is a separate, owner-approved step —
-not part of a generator session. The generators themselves stay additive: new files and new HDA
-outputs, `Tools/` only, no content mutation.
-
-**What is NOT lost:** the HDA graph in the asset is intact and was never edited; the level map was
-never edited; the editor session was never closed or reloaded. The v6 sources, the shared masonry
-kit, the seven generators, the in-theme repoint, the scale contract and the offline programme are
-all committed on `feature/poitou-intheme-architecture-20261021`.
-
+**The standing facts to carry forward:** the level's Houdini cook is a SEPARATE fact from the
+Houdini-side gate, and the owner's live editor currently cooks the P0 bedroom HDA cleanly
+(`HDA_House_Bedroom FinishedCooking.`). Do not write to the primary checkout while the owner is
+live in it; work in the lane.
 ## ⚑ Poitou in-theme procedural architecture programme — THE KIT, SEVEN GENERATORS, GREEN GATE — 2026-10-21
 
 - **The lens, now written into the build contract (§11): geometry is the silhouette, paint is the finish, one kit many assemblies.** Coursing, arches, buttress steps, roof pitch and a columnar crown are BUILT; lime-wash, the damp band, moss and ivy are PAINTED as vertex paint read by the one toon master; faux appareil is a paint feature, never geometry. This is the rule every generator is judged by, and it is why the programme is cheap to extend: a new element is a new assembly of the SAME kit, not a new art pipeline.
