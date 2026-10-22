@@ -1,4 +1,152 @@
 # Melodia Melusina ? Current State
+## THE PORTABLE G: COPY IS A DIVERGENT TWIN, NOT A MIRROR - measured 2026-10-22
+
+`G:\EnvironmentPortfolio\BS_GodFile` is a **complete runnable Melodia project** (Content/,
+Source/, Plugins/, Config/, specs/, Tools/, RawArt/) and it is the owner's portable SSD
+workspace. It was **last touched 2026-10-13**, so it is 9 days behind, and the two copies
+have **diverged**: neither side is a superset of the other.
+
+| | C: (live) | G: (portable) |
+|---|---|---|
+| branch | `lane-poitou-sanctuary-convergence` | `wip/main-local-20261013` |
+| HEAD | `0d1c47a8d` 2026-10-21 20:37 | `688b688cc` 2026-10-13 21:38 |
+| against origin/main | **51 ahead, 66 behind** | its HEAD is on **no remote branch** |
+| dirty tree | ~1,350 changed paths, many lanes | 384 changed paths |
+
+### What is missing from G:
+
+- **Content: 9,261 assets / 13.55 GB** - `MagicianLabatory` 6.78 GB, `EnchantedInteriors`
+  3.10 GB, `Library` 2.12 GB, **`Melodia` 0.57 GB** (the new Carillon wands, the canonical
+  MIs, the arrow-trail NS), **`Staging` 0.42 GB** (the Houdini forge output),
+  `__ExternalActors__` 0.28 GB, `EnvSandbox` 0.21 GB.
+- **Source: 13 files** - the StoryDoor / SeamPortal / LiveVoice / CosmicOrrery /
+  PlayableDecor modules, and `Tests/MelodiaWaveHarpFormTests.cpp`.
+- **specs: 14 contracts** - both waveharp contracts, the Poitou P0 Golden Walk, the toon
+  profile canon, the niagara flipbook wiring, the house dressing + fill contracts, the sky
+  themes, the first-day pacing.
+- **Tools: 321 scripts** - the whole waveharp Houdini toolchain, the Poitou tooling, the
+  Blender sky forge, the Editor audit and closeout scripts.
+- **Docs / CURRENT_STATE** - G:'s copy is from 2026-10-13: no P0 canon, no house
+  settlement, no material audit, no form system.
+
+### What only G: has - the fragile half (do not overwrite G:)
+
+- Its branch history `wip/main-local-20261013` (`688b688cc`) is on **no remote branch**
+  (GitHub has 15 branches; none carries that SHA). **The only copy of that history is that
+  drive** - GitHub is the only offsite copy in the storage architecture, and it does not
+  have it.
+- **119 dirty files C: does not have**: the Painterly 4K texture set (PearlWoven Blush and
+  Dusk: base / height / iridescence / metallic / normal / ORM / roughness), the toon master
+  variants (`M_Master_Toon_Foliage`, `M_Master_Toon_Universal1`, `M_Master_Toon_Water`,
+  `M_Outline_InvertedHull`, `M_PainterlyGouache`), the PianoPath MIs, `PCG_HorizonCloudCards`,
+  the SeaAbove P0 4K textures, the PCG Musical Rails.
+- **3,332 Content files / 2.73 GB only on G:** (the migrated MagiciansLibrary set, the
+  Brushify test assets) and 32 Tools files.
+
+### The safe order (a plan, NOT executed)
+
+1. **On G:, commit and push `wip/main-local-20261013` first.** That history is currently
+   offsite-absent; it is the most fragile thing on the machine. Selectively commit the
+   binaries, but **push**.
+2. **On C:, land the lanes.** The tree carries ~1,350 changed paths from many lanes - that
+   is the integrator's job (a temporary branch per landing, deleted in the same run).
+3. **Reconcile G: from origin/main with a MERGE, never a reset** - G: has a divergent local
+   history, so a reset would drop `688b688cc`.
+4. **Bulk content is a Perforce job, not a copy.** The 13.55 GB is mostly P4-managed
+   (`MagicianLabatory`, `Library`, `EnchantedInteriors`); a G: P4 client workspace + `p4
+   sync` is the sanctioned path. The P4 server root is `D:\perforce\root` on this machine,
+   so a p4 submit is history-tracked, **not** a backup.
+5. **The genuinely untracked ~0.99 GB** (`Melodia` 0.57 + `Staging` 0.42) is in no VCS at
+   all: it must be committed (Git LFS for the wands) or copied explicitly.
+6. Space is fine: G: has 54.9 GB free, C: has 79.7 GB free; the 13.55 GB delta fits.
+
+**Rule for this session: G: is read-only until the owner decides the order. A one-way copy
+in either direction destroys work.**
+
+## THE WAVEHARP FORM SYSTEM - C1-C6 are in the source, and the Jev audit already caught one of them wrong - 2026-10-22
+
+### What is written (C1-C6, `MelodiaWaveHarpCombatComponent.h/.cpp`)
+
+- **C1 the form is a type with ONE writer.** `EMelodiaWaveHarpForm {Harp, Bow, CarillonMelee}`,
+  `CurrentForm` is `ReplicatedUsing=OnRep_CurrentForm`, and `SetForm` is the only place that
+  writes it (the transition landing is the single assignment site, and the offline gate
+  asserts exactly that). The caster/archer hybrid is untouched: charging inside HARP or BOW
+  still morphs the astrolabe into the bow. The form is a **separate axis** from that blend.
+- **C2 the head swap.** The committed form chooses the wand mesh and the swap lands at the
+  transition's midpoint. The caster wand and the melee wand differ **only in the head**, so
+  swapping the mesh *is* the head swap - no morph bake, no separate head assets at runtime.
+  `bUseHeadSwap` is **OFF by default** until the Carillon art pass lands, so the shipped
+  skeletal path keeps working untouched. Both meshes preload in `BeginPlay` (no swap hitch).
+- **C3 the transition is curve-driven.** When the authored henshin montage exists, its
+  `FormAlpha` curve drives the transition (`UAnimInstance::GetCurveValueWithDefault`); until
+  then a smoothstep timer does. **D3 is gone from both paths.**
+- **C4 the melee uses MEASURED geometry, never a skeleton socket.** Offsets come from
+  `Saved/Audit/waveharp/ue_ready/waveharp_wand_bake_manifest.json`: grip 13 cm, head seat
+  105 cm, projection 121 cm, blade start/mid/tip (21.9/37.08/32.77, 0, -) **head-local**.
+  That is a **~41 cm crescent on a ~37 cm radius** instead of the shipped **42 m** sweep.
+  The skeleton fallback was **removed, not clamped** - D8 is now structurally impossible.
+- **C5 the melee resolves through the sanctioned seam** (`ResolveWorldFlowAttack`, like the
+  arrow), and the rhythm is now judged **at the action** (the swing's start) instead of at
+  the impact - the arrow samples at launch; the melee was sampling at the notify.
+- **C6 the deliberate form-select.** `R` cycles the ring; the flourish starts on the music
+  clock's beat boundary; attacks are refused during the flourish and **buffered** so a press
+  is never eaten; the camera pushes in and returns; the existing `NS_Melusina_StarPop`
+  covers the head swap. Receipts: `Melodia.WaveHarp.SetForm <0|1|2>` and
+  `Melodia.WaveHarp.DumpForm` (the proof is a log line, not a screenshot of a guess).
+
+### The Jev audit for C10 (source=jev-live) and the bug it found
+
+Receipt `Saved/Audit/waveharp/JevWaveHarpC10TestDesign_20261022.json`, packet
+`Tools/waveharp/jev_c10_test_design_20261022.py`. The service returned the selections with
+**no score and no reason field** - the receipt carries the choices only.
+
+- **scope = A**: pure-maths C++ automation tests only, in the module's `Tests` folder - ring
+  order, eased transition, lock window, socket composition, blade reach. No editor, no world.
+- **first assertion = D**: the beat lock and the input buffer.
+- **run surface = A**: headless in CI through `UnrealEditor-Cmd -ExecCmds="Automation RunTests"`.
+- **failure mode = A**: assert the **contract** and read the numbers **from the bake
+  manifest**, never re-type them - otherwise every art change breaks the suite and the team
+  starts ignoring it.
+
+**It caught a real bug in my own code.** The beat lock delayed the flourish by a whole beat,
+which put the **handoff half a transition after the downbeat**. `ComputeBeatLockDelay` now
+waits for (beat distance - half a transition) so the handoff lands on the beat.
+
+### The offline gate (and what it found before the fixes)
+
+`Tools/waveharp/check_waveharp_form_contract.py` -> `Saved/Audit/waveharp/waveharp_form_contract.json`.
+It compares the C++ defaults against the bake manifest, proves the crescent is a crescent,
+counts the `CurrentForm` assignment sites, refuses the skeletal sockets in the trace, checks
+the ring, and checks that every asset the component names exists on disk. Its first run
+**failed two checks** - the melee still read the skeleton sockets, and the ring had no shared
+helper - and both drove the fixes above.
+
+### Runtime quality, in the Infinity Nikki register
+
+Infold Games' UE5 open world is this project's wardrobe bar. What was taken: **one master plus
+a small set of profiles** (their fabric master material - the same shape as the ToonProfile
+canon); **precompute the expensive part** (their real-time clipping) - both wand meshes
+preload, the swap is masked by an existing-system flourish; **the effect budget follows the
+screen** (their fur layers) - the flourish scales with camera distance; **the animation owns
+the motion** (their UV-animation vs motion-blur fight) - the idle shimmer is music-clock
+driven, never `Time`; **no new shader permutations** at the swap; **the player's intent is
+never lost** during a wardrobe change - the buffered attack. What was **not** taken: their
+GPU-driven culling and skeletal-chain cloth (an open-world population problem this project
+does not have) and any new quality-tier system (the camera distance the player already has
+is the lever).
+
+### Evidence level - stated plainly
+
+- **Measured on disk**: the bake manifest offsets, the asset list, the gate results.
+- **Written and reviewed**: C1-C6 in source. **Not yet compiled** at the time of writing - a
+  full closed-editor rebuild was launched and is the outstanding proof. A live editor is
+  running in this project, so the **link** step may be refused; the compile and UHT steps
+  are the proof that matters here.
+- **Not yet proven at runtime**: the head swap, the beat lock, the buffered attack and the
+  measured sweep all need a PIE pass (`Melodia.WaveHarp.DumpForm` is the receipt).
+- **Still open**: the authored henshin clip is not baked, so C3 runs on its timer; the
+  Carillon art pass has not landed, so `bUseHeadSwap` stays off.
+
 ## ROOM-AWARE DRESSING + GAME-READY LEVELS - the scoped plan, the research and the shipped-game case studies - 2026-10-22
 
 **Owner ask:** "how would an environment artist use Houdini + PCG for room-aware dressing and natural placement, like we did with our BP_PhysicsSpawner, and what else remains before we have solid infrastructure for game-ready levels and BPs that place geometry and carry the gameplay loop?" Answered in three artifacts, all landed: the **plan**, the **research**, the **case studies**.
@@ -40,12 +188,23 @@
 
 The artist places a room by dropping one Blueprint and choosing a room type; the fill regenerates from a density edit without any hand-placed actor moving; the art pass has a catalogue and can drop debris that settles; every beat M00-M09 is walkable in PIE with captures; the level cooks with the generated content present.
 
-### Four questions the owner has to answer
+### Four questions the owner had to answer - Jev answered three, one is a near tie (2026-10-22)
 
-1. **W1/W2/W3 need a C++ build, and the tree has 39 dirty `Source/` + `Plugins/` paths from another session right now** - wait for a clean compile window, or land the catalogue as data only (already done) and the class later?
-2. **W4's carrier slot** - a fixed child of the room kit (Bethesda-style), or an independent actor the room references? The artist's arrangement argues for independent.
-3. **W5's density textures** - hand-painted, or derived from your own 97 placements as a first pass?
-4. **W8** - are the 82 movable dressing actors part of "game-ready", or do they stay movable for the art pass?
+The owner said *"I don't really know; tbh"* - so the decisions went to **Jev** (`jev-live`) with closed candidate sets and **three samples each**; the mean distribution and the run-to-run agreement are the evidence, not one draw. Packet `Tools/house_dressing/jev_house_dressing_decisions_20261022.py`, sampler `Tools/house_dressing/jev_house_dressing_decisions_aggregate.py`, receipt `Saved/Audit/house_dressing/JevHouseDressingDecisions_20261022_aggregate.json`.
+
+| Question | Jev | Mean distribution | Verdict |
+|---|---|---|---|
+| **The room kit's carrier slot** | **A - a FIXED CHILD of the kit** | A .607 / B .253 / C .087 / D .053, 3/3 | **DECIDED** - one action places a complete, playable room |
+| **The 82 movable dressing actors** | **B - convert AFTER the walk** | B .447 / C .310 / D .183 / A .060, 3/3 | **DECIDED** - static conversion is a later pass, once the composition stops changing |
+| **The borrowed Fab-pack carriers** | **B - keep them for the walk, migrate later** | B .497 / A .410 / C .093 / D .000, 3/3 | **DECIDED** - and W6 drops off the critical path |
+| **What to build first** | **A - W5, the fill graphs** | A .487 / C .393 / B .100 / D .020, 2/3 | near tie (W5 and W4 level) - **W5 first**: editor-side, no C++, and it shows the artist whether the pipeline is worth continuing |
+| **The density textures** | B (2/3) | B .367 / A .330 / C .273 / D .030 | **NEAR TIE - the owner's call.** Jev cannot separate paint-over-the-derived-pass from paint-from-scratch from use-as-is-then-repaint |
+
+**One tension to watch:** "the carrier is a fixed child of the kit" plus "keep the borrowed carriers" combines into a kit whose default child is someone else's asset. If that reads wrong, the narrow fix is carrier_ownership option C - replace only the M02 resonant object with the project's own token family.
+
+**Also answered by the owner:** the C++ work (W1/W2/W3) **waits for a clean compile window** - the tree carries 21 dirty `Source/` + 19 `Plugins/` paths from another session, so a build now would compile someone else's in-flight code.
+
+**A packet lesson worth keeping** (written into `Docs/Production/JEV_CANONICAL_WORKFLOW.md` \u00a74a): the first run sent `criteria={option: None}`, so the option descriptions never reached the service and it answered "A" to all five questions - a receipt that looked fine and carried no judgement. And this model's answer has `choice` + `confidence` + a full `probabilities` distribution and **no reason field**; a receipt that looks for `.reason`/`.score` records nulls that read as "no opinion" when the confidence was there all along.
 
 *Evidence level: plan + offline audit + engine grep + fetched sources. **Nothing in the plan is implemented**, and the route is still un-walked.*
 
@@ -957,6 +1116,8 @@ The closed-editor build, the Sir party-switch PIE proof, the ACF-melee-into-`Res
 **Unrelated to Houdini, same log, flagged not diagnosed.** The same session produced 128 dependency `LoadErrors` in total, the other 112 of them missing textures/child assets under unrelated packs (`Zen` ornament masks, `Copernicus` brass BaseColor/ORM/Normal/Height/Emissive, `EnchantedInteriors` `KB3D_ECI_IntKingsHall_A` children, `MagiciansLibrary` normal maps, `AvatarGarden` grass atlas, Violin string textures). `M_Poitou_Landscape_Painterly` also fails to compile its material instance for `PCD3D_SM6` (6x, on `L_MelusinaHouse_P0.umap`) and falls back to Default Material. Missing dependencies look like moved/deleted assets, but a stale asset registry produces the same error, so this is not evidence of deletion and nothing was inferred from it. It does mean the project does not currently load clean.
 
 **Poitou owner decisions - 2026-10-21 (recorded, not yet executed).** (1) Live layout = the most recent source: `Tools/Poitou/hda/poitou_layout_live.hdalc` (2026-10-21 19:49, node `poitou_layout_live_v6`, 7 folders / 89 leaf parms per hython introspection). Its `f_live_6` folder carries the updated work - revetment controls, `foundation_material`, `masonry_roof_material` / `roof_material`, `abbey_bays` / `abbey_bay_length` / `abbey_nave_width` / `abbey_wall_height` / `abbey_gallery_height` / `abbey_westwork_height` / `abbey_portal_span`, `lane_material` / `lane_length`, poplar bark/foliage slots. Kenney is killed: 0 case-insensitive `kenney` hits in the live `.hdalc` binary, and its material slots resolve to native Poitou/Melodia assets (tufa blocks, limestone rubble core, arase brick, tile, stone plinth, ash bark, poplar). The level still references `Candidates/Poitou_Layout_RoomShell_Candidate`, not this source - pointing the level at the live layout (or re-importing it) is the queued step. (2) Bake policy = **recook, not bake**: Poitou Houdini actors stay live-cooked for artistic iteration, Temp output accepted as transient. Consequence recorded: on any machine/session where the recook does not run (as in the 00:45 session, 14 house cooks and zero Poitou cooks), the level loads with holes - the 14 missing Temp packages are that failure mode, not a broken HDA. (3) Assembly authority, verified 2026-10-21: `Tools/Poitou/build_poitou_hda.py` (38,773 bytes) builds every wrangle as `kit.vex` + feature snip - size-arithmetic, section headers and identifier sets all match the live HDA, and `inst.vex` is byte-identical inside and out. No fork, no orphans: `lane/cross/village/poplar/hz/lscape/skf/skcut` all assemble into their named wrangles. The builder is git-invisible (`Tools/*` ignore) - same force-add decision owed as the cathedral builders; lose that file and the HDA cannot be rebuilt from git.
+
+**Poitou lock generator - night of 2026-10-21 (in progress, headless).** `Tools/Poitou/snip/lock.vex` written to spec (kit functions only, ~340 lines: chamber walls leaf+core+band on the bed, mitre gate pairs + sills + beams, coping, bollards, lamp, 7 piano treads with `s@note`, timber jetty, lockhouse in 2 styles past the 12 m quiet gap). `build_poitou_hda.py` wired (`LOCK_chamber_steps = kit + lock`, merged into `output_generated`, new `f_lock` folder, 12 parms). Rebuild + test cook running headless; gates queued (`poitou_lock_gate.py`: 11 groups, 4.8 m chamber measure, notes == steps, `lock_steps_n` drive, `lock_on` kill). All artefacts live under git-invisible `Tools/*` - nothing staged or committed. **Tomorrow's Education-licence editor queue:** (1) open `L_Poitou_v2` and recook with the live HDA (V6+lock) so the 14 missing Temp packages regenerate; (2) owner call: level points at `Candidates/...RoomShell` while the live source is `poitou_layout_live.hdalc` - reconcile or re-import; (3) Gate 2 hython pins still owed for stained glass + abbey; (4) confirm recook policy holds (no bake) after the Temp regeneration.
 
 **Poitou protection snapshot - 2026-10-21.** Poitou had no equivalent of the house's `MAGICIANS_OPS` snapshot/restore path. `Saved/Audit/poitou_protection_20261021/` now holds byte copies plus a SHA256 manifest of `L_Poitou_v2.umap`, `poitou_layout_live.hdalc`, all six Poitou HDA `.uasset` files, both Abbey `.hda` copies and `MelodiaRoomShell_1.0.hda`, with the Poitou receipts. 11 files, 8.3 MB; re-hashed after writing, 0 mismatches; taken with no editor process running. `protection_manifest.json` carries the restore procedure. This is a recovery point, not a merge source.
 

@@ -70,6 +70,15 @@ Every Jev-backed production decision should preserve:
 
 A deterministic/classical fallback may remain in tests and resilience code, but it must be labeled as fallback and must never be presented as Jev evidence.
 
+### 4a. Two packet traps that produce a receipt that looks fine and is not (found 2026-10-22)
+
+Both were caught on the house-leg packet (`Tools/house_dressing/jev_house_dressing_decisions_20261022.py`); the receipt that exposed them is in `Saved/Audit/house_dressing/`.
+
+1. **The criteria TEXT must be transmitted.** `Choice(criteria={option: None})` sends four EMPTY options: the service sees the question with nothing to choose between and answers arbitrarily. The first run of that packet returned `"A"` for all five questions, with no distribution - it was not a judgement, it was a coin that lands the same way. Send `criteria=dict(spec["criteria"])` - the option descriptions are the whole point of a closed candidate set.
+2. **Read the fields the answer actually has.** `ChoiceAnswer` carries `choice`, `confidence` and a full `probabilities` distribution. It has **no `reason` and no `score` field** (model `jev-1.14.0`), so a receipt that looks for `.reason`/`.score` records nulls that read as "Jev had no opinion" when the confidence and the distribution were there all along. Do not cite a reason that the model did not produce; cite the distribution.
+
+And the sampling rule that falls out of this: **one run is one sample.** When the answer is a close call, run the packet more than once and record the mean distribution AND the run-to-run agreement - a single draw at 0.11 confidence is not a decision. `Tools/house_dressing/jev_house_dressing_decisions_aggregate.py` is the worked example: three samples, per-question mean distribution, agreement rate, and a `DECIDED` / `NEAR_TIE_OWNER_CALL` verdict.
+
 ## 5. Jev + editor mutation
 
 Jev does **not** directly mutate Unreal.
