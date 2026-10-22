@@ -87,21 +87,81 @@
     "verified_on": "2026-10-22",
     "method": "read the source and the assets, not the docs; engine grep for native room support",
     "rows": [
-      { "item": "Houdini room shell HDA", "state": "SHIPPED", "where": "Content/HDA/MelodiaRoomShell_1.0.hda" },
-      { "item": "PCGEx room shell graph with splines and bounds", "state": "SHIPPED", "where": "Content/EnvSandbox/PCG/House/PCG_MelusinaRoomShell_PCGex.uasset" },
-      { "item": "PCG grid scatter graph (piano keys)", "state": "SHIPPED", "where": "Content/EnvSandbox/PCG/House/PCG_MelusinaHouse_MorningDell.uasset" },
-      { "item": "PCG fill graphs for the house", "state": "MISSING", "where": "design only: specs/p0/melusina_house_p0_fill.v1.json" },
-      { "item": "Room density textures", "state": "DERIVED_FIRST_PASS", "where": "Content/EnvSandbox/PCG/House/Textures/dressing_heatmap_{bedroom,landing,salon}.png (P4 CL 306) - derived from the artist's own 97 placements with the P0 route corridor cut back 4 m; generator Tools/build_house_density_maps.py; still needs the artist's paint" },
-      { "item": "UMelodiaDressingSubsystem", "state": "SCAFFOLD", "where": "Source/BS_GodFile/MelodiaIntegration/MelodiaDressingSubsystem.cpp - logs and returns true" },
-      { "item": "UMelodiaDressingCatalog class", "state": "MISSING", "where": "no C++ class holds the catalogue" },
-      { "item": "DA_MelodiaDressingCatalog asset", "state": "MISSING", "where": "path reserved by GetDressingCatalogPath(); content derived in specs/p0/melusina_dressing_catalog.v1.json" },
-      { "item": "BP_MelodiaRoomShell (the room kit Blueprint)", "state": "MISSING", "where": "named by the style contract; the house is hand-assembled instead" },
-      { "item": "PCG <-> narrative/gameplay bridge components", "state": "SHIPPED", "where": "Source/BS_GodFile/MelodiaIntegration/MelodiaPCG*BridgeComponent.*" },
-      { "item": "Native PCG 'Room' concept (room data assets, room layouts)", "state": "ABSENT_IN_THIS_ENGINE_BUILD", "where": "verified by grepping the UE 5.8 PCG plugin headers: no PCGRoom*/RoomLayout*/PCGCreateRoom classes exist, so room-awareness must be built from splines + bounds + filters" },
-      { "item": "Physically settled placement (the BP_PhysicsSpawner behaviour)", "state": "SCAFFOLD", "where": "PhysicallyDrop() logs and returns true; it enables no simulation" },
-      { "item": "House gameplay carriers", "state": "BORROWED", "where": "Magician's Laboratory pack BPs; ours are BP_MelodyToken_Universal and BP_SirPerch" },
-      { "item": "Runtime proof of the house leg", "state": "ABSENT", "where": "the route has never been walked; the audit is static" },
-      { "item": "Dressing catalogue content", "state": "SEED_READY", "where": "specs/p0/melusina_dressing_catalog.v1.json - 4 families, 97 props, derived from the artist's own placements" }
+      {
+        "item": "Houdini room shell HDA",
+        "state": "SHIPPED",
+        "where": "Content/HDA/MelodiaRoomShell_1.0.hda"
+      },
+      {
+        "item": "PCGEx room shell graph with splines and bounds",
+        "state": "SHIPPED",
+        "where": "Content/EnvSandbox/PCG/House/PCG_MelusinaRoomShell_PCGex.uasset"
+      },
+      {
+        "item": "PCG grid scatter graph (piano keys)",
+        "state": "SHIPPED",
+        "where": "Content/EnvSandbox/PCG/House/PCG_MelusinaHouse_MorningDell.uasset"
+      },
+      {
+        "item": "PCG fill graphs for the house",
+        "state": "MISSING",
+        "where": "design only: specs/p0/melusina_house_p0_fill.v1.json"
+      },
+      {
+        "item": "Room density textures",
+        "state": "DERIVED_FIRST_PASS",
+        "where": "Content/EnvSandbox/PCG/House/Textures/dressing_heatmap_{bedroom,landing,salon}.png (P4 CL 306) - derived from the artist's own 97 placements with the P0 route corridor cut back 4 m; generator Tools/build_house_density_maps.py; still needs the artist's paint"
+      },
+      {
+        "item": "UMelodiaDressingSubsystem",
+        "state": "SCAFFOLD",
+        "where": "Source/BS_GodFile/MelodiaIntegration/MelodiaDressingSubsystem.cpp - logs and returns true"
+      },
+      {
+        "item": "UMelodiaDressingCatalog class",
+        "state": "MISSING",
+        "where": "no C++ class holds the catalogue"
+      },
+      {
+        "item": "DA_MelodiaDressingCatalog asset",
+        "state": "MISSING",
+        "where": "path reserved by GetDressingCatalogPath(); content derived in specs/p0/melusina_dressing_catalog.v1.json"
+      },
+      {
+        "item": "BP_MelodiaRoomShell (the room kit Blueprint)",
+        "state": "MISSING",
+        "where": "named by the style contract; the house is hand-assembled instead"
+      },
+      {
+        "item": "PCG <-> narrative/gameplay bridge components",
+        "state": "SHIPPED",
+        "where": "Source/BS_GodFile/MelodiaIntegration/MelodiaPCG*BridgeComponent.*"
+      },
+      {
+        "item": "Native PCG 'Room' concept (room data assets, room layouts)",
+        "state": "ABSENT_IN_THIS_ENGINE_BUILD",
+        "where": "verified by grepping the UE 5.8 PCG plugin headers: no PCGRoom*/RoomLayout*/PCGCreateRoom classes exist, so room-awareness must be built from splines + bounds + filters"
+      },
+      {
+        "item": "Physically settled placement (the BP_PhysicsSpawner behaviour)",
+        "state": "SCAFFOLD",
+        "where": "PhysicallyDrop() logs and returns true; it enables no simulation"
+      },
+      {
+        "item": "House gameplay carriers",
+        "state": "BORROWED",
+        "where": "Magician's Laboratory pack BPs; ours are BP_MelodyToken_Universal and BP_SirPerch"
+      },
+      {
+        "item": "Runtime proof of the house leg",
+        "state": "ABSENT",
+        "where": "the route has never been walked; the audit is static"
+      },
+      {
+        "item": "Dressing catalogue content",
+        "state": "SEED_READY",
+        "where": "specs/p0/melusina_dressing_catalog.v1.json - 4 families, 97 props, derived from the artist's own placements"
+      }
     ]
   },
   "work_items": [
@@ -116,7 +176,8 @@
         "a UMelodiaDressingCatalog : UDataAsset exists with a gameplay-tag family -> hero prop set map",
         "the asset DA_MelodiaDressingCatalog exists at the reserved path, populated from specs/p0/melusina_dressing_catalog.v1.json",
         "DressHeroClutter loads the catalogue and places at least one prop of the requested family around a focus in PIE",
-        "an offline probe (Tools/test_dressing.py) asserts the catalogue loads and returns a non-empty family"
+        "an offline probe (Tools/test_dressing.py) asserts the catalogue loads and returns a non-empty family",
+        "each family carries a STORY TAG: what the room's clutter says about the person who lived there (Infold's 'fashion as narrative', folded in 2026-10-22)"
       ],
       "evidence_required": "PIE capture + probe output + a ledger row",
       "blocker": "the C++ tree currently carries 39 dirty paths from another session (Source/, Plugins/) - a build now would compile someone else's in-flight code. Needs a clean compile window."
@@ -132,7 +193,8 @@
         "actors passed in are positioned at focus + offset, have simulation enabled, and come to rest on the room's collision (the HDA shell's, not a proxy floor)",
         "restitution is honoured",
         "the actors are excluded from the dressing contract (they are not hand-placed placements)",
-        "PIE proves the same props settle in different positions across two runs"
+        "PIE proves the same props settle in different positions across two runs",
+        "the settle is BAKE-TIME work wherever the level is baked: Infold replace live collision-based simulation with constraint-based, preprocessed settling ('the initial garment avoids clipping the body'), folded in 2026-10-22"
       ],
       "evidence_required": "two PIE captures (before/after settle) + probe output",
       "blocker": null
@@ -157,7 +219,9 @@
       "title": "BP_MelodiaRoomShell - the room kit Blueprint",
       "why": "The house is hand-assembled: a Houdini actor per room, PCG graphs dropped separately, interactables from two different packs. There is no 'place a room' action.",
       "owner_role": "build agent + artist (design)",
-      "depends_on": ["W5"],
+      "depends_on": [
+        "W5"
+      ],
       "size": "L",
       "definition_of_done": [
         "dropping one Blueprint into a level produces: the room shell instance, the room's named dressing surfaces, the room's fill volume, and a gameplay-carrier slot",
@@ -192,7 +256,9 @@
       "status": "DEFERRED by the 2026-10-22 Jev decision (3/3 agreement): the borrowed Fab-pack carriers satisfy the beat contract today, so the walk does not wait on this",
       "why": "The house's beat actions currently ride on borrowed Fab-pack Blueprints (BP_InteractiveBook, BP_CandleFlame, BP_Crystal). The loop the project is selling should not depend on a pack's naming.",
       "owner_role": "build agent + artist (placement)",
-      "depends_on": ["W7"],
+      "depends_on": [
+        "W7"
+      ],
       "size": "M",
       "definition_of_done": [
         "M01 book, M02 resonant object and M04 medallion interactable are project-owned Blueprints with the same interaction contract the borrowed ones had",
@@ -207,7 +273,11 @@
       "title": "Walk the route - the gate",
       "why": "Nothing in the house leg is runtime-proven. Static audits pass; a walk is the only honest proof.",
       "owner_role": "owner (artist) + build agent (instrumentation)",
-      "depends_on": ["W4", "W5", "W6"],
+      "depends_on": [
+        "W4",
+        "W5",
+        "W6"
+      ],
       "size": "M",
       "definition_of_done": [
         "M00 -> M09 walked in PIE with the beat actions performed",
@@ -223,13 +293,16 @@
       "title": "Shipping decisions for a generated level",
       "why": "Editor-only answers do not make a shipping level. These are choices, and they are the owner's.",
       "owner_role": "owner decides; build agent implements",
-      "depends_on": ["W5"],
+      "depends_on": [
+        "W5"
+      ],
       "size": "M",
       "questions": [
         "PCG bake or runtime generation for a shipping level (the art pass is editor-only by design, so the runtime path must be baked or data-driven)",
         "save and multiplayer behaviour for generated content",
         "the 23 base actors still on the Fab pack's own materials (including the M04 medallion rings) - convert or accept",
-        "the static/movable conversion of the 82 dressing actors is NOT a question here: it is decided - it happens AFTER the walk, once the composition stops changing (Jev, 2026-10-22, 3/3 agreement)"
+        "the static/movable conversion of the 82 dressing actors is NOT a question here: it is decided - it happens AFTER the walk, once the composition stops changing (Jev, 2026-10-22, 3/3 agreement)",
+        "the settling pass and any cloth tier: bake-time or runtime? The Infold precedent points at constraint-based preprocessed settling, not live collision - folded in 2026-10-22"
       ],
       "definition_of_done": [
         "each question has a recorded answer in this contract",
@@ -254,7 +327,12 @@
       "blocker": "not the build agent's to close - the map and the state file belong to another session's branch"
     }
   ],
-  "critical_path": ["W1", "W5", "W4", "W7"],
+  "critical_path": [
+    "W1",
+    "W5",
+    "W4",
+    "W7"
+  ],
   "critical_path_note": "W6 (project-owned carriers) was deferred by the 2026-10-22 Jev decision - the borrowed Fab-pack carriers satisfy the beat contract today, so the walk no longer waits on them.",
   "parallel_tracks": {
     "W2": "independent of everything - no catalogue needed",
@@ -404,35 +482,60 @@
     "answers": {
       "carrier_slot": {
         "choice": "A",
-        "mean_distribution": { "A": 0.607, "B": 0.253, "C": 0.087, "D": 0.053 },
+        "mean_distribution": {
+          "A": 0.607,
+          "B": 0.253,
+          "C": 0.087,
+          "D": 0.053
+        },
         "agreement": 1.0,
         "verdict": "DECIDED",
         "meaning": "the gameplay carrier is a FIXED CHILD of the room kit: dropping the room brings its interactable with it, so one action places a complete, playable room"
       },
       "density_paint": {
         "choice": "B",
-        "mean_distribution": { "A": 0.33, "B": 0.367, "C": 0.273, "D": 0.03 },
+        "mean_distribution": {
+          "A": 0.33,
+          "B": 0.367,
+          "C": 0.273,
+          "D": 0.03
+        },
         "agreement": 0.667,
         "verdict": "NEAR_TIE - the owner's call",
         "meaning": "Jev could not separate paint-over-the-derived-pass (A) from paint-from-scratch (B) from use-as-is-then-repaint (C). This is the one question Jev has least to add to"
       },
       "mobility": {
         "choice": "B",
-        "mean_distribution": { "A": 0.06, "B": 0.447, "C": 0.31, "D": 0.183 },
+        "mean_distribution": {
+          "A": 0.06,
+          "B": 0.447,
+          "C": 0.31,
+          "D": 0.183
+        },
         "agreement": 1.0,
         "verdict": "DECIDED_BY_AGREEMENT",
         "meaning": "keep the 82 movable dressing actors movable THROUGH the walk; the static conversion is a later pass, once the composition stops changing. Converting before the walk would fight the art pass"
       },
       "carrier_ownership": {
         "choice": "B",
-        "mean_distribution": { "A": 0.41, "B": 0.497, "C": 0.093, "D": 0.0 },
+        "mean_distribution": {
+          "A": 0.41,
+          "B": 0.497,
+          "C": 0.093,
+          "D": 0.0
+        },
         "agreement": 1.0,
         "verdict": "DECIDED_BY_AGREEMENT",
         "meaning": "keep the borrowed Fab-pack carriers for the walk - they satisfy the beat contract today - and migrate to project-owned Blueprints in a later, separate pass"
       },
       "first_build": {
         "choice": "A",
-        "mean_distribution": { "A": 0.487, "B": 0.1, "C": 0.393, "D": 0.02 },
+        "mean_distribution": {
+          "A": 0.487,
+          "B": 0.1,
+          "C": 0.393,
+          "D": 0.02
+        },
         "agreement": 0.667,
         "verdict": "NEAR_TIE - W5 and W4 are effectively tied",
         "meaning": "build W5 (the fill graphs + the density paint) first: editor-side, no C++, and it is what shows the artist whether the pipeline is worth continuing. W4 (the room kit) is second"
@@ -449,5 +552,53 @@
     "no item in this plan has been implemented; this is the scoped plan, not a receipt",
     "the fill graphs, the density textures, the room kit Blueprint and the catalogue asset do not exist",
     "the house leg has never been walked in PIE"
-  ]
+  ],
+  "research_folded_in": {
+    "doc": "Docs/Research/INFINITY_NIKKI_ANIME_JRPG_ART_DIRECTION_2026-10-22.md",
+    "sources": [
+      "Apple Developer, 'How Infold Games fashioned an open world for Infinity Nikki' (2026-04-03) - Ade (lead programmer), Douhu (lead gameplay systems designer, outfits), Dodie (art director)",
+      "Intel Gaming Access, 'Infinity Nikki - Dress Up to Level Up' (2025-12-01) - Infold on their own process",
+      "IGN, Kentaro Tominaga on the gameplay design of Infinity Nikki (2024-08-23)",
+      "Polygon (2024) - the open-world-dress-up lineage (Zelda-like elements)",
+      "Final Fantasy XIV's Glamour Dresser (Square Enix UI guide) and the community's Eorzea Collection - the anime-JRPG wardrobe catalogue and its known dye-loss flaw"
+    ],
+    "folds": [
+      {
+        "lesson": "the fabric system is built on four-layer UV blending, minimally parameterised",
+        "where": "Docs/MELODIA_MELUSINA_WORLD_IDENTITY_CANON_2026-10-20.md section 3",
+        "effect": "the look is the EXISTING four-layer toon blend, used with discipline - no second material authority"
+      },
+      {
+        "lesson": "the wardrobe IS the progression: a garment carries a capability",
+        "where": "the canon's wardrobe bar",
+        "effect": "a garment with no capability attached is not yet Melodia clothing"
+      },
+      {
+        "lesson": "fashion as narrative - each piece tells a story",
+        "where": "W1 and the room kit",
+        "effect": "each dressing family carries a STORY TAG: what the clutter says about the person who lived there"
+      },
+      {
+        "lesson": "constraint-based, PREPROCESSED settling instead of live collision-based simulation",
+        "where": "W2 and W8",
+        "effect": "the settling pass and any cloth tier are bake-time work; W8's bake-vs-runtime question now has a shipped precedent pointing one way"
+      },
+      {
+        "lesson": "slow enough that the player can breathe",
+        "where": "the P0 golden walk's pacing",
+        "effect": "the ten-minute opening with 0:40 beats is a shipped design decision, not a taste call"
+      },
+      {
+        "lesson": "the catalogue must be reachable from anywhere and must not destroy the material choice (FFXIV's dye loss)",
+        "where": "UMelodiaDressingCatalog + specs/p0/melusina_dressing_catalog.v1.json",
+        "effect": "the catalogue stores the material instance WITH the mesh, so a saved look keeps the artist's exact surface"
+      },
+      {
+        "lesson": "a catalogue the player can browse, not only a key the code can query",
+        "where": "W1 (follow-up)",
+        "effect": "a wardrobe UI over the same catalogue data is named as a later piece of work"
+      }
+    ],
+    "no_new_authority": "the research creates no material master, no second wardrobe system and no new dressing pipeline. It confirms the existing toon vocabulary and the existing wardrobe owner."
+  }
 }

@@ -1,4 +1,27 @@
 # Melodia Melusina ? Current State
+## THE NIGHT SHIFT - the house pipeline, built offline, and the 02:00 build - 2026-10-21/22
+
+**Owner:** *"set up and overnight /loop and keep expanding these systems offline for a few hours and then pack it up for a clean offline c++ build at around 2:00am, and fold in top Infinity Nikki / Anime JRPG research in between ticks."* Done offline; no editor was touched; the build is armed for 02:00.
+
+| What | Where | State |
+|---|---|---|
+| The scoped plan | `specs/p0/melusina_room_dressing_pipeline.v1.json` | 9 work items, critical path W1 -> W5 -> W4 -> W7, six case studies, five Jev decisions |
+| The catalogue content | `specs/p0/melusina_dressing_catalog.v1.json` | 3 families, 91 props, derived from the artist's own placements |
+| The offline gate | `Tools/test_dressing.py` | **224/224** - runs in seconds with Unreal closed |
+| The catalogue class | `MelodiaDressingCatalog.h/.cpp`, `MelodiaDressingTags.h/.cpp` | native gameplay tags, no Config edit |
+| The art pass, for real | `MelodiaDressingSubsystem.cpp` | `DressHeroClutter` places; `PhysicallyDrop` settles; `FindCompositionOccluders` reports |
+| The room kit contract | `specs/p0/melusina_room_kit.v1.json` | one Blueprint that places a room; the carrier is a FIXED CHILD |
+| The fill graph contract | `specs/p0/melusina_house_p0_fill_graphs.v1.json` | ten nodes, the real names and parameters |
+| The density textures | `Content/EnvSandbox/PCG/House/Textures/dressing_heatmap_*.png` | P4 CL 306, derived from the artist's placements |
+| The import helper | `Content/Python/melusia_house_fill_import.py` | written, NOT run - the editor belongs to the artist |
+| The research | `Docs/Research/INFINITY_NIKKI_ANIME_JRPG_ART_DIRECTION_2026-10-22.md` | Infold + the anime-JRPG wardrobe catalogue, with the folds applied |
+
+**Two corrections that would have cost a morning.** (1) The fill contract named a `PCGDensityData` asset - **that class does not exist in UE 5.8**: `APCGVolume` carries no density asset, and the density is a `$Density` ATTRIBUTE produced inside the graph by PCGEx (`PCGExGetTextureData` -> `PCGExSampleTexture`), with `PCGExSelectorDensityWeighted` choosing the species by it. And `PCGExGetTextureData`'s `ColorChannel` defaults to **ALPHA** - a grayscale density texture has its value in RGB, so the channel must be R or the whole field reads 1.0 and the room fills evenly. (2) The Jev packet's first run sent `criteria={option: None}`, so the option descriptions never reached the service and it answered "A" to all five questions - a receipt that looked fine and carried no judgement. Both are fixed and both lessons are written into the workflow doc.
+
+**The research, folded in rather than filed:** Infold's material system is *"a re-engineered fabric algorithm that preserves the advantages of four-layer UV blending textures"* - Melodia already speaks that language, so the look is the existing four-layer toon blend, used with discipline, and **no new material authority**. Their wardrobe rule - a garment carries a capability - turns "Wardrobe bar: Infinity Nikki" into a test: *a garment with no capability is not yet Melodia clothing*. Their cloth rule - constraint-based and **preprocessed** rather than live collision - answers W8's bake-vs-runtime question. The anime-JRPG side (FFXIV's Glamour Dresser and its dye-loss flaw) gives the catalogue two rules: reachable from anywhere, and storing a look must never destroy the artist's material choice - which is why `FMelodiaDressingProp` carries `MaterialOverride` with the mesh.
+
+**The 02:00 build** - `Build.bat BS_GodFileEditor Win64 Development` with the editor closed. It will compile the other session's 21 dirty `Source/` + 19 `Plugins/` paths too; a failure in one of THEIR files is reported, not fixed.
+
 ## THE PORTABLE G: COPY IS A DIVERGENT TWIN, NOT A MIRROR - measured 2026-10-22
 
 `G:\EnvironmentPortfolio\BS_GodFile` is a **complete runnable Melodia project** (Content/,
