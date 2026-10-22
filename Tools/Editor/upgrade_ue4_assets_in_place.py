@@ -55,14 +55,17 @@ SHARD_MAX = os.environ.get("ECV_SHARD_MAX", "")
 MAX_FILES = int(os.environ.get("ECV_MAX_FILES", "0")) or None
 
 LINES = []
+LOGFILE = Path(str(OUT) + ".log")
 
 
 def log(m):
     LINES.append(str(m))
     unreal.log("[UPG] " + str(m))
+    # the run log goes BESIDE the receipt, never over it: a crashed run must not
+    # leave a stale summary masquerading as this run's result
     try:
-        OUT.parent.mkdir(parents=True, exist_ok=True)
-        OUT.write_text("\n".join(LINES), encoding="utf-8")
+        LOGFILE.parent.mkdir(parents=True, exist_ok=True)
+        LOGFILE.write_text("\n".join(LINES), encoding="utf-8")
     except Exception:
         pass
 
@@ -110,6 +113,22 @@ def _is_stamped(path: Path) -> bool:
         return False
 
 
+def _local_path(pkg: str) -> Path:
+    # Two traps in one line:
+    #  * Path("/Game/x") is ABSOLUTE on Windows, so joining it would drop the root;
+    #  * a package path carries NO file extension - the file on disk is
+    #    "<name>.uasset", so the extension has to be restored or every existence
+    #    and stamp check silently reads a file that is not there.
+    rel = pkg.replace("/Game/", "", 1).strip("/")
+    base = ROOT / "Content" / Path(*rel.split("/"))
+    if not base.suffix:
+        for ext in (".uasset", ".umap"):
+            cand = base.with_suffix(ext)
+            if cand.exists():
+                return cand
+    return base
+
+
 def main():
     report = {"generated": "2026-10-21", "folder": FOLDER, "skip_mb": SKIP_MB,
               "root": str(ROOT), "processed": [], "skipped": [], "failed": []}
@@ -136,11 +155,19 @@ def main():
         f"shard: {SHARD_MIN or '-'}..{SHARD_MAX or '-'})")
 
     assets.sort(key=lambda t: t[0])          # ascending: cheap first, monsters last
+    # The cap must count only packages that still need stamping, otherwise every
+    # batch would re-select the same handful of small (already stamped) files and
+    # make no progress.
     if MAX_FILES:
-        # a bounded batch keeps a second UE process inside the commit limit while
-        # another editor session is open; re-run until the count stops changing
-        assets = assets[:MAX_FILES]
-        log(f"batch capped to {len(assets)} packages (smallest first)")
+        pending = []
+        for a in assets:
+            if _is_stamped(_local_path(a[1])):
+                report["already_stamped"] = report.get("already_stamped", 0) + 1
+                continue
+            pending.append(a)
+        assets = pending[:MAX_FILES]
+        log(f"batch capped to {len(assets)} UNSTAMPED packages (smallest first); "
+            f"{report.get('already_stamped', 0)} already stamped")
     total_bytes = sum(a[0] for a in assets)
     log(f"total on disk: {total_bytes/1024/1024:.0f} MB")
 
@@ -150,7 +177,7 @@ def main():
                                       "reason": f"above --skip-mb ({SKIP_MB})"})
             log(f"SKIP {name} ({size/1024/1024:.0f} MB > {SKIP_MB} MB)")
             continue
-        local = ROOT / "Content" / Path(pkg.replace("/Game/", ""))
+        local = _local_path(pkg)
         if _is_stamped(local):
             report["already_stamped"] = report.get("already_stamped", 0) + 1
             continue
