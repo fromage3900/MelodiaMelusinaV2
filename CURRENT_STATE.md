@@ -6,7 +6,6 @@ new file.
 
 **Updated:** 2026-10-22 · **Engine:** UE 5.8 · Blender 5.2 LTS · C++20 · Python 3.11
 
-<<<<<<< HEAD
 ## THE OVERNIGHT PASS - the form system grew a stage machine, the water chorus, and two gates - 2026-10-22
 
 ### What the night added (all compiled with MSVC 14.44, UBT's own toolchain)
@@ -78,8 +77,6 @@ and **backs up every file it overwrites** into `G:/_sync_backup_20261022/`. The 
 that exist only on G: are left alone and reported - they may be the only copy. The
 receipt is `Saved/Audit/gdrive_sync_20261022.json`.
 
-=======
->>>>>>> 63530393c (docs(status): record the 2026-10-22 repo review - three CI gates were red on main)
 ## ⚑ REPO REVIEW 2026-10-22 — the doc and CI gates were RED on `main`; three are now green, two are not — 2026-10-22
 
 **Three of the repository's own CI gates were failing on `origin/main` before this review, and two of them were failing in a way that could never be fixed by editing the offending file.** Every failure below was reproduced on a pristine checkout of `origin/main`, so none of it was caused by the work that triggered the review.
@@ -105,7 +102,6 @@ receipt is `Saved/Audit/gdrive_sync_20261022.json`.
 
 **The lane:** `refs/agents/docs-archive-20261021` — 3 commits, 0 files of binary. It is **8 commits behind `origin/main`** and the branch-lifecycle guard will refuse to land it as-is; it needs a fresh branch from current `origin/main` and a reconverge of the bounded delta, which is the integrator's call.
 
-<<<<<<< HEAD
 ## THE NIGHT SHIFT - the house pipeline, built offline, and the 02:00 build - 2026-10-21/22
 
 **Owner:** *"set up and overnight /loop and keep expanding these systems offline for a few hours and then pack it up for a clean offline c++ build at around 2:00am, and fold in top Infinity Nikki / Anime JRPG research in between ticks."* Done offline; no editor was touched; the build is armed for 02:00.
@@ -284,8 +280,6 @@ is the lever).
 - **Still open**: the authored henshin clip is not baked, so C3 runs on its timer; the
   Carillon art pass has not landed, so `bUseHeadSwap` stays off.
 
-=======
->>>>>>> 63530393c (docs(status): record the 2026-10-22 repo review - three CI gates were red on main)
 ## ROOM-AWARE DRESSING + GAME-READY LEVELS - the scoped plan, the research and the shipped-game case studies - 2026-10-22
 
 **Owner ask:** "how would an environment artist use Houdini + PCG for room-aware dressing and natural placement, like we did with our BP_PhysicsSpawner, and what else remains before we have solid infrastructure for game-ready levels and BPs that place geometry and carry the gameplay loop?" Answered in three artifacts, all landed: the **plan**, the **research**, the **case studies**.
@@ -982,7 +976,7 @@ The earlier "2.4 m = allegro 3/4 / 3.6 m = andante 4/4" phrasing was internally 
 
 A green experience walk does **not** certify combat/save/packaged proof; a green integration map does **not** certify the experience. **Every M00–M09 beat is `PROPOSED` until proved in the live editor** — this route certifies nothing yet.
 
-**The wider Poitou beat sheet is a different envelope.** [`Docs/Poitou/CONVERGENCE_PLAN.md`](Docs/Poitou/CONVERGENCE_PLAN.md) (7 beats, ~1.6 km, 06:00→19:30, 15–20 min: jetty → footbridge → grand port → church square → lane → poplar allée + lock → ruin on rise) is the **world design** plan for Poitou as a deep backdrop. It is **not** the P0 playable envelope, and it is not a second P0.
+**The wider Poitou beat sheet is a different envelope.** [`Docs/Poitou/poitou_layout/CONVERGENCE_PLAN.md`](Docs/Poitou/poitou_layout/CONVERGENCE_PLAN.md) (7 beats, ~1.6 km, 06:00→19:30, 15–20 min: jetty → footbridge → grand port → church square → lane → poplar allée + lock → ruin on rise) is the **world design** plan for Poitou as a deep backdrop. It is **not** the P0 playable envelope, and it is not a second P0.
 
 **Open conflict between the two, flagged not resolved:** the golden walk's house leg is authored against **Morning** ownership, and `L_MelusinaMorning.umap` is now a **37 KB shell** with Poitou as the live level (`46669de7b`). The house leg needs an explicit live-audit decision before PASS B. The golden walk also requires an inventory-and-reconcile of the older Dreamstate prologue / `UMelodiaOpeningFlowSubsystem` bindings against the live map.
 
