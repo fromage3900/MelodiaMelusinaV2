@@ -1197,7 +1197,7 @@ The earlier "2.4 m = allegro 3/4 / 3.6 m = andante 4/4" phrasing was internally 
 
 A green experience walk does **not** certify combat/save/packaged proof; a green integration map does **not** certify the experience. **Every M00–M09 beat is `PROPOSED` until proved in the live editor** — this route certifies nothing yet.
 
-**The wider Poitou beat sheet is a different envelope.** [`Docs/Poitou/CONVERGENCE_PLAN.md`](Docs/Poitou/CONVERGENCE_PLAN.md) (7 beats, ~1.6 km, 06:00→19:30, 15–20 min: jetty → footbridge → grand port → church square → lane → poplar allée + lock → ruin on rise) is the **world design** plan for Poitou as a deep backdrop. It is **not** the P0 playable envelope, and it is not a second P0.
+**The wider Poitou beat sheet is a different envelope.** [`Docs/Poitou/poitou_layout/CONVERGENCE_PLAN.md`](Docs/Poitou/poitou_layout/CONVERGENCE_PLAN.md) (7 beats, ~1.6 km, 06:00→19:30, 15–20 min: jetty → footbridge → grand port → church square → lane → poplar allée + lock → ruin on rise) is the **world design** plan for Poitou as a deep backdrop. It is **not** the P0 playable envelope, and it is not a second P0.
 
 **Open conflict between the two, flagged not resolved:** the golden walk's house leg is authored against **Morning** ownership, and `L_MelusinaMorning.umap` is now a **37 KB shell** with Poitou as the live level (`46669de7b`). The house leg needs an explicit live-audit decision before PASS B. The golden walk also requires an inventory-and-reconcile of the older Dreamstate prologue / `UMelodiaOpeningFlowSubsystem` bindings against the live map.
 
