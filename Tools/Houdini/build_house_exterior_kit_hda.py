@@ -313,11 +313,11 @@ for face, (feat, role) in zip(M.F, FEAT):
 
 MAT_VEX = r'''
 string r = s@material_role;
-string base = "/Game/Melodia/Materials/Lookdev/";
-string m = "MI_Gouache_Toon_Stone";
-if (r == "scallop_fascia" || r == "tower_cap" || r == "ridge_finial") m = "MI_Gouache_Toon_Wet";
-else if (r == "lantern" || r == "fanlight") m = "MI_Gouache_Toon_Soft";
-else if (r == "tracery" || r == "oculus_frame" || r == "carved_trim" || r == "fretwork") m = "MI_Gouache_Toon_Stone";
+string base = "/Game/Staging/HouseExterior/Materials/";
+string m = "MI_HouseExt_PearlPlaster";
+if (r == "scallop_fascia" || r == "tower_cap") m = "MI_HouseExt_LavenderScaleRoof";
+else if (r == "ridge_finial" || r == "carved_trim" || r == "tracery" || r == "oculus_frame" || r == "fanlight" || r == "fretwork" || r == "tower_window") m = "MI_HouseExt_GiltTrim";
+else if (r == "lantern") m = "MI_HouseExt_LanternGlow";
 s@unreal_material = base + m + "." + m;
 '''
 
