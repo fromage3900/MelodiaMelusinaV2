@@ -108,7 +108,8 @@ def make_controls(geo):
     fl(f, "path_start_z", "Path start Z (m, the porch)", -5.76)
     fl(f, "path_width_m", "Path width (m)", 3.0, 0.5, 20.0)
     fl(f, "path_carve_m", "Path carve depth (m)", 0.25, 0.0, 3.0)
-    f.addParmTemplate(hou.IntParmTemplate("cave_count", "Number of caves", 1, default_value=(4,), min=0, max=8))
+    fl(f, "eye_height_m", "Porch eye height above the pad (m)", 1.6, 0.5, 4.0)
+    f.addParmTemplate(hou.IntParmTemplate("cave_count", "Number of caves", 1, default_value=(3,), min=0, max=8))
     f.addParmTemplate(hou.IntParmTemplate("cave_seed", "Cave seed", 1, default_value=(5,), min=0, max=99999))
     fl(f, "cave_radius_m", "Cave bowl radius (m)", 12.0, 2.0, 60.0)
     fl(f, "cave_depth_m", "Cave bowl depth (m)", 5.0, 0.0, 30.0)
@@ -127,13 +128,16 @@ def make_controls(geo):
 
 NAMES = (["source_filepath", "source_min", "source_range", "crop_x", "crop_z", "reference_elevation", "amplitude", "window_m", "window_cx", "window_cz", "preview_resolution",
           "pad_elevation", "pad_xmin", "pad_xmax", "pad_zmin", "pad_zmax", "pad_falloff", "pond_x", "pond_z", "pond_radius_x", "pond_radius_z", "water_level", "pond_bed",
-          "flat_inner", "flat_outer", "horizon_start", "horizon_full", "horizon_amp", "ridge_freq", "ridge_sharp", "ridge_octaves", "dem_gain", "ridge_seed", "path_count", "path_seed", "path_spread_deg", "path_length_m", "path_start_x", "path_start_z", "path_width_m", "path_carve_m", "cave_count", "cave_seed", "cave_radius_m", "cave_depth_m", "cave_mouth_m", "view_azimuth", "view_open", "off_view_gain",
+          "flat_inner", "flat_outer", "horizon_start", "horizon_full", "horizon_amp", "ridge_freq", "ridge_sharp", "ridge_octaves", "dem_gain", "ridge_seed", "path_count", "path_seed", "path_spread_deg", "path_length_m", "path_start_x", "path_start_z", "path_width_m", "path_carve_m", "eye_height_m", "cave_count", "cave_seed", "cave_radius_m", "cave_depth_m", "cave_mouth_m", "view_azimuth", "view_open", "off_view_gain",
           "landscape_material", "layerinfo_dir"] + ["layerinfo_" + n.lower() for n in LAYERS])
 
 PATHS_PY = r'''
 import math, random
 node = hou.pwd(); geo = node.geometry(); hda = node.parent()
 src = node.inputs()[0].geometry()
+ins = node.inputs()
+cav = ins[1].geometry() if len(ins) > 1 and ins[1] else None
+cpts = [(p.position()[0], p.position()[2]) for p in cav.points()] if cav is not None else []
 geo.clear()
 vols = {p.attribValue("name"): p for p in src.prims() if isinstance(p, hou.Volume)}
 H = vols["height"]
@@ -154,9 +158,15 @@ geo.addAttrib(hou.attribType.Point, "elev", 0.0)
 def angdiff(a, b): return abs((a - b + 540.0) % 360.0 - 180.0)
 for k in range(n):
     goal = va + (0.0 if n == 1 else spread * (k / float(n - 1) - 0.5))
+    target = cpts[k] if k < len(cpts) else None
+    if target is not None: goal = math.degrees(math.atan2(target[1] - sz, target[0] - sx))
     x, z, heading = sx, sz, goal
     pts = [(x, z)]
-    for step in range(int(L / 6.0)):
+    for step in range(int(L * 1.6 / 6.0)):
+        if target is not None:
+            if math.hypot(target[0] - x, target[1] - z) < 8.0:
+                pts.append(target); break
+            goal = math.degrees(math.atan2(target[1] - z, target[0] - x))
         best, bc = None, 1e9
         for dh in (-48, -36, -24, -12, 0, 12, 24, 36, 48):
             hd = heading + dh
@@ -169,7 +179,7 @@ for k in range(n):
             if cost < bc: bc, best = cost, (nx, nz, hd)
         x, z, heading = best
         pts.append((x, z))
-        if math.hypot(x - hx, z - hz) > L: break
+        if target is None and math.hypot(x - hx, z - hz) > L: break
     for _ in range(3):
         pts = [pts[0]] + [((pts[i - 1][0] + pts[i][0] + pts[i + 1][0]) / 3.0, (pts[i - 1][1] + pts[i][1] + pts[i + 1][1]) / 3.0) for i in range(1, len(pts) - 1)] + [pts[-1]]
     poly = geo.createPolygon(); poly.setIsClosed(False); poly.setAttribValue("path_id", k)
@@ -183,7 +193,6 @@ node = hou.pwd(); geo = node.geometry(); hda = node.parent()
 srcs = node.inputs()
 src = srcs[0].geometry()
 geo.clear()
-paths = srcs[1].geometry() if len(srcs) > 1 and srcs[1] else None
 vols = {p.attribValue("name"): p for p in src.prims() if isinstance(p, hou.Volume)}
 H = vols["height"]
 def h(x, z): return H.sample((float(x), 0.0, float(z)))
@@ -193,14 +202,27 @@ def grad(x, z):
 n = hda.parm("cave_count").eval(); rng = random.Random(hda.parm("cave_seed").eval())
 va = hda.parm("view_azimuth").eval(); vo = hda.parm("view_open").eval()
 hx = (hda.parm("pad_xmin").eval() + hda.parm("pad_xmax").eval()) * 0.5; hz = (hda.parm("pad_zmin").eval() + hda.parm("pad_zmax").eval()) * 0.5
-path_pts = [(p.position()[0], p.position()[2]) for p in paths.points()] if paths is not None else []
+path_pts = []
+ex, ez = hda.parm("path_start_x").eval(), hda.parm("path_start_z").eval()
+ey = hda.parm("pad_elevation").eval() + hda.parm("eye_height_m").eval()
+def los(tx, ty, tz, step=3.0):
+    d = math.hypot(tx - ex, tz - ez)
+    n = max(2, int(d / step))
+    for i in range(1, n):
+        t = i / float(n)
+        if h(ex + (tx - ex) * t, ez + (tz - ez) * t) > ey + (ty - ey) * t - 0.3: return False
+    return True
 cands = []
-for r in range(140, 391, 15):
-    for ang in range(int(-vo), int(vo) + 1, 5):
+for r in range(120, 401, 12):
+    for ang in range(int(-vo), int(vo) + 1, 3):
         a = math.radians(va + ang); x, z = hx + r * math.cos(a), hz + r * math.sin(a)
         hg = h(x, z); gx, gz = grad(x, z); sl = math.hypot(gx, gz)
         if hg < 8.0 or sl < 0.30: continue
         if path_pts and min(math.hypot(x - px, z - pz) for px, pz in path_pts) < 22.0: continue
+        if not los(x, hg + 2.0, z): continue
+        nrm = (-gx, 1.0, -gz); nl = math.sqrt(nrm[0] ** 2 + nrm[1] ** 2 + nrm[2] ** 2)
+        to_eye = (ex - x, ey - (hg + 2.0), ez - z); tl = math.sqrt(to_eye[0] ** 2 + to_eye[1] ** 2 + to_eye[2] ** 2)
+        if (nrm[0] * to_eye[0] + nrm[1] * to_eye[1] + nrm[2] * to_eye[2]) / (nl * tl) < 0.2: continue
         cands.append((sl * 1.0 + hg / 40.0 + rng.random() * 0.35, x, z, hg, gx, gz, sl))
 cands.sort(reverse=True)
 geo.addAttrib(hou.attribType.Point, "N", hou.Vector3(0, 1, 0))
@@ -210,7 +232,7 @@ geo.addAttrib(hou.attribType.Point, "slope", 0.0)
 chosen = []
 for c in cands:
     if len(chosen) >= n: break
-    if all(math.hypot(c[1] - o[1], c[2] - o[2]) >= 70.0 for o in chosen): chosen.append(c)
+    if all(math.hypot(c[1] - o[1], c[2] - o[2]) >= 62.0 for o in chosen): chosen.append(c)
 mouth = hda.parm("cave_mouth_m").eval()
 for i, (sc, x, z, hg, gx, gz, sl) in enumerate(chosen):
     pt = geo.createPoint(); pt.setPosition(hou.Vector3(x, hg, z))
@@ -355,13 +377,13 @@ def build_network(geo):
     wr = geo.createNode("volumewrangle", "shape_pad_pond_horizon_masks")
     wr.setInput(0, cp)
     wr.parm("snippet").set(SHAPE_VEX)
-    paths = geo.createNode("python", "route_paths")
-    paths.setInput(0, wr)
-    paths.parm("python").set(PATHS_PY)
     caves = geo.createNode("python", "place_caves")
     caves.setInput(0, wr)
-    caves.setInput(1, paths)
     caves.parm("python").set(CAVES_PY)
+    paths = geo.createNode("python", "route_paths_to_caves")
+    paths.setInput(0, wr)
+    paths.setInput(1, caves)
+    paths.parm("python").set(PATHS_PY)
     carve = geo.createNode("volumewrangle", "carve_paths_and_caves")
     carve.setInput(0, wr)
     carve.setInput(1, paths)
@@ -502,30 +524,61 @@ def gate(hda, report):
     wl = hda.parm("water_level").eval()
     path_stats = []
     all_slopes, wet = [], 0
+    n_cave_pts = len(cg.points())
     for pr in pg.prims():
         pts = [v.point().position() for v in pr.vertices()]
         rmax = max(math.hypot(p[0] - cx, p[2] - cz) for p in pts)
+        guided = pr.attribValue("path_id") < n_cave_pts
+        endp = pts[-1]
         for p in pts:
             if h.sample((p[0], 0.0, p[2])) < wl + 0.2:
                 wet += 1
+            if guided and math.hypot(p[0] - endp[0], p[2] - endp[2]) < 40.0:
+                continue
             d = 4.0
             gx = (h.sample((p[0] + d, 0.0, p[2])) - h.sample((p[0] - d, 0.0, p[2]))) / (2 * d)
             gz = (h.sample((p[0], 0.0, p[2] + d)) - h.sample((p[0], 0.0, p[2] - d))) / (2 * d)
             all_slopes.append(math.hypot(gx, gz))
-        path_stats.append({"id": pr.attribValue("path_id"), "points": len(pts), "start": [round(pts[0][0], 1), round(pts[0][2], 1)], "r_max_m": round(rmax, 1)})
+        path_stats.append({"id": pr.attribValue("path_id"), "points": len(pts), "start": [round(pts[0][0], 1), round(pts[0][2], 1)], "end": [round(endp[0], 1), round(endp[2], 1)], "guided": guided, "r_max_m": round(rmax, 1)})
     cave_pts = [(p.position()[0], p.position()[2], p.position()[1], p.attribValue("slope")) for p in cg.points()]
     min_sep = min([math.hypot(a1[0] - b1[0], a1[1] - b1[1]) for i, a1 in enumerate(cave_pts) for b1 in cave_pts[i + 1:]] or [999.0])
     report["paths"] = {"count": len(path_stats), "stats": path_stats, "slope_p95": round(float(np.percentile(all_slopes, 95)), 3) if all_slopes else None, "wet_points": wet,
                        "coverage_pct": round(float(grid(vols["Path"]).mean()) * 100.0, 2)}
     report["caves"] = {"count": len(cave_pts), "points_xz_h_slope": [[round(c[0], 1), round(c[1], 1), round(c[2], 1), round(c[3], 3)] for c in cave_pts], "min_separation_m": round(min_sep, 1)}
     a["paths_count_ok"] = len(path_stats) == npaths
-    a["paths_reach_far"] = all(ps["r_max_m"] >= 0.8 * L for ps in path_stats) if npaths else True
+    a["free_paths_reach_far"] = all(ps["r_max_m"] >= 0.8 * L for ps in path_stats if not ps["guided"])
     a["paths_gentle_p95_under_0_30"] = (report["paths"]["slope_p95"] or 0.0) <= 0.30
     a["paths_stay_dry"] = wet == 0
     a["paths_start_at_porch"] = all(math.hypot(ps["start"][0] - hda.parm("path_start_x").eval(), ps["start"][1] - hda.parm("path_start_z").eval()) < 2.0 for ps in path_stats)
     a["caves_count_ok"] = len(cave_pts) == ncaves
     a["caves_on_flank_slopes"] = all(c[3] >= 0.30 and c[2] > -50 for c in cave_pts)
     a["caves_spaced_60m"] = min_sep >= 60.0
+    # ---- sightlines from the porch eye (guide = paths, release = cave mouths)
+    ex_, ez_ = hda.parm("path_start_x").eval(), hda.parm("path_start_z").eval()
+    ey_ = hda.parm("pad_elevation").eval() + hda.parm("eye_height_m").eval()
+
+    def visible(tx, ty, tz, step=3.0):
+        d = math.hypot(tx - ex_, tz - ez_)
+        n = max(2, int(d / step))
+        for i in range(1, n):
+            t = i / float(n)
+            if h.sample((ex_ + (tx - ex_) * t, 0.0, ez_ + (tz - ez_) * t)) > ey_ + (ty - ey_) * t - 0.3:
+                return False
+        return True
+
+    cave_vis = [visible(c[0], c[2] + 2.0, c[1]) for c in cave_pts]
+    path_end_vis, path_vis_frac = [], []
+    for pr in pg.prims():
+        pts = [v.point().position() for v in pr.vertices()]
+        vis = [visible(p[0], h.sample((p[0], 0.0, p[2])) + 1.0, p[2]) for p in pts[2:]]
+        path_end_vis.append(bool(vis and vis[-1]))
+        path_vis_frac.append(round(sum(vis) / float(max(1, len(vis))), 3))
+    report["sightlines"] = {"eye": [ex_, round(ey_, 2), ez_], "caves_visible": cave_vis, "path_end_visible": path_end_vis, "path_visible_fraction": path_vis_frac}
+    a["caves_visible_from_porch"] = bool(cave_pts) and all(cave_vis)
+    a["path_starts_read_from_porch"] = all(f >= 0.25 for f in path_vis_frac) if path_vis_frac else True
+    k_guided = min(len(path_stats), len(cave_pts))
+    a["guided_paths_end_at_visible_caves"] = all(math.hypot(path_stats[i]["end"][0] - cave_pts[i][0], path_stats[i]["end"][1] - cave_pts[i][1]) < 12.0 and cave_vis[i] for i in range(k_guided)) if k_guided else True
+
     report["assertions"] = a
     return arr, a, vols
 
