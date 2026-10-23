@@ -190,3 +190,21 @@ Rule of use: skin, face, outline and iris stay OFF.
 **Stop rules.** If a shader change makes any permutation fall back to the checker material, revert to the dated backup in `Masters/_Backup/` before anything else. If a look change cannot be judged on the board, it does not ship tonight.
 
 **Parked (not tonight):** fluid-baked flipbook (FluidNinja sim -> `T_Gouache_PoolFlipbook`), cymatics as a FluidNinja force texture, `MagicalTransform` progress as the single fluid-intensity source, a second Rebelle swatch, soft-skin variant, Rebelle EULA check.
+
+## 13. Salon convergence contract - floral sigil maps on `Toon_Universal` (2026-10-22)
+
+Source plan: the Salon lane's `Docs/Production/MELUSINA_FINAL_ENVIRONMENT_CONVERGENCE_GOAL.md` section 16 (worktree `lane-salon-convergence-20261022`, branch `refs/agents/salon-convergence-20261022`, commit `f087a4718`): Hython first; six floral/water-sigil families (WaterLily floor, TidalRose ceiling, IrisPearlLace rail, TwinCurrent threshold, MoonTideScallop, BellflowerRipple); per family 1024 BaseColor, ORM (R=AO, G=rough, B=metal), DirectX Normal, 16-bit Height, EmissiveMask; bulk textures live in `RawArt/MelusinasHouse/Chladni/SalonFloralSigils_20261022/` and are NOT in UE yet. Its rule: stage them through **existing MIs only**, no new masters, no map mutation, no replacing the artist's House map.
+
+**Verified (live editor): the sigil pack matches `M_Master_Toon_Universal`'s own inputs one to one.**
+| sigil map | master texture parameter | switch |
+|---|---|---|
+| BaseColor | `Albedo` | - |
+| ORM | `ORM` | (`bUseSeparateRoughnessMap` / `bUseSeparateMetallicMap` stay OFF) |
+| DirectX Normal | `NormalMap` | UE is DirectX: no flip |
+| 16-bit Height | `HeightMap` | `bUseHeightToNormal` is already ON |
+| EmissiveMask | `EmissiveMap` | `bUseEmissiveMap` ON |
+The master also exposes `ChladniMask` and `MotifMask`, the natural slots for the sigil's Chladni provenance. **Not yet verified:** the master's ORM channel order (assumed R=AO G=rough B=metal) - check it before judging any sigil MI.
+
+**How gouache sits on them.** A sigil MI is a child of a suite instance, not of the master: floor/ceiling/rail -> parent `MI_Gouache_Toon_Stone` (heavy granulation, chalk), canal-facing TwinCurrent threshold and any water-adjacent surface -> parent `MI_Gouache_Toon_Wet`. Override only the texture parameters above (+ `bUseEmissiveMap`). The gouache layer then tints, grains and edge-pools the sigil colour; the sigil's ORM stays the roughness truth (gouache chalk roughness is the one scalar to back off if the wet channels stop reading). Judge each on the benchmark board, shot (d).
+
+**Division of labour tonight:** the Salon lane (Hython, Muse) owns the HDA, the bakes and the texture import; this lane owns the gouache suite and the master. Neither edits the other's files. Order: Salon lane imports -> creates the sigil MIs as children of the suite -> this lane judges and tunes `Gouache_*` scalars on them.
