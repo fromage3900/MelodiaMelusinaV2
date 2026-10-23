@@ -2,12 +2,10 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "MultiWorldHandle.h"
 #include "MelodiaSeamPortal.generated.h"
 
 class UBoxComponent;
 class ACharacter;
-class UMaterialInterface;
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FMelodiaSeamCrossed, AActor*, Traveller);
 
@@ -25,8 +23,9 @@ DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FMelodiaSeamCrossed, AActor*, Travel
  * The volume only fires when the traveller is moving across it (velocity . CrossingDirection > 0) and then ignores that traveller for CooldownSeconds,
  * so a pawn that lands inside a paired seam is not bounced back. Gameplay-affecting (it moves the pawn) but it writes no narrative state.
  *
- * Cross-world crossings are NOT done here: when DestinationWorld is valid and TransitionMaterial is set, the portal is only a presenter. It hands the
- * traveller to UMultiWorldSeamTransition (the MultiWorld plugin owns the world switch and the transition FX) and applies no seam math.
+ * Cross-level crossings are NOT done here. When NarrativeTravelId is set the portal only REQUESTS travel through
+ * UMelodiaNarrativeSubsystem::RequestTravel (allowlisted in DA_MelodiaIntegrationConfig.TravelLevelIds); the Travel
+ * subsystem owns the MultiWorld seam and the presentation. No seam math runs and the pawn is not moved here.
  */
 UCLASS(Blueprintable)
 class BS_GODFILE_API AMelodiaSeamPortal : public AActor
@@ -68,16 +67,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Melodia|Seam", meta = (ClampMin = "0.0"))
 	float CooldownSeconds = 0.6f;
 
-	/** Set at runtime from UMultiWorldManager. Valid + TransitionMaterial => hand off to MultiWorld instead of the in-world seam. */
-	UPROPERTY(BlueprintReadWrite, Category = "Melodia|Seam|MultiWorld")
-	FMultiWorldHandle DestinationWorld;
-
-	/** A User Interface domain material built on MultiWorld_SeamTransition_MF (e.g. MW_ST_CrossFading_PPM). */
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Melodia|Seam|MultiWorld")
-	TObjectPtr<UMaterialInterface> TransitionMaterial;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Melodia|Seam|MultiWorld", meta = (ClampMin = "0.0"))
-	float TransitionSeconds = 1.0f;
+	/** If set, a crossing requests this travel id through the narrative subsystem instead of applying the in-world seam. */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Melodia|Seam|Narrative")
+	FName NarrativeTravelId;
 
 	UPROPERTY(BlueprintAssignable, Category = "Melodia|Seam")
 	FMelodiaSeamCrossed OnSeamCrossed;

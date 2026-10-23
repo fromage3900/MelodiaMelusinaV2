@@ -5,8 +5,7 @@
 #include "GameFramework/Character.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "GameFramework/Controller.h"
-#include "Engine/GameInstance.h"
-#include "MultiWorldSeamTransition.h"
+#include "MelodiaNarrativeSubsystem.h"
 
 AMelodiaSeamPortal::AMelodiaSeamPortal()
 {
@@ -64,22 +63,18 @@ bool AMelodiaSeamPortal::ApplySeam(ACharacter* Traveller, const bool bUseCooldow
 		}
 	}
 
-	if (DestinationWorld.GetWorld() && TransitionMaterial)
+	if (!NarrativeTravelId.IsNone())
 	{
-		// Presenter path: MultiWorld owns the world switch and the transition FX.
-		if (UGameInstance* GI = GetWorld()->GetGameInstance())
+		// Narrative route: the travel request is the only thing this portal does.
+		UMelodiaNarrativeSubsystem* Narrative = UMelodiaNarrativeSubsystem::GetMelodiaNarrativeSubsystem(this);
+		const bool bAccepted = Narrative && Narrative->RequestTravel(NarrativeTravelId);
+		UE_LOG(LogTemp, Log, TEXT("MELODIA_SEAM_PORTAL travel id=%s accepted=%d"), *NarrativeTravelId.ToString(), bAccepted ? 1 : 0);
+		if (bAccepted)
 		{
-			if (UMultiWorldSeamTransition* Seam = GI->GetSubsystem<UMultiWorldSeamTransition>())
-			{
-				if (Seam->StartTransition(this, DestinationWorld, TransitionMaterial, FOnTransitionEnd(), TransitionSeconds))
-				{
-					LastCrossed.Add(Traveller, Now);
-					OnSeamCrossed.Broadcast(Traveller);
-					return true;
-				}
-			}
+			LastCrossed.Add(Traveller, Now);
+			OnSeamCrossed.Broadcast(Traveller);
 		}
-		return false;
+		return bAccepted;
 	}
 
 	const FQuat Q = RollQuat();
