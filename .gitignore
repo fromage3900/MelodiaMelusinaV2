@@ -283,13 +283,13 @@ Tools/*
 !Tools/Houdini/*.py
 !Tools/Houdini/*.md
 !Tools/Houdini/*.json
-# Salon room-shell HDA sources (2026-10-22): rectangular shell, rounded-plan
-# shell, HDA assemblers and native verifiers. Text only; the candidate HDAs
-# themselves stay staged under Saved/ and are never tracked here.
-!Tools/Houdini/room_shell/
-!Tools/Houdini/room_shell/*.py
-!Tools/Houdini/room_shell/*.md
-Tools/Houdini/room_shell/__pycache__/
+# NOTE (2026-10-22): every negation under Tools/Houdini/ above is INERT.
+# `Tools/*` excludes the Tools/Houdini directory itself, and git cannot
+# re-include a path whose parent directory is excluded - so new sources there
+# stay invisible to git status and must be staged with `git add -f`
+# (that is how the 232 already-tracked Tools/Houdini files got in). Fixing
+# this properly means unignoring the parent directory first, which would
+# re-expose every cache and probe output in the tree; not done unasked.
 !Tools/Cascadeur/
 !Tools/Cascadeur/Melusina/
 !Tools/Cascadeur/Melusina/README.md
