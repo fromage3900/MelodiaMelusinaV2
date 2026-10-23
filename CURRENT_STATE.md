@@ -2950,6 +2950,66 @@ Open owner calls: bob · v05/v06 ship · night value direction (A/B in `Saved/Au
 
 Repo reality at close (post-fetch): 12 local commits unpushed incl. `aea624abd`, 52 behind `origin/main` — no push from this lane; closing ALLREFS bundle → `git_bundles_archive/ALLREFS_2026-10-08_closeout.bundle`. C: disk at 98% (20 GB free) — next sweep due.
 
+## SHOREWAKE animatic rescue → v08 — 2026-10-22/23 (Humber lane, IN PROGRESS)
+
+**The finding that reframed the job.** The submitted v07 animatic is cut from
+`proxy/panels_v3/*.png` — **greybox proxy panels** rendered from a throwaway stage,
+not from `SHOREWAKE_LOOP_v5_master.blend`. Probed headless 2026-10-22: the master is
+**AAA-complete, not greybox** — 214 objects, 56 komikaze-hybrid materials
+(`M_Brass_*`, `M_Hull_MK35_Nailed`, `M_Sail_Pearl_Damask`, foam/wake/ripple, FLIP
+domain), the 6 composition-pack cameras at their exact coords, 5 lights, and every
+acting prop (lyre, lantern, ripple rings, wake trail, foam). **The gap is the
+figure: zero armatures, zero Melusina in the master.** The T-pose in the panels came
+from a proxy scene that was never the master.
+
+**Plan:** `.hermes/plans/2026-10-22_215628-shorewake-animatic-rescue.md` — append the
+canonical `SK_Melusina_V2_{Body,Shirt,Skirt_R2_SmoothChains}` + their 464-bone rigs,
+unify under one control rig, seat her feet on the measured `Floorboards` top
+(headless-stage rule: never a guess), pose per beat, re-render the 18 shots, rebuild
+the VSE at the locked 1560 f / 65.0 s timing, ship v08.
+
+**Progress (verified on disk):** `proxy/SHOREWAKE_LOOP_rescue_v01.blend` built across
+2026-10-22 21:36 → 2026-10-23 00:33 (a copy of the master; **the master is
+untouched**). Canonical parts appended (`L_Cornea`, `L_Eyebrow`, `Melusina`,
+`R_Eyebrow`, `R_Eyelash`, both boots, `root`) and seated. **Latest receipt
+`rescue_integrate_report.json` status = `CHECK`**: `feetZ_after` gap **−10.75 cm**
+against the measured deck top — **the seat is not correct yet.** Camera tests
+rendered 2026-10-23 00:24–00:33 (`rescue_test`, `natural`, `scalecheck`, `seat`,
+`ref` × CAM_Intimate/Wide). Phase 1 (pose library + `PANEL_STAGING_SHEET.md`) has not
+started. **No v08 file exists yet.**
+
+**Also true:** the Oct 20 water pass (`SHOREWAKE_LOOP_v26_water.blend`) is **not in the
+canonical tree** — that worktree was pruned. What survives is the deltas
+(`water_v26/water_v26.py`, `water_v26_fix2.py`, `changes.json`), the before/after
+stills and the camera-check PNGs. **Re-derive from the deltas; do not look for the
+blend.**
+
+**Schoolwork context:** ANMN301 v07 was **submitted 2026-10-09** (65 s, 1080p24,
+silent, decode-clean; packet + package + `G:/BS_GodFile_School_20261008/`). v08 is an
+optional quality rescue of an already-submitted deliverable — it does not change the
+submission.
+
+## ANMN304 film lane — 2026-10-16..10-18 (repo `G:/film-304-toon-spine`)
+
+The Humber film project is its **own repo**, not a BS_GodFile lane:
+`G:/film-304-toon-spine` (branch `feature/render-harness-20261008`, remotes `origin`
+= GitHub `fromage3900/film-304-toon-spine` and `laptop` = `P:/film-304-toon-spine`).
+Body of work: Dana professor toon lookdev (UDIM cast materials, morph targets, IK
+rig + `Jog_Fwd` batch retarget), brutalist office build (ceiling, blinds, window
+light rig, facade glow, measured floor), establishing shots, MRQ render gate, PPV
+outline wiring, and the Film 304 production bible. Humber school files
+(`Capstone_Pipeline_Scaffold`, `Film304_Production_Bible_v01`, brutalist FBX set)
+are tracked there — **this is where the capstone scaffold now lives**, while
+BS_GodFile keeps the older flat `Humber_FinalYear_Prep/` set.
+
+**Repo hygiene (2026-10-23):** `.git` is 7.5 GB and `Content/` is tracked as **plain
+blobs** — `.gitattributes` LFS-filters only `*.blend/blend1/fbx/exr/hdr`, not
+`*.uasset/*.umap`. The pre-commit hook enforces the 5 MB package line and blocks
+`Config/*.ini` + `.gitignore` as protected. `Config/DefaultEngine.ini` currently
+carries a **re-added `AndroidFileServer` `SecurityToken`** in the working tree
+(uncommitted, and deliberately kept out of history) alongside a legitimate
+`r.CustomDepth=3` render setting — **do not commit that file wholesale.**
+
 ## Cymatics render study — first sheets — 2026-10-10 (headless, no editor)
 
 Editor became unreachable mid-session (Monolith down; all UE-side captures already saved). Proceeded headless: the Chladni foundry (`deploy/ollama_chladni_foundry_daemon.py`) passed **25/25 assertions** (`Tools/test_chladni_foundry.py`), then minted + exported **14 deterministic sheets** (seed 20261007, `--no-ollama`; 10 circular C/C_E_G + 4 square C_E_G; ranks 0.81→0.48) with `contact_sheet.html` + `INDEX.md` + an all-sets PIL raster contact (`Saved/Audit/cymatics_render_study_20261010/`, `cymatics_all_sets_contact_raster.png`, `render_contact.py`). Sheet store: `Imports/Data/Chladni/` (JSON+SVG, palette-locked to Board 06 language). **Texture bridge prepped:** new `Tools/chladni_sheets_to_textures.py` rasterizes all 14 sheets to 1024² white-on-black nodal masks (deterministic, sha256'd) + `chladni_textures_manifest.json` in `Saved/GeneratedTextures/Chladni/` — ready for UE import (queued; masks are pattern sources, not yet promoted to `T_Chladni_C_ROOT`).
