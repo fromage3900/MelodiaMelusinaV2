@@ -108,3 +108,129 @@ Content/Python/faraway_mother_prototype_build.py — deterministic placements, i
 - `Saved/Audit/faraway_mother/fabric_ridge_terrain/manifest.json`
 - `Content/Python/faraway_mother_prototype_build.py`
 - `Content/Python/faraway_mother_height_aware_placements.json` (see below)
+
+---
+
+## Research proposal (2026-10-23): Harmonic Continental Genesis
+
+**Status: PROPOSED — design and lab acceptance plan only.** This section does not claim a Houdini cook, 500 m terrain, stitched tiles, Vellum bake, playable region, TD return path, or UE import. \`CURRENT_STATE.md\` remains the sole status authority; the Faraway P1 resonance integration spec and the existing World Compiler remain the functional contracts.
+
+### Creative thesis / desired player experience
+
+**Faraway Mother: The World That Remembers Every Song.** The 8 x 8 km world is perceived as one continent-sized instrument. Mountains read as tensioned silk; valleys as gathers; routes as embroidery; cathedral ribs as nodal-line structures; flora as harmonic deposition. During an authored musical reveal, the player discovers that widely separated ridges, gardens and bridges describe the *same* historical standing-wave field.
+
+This is not an instruction to generate 8 km of dense Vellum cloth or dynamically deform collision at runtime. The artistic thesis is **one common field at multiple scales**, with far-field deterministic/baked terrain, selective hero cloth simulations, and presentation-only material/FX modulation in UE.
+
+Five legible scales, driven by shared authored coordinates:
+
+| Scale | Artistic read | Technical representation |
+| --- | --- | --- |
+| 8 km | sleeping Mother / entire garment silhouette | coarse tiled world identity and distance LOD |
+| 1 km | valleys as gathers, directional pleats | continuous global Chladni/tension field + heightfields |
+| 100 m | seams, routes, lace arches, fabric landforms | feature curves, selected Vellum hero patches, baked meshes |
+| 10 m | flora, architectural stitches, relief | existing World Compiler point fields, UE PCG and dressing |
+| 10 cm | silk jacquard and thread weave | Copernicus masks/material presentation; **not** sculpted continental geometry |
+
+### Authority and protected inputs (do not duplicate)
+
+1. **Canonical spatial basis:** \`Tools/Houdini/vdm_fabric_mountains/faraway_static_field.py\` and \`Tools/PCG/build_faraway_mother_pcg_ecosystem.py\`; default Faraway Chladni mode **(3,5)**, \`WorldField.Tension\`, \`Resonance\`, \`Moisture\`, and the ResonantSeamWay nodal mask.
+2. **Signed field:** \`F(u,v) = cos(3*pi*u)*cos(5*pi*v) - cos(5*pi*u)*cos(3*pi*v)\`; signed zero contours define candidate nodal routes. The existing \`abs(F) < 0.12\` seam band is a mask, **not** a guaranteed traversable road.
+3. **World coordinates:** Faraway world X/Y \`[-400000,+400000]\` cm map to UV \`[0,1]\` with \`U=(X+400000)/800000\`, \`V=(Y+400000)/800000\`. Houdini computes in metres; UE intake uses **100 cm per metre**. Tile-local UV resets are forbidden.
+4. **Protected hand-authored work:** \`Houdini/FarawayDrape.hip\` (especially \`FARAWAY_DRAPE_GRID\`, \`TENSION_MASK\`, \`Cymatic_BeatPulse\` and the authored curvature/tension network). Work in a separately named experimental file. Never overwrite that master or regenerate it with the generic COP builder.
+5. **Reuse existing production lanes:** \`Tools/Houdini/sea_above_reef/build_cloth_mountains.py\`, \`Tools/Houdini/vdm_fabric_mountains/vdm_fabric_baker.py\`, \`faraway_alignment_diagnostic.py\`, the current Faraway level/PCG scripts, \`Docs/WorldGen/WORLD_COMPILER_CONTRACT.md\`, \`Docs/WorldGen/TERRAIN_HANDOFF_CONTRACT.md\`, and \`Docs/Production/FARAWAY_MOTHER_P1_RESONANCE_FIELD_INTEGRATION_SPEC.md\`.
+6. **Runtime ownership:** Hython authors deterministic spatial substrate; the existing World Compiler packages field-derived dressing data; UE 5.8 owns gameplay, collision, save state and traversal gating; TouchDesigner uses the existing semantic music/OSC and \`OUT_SHOW_FIELD\` presentation lane. No new writer, compiler, or game authority.
+
+### Scale ladder — prove small before building a continent
+
+| Gate | Domain | Partition | Intended proof |
+| --- | --- | --- | --- |
+| G0 | 1 representative 250 m tile | isolated research | field correctness and usable geometry |
+| **G1 lab target** | **500 x 500 m** | **2 x 2 tiles of 250 m** | border-perfect geology, one hero cloth fold and continuous resonant seam |
+| G2 conditional | 1 x 1 km | 4 x 4 tiles | PDG caching/rebuild economics, streamed handoff, ecology |
+| G3 future | 8 x 8 km | 32 x 32 = 1,024 tiles | **aspirational only**, after technical, artistic, runtime and storage acceptance |
+
+**G1 is the only authorized research scope for this lab plan.** G2/G3 require separate capacity measurements and owner approval. No default all-tiles cook.
+
+### G1 lab work packets (Houdini Education / school workstation)
+
+**0 — Preflight and protection**
+- Read the actual license tier, Houdini version, Labs availability and current Git revision. Record usable RAM, scratch disk and machine-level time budget; no speculative capacity assumptions.
+- Resolve SSD/source checkout; verify the *real* \`FarawayDrape.hip\` bytes and hand-authored nodes. Save \`FarawayDrape_HarmonicGenesis_Lab_20261023.hipnc\` (or the format issued by the active licence) in a protected experimental/scratch directory **without writing over the authored master**.
+- Keep raw \`.bgeo.sc\`/VDB/Vellum caches out of Git. Do not rename licence extensions as a conversion or assume school-generated files are commercially unrestricted.
+
+**1 — Author one globally sampled harmonic field**
+- Start with existing \`faraway_static_field.py\` at canonical (3,5) and seed 3900; record source SHA, mode, UV convention and channel meanings.
+- For the 500 m pilot crop, sample the **same global 8 km basis** at explicit metre positions. Preserve sample correspondence at shared tile edges; do not independently normalize each of the four tiles to \`[0,1]\`.
+- Bake diagnostic outputs for signed \`F\`, tension, resonance, moisture and the seam mask. Keep signed nodal contour data separate from its antialiased/material-display mask.
+- Compare canonical PCG/Hython samples and tile-edge samples numerically. Fail on flipped V, mismatched bounds, drift or unaccounted seed changes.
+
+**2 — Generate geological cloth at two resolutions**
+- Build four low-/mid-resolution 250 m mesh/heightfield tiles from global field coordinates. Pleat orientation and fold frequency vary with the shared tension field; use low-frequency sculptural anatomy + deliberate pleat guides, not uniform noise everywhere.
+- Stitch by matching shared boundary **positions and normals** (including a one-sample halo for gradient evaluation) and stable mesh/world origins. Rebuild any one tile without modifying its neighbors.
+- Use one selected hero patch (e.g. 125–250 m) for a bounded Vellum drape onto a reduced collider. Test three wedges: gravity-only; tension-guided pleats; Chladni-weighted warp/weft stiffness. Use a coarse particle spacing first (pilot ~4–8 m), measure cook time/memory, then refine only if the silhouette materially improves.
+- Bake the settled frame / deformation textures only if a real consumer demands them. Full-continent Vellum and UE runtime cloth are explicitly out of scope.
+
+**3 — Extract the geography's musical seam**
+- Compute a signed \`F=0\` contour (marching squares / sampled iso-contour) in **global coordinates**; weld/merge connections across the four tile borders before choosing hero routes.
+- Filter candidate corridors using slope, curvature, clearance, preserved authored routes, bank/water constraints and a minimum walkable width. A nodal line is a *candidate*, not instant navigability.
+- Conform one continuous embroidery/stone seam to the draped terrain and place **one** selected lace-arch/bridge gesture along it, extending existing arch/cathedral/profile math. Keep this mostly static, with optional presentation reveal mask rather than runtime physics.
+- Export seam curve/points and a mask sharing the exact same world bounds/UV orientation as the terrain.
+
+**4 — Ecology and musical archaeology (bounded)**
+- Generate a small World Compiler-compatible **candidate** dressing field from tension, moisture, resonance and walkability, for existing WeaveRidge / LaceCanopy / FrillValley / ResonantSeamWay concepts.
+- Prefer current species/PCG contracts, no new material master and no duplicate World Compiler. No automatic write to the UE level.
+- Stretch: author one *historical resonance* layer (a dormant prior motif) as optional non-gameplay field metadata. It may guide faded embroidery, ruins or orchard patterns, but cannot unlock quests, declare valid music or replace the canonical music state.
+
+**5 — Evaluate as art, not just a cook**
+- Capture a neutral clay view; an annotated global Chladni/tension view; a final silk + embroidery hero frame from matched cameras.
+- Capture top, player-height and seam-close-up inspection views. Measure the hero patch, not just count primitive instances.
+- Make a small comparison sheet for gravity-only / tension / harmonic stiffness and select one winner for later HDA/UE promotion. Keep the others as research variants, not new authorities.
+
+### Acceptance gates (fail closed)
+
+**A. Mathematical consistency**
+- Mode is canonical (3,5) unless an artistic experiment is explicitly marked noncanonical.
+- Shared-border positions differ by at most **0.01 m** (or tighter if the terrain data precision permits); normals have dot product **>= 0.98** at comparable samples after harmonized derivative evaluation.
+- Global field samples on both sides of a tile edge agree within **1e-5** in float-space, and the four-tile nodal seam graph contains no unintentional border break.
+- Same input SHA/seed/recipe/version and platform produce byte-identical deterministic *source field tables* or a documented float-tolerant numeric equivalent when output encoders are nondeterministic. Timestamps belong only in evidence envelopes.
+
+**B. Geometric and artistic**
+- The four tiles read as one landscape in silhouette and player-height perspective.
+- The strongest read is **fabric acting as geology**: folds and pleats, not a rocky mountain with a cloth-pattern overlay.
+- The selected arch/seam is continuous, seated on terrain and readable without emissive effects.
+- Existing traversal/clearance keepouts are preserved; no path is asserted playable without UE validation.
+
+**C. Integration and provenance**
+- Produce a small representative mesh + field/map handoff with scale, axes, UV/world bounds, seed, source commit, material references and SHA-256 hashes. Route any UE-bound terrain through the established \`melodia.terrain_handoff.v1\` validator/converter; do not invent a new handoff schema.
+- Static field channels preserve existing RGBA meanings: tension / resonance / moisture / seam.
+- Geometry, masks and Vellum evidence can be inspected without a live Unreal editor. UE/TD live integration is a **later independently verified gate**, not implied by successful Houdini cooking.
+- Preserve the authored Faraway master, the single cymatics MPC writer and existing World Compiler; make no runtime, branch cleanup or editor changes as a side effect.
+
+**D. Compute safety**
+- Pilot one tile and one coarse Vellum wedge first. Record elapsed time, memory peak, scratch size, triangle/voxel counts and incremental recook behavior.
+- Abort/rate down if system paging begins, free scratch becomes unsafe, or the 2 x 2 crop exceeds the lab allocation. Cache and render budgets are measured, never extrapolated as guarantees from license tier.
+
+### Requested evidence / artifact layout (outputs NOT yet created)
+
+Use the existing audit conventions under \`Saved/Audit/houdini_faraway_mother/harmonic_genesis_20261023/\` (small manifests/screenshots only in Git if production policy permits; large caches/export meshes in approved scratch):
+
+\`\`\`text
+harmonic_genesis_20261023/
+  source_manifest.json             # source SHA, Houdini/build/version, seed, (n,m), bounds, licenses
+  global_field_RGBA.png            # tension / resonance / moisture / seam
+  signed_chladni_preview.png       # separate signed diagnostic, not substitute for RGBA authority
+  tiles_2x2/                      # 4 source tiles + joint boundary measurements
+  vellum_wedges/                  # coarse gravity / tension / harmonic variants + metrics
+  seam_graph.json                 # global polyline IDs, borders, route/clearance metadata
+  hero_views/                     # clay / annotated / textile beauty renders
+  terrain_handoff.json            # only after validated converter/intake contract
+  acceptance.json                 # pass/fail/blocked with measured values and hashes
+\`\`\`
+
+Suggested first session sequence: **preflight -> canonical field/border probe -> 2 x 2 clay terrain -> one coarse Vellum wedge -> one continuous seam -> renders and audit**. If time is limited, stop at the first failed gate and deliver a smaller complete proof. Do not scale until the 2 x 2 G1 gate passes.
+
+### Promotion and scope discipline
+
+This is a **P1/P2 research proposal**. Poitou P0 and its accepted presentation identity are not replaced. No new production HDA, continent compiler, C++ subsystem, MIDI authority, TouchDesigner bridge, or gameplay mechanic may be declared from this plan. Promotion to an HDA or World Compiler consumer requires measured output, owner-selected art direction, matching runtime contract, and a separate UE 5.8 acceptance step.
+
+**Definition of success for the next lab:** four cohesive tiles, one visible fabric-geology hero, one mathematically continuous seam and three honest comparison images — with zero collateral modifications to existing canonical projects.

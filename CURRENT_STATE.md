@@ -6,6 +6,10 @@
 
 The latest documented additive C:→G: file-sync dry run reports **0 files left to copy**, with overwritten originals backed up; that is a file-copy result, not a Git-history equivalence certificate. G:'s parked history was subsequently preserved on `origin` at `collab/gdrive-parked-20261013`. Verify both workstations again before making any fresh synchronization claim.
 
+## Faraway Mother harmonic continental genesis — proposed 2026-10-23
+
+Houdini research planning only: the multiscale 8 x 8 km musical textile continent is **not built**. A bounded first lab gate is four 250 m tiles (500 x 500 m), global (3,5) Chladni field continuity, one selective Vellum drape, a mathematically aligned nodal seam, and non-destructive evidence. The proposal is appended to [`Docs/Art/FARAWAY_MOTHER_FABRIC_MOUNTAIN_BUILD_2026-09-02.md`](Docs/Art/FARAWAY_MOTHER_FABRIC_MOUNTAIN_BUILD_2026-09-02.md). Existing FarawayDrape hand-authored work, World Compiler, cymatics single-writer and Poitou P0 remain authoritative/untouched. No lab cook or UE runtime proof is claimed.
+
 ## Poitou college simulation lab — proposed experiments, 2026-10-22
 
 Owner requested a researched school-session plan: [Poitou college lab](Docs/Plans/POITOU_COLLEGE_LAB_2026-10-22.md). Priorities are a local lock/river FLIP vignette and reusable flow/foam/wetness maps, protected IGN erosion masks, modular abbey destruction, mist flipbooks and architectural preset wedges. All are **PROPOSED**, with pilot measurements and separate Unreal integration gates; this documentation does not certify the town cook, restore geometry, or land binary assets. Use the latest local source-built Poitou HDA and preserve today's canals, roads, roofs, foundations and fences; do not replace it with the historical Candidate. School hardware, license tier and format compatibility must be checked before scaling jobs.
@@ -15,7 +19,7 @@ to do next, that file is wrong: fix this one instead. Update it in the same comm
 describes. Handoffs, plans, receipts and session notes go in the commit or PR message, never in a
 new file.
 
-**Updated:** 2026-10-22 · **Engine:** UE 5.8 · Blender 5.2 LTS · C++20 · Python 3.11
+**Updated:** 2026-10-23 · **Engine:** UE 5.8 · Blender 5.2 LTS · C++20 · Python 3.11
 ## Stained-glass cymatic window — 2026-10-21 (proof + install route set; HDA source / builder / registry entry staged; live cook queued)
 
 - Source: `Tools/Houdini/melodia_stained_glass_window.py` (reuses `room_shell.py` traceries + `chladni_eigen.py`); builder: `Tools/Houdini/cathedral/build_stained_glass_window_hda.py`; target HDA: `Content/HDA/MelodiaStainedGlassWindow_1.0.hda`; registry entry `melodia_stained_glass_window` to add to `hda_registry.v1.json`; material bindings to existing masters (`M_LF_StainedGlass`, `M_Master_Toon_Universal`'s `Cymatic_*` scalars, `MPC_Cymatics_Driver` — one writer, per DATA_FLOW.md).
