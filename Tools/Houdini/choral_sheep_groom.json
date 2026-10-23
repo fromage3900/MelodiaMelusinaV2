@@ -1,0 +1,183 @@
+{
+  "schema": "melodia.houdini_groom_hip.v1",
+  "note": "hou unavailable - JSON stub for groom HIP; run with hython to materialize",
+  "hip": "C:\\EnvironmentPortfolio\\BS_GodFile\\Tools\\Houdini\\choral_sheep_groom.hipnc",
+  "obj": "/obj/choral_sheep_groom",
+  "guide_groom": "/obj/choral_sheep_groom/guide_groom1",
+  "hair_generate": "/obj/choral_sheep_groom/hair_generate1",
+  "spec": {
+    "schema": "melodia.houdini_groom_variant.v1",
+    "creature": "ChoralSheep",
+    "profile_id": "Fur_ChoralSheep_Wool",
+    "base": {
+      "wool_clump_scale": 0.65,
+      "sheen_response": 0.45,
+      "lod_bands_cm": [
+        {
+          "min": 0.0,
+          "max": 400.0,
+          "backend": "NativeGroom"
+        },
+        {
+          "min": 400.0,
+          "max": 1200.0,
+          "backend": "ShellCard"
+        },
+        {
+          "min": 1200.0,
+          "max": 1000000.0,
+          "backend": "Impostor"
+        }
+      ],
+      "groom_asset_tag": "Groom_ChoralSheep_Wool_Hero",
+      "shell_asset_tag": "FurShell_ChoralSheep_Wool_Mid",
+      "card_asset_tag": "FurCards_ChoralSheep_Wool_Far"
+    },
+    "variant_axis": {
+      "type": "pitch_class",
+      "count": 12,
+      "labels": [
+        "C",
+        "Cs",
+        "D",
+        "Ds",
+        "E",
+        "F",
+        "Fs",
+        "G",
+        "Gs",
+        "A",
+        "As",
+        "B"
+      ]
+    },
+    "per_pc_overrides": {
+      "_comment": "Houdini Guide Groom + Hair Generate parms driven by pitch class. Values are authorable, simulation-safe.",
+      "C": {
+        "wool_clump_scale": 0.62,
+        "clump_size": 0.45,
+        "curl": 0.3,
+        "density_mult": 1.0,
+        "length_cm": 6.2,
+        "frizz": 0.12
+      },
+      "Cs": {
+        "wool_clump_scale": 0.63,
+        "clump_size": 0.46,
+        "curl": 0.32,
+        "density_mult": 1.02,
+        "length_cm": 6.3,
+        "frizz": 0.13
+      },
+      "D": {
+        "wool_clump_scale": 0.64,
+        "clump_size": 0.48,
+        "curl": 0.34,
+        "density_mult": 1.04,
+        "length_cm": 6.4,
+        "frizz": 0.14
+      },
+      "Ds": {
+        "wool_clump_scale": 0.65,
+        "clump_size": 0.5,
+        "curl": 0.36,
+        "density_mult": 1.06,
+        "length_cm": 6.5,
+        "frizz": 0.15
+      },
+      "E": {
+        "wool_clump_scale": 0.66,
+        "clump_size": 0.52,
+        "curl": 0.38,
+        "density_mult": 1.08,
+        "length_cm": 6.6,
+        "frizz": 0.16
+      },
+      "F": {
+        "wool_clump_scale": 0.67,
+        "clump_size": 0.54,
+        "curl": 0.4,
+        "density_mult": 1.05,
+        "length_cm": 6.5,
+        "frizz": 0.17
+      },
+      "Fs": {
+        "wool_clump_scale": 0.68,
+        "clump_size": 0.56,
+        "curl": 0.42,
+        "density_mult": 1.03,
+        "length_cm": 6.4,
+        "frizz": 0.18
+      },
+      "G": {
+        "wool_clump_scale": 0.66,
+        "clump_size": 0.55,
+        "curl": 0.41,
+        "density_mult": 1.01,
+        "length_cm": 6.3,
+        "frizz": 0.16
+      },
+      "Gs": {
+        "wool_clump_scale": 0.65,
+        "clump_size": 0.53,
+        "curl": 0.39,
+        "density_mult": 0.99,
+        "length_cm": 6.2,
+        "frizz": 0.15
+      },
+      "A": {
+        "wool_clump_scale": 0.64,
+        "clump_size": 0.51,
+        "curl": 0.37,
+        "density_mult": 1.0,
+        "length_cm": 6.1,
+        "frizz": 0.14
+      },
+      "As": {
+        "wool_clump_scale": 0.63,
+        "clump_size": 0.49,
+        "curl": 0.35,
+        "density_mult": 1.02,
+        "length_cm": 6.2,
+        "frizz": 0.13
+      },
+      "B": {
+        "wool_clump_scale": 0.62,
+        "clump_size": 0.47,
+        "curl": 0.33,
+        "density_mult": 1.04,
+        "length_cm": 6.3,
+        "frizz": 0.12
+      }
+    },
+    "hou_paths": {
+      "hip": "Tools/Houdini/choral_sheep_groom.hipnc",
+      "obj": "/obj/choral_sheep_groom",
+      "guide_net": "/obj/choral_sheep_groom/guide_groom1",
+      "hairgen_net": "/obj/choral_sheep_groom/hair_generate1",
+      "rop_alembic": "/out/groom_abc_rop",
+      "rop_cards": "/out/groom_cards_rop"
+    },
+    "exports": {
+      "native_groom_abc": "Saved/Audit/choral_sheep/grooms/Groom_ChoralSheep_PC{label}.abc",
+      "shell_cards_fbx": "Saved/Audit/choral_sheep/grooms/FurShell_ChoralSheep_PC{label}.fbx",
+      "contact_sheet": "Saved/Audit/choral_sheep/grooms/_Groom_ContactSheet.png"
+    },
+    "ue": {
+      "groom_dir": "/Game/Melodia/Companions/ChoralSheep/Grooms/",
+      "groom_binding": "GroomComponent on AMelodiaChoralSheepActor (optional, missing must not block companion follow)",
+      "import_settings": {
+        "groom_compression": "default",
+        "cards_lod": 1
+      }
+    }
+  },
+  "intended_chain": "file(SK_ChoralSheep.fbx) -> GuideGroom(scatter 120) -> AttribWrangle(pc->wool_clump_scale) -> HairGenerate(9000 strands, 6cm) -> OUT_GROOM -> Alembic wedge(12)",
+  "exports": {
+    "native_groom_abc": "Saved/Audit/choral_sheep/grooms/Groom_ChoralSheep_PC{label}.abc",
+    "shell_cards_fbx": "Saved/Audit/choral_sheep/grooms/FurShell_ChoralSheep_PC{label}.fbx",
+    "contact_sheet": "Saved/Audit/choral_sheep/grooms/_Groom_ContactSheet.png"
+  },
+  "ue_binding": "GroomComponent on AMelodiaChoralSheepActor (optional, missing must not block companion follow)",
+  "next_hython": "hython Tools/Houdini/build_choral_groom_hip.py --out Tools/Houdini/choral_sheep_groom.hipnc"
+}
