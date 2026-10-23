@@ -66,7 +66,7 @@ def make_controls(geo):
     fl(f, "crop_z", "DEM crop center Z (m)", 580.0, -1500.0, 1500.0)
     fl(f, "reference_elevation", "Local reference elevation (m NGF)", 9.66, -100.0, 100.0)
     fl(f, "amplitude", "DEM amplitude (m across source range)", 16.0033, 0.0, 100.0)
-    fl(f, "window_m", "Window size (m)", 1000.0, 100.0, 2000.0)
+    fl(f, "window_m", "Window size (m)", 500.0, 100.0, 2000.0)
     fl(f, "window_cx", "Window center local X (m)", HCX)
     fl(f, "window_cz", "Window center local Z (m)", HCZ)
     f.addParmTemplate(hou.IntParmTemplate("preview_resolution", "Resolution (samples; 253 live, 1009 final)", 1, default_value=(253,), min=65, max=2017))
@@ -84,12 +84,12 @@ def make_controls(geo):
     pg.append(f)
 
     f = hou.FolderParmTemplate("horizon", "Horizon", folder_type=hou.folderType.Tabs)
-    fl(f, "flat_inner", "Near field fully flat to (m)", 70.0, 0.0, 500.0)
-    fl(f, "flat_outer", "DEM relief fully back by (m)", 180.0, 1.0, 800.0)
-    fl(f, "horizon_start", "Horizon rises start (m)", 90.0, 0.0, 800.0)
-    fl(f, "horizon_full", "Horizon rises full by (m)", 300.0, 1.0, 900.0)
-    fl(f, "horizon_amp", "Horizon ridge height (m)", 38.0, 0.0, 200.0)
-    fl(f, "ridge_freq", "Ridge frequency (1/m)", 0.0035, 0.0005, 0.05)
+    fl(f, "flat_inner", "Near field fully flat to (m)", 45.0, 0.0, 500.0)
+    fl(f, "flat_outer", "DEM relief fully back by (m)", 110.0, 1.0, 800.0)
+    fl(f, "horizon_start", "Horizon rises start (m)", 55.0, 0.0, 800.0)
+    fl(f, "horizon_full", "Horizon rises full by (m)", 190.0, 1.0, 900.0)
+    fl(f, "horizon_amp", "Horizon ridge height (m)", 26.0, 0.0, 200.0)
+    fl(f, "ridge_freq", "Ridge frequency (1/m)", 0.0065, 0.0005, 0.05)
     fl(f, "ridge_sharp", "Ridge sharpness", 1.3, 0.5, 4.0)
     f.addParmTemplate(hou.IntParmTemplate("ridge_octaves", "Ridge octaves", 1, default_value=(3,), min=1, max=6))
     fl(f, "dem_gain", "DEM micro-relief gain away from the house", 0.5, 0.0, 2.0)
@@ -97,13 +97,15 @@ def make_controls(geo):
     fl(f, "view_azimuth", "View azimuth (deg, 0 = +X)", 0.0, -180.0, 180.0)
     fl(f, "view_open", "View opens within (deg)", 75.0, 5.0, 180.0)
     fl(f, "off_view_gain", "Ridge height outside the view (0..1)", 0.35, 0.0, 1.0)
+    fl(f, "rock_start", "Rock starts on ridge crests above (0..1)", 0.80, 0.0, 1.0)
+    fl(f, "rock_full", "Rock fully covers crests above (0..1)", 0.95, 0.0, 1.0)
     pg.append(f)
 
     f = hou.FolderParmTemplate("paths_caves", "Paths and Caves", folder_type=hou.folderType.Tabs)
     f.addParmTemplate(hou.IntParmTemplate("path_count", "Number of paths", 1, default_value=(4,), min=0, max=8))
     f.addParmTemplate(hou.IntParmTemplate("path_seed", "Path seed", 1, default_value=(11,), min=0, max=99999))
     fl(f, "path_spread_deg", "Path fan spread (deg)", 70.0, 0.0, 180.0)
-    fl(f, "path_length_m", "Path length (m)", 420.0, 60.0, 900.0)
+    fl(f, "path_length_m", "Path length (m)", 230.0, 60.0, 900.0)
     fl(f, "path_start_x", "Path start X (m, the porch)", 27.0)
     fl(f, "path_start_z", "Path start Z (m, the porch)", -5.76)
     fl(f, "path_width_m", "Path width (m)", 3.0, 0.5, 20.0)
@@ -111,8 +113,8 @@ def make_controls(geo):
     fl(f, "eye_height_m", "Porch eye height above the pad (m)", 1.6, 0.5, 4.0)
     f.addParmTemplate(hou.IntParmTemplate("cave_count", "Number of caves", 1, default_value=(3,), min=0, max=8))
     f.addParmTemplate(hou.IntParmTemplate("cave_seed", "Cave seed", 1, default_value=(5,), min=0, max=99999))
-    fl(f, "cave_radius_m", "Cave bowl radius (m)", 12.0, 2.0, 60.0)
-    fl(f, "cave_depth_m", "Cave bowl depth (m)", 5.0, 0.0, 30.0)
+    fl(f, "cave_radius_m", "Cave bowl radius (m)", 9.0, 2.0, 60.0)
+    fl(f, "cave_depth_m", "Cave bowl depth (m)", 4.0, 0.0, 30.0)
     fl(f, "cave_mouth_m", "Cave mouth width (m)", 7.0, 1.0, 40.0)
     pg.append(f)
 
@@ -128,7 +130,7 @@ def make_controls(geo):
 
 NAMES = (["source_filepath", "source_min", "source_range", "crop_x", "crop_z", "reference_elevation", "amplitude", "window_m", "window_cx", "window_cz", "preview_resolution",
           "pad_elevation", "pad_xmin", "pad_xmax", "pad_zmin", "pad_zmax", "pad_falloff", "pond_x", "pond_z", "pond_radius_x", "pond_radius_z", "water_level", "pond_bed",
-          "flat_inner", "flat_outer", "horizon_start", "horizon_full", "horizon_amp", "ridge_freq", "ridge_sharp", "ridge_octaves", "dem_gain", "ridge_seed", "path_count", "path_seed", "path_spread_deg", "path_length_m", "path_start_x", "path_start_z", "path_width_m", "path_carve_m", "eye_height_m", "cave_count", "cave_seed", "cave_radius_m", "cave_depth_m", "cave_mouth_m", "view_azimuth", "view_open", "off_view_gain",
+          "flat_inner", "flat_outer", "horizon_start", "horizon_full", "horizon_amp", "ridge_freq", "ridge_sharp", "ridge_octaves", "dem_gain", "ridge_seed", "path_count", "path_seed", "path_spread_deg", "path_length_m", "path_start_x", "path_start_z", "path_width_m", "path_carve_m", "eye_height_m", "cave_count", "cave_seed", "cave_radius_m", "cave_depth_m", "cave_mouth_m", "view_azimuth", "view_open", "off_view_gain", "rock_start", "rock_full",
           "landscape_material", "layerinfo_dir"] + ["layerinfo_" + n.lower() for n in LAYERS])
 
 PATHS_PY = r'''
@@ -213,16 +215,17 @@ def los(tx, ty, tz, step=3.0):
         if h(ex + (tx - ex) * t, ez + (tz - ez) * t) > ey + (ty - ey) * t - 0.3: return False
     return True
 cands = []
-for r in range(120, 401, 12):
+for r in range(70, 231, 8):
     for ang in range(int(-vo), int(vo) + 1, 3):
         a = math.radians(va + ang); x, z = hx + r * math.cos(a), hz + r * math.sin(a)
         hg = h(x, z); gx, gz = grad(x, z); sl = math.hypot(gx, gz)
-        if hg < 8.0 or sl < 0.30: continue
+        if hg < 8.0 or sl < 0.26: continue
         if path_pts and min(math.hypot(x - px, z - pz) for px, pz in path_pts) < 22.0: continue
         if not los(x, hg + 2.0, z): continue
-        nrm = (-gx, 1.0, -gz); nl = math.sqrt(nrm[0] ** 2 + nrm[1] ** 2 + nrm[2] ** 2)
-        to_eye = (ex - x, ey - (hg + 2.0), ez - z); tl = math.sqrt(to_eye[0] ** 2 + to_eye[1] ** 2 + to_eye[2] ** 2)
-        if (nrm[0] * to_eye[0] + nrm[1] * to_eye[1] + nrm[2] * to_eye[2]) / (nl * tl) < 0.2: continue
+        # a cave mouth opens HORIZONTALLY: the flank's outward (downslope) direction must point toward the porch within ~60 degrees
+        gl = math.hypot(gx, gz); el = math.hypot(ex - x, ez - z)
+        if gl < 1e-6 or el < 1e-6: continue
+        if ((-gx / gl) * ((ex - x) / el) + (-gz / gl) * ((ez - z) / el)) < 0.5: continue
         cands.append((sl * 1.0 + hg / 40.0 + rng.random() * 0.35, x, z, hg, gx, gz, sl))
 cands.sort(reverse=True)
 geo.addAttrib(hou.attribType.Point, "N", hou.Vector3(0, 1, 0))
@@ -232,7 +235,7 @@ geo.addAttrib(hou.attribType.Point, "slope", 0.0)
 chosen = []
 for c in cands:
     if len(chosen) >= n: break
-    if all(math.hypot(c[1] - o[1], c[2] - o[2]) >= 62.0 for o in chosen): chosen.append(c)
+    if all(math.hypot(c[1] - o[1], c[2] - o[2]) >= 40.0 for o in chosen): chosen.append(c)
 mouth = hda.parm("cave_mouth_m").eval()
 for i, (sc, x, z, hg, gx, gz, sl) in enumerate(chosen):
     pt = geo.createPoint(); pt.setPosition(hou.Vector3(x, hg, z))
@@ -323,7 +326,7 @@ float gardenHeight = lerp(pondGround, base, outer);
 gardenHeight = lerp(gardenHeight, ch("../controls/pad_elevation"), pad);
 @height = gardenHeight;
 
-float rockiness = far * smooth(0.62, 0.88, ridge);
+float rockiness = far * smooth(ch("../controls/rock_start"), max(ch("../controls/rock_start") + 0.01, ch("../controls/rock_full")), ridge);
 @Rock = clamp(rockiness * (1.0 - pad), 0.0, 1.0);
 @Grass = clamp((1.0 - max(pad, 1.0 - outer)) * (1.0 - @Rock), 0.0, 1.0);
 @Ground = 1.0;
@@ -487,20 +490,23 @@ def gate(hda, report):
     def ring_vals(r0, r1, ang_lo, ang_hi):
         out = []
         for ang in np.arange(ang_lo, ang_hi + 0.1, 5.0):
-            for r in np.arange(r0, r1 + 0.1, 10.0):
+            for r in np.arange(r0, r1 + 0.1, 5.0):
                 out.append(h.sample((float(cx + r * math.cos(math.radians(va + ang))), 0.0, float(cz + r * math.sin(math.radians(va + ang))))))
         return np.asarray(out, dtype=np.float32)
 
-    near = np.asarray([h.sample((float(cx + dx), 0.0, float(cz + dz))) for dx in np.arange(-70, 70.1, 5.0) for dz in np.arange(-70, 70.1, 5.0) if math.hypot(dx, dz) < 70.0], dtype=np.float32)
-    far_view = ring_vals(250.0, 400.0, -40.0, 40.0)
-    far_off = np.concatenate([ring_vals(250.0, 400.0, 125.0, 180.0), ring_vals(250.0, 400.0, -180.0, -125.0)])
+    Rn = hda.parm("flat_inner").eval()
+    halfw = hda.parm("window_m").eval() / 2.0
+    fr0, fr1 = 0.62 * halfw, 0.92 * halfw
+    near = np.asarray([h.sample((float(cx + dx), 0.0, float(cz + dz))) for dx in np.arange(-Rn, Rn + 0.1, 3.0) for dz in np.arange(-Rn, Rn + 0.1, 3.0) if math.hypot(dx, dz) < Rn], dtype=np.float32)
+    far_view = ring_vals(fr0, fr1, -40.0, 40.0)
+    far_off = np.concatenate([ring_vals(fr0, fr1, 125.0, 180.0), ring_vals(fr0, fr1, -180.0, -125.0)])
     report.update({
         "volume_resolution": [nx, ny], "orientation_residual_m": round(float(orient_err), 4), "cook_seconds": round(cook_s, 3),
         "local_bounds_m": {"x": [round(xmin, 2), round(xmax, 2)], "z": [round(zmin, 2), round(zmax, 2)]},
         "height_min_max_m": [round(float(arr.min()), 3), round(float(arr.max()), 3)],
-        "near_field_r70_min_max_m": [round(float(near.min()), 3), round(float(near.max()), 3)],
-        "view_horizon_r250_400_max_m": round(float(far_view.max()), 2) if far_view.size else None,
-        "offview_horizon_r250_400_max_m": round(float(far_off.max()), 2) if far_off.size else None,
+        "near_field_min_max_m": [round(float(near.min()), 3), round(float(near.max()), 3)],
+        "view_horizon_band_max_m": round(float(far_view.max()), 2) if far_view.size else None,
+        "offview_horizon_band_max_m": round(float(far_off.max()), 2) if far_off.size else None,
         "pad_samples_m": {k: round(v, 4) for k, v in pad_samples.items()},
         "layers_present": sorted(vols.keys()), "sop_errors": errors,
         "rock_coverage_pct": round(float(grid(vols["Rock"]).mean()) * 100.0, 2),
@@ -512,7 +518,7 @@ def gate(hda, report):
         "bounds_match_window": abs((xmax - xmin) - hda.parm("window_m").eval()) < 6.0 and abs((zmax - zmin) - hda.parm("window_m").eval()) < 6.0,
         "house_pad_flat": all(abs(v - pad_e) < 0.03 for k, v in pad_samples.items()),
         "near_field_gentle": float(near.max()) - float(near.min()) < 3.0,
-        "view_horizon_ge_20m": bool(far_view.size and float(far_view.max()) >= 20.0),
+        "view_horizon_ge_14m": bool(far_view.size and float(far_view.max()) >= 14.0),
         "offview_lower_than_view": bool(far_view.size and far_off.size and float(far_off.max()) < float(far_view.max())),
         "preview_cook_under_3s": cook_s < 3.0,
     }
@@ -551,8 +557,8 @@ def gate(hda, report):
     a["paths_stay_dry"] = wet == 0
     a["paths_start_at_porch"] = all(math.hypot(ps["start"][0] - hda.parm("path_start_x").eval(), ps["start"][1] - hda.parm("path_start_z").eval()) < 2.0 for ps in path_stats)
     a["caves_count_ok"] = len(cave_pts) == ncaves
-    a["caves_on_flank_slopes"] = all(c[3] >= 0.30 and c[2] > -50 for c in cave_pts)
-    a["caves_spaced_60m"] = min_sep >= 60.0
+    a["caves_on_flank_slopes"] = all(c[3] >= 0.26 and c[2] > -50 for c in cave_pts)
+    a["caves_spaced_40m"] = min_sep >= 40.0
     # ---- sightlines from the porch eye (guide = paths, release = cave mouths)
     ex_, ez_ = hda.parm("path_start_x").eval(), hda.parm("path_start_z").eval()
     ey_ = hda.parm("pad_elevation").eval() + hda.parm("eye_height_m").eval()
@@ -658,7 +664,7 @@ def main():
     (AUDIT / "terrain_gate.json").write_text(json.dumps(report, indent=2), encoding="utf-8")
     hou.hipFile.save(str(AUDIT / "MelodiaHouseTerrain.hip"))
     failed = [k for k, v in report["assertions"].items() if not v]
-    print("GATE " + json.dumps({"failed": failed, "assertions": report["assertions"], "cook_seconds": report["cook_seconds"], "height_min_max_m": report["height_min_max_m"], "near_field_r70": report["near_field_r70_min_max_m"], "view_max": report["view_horizon_r250_400_max_m"], "offview_max": report["offview_horizon_r250_400_max_m"]}))
+    print("GATE " + json.dumps({"failed": failed, "assertions": report["assertions"], "cook_seconds": report["cook_seconds"], "height_min_max_m": report["height_min_max_m"], "near_field_r70": report["near_field_min_max_m"], "view_max": report["view_horizon_band_max_m"], "offview_max": report["offview_horizon_band_max_m"]}))
     return 0 if not failed else 1
 
 
