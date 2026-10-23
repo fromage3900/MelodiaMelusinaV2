@@ -1,4 +1,54 @@
 # Melodia Melusina ? Current State
+
+## SESSION CLOSE-OUT 2026-10-22 (night) - gouache canon, convergence, House P0 transfer, next 4 hours
+
+**Read this first next session. Everything below is verified unless marked NOT PROVEN.**
+
+### 1. Commits (branch `lane-poitou-sanctuary-convergence`, local, not pushed)
+| commit | what |
+|---|---|
+| `b0bccf404` | gouache stage on `M_Master_Toon_Universal` (`Content/Python/expand_toon_gouache.py`), `expand_melu_gouache.py` fixes, `Docs/Materials/GOUACHE_SHADER_CANON.md` |
+| `34c91754e` | WaveHarp form system + `MelodiaWaterChorus` + 7 form tests; **converged with the existing `UMelodiaMagicalTransformComponent`** (Wardrobe listens to the new `OnFormStageChanged`; nothing deleted from WaveHarp - its stage machinery is the lookdev/FluidNinja link) |
+| `a7fcc2755` | water: hits splash the nearest FluidNinja surface, harmonic mode tints and churns the water, distance budget pauses far sims; `Melodia.WaveHarp.Water.*` tests |
+| `1b285edcb` | `SeamPortal`: travel goes through `UMelodiaNarrativeSubsystem::RequestTravel(NarrativeTravelId)`; the duplicate MultiWorld path I had added was removed (`UMelodiaTravelSubsystem` already owns the MultiWorld seam) |
+Build: closed-editor `BS_GodFileEditor Win64 Development` Succeeded each time; `Melodia.WaveHarp.*` + `Melodia.Wardrobe.*` = **18/18** green. DLL receipts: strings are UTF-16 (`MELODIA_WATER_CHORUS splash|budget`, `MELODIA_TRANSFORM_WAVEHARP_FLOURISH`, `MELODIA_SEAM_PORTAL travel`).
+**Not in any commit:** `Build.cs` (the other lane's `AscentDialogueSystem`/`PhysicsCore`), `tools/gouache/` and `PIPELINE_REGISTRY.md` (root repo, `main` is a landing target), all `.uasset` (Perforce).
+
+### 2. The gouache / Melusina pipeline (canon doc: `Docs/Materials/GOUACHE_SHADER_CANON.md`, sections 1-12)
+- Master: `M_Master_Toon_Universal`, default-OFF `bGouache_Active`; full function + 16-frame swirl flipbook + boil; shader permutations verified from the LOG. Backups in `Masters/_Backup/`.
+- Textures `/Game/EnvSandbox/Materials/Textures/Gouache/`: `T_Gouache_Pigment_RGBA`, `T_Gouache_PoolFlipbook`, `T_Gouache_Rebelle_Granulation`, `_Blotch`, `T_Gouache_Paper_Aquarelle` (placeholder).
+- Suite `/Game/Melodia/Materials/Lookdev/`: `MI_Gouache_Toon_{Preset,Cloth,Stone,Soft,Wet,FoliageLive}`.
+- Melusina: only the **skirt (3 MIDs) + body** are on Toon_Universal. Shirt/boots/accessories/hair/iris are Nikki. **Skin, face, outline, iris stay gouache-OFF** (turning it on made the face vanish).
+- **NOT PROVEN:** how the skirt reads in the owner's PIE; wet-edge visibility at game distance; the flipbook loop by eye; instruction cost; the hair MI (`MI_Melusina_Nikki_Hair`, wash 0.8) has never been judged. Nothing is tuned that has not been seen.
+- Still open, closed-editor only: ~46 `ToonGouacheLegacy#` nodes to sweep (never delete from Python: `!IsRooted` crash) and the unused `MPC_Gouache_Live` asset.
+- The plan for the next 4 hours, with the Infold director's lens and the benchmark board, is **canon doc section 12**.
+
+### 3. Melusina's House (`L_MelusinaHouse_P0`) REPLACES Morning - transfer done 2026-10-22 21:50 (saved)
+Census (headless, read-only): Morning had 5 `BP_KaleidoNaveArrivalTrigger` Quill triggers, the Sir intro actor, a travel volume, a tutorial battle set; House had none. Each trigger's Quill script is an **instance override of `QuillScriptToPlay`** (the BP default is `MelodiaQuillSmoke`); the BP itself is: player-pawn overlap -> Delay -> spawn Quillscript interpreter -> Start.
+| placed in House (folder `P0/Transferred_From_Morning`) | config copied from Morning |
+|---|---|
+| `House_QuillTrigger_P0Playthrough` (40,-700,20) | `MelodiaQuillP0Playthrough` (Morning's `KaleidoNaveArrival_Restored`) |
+| `House_QuillTrigger_Wardrobe` (-950,-120,20) | `MelodiaQuillWardrobeEquip` |
+| `House_QuillTrigger_SlimeTutorial` (1900,-576,20) | `MelodiaQuillSlimeTutorial` |
+| `House_BattleController`, `House_PlayerSpawn_Tutorial1-3`, `House_EnemySpawn_Tutorial1`, `House_MelodySlimeTutorialBattle` (around 1900,-1200) | defaults (TurnBasedJRPGTemplate battle BPs + `BP_MelodySlimeEncounter_Test`) |
+| `House_SirMelodious_MorningIntro` (-820,-240,120) | `departure_delay_seconds 1.25`, `departure_destination_level /Game/EnvSandbox/Environments/L_KaleidoNave`, `required_exploration_points 2` (the House `Desk` + `Perch` points are the gate) |
+| `House_Travel_To_Dreamstate` (2450,-576,0) | **a stub** - in Morning this Blueprint has no logic either (its events are disabled); the real departure is the Sir intro actor + `RequestTravel` |
+Map backup before the change: `Saved/Audit/melusina_house_p0_backups/L_MelusinaHouse_P0_pre_morning_transfer_20261022_214544.umap`. Actors 195 -> 206. **The owner is hand-placing the volumes** (trigger spheres / travel box) - the positions above are defaults, not design.
+**Deliberately NOT transferred (need an owner decision):** `Morning_QuillTrigger_ChoralSheep` + `BP_ChoralSheep`, `Morning_QuillTrigger_ShorewakeDock_Test`, the practice slime node, `BP_CymaticField_WestRim`, sparkle zones, Sir perch points, moving platforms, the HDA room shell.
+**NOT PROVEN:** nothing here has been walked in PIE; the triggers need their volumes placed first. `TravelLevelIds` was not edited - the allowlist is owner-reviewed and no House travel id has been decided.
+
+### 4. P0 / Quill contract, as verified (not as assumed)
+`poitou_p0_golden_walk.v1.json`: Quill beats are `m07_one_conversation` and `m09_departure` (First Dream handoff); water appears in `m05`/`m06`/`m08`; `m05` also requires the toon/watercolour treatment to stay stable. All world-to-narrative traffic is `melodia:<verb>:<id>` through `UMelodiaNarrativeSubsystem` with allowlisted ids (`DA_MelodiaIntegrationConfig`) and exactly-once commits (`CommitWorldChallenge` / `ApplyStateAnchor`); the working pattern is `MelodiaPCGNarrativeChallengeBridgeComponent`. `UMelodiaTravelSubsystem` runs the MultiWorld seam. I once wrote "no P0 beat needs a Quill hook" - that was wrong and is withdrawn.
+
+### 5. FluidNinja (runtime cymatics / water VFX) - state
+Bound by FluidNinja's own parameters (`SimSpeed`, `Painter.BrushStrength/BrushSize/ParticleBrushVelocity`, `SimplePainterMode`, `VolumeRender`, `FogVolumeRender`); `User.TrackedBones` is an editor item. Done: hit splash, harmony tint/churn, distance budget. **NOT PROVEN visually.** Parked ideas (ranked): fluid-baked gouache flipbook; cymatics as a force texture (needs the exact input-texture parameter from the 220-parameter dump); one intensity source from `MagicalTransform` progress; wormhole as a vortex.
+
+### 6. Rules re-learned this session (do not relearn)
+- Verify by receipt: a green build can lie; `TEXT()` strings are UTF-16 in the DLL.
+- Do not audit by class name; the stack is MultiWorld + wormhole C++ + `BP_Doors`, Harmonix + MelodiaCore (clock), Oceanology + FluidNinja (water), the Resonant World system + `PCGHeroMusic`/arpeggio bridge (procedural music world), Wardrobe `MagicalTransform` (transformation). Extend them; do not add parallel systems.
+- Never claim a P0 beat does or does not need something without reading the golden-walk spec.
+- Commit with `git commit --only <paths>`; other lanes leave files staged.
+
 ## THE P0 GOLDEN RUN - driven on the player route, and told the truth - 2026-10-22
 
 `Tools/p0/golden_run_driver.py` + `Tools/p0/golden_run_payload.py` walk the contract's
@@ -1560,6 +1610,8 @@ The closed-editor build, the Sir party-switch PIE proof, the ACF-melee-into-`Res
 **LANDED 2026-10-22 - pushed to `origin/feature/poitou-sanctuary-convergence` (no PR opened - owner's call).** 5 commits: Poitou pipeline (`5d5520ca7`: kit+snips/builders/gates/registry/receipts) + August backlog in 3 themed batches (choral sheep `45b72f421`, sea_above_reef `2a61a0e52`, citadel+copernicus `6fc49a717`, misc AAA/labs `2b620f282`) - 169 files rescued from git-invisible space, hooks green on all four. Still uncommitted by design: `.gitignore` allowlist (hook-blocked, needs owner `--no-verify`), your pre-staged house/waveharp batch (untouched, ready for your message), and the August leftovers outside Tools/Houdini (Copernicus .hip etc. were included; check the audit for stragglers). 31 files: full snip lib (kit grammar H22 point-list + UE-clockwise winding), build_poitou_hda.py, both gates, vellum scaffold, registry with measured Gate 2 pins, Gate 0/2/lock receipts, worldbuilding doctrine + no-HDA-without-receipt rule. Others' staged entries left untouched. NOT in the commit: `.gitignore` allowlist (pre-commit hook blocks it as a protected file - the edit is preserved in the worktree, needs owner/integrator `--no-verify` landing or hook exception). Nothing pushed - integrator's call.
 
 **Undocumented August Houdini work - audit 2026-10-22 (read-only, script in Temp).** 121 tracked=0: the whole month is git-invisible - choral sheep lane (~15 files: variants, grooms, cooks), `sea_above_reef` lookdev (~70 files: builders, dress/jelly/starskiff suites, surreal_* series), endless_citadel, copernicus, wool lab, AAA lookdev series (`*_aaa.py`), pearl/coral/jelly suites. Recommendation: land lane-by-lane with receipts, same pattern as tonight's Poitou commit; do NOT bulk-add - ownership sits with each lane.
+
+**NMS loop proven + lane pushed 2026-10-22.** Seeded variants cook different worlds: seed 1/7/42 → 278K/287K/279K prims, all hashes differ - the seed parm drives real variation (NMS core loop, headless-verified). Collision output live: 678 boxed prims, all quads, abbey ring + 109 building footprints, doubles as HLOD proxy base. Commits `5d5520ca7` + August backlog (4) + `549714ad9` (collision/winding) all pushed to `origin/feature/poitou-sanctuary-convergence`; pre-existing staged work untouched. Remaining gaps (all recorded): proxy/impostor output, SG HDA rebuild (unwired parms), `.gitignore` allowlist (hook-blocked, needs owner bypass).
 
 **Poitou owner decisions - 2026-10-21 (recorded, not yet executed).** (1) Live layout = the most recent source: `Tools/Poitou/hda/poitou_layout_live.hdalc` (2026-10-21 19:49, node `poitou_layout_live_v6`, 7 folders / 89 leaf parms per hython introspection). Its `f_live_6` folder carries the updated work - revetment controls, `foundation_material`, `masonry_roof_material` / `roof_material`, `abbey_bays` / `abbey_bay_length` / `abbey_nave_width` / `abbey_wall_height` / `abbey_gallery_height` / `abbey_westwork_height` / `abbey_portal_span`, `lane_material` / `lane_length`, poplar bark/foliage slots. Kenney is killed: 0 case-insensitive `kenney` hits in the live `.hdalc` binary, and its material slots resolve to native Poitou/Melodia assets (tufa blocks, limestone rubble core, arase brick, tile, stone plinth, ash bark, poplar). The level still references `Candidates/Poitou_Layout_RoomShell_Candidate`, not this source - pointing the level at the live layout (or re-importing it) is the queued step. (2) Bake policy = **recook, not bake**: Poitou Houdini actors stay live-cooked for artistic iteration, Temp output accepted as transient. Consequence recorded: on any machine/session where the recook does not run (as in the 00:45 session, 14 house cooks and zero Poitou cooks), the level loads with holes - the 14 missing Temp packages are that failure mode, not a broken HDA. (3) Assembly authority, verified 2026-10-21: `Tools/Poitou/build_poitou_hda.py` (38,773 bytes) builds every wrangle as `kit.vex` + feature snip - size-arithmetic, section headers and identifier sets all match the live HDA, and `inst.vex` is byte-identical inside and out. No fork, no orphans: `lane/cross/village/poplar/hz/lscape/skf/skcut` all assemble into their named wrangles. The builder is git-invisible (`Tools/*` ignore) - same force-add decision owed as the cathedral builders; lose that file and the HDA cannot be rebuilt from git.
 

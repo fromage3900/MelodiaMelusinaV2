@@ -153,3 +153,40 @@ Rule of use: skin, face, outline and iris stay OFF.
 4. **Closed-editor session:** sweep the legacy `ToonGouacheLegacy#` nodes, delete the unused `MPC_Gouache_Live` asset, and run the C++ build below.
 5. **C++ (henshin / WaveHarp form work):** uncommitted + partly staged in `Source/BS_GodFile/MelodiaIntegration/` (`MelodiaWaveHarpCombatComponent`, `Tests/MelodiaWaveHarpFormTests.cpp`, `MelodiaWaterChorus`). Needs a closed-editor `BS_GodFileEditor Win64 Development` build, then `Melodia.WaveHarp.*` automation tests. Not built or verified by this work.
 6. Optional: a soft-skin variant with the face SDF, a second Rebelle swatch for pattern variety, the LiquiGen hair sparkle, the Rebelle EULA check on the paper tile.
+
+## 12. Runtime lookdev plan - the next 4 hours (written 2026-10-22, director's lens)
+
+**The lens.** Infold's own account (Unreal Engine developer interview with their technology VP, [link](https://www.unrealengine.com/developer-interviews/behind-the-scenes-of-infinity-nikki-tracing-a-glamorous-turn-to-an-unreal-open-world)): lighting stays on Unreal's PBR model *despite* the cartoon look; the producer wanted a balance between cartoon fantasy and realism; artists supply references, technical artists build the effect to match; a weekly art-benchmark meeting keeps the tone unified. Their art director's GDC 2026 talk is about outfits-as-fantasy (textile first). Nothing public describes a painterly renderer, so the gouache is our own signature, not a copy. What we take from them:
+
+1. **Stylise the surface, not the light.** Gouache only touches BaseColor/Normal/Roughness ahead of the Substrate toon BSDF, plus the sun-driven key. Never replace the light model.
+2. **The outfit is the hero.** Skirt/body on Toon_Universal and shirt/boots/hair/accessories on Nikki must read as ONE paint. Parity is the single biggest visual win left.
+3. **A fixed benchmark, reviewed by eye.** No tuning without the board below. Every change is accepted or rejected against the same shots.
+4. **Readable at game distance.** The wet edge and the hair silhouette are judged at 5-10 m, not in a close-up.
+5. **Cozy, calm motion.** Swirl and boil stay slow; the water answers the music subtly (the golden walk's own wording for `m08`).
+
+**The benchmark board** (capture before and after every look change, `HighResShot` in the owner's PIE, saved under `Saved/Audit/lookdev_benchmark/<date>/`): (a) Melusina full body, front, 3 m; (b) skirt close, 1 m; (c) hair + shoulders, 1.5 m, backlit; (d) House salon wide, 8 m; (e) a portal / wet-material fixture; (f) foliage at 10 m. Each shot has an OFF and an ON frame.
+
+**Hour 1 - stabilise and lock (nothing new is authored).**
+- Owner walks the House P0 route in PIE: the three transferred Quill triggers fire (volumes hand-placed by the owner), the Sir intro gate reads the two exploration points (`Desk`, `Perch`).
+- Capture the benchmark board as the baseline.
+- Closed editor: sweep the `ToonGouacheLegacy#` nodes, delete `/Game/EnvSandbox/Materials/Functions/MPC_Gouache_Live`, rebuild, run `Melodia.WaveHarp.*` + `Melodia.Wardrobe.*`.
+- Gate: shader permutations verified from `Saved/Logs` (never `is_compiled`), instance suite compiles clean.
+
+**Hour 2 - Melusina parity.**
+- Judge the skirt from the board; assign suite instances by asset class (skirt -> Cloth).
+- Move the gouache stage into ONE MaterialFunction called by both masters (extend `expand_toon_gouache.py`, never rewrite) so the Nikki-mastered shirt/boots/hair match the skirt. Hair MI `MI_Melusina_Nikki_Hair` (wash strength 0.8) is judged here for the first time.
+- Skin, face, outline, iris stay OFF.
+- Gate: board shots (a)-(c) accepted by the owner.
+
+**Hour 3 - P0 portals and VFX.**
+- Portal meshes on `MI_Gouache_Toon_Wet`; sprite/ribbon VFX as unique MIs on the canonical Niagara masters sampling `T_Gouache_Pigment_RGBA` / `T_Gouache_PoolFlipbook` (no new masters).
+- Water: confirm the chorus splash, mode tint and distance budget by eye (`MELODIA_WATER_CHORUS splash|budget` in the log).
+- Travel stays on `RequestTravel` -> Travel subsystem -> MultiWorld; the portal only requests.
+- Gate: board shot (e) accepted; no new Quill/state paths.
+
+**Hour 4 - tune, record, commit.**
+- Tune `Gouache_*` scalars (no recompile) against the board; final board; update this doc and `CURRENT_STATE.md`; commit with `--only`; Perforce submit only with the owner's approval.
+
+**Stop rules.** If a shader change makes any permutation fall back to the checker material, revert to the dated backup in `Masters/_Backup/` before anything else. If a look change cannot be judged on the board, it does not ship tonight.
+
+**Parked (not tonight):** fluid-baked flipbook (FluidNinja sim -> `T_Gouache_PoolFlipbook`), cymatics as a FluidNinja force texture, `MagicalTransform` progress as the single fluid-intensity source, a second Rebelle swatch, soft-skin variant, Rebelle EULA check.
