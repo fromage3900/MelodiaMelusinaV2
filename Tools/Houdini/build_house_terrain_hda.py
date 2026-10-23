@@ -179,7 +179,7 @@ def make_controls(geo):
     pg.append(f)
 
     f = hou.FolderParmTemplate("landscape", "Landscape and LayerInfo", folder_type=hou.folderType.Tabs)
-    f.addParmTemplate(hou.StringParmTemplate("landscape_material", "Landscape material", 1, default_value=("/Game/EnvSandbox/Poitou/Materials/MI_Poitou_Landscape_Nikki.MI_Poitou_Landscape_Nikki",)))
+    f.addParmTemplate(hou.StringParmTemplate("landscape_material", "Landscape material", 1, default_value=("/Game/EnvSandbox/Poitou/Materials/MI_HouseTerrain_Nikki.MI_HouseTerrain_Nikki",)))
     f.addParmTemplate(hou.StringParmTemplate("layerinfo_dir", "LayerInfo folder", 1, default_value=("/Game/EnvSandbox/Poitou/LayerInfo",)))
     for layer in LAYERS:
         f.addParmTemplate(hou.StringParmTemplate("layerinfo_" + layer.lower(), "LayerInfo: " + layer, 1, default_value=("/Game/EnvSandbox/Poitou/LayerInfo/LI_Poitou_%s.LI_Poitou_%s" % (layer, layer),)))
