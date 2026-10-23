@@ -1,0 +1,138 @@
+{
+  "shape": "ellipse",
+  "dims_m": [
+    15.84,
+    12.06,
+    7.6
+  ],
+  "perimeter_m": 44.0265,
+  "bays": 18,
+  "bay_m": 2.4459,
+  "prims": 20010,
+  "points": 79496,
+  "tiers": [
+    1.0,
+    0.85,
+    0.7
+  ],
+  "tier_setbacks_m": [
+    0,
+    1.1880000000000002,
+    2.3760000000000003
+  ],
+  "decor": {
+    "bays": 18,
+    "bay_m": 2.4459,
+    "beat_m": 0.6115,
+    "panels": 35,
+    "bead_strings": 5,
+    "beads": 220,
+    "swags": 18,
+    "archivolts": 6,
+    "medallions": 2
+  },
+  "sockets": [
+    {
+      "id": "salon_entry",
+      "wall": "CURVE",
+      "theta": 0.25,
+      "bay": 0,
+      "centre_local_m": [
+        7.92,
+        12.06,
+        0.0
+      ],
+      "inward": [
+        -0.0,
+        -1.0,
+        0.0
+      ],
+      "up": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "clear_width_m": 1.8,
+      "clear_height_m": 3.2,
+      "floor_z_m": 0.0,
+      "spring_z_m": 2.21,
+      "arch_rise_m": 0.99,
+      "arch_profile": "pointed",
+      "pier_m": 0.323,
+      "s0": 10.106636,
+      "s1": 11.906636,
+      "kind": "door",
+      "native_cut": true
+    },
+    {
+      "id": "salon_front",
+      "wall": "CURVE",
+      "theta": 0.75,
+      "bay": 0,
+      "centre_local_m": [
+        7.92,
+        0.0,
+        0.0
+      ],
+      "inward": [
+        -0.0,
+        1.0,
+        0.0
+      ],
+      "up": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "clear_width_m": 2.4,
+      "clear_height_m": 3.2,
+      "floor_z_m": 0.0,
+      "spring_z_m": 1.95,
+      "arch_rise_m": 1.25,
+      "arch_profile": "pointed",
+      "pier_m": 0.023,
+      "s0": 31.819908,
+      "s1": 34.219908,
+      "kind": "door",
+      "native_cut": true
+    }
+  ],
+  "gates": {
+    "solid_volume_positive": true,
+    "bounds_ok": true,
+    "aperture_jambs_exact": true,
+    "portals_empty_below_header": true,
+    "apertures_floor_level": true,
+    "apertures_header_clear": true,
+    "sockets_match_apertures": true,
+    "plan_matches_shape": true,
+    "bay_rhythm_ok": true,
+    "portal_arch_follows_profile": false,
+    "decor_clear_of_doorways": true,
+    "walls_present": true,
+    "all_pass": false
+  },
+  "all_pass": false,
+  "bounds": {
+    "x": [
+      -0.24,
+      16.08
+    ],
+    "y": [
+      -0.24,
+      12.3
+    ],
+    "z": [
+      -0.12,
+      7.78
+    ]
+  },
+  "role_census": {
+    "wall": 2232,
+    "panel": 4196,
+    "stone": 408,
+    "wall_plaster": 408,
+    "trim_gold": 5566,
+    "pearl_shell": 7200
+  }
+}
