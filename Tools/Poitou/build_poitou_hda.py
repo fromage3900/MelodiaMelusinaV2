@@ -338,6 +338,8 @@ lk_keys = wrangle("LOCK_piano_keys", r'''
     }
 }
 ''', 0, [lk_g])
+col_g = wrangle("COLLISION_proxies", _KIT + _S("collision.vex"), 0, [POINTS, TERRAIN])
+o7 = geo.createNode("output", "output_collision"); o7.parm("outputidx").set(7); o7.setInput(0, col_g)
 gen = geo.createNode("merge", "merge_generated_elements")
 for _i, _n in enumerate([ab_g, fd_g, ln_g, cr_g, rf_g, pl_g, lk_keys]):
     gen.setInput(_i, _n)

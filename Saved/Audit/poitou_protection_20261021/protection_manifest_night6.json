@@ -1,0 +1,28 @@
+﻿{
+    "schema":  "melodia.poitou_protection_night6.v1",
+    "created":  "2026-10-22 20:51:02",
+    "why":  "Night-6: vellum rest-geo + bake scaffold, gate PASS.",
+    "files":  [
+                  {
+                      "path":  "Tools/Poitou/vellum/build_vellum_rest.py",
+                      "bytes":  7334,
+                      "sha256":  "288178E88400C03A1D1EEA9BAD100CAF11C2DAD128E4B90D2EFE38CF2F31D3FB",
+                      "mtime":  "2026-10-22 20:50:34",
+                      "snapshot":  "night6__Tools__Poitou__vellum__build_vellum_rest.py"
+                  },
+                  {
+                      "path":  "Tools/Poitou/vellum/vellum_bake.hiplc",
+                      "bytes":  380327,
+                      "sha256":  "449673DE4ED74E1C881FB9CE850E64DDE826300F1D0B57E3E19B1AE99727A4A2",
+                      "mtime":  "2026-10-22 20:50:41",
+                      "snapshot":  "night6__Tools__Poitou__vellum__vellum_bake.hiplc"
+                  },
+                  {
+                      "path":  "Tools/Poitou/vellum/README.md",
+                      "bytes":  1704,
+                      "sha256":  "A74636F56A7E0F7F0C668E93DC2AF865BD7681A1290104B285F88F7A3F6528FD",
+                      "mtime":  "2026-10-22 20:50:55",
+                      "snapshot":  "night6__Tools__Poitou__vellum__README.md"
+                  }
+              ]
+}

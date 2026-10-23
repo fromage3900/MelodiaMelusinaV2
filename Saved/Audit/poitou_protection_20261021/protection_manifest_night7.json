@@ -1,0 +1,42 @@
+﻿{
+    "schema":  "melodia.poitou_protection_night7.v1",
+    "created":  "2026-10-22 21:03:42",
+    "why":  "Night-7: winding aligned to Complete (CW-front), sentinel green, whimsy intact.",
+    "files":  [
+                  {
+                      "path":  "Tools/Poitou/snip/kit.vex",
+                      "bytes":  "7B0B09A6C6C9DB326BCA3A557CDD6FDD069DA30EEB12682DBA696F755B539BE7",
+                      "mtime":  "2026-10-22 20:58:22",
+                      "snapshot":  "night7__Tools__Poitou__snip__kit.vex",
+                      "bytes2":  18165
+                  },
+                  {
+                      "path":  "Tools/Poitou/snip/lock.vex",
+                      "bytes":  "E88D89CC70472FC308FCE28B7F309B029ED5B35CEB3AE69BBB5D2CADDB4A90A9",
+                      "mtime":  "2026-10-22 17:31:41",
+                      "snapshot":  "night7__Tools__Poitou__snip__lock.vex",
+                      "bytes2":  20153
+                  },
+                  {
+                      "path":  "Tools/Poitou/gates/lock_gate.py",
+                      "bytes":  "440C62268B07A17812780748A1B3685A70DEAC0A0ADDA1275073E1A22E980402",
+                      "mtime":  "2026-10-22 21:01:25",
+                      "snapshot":  "night7__Tools__Poitou__gates__lock_gate.py",
+                      "bytes2":  6773
+                  },
+                  {
+                      "path":  "Tools/Poitou/hda/poitou_layout_live.hdalc",
+                      "bytes":  "B2196E52BE8236BA32EEE8393C108F2EE4D23463565B3977556849A92B7DCACF",
+                      "mtime":  "2026-10-22 20:59:01",
+                      "snapshot":  "night7__Tools__Poitou__hda__poitou_layout_live.hdalc",
+                      "bytes2":  82828
+                  },
+                  {
+                      "path":  "Saved/Audit/PoitouConvergence_20261020/lock_gate.json",
+                      "bytes":  "B21D92F29EDCC6828D111B9F89DF95E68AB947C3A1CA19FE58979C9991F4100E",
+                      "mtime":  "2026-10-22 21:03:14",
+                      "snapshot":  "night7__Saved__Audit__PoitouConvergence_20261020__lock_gate.json",
+                      "bytes2":  2185
+                  }
+              ]
+}

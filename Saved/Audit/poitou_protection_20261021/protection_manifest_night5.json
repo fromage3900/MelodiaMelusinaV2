@@ -1,0 +1,49 @@
+﻿{
+    "schema":  "melodia.poitou_protection_night5.v1",
+    "created":  "2026-10-22 17:34:10",
+    "why":  "Night-5: whimsy set (garland/bows/doilies), gate PASS, float-count fix.",
+    "files":  [
+                  {
+                      "path":  "Tools/Poitou/snip/kit.vex",
+                      "bytes":  17707,
+                      "sha256":  "732FEA84422F06465AA8169B6D15D517B913BC639A063AA889CA61749A8EB75E",
+                      "mtime":  "2026-10-21 23:44:48",
+                      "snapshot":  "night5__Tools__Poitou__snip__kit.vex"
+                  },
+                  {
+                      "path":  "Tools/Poitou/snip/lock.vex",
+                      "bytes":  20153,
+                      "sha256":  "E88D89CC70472FC308FCE28B7F309B029ED5B35CEB3AE69BBB5D2CADDB4A90A9",
+                      "mtime":  "2026-10-22 17:31:41",
+                      "snapshot":  "night5__Tools__Poitou__snip__lock.vex"
+                  },
+                  {
+                      "path":  "Tools/Poitou/build_poitou_hda.py",
+                      "bytes":  41116,
+                      "sha256":  "5CCF27BACB1C8E7C9B52F3A33599A89D50488AED24194ECBA08C0D408375DE4C",
+                      "mtime":  "2026-10-22 02:14:22",
+                      "snapshot":  "night5__Tools__Poitou__build_poitou_hda.py"
+                  },
+                  {
+                      "path":  "Tools/Poitou/gates/lock_gate.py",
+                      "bytes":  5980,
+                      "sha256":  "6E8FBEEEB04098B45C4756EDE2A7A09632AAC23DEF8FCFEF4168801E19F10D35",
+                      "mtime":  "2026-10-22 17:31:41",
+                      "snapshot":  "night5__Tools__Poitou__gates__lock_gate.py"
+                  },
+                  {
+                      "path":  "Tools/Poitou/hda/poitou_layout_live.hdalc",
+                      "bytes":  80563,
+                      "sha256":  "EFE71E09FEB2F9E4028A625D12D63616147447A2A1D5F10CD5B5561099D7D053",
+                      "mtime":  "2026-10-22 17:31:46",
+                      "snapshot":  "night5__Tools__Poitou__hda__poitou_layout_live.hdalc"
+                  },
+                  {
+                      "path":  "Saved/Audit/PoitouConvergence_20261020/lock_gate.json",
+                      "bytes":  2185,
+                      "sha256":  "B21D92F29EDCC6828D111B9F89DF95E68AB947C3A1CA19FE58979C9991F4100E",
+                      "mtime":  "2026-10-22 17:33:52",
+                      "snapshot":  "night5__Saved__Audit__PoitouConvergence_20261020__lock_gate.json"
+                  }
+              ]
+}

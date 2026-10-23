@@ -1,0 +1,78 @@
+// =====================================================================
+// POITOU COLLISION - blocking volumes + placement footprints.
+// ---------------------------------------------------------------------
+// One box per gameplay-relevant element: the abbey ring (the ruin the
+// player walks through) and every building footprint (what PCG places,
+// physics must respect). Reuses kit_box so the volumes share the exact
+// masonry module - a collision box IS a wall run with the detail left
+// out. This output doubles as the HLOD proxy set (spec 2.1, first half:
+// cheap boxes now, impostor cards later) and as the NMS-style
+// build-validity query (can I place/dress here? ask the footprint).
+// Input 0: layout points (type/yaw/scale).  Input 1: terrain.
+// Groups: collision_abbey, collision_building. No new materials.
+// =====================================================================
+
+string MAT_SOLID = chs("../foundation_material");
+
+// counts captured BEFORE any appends: input indices stay stable while
+// appended boxes go after them (reading beyond NP0 hits unattributed
+// box-corner points and aborts the cook)
+int NP0 = npoints(0);
+int NPR0 = nprimitives(0);
+
+// ---- the abbey ring: nave perimeter as four solid boxes ---------------
+{
+    float cx = chf("../rise_centerx");
+    float cz = chf("../rise_centery");
+    float L = chf("../abbey_len") * 0.5;
+    float W = chf("../abbey_wid") * 0.5;
+    float H = chf("../abbey_wall_height");
+    float r = radians(chf("../abbey_rot"));
+    vector along = set(cos(r), 0, sin(r));
+    vector across = set(-sin(r), 0, cos(r));
+    float gy = volumesample(1, "height", set(cx, 0, cz));
+    float y0 = gy - 1.0;
+    vector c0 = set(cx, y0 + H*0.5, cz);
+    float THK = 1.8;
+    // long walls (nave sides)
+    for(int s=0;s<2;s++){
+        float sgn = (s==0) ? 1.0 : -1.0;
+        kit_box(c0 + across*(sgn*W), along, set(0,1,0), across,
+                set(L*2.0, H, THK), MAT_SOLID, 0.4, 0.5, 0.3, 0.0,
+                "collision_abbey");
+    }
+    // short walls (westwork + apse ends)
+    for(int s=0;s<2;s++){
+        float sgn = (s==0) ? 1.0 : -1.0;
+        kit_box(c0 + along*(sgn*L), across, set(0,1,0), along,
+                set(W*2.0, H, THK), MAT_SOLID, 0.4, 0.5, 0.3, 0.0,
+                "collision_abbey");
+    }
+}
+
+// ---- strip input pass-through FIRST, so only collision groups leave ---
+// (delete by head-range index, no group queries: input prims keep indices
+// [0, _n_in), appends go after them; buildings are appended below)
+{
+    int _n_in = NPR0;
+    for(int pi=_n_in-1; pi>=0; --pi)
+        removeprim(0, pi, 0);
+}
+
+// ---- building footprints: one blocking box per placed house ------------
+{
+    int np = NP0;
+    for(int i=0;i<np;i++){
+        if(point(0, "type", i) != "building") continue;
+        vector P = point(0, "P", i);
+        float yaw = radians(point(0, "yaw", i));
+        vector sc = point(0, "scale", i);
+        float w = max(sc.x, 1.0) + 0.3, d = max(sc.z, 1.0) + 0.3;
+        vector along = set(cos(yaw), 0, sin(yaw));
+        vector across = set(-sin(yaw), 0, cos(yaw));
+        float gy = volumesample(1, "height", P);
+        kit_box(set(P.x, gy + 1.1, P.z), along, set(0,1,0), across,
+                set(w, 3.0, d), MAT_SOLID, 0.4, 0.5, 0.3, 0.0,
+                "collision_building");
+    }
+}

@@ -1,0 +1,245 @@
+{
+ "checks": [
+  {
+   "name": "output_output_landscape_nonempty",
+   "ok": true,
+   "detail": "{'prims': 9, 'points': 9, 'verts': 9}"
+  },
+  {
+   "name": "output_output_points_nonempty",
+   "ok": true,
+   "detail": "{'prims': 9, 'points': 14260, 'verts': 0}"
+  },
+  {
+   "name": "output_output_route_curve_nonempty",
+   "ok": true,
+   "detail": "{'prims': 1, 'points': 261, 'verts': 261}"
+  },
+  {
+   "name": "output_output_skirt_mesh_nonempty",
+   "ok": true,
+   "detail": "{'prims': 14000, 'points': 14280, 'verts': 56000}"
+  },
+  {
+   "name": "output_output_water_nonempty",
+   "ok": true,
+   "detail": "{'prims': 9847, 'points': 12275, 'verts': 39388}"
+  },
+  {
+   "name": "output_output_masonry_nonempty",
+   "ok": true,
+   "detail": "{'prims': 329439, 'points': 447052, 'verts': 1325532}"
+  },
+  {
+   "name": "output_output_collision_nonempty",
+   "ok": true,
+   "detail": "{'prims': 678, 'points': 13259, 'verts': 2712}"
+  },
+  {
+   "name": "output_output_generated_nonempty",
+   "ok": true,
+   "detail": "{'prims': 278322, 'points': 571346, 'verts': 1123238}"
+  },
+  {
+   "name": "masks_present",
+   "ok": true,
+   "detail": "16 pngs"
+  },
+  {
+   "name": "masks_uniform",
+   "ok": true,
+   "detail": "{(505, 505), (1009, 1009)}"
+  },
+  {
+   "name": "points_attr_type",
+   "ok": true,
+   "detail": "14260 pts"
+  },
+  {
+   "name": "points_attr_yaw",
+   "ok": true,
+   "detail": "14260 pts"
+  },
+  {
+   "name": "points_attr_scale",
+   "ok": true,
+   "detail": "14260 pts"
+  },
+  {
+   "name": "collision_cooks",
+   "ok": true,
+   "detail": "678 prims"
+  },
+  {
+   "name": "collision_all_quads",
+   "ok": true,
+   "detail": "2712 verts / 678 prims"
+  },
+  {
+   "name": "collision_abbey",
+   "ok": true,
+   "detail": "24"
+  },
+  {
+   "name": "collision_buildings",
+   "ok": true,
+   "detail": "654 prims (109 houses x 6)"
+  },
+  {
+   "name": "has_proxy_output",
+   "ok": false,
+   "detail": "recorded as gap"
+  }
+ ],
+ "pass": false,
+ "measured": {
+  "v6_outputs": {
+   "output_landscape": {
+    "prims": 9,
+    "points": 9,
+    "verts": 9
+   },
+   "output_points": {
+    "prims": 9,
+    "points": 14260,
+    "verts": 0
+   },
+   "output_route_curve": {
+    "prims": 1,
+    "points": 261,
+    "verts": 261
+   },
+   "output_skirt_mesh": {
+    "prims": 14000,
+    "points": 14280,
+    "verts": 56000
+   },
+   "output_water": {
+    "prims": 9847,
+    "points": 12275,
+    "verts": 39388
+   },
+   "output_masonry": {
+    "prims": 329439,
+    "points": 447052,
+    "verts": 1325532
+   },
+   "output_collision": {
+    "prims": 678,
+    "points": 13259,
+    "verts": 2712
+   },
+   "output_generated": {
+    "prims": 278322,
+    "points": 571346,
+    "verts": 1123238
+   }
+  },
+  "masks": {
+   "count": 16,
+   "files": [
+    "mask_canal_banks_1009.png",
+    "mask_debris_1009.png",
+    "mask_debris_505.png",
+    "mask_flow_1009.png",
+    "mask_flow_505.png",
+    "mask_mist_marsh_reeds_1009.png",
+    "mask_mist_volume_1009.png",
+    "mask_ruin_rise_1009.png",
+    "mask_tree_rows_poplar_ash_1009.png",
+    "mask_village_buildings_1009.png",
+    "mask_water_1009.png",
+    "mask_wet_meadow_grass_1009.png",
+    "mask_wetness_1009.png",
+    "mask_wetness_505.png",
+    "poitou_height_1009_u16.png",
+    "poitou_height_505_u16.png"
+   ]
+  },
+  "mask_dims": {
+   "mask_canal_banks_1009.png": [
+    1009,
+    1009
+   ],
+   "mask_debris_1009.png": [
+    1009,
+    1009
+   ],
+   "mask_debris_505.png": [
+    505,
+    505
+   ],
+   "mask_flow_1009.png": [
+    1009,
+    1009
+   ],
+   "mask_flow_505.png": [
+    505,
+    505
+   ],
+   "mask_mist_marsh_reeds_1009.png": [
+    1009,
+    1009
+   ],
+   "mask_mist_volume_1009.png": [
+    1009,
+    1009
+   ],
+   "mask_ruin_rise_1009.png": [
+    1009,
+    1009
+   ],
+   "mask_tree_rows_poplar_ash_1009.png": [
+    1009,
+    1009
+   ],
+   "mask_village_buildings_1009.png": [
+    1009,
+    1009
+   ],
+   "mask_water_1009.png": [
+    1009,
+    1009
+   ],
+   "mask_wet_meadow_grass_1009.png": [
+    1009,
+    1009
+   ],
+   "mask_wetness_1009.png": [
+    1009,
+    1009
+   ],
+   "mask_wetness_505.png": [
+    505,
+    505
+   ],
+   "poitou_height_1009_u16.png": [
+    1009,
+    1009
+   ],
+   "poitou_height_505_u16.png": [
+    505,
+    505
+   ]
+  },
+  "points_contract": {
+   "attrs": {
+    "type": 14260,
+    "yaw": 14260,
+    "scale": 14260
+   },
+   "unreal_instance": true,
+   "npoints": 14260
+  },
+  "collision_groups": {
+   "collision_abbey": 24,
+   "collision_building": 654
+  }
+ },
+ "gaps": [
+  {
+   "name": "no_proxy_output",
+   "detail": "no dedicated proxy/impostor output (collision boxes serve as HLOD proxies interim)"
+  }
+ ]
+}
