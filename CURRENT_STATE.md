@@ -131,6 +131,27 @@ Bound by FluidNinja's own parameters (`SimSpeed`, `Painter.BrushStrength/BrushSi
 - Live `STAGE_HouseTerrain_v2`: re-imported HDA carried the OLD stored values after `rebuild()`, so the 500 m values were set through the wrapper; one recook at preview_resolution 253 finished in 0.26 s, no errors, editor alive (4.4 GB).
 - Shots: top-down shows a ~500 m square centred on the house; raised 3/4 shows soft ridge horizon. OPEN: surface reads pale lilac/cream, Nikki layer colours (grass/ground/rock) not visible - check layer weights/material on the live Landscape next.
 
+### 5n. GOAL - A LIVE, ARTIST-DRIVEN LANDSCAPE: TERRAIN + CAVE PASSAGES + CHLADNI MYCELIUM, SEED-FAST, FOR MELUSINA'S HOUSE - 2026-10-23
+
+Owner (2026-10-23): "leave me with a full terrain in the live editor and a fully expanded HDA with artist-friendly parameters that lets me adjust and make caves and mycelium at my liking ... it shouldn't be cooked ... full caves I can set up and make beautiful Chladni passageways and mycelium and rapidly change with seeds; like we did with Poitou, but for Melusina's house."
+
+**Done when** (all live in the owner's editor, nothing baked, nothing frozen):
+1. `STAGE_HouseTerrain_v2` shows the full 500 m terrain with visible Nikki layers (grass/ground/rock/mud/path mixed by slope, not pale), house pad snapped, pond, horizon ridges, paths ending at cave mouths.
+2. `STAGE_HouseCaves_v1` shows, per cave, a carved mouth (pit + approach trench + rock hood), a seeded winding passage with an end chamber and Chladni wall relief, and Chladni nodal-line mycelium with hyphae branching along the walls.
+3. Every cave/passage/mycelium choice is a promoted parameter in folders Paths and Caves / Cave Passages / Chladni Mycelium / Layer Painting: counts, seeds (`cave_seed`, `pass_seed`, `myc_seed`), search band, spacing, facing, hood, trench, manual sites, passage length/radius/wander/climb/branches/chamber, wall mode n,m + relief, mycelium mode n,m + line sets + wavelength + hyphae + thickness + hues + glow + point budget. A seed change recooks in under 1 s on the live instance (seed probe: pass 0.04 s, myc 0.85 s).
+4. One-click parameter sync terrain -> caves so both assets read the same window/pad/seeds (Houdini Engine drops mesh parts that share a geo with heightfield volumes; hence two assets from ONE builder, `--caves`).
+5. Gates stay green (terrain 26 assertions incl. passages, mycelium, seed-change proof).
+
+**Research it stands on (reuse, do not reinvent):** Poitou pipeline `tools/houdini_poitou_sculpt_pass.py`, `build_poitou_sculpt_pack.py`, `sculpt_poitou_vdb_pipeline.py` (seeded procedural sculpt with live parameters, VDB shaping, manifest per export) and `Docs/Worldbuilding/PIPELINE_REGISTRY.md`; Salon lane `salon_floral_sigils.py` + `chladni_eigen.py` (Chladni eigenmodes, sigil maps) in `_worktrees/lane-salon-convergence-20261022` and `MELUSINA_FINAL_ENVIRONMENT_CONVERGENCE_GOAL.md` section 16 (preserve the house, create-only additions, Hython first, candidates in Saved/Staging, existing MIs only, stable interfaces); `Tools/Houdini/cathedral/*` and `room_shell/room_shell.py` for arch/opening vocabulary; Copernicus `copernicus_structural_assets.py` for wall textures.
+
+**Next loop steps, one bounded step each:**
+A. Look: shot of cave 1 mouth + inside; fix what reads wrong (scale, hood, mouth opening, wall relief). Layer colours on the live Landscape.
+B. Replace the Chladni formula in `MYC_PY` / `WALL_VEX` with the Salon `chladni_eigen.py` eigenmodes (import, do not fork); mode parameters stay.
+C. Materials: passage walls and mycelium to existing MIs only (Toon_Universal stone/wet for walls; the existing SDF glitter/magic-rune instances for glowing hyphae), set via `pass_material` / `myc_material`.
+D. Parameter sync script (terrain -> caves) and a short artist cheat-sheet in this file; cave marker actors via `unreal_instance`.
+E. Poitou-style seed loop: a Hython/UE script that steps seeds, shoots the porch view per seed and keeps a contact sheet in `Saved/Audit/HouseTerrain_20261023/seeds/`.
+F. Owner items: Perforce submit, House map save, parked exterior goal 5m resumes after this lands.
+
 ### 5m. GOAL - MELUSINA'S HOUSE EXTERIOR = REF_01 (Hython geometry + tracery + Copernicus maps), in faith to the Salon plan - 2026-10-23 01:10
 **Owner direction:** give the OUTSIDE of the house the Infinity-Nikki feeling with Copernicus and Hython from our existing setups; **the exteriors need major geometry detail and tracery, not just paint**; loop until it is as close to the reference as possible. Reference: `Docs/References/MelusinasHouse/REF_01_EXTERIOR_ROUND_BAROQUE_PINK_BLUE.jpg` (storybook cottage-palace at dusk).
 **What REF_01 actually shows (read from the image):** a scalloped / fish-scale blue-lavender roof with swooping curved ridges and ogee gables; ivory-cream carved facade with scrollwork over a round-arched door and sunburst fanlight; oval/round oculus windows in ornate frames; a slender round tower on the right with a bulbous onion cap and finial; a wraparound porch with slender columns, lacy fretwork brackets and a baluster rail; a curved entrance stair with scroll volutes; a treble-clef finial and star finials on the gables; lanterns and warm glowing windows; wisteria/lavender planting; teal-to-violet dusk sky.
