@@ -1,0 +1,438 @@
+// =====================================================================
+// POITOU LOCK - chamber, mitre gates, piano steps, jetty, lockhouse.
+// ---------------------------------------------------------------------
+// The Jev gap, closed the Nikki way: PARTIAL_NEEDS_LOCKHOUSE_JETTY_AND_
+// STEPS.  A Marais-poitevin pound lock where the bief meets the village
+// reach: two coursed-ashlar chamber walls on the kit grammar, timber
+// mitre gates at both ends, a stone sill under each gate, coping with
+// bollards and one lamp, a timber jetty on the far bank, and the
+// lockhouse set back past the 12 m quiet gap as the reach's secondary
+// landmark (brief rule 8).
+//
+// The Melodia gesture: the seven steps down to the chamber ARE piano
+// keys.  Each tread is one 0.6 m beat deep, 2.4 m (one bar) wide, and
+// carries s@note = base + scale degree for the downstream audio owner.
+// Architecture is music, walked.
+//
+// Triangle tag (brief v2 rule 20): the chamber is TRAVERSAL (exact
+// mitre function, exact step rhythm); the banks around it stay AESTHETIC
+// (organic edges, rule 19) - the built stone is the exception that
+// proves the marsh.
+//
+// Chamber width is LOCKED at 4.8 m = 2 bays (brief rule 12/35).  Ornament
+// (bollards, lamp, rings) scales at lock_ornament, 1.0x architecture.
+// =====================================================================
+
+// ---- inputs ----------------------------------------------------------
+// Input 0: canal curves (resampled, with width/depth/ctype/name prims).
+// Input 1: the terrain heightfield.  Pass-through of input 0 follows the
+// revetment precedent - the curves are construction state, not output.
+
+int LOCK_ON = chi("../lock_on");
+if(LOCK_ON){
+
+float LOCK_W = 4.8;   // chamber width, LOCKED: 2 bays (brief 12/35)
+float LOCK_L = chf("../lock_chamber_l");
+float UU     = clamp(chf("../lock_u"), 0.0, 1.0);
+int   NSTEPS = chi("../lock_steps_n");
+float COPH   = chf("../lock_coping_h");
+int   GSTYLE = chi("../lock_gate_style");
+float JLEN   = chf("../jetty_len");
+float JWID   = chf("../jetty_wid");
+int   HSTYLE = chi("../lockhouse_style");
+float ORN    = chf("../lock_ornament");
+int   LAMP   = chi("../lock_lamp");
+
+string MAT_TUFA  = chs("../masonry_ashlar_material");
+string MAT_CORE  = chs("../masonry_core_material");
+string MAT_BRICK = chs("../masonry_band_material");
+string MAT_PLINTH= chs("../foundation_material");
+string MAT_OAK   = chs("/Game/Melodia/Meshes/Poitou/M_Barque_Oak_Planks.M_Barque_Oak_Planks");
+string MAT_TILE  = chs("../masonry_roof_material");
+string MAT_LIME  = chs("/Game/EnvSandbox/Poitou/Materials/MI_Poitou_LimeWash.MI_Poitou_LimeWash");
+string MAT_LANE  = chs("../lane_material");
+string MAT_FOL   = chs("../poplar_foliage_material");
+
+// ---- the site: fraction UU along the bief -----------------------------
+vector site = set(0,0,0);
+vector tang = set(1,0,0);
+vector nrm  = set(0,0,1);
+float cdepth = 2.5;
+float cwid = 18.0;
+int found = 0;
+{
+    int npr = nprimitives(0);
+    for(int pi=0; pi<npr && !found; pi++){
+        if(prim(0, "name", pi) != "bief_00") continue;
+        int pts[] = primpoints(0, pi);
+        int nn = len(pts);
+        if(nn < 2) continue;
+        float total = 0.0;
+        float cum[];
+        resize(cum, nn);
+        cum[0] = 0.0;
+        for(int k=1;k<nn;k++){
+            vector pa = point(0,"P",pts[k-1]);
+            vector pb = point(0,"P",pts[k]);
+            total += length(pb-pa);
+            cum[k] = total;
+        }
+        if(total < 1e-3) continue;
+        float target = UU * total;
+        for(int k=1;k<nn;k++){
+            if(cum[k] < target) continue;
+            vector p0 = point(0,"P",pts[k-1]);
+            vector p1 = point(0,"P",pts[k]);
+            float seg = max(1e-6, cum[k]-cum[k-1]);
+            float f = (target-cum[k-1])/seg;
+            site = lerp(p0, p1, f);
+            tang = normalize(p1-p0);
+            nrm = normalize(cross(tang, set(0,1,0)));
+            cdepth = prim(0, "depth", pi);
+            cwid = prim(0, "width", pi);
+            found = 1;
+            break;
+        }
+    }
+}
+
+if(found){
+    float wl = chf("../ign_water");
+    float bed = wl - cdepth;
+    // banks are sampled at the channel EDGE (half width + towpath), never
+    // at the wall line: the walls stand in the channel, the coping must
+    // clear the towpath, not the bed
+    float edge = cwid*0.5 + 2.0;
+    // snap the site to the 2.4 m bar so the chamber lands on the module
+    site = tang * (floor(dot(site, tang)/POITOU_BAY + 0.5) * POITOU_BAY)
+         + set(0, site.y, 0)
+         + nrm * dot(site, nrm);
+    site.y = 0;
+    float bankL = volumesample(1, "height", site + nrm*edge);
+    float bankR = volumesample(1, "height", site - nrm*edge);
+    float bank = max(bankL, bankR);
+    float sill = bed + 0.3;
+    float gh = (wl - sill) + 1.0;   // gate leaf height (also pocket tops)
+    float cope = bank + COPH;
+    float hw = LOCK_W*0.5;
+    float THK = POITOU_LEAF + POITOU_CORE;
+    vector e0 = site - tang*(LOCK_L*0.5);
+    vector e1 = site + tang*(LOCK_L*0.5);
+
+    // ---- the chamber walls: leaf + core + arase band, refend base -----
+    // Founded on the bed itself (below the waterline) - real founding,
+    // not a shallow plinth.  Damp runs the full height; moss takes the
+    // shaded face, exactly like the revetment.
+    for(int s=0;s<2;s++){
+        float sgn = (s==0) ? 1.0 : -1.0;
+        vector org = e0 + nrm*(sgn*hw);
+        org.y = bed;
+        kit_wall(org, tang, nrm*sgn, LOCK_L, bed, cope, THK,
+                 MAT_TUFA, MAT_CORE, MAT_BRICK,
+                 POITOU_BANDN, 1, 0.0, "lock_chamber");
+    }
+
+    // ---- hollow quoins + quoin-bond stacks ------------------------------
+    // Recesses: short pocket walls flaring behind every heel post (the
+    // hollow quoin the gate closes into). Stacks: alternating long/short
+    // quoin headers capping all four wall ends - the first true bond
+    // pattern in the build (answers the brick verdict at the corners,
+    // where bonds actually show).
+    for(int e=0;e<2;e++){
+        vector ge = (e==0) ? e0 : e1;
+        vector outd = (e==0) ? -tang : tang;
+        for(int s=0;s<2;s++){
+            float sgn = (s==0) ? 1.0 : -1.0;
+            vector hinge = ge + nrm*(sgn*hw);
+            for(int w=0;w<2;w++){
+                float wa = radians(30.0 + 30.0*float(w));
+                vector wdir = normalize(-outd*cos(wa) + nrm*(sgn*sin(wa)));
+                vector worg = hinge;
+                worg.y = sill - 0.3;
+                kit_wall(worg, wdir, nrm*(-sgn), 1.5, sill-0.3, sill+gh,
+                         THK, MAT_TUFA, MAT_CORE, MAT_BRICK,
+                         POITOU_BANDN, 0, 0.0, "lock_quoin");
+            }
+            vector qe = ge + nrm*(sgn*(hw + THK*0.5));
+            float qy = bed;
+            int qc = 0;
+            while(qy < cope - 0.01){
+                float qh = min(POITOU_COURSE, cope-qy);
+                int longface = (qc % 2 == 0);
+                vector qs = longface ? set(1.2, qh-0.01, THK)
+                                      : set(0.7, qh-0.01, THK+0.5);
+                int qband = (qc % POITOU_BANDN == 0);
+                kit_box(set(qe.x, qy+qh*0.5, qe.z), tang, set(0,1,0), nrm, qs,
+                        qband ? MAT_BRICK : MAT_TUFA,
+                        qband ? 0.15 : 1.0, 0.5, 0.4, 0.0, "lock_quoin");
+                qy += qh; qc++;
+            }
+        }
+    }
+
+    // ---- the sills: stone under each gate ------------------------------
+    for(int e=0;e<2;e++){
+        vector ge = (e==0) ? e0 : e1;
+        kit_box(set(ge.x, sill-0.15, ge.z),
+                tang, set(0,1,0), nrm, set(1.2, 0.3, LOCK_W),
+                MAT_CORE, 0.2, 1.0, 0.3, 0.0, "lock_sill");
+    }
+
+    // ---- the mitre gates: pairs pointing out of the chamber ------------
+    // Timber leaves (Marais practice) or stone slabs; balance beams run
+    // back over the coping.  Static - the traversal owner animates.
+    string GMAT = (GSTYLE==0) ? MAT_OAK : MAT_TUFA;
+    for(int e=0;e<2;e++){
+        vector ge = (e==0) ? e0 : e1;
+        vector outd = (e==0) ? -tang : tang;   // away from the chamber
+        for(int s=0;s<2;s++){
+            float sgn = (s==0) ? 1.0 : -1.0;
+            // leaf: from the wall hinge to the centreline mitre, the pair
+            // forming a V pointed out of the chamber (Marais practice)
+            vector hinge = ge + nrm*(sgn*hw);
+            vector mitre = ge + outd*(hw*0.55);
+            vector leafc = (hinge+mitre)*0.5;
+            leafc.y = sill + gh*0.5;
+            vector lax = normalize(mitre-hinge);
+            float laxl = length(mitre-hinge);
+            vector lno = normalize(cross(lax, set(0,1,0)));
+            // framed leaf: heel + mitre posts, three ledges, diagonal
+            // brace, four planks - the joinery reads at touching distance
+            kit_box(hinge + set(0, sill + gh*0.5, 0),
+                    lax, set(0,1,0), lno, set(0.25, gh, 0.25),
+                    GMAT, 0.7, 0.9, 0.2, 0.0, "lock_gate");
+            kit_box(mitre + set(0, sill + gh*0.5, 0),
+                    lax, set(0,1,0), lno, set(0.25, gh, 0.25),
+                    GMAT, 0.7, 0.9, 0.2, 0.0, "lock_gate");
+            for(int ld=0;ld<3;ld++){
+                float lf = 0.2 + 0.3*float(ld);
+                vector lc = leafc + set(0, (lf-0.5)*gh, 0);
+                kit_box(lc, lax, set(0,1,0), lno, set(laxl, 0.18, 0.12),
+                        GMAT, 0.7, 0.85, 0.2, 0.0, "lock_gate");
+            }
+            vector dg = normalize(lax*0.8 + set(0,0.6,0));
+            vector dg2 = normalize(cross(dg, lno));
+            kit_box(leafc, dg, lno, dg2, set(laxl*0.95, 0.16, 0.10),
+                    GMAT, 0.65, 0.9, 0.2, 0.0, "lock_gate");
+            for(int pk=0;pk<4;pk++){
+                vector pc = leafc + lax*((float(pk)-1.5)*laxl*0.25);
+                kit_box(pc, lax, set(0,1,0), lno, set(laxl*0.25-0.03, gh*0.9, 0.07),
+                        GMAT, 0.75, 0.85, 0.15, 0.0, "lock_gate");
+            }
+            // the balance beam back over the coping
+            vector beamc = hinge - outd*1.8;
+            beamc.y = sill + gh*0.75;
+            kit_box(beamc, normalize(outd), set(0,1,0), nrm,
+                    set(3.6, 0.18, 0.18), MAT_OAK, 0.7, 0.5, 0.15, 0.0, "lock_gate");
+            // ribbon bow on the beam end: knot, two loops, two tails
+            vector bend = beamc + normalize(outd)*1.8;
+            kit_box(bend, normalize(outd), set(0,1,0), nrm, set(0.12, 0.12, 0.12),
+                    MAT_BRICK, 0.9, 0.3, 0.2, 0.0, "lock_bow");
+            for(int lp=0;lp<2;lp++){
+                float lsg = (lp==0) ? 1.0 : -1.0;
+                vector lax2 = normalize(normalize(outd)*0.8 + nrm*(lsg*0.6));
+                vector lax3 = normalize(cross(lax2, set(0,1,0)));
+                kit_box(bend + set(0, 0.10, 0), lax2, set(0,1,0), lax3, set(0.24, 0.14, 0.05),
+                        MAT_BRICK, 0.9, 0.3, 0.2, 0.0, "lock_bow");
+                kit_box(bend + nrm*(lsg*0.10) + set(0, -0.28, 0), normalize(outd), set(0,1,0), nrm,
+                        set(0.05, 0.5, 0.02), MAT_BRICK, 0.85, 0.35, 0.2, 0.0, "lock_bow");
+            }
+        }
+    }
+
+    // ---- the coping: proud caps the full run ----------------------------
+    for(int s=0;s<2;s++){
+        float sgn = (s==0) ? 1.0 : -1.0;
+        vector cc = site + nrm*(sgn*(hw + THK*0.5));
+        cc.y = cope + 0.125;
+        kit_box(cc, tang, set(0,1,0), nrm, set(LOCK_L, 0.25, THK + 2*POITOU_PROUD),
+                MAT_TUFA, 1.0, 0.35, 0.6, 0.0, "lock_coping");
+    }
+
+    // ---- the tail footbridge: an arched crossing over the lock --------
+    // P0 needs to cross the water it follows. A lock tail bridge is the
+    // authentic answer: short span, semicircular arch, parapets, lamps.
+    if(chi("../lock_bridge")){
+        float BW = 2.0*(hw + THK) + 1.2;
+        float decky = cope + 0.35;
+        float rise = 0.8;
+        vector bc = e1 + tang*2.2;
+        bc.y = decky;
+        int BSEG = 5;
+        for(int b=0;b<BSEG;b++){
+            float f0 = float(b)/float(BSEG), f1 = float(b+1)/float(BSEG);
+            float l0 = (f0-0.5)*BW, l1 = (f1-0.5)*BW;
+            float y0 = decky + sin(PI*f0)*rise, y1 = decky + sin(PI*f1)*rise;
+            vector a0 = bc + nrm*l0 + set(0, y0-decky, 0);
+            vector a1 = bc + nrm*l1 + set(0, y1-decky, 0);
+            vector seg = a1-a0;
+            float sl = length(seg);
+            vector sd = seg/max(sl, 1e-6);
+            vector sn = normalize(cross(sd, tang));
+            vector mid = (a0+a1)*0.5;
+            kit_box(mid, sd, sn, tang, set(sl+0.05, 0.18, 2.4),
+                    MAT_LANE, 0.9, 0.5, 0.4, 0.0, "lock_bridge");
+            for(int ps=0;ps<2;ps++){
+                float psgn = (ps==0) ? -1.0 : 1.0;
+                kit_box(mid + tang*(psgn*1.05) + set(0, 0.6, 0), sd, sn, tang,
+                        set(sl+0.05, 1.0, 0.25),
+                        MAT_TUFA, 1.0, 0.4, 0.5, 0.0, "lock_bridge");
+            }
+        }
+        for(int s=0;s<2;s++){
+            float sgn = (s==0) ? 1.0 : -1.0;
+            vector ac = bc + nrm*(sgn*(BW*0.5+0.3));
+            ac.y = bed;
+            kit_wall(ac - tang*1.2, tang, nrm*sgn, 2.4, bed, decky, THK,
+                     MAT_TUFA, MAT_CORE, MAT_BRICK,
+                     POITOU_BANDN, 1, 0.0, "lock_bridge");
+        }
+    }
+
+    // ---- Seventh-day garland: leaf-and-blossom catenary ----------------
+    // One strand across the chamber at mid-span: the week the pact breaks,
+    // the lock wears flowers. Leaves are poplar green, knots brick red.
+    {
+        float GW = 2.0*(hw + THK) + 1.0;
+        float gy = cope + 1.2;
+        float sag = 0.7;
+        int GSEG = 26;
+        vector gp0 = site - nrm*(GW*0.5);
+        vector gp1 = site + nrm*(GW*0.5);
+        for(int k=0;k<GSEG;k++){
+            float f0 = float(k)/float(GSEG), f1 = float(k+1)/float(GSEG);
+            vector a0 = lerp(gp0, gp1, f0); a0.y = gy - sag*sin(PI*f0);
+            vector a1 = lerp(gp0, gp1, f1); a1.y = gy - sag*sin(PI*f1);
+            vector sg = a1-a0;
+            float sl = length(sg);
+            vector sd = sg/max(sl, 1e-6);
+            vector sy = normalize(cross(sd, tang));
+            vector mid = (a0+a1)*0.5;
+            kit_box(mid, sd, sy, tang, set(sl+0.03, 0.04, 0.04),
+                    MAT_OAK, 0.5, 0.6, 0.3, 0.0, "lock_garland");
+            if(k % 2 == 0){
+                kit_box(mid + set(0, 0.09, 0), sd, sy, tang, set(0.16, 0.10, 0.02),
+                        MAT_FOL, 0.9, 0.5, 0.3, 0.0, "lock_garland");
+            }
+            if(k % 6 == 2){
+                kit_box(mid + set(0, -0.02, 0), sd, sy, tang, set(0.12, 0.12, 0.12),
+                        MAT_BRICK, 0.9, 0.3, 0.2, 0.0, "lock_garland");
+            }
+        }
+    }
+
+    // ---- bollards + the lamp (the 1.4x ornament) ------------------------
+    for(int s=0;s<2;s++){
+        float sgn = (s==0) ? 1.0 : -1.0;
+        for(int q=1;q<4;q++){
+            float f = float(q)/4.0;
+            vector bp = lerp(e0, e1, f) + nrm*(sgn*(hw + THK + 0.3));
+            bp.y = cope + 0.25;
+            kit_taper(bp, set(0,1,0), 0.7*ORN, 0.18*ORN, 0.13*ORN, 3, 0.1,
+                      MAT_PLINTH, 0.5, 0.4, 0.4, 0.0, "lock_bollard");
+        }
+    }
+    if(LAMP){
+        vector lp = site + nrm*(hw + THK + 0.3);
+        lp.y = cope;
+        kit_box(lp + set(0,1.6,0), set(0,1,0), set(1,0,0), set(0,0,1),
+                set(0.14, 3.2, 0.14), MAT_OAK, 0.4, 0.4, 0.3, 0.0, "lock_lamp");
+        kit_box(lp + set(0,3.35,0), set(0,1,0), set(1,0,0), set(0,0,1),
+                set(0.34*ORN, 0.4, 0.34*ORN), MAT_TUFA, 1.0, 0.3, 0.2, 0.0, "lock_lamp");
+    }
+
+    // ---- the piano steps: seven treads down the lock's outer face ----
+    // From the coping down to a landing at water level + 0.3, on the +n
+    // side at mid-chamber. Each tread is one 0.6 m beat deep and carries
+    // s@note (numbered downstream in LOCK_piano_keys).
+    {
+        float bot = wl + 0.3;
+        float riser = (cope - bot) / float(max(1, NSTEPS));
+        vector sbase = site + nrm*(hw + THK + 0.3);
+        for(int i=0;i<NSTEPS;i++){
+            float ty = cope - riser*float(i+1);
+            vector tc = sbase + nrm*(0.6*float(i) + 0.3);
+            tc.y = ty - 0.15;
+            kit_box(tc, tang, set(0,1,0), nrm, set(2.4, 0.3, 0.6),
+                    MAT_TUFA, 1.0, clamp(float(i+1)/float(max(1,NSTEPS)),0.0,1.0), 0.25, 0.0, "lock_steps");
+        }
+    }
+
+    // ---- the jetty: timber piles + deck on the far bank -----------------
+    {
+        vector j0 = e1 + tang*2.4 - nrm*(9.0);
+        float decky = wl + chf("../ign_jetty");
+        int segs = max(1, int(JLEN/1.2 + 1e-4));
+        for(int k=0;k<=segs;k++){
+            vector pp = j0 + tang*(JLEN*float(k)/float(segs));
+            float bedy = volumesample(1, "height", pp);
+            if(bedy > decky) bedy = wl - 0.5;
+            kit_box(set(pp.x, (bedy+decky)*0.5, pp.z), tang, set(0,1,0), nrm,
+                    set(0.18, decky-bedy, 0.18), MAT_OAK, 0.5, 0.9, 0.3, 0.0, "jetty_piles");
+            if(k==1 || k==2 || k==4 || k==5){
+                vector dc = set(pp.x, decky-0.5, pp.z) + nrm*0.18;
+                kit_box(dc, tang, set(0,1,0), nrm, set(0.45, 0.5, 0.03),
+                        MAT_LIME, 1.0, 0.4, 0.2, 0.0, "lock_doily");
+                kit_box(dc, tang, set(0,1,0), nrm, set(0.11, 0.11, 0.05),
+                        MAT_BRICK, 0.9, 0.3, 0.2, 0.0, "lock_doily");
+            }
+        }
+        int ndeck = max(1, int(JLEN/POITOU_MODULE + 1e-4));
+        for(int k=0;k<ndeck;k++){
+            vector dp = j0 + tang*(JLEN*(float(k)+0.5)/float(ndeck));
+            dp.y = decky - 0.1;
+            kit_box(dp, tang, set(0,1,0), nrm, set(JLEN/float(ndeck)-0.02, 0.2, JWID),
+                    MAT_OAK, 0.75, 0.6, 0.2, 0.0, "jetty_deck");
+        }
+    }
+
+    // ---- the lockhouse: 3 x 2 bays, past the 12 m quiet gap ------------
+    // Style 0: stone + tile (the abbey's era).  Style 1: timber posts +
+    // lime wash (the maraichin era) - rule 18, two eras layered.
+    {
+        string WMAT = (HSTYLE==0) ? MAT_TUFA : MAT_LIME;
+        vector hc = site + nrm*(hw + 12.0 + 2.4);
+        float hy = volumesample(1, "height", hc);
+        float hhw = 3.6, hhd = 2.4, hh = 3.0;
+        vector hcorn[];
+        resize(hcorn, 4);
+        hcorn[0] = hc + tang*hhw + nrm*hhd;
+        hcorn[1] = hc - tang*hhw + nrm*hhd;
+        hcorn[2] = hc - tang*hhw - nrm*hhd;
+        hcorn[3] = hc + tang*hhw - nrm*hhd;
+        for(int k=0;k<4;k++){
+            vector a = hcorn[k];
+            vector b = hcorn[(k+1)%4];
+            vector dir = normalize(b-a);
+            vector nno = normalize(cross(dir, set(0,1,0)));
+            vector org = a;
+            org.y = hy - 0.4;
+            kit_wall(org, dir, nno, length(b-a), hy-0.4, hy+hh, THK,
+                     WMAT, MAT_CORE, MAT_BRICK, POITOU_BANDN, 1, 0.0, "lockhouse_wall");
+        }
+        float rise = (HSTYLE==0) ? 2.4 : 1.8;
+        vector ea = hc + tang*hhw + nrm*hhd + set(0, hy+hh, 0);
+        vector eb = hc - tang*hhw + nrm*hhd + set(0, hy+hh, 0);
+        vector ec = hc - tang*hhw - nrm*hhd + set(0, hy+hh, 0);
+        vector ed = hc + tang*hhw - nrm*hhd + set(0, hy+hh, 0);
+        kit_gable(ea, eb, ec, ed, rise, MAT_TILE, 0.85, 0.3, 0.5, 0.0, "lockhouse_roof");
+        // the chimney: one dressed stack on the gable
+        kit_box(hc + tang*hhw*0.5 + set(0, hy+hh+rise*0.5+0.8, 0),
+                tang, set(0,1,0), nrm, set(0.6, 2.0, 0.6),
+                MAT_TUFA, 0.9, 0.3, 0.5, 0.0, "lockhouse_roof");
+        // doily squares under the front eave: white linen + brick knots
+        for(int dq=0;dq<5;dq++){
+            vector dc = hc + tang*((float(dq)-2.0)*1.4) - nrm*(hhd+0.06);
+            dc.y = hy + hh - 0.35;
+            kit_box(dc, tang, set(0,1,0), nrm, set(0.5, 0.55, 0.03),
+                    MAT_LIME, 1.0, 0.25, 0.2, 0.0, "lock_doily");
+            kit_box(dc, tang, set(0,1,0), nrm, set(0.12, 0.12, 0.05),
+                    MAT_BRICK, 0.9, 0.3, 0.2, 0.0, "lock_doily");
+        }
+    }
+
+    // (piano numbering lives downstream in LOCK_piano_keys: this wrangle
+    // only reads its inputs, so a group query here would see canals)
+
+}
+}

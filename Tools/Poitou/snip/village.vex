@@ -1,0 +1,27 @@
+// buildings along lanes: canal + route curves (inputs 2,3) and wiggly radial lanes from the church
+vector placed[]; int nb=0;
+float spc=chf("../lane_spacing"), sd=ch("../seed");
+for(int src=2; src<=4; src++){
+  int nprim = src<4 ? nprimitives(src) : chi("../radial_lanes");
+  for(int pr=0; pr<nprim; pr++){
+    float L = src<4 ? primintrinsic(src,"measuredperimeter",pr) : 160.0;
+    for(float s=0; s<L; s+=spc*fit01(rand(set(s,pr,src+sd)),0.8,1.25)){
+      vector p0,p1;
+      if(src<4){ p0=primuv(src,"P",pr,set(s/L,0,0)); p1=primuv(src,"P",pr,set(min(1,(s+1)/L),0,0)); }
+      else { float a=radians(pr*360.0/chi("../radial_lanes")+25); float w=0.35*sin(s/35.0+pr);
+             p0=set(520+s*cos(a+w),0,580+s*sin(a+w)); p1=set(520+(s+1)*cos(a+w+0.01),0,580+(s+1)*sin(a+w+0.01)); }
+      vector t=normalize(set(p1.x-p0.x,0,p1.z-p0.z)); vector n=set(-t.z,0,t.x);
+      foreach(float sg; {-1.0,1.0}){
+        float d=fit01(rand(set(s,pr,sg+src)),6.0,9.5); float w=fit01(rand(set(s,pr,sg+11)),7,14), dp=fit01(rand(set(s,sg,pr+12)),6,10);
+        vector p=set(p0.x,0,p0.z)+n*sg*(d+dp*0.5);
+        if(volumesample(1,"village_buildings",p)<0.35 || volumesample(1,"cd",p)<dp*0.5+3) continue;
+        if(rand(set(s,pr,sg*7+src))<0.18) continue;            // gaps / yards
+        int clash=0; for(int i=0;i<nb;i++) if(distance(placed[i],p)<max(w,dp)*0.75) { clash=1; break; }
+        if(clash) continue; append(placed,p); nb++;
+        int q=addpoint(0,p); setpointattrib(0,"type",q,"building");
+        setpointattrib(0,"yaw",q, degrees(atan2(t.z,t.x)) + (rand(set(s,pr,3))-0.5)*8);
+        setpointattrib(0,"scale",q,set(w, fit01(rand(set(s,pr,4)),6.5,9.0), dp));
+      }
+    }
+  }
+}

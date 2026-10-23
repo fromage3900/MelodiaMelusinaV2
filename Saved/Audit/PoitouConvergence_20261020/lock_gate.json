@@ -1,0 +1,121 @@
+{
+ "hda": "C:\\EnvironmentPortfolio\\BS_GodFile\\Tools\\Poitou\\hda\\poitou_layout_live.hdalc",
+ "checks": [
+  {
+   "name": "lock_wrample_present",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "lock_compiles",
+   "ok": true,
+   "detail": "()"
+  },
+  {
+   "name": "group_lock_chamber",
+   "ok": true,
+   "detail": "5376 prims"
+  },
+  {
+   "name": "group_lock_gate",
+   "ok": true,
+   "detail": "264 prims"
+  },
+  {
+   "name": "group_lock_coping",
+   "ok": true,
+   "detail": "12 prims"
+  },
+  {
+   "name": "group_lock_steps",
+   "ok": true,
+   "detail": "42 prims"
+  },
+  {
+   "name": "group_lock_sill",
+   "ok": true,
+   "detail": "12 prims"
+  },
+  {
+   "name": "group_jetty_deck",
+   "ok": true,
+   "detail": "72 prims"
+  },
+  {
+   "name": "group_jetty_piles",
+   "ok": true,
+   "detail": "42 prims"
+  },
+  {
+   "name": "group_lockhouse_wall",
+   "ok": true,
+   "detail": "2592 prims"
+  },
+  {
+   "name": "group_lockhouse_roof",
+   "ok": true,
+   "detail": "126 prims"
+  },
+  {
+   "name": "group_lock_bollard",
+   "ok": true,
+   "detail": "108 prims"
+  },
+  {
+   "name": "group_lock_lamp",
+   "ok": true,
+   "detail": "12 prims"
+  },
+  {
+   "name": "group_lock_quoin",
+   "ok": true,
+   "detail": "1320 prims"
+  },
+  {
+   "name": "group_lock_bridge",
+   "ok": true,
+   "detail": "906 prims"
+  },
+  {
+   "name": "group_lock_garland",
+   "ok": true,
+   "detail": "258 prims"
+  },
+  {
+   "name": "group_lock_bow",
+   "ok": true,
+   "detail": "120 prims"
+  },
+  {
+   "name": "group_lock_doily",
+   "ok": true,
+   "detail": "108 prims"
+  },
+  {
+   "name": "chamber_width_4.8",
+   "ok": true,
+   "detail": "wall-centre separation 6.150 (expect 6.15 = 4.8 + 2x0.675)"
+  },
+  {
+   "name": "steps_notes_7",
+   "ok": true,
+   "detail": "notes=[0, 1, 2, 3, 4, 5, 6]"
+  },
+  {
+   "name": "parm_drive_steps",
+   "ok": true,
+   "detail": "7treads=42 5treads=30"
+  },
+  {
+   "name": "lock_on_kills",
+   "ok": true,
+   "detail": "remaining=0"
+  },
+  {
+   "name": "bridge_above_coping",
+   "ok": true,
+   "detail": "bridge maxy=5.41 chamber maxy=2.80"
+  }
+ ],
+ "pass": true
+}

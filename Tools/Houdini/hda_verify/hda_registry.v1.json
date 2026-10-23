@@ -1,12 +1,19 @@
 {
   "schema": "melodia.hda_registry.v1",
-  "updated": "2026-10-06",
+  "updated": "2026-10-21",
   "authority": "Single source of truth for every project HDA. Adding a HDA = adding one entry here; both gates read only this file.",
   "hython": "C:/Program Files/Side Effects Software/Houdini 22.0.368/bin/hython.exe",
-  "scan_roots": ["hda", "Content/HDA"],
+  "scan_roots": [
+    "hda",
+    "Content/HDA"
+  ],
   "globs": {
-    "stub": ["hda/backup/*.hda"],
-    "vendor": ["Plugins/HoudiniEngine/Content"]
+    "stub": [
+      "hda/backup/*.hda"
+    ],
+    "vendor": [
+      "Plugins/HoudiniEngine/Content"
+    ]
   },
   "entries": [
     {
@@ -17,17 +24,43 @@
       "context": "Object",
       "label": "ArpeggioStair musical stair (BS_GodFile)",
       "builder": "Content/Python/create_hda_arpeggio_stair.py",
-      "mirror": ["Content/HDA/ArpeggioStair_1.0.hda"],
+      "mirror": [
+        "Content/HDA/ArpeggioStair_1.0.hda"
+      ],
       "ue_asset": "Content/HDA/ArpeggioStair_1_0.uasset",
       "notes": "Musical stair for the Houdini Engine PCG smoke lane (Docs/WorldGen/HOUDINI_ENGINE_SMOKE_SPEC_2026-08-27.md). Controls were on an INNER null until 2026-10-06; the builder now runs hda_promote_controls stage1/stage2 and the HDA type exposes all 8 (scale -> scale_ctrl, Object nodes own a built-in scale). The .uasset was imported from the pre-promotion .hda and is stale until reimported in the UE editor.",
       "expect": {
-        "parms": ["seed", "stepCount", "laneCount", "stepSpacing", "laneSpacing",
-                  "baseMidiNote", "scale_ctrl", "heightPerDegree"],
-        "parm_drive": [
-          { "parm": "stepCount", "value": 8,
-            "outputs": { "output0": { "points": 256, "prims": 192, "differ": true } } }
+        "parms": [
+          "seed",
+          "stepCount",
+          "laneCount",
+          "stepSpacing",
+          "laneSpacing",
+          "baseMidiNote",
+          "scale_ctrl",
+          "heightPerDegree"
         ],
-        "outputs": { "output0": { "min_points": 1, "min_prims": 1, "points": 512, "prims": 384 } },
+        "parm_drive": [
+          {
+            "parm": "stepCount",
+            "value": 8,
+            "outputs": {
+              "output0": {
+                "points": 256,
+                "prims": 192,
+                "differ": true
+              }
+            }
+          }
+        ],
+        "outputs": {
+          "output0": {
+            "min_points": 1,
+            "min_prims": 1,
+            "points": 512,
+            "prims": 384
+          }
+        },
         "node_errors": "none"
       }
     },
@@ -41,17 +74,53 @@
       "builder": "Tools/Houdini/cathedral/build_crystal_cathedral_hda.py",
       "notes": "VEX SOP network: arch profile -> nave sweep -> crystal growth -> weld/thicken/bevel/floor, plus rose window (out 1) and collision proxy (out 2). Scale metres; UE cm = *100. Controls were on an INNER null until 2026-10-06; the builder now runs hda_promote_controls stage1/stage2 and the HDA type exposes all 14.",
       "expect": {
-        "parms": ["depth", "span", "height", "tracery", "bays", "crystal", "facets",
-                  "seed", "wall_thickness", "bevel_width", "bevel_segments",
-                  "floor_divisions", "undulation_amp", "undulation_period"],
+        "parms": [
+          "depth",
+          "span",
+          "height",
+          "tracery",
+          "bays",
+          "crystal",
+          "facets",
+          "seed",
+          "wall_thickness",
+          "bevel_width",
+          "bevel_segments",
+          "floor_divisions",
+          "undulation_amp",
+          "undulation_period"
+        ],
         "parm_drive": [
-          { "parm": "bays", "value": 3,
-            "outputs": { "OUT_Cathedral": { "differ": true, "min_points": 1000 } } }
+          {
+            "parm": "bays",
+            "value": 3,
+            "outputs": {
+              "OUT_Cathedral": {
+                "differ": true,
+                "min_points": 1000
+              }
+            }
+          }
         ],
         "outputs": {
-          "OUT_Cathedral": { "min_points": 1000, "min_prims": 1000, "points": 9278, "prims": 8641 },
-          "OUT_Rose": { "min_points": 500, "min_prims": 100, "points": 1032, "prims": 288 },
-          "OUT_Collision": { "min_points": 100, "min_prims": 100, "points": 1682, "prims": 1608 }
+          "OUT_Cathedral": {
+            "min_points": 1000,
+            "min_prims": 1000,
+            "points": 9278,
+            "prims": 8641
+          },
+          "OUT_Rose": {
+            "min_points": 500,
+            "min_prims": 100,
+            "points": 1032,
+            "prims": 288
+          },
+          "OUT_Collision": {
+            "min_points": 100,
+            "min_prims": 100,
+            "points": 1682,
+            "prims": 1608
+          }
         },
         "node_errors": "none",
         "golden_source": "measured green cook 2026-10-06 (Saved/Audit/hda_verify/run4) and re-proven by the 2026-10-06 post-promotion rebuild (identical counts). OUT_Rose 1032/288 matches build_crystal_cathedral_hda.py's assert; its docstring said 1032/290 and was corrected to 288."
@@ -88,33 +157,199 @@
       "builder": "Tools/Houdini/cathedral/build_crystal_cathedral_v3_hda.py",
       "notes": "V3 converges V1's Gate 2 verified cathedral with V2's authored corridor by IMPORTING both builders: v2.build_cathedral is call-for-call identical to V1 (golden-asserted), corridor VEX + controls table come verbatim from V2, cathedral controls/helpers from V1. 4 outputs: OUT_Cathedral (0), OUT_Rose (1), OUT_Collision (2), OUT_Corridor (3, fog volume rastering the lowest LOD tier). Corridor fixes: sibling LOD tiers at 40/25/15% keep (a 5% bottom tier rounds to ZERO prims on the 36-prim default mesh), volume.type left at Float, empty group on thicken/bevel, OUT_Corridor outputidx 3, all parm sets via _set. chain_type + lod_count are inner BUILD-time config (baked by the builder), so 18 of 20 controls are promoted. Built via Saved/HDA_build/ + byte copy so rebuilds cannot drop network-bearing files into hda/backup/ (Gate 0 zone). Corridor bay placement along +Z is an art pass, not builder work.",
       "expect": {
-        "parms": ["depth", "span", "height", "tracery", "bays", "crystal", "facets",
-                  "seed", "wall_thickness", "bevel_width", "bevel_segments",
-                  "floor_divisions", "undulation_amp", "undulation_period",
-                  "corridor_bays", "corridor_span", "corridor_height", "bay_length"],
+        "parms": [
+          "depth",
+          "span",
+          "height",
+          "tracery",
+          "bays",
+          "crystal",
+          "facets",
+          "seed",
+          "wall_thickness",
+          "bevel_width",
+          "bevel_segments",
+          "floor_divisions",
+          "undulation_amp",
+          "undulation_period",
+          "corridor_bays",
+          "corridor_span",
+          "corridor_height",
+          "bay_length"
+        ],
         "parm_drive": [
-          { "parm": "bays", "value": 3,
-            "outputs": { "OUT_Cathedral": { "differ": true, "min_points": 1000 } } },
-          { "parm": "corridor_bays", "value": 4,
-            "outputs": { "OUT_Corridor": { "differ_bbox": true } } }
+          {
+            "parm": "bays",
+            "value": 3,
+            "outputs": {
+              "OUT_Cathedral": {
+                "differ": true,
+                "min_points": 1000
+              }
+            }
+          },
+          {
+            "parm": "corridor_bays",
+            "value": 4,
+            "outputs": {
+              "OUT_Corridor": {
+                "differ_bbox": true
+              }
+            }
+          }
         ],
         "outputs": {
-          "OUT_Cathedral": { "min_points": 1000, "min_prims": 1000, "points": 9278, "prims": 8641 },
-          "OUT_Rose": { "min_points": 500, "min_prims": 100, "points": 1032, "prims": 288 },
-          "OUT_Collision": { "min_points": 100, "min_prims": 100, "points": 1682, "prims": 1608 },
-          "OUT_Corridor": { "min_points": 1, "min_prims": 1, "points": 1, "prims": 1 }
+          "OUT_Cathedral": {
+            "min_points": 1000,
+            "min_prims": 1000,
+            "points": 9278,
+            "prims": 8641
+          },
+          "OUT_Rose": {
+            "min_points": 500,
+            "min_prims": 100,
+            "points": 1032,
+            "prims": 288
+          },
+          "OUT_Collision": {
+            "min_points": 100,
+            "min_prims": 100,
+            "points": 1682,
+            "prims": 1608
+          },
+          "OUT_Corridor": {
+            "min_points": 1,
+            "min_prims": 1,
+            "points": 1,
+            "prims": 1
+          }
         },
         "node_errors": "none",
         "golden_source": "Cathedral pins = melodia_crystal_cathedral's measured green cook (shared code path: v3 imports V2's build_cathedral, which is call-for-call identical to V1, and asserts all three counts in --verify). OUT_Corridor 1/1 and LOD tiers [14, 8, 5] measured on the 2026-10-06 v3 build; verify PASS."
       }
     },
     {
+      "id": "melodia_stained_glass_window",
+      "status": "active",
+      "path": "Content/HDA/MelodiaStainedGlassWindow_1.0.hda",
+      "node_type": "melodia::stained_glass_window",
+      "context": "Object",
+      "label": "Melodia Stained Glass Window (frame + pane + tracery + came)",
+      "builder": "Tools/Houdini/cathedral/build_stained_glass_window_hda.py",
+      "notes": "Proper stained-glass window: frame + glass pane + tracery (panel/geometric/intersecting) + chladni lead came. Based on room_shell.py window construction. Material roles: glass_pane, tracery_frame, tracery_panel/geometric/intersecting, lead_came. Per-room note hue via NOTE_HUE_TABLE. Material-level reactivity via existing writer only. Mirror: Content/HDA/MelodiaStainedGlassWindow_1.0.hda. Rebuilt 2026-10-21 (proper window, not cubes or disc). GATE 2 PARTIAL 2026-10-22: OUT = 232 pts / 348 prims reproduces exactly (pins hold, re-verified 2x). BUT note/mode_n/mode_m are UNWIRED in this build - no ch() reader anywhere in its 2-node network - so the parm_drive assertion cannot pass and mode changes produce byte-identical geometry. Rebuilding the HDA with wired parms is queued as an owner decision (it touches 3 live-placed actors in L_Poitou_v2).",
+      "expect": {
+        "parms": [
+          "window_w",
+          "window_h",
+          "rise",
+          "tracery_family",
+          "glass_family",
+          "note",
+          "mode_n",
+          "mode_m",
+          "seed",
+          "engine_y_up",
+          "engine_flip",
+          "glass_thick",
+          "came_w"
+        ],
+        "parm_drive": [
+          {
+            "parm": "note",
+            "value": "G",
+            "outputs": {
+              "OUT": {
+                "differ": true,
+                "min_prims": 200
+              }
+            }
+          },
+          {
+            "parm": "mode_n",
+            "value": 3,
+            "outputs": {
+              "OUT": {
+                "differ": true
+              }
+            }
+          }
+        ],
+        "outputs": {
+          "OUT": {
+            "min_prims": 100,
+            "min_points": 100,
+            "prims": 348,
+            "points": 232
+          }
+        },
+        "node_errors": "none"
+      },
+      "mirror": []
+    },
+    {
       "id": "foundry_field_atlas",
       "status": "missing",
       "path": "hda/HDA_Foundry_FieldAtlas_1.0.hda",
       "builder": null,
-      "referenced_by": ["recipes/houdini_foundry/field_atlas_melusina_morning.v1.json"],
+      "referenced_by": [
+        "recipes/houdini_foundry/field_atlas_melusina_morning.v1.json"
+      ],
       "notes": "Known CURRENT_STATE failure: the recipe validates only with exists_on_main:false. Cook fallback is Tools/Houdini/vdm_fabric_mountains/faraway_static_field.py (RGBA + hash pattern)."
+    },
+    {
+      "id": "poitou_abbey_builder",
+      "status": "active",
+      "path": "hda/HDA_Poitou_AbbeyBuilder_1.0.hda",
+      "node_type": "HDA_Poitou_AbbeyBuilder",
+      "context": "Object",
+      "label": "Poitou Maillezais Abbey Ruin Builder (BS_GodFile UE5.8)",
+      "builder": "Tools/Houdini/cathedral/build_poitou_abbey_hda.py",
+      "mirror": [
+        "Content/HDA/HDA_Poitou_AbbeyBuilder_1.0.hda"
+      ],
+      "notes": "Registered 2026-10-21. The 9 exposed controls were cross-checked against the builder's own ParmTemplate calls (build_poitou_abbey_hda.py lines 198-206) and match Docs/Poitou/poitou_layout/HOUDINI_ENGINE_LIVE_CONVERGENCE_SPEC.md 3.1 exactly. Output0 carries s@unreal_output_name = SM_Poitou_AbbeyRuins. Gate 2 GREEN 2026-10-22 (headless hython): output0 = 512 points / 336 prims at defaults (bay_count 8), bay_count 8->4 halves output to 256/168 (structural drive proven), decay_intensity 0.45->0.9 changes vertex positions but not counts (geometric drive proven via position hash - a count-only gate would falsely fail it). REPRODUCIBILITY CAVEAT: the .hda is committed but its builder is ignored by .gitignore 'Tools/*' - force-add the builder or the HDA cannot be rebuilt from git.",
+      "expect": {
+        "parms": [
+          "preview_mode",
+          "bay_count",
+          "bay_length",
+          "wall_height",
+          "wall_thickness",
+          "window_style",
+          "buttress_tiers",
+          "decay_intensity",
+          "decay_seed"
+        ],
+        "parm_drive": [
+          {
+            "parm": "bay_count",
+            "value": 4,
+            "outputs": {
+              "output0": {
+                "differ": true
+              }
+            }
+          },
+          {
+            "parm": "decay_intensity",
+            "value": 0.9,
+            "outputs": {
+              "output0": {
+                "differ": true
+              }
+            }
+          }
+        ],
+        "outputs": {
+          "output0": {
+            "min_points": 1,
+            "min_prims": 1,
+            "points": 512,
+            "prims": 336
+          }
+        },
+        "node_errors": "none"
+      }
     }
   ]
 }

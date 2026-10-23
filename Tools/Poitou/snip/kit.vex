@@ -1,0 +1,390 @@
+// =====================================================================
+// POITOU KIT - the shared masonry grammar.
+// ---------------------------------------------------------------------
+// Every Poitou generator in this HDA is built from THIS file. It is
+// concatenated into each generator's VEX by the builder, exactly the way
+// snip/skf.vex + snip/hz.vex are concatenated today.
+//
+// The grammar is fixed by the canon (Docs/Poitou/poitou_layout/
+// style_contract.md) and the governing meter: 0.6 m = 1 beat.
+//   * 0.6 m module length and 0.6 m course height  (1 beat)
+//   * 2.4 m bay (1 bar of 4/4) and 14.4 m = 6 bays (1 module of 6)
+//   * 0.45 m ashlar facing leaf over a 0.9 m rubble core
+//   * a chaine / arase band every 3 courses, through the full thickness
+//   * a refend (rusticated, proud) base course
+//   * 2 cm dry joints - lime mortar, never cement
+//   * semicircular arches only
+//   * vertex paint R = lime-wash, G = damp, B = moss, A = ivy
+//
+// The Nikkie rule this file exists for: GEOMETRY IS THE SILHOUETTE,
+// PAINT IS THE FINISH.  Coursing, arches, buttresses and roof pitch are
+// built; the lime wash, the damp band, the moss and the ivy are written as
+// vertex paint and read by the one toon master.  Faux appareil - painted
+// false joints - is a PAINT feature, never geometry.
+// =====================================================================
+
+// ---- the canon's constants ---------------------------------------------
+#define POITOU_MODULE   0.6    // module length (m), one beat
+#define POITOU_COURSE   0.6    // course height (m), one beat
+#define POITOU_BAY      2.4    // bay (m), one bar of 4/4
+#define POITOU_LEAF     0.45   // ashlar facing leaf (m)
+#define POITOU_CORE     0.9    // rubble core (m)
+#define POITOU_JOINT    0.02   // dry joint (m)
+#define POITOU_BANDN    3      // a chaine/arase band every N courses
+#define POITOU_BANDH    0.15   // the brick course itself (m)
+#define POITOU_PROUD    0.06   // how far a band / refend stands proud
+#define POITOU_BANDPR   0.06   // how far the arase band projects
+
+// ---- one dressed stone --------------------------------------------------
+// A box with its own points, so the vertex paint can be per stone.
+// NOTE 2026-10-22: H22 does not wire addvertex(-1) + addprim(verts) -
+// prims come out vertex-less.  Pass POINT numbers to addprim instead;
+// it creates the vertices itself.  Same winding, same groups.
+int kit_box(vector c; vector ax; vector ay; vector az; vector sz;
+            string mat; float lime; float damp; float moss; float ivy;
+            string grp){
+    int p[];
+    resize(p, 8);
+    for(int i=0;i<8;i++){
+        vector s = set((i&1)?0.5:-0.5, (i&2)?0.5:-0.5, (i&4)?0.5:-0.5);
+        vector q = c + ax*(s.x*sz.x) + ay*(s.y*sz.y) + az*(s.z*sz.z);
+        int pt = addpoint(0, q);
+        setpointattrib(0, "Cd", pt, set(lime, damp, moss));
+        setpointattrib(0, "Alpha", pt, ivy);
+        p[i]=pt;
+    }
+    int f[] = { 0,1,3,2,  4,6,7,5,  0,4,5,1,  2,3,7,6,  0,2,6,4,  1,5,7,3 };
+    int n = 0;
+    for(int k=0;k<6;k++){
+        // NOTE 2026-10-22: reversed winding (d,c,b,a) == the converged
+        // Complete build's convention: UE/DX wants clockwise-front.
+        // Houdini-native CCW renders inside-out in-engine (defect found
+        // 2026-10-17, fixed in Complete by string-replace; fixed here at
+        // the grammar root so every generator matches).
+        int pr = addprim(0,"poly", p[f[k*4+3]], p[f[k*4+2]], p[f[k*4+1]], p[f[k*4+0]]);
+        setprimattrib(0, "unreal_material", pr, mat);
+        setprimattrib(0, "element", pr, grp);
+        if(grp != "") setprimgroup(0, grp, pr, 1);
+        n++;
+    }
+    return n;
+}
+
+// ---- a semicircular arch ring ------------------------------------------
+// The silhouette element.  Voussoirs radiate from the arch centre; the
+// springing is at `spring`, the clear span is `span`, the ring depth is
+// `radial`, and the wall it pierces is `thick` deep along `normal`.
+// Returns the number of voussoirs emitted.
+int kit_arch(vector spring; vector along; vector normal; float span;
+             float radial; float thick; float rise;
+             string mat; float lime; float damp; float moss; float ivy;
+             string grp){
+    float R = span * 0.5;
+    int nv = max(6, int(span / POITOU_MODULE) + 1);   // a voussoir per module
+    int n = 0;
+    for(int i=0;i<nv;i++){
+        float a0 = -PI*0.5 + PI*(float(i)/float(nv));
+        float a1 = -PI*0.5 + PI*(float(i+1)/float(nv));
+        float Ri = R - radial*0.5;
+        float Ro = R + radial*0.5;
+        // eight corners: inner/outer radius x spring-to-spring
+        vector q0 = spring + along*(Ri*cos(a0)) + set(0,1,0)*(Ri*sin(a0));
+        vector q1 = spring + along*(Ri*cos(a1)) + set(0,1,0)*(Ri*sin(a1));
+        vector q2 = spring + along*(Ro*cos(a1)) + set(0,1,0)*(Ro*sin(a1));
+        vector q3 = spring + along*(Ro*cos(a0)) + set(0,1,0)*(Ro*sin(a0));
+        vector o = normal*(thick*0.5);
+        // NOTE 2026-10-22: point-list addprim (H22 vertex fix, see kit_box)
+        int pp[];
+        resize(pp, 8);
+        int corners[] = { 0,1,2,3 };
+        for(int k=0;k<4;k++){
+            vector base = (k==0)?q0:((k==1)?q1:((k==2)?q2:q3));
+            int p0 = addpoint(0, base - o);
+            setpointattrib(0, "Cd", p0, set(lime, damp, moss));
+            setpointattrib(0, "Alpha", p0, ivy);
+            int p1 = addpoint(0, base + o);
+            setpointattrib(0, "Cd", p1, set(lime, damp, moss));
+            setpointattrib(0, "Alpha", p1, ivy);
+            pp[k]=p0; pp[k+4]=p1;
+        }
+        int f[] = { 0,1,2,3,  7,6,5,4,  0,4,5,1,  1,5,6,2,  2,6,7,3,  3,7,4,0 };
+        for(int k=0;k<6;k++){
+            // NOTE 2026-10-22: reversed winding (UE clockwise-front).
+            int pr = addprim(0,"poly", pp[f[k*4+3]], pp[f[k*4+2]], pp[f[k*4+1]], pp[f[k*4+0]]);
+            setprimattrib(0, "unreal_material", pr, mat);
+            setprimattrib(0, "element", pr, grp);
+            if(grp != "") setprimgroup(0, grp, pr, 1);
+        }
+        n++;
+    }
+    return n;
+}
+
+// ---- one stone of a wall run --------------------------------------------
+// The dressed leaf, the rubble core behind it, and (on a band course) the
+// brick band through the full thickness.
+//   dims  = (u0, u1, ashlar height)   along the run
+//   zones = (damp, moss, refend proud)
+// Returns the number of prims emitted.
+int kit_wall_stone(vector ctr; vector along; vector normal; vector dims;
+                   vector zones; int banded;
+                   string mat_leaf; string mat_core; string mat_band;
+                   string grp){
+    int n = 0;
+    float leaf = POITOU_LEAF;
+    float core = POITOU_CORE;
+    float damp = zones.x, moss = zones.y, refend = zones.z;
+    float u0 = dims.x, u1 = dims.y, ash_h = dims.z;
+    float yb = ctr.y;
+    float mid = min(u1, u0 + POITOU_MODULE);
+    vector fc = ctr + normal*(leaf*0.5 - refend*0.5) + set(0, ash_h*0.5, 0);
+    n += kit_box(fc, along, set(0,1,0), normal,
+                 set(mid-u0-POITOU_JOINT, ash_h-0.01, leaf+refend),
+                 mat_leaf, 1.0, damp, moss, 0.0, grp);
+    vector cc = ctr + normal*(leaf + core*0.5) + set(0, ash_h*0.5, 0);
+    n += kit_box(cc, along, set(0,1,0), normal,
+                 set(mid-u0-POITOU_JOINT, ash_h-0.01, core),
+                 mat_core, 0.25, damp*0.8, moss*0.6, 0.0, grp);
+    if(banded){
+        vector bc = ctr + normal*((leaf+core)*0.5 - POITOU_BANDPR) + set(0, POITOU_BANDH*0.5, 0);
+        n += kit_box(bc, along, set(0,1,0), normal,
+                     set(mid-u0-POITOU_JOINT, POITOU_BANDH-0.01, leaf+core+2*POITOU_BANDPR),
+                     mat_band, 0.15, damp, moss*0.5, 0.0, grp);
+    }
+    return n;
+}
+
+// ---- a wall run ----------------------------------------------------------
+// Lays a double-leaf wall in courses: the 0.45 m ashlar facing leaf on the
+// `normal` side, the 0.9 m rubble core behind it, joints staggered half a
+// module on alternate courses, a chaine/arase band every BANDN courses
+// through the full thickness, and a rusticated refend at the base.
+//
+//   origin  the start of the run, at the BASE of the wall
+//   along   the run direction (unit)
+//   normal  the outward face direction (unit) - the face is on this side
+//   length  the run length (m)
+//   y0,y1   the base and top of the wall (m)
+//   thick   the total thickness (m); leaf + core must fit
+//
+// Returns the number of prims emitted.
+int kit_wall(vector origin; vector along; vector normal; float length;
+             float y0; float y1; float thick;
+             string mat_leaf; string mat_core; string mat_band;
+             int band_every; int refend_base; float seed;
+             string grp){
+    int n = 0;
+    int nc = max(1, int(floor((y1-y0)/POITOU_COURSE)));
+    int nm = max(1, int(floor(length/POITOU_MODULE)));
+    for(int c=0;c<nc;c++){
+        float yb = y0 + c*POITOU_COURSE;
+        float ch = min(POITOU_COURSE, y1-yb);
+        if(ch <= 0.01) break;
+        int banded = (band_every > 0) && (c % band_every == 0);
+        float refend = (refend_base && c==0) ? POITOU_PROUD : 0.0;
+        float stagger = (c % 2) ? POITOU_MODULE*0.5 : 0.0;
+        float ash_h = banded ? ch - POITOU_BANDH : ch;
+        float damp = clamp(1.0 - (yb-y0)/0.8, 0.0, 1.0);
+        float moss = clamp((yb+ch - (y1-0.6))/0.6, 0.0, 1.0);
+        for(int m=0;m<nm;m++){
+            float u0 = m*POITOU_MODULE + stagger;
+            if(u0 >= length) break;
+            vector ctr = origin + along*(u0+POITOU_MODULE*0.5);
+            ctr.y = yb;
+            n += kit_wall_stone(ctr, along, normal, set(u0, u0+POITOU_MODULE, ash_h),
+                                set(damp, moss, refend), banded,
+                                mat_leaf, mat_core, mat_band, grp);
+        }
+    }
+    return n;
+}
+
+// ---- a stepped buttress --------------------------------------------------
+// The 13th-century Maillezais buttress: a splayed base bevel, then
+// stepped tiers that set back as they rise.
+int kit_buttress(vector base; vector along; vector normal; float width;
+                  float height; float projection; int tiers;
+                  string mat; float lime; float damp; float moss; float ivy;
+                  string grp){
+    int n = 0;
+    for(int t=0;t<tiers;t++){
+        float y0 = height*float(t)/float(tiers);
+        float y1 = height*float(t+1)/float(tiers);
+        float pr = projection*(1.0 - 0.22*float(t));
+        // the splayed base bevel of the lowest tier
+        float w = (t==0) ? width*1.25 : width;
+        vector c = base + normal*(pr*0.5) + set(0, (y0+y1)*0.5, 0);
+        n += kit_box(c, along, set(0,1,0), normal, set(w, y1-y0, pr),
+                     mat, lime, damp, moss, ivy, grp);
+    }
+    return n;
+}
+
+// ---- a gable / roof plane -------------------------------------------------
+// The Nikkie silhouette: a pitch, not a texture.  `pitch` is the roof
+// angle in degrees; the plane is laid as courses of tiles running up the
+// slope, so the tile courses read at distance.
+int kit_roof(vector eave_a; vector eave_b; float rise; float overhang;
+             string mat; float lime; float damp; float moss; float ivy;
+             string grp){
+    vector ab = eave_b - eave_a;
+    float span = length(ab);
+    if(span < 0.01) return 0;
+    vector dir = ab/span;
+    vector slope = normalize(ab*0.0 + set(0, rise, 0) + dir*0.0);
+    // the roof plane rises from the eave line toward the ridge
+    vector upv = normalize(set(0, rise, 0) - dir*0.0);
+    vector normal = normalize(cross(dir, upv));
+    float hyp = sqrt(span*span + rise*rise);
+    int n = 0;
+    int rows = max(2, int(hyp/0.35));
+    for(int r=0;r<rows;r++){
+        float f0 = float(r)/float(rows);
+        float f1 = float(r+1)/float(rows);
+        // a tile course, jittered in value so the roof reads as tiles
+        float jit = 0.9 + 0.2*rand(r*7.3);
+        vector c0 = eave_a + dir*(span*0.5) + set(0, rise*f0, 0);
+        vector c1 = eave_a + dir*(span*0.5) + set(0, rise*f1, 0);
+        vector mid = (c0+c1)*0.5;
+        vector ax = c1-c0;
+        float axl = length(ax);
+        if(axl < 0.01) continue;
+        n += kit_box(mid, ax/axl, cross(ax/axl, normal), normal,
+                     set(axl, hyp/float(rows)-0.01, 0.12*jit),
+                     mat, lime*jit, damp, moss, ivy, grp);
+    }
+    return n;
+}
+
+// ---- a gable / roof slope -------------------------------------------------
+// The Nikkie silhouette: a pitch, not a texture.  A roof slope is laid as
+// courses of tiles running up the slope, so the tile courses read at
+// distance, and each course is value-jittered so the roof reads as tiles.
+//   e0,e1  the eave line
+//   r0,r1  the ridge line
+int kit_slope(vector e0; vector e1; vector r0; vector r1; int rows;
+              string mat; float lime; float damp; float moss; float ivy;
+              string grp){
+    int n = 0;
+    for(int r=0;r<rows;r++){
+        float f0 = float(r)/float(rows), f1 = float(r+1)/float(rows);
+        vector a0 = lerp(e0, r0, f0), a1 = lerp(e1, r1, f0);
+        vector b0 = lerp(e0, r0, f1), b1 = lerp(e1, r1, f1);
+        vector ax = a1-a0;
+        float axl = length(ax);
+        if(axl < 0.02) continue;
+        vector dir = ax/axl;
+        vector upv = normalize((b0+b1)*0.5 - (a0+a1)*0.5);
+        vector nrm = normalize(cross(dir, upv));
+        float jit = 0.88 + 0.24*rand(float(r)*7.3 + length(a0)*0.17);
+        vector c = ((a0+a1+b0+b1)*0.25);
+        n += kit_box(c, dir, upv, nrm, set(axl, 0.30, 0.10*jit),
+                     mat, lime*jit, damp, moss, ivy, grp);
+    }
+    return n;
+}
+
+// ---- a gable roof --------------------------------------------------------
+//   ea,eb  one eave line;  ec,ed  the opposite eave line
+int kit_gable(vector ea; vector eb; vector ec; vector ed; float rise;
+              string mat; float lime; float damp; float moss; float ivy;
+              string grp){
+    vector r0 = (ea+eb)*0.5 + set(0, rise, 0);
+    vector r1 = (ec+ed)*0.5 + set(0, rise, 0);
+    int n = 0;
+    n += kit_slope(ea, eb, r0, r1, 10, mat, lime, damp, moss, ivy, grp);
+    n += kit_slope(ed, ec, r1, r0, 10, mat, lime, damp, moss, ivy, grp);
+    return n;
+}
+
+// ---- a flat ribbon (a lane, a quay, a towpath) --------------------------
+// A slab following the terrain, with a kerb course standing proud on
+// each side.  Kerbs are what make a lane read as a lane.
+int kit_ribbon(vector p0; vector p1; float width; float kerb_h;
+               string mat; string mat_kerb;
+               float lime; float damp; float moss; float ivy;
+               string grp){
+    vector seg = p1-p0;
+    float sl = length(seg);
+    if(sl < 0.02) return 0;
+    vector dir = seg/sl;
+    vector nrm = normalize(cross(dir, set(0,1,0)));
+    int n = 0;
+    // the slab, in slabs of one module so it follows the ground
+    int segs = max(1, int(sl/POITOU_MODULE));
+    for(int i=0;i<segs;i++){
+        float t0 = float(i)/float(segs), t1 = float(i+1)/float(segs);
+        vector a = lerp(p0, p1, t0), b = lerp(p0, p1, t1);
+        vector c = (a+b)*0.5;
+        vector ax = b-a;
+        float axl = length(ax);
+        n += kit_box(c, dir, set(0,1,0), nrm, set(axl, 0.12, width),
+                     mat, lime, damp, moss, ivy, grp);
+        // the kerbs
+        for(int s=0;s<2;s++){
+            float sgn = (s==0) ? -1.0 : 1.0;
+            vector kc = c + nrm*(sgn*(width*0.5));
+            n += kit_box(kc, dir, set(0,1,0), nrm, set(axl, kerb_h, 0.30),
+                         mat_kerb, lime, damp, moss, ivy, grp);
+        }
+    }
+    return n;
+}
+
+// ---- a tapered trunk / columnar crown ------------------------------------
+// A stack of tapering drums.  Used for the poplar trunk and its crown:
+// the Nikkie way to make a tree is a silhouette with a rhythm, not a model.
+int kit_taper(vector base; vector axis; float height; float r0; float r1;
+              int drums; float twist; string mat;
+              float lime; float damp; float moss; float ivy; string grp){
+    int n = 0;
+    vector up = normalize(axis);
+    for(int d=0;d<drums;d++){
+        float f0 = float(d)/float(drums), f1 = float(d+1)/float(drums);
+        float y0 = height*f0, y1 = height*f1;
+        float ra = lerp(r0, r1, f0), rb = lerp(r0, r1, f1);
+        vector c = base + up*((y0+y1)*0.5);
+        // a twisted quad prism: a cheap, strong trunk silhouette
+        vector a1 = up;
+        vector a2 = normalize(cross(up, set(0,0,1)));
+        vector a3 = cross(up, a2);
+        float ang = twist*float(d);
+        float ca = cos(ang), sa = sin(ang);
+        vector ax = a2*ca + a3*sa;
+        vector az = cross(up, ax);
+        int sides = 6;
+        for(int s=0;s<sides;s++){
+            float t0 = 6.2831853*float(s)/float(sides);
+            float t1 = 6.2831853*float(s+1)/float(sides);
+            vector q0 = c + ax*(ra*cos(t0)) + az*(ra*sin(t0));
+            vector q1 = c + ax*(rb*cos(t0)) + az*(rb*sin(t0));
+            vector q2 = c + ax*(rb*cos(t1)) + az*(rb*sin(t1));
+            vector q3 = c + ax*(ra*cos(t1)) + az*(ra*sin(t1));
+            int v0 = addpoint(0, q0); int v1 = addpoint(0, q1);
+            int v2 = addpoint(0, q2); int v3 = addpoint(0, q3);
+            // NOTE 2026-10-22: point-list addprim (H22 vertex fix);
+            // reversed winding (UE clockwise-front).
+            int pr = addprim(0, "poly", v3, v2, v1, v0);
+            setprimattrib(0, "unreal_material", pr, mat);
+            setprimattrib(0, "element", pr, grp);
+            if(grp != "") setprimgroup(0, grp, pr, 1);
+            n++;
+        }
+    }
+    return n;
+}
+
+// ---- faux appareil --------------------------------------------------------
+// Painted false joints are a PAINT feature, never geometry: the mask is
+// written per stone as a vertex attribute so the master can draw the
+// joint lines on distant walls, where real coursing would cost geometry
+// for nothing.  It is written where a stone is laid, so it needs no
+// function - the generators call kit_faux_mask() with the stone's centre.
+float kit_faux_mask(vector c){
+    int mx = int(floor(c.x/POITOU_MODULE));
+    int my = int(floor(c.y/POITOU_COURSE));
+    float j = 0.0;
+    if(mx % 2 == 0) j = 1.0;
+    if(my % 2 == 0) j = max(j, 0.6);
+    return j;
+}

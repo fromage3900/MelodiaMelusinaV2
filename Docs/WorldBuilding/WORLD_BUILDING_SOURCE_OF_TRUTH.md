@@ -236,3 +236,15 @@ Hard no's:
 | [`CURRENT_STATE.md`](../../CURRENT_STATE.md) | Current production queue / blockers / evidence level |
 
 Dated handoffs, research packets, and superseded pipeline plans are memory. They do not override this page.
+
+---
+
+## 7. Worldbuilding doctrine — how new place gets made (canon 2026-10-21)
+
+Test run: the Poitou pound lock (`Tools/Poitou/snip/lock.vex`, night of 2026-10-21). Every new generator follows this order:
+
+1. **Real life first.** Researched forms at 1.0× silhouette on the governing meter (0.6 m beat, 2.4 m bar): canal-du-Midi section, Maillezais Romanesque, maraichin houses. No invented forms.
+2. **Nikki lens second — from the documented briefs, not from memory of the game.** Authority: `Tools/Poitou/nikki/INFINITY_NIKKI_BRIEF_v2.md` + `INFOLD_PIPELINE_FACTS.md`. Paint over geometry (vertex channels into the one toon master), ornament at 1.3–1.5×, hero vignettes in ≥12 m quiet space, abbey visible from ≥70% of walkable area, every zone tagged with its triangle corner (aesthetic / consistency / traversal).
+3. **Simplest Cymatic/Melodia integration last.** One musical gesture per feature (lock treads carry `s@note` scale degrees; audio binds downstream), water that remembers (damp paint at the waterline), restraint over clutter. No new masters, no new writers, no second instancing path.
+4. **Mechanism, not folklore.** `snip/kit.vex` (grammar) + feature snip → `build_poitou_hda.py` (the only assembler) → `.hdalc` → recook in the level. Snips are source of truth; the builder is the only writer. A generator that cannot be rebuilt from `kit + snip` does not exist. No HDA enters `Content/` without its green gate receipt beside it.
+5. **Proof before presentation.** hython gates first (groups present, parms drive geometry, measures match the meter); the editor recook is presentation proof, never geometry proof.

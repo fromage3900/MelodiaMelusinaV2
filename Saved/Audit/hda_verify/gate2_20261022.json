@@ -1,0 +1,128 @@
+{
+ "gate": "melodia.hda_gate2.v1",
+ "checks": [
+  {
+   "name": "abbey_cooks",
+   "ok": true,
+   "detail": "{'points': 512, 'prims': 336, 'hash': '6230bb74f8d590df', 'bbox': [[-9.3, 0.0, -0.6], [9.3, 14.4, 19.2]]}"
+  },
+  {
+   "name": "abbey_pins",
+   "ok": true,
+   "detail": "measured={'points': 512, 'prims': 336, 'hash': '6230bb74f8d590df', 'bbox': [[-9.3, 0.0, -0.6], [9.3, 14.4, 19.2]]} registry=512/336"
+  },
+  {
+   "name": "abbey_drive_bays",
+   "ok": true,
+   "detail": "default={'points': 512, 'prims': 336, 'hash': '6230bb74f8d590df', 'bbox': [[-9.3, 0.0, -0.6], [9.3, 14.4, 19.2]]} bays4={'points': 256, 'prims': 168, 'hash': '1cd413d03c53aa93', 'bbox': [[-9.3, 0.0, -0.6], [9.3, 14.4, 9."
+  },
+  {
+   "name": "abbey_drive_decay",
+   "ok": true,
+   "detail": "default={'points': 512, 'prims': 336, 'hash': '6230bb74f8d590df', 'bbox': [[-9.3, 0.0, -0.6], [9.3, 14.4, 19.2]]} decay09={'points': 512, 'prims': 336, 'hash': 'f9c74e6dfba8d433', 'bbox': [[-9.3, 0.0, -0.6], [9.3, 14.4, "
+  },
+  {
+   "name": "sg_cooks",
+   "ok": true,
+   "detail": "{'points': 232, 'prims': 348, 'hash': '848767a8d1c4547a', 'bbox': [[-0.525, -0.98, -0.92], [0.525, 1.07, 0.92]]}"
+  },
+  {
+   "name": "sg_pins",
+   "ok": true,
+   "detail": "measured={'points': 232, 'prims': 348, 'hash': '848767a8d1c4547a', 'bbox': [[-0.525, -0.98, -0.92], [0.525, 1.07, 0.92]]} registry=232/348"
+  },
+  {
+   "name": "sg_drive",
+   "ok": false,
+   "detail": "default={'points': 232, 'prims': 348, 'hash': '848767a8d1c4547a', 'bbox': [[-0.525, -0.98, -0.92], [0.525, 1.07, 0.92]]} driven={'points': 232, 'prims': 348, 'hash': '848767a8d1c4547a', 'bbox': [[-0.525, -0.98, -0.92], ["
+  }
+ ],
+ "pass": false,
+ "measured": {
+  "abbey_default": {
+   "points": 512,
+   "prims": 336,
+   "hash": "6230bb74f8d590df",
+   "bbox": [
+    [
+     -9.3,
+     0.0,
+     -0.6
+    ],
+    [
+     9.3,
+     14.4,
+     19.2
+    ]
+   ]
+  },
+  "abbey_bays4": {
+   "points": 256,
+   "prims": 168,
+   "hash": "1cd413d03c53aa93",
+   "bbox": [
+    [
+     -9.3,
+     0.0,
+     -0.6
+    ],
+    [
+     9.3,
+     14.4,
+     9.6
+    ]
+   ]
+  },
+  "abbey_decay09": {
+   "points": 512,
+   "prims": 336,
+   "hash": "f9c74e6dfba8d433",
+   "bbox": [
+    [
+     -9.3,
+     0.0,
+     -0.6
+    ],
+    [
+     9.3,
+     14.4,
+     19.2
+    ]
+   ]
+  },
+  "sg_default": {
+   "points": 232,
+   "prims": 348,
+   "hash": "848767a8d1c4547a",
+   "bbox": [
+    [
+     -0.525,
+     -0.98,
+     -0.92
+    ],
+    [
+     0.525,
+     1.07,
+     0.92
+    ]
+   ]
+  },
+  "sg_driven": {
+   "points": 232,
+   "prims": 348,
+   "hash": "848767a8d1c4547a",
+   "bbox": [
+    [
+     -0.525,
+     -0.98,
+     -0.92
+    ],
+    [
+     0.525,
+     1.07,
+     0.92
+    ]
+   ]
+  }
+ }
+}

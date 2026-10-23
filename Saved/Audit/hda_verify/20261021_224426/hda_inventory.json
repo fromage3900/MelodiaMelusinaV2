@@ -1,0 +1,1752 @@
+{
+  "schema": "melodia.hda_audit_report.v1",
+  "gate": 0,
+  "generated": "2026-10-21T22:44:27",
+  "project_root": "C:\\EnvironmentPortfolio\\BS_GodFile",
+  "registry": "Tools/Houdini/hda_verify/hda_registry.v1.json",
+  "counts": {
+    "PASS": 8,
+    "WARN": 58,
+    "FAIL": 9
+  },
+  "entries": [
+    {
+      "id": "arpeggio_stair",
+      "status": "active",
+      "path": "hda/ArpeggioStair_1.0.hda",
+      "checks": [
+        {
+          "name": "file_present",
+          "ok": true,
+          "detail": "24644 bytes"
+        },
+        {
+          "name": "has_network",
+          "ok": true,
+          "detail": "compressed Contents.gz present"
+        },
+        {
+          "name": "decompresses",
+          "ok": true,
+          "detail": "100281 bytes of network, 1 inlined op defs"
+        },
+        {
+          "name": "label_matches",
+          "ok": true,
+          "detail": "registry='ArpeggioStair musical stair (BS_GodFile)' file='ArpeggioStair musical stair (BS_GodFile)'"
+        },
+        {
+          "name": "mirror_identical",
+          "ok": false,
+          "detail": "Content/HDA/ArpeggioStair_1.0.hda"
+        }
+      ],
+      "result": "FAIL",
+      "hda": {
+        "size": 24644,
+        "sha256": "efb50de2abfa032b5ca9f068413df98777debed6f828036070c028d5502c1e87",
+        "label": "ArpeggioStair musical stair (BS_GodFile)",
+        "sections": [
+          "contents_gz",
+          "contents_plain",
+          "create_script",
+          "dialog_script",
+          "internal_file_options"
+        ],
+        "has_network": true,
+        "network_bytes": 100281,
+        "fallback_ops": [
+          "attribwrangle"
+        ],
+        "preview_error": null
+      }
+    },
+    {
+      "id": "melodia_crystal_cathedral",
+      "status": "active",
+      "path": "hda/HDA_Melodia_CrystalCathedral_1.0.hda",
+      "checks": [
+        {
+          "name": "file_present",
+          "ok": true,
+          "detail": "32034 bytes"
+        },
+        {
+          "name": "has_network",
+          "ok": true,
+          "detail": "compressed Contents.gz present"
+        },
+        {
+          "name": "decompresses",
+          "ok": true,
+          "detail": "136938 bytes of network, 1 inlined op defs"
+        },
+        {
+          "name": "label_matches",
+          "ok": true,
+          "detail": "registry='Melodia 6-bay Harmony crystal cathedral (Gate 2)' file='Melodia 6-bay Harmony crystal cathedral (Gate 2)'"
+        }
+      ],
+      "result": "PASS",
+      "hda": {
+        "size": 32034,
+        "sha256": "b9c09beb9561aa2f80133fd70132d29e85987b57fe1faf170ed8f2b2118c0e11",
+        "label": "Melodia 6-bay Harmony crystal cathedral (Gate 2)",
+        "sections": [
+          "contents_gz",
+          "contents_plain",
+          "create_script",
+          "dialog_script",
+          "internal_file_options"
+        ],
+        "has_network": true,
+        "network_bytes": 136938,
+        "fallback_ops": [
+          "attribwrangle"
+        ],
+        "preview_error": null
+      }
+    },
+    {
+      "id": "space_orbital_rings",
+      "status": "missing",
+      "path": "hda/SpaceTraversal_OrbitalRings_1.0.hda",
+      "checks": [
+        {
+          "name": "file_present",
+          "ok": false,
+          "detail": "OWED: hda/SpaceTraversal_OrbitalRings_1.0.hda does not exist (builder: Content/Python/create_hda_space_orbital_rings.py)"
+        }
+      ],
+      "result": "WARN"
+    },
+    {
+      "id": "corridor_network",
+      "status": "missing",
+      "path": "hda/CorridorNetwork_1_0.hda",
+      "checks": [
+        {
+          "name": "file_present",
+          "ok": false,
+          "detail": "OWED: hda/CorridorNetwork_1_0.hda does not exist (builder: Tools/Houdini/corridors/build_corridor_network_hda.py)"
+        }
+      ],
+      "result": "WARN"
+    },
+    {
+      "id": "crystal_cathedral_v2",
+      "status": "missing",
+      "path": "hda/CrystalCathedralV2.hda",
+      "checks": [
+        {
+          "name": "file_present",
+          "ok": false,
+          "detail": "OWED: hda/CrystalCathedralV2.hda does not exist (builder: Tools/Houdini/cathedral/build_crystal_cathedral_v2_hda.py)"
+        }
+      ],
+      "result": "WARN"
+    },
+    {
+      "id": "crystal_cathedral_v3",
+      "status": "active",
+      "path": "hda/CrystalCathedralV3.hda",
+      "checks": [
+        {
+          "name": "file_present",
+          "ok": true,
+          "detail": "38254 bytes"
+        },
+        {
+          "name": "has_network",
+          "ok": true,
+          "detail": "compressed Contents.gz present"
+        },
+        {
+          "name": "decompresses",
+          "ok": true,
+          "detail": "189083 bytes of network, 9 inlined op defs"
+        },
+        {
+          "name": "label_matches",
+          "ok": true,
+          "detail": "registry='Melodia Crystal Cathedral V3: vault + rose + collision + corridor LOD fog' file='Melodia Crystal Cathedral V3: vault + rose + collision + corridor LOD fog'"
+        }
+      ],
+      "result": "PASS",
+      "hda": {
+        "size": 38254,
+        "sha256": "35bc95ee8df05c961dcaf97382a81ff9ff8f9fd0d990081dda26709da5c7a00e",
+        "label": "Melodia Crystal Cathedral V3: vault + rose + collision + corridor LOD fog",
+        "sections": [
+          "contents_gz",
+          "contents_plain",
+          "create_script",
+          "dialog_script",
+          "internal_file_options"
+        ],
+        "has_network": true,
+        "network_bytes": 189083,
+        "fallback_ops": [
+          "addconst",
+          "attribwrangle",
+          "floattovec",
+          "inttofloat",
+          "inttovec",
+          "length",
+          "mulconst",
+          "volumevopglobal",
+          "volumevopoutput"
+        ],
+        "preview_error": null
+      }
+    },
+    {
+      "id": "melodia_stained_glass_window",
+      "status": "active",
+      "path": "Content/HDA/MelodiaStainedGlassWindow_1.0.hda",
+      "checks": [
+        {
+          "name": "file_present",
+          "ok": true,
+          "detail": "13457 bytes"
+        },
+        {
+          "name": "has_network",
+          "ok": true,
+          "detail": "compressed Contents.gz present"
+        },
+        {
+          "name": "decompresses",
+          "ok": true,
+          "detail": "2516 bytes of network, 0 inlined op defs"
+        },
+        {
+          "name": "label_matches",
+          "ok": true,
+          "detail": "registry='Melodia Stained Glass Window (frame + pane + tracery + came)' file='Melodia Stained Glass Window (frame + pane + tracery + came)'"
+        }
+      ],
+      "result": "PASS",
+      "hda": {
+        "size": 13457,
+        "sha256": "d3b86a186d0880dd3f0a3e989853ad1c56ed3b1d6d62b07da98d6de2f79f8980",
+        "label": "Melodia Stained Glass Window (frame + pane + tracery + came)",
+        "sections": [
+          "contents_gz",
+          "contents_plain",
+          "create_script",
+          "dialog_script",
+          "internal_file_options"
+        ],
+        "has_network": true,
+        "network_bytes": 2516,
+        "fallback_ops": [],
+        "preview_error": null
+      }
+    },
+    {
+      "id": "foundry_field_atlas",
+      "status": "missing",
+      "path": "hda/HDA_Foundry_FieldAtlas_1.0.hda",
+      "checks": [
+        {
+          "name": "file_present",
+          "ok": false,
+          "detail": "OWED: hda/HDA_Foundry_FieldAtlas_1.0.hda does not exist (builder: none)"
+        }
+      ],
+      "result": "WARN"
+    },
+    {
+      "id": "poitou_abbey_builder",
+      "status": "active",
+      "path": "hda/HDA_Poitou_AbbeyBuilder_1.0.hda",
+      "checks": [
+        {
+          "name": "file_present",
+          "ok": true,
+          "detail": "16754 bytes"
+        },
+        {
+          "name": "has_network",
+          "ok": true,
+          "detail": "compressed Contents.gz present"
+        },
+        {
+          "name": "decompresses",
+          "ok": true,
+          "detail": "52141 bytes of network, 1 inlined op defs"
+        },
+        {
+          "name": "label_matches",
+          "ok": true,
+          "detail": "registry='Poitou Maillezais Abbey Ruin Builder (BS_GodFile UE5.8)' file='Poitou Maillezais Abbey Ruin Builder (BS_GodFile UE5.8)'"
+        },
+        {
+          "name": "mirror_identical",
+          "ok": true,
+          "detail": "Content/HDA/HDA_Poitou_AbbeyBuilder_1.0.hda"
+        }
+      ],
+      "result": "PASS",
+      "hda": {
+        "size": 16754,
+        "sha256": "fea2266e2e96774e901088c05be6d5ba0b12bfd7ac863a2547297f2b0b5cceae",
+        "label": "Poitou Maillezais Abbey Ruin Builder (BS_GodFile UE5.8)",
+        "sections": [
+          "contents_gz",
+          "contents_plain",
+          "create_script",
+          "dialog_script",
+          "internal_file_options"
+        ],
+        "has_network": true,
+        "network_bytes": 52141,
+        "fallback_ops": [
+          "attribwrangle"
+        ],
+        "preview_error": null
+      }
+    },
+    {
+      "id": "stub:hda/backup/HDA_Poitou_AbbeyBuilder_1.0_bak1.hda",
+      "status": "stub",
+      "path": "hda/backup/HDA_Poitou_AbbeyBuilder_1.0_bak1.hda",
+      "checks": [
+        {
+          "name": "file_present",
+          "ok": true,
+          "detail": "980 bytes"
+        },
+        {
+          "name": "has_network",
+          "ok": true,
+          "detail": "expected empty shell (no Contents.gz) - it now holds a network, audit it before trusting it"
+        },
+        {
+          "name": "label_matches",
+          "ok": true,
+          "detail": "registry=None file='Poitou Maillezais Abbey Ruin Builder (BS_GodFile UE5.8)'"
+        },
+        {
+          "name": "still_stub",
+          "ok": true,
+          "detail": "backup grew a real network - audit it before trusting it"
+        }
+      ],
+      "result": "PASS",
+      "hda": {
+        "size": 980,
+        "sha256": "bd6310bdff012cd8d3569610e5e459446621d9367b8398dee78e87760116131c",
+        "label": "Poitou Maillezais Abbey Ruin Builder (BS_GodFile UE5.8)",
+        "sections": [
+          "contents_plain",
+          "create_script",
+          "dialog_script"
+        ],
+        "has_network": false,
+        "network_bytes": 0,
+        "fallback_ops": [],
+        "preview_error": null
+      }
+    },
+    {
+      "id": "stub:hda/backup/HDA_Poitou_AbbeyBuilder_1.0_bak10.hda",
+      "status": "stub",
+      "path": "hda/backup/HDA_Poitou_AbbeyBuilder_1.0_bak10.hda",
+      "checks": [
+        {
+          "name": "file_present",
+          "ok": true,
+          "detail": "980 bytes"
+        },
+        {
+          "name": "has_network",
+          "ok": true,
+          "detail": "expected empty shell (no Contents.gz) - it now holds a network, audit it before trusting it"
+        },
+        {
+          "name": "label_matches",
+          "ok": true,
+          "detail": "registry=None file='Poitou Maillezais Abbey Ruin Builder (BS_GodFile UE5.8)'"
+        },
+        {
+          "name": "still_stub",
+          "ok": true,
+          "detail": "backup grew a real network - audit it before trusting it"
+        }
+      ],
+      "result": "PASS",
+      "hda": {
+        "size": 980,
+        "sha256": "4b8e943ff96c5366ccc07b181ba37b688b7003a7224e6572b9993c5c3bec724c",
+        "label": "Poitou Maillezais Abbey Ruin Builder (BS_GodFile UE5.8)",
+        "sections": [
+          "contents_plain",
+          "create_script",
+          "dialog_script"
+        ],
+        "has_network": false,
+        "network_bytes": 0,
+        "fallback_ops": [],
+        "preview_error": null
+      }
+    },
+    {
+      "id": "stub:hda/backup/HDA_Poitou_AbbeyBuilder_1.0_bak11.hda",
+      "status": "stub",
+      "path": "hda/backup/HDA_Poitou_AbbeyBuilder_1.0_bak11.hda",
+      "checks": [
+        {
+          "name": "file_present",
+          "ok": true,
+          "detail": "9599 bytes"
+        },
+        {
+          "name": "has_network",
+          "ok": false,
+          "detail": "expected empty shell (no Contents.gz) - it now holds a network, audit it before trusting it"
+        },
+        {
+          "name": "label_matches",
+          "ok": true,
+          "detail": "registry=None file='Poitou Maillezais Abbey Ruin Builder (BS_GodFile UE5.8)'"
+        },
+        {
+          "name": "still_stub",
+          "ok": false,
+          "detail": "backup grew a real network - audit it before trusting it"
+        }
+      ],
+      "result": "FAIL",
+      "hda": {
+        "size": 9599,
+        "sha256": "78d5e76e7fcadcd2ddf0ba7d7719956020b23db3a9db19b8e5b5a28510a6bd8c",
+        "label": "Poitou Maillezais Abbey Ruin Builder (BS_GodFile UE5.8)",
+        "sections": [
+          "contents_gz",
+          "contents_plain",
+          "create_script",
+          "dialog_script",
+          "internal_file_options"
+        ],
+        "has_network": true,
+        "network_bytes": 52141,
+        "fallback_ops": [
+          "attribwrangle"
+        ],
+        "preview_error": null
+      }
+    },
+    {
+      "id": "stub:hda/backup/HDA_Poitou_AbbeyBuilder_1.0_bak12.hda",
+      "status": "stub",
+      "path": "hda/backup/HDA_Poitou_AbbeyBuilder_1.0_bak12.hda",
+      "checks": [
+        {
+          "name": "file_present",
+          "ok": true,
+          "detail": "16754 bytes"
+        },
+        {
+          "name": "has_network",
+          "ok": false,
+          "detail": "expected empty shell (no Contents.gz) - it now holds a network, audit it before trusting it"
+        },
+        {
+          "name": "label_matches",
+          "ok": true,
+          "detail": "registry=None file='Poitou Maillezais Abbey Ruin Builder (BS_GodFile UE5.8)'"
+        },
+        {
+          "name": "still_stub",
+          "ok": false,
+          "detail": "backup grew a real network - audit it before trusting it"
+        }
+      ],
+      "result": "FAIL",
+      "hda": {
+        "size": 16754,
+        "sha256": "fea2266e2e96774e901088c05be6d5ba0b12bfd7ac863a2547297f2b0b5cceae",
+        "label": "Poitou Maillezais Abbey Ruin Builder (BS_GodFile UE5.8)",
+        "sections": [
+          "contents_gz",
+          "contents_plain",
+          "create_script",
+          "dialog_script",
+          "internal_file_options"
+        ],
+        "has_network": true,
+        "network_bytes": 52141,
+        "fallback_ops": [
+          "attribwrangle"
+        ],
+        "preview_error": null
+      }
+    },
+    {
+      "id": "stub:hda/backup/HDA_Poitou_AbbeyBuilder_1.0_bak2.hda",
+      "status": "stub",
+      "path": "hda/backup/HDA_Poitou_AbbeyBuilder_1.0_bak2.hda",
+      "checks": [
+        {
+          "name": "file_present",
+          "ok": true,
+          "detail": "9332 bytes"
+        },
+        {
+          "name": "has_network",
+          "ok": false,
+          "detail": "expected empty shell (no Contents.gz) - it now holds a network, audit it before trusting it"
+        },
+        {
+          "name": "label_matches",
+          "ok": true,
+          "detail": "registry=None file='Poitou Maillezais Abbey Ruin Builder (BS_GodFile UE5.8)'"
+        },
+        {
+          "name": "still_stub",
+          "ok": false,
+          "detail": "backup grew a real network - audit it before trusting it"
+        }
+      ],
+      "result": "FAIL",
+      "hda": {
+        "size": 9332,
+        "sha256": "a976ed12f27b45fe29578ccb33f5018071aca9b4e34c093cca5014fac735e265",
+        "label": "Poitou Maillezais Abbey Ruin Builder (BS_GodFile UE5.8)",
+        "sections": [
+          "contents_gz",
+          "contents_plain",
+          "create_script",
+          "dialog_script",
+          "internal_file_options"
+        ],
+        "has_network": true,
+        "network_bytes": 50764,
+        "fallback_ops": [
+          "attribwrangle"
+        ],
+        "preview_error": null
+      }
+    },
+    {
+      "id": "stub:hda/backup/HDA_Poitou_AbbeyBuilder_1.0_bak3.hda",
+      "status": "stub",
+      "path": "hda/backup/HDA_Poitou_AbbeyBuilder_1.0_bak3.hda",
+      "checks": [
+        {
+          "name": "file_present",
+          "ok": true,
+          "detail": "16487 bytes"
+        },
+        {
+          "name": "has_network",
+          "ok": false,
+          "detail": "expected empty shell (no Contents.gz) - it now holds a network, audit it before trusting it"
+        },
+        {
+          "name": "label_matches",
+          "ok": true,
+          "detail": "registry=None file='Poitou Maillezais Abbey Ruin Builder (BS_GodFile UE5.8)'"
+        },
+        {
+          "name": "still_stub",
+          "ok": false,
+          "detail": "backup grew a real network - audit it before trusting it"
+        }
+      ],
+      "result": "FAIL",
+      "hda": {
+        "size": 16487,
+        "sha256": "e8ab70809ac8a73f733c1b2dac350ab9a5f8b93549afdaa64762c65e8a354b3e",
+        "label": "Poitou Maillezais Abbey Ruin Builder (BS_GodFile UE5.8)",
+        "sections": [
+          "contents_gz",
+          "contents_plain",
+          "create_script",
+          "dialog_script",
+          "internal_file_options"
+        ],
+        "has_network": true,
+        "network_bytes": 50764,
+        "fallback_ops": [
+          "attribwrangle"
+        ],
+        "preview_error": null
+      }
+    },
+    {
+      "id": "stub:hda/backup/HDA_Poitou_AbbeyBuilder_1.0_bak4.hda",
+      "status": "stub",
+      "path": "hda/backup/HDA_Poitou_AbbeyBuilder_1.0_bak4.hda",
+      "checks": [
+        {
+          "name": "file_present",
+          "ok": true,
+          "detail": "980 bytes"
+        },
+        {
+          "name": "has_network",
+          "ok": true,
+          "detail": "expected empty shell (no Contents.gz) - it now holds a network, audit it before trusting it"
+        },
+        {
+          "name": "label_matches",
+          "ok": true,
+          "detail": "registry=None file='Poitou Maillezais Abbey Ruin Builder (BS_GodFile UE5.8)'"
+        },
+        {
+          "name": "still_stub",
+          "ok": true,
+          "detail": "backup grew a real network - audit it before trusting it"
+        }
+      ],
+      "result": "PASS",
+      "hda": {
+        "size": 980,
+        "sha256": "c4c7778ad940ca18e59b88091af7ad0355bc12d3ac85c82113dacc2d1a700764",
+        "label": "Poitou Maillezais Abbey Ruin Builder (BS_GodFile UE5.8)",
+        "sections": [
+          "contents_plain",
+          "create_script",
+          "dialog_script"
+        ],
+        "has_network": false,
+        "network_bytes": 0,
+        "fallback_ops": [],
+        "preview_error": null
+      }
+    },
+    {
+      "id": "stub:hda/backup/HDA_Poitou_AbbeyBuilder_1.0_bak5.hda",
+      "status": "stub",
+      "path": "hda/backup/HDA_Poitou_AbbeyBuilder_1.0_bak5.hda",
+      "checks": [
+        {
+          "name": "file_present",
+          "ok": true,
+          "detail": "9334 bytes"
+        },
+        {
+          "name": "has_network",
+          "ok": false,
+          "detail": "expected empty shell (no Contents.gz) - it now holds a network, audit it before trusting it"
+        },
+        {
+          "name": "label_matches",
+          "ok": true,
+          "detail": "registry=None file='Poitou Maillezais Abbey Ruin Builder (BS_GodFile UE5.8)'"
+        },
+        {
+          "name": "still_stub",
+          "ok": false,
+          "detail": "backup grew a real network - audit it before trusting it"
+        }
+      ],
+      "result": "FAIL",
+      "hda": {
+        "size": 9334,
+        "sha256": "93271950275d7f4a1581d14c11829986c68f35dca13ddbfe519e3ab071e27e23",
+        "label": "Poitou Maillezais Abbey Ruin Builder (BS_GodFile UE5.8)",
+        "sections": [
+          "contents_gz",
+          "contents_plain",
+          "create_script",
+          "dialog_script",
+          "internal_file_options"
+        ],
+        "has_network": true,
+        "network_bytes": 50764,
+        "fallback_ops": [
+          "attribwrangle"
+        ],
+        "preview_error": null
+      }
+    },
+    {
+      "id": "stub:hda/backup/HDA_Poitou_AbbeyBuilder_1.0_bak6.hda",
+      "status": "stub",
+      "path": "hda/backup/HDA_Poitou_AbbeyBuilder_1.0_bak6.hda",
+      "checks": [
+        {
+          "name": "file_present",
+          "ok": true,
+          "detail": "16489 bytes"
+        },
+        {
+          "name": "has_network",
+          "ok": false,
+          "detail": "expected empty shell (no Contents.gz) - it now holds a network, audit it before trusting it"
+        },
+        {
+          "name": "label_matches",
+          "ok": true,
+          "detail": "registry=None file='Poitou Maillezais Abbey Ruin Builder (BS_GodFile UE5.8)'"
+        },
+        {
+          "name": "still_stub",
+          "ok": false,
+          "detail": "backup grew a real network - audit it before trusting it"
+        }
+      ],
+      "result": "FAIL",
+      "hda": {
+        "size": 16489,
+        "sha256": "0c52b1010e865d39b55e30fe910c9a12570254c248a25854983900aabe34c805",
+        "label": "Poitou Maillezais Abbey Ruin Builder (BS_GodFile UE5.8)",
+        "sections": [
+          "contents_gz",
+          "contents_plain",
+          "create_script",
+          "dialog_script",
+          "internal_file_options"
+        ],
+        "has_network": true,
+        "network_bytes": 50764,
+        "fallback_ops": [
+          "attribwrangle"
+        ],
+        "preview_error": null
+      }
+    },
+    {
+      "id": "stub:hda/backup/HDA_Poitou_AbbeyBuilder_1.0_bak7.hda",
+      "status": "stub",
+      "path": "hda/backup/HDA_Poitou_AbbeyBuilder_1.0_bak7.hda",
+      "checks": [
+        {
+          "name": "file_present",
+          "ok": true,
+          "detail": "980 bytes"
+        },
+        {
+          "name": "has_network",
+          "ok": true,
+          "detail": "expected empty shell (no Contents.gz) - it now holds a network, audit it before trusting it"
+        },
+        {
+          "name": "label_matches",
+          "ok": true,
+          "detail": "registry=None file='Poitou Maillezais Abbey Ruin Builder (BS_GodFile UE5.8)'"
+        },
+        {
+          "name": "still_stub",
+          "ok": true,
+          "detail": "backup grew a real network - audit it before trusting it"
+        }
+      ],
+      "result": "PASS",
+      "hda": {
+        "size": 980,
+        "sha256": "78bad8b00bb789436202313edc22822d37ee95f47b81d00f0aebad9016902f7d",
+        "label": "Poitou Maillezais Abbey Ruin Builder (BS_GodFile UE5.8)",
+        "sections": [
+          "contents_plain",
+          "create_script",
+          "dialog_script"
+        ],
+        "has_network": false,
+        "network_bytes": 0,
+        "fallback_ops": [],
+        "preview_error": null
+      }
+    },
+    {
+      "id": "stub:hda/backup/HDA_Poitou_AbbeyBuilder_1.0_bak8.hda",
+      "status": "stub",
+      "path": "hda/backup/HDA_Poitou_AbbeyBuilder_1.0_bak8.hda",
+      "checks": [
+        {
+          "name": "file_present",
+          "ok": true,
+          "detail": "9604 bytes"
+        },
+        {
+          "name": "has_network",
+          "ok": false,
+          "detail": "expected empty shell (no Contents.gz) - it now holds a network, audit it before trusting it"
+        },
+        {
+          "name": "label_matches",
+          "ok": true,
+          "detail": "registry=None file='Poitou Maillezais Abbey Ruin Builder (BS_GodFile UE5.8)'"
+        },
+        {
+          "name": "still_stub",
+          "ok": false,
+          "detail": "backup grew a real network - audit it before trusting it"
+        }
+      ],
+      "result": "FAIL",
+      "hda": {
+        "size": 9604,
+        "sha256": "ab1502c2a9bd0c7f69f5a23cbb6e66ec51b60ff395615001dfe485868ff45538",
+        "label": "Poitou Maillezais Abbey Ruin Builder (BS_GodFile UE5.8)",
+        "sections": [
+          "contents_gz",
+          "contents_plain",
+          "create_script",
+          "dialog_script",
+          "internal_file_options"
+        ],
+        "has_network": true,
+        "network_bytes": 52163,
+        "fallback_ops": [
+          "attribwrangle"
+        ],
+        "preview_error": null
+      }
+    },
+    {
+      "id": "stub:hda/backup/HDA_Poitou_AbbeyBuilder_1.0_bak9.hda",
+      "status": "stub",
+      "path": "hda/backup/HDA_Poitou_AbbeyBuilder_1.0_bak9.hda",
+      "checks": [
+        {
+          "name": "file_present",
+          "ok": true,
+          "detail": "16759 bytes"
+        },
+        {
+          "name": "has_network",
+          "ok": false,
+          "detail": "expected empty shell (no Contents.gz) - it now holds a network, audit it before trusting it"
+        },
+        {
+          "name": "label_matches",
+          "ok": true,
+          "detail": "registry=None file='Poitou Maillezais Abbey Ruin Builder (BS_GodFile UE5.8)'"
+        },
+        {
+          "name": "still_stub",
+          "ok": false,
+          "detail": "backup grew a real network - audit it before trusting it"
+        }
+      ],
+      "result": "FAIL",
+      "hda": {
+        "size": 16759,
+        "sha256": "4af24898fbf4ee9b6b4d9aec41d814233887821370abcf2294b90193d2c75968",
+        "label": "Poitou Maillezais Abbey Ruin Builder (BS_GodFile UE5.8)",
+        "sections": [
+          "contents_gz",
+          "contents_plain",
+          "create_script",
+          "dialog_script",
+          "internal_file_options"
+        ],
+        "has_network": true,
+        "network_bytes": 52163,
+        "fallback_ops": [
+          "attribwrangle"
+        ],
+        "preview_error": null
+      }
+    },
+    {
+      "id": "unregistered:Content/HDA/backup/MelodiaRoomShell_1.0_bak1.hda",
+      "status": "unregistered",
+      "path": "Content/HDA/backup/MelodiaRoomShell_1.0_bak1.hda",
+      "result": "WARN",
+      "checks": [
+        {
+          "name": "registered",
+          "ok": false,
+          "detail": "add it to hda_registry.v1.json"
+        }
+      ]
+    },
+    {
+      "id": "unregistered:Content/HDA/backup/MelodiaRoomShell_1.0_bak10.hda",
+      "status": "unregistered",
+      "path": "Content/HDA/backup/MelodiaRoomShell_1.0_bak10.hda",
+      "result": "WARN",
+      "checks": [
+        {
+          "name": "registered",
+          "ok": false,
+          "detail": "add it to hda_registry.v1.json"
+        }
+      ]
+    },
+    {
+      "id": "unregistered:Content/HDA/backup/MelodiaRoomShell_1.0_bak11.hda",
+      "status": "unregistered",
+      "path": "Content/HDA/backup/MelodiaRoomShell_1.0_bak11.hda",
+      "result": "WARN",
+      "checks": [
+        {
+          "name": "registered",
+          "ok": false,
+          "detail": "add it to hda_registry.v1.json"
+        }
+      ]
+    },
+    {
+      "id": "unregistered:Content/HDA/backup/MelodiaRoomShell_1.0_bak12.hda",
+      "status": "unregistered",
+      "path": "Content/HDA/backup/MelodiaRoomShell_1.0_bak12.hda",
+      "result": "WARN",
+      "checks": [
+        {
+          "name": "registered",
+          "ok": false,
+          "detail": "add it to hda_registry.v1.json"
+        }
+      ]
+    },
+    {
+      "id": "unregistered:Content/HDA/backup/MelodiaRoomShell_1.0_bak13.hda",
+      "status": "unregistered",
+      "path": "Content/HDA/backup/MelodiaRoomShell_1.0_bak13.hda",
+      "result": "WARN",
+      "checks": [
+        {
+          "name": "registered",
+          "ok": false,
+          "detail": "add it to hda_registry.v1.json"
+        }
+      ]
+    },
+    {
+      "id": "unregistered:Content/HDA/backup/MelodiaRoomShell_1.0_bak14.hda",
+      "status": "unregistered",
+      "path": "Content/HDA/backup/MelodiaRoomShell_1.0_bak14.hda",
+      "result": "WARN",
+      "checks": [
+        {
+          "name": "registered",
+          "ok": false,
+          "detail": "add it to hda_registry.v1.json"
+        }
+      ]
+    },
+    {
+      "id": "unregistered:Content/HDA/backup/MelodiaRoomShell_1.0_bak15.hda",
+      "status": "unregistered",
+      "path": "Content/HDA/backup/MelodiaRoomShell_1.0_bak15.hda",
+      "result": "WARN",
+      "checks": [
+        {
+          "name": "registered",
+          "ok": false,
+          "detail": "add it to hda_registry.v1.json"
+        }
+      ]
+    },
+    {
+      "id": "unregistered:Content/HDA/backup/MelodiaRoomShell_1.0_bak16.hda",
+      "status": "unregistered",
+      "path": "Content/HDA/backup/MelodiaRoomShell_1.0_bak16.hda",
+      "result": "WARN",
+      "checks": [
+        {
+          "name": "registered",
+          "ok": false,
+          "detail": "add it to hda_registry.v1.json"
+        }
+      ]
+    },
+    {
+      "id": "unregistered:Content/HDA/backup/MelodiaRoomShell_1.0_bak17.hda",
+      "status": "unregistered",
+      "path": "Content/HDA/backup/MelodiaRoomShell_1.0_bak17.hda",
+      "result": "WARN",
+      "checks": [
+        {
+          "name": "registered",
+          "ok": false,
+          "detail": "add it to hda_registry.v1.json"
+        }
+      ]
+    },
+    {
+      "id": "unregistered:Content/HDA/backup/MelodiaRoomShell_1.0_bak18.hda",
+      "status": "unregistered",
+      "path": "Content/HDA/backup/MelodiaRoomShell_1.0_bak18.hda",
+      "result": "WARN",
+      "checks": [
+        {
+          "name": "registered",
+          "ok": false,
+          "detail": "add it to hda_registry.v1.json"
+        }
+      ]
+    },
+    {
+      "id": "unregistered:Content/HDA/backup/MelodiaRoomShell_1.0_bak19.hda",
+      "status": "unregistered",
+      "path": "Content/HDA/backup/MelodiaRoomShell_1.0_bak19.hda",
+      "result": "WARN",
+      "checks": [
+        {
+          "name": "registered",
+          "ok": false,
+          "detail": "add it to hda_registry.v1.json"
+        }
+      ]
+    },
+    {
+      "id": "unregistered:Content/HDA/backup/MelodiaRoomShell_1.0_bak2.hda",
+      "status": "unregistered",
+      "path": "Content/HDA/backup/MelodiaRoomShell_1.0_bak2.hda",
+      "result": "WARN",
+      "checks": [
+        {
+          "name": "registered",
+          "ok": false,
+          "detail": "add it to hda_registry.v1.json"
+        }
+      ]
+    },
+    {
+      "id": "unregistered:Content/HDA/backup/MelodiaRoomShell_1.0_bak20.hda",
+      "status": "unregistered",
+      "path": "Content/HDA/backup/MelodiaRoomShell_1.0_bak20.hda",
+      "result": "WARN",
+      "checks": [
+        {
+          "name": "registered",
+          "ok": false,
+          "detail": "add it to hda_registry.v1.json"
+        }
+      ]
+    },
+    {
+      "id": "unregistered:Content/HDA/backup/MelodiaRoomShell_1.0_bak21.hda",
+      "status": "unregistered",
+      "path": "Content/HDA/backup/MelodiaRoomShell_1.0_bak21.hda",
+      "result": "WARN",
+      "checks": [
+        {
+          "name": "registered",
+          "ok": false,
+          "detail": "add it to hda_registry.v1.json"
+        }
+      ]
+    },
+    {
+      "id": "unregistered:Content/HDA/backup/MelodiaRoomShell_1.0_bak22.hda",
+      "status": "unregistered",
+      "path": "Content/HDA/backup/MelodiaRoomShell_1.0_bak22.hda",
+      "result": "WARN",
+      "checks": [
+        {
+          "name": "registered",
+          "ok": false,
+          "detail": "add it to hda_registry.v1.json"
+        }
+      ]
+    },
+    {
+      "id": "unregistered:Content/HDA/backup/MelodiaRoomShell_1.0_bak23.hda",
+      "status": "unregistered",
+      "path": "Content/HDA/backup/MelodiaRoomShell_1.0_bak23.hda",
+      "result": "WARN",
+      "checks": [
+        {
+          "name": "registered",
+          "ok": false,
+          "detail": "add it to hda_registry.v1.json"
+        }
+      ]
+    },
+    {
+      "id": "unregistered:Content/HDA/backup/MelodiaRoomShell_1.0_bak24.hda",
+      "status": "unregistered",
+      "path": "Content/HDA/backup/MelodiaRoomShell_1.0_bak24.hda",
+      "result": "WARN",
+      "checks": [
+        {
+          "name": "registered",
+          "ok": false,
+          "detail": "add it to hda_registry.v1.json"
+        }
+      ]
+    },
+    {
+      "id": "unregistered:Content/HDA/backup/MelodiaRoomShell_1.0_bak25.hda",
+      "status": "unregistered",
+      "path": "Content/HDA/backup/MelodiaRoomShell_1.0_bak25.hda",
+      "result": "WARN",
+      "checks": [
+        {
+          "name": "registered",
+          "ok": false,
+          "detail": "add it to hda_registry.v1.json"
+        }
+      ]
+    },
+    {
+      "id": "unregistered:Content/HDA/backup/MelodiaRoomShell_1.0_bak26.hda",
+      "status": "unregistered",
+      "path": "Content/HDA/backup/MelodiaRoomShell_1.0_bak26.hda",
+      "result": "WARN",
+      "checks": [
+        {
+          "name": "registered",
+          "ok": false,
+          "detail": "add it to hda_registry.v1.json"
+        }
+      ]
+    },
+    {
+      "id": "unregistered:Content/HDA/backup/MelodiaRoomShell_1.0_bak27.hda",
+      "status": "unregistered",
+      "path": "Content/HDA/backup/MelodiaRoomShell_1.0_bak27.hda",
+      "result": "WARN",
+      "checks": [
+        {
+          "name": "registered",
+          "ok": false,
+          "detail": "add it to hda_registry.v1.json"
+        }
+      ]
+    },
+    {
+      "id": "unregistered:Content/HDA/backup/MelodiaRoomShell_1.0_bak28.hda",
+      "status": "unregistered",
+      "path": "Content/HDA/backup/MelodiaRoomShell_1.0_bak28.hda",
+      "result": "WARN",
+      "checks": [
+        {
+          "name": "registered",
+          "ok": false,
+          "detail": "add it to hda_registry.v1.json"
+        }
+      ]
+    },
+    {
+      "id": "unregistered:Content/HDA/backup/MelodiaRoomShell_1.0_bak29.hda",
+      "status": "unregistered",
+      "path": "Content/HDA/backup/MelodiaRoomShell_1.0_bak29.hda",
+      "result": "WARN",
+      "checks": [
+        {
+          "name": "registered",
+          "ok": false,
+          "detail": "add it to hda_registry.v1.json"
+        }
+      ]
+    },
+    {
+      "id": "unregistered:Content/HDA/backup/MelodiaRoomShell_1.0_bak3.hda",
+      "status": "unregistered",
+      "path": "Content/HDA/backup/MelodiaRoomShell_1.0_bak3.hda",
+      "result": "WARN",
+      "checks": [
+        {
+          "name": "registered",
+          "ok": false,
+          "detail": "add it to hda_registry.v1.json"
+        }
+      ]
+    },
+    {
+      "id": "unregistered:Content/HDA/backup/MelodiaRoomShell_1.0_bak4.hda",
+      "status": "unregistered",
+      "path": "Content/HDA/backup/MelodiaRoomShell_1.0_bak4.hda",
+      "result": "WARN",
+      "checks": [
+        {
+          "name": "registered",
+          "ok": false,
+          "detail": "add it to hda_registry.v1.json"
+        }
+      ]
+    },
+    {
+      "id": "unregistered:Content/HDA/backup/MelodiaRoomShell_1.0_bak5.hda",
+      "status": "unregistered",
+      "path": "Content/HDA/backup/MelodiaRoomShell_1.0_bak5.hda",
+      "result": "WARN",
+      "checks": [
+        {
+          "name": "registered",
+          "ok": false,
+          "detail": "add it to hda_registry.v1.json"
+        }
+      ]
+    },
+    {
+      "id": "unregistered:Content/HDA/backup/MelodiaRoomShell_1.0_bak6.hda",
+      "status": "unregistered",
+      "path": "Content/HDA/backup/MelodiaRoomShell_1.0_bak6.hda",
+      "result": "WARN",
+      "checks": [
+        {
+          "name": "registered",
+          "ok": false,
+          "detail": "add it to hda_registry.v1.json"
+        }
+      ]
+    },
+    {
+      "id": "unregistered:Content/HDA/backup/MelodiaRoomShell_1.0_bak7.hda",
+      "status": "unregistered",
+      "path": "Content/HDA/backup/MelodiaRoomShell_1.0_bak7.hda",
+      "result": "WARN",
+      "checks": [
+        {
+          "name": "registered",
+          "ok": false,
+          "detail": "add it to hda_registry.v1.json"
+        }
+      ]
+    },
+    {
+      "id": "unregistered:Content/HDA/backup/MelodiaRoomShell_1.0_bak8.hda",
+      "status": "unregistered",
+      "path": "Content/HDA/backup/MelodiaRoomShell_1.0_bak8.hda",
+      "result": "WARN",
+      "checks": [
+        {
+          "name": "registered",
+          "ok": false,
+          "detail": "add it to hda_registry.v1.json"
+        }
+      ]
+    },
+    {
+      "id": "unregistered:Content/HDA/backup/MelodiaRoomShell_1.0_bak9.hda",
+      "status": "unregistered",
+      "path": "Content/HDA/backup/MelodiaRoomShell_1.0_bak9.hda",
+      "result": "WARN",
+      "checks": [
+        {
+          "name": "registered",
+          "ok": false,
+          "detail": "add it to hda_registry.v1.json"
+        }
+      ]
+    },
+    {
+      "id": "unregistered:Content/HDA/backup/MelodiaStainedGlassWindow_1.0_bak1.hda",
+      "status": "unregistered",
+      "path": "Content/HDA/backup/MelodiaStainedGlassWindow_1.0_bak1.hda",
+      "result": "WARN",
+      "checks": [
+        {
+          "name": "registered",
+          "ok": false,
+          "detail": "add it to hda_registry.v1.json"
+        }
+      ]
+    },
+    {
+      "id": "unregistered:Content/HDA/backup/MelodiaStainedGlassWindow_1.0_bak10.hda",
+      "status": "unregistered",
+      "path": "Content/HDA/backup/MelodiaStainedGlassWindow_1.0_bak10.hda",
+      "result": "WARN",
+      "checks": [
+        {
+          "name": "registered",
+          "ok": false,
+          "detail": "add it to hda_registry.v1.json"
+        }
+      ]
+    },
+    {
+      "id": "unregistered:Content/HDA/backup/MelodiaStainedGlassWindow_1.0_bak11.hda",
+      "status": "unregistered",
+      "path": "Content/HDA/backup/MelodiaStainedGlassWindow_1.0_bak11.hda",
+      "result": "WARN",
+      "checks": [
+        {
+          "name": "registered",
+          "ok": false,
+          "detail": "add it to hda_registry.v1.json"
+        }
+      ]
+    },
+    {
+      "id": "unregistered:Content/HDA/backup/MelodiaStainedGlassWindow_1.0_bak12.hda",
+      "status": "unregistered",
+      "path": "Content/HDA/backup/MelodiaStainedGlassWindow_1.0_bak12.hda",
+      "result": "WARN",
+      "checks": [
+        {
+          "name": "registered",
+          "ok": false,
+          "detail": "add it to hda_registry.v1.json"
+        }
+      ]
+    },
+    {
+      "id": "unregistered:Content/HDA/backup/MelodiaStainedGlassWindow_1.0_bak13.hda",
+      "status": "unregistered",
+      "path": "Content/HDA/backup/MelodiaStainedGlassWindow_1.0_bak13.hda",
+      "result": "WARN",
+      "checks": [
+        {
+          "name": "registered",
+          "ok": false,
+          "detail": "add it to hda_registry.v1.json"
+        }
+      ]
+    },
+    {
+      "id": "unregistered:Content/HDA/backup/MelodiaStainedGlassWindow_1.0_bak14.hda",
+      "status": "unregistered",
+      "path": "Content/HDA/backup/MelodiaStainedGlassWindow_1.0_bak14.hda",
+      "result": "WARN",
+      "checks": [
+        {
+          "name": "registered",
+          "ok": false,
+          "detail": "add it to hda_registry.v1.json"
+        }
+      ]
+    },
+    {
+      "id": "unregistered:Content/HDA/backup/MelodiaStainedGlassWindow_1.0_bak15.hda",
+      "status": "unregistered",
+      "path": "Content/HDA/backup/MelodiaStainedGlassWindow_1.0_bak15.hda",
+      "result": "WARN",
+      "checks": [
+        {
+          "name": "registered",
+          "ok": false,
+          "detail": "add it to hda_registry.v1.json"
+        }
+      ]
+    },
+    {
+      "id": "unregistered:Content/HDA/backup/MelodiaStainedGlassWindow_1.0_bak16.hda",
+      "status": "unregistered",
+      "path": "Content/HDA/backup/MelodiaStainedGlassWindow_1.0_bak16.hda",
+      "result": "WARN",
+      "checks": [
+        {
+          "name": "registered",
+          "ok": false,
+          "detail": "add it to hda_registry.v1.json"
+        }
+      ]
+    },
+    {
+      "id": "unregistered:Content/HDA/backup/MelodiaStainedGlassWindow_1.0_bak17.hda",
+      "status": "unregistered",
+      "path": "Content/HDA/backup/MelodiaStainedGlassWindow_1.0_bak17.hda",
+      "result": "WARN",
+      "checks": [
+        {
+          "name": "registered",
+          "ok": false,
+          "detail": "add it to hda_registry.v1.json"
+        }
+      ]
+    },
+    {
+      "id": "unregistered:Content/HDA/backup/MelodiaStainedGlassWindow_1.0_bak18.hda",
+      "status": "unregistered",
+      "path": "Content/HDA/backup/MelodiaStainedGlassWindow_1.0_bak18.hda",
+      "result": "WARN",
+      "checks": [
+        {
+          "name": "registered",
+          "ok": false,
+          "detail": "add it to hda_registry.v1.json"
+        }
+      ]
+    },
+    {
+      "id": "unregistered:Content/HDA/backup/MelodiaStainedGlassWindow_1.0_bak19.hda",
+      "status": "unregistered",
+      "path": "Content/HDA/backup/MelodiaStainedGlassWindow_1.0_bak19.hda",
+      "result": "WARN",
+      "checks": [
+        {
+          "name": "registered",
+          "ok": false,
+          "detail": "add it to hda_registry.v1.json"
+        }
+      ]
+    },
+    {
+      "id": "unregistered:Content/HDA/backup/MelodiaStainedGlassWindow_1.0_bak2.hda",
+      "status": "unregistered",
+      "path": "Content/HDA/backup/MelodiaStainedGlassWindow_1.0_bak2.hda",
+      "result": "WARN",
+      "checks": [
+        {
+          "name": "registered",
+          "ok": false,
+          "detail": "add it to hda_registry.v1.json"
+        }
+      ]
+    },
+    {
+      "id": "unregistered:Content/HDA/backup/MelodiaStainedGlassWindow_1.0_bak20.hda",
+      "status": "unregistered",
+      "path": "Content/HDA/backup/MelodiaStainedGlassWindow_1.0_bak20.hda",
+      "result": "WARN",
+      "checks": [
+        {
+          "name": "registered",
+          "ok": false,
+          "detail": "add it to hda_registry.v1.json"
+        }
+      ]
+    },
+    {
+      "id": "unregistered:Content/HDA/backup/MelodiaStainedGlassWindow_1.0_bak21.hda",
+      "status": "unregistered",
+      "path": "Content/HDA/backup/MelodiaStainedGlassWindow_1.0_bak21.hda",
+      "result": "WARN",
+      "checks": [
+        {
+          "name": "registered",
+          "ok": false,
+          "detail": "add it to hda_registry.v1.json"
+        }
+      ]
+    },
+    {
+      "id": "unregistered:Content/HDA/backup/MelodiaStainedGlassWindow_1.0_bak22.hda",
+      "status": "unregistered",
+      "path": "Content/HDA/backup/MelodiaStainedGlassWindow_1.0_bak22.hda",
+      "result": "WARN",
+      "checks": [
+        {
+          "name": "registered",
+          "ok": false,
+          "detail": "add it to hda_registry.v1.json"
+        }
+      ]
+    },
+    {
+      "id": "unregistered:Content/HDA/backup/MelodiaStainedGlassWindow_1.0_bak23.hda",
+      "status": "unregistered",
+      "path": "Content/HDA/backup/MelodiaStainedGlassWindow_1.0_bak23.hda",
+      "result": "WARN",
+      "checks": [
+        {
+          "name": "registered",
+          "ok": false,
+          "detail": "add it to hda_registry.v1.json"
+        }
+      ]
+    },
+    {
+      "id": "unregistered:Content/HDA/backup/MelodiaStainedGlassWindow_1.0_bak24.hda",
+      "status": "unregistered",
+      "path": "Content/HDA/backup/MelodiaStainedGlassWindow_1.0_bak24.hda",
+      "result": "WARN",
+      "checks": [
+        {
+          "name": "registered",
+          "ok": false,
+          "detail": "add it to hda_registry.v1.json"
+        }
+      ]
+    },
+    {
+      "id": "unregistered:Content/HDA/backup/MelodiaStainedGlassWindow_1.0_bak3.hda",
+      "status": "unregistered",
+      "path": "Content/HDA/backup/MelodiaStainedGlassWindow_1.0_bak3.hda",
+      "result": "WARN",
+      "checks": [
+        {
+          "name": "registered",
+          "ok": false,
+          "detail": "add it to hda_registry.v1.json"
+        }
+      ]
+    },
+    {
+      "id": "unregistered:Content/HDA/backup/MelodiaStainedGlassWindow_1.0_bak4.hda",
+      "status": "unregistered",
+      "path": "Content/HDA/backup/MelodiaStainedGlassWindow_1.0_bak4.hda",
+      "result": "WARN",
+      "checks": [
+        {
+          "name": "registered",
+          "ok": false,
+          "detail": "add it to hda_registry.v1.json"
+        }
+      ]
+    },
+    {
+      "id": "unregistered:Content/HDA/backup/MelodiaStainedGlassWindow_1.0_bak5.hda",
+      "status": "unregistered",
+      "path": "Content/HDA/backup/MelodiaStainedGlassWindow_1.0_bak5.hda",
+      "result": "WARN",
+      "checks": [
+        {
+          "name": "registered",
+          "ok": false,
+          "detail": "add it to hda_registry.v1.json"
+        }
+      ]
+    },
+    {
+      "id": "unregistered:Content/HDA/backup/MelodiaStainedGlassWindow_1.0_bak6.hda",
+      "status": "unregistered",
+      "path": "Content/HDA/backup/MelodiaStainedGlassWindow_1.0_bak6.hda",
+      "result": "WARN",
+      "checks": [
+        {
+          "name": "registered",
+          "ok": false,
+          "detail": "add it to hda_registry.v1.json"
+        }
+      ]
+    },
+    {
+      "id": "unregistered:Content/HDA/backup/MelodiaStainedGlassWindow_1.0_bak7.hda",
+      "status": "unregistered",
+      "path": "Content/HDA/backup/MelodiaStainedGlassWindow_1.0_bak7.hda",
+      "result": "WARN",
+      "checks": [
+        {
+          "name": "registered",
+          "ok": false,
+          "detail": "add it to hda_registry.v1.json"
+        }
+      ]
+    },
+    {
+      "id": "unregistered:Content/HDA/backup/MelodiaStainedGlassWindow_1.0_bak8.hda",
+      "status": "unregistered",
+      "path": "Content/HDA/backup/MelodiaStainedGlassWindow_1.0_bak8.hda",
+      "result": "WARN",
+      "checks": [
+        {
+          "name": "registered",
+          "ok": false,
+          "detail": "add it to hda_registry.v1.json"
+        }
+      ]
+    },
+    {
+      "id": "unregistered:Content/HDA/backup/MelodiaStainedGlassWindow_1.0_bak9.hda",
+      "status": "unregistered",
+      "path": "Content/HDA/backup/MelodiaStainedGlassWindow_1.0_bak9.hda",
+      "result": "WARN",
+      "checks": [
+        {
+          "name": "registered",
+          "ok": false,
+          "detail": "add it to hda_registry.v1.json"
+        }
+      ]
+    },
+    {
+      "id": "unregistered:Content/HDA/MelodiaRoomShell_1.0.hda",
+      "status": "unregistered",
+      "path": "Content/HDA/MelodiaRoomShell_1.0.hda",
+      "result": "WARN",
+      "checks": [
+        {
+          "name": "registered",
+          "ok": false,
+          "detail": "add it to hda_registry.v1.json"
+        }
+      ]
+    }
+  ],
+  "scan": {
+    "project_hda_files": [
+      "hda/ArpeggioStair_1.0.hda",
+      "hda/backup/HDA_Poitou_AbbeyBuilder_1.0_bak1.hda",
+      "hda/backup/HDA_Poitou_AbbeyBuilder_1.0_bak10.hda",
+      "hda/backup/HDA_Poitou_AbbeyBuilder_1.0_bak11.hda",
+      "hda/backup/HDA_Poitou_AbbeyBuilder_1.0_bak12.hda",
+      "hda/backup/HDA_Poitou_AbbeyBuilder_1.0_bak2.hda",
+      "hda/backup/HDA_Poitou_AbbeyBuilder_1.0_bak3.hda",
+      "hda/backup/HDA_Poitou_AbbeyBuilder_1.0_bak4.hda",
+      "hda/backup/HDA_Poitou_AbbeyBuilder_1.0_bak5.hda",
+      "hda/backup/HDA_Poitou_AbbeyBuilder_1.0_bak6.hda",
+      "hda/backup/HDA_Poitou_AbbeyBuilder_1.0_bak7.hda",
+      "hda/backup/HDA_Poitou_AbbeyBuilder_1.0_bak8.hda",
+      "hda/backup/HDA_Poitou_AbbeyBuilder_1.0_bak9.hda",
+      "hda/CrystalCathedralV3.hda",
+      "hda/HDA_Melodia_CrystalCathedral_1.0.hda",
+      "hda/HDA_Poitou_AbbeyBuilder_1.0.hda",
+      "Content/HDA/ArpeggioStair_1.0.hda",
+      "Content/HDA/backup/MelodiaRoomShell_1.0_bak1.hda",
+      "Content/HDA/backup/MelodiaRoomShell_1.0_bak10.hda",
+      "Content/HDA/backup/MelodiaRoomShell_1.0_bak11.hda",
+      "Content/HDA/backup/MelodiaRoomShell_1.0_bak12.hda",
+      "Content/HDA/backup/MelodiaRoomShell_1.0_bak13.hda",
+      "Content/HDA/backup/MelodiaRoomShell_1.0_bak14.hda",
+      "Content/HDA/backup/MelodiaRoomShell_1.0_bak15.hda",
+      "Content/HDA/backup/MelodiaRoomShell_1.0_bak16.hda",
+      "Content/HDA/backup/MelodiaRoomShell_1.0_bak17.hda",
+      "Content/HDA/backup/MelodiaRoomShell_1.0_bak18.hda",
+      "Content/HDA/backup/MelodiaRoomShell_1.0_bak19.hda",
+      "Content/HDA/backup/MelodiaRoomShell_1.0_bak2.hda",
+      "Content/HDA/backup/MelodiaRoomShell_1.0_bak20.hda",
+      "Content/HDA/backup/MelodiaRoomShell_1.0_bak21.hda",
+      "Content/HDA/backup/MelodiaRoomShell_1.0_bak22.hda",
+      "Content/HDA/backup/MelodiaRoomShell_1.0_bak23.hda",
+      "Content/HDA/backup/MelodiaRoomShell_1.0_bak24.hda",
+      "Content/HDA/backup/MelodiaRoomShell_1.0_bak25.hda",
+      "Content/HDA/backup/MelodiaRoomShell_1.0_bak26.hda",
+      "Content/HDA/backup/MelodiaRoomShell_1.0_bak27.hda",
+      "Content/HDA/backup/MelodiaRoomShell_1.0_bak28.hda",
+      "Content/HDA/backup/MelodiaRoomShell_1.0_bak29.hda",
+      "Content/HDA/backup/MelodiaRoomShell_1.0_bak3.hda",
+      "Content/HDA/backup/MelodiaRoomShell_1.0_bak4.hda",
+      "Content/HDA/backup/MelodiaRoomShell_1.0_bak5.hda",
+      "Content/HDA/backup/MelodiaRoomShell_1.0_bak6.hda",
+      "Content/HDA/backup/MelodiaRoomShell_1.0_bak7.hda",
+      "Content/HDA/backup/MelodiaRoomShell_1.0_bak8.hda",
+      "Content/HDA/backup/MelodiaRoomShell_1.0_bak9.hda",
+      "Content/HDA/backup/MelodiaStainedGlassWindow_1.0_bak1.hda",
+      "Content/HDA/backup/MelodiaStainedGlassWindow_1.0_bak10.hda",
+      "Content/HDA/backup/MelodiaStainedGlassWindow_1.0_bak11.hda",
+      "Content/HDA/backup/MelodiaStainedGlassWindow_1.0_bak12.hda",
+      "Content/HDA/backup/MelodiaStainedGlassWindow_1.0_bak13.hda",
+      "Content/HDA/backup/MelodiaStainedGlassWindow_1.0_bak14.hda",
+      "Content/HDA/backup/MelodiaStainedGlassWindow_1.0_bak15.hda",
+      "Content/HDA/backup/MelodiaStainedGlassWindow_1.0_bak16.hda",
+      "Content/HDA/backup/MelodiaStainedGlassWindow_1.0_bak17.hda",
+      "Content/HDA/backup/MelodiaStainedGlassWindow_1.0_bak18.hda",
+      "Content/HDA/backup/MelodiaStainedGlassWindow_1.0_bak19.hda",
+      "Content/HDA/backup/MelodiaStainedGlassWindow_1.0_bak2.hda",
+      "Content/HDA/backup/MelodiaStainedGlassWindow_1.0_bak20.hda",
+      "Content/HDA/backup/MelodiaStainedGlassWindow_1.0_bak21.hda",
+      "Content/HDA/backup/MelodiaStainedGlassWindow_1.0_bak22.hda",
+      "Content/HDA/backup/MelodiaStainedGlassWindow_1.0_bak23.hda",
+      "Content/HDA/backup/MelodiaStainedGlassWindow_1.0_bak24.hda",
+      "Content/HDA/backup/MelodiaStainedGlassWindow_1.0_bak3.hda",
+      "Content/HDA/backup/MelodiaStainedGlassWindow_1.0_bak4.hda",
+      "Content/HDA/backup/MelodiaStainedGlassWindow_1.0_bak5.hda",
+      "Content/HDA/backup/MelodiaStainedGlassWindow_1.0_bak6.hda",
+      "Content/HDA/backup/MelodiaStainedGlassWindow_1.0_bak7.hda",
+      "Content/HDA/backup/MelodiaStainedGlassWindow_1.0_bak8.hda",
+      "Content/HDA/backup/MelodiaStainedGlassWindow_1.0_bak9.hda",
+      "Content/HDA/HDA_Poitou_AbbeyBuilder_1.0.hda",
+      "Content/HDA/MelodiaRoomShell_1.0.hda",
+      "Content/HDA/MelodiaStainedGlassWindow_1.0.hda"
+    ],
+    "unregistered": [
+      "Content/HDA/backup/MelodiaRoomShell_1.0_bak1.hda",
+      "Content/HDA/backup/MelodiaRoomShell_1.0_bak10.hda",
+      "Content/HDA/backup/MelodiaRoomShell_1.0_bak11.hda",
+      "Content/HDA/backup/MelodiaRoomShell_1.0_bak12.hda",
+      "Content/HDA/backup/MelodiaRoomShell_1.0_bak13.hda",
+      "Content/HDA/backup/MelodiaRoomShell_1.0_bak14.hda",
+      "Content/HDA/backup/MelodiaRoomShell_1.0_bak15.hda",
+      "Content/HDA/backup/MelodiaRoomShell_1.0_bak16.hda",
+      "Content/HDA/backup/MelodiaRoomShell_1.0_bak17.hda",
+      "Content/HDA/backup/MelodiaRoomShell_1.0_bak18.hda",
+      "Content/HDA/backup/MelodiaRoomShell_1.0_bak19.hda",
+      "Content/HDA/backup/MelodiaRoomShell_1.0_bak2.hda",
+      "Content/HDA/backup/MelodiaRoomShell_1.0_bak20.hda",
+      "Content/HDA/backup/MelodiaRoomShell_1.0_bak21.hda",
+      "Content/HDA/backup/MelodiaRoomShell_1.0_bak22.hda",
+      "Content/HDA/backup/MelodiaRoomShell_1.0_bak23.hda",
+      "Content/HDA/backup/MelodiaRoomShell_1.0_bak24.hda",
+      "Content/HDA/backup/MelodiaRoomShell_1.0_bak25.hda",
+      "Content/HDA/backup/MelodiaRoomShell_1.0_bak26.hda",
+      "Content/HDA/backup/MelodiaRoomShell_1.0_bak27.hda",
+      "Content/HDA/backup/MelodiaRoomShell_1.0_bak28.hda",
+      "Content/HDA/backup/MelodiaRoomShell_1.0_bak29.hda",
+      "Content/HDA/backup/MelodiaRoomShell_1.0_bak3.hda",
+      "Content/HDA/backup/MelodiaRoomShell_1.0_bak4.hda",
+      "Content/HDA/backup/MelodiaRoomShell_1.0_bak5.hda",
+      "Content/HDA/backup/MelodiaRoomShell_1.0_bak6.hda",
+      "Content/HDA/backup/MelodiaRoomShell_1.0_bak7.hda",
+      "Content/HDA/backup/MelodiaRoomShell_1.0_bak8.hda",
+      "Content/HDA/backup/MelodiaRoomShell_1.0_bak9.hda",
+      "Content/HDA/backup/MelodiaStainedGlassWindow_1.0_bak1.hda",
+      "Content/HDA/backup/MelodiaStainedGlassWindow_1.0_bak10.hda",
+      "Content/HDA/backup/MelodiaStainedGlassWindow_1.0_bak11.hda",
+      "Content/HDA/backup/MelodiaStainedGlassWindow_1.0_bak12.hda",
+      "Content/HDA/backup/MelodiaStainedGlassWindow_1.0_bak13.hda",
+      "Content/HDA/backup/MelodiaStainedGlassWindow_1.0_bak14.hda",
+      "Content/HDA/backup/MelodiaStainedGlassWindow_1.0_bak15.hda",
+      "Content/HDA/backup/MelodiaStainedGlassWindow_1.0_bak16.hda",
+      "Content/HDA/backup/MelodiaStainedGlassWindow_1.0_bak17.hda",
+      "Content/HDA/backup/MelodiaStainedGlassWindow_1.0_bak18.hda",
+      "Content/HDA/backup/MelodiaStainedGlassWindow_1.0_bak19.hda",
+      "Content/HDA/backup/MelodiaStainedGlassWindow_1.0_bak2.hda",
+      "Content/HDA/backup/MelodiaStainedGlassWindow_1.0_bak20.hda",
+      "Content/HDA/backup/MelodiaStainedGlassWindow_1.0_bak21.hda",
+      "Content/HDA/backup/MelodiaStainedGlassWindow_1.0_bak22.hda",
+      "Content/HDA/backup/MelodiaStainedGlassWindow_1.0_bak23.hda",
+      "Content/HDA/backup/MelodiaStainedGlassWindow_1.0_bak24.hda",
+      "Content/HDA/backup/MelodiaStainedGlassWindow_1.0_bak3.hda",
+      "Content/HDA/backup/MelodiaStainedGlassWindow_1.0_bak4.hda",
+      "Content/HDA/backup/MelodiaStainedGlassWindow_1.0_bak5.hda",
+      "Content/HDA/backup/MelodiaStainedGlassWindow_1.0_bak6.hda",
+      "Content/HDA/backup/MelodiaStainedGlassWindow_1.0_bak7.hda",
+      "Content/HDA/backup/MelodiaStainedGlassWindow_1.0_bak8.hda",
+      "Content/HDA/backup/MelodiaStainedGlassWindow_1.0_bak9.hda",
+      "Content/HDA/MelodiaRoomShell_1.0.hda"
+    ],
+    "vendor_hda_files": 15,
+    "stub_files": [
+      "hda/backup/HDA_Poitou_AbbeyBuilder_1.0_bak1.hda",
+      "hda/backup/HDA_Poitou_AbbeyBuilder_1.0_bak10.hda",
+      "hda/backup/HDA_Poitou_AbbeyBuilder_1.0_bak11.hda",
+      "hda/backup/HDA_Poitou_AbbeyBuilder_1.0_bak12.hda",
+      "hda/backup/HDA_Poitou_AbbeyBuilder_1.0_bak2.hda",
+      "hda/backup/HDA_Poitou_AbbeyBuilder_1.0_bak3.hda",
+      "hda/backup/HDA_Poitou_AbbeyBuilder_1.0_bak4.hda",
+      "hda/backup/HDA_Poitou_AbbeyBuilder_1.0_bak5.hda",
+      "hda/backup/HDA_Poitou_AbbeyBuilder_1.0_bak6.hda",
+      "hda/backup/HDA_Poitou_AbbeyBuilder_1.0_bak7.hda",
+      "hda/backup/HDA_Poitou_AbbeyBuilder_1.0_bak8.hda",
+      "hda/backup/HDA_Poitou_AbbeyBuilder_1.0_bak9.hda",
+      "Content/HDA/backup/MelodiaRoomShell_1.0_bak1.hda",
+      "Content/HDA/backup/MelodiaRoomShell_1.0_bak10.hda",
+      "Content/HDA/backup/MelodiaRoomShell_1.0_bak11.hda",
+      "Content/HDA/backup/MelodiaRoomShell_1.0_bak12.hda",
+      "Content/HDA/backup/MelodiaRoomShell_1.0_bak13.hda",
+      "Content/HDA/backup/MelodiaRoomShell_1.0_bak14.hda",
+      "Content/HDA/backup/MelodiaRoomShell_1.0_bak15.hda",
+      "Content/HDA/backup/MelodiaRoomShell_1.0_bak16.hda",
+      "Content/HDA/backup/MelodiaRoomShell_1.0_bak17.hda",
+      "Content/HDA/backup/MelodiaRoomShell_1.0_bak18.hda",
+      "Content/HDA/backup/MelodiaRoomShell_1.0_bak19.hda",
+      "Content/HDA/backup/MelodiaRoomShell_1.0_bak2.hda",
+      "Content/HDA/backup/MelodiaRoomShell_1.0_bak20.hda",
+      "Content/HDA/backup/MelodiaRoomShell_1.0_bak21.hda",
+      "Content/HDA/backup/MelodiaRoomShell_1.0_bak22.hda",
+      "Content/HDA/backup/MelodiaRoomShell_1.0_bak23.hda",
+      "Content/HDA/backup/MelodiaRoomShell_1.0_bak24.hda",
+      "Content/HDA/backup/MelodiaRoomShell_1.0_bak25.hda",
+      "Content/HDA/backup/MelodiaRoomShell_1.0_bak26.hda",
+      "Content/HDA/backup/MelodiaRoomShell_1.0_bak27.hda",
+      "Content/HDA/backup/MelodiaRoomShell_1.0_bak28.hda",
+      "Content/HDA/backup/MelodiaRoomShell_1.0_bak29.hda",
+      "Content/HDA/backup/MelodiaRoomShell_1.0_bak3.hda",
+      "Content/HDA/backup/MelodiaRoomShell_1.0_bak4.hda",
+      "Content/HDA/backup/MelodiaRoomShell_1.0_bak5.hda",
+      "Content/HDA/backup/MelodiaRoomShell_1.0_bak6.hda",
+      "Content/HDA/backup/MelodiaRoomShell_1.0_bak7.hda",
+      "Content/HDA/backup/MelodiaRoomShell_1.0_bak8.hda",
+      "Content/HDA/backup/MelodiaRoomShell_1.0_bak9.hda",
+      "Content/HDA/backup/MelodiaStainedGlassWindow_1.0_bak1.hda",
+      "Content/HDA/backup/MelodiaStainedGlassWindow_1.0_bak10.hda",
+      "Content/HDA/backup/MelodiaStainedGlassWindow_1.0_bak11.hda",
+      "Content/HDA/backup/MelodiaStainedGlassWindow_1.0_bak12.hda",
+      "Content/HDA/backup/MelodiaStainedGlassWindow_1.0_bak13.hda",
+      "Content/HDA/backup/MelodiaStainedGlassWindow_1.0_bak14.hda",
+      "Content/HDA/backup/MelodiaStainedGlassWindow_1.0_bak15.hda",
+      "Content/HDA/backup/MelodiaStainedGlassWindow_1.0_bak16.hda",
+      "Content/HDA/backup/MelodiaStainedGlassWindow_1.0_bak17.hda",
+      "Content/HDA/backup/MelodiaStainedGlassWindow_1.0_bak18.hda",
+      "Content/HDA/backup/MelodiaStainedGlassWindow_1.0_bak19.hda",
+      "Content/HDA/backup/MelodiaStainedGlassWindow_1.0_bak2.hda",
+      "Content/HDA/backup/MelodiaStainedGlassWindow_1.0_bak20.hda",
+      "Content/HDA/backup/MelodiaStainedGlassWindow_1.0_bak21.hda",
+      "Content/HDA/backup/MelodiaStainedGlassWindow_1.0_bak22.hda",
+      "Content/HDA/backup/MelodiaStainedGlassWindow_1.0_bak23.hda",
+      "Content/HDA/backup/MelodiaStainedGlassWindow_1.0_bak24.hda",
+      "Content/HDA/backup/MelodiaStainedGlassWindow_1.0_bak3.hda",
+      "Content/HDA/backup/MelodiaStainedGlassWindow_1.0_bak4.hda",
+      "Content/HDA/backup/MelodiaStainedGlassWindow_1.0_bak5.hda",
+      "Content/HDA/backup/MelodiaStainedGlassWindow_1.0_bak6.hda",
+      "Content/HDA/backup/MelodiaStainedGlassWindow_1.0_bak7.hda",
+      "Content/HDA/backup/MelodiaStainedGlassWindow_1.0_bak8.hda",
+      "Content/HDA/backup/MelodiaStainedGlassWindow_1.0_bak9.hda"
+    ]
+  },
+  "overall": "FAIL"
+}

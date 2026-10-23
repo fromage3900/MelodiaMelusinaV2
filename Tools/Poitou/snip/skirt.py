@@ -1,0 +1,7 @@
+S = lambda n: open(os.path.join(HERE, "snip", n)).read()
+sk = geo.createNode("grid","skirt_grid"); sk.parm("sizex").setExpression('ch("../skirt_extent")'); sk.parm("sizey").setExpression('ch("../skirt_extent")')
+sk.parm("tx").set(500); sk.parm("tz").set(500); sk.parm("rows").setExpression('int(ch("../skirt_extent")/50)+1'); sk.parm("cols").setExpression('int(ch("../skirt_extent")/50)+1')
+skh = wrangle("skirt_swells", S("skf.vex") + '@P.y = skirt_h(@P.x,@P.z);', 2, [sk])
+skd = wrangle("skirt_cut_core", S("skcut.vex"), 1, [skh])
+o3 = geo.createNode("output", "output_skirt_mesh"); o3.parm("outputidx").set(3); o3.setInput(0, skd)
+o0.setDisplayFlag(True)
