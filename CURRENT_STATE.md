@@ -6,6 +6,10 @@
 
 The latest documented additive C:→G: file-sync dry run reports **0 files left to copy**, with overwritten originals backed up; that is a file-copy result, not a Git-history equivalence certificate. G:'s parked history was subsequently preserved on `origin` at `collab/gdrive-parked-20261013`. Verify both workstations again before making any fresh synchronization claim.
 
+## Faraway Mother Chladni Cloth Day — research prep 2026-10-23
+
+Research and no-overwrite tools now prepared: five verified French reference DEM crop centres, IGN BD/RGE ALTI and public Copernicus GLO-30 data-source links, six couture-geology material recipes, mathematical Chladni vector preview, and a metre-scale EPSG:2154 raster-to-16-bit PNG/GeoTIFF/hillshade/slope converter. Lab commands and source/licence boundaries are appended to `Docs/Art/FARAWAY_MOTHER_FABRIC_MOUNTAIN_BUILD_2026-09-02.md`. A synthetic offline converter smoke test ran separately, but NO French source DEM fetch, Houdini Education cook, material bake, asset import or UE runtime proof has been established. Preserve `Houdini/FarawayDrape.hip`, canonical (3,5) field, World Compiler, and existing runtime authorship.
+
 ## Faraway Mother harmonic continental genesis — proposed 2026-10-23
 
 Houdini research planning only: the multiscale 8 x 8 km musical textile continent is **not built**. A bounded first lab gate is four 250 m tiles (500 x 500 m), global (3,5) Chladni field continuity, one selective Vellum drape, a mathematically aligned nodal seam, and non-destructive evidence. The proposal is appended to [`Docs/Art/FARAWAY_MOTHER_FABRIC_MOUNTAIN_BUILD_2026-09-02.md`](Docs/Art/FARAWAY_MOTHER_FABRIC_MOUNTAIN_BUILD_2026-09-02.md). Existing FarawayDrape hand-authored work, World Compiler, cymatics single-writer and Poitou P0 remain authoritative/untouched. No lab cook or UE runtime proof is claimed.

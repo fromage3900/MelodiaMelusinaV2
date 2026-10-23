@@ -234,3 +234,88 @@ Suggested first session sequence: **preflight -> canonical field/border probe ->
 This is a **P1/P2 research proposal**. Poitou P0 and its accepted presentation identity are not replaced. No new production HDA, continent compiler, C++ subsystem, MIDI authority, TouchDesigner bridge, or gameplay mechanic may be declared from this plan. Promotion to an HDA or World Compiler consumer requires measured output, owner-selected art direction, matching runtime contract, and a separate UE 5.8 acceptance step.
 
 **Definition of success for the next lab:** four cohesive tiles, one visible fabric-geology hero, one mathematically continuous seam and three honest comparison images — with zero collateral modifications to existing canonical projects.
+
+---
+
+## Chladni Cloth Day (2026-10-23): French DEM / couture geology research and ready-to-run intake
+
+**Status: researched and source/staging tooling prepared; not proof of live French DEM fetch or Houdini cook.** This extends the **Harmonic Continental Genesis** proposal above. Large binary DEMs, raw COP exports, Vellum caches and derived meshes are intentionally not committed. Never overwrite the authored \`Houdini/FarawayDrape.hip\`.
+
+### Prioritized French terrain references (real geography -> textile language)
+
+| Region and crop centre (WGS84 latitude, longitude) | Real topographic vocabulary | Translating it into Faraway Mother's cloth |
+| --- | --- | --- |
+| **Jura / Crêt de la Neige** (46.270978, 5.939484) | limestone strata, long aligned ridges, folded escarpments | **Celestial Silk Jacquard**: ivory satin directional pleats; prime WeaveRidge geometry |
+| **Cantal / Puy Mary–Pas de Peyrol** (45.1140957, 2.6717462) | radial volcanic valleys, converging ridge fans | **Mother's Night Velvet**: radial skirt gathers and heavy shadowed lowlands |
+| **Pyrenees / Cirque de Gavarnie** (42.697179, -0.015318) | amphitheatre walls, cliff ledges, waterfalls | **Aquatic Lullaby Lace + Singing Water Organza**: suspended drapery and silk waterfalls |
+| **Ecrins / Barre des Ecrins** (44.92220, 6.35969) | jagged peaks, glacier channels, sharp facets | **Glacial Pearl Organza**: localized frost, broken lace, crystal accents |
+| **Vosges / Hohneck** (48.0375775, 7.015543) | softer rounded ridges and grass-covered crest | **Night Velvet**: calm traversal valleys; avoids nonstop jagged spectacle |
+
+These are source *sample-point centres* for small research crops, not precisely delineated range boundaries. All are **inspiration**, not a new canonical Paitou/Poitou landscape (Poitou's real marsh terrain is different). The code-readable centers, licensed source portals and material preset IDs live at \`recipes/houdini_faraway/terrain_fabric_atlas.v1.json\`.
+
+### Actual elevation sources: don't confuse DTM with DSM
+
+- **IGN BD ALTI® (recommended for 4-8 km geological silhouette):** 25 m / 75 m *bare-earth DTM (MNT)*, France coverage. Open Licence 2.0. Source: https://www.data.gouv.fr/datasets/bd-alti-r-1
+- **IGN RGE ALTI® (preferred for 1-5 m hero/cirque close-ups):** 1 m / 5 m *bare-earth DTM*, France. Open Licence 2.0; coverage has nodata restrictions, product availability/vertical datum require inspection. Source: https://www.data.gouv.fr/datasets/rge-alti-r
+- **Copernicus DEM GLO-30 Public (convenient COG/HTTPS intake):** nominal 30 m **DSM**, not bare-ground DTM; vegetation, buildings and other above-ground structures can affect values. Public COG tile access is documented at https://registry.opendata.aws/copernicus-dem/ and https://copernicus-dem-30m.s3.amazonaws.com/readme.html. Coverage for some countries may be restricted; check tile availability and licence terms before redistributing source or derivative files. Data-access availability from this chat runtime was *not* validated.
+- **QGIS fallback:** download IGN BD/RGE ALTI terrain for desired department through the official linked portal; crop/reproject to EPSG:2154 (Lambert-93) and export a GeoTIFF. Use local \`--source\` rather than remote \`--fetch-copernicus\` if school network/proxy blocks public S3.
+
+Source attribution: credit IGN and link Licence Ouverte v2.0 for IGN-derived products; cite Copernicus DEM and review its actual dataset-specific licence for Copernicus-derived work. No third-party photography, copyrighted imagery or heavy DEM tiles are copied into Git.
+
+### The prepared converter (no workstation paths hard-coded)
+
+\`Tools/Houdini/vdm_fabric_mountains/prepare_french_dem.py\` reads georeferenced raster(s), crops a metrically defined square about a selected landmark, reprojects into **EPSG:2154**, and writes:
+
+- \`height_absolute_m_epsg2154.tif\` — geo-referenced float32 elevation in metres, retaining the source elevations;
+- \`height_normalized_16bit.png\` — unsigned normalized 16-bit height for Houdini HeightField File SOP and masks, with min/max for inverse decode;
+- \`hillshade_preview.png\` and \`slope_preview_8bit.png\` — inspection images, never substitutes for the height layer;
+- \`source_manifest.json\` — source provenance, vertical unit warning, coordinate system, output hashes, size, z min/max, validity fraction, and exact PNG decode rule.
+
+**Lab preflight, PowerShell at repo root (pip only if packages are missing):**
+\`\`\`powershell
+git fetch origin
+git status --short --branch
+py -c "import rasterio, numpy, PIL, pyproj; print('DEM dependencies OK')"
+# If dependencies are missing, use school-approved Python/QGIS environment; don't corrupt Houdini's hython.
+py Tools/Houdini/vdm_fabric_mountains/prepare_french_dem.py --preset jura_cret_neige --fixture --size-m 1000 --res 257
+# Prints SYNTHETIC_FIXTURE_NOT_REAL_ELEVATION; verifies graph intake only.
+\`\`\`
+
+**For real French terrain, choose ONE route:**
+\`\`\`powershell
+# RGE/BD ALTI data downloaded from IGN into a local georeferenced GeoTIFF/ASC:
+py Tools/Houdini/vdm_fabric_mountains/prepare_french_dem.py --preset jura_cret_neige --source "D:\DEM\IGN_Jura.tif" --size-m 4000 --res 513
+# Or (network required; streamed COG reads may cross more than one 1° tile):
+py Tools/Houdini/vdm_fabric_mountains/prepare_french_dem.py --preset cantal_puy_mary --fetch-copernicus --size-m 4000 --res 513
+\`\`\`
+
+No 4 m geographical detail appears magically when upsampling a 30 m DSM to 513 pixels on a 4 km crop. Retain the GeoTIFF as vertical truth; PNG height is normalized per crop and MUST be decoded using the manifest. Check source height datum; do not blend different vertical datums without explicit transformation. If remote fetch fails, fall back to IGN/QGIS local \`--source\`; do not silently substitute synthetic terrain as real.
+
+### Houdini SOP/Copernicus intake procedure
+
+1. Save a **separate experimental copy** of \`Houdini/FarawayDrape.hip\`; verify that \`FARAWAY_DRAPE_GRID\` and \`TENSION_MASK\` survived. The original is protected. A school Education seat may produce non-commercial file types; preserve script/recipe sources for future permitted rebuilds.
+2. In a new Geometry SOP network, load \`height_normalized_16bit.png\` with **HeightField File**. Set size to the crop extent in metres (e.g., 4000) and height scale to the **manifest z span**; then add a height offset of **z_min_m** using HeightField Wrangle/height layer arithmetic (or load the float32 GeoTIFF directly when supported). Record mask/sampling orientation; compare landmarks with the hillshade.
+3. Add a heightfield conditioning branch for fabric geology; do NOT replace real regional relief with procedural noise. Study Jura aligned folds, Cantal radial crest, Gavarnie hanging wall and Ecrins fractures as shape guides. Keep actual elevation information distinct from authored stylization.
+4. Read existing Faraway canonical static RGBA (R tension, G resonance, B moisture, A seam) from \`faraway_static_field.py\`. The canonical musical field is computed in global 8 km world coordinates, **not** per French DEM crop; French terrain is a *shape reference*, not a replacement Chladni coordinate system.
+5. For heightfield-to-mesh handoff, use the existing \`melodia.terrain_handoff.v1\` conversion/validation. Keep the **100 cm/m** UE 5.8 Mesh Terrain contract, \`classic_landscape_used: false\`, and UE PCG/editor single-writer restrictions. A local Houdini render is not a playable proof.
+
+SideFX refs: HeightField File https://www.sidefx.com/docs/houdini/nodes/sop/heightfield_file.html ; HeightField Output https://www.sidefx.com/docs/houdini/nodes/sop/heightfield_output.html ; HeightField/Mono COP https://www.sidefx.com/docs/houdini/heightfields_cop/conversion.html .
+
+### Six bounded Copernicus textile experiments (reuse existing family material identities)
+
+Use the six presets in \`terrain_fabric_atlas.v1.json\` and the mathematical contact sheet \`Docs/Art/References/FarawayMother_Chladni_Cloth_Modes_20261023.svg\`.
+
+| Textile (priority) | Existing family | Primary output / art goal |
+| --- | --- | --- |
+| **01 Celestial Silk Jacquard — DO FIRST** | FarawayCelestialSilk | directional silk thread height/normal + tension-modulated sheen, canonical (3,5) hidden jacquard |
+| **02 Mother's Night Velvet — DO NEXT** | FarawayNightVelvet | deep plum nap, directional softness, controlled high roughness; no glitter/noise wash |
+| **03 Gilded Resonance Brocade — DO NEXT** | FarawayGildedRidge | gold thread following a **canonical** near-zero seam mask; raised stitches, normal + selective emissive reveal |
+| 04 Aquatic Lullaby Lace | FarawayAquaLace | openwork geometry/opacity, pearl and aquamarine edges; inspect transparency/culling |
+| 05 Singing Water Organza | SingingSilk | long flow streaks, normal/roughness, soft aquamarine translucency |
+| 06 Glacial Pearl Organza | FarawayCelestialSilk experimental variant | restrained frost microfacets and pearl iridescence for rare hero peaks |
+
+**Suggested COP branches:** canonical mask file / optional native Chladni artistic mode -> signed field / near-zero contour -> warp/weft directional noise and Tile Pattern -> curvature/slope/tension masks -> Height to Normal -> BaseColor / Roughness / Sheen / Height / optional Opacity or Emissive. Node names/capabilities should be checked in the actual installed Houdini build before automating a graph. The native artistic Chladni COP is **not** asserted equivalent to the existing canonical cosine field. Mode (4,6) is explicitly **ART EXPERIMENT ONLY**; mode (3,5) owns spatial seam truth.
+
+**First comparison:** use the *same* draped Jura/Gavarnie geometry and fixed camera: satin ridge, velvet valley, one gold nodal seam. Capture neutral clay, pure material, and controlled Chladni reveal, plus maps and a short source/provenance manifest. Prefer a gorgeous unified test to six disconnected map exports.
+
+**Evidence gate:** only mark as cooked after actual lab \`hython\`/GUI evidence records source SHA, licence tier, terrain source/CRS/datum, height min/max, render paths, actual material maps, and protected master unchanged. Raw maps/caches remain in \`Saved/Audit/houdini_faraway_mother/\` or college scratch (not Git). Record implementation status **only** in \`CURRENT_STATE.md\` after future genuine cooking.

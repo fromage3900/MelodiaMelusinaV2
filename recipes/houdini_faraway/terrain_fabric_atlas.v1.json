@@ -1,0 +1,214 @@
+{
+  "schema": "melodia.faraway_terrain_fabric_atlas.v1",
+  "updated": "2026-10-23",
+  "purpose": "Named research DEM crop centers and Chladni cloth palette studies. NOT World Compiler/gameplay authority.",
+  "dem_sources": {
+    "ign_bd_alti": {
+      "url": "https://www.data.gouv.fr/datasets/bd-alti-r-1",
+      "type": "DTM",
+      "spacing_m": [
+        25,
+        75
+      ],
+      "license": "Licence Ouverte / Open Licence 2.0"
+    },
+    "ign_rge_alti": {
+      "url": "https://www.data.gouv.fr/datasets/rge-alti-r",
+      "type": "DTM",
+      "spacing_m": [
+        1,
+        5
+      ],
+      "license": "Licence Ouverte / Open Licence 2.0"
+    },
+    "copernicus_glo30": {
+      "url": "https://registry.opendata.aws/copernicus-dem/",
+      "guide": "https://copernicus-dem-30m.s3.amazonaws.com/readme.html",
+      "type": "DSM",
+      "nominal_spacing_m": 30,
+      "license": "Copernicus DEM-specific reuse terms; verify separately"
+    }
+  },
+  "regions": [
+    {
+      "id": "jura_cret_neige",
+      "name": "Jura — Crêt de la Neige",
+      "center_wgs84": {
+        "lat": 46.270978,
+        "lon": 5.939484
+      },
+      "reference_url": "https://www.cirkwi.com/fr/point-interet/133404-cret-de-la-neige",
+      "form": "folded limestone ribs; aligned strata",
+      "cloth": "Celestial Silk Jacquard",
+      "role": "WeaveRidge"
+    },
+    {
+      "id": "cantal_puy_mary",
+      "name": "Cantal — Puy Mary / Pas de Peyrol area",
+      "center_wgs84": {
+        "lat": 45.1140957,
+        "lon": 2.6717462
+      },
+      "reference_url": "https://www.puymary.fr/venir-au-puy-mary/?lang=en",
+      "form": "radial volcanic catchments and skirt gathers",
+      "cloth": "Mother's Night Velvet",
+      "role": "FrillValley"
+    },
+    {
+      "id": "pyrenees_gavarnie",
+      "name": "Pyrenees — Cirque de Gavarnie",
+      "center_wgs84": {
+        "lat": 42.697179,
+        "lon": -0.015318
+      },
+      "reference_url": "https://geonames.nga.mil/geon-ags/rest/services/RESEARCH/GIS_OUTPUT/MapServer/0/3486223",
+      "form": "cirque wall, waterfalls and drapery",
+      "cloth": "Aquatic Lullaby Lace; Singing Water Organza",
+      "role": "LaceCanopy"
+    },
+    {
+      "id": "ecrins_barre",
+      "name": "Ecrins — Barre des Ecrins",
+      "center_wgs84": {
+        "lat": 44.9222,
+        "lon": 6.35969
+      },
+      "reference_url": "https://www.peakwiki.org/en/peak.php?pid=638",
+      "form": "glacial fracture and faceted needle ridges",
+      "cloth": "Glacial Pearl Organza",
+      "role": "Hero accents"
+    },
+    {
+      "id": "vosges_hohneck",
+      "name": "Vosges — Hohneck",
+      "center_wgs84": {
+        "lat": 48.0375775,
+        "lon": 7.015543
+      },
+      "reference_url": "https://www.cirkwi.com/en/point-interet/3663876-le-hohneck",
+      "form": "rounded highland and soft velvet valleys",
+      "cloth": "Mother's Night Velvet",
+      "role": "FrillValley"
+    }
+  ],
+  "fabric_presets": [
+    {
+      "id": "celestial_silk_jacquard",
+      "existing_family": "FarawayCelestialSilk",
+      "reference_region": "jura_cret_neige",
+      "roughness_target": [
+        0.25,
+        0.4
+      ],
+      "maps": [
+        "basecolor",
+        "roughness",
+        "height",
+        "normal",
+        "sheen",
+        "chladni_mask"
+      ],
+      "look": "pearl warp/weft directional woven ridges"
+    },
+    {
+      "id": "mother_night_velvet",
+      "existing_family": "FarawayNightVelvet",
+      "reference_region": "cantal_puy_mary",
+      "roughness_target": [
+        0.78,
+        0.92
+      ],
+      "maps": [
+        "basecolor",
+        "roughness",
+        "normal",
+        "sheen"
+      ],
+      "look": "dark plum velvet nap in the radial valleys"
+    },
+    {
+      "id": "aquatic_lullaby_lace",
+      "existing_family": "FarawayAquaLace",
+      "reference_region": "pyrenees_gavarnie",
+      "roughness_target": [
+        0.4,
+        0.65
+      ],
+      "maps": [
+        "opacity",
+        "height",
+        "normal",
+        "sheen",
+        "chladni_mask"
+      ],
+      "look": "delicate openwork embroidery on hanging cloth"
+    },
+    {
+      "id": "gilded_resonance_brocade",
+      "existing_family": "FarawayGildedRidge",
+      "reference_region": "jura_cret_neige",
+      "roughness_target": [
+        0.18,
+        0.4
+      ],
+      "maps": [
+        "metallic",
+        "roughness",
+        "height",
+        "normal",
+        "emissive_mask"
+      ],
+      "look": "gold thread concentrated on canonical nodal seam"
+    },
+    {
+      "id": "singing_water_organza",
+      "existing_family": "SingingSilk",
+      "reference_region": "pyrenees_gavarnie",
+      "roughness_target": [
+        0.12,
+        0.35
+      ],
+      "maps": [
+        "opacity",
+        "flow",
+        "roughness",
+        "normal"
+      ],
+      "look": "translucent aqua fabric waterfall"
+    },
+    {
+      "id": "glacial_pearl_organza",
+      "existing_family": "FarawayCelestialSilk",
+      "reference_region": "ecrins_barre",
+      "roughness_target": [
+        0.15,
+        0.5
+      ],
+      "maps": [
+        "basecolor",
+        "height",
+        "normal",
+        "roughness",
+        "iridescence_mask"
+      ],
+      "look": "silver lilac crystalline frost on sheer weave"
+    }
+  ],
+  "chladni": {
+    "canonical_mode": [
+      3,
+      5
+    ],
+    "art_only_comparison_mode": [
+      4,
+      6
+    ],
+    "amplitude_affects": "strength of sheen/mask, not canonical seam topology",
+    "preserve_static_rgba": {
+      "R": "Tension",
+      "G": "ResonanceBase",
+      "B": "Moisture",
+      "A": "ResonantSeamWay"
+    }
+  }
+}
