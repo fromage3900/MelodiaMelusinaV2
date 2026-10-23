@@ -116,6 +116,60 @@ def make_controls(geo):
     fl(f, "cave_radius_m", "Cave bowl radius (m)", 9.0, 2.0, 60.0)
     fl(f, "cave_depth_m", "Cave bowl depth (m)", 4.0, 0.0, 30.0)
     fl(f, "cave_mouth_m", "Cave mouth width (m)", 7.0, 1.0, 40.0)
+    f.addParmTemplate(hou.IntParmTemplate("cave_require_sightline", "Caves must be visible from the porch (0/1)", 1, default_value=(1,), min=0, max=1))
+    fl(f, "cave_min_slope", "Cave flank slope minimum", 0.26, 0.0, 2.0)
+    fl(f, "cave_min_height_m", "Cave site minimum height (m)", 8.0, -50.0, 200.0)
+    fl(f, "cave_search_min_m", "Cave search radius min (m)", 70.0, 10.0, 800.0)
+    fl(f, "cave_search_max_m", "Cave search radius max (m)", 230.0, 20.0, 900.0)
+    fl(f, "cave_spacing_m", "Cave minimum spacing (m)", 40.0, 5.0, 400.0)
+    fl(f, "cave_facing", "Mouth faces the porch (-1..1)", 0.5, -1.0, 1.0)
+    fl(f, "cave_hood_m", "Rock hood height above the mouth (m)", 5.0, 0.0, 40.0)
+    fl(f, "cave_trench_m", "Approach trench length (m)", 12.0, 0.0, 80.0)
+    f.addParmTemplate(hou.StringParmTemplate("cave_manual_xz", "Manual cave sites (x,z; x,z; ...) - empty = automatic", 1, default_value=("",)))
+    f.addParmTemplate(hou.StringParmTemplate("cave_marker_asset", "Marker asset per cave (unreal_instance, empty = none)", 1, default_value=("",)))
+    pg.append(f)
+
+    f = hou.FolderParmTemplate("passages", "Cave Passages", folder_type=hou.folderType.Tabs)
+    f.addParmTemplate(hou.IntParmTemplate("pass_enable", "Generate passages (0/1)", 1, default_value=(1,), min=0, max=1))
+    f.addParmTemplate(hou.IntParmTemplate("pass_seed", "Passage seed", 1, default_value=(3,), min=0, max=99999))
+    fl(f, "pass_length_m", "Passage length (m)", 38.0, 6.0, 200.0)
+    fl(f, "pass_radius_m", "Passage radius (m)", 2.6, 0.8, 12.0)
+    fl(f, "pass_wander", "Passage wander (radians per step)", 0.45, 0.0, 1.6)
+    fl(f, "pass_climb", "Passage climb per metre", 0.04, -0.3, 0.3)
+    f.addParmTemplate(hou.IntParmTemplate("pass_branches", "Side branches per cave", 1, default_value=(1,), min=0, max=6))
+    fl(f, "pass_chamber_m", "End chamber radius (m)", 5.5, 0.0, 25.0)
+    fl(f, "wall_amp_m", "Chladni wall relief (m)", 0.35, 0.0, 3.0)
+    fl(f, "wall_freq", "Chladni wall frequency (1/m)", 0.55, 0.05, 3.0)
+    f.addParmTemplate(hou.IntParmTemplate("wall_mode_n", "Wall mode n", 1, default_value=(3,), min=1, max=16))
+    f.addParmTemplate(hou.IntParmTemplate("wall_mode_m", "Wall mode m", 1, default_value=(5,), min=1, max=16))
+    f.addParmTemplate(hou.StringParmTemplate("pass_material", "Passage material (existing MI)", 1, default_value=("/Game/EnvSandbox/Poitou/Materials/MI_Poitou_Landscape_Nikki.MI_Poitou_Landscape_Nikki",)))
+    pg.append(f)
+
+    f = hou.FolderParmTemplate("mycelium", "Chladni Mycelium", folder_type=hou.folderType.Tabs)
+    f.addParmTemplate(hou.IntParmTemplate("myc_enable", "Grow mycelium (0/1)", 1, default_value=(1,), min=0, max=1))
+    f.addParmTemplate(hou.IntParmTemplate("myc_seed", "Mycelium seed", 1, default_value=(7,), min=0, max=99999))
+    f.addParmTemplate(hou.IntParmTemplate("myc_mode_n", "Chladni mode n", 1, default_value=(3,), min=1, max=16))
+    f.addParmTemplate(hou.IntParmTemplate("myc_mode_m", "Chladni mode m", 1, default_value=(5,), min=1, max=16))
+    f.addParmTemplate(hou.IntParmTemplate("myc_lines", "Nodal line sets (1..4)", 1, default_value=(2,), min=1, max=4))
+    fl(f, "myc_scale_m", "Pattern wavelength along the passage (m)", 14.0, 2.0, 80.0)
+    f.addParmTemplate(hou.IntParmTemplate("myc_branching", "Hyphae per nodal line", 1, default_value=(3,), min=0, max=12))
+    f.addParmTemplate(hou.IntParmTemplate("myc_levels", "Branch levels", 1, default_value=(2,), min=0, max=4))
+    fl(f, "myc_branch_len_m", "Hyphae length (m)", 3.5, 0.5, 20.0)
+    fl(f, "myc_wander", "Hyphae wander", 0.55, 0.0, 1.6)
+    fl(f, "myc_thickness_m", "Thickness (m)", 0.07, 0.01, 0.6)
+    fl(f, "myc_hue_a", "Colour A hue (0..1)", 0.52, 0.0, 1.0)
+    fl(f, "myc_hue_b", "Colour B hue (0..1)", 0.86, 0.0, 1.0)
+    fl(f, "myc_glow", "Glow (emit attribute)", 2.5, 0.0, 20.0)
+    f.addParmTemplate(hou.StringParmTemplate("myc_material", "Mycelium material (existing MI)", 1, default_value=("/Game/EnvSandbox/Poitou/Materials/MI_Poitou_Landscape_Nikki.MI_Poitou_Landscape_Nikki",)))
+    pg.append(f)
+
+    f = hou.FolderParmTemplate("layers", "Layer Painting", folder_type=hou.folderType.Tabs)
+    fl(f, "grass_max_slope", "Grass fades out by slope", 0.7, 0.1, 3.0)
+    fl(f, "rock_slope_start", "Rock starts at slope", 0.55, 0.0, 3.0)
+    fl(f, "rock_slope_full", "Rock fully at slope", 1.0, 0.0, 4.0)
+    fl(f, "ground_mottle", "Ground mottling strength", 0.45, 0.0, 1.0)
+    fl(f, "mottle_freq", "Ground mottling frequency (1/m)", 0.03, 0.002, 0.5)
+    fl(f, "base_weight", "Base layer weight", 0.08, 0.0, 1.0)
     pg.append(f)
 
     f = hou.FolderParmTemplate("landscape", "Landscape and LayerInfo", folder_type=hou.folderType.Tabs)
@@ -130,7 +184,7 @@ def make_controls(geo):
 
 NAMES = (["source_filepath", "source_min", "source_range", "crop_x", "crop_z", "reference_elevation", "amplitude", "window_m", "window_cx", "window_cz", "preview_resolution",
           "pad_elevation", "pad_xmin", "pad_xmax", "pad_zmin", "pad_zmax", "pad_falloff", "pond_x", "pond_z", "pond_radius_x", "pond_radius_z", "water_level", "pond_bed",
-          "flat_inner", "flat_outer", "horizon_start", "horizon_full", "horizon_amp", "ridge_freq", "ridge_sharp", "ridge_octaves", "dem_gain", "ridge_seed", "path_count", "path_seed", "path_spread_deg", "path_length_m", "path_start_x", "path_start_z", "path_width_m", "path_carve_m", "eye_height_m", "cave_count", "cave_seed", "cave_radius_m", "cave_depth_m", "cave_mouth_m", "view_azimuth", "view_open", "off_view_gain", "rock_start", "rock_full",
+          "flat_inner", "flat_outer", "horizon_start", "horizon_full", "horizon_amp", "ridge_freq", "ridge_sharp", "ridge_octaves", "dem_gain", "ridge_seed", "path_count", "path_seed", "path_spread_deg", "path_length_m", "path_start_x", "path_start_z", "path_width_m", "path_carve_m", "eye_height_m", "cave_count", "cave_seed", "cave_radius_m", "cave_depth_m", "cave_mouth_m", "cave_require_sightline", "cave_min_slope", "cave_min_height_m", "cave_search_min_m", "cave_search_max_m", "cave_spacing_m", "cave_facing", "cave_hood_m", "cave_trench_m", "cave_manual_xz", "cave_marker_asset", "pass_enable", "pass_seed", "pass_length_m", "pass_radius_m", "pass_wander", "pass_climb", "pass_branches", "pass_chamber_m", "wall_amp_m", "wall_freq", "wall_mode_n", "wall_mode_m", "pass_material", "myc_enable", "myc_seed", "myc_mode_n", "myc_mode_m", "myc_lines", "myc_scale_m", "myc_branching", "myc_levels", "myc_branch_len_m", "myc_wander", "myc_thickness_m", "myc_hue_a", "myc_hue_b", "myc_glow", "myc_material", "grass_max_slope", "rock_slope_start", "rock_slope_full", "ground_mottle", "mottle_freq", "base_weight", "view_azimuth", "view_open", "off_view_gain", "rock_start", "rock_full",
           "landscape_material", "layerinfo_dir"] + ["layerinfo_" + n.lower() for n in LAYERS])
 
 PATHS_PY = r'''
@@ -202,6 +256,10 @@ def grad(x, z):
     d = 4.0
     return ((h(x + d, z) - h(x - d, z)) / (2 * d), (h(x, z + d) - h(x, z - d)) / (2 * d))
 n = hda.parm("cave_count").eval(); rng = random.Random(hda.parm("cave_seed").eval())
+smin = hda.parm("cave_min_slope").eval(); hmin = hda.parm("cave_min_height_m").eval()
+rmin = hda.parm("cave_search_min_m").eval(); rmax = hda.parm("cave_search_max_m").eval()
+spc = hda.parm("cave_spacing_m").eval(); fac = hda.parm("cave_facing").eval(); req = hda.parm("cave_require_sightline").eval()
+marker = hda.parm("cave_marker_asset").eval().strip(); manual = hda.parm("cave_manual_xz").eval().strip()
 va = hda.parm("view_azimuth").eval(); vo = hda.parm("view_open").eval()
 hx = (hda.parm("pad_xmin").eval() + hda.parm("pad_xmax").eval()) * 0.5; hz = (hda.parm("pad_zmin").eval() + hda.parm("pad_zmax").eval()) * 0.5
 path_pts = []
@@ -215,17 +273,17 @@ def los(tx, ty, tz, step=3.0):
         if h(ex + (tx - ex) * t, ez + (tz - ez) * t) > ey + (ty - ey) * t - 0.3: return False
     return True
 cands = []
-for r in range(70, 231, 8):
+for r in range(int(rmin), int(rmax) + 1, 8):
     for ang in range(int(-vo), int(vo) + 1, 3):
         a = math.radians(va + ang); x, z = hx + r * math.cos(a), hz + r * math.sin(a)
         hg = h(x, z); gx, gz = grad(x, z); sl = math.hypot(gx, gz)
-        if hg < 8.0 or sl < 0.26: continue
+        if hg < hmin or sl < smin: continue
         if path_pts and min(math.hypot(x - px, z - pz) for px, pz in path_pts) < 22.0: continue
-        if not los(x, hg + 2.0, z): continue
+        if req and not los(x, hg + 2.0, z): continue
         # a cave mouth opens HORIZONTALLY: the flank's outward (downslope) direction must point toward the porch within ~60 degrees
         gl = math.hypot(gx, gz); el = math.hypot(ex - x, ez - z)
         if gl < 1e-6 or el < 1e-6: continue
-        if ((-gx / gl) * ((ex - x) / el) + (-gz / gl) * ((ez - z) / el)) < 0.5: continue
+        if ((-gx / gl) * ((ex - x) / el) + (-gz / gl) * ((ez - z) / el)) < fac: continue
         cands.append((sl * 1.0 + hg / 40.0 + rng.random() * 0.35, x, z, hg, gx, gz, sl))
 cands.sort(reverse=True)
 geo.addAttrib(hou.attribType.Point, "N", hou.Vector3(0, 1, 0))
@@ -233,14 +291,180 @@ geo.addAttrib(hou.attribType.Point, "pscale", 1.0)
 geo.addAttrib(hou.attribType.Point, "cave_id", 0)
 geo.addAttrib(hou.attribType.Point, "slope", 0.0)
 chosen = []
-for c in cands:
-    if len(chosen) >= n: break
-    if all(math.hypot(c[1] - o[1], c[2] - o[2]) >= 40.0 for o in chosen): chosen.append(c)
+if manual:
+    for tok in manual.split(";"):
+        try:
+            mx, mz = [float(v) for v in tok.replace(" ", "").split(",")]
+        except Exception:
+            continue
+        mgx, mgz = grad(mx, mz)
+        chosen.append((0.0, mx, mz, h(mx, mz), mgx, mgz, math.hypot(mgx, mgz)))
+else:
+    for c in cands:
+        if len(chosen) >= n: break
+        if all(math.hypot(c[1] - o[1], c[2] - o[2]) >= spc for o in chosen): chosen.append(c)
+if marker: geo.addAttrib(hou.attribType.Point, "unreal_instance", "")
 mouth = hda.parm("cave_mouth_m").eval()
 for i, (sc, x, z, hg, gx, gz, sl) in enumerate(chosen):
     pt = geo.createPoint(); pt.setPosition(hou.Vector3(x, hg, z))
     nrm = hou.Vector3(-gx, 1.0, -gz).normalized()
     pt.setAttribValue("N", nrm); pt.setAttribValue("pscale", mouth); pt.setAttribValue("cave_id", i); pt.setAttribValue("slope", sl)
+    if marker: pt.setAttribValue("unreal_instance", marker)
+'''
+
+PASS_PY = r'''
+import math, random
+node = hou.pwd(); geo = node.geometry(); hda = node.parent()
+src = node.inputs()[0].geometry(); cav = node.inputs()[1].geometry()
+geo.clear()
+vols = {p.attribValue("name"): p for p in src.prims() if isinstance(p, hou.Volume)}
+H = vols["height"]
+def h(x, z): return H.sample((float(x), 0.0, float(z)))
+geo.addAttrib(hou.attribType.Point, "pscale", 1.0)
+geo.addAttrib(hou.attribType.Point, "cave_id", 0)
+geo.addAttrib(hou.attribType.Prim, "cave_id", 0)
+geo.addAttrib(hou.attribType.Prim, "branch", 0)
+if hda.parm("pass_enable").eval():
+    r0 = hda.parm("pass_radius_m").eval(); length = hda.parm("pass_length_m").eval(); wander = hda.parm("pass_wander").eval()
+    climb = hda.parm("pass_climb").eval(); nbr = int(hda.parm("pass_branches").eval()); chamber = hda.parm("pass_chamber_m").eval()
+    R = max(1.0, hda.parm("cave_radius_m").eval()); step = 1.5
+    def walk(rng, x, z, y, heading, L, rad0, cid, branch):
+        n = max(3, int(L / step)); pts = []; hd0 = heading
+        for i in range(n + 1):
+            u = i / float(n)
+            rad = rad0 * (0.8 + 0.2 * math.sin(u * 9.0 + cid))
+            if branch == 0 and chamber > rad0: rad = rad + (chamber - rad) * max(0.0, (u - 0.78) / 0.22) ** 2
+            ceiling = h(x, z) - rad - 0.8
+            y = min(y, ceiling)
+            pts.append((x, y, z, rad, u))
+            heading += (rng.random() - 0.5) * wander
+            heading = max(hd0 - 1.2, min(hd0 + 1.2, heading))
+            x += math.cos(heading) * step; z += math.sin(heading) * step
+            y += climb * step
+        pr = geo.createPolygon(); pr.setIsClosed(False)
+        pr.setAttribValue("cave_id", cid); pr.setAttribValue("branch", branch)
+        for (px, py, pz, prad, pu) in pts:
+            pt = geo.createPoint(); pt.setPosition(hou.Vector3(px, py, pz)); pt.setAttribValue("pscale", prad); pt.setAttribValue("cave_id", cid)
+            pr.addVertex(pt)
+        return pts
+    for pt in cav.points():
+        cid = pt.attribValue("cave_id"); nn = pt.attribValue("N")
+        fl = math.hypot(nn[0], nn[2]) or 1.0; fx, fz = nn[0] / fl, nn[2] / fl
+        rng = random.Random(hda.parm("cave_seed").eval() * 131 + cid * 17 + hda.parm("pass_seed").eval())
+        P0 = pt.position(); sx, sz = P0[0] - fx * R * 0.25, P0[2] - fz * R * 0.25
+        heading = math.atan2(-fz, -fx)
+        sy = h(sx, sz) + r0 * 0.4
+        main = walk(rng, sx, sz, sy, heading, length, r0, cid, 0)
+        for b in range(nbr):
+            k = int(len(main) * (0.3 + 0.4 * rng.random())); k = max(1, min(len(main) - 2, k))
+            bx, by, bz = main[k][0], main[k][1], main[k][2]
+            side = 1.0 if rng.random() < 0.5 else -1.0
+            hb = math.atan2(main[k + 1][2] - main[k][2], main[k + 1][0] - main[k][0]) + side * (0.9 + 0.6 * rng.random())
+            walk(rng, bx, bz, by, hb, length * 0.5, r0 * 0.7, cid, b + 1)
+'''
+
+MYC_PY = r'''
+import math, random
+node = hou.pwd(); geo = node.geometry(); hda = node.parent()
+src = node.inputs()[0].geometry()
+geo.clear()
+geo.addAttrib(hou.attribType.Point, "width", 1.0)
+geo.addAttrib(hou.attribType.Point, "emit", 1.0)
+geo.addAttrib(hou.attribType.Point, "Cd", hou.Vector3(1, 1, 1))
+geo.addAttrib(hou.attribType.Point, "cave_id", 0)
+geo.addAttrib(hou.attribType.Prim, "level", 0)
+if hda.parm("myc_enable").eval():
+    nM = int(hda.parm("myc_mode_n").eval()); mM = int(hda.parm("myc_mode_m").eval())
+    sc = hda.parm("myc_scale_m").eval(); nl = int(hda.parm("myc_lines").eval())
+    nb = int(hda.parm("myc_branching").eval()); levels = int(hda.parm("myc_levels").eval())
+    blen = hda.parm("myc_branch_len_m").eval(); wan = hda.parm("myc_wander").eval(); glow = hda.parm("myc_glow").eval()
+    ha, hb = hda.parm("myc_hue_a").eval(), hda.parm("myc_hue_b").eval()
+    def col(t):
+        c = hou.Color(); c.setHSV((360.0 * (ha + (hb - ha) * t), 0.55, 1.0)); return c.rgb()
+    budget = [90000]
+    for prim in src.prims():
+        cid = prim.attribValue("cave_id"); rng = random.Random(hda.parm("myc_seed").eval() * 977 + cid * 31 + prim.number())
+        vs = [v.point() for v in prim.vertices()]
+        pos = [hou.Vector3(p.position()) for p in vs]; rad = [p.attribValue("pscale") for p in vs]
+        seg = [0.0]
+        for i in range(1, len(pos)): seg.append(seg[-1] + (pos[i] - pos[i - 1]).length())
+        total = seg[-1]
+        if total < 2.0: continue
+        U = max(8, int(total / 0.5)); V = 32
+        def at(sm):
+            sm = max(0.0, min(total, sm)); k = 1
+            while k < len(seg) - 1 and seg[k] < sm: k += 1
+            t = (sm - seg[k - 1]) / max(1e-6, seg[k] - seg[k - 1])
+            c = pos[k - 1] + (pos[k] - pos[k - 1]) * t; r = rad[k - 1] + (rad[k] - rad[k - 1]) * t
+            tg = (pos[k] - pos[k - 1]).normalized()
+            nrm = tg.cross(hou.Vector3(0, 1, 0))
+            if nrm.length() < 1e-4: nrm = hou.Vector3(1, 0, 0)
+            nrm = nrm.normalized(); bn = tg.cross(nrm).normalized()
+            return c, nrm, bn, r
+        frames = [at(total * i / float(U)) for i in range(U + 1)]
+        def surf(fi, th):
+            i = max(0, min(U - 1e-6, fi)); i0 = int(i); t = i - i0
+            c0, n0, b0, r0_ = frames[i0]; c1, n1, b1, r1_ = frames[min(U, i0 + 1)]
+            c = c0 + (c1 - c0) * t; nn_ = (n0 + (n1 - n0) * t).normalized(); bb = (b0 + (b1 - b0) * t).normalized(); r = (r0_ + (r1_ - r0_) * t) * 0.93
+            return c + (nn_ * math.cos(th) + bb * math.sin(th)) * r
+        def F(i, j):
+            us = (total * i / float(U)) / sc
+            th = 2.0 * math.pi * (j % V) / float(V)
+            return math.cos(nM * math.pi * us) * math.cos(mM * th) - math.cos(mM * math.pi * us) * math.cos(nM * th)
+        grid = [[F(i, j) for j in range(V)] for i in range(U + 1)]
+        def emit(plist, level):
+            if len(plist) < 2 or budget[0] <= 0: return
+            pr = geo.createPolygon(); pr.setIsClosed(False); pr.setAttribValue("level", level)
+            n = len(plist)
+            for k, (P, w, tc) in enumerate(plist):
+                pt = geo.createPoint(); pt.setPosition(P); pt.setAttribValue("width", w); pt.setAttribValue("emit", glow * (0.6 + 0.4 * (1.0 - k / float(max(1, n - 1)))))
+                pt.setAttribValue("Cd", col(tc)); pt.setAttribValue("cave_id", cid); pr.addVertex(pt); budget[0] -= 1
+        def grow(fi, th, hd, L, level):
+            plist = []; ds = 0.5; n = max(2, int(L / ds)); w = 0.55 ** level
+            for k in range(n):
+                plist.append((surf(fi, th), w, min(1.0, fi / float(U))))
+                hd += (rng.random() - 0.5) * wan * 2.0
+                fi += math.cos(hd) * ds / (total / U); th += math.sin(hd) * ds / max(0.5, frames[min(U, int(fi))][3])
+                if fi < 0 or fi > U: break
+                if level < levels and rng.random() < 0.10:
+                    grow(fi, th, hd + (1.0 if rng.random() < 0.5 else -1.0) * (0.8 + 0.6 * rng.random()), L * 0.55, level + 1)
+            emit(plist, level)
+        levs = [0.0] + [lv * 0.3 * k for k in range(1, nl) for lv in (1.0, -1.0)]
+        for lev in levs[: max(1, 2 * nl - 1)]:
+            edge = {}
+            def key_pos(kk):
+                if kk[0] == "h":
+                    _, i, j = kk; a, b = grid[i][j % V] - lev, grid[i + 1][j % V] - lev; t = a / (a - b)
+                    return (i + t, 2.0 * math.pi * (j % V) / V)
+                _, i, j = kk; a, b = grid[i][j % V] - lev, grid[i][(j + 1) % V] - lev; t = a / (a - b)
+                return (float(i), 2.0 * math.pi * (j + t) / V)
+            adj = {}
+            for i in range(U):
+                for j in range(V):
+                    cr = []
+                    va, vb, vc, vd = grid[i][j] - lev, grid[i + 1][j] - lev, grid[i + 1][(j + 1) % V] - lev, grid[i][(j + 1) % V] - lev
+                    if (va < 0) != (vb < 0): cr.append(("h", i, j))
+                    if (vb < 0) != (vc < 0): cr.append(("v", i + 1, j))
+                    if (vd < 0) != (vc < 0): cr.append(("h", i, (j + 1) % V))
+                    if (va < 0) != (vd < 0): cr.append(("v", i, j))
+                    for q in range(0, len(cr) - 1, 2):
+                        adj.setdefault(cr[q], []).append(cr[q + 1]); adj.setdefault(cr[q + 1], []).append(cr[q])
+            seen = set(); starts = [k for k, v in adj.items() if len(v) == 1] + list(adj.keys())
+            for st in starts:
+                if st in seen: continue
+                path = [st]; seen.add(st); cur = st
+                while True:
+                    nx = [k for k in adj[cur] if k not in seen]
+                    if not nx: break
+                    cur = nx[0]; seen.add(cur); path.append(cur)
+                if len(path) < 4: continue
+                pl = []
+                for kk in path:
+                    fi, th = key_pos(kk); pl.append((surf(fi, th), 1.0, min(1.0, fi / float(U))))
+                emit(pl, 0)
+                for b in range(nb):
+                    kk = path[rng.randrange(len(path))]; fi, th = key_pos(kk)
+                    grow(fi, th, rng.random() * 6.283, blen, 1)
 '''
 
 CARVE_VEX = r'''
@@ -256,19 +480,51 @@ float dxp = max(max(ch("../controls/pad_xmin") - @P.x, 0.0), @P.x - ch("../contr
 float dzp = max(max(ch("../controls/pad_zmin") - @P.z, 0.0), @P.z - ch("../controls/pad_zmax"));
 float padw = 1.0 - smooth(0.0, max(0.1, ch("../controls/pad_falloff")), length(set(dxp, 0, dzp)));
 @height -= pm * ch("../controls/path_carve_m") * (1.0 - padw);
-float bowl = 0.0;
+float bowl = 0.0, trench = 0.0, hood = 0.0;
 if (npoints(2) > 0) {
     int np = nearpoint(2, q);
     vector cp = point(2, "P", np);
-    float dc = distance(q, set(cp.x, 0, cp.z));
+    vector nn = point(2, "N", np);
+    vector f = normalize(set(nn.x, 0, nn.z));
+    vector dq = q - set(cp.x, 0, cp.z);
+    float a = dot(dq, f);
+    float b = dot(dq, set(-f.z, 0, f.x));
     float R = max(1.0, ch("../controls/cave_radius_m"));
+    float mw = max(1.0, ch("../controls/cave_mouth_m")) * 0.5;
+    vector c0 = -f * R * 0.25;
+    float dc = length(dq - c0);
     bowl = 1.0 - smooth(0.0, R, dc);
+    float tl = ch("../controls/cave_trench_m");
+    if (tl > 0.01) {
+        float along = smooth(-R * 0.2, R * 0.3, a) * (1.0 - smooth(tl * 0.6, tl + R * 0.3, a));
+        trench = along * (1.0 - smooth(mw * 0.6, mw * 1.4, abs(b)));
+    }
+    float ringp = smooth(R * 0.55, R * 0.95, dc) * (1.0 - smooth(R * 0.95, R * 1.6, dc));
+    float behind = smooth(0.0, R * 0.6, -a);
+    hood = ringp * behind;
 }
-@height -= bowl * ch("../controls/cave_depth_m");
-@Rock = clamp(max(@Rock, bowl), 0.0, 1.0);
+@height -= bowl * ch("../controls/cave_depth_m") + trench * ch("../controls/cave_depth_m") * 0.6;
+@height += hood * ch("../controls/cave_hood_m");
+float rockmask = max(bowl * 0.8, hood);
+@Rock = clamp(max(@Rock, rockmask), 0.0, 1.0);
 @Path = clamp(max(@Path, pm), 0.0, 1.0);
-@Mud = clamp(max(@Mud, pm * 0.35), 0.0, 1.0);
-@Grass = clamp(@Grass * (1.0 - max(pm, bowl)), 0.0, 1.0);
+@Mud = clamp(max(@Mud, max(pm * 0.35, trench * 0.5)), 0.0, 1.0);
+@Grass = clamp(@Grass * (1.0 - max(max(pm, bowl), max(trench, hood))), 0.0, 1.0);
+
+// ---- slope-aware layer painting (Nikki layers stay a real mix instead of three equal thirds)
+float dd = 3.0;
+float gxs = (volumesample(0, "height", @P + set(dd, 0, 0)) - volumesample(0, "height", @P - set(dd, 0, 0))) / (2.0 * dd);
+float gzs = (volumesample(0, "height", @P + set(0, 0, dd)) - volumesample(0, "height", @P - set(0, 0, dd))) / (2.0 * dd);
+float sl = length(set(gxs, 0, gzs));
+float rs0 = ch("../controls/rock_slope_start");
+float rockSl = smooth(rs0, max(rs0 + 0.01, ch("../controls/rock_slope_full")), sl);
+@Rock = clamp(max(@Rock, rockSl * (1.0 - padw)), 0.0, 1.0);
+float gs = ch("../controls/grass_max_slope");
+float grassSl = 1.0 - smooth(gs * 0.6, max(gs * 0.6 + 0.01, gs), sl);
+@Grass = clamp(@Grass * grassSl * (1.0 - @Rock), 0.0, 1.0);
+float mot = noise(@P * ch("../controls/mottle_freq") + set(7.3, 0.0, 2.1));
+@Ground = clamp(ch("../controls/ground_mottle") * (0.35 + 0.65 * mot) + 0.15 * (1.0 - @Grass), 0.0, 1.0);
+@Base = clamp(ch("../controls/base_weight"), 0.0, 1.0);
 '''
 
 SHAPE_VEX = r'''
@@ -336,6 +592,15 @@ float rockiness = far * smooth(ch("../controls/rock_start"), max(ch("../controls
 @Water = 1.0 - smooth(0.96, 1.02, pr);
 '''
 
+WALL_VEX = r'''
+float k = ch("../controls/wall_freq");
+float n = float(chi("../controls/wall_mode_n")), m = float(chi("../controls/wall_mode_m"));
+float f = cos(n * k * @P.x) * cos(m * k * @P.z) - cos(m * k * @P.x) * cos(n * k * @P.z);
+f = f * cos(k * @P.y * 1.7);
+@P += normalize(v@N) * f * ch("../controls/wall_amp_m");
+v@N = -v@N;
+'''
+
 ATTR_VEX = r'''
 s@unreal_landscape_layer_name = s@name;
 if (s@name == "height") {
@@ -392,6 +657,45 @@ def build_network(geo):
     carve.setInput(1, paths)
     carve.setInput(2, caves)
     carve.parm("snippet").set(CARVE_VEX)
+    pas = geo.createNode("python", "grow_cave_passages")
+    pas.setInput(0, carve)
+    pas.setInput(1, caves)
+    pas.parm("python").set(PASS_PY)
+    wire = geo.createNode("polywire", "passage_tube")
+    wire.setInput(0, pas)
+    wire.parm("radius").set(1.0)
+    wire.parm("usescaleattrib").set(1)
+    wire.parm("scaleattrib").set("pscale")
+    wire.parm("div").set(14)
+    wire.parm("segs").set(1)
+    wire.parm("smooth").set(1)
+    nrmn = geo.createNode("normal", "wall_normals")
+    nrmn.setInput(0, wire)
+    nrmn.parm("type").set(0)
+    relief = geo.createNode("attribwrangle", "chladni_wall_relief")
+    relief.setInput(0, nrmn)
+    relief.parm("class").set(2)
+    relief.parm("snippet").set(WALL_VEX)
+    rev = geo.createNode("reverse", "face_the_walls_inward")
+    rev.setInput(0, relief)
+    pmat = geo.createNode("attribwrangle", "passage_material")
+    pmat.setInput(0, rev)
+    pmat.parm("class").set(1)
+    pmat.parm("snippet").set('s@unreal_material = chs("../controls/pass_material");')
+    myc = geo.createNode("python", "grow_chladni_mycelium")
+    myc.setInput(0, pas)
+    myc.parm("python").set(MYC_PY)
+    mwire = geo.createNode("polywire", "mycelium_tube")
+    mwire.setInput(0, myc)
+    mwire.parm("radius").setExpression('ch("../controls/myc_thickness_m")', hou.exprLanguage.Hscript)
+    mwire.parm("usescaleattrib").set(1)
+    mwire.parm("scaleattrib").set("width")
+    mwire.parm("div").set(5)
+    mwire.parm("segs").set(1)
+    mmat = geo.createNode("attribwrangle", "mycelium_material")
+    mmat.setInput(0, mwire)
+    mmat.parm("class").set(1)
+    mmat.parm("snippet").set('s@unreal_material = chs("../controls/myc_material");')
     attr = geo.createNode("attribwrangle", "unreal_classic_landscape_attributes")
     attr.setInput(0, carve)
     attr.parm("class").set(1)
@@ -409,6 +713,12 @@ def build_network(geo):
     out_paths = geo.createNode("output", "OUT_PATH_CURVES")
     out_paths.parm("outputidx").set(2)
     out_paths.setInput(0, paths)
+    out_pass = geo.createNode("output", "OUT_CAVE_PASSAGES")
+    out_pass.parm("outputidx").set(3)
+    out_pass.setInput(0, pmat)
+    out_myc = geo.createNode("output", "OUT_MYCELIUM")
+    out_myc.parm("outputidx").set(4)
+    out_myc.setInput(0, mmat)
     for n in geo.children():
         n.moveToGoodPosition()
     return controls
@@ -556,9 +866,9 @@ def gate(hda, report):
     a["paths_gentle_p95_under_0_30"] = (report["paths"]["slope_p95"] or 0.0) <= 0.30
     a["paths_stay_dry"] = wet == 0
     a["paths_start_at_porch"] = all(math.hypot(ps["start"][0] - hda.parm("path_start_x").eval(), ps["start"][1] - hda.parm("path_start_z").eval()) < 2.0 for ps in path_stats)
-    a["caves_count_ok"] = len(cave_pts) == ncaves
-    a["caves_on_flank_slopes"] = all(c[3] >= 0.26 and c[2] > -50 for c in cave_pts)
-    a["caves_spaced_40m"] = min_sep >= 40.0
+    a["caves_count_ok"] = (len(cave_pts) == ncaves) or bool(hda.parm("cave_manual_xz").eval().strip())
+    a["caves_on_flank_slopes"] = all(c[3] >= hda.parm("cave_min_slope").eval() - 1e-6 and c[2] > -50 for c in cave_pts) or bool(hda.parm("cave_manual_xz").eval().strip())
+    a["caves_spaced_40m"] = min_sep >= hda.parm("cave_spacing_m").eval() - 1e-6
     # ---- sightlines from the porch eye (guide = paths, release = cave mouths)
     ex_, ez_ = hda.parm("path_start_x").eval(), hda.parm("path_start_z").eval()
     ey_ = hda.parm("pad_elevation").eval() + hda.parm("eye_height_m").eval()
@@ -580,13 +890,40 @@ def gate(hda, report):
         path_end_vis.append(bool(vis and vis[-1]))
         path_vis_frac.append(round(sum(vis) / float(max(1, len(vis))), 3))
     report["sightlines"] = {"eye": [ex_, round(ey_, 2), ez_], "caves_visible": cave_vis, "path_end_visible": path_end_vis, "path_visible_fraction": path_vis_frac}
-    a["caves_visible_from_porch"] = bool(cave_pts) and all(cave_vis)
+    a["caves_visible_from_porch"] = bool(cave_pts) and (all(cave_vis) or not hda.parm("cave_require_sightline").eval())
     a["path_starts_read_from_porch"] = all(f >= 0.25 for f in path_vis_frac) if path_vis_frac else True
     k_guided = min(len(path_stats), len(cave_pts))
     a["guided_paths_end_at_visible_caves"] = all(math.hypot(path_stats[i]["end"][0] - cave_pts[i][0], path_stats[i]["end"][1] - cave_pts[i][1]) < 12.0 and cave_vis[i] for i in range(k_guided)) if k_guided else True
 
+    # ---- passages + mycelium (extra outputs 3 and 4)
+    ps = hda.node("OUT_CAVE_PASSAGES").geometry(); ms = hda.node("OUT_MYCELIUM").geometry()
+    half = hda.parm("window_m").eval() / 2.0
+    pp = [q.position() for q in ps.points()]
+    report["passages"] = {"prims": len(ps.prims()), "points": len(pp), "errors": list(hda.node("OUT_CAVE_PASSAGES").errors())}
+    report["mycelium"] = {"prims": len(ms.prims()), "points": len(ms.points()), "errors": list(hda.node("OUT_MYCELIUM").errors())}
+    a["passages_one_or_more_per_cave"] = (not hda.parm("pass_enable").eval()) or (len(ps.prims()) >= max(1, len(cave_pts)) and len(pp) > 100)
+    a["passages_inside_window"] = all(abs(q[0] - hda.parm("window_cx").eval()) <= half and abs(q[2] - hda.parm("window_cz").eval()) <= half for q in pp)
+    a["mycelium_grows"] = (not hda.parm("myc_enable").eval()) or (len(ms.prims()) >= 4 and len(ms.points()) > 200)
+    a["no_cook_errors_extra_outputs"] = not report["passages"]["errors"] and not report["mycelium"]["errors"]
     report["assertions"] = a
     return arr, a, vols
+
+
+def seed_probe(hda, report):
+    """Seeds must rapidly change the caves, the passages and the mycelium (the Poitou-style seed loop)."""
+    def sig(node):
+        g = hda.node(node).geometry()
+        return round(sum(q.position()[0] * 1.3 + q.position()[1] * 0.7 + q.position()[2] for q in g.points()), 2), len(g.points())
+    out = {}
+    base = {n: sig(n) for n in ("OUT_CAVE_PASSAGES", "OUT_MYCELIUM")}
+    for parm, node in (("pass_seed", "OUT_CAVE_PASSAGES"), ("myc_seed", "OUT_MYCELIUM")):
+        old = hda.parm(parm).eval()
+        hda.parm(parm).set(old + 1)
+        t = time.time()
+        out[parm] = {"changed": sig(node) != base[node], "cook_s": round(time.time() - t, 2)}
+        hda.parm(parm).set(old)
+    report["seed_probe"] = out
+    report["assertions"]["seeds_change_passages_and_mycelium"] = all(v["changed"] for v in out.values())
 
 
 def drive_probe(hda, report):
@@ -646,6 +983,7 @@ def main():
     report = {"asset": str(HDA_PATH), "type": TYPE_NAME, "house_footprint_m": HOUSE, "pad_margin_m": PAD_MARGIN, "controls": {k: hda.parm(k).eval() for k in NAMES}}
     arr, a, vols = gate(hda, report)
     drive_probe(hda, report)
+    seed_probe(hda, report)
     cell = hda.parm("window_m").eval() / hda.parm("preview_resolution").eval()
     try:
         oh, xs, zs, _e, var = oriented(vols["height"])
