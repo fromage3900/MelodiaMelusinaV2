@@ -261,6 +261,35 @@ Imports/Animations/Cascadeur/*
 Imports/Animations/Cascadeur/Inbox/*
 !Imports/Animations/Cascadeur/Inbox/README.md
 Tools/*
+# Poitou Houdini pipeline sources (2026-10-22): kit grammar + feature snips,
+# builders, gates, registry-adjacent verify code. Small text; the lane that
+# feeds every Poitou HDA. Tracked so the work stops being reinvented.
+!Tools/Poitou/snip/
+!Tools/Poitou/snip/**
+!Tools/Poitou/build_poitou*.py
+!Tools/Poitou/gates/
+!Tools/Poitou/gates/**
+!Tools/Poitou/vellum/build_vellum_rest.py
+!Tools/Poitou/vellum/README.md
+!Tools/Houdini/hda_verify/
+!Tools/Houdini/hda_verify/**
+# August lanes (2026-10-22): choral sheep, sea_above_reef lookdev, endless
+# citadel, Copernicus, misc AAA lookdev. Code/text only - never binaries,
+# caches, or probe outputs.
+!Tools/Houdini/sea_above_reef/**/*.py
+!Tools/Houdini/sea_above_reef/*.md
+!Tools/Houdini/endless_citadel/*.py
+!Tools/Houdini/copernicus/*.py
+!Tools/Houdini/*.py
+!Tools/Houdini/*.md
+!Tools/Houdini/*.json
+# Salon room-shell HDA sources (2026-10-22): rectangular shell, rounded-plan
+# shell, HDA assemblers and native verifiers. Text only; the candidate HDAs
+# themselves stay staged under Saved/ and are never tracked here.
+!Tools/Houdini/room_shell/
+!Tools/Houdini/room_shell/*.py
+!Tools/Houdini/room_shell/*.md
+Tools/Houdini/room_shell/__pycache__/
 !Tools/Cascadeur/
 !Tools/Cascadeur/Melusina/
 !Tools/Cascadeur/Melusina/README.md
