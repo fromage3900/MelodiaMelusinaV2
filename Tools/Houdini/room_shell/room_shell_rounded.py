@@ -235,8 +235,8 @@ def _s_on_plan(pts, p):
 
 
 # --------------------------------------------------------------------------- portals
-def validate_openings(records, perimeter, H):
-    """Named floor-level portals in native metres / perimeter fractions."""
+def validate_openings(records, perimeter, H, bays=0):
+    """Named floor-level portals in native metres / perimeter fractions / bay indices."""
     if not isinstance(records, list):
         raise ValueError("rounded openings must be an array")
     result = []
@@ -249,13 +249,29 @@ def validate_openings(records, perimeter, H):
             raise ValueError("opening ids must be unique nonempty strings")
         if record.get("kind", "door") != "door":
             raise ValueError("rounded openings currently support floor-level doors only")
+        bay = 0
+        if record.get("theta") is not None:
+            theta = record.get("theta")
+            if isinstance(theta, bool) or not isinstance(theta, (int, float)) or not math.isfinite(theta):
+                raise ValueError("opening theta must be a finite number")
+            theta = float(theta)
+        elif record.get("bay") is not None:
+            index = record.get("bay")
+            if bays <= 0 or isinstance(index, bool) or not isinstance(index, (int, float)) or not math.isfinite(index):
+                raise ValueError("opening bay needs a positive bay count and a finite index")
+            bay = int(index)
+            if bay < 1 or bay > bays:
+                raise ValueError("opening bay index is 1-based and must fall inside the bay count")
+            theta = (bay - 0.5) / float(bays)
+        else:
+            raise ValueError("opening needs theta (perimeter fraction) or bay (1-based bay index)")
         values = []
-        for key in ("theta", "width", "height"):
+        for key in ("width", "height"):
             value = record.get(key)
             if isinstance(value, bool) or not isinstance(value, (int, float)) or not math.isfinite(value):
                 raise ValueError("opening %s must be a finite number" % key)
             values.append(float(value))
-        theta, width, height = values
+        width, height = values
         if not (0.0 <= theta <= 1.0):
             raise ValueError("opening theta is a perimeter fraction in [0,1]")
         theta = 0.0 if theta >= 1.0 else theta
@@ -269,7 +285,8 @@ def validate_openings(records, perimeter, H):
             d = abs(((centre - other["s_centre"]) + perimeter / 2.0) % perimeter - perimeter / 2.0)
             if d < (width + other["width"]) / 2.0 - 1e-6:
                 raise ValueError("openings on the same perimeter overlap or touch")
-        result.append(dict(id=name, theta=theta, s_centre=centre, s0=s0, s1=s0 + width, width=width, height=height, kind="door"))
+        result.append(dict(id=name, theta=theta, s_centre=centre, s0=s0, s1=s0 + width, width=width,
+                           height=height, kind="door", bay=bay))
         ids.add(name)
     return result
 
@@ -278,10 +295,115 @@ def _in_arc(s, s0, width, P):
     return ((s - s0) % P) <= width
 
 
+def _solid_ok(M, start):
+    """Flip a just-added closed solid if its signed volume came out inward."""
+    v = 0.0
+    for f in M.F[start:]:
+        pts = [M.P[i] for i in reversed(f)]
+        a = pts[0]
+        for i in range(1, len(pts) - 1):
+            b, c = pts[i], pts[i + 1]
+            n = _cross(_sub(b, a), _sub(c, a))
+            v += (a[0] * n[0] + a[1] * n[1] + a[2] * n[2]) / 6.0
+    if v < 0:
+        for k in range(start, len(M.F)):
+            M.F[k] = list(reversed(M.F[k]))
+    return v
+
+
+def beam3(M, a, b, w, d, role):
+    """Rectangular section tube between two 3D points (curved-wall cord, mullion, archivolt)."""
+    dx, dy, dz = b[0] - a[0], b[1] - a[1], b[2] - a[2]
+    L = math.sqrt(dx * dx + dy * dy + dz * dz)
+    if L < 1e-9:
+        return
+    u = (dx / L, dy / L, dz / L)
+    up = (0.0, 0.0, 1.0)
+    s = _cross(u, up)
+    if math.sqrt(s[0] ** 2 + s[1] ** 2 + s[2] ** 2) < 1e-6:
+        s = _cross(u, (1.0, 0.0, 0.0))
+    s = _norm(s)
+    t = _norm(_cross(s, u))
+    hw, hd = w / 2.0, d / 2.0
+
+    def ring(p):
+        return [
+            (p[0] + s[0] * hw + t[0] * hd, p[1] + s[1] * hw + t[1] * hd, p[2] + s[2] * hw + t[2] * hd),
+            (p[0] - s[0] * hw + t[0] * hd, p[1] - s[1] * hw + t[1] * hd, p[2] - s[2] * hw + t[2] * hd),
+            (p[0] - s[0] * hw - t[0] * hd, p[1] - s[1] * hw - t[1] * hd, p[2] - s[2] * hw - t[2] * hd),
+            (p[0] + s[0] * hw - t[0] * hd, p[1] + s[1] * hw - t[1] * hd, p[2] + s[2] * hw - t[2] * hd),
+        ]
+
+    start = len(M.F)
+    p8 = ring(a) + ring(b)
+    e1 = _sub(p8[1], p8[0])
+    e2 = _sub(p8[3], p8[0])
+    e3 = _sub(p8[4], p8[0])
+    if _cross(e1, e2)[0] * e3[0] + _cross(e1, e2)[1] * e3[1] + _cross(e1, e2)[2] * e3[2] < 0:
+        p8 = [p8[3], p8[2], p8[1], p8[0], p8[7], p8[6], p8[5], p8[4]]
+    for f in ((0, 3, 2, 1), (4, 5, 6, 7), (0, 1, 5, 4), (1, 2, 6, 5), (2, 3, 7, 6), (3, 0, 4, 7)):
+        M.poly([p8[i] for i in f], role)
+    _solid_ok(M, start)
+
+
+def sphere(M, c, r, role, lat=4, lon=7):
+    """Low-poly bead. Winding is fixed by _solid_ok, so pearls can never render inside-out."""
+    start = len(M.F)
+    cx, cy, cz = c
+    grid = []
+    for i in range(lat + 1):
+        th = math.pi * i / lat
+        ring = []
+        for j in range(lon):
+            ph = TAU * j / lon
+            ring.append((cx + r * math.sin(th) * math.cos(ph), cy + r * math.sin(th) * math.sin(ph), cz + r * math.cos(th)))
+        grid.append(ring)
+    for i in range(lat):
+        for j in range(lon):
+            j2 = (j + 1) % lon
+            M.poly([grid[i][j], grid[i + 1][j], grid[i + 1][j2], grid[i][j2]], role)
+    _solid_ok(M, start)
+
+
+def star_pts(r_out, r_in, n=8, rot=0.0, cx=0.0, cy=0.0):
+    return [((r_out if k % 2 == 0 else r_in) * math.cos(rot + TAU * k / (2 * n)) + cx,
+             (r_out if k % 2 == 0 else r_in) * math.sin(rot + TAU * k / (2 * n)) + cy) for k in range(2 * n)]
+
+
+def pointed_z(x, half, rise):
+    """Two-centred pointed arch profile: 0 at the springing edges, `rise` at the apex."""
+    if rise <= 1e-9 or half <= 1e-9:
+        return 0.0
+    c = (rise * rise - half * half) / (2.0 * half)
+    R = half + c
+    v = R * R - (abs(x) + c) ** 2
+    return math.sqrt(v) if v > 0.0 else 0.0
+
+
+def arch_cuts(half, rise, n=10):
+    """x marks along a two-centred arch, sampled uniformly in arc angle on both halves."""
+    if rise <= 1e-9 or half <= 1e-9:
+        return [0.0]
+    c = (rise * rise - half * half) / (2.0 * half)
+    R = half + c
+    out = []
+    t0 = math.acos(max(-1.0, min(1.0, -c / R)))
+    for i in range(n + 1):
+        th = math.pi + (t0 - math.pi) * (i / float(n))
+        out.append(c + R * math.cos(th))
+    t1 = math.acos(max(-1.0, min(1.0, c / R)))
+    for i in range(1, n + 1):
+        th = t1 + (0.0 - t1) * (i / float(n))
+        out.append(-c + R * math.cos(th))
+    return out
+
+
 # --------------------------------------------------------------------------- build
 DEFAULTS = dict(
     W=7.0, D=9.0, H=3.4, wall_t=0.24, shape="ellipse", sides=16, exponent=2.6,
     segments=96, floor_t=0.12, ceil_t=0.18, skirting=True, chair_rail=True, floor_medallion=True,
+    bays=0, bay_m=2.4, wall_panels=True, wall_beads=True, swag=True, arch_medallion=True,
+    portal_head="pointed", arch_rise_ratio=0.55, archivolt=True,
 )
 
 
@@ -301,16 +423,46 @@ def build(**kw):
     dense = [(x + cx, y + cy) for x, y in plan_curve(shape, a, b, sides, exponent, 2048)]
     arc = Arc(dense)
     P = arc.total
-    openings = validate_openings(p.get("openings") or [], P, H)
 
-    # Boundaries: uniform tessellation plus every portal edge, so jambs are exact.
+    # ---- bay rhythm: one bay is one bar of 4/4 on the 0.6 m beat grid
+    bays = int(p["bays"])
+    if bays <= 0:
+        bays = max(4, int(round(P / max(0.6, float(p["bay_m"])))))
+    bays = max(4, min(96, bays))
+    bay_m = P / float(bays)
+
+    openings = validate_openings(p.get("openings") or [], P, H, bays)
+
+    # ---- portal heads: a pointed arch cut into the curve, apex at the clear height
+    head = str(p["portal_head"]).lower()
+    rise_ratio = float(p["arch_rise_ratio"])
+    for q in openings:
+        rise = 0.0
+        if head in ("pointed", "ogive", "arch"):
+            rise = min(q["width"] * rise_ratio, q["height"] - 1.95, q["height"] * 0.62)
+            if rise < q["width"] * 0.5 * 0.75:
+                rise = 0.0
+        q["arch_rise"] = max(0.0, rise)
+        q["spring"] = q["height"] - q["arch_rise"]
+        q["pier_m"] = round(max(0.0, bay_m - q["width"]) / 2.0, 4)
+
+    # Boundaries: uniform tessellation, every portal edge, and the arch's own angle-sampled
+    # marks, so jambs are exact cuts and the arch soffit is a smooth staircase, not a wedge.
     cuts = set()
     for k in range(segments):
         cuts.add(round(P * k / segments, 6))
     for q in openings:
         cuts.add(round(q["s0"] % P, 6))
         cuts.add(round(q["s1"] % P, 6))
-    boundaries = sorted(cuts) + [P]
+        if q["arch_rise"] > 0:
+            for x in arch_cuts(q["width"] / 2.0, q["arch_rise"], 10):
+                cuts.add(round((q["s_centre"] + x) % P, 6))
+    ordered = sorted(cuts)
+    boundaries = [b for i, b in enumerate(ordered) if i == 0 or b - ordered[i - 1] > 1e-6]
+    if boundaries[0] > 1e-9:
+        boundaries.insert(0, 0.0)
+    if boundaries[-1] < P - 1e-9:
+        boundaries.append(P)
 
     verts = [arc.at(s) for s in boundaries]
     nrm = []
@@ -346,7 +498,13 @@ def build(**kw):
         if q is None:
             spans = [(0.0, H)]
         else:
-            spans = [(q["height"], H)]
+            s_mid = (boundaries[i] + boundaries[i + 1]) / 2.0
+            if q["arch_rise"] > 0:
+                dx = ((s_mid - q["s_centre"]) + P / 2.0) % P - P / 2.0
+                z_clear = q["spring"] + pointed_z(dx, q["width"] / 2.0, q["arch_rise"])
+            else:
+                z_clear = q["height"]
+            spans = [(z_clear, H)]
         for z0, z1 in spans:
             if z1 - z0 < 1e-6:
                 continue
@@ -376,6 +534,30 @@ def build(**kw):
             hexa_rings(M, [(x, y, z0) for x, y in ring2], [(x, y, z1) for x, y in ring2], role)
             report["solids"] += 1
 
+    epsn = 0.02
+
+    def wall_pt(s, z, depth=0.0):
+        """Interior wall-face point at arc mark `s`, height `z`, `depth` metres proud of the face."""
+        pt = arc.at(s)
+        n = _outward(arc.at(s - epsn), arc.at(s + epsn))
+        return (pt[0] - n[0] * depth, pt[1] - n[1] * depth, z)
+
+    def raised_field(s_a, s_b, z0, z1, proj, role):
+        """Curve-following raised panel between two arc marks; doorway segments are skipped."""
+        marks = [s_a] + [b for b in boundaries if s_a + 1e-6 < b < s_b - 1e-6] + [s_b]
+        for u, v in zip(marks, marks[1:]):
+            if v - u < 1e-6:
+                continue
+            if any(_in_arc((u + v) / 2.0, q["s0"], q["width"], P) for q in openings):
+                continue
+            pu, pv = arc.at(u), arc.at(v)
+            nu = _outward(arc.at(u - epsn), arc.at(u + epsn))
+            nv = _outward(arc.at(v - epsn), arc.at(v + epsn))
+            ring2 = _ensure_ccw([pu, (pu[0] - nu[0] * proj, pu[1] - nu[1] * proj),
+                                 (pv[0] - nv[0] * proj, pv[1] - nv[1] * proj), pv])
+            hexa_rings(M, [(x, y, z0) for x, y in ring2], [(x, y, z1) for x, y in ring2], role)
+            report["solids"] += 1
+
     if p["skirting"]:
         band(0.0, 0.14, 0.025, "panel", skip_portals=True)
     if p["chair_rail"]:
@@ -391,6 +573,99 @@ def build(**kw):
                 strip(M, u, v, w, 0.004, role)
             report["solids"] += 1
 
+    # ---- bay-rhythm decoration: boiserie fields, bead strings, pearl swags, archivolts
+    decor = dict(bays=bays, bay_m=round(bay_m, 4), beat_m=round(bay_m / 4.0, 4),
+                 panels=0, bead_strings=0, beads=0, swags=0, archivolts=0, medallions=0)
+    z_field0, z_field1 = 0.16, H - 0.46
+
+    if p["wall_panels"] and bay_m >= 1.2:
+        for k in range(bays):
+            raised_field(k * bay_m + 0.10, (k + 1) * bay_m - 0.10,
+                         z_field0 + 0.05, z_field1 - 0.05, 0.012, "panel")
+            decor["panels"] += 1
+        for k in range(1, bays):
+            sc = k * bay_m
+            if any(abs(((sc - q["s_centre"]) + P / 2.0) % P - P / 2.0) < q["width"] / 2.0 + 0.06 for q in openings):
+                continue
+            raised_field(sc - 0.028, sc + 0.028, z_field0, z_field1, 0.032, "panel")
+            decor["panels"] += 1
+        if not any(abs(((0.0 - q["s_centre"]) + P / 2.0) % P - P / 2.0) < q["width"] / 2.0 + 0.06 for q in openings):
+            raised_field(0.0, 0.028, z_field0, z_field1, 0.032, "panel")
+            raised_field(P - 0.028, P, z_field0, z_field1, 0.032, "panel")
+            decor["panels"] += 2
+
+    if p["wall_beads"]:
+        z_top, z_bot, step = H - 0.55, 1.35, 0.13
+        count = max(1, int((z_top - z_bot) / step))
+        for k in range(1, bays, 3):
+            sc = k * bay_m
+            if any(abs(((sc - q["s_centre"]) + P / 2.0) % P - P / 2.0) < q["width"] / 2.0 + 0.06 for q in openings):
+                continue
+            prev = None
+            for j in range(count + 1):
+                c = wall_pt(sc, z_bot + j * step, 0.034)
+                sphere(M, c, 0.0238, "pearl_shell", lat=3, lon=6)
+                if prev is not None:
+                    beam3(M, prev, c, 0.005, 0.005, "trim_gold")
+                prev = c
+            decor["bead_strings"] += 1
+            decor["beads"] += count + 1
+            report["solids"] += 1
+
+    if p["swag"]:
+        z_swag, droop, n_swag = H - 0.34, 0.20, 11
+        for k in range(bays):
+            sa, sb = k * bay_m + 0.09, (k + 1) * bay_m - 0.09
+            prev = None
+            for j in range(n_swag + 1):
+                f = j / float(n_swag)
+                c = wall_pt(sa + (sb - sa) * f, z_swag - droop * math.sin(math.pi * f), 0.058)
+                end = j in (0, n_swag)
+                sphere(M, c, 0.032 if end else 0.026, "trim_gold" if end else "pearl_shell", lat=3, lon=6)
+                if prev is not None:
+                    beam3(M, prev, c, 0.005, 0.005, "trim_gold")
+                prev = c
+            decor["swags"] += 1
+            report["solids"] += 1
+
+    if p["archivolt"]:
+        for q in openings:
+            if q["arch_rise"] <= 0:
+                continue
+            half = q["width"] / 2.0
+            for band_i, (off, role, w) in enumerate(((0.0, "trim_gold", 0.050), (0.085, "panel", 0.065))):
+                prev = None
+                for j in range(29):
+                    x = (j / 28.0 * 2.0 - 1.0) * (half + off)
+                    c = wall_pt(q["s_centre"] + x,
+                                q["spring"] + pointed_z(x, half + off, q["arch_rise"] + off),
+                                0.024 + band_i * 0.014)
+                    if prev is not None:
+                        beam3(M, prev, c, w, w * 0.6, role)
+                    prev = c
+                decor["archivolts"] += 1
+            apex = wall_pt(q["s_centre"], q["spring"] + q["arch_rise"] + 0.03, 0.038)
+            box(M, (apex[0] - 0.058, apex[1] - 0.058, apex[2] - 0.05),
+                (apex[0] + 0.058, apex[1] + 0.058, apex[2] + 0.15), "trim_gold")
+            decor["archivolts"] += 1
+
+    if p["arch_medallion"]:
+        for q in openings:
+            zc = q["height"] + 0.30
+            for rr, role, w in ((0.19, "trim_gold", 0.022), (0.12, "panel", 0.028)):
+                prev = None
+                for j in range(25):
+                    ang = TAU * j / 24.0
+                    c = wall_pt(q["s_centre"] + rr * math.cos(ang), zc + rr * math.sin(ang), 0.022)
+                    if prev is not None:
+                        beam3(M, prev, c, w, w * 0.6, role)
+                    prev = c
+            star = star_pts(0.105, 0.048, 8, rot=math.pi / 2.0)
+            loop = [(q["s_centre"] + x, zc + y) for x, y in star]
+            for u, v in zip(loop, loop[1:] + loop[:1]):
+                beam3(M, wall_pt(u[0], u[1], 0.024), wall_pt(v[0], v[1], 0.024), 0.018, 0.014, "trim_gold")
+            decor["medallions"] += 1
+
     # ---- sockets + report
     for q in openings:
         smid = q["s0"] + q["width"] / 2.0
@@ -398,15 +673,21 @@ def build(**kw):
         pprev = arc.at(smid - 1e-3)
         pnext = arc.at(smid + 1e-3)
         nout = _outward(pprev, pnext)
-        rep = dict(id=q["id"], wall="CURVE", theta=round(q["theta"], 6),
+        rep = dict(id=q["id"], wall="CURVE", theta=round(q["theta"], 6), bay=q["bay"],
                    centre_local_m=[round(pin[0], 6), round(pin[1], 6), 0.0],
                    inward=[round(-nout[0], 6), round(-nout[1], 6), 0.0], up=[0.0, 0.0, 1.0],
                    clear_width_m=q["width"], clear_height_m=q["height"], floor_z_m=0.0,
+                   spring_z_m=round(q["spring"], 6), arch_rise_m=round(q["arch_rise"], 6),
+                   arch_profile="pointed" if q["arch_rise"] > 0 else "flat",
+                   pier_m=q["pier_m"],
                    s0=round(q["s0"] % P, 6), s1=round(q["s1"] % P, 6), kind="door", native_cut=True)
         report["sockets"].append(rep)
         report["openings"].append(dict(q, centre_local_m=rep["centre_local_m"], inward=rep["inward"]))
 
     report["params"]["perimeter_m"] = round(P, 4)
+    report["params"]["bays"] = bays
+    report["params"]["bay_m_actual"] = round(bay_m, 4)
+    report["decor"] = decor
     report["room"] = dict(anchor_ue_cm=[0.0, 0.0, 0.0], room_yaw_ue=0.0,
                           plan_shape=shape, perimeter_m=round(P, 4), interior_axes_m=[W, D])
     # kept for the gate only (not serialised into the HDA payload)
@@ -491,6 +772,52 @@ def gate(M, rep):
                     worst = max(worst, abs(val - 1.0) / grad)
     out["plan_profile_error_mm"] = round(worst * 1000.0, 4) if worst < 1e17 else None
     out["plan_matches_shape"] = bool(inner) and worst <= 0.002
+
+    # ---- musical bay rhythm: the panelisation must land near one bar of 4/4
+    bay_m = p.get("bay_m_actual") or 0.0
+    out["bay_rhythm_ok"] = bool(p.get("bays")) and 1.2 <= bay_m <= 4.0
+
+    # ---- pointed heads: the wall soffit above a portal must follow the arch profile
+    soffit = []
+    for face, role in zip(M.F, M.R):
+        if role != "wall":
+            continue
+        for idx in face:
+            v = M.P[idx]
+            if 1e-6 < v[2] < H - 1e-6:
+                soffit.append(v)
+    worst_arch = 0.0
+    for q in rep["openings"]:
+        if q.get("arch_rise", 0.0) <= 0 or not soffit:
+            continue
+        half = q["width"] / 2.0
+        for v in soffit:
+            off = (_s_on_plan(dense, (v[0], v[1]))[0] - q["s0"]) % P
+            if not (2e-3 < off < q["width"] - 2e-3):
+                continue
+            expect = q["spring"] + pointed_z(off - half, half, q["arch_rise"])
+            worst_arch = max(worst_arch, abs(v[2] - expect))
+    out["portal_arch_max_dev_m"] = round(worst_arch, 4)
+    out["portal_arch_follows_profile"] = worst_arch <= 0.15
+
+    # ---- decor must never run through a doorway
+    in_door = False
+    for face, role in zip(M.F, M.R):
+        if role not in ("panel", "pearl_shell"):
+            continue
+        pts = [M.P[i] for i in face]
+        for q in rep["openings"]:
+            hits = 0
+            for v in pts:
+                s, d = _s_on_plan(dense, (v[0], v[1]))
+                if d > 0.40:
+                    continue
+                off = (s - q["s0"]) % P
+                if 2e-3 < off < q["width"] - 2e-3 and v[2] < q.get("spring", q["height"]) - 0.05:
+                    hits += 1
+            if hits == len(pts):
+                in_door = True
+    out["decor_clear_of_doorways"] = not in_door
 
     out["walls_present"] = rep["solids"] > 0 and len(M.F) > 6 * p["segments"]
     out["all_pass"] = all(v for k, v in out.items() if isinstance(v, bool))
