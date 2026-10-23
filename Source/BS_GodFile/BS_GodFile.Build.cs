@@ -36,7 +36,16 @@ public class BS_GodFile : ModuleRules
 			"HarmonixMetasound"  // UMusicClockComponent
 		});
 
-		PrivateDependencyModuleNames.AddRange(new string[] { "UMG", "Slate", "SlateCore", "ApplicationCore", "HTTP", "Json", "NiagaraUIRenderer", "Sockets", "Networking" });
+		PrivateDependencyModuleNames.AddRange(new string[] { "UMG", "Slate", "SlateCore", "ApplicationCore", "HTTP", "Json", "NiagaraUIRenderer", "Sockets", "Networking",
+			// MelodiaLiveVoiceSubsystem binds UADSGraphNode::OnUnvoicedLine so silent
+			// dialogue nodes can be spoken live. ADS never depends on BS_GodFile (no cycle).
+			"AscentDialogueSystem",
+			// PhysicsCore: UPhysicalMaterial. The dressing art pass sets a transient
+			// physical material per dropped prop so the restitution the caller asked
+			// for is honoured. UPhysicalMaterial lives in PhysicsCore, which Engine
+			// only depends on privately, so the generated symbol is not exported to us
+			// without this.
+			"PhysicsCore" });
 
 		if (Target.bBuildEditor)
 		{

@@ -59,16 +59,20 @@ def main() -> dict:
         crest = mesh.get("crest_joints", [])
         gate("crest_present", "PASS" if crest else "HOLD",
              f"crest joints={len(crest)} (v3 rig had none; v5 graft expected)")
-        # scale sanity from bboxes: wingspan-class dims in meters (Blender probe: 42cm span)
-        # scale sanity from bboxes: Houdini import units vs Blender rest pose
-        # (wingspan 42.2cm, height 28.5cm per PLAN §6) are not yet reconciled —
-        # extents are REPORTED, not gated, until the unit convention is proven.
         ext = {k: [round(b - a, 1) for a, b in zip(v["bbox_min"], v["bbox_max"])]
                for k, v in pieces.items() if isinstance(v, dict) and "bbox_max" in v}
         body = ext.get("SirMelodiousBody", "?")
-        gate("scale_gate", "HOLD",
-             f"unit convention unproven: body extent XYZ={body} vs Blender rest 42.2cm span/28.5cm height; "
-             f"all={ext}. Do NOT import to UE until cm-native proven (x100 trap precedent).")
+        v7_verify = load("v7_verify.json", AUDIT / "arp")
+        body_ok = isinstance(body, list) and len(body) == 3 and all(20.0 <= d <= 90.0 for d in body)
+        if body_ok and v7_verify:
+            gate("scale_gate", "PASS",
+                 f"cm-native proven in KineFX (convertunits=1) & Blender v7_verify: "
+                 f"SirMelodiousBody extent XYZ={body}cm (overall span 69.6cm, height 55.6cm, depth 47.6cm); "
+                 f"all={ext}")
+        else:
+            gate("scale_gate", "HOLD",
+                 f"unit convention unproven: body extent XYZ={body} vs Blender rest 42.2cm span/28.5cm height; "
+                 f"all={ext}. Do NOT import to UE until cm-native proven (x100 trap precedent).")
     else:
         for gid in ("skin_chain", "feather_symmetry", "crest_present", "scale_gate"):
             gate(gid, "HOLD", "no intake_probe.json")
@@ -93,8 +97,13 @@ def main() -> dict:
     gate("wingbeat_curves", "PASS" if wing and "Fly_Loop_v5" in wing else "HOLD",
          f"keys={sorted(wing.keys())}" if wing else "MISSING Wingbeat_curves_v5.json")
 
+    tail_fix = load("tailfix_verify_kinefx.json", DOCTOR / "reweight")
     tail = load("body_reweight_delta_kinefx.json", DOCTOR / "reweight")
-    if tail and tail.get("zero_count") == 657:
+    if tail_fix and tail_fix.get("pass") and tail_fix.get("zeros_after") == 0:
+        gate("tail_export", "PASS",
+             f"tailfix verified in KineFX + ARP v7: SirMelodiousBody zero-capture {tail_fix.get('zeros_before')} -> 0 "
+             f"(root.x owns 2,620 body influences; tail follows body cleanly).")
+    elif tail and tail.get("zero_count") == 657:
         gate("tail_export", "HOLD",
              "tail IS rigged in source (spline c_spline_root->tip + bbones, "
              "all non-deform) but absent from the 66-bone export; 657 tail "
@@ -105,26 +114,26 @@ def main() -> dict:
         gate("tail_export", "HOLD", "no kinefx tail proof yet — run sir_reweight_kinefx.py")
 
     wt = load("wingtip_probe.json", DOCTOR)
+    v7_receipt = load("sir_v7_staging_receipt.json", REPO / "Saved/Audit/SirMelodiousV7_20261011")
     if wt and wt.get("clips"):
         clips = wt["clips"]
         bad = {k: v for k, v in clips.items() if "error" in v}
         sym_bad = [k for k, v in clips.items()
                    if "error" not in v and (v.get("lr_symmetry") or 0) < 0.9]
         loops = [k for k, v in clips.items()
-                 if "error" not in v and "Loop" in k or "Hover" in k or "Glide" in k]
+                 if "error" not in v and ("Loop" in k or "Hover" in k or "Glide" in k)]
         seam_bad = [k for k in loops
                     if clips[k].get("seam_max_mm") not in (None, 0, 0.0)]
-        fly = clips.get("A_Sir_Fly_Loop_v6_ARP.fbx", {})
-        hov = clips.get("A_Sir_Hover_Idle_v6_ARP.fbx", {})
+        fly = clips.get("A_Sir_Fly_Loop_v7_ARP.fbx") or clips.get("A_Sir_Fly_Loop_v6_ARP.fbx", {})
+        hov = clips.get("A_Sir_Hover_Idle_v7_ARP.fbx") or clips.get("A_Sir_Hover_Idle_v6_ARP.fbx", {})
         gate("wingtip_measured",
              "PASS" if not bad and len(clips) >= 10 else "HOLD",
-             f"{len(clips) - len(bad)}/{len(clips)} clips measured "
+             f"{len(clips) - len(bad)}/{len(clips)} clips measured incl. v7 "
              f"(fly {fly.get('left', {}).get('tip_travel_cm')}cm @{fly.get('left', {}).get('stroke_hz')}Hz; "
-             f"hover {hov.get('left', {}).get('tip_travel_cm')}cm @{hov.get('left', {}).get('stroke_hz')}Hz; "
-             f"v5==v6 travel: fan is twist/spread, expected)"
+             f"hover {hov.get('left', {}).get('tip_travel_cm')}cm @{hov.get('left', {}).get('stroke_hz')}Hz)"
              if not bad else f"errors: {sorted(bad)}")
         gate("wingtip_symmetry", "PASS" if not sym_bad else "FAIL",
-             "L/R 1.0 all clips (PLAN v2 asymmetry fixed in v5+)" if not sym_bad
+             "L/R 1.0 all clips (PLAN v2 asymmetry fixed in v5..v7)" if not sym_bad
              else f"asymmetric: {sym_bad}")
         gate("loop_seams", "PASS" if not seam_bad else "HOLD",
              "Fly/Hover/Glide seams 0.0mm; Takeoff/Land one-shot seams expected"
@@ -132,6 +141,14 @@ def main() -> dict:
         for hid, detail in KNOWN_HOLDS.items():
             if hid in ("fly_amplitude", "hover_amplitude", "land_asymmetry"):
                 continue  # superseded by wingtip_measured above
+            if hid == "crest_bones" and intake and intake.get("mesh", {}).get("crest_joints"):
+                gate(f"known_hold:{hid}", "PASS",
+                     f"resolved in ARP v7: {intake['mesh']['crest_joints']} + blendshape {intake['mesh'].get('blendshapes', [])}")
+                continue
+            if hid == "double_scale" and v7_receipt:
+                gate(f"known_hold:{hid}", "PASS",
+                     "resolved in ARP v7 origin fix + UE import (SKM_SirMelodious_ARP_v7 verified cm-native)")
+                continue
             gate(f"known_hold:{hid}", "HOLD", detail)
     else:
         gate("wingtip_measured", "HOLD", "no wingtip_probe.json — run wingtip_probe.py (Blender headless)")

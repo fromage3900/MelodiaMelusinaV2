@@ -36,7 +36,7 @@ Written by Grok Bot (💧), 2026-10-15 00:15 ET. Owner: Brennan. Status: STAGING
 - Canon first: CURRENT_STATE.md + lane docs. Reuse Brennan's masters, Niagara templates, BP_MelodiaNiagaraDriver, Tools/Houdini (melodia::ocean_cathedral::1.4, build_switchback_stairs.py, varied_corridors.py, sir_kinefx/, chladni_eigen.py).
 - Only MIs of existing masters. No new masters. No scripted character-mesh imports (Brennan imports skeletal/morph assets himself).
 - Never write under a running editor. Bots write only to Saved/Staging/GrokPrep/.
-- Houdini is Apprentice: no FBX/ABC export, COP output watermarked. FBX comes from Blender; Houdini ships bgeo.sc / OBJ / JSON / CSV / EXRs written from Python.
+- **Licensing correction (2026-10-19):** owner confirms Houdini licensing was used and verified previously; a clean Hython 22.0.368 probe reports Indie and `isApprentice=False`. A cathedral `.hipnc` source enters non-commercial mode when loaded, which describes that file/session only and does not mean the owner lacks a license. Keep the format visible in each delivery record. The current offline FBX/Alembic stage was converted from Houdini OBJ by Blender; that describes this staging route, not a general Houdini license limitation.
 
 ## Locked conventions (the contract)
 - Frame: JSON = "frame": "shared_zup_cm" (cm, Z-up, tile-centre origin). Flip Y exactly ONCE, on the way into UE. Blender FBX is in the UE frame and is labelled so.

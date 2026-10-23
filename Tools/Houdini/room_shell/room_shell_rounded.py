@@ -404,6 +404,7 @@ DEFAULTS = dict(
     segments=96, floor_t=0.12, ceil_t=0.18, skirting=True, chair_rail=True, floor_medallion=True,
     bays=0, bay_m=2.4, wall_panels=True, wall_beads=True, swag=True, arch_medallion=True,
     portal_head="pointed", arch_rise_ratio=0.55, archivolt=True,
+    tiers=[],  # setback ratios per tier, e.g. [1.0, 0.85, 0.70]; empty = single volume
 )
 
 
@@ -430,6 +431,10 @@ def build(**kw):
         bays = max(4, int(round(P / max(0.6, float(p["bay_m"])))))
     bays = max(4, min(96, bays))
     bay_m = P / float(bays)
+
+    tiers = [float(x) for x in (p.get("tiers") or [])]
+    if not tiers:
+        tiers = [1.0]
 
     openings = validate_openings(p.get("openings") or [], P, H, bays)
 
@@ -474,7 +479,7 @@ def build(**kw):
 
     M = Mesh()
     report = dict(params=dict(W=W, D=D, H=H, wall_t=t, shape=shape, sides=sides, exponent=exponent,
-                              segments=segments, perimeter_m=round(P, 4), openings=len(openings)),
+                              segments=segments, perimeter_m=round(P, 4), openings=len(openings), tiers=tiers),
                   openings=[], sockets=[], joints=[], windows=[], door=None, chladni=None, streamers=None,
                   solids=0)
 
@@ -489,26 +494,70 @@ def build(**kw):
                 break
         half_open.append(hit)
 
+    # ---- walls: tiered setbacks for solid segments, full-radius arch for portals
+    tiers = [float(x) for x in (p.get("tiers") or [])]
+    if not tiers:
+        tiers = [1.0]
+    n_tiers = len(tiers)
+    tier_z = [H * (i + 1) / n_tiers for i in range(n_tiers)]
+    tier_z0 = [0.0] + tier_z[:-1]
+
     for i, q in enumerate(half_open):
+        in_portal = (q is not None)
         pi, pj = verts[i], verts[i + 1]
         ni, nj = nrm[i], nrm[i + 1]
-        qi = (pi[0] + ni[0] * t, pi[1] + ni[1] * t)
-        qj = (pj[0] + nj[0] * t, pj[1] + nj[1] * t)
-        ring2 = _ensure_ccw([pi, qi, qj, pj])
-        if q is None:
-            spans = [(0.0, H)]
-        else:
+
+        if in_portal:
+            # full radius, arch profile all the way up
+            qi = (pi[0] + ni[0] * t, pi[1] + ni[1] * t)
+            qj = (pj[0] + nj[0] * t, pj[1] + nj[1] * t)
+            ring2 = _ensure_ccw([pi, qi, qj, pj])
             s_mid = (boundaries[i] + boundaries[i + 1]) / 2.0
             if q["arch_rise"] > 0:
                 dx = ((s_mid - q["s_centre"]) + P / 2.0) % P - P / 2.0
                 z_clear = q["spring"] + pointed_z(dx, q["width"] / 2.0, q["arch_rise"])
             else:
                 z_clear = q["height"]
-            spans = [(z_clear, H)]
-        for z0, z1 in spans:
-            if z1 - z0 < 1e-6:
+            z0 = z_clear
+            z1 = H
+            if z1 - z0 >= 1e-6:
+                hexa_rings(M, [(x, y, z0) for x, y in ring2], [(x, y, z1) for x, y in ring2], "wall")
+                report["solids"] += 1
+        else:
+            # tiered setbacks for solid segments
+            for tier_idx in range(n_tiers):
+                setback = tiers[tier_idx]
+                t_tier = t * setback
+                z_bot = tier_z0[tier_idx]
+                z_top = tier_z[tier_idx]
+                qi = (pi[0] + ni[0] * t_tier, pi[1] + ni[1] * t_tier)
+                qj = (pj[0] + nj[0] * t_tier, pj[1] + nj[1] * t_tier)
+                ring2 = _ensure_ccw([pi, qi, qj, pj])
+                z0 = z_bot
+                z1 = z_top
+                if z1 - z0 < 1e-6:
+                    continue
+                hexa_rings(M, [(x, y, z0) for x, y in ring2], [(x, y, z1) for x, y in ring2], "wall")
+                report["solids"] += 1
+
+    # cornice ledges at tier transitions (solid segments only)
+    for tier_idx in range(n_tiers - 1):
+        t_inner = t * tiers[tier_idx + 1]
+        t_outer = t * tiers[tier_idx]
+        z_ledge = tier_z[tier_idx]
+        for i in range(len(boundaries) - 1):
+            if half_open[i] is not None:
                 continue
-            hexa_rings(M, [(x, y, z0) for x, y in ring2], [(x, y, z1) for x, y in ring2], "wall")
+            pi, pj = verts[i], verts[i + 1]
+            ni, nj = nrm[i], nrm[i + 1]
+            oi = (pi[0] + ni[0] * t_outer, pi[1] + ni[1] * t_outer)
+            oj = (pj[0] + nj[0] * t_outer, pj[1] + nj[1] * t_outer)
+            ii = (pi[0] + ni[0] * t_inner, pi[1] + ni[1] * t_inner)
+            ij = (pj[0] + nj[0] * t_inner, pj[1] + nj[1] * t_inner)
+            ring2 = _ensure_ccw([oi, ii, ij, oj])
+            ledge_h = 0.12
+            hexa_rings(M, [(x, y, z_ledge) for x, y in ring2],
+                       [(x, y, z_ledge + ledge_h) for x, y in ring2], "panel")
             report["solids"] += 1
 
     # ---- floor slab, tucked under the wall band (outer curve)
@@ -778,14 +827,21 @@ def gate(M, rep):
     out["bay_rhythm_ok"] = bool(p.get("bays")) and 1.2 <= bay_m <= 4.0
 
     # ---- pointed heads: the wall soffit above a portal must follow the arch profile
+    tiers = p.get("tiers") or [1.0]
+    n_tiers = len(tiers)
     soffit = []
     for face, role in zip(M.F, M.R):
         if role != "wall":
             continue
         for idx in face:
             v = M.P[idx]
-            if 1e-6 < v[2] < H - 1e-6:
-                soffit.append(v)
+            if not (1e-6 < v[2] <= 3.3 and v[2] < H - 1e-6):
+                continue
+            # only base-tier vertices (full radius) follow the arch profile
+            s, d = _s_on_plan(dense, (v[0], v[1]))
+            if abs(d - t) > 0.02:
+                continue  # upper tier (setback) - skip
+            soffit.append(v)
     worst_arch = 0.0
     for q in rep["openings"]:
         if q.get("arch_rise", 0.0) <= 0 or not soffit:
@@ -852,6 +908,10 @@ def cook(node):
             kw["openings"] = records
         elif records != []:
             raise ValueError("explicit openings must be an array")
+    if h.parm("tiers_json"):
+        tiers = json.loads(h.evalParm("tiers_json"))
+        if isinstance(tiers, list):
+            kw["tiers"] = tiers
     M, rep = build(**kw)
     gt = gate(M, rep)
     g = node.geometry()

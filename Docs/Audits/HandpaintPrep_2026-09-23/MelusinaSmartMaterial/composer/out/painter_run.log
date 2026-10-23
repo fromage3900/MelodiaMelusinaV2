@@ -789,3 +789,404 @@ RuntimeError: missing canvas ink: None
 [11:39:55] imported heromet
 [11:39:55] imported heroglint
 [11:40:24] export rich: ExportStatus.Success (24 files)
+[02:14:49] === SMS2 build start (variant Verse) ===
+[02:14:49] channel SpecularEdgeColor -> present
+[02:14:49] channel CoatColor -> present
+[02:14:49] channel CoatOpacity -> present
+[02:14:49] channel CoatRoughness -> present
+[02:14:49] channel SheenColor -> present
+[02:14:49] channel SheenOpacity -> present
+[02:14:49] deleted SMS2_Hero
+[02:14:49] deleted SMS2_Notation
+[02:14:49] deleted SMS2_Core
+[02:14:49] imported mask
+[02:14:49] imported bold
+[02:14:49] imported ramp
+[02:14:49] imported iri
+[02:14:49] imported hero
+[02:14:49] imported ink
+[02:14:49] imported glowf
+[02:14:49] imported hfine
+[02:14:49] imported boldink
+[02:14:49] imported boldglow
+[02:14:49] imported boldglint
+[02:14:49] imported herogold
+[02:14:49] imported herowglow
+[02:14:49] imported heroh
+[02:14:49] imported heromet
+[02:14:49] imported heroglint
+[02:15:03] export rich: ExportStatus.Success (6 files)
+[02:15:03] === SMS2 build start (variant Storm) ===
+[02:15:03] channel SpecularEdgeColor -> present
+[02:15:03] channel CoatColor -> present
+[02:15:03] channel CoatOpacity -> present
+[02:15:03] channel CoatRoughness -> present
+[02:15:03] channel SheenColor -> present
+[02:15:03] channel SheenOpacity -> present
+[02:15:03] deleted SMS2_Hero
+[02:15:03] deleted SMS2_Notation
+[02:15:03] deleted SMS2_Core
+[02:15:03] imported mask
+[02:15:03] imported bold
+[02:15:03] imported ramp
+[02:15:03] imported iri
+[02:15:03] imported hero
+[02:15:03] imported ink
+[02:15:03] imported glowf
+[02:15:03] imported hfine
+[02:15:03] imported boldink
+[02:15:03] imported boldglow
+[02:15:03] imported boldglint
+[02:15:03] imported herogold
+[02:15:03] imported herowglow
+[02:15:03] imported heroh
+[02:15:03] imported heromet
+[02:15:03] imported heroglint
+[02:15:13] export rich: ExportStatus.Success (6 files)
+[02:15:13] === SMS2 build start (variant Moonlight) ===
+[02:15:13] channel SpecularEdgeColor -> present
+[02:15:13] channel CoatColor -> present
+[02:15:13] channel CoatOpacity -> present
+[02:15:13] channel CoatRoughness -> present
+[02:15:13] channel SheenColor -> present
+[02:15:13] channel SheenOpacity -> present
+[02:15:13] deleted SMS2_Hero
+[02:15:13] deleted SMS2_Notation
+[02:15:13] deleted SMS2_Core
+[02:15:13] imported mask
+[02:15:13] imported bold
+[02:15:13] imported ramp
+[02:15:13] imported iri
+[02:15:13] imported hero
+[02:15:13] imported ink
+[02:15:13] imported glowf
+[02:15:13] imported hfine
+[02:15:13] imported boldink
+[02:15:13] imported boldglow
+[02:15:13] imported boldglint
+[02:15:13] imported herogold
+[02:15:13] imported herowglow
+[02:15:13] imported heroh
+[02:15:13] imported heromet
+[02:15:13] imported heroglint
+[02:15:27] export rich: ExportStatus.Success (6 files)
+[02:15:27] === SMS2 build start (variant Ember) ===
+[02:15:27] channel SpecularEdgeColor -> present
+[02:15:27] channel CoatColor -> present
+[02:15:27] channel CoatOpacity -> present
+[02:15:27] channel CoatRoughness -> present
+[02:15:27] channel SheenColor -> present
+[02:15:27] channel SheenOpacity -> present
+[02:15:27] deleted SMS2_Hero
+[02:15:27] deleted SMS2_Notation
+[02:15:28] deleted SMS2_Core
+[02:15:28] imported mask
+[02:15:28] imported bold
+[02:15:28] imported ramp
+[02:15:28] imported iri
+[02:15:28] imported hero
+[02:15:28] imported ink
+[02:15:28] imported glowf
+[02:15:28] imported hfine
+[02:15:28] imported boldink
+[02:15:28] imported boldglow
+[02:15:28] imported boldglint
+[02:15:28] imported herogold
+[02:15:28] imported herowglow
+[02:15:28] imported heroh
+[02:15:28] imported heromet
+[02:15:28] imported heroglint
+[02:15:53] export rich: ExportStatus.Success (6 files)
+[02:15:53] === SMS2 build start (variant Lullaby) ===
+[02:15:53] channel SpecularEdgeColor -> present
+[02:15:53] channel CoatColor -> present
+[02:15:53] channel CoatOpacity -> present
+[02:15:53] channel CoatRoughness -> present
+[02:15:53] channel SheenColor -> present
+[02:15:53] channel SheenOpacity -> present
+[02:15:53] deleted SMS2_Hero
+[02:15:54] deleted SMS2_Notation
+[02:15:54] deleted SMS2_Core
+[02:15:54] imported mask
+[02:15:54] imported bold
+[02:15:54] imported ramp
+[02:15:54] imported iri
+[02:15:54] imported hero
+[02:15:54] imported ink
+[02:15:54] imported glowf
+[02:15:54] imported hfine
+[02:15:54] imported boldink
+[02:15:54] imported boldglow
+[02:15:54] imported boldglint
+[02:15:55] imported herogold
+[02:15:55] imported herowglow
+[02:15:55] imported heroh
+[02:15:55] imported heromet
+[02:15:55] imported heroglint
+[02:16:25] export rich: ExportStatus.Success (12 files)
+[02:16:25] === SMS2 build start (variant Inversion) ===
+[02:16:25] channel SpecularEdgeColor -> present
+[02:16:25] channel CoatColor -> present
+[02:16:25] channel CoatOpacity -> present
+[02:16:25] channel CoatRoughness -> present
+[02:16:25] channel SheenColor -> present
+[02:16:25] channel SheenOpacity -> present
+[02:16:25] deleted SMS2_Hero
+[02:16:25] deleted SMS2_Notation
+[02:16:25] deleted SMS2_Core
+[02:16:25] imported mask
+[02:16:25] imported bold
+[02:16:25] imported ramp
+[02:16:25] imported iri
+[02:16:25] imported hero
+[02:16:25] imported ink
+[02:16:25] imported glowf
+[02:16:25] imported hfine
+[02:16:25] imported boldink
+[02:16:25] imported boldglow
+[02:16:25] imported boldglint
+[02:16:25] imported herogold
+[02:16:25] imported herowglow
+[02:16:25] imported heroh
+[02:16:25] imported heromet
+[02:16:25] imported heroglint
+[02:16:43] export rich: ExportStatus.Success (12 files)
+[02:17:58] === SMS2 build start (variant Verse) ===
+[02:17:58] channel SpecularEdgeColor -> present
+[02:17:58] channel CoatColor -> present
+[02:17:58] channel CoatOpacity -> present
+[02:17:58] channel CoatRoughness -> present
+[02:17:58] channel SheenColor -> present
+[02:17:58] channel SheenOpacity -> present
+[02:17:58] deleted SMS2_Hero
+[02:17:58] deleted SMS2_Notation
+[02:17:58] deleted SMS2_Core
+[02:17:58] imported mask
+[02:17:58] imported bold
+[02:17:58] imported ramp
+[02:17:58] imported iri
+[02:17:58] imported hero
+[02:17:58] imported ink
+[02:17:58] imported glowf
+[02:17:58] imported hfine
+[02:17:58] imported boldink
+[02:17:58] imported boldglow
+[02:17:58] imported boldglint
+[02:17:58] imported herogold
+[02:17:58] imported herowglow
+[02:17:58] imported heroh
+[02:17:58] imported heromet
+[02:17:58] imported heroglint
+[02:18:06] export rich: ExportStatus.Success (6 files)
+[02:18:06] === SMS2 build start (variant Storm) ===
+[02:18:06] channel SpecularEdgeColor -> present
+[02:18:06] channel CoatColor -> present
+[02:18:06] channel CoatOpacity -> present
+[02:18:06] channel CoatRoughness -> present
+[02:18:06] channel SheenColor -> present
+[02:18:06] channel SheenOpacity -> present
+[02:18:06] deleted SMS2_Hero
+[02:18:06] deleted SMS2_Notation
+[02:18:06] deleted SMS2_Core
+[02:18:06] imported mask
+[02:18:06] imported bold
+[02:18:06] imported ramp
+[02:18:06] imported iri
+[02:18:06] imported hero
+[02:18:06] imported ink
+[02:18:06] imported glowf
+[02:18:06] imported hfine
+[02:18:06] imported boldink
+[02:18:06] imported boldglow
+[02:18:06] imported boldglint
+[02:18:06] imported herogold
+[02:18:06] imported herowglow
+[02:18:06] imported heroh
+[02:18:06] imported heromet
+[02:18:06] imported heroglint
+[02:18:16] export rich: ExportStatus.Success (6 files)
+[02:18:16] === SMS2 build start (variant Moonlight) ===
+[02:18:16] channel SpecularEdgeColor -> present
+[02:18:16] channel CoatColor -> present
+[02:18:16] channel CoatOpacity -> present
+[02:18:16] channel CoatRoughness -> present
+[02:18:16] channel SheenColor -> present
+[02:18:16] channel SheenOpacity -> present
+[02:18:16] deleted SMS2_Hero
+[02:18:16] deleted SMS2_Notation
+[02:18:17] deleted SMS2_Core
+[02:18:17] imported mask
+[02:18:17] imported bold
+[02:18:17] imported ramp
+[02:18:17] imported iri
+[02:18:17] imported hero
+[02:18:17] imported ink
+[02:18:17] imported glowf
+[02:18:17] imported hfine
+[02:18:17] imported boldink
+[02:18:17] imported boldglow
+[02:18:17] imported boldglint
+[02:18:17] imported herogold
+[02:18:17] imported herowglow
+[02:18:17] imported heroh
+[02:18:17] imported heromet
+[02:18:17] imported heroglint
+[02:18:29] export rich: ExportStatus.Success (12 files)
+[02:18:29] === SMS2 build start (variant Ember) ===
+[02:18:29] channel SpecularEdgeColor -> present
+[02:18:29] channel CoatColor -> present
+[02:18:29] channel CoatOpacity -> present
+[02:18:29] channel CoatRoughness -> present
+[02:18:29] channel SheenColor -> present
+[02:18:29] channel SheenOpacity -> present
+[02:18:29] deleted SMS2_Hero
+[02:18:29] deleted SMS2_Notation
+[02:18:29] deleted SMS2_Core
+[02:18:29] imported mask
+[02:18:29] imported bold
+[02:18:29] imported ramp
+[02:18:29] imported iri
+[02:18:29] imported hero
+[02:18:29] imported ink
+[02:18:29] imported glowf
+[02:18:29] imported hfine
+[02:18:29] imported boldink
+[02:18:29] imported boldglow
+[02:18:29] imported boldglint
+[02:18:29] imported herogold
+[02:18:29] imported herowglow
+[02:18:29] imported heroh
+[02:18:29] imported heromet
+[02:18:29] imported heroglint
+[02:18:50] export rich: ExportStatus.Success (12 files)
+[02:18:50] === SMS2 build start (variant Lullaby) ===
+[02:18:50] channel SpecularEdgeColor -> present
+[02:18:50] channel CoatColor -> present
+[02:18:50] channel CoatOpacity -> present
+[02:18:50] channel CoatRoughness -> present
+[02:18:50] channel SheenColor -> present
+[02:18:50] channel SheenOpacity -> present
+[02:18:50] deleted SMS2_Hero
+[02:18:50] deleted SMS2_Notation
+[02:18:51] deleted SMS2_Core
+[02:18:51] imported mask
+[02:18:51] imported bold
+[02:18:51] imported ramp
+[02:18:51] imported iri
+[02:18:51] imported hero
+[02:18:51] imported ink
+[02:18:51] imported glowf
+[02:18:51] imported hfine
+[02:18:51] imported boldink
+[02:18:51] imported boldglow
+[02:18:51] imported boldglint
+[02:18:51] imported herogold
+[02:18:51] imported herowglow
+[02:18:51] imported heroh
+[02:18:51] imported heromet
+[02:18:51] imported heroglint
+[02:19:16] export rich: ExportStatus.Success (12 files)
+[02:19:16] === SMS2 build start (variant Inversion) ===
+[02:19:16] channel SpecularEdgeColor -> present
+[02:19:16] channel CoatColor -> present
+[02:19:16] channel CoatOpacity -> present
+[02:19:16] channel CoatRoughness -> present
+[02:19:16] channel SheenColor -> present
+[02:19:16] channel SheenOpacity -> present
+[02:19:16] deleted SMS2_Hero
+[02:19:16] deleted SMS2_Notation
+[02:19:16] deleted SMS2_Core
+[02:19:16] imported mask
+[02:19:16] imported bold
+[02:19:16] imported ramp
+[02:19:16] imported iri
+[02:19:16] imported hero
+[02:19:16] imported ink
+[02:19:16] imported glowf
+[02:19:16] imported hfine
+[02:19:16] imported boldink
+[02:19:16] imported boldglow
+[02:19:16] imported boldglint
+[02:19:16] imported herogold
+[02:19:16] imported herowglow
+[02:19:16] imported heroh
+[02:19:16] imported heromet
+[02:19:16] imported heroglint
+[02:19:42] export rich: ExportStatus.Success (12 files)
+[02:35:18] === SMS2 build start (variant Verse) ===
+[02:35:18] channel SpecularEdgeColor -> present
+[02:35:18] channel CoatColor -> present
+[02:35:18] channel CoatOpacity -> present
+[02:35:18] channel CoatRoughness -> present
+[02:35:18] channel SheenColor -> present
+[02:35:18] channel SheenOpacity -> present
+[02:35:18] deleted SMS2_Hero
+[02:35:18] deleted SMS2_Notation
+[02:35:18] deleted SMS2_Core
+[02:35:18] imported mask
+[02:35:18] imported bold
+[02:35:18] imported ramp
+[02:35:18] imported iri
+[02:35:18] imported hero
+[02:35:18] imported ink
+[02:35:18] imported glowf
+[02:35:18] imported hfine
+[02:35:18] imported boldink
+[02:35:18] imported boldglow
+[02:35:18] imported boldglint
+[02:35:18] imported herogold
+[02:35:18] imported herowglow
+[02:35:19] imported heroh
+[02:35:19] imported heromet
+[02:35:19] imported heroglint
+[02:36:12] export rich: ExportStatus.Success (12 files)
+[02:36:12] === SMS2 build start (variant Storm) ===
+[02:36:12] FATAL: Traceback (most recent call last):
+  File "C:\EnvironmentPortfolio\BS_GodFile\Docs\Audits\HandpaintPrep_2026-09-23\MelusinaSmartMaterial\composer\painter_build_sms2_run.py", line 96, in build
+    for t in spts.all_texture_sets():
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files/Adobe/Adobe Substance 3D Painter/resources/python/modules\substance_painter\textureset.py", line 1255, in all_texture_sets
+    _substance_painter.textureset.all_texture_sets()))
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_substance_painter.exception.ProjectError: No project loaded.
+
+[02:36:12] === SMS2 build start (variant Moonlight) ===
+[02:36:12] FATAL: Traceback (most recent call last):
+  File "C:\EnvironmentPortfolio\BS_GodFile\Docs\Audits\HandpaintPrep_2026-09-23\MelusinaSmartMaterial\composer\painter_build_sms2_run.py", line 96, in build
+    for t in spts.all_texture_sets():
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files/Adobe/Adobe Substance 3D Painter/resources/python/modules\substance_painter\textureset.py", line 1255, in all_texture_sets
+    _substance_painter.textureset.all_texture_sets()))
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_substance_painter.exception.ProjectError: No project loaded.
+
+[02:36:12] === SMS2 build start (variant Ember) ===
+[02:36:12] FATAL: Traceback (most recent call last):
+  File "C:\EnvironmentPortfolio\BS_GodFile\Docs\Audits\HandpaintPrep_2026-09-23\MelusinaSmartMaterial\composer\painter_build_sms2_run.py", line 96, in build
+    for t in spts.all_texture_sets():
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files/Adobe/Adobe Substance 3D Painter/resources/python/modules\substance_painter\textureset.py", line 1255, in all_texture_sets
+    _substance_painter.textureset.all_texture_sets()))
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_substance_painter.exception.ProjectError: No project loaded.
+
+[02:36:12] === SMS2 build start (variant Lullaby) ===
+[02:36:12] FATAL: Traceback (most recent call last):
+  File "C:\EnvironmentPortfolio\BS_GodFile\Docs\Audits\HandpaintPrep_2026-09-23\MelusinaSmartMaterial\composer\painter_build_sms2_run.py", line 96, in build
+    for t in spts.all_texture_sets():
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files/Adobe/Adobe Substance 3D Painter/resources/python/modules\substance_painter\textureset.py", line 1255, in all_texture_sets
+    _substance_painter.textureset.all_texture_sets()))
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_substance_painter.exception.ProjectError: No project loaded.
+
+[02:36:12] === SMS2 build start (variant Inversion) ===
+[02:36:12] FATAL: Traceback (most recent call last):
+  File "C:\EnvironmentPortfolio\BS_GodFile\Docs\Audits\HandpaintPrep_2026-09-23\MelusinaSmartMaterial\composer\painter_build_sms2_run.py", line 96, in build
+    for t in spts.all_texture_sets():
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files/Adobe/Adobe Substance 3D Painter/resources/python/modules\substance_painter\textureset.py", line 1255, in all_texture_sets
+    _substance_painter.textureset.all_texture_sets()))
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_substance_painter.exception.ProjectError: No project loaded.
+

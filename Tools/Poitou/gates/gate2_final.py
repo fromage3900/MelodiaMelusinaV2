@@ -77,9 +77,9 @@ check("sg_cooks", s0 is not None and s0["prims"] > 0, s0)
 if s0 is not None:
     check("sg_pins", s0["points"] == 232 and s0["prims"] == 348,
           "measured=%s registry=232/348" % s0)
-sinst.parm("note").set(4)
-sinst.parm("mode_n").set(3)
-sinst.parm("mode_m").set(4)
+sinst.parm("note").set(5)
+sinst.parm("mode_n").set(5)
+sinst.parm("mode_m").set(6)
 s1 = snap(sinst)
 OUT["measured"]["sg_driven"] = s1
 if s0 is not None and s1 is not None:

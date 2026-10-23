@@ -36,6 +36,9 @@ SFX_CLASS = "/Engine/EngineSounds/SFX"
 # 'ram' is deliberately absent: it is a substring of 'ca*ram*era' and hid the
 # camera manager.
 SHEEP_WORDS = ("sheep", "choral", "ewe", "lamb")
+# Presentation proxies that park on the player and hide her (the bubble-sprint
+# preview sphere spawns at her exact position - 41440, 70800, 512 in Poitou).
+PROXY_WORDS = ("bubblepreview", "bubblesprintpresentation")
 NEVER_HIDE = ("camera", "manager", "trigger", "player")
 
 REAPPLY_EVERY_TICKS = 20

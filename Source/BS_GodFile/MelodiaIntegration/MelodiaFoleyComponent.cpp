@@ -5,6 +5,7 @@
 #include "GameFramework/Character.h"
 #include "Kismet/GameplayStatics.h"
 #include "Sound/SoundCue.h"
+#include "Sound/SoundWave.h"
 
 UMelodiaFoleyComponent::UMelodiaFoleyComponent()
 {
@@ -13,11 +14,13 @@ UMelodiaFoleyComponent::UMelodiaFoleyComponent()
 	// Cue slots default to the authored footsteps bank. A null slot is a
 	// silent no-op at play time (counted as dropped), so the component
 	// compiles and runs before the cues exist on disk.
-	GrassCue = FSoftObjectPath(TEXT("/Game/Melodia/Audio/Foley/Footsteps/SC_Foley_Footstep_Grass"));
-	DirtCue = FSoftObjectPath(TEXT("/Game/Melodia/Audio/Foley/Footsteps/SC_Foley_Footstep_Dirt"));
-	StoneCue = FSoftObjectPath(TEXT("/Game/Melodia/Audio/Foley/Footsteps/SC_Foley_Footstep_Stone"));
-	WoodCue = FSoftObjectPath(TEXT("/Game/Melodia/Audio/Foley/Footsteps/SC_Foley_Footstep_Wood"));
-	SplashCue = FSoftObjectPath(TEXT("/Game/Melodia/Audio/Foley/Footsteps/SC_Foley_Footstep_Splash"));
+	// Defaults repointed 2026-10-17 (Phase 0 audit): the bank on disk is
+	// Footsteps/<Surface>/SC_FS_<Surface>; the SC_Foley_Footstep_* paths never existed.
+	GrassCue = FSoftObjectPath(TEXT("/Game/Melodia/Audio/Foley/Footsteps/Grass/SC_FS_Grass.SC_FS_Grass"));
+	DirtCue = FSoftObjectPath(TEXT("/Game/Melodia/Audio/Foley/Footsteps/Dirt/SC_FS_Dirt.SC_FS_Dirt"));
+	StoneCue = FSoftObjectPath(TEXT("/Game/Melodia/Audio/Foley/Footsteps/Stone/SC_FS_Stone.SC_FS_Stone"));
+	WoodCue = FSoftObjectPath(TEXT("/Game/Melodia/Audio/Foley/Footsteps/Wood/SC_FS_Wood.SC_FS_Wood"));
+	SplashCue = FSoftObjectPath(TEXT("/Game/Melodia/Audio/Foley/Footsteps/Splash/SC_FS_Splash.SC_FS_Splash"));
 }
 
 void UMelodiaFoleyComponent::BeginPlay()
@@ -36,8 +39,27 @@ void UMelodiaFoleyComponent::BeginPlay()
 		}
 	}
 
+	// Wave-bank fallback: Footsteps/<Surface>/SW_FS_<Surface>_<1..6>
+	static const TCHAR* SurfaceNames[5] = { TEXT("Grass"), TEXT("Dirt"), TEXT("Stone"), TEXT("Wood"), TEXT("Splash") };
+	LoadedWaves.SetNum(30);
+	for (int32 s = 0; s < 5; ++s)
+	{
+		for (int32 n = 0; n < 6; ++n)
+		{
+			const FString Path = FString::Printf(
+				TEXT("/Game/Melodia/Audio/Foley/Footsteps/%s/SW_FS_%s_%d.SW_FS_%s_%d"),
+				SurfaceNames[s], SurfaceNames[s], n + 1, SurfaceNames[s], n + 1);
+			LoadedWaves[s * 6 + n] = LoadObject<USoundWave>(nullptr, *Path);
+		}
+	}
+
 	bFoleyReady = LoadedCues[0] != nullptr || LoadedCues[1] != nullptr ||
-		LoadedCues[2] != nullptr || LoadedCues[3] != nullptr || LoadedCues[4] != nullptr;
+		LoadedCues[2] != nullptr || LoadedCues[3] != nullptr || LoadedCues[4] != nullptr ||
+		LoadedWaves[0] != nullptr;
+	if (bFoleyReady && LoadedCues[0] == nullptr)
+	{
+		UE_LOG(LogTemp, Log, TEXT("MelodiaFoley: cues unavailable, using SW_FS wave-bank fallback"));
+	}
 }
 
 void UMelodiaFoleyComponent::EndPlay(const EEndPlayReason::Type EndPlayReason)
@@ -159,10 +181,20 @@ EMelodiaFoleySurface UMelodiaFoleyComponent::ResolveSurface(bool bSuppressWater)
 void UMelodiaFoleyComponent::PlayFootstep(EMelodiaFoleySurface Surface, bool bIsLanding)
 {
 	const int32 Slot = static_cast<int32>(Surface);
-	USoundCue* Cue = (Slot >= 0 && Slot < 5) ? LoadedCues[Slot].Get() : nullptr;
-	if (Cue == nullptr)
+	USoundBase* Sound = (Slot >= 0 && Slot < 5) ? LoadedCues[Slot].Get() : nullptr;
+	if (Sound == nullptr && Slot >= 0 && Slot < 5)
 	{
-		// A missing cue is a content gap, not a runtime fault: count it so
+		// Cue unavailable (see header): random wave from the surface bank.
+		TArray<USoundWave*> Bank;
+		for (int32 n = 0; n < 6; ++n)
+		{
+			if (LoadedWaves.IsValidIndex(Slot * 6 + n) && LoadedWaves[Slot * 6 + n]) Bank.Add(LoadedWaves[Slot * 6 + n].Get());
+		}
+		if (Bank.Num() > 0) Sound = Bank[FMath::RandRange(0, Bank.Num() - 1)];
+	}
+	if (Sound == nullptr)
+	{
+		// A missing bank is a content gap, not a runtime fault: count it so
 		// PIE evidence can tell "trigger fired, no asset" from "no trigger".
 		++FootstepsDropped;
 		return;
@@ -181,7 +213,7 @@ void UMelodiaFoleyComponent::PlayFootstep(EMelodiaFoleySurface Surface, bool bIs
 	const float BaseVolume = bIsLanding ? LandingVolume : WalkVolume;
 	const float Volume = FMath::Clamp(BaseVolume * FMath::FRandRange(0.9f, 1.0f), 0.0f, 2.0f);
 
-	UGameplayStatics::PlaySoundAtLocation(this, Cue, Location, /*VolumeMultiplier*/ Volume, /*PitchMultiplier*/ Pitch, /*StartTime*/ 0.0f);
+	UGameplayStatics::PlaySoundAtLocation(this, Sound, Location, /*VolumeMultiplier*/ Volume, /*PitchMultiplier*/ Pitch, /*StartTime*/ 0.0f);
 
 	FootstepCooldownRemaining = FootstepCooldown;
 	LastSurface = Surface;

@@ -37,6 +37,7 @@ python Tools/test_world_compiler.py   # ALL PASS or stop
 - Neutrality proof for compiler changes: `git show HEAD:Tools/world_compiler.py`
   to bytes (PowerShell `>` writes UTF-16 and **breaks** the file — use python to
   write it), compile both versions on the same recipe, compare hashes, restore.
+- n ssuh
   The 2026-09-23 precedence/scale change reproduced the saved bundle exactly
   (`points b6a0f333`, `fx 9e5c33be`).
 - Recipe rules that bite: `field.scale_range` is the global default the old code

@@ -374,9 +374,19 @@ void APCGPianoKeyboard::BeginPlay()
 
 void APCGPianoKeyboard::RegisterKey(APCGPianoKey* Key)
 {
-	if (!Key)
+	if (!IsValid(Key))
 	{
 		return;
+	}
+
+	// Editor PCG regeneration destroys keys without running their gameplay EndPlay.
+	// Discard those actors before assigning notes to the newly generated layout.
+	for (auto It = RegisteredKeys.CreateIterator(); It; ++It)
+	{
+		if (!IsValid(It->Get()))
+		{
+			It.RemoveCurrent();
+		}
 	}
 
 	RegisteredKeys.Add(Key);

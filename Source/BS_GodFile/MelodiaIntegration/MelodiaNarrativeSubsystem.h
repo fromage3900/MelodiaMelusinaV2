@@ -78,6 +78,10 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Melodia|Integration")
 	bool SetNarrativeFlag(FName FlagId, bool Value);
 
+	/** Read-only view of a flag in the canonical narrative record; false when never set. Lets doors re-derive state on load. */
+	UFUNCTION(BlueprintPure, Category = "Melodia|Integration")
+	bool GetNarrativeFlag(FName FlagId) const;
+
 	UFUNCTION(BlueprintCallable, Category = "Melodia|Integration")
 	bool RequestTravel(FName LevelId);
 

@@ -67,6 +67,14 @@ def build(source_hda, destination, salon_defaults=True):
         "width is metres of true arc length. Every portal edge becomes a plan vertex, so jambs are exact cuts."
     )
     templates.append(openings)
+    tiers = hou.StringParmTemplate("tiers_json", "Tier Setbacks (JSON)", 1,
+                                  default_value=("[1.0, 0.85, 0.70]",))
+    tiers.setHelp(
+        'Array of setback ratios per tier, e.g. [1.0, 0.85, 0.70]. '
+        '1.0 = full radius (base), lower = stepped setback (ziggurat massing). '
+        'Empty array [] = single volume (no tiers). Controls the exterior silhouette from distance.'
+    )
+    templates.append(tiers)
     candidate.setParmTemplateGroup(templates)
 
     if salon_defaults:

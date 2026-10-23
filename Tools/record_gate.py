@@ -46,6 +46,7 @@ KNOWN_GATES = [
     "rhythm_seam_a",
     "rhythm_seam_b",
     "pie_smoke",
+    "sir_flight_runtime",
     "package_build",
     "runtime",
     "repeat_consume",

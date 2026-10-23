@@ -1,6 +1,6 @@
 {
   "schema": "melodia.hda_registry.v1",
-  "updated": "2026-10-21",
+  "updated": "2026-10-23",
   "authority": "Single source of truth for every project HDA. Adding a HDA = adding one entry here; both gates read only this file.",
   "hython": "C:/Program Files/Side Effects Software/Houdini 22.0.368/bin/hython.exe",
   "scan_roots": [
@@ -236,7 +236,7 @@
       "context": "Object",
       "label": "Melodia Stained Glass Window (frame + pane + tracery + came)",
       "builder": "Tools/Houdini/cathedral/build_stained_glass_window_hda.py",
-      "notes": "Proper stained-glass window: frame + glass pane + tracery (panel/geometric/intersecting) + chladni lead came. Based on room_shell.py window construction. Material roles: glass_pane, tracery_frame, tracery_panel/geometric/intersecting, lead_came. Per-room note hue via NOTE_HUE_TABLE. Material-level reactivity via existing writer only. Mirror: Content/HDA/MelodiaStainedGlassWindow_1.0.hda. Rebuilt 2026-10-21 (proper window, not cubes or disc). GATE 2 PARTIAL 2026-10-22: OUT = 232 pts / 348 prims reproduces exactly (pins hold, re-verified 2x). BUT note/mode_n/mode_m are UNWIRED in this build - no ch() reader anywhere in its 2-node network - so the parm_drive assertion cannot pass and mode changes produce byte-identical geometry. Rebuilding the HDA with wired parms is queued as an owner decision (it touches 3 live-placed actors in L_Poitou_v2).",
+      "notes": "Proper stained-glass window: frame + glass pane + tracery (panel/geometric/intersecting) + chladni lead came. Based on room_shell.py window construction. Material roles: glass_pane, tracery_frame, tracery_panel/geometric/intersecting, lead_came. Per-room note hue via NOTE_HUE_TABLE. Material-level reactivity via existing writer only. Mirror: Content/HDA/MelodiaStainedGlassWindow_1.0.hda. Rebuilt 2026-10-21 (proper window, not cubes or disc). GATE 2 GREEN 2026-10-22 (CORRECTED - an earlier null test drove toward the defaults note=G/mode(3,4) and wrongly blamed the HDA; the module reads every parm via evalParm): driving AWAY from defaults (note=A, mode 5,6) changes OUT from 348/232 to 612/408. Pins hold at defaults.",
       "expect": {
         "parms": [
           "window_w",
@@ -256,7 +256,7 @@
         "parm_drive": [
           {
             "parm": "note",
-            "value": "G",
+            "value": "A",
             "outputs": {
               "OUT": {
                 "differ": true,
@@ -266,7 +266,16 @@
           },
           {
             "parm": "mode_n",
-            "value": 3,
+            "value": 5,
+            "outputs": {
+              "OUT": {
+                "differ": true
+              }
+            }
+          },
+          {
+            "parm": "mode_m",
+            "value": 6,
             "outputs": {
               "OUT": {
                 "differ": true
@@ -350,6 +359,16 @@
         },
         "node_errors": "none"
       }
+    },
+    {
+      "id": "house_terrain_v2",
+      "status": "missing",
+      "path": "Content/HDA/MelodiaHouseTerrain_2.0.hda",
+      "node_type": "melodia::house_terrain::2.0",
+      "context": "Object",
+      "label": "Melodia house terrain: house-measured pad, horizon ridges, paths, caves",
+      "builder": "Tools/Houdini/build_house_terrain_hda.py",
+      "notes": "Candidate only: Saved/Staging/HouseTerrain_20261023/MelodiaHouseTerrain_2.0.hda (18/18 builder gates, receipt Saved/Audit/HouseTerrain_20261023/terrain_gate.json). Extends the one-off vista builder (Tools/Houdini/build_house_garden_vista_hda_v1.py). Not promoted to Content/HDA and not imported to UE. 3 outputs: Landscape (7 Nikki layers + unreal_* attrs), cave points, path curves. Promote, then flip status to active and pin expect.parms/parm_drive from the receipt."
     }
   ]
 }
