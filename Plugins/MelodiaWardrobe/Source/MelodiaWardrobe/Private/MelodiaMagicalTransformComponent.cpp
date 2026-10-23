@@ -9,6 +9,7 @@
 #include "Materials/MaterialInstanceDynamic.h"
 #include "Materials/MaterialParameterCollection.h"
 #include "MelodiaTraversalComponent.h"
+#include "MelodiaWaveHarpCombatComponent.h"
 #include "MelodiaWardrobeComponent.h"
 #include "MelodiaWardrobeSubsystem.h"
 
@@ -88,6 +89,7 @@ void UMelodiaMagicalTransformComponent::BeginPlay()
 			*GetNameSafe(GetOwner()));
 	}
 
+	TryBindWaveHarp();
 	ResolveBindings();
 
 	// Snap, do not animate: on level load the outfit came out of the save and
@@ -96,8 +98,43 @@ void UMelodiaMagicalTransformComponent::BeginPlay()
 	SyncToWardrobeState(bAnimateOnBeginPlay);
 }
 
+void UMelodiaMagicalTransformComponent::TryBindWaveHarp()
+{
+	if (AActor* Owner = GetOwner())
+	{
+		if (UMelodiaWaveHarpCombatComponent* Harp = Owner->FindComponentByClass<UMelodiaWaveHarpCombatComponent>())
+		{
+			Harp->OnFormStageChanged.AddUniqueDynamic(
+				this, &UMelodiaMagicalTransformComponent::HandleWaveHarpFormStage);
+		}
+	}
+}
+
+void UMelodiaMagicalTransformComponent::HandleWaveHarpFormStage(
+	const EMelodiaWaveHarpFormStage Stage, const EMelodiaWaveHarpForm TargetForm)
+{
+	// One beat, one owner: WaveHarp decides WHEN (it is beat-locked), this component plays the look.
+	if (Stage != EMelodiaWaveHarpFormStage::Transform || !bFlourishOnWaveHarpForm || !bRevealAtRest
+		|| Phase != EMelodiaMagicalTransformPhase::Revealed)
+	{
+		return;
+	}
+	UE_LOG(LogTemp, Log, TEXT("MELODIA_TRANSFORM_WAVEHARP_FLOURISH target_form=%d"), static_cast<int32>(TargetForm));
+	SnapToPhase(EMelodiaMagicalTransformPhase::Dormant);
+	PlayReveal();
+}
+
 void UMelodiaMagicalTransformComponent::EndPlay(const EEndPlayReason::Type EndPlayReason)
 {
+	if (AActor* Owner = GetOwner())
+	{
+		if (UMelodiaWaveHarpCombatComponent* Harp = Owner->FindComponentByClass<UMelodiaWaveHarpCombatComponent>())
+		{
+			Harp->OnFormStageChanged.RemoveDynamic(
+				this, &UMelodiaMagicalTransformComponent::HandleWaveHarpFormStage);
+		}
+	}
+
 	if (UMelodiaWardrobeSubsystem* Wardrobe = UMelodiaWardrobeSubsystem::Get(this))
 	{
 		Wardrobe->OnWardrobeChanged.RemoveDynamic(

@@ -42,6 +42,9 @@
 #include "MelodiaCosmeticTypes.h"        // EMelodiaFormCapability
 #include "MelodiaMagicalTransformTypes.h"
 #include "MelodiaNarrativeTypes.h"       // EMelodiaWardrobeSlot
+enum class EMelodiaWaveHarpFormStage : uint8;   // BS_GodFile; full header only in the .cpp
+enum class EMelodiaWaveHarpForm : uint8;
+
 #include "MelodiaMagicalTransformComponent.generated.h"
 
 class UCurveFloat;
@@ -227,6 +230,15 @@ public:
 	bool bRevealAtRest = false;
 
 	/**
+	 * Play the costume flourish when the owner's UMelodiaWaveHarpCombatComponent enters the
+	 * TRANSFORM stage of a form change. The WaveHarp component already beat-locks that stage, so
+	 * this replays from zero immediately (no second beat wait). Costume mode only: in the
+	 * capability-driven mode a snap to Dormant would hide wings the player is gliding on.
+	 */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Melodia|MagicalTransform|Trigger", meta=(EditCondition="bRevealAtRest"))
+	bool bFlourishOnWaveHarpForm = true;
+
+	/**
 	 * When true, a wardrobe-triggered reveal/conceal waits for the next beat and
 	 * starts on it, so the transformation lands on the music's cadence.
 	 */
@@ -388,6 +400,11 @@ private:
 
 	UFUNCTION()
 	void HandleGlideStateChanged(bool bIsGliding);
+
+	UFUNCTION()
+	void HandleWaveHarpFormStage(EMelodiaWaveHarpFormStage Stage, EMelodiaWaveHarpForm TargetForm);
+
+	void TryBindWaveHarp();
 
 	/** True when the trigger capability is currently active on the wardrobe. */
 	bool IsTriggerCapabilityActive() const;

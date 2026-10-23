@@ -19,6 +19,7 @@
 #include "UObject/UnrealType.h"
 #include "Engine/SkeletalMesh.h"
 #include "Misc/PackageName.h"
+#include "Net/UnrealNetwork.h"
 #include "Components/InputComponent.h"
 #include "Components/SkeletalMeshComponent.h"
 #include "Components/StaticMeshComponent.h"
@@ -38,6 +39,7 @@
 UMelodiaWaveHarpCombatComponent::UMelodiaWaveHarpCombatComponent()
 {
  PrimaryComponentTick.bCanEverTick = true;
+ SetIsReplicatedByDefault(true);
  StatusText = TEXT("Aim at an encounter, or take a practice shot.");
  // Route pose montages through the UpperBody layer so the draw/hold/fire never
  // replaces the locomotion pose underneath it. ABP_Melusina_Current layers
@@ -89,6 +91,20 @@ void UMelodiaWaveHarpCombatComponent::BeginPlay()
    Harp->RegisterComponent();
   }
  }
+ // The refined wand (shaft + Carillon head). It is the head-swap carrier: a form
+ // change swaps the MESH, never a morph bake. Both wand meshes are loaded up front
+ // so the swap never hitches, and the component stays hidden until the owner turns
+ // the head-swap path on.
+ if (UStaticMesh* WandMesh = WandCasterMesh.LoadSynchronous())
+ {
+  Wand = NewObject<UStaticMeshComponent>(GetOwner(), TEXT("WaveHarpWandPresentation"));
+  Wand->SetStaticMesh(WandMesh);
+  Wand->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+  Wand->SetupAttachment(Character->GetRootComponent());
+  Wand->RegisterComponent();
+  Wand->SetVisibility(false);
+  WandMeleeMesh.LoadSynchronous();
+ }
  ShotNote = LoadObject<USoundBase>(nullptr, TEXT("/Game/Melodia/Audio/WaveHarp/SW_WaveHarp_Orchestra_C4.SW_WaveHarp_Orchestra_C4"));
  for (const TCHAR* Family : {TEXT("Cmaj7"), TEXT("Cmaj6"), TEXT("Cm7")})
  {
@@ -106,6 +122,33 @@ void UMelodiaWaveHarpCombatComponent::BeginPlay()
  if (UMaterialInterface* RibbonMat = LoadObject<UMaterialInterface>(nullptr, TEXT("/Engine/BasicShapes/BasicShapeMaterial.BasicShapeMaterial")))
   ScytheRibbon->SetMaterial(0, RibbonMat);
  UpdateInstruments(0.f);
+ if (bEnableWaterChorus && GetWorld())
+ {
+  WaterChorus.Start(*GetWorld());
+  UE_LOG(LogTemp, Log, TEXT("MELODIA_WAVEHARP_CHORUS enabled"));
+ }
+}
+void UMelodiaWaveHarpCombatComponent::CalibrateHold()
+{
+ if (!Character.IsValid()) return;
+ USkeletalMeshComponent* Mesh = Character->GetMesh();
+ if (!Mesh) return;
+ // The socket lives on the hand bone, so the grip offset is expressed in the hand's
+ // frame. Measure that frame at this (settled) pose and solve the offset that stands the
+ // instrument up in the BODY's frame:
+ //     Grip * Socket = Target   =>   Grip = Target * Socket^-1
+ // Target maps weapon +Z -> body up and weapon +Y -> body forward, so the bow's belly
+ // still faces the aim direction and the scythe's blade still sweeps forward.
+ const FQuat Socket = Mesh->GetSocketTransform(InstrumentSocket, RTS_Component).GetRotation();
+ const FQuat TargetRot = FQuat(FRotator(0.f, -90.f, 0.f));
+ const FQuat Grip = TargetRot * Socket.Inverse();
+ BowGrip.SetRotation(Grip);
+ // Each form keeps its own solved hold: the three heads sit at different points on the
+ // shaft, so one grip cannot hold three heads (C8).
+ FormGrips.Add(CurrentForm, BowGrip);
+ bHoldCalibrated = true;
+ UE_LOG(LogTemp, Log, TEXT("MELODIA_WAVEHARP hold calibrated: socket=%s grip=%s"),
+  *Socket.ToString(), *Grip.ToString());
 }
 void UMelodiaWaveHarpCombatComponent::EndPlay(const EEndPlayReason::Type Reason)
 {
@@ -118,6 +161,8 @@ void UMelodiaWaveHarpCombatComponent::EndPlay(const EEndPlayReason::Type Reason)
  if (Harp) Harp->DestroyComponent();
  if (Instrument) Instrument->DestroyComponent();
  if (ScytheRibbon) ScytheRibbon->DestroyComponent();
+ if (Wand) Wand->DestroyComponent();
+ WaterChorus.Stop();
  if (auto* UI = UMelodiaUIBridgeSubsystem::Get(this)) UI->ReleaseWorldCombatUI();
  Super::EndPlay(Reason);
 }
@@ -125,6 +170,25 @@ void UMelodiaWaveHarpCombatComponent::TickComponent(float Delta, ELevelTick Type
 {
  Super::TickComponent(Delta, Type, Tick);
  if (!Character.IsValid()) return;
+ // Hold calibration runs for every pawn (not only the locally controlled one) and before
+ // the instrument is placed this tick.
+ if (bGripFollowsCharacter && bAutoCalibrateHold && !bHoldCalibrated)
+ {
+  if (USkeletalMeshComponent* Mesh = Character->GetMesh())
+  {
+   if (Mesh->GetAnimInstance())
+   {
+    const FQuat Socket = Mesh->GetSocketTransform(InstrumentSocket, RTS_Component).GetRotation();
+    const float Drift = FMath::Abs((Socket * LastSocketRotation.Inverse()).GetAngle());
+    PoseStabilityTicks = (Drift < 0.01f) ? (PoseStabilityTicks + 1) : 0;
+    LastSocketRotation = Socket;
+    if (PoseStabilityTicks >= 2)
+    {
+     CalibrateHold();
+    }
+   }
+  }
+ }
  auto* Controller = Cast<APlayerController>(Character->GetController());
  if (!Character->IsLocallyControlled() || !Controller)
  {
@@ -157,7 +221,9 @@ void UMelodiaWaveHarpCombatComponent::TickComponent(float Delta, ELevelTick Type
  if (ComboStep > 0 && GetWorld()->GetTimeSeconds() - LastRelease > FMath::Clamp(ChordChainWindow, .6f, 2.f)) ComboStep = 0;
  if (ScytheStep > 0 && !bScytheHitArmed && GetWorld()->GetTimeSeconds() - LastScytheChain > FMath::Clamp(ChordChainWindow, .6f, 2.f)) ScytheStep = 0;
  UpdateAimCamera(Delta);
+ UpdateFormTransition(Delta);
  UpdateInstruments(Delta);
+ if (bEnableWaterChorus) WaterChorus.Tick(Delta, Character.Get());
  UpdateScytheRibbon();
  if (IsInSequence() && Target.IsValid())
   StatusText = FString::Printf(TEXT("SEQUENCE  /  Resonance %d%%  /  Q W O P on the hit line."), FMath::RoundToInt(Target->GetResonanceNormalized() * 100.f));
@@ -189,6 +255,9 @@ void UMelodiaWaveHarpCombatComponent::BindInput()
  Input->BindKey(EKeys::Tab, IE_Pressed, this, &ThisClass::ToggleSequence);
  Input->BindKey(EKeys::X, IE_Pressed, this, &ThisClass::CancelPhrase);
  Input->BindKey(EKeys::F, IE_Pressed, this, &ThisClass::TriggerScytheMelee);
+ // R cycles the form. It is a deliberate press: the ring advances one step and the
+ // flourish takes over from there.
+ Input->BindKey(EKeys::R, IE_Pressed, this, &ThisClass::CycleForm);
  Input->BindKey(EKeys::T, IE_Pressed, this, &ThisClass::ToggleLock);
  Input->BindKey(EKeys::Q, IE_Pressed, this, &ThisClass::Lane0).bConsumeInput = false;
  Input->BindKey(EKeys::W, IE_Pressed, this, &ThisClass::Lane1).bConsumeInput = false;
@@ -331,6 +400,15 @@ void UMelodiaWaveHarpCombatComponent::RestoreAimCamera()
 void UMelodiaWaveHarpCombatComponent::ToggleAim() { if (bAiming) StopAim(); else StartAim(); }
 void UMelodiaWaveHarpCombatComponent::StartDraw()
 {
+ bool bBuffered = false;
+ if (!AcceptAttackDuringTransition(bFormTransitionActive, bBufferAttacksDuringFormChange, bBuffered))
+ {
+  bBufferedAttack = bBuffered;
+  StatusText = bBuffered
+   ? TEXT("FORM  /  Attack queued behind the transformation.")
+   : TEXT("FORM  /  Transforming.");
+  return;
+ }
  if (!CanAct() || bDrawing || GetWorld()->GetTimeSeconds()-LastRelease < FMath::Clamp(MinimumShotInterval, .15f, .5f)) return;
  bDrawing = true; bCharging = false; DrawStarted = GetWorld()->GetTimeSeconds();
  StatusText = TEXT("CAST  /  Release LMB for a basic attack.");
@@ -442,7 +520,21 @@ void UMelodiaWaveHarpCombatComponent::ResolveMeleeHit(AActor* Other, const float
 }
 void UMelodiaWaveHarpCombatComponent::TriggerScytheMelee()
 {
+ bool bBuffered = false;
+ if (!AcceptAttackDuringTransition(bFormTransitionActive, bBufferAttacksDuringFormChange, bBuffered))
+ {
+  // The flourish must never eat an input: remember the swing and fire it the moment
+  // the transformation lands.
+  bBufferedMelee = bBuffered;
+  StatusText = bBuffered
+   ? TEXT("FORM  /  Swing queued behind the transformation.")
+   : TEXT("FORM  /  Transforming.");
+  return;
+ }
  if (!CanAct() || !GetWorld() || bScytheHitArmed || bScytheResolveQueued) return;
+ // The rhythm is judged at the ACTION - the swing's start - never at impact. The arrow
+ // samples its phase at launch; the melee must judge the same way.
+ ScytheActionBeatPhase = SampleBeatPhase();
  const double Now = GetWorld()->GetTimeSeconds();
  if (Now - LastMeleeSwing < FMath::Clamp(MinimumShotInterval, .15f, .5f)) return;
  LastMeleeSwing = Now;
@@ -548,6 +640,9 @@ void UMelodiaWaveHarpCombatComponent::BeginCharge(double Now)
 void UMelodiaWaveHarpCombatComponent::UpdatePose(double Now)
 {
  if (!Character.IsValid() || !Character->GetMesh()) return;
+ // A running form change owns the upper body: the flourish must not be interrupted by
+ // the stance or cast pose.
+ if (bFormTransitionActive) return;
  UAnimInstance* Anim = Character->GetMesh()->GetAnimInstance();
  const bool bPlaying = Anim && PoseMontage && Anim->Montage_IsPlaying(PoseMontage);
  if (bAiming && bDrawing && !bCharging && Now - DrawStarted >= ChargeThresholdSeconds) BeginCharge(Now);
@@ -584,7 +679,10 @@ void UMelodiaWaveHarpCombatComponent::UpdateInstruments(float Delta)
   }
  }
  const bool bScytheMontage = ScytheMontageFraction >= 0.f;
- const bool bScytheForm = bScytheMontage || ScytheAlpha > 0.02f;
+ // The committed form is a second axis on top of the caster/archer hybrid: while the
+ // crescent form is live the astrolabe/bow blend stands down so the two never fight.
+ const float MeleeForm = GetMeleeFormWeight();
+ const bool bScytheForm = bScytheMontage || ScytheAlpha > 0.02f || MeleeForm > 0.02f;
  const bool bBowForm = !bScytheForm && (bCharging || (Now - LastChargedRelease < BowFormHoldSeconds));
  FormAlpha = FMath::FInterpConstantTo(FormAlpha, bBowForm ? 1.f : 0.f, Delta, 1.f / FMath::Max(TransformSeconds, .05f));
  float DesiredScythe = 0.f;
@@ -601,25 +699,50 @@ void UMelodiaWaveHarpCombatComponent::UpdateInstruments(float Delta)
     VisualBeat = 0.65f + 0.35f * FMath::Cos(MusicClock->GetBeatPhase(UMelodiaMusicClockSubsystem::VisualTimebase) * 2.f * PI);
   ChordWeight = Peak * VisualBeat;
   BellWeight = Peak * VisualBeat;
-  ScytheAlpha = DesiredScythe;
+  ScytheMontageAlpha = DesiredScythe;
  }
- else ScytheAlpha = FMath::FInterpConstantTo(ScytheAlpha, 0.f, Delta, 1.f / FMath::Max(TransformSeconds, .05f));
+ else ScytheMontageAlpha = FMath::FInterpConstantTo(ScytheMontageAlpha, 0.f, Delta, 1.f / FMath::Max(TransformSeconds, .05f));
+ // The crescent unfolds with the committed form (eased by the transition) and with the
+ // melee swing clip (the shipped path). Whichever asks for more of it wins.
+ ScytheAlpha = FMath::Max(ScytheMontageAlpha, MeleeForm);
  const float HandAlpha = FMath::Max(FormAlpha, ScytheAlpha);
  const float Tension = GetDrawTension();
  const FVector Float = AstrolabeOffset + FVector(0, 0, AstrolabeBobCm * FMath::Sin(Now * 2.0));
  const float Spin = FMath::Fmod(Now * AstrolabeSpinDegPerSecond, 360.0);
- if (Instrument)
+ // One placement for every representation of the instrument: the refined wand and the
+ // shipped skeletal mesh stand in the same place, so a form change never moves the
+ // hold.
+ const FTransform Actor = Character->GetActorTransform();
+ FTransform Astro(Actor.GetRotation() * FQuat(FRotator(0, Spin, 0)), Actor.TransformPosition(Float), HarpGrip.GetScale3D());
+ FTransform InHand = BowGrip;
+ if (USkeletalMeshComponent* Mesh = Character->GetMesh())
  {
-  const FTransform Actor = Character->GetActorTransform();
-  FTransform Astro(Actor.GetRotation() * FQuat(FRotator(0, Spin, 0)), Actor.TransformPosition(Float), HarpGrip.GetScale3D());
-  FTransform InHand = BowGrip;
-  if (USkeletalMeshComponent* Mesh = Character->GetMesh())
+  if (bGripFollowsCharacter)
+  {
+   // Compose the grip offset in the body's frame: the socket relative to the mesh,
+   // then the mesh's world transform. A world-space grip offset drifts as the
+   // character turns; this keeps the hold locked to her hand and arm, which is what
+   // the InstrumentSocket contract already claims.
+   InHand = BowGrip * Mesh->GetSocketTransform(InstrumentSocket, RTS_Component) * Mesh->GetComponentTransform();
+  }
+  else
   {
    InHand = BowGrip * Mesh->GetSocketTransform(InstrumentSocket);
   }
-  FTransform Out;
-  Out.Blend(Astro, InHand, HandAlpha);
+ }
+ FTransform Out;
+ Out.Blend(Astro, InHand, HandAlpha);
+ if (Wand)
+ {
+  // The wand's origin sits 13 cm below its grip point, so the grip correction is
+  // applied in the wand's own local space.
+  Wand->SetWorldTransform(Out * FTransform(FQuat::Identity, -Sockets.BowGrip));
+  Wand->SetVisibility(bUseHeadSwap);
+ }
+ if (Instrument)
+ {
   Instrument->SetWorldTransform(Out);
+  UpdateIdleShimmer();
   Instrument->SetMorphTarget(MorphBowDeployment, FormAlpha);
   // Bake the authored parent/driver motion between deployment endpoints.
   // Adjacent samples retain the Blender transformation without a second rig.
@@ -648,12 +771,12 @@ void UMelodiaWaveHarpCombatComponent::UpdateInstruments(float Delta)
   Harp->SetRelativeLocation(Float);
   Harp->SetRelativeRotation(FRotator(0, Spin, 0));
   Harp->SetRelativeScale3D(HarpGrip.GetScale3D() * (1.f - FormAlpha));
-  Harp->SetVisibility(FormAlpha < .98f);
+  Harp->SetVisibility(!bUseHeadSwap && FormAlpha < .98f);
  }
  if (Bow)
  {
   Bow->SetRelativeScale3D(BowGrip.GetScale3D() * FormAlpha);
-  Bow->SetVisibility(FormAlpha > .02f);
+  Bow->SetVisibility(!bUseHeadSwap && FormAlpha > .02f);
  }
 }
 void UAnimNotify_MelodiaScytheHit::Notify(USkeletalMeshComponent* MeshComp, UAnimSequenceBase* Animation, const FAnimNotifyEventReference& EventReference)
@@ -662,6 +785,42 @@ void UAnimNotify_MelodiaScytheHit::Notify(USkeletalMeshComponent* MeshComp, UAni
  if (UMelodiaWaveHarpCombatComponent* Combat = MeshComp->GetOwner()->FindComponentByClass<UMelodiaWaveHarpCombatComponent>())
   Combat->CommitScytheHit();
 }
+void UMelodiaWaveHarpCombatComponent::SetMorphIfPresent(FName Morph, float Value)
+{
+ if (!Instrument || Morph.IsNone()) return;
+ // A morph the shipped mesh does not carry is skipped, not asserted: the source rig
+ // names more shimmer curves than the UE mesh exposes.
+ if (Instrument->GetMorphTarget(Morph)) Instrument->SetMorphTarget(Morph, Value);
+}
+
+float UMelodiaWaveHarpCombatComponent::GetEffectScale() const
+{
+ // The effect budget follows what the player can actually see (the reference scales
+ // its fur layers by screen size): a flourish seen from across the lane is restrained,
+ // one seen from arm's length is full size.
+ if (!Player.IsValid() || !Character.IsValid()) return 1.f;
+ FVector Eye; FRotator View;
+ Player->GetPlayerViewPoint(Eye, View);
+ const float Distance = FVector::Distance(Eye, Character->GetActorLocation());
+ return FMath::Clamp(1.2f - 0.02f * Distance, 0.4f, 1.2f);
+}
+
+void UMelodiaWaveHarpCombatComponent::UpdateIdleShimmer()
+{
+ if (!Instrument) return;
+ const float Phase = UMelodiaMusicClockSubsystem::GetMusicBeatPhase(this);
+ if (Phase < 0.f) return; // no music: the instrument holds still rather than faking it
+ const float Pulse = UMelodiaMusicClockSubsystem::GetMusicPulse(this);
+ const float Breath = 0.5f + 0.5f * FMath::Cos(Phase * 2.f * PI);
+ const float Sway = FMath::Sin(Phase * 2.f * PI);
+ const float Strength = FMath::Clamp(ShimmerStrength, 0.f, 1.f);
+ SetMorphIfPresent(MorphShimmerPluck, Breath * 0.30f * Strength);
+ SetMorphIfPresent(MorphShimmerVibrate, Pulse * 0.45f * Strength);
+ SetMorphIfPresent(MorphShimmerSwayPos, FMath::Max(0.f, Sway) * 0.35f * Strength);
+ SetMorphIfPresent(MorphShimmerSwayNeg, FMath::Max(0.f, -Sway) * 0.35f * Strength);
+ SetMorphIfPresent(MorphShimmerResonance, Breath * 0.40f * Strength);
+}
+
 float UMelodiaWaveHarpCombatComponent::SampleBeatPhase() const
 {
  if (UMelodiaMusicClockSubsystem* MusicClock = UMelodiaMusicClockSubsystem::Get(this))
@@ -676,10 +835,24 @@ float UMelodiaWaveHarpCombatComponent::SampleBeatPhase() const
 AActor* UMelodiaWaveHarpCombatComponent::FindMeleeActor() const
 {
  if (!Character.IsValid() || !GetWorld()) return nullptr;
- if (Instrument && Instrument->DoesSocketExist(ScytheBladeStartSocket) && Instrument->DoesSocketExist(ScytheBladeTipSocket))
+ FVector Start = FVector::ZeroVector;
+ FVector End = FVector::ZeroVector;
+ bool bHaveSweep = false;
+ // The crescent is measured geometry, not a skeleton socket: Blender's FBX armature
+ // export lands the bones ~90-100x too far out (defect D8), which is what turned the
+ // melee into a 42 m sweep. The measured head-local offsets give a ~41 cm blade with a
+ // ~37 cm swing radius.
+ if (GetBladeWorldPoints(Start, End))
  {
-  const FVector Start = Instrument->GetSocketLocation(ScytheBladeStartSocket);
-  const FVector End = Instrument->GetSocketLocation(ScytheBladeTipSocket) + Character->GetActorForwardVector() * 140.f;
+  End += Character->GetActorForwardVector() * MeleeForwardExtensionCm;
+  bHaveSweep = true;
+ }
+ // There is deliberately NO fallback to the skeletal sockets. Blender's FBX armature
+ // export lands those bones ~90-100x too far out; clamping them would still be a
+ // guess. Without the measured geometry the melee simply has no blade, and the reach
+ // search below is the honest fallback.
+ if (bHaveSweep)
+ {
   if (UClass* ACMClass = FindObject<UClass>(nullptr, TEXT("/Script/CollisionsManager.ACMCollisionManagerComponent")))
   {
    if (UActorComponent* ACM = Character->FindComponentByClass(ACMClass))
@@ -687,7 +860,7 @@ AActor* UMelodiaWaveHarpCombatComponent::FindMeleeActor() const
     if (UFunction* Fn = ACM->FindFunction(TEXT("PerformSwipeTraceShot_Local")))
     {
      struct FSwipeParams { FVector S; FVector E; float R; FHitResult Hit; bool bRet; };
-     FSwipeParams P{Start, End, 85.f, FHitResult(), false};
+     FSwipeParams P{Start, End, MeleeSweepRadiusCm, FHitResult(), false};
      if (Fn->ParmsSize == sizeof(FSwipeParams))
      {
       ACM->ProcessEvent(Fn, &P);
@@ -700,7 +873,7 @@ AActor* UMelodiaWaveHarpCombatComponent::FindMeleeActor() const
   }
   FHitResult SweepHit;
   FCollisionQueryParams Query(SCENE_QUERY_STAT(WaveHarpScytheBlade), false, Character.Get());
-  if (GetWorld()->SweepSingleByChannel(SweepHit, Start, End, FQuat::Identity, ECC_WorldDynamic, FCollisionShape::MakeSphere(85.f), Query))
+  if (GetWorld()->SweepSingleByChannel(SweepHit, Start, End, FQuat::Identity, ECC_WorldDynamic, FCollisionShape::MakeSphere(MeleeSweepRadiusCm), Query))
    if (AActor* Swiped = SweepHit.GetActor())
     if (Swiped->FindComponentByClass<UMelodiaHybridEncounterComponent>() || Cast<APCGHeroMusicNode>(Swiped))
      return Swiped;
@@ -761,7 +934,9 @@ void UMelodiaWaveHarpCombatComponent::CommitScytheHit()
 {
  if (!bScytheHitArmed || !GetWorld()) return;
  bScytheHitArmed = false;
- ScytheSwingBeatPhase = SampleBeatPhase();
+ // Judged at the action, not at impact. The action phase was sampled when the swing
+ // started; fall back to the notify only if the swing never sampled one.
+ ScytheSwingBeatPhase = ScytheActionBeatPhase >= 0.f ? ScytheActionBeatPhase : SampleBeatPhase();
  ScytheResolveTarget = FindMeleeActor();
  ScytheResolveStep = ScytheStep;
  ScytheResolveSwings = MeleeSwings;
@@ -1023,21 +1198,25 @@ void UMelodiaWaveHarpCombatComponent::UpdateLockTurn(float Delta)
 void UMelodiaWaveHarpCombatComponent::UpdateScytheRibbon()
 {
  if (!ScytheRibbon) return;
- const bool bShow = Instrument && ScytheMontageFraction >= 0.f
-  && Instrument->DoesSocketExist(ScytheBladeStartSocket)
-  && Instrument->DoesSocketExist(ScytheBladeTipSocket);
+ // The trail follows the MEASURED crescent, like the sweep does. Reading the shipped
+ // skeleton sockets here drew a 42 m ribbon (defect D8).
+ FVector BladeStart = FVector::ZeroVector;
+ FVector BladeEnd = FVector::ZeroVector;
+ const bool bBlade = GetBladeWorldPoints(BladeStart, BladeEnd);
+ const bool bShow = bBlade && ScytheMontageFraction >= 0.f;
  ScytheRibbon->SetVisibility(bShow);
  if (!bShow) return;
  const FTransform Inv = ScytheRibbon->GetComponentTransform().Inverse();
- const FVector A = Inv.TransformPosition(Instrument->GetSocketLocation(ScytheBladeStartSocket));
- const FVector B = Inv.TransformPosition(Instrument->GetSocketLocation(ScytheBladeTipSocket));
+ const FVector A = Inv.TransformPosition(BladeStart);
+ const FVector B = Inv.TransformPosition(BladeEnd);
  FVector Dir = B - A;
  const float Len = Dir.Size();
  if (Len < 1.f) return;
  Dir /= Len;
  FVector Side = FVector::CrossProduct(Dir, FVector::UpVector);
  if (Side.SizeSquared() < 0.01f) Side = FVector::CrossProduct(Dir, FVector::RightVector);
- Side = Side.GetSafeNormal() * 3.f;
+ // The ribbon follows the screen-size budget like everything else.
+ Side = Side.GetSafeNormal() * (3.f * GetEffectScale());
  const FVector N = FVector::CrossProduct(Dir, Side).GetSafeNormal();
  TArray<FVector> V = {A - Side, A + Side, B + Side, B - Side};
  TArray<int32> Tri = {0, 2, 1, 0, 3, 2};
@@ -1055,3 +1234,523 @@ void UMelodiaWaveHarpCombatComponent::UpdateScytheRibbon()
  }
  else ScytheRibbon->UpdateMeshSection_LinearColor(0, V, Normals, UV, Colors, Tangents);
 }
+
+// ---------------------------------------------------------------------------
+// THE FORM: one type, one entry point, one writer.
+//
+// SetForm is the only writer of CurrentForm. The f90 FormHandoff notify confirms a
+// transition; it never starts one. This mirrors the single-writer rule the hybrid
+// combat canon already applies to damage, resonance and the HUD.
+// ---------------------------------------------------------------------------
+namespace
+{
+const TCHAR* MelodiaFormName(EMelodiaWaveHarpForm Form)
+{
+ switch (Form)
+ {
+ case EMelodiaWaveHarpForm::Harp: return TEXT("HARP");
+ case EMelodiaWaveHarpForm::Bow: return TEXT("BOW");
+ case EMelodiaWaveHarpForm::CarillonMelee: return TEXT("CARILLON");
+ default: return TEXT("FORM");
+ }
+}
+}
+
+EMelodiaWaveHarpForm UMelodiaWaveHarpCombatComponent::GetNextForm(EMelodiaWaveHarpForm Form)
+{
+ switch (Form)
+ {
+ case EMelodiaWaveHarpForm::Harp: return EMelodiaWaveHarpForm::Bow;
+ case EMelodiaWaveHarpForm::Bow: return EMelodiaWaveHarpForm::CarillonMelee;
+ default: return EMelodiaWaveHarpForm::Harp;
+ }
+}
+
+float UMelodiaWaveHarpCombatComponent::EaseFormTransition(float T)
+{
+ const float Clamped = FMath::Clamp(T, 0.f, 1.f);
+ return Clamped * Clamped * (3.f - 2.f * Clamped);
+}
+
+float UMelodiaWaveHarpCombatComponent::ComputeMeleeFormWeight(
+ EMelodiaWaveHarpForm From, EMelodiaWaveHarpForm To, float Alpha)
+{
+ const float FromWeight = From == EMelodiaWaveHarpForm::CarillonMelee ? 1.f : 0.f;
+ const float ToWeight = To == EMelodiaWaveHarpForm::CarillonMelee ? 1.f : 0.f;
+ return FMath::Lerp(FromWeight, ToWeight, FMath::Clamp(Alpha, 0.f, 1.f));
+}
+
+float UMelodiaWaveHarpCombatComponent::ComputeBeatLockDelay(
+ const float SecondsToNextBeat, const float TransitionSeconds)
+{
+ // The flourish lasts TransitionSeconds and the head swaps at its midpoint, so the
+ // START is delayed by half a transition less than the distance to the next downbeat.
+ const float Half = 0.5f * FMath::Max(TransitionSeconds, 0.2f);
+ return FMath::Max(0.f, SecondsToNextBeat - Half);
+}
+
+bool UMelodiaWaveHarpCombatComponent::AcceptAttackDuringTransition(
+ const bool bTransitionActive, const bool bBufferEnabled, bool& bOutBuffered)
+{
+ bOutBuffered = false;
+ if (!bTransitionActive) return true;
+ bOutBuffered = bBufferEnabled;
+ return false;
+}
+
+bool UMelodiaWaveHarpCombatComponent::SetForm(EMelodiaWaveHarpForm NewForm)
+{
+ if (!Character.IsValid() || !GetWorld()) return false;
+ if (bFormTransitionActive)
+ {
+  // One transition at a time. A new request re-aims the running flourish instead of
+  // starting a second one.
+  if (NewForm == PendingForm) return false;
+  PendingForm = NewForm;
+  StatusText = TEXT("FORM  /  Re-aimed behind the running transformation.");
+  return true;
+ }
+ if (NewForm == CurrentForm) return false;
+ if (IsInSequence())
+ {
+  StatusText = TEXT("FORM  /  Not during a phrase.");
+  return false;
+ }
+ if (!CanAct())
+ {
+  StatusText = TEXT("FORM  /  Movement is locked.");
+  return false;
+ }
+
+ FormTransitionFrom = CurrentForm;
+ PendingForm = NewForm;
+ bFormTransitionActive = true;
+ bHeadSwappedThisTransition = false;
+ // Every transition gets its beats: the fired-marker is cleared with the transition.
+ LastFiredStage = EMelodiaWaveHarpFormStage::Idle;
+ FormTransitionAlpha = 0.f;
+
+ // Beat lock: the flourish's HANDOFF must land on a downbeat. The head swaps at the
+ // transition's midpoint, so the start waits for (beat distance - half a transition).
+ // The music clock returns 0 when there is no music, which degrades to acting at once.
+ const float Delay = ComputeBeatLockDelay(SecondsUntilNextBeat(), FormTransitionSeconds);
+ const double Now = GetWorld()->GetTimeSeconds();
+ FormTransitionStart = Now + FMath::Max(0.f, Delay);
+ FormTransitionEnd = FormTransitionStart + FMath::Max(FormTransitionSeconds, .2f);
+
+ ApplyFormCameraPush(true);
+ PlayFormTransformFlourish();
+
+ // The authored henshin montage drives the transition when it exists: its FormAlpha
+ // curve replaces the timer (defect D3, the 0.22 s linear pop).
+ if (UAnimMontage* Montage = FormTransitionMontage.LoadSynchronous())
+ {
+  if (Character->GetMesh())
+   if (UAnimInstance* Anim = Character->GetMesh()->GetAnimInstance())
+   {
+    Anim->Montage_Play(Montage, 1.f);
+    PoseMontage = Montage;
+   }
+ }
+
+ UE_LOG(LogTemp, Log, TEXT("MELODIA_WAVEHARP_FORM from=%s to=%s delay=%.3f duration=%.3f"),
+  MelodiaFormName(FormTransitionFrom), MelodiaFormName(NewForm), FMath::Max(0.f, Delay),
+  FMath::Max(FormTransitionEnd - FormTransitionStart, 0.f));
+ StatusText = FString::Printf(TEXT("FORM  /  %s"), MelodiaFormName(NewForm));
+ return true;
+}
+
+void UMelodiaWaveHarpCombatComponent::CycleForm()
+{
+ SetForm(GetNextForm(CurrentForm));
+}
+
+float UMelodiaWaveHarpCombatComponent::GetMeleeFormWeight() const
+{
+ if (!bFormTransitionActive)
+  return CurrentForm == EMelodiaWaveHarpForm::CarillonMelee ? 1.f : 0.f;
+ return ComputeMeleeFormWeight(FormTransitionFrom, PendingForm, FormTransitionAlpha);
+}
+
+void UMelodiaWaveHarpCombatComponent::UpdateFormTransition(float Delta)
+{
+ if (!bFormTransitionActive)
+ {
+  FormTransitionAlpha = 1.f;
+  if (FormStage != EMelodiaWaveHarpFormStage::Idle)
+  {
+   // The aftermath is over: the stage goes home and the beats can fire again.
+   if (GetWorld() && GetWorld()->GetTimeSeconds() > AftermathUntil)
+   {
+    FormStage = EMelodiaWaveHarpFormStage::Idle;
+    LastFiredStage = EMelodiaWaveHarpFormStage::Idle;
+    OnFormStageChanged.Broadcast(FormStage, CurrentForm);
+   }
+  }
+  return;
+ }
+ if (!GetWorld()) return;
+ const double Now = GetWorld()->GetTimeSeconds();
+ const float Duration = FMath::Max((float)(FormTransitionEnd - FormTransitionStart), .05f);
+ const float T = FMath::Clamp((float)((Now - FormTransitionStart) / Duration), 0.f, 1.f);
+
+ // The authored clip's curve wins when it is playing (C3). Otherwise the timer drives
+ // a smoothstep, so the change is never the old linear pop.
+ float CurveValue = 0.f;
+ bool bCurveDriven = false;
+ if (FormTransitionMontage && Character.IsValid() && Character->GetMesh())
+ {
+  if (UAnimInstance* Anim = Character->GetMesh()->GetAnimInstance())
+   if (Anim->Montage_IsPlaying(FormTransitionMontage.Get()))
+    bCurveDriven = Anim->GetCurveValueWithDefault(FormAlphaCurve, 0.f, CurveValue);
+ }
+ FormTransitionAlpha = bCurveDriven ? FMath::Clamp(CurveValue, 0.f, 1.f) : EaseFormTransition(T);
+
+ // The stage machine: PREPARE while the flourish waits for its beat, TRANSFORM while
+ // the head is covered and changes, AFTERMATH once the weight has to land.
+ {
+  const EMelodiaWaveHarpFormStage Stage = T <= 0.f
+   ? EMelodiaWaveHarpFormStage::Prepare
+   : (T < 1.f ? EMelodiaWaveHarpFormStage::Transform : EMelodiaWaveHarpFormStage::Aftermath);
+  if (Stage != FormStage)
+  {
+   FormStage = Stage;
+   OnFormStageChanged.Broadcast(Stage, PendingForm);
+   if (Stage != LastFiredStage)
+   {
+    LastFiredStage = Stage;
+    PlayFormVfxBeats(Stage);
+   }
+  }
+ }
+
+ // The head swaps at the midpoint: the caster head unfurls first, the crescent lands
+ // in the second half. That is the f90 handoff of the authored performance.
+ if (!bHeadSwappedThisTransition && FormTransitionAlpha >= .5f)
+ {
+  bHeadSwappedThisTransition = true;
+  ApplyFormVisuals(true);
+  PlayFormTransformFlourish();
+ }
+
+ if (T < 1.f) return;
+
+ // The transition landed. The form is committed here and nowhere else.
+ bFormTransitionActive = false;
+ FormTransitionAlpha = 1.f;
+ AftermathUntil = GetWorld() ? GetWorld()->GetTimeSeconds() + FMath::Max(0.f, FormAftermathSeconds) : 0;
+ CurrentForm = PendingForm;
+ ApplyFormVisuals();
+ ApplyFormCameraPush(false);
+ StatusText = FString::Printf(TEXT("FORM  /  %s"), MelodiaFormName(CurrentForm));
+ UE_LOG(LogTemp, Log, TEXT("MELODIA_WAVEHARP_FORM_LANDED form=%s head_melee=%d"),
+  MelodiaFormName(CurrentForm), bWandIsMelee ? 1 : 0);
+
+ // A queued attack fires the moment the flourish lands: the transformation never eats
+ // an input.
+ if (bBufferedMelee)
+ {
+  bBufferedMelee = false;
+  TriggerScytheMelee();
+ }
+ else if (bBufferedAttack)
+ {
+  bBufferedAttack = false;
+  StartDraw();
+ }
+}
+
+void UMelodiaWaveHarpCombatComponent::PlayFormVfxBeats(EMelodiaWaveHarpFormStage Stage)
+{
+ if (!Character.IsValid()) return;
+ for (const FMelodiaWaveHarpVfxBeat& Beat : FormVfxBeats)
+ {
+  if (Beat.Stage != Stage) continue;
+  UNiagaraSystem* System = Beat.System.LoadSynchronous();
+  if (!System)
+  {
+   UE_LOG(LogTemp, Verbose, TEXT("MELODIA_WAVEHARP_VFX beat skipped: no system for stage %d"), (int32)Stage);
+   continue;
+  }
+  const FVector Where = GetFormVfxLocation(Beat);
+  UNiagaraFunctionLibrary::SpawnSystemAtLocation(this, System, Where, FRotator::ZeroRotator,
+   FVector(Beat.Scale));
+  UE_LOG(LogTemp, Log, TEXT("MELODIA_WAVEHARP_VFX stage=%d system=%s at=%s scale=%.2f"),
+   (int32)Stage, *System->GetName(), *Where.ToCompactString(), Beat.Scale);
+ }
+}
+
+FVector UMelodiaWaveHarpCombatComponent::GetFormVfxLocation(const FMelodiaWaveHarpVfxBeat& Beat) const
+{
+ if (!Character.IsValid()) return FVector::ZeroVector;
+ USkeletalMeshComponent* Mesh = Character->GetMesh();
+ if (Beat.Socket != NAME_None && Mesh && Mesh->DoesSocketExist(Beat.Socket))
+  return Mesh->GetSocketLocation(Beat.Socket);
+ // The head is the heart of the weapon: a beat with no socket plays there.
+ return Character->GetActorLocation() + FVector(0.f, 0.f, 95.f);
+}
+
+void UMelodiaWaveHarpCombatComponent::SetWaterChorusEnabled(const bool bEnabled)
+{
+ if (bEnableWaterChorus == bEnabled) return;
+ bEnableWaterChorus = bEnabled;
+ if (bEnabled)
+ {
+  if (GetWorld()) WaterChorus.Start(*GetWorld());
+  StatusText = TEXT("CHORUS  /  The water sings with the beat.");
+ }
+ else
+ {
+  WaterChorus.Stop();
+  StatusText = TEXT("CHORUS  /  Off.");
+ }
+ UE_LOG(LogTemp, Log, TEXT("MELODIA_WAVEHARP_CHORUS_TOGGLE enabled=%d"), bEnabled ? 1 : 0);
+}
+
+void UMelodiaWaveHarpCombatComponent::SetHeadSwapEnabled(const bool bEnabled)
+{
+ if (bUseHeadSwap == bEnabled) return;
+ bUseHeadSwap = bEnabled;
+ // The wand path hides the shipped representation; turning it off puts it back.
+ if (Instrument) Instrument->SetVisibility(true);
+ ApplyFormVisuals();
+ StatusText = bEnabled
+  ? TEXT("HEAD SWAP  /  The refined Carillon wand is live.")
+  : TEXT("HEAD SWAP  /  The shipped representation is live.");
+ UE_LOG(LogTemp, Log, TEXT("MELODIA_WAVEHARP_HEADSWAP_TOGGLE enabled=%d"), bEnabled ? 1 : 0);
+}
+
+void UMelodiaWaveHarpCombatComponent::ApplyFormVisuals(const bool bBurst)
+{
+ // The form brings its own hold with it, when it has been solved for this pose.
+ if (const FTransform* Solved = FormGrips.Find(CurrentForm))
+  BowGrip = *Solved;
+ // The committed form decides the head. Nothing else may swap it.
+ const bool bWantMelee = CurrentForm == EMelodiaWaveHarpForm::CarillonMelee
+  || PendingForm == EMelodiaWaveHarpForm::CarillonMelee;
+ if (Wand && bWantMelee != bWandIsMelee)
+ {
+  bWandIsMelee = bWantMelee;
+  if (UStaticMesh* Mesh = bWantMelee ? WandMeleeMesh.LoadSynchronous() : WandCasterMesh.LoadSynchronous())
+   Wand->SetStaticMesh(Mesh);
+ }
+ UpdateWandPresentation();
+ // The water transform: the form change breaks the surface of the world. It belongs to
+ // the midpoint, where the head actually changes.
+ if (bBurst && bEnableWaterChorus) WaterChorus.Burst(Character.Get());
+}
+
+void UMelodiaWaveHarpCombatComponent::UpdateWandPresentation()
+{
+ if (!Wand) return;
+ const bool bWandPath = bUseHeadSwap;
+ Wand->SetVisibility(bWandPath);
+ if (!bWandPath)
+ {
+  // The shipped representation is back.
+  if (Instrument) Instrument->SetVisibility(true);
+  return;
+ }
+ if (Instrument) Instrument->SetVisibility(false);
+ if (Harp) Harp->SetVisibility(false);
+ if (Bow) Bow->SetVisibility(false);
+}
+
+float UMelodiaWaveHarpCombatComponent::SecondsUntilNextBeat() const
+{
+ if (const UMelodiaMusicClockSubsystem* MusicClock = UMelodiaMusicClockSubsystem::Get(this))
+  if (MusicClock->HasMusicalTime())
+   return MusicClock->GetSecondsToNextBeat();
+ return 0.f;
+}
+
+bool UMelodiaWaveHarpCombatComponent::GetBladeWorldPoints(FVector& OutStart, FVector& OutEnd) const
+{
+ if (!Character.IsValid()) return false;
+ FTransform Base;
+ if (Wand && Wand->IsRegistered())
+ {
+  // The head-local frame the crescent was modelled in.
+  Base = Wand->GetComponentTransform();
+ }
+ else if (Instrument && Instrument->IsRegistered())
+ {
+  // The shipped skeletal path: the offsets are wand-local, so seat them on the head.
+  Base = Instrument->GetComponentTransform() * FTransform(FQuat::Identity, Sockets.HeadSeat);
+ }
+ else return false;
+ OutStart = Base.TransformPosition(Sockets.BladeStart);
+ OutEnd = Base.TransformPosition(Sockets.BladeTip);
+ return true;
+}
+
+void UMelodiaWaveHarpCombatComponent::ApplyFormCameraPush(bool bPush)
+{
+ if (!CameraBoom.IsValid()) return;
+ if (bPush)
+ {
+  if (bHaveSavedFormCameraArm) return;
+  SavedFormCameraArmLength = CameraBoom->TargetArmLength;
+  bHaveSavedFormCameraArm = true;
+  CameraBoom->TargetArmLength = SavedFormCameraArmLength - FMath::Max(0.f, FormCameraPushCm);
+ }
+ else if (bHaveSavedFormCameraArm)
+ {
+  CameraBoom->TargetArmLength = SavedFormCameraArmLength;
+  bHaveSavedFormCameraArm = false;
+ }
+}
+
+void UMelodiaWaveHarpCombatComponent::PlayFormTransformFlourish()
+{
+ // Existing systems only. The flourish covers the head swap; it never decides anything.
+ if (UNiagaraSystem* System = FormTransformSigilSystem.LoadSynchronous())
+ {
+  const FVector Where = Character.IsValid()
+   ? Character->GetActorLocation() + FVector(0, 0, 95)
+   : FVector::ZeroVector;
+  // The effect budget follows what the player can actually see (Infinity Nikki scale
+  // their fur layers by screen size): a flourish seen from across the lane is small,
+  // one seen from arm's length is full size. No new system, no new graph.
+  float Scale = 1.f;
+  if (Player.IsValid())
+  {
+   FVector Eye; FRotator View;
+   Player->GetPlayerViewPoint(Eye, View);
+   const float Distance = FVector::Distance(Eye, Where);
+   Scale = FMath::Clamp(1.15f - 0.018f * Distance, 0.4f, 1.1f);
+  }
+  UNiagaraFunctionLibrary::SpawnSystemAtLocation(this, System, Where, FRotator::ZeroRotator, FVector(Scale));
+ }
+ if (ShotNote && Character.IsValid())
+  UGameplayStatics::PlaySoundAtLocation(this, ShotNote,
+   Character->GetActorLocation() + FVector(0, 0, 95), .5f);
+}
+
+void UMelodiaWaveHarpCombatComponent::OnRep_CurrentForm()
+{
+ ApplyFormVisuals();
+}
+
+void UMelodiaWaveHarpCombatComponent::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
+{
+ Super::GetLifetimeReplicatedProps(OutLifetimeProps);
+ DOREPLIFETIME(UMelodiaWaveHarpCombatComponent, CurrentForm);
+}
+
+// Re-derive the WaveHarp hold offset from the current pose (local player).
+static FAutoConsoleCommandWithWorld GMelodiaRecalibrateWaveHarpHold(
+ TEXT("Melodia.WaveHarp.RecalibrateHold"),
+ TEXT("Re-derive the WaveHarp hold offset from the current settled pose (local player)."),
+ FConsoleCommandWithWorldDelegate::CreateStatic([](UWorld* World)
+ {
+  if (!World) return;
+  ACharacter* Char = nullptr;
+  for (FConstPlayerControllerIterator It = World->GetPlayerControllerIterator(); It; ++It)
+  {
+   APlayerController* PC = It->Get();
+   if (PC && PC->GetPawn()) { Char = Cast<ACharacter>(PC->GetPawn()); break; }
+  }
+  if (!Char)
+  {
+   UE_LOG(LogTemp, Warning, TEXT("MELODIA_WAVEHARP no local player pawn to recalibrate."));
+   return;
+  }
+  if (UMelodiaWaveHarpCombatComponent* Combat = Char->FindComponentByClass<UMelodiaWaveHarpCombatComponent>())
+  {
+   Combat->CalibrateHold();
+   UE_LOG(LogTemp, Log, TEXT("MELODIA_WAVEHARP hold recalculated."));
+  }
+ }));
+
+// Force a form (PIE proof): 0 = HARP, 1 = BOW, 2 = CARILLON (melee).
+static FAutoConsoleCommandWithWorldAndArgs GMelodiaSetWaveHarpForm(
+ TEXT("Melodia.WaveHarp.SetForm"),
+ TEXT("Force the WaveHarp form: 0 = HARP, 1 = BOW, 2 = CARILLON (melee)."),
+ FConsoleCommandWithWorldAndArgsDelegate::CreateStatic([](const TArray<FString>& Args, UWorld* World)
+ {
+  if (!World || Args.Num() < 1) return;
+  const int32 Index = FCString::Atoi(*Args[0]);
+  if (Index < 0 || Index > 2)
+  {
+   UE_LOG(LogTemp, Warning, TEXT("MELODIA_WAVEHARP_FORM_SET bad index %d (use 0, 1 or 2)."), Index);
+   return;
+  }
+  ACharacter* Char = nullptr;
+  for (FConstPlayerControllerIterator It = World->GetPlayerControllerIterator(); It; ++It)
+  {
+   if (APlayerController* PC = It->Get())
+    if (PC->GetPawn()) { Char = Cast<ACharacter>(PC->GetPawn()); break; }
+  }
+  if (!Char) { UE_LOG(LogTemp, Warning, TEXT("MELODIA_WAVEHARP no local player pawn.")); return; }
+  if (UMelodiaWaveHarpCombatComponent* Combat = Char->FindComponentByClass<UMelodiaWaveHarpCombatComponent>())
+  {
+   Combat->SetForm(static_cast<EMelodiaWaveHarpForm>(Index));
+   UE_LOG(LogTemp, Log, TEXT("MELODIA_WAVEHARP_FORM_SET form=%d"), Index);
+  }
+ }));
+
+// Toggle the water chorus at runtime (the surfaces must exist in the level).
+static FAutoConsoleCommandWithWorldAndArgs GMelodiaWaterChorusToggle(
+ TEXT("Melodia.WaveHarp.WaterChorus"),
+ TEXT("Turn the world's water chorus on or off: Melodia.WaveHarp.WaterChorus 0|1"),
+ FConsoleCommandWithWorldAndArgsDelegate::CreateStatic([](const TArray<FString>& Args, UWorld* World)
+ {
+  if (!World || Args.Num() < 1) return;
+  ACharacter* Char = nullptr;
+  for (FConstPlayerControllerIterator It = World->GetPlayerControllerIterator(); It; ++It)
+  {
+   if (APlayerController* PC = It->Get())
+    if (PC->GetPawn()) { Char = Cast<ACharacter>(PC->GetPawn()); break; }
+  }
+  if (!Char) { UE_LOG(LogTemp, Warning, TEXT("MELODIA_WAVEHARP no local player pawn.")); return; }
+  if (UMelodiaWaveHarpCombatComponent* Combat = Char->FindComponentByClass<UMelodiaWaveHarpCombatComponent>())
+   Combat->SetWaterChorusEnabled(FCString::Atoi(*Args[0]) != 0);
+ }));
+
+// Toggle the refined wand (head swap) at runtime.
+static FAutoConsoleCommandWithWorldAndArgs GMelodiaHeadSwapToggle(
+ TEXT("Melodia.WaveHarp.HeadSwap"),
+ TEXT("Turn the refined Carillon wand on or off: Melodia.WaveHarp.HeadSwap 0|1"),
+ FConsoleCommandWithWorldAndArgsDelegate::CreateStatic([](const TArray<FString>& Args, UWorld* World)
+ {
+  if (!World || Args.Num() < 1) return;
+  ACharacter* Char = nullptr;
+  for (FConstPlayerControllerIterator It = World->GetPlayerControllerIterator(); It; ++It)
+  {
+   if (APlayerController* PC = It->Get())
+    if (PC->GetPawn()) { Char = Cast<ACharacter>(PC->GetPawn()); break; }
+  }
+  if (!Char) { UE_LOG(LogTemp, Warning, TEXT("MELODIA_WAVEHARP no local player pawn.")); return; }
+  if (UMelodiaWaveHarpCombatComponent* Combat = Char->FindComponentByClass<UMelodiaWaveHarpCombatComponent>())
+   Combat->SetHeadSwapEnabled(FCString::Atoi(*Args[0]) != 0);
+ }));
+
+// Print the resolved form state (the PIE receipt for the form system).
+static FAutoConsoleCommandWithWorld GMelodiaDumpWaveHarpForm(
+ TEXT("Melodia.WaveHarp.DumpForm"),
+ TEXT("Print the WaveHarp form, the transition state and the measured blade geometry."),
+ FConsoleCommandWithWorldDelegate::CreateStatic([](UWorld* World)
+ {
+  if (!World) return;
+  ACharacter* Char = nullptr;
+  for (FConstPlayerControllerIterator It = World->GetPlayerControllerIterator(); It; ++It)
+  {
+   if (APlayerController* PC = It->Get())
+    if (PC->GetPawn()) { Char = Cast<ACharacter>(PC->GetPawn()); break; }
+  }
+  if (!Char) { UE_LOG(LogTemp, Warning, TEXT("MELODIA_WAVEHARP no local player pawn.")); return; }
+  if (UMelodiaWaveHarpCombatComponent* Combat = Char->FindComponentByClass<UMelodiaWaveHarpCombatComponent>())
+  {
+   FVector Start = FVector::ZeroVector;
+   FVector End = FVector::ZeroVector;
+   const bool bBlade = Combat->GetBladeWorldPoints(Start, End);
+   UE_LOG(LogTemp, Log, TEXT("MELODIA_WAVEHARP_FORM_DUMP form=%d pending=%d transition=%d alpha=%.3f head_swap=%d melee_weight=%.3f"),
+    (int32)Combat->GetForm(), (int32)Combat->PendingForm, Combat->IsFormTransitionActive() ? 1 : 0,
+    Combat->GetFormTransitionAlpha(), Combat->bUseHeadSwap ? 1 : 0, Combat->GetMeleeFormWeight());
+   UE_LOG(LogTemp, Log, TEXT("MELODIA_WAVEHARP_BLADE_DUMP measured=%d blade_cm=%.2f radius_cm=%.2f start=%s end=%s reach_cm=%.2f"),
+    bBlade ? 1 : 0, Combat->Sockets.GetBladeLengthCm(), Combat->Sockets.GetBladeRadiusCm(),
+    *Start.ToCompactString(), *End.ToCompactString(),
+    bBlade ? FVector::Distance(Start, End) : 0.f);
+  }
+ }));
