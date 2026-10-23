@@ -39,6 +39,9 @@ public:
  *  at her feet (the puddles sing). Returns how many were spawned. */
  int32 SpawnCharacterSetups(AActor* Owner);
 
+ /** True for the class names FluidNinja's live setups use (the world actor and the unit's component). */
+ static bool IsNinjaLiveClassName(const FString& ClassName);
+
  /** Forget everything. */
  void Stop();
 
@@ -113,6 +116,10 @@ private:
  FVector HorizonPoint(const AActor* Owner, float Distance, float Height) const;
 
  TArray<FSurface> Surfaces;
+ /** The runtime unit (Melusina). It already carries its own FluidNinja (WaterHairFluid), so no second character sim is spawned. */
+ TWeakObjectPtr<AActor> ChorusOwner;
+ bool bSetupsDone = false;
+ bool bUnitHasOwnFluid = false;
  TWeakObjectPtr<AActor> CharacterLive;
  TWeakObjectPtr<AActor> PuddleLive;
  int32 BoundParameterCount = 0;

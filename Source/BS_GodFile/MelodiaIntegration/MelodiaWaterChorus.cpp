@@ -24,6 +24,11 @@ const TCHAR* SkylineMist = TEXT("/Game/Melodia/VFX/NS_Morning_PondMist.NS_Mornin
 const TCHAR* AudioPalette = TEXT("/Game/Melodia/_PROJECT/04_Materials/MPC_Melodia_Palette.MPC_Melodia_Palette");
 }
 
+bool FMelodiaWaterChorus::IsNinjaLiveClassName(const FString& ClassName)
+{
+ return ClassName.Contains(TEXT("NinjaLive")) || ClassName.Contains(TEXT("LiveActor"));
+}
+
 void FMelodiaWaterChorus::Start(UWorld& World)
 {
  Surfaces.Reset();
@@ -36,8 +41,7 @@ void FMelodiaWaterChorus::Start(UWorld& World)
   AActor* Actor = *It;
   if (!Actor || Actor->IsHidden()) continue;
   const FString ClassName = Actor->GetClass()->GetName();
-  const bool bLooksLive = ClassName.Contains(TEXT("NinjaLive")) || ClassName.Contains(TEXT("LiveActor"));
-  if (!bLooksLive) continue;
+  if (!IsNinjaLiveClassName(ClassName)) continue;
   TInlineComponentArray<UNiagaraComponent*> NiagaraComponents(Actor);
   for (UNiagaraComponent* Niagara : NiagaraComponents)
   {
@@ -57,6 +61,9 @@ void FMelodiaWaterChorus::Stop()
  bStarted = false;
  CharacterLive.Reset();
  PuddleLive.Reset();
+ ChorusOwner.Reset();
+ bSetupsDone = false;
+ bUnitHasOwnFluid = false;
 }
 
 void FMelodiaWaterChorus::BindAll()
@@ -64,18 +71,34 @@ void FMelodiaWaterChorus::BindAll()
  Surfaces.Reset();
  BoundParameterCount = 0;
  UWorld* World = nullptr;
- for (const TWeakObjectPtr<AActor>& Candidate : { CharacterLive, PuddleLive })
+ for (const TWeakObjectPtr<AActor>& Candidate : { CharacterLive, PuddleLive, ChorusOwner })
  {
   if (AActor* Actor = Candidate.Get())
    if (!World) World = Actor->GetWorld();
  }
  if (!World) return;
+
+ // The runtime unit's OWN fluid: its Niagara components that expose the FluidNinja sim speed. Runtime
+ // parameters only; the protected NS_Melusina_HairFlow asset is never edited.
+ if (AActor* Unit = ChorusOwner.Get())
+ {
+  TInlineComponentArray<UNiagaraComponent*> UnitNiagara(Unit);
+  for (UNiagaraComponent* Niagara : UnitNiagara)
+  {
+   if (!Niagara) continue;
+   TArray<FNiagaraVariable> Vars;
+   Niagara->GetOverrideParameters().GetParameters(Vars);
+   bool bFluid = false;
+   for (const FNiagaraVariable& V : Vars) if (V.GetName() == FName(TEXT("User.SimSpeed"))) { bFluid = true; break; }
+   if (bFluid) BindSurface(Niagara);
+  }
+ }
  for (TActorIterator<AActor> It(World); It; ++It)
  {
   AActor* Actor = *It;
   if (!Actor || Actor->IsHidden()) continue;
   const FString ClassName = Actor->GetClass()->GetName();
-  if (!ClassName.Contains(TEXT("NinjaLive")) && !ClassName.Contains(TEXT("LiveActor"))) continue;
+  if (!IsNinjaLiveClassName(ClassName)) continue;
   TInlineComponentArray<UNiagaraComponent*> NiagaraComponents(Actor);
   for (UNiagaraComponent* Niagara : NiagaraComponents)
    if (Niagara) BindSurface(Niagara);
@@ -87,6 +110,16 @@ int32 FMelodiaWaterChorus::SpawnCharacterSetups(AActor* Owner)
  if (!Owner) return 0;
  UWorld* World = Owner->GetWorld();
  if (!World) return 0;
+
+ ChorusOwner = Owner;
+ bUnitHasOwnFluid = false;
+ {
+  TInlineComponentArray<UActorComponent*> Components(Owner);
+  for (UActorComponent* Component : Components)
+   if (Component && IsNinjaLiveClassName(Component->GetClass()->GetName())) { bUnitHasOwnFluid = true; break; }
+ }
+ if (bUnitHasOwnFluid)
+  UE_LOG(LogTemp, Log, TEXT("MELODIA_WATER_CHORUS the unit carries its own FluidNinja (WaterHairFluid): no second character sim is spawned"));
 
  UClass* LiveClass = LoadClass<AActor>(nullptr, TEXT("/Game/FluidNinjaLive/NinjaLive.NinjaLive_C"));
  if (!LiveClass)
@@ -110,8 +143,9 @@ int32 FMelodiaWaterChorus::SpawnCharacterSetups(AActor* Owner)
   return true;
  };
 
- // The character live actor: the sim that tracks her bones.
- if (SpawnLive(CharacterLive, Owner->GetActorLocation(), 1.f)
+ // The character live actor: the sim that tracks her bones. The runtime unit has its own, so only an
+ // owner WITHOUT one gets this.
+ if (!bUnitHasOwnFluid && SpawnLive(CharacterLive, Owner->GetActorLocation(), 1.f)
   && CharacterLive.IsValid())
  {
   CharacterLive->AttachToComponent(Owner->GetRootComponent(),
@@ -161,7 +195,7 @@ void FMelodiaWaterChorus::BindSurface(UNiagaraComponent* Niagara)
  if (!Niagara) return;
  FSurface Surface;
  Surface.Niagara = Niagara;
- Surface.bOwned = Niagara->GetOwner() && (Niagara->GetOwner() == CharacterLive.Get() || Niagara->GetOwner() == PuddleLive.Get());
+ Surface.bOwned = Niagara->GetOwner() && (Niagara->GetOwner() == CharacterLive.Get() || Niagara->GetOwner() == PuddleLive.Get() || Niagara->GetOwner() == ChorusOwner.Get());
 
  TArray<FNiagaraVariable> Variables;
  Niagara->GetOverrideParameters().GetParameters(Variables);
@@ -423,10 +457,11 @@ void FMelodiaWaterChorus::Tick(float Delta, AActor* Owner)
 
  // The setups come with the character: the live actor that tracks her bones and the
  // water body at her feet. Then the binding sees them.
- if (!CharacterLive.IsValid())
+ if (!bSetupsDone)
  {
-  if (SpawnCharacterSetups(Owner) > 0)
-   BindAll();
+  bSetupsDone = true;
+  SpawnCharacterSetups(Owner);
+  BindAll();
  }
 
  // The beat, read from the clock the project already owns. This class is a reader.

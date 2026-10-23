@@ -220,6 +220,19 @@ bool FWaveHarpWaterHarmonyTest::RunTest(const FString& Parameters)
  return true;
 }
 
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(FWaveHarpWaterUnitFluidTest,
+ "Melodia.WaveHarp.Water.UnitOwnFluidIsRecognised",
+ EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
+bool FWaveHarpWaterUnitFluidTest::RunTest(const FString& Parameters)
+{
+ TestTrue(TEXT("the unit's WaterHairFluid component class is a FluidNinja live setup"),
+  FMelodiaWaterChorus::IsNinjaLiveClassName(TEXT("NinjaLiveComponent_C")));
+ TestTrue(TEXT("the world live actor is one too"), FMelodiaWaterChorus::IsNinjaLiveClassName(TEXT("NinjaLive_C")));
+ TestFalse(TEXT("a plain Niagara component is not"), FMelodiaWaterChorus::IsNinjaLiveClassName(TEXT("NiagaraComponent")));
+ TestFalse(TEXT("the hair mesh component is not"), FMelodiaWaterChorus::IsNinjaLiveClassName(TEXT("MelodiaHairComponent")));
+ return true;
+}
+
 IMPLEMENT_SIMPLE_AUTOMATION_TEST(FWaveHarpWaterBudgetTest,
  "Melodia.WaveHarp.Water.DistanceBudgetKeepsTheNearSimsLive",
  EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
