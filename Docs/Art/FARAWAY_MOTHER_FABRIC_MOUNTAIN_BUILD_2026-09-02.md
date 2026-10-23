@@ -319,3 +319,100 @@ Use the six presets in \`terrain_fabric_atlas.v1.json\` and the mathematical con
 **First comparison:** use the *same* draped Jura/Gavarnie geometry and fixed camera: satin ridge, velvet valley, one gold nodal seam. Capture neutral clay, pure material, and controlled Chladni reveal, plus maps and a short source/provenance manifest. Prefer a gorgeous unified test to six disconnected map exports.
 
 **Evidence gate:** only mark as cooked after actual lab \`hython\`/GUI evidence records source SHA, licence tier, terrain source/CRS/datum, height min/max, render paths, actual material maps, and protected master unchanged. Raw maps/caches remain in \`Saved/Audit/houdini_faraway_mother/\` or college scratch (not Git). Record implementation status **only** in \`CURRENT_STATE.md\` after future genuine cooking.
+
+---
+
+## Poitou Surface x Mycelium Subsurface x Faraway Harmonic Skin (2026-10-23)
+
+**Status: PROPOSED, not built.** This is an extension to the Harmonic Continental Genesis / Chladni Cloth Day research plan above. No cave asset or source file was imported, moved, recooked, or altered by this commit. The owner knows where the Melusina's House mycelium cave source is; its exact path remains **OWNER-RESOLVED AT THE LAB**, not a guessed Git path. This is an offline Houdini experiment first, not a new runtime system.
+
+### Core artistic hypothesis
+
+**Faraway Mother is a single continent-sized garment suspended over a living, interconnected subterranean organism.** Poitou-style terrain infrastructure establishes the surface and access paths; Melusina's House mycelium cave branches supply buried structural anchor candidates; Faraway's canonical signed Chladni (3,5) field supplies rhythmic tension and nodal embroidery. Selected underground branches can *influence* the cloth constraint field so the mountains read as held in place by something alive beneath them.
+
+At the hero reveal, a luminous gold seam visible on the mountain surface aligns with the buried branching network. This link is **authored spatial composition**, not a claim that physically correct acoustics or fungal growth are being simulated.
+
+### Existing production interfaces to reuse — no new global compiler
+
+| Lane | Source / known authority | Reusable interface | Do **not** assume |
+| --- | --- | --- | --- |
+| **Poitou surface assembly** | \`POITOU_START_HERE.md\`; \`Docs/Plans/POITOU_MELUSINAS_MORNING_CONVERGENCE_2026-10-20.md\`; \`Docs/Poitou/poitou_layout/HOUDINI_ENGINE_LIVE_CONVERGENCE_SPEC.md\`; current \`poitou_layout_live.hdalc\` builder *when owner confirms actual checkout/build* | curve-based paths, banks, masks, terrain collision exclusions, staging conventions, UE HDA source/outputs | Poitou's live HDA may be on another workstation/branch; do not import or recook the P0 town, duplicate it, or replace Poitou's real-world flat regional identity |
+| **Melusina's House cave / mycelium** | OWNER-RESOLVED LOCAL SOURCE: inspect file/UE level/SOP/HDA and record path + SHA before using. \`MELUSINA_HOUSE_GN_START_HERE.md\` and original house design documents provide context but are **not** proof of this specific cave generator | If available: cave SDF/VDB, tunnel curves, centerline connectivity, fungal branch positions, chamber anchors, signed-distance samples, bioluminescent dressing masks | An exact procedural asset path, live cook, connectivity, units, or ready-made VDB cannot be inferred from searchable Git. Treat as candidate, not verified reuse until opened |
+| **Faraway harmonic cloth** | protected \`Houdini/FarawayDrape.hip\`; \`Tools/Houdini/vdm_fabric_mountains/faraway_static_field.py\`; \`Tools/PCG/build_faraway_mother_pcg_ecosystem.py\`; six cloth recipes in \`recipes/houdini_faraway/terrain_fabric_atlas.v1.json\` | existing handmade \`FARAWAY_DRAPE_GRID\`, \`TENSION_MASK\`, canonical signed (3,5) spatial field, selected Vellum drape/constraint experiments, Copernicus material maps | full-continent live cloth, non-canonical (4,6) override of spatial seams, or a rebuilt authored master |
+| **World handoff** | \`Docs/WorldGen/WORLD_COMPILER_CONTRACT.md\`, \`Docs/WorldGen/TERRAIN_HANDOFF_CONTRACT.md\`; Faraway P1 resonance-field integration spec | deterministic offline mask/point bundles, UE 5.8 Mesh Terrain at 100 cm/m, existing World Compiler + PCG, TD \`OUT_SHOW_FIELD\` presentation | separate World Compiler, new gameplay writer, second MPC, or Unreal level edits during the school research cook |
+
+**Role separation:** Poitou gives tested *patterns* for surface construction, not the exact P0 map. Cave system is a verified local candidate only after source inspection. Faraway owns the chapter's art direction and harmonic field. \`CURRENT_STATE.md\` is the **only status authority**.
+
+### Data-flow architecture — bounded 250 m hero slice
+
+\`\`\`text
+Poitou-inspired path/mask/terrain interface (read-only example)
+                       |
+                       v
+        surface shell / walkability keepouts <------ France DEM study
+                       |
+                       +-----------------------+
+                                               |
+Owner-located mycelium source --verify--> curve/SDF adapter (metres)
+                                               |
+                                               v
+                     cave branches + chamber surfaces
+                        |                   |
+                        | anchor candidates | protected cave voids
+                        v                   v
+canonical Faraway F(3,5), tension --> Vellum drape / guide folds
+                        |                   |
+                        +------ aligned ----+
+                                   |
+                    seam curve + material masks
+                                   |
+               Copernicus satin/velvet/brocade preview
+                                   |
+                 offline mesh/mask/evidence only
+                                   |
+            optional later World Compiler/UE gate
+\`\`\`
+
+**Important:** Spatial alignment is explicit. The global Faraway chapter bounds stay [-400000,+400000] UE centimetres (8 km square); \`U=(X+400000)/800000\` and \`V=(Y+400000)/800000\`. Transform the cave and Poitou-derived input geometries into the **selected Faraway local research crop in metres** with recorded world transforms. Do not reset Chladni UV per tile. Do not mistake the French DEM georeference CRS for UE world coordinates; an authored transform is necessary.
+
+### Lab sequence — the minimum convincing experiment
+
+**Gate 0 — Non-destructive source checkout (15–25 minutes)**
+1. \`git fetch origin\`, inspect \`git status --short --branch\` and update only a clean checkout (never overwrite dirty art). Verify school Houdini version, Education licence, scratch/RAM.
+2. Locate the owner-known Mycelium cave source locally; inspect *actual geometry* and its type (Blender/UE/SOP/HDA/curve/VDB), parent transforms, bounding box, metres-vs-centimetres, accessible outputs, and license. Save absolute source path and SHA256 in a **scratch/audit manifest**. Do not guess or overwrite.
+3. Save a disposable experiment from a copy of \`Houdini/FarawayDrape.hip\`; independently verify \`FARAWAY_DRAPE_GRID\`, \`TENSION_MASK\` and handmade \`Cymatic_BeatPulse\` remain intact. Confirm the home and lab licence formats before sharing a scene.
+
+**Gate 1 — Single 250 x 250 m section / neutral clay (45–75 minutes)**
+1. Use Poitou's curve/mask/terrain placement *principles* to establish a reduced surface shell, two preserved traversal routes/clearance masks and a hero camera.
+2. Bring in **one** selected mycelial cave or branch skeleton. If the current source is a baked mesh, derive temporary centerlines or a VDB/SDF from it rather than generating a competing ecosystem. Simplify to one branching cave chamber and 3–7 significant branch reaches.
+3. Derive \`cave_open_space\`, \`cave_roof_thickness\`, \`cave_branch_proximity\`, \`support_anchor_candidates\`, and \`walkable_keepout\` masks or SOP attributes. Reserve at least 2 m of solid roof thickness in the first visual experiment unless the cave model demands more; **this is a provisional artistic safety margin, not structural engineering**.
+4. Explicitly test that the routes stay connected, no cave void punctures a walking surface unintentionally, and the underground section reads as *one* real volume (not randomly scattered glowing mushrooms).
+
+**Gate 2 — Constraint-driven cloth / harmonic reveal (45–90 minutes)**
+1. Sample the canonical (3,5) field in shared world space; use cave branch proximity and selected anchors as **additional Vellum pin/stiffness influences**. Keep \`TENSION_MASK\` artist-authored input distinct from any generated \`mycelium_anchor_mask\`.
+2. Compare 3 variants at equal resolution/camera: **A** gravity-only, **B** canonical tension-only, **C** canonical tension plus mycelium anchor influence. No entire 8 km Vellum. Preview coarse and refine only after silhouette approval.
+3. Extract the signed Chladni near-zero contour. Conform one continuous golden brocade stitch to the cloth and use selected underground branches to suggest a correlated glow pattern. A mathematically aligned overlay, **not** new musical authority.
+4. Use the existing Copernicus material variants: Celestial Silk on ridges, Night Velvet in folds, Gilded Resonance at the seam. Compare clay and material versions without changing the terrain.
+
+**Gate 3 — One cross-section hero receipt (30–45 minutes)**
+1. Save the same camera across variants; capture **surface view**, **cutaway subterranean view**, and **field/anchor debug overlay**. Draw a line from each underground support candidate to its surface pin influence.
+2. Record cave mesh/SDF counts, bounds/units, number of retained connected underground components, surface/path intersections, simulated cloth particle spacing and cook time, and source SHA/licence. Measure RAM/scratch before attempting a refinement.
+3. Export only representative derived geometry and masks into \`Saved/Audit/houdini_faraway_mother/mycelium_cloth_lab_20261023/\` or approved scratch. Large VDB/geometry/simulation sequences stay outside Git.
+
+### Acceptance tests / failure handling
+
+- [ ] **Source genuine:** cave generator verified locally by file path + hash + object/graph inspection. If unavailable, stop at source identification; **do not silently fabricate a cave asset**.
+- [ ] **Cross-layer alignment:** cave anchors, cloth surface and golden nodal seam share a recorded transform and one world-space field sample convention. All world/mask axes visually reviewed.
+- [ ] **Surface safety:** no accidental open tunnels on preserved routes, no floating path/bridge support, and no destructive writing to Poitou P0 or \`L_MelusinaMorning\`.
+- [ ] **Underground topology:** at least one continuous navigable candidate corridor with an intentional opening (physical capsule clearance requires an eventual UE test; Houdini screenshots cannot prove gameplay).
+- [ ] **Comparative visual lift:** variant C produces demonstrably more intentional folds than A/B *without* filling the cave or becoming a noisy heightfield.
+- [ ] **Protected authorities:** \`FarawayDrape.hip\` hash unchanged, original Mycelium source unchanged, same Faraway (3,5) field and World Compiler interfaces; no new runtime subsystem.
+- [ ] **Evidence:** source/cook manifest, three fixed-camera captures, field/anchor diagram, per-variant performance numbers and a clear PASS / FAIL / BLOCKED label.
+
+If the asset is a UE-only native binary or inaccessible on the lab workstation, first export a **read-only proxy** using the owner's existing DCC/UE tools and document that transfer. Never treat repo search absence as proof the user's asset does not exist.
+
+### Future escalation — only after the cross-section earns it
+
+Reapply the proven adapter to **four globally stitched 250 m tiles (500 x 500 m)**, with PDG partitioning and proper boundary checks from the Harmonic Continental Genesis plan above. Underground branches crossing a tile border must preserve IDs/connectivity and tunnel continuity. Only a later, owner-approved gate should promote a usable adapter into an HDA/World Compiler consumer or UE level. The aspirational 8 x 8 km continent remains a separate long-range objective.
+
+**Definition of today's success:** a readable cloth mountain and connected glowing cave in **one single cutaway**, with at least one measurable relationship between mycelium branch anchoring, fabric-fold direction, and the canonical golden Chladni seam. *One beautiful, reproducible proof beats a continent of unfinished graphs.*
