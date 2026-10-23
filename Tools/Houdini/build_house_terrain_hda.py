@@ -150,9 +150,10 @@ def make_controls(geo):
     f.addParmTemplate(hou.IntParmTemplate("myc_seed", "Mycelium seed", 1, default_value=(7,), min=0, max=99999))
     f.addParmTemplate(hou.IntParmTemplate("myc_mode_n", "Chladni mode n", 1, default_value=(3,), min=1, max=16))
     f.addParmTemplate(hou.IntParmTemplate("myc_mode_m", "Chladni mode m", 1, default_value=(5,), min=1, max=16))
-    f.addParmTemplate(hou.IntParmTemplate("myc_lines", "Nodal line sets (1..4)", 1, default_value=(2,), min=1, max=4))
+    f.addParmTemplate(hou.IntParmTemplate("myc_lines", "Nodal line sets (1..4)", 1, default_value=(1,), min=1, max=4))
+    f.addParmTemplate(hou.IntParmTemplate("myc_max_points", "Point budget (all caves)", 1, default_value=(20000,), min=500, max=400000))
     fl(f, "myc_scale_m", "Pattern wavelength along the passage (m)", 14.0, 2.0, 80.0)
-    f.addParmTemplate(hou.IntParmTemplate("myc_branching", "Hyphae per nodal line", 1, default_value=(3,), min=0, max=12))
+    f.addParmTemplate(hou.IntParmTemplate("myc_branching", "Hyphae per nodal line", 1, default_value=(2,), min=0, max=12))
     f.addParmTemplate(hou.IntParmTemplate("myc_levels", "Branch levels", 1, default_value=(2,), min=0, max=4))
     fl(f, "myc_branch_len_m", "Hyphae length (m)", 3.5, 0.5, 20.0)
     fl(f, "myc_wander", "Hyphae wander", 0.55, 0.0, 1.6)
@@ -184,7 +185,7 @@ def make_controls(geo):
 
 NAMES = (["source_filepath", "source_min", "source_range", "crop_x", "crop_z", "reference_elevation", "amplitude", "window_m", "window_cx", "window_cz", "preview_resolution",
           "pad_elevation", "pad_xmin", "pad_xmax", "pad_zmin", "pad_zmax", "pad_falloff", "pond_x", "pond_z", "pond_radius_x", "pond_radius_z", "water_level", "pond_bed",
-          "flat_inner", "flat_outer", "horizon_start", "horizon_full", "horizon_amp", "ridge_freq", "ridge_sharp", "ridge_octaves", "dem_gain", "ridge_seed", "path_count", "path_seed", "path_spread_deg", "path_length_m", "path_start_x", "path_start_z", "path_width_m", "path_carve_m", "eye_height_m", "cave_count", "cave_seed", "cave_radius_m", "cave_depth_m", "cave_mouth_m", "cave_require_sightline", "cave_min_slope", "cave_min_height_m", "cave_search_min_m", "cave_search_max_m", "cave_spacing_m", "cave_facing", "cave_hood_m", "cave_trench_m", "cave_manual_xz", "cave_marker_asset", "pass_enable", "pass_seed", "pass_length_m", "pass_radius_m", "pass_wander", "pass_climb", "pass_branches", "pass_chamber_m", "wall_amp_m", "wall_freq", "wall_mode_n", "wall_mode_m", "pass_material", "myc_enable", "myc_seed", "myc_mode_n", "myc_mode_m", "myc_lines", "myc_scale_m", "myc_branching", "myc_levels", "myc_branch_len_m", "myc_wander", "myc_thickness_m", "myc_hue_a", "myc_hue_b", "myc_glow", "myc_material", "grass_max_slope", "rock_slope_start", "rock_slope_full", "ground_mottle", "mottle_freq", "base_weight", "view_azimuth", "view_open", "off_view_gain", "rock_start", "rock_full",
+          "flat_inner", "flat_outer", "horizon_start", "horizon_full", "horizon_amp", "ridge_freq", "ridge_sharp", "ridge_octaves", "dem_gain", "ridge_seed", "path_count", "path_seed", "path_spread_deg", "path_length_m", "path_start_x", "path_start_z", "path_width_m", "path_carve_m", "eye_height_m", "cave_count", "cave_seed", "cave_radius_m", "cave_depth_m", "cave_mouth_m", "cave_require_sightline", "cave_min_slope", "cave_min_height_m", "cave_search_min_m", "cave_search_max_m", "cave_spacing_m", "cave_facing", "cave_hood_m", "cave_trench_m", "cave_manual_xz", "cave_marker_asset", "pass_enable", "pass_seed", "pass_length_m", "pass_radius_m", "pass_wander", "pass_climb", "pass_branches", "pass_chamber_m", "wall_amp_m", "wall_freq", "wall_mode_n", "wall_mode_m", "pass_material", "myc_enable", "myc_seed", "myc_mode_n", "myc_mode_m", "myc_lines", "myc_max_points", "myc_scale_m", "myc_branching", "myc_levels", "myc_branch_len_m", "myc_wander", "myc_thickness_m", "myc_hue_a", "myc_hue_b", "myc_glow", "myc_material", "grass_max_slope", "rock_slope_start", "rock_slope_full", "ground_mottle", "mottle_freq", "base_weight", "view_azimuth", "view_open", "off_view_gain", "rock_start", "rock_full",
           "landscape_material", "layerinfo_dir"] + ["layerinfo_" + n.lower() for n in LAYERS])
 
 PATHS_PY = r'''
@@ -381,7 +382,7 @@ if hda.parm("myc_enable").eval():
     ha, hb = hda.parm("myc_hue_a").eval(), hda.parm("myc_hue_b").eval()
     def col(t):
         c = hou.Color(); c.setHSV((360.0 * (ha + (hb - ha) * t), 0.55, 1.0)); return c.rgb()
-    budget = [90000]
+    budget = [int(hda.parm("myc_max_points").eval())]
     for prim in src.prims():
         cid = prim.attribValue("cave_id"); rng = random.Random(hda.parm("myc_seed").eval() * 977 + cid * 31 + prim.number())
         vs = [v.point() for v in prim.vertices()]
