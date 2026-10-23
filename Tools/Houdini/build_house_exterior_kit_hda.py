@@ -36,6 +36,10 @@ PARMS = [
     ("scallops", "Eave scallop fascia (0/1)", 1, 0, 1, "i"),
     ("scallop_r", "Scallop radius (m)", 0.26, 0.08, 0.8, "f"),
     ("scallop_drop", "Scallop drop (m)", 0.30, 0.05, 1.0, "f"),
+    ("roof_skin", "Fish-scale roof skin (0/1)", 1, 0, 1, "i"),
+    ("roof_scale_r", "Roof scale radius (m)", 0.36, 0.12, 0.8, "f"),
+    ("roof_lift", "Roof skin lift above the roof (m)", 0.07, 0.0, 0.5, "f"),
+    ("roof_k", "Roof curvature scale (1 = measured)", 1.0, 0.0, 3.0, "f"),
     ("cresting", "Ridge cresting + finials (0/1)", 1, 0, 1, "i"),
     ("finial_every_m", "Finial spacing (m)", 2.4, 0.8, 8.0, "f"),
     ("treble_clef", "Treble clef finial (0/1)", 1, 0, 1, "i"),
@@ -74,8 +78,10 @@ M = Mesh(); FEAT = []
 def mark(n0, name, role):
     FEAT.extend([(name, M.R[i]) for i in range(n0, len(M.F))])
 # measured live volumes (UE metres): x0, x1, y0, y1, eave z, ridge z
-VOL = {"salon": (0.3, 16.1, -11.8, 0.2, 7.2, 8.9), "bedroom": (-11.9, 0.3, -10.7, -0.5, 4.5, 6.5), "corridor": (15.7, 23.3, -7.8, -3.8, 3.6, 5.0)}
+VOL = {"salon": (0.3, 16.1, -11.8, 0.2, 7.2, 8.9), "bedroom": (-11.9, 0.3, -10.7, -0.5, 4.9, 6.3), "corridor": (15.7, 23.3, -7.8, -3.8, 3.6, 5.0)}
 PORCH = (22.9, 25.7, -7.8, -3.8)
+ROOF = {"salon": (0.5, 15.9, -11.7, -0.1, 8.2, 8.88, 0.03), "bedroom": (-11.9, 0.3, -10.7, -0.5, -5.3, 6.3, 0.03), "corridor": (17.0, 23.4, -7.9, -3.7, 19.8, 4.82, 0.065)}   # x0, x1, y0, y1, xc, crest z, k (traced live)
+def roofz(name, x): return ROOF[name][5] - ROOF[name][6] * P("roof_k") * (x - ROOF[name][4]) ** 2
 
 def add(a, b): return (a[0] + b[0], a[1] + b[1], a[2] + b[2])
 def mul(a, s): return (a[0] * s, a[1] * s, a[2] * s)
@@ -144,22 +150,51 @@ if P("scallops"):
             k = max(1, int(L / (2 * r)))
             for i in range(k):
                 c = add(start, mul(ud, (i + 0.5) * L / k))
+                if name in ROOF and ud[0] != 0:
+                    c = (c[0], c[1], roofz(name, c[0]) - 0.02)
                 plate(semi, c, ud, (0, 0, 1), 0.04, "scallop_fascia")
     mark(n0, "scallops", "scallop_fascia")
 
-# ---- ridge cresting + finials
+# ---- ridge cresting + finials along the real ridge (x = xc, running along y)
 if P("cresting"):
     n0 = len(M.F)
-    for name in VOL:
-        x0, x1, y0, y1, ez, rz = VOL[name]; ym = (y0 + y1) / 2.0
-        k = max(2, int((x1 - x0) / P("finial_every_m")))
+    for name in ROOF:
+        x0, x1, y0, y1, xc, zc = ROOF[name][:6]
+        k = max(2, int((y1 - y0) / P("finial_every_m")))
         for i in range(k + 1):
-            finial(x0 + (x1 - x0) * i / k, ym, rz, S * (1.4 if i in (0, k) else 1.0), "ridge_finial")
-        beam(M, (x0, ym, rz), (x1, ym, rz), 0.09 * S, 0.12 * S, "ridge_finial")
+            finial(xc, y0 + (y1 - y0) * i / k, zc, S * (1.4 if i in (0, k) else 1.0), "ridge_finial")
+        beam(M, (xc, y0, zc), (xc, y1, zc), 0.12 * S, 0.09 * S, "ridge_finial")
     mark(n0, "cresting", "ridge_finial")
     if P("treble_clef"):
-        n0 = len(M.F); x0, x1, y0, y1, ez, rz = VOL["salon"]
-        treble_clef(x1, (y0 + y1) / 2.0, rz + 0.5 * S, 1.3 * S, "ridge_finial"); mark(n0, "treble_clef", "ridge_finial")
+        n0 = len(M.F); x0, x1, y0, y1, xc, zc = ROOF["salon"][:6]
+        treble_clef(xc, y0 - 0.1, zc + 0.5 * S, 1.3 * S, "ridge_finial"); mark(n0, "treble_clef", "ridge_finial")
+
+# ---- fish-scale roof skin on the measured barrel arches
+if P("roof_skin"):
+    n0 = len(M.F); r = P("roof_scale_r") * S; lift = P("roof_lift"); kk = 1.0
+    for name in ROOF:
+        x0, x1, y0, y1, xc, zc = ROOF[name][:6]
+        x = x0 - 0.15; row = 0
+        while x <= x1 + 0.15:
+            dz = -2.0 * ROOF[name][6] * P("roof_k") * (x - xc); left = x < xc
+            ul = math.sqrt(1.0 + dz * dz)
+            u = (1.0 / ul, 0.0, dz / ul); v = (0.0, 1.0, 0.0)
+            if not left: u = mul(u, -1.0); v = (0.0, -1.0, 0.0)     # keep n = u x v pointing up; the scalloped edge faces downslope
+            y = y0 - 0.2 + (r if row % 2 else 0.0)
+            while y <= y1 + 0.2:
+                c = (x, y, roofz(name, x) + lift + (0.012 if row % 2 else 0.0))
+                pts2 = [(r * 0.7, -r), (0.0, -r)] + [(-r * math.sin(math.pi * t / 6.0), -r * math.cos(math.pi * t / 6.0)) for t in range(1, 6)] + [(0.0, r), (r * 0.7, r)]
+                ptsw = [add(c, add(mul(u, a), mul(v, b))) for a, b in pts2]
+                cf = c; kq = len(ptsw)
+                for i in range(kq):
+                    M.poly([cf, ptsw[i], ptsw[(i + 1) % kq]], "roof_scale" if row % 2 == 0 else "roof_scale_b")
+                n = cross(u, v)
+                for i in range(2, kq - 2):                          # the scalloped lip only: a thin skirt reads as overlapping tiles
+                    a, b = ptsw[i], ptsw[(i + 1) % kq]
+                    M.poly([a, add(a, mul(n, -0.035 * S)), add(b, mul(n, -0.035 * S)), b], "roof_scale" if row % 2 == 0 else "roof_scale_b")
+                y += 2.0 * r
+            x += 0.62 * r; row += 1
+    mark(n0, "roof_skin", "roof_scale")
 
 # ---- corner quoins + string courses
 def wall_faces(name):
@@ -315,9 +350,10 @@ MAT_VEX = r'''
 string r = s@material_role;
 string base = "/Game/Staging/HouseExterior/Materials/";
 string m = "MI_HouseExt_PearlPlaster";
-if (r == "scallop_fascia" || r == "tower_cap") m = "MI_HouseExt_LavenderScaleRoof";
+if (r == "scallop_fascia" || r == "tower_cap" || r == "roof_scale" || r == "roof_scale_b") m = "MI_HouseExt_LavenderScaleRoof";
 else if (r == "ridge_finial" || r == "carved_trim" || r == "tracery" || r == "oculus_frame" || r == "fanlight" || r == "fretwork" || r == "tower_window") m = "MI_HouseExt_GiltTrim";
 else if (r == "lantern") m = "MI_HouseExt_LanternGlow";
+if (r == "roof_scale_b") m = "MI_HouseExt_BlueScaleRoof";
 s@unreal_material = base + m + "." + m;
 '''
 
@@ -394,11 +430,11 @@ def main():
     a = {}
     a["no_cook_errors"] = not errs
     a["cook_under_5s"] = cook_s < 5.0
-    expect = {"scallops": 40, "cresting": 20, "treble_clef": 10, "quoins": 30, "string_course": 10, "oculi": 100, "entrance": 80, "tower": 400, "porch_rail": 60, "fretwork": 6, "stoop": 6, "lanterns": 20}
+    expect = {"scallops": 40, "roof_skin": 5000, "cresting": 20, "treble_clef": 10, "quoins": 30, "string_course": 10, "oculi": 100, "entrance": 80, "tower": 400, "porch_rail": 60, "fretwork": 6, "stoop": 6, "lanterns": 20}
     for k, minimum in expect.items():
         a["feature_" + k] = cnt.get(k, 0) >= minimum
     a["bounds_attach_to_footprint"] = (ue_min[0] > FOOTPRINT["xmin"] - 4.0 and ue_max[0] < FOOTPRINT["xmax"] + 8.0 and ue_min[1] > FOOTPRINT["ymin"] - 4.0 and ue_max[1] < FOOTPRINT["ymax"] + 4.0 and ue_min[2] > -0.5 and ue_max[2] < 20.0)
-    a["material_roles_set"] = all(r for r in roles) and len(roles) >= 12
+    a["material_roles_set"] = all(r for r in roles) and len(roles) >= 14
     a["unreal_material_on_all_prims"] = all(pr.attribValue("unreal_material") for pr in g.prims()) if g.findPrimAttrib("unreal_material") else False
     # live-parameter drive probes: toggle a feature, count change; seed/oculus change geometry
     base = sig(hda)
@@ -414,9 +450,12 @@ def main():
     hda.parm("cap_style").set(1)
     a["drive_cap_style"] = sig(hda) != base
     hda.parm("cap_style").set(0)
+    hda.parm("roof_skin").set(0)
+    a["drive_roof_skin_off"] = features(hda)[1].get("roof_skin", 0) == 0
+    hda.parm("roof_skin").set(1)
     a["restored_after_probes"] = sig(hda) == base
     report = {"asset": str(HDA_PATH), "type": TYPE_NAME, "feature_prims": cnt, "points": len(g.points()), "prims": len(g.prims()), "cook_seconds": cook_s,
-              "bounds_ue_m": [[round(v, 2) for v in ue_min], [round(v, 2) for v in ue_max]], "roles": roles, "errors": errs, "assertions": a}
+              "bounds_ue_m": [[round(v, 2) for v in ue_min], [round(v, 2) for v in ue_max]], "roles": roles, "errors": errs, "controls": {k: hda.parm(k).eval() for k in NAMES}, "assertions": a}
     (AUDIT / "exterior_kit_gate.json").write_text(json.dumps(report, indent=2), encoding="utf-8")
     hou.hipFile.save(str(AUDIT / "MelodiaHouseExteriorKit.hip"))
     failed = [k for k, v in a.items() if not v]
