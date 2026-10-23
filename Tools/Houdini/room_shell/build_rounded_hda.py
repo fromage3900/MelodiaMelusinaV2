@@ -50,7 +50,17 @@ def build(source_hda, destination, salon_defaults=True):
     segs = hou.IntParmTemplate("plan_segments", "Plan Tessellation", 1, default_value=(96,))
     segs.setHelp("Wall segments around the perimeter. Portal edges are inserted exactly, so a low value still cuts clean jambs.")
     templates.append(segs)
-    openings = hou.StringParmTemplate("openings_json", "Explicit Door Openings (JSON)", 1, default_value=("[]",))
+    default_openings = "[]"
+    if salon_defaults:
+        default_openings = json.dumps(
+            [
+                {"id": "salon_entry", "theta": 0.25, "width": 1.8, "height": 3.2},
+                {"id": "salon_front", "theta": 0.75, "width": 2.4, "height": 3.2},
+            ],
+            separators=(",", ":"),
+        )
+    openings = hou.StringParmTemplate("openings_json", "Explicit Door Openings (JSON)", 1,
+                                      default_value=(default_openings,))
     openings.setHelp(
         'Array of named floor-level portals: [{"id":"salon_entry","theta":0.25,"width":1.8,"height":3.2}]. '
         "theta is the perimeter fraction (0..1, counter-clockwise from +X through the room centre); "
