@@ -1,0 +1,2149 @@
+{
+  "schema": "melodia.cymatic_instrument_family.v1",
+  "status": "OFFLINE STAGED: the two new parts and both head variants exist as FBX; nothing imported into UE",
+  "why": "The shipped WaveHarp was hand-patched (a vertex formula invented the third form and baked 36 morphs around it). The concept sheet names FIVE authored instrument forms that share one design language - a halo/disc head on a slender shaft, dangling teardrop charms, a spiral shell base, a crystal core, pearl + rose gold + pastel glass. This family forges that language as ONE parametric system so a new form is a parameter change, not new modelling.",
+  "concept_source": "MARA ELLEKTRA VELL - Field Companion Reference Document (embedded in ME_WaveHarp_Rev08_UEAxisRibbonFix.blend as 1-Photo-1.jpg / 2-Photo-2.jpg)",
+  "lane": {
+    "rule": "Houdini Apprentice: FBX/Alembic ROPs are BLOCKED. Geometry path = File-SOP write; the OBJ is written directly and headless Blender converts OBJ -> FBX.",
+    "forge": "Tools/Houdini/waveharp/build_cymatic_instrument.py (hython 22.0.368)",
+    "converter": "Tools/Houdini/waveharp/obj_to_fbx.py (headless Blender)",
+    "sheet": "Tools/Houdini/waveharp/render_family_sheet.py (headless Blender)",
+    "params": "Tools/Houdini/waveharp/cymatic_instrument.params.json (the recipe)",
+    "note": "new files under Tools/* are gitignored by the Tools/* blanket rule; they need `git add -f` or the integrator's blessing to land"
+  },
+  "units": {
+    "rule": "CENTIMETRE-native (the shipped WaveHarp asset is centimetre-native)",
+    "why": "this project has already lost days to 100x unit errors; a unit gate fails the build",
+    "obj": "centimetre numbers, written directly",
+    "blender": "imported at 0.01 (scene in metres), exported with apply_unit_scale=True",
+    "ue": "receives the authored centimetre numbers unchanged"
+  },
+  "gates": [
+    {
+      "gate": "unit_sanity_cm",
+      "rule": "the Z extent must land in 40..220 cm (a 100x error fails)"
+    },
+    {
+      "gate": "no_degenerate_faces",
+      "rule": "no face with an area below 1e-6 cm^2"
+    },
+    {
+      "gate": "sockets_inside_bounds",
+      "rule": "every authored socket must sit inside the mesh AABB (the D8 guard)"
+    },
+    {
+      "gate": "material_groups_populated",
+      "rule": "no material group may be empty"
+    },
+    {
+      "gate": "blade_thickness",
+      "rule": "the Carillon blade must be at least 0.4 cm thick"
+    },
+    {
+      "gate": "determinism",
+      "rule": "re-running the forge must reproduce the geometry sha256"
+    }
+  ],
+  "defect_addressed": {
+    "D1": "Form 2 gets a REAL crescent blade surface - a lens ribbon swept along a Bezier spine, tapered root->tip, 0.5 cm solid - instead of the harp limb rotated 74 deg with no surface at all.",
+    "D6": "the third form is no longer a formula baked into 36 morphs; it is a member of a parameter family with an authored source.",
+    "D8": "the sockets are computed FROM THE GEOMETRY (the Bezier spine), in centimetres, and a gate fails the build if any socket leaves the mesh AABB. The shipped asset's scythe sockets sit ~100x too far out, which is why its melee trace sweeps 42 m."
+  },
+  "known_debts": [
+    "charms currently hang inside the halo's radius, so they read as floating beads rather than dangling charms (next pass: hang them from the rim)",
+    "form C's strings are vertical tubes, not a fanned string array",
+    "the chime cones sit behind the shaft in a side view and do not read yet",
+    "greybox shading only - the real look is the UE material set (Pearl / RoseGold / PaleBrass / Sapphire / LilacGlass / Steel / StringSilver)",
+    "no toon outline hull yet (D7) - the outline must be baked like Melusina's",
+    "the morph-based form change is still unbuilt: this family is six separate assets, not one mesh with morph targets"
+  ],
+  "params": {
+    "schema": "melodia.cymatic_instrument.params.v1",
+    "note": "Centimetre-native. The shipped WaveHarp asset is centimetre-native; this project has already lost days to 100x unit errors, so the build gates on the resulting size. Change the concept variant here, not in code.",
+    "concept_source": "MARA ELLEKTRA VELL - Field Companion Reference Document (embedded in ME_WaveHarp_Rev08_UEAxisRibbonFix.blend as 1-Photo-1.jpg / 2-Photo-2.jpg)",
+    "forms": {
+      "A": "Lyre of Harmonic Bloom - resonates with natural frequencies / hidden tiddles",
+      "B": "Resonant Bell Staff - calls and harmonises creatures / field buff",
+      "C": "Wave Harp of Tides - manipulates water currents / flow / heal (the shipped asset)",
+      "D": "Monolith Conduit - channels monolithic energies / OFFENSE (the sanctioned melee form)",
+      "E": "Prism Drum - creates shockwaves / interrupts, defends",
+      "Carillon": "project-specific melee head: a ring of chimes carrying a real crescent blade (Form 2)"
+    },
+    "shaft": {
+      "length": 86.0,
+      "r_base": 1.6,
+      "r_tip": 1.3,
+      "grip_r": 2.1,
+      "grip_z0": 6.0,
+      "grip_z1": 20.0,
+      "wraps": 4
+    },
+    "base": {
+      "r": 3.6,
+      "z0": -4.0,
+      "z1": 6.0,
+      "bead_r": 1.9,
+      "bead_z": -1.6
+    },
+    "halo": {
+      "R": 13.0,
+      "tube": 1.15
+    },
+    "chimes": {
+      "count": 8,
+      "phase": 0.2,
+      "r_top": 1.7,
+      "r_bottom": 0.85,
+      "h": 4.2,
+      "bell_r": 1.1,
+      "drop": 3.2
+    },
+    "charms": {
+      "count": 4,
+      "phase": 0.6,
+      "r": 1.15,
+      "length": 7.5,
+      "drop": 14.0
+    },
+    "core": {
+      "r": 2.9,
+      "h": 4.2
+    },
+    "rosette": {
+      "r": 3.7,
+      "lobes": 6,
+      "bead": 0.8
+    },
+    "carillon": {
+      "chimes": 8,
+      "charms": 4,
+      "blade": {
+        "reach": 42.0,
+        "drop": 17.0,
+        "root_w": 2.6,
+        "tip_w": 0.35,
+        "thickness": 0.5
+      }
+    }
+  },
+  "materials": {
+    "Pearl": "MI_T_Melusina_CathedralPearl_MarbleTile",
+    "RoseGold": "MI_T_Melusina_BaroqueTiara_RoseGoldFiligree",
+    "PaleBrass": "MI_T_Melusina_BaroqueTiara_RoseGoldFiligree_3",
+    "Sapphire": "MI_T_Houdini_VoronoiCrystal_PinkSapphire",
+    "LilacGlass": "MI_T_Houdini_ChladniAcoustic_UltravioletVelvet",
+    "BladeSteel": "MI_crystal1",
+    "StringSilver": "MI_Strings"
+  },
+  "forms": [
+    {
+      "form": "A",
+      "concept": "Lyre of Harmonic Bloom - resonates with natural frequencies / hidden tiddles",
+      "obj": "Saved/Audit/waveharp/SM_Cymatic_A.obj",
+      "fbx": "Saved/Audit/waveharp/SM_Cymatic_A.fbx",
+      "verts": 4310,
+      "faces": 4294,
+      "bounds_cm": {
+        "min": [
+          -14.15,
+          -14.15,
+          -4.0
+        ],
+        "max": [
+          14.15,
+          14.15,
+          95.0
+        ],
+        "extent": [
+          28.3,
+          28.3,
+          99.0
+        ]
+      },
+      "material_groups": [
+        "LilacGlass",
+        "PaleBrass",
+        "Pearl",
+        "RoseGold",
+        "Sapphire"
+      ],
+      "sockets": [
+        {
+          "name": "SOCKET_Bow_Grip",
+          "position_cm": [
+            0.0,
+            0.0,
+            12.0
+          ]
+        },
+        {
+          "name": "SOCKET_Cymatic_Projection",
+          "position_cm": [
+            0.0,
+            0.0,
+            92.0
+          ]
+        },
+        {
+          "name": "Scythe_Pommel",
+          "position_cm": [
+            0.0,
+            0.0,
+            -1.6
+          ]
+        }
+      ],
+      "geometry_sha256": "5f60fa3c6210c9deb6fd82bb6c9360dd2d8f0b4e113a2814e3ce8e05d31cf591",
+      "gates": [
+        {
+          "gate": "unit_sanity_cm",
+          "ok": true,
+          "detail": "Z extent 99.00 cm must sit in 40..220 (centimetre-native)"
+        },
+        {
+          "gate": "no_degenerate_faces",
+          "ok": true,
+          "detail": "0 degenerate faces"
+        },
+        {
+          "gate": "sockets_inside_bounds",
+          "ok": true,
+          "detail": "all 3 sockets inside the mesh AABB"
+        },
+        {
+          "gate": "material_groups_populated",
+          "ok": true,
+          "detail": "groups: LilacGlass,PaleBrass,Pearl,RoseGold,Sapphire"
+        }
+      ]
+    },
+    {
+      "form": "B",
+      "concept": "Resonant Bell Staff - calls and harmonises creatures / field buff",
+      "obj": "Saved/Audit/waveharp/SM_Cymatic_B.obj",
+      "fbx": "Saved/Audit/waveharp/SM_Cymatic_B.fbx",
+      "verts": 3498,
+      "faces": 3404,
+      "bounds_cm": {
+        "min": [
+          -14.15,
+          -14.15,
+          -4.0
+        ],
+        "max": [
+          14.15,
+          14.15,
+          93.15
+        ],
+        "extent": [
+          28.3,
+          28.3,
+          97.15
+        ]
+      },
+      "material_groups": [
+        "LilacGlass",
+        "PaleBrass",
+        "Pearl",
+        "RoseGold"
+      ],
+      "sockets": [
+        {
+          "name": "SOCKET_Bow_Grip",
+          "position_cm": [
+            0.0,
+            0.0,
+            12.0
+          ]
+        },
+        {
+          "name": "SOCKET_Cymatic_Projection",
+          "position_cm": [
+            0.0,
+            0.0,
+            92.0
+          ]
+        },
+        {
+          "name": "Scythe_Pommel",
+          "position_cm": [
+            0.0,
+            0.0,
+            -1.6
+          ]
+        }
+      ],
+      "geometry_sha256": "229a4551131f4ced800fe791181c87600704f371143a946ce9b9c7d71403733c",
+      "gates": [
+        {
+          "gate": "unit_sanity_cm",
+          "ok": true,
+          "detail": "Z extent 97.15 cm must sit in 40..220 (centimetre-native)"
+        },
+        {
+          "gate": "no_degenerate_faces",
+          "ok": true,
+          "detail": "0 degenerate faces"
+        },
+        {
+          "gate": "sockets_inside_bounds",
+          "ok": true,
+          "detail": "all 3 sockets inside the mesh AABB"
+        },
+        {
+          "gate": "material_groups_populated",
+          "ok": true,
+          "detail": "groups: LilacGlass,PaleBrass,Pearl,RoseGold"
+        }
+      ]
+    },
+    {
+      "form": "C",
+      "concept": "Wave Harp of Tides - manipulates water currents / flow / heal (the shipped asset)",
+      "obj": "Saved/Audit/waveharp/SM_Cymatic_C.obj",
+      "fbx": "Saved/Audit/waveharp/SM_Cymatic_C.fbx",
+      "verts": 3062,
+      "faces": 2978,
+      "bounds_cm": {
+        "min": [
+          -14.15,
+          -14.15,
+          -4.0
+        ],
+        "max": [
+          14.15,
+          14.15,
+          95.4
+        ],
+        "extent": [
+          28.3,
+          28.3,
+          99.4
+        ]
+      },
+      "material_groups": [
+        "LilacGlass",
+        "PaleBrass",
+        "Pearl",
+        "RoseGold",
+        "Sapphire",
+        "StringSilver"
+      ],
+      "sockets": [
+        {
+          "name": "SOCKET_Bow_Grip",
+          "position_cm": [
+            0.0,
+            0.0,
+            12.0
+          ]
+        },
+        {
+          "name": "SOCKET_Cymatic_Projection",
+          "position_cm": [
+            0.0,
+            0.0,
+            92.0
+          ]
+        },
+        {
+          "name": "Scythe_Pommel",
+          "position_cm": [
+            0.0,
+            0.0,
+            -1.6
+          ]
+        }
+      ],
+      "geometry_sha256": "4c5eebc36cc336a88b209b25764f7a0988ac6488dd63fe2973cd4267a34a81f8",
+      "gates": [
+        {
+          "gate": "unit_sanity_cm",
+          "ok": true,
+          "detail": "Z extent 99.40 cm must sit in 40..220 (centimetre-native)"
+        },
+        {
+          "gate": "no_degenerate_faces",
+          "ok": true,
+          "detail": "0 degenerate faces"
+        },
+        {
+          "gate": "sockets_inside_bounds",
+          "ok": true,
+          "detail": "all 3 sockets inside the mesh AABB"
+        },
+        {
+          "gate": "material_groups_populated",
+          "ok": true,
+          "detail": "groups: LilacGlass,PaleBrass,Pearl,RoseGold,Sapphire,StringSilver"
+        }
+      ]
+    },
+    {
+      "form": "D",
+      "concept": "Monolith Conduit - channels monolithic energies / OFFENSE (the sanctioned melee form)",
+      "obj": "Saved/Audit/waveharp/SM_Cymatic_D.obj",
+      "fbx": "Saved/Audit/waveharp/SM_Cymatic_D.fbx",
+      "verts": 3530,
+      "faces": 3522,
+      "bounds_cm": {
+        "min": [
+          -14.15,
+          -14.15,
+          -4.0
+        ],
+        "max": [
+          14.15,
+          14.15,
+          96.2
+        ],
+        "extent": [
+          28.3,
+          28.3,
+          100.2
+        ]
+      },
+      "material_groups": [
+        "LilacGlass",
+        "PaleBrass",
+        "Pearl",
+        "RoseGold",
+        "Sapphire"
+      ],
+      "sockets": [
+        {
+          "name": "SOCKET_Bow_Grip",
+          "position_cm": [
+            0.0,
+            0.0,
+            12.0
+          ]
+        },
+        {
+          "name": "SOCKET_Cymatic_Projection",
+          "position_cm": [
+            0.0,
+            0.0,
+            92.0
+          ]
+        },
+        {
+          "name": "Scythe_Pommel",
+          "position_cm": [
+            0.0,
+            0.0,
+            -1.6
+          ]
+        }
+      ],
+      "geometry_sha256": "3ec706cbcafd3cf46427f214be7c7718874153427b56dcfb5f207ec66229df5c",
+      "gates": [
+        {
+          "gate": "unit_sanity_cm",
+          "ok": true,
+          "detail": "Z extent 100.20 cm must sit in 40..220 (centimetre-native)"
+        },
+        {
+          "gate": "no_degenerate_faces",
+          "ok": true,
+          "detail": "0 degenerate faces"
+        },
+        {
+          "gate": "sockets_inside_bounds",
+          "ok": true,
+          "detail": "all 3 sockets inside the mesh AABB"
+        },
+        {
+          "gate": "material_groups_populated",
+          "ok": true,
+          "detail": "groups: LilacGlass,PaleBrass,Pearl,RoseGold,Sapphire"
+        }
+      ]
+    },
+    {
+      "form": "E",
+      "concept": "Prism Drum - creates shockwaves / interrupts, defends",
+      "obj": "Saved/Audit/waveharp/SM_Cymatic_E.obj",
+      "fbx": "Saved/Audit/waveharp/SM_Cymatic_E.fbx",
+      "verts": 3658,
+      "faces": 3600,
+      "bounds_cm": {
+        "min": [
+          -14.15,
+          -14.15,
+          -4.0
+        ],
+        "max": [
+          14.15,
+          14.15,
+          94.1
+        ],
+        "extent": [
+          28.3,
+          28.3,
+          98.1
+        ]
+      },
+      "material_groups": [
+        "LilacGlass",
+        "PaleBrass",
+        "Pearl",
+        "RoseGold"
+      ],
+      "sockets": [
+        {
+          "name": "SOCKET_Bow_Grip",
+          "position_cm": [
+            0.0,
+            0.0,
+            12.0
+          ]
+        },
+        {
+          "name": "SOCKET_Cymatic_Projection",
+          "position_cm": [
+            0.0,
+            0.0,
+            92.0
+          ]
+        },
+        {
+          "name": "Scythe_Pommel",
+          "position_cm": [
+            0.0,
+            0.0,
+            -1.6
+          ]
+        }
+      ],
+      "geometry_sha256": "2af650d13b012e6423d95252662cde0f339723055bec68e560fb296f8919618b",
+      "gates": [
+        {
+          "gate": "unit_sanity_cm",
+          "ok": true,
+          "detail": "Z extent 98.10 cm must sit in 40..220 (centimetre-native)"
+        },
+        {
+          "gate": "no_degenerate_faces",
+          "ok": true,
+          "detail": "0 degenerate faces"
+        },
+        {
+          "gate": "sockets_inside_bounds",
+          "ok": true,
+          "detail": "all 3 sockets inside the mesh AABB"
+        },
+        {
+          "gate": "material_groups_populated",
+          "ok": true,
+          "detail": "groups: LilacGlass,PaleBrass,Pearl,RoseGold"
+        }
+      ]
+    },
+    {
+      "form": "Carillon",
+      "concept": "project-specific melee head: a ring of chimes carrying a real crescent blade (Form 2)",
+      "obj": "Saved/Audit/waveharp/SM_Cymatic_Carillon.obj",
+      "fbx": "Saved/Audit/waveharp/SM_Cymatic_Carillon.fbx",
+      "verts": 4682,
+      "faces": 4656,
+      "bounds_cm": {
+        "min": [
+          -54.4,
+          -14.15,
+          -4.0
+        ],
+        "max": [
+          14.15,
+          14.15,
+          96.2
+        ],
+        "extent": [
+          68.55,
+          28.3,
+          100.2
+        ]
+      },
+      "material_groups": [
+        "BladeSteel",
+        "LilacGlass",
+        "PaleBrass",
+        "Pearl",
+        "RoseGold",
+        "Sapphire"
+      ],
+      "sockets": [
+        {
+          "name": "Scythe_BladeStart",
+          "position_cm": [
+            12.35,
+            0.0,
+            91.0
+          ]
+        },
+        {
+          "name": "Scythe_BladeMid",
+          "position_cm": [
+            33.35,
+            0.0,
+            75.2
+          ]
+        },
+        {
+          "name": "Scythe_BladeTip",
+          "position_cm": [
+            54.35,
+            0.0,
+            74.0
+          ]
+        },
+        {
+          "name": "Scythe_Pommel",
+          "position_cm": [
+            0.0,
+            0.0,
+            -1.6
+          ]
+        },
+        {
+          "name": "SOCKET_Bow_Grip",
+          "position_cm": [
+            0.0,
+            0.0,
+            12.0
+          ]
+        },
+        {
+          "name": "SOCKET_Cymatic_Projection",
+          "position_cm": [
+            0.0,
+            0.0,
+            92.0
+          ]
+        }
+      ],
+      "geometry_sha256": "467ec240f53aa5c88ed1780273b621bb8c3d9a729bd3ca296b62d5f1bf7e9751",
+      "gates": [
+        {
+          "gate": "unit_sanity_cm",
+          "ok": true,
+          "detail": "Z extent 100.20 cm must sit in 40..220 (centimetre-native)"
+        },
+        {
+          "gate": "no_degenerate_faces",
+          "ok": true,
+          "detail": "0 degenerate faces"
+        },
+        {
+          "gate": "sockets_inside_bounds",
+          "ok": true,
+          "detail": "all 6 sockets inside the mesh AABB"
+        },
+        {
+          "gate": "material_groups_populated",
+          "ok": true,
+          "detail": "groups: BladeSteel,LilacGlass,PaleBrass,Pearl,RoseGold,Sapphire"
+        },
+        {
+          "gate": "blade_thickness",
+          "ok": true,
+          "detail": "blade thickness 0.50 cm (>= 0.4)"
+        }
+      ]
+    }
+  ],
+  "contact_sheet": "Saved/Audit/waveharp/ContactSheet_CymaticInstrumentFamily.png",
+  "manifests": {
+    "forge": "Saved/Audit/waveharp/cymatic_instrument_manifest.json",
+    "ue_import": "Saved/Audit/waveharp/cymatic_instrument_ue_manifest.json"
+  },
+  "evidence_level": "offline forge, gates and offline renders only. No UE import, no editor mutation, no PIE, nothing runtime-proven.",
+  "next": [
+    "tune the family to the concept sheet's proportions (charms from the rim, a fanned string array, a readable chime ring)",
+    "decide the shipping topology: six separate assets, or ONE mesh with morph targets (the form change must be a morph if the weapon is to transform in hand)",
+    "bake the toon outline hull into the export (D7)",
+    "author the Carillon blade's melee trace against the morphed geometry (D8) before any UE import"
+  ],
+  "existing_asset_audit": {
+    "question": "what instrument/wand assets does the project already own?",
+    "method": "AssetRegistry reference queries + UE mesh bounds + offline FBX export to Saved/Audit/waveharp/ and offline Blender renders (no project mutation)",
+    "found_reusable_at_weapon_scale": [
+      {
+        "asset": "/Game/Staging/HoudiniForge/MelusinaGNToys/SM_MEL_Wand_BellChime",
+        "extent_cm": [
+          20.0,
+          20.0,
+          142.5
+        ],
+        "tris": 6066,
+        "material_groups": {
+          "MI_HF_Toon_Wand_BellChime_RimGold": "shaft, 20x20x121.1 cm, 2560 faces",
+          "MI_HF_Toon_Wand_BellChime_Filigree": "filigree strand, 4x4x64.8 cm, 1920 faces",
+          "MI_HF_Toon_Wand_BellChime_Pearls": "pearl strand, 7.1x7.0x101.0 cm, 1400 faces",
+          "MI_HF_Toon_Wand_BellChime_Gems": "gems, 8.3x6.4x6.4 cm, 22 faces",
+          "MI_HF_Toon_Wand_BellChime_Ribbon": "ribbon, 6.2x14.0x24.8 cm, 164 faces"
+        },
+        "note": "the concept's language already exists: filigree, pearls, gems, ribbon, rim gold"
+      },
+      {
+        "asset": "/Game/Staging/HoudiniForge/MelusinaGNToys/SM_MEL_Wand_OrreryScepter",
+        "extent_cm": [
+          29.7,
+          29.7,
+          143.5
+        ],
+        "tris": 11444,
+        "note": "a disc/orrery head on a staff - the Monolith Conduit (D) language"
+      },
+      {
+        "asset": "/Game/Staging/HoudiniForge/MelusinaGNToys/SM_MEL_Wand_CrystalTimeless",
+        "extent_cm": [
+          21.8,
+          21.8,
+          124.9
+        ],
+        "tris": 3546
+      },
+      {
+        "asset": "/Game/Staging/HoudiniForge/MelusinaGNToys/SM_MEL_Wand_HeartMelody",
+        "extent_cm": [
+          19.7,
+          19.7,
+          100.9
+        ],
+        "tris": 3920,
+        "materials": [
+          "MI_HF_Toon_Wand_HeartMelody_Enamel"
+        ]
+      },
+      {
+        "asset": "/Game/Staging/HoudiniForge/MelusinaGNToys/SM_MEL_Wand_StarPrincess",
+        "extent_cm": [
+          24.8,
+          24.8,
+          108.9
+        ],
+        "tris": 3550,
+        "materials": [
+          "MI_HF_Toon_Wand_StarPrincess_Enamel"
+        ]
+      },
+      {
+        "asset": "/Game/Staging/HoudiniForge/MelusinaGNToys/SM_MEL_Halo_Orrery_Open",
+        "extent_cm": [
+          46.6,
+          43.5,
+          28.4
+        ],
+        "tris": 13534,
+        "material_groups": {
+          "MI_Brass_FiligreeGold": "45.2x43.5x25.7 cm, 3456 faces",
+          "MI_HF_Toon_Wings_Butterfly_Pearls": "46.6x43.4x27.2 cm, 6024 faces",
+          "MI_HF_Toon_Wings_Butterfly_Gems": "45.5x40.1x25.4 cm, 406 faces",
+          "MI_Brass_FiligreeGold_3": "44.2x38.6x24.6 cm, 3648 faces"
+        },
+        "note": "a REAL detailed halo head (rings, teardrops, filigree) - the concept's head"
+      },
+      {
+        "asset": "/Game/Staging/HoudiniForge/MelusinaGNToys/SK_MEL_Halo_Orrery",
+        "extent_cm": [
+          46.6,
+          45.2,
+          12.9
+        ],
+        "note": "the closed halo; with SK_MEL_Halo_Orrery_Skeleton and A_MEL_Halo_Orrery_Unfold (an unfold animation)"
+      },
+      {
+        "asset": "/Game/Staging/HoudiniForge/MelusinaGNToys/SM_MEL_Ribbon_Transform_P100",
+        "extent_cm": [
+          142.0,
+          152.5,
+          180.9
+        ],
+        "tris": 9790,
+        "note": "the transformation ribbon, with MEL_Ribbon_Transform_P0to1 and MI_HF_Toon_Ribbon_Transform_{P100_RimGold,Petals,Ribbon,Sparkle}"
+      }
+    ],
+    "found_but_not_weapon_scale": [
+      {
+        "family": "/Game/Staging/HoudiniForge/Carillon/Parts + /Creatures",
+        "sizes_cm": {
+          "Bell_C4": 1.8,
+          "Bell_C5": 0.9,
+          "Bell_C6": 0.4,
+          "Halo_v4": 1.1,
+          "Crown": 3.7,
+          "Filigree_v5": 1.3,
+          "Scroll_v3": 2.6,
+          "PearlBand_v3": 3.1,
+          "BellGolem_Awake": 9.9,
+          "BellSpirit_Awake": 6.0
+        },
+        "verdict": "miniature scale - this is the 'Little Guys' lane (SM_LG_*) of little creatures, NOT a unit bug; useless for a handheld weapon head"
+      }
+    ],
+    "production_use": "the AssetRegistry reports no production referencers for the wands, the halo orrery or the ribbon; A_MEL_Halo_Orrery_Unfold is named in the Poitou First Day animation-layer doc as a prop anim",
+    "conclusion": "the concept's five instrument forms are ALREADY IN THE PROJECT as the GNToys wand family plus the halo orrery; the shipped WaveHarp lyre frame is the one asset that does not belong to that family"
+  },
+  "plan_change_2026_10_21": {
+    "decision": "the from-scratch family is DEMOTED. Forging a second instrument language on top of a finished one is exactly the frankensteining the owner flagged.",
+    "keep": [
+      "the crescent blade (the only genuinely missing geometry: a real blade surface)",
+      "the large focal gemstone (the other gap: the concept's D. Monolith Conduit is built around one large cut crystal)"
+    ],
+    "retire": [
+      "the six procedural forms (A-E + Carillon) as shippable assets",
+      "the procedural shaft/grip/base (the existing wands already own that language)"
+    ],
+    "new_composition": "Form 2 (the melee) = an existing wand shaft (BellChime or OrreryScepter) + the existing 46.6 cm halo orrery head + the new focal gemstone + the new crescent blade, all in the existing MI_HF_Toon_* material language. The two heads are staged as SM_MEL_Head_Carillon and SM_MEL_Head_Carillon_Melee.",
+    "henshin_infrastructure_that_already_exists": [
+      "A_MEL_Halo_Orrery_Unfold (an authored unfold animation for the halo head)",
+      "MEL_Ribbon_Transform_P0to1 + SM_MEL_Ribbon_Transform_P100 (the transformation ribbon)"
+    ],
+    "still_valid_from_this_spec": [
+      "the gates (unit sanity, sockets inside the AABB, determinism)",
+      "the concept->form mapping",
+      "the D1/D6/D8 defect mapping"
+    ],
+    "status": "the forge tool stays in Tools/Houdini/waveharp/ but its scope reduces to the blade part"
+  },
+  "focal_parts_and_head": {
+    "why": "the owner asked for a LARGE FOCAL POINT GEMSTONE on the weapon. The existing halo orrery has only small wing gems (MI_HF_Toon_Wings_Butterfly_Gems, 406 faces) and the concept's D. Monolith Conduit is built around one large cut crystal, so the focal stone was the genuine geometry gap - alongside the crescent blade.",
+    "forge": "Tools/Houdini/waveharp/build_focal_parts.py (hython 22.0.368)",
+    "assembler": "Tools/Houdini/waveharp/assemble_carillon_head.py (headless Blender)",
+    "parts": [
+      {
+        "name": "SM_Cymatic_FocalGem",
+        "obj": "Saved/Audit/waveharp/focal_parts/SM_Cymatic_FocalGem.obj",
+        "verts": 488,
+        "faces": 426,
+        "bounds_cm": {
+          "min": [
+            -8.37,
+            -8.37,
+            -10.0
+          ],
+          "max": [
+            8.37,
+            8.37,
+            10.0
+          ],
+          "extent": [
+            16.74,
+            16.74,
+            20.0
+          ]
+        },
+        "materials": [
+          "MI_HF_Toon_Wand_BellChime_Gems",
+          "MI_HF_Toon_Wand_BellChime_RimGold"
+        ],
+        "sha256": "a3b95f81dc8c377773468219894d64eb47db5a648d62e51cb22fc62c062352fa",
+        "note": "a large faceted brilliant oval with a gold collet, rim ring and four prongs",
+        "gate_unit_sanity_cm": true
+      },
+      {
+        "name": "SM_Cymatic_CrescentBlade",
+        "obj": "Saved/Audit/waveharp/focal_parts/SM_Cymatic_CrescentBlade.obj",
+        "verts": 504,
+        "faces": 492,
+        "bounds_cm": {
+          "min": [
+            -4.79,
+            -2.95,
+            -39.61
+          ],
+          "max": [
+            16.59,
+            2.95,
+            2.77
+          ],
+          "extent": [
+            21.38,
+            5.91,
+            42.38
+          ]
+        },
+        "materials": [
+          "MI_HF_Toon_Wand_BellChime_RimGold"
+        ],
+        "sha256": "cdf34aee0474329e577eb5454ee1fc9c59a8187722e681530c2cf6888717949e",
+        "spine_cm": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            15.18,
+            0.0,
+            -17.52
+          ],
+          [
+            10.87,
+            0.0,
+            -39.51
+          ]
+        ],
+        "arc": {
+          "centre_offset_cm": [
+            -10.0,
+            0.0,
+            -24.0
+          ],
+          "sweep_deg": 104.0,
+          "root_width_cm": 2.8,
+          "tip_width_cm": 0.35,
+          "thickness_cm": 0.6
+        },
+        "note": "a crescent blade whose spine is a circular ARC centred near the wielder (so it curls like a naginata and its plane is the melee sweep plane), with a gold root collar/eye where it meets the head",
+        "gate_unit_sanity_cm": true
+      }
+    ],
+    "material_slots": {
+      "focal gem": "MI_HF_Toon_Wand_BellChime_Gems (the weapon family's crystal material - no new material needed)",
+      "crescent blade": "MI_HF_Toon_Wand_BellChime_RimGold (the weapon family's gold)"
+    },
+    "head_assembly": {
+      "schema": "melodia.carillon_head.v1",
+      "units": "centimetres",
+      "heads": [
+        {
+          "variant": "caster (halo + focal gem)",
+          "fbx": "Saved/Audit/waveharp/SM_MEL_Head_Carillon.fbx",
+          "objects": [
+            "SM_MEL_Halo_Orrery_Open",
+            "SM_Cymatic_FocalGem",
+            "SM_Cymatic_FocalGem.001"
+          ]
+        },
+        {
+          "variant": "melee (halo + focal gem + crescent blade)",
+          "fbx": "Saved/Audit/waveharp/SM_MEL_Head_Carillon_Melee.fbx",
+          "objects": [
+            "SM_MEL_Halo_Orrery_Open.001",
+            "SM_Cymatic_FocalGem.002",
+            "SM_Cymatic_FocalGem.003",
+            "SM_Cymatic_CrescentBlade"
+          ]
+        }
+      ],
+      "placements": [
+        {
+          "panel": "halo + focal gem",
+          "x_cm": 0.0,
+          "w_cm": 46.6,
+          "h_cm": 28.4
+        },
+        {
+          "panel": "halo + focal gem + crescent blade",
+          "x_cm": 61.3,
+          "w_cm": 50.0,
+          "h_cm": 53.1
+        }
+      ],
+      "contact_sheet": "Saved/Audit/waveharp/ContactSheet_CarillonHead.png"
+    },
+    "heads": [
+      {
+        "name": "SM_MEL_Head_Carillon",
+        "use": "the caster form (halo orrery + focal gem)",
+        "fbx": "Saved/Audit/waveharp/SM_MEL_Head_Carillon.fbx"
+      },
+      {
+        "name": "SM_MEL_Head_Carillon_Melee",
+        "use": "the melee form (halo orrery + focal gem + crescent blade)",
+        "fbx": "Saved/Audit/waveharp/SM_MEL_Head_Carillon_Melee.fbx"
+      }
+    ],
+    "gates": [
+      "unit sanity (a 100x error fails the forge)",
+      "the geometry sha256 is recorded"
+    ],
+    "known_debts": [
+      "the blade root meets the rim tangentially - it wants a small collar/eye where it joins",
+      "the blade currently sweeps in the XZ plane; a melee swing wants it on the swing arc",
+      "the gem's collet is a simple cup + rim ring + four prongs - the concept shows a bezel",
+      "greybox shading only: the real look is the UE toon materials (the render uses a white stand-in)",
+      "no toon outline hull yet (D7)"
+    ],
+    "evidence_level": "offline forge + offline assembly + offline render. Not imported into UE, not runtime-proven."
+  },
+  "blade_rework": {
+    "blade": "re-forged on an ARC instead of a Bezier: the spine is a circular arc whose centre sits down/back of the root (offset -10, 0, -24 cm), 104 deg sweep, 2.8 cm root -> 0.35 cm tip, 0.6 cm solid, PLUS a gold root collar (an eye in the blade's own plane and a short neck back to the head). The blade now reads as a naginata crescent, and its arc IS the melee sweep plane, so the trace and the VFX can agree (closes D8).",
+    "parts": [
+      {
+        "name": "SM_Cymatic_FocalGem",
+        "obj": "Saved/Audit/waveharp/focal_parts/SM_Cymatic_FocalGem.obj",
+        "verts": 488,
+        "faces": 426,
+        "bounds_cm": {
+          "min": [
+            -8.37,
+            -8.37,
+            -10.0
+          ],
+          "max": [
+            8.37,
+            8.37,
+            10.0
+          ],
+          "extent": [
+            16.74,
+            16.74,
+            20.0
+          ]
+        },
+        "materials": [
+          "MI_HF_Toon_Wand_BellChime_Gems",
+          "MI_HF_Toon_Wand_BellChime_RimGold"
+        ],
+        "sha256": "a3b95f81dc8c377773468219894d64eb47db5a648d62e51cb22fc62c062352fa",
+        "note": "a large faceted brilliant oval with a gold collet, rim ring and four prongs",
+        "gate_unit_sanity_cm": true
+      },
+      {
+        "name": "SM_Cymatic_CrescentBlade",
+        "obj": "Saved/Audit/waveharp/focal_parts/SM_Cymatic_CrescentBlade.obj",
+        "verts": 504,
+        "faces": 492,
+        "bounds_cm": {
+          "min": [
+            -4.79,
+            -2.95,
+            -39.61
+          ],
+          "max": [
+            16.59,
+            2.95,
+            2.77
+          ],
+          "extent": [
+            21.38,
+            5.91,
+            42.38
+          ]
+        },
+        "materials": [
+          "MI_HF_Toon_Wand_BellChime_RimGold"
+        ],
+        "sha256": "cdf34aee0474329e577eb5454ee1fc9c59a8187722e681530c2cf6888717949e",
+        "spine_cm": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            15.18,
+            0.0,
+            -17.52
+          ],
+          [
+            10.87,
+            0.0,
+            -39.51
+          ]
+        ],
+        "arc": {
+          "centre_offset_cm": [
+            -10.0,
+            0.0,
+            -24.0
+          ],
+          "sweep_deg": 104.0,
+          "root_width_cm": 2.8,
+          "tip_width_cm": 0.35,
+          "thickness_cm": 0.6
+        },
+        "note": "a crescent blade whose spine is a circular ARC centred near the wielder (so it curls like a naginata and its plane is the melee sweep plane), with a gold root collar/eye where it meets the head",
+        "gate_unit_sanity_cm": true
+      }
+    ],
+    "head": {
+      "schema": "melodia.carillon_head.v1",
+      "units": "centimetres",
+      "heads": [
+        {
+          "variant": "caster (halo + focal gem)",
+          "fbx": "Saved/Audit/waveharp/SM_MEL_Head_Carillon.fbx",
+          "objects": [
+            "SM_MEL_Halo_Orrery_Open",
+            "SM_Cymatic_FocalGem",
+            "SM_Cymatic_FocalGem.001"
+          ]
+        },
+        {
+          "variant": "melee (halo + focal gem + crescent blade)",
+          "fbx": "Saved/Audit/waveharp/SM_MEL_Head_Carillon_Melee.fbx",
+          "objects": [
+            "SM_MEL_Halo_Orrery_Open.001",
+            "SM_Cymatic_FocalGem.002",
+            "SM_Cymatic_FocalGem.003",
+            "SM_Cymatic_CrescentBlade"
+          ]
+        }
+      ],
+      "placements": [
+        {
+          "panel": "halo + focal gem",
+          "x_cm": 0.0,
+          "w_cm": 46.6,
+          "h_cm": 28.4
+        },
+        {
+          "panel": "halo + focal gem + crescent blade",
+          "x_cm": 61.3,
+          "w_cm": 50.0,
+          "h_cm": 53.1
+        }
+      ],
+      "contact_sheet": "Saved/Audit/waveharp/ContactSheet_CarillonHead.png"
+    }
+  },
+  "vfx_staging": {
+    "schema": "melodia.waveharp_vfx_staging.v1",
+    "rule": "existing project assets only \u2014 SDF materials + simple NS systems, no new VFX language",
+    "beats": [
+      {
+        "id": "B0",
+        "name": "THE SING",
+        "frames": "f0-f10",
+        "cue": "the instrument answers before it moves (the source's f10 pluck + resonance bloom)",
+        "ns": [
+          "NS_Melusina_Glint",
+          "NS_Melusina_StarSparkle"
+        ],
+        "sdf": [
+          "T_SDF_Glint4",
+          "T_SDF_Diamond",
+          "T_SDF_SoftDot"
+        ],
+        "note": "glints ride the focal stone's facets; soft dots breathe in the halo's opening"
+      },
+      {
+        "id": "B1",
+        "name": "THE HALO BLOOMS",
+        "frames": "f10-f31",
+        "cue": "the resonance peaks and the head announces the form change",
+        "ns": [
+          "NS_Melusina_ProviderSigil",
+          "NS_Melusina_Arc",
+          "NS_Melusina_StarPop"
+        ],
+        "sdf": [
+          "T_SDF_SparkleHalo",
+          "T_SDF_StarGlitter",
+          "MI_SDF_StarburstGem"
+        ],
+        "note": "the sigil is the existing 'sequence open' language; the starburst-gem SDF goes INSIDE the focal stone as its inner core"
+      },
+      {
+        "id": "B2",
+        "name": "THE UNFURL",
+        "frames": "f31-f90",
+        "cue": "the authored head swap, with the transformation ribbon",
+        "ns": [
+          "NS_Melusina_SwingTrail",
+          "NS_Melusina_Dust",
+          "NS_Melusina_Superposition"
+        ],
+        "sdf": [
+          "T_SDF_MusicNote",
+          "T_SDF_Leaf",
+          "T_SDF_CherryRosette"
+        ],
+        "note": "A_MEL_Halo_Orrery_Unfold plays the head opening; SM_MEL_Ribbon_Transform_P100 is the ribbon mesh (P0->P1) and the music notes spill out of the chimes"
+      },
+      {
+        "id": "B3",
+        "name": "THE MELEE LOCK",
+        "frames": "on form 2",
+        "cue": "the crescent head is live: the blade carries the swing",
+        "ns": [
+          "NS_Melusina_SwingTrail",
+          "NS_Melusina_ImpactBurst",
+          "NS_Melusina_Ripple"
+        ],
+        "sdf": [
+          "T_SDF_MetalShards",
+          "T_SDF_Sparkle6",
+          "MI_SDF_GildedFiligree"
+        ],
+        "note": "the swing trail follows the blade's arc (the arc the blade geometry was forged on); the existing hit burst/ripple stay the impact authority"
+      },
+      {
+        "id": "B4",
+        "name": "THE CHIME RAIN",
+        "frames": "ambient",
+        "cue": "the carillon identity: the head is a ring of bells",
+        "ns": [
+          "NS_Melusina_Globules",
+          "NS_Melusina_EntropyDust",
+          "NS_Melusina_ChaosDrift"
+        ],
+        "sdf": [
+          "T_SDF_KawaiiHeart",
+          "T_SDF_MusicNote",
+          "T_SDF_Cracks"
+        ],
+        "note": "the idle chime shimmer, in the same language as the little-guys bells"
+      }
+    ],
+    "assets": {
+      "sdf_textures": [
+        "/Game/Melodia/VFX/Textures/SDF/T_SDF_SparkleHalo",
+        "/Game/Melodia/VFX/Textures/SDF/T_SDF_Sparkle6",
+        "/Game/Melodia/VFX/Textures/SDF/T_SDF_StarGlitter",
+        "/Game/Melodia/VFX/Textures/SDF/T_SDF_MusicNote",
+        "/Game/EnvSandbox/Materials/Textures/T_SDF_Cracks",
+        "/Game/Staging/Aeolian/SDF/T_SDF_SoftDot",
+        "/Game/Staging/Aeolian/SDF/T_SDF_Leaf",
+        "/Game/Staging/Aeolian/SDF/T_SDF_CherryRosette",
+        "/Game/Staging/Aeolian/SDF/T_SDF_KawaiiHeart",
+        "/Game/Staging/Aeolian/SDF/T_SDF_Diamond",
+        "/Game/Staging/Aeolian/SDF/T_SDF_Glint4",
+        "/Game/Staging/Aeolian/SDF/T_SDF_Dots"
+      ],
+      "sdf_materials": [
+        "/Game/_PROJECT/04_Materials/SDF/MI_SDF_StarburstGem",
+        "/Game/_PROJECT/04_Materials/SDF/MI_SDF_GildedFiligree",
+        "/Game/_PROJECT/04_Materials/SDF/MI_SDF_Musical",
+        "/Game/_PROJECT/04_Materials/SDF/MI_SDF_MagicOrb",
+        "/Game/_PROJECT/04_Materials/SDF/MI_SDF_OrnamentLayer",
+        "/Game/_PROJECT/04_Materials/SDF/MI_SDF_MetalShards",
+        "/Game/_PROJECT/04_Materials/SDF/MI_SDF_FloatingNotes",
+        "/Game/_PROJECT/04_Materials/SDF/MI_SDF_FractalOrnament",
+        "/Game/_PROJECT/04_Materials/SDF/MI_SDF_CosmicPortal",
+        "/Game/_PROJECT/04_Materials/SDF/MI_SDF_InfinityMirror"
+      ],
+      "niagara_systems": [
+        "/Game/Melodia/VFX/NS_Melusina_Glint",
+        "/Game/Melodia/VFX/NS_Melusina_StarSparkle",
+        "/Game/Melodia/VFX/NS_Melusina_ProviderSigil",
+        "/Game/Melodia/VFX/NS_Melusina_Arc",
+        "/Game/Melodia/VFX/NS_Melusina_StarPop",
+        "/Game/Melodia/VFX/NS_Melusina_SwingTrail",
+        "/Game/Melodia/VFX/NS_Melusina_Dust",
+        "/Game/Melodia/VFX/NS_Melusina_Superposition",
+        "/Game/Melodia/VFX/NS_Melusina_ImpactBurst",
+        "/Game/Melodia/VFX/NS_Melusina_Ripple",
+        "/Game/Melodia/VFX/NS_Melusina_Globules",
+        "/Game/Melodia/VFX/NS_Melusina_EntropyDust",
+        "/Game/Melodia/VFX/NS_Melusina_ChaosDrift",
+        "/Game/Melodia/VFX/NS_Melusina_Sigil",
+        "/Game/Melodia/VFX/NS_Melusina_Splash"
+      ],
+      "meshes": [
+        "/Game/Staging/HoudiniForge/MelusinaGNToys/SM_MEL_Ribbon_Transform_P100",
+        "/Game/Staging/HoudiniForge/MelusinaGNToys/SK_MEL_Halo_Orrery",
+        "/Game/Staging/HoudiniForge/MelusinaGNToys/A_MEL_Halo_Orrery_Unfold"
+      ]
+    },
+    "staging_rules": [
+      "one VFX language: the Melodia NS set + the project SDF library",
+      "the focal stone carries MI_SDF_StarburstGem as an inner core; facets use T_SDF_Glint4",
+      "the ribbon mesh and the Unfold anim are the existing transformation assets",
+      "the melee trail follows the blade's forged arc, so the trace and the VFX agree",
+      "impact authority stays NS_Melusina_ImpactBurst + NS_Melusina_Ripple"
+    ]
+  },
+  "ue_ready_heads": {
+    "status": "UE-READY OFFLINE: baked, UV'd, outlined, socketed, material-bound and VALIDATED (18/18 gates). NOT imported into Unreal - that is a later, owner-approved step.",
+    "bake_manifest": {
+      "schema": "melodia.waveharp_head_bake.v1",
+      "units": "centimetres (the FBX carries cm; import with apply_unit_scale)",
+      "outline_width_cm": 0.35,
+      "heads": [
+        {
+          "name": "SM_MEL_Head_Carillon",
+          "fbx": "Saved/Audit/waveharp/ue_ready/SM_MEL_Head_Carillon.fbx",
+          "bytes": 1095884,
+          "stats": {
+            "min_cm": [
+              -23.32,
+              -21.77,
+              2.01
+            ],
+            "max_cm": [
+              23.32,
+              21.77,
+              30.44
+            ],
+            "extent_cm": [
+              46.65,
+              43.54,
+              28.43
+            ],
+            "verts": 15280,
+            "tris": 27920
+          },
+          "sockets": [
+            "SOCKET_Bow_Grip",
+            "SOCKET_Cymatic_Projection",
+            "SOCKET_Grip_Main"
+          ],
+          "material_slots": [
+            "MI_Brass_FiligreeGold",
+            "MI_Brass_FiligreeGold_3",
+            "MI_HF_Toon_Wand_BellChime_Gems",
+            "MI_HF_Toon_Wings_Butterfly_Gems",
+            "MI_HF_Toon_Wings_Butterfly_Pearls"
+          ],
+          "outline_objects": 3
+        },
+        {
+          "name": "SM_MEL_Head_Carillon_Melee",
+          "fbx": "Saved/Audit/waveharp/ue_ready/SM_MEL_Head_Carillon_Melee.fbx",
+          "bytes": 1144844,
+          "stats": {
+            "min_cm": [
+              -23.32,
+              -21.77,
+              -22.62
+            ],
+            "max_cm": [
+              26.69,
+              21.77,
+              30.44
+            ],
+            "extent_cm": [
+              50.01,
+              43.54,
+              53.06
+            ],
+            "verts": 16288,
+            "tris": 28904
+          },
+          "sockets": [
+            "SOCKET_Bow_Grip",
+            "SOCKET_Cymatic_Projection",
+            "SOCKET_Grip_Main",
+            "Scythe_BladeStart",
+            "Scythe_BladeMid",
+            "Scythe_BladeTip",
+            "Scythe_Pommel"
+          ],
+          "material_slots": [
+            "MI_Brass_FiligreeGold",
+            "MI_Brass_FiligreeGold_3",
+            "MI_HF_Toon_Wand_BellChime_Gems",
+            "MI_HF_Toon_Wand_BellChime_RimGold",
+            "MI_HF_Toon_Wings_Butterfly_Gems",
+            "MI_HF_Toon_Wings_Butterfly_Pearls"
+          ],
+          "outline_objects": 4
+        }
+      ],
+      "ue_import_settings": {
+        "material_import": "find_existing",
+        "combine_meshes": true,
+        "import_as_skeletal": false,
+        "generate_lightmap_uvs": false,
+        "auto_generate_collision": false,
+        "combine": "one static mesh per head, outline hull in its own slot"
+      },
+      "readiness_gates": [
+        "every loop has a UV (smart box projection in metres)",
+        "a baked toon outline hull in MI_Melusina_Outline_005",
+        "recalculated normals (the gem flat, the rest smooth)",
+        "sockets exported as empties: the grip, the cymatic projection, the blade trace",
+        "material slots bound to existing MI_* instances (find_existing)",
+        "a validation pass over the exported FBX"
+      ]
+    },
+    "validation": {
+      "schema": "melodia.waveharp_head_validation.v1",
+      "note": "offline validation of the exported FBX - nothing imported into Unreal",
+      "results": [
+        {
+          "fbx": "Saved/Audit/waveharp/ue_ready/SM_MEL_Head_Carillon.fbx",
+          "meshes": 6,
+          "empties": 3,
+          "verts": 15280,
+          "tris": 27920,
+          "extent_cm": [
+            46.65,
+            43.54,
+            28.43
+          ],
+          "material_slots": [
+            "MI_Brass_FiligreeGold",
+            "MI_Brass_FiligreeGold_3",
+            "MI_HF_Toon_Wand_BellChime_Gems",
+            "MI_HF_Toon_Wings_Butterfly_Gems",
+            "MI_HF_Toon_Wings_Butterfly_Pearls",
+            "MI_Melusina_Outline_005"
+          ],
+          "sockets": [
+            "SOCKET_Bow_Grip",
+            "SOCKET_Cymatic_Projection",
+            "SOCKET_Grip_Main"
+          ],
+          "gates": [
+            {
+              "gate": "uvs_present_on_every_loop",
+              "ok": true,
+              "detail": "84724 loops, 0 without a UV layer"
+            },
+            {
+              "gate": "uvs_not_degenerate",
+              "ok": true,
+              "detail": "0 of 84724 loops are (0,0) (0.00%)"
+            },
+            {
+              "gate": "toon_outline_hull_baked",
+              "ok": true,
+              "detail": "3 outline hull objects"
+            },
+            {
+              "gate": "normals_calculated",
+              "ok": true,
+              "detail": "0 meshes without a usable normal"
+            },
+            {
+              "gate": "sockets_exported",
+              "ok": true,
+              "detail": "3 sockets: ['SOCKET_Bow_Grip', 'SOCKET_Cymatic_Projection', 'SOCKET_Grip_Main']"
+            },
+            {
+              "gate": "material_slots_bound_to_existing_instances",
+              "ok": true,
+              "detail": "6 slots, all project instances"
+            },
+            {
+              "gate": "unit_sanity_cm",
+              "ok": true,
+              "detail": "extent [46.65, 43.54, 28.43] cm"
+            },
+            {
+              "gate": "no_degenerate_faces",
+              "ok": true,
+              "detail": "0 degenerate faces"
+            },
+            {
+              "gate": "no_nan_coordinates",
+              "ok": true,
+              "detail": "0 faces with NaN/Inf"
+            }
+          ],
+          "ok": true
+        },
+        {
+          "fbx": "Saved/Audit/waveharp/ue_ready/SM_MEL_Head_Carillon_Melee.fbx",
+          "meshes": 8,
+          "empties": 7,
+          "verts": 16288,
+          "tris": 28904,
+          "extent_cm": [
+            50.01,
+            43.54,
+            53.06
+          ],
+          "material_slots": [
+            "MI_Brass_FiligreeGold",
+            "MI_Brass_FiligreeGold_3",
+            "MI_HF_Toon_Wand_BellChime_Gems",
+            "MI_HF_Toon_Wand_BellChime_RimGold",
+            "MI_HF_Toon_Wings_Butterfly_Gems",
+            "MI_HF_Toon_Wings_Butterfly_Pearls",
+            "MI_Melusina_Outline_005"
+          ],
+          "sockets": [
+            "SOCKET_Bow_Grip",
+            "SOCKET_Cymatic_Projection",
+            "SOCKET_Grip_Main",
+            "Scythe_BladeMid",
+            "Scythe_BladeStart",
+            "Scythe_BladeTip",
+            "Scythe_Pommel"
+          ],
+          "gates": [
+            {
+              "gate": "uvs_present_on_every_loop",
+              "ok": true,
+              "detail": "88660 loops, 0 without a UV layer"
+            },
+            {
+              "gate": "uvs_not_degenerate",
+              "ok": true,
+              "detail": "0 of 88660 loops are (0,0) (0.00%)"
+            },
+            {
+              "gate": "toon_outline_hull_baked",
+              "ok": true,
+              "detail": "4 outline hull objects"
+            },
+            {
+              "gate": "normals_calculated",
+              "ok": true,
+              "detail": "0 meshes without a usable normal"
+            },
+            {
+              "gate": "sockets_exported",
+              "ok": true,
+              "detail": "7 sockets: ['SOCKET_Bow_Grip', 'SOCKET_Cymatic_Projection', 'SOCKET_Grip_Main', 'Scythe_BladeMid', 'Scythe_BladeStart', 'Scythe_BladeTip', 'Scythe_Pommel']"
+            },
+            {
+              "gate": "material_slots_bound_to_existing_instances",
+              "ok": true,
+              "detail": "7 slots, all project instances"
+            },
+            {
+              "gate": "unit_sanity_cm",
+              "ok": true,
+              "detail": "extent [50.01, 43.54, 53.06] cm"
+            },
+            {
+              "gate": "no_degenerate_faces",
+              "ok": true,
+              "detail": "0 degenerate faces"
+            },
+            {
+              "gate": "no_nan_coordinates",
+              "ok": true,
+              "detail": "0 faces with NaN/Inf"
+            }
+          ],
+          "ok": true
+        }
+      ],
+      "all_ok": true
+    },
+    "heads": [
+      {
+        "name": "SM_MEL_Head_Carillon",
+        "use": "the caster head (halo orrery + focal gem)",
+        "fbx": "Saved/Audit/waveharp/ue_ready/SM_MEL_Head_Carillon.fbx",
+        "tris": 27920,
+        "extent_cm": [
+          46.65,
+          43.54,
+          28.43
+        ],
+        "sockets": 3
+      },
+      {
+        "name": "SM_MEL_Head_Carillon_Melee",
+        "use": "the melee head (+ crescent blade)",
+        "fbx": "Saved/Audit/waveharp/ue_ready/SM_MEL_Head_Carillon_Melee.fbx",
+        "tris": 28904,
+        "extent_cm": [
+          50.01,
+          43.54,
+          53.06
+        ],
+        "sockets": 7
+      }
+    ],
+    "tools": {
+      "forge": "Tools/Houdini/waveharp/build_focal_parts.py (hython)",
+      "assemble": "Tools/Houdini/waveharp/assemble_carillon_head.py (Blender)",
+      "prepare_for_ue": "Tools/Houdini/waveharp/prepare_heads_for_ue.py (Blender)",
+      "validate": "Tools/Houdini/waveharp/validate_heads.py (Blender)",
+      "preview": "Tools/Houdini/waveharp/render_heads_ue_ready.py (Blender)"
+    }
+  },
+  "asset_readiness_rule": {
+    "rule": "AN ASSET IS 95% DONE BEFORE IT TOUCHES UNREAL. The Unreal step is an integration, not the last mile of authoring. A file that exists is not an asset that is ready.",
+    "the_failure_mode": "treating 'the FBX exists' as 'the asset is done' and importing a blockout into production content - where it has no UVs (so every UV-driven toon/SDF material renders wrong), no outline hull, no sockets, and unreviewed slots.",
+    "gates_an_asset_must_pass_offline": [
+      "UVs on every loop (the project's toon/SDF materials are UV-driven)",
+      "the toon outline hull baked into the mesh, in its own material slot",
+      "normals calculated (flat where the art wants facets, smooth elsewhere)",
+      "sockets authored from the geometry itself, so a trace can never be 100x off",
+      "material slots bound to EXISTING project instances (no new materials invented)",
+      "a validation pass that re-reads the exported file and asserts all of the above",
+      "a bake manifest: the file, the stats, the slots, the sockets, and the exact import settings",
+      "a preview render in the real material language"
+    ],
+    "import_settings_for_later": {
+      "material_import": "find_existing",
+      "combine_meshes": true,
+      "import_as_skeletal": false,
+      "generate_lightmap_uvs": false,
+      "auto_generate_collision": false,
+      "combine": "one static mesh per head, outline hull in its own slot"
+    },
+    "enforcement": "Tools/Houdini/waveharp/validate_heads.py exits non-zero on any failed gate, so the ready file cannot be produced by accident."
+  },
+  "wand_family_lookdev": {
+    "finding": "the GNToys 'wand' family is NOT five weapons - it is five SLENDER PEARL STAFFS with a gold spiral vine, pearl bands and a head, plus a bell stand. The first assembly attempt put the Carillon head on SM_MEL_Wand_BellChime, which is a BELL ON A STAND - the render caught it before it was shipped.",
+    "family": [
+      {
+        "asset": "SM_MEL_Wand_OrreryScepter",
+        "size_cm": [
+          29.7,
+          29.7,
+          133.6
+        ],
+        "read": "a vine-wrapped pearl staff with an armillary head - the concept's D. Monolith Conduit language",
+        "role": "THE SHAFT for the Carillon forms (its own head is trimmed off)"
+      },
+      {
+        "asset": "SM_MEL_Wand_CrystalTimeless",
+        "size_cm": [
+          21.8,
+          21.8,
+          124.9
+        ],
+        "read": "a staff topped by a big cut crystal"
+      },
+      {
+        "asset": "SM_MEL_Wand_StarPrincess",
+        "size_cm": [
+          13.9,
+          13.9,
+          103.2
+        ],
+        "read": "a staff with a candle/crown head"
+      },
+      {
+        "asset": "SM_MEL_Wand_HeartMelody",
+        "size_cm": [
+          12.5,
+          12.5,
+          92.5
+        ],
+        "read": "a staff with a small head"
+      },
+      {
+        "asset": "SM_MEL_Wand_BellChime",
+        "size_cm": [
+          20.0,
+          20.0,
+          122.9
+        ],
+        "read": "a BELL on a decorative stand - not a weapon"
+      },
+      {
+        "asset": "SM_MEL_Halo_Orrery_Open",
+        "size_cm": [
+          46.6,
+          43.5,
+          28.4
+        ],
+        "read": "a real detailed halo head (the Carillon head's parent)"
+      }
+    ],
+    "lookdev_sheet": "Saved/Audit/waveharp/ContactSheet_ExistingWands_Lookdev.png",
+    "lesson": "render the family in its real material language BEFORE assembling onto it - the names alone mislead"
+  },
+  "complete_wands": {
+    "status": "COMPLETE WANDS, OFFLINE, VALIDATED 8/8 gates each: the existing OrreryScepter shaft (its armillary head trimmed off) + a Carillon head, exported as a SKELETAL mesh whose bones ARE the sockets. NOT imported into Unreal.",
+    "bake_manifest": {
+      "schema": "melodia.waveharp_wand_bake.v1",
+      "units": "centimetres",
+      "note": "the complete wand: the existing BellChime shaft + a Carillon head, skeletal, with the sockets as BONES (a static import drops empties)",
+      "shaft_source": "/Game/Staging/HoudiniForge/MelusinaGNToys/SM_MEL_Wand_OrreryScepter",
+      "shaft_trim_cm": 107.0,
+      "head_seat_z_cm": 105.0,
+      "grip_z_cm": 13.0,
+      "forms": [
+        {
+          "fbx": "Saved/Audit/waveharp/ue_ready/SM_MEL_Wand_Carillon_Caster.fbx",
+          "bytes": 1233564,
+          "tris": 30181,
+          "extent_cm": [
+            46.65,
+            43.54,
+            137.24
+          ],
+          "bones": [
+            "SOCKET_Bow_Grip",
+            "SOCKET_Cymatic_Projection",
+            "SOCKET_Grip_Main",
+            "root"
+          ],
+          "shaft_objects": [
+            "SM_MEL_Wand_OrreryScepter"
+          ],
+          "head_objects": [
+            "SM_Cymatic_FocalGem",
+            "SM_Cymatic_FocalGem.001",
+            "SM_Cymatic_FocalGem.001_Outline",
+            "SM_Cymatic_FocalGem_Outline",
+            "SM_MEL_Halo_Orrery_Open",
+            "SM_MEL_Halo_Orrery_Open_Outline"
+          ]
+        },
+        {
+          "fbx": "Saved/Audit/waveharp/ue_ready/SM_MEL_Wand_Carillon_Melee.fbx",
+          "bytes": 1330524,
+          "tris": 31165,
+          "extent_cm": [
+            50.01,
+            43.54,
+            137.24
+          ],
+          "bones": [
+            "SOCKET_Bow_Grip",
+            "SOCKET_Cymatic_Projection",
+            "SOCKET_Grip_Main",
+            "Scythe_BladeMid",
+            "Scythe_BladeStart",
+            "Scythe_BladeTip",
+            "Scythe_Pommel",
+            "root"
+          ],
+          "shaft_objects": [
+            "SM_MEL_Wand_OrreryScepter"
+          ],
+          "head_objects": [
+            "SM_Cymatic_CrescentBlade",
+            "SM_Cymatic_CrescentBlade_Outline",
+            "SM_Cymatic_FocalGem",
+            "SM_Cymatic_FocalGem.001",
+            "SM_Cymatic_FocalGem.001_Outline",
+            "SM_Cymatic_FocalGem_Outline",
+            "SM_MEL_Halo_Orrery_Open",
+            "SM_MEL_Halo_Orrery_Open_Outline"
+          ]
+        }
+      ]
+    },
+    "validation": {
+      "schema": "melodia.waveharp_wand_validation.v1",
+      "note": "offline validation of the assembled wands (skeletal, socket bones)",
+      "results": [
+        {
+          "fbx": "Saved/Audit/waveharp/ue_ready/SM_MEL_Wand_Carillon_Caster.fbx",
+          "bones": [
+            "SOCKET_Bow_Grip",
+            "SOCKET_Cymatic_Projection",
+            "SOCKET_Grip_Main",
+            "root"
+          ],
+          "tris": 30181,
+          "extent_cm": [
+            46.65,
+            43.54,
+            137.24
+          ],
+          "gates": [
+            {
+              "gate": "socket_bones_present",
+              "ok": true,
+              "detail": "4 bones: ['SOCKET_Bow_Grip', 'SOCKET_Cymatic_Projection', 'SOCKET_Grip_Main', 'root']"
+            },
+            {
+              "gate": "uvs_on_every_loop",
+              "ok": true,
+              "detail": "91511 loops, 0 without UVs"
+            },
+            {
+              "gate": "toon_outline_hull_baked",
+              "ok": true,
+              "detail": "3 outline objects"
+            },
+            {
+              "gate": "material_slots_bound",
+              "ok": true,
+              "detail": "11 slots: ['MI_Brass_FiligreeGold', 'MI_Brass_FiligreeGold.001', 'MI_Brass_FiligreeGold_1', 'MI_Brass_FiligreeGold_3', 'MI_HF_Toon_ChimeSnail_LG_Ribbon', 'MI_HF_Toon_Wand_BellChime_Gems', 'MI_HF_Toon_Wings_Butterfly_Gems', 'MI_HF_Toon_Wings_Butterfly_Gems.001', 'MI_HF_Toon_Wings_Butterfly_Pearls', 'MI_HF_Toon_Wings_Butterfly_Pearls.001', 'MI_Melusina_Outline_005']"
+            },
+            {
+              "gate": "unit_sanity_cm",
+              "ok": true,
+              "detail": "extent [46.65, 43.54, 137.24] cm"
+            },
+            {
+              "gate": "no_degenerate_faces",
+              "ok": true,
+              "detail": "0 degenerate"
+            },
+            {
+              "gate": "no_nan_coordinates",
+              "ok": true,
+              "detail": "0 nan faces"
+            }
+          ],
+          "ok": true
+        },
+        {
+          "fbx": "Saved/Audit/waveharp/ue_ready/SM_MEL_Wand_Carillon_Melee.fbx",
+          "bones": [
+            "SOCKET_Bow_Grip",
+            "SOCKET_Cymatic_Projection",
+            "SOCKET_Grip_Main",
+            "Scythe_BladeMid",
+            "Scythe_BladeStart",
+            "Scythe_BladeTip",
+            "Scythe_Pommel",
+            "root"
+          ],
+          "tris": 31165,
+          "extent_cm": [
+            50.01,
+            43.54,
+            137.24
+          ],
+          "gates": [
+            {
+              "gate": "socket_bones_present",
+              "ok": true,
+              "detail": "8 bones: ['SOCKET_Bow_Grip', 'SOCKET_Cymatic_Projection', 'SOCKET_Grip_Main', 'Scythe_BladeMid', 'Scythe_BladeStart', 'Scythe_BladeTip', 'Scythe_Pommel', 'root']"
+            },
+            {
+              "gate": "uvs_on_every_loop",
+              "ok": true,
+              "detail": "95447 loops, 0 without UVs"
+            },
+            {
+              "gate": "toon_outline_hull_baked",
+              "ok": true,
+              "detail": "4 outline objects"
+            },
+            {
+              "gate": "material_slots_bound",
+              "ok": true,
+              "detail": "12 slots: ['MI_Brass_FiligreeGold', 'MI_Brass_FiligreeGold.001', 'MI_Brass_FiligreeGold_1', 'MI_Brass_FiligreeGold_3', 'MI_HF_Toon_ChimeSnail_LG_Ribbon', 'MI_HF_Toon_Wand_BellChime_Gems', 'MI_HF_Toon_Wand_BellChime_RimGold', 'MI_HF_Toon_Wings_Butterfly_Gems', 'MI_HF_Toon_Wings_Butterfly_Gems.001', 'MI_HF_Toon_Wings_Butterfly_Pearls', 'MI_HF_Toon_Wings_Butterfly_Pearls.001', 'MI_Melusina_Outline_005']"
+            },
+            {
+              "gate": "unit_sanity_cm",
+              "ok": true,
+              "detail": "extent [50.01, 43.54, 137.24] cm"
+            },
+            {
+              "gate": "no_degenerate_faces",
+              "ok": true,
+              "detail": "0 degenerate"
+            },
+            {
+              "gate": "no_nan_coordinates",
+              "ok": true,
+              "detail": "0 nan faces"
+            }
+          ],
+          "ok": true
+        }
+      ],
+      "all_ok": true
+    },
+    "forms": [
+      {
+        "name": "SM_MEL_Wand_Carillon_Caster",
+        "use": "the caster form (shaft + halo + focal gem)",
+        "tris": 30181,
+        "extent_cm": [
+          46.65,
+          43.54,
+          137.24
+        ],
+        "bones": [
+          "root",
+          "SOCKET_Bow_Grip",
+          "SOCKET_Grip_Main",
+          "SOCKET_Cymatic_Projection"
+        ]
+      },
+      {
+        "name": "SM_MEL_Wand_Carillon_Melee",
+        "use": "the melee form (shaft + halo + gem + crescent blade)",
+        "tris": 31165,
+        "extent_cm": [
+          50.01,
+          43.54,
+          137.24
+        ],
+        "bones": [
+          "root",
+          "SOCKET_Bow_Grip",
+          "SOCKET_Grip_Main",
+          "SOCKET_Cymatic_Projection",
+          "Scythe_BladeStart",
+          "Scythe_BladeMid",
+          "Scythe_BladeTip",
+          "Scythe_Pommel"
+        ]
+      }
+    ],
+    "why_skeletal": "UE's STATIC mesh import drops empties, so a static prop cannot carry a socket. The bones are the sockets, and the mesh is weighted to the root, so the runtime reads bone transforms and the melee trace can never be the 42 m arc the shipped asset had (D8).",
+    "shared_shaft": "both forms share the same shaft and the same bone names and rest transforms, so the form change is a HEAD SWAP on one staff - the topology the owner approved."
+  },
+  "offline_vfx": {
+    "status": "OFFLINE VFX, built before Unreal - the content the existing NS systems draw",
+    "rule": "the project's own VFX language: the existing Melodia NS set + the SDF card vocabulary in /Game/Melodia/VFX/Textures/SDF/. No new particle systems, no bespoke materials.",
+    "deliverables": [
+      {
+        "name": "SM_Cymatic_BladeTrailRibbon",
+        "kind": "Niagara ribbon MESH (OBJ + UV manifest)",
+        "path": "Saved/Audit/waveharp/vfx/SM_Cymatic_BladeTrailRibbon.obj",
+        "why": "the ribbon rides the blade's exact forged arc - the same spine the blade geometry was built on - so the trail cannot drift off the cutting edge",
+        "consumer": "NS_Melusina_SwingTrail (a Niagara Ribbon renderer)"
+      },
+      {
+        "name": "T_Cymatic_HaloBloom",
+        "kind": "12-frame flipbook sprite sheet (1024x768, 4 cols, 12 fps)",
+        "path": "Saved/Audit/waveharp/vfx/T_Cymatic_HaloBloom.png",
+        "why": "the focal stone flaring as a sparkle ring expands out of the halo",
+        "consumer": "NS_Melusina_StarPop (the sheet drops into the SDF card family)"
+      }
+    ],
+    "still_ue_side": "the Niagara emitters that consume them (the systems already exist), the SDF MATERIAL instances for the cards if new ones are needed, and the gameplay wiring - all of which are integration, not authoring."
+  },
+  "revised_plan_order": [
+    "0. DONE: hold fix - the instrument is held vertical in the body's frame, calibrated from the live pose, compiled and PIE-measured clear of the torso and head",
+    "1. DONE (audit): the project already owns the instrument language - the GNToys staff family, a 46.6 cm halo orrery head with an Unfold animation, and a transform ribbon. The from-scratch family was demoted; only the blade and the focal gem are new.",
+    "2. DONE (offline): the new parts are forged, both heads are baked and validated (18/18 gates), the COMPLETE WANDS are assembled and validated (8/8 gates each) as skeletal meshes with socket bones, and two offline VFX assets are built (the arc-matched trail ribbon and the halo-bloom flipbook).",
+    "3. NEXT (owner art direction): the halo reads big on a 107 cm shaft; the gem bezel and the blade root collar are still simple; the blade wants its swing plane agreed. Then: the UE import of the two wands with the recorded settings, the head-swap wiring, and the form-select input.",
+    "4. then: bake the authored 180-frame performance into a montage + curves (D3), drive the idle shimmer morphs from the music clock (D4), bake the toon outline into the waveHarp export (D7), make the melee trace read the new blade (D8), retire the bowstring (D2), re-anchor the arrow pivot (D5)"
+  ],
+  "ns_wiring_sheet": {
+    "purpose": "the Niagara work for this weapon is PARAMETER TWEAKING on systems that already exist, not new graphs. This sheet is the whole job: a human opens each system, points it at the asset listed, and sets the listed parameters.",
+    "principle": "no new Niagara systems. Every beat uses an existing NS_Melusina_* system plus the offline content (sprite sheet, ribbon mesh) this lane produced.",
+    "offline_content_available": {
+      "T_Cymatic_HaloBloom": "Saved/Audit/waveharp/vfx/T_Cymatic_HaloBloom.png (12-frame sheet, 1024x768, 4 cols)",
+      "SM_Cymatic_BladeTrailRibbon": "Saved/Audit/waveharp/vfx/SM_Cymatic_BladeTrailRibbon.obj (a Niagara ribbon mesh, arc-matched to the blade)",
+      "SM_MEL_Ribbon_Transform_P100": "the EXISTING transformation ribbon (/Game/Staging/HoudiniForge/MelusinaGNToys/SM_MEL_Ribbon_Transform_P100)"
+    },
+    "beats": [
+      {
+        "beat": "B0 THE SING",
+        "when": "the f10 pluck + resonance bloom",
+        "systems": [
+          "/Game/Melodia/VFX/NS_Melusina_Glint"
+        ],
+        "point_at": "the focal gem on the halo head",
+        "params": {
+          "Spawn Rate": 14,
+          "System Scale": 0.45,
+          "Color": "lilac #7A5CF0",
+          "Lifetime": 0.8
+        },
+        "new_assets": "none"
+      },
+      {
+        "beat": "B1 THE HALO BLOOMS",
+        "when": "the f31 deployment start",
+        "systems": [
+          "/Game/Melodia/VFX/NS_Melusina_ProviderSigil",
+          "/Game/Melodia/VFX/NS_Melusina_StarPop"
+        ],
+        "point_at": [
+          "the halo ring",
+          "the gem"
+        ],
+        "params": {
+          "ProviderSigil Radius": 24,
+          "ProviderSigil Lifetime": 0.6,
+          "StarPop Sprite": "T_Cymatic_HaloBloom (the offline sheet)",
+          "StarPop Frames": "12 @ 12 fps",
+          "StarPop Scale": "0.6 -> 1.4"
+        },
+        "new_assets": "the flipbook sheet (already built) + one MI_SDF instance if the card needs a new tint"
+      },
+      {
+        "beat": "B2 THE UNFURL",
+        "when": "the head swap (f31-f90)",
+        "systems": [
+          "/Game/Melodia/VFX/NS_Melusina_SwingTrail",
+          "/Game/Melodia/VFX/NS_Melusina_Dust"
+        ],
+        "point_at": [
+          "the existing SM_MEL_Ribbon_Transform_P100 mesh",
+          "the halo rim"
+        ],
+        "params": {
+          "SwingTrail Mesh": "SM_MEL_Ribbon_Transform_P100",
+          "SwingTrail Width": 18,
+          "Spawn Rate": 2,
+          "Dust Count": 40
+        },
+        "new_assets": "none"
+      },
+      {
+        "beat": "B3 THE MELEE LOCK",
+        "when": "the melee form is live",
+        "systems": [
+          "/Game/Melodia/VFX/NS_Melusina_SwingTrail"
+        ],
+        "point_at": [
+          "the blade tip bone (Scythe_BladeTip)"
+        ],
+        "params": {
+          "SwingTrail Mesh": "SM_Cymatic_BladeTrailRibbon (the offline ribbon mesh)",
+          "SwingTrail Width": 5,
+          "Spawn Rate": 60,
+          "Color": "warm gold"
+        },
+        "new_assets": "none"
+      },
+      {
+        "beat": "B4 THE CHIME RAIN",
+        "when": "the ambient chime shimmer",
+        "systems": [
+          "/Game/Melodia/VFX/NS_Melusina_Globules",
+          "/Game/Melodia/VFX/NS_Melusina_EntropyDust"
+        ],
+        "point_at": [
+          "the chimes under the halo"
+        ],
+        "params": {
+          "Globules Count": 8,
+          "Lifetime": 2.4,
+          "EntropyDust Count": 20
+        },
+        "new_assets": "none"
+      },
+      {
+        "beat": "THE HIT (existing)",
+        "when": "the blade connects",
+        "systems": [
+          "/Game/Melodia/VFX/NS_Melusina_ImpactBurst",
+          "/Game/Melodia/VFX/NS_Melusina_Ripple"
+        ],
+        "point_at": [
+          "the impact point"
+        ],
+        "params": "unchanged - the existing impact authority stays the owner",
+        "new_assets": "none"
+      }
+    ],
+    "mesh_first_principle": "anything that can be a MESH, is: the gem's inner light is MI_SDF_StarburstGem on a small inner shell (no particles), and the blade trail is a ribbon mesh (no per-particle authoring). Particles are the last resort, not the default.",
+    "sdf_materials_available": [
+      "/Game/_PROJECT/04_Materials/SDF/MI_SDF_StarburstGem",
+      "/Game/_PROJECT/04_Materials/SDF/MI_SDF_GildedFiligree",
+      "/Game/_PROJECT/04_Materials/SDF/MI_SDF_Musical",
+      "/Game/_PROJECT/04_Materials/SDF/MI_SDF_MagicOrb",
+      "/Game/_PROJECT/04_Materials/SDF/MI_SDF_OrnamentLayer",
+      "/Game/_PROJECT/04_Materials/SDF/MI_SDF_MetalShards",
+      "/Game/_PROJECT/04_Materials/SDF/MI_SDF_FloatingNotes",
+      "/Game/_PROJECT/04_Materials/SDF/MI_SDF_CosmicPortal"
+    ],
+    "sdf_textures_available": [
+      "/Game/Melodia/VFX/Textures/SDF/T_SDF_SparkleHalo",
+      "/Game/Melodia/VFX/Textures/SDF/T_SDF_Sparkle6",
+      "/Game/Melodia/VFX/Textures/SDF/T_SDF_StarGlitter",
+      "/Game/Melodia/VFX/Textures/SDF/T_SDF_MusicNote",
+      "/Game/Staging/Aeolian/SDF/T_SDF_Glint4",
+      "/Game/Staging/Aeolian/SDF/T_SDF_Diamond",
+      "/Game/Staging/Aeolian/SDF/T_SDF_KawaiiHeart",
+      "/Game/Staging/Aeolian/SDF/T_SDF_Leaf",
+      "/Game/Staging/Aeolian/SDF/T_SDF_CherryRosette",
+      "/Game/Staging/Aeolian/SDF/T_SDF_SoftDot"
+    ]
+  },
+  "ue_import": {
+    "status": "IMPORTED INTO UNREAL (2026-10-21) - two static meshes in /Game/Melodia/Characters/Melusina/Weapons/WaveHarp/, with the material slots pointed at the CANONICAL project instances (the importer's duplicate MI_* copies were deleted)",
+    "assets": [
+      {
+        "asset": "/Game/Melodia/Characters/Melusina/Weapons/WaveHarp/SM_MEL_Wand_Carillon_Caster",
+        "use": "the caster form (shaft + halo + focal gem)",
+        "tris": 30181,
+        "bounds_cm": [
+          46.65,
+          43.54,
+          137.24
+        ],
+        "material_slots": [
+          "MI_Brass_FiligreeGold",
+          "MI_Brass_FiligreeGold_001",
+          "MI_Brass_FiligreeGold_1",
+          "MI_HF_Toon_ChimeSnail_LG_Ribbon",
+          "MI_HF_Toon_Wand_BellChime_Gems",
+          "MI_HF_Toon_Wings_Butterfly_Pearls",
+          "MI_Melusina_Outline_005"
+        ]
+      },
+      {
+        "asset": "/Game/Melodia/Characters/Melusina/Weapons/WaveHarp/SM_MEL_Wand_Carillon_Melee",
+        "use": "the melee form (shaft + halo + gem + crescent blade)",
+        "tris": 31165,
+        "bounds_cm": [
+          50.01,
+          43.54,
+          137.24
+        ],
+        "material_slots": [
+          "MI_Brass_FiligreeGold",
+          "MI_Brass_FiligreeGold_001",
+          "MI_Brass_FiligreeGold_1",
+          "MI_HF_Toon_ChimeSnail_LG_Ribbon",
+          "MI_HF_Toon_Wand_BellChime_Gems",
+          "MI_HF_Toon_Wand_BellChime_RimGold",
+          "MI_HF_Toon_Wings_Butterfly_Pearls",
+          "MI_Melusina_Outline_005"
+        ]
+      }
+    ],
+    "sockets_are_local_offsets": {
+      "why": "Blender's FBX ARMATURE export is unit-path-unsafe in UE: MEASURED, the importer applies an extra x100 to the bones while the mesh is converted by the unit path, so a skeleton import lands the sockets 100x out (or 1/100x with a different global_scale). Rather than fight it, the wand ships as a STATIC mesh and the sockets are LOCAL OFFSETS authored by the forge.",
+      "offsets_cm": {
+        "SM_MEL_Wand_Carillon_Caster.fbx": {
+          "SOCKET_Bow_Grip": [
+            0.0,
+            0.0,
+            13.0
+          ],
+          "SOCKET_Grip_Main": [
+            0.0,
+            0.0,
+            13.0
+          ],
+          "SOCKET_Cymatic_Projection": [
+            0.0,
+            0.0,
+            121.0
+          ],
+          "Scythe_Pommel": [
+            0.0,
+            0.0,
+            -1.6
+          ]
+        },
+        "SM_MEL_Wand_Carillon_Melee.fbx": {
+          "SOCKET_Bow_Grip": [
+            0.0,
+            0.0,
+            13.0
+          ],
+          "SOCKET_Grip_Main": [
+            0.0,
+            0.0,
+            13.0
+          ],
+          "SOCKET_Cymatic_Projection": [
+            0.0,
+            0.0,
+            121.0
+          ],
+          "Scythe_Pommel": [
+            0.0,
+            0.0,
+            -1.6
+          ],
+          "Scythe_BladeStart": [
+            21.9,
+            0.0,
+            17.0
+          ],
+          "Scythe_BladeMid": [
+            37.08,
+            0.0,
+            -0.52
+          ],
+          "Scythe_BladeTip": [
+            32.77,
+            0.0,
+            -22.51
+          ]
+        }
+      },
+      "runtime_use": "the component carries these as FVector properties; the melee trace is the weapon's world transform x the offset, so the trace provably follows the blade's forged arc (closes D8)."
+    },
+    "lessons": [
+      "Blender FBX armature -> UE: the bone path is not unit-safe (extra x100 measured). Export static and carry the sockets as offsets.",
+      "UE's STATIC FBX import creates ONE mesh per FBX node - 'combine_meshes' does not combine static meshes. JOIN the parts on the export side.",
+      "Export with mesh_smooth_type='FACE' or UE warns 'No smoothing group information'.",
+      "The FBX importer creates duplicate MI_* instances when the canonical material lives in another folder - point the slots at the originals and delete the copies.",
+      "Monolith's HTTP responses can be DROPPED (socket_send_failure) - a silent call may still have succeeded. Verify with the asset registry, not the response body."
+    ],
+    "incident": "during the cleanup an incomplete keep-list DELETED the shipped SK_ME_WaveHarp_Scythe and SK_ME_WaveHarp_Skeleton. Both were restored immediately from git (15.83 MB and 0.02 MB, verified) and the tree is clean. Lesson: enumerate the folder and allow-list EVERY shipped asset before any bulk delete; a missing entry in a keep-list is a deletion.",
+    "still_ue_side": [
+      "the head swap + the form-select input (C++, build owed)",
+      "the socket offsets wired onto the component",
+      "the Niagara parameter work (the wiring sheet - human)",
+      "the in-UE look check against the real MI_HF_Toon_* materials"
+    ]
+  }
+}

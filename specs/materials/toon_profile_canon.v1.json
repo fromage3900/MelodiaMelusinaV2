@@ -1,0 +1,146 @@
+{
+  "schema": "melodia.toon_profile_canon.v1",
+  "status": "PROPOSED - needs one visual A/B against hero assets before any re-assignment",
+  "supersedes": "specs/materials/toon_preset_stack.v1.json (withdrawn - it proposed a parallel MI mechanism)",
+  "principle": "ONE look mechanism, already in the project: the ToonProfile. The masters are Substrate Toon (MaterialExpressionSubstrateToonBSDF_*) and each master holds a ToonProfile reference, so the look is DATA and one profile edit re-looks everything that inherits it. No new masters, no parallel preset instances, no second palette.",
+  "where_the_look_actually_lives": [
+    {
+      "layer": "graph",
+      "owner": "the master material",
+      "content": "the Material Function vocabulary (grade / style / functional) + the Substrate Toon BSDF"
+    },
+    {
+      "layer": "profile",
+      "owner": "the ToonProfile asset",
+      "content": "DiffuseRamp, SpecularIndirectRamp, ShadowExtinctionCoefficient, ShadowHatchingPattern*, *IndirectScale, ColorCurves"
+    },
+    {
+      "layer": "palette",
+      "owner": "MPC_Melodia_Palette (single C++ writer)",
+      "content": "Melusina_RoseGold, R1999_Gold, R1999_Ivory, Melusina_InkNavy, BeatPulse, ShadowDreamBias, RimWarmth, PaletteTint"
+    },
+    {
+      "layer": "per-asset",
+      "owner": "the material instance",
+      "content": "colour, texture set, tiling, per-asset hue nudge - and nothing else"
+    }
+  ],
+  "canon_profile_set": [
+    {
+      "profile": "TP_Melusina",
+      "role": "the hero / world default (already assigned to M_Master_Toon_Universal)",
+      "canon_values": {
+        "DiffuseRamp": "warm-violet #352D40 family warmth + melancholic depth (as authored)",
+        "ShadowExtinctionCoefficient": "tune so shadows read PLUM, never black",
+        "DiffuseIndirectScale": "low - no lifted 'dream' shadow"
+      }
+    },
+    {
+      "profile": "TP_Stone",
+      "role": "Poitou limestone, the abbey, the lanes"
+    },
+    {
+      "profile": "TP_Stucco",
+      "role": "plaster / render"
+    },
+    {
+      "profile": "TP_Gold",
+      "role": "gilding, filigree, brass"
+    },
+    {
+      "profile": "TP_Glass",
+      "role": "crystal, chime glass, the focal gem"
+    },
+    {
+      "profile": "TP_Hero",
+      "role": "Melusina's body and outfit (character tier)"
+    },
+    {
+      "profile": "TP_Water",
+      "role": "the canal"
+    },
+    {
+      "profile": "TP_Wood",
+      "role": "the piano, shutters, furniture"
+    },
+    {
+      "profile": "TP_Foliage",
+      "role": "the orchard and the marsh"
+    }
+  ],
+  "retire_from_assignment": {
+    "profiles": [
+      "TP_NikkiDream",
+      "TP_Impressionist_Dry",
+      "TP_Impressionist_Impasto",
+      "TP_Impressionist_Wet",
+      "TP_Iridescent_Flow",
+      "TP_Iridescent_Foam",
+      "TP_Iridescent_Scales",
+      "TP_Simple_*",
+      "TP_TwoTone",
+      "TP_Hatched",
+      "TP_Cool",
+      "TP_Warm",
+      "TP_Cosmic",
+      "TP_Default",
+      "TP_Ornamental"
+    ],
+    "why": "they are 15 redirects into the third-party _304FilmSpine pack, and they are where the 'shadow dream' look comes from. KEEP the assets (the Musical Dream biome family and the author_musical_dream_mis.py output still point through them); just stop assigning them to the canon masters.",
+    "not_retired": [
+      "MF_NikkiDreamGrade stays the single grade function - re-preset, do not rip out",
+      "MF_Impressionist_Impasto stays available for a painterly tier",
+      "MF_Madoka / MF_Itto are the other stylistic families - stop inheriting them"
+    ]
+  },
+  "palette_canon": {
+    "single_authority": "MPC_Melodia_Palette",
+    "retire": "MPC_Portfolio_Palette (second authority, written by a one-off script)",
+    "changes": [
+      {
+        "parameter": "ShadowDreamBias",
+        "from": "non-zero",
+        "to": "0",
+        "why": "it is the literal 'shadow dream' and it is not consumed by the toon master today"
+      },
+      {
+        "parameter": "shadow side",
+        "from": "Melusina_InkNavy / Melusina_DeepTeal",
+        "to": "a plum",
+        "why": "the identity canon; plum shadows are a genre convention, not a hack (OSS toon references do the same)"
+      },
+      {
+        "parameter": "ambient bounce",
+        "from": "absent",
+        "to": "add a lilac parameter",
+        "why": "the identity canon's lilac; lilac is currently missing from the palette entirely"
+      }
+    ],
+    "do_not": [
+      "add a second palette MPC",
+      "let an MI override a palette-driven value",
+      "let an instance override Cymatic_BeatPulse / Cymatic_EmissiveScale - MPC_Cymatics_Driver owns those"
+    ]
+  },
+  "gate": {
+    "extend": "Content/Python/check_toon_profile.py (the project already has this tool - do not create a parallel one)",
+    "checks": [
+      "M_Master_Toon_Universal resolves to TP_Melusina",
+      "no canon master resolves to a _304FilmSpine profile",
+      "no MI overrides a palette-driven parameter",
+      "MPC_Melodia_Palette: ShadowDreamBias == 0",
+      "exactly one palette MPC is written by C++"
+    ]
+  },
+  "rollout": [
+    "1. the owner edits ONE profile (TP_Melusina) and the three MPC values, then looks at 3-4 hero assets",
+    "2. re-point the few materials that actually need a different tier onto the canon profile set",
+    "3. re-parent nothing; most assets inherit the master profile already",
+    "4. wire the gate into the convergence checklist"
+  ],
+  "evidence": {
+    "census": "Saved/Audit/material_presets/material_census.json",
+    "vocabulary": "Saved/Audit/material_presets/toon_master_vocabulary.json",
+    "profile_census": "Saved/Audit/material_presets/toon_profile_census.json"
+  }
+}

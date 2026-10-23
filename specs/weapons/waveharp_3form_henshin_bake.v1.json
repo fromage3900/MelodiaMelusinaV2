@@ -1,0 +1,6182 @@
+{
+  "id": "waveharp_3form_henshin_bake",
+  "version": "1.0.0",
+  "created": "2026-10-21",
+  "status": "specified_not_implemented",
+  "summary": "Contract for baking Melusina's WaveHarp 3-form transformation into an authored Henshin animation, and the measured defect list for the three forms.",
+  "subject": {
+    "source_rig": "RawArt/MelusinaArcherHarp/ME_WaveHarp_Rev08_UEAxisRibbonFix.blend",
+    "source_rig_edit_policy": "read-only; never save the source blend",
+    "ue_assets": [
+      "/Game/Melodia/Characters/Melusina/Weapons/WaveHarp/SK_ME_WaveHarp",
+      "/Game/Melodia/Characters/Melusina/Weapons/WaveHarp/SK_ME_WaveHarp_Scythe"
+    ],
+    "runtime_owner": "UMelodiaWaveHarpCombatComponent (Source/BS_GodFile/MelodiaIntegration)",
+    "ue_assets_rest_bounds_cm": {
+      "min": [
+        -8.249,
+        -5.742,
+        -13.947
+      ],
+      "max": [
+        23.45,
+        2.21,
+        100.0
+      ],
+      "extent": [
+        31.699,
+        7.952,
+        113.947
+      ],
+      "note": "measured via Monolith mesh.get_mesh_bounds; 113.95 cm tall"
+    },
+    "morph_targets": 36,
+    "vertices": 21749
+  },
+  "corrections": [
+    {
+      "claim": "2026-10-17 CURRENT_STATE: 'bounds_extent = [15.85, 3.98, 56.97] cm in UE'",
+      "truth": "[31.70, 7.95, 113.95] cm rest bounds for SK_ME_WaveHarp and SK_ME_WaveHarp_Scythe",
+      "impact": "the Oct-17 scythe figure is 2x too small; do not quote it as the asset size"
+    },
+    {
+      "claim": "the 3-form contact sheet is visual evidence of the three forms",
+      "truth": "it is a matplotlib schematic of vertex positions, not a render",
+      "impact": "use Saved/Staging/WaveHarp_BlenderStudy_20261021/form_form*.png instead"
+    }
+  ],
+  "source_rig": {
+    "object_count": 256,
+    "mesh_objects": 122,
+    "armatures": 0,
+    "drivers": 237,
+    "control_empty": "ME_WaveHarp_CTRL_Functions",
+    "control_properties": {
+      "Transform": 0.0,
+      "Draw": 0.0,
+      "Release": 0.0,
+      "Pluck": 0.0,
+      "SecondaryMotion": 1.0,
+      "Resonance": 0,
+      "OutlineWidth": 0.00115,
+      "OutlineEnabled": true
+    },
+    "control_property_meaning": {
+      "Transform": "harp <-> bow deployment (grip migration, 0..1)",
+      "Draw": "string tension / draw amount",
+      "Release": "release / reel-out",
+      "Pluck": "string pluck excitation",
+      "SecondaryMotion": "sway + pluck + vibrate master",
+      "Resonance": "resonance crystal breathe + overtone",
+      "OutlineWidth": "toon outline hull width",
+      "OutlineEnabled": "toon outline hull on/off"
+    },
+    "collections": {
+      "ME_WaveHarp_Transformation": "deployment rig (split sleeves, lock pin, cartridge, nocks, arrow)",
+      "ME_WaveHarp_Assemblies": "grip hardware + resonance crystal core",
+      "ME_WaveHarp_Strings": "7 harp strings",
+      "ME_WaveHarp_Ornament": "29 ornaments",
+      "ME_WaveHarp_Sockets": "7 socket empties",
+      "ME_WaveHarp_FLIP_48Frames_NC": "48 water-sim frames (not exported, not the weapon)"
+    },
+    "transform_semantics": {
+      "statement": "Transform is a grip migration, not a weapon swap",
+      "grip_main_start_cm": [
+        -7.75,
+        0.0,
+        0.0
+      ],
+      "grip_main_end_cm": [
+        0.0,
+        0.0,
+        53.5
+      ],
+      "grip_travel_cm": [
+        7.7,
+        0.0,
+        53.5
+      ],
+      "grip_travel_length_cm": 54.051,
+      "bow_grip_socket_static_cm": [
+        0.0,
+        0.0,
+        53.5
+      ],
+      "consequence": "the weapon mesh folds around a fixed hand; the hand slide of 53.5 cm must be authored in the CHARACTER animation, not in the weapon asset"
+    },
+    "shape_key_drivers": [
+      {
+        "key": "Reel_In",
+        "expr": "t",
+        "vars": [
+          "t",
+          "d",
+          "r",
+          "p",
+          "m",
+          "q",
+          "w",
+          "en"
+        ]
+      },
+      {
+        "key": "Pluck",
+        "expr": "p*(1-t)*sin(frame*1.9300000000000002)",
+        "vars": [
+          "t",
+          "d",
+          "r",
+          "p",
+          "m",
+          "q",
+          "w",
+          "en"
+        ]
+      },
+      {
+        "key": "Vibrate_Overtone",
+        "expr": "p*(1-t)*sin(frame*3.4899999999999998)",
+        "vars": [
+          "t",
+          "d",
+          "r",
+          "p",
+          "m",
+          "q",
+          "w",
+          "en"
+        ]
+      },
+      {
+        "key": "Draw",
+        "expr": "d*(1-r)",
+        "vars": [
+          "t",
+          "d",
+          "r",
+          "p",
+          "m",
+          "q",
+          "w",
+          "en"
+        ]
+      },
+      {
+        "key": "Bow_Deployment",
+        "expr": "t",
+        "vars": [
+          "t",
+          "d",
+          "r",
+          "p",
+          "m",
+          "q",
+          "w",
+          "en"
+        ]
+      },
+      {
+        "key": "Flex_Draw",
+        "expr": "t*d*(1-r)",
+        "vars": [
+          "t",
+          "d",
+          "r",
+          "p",
+          "m",
+          "q",
+          "w",
+          "en"
+        ]
+      },
+      {
+        "key": "Sway_Pos",
+        "expr": "m*(1-t)*max(0,1*sin(frame*.16+0.0))",
+        "vars": [
+          "t",
+          "d",
+          "r",
+          "p",
+          "m",
+          "q",
+          "w",
+          "en"
+        ]
+      },
+      {
+        "key": "Sway_Neg",
+        "expr": "m*(1-t)*max(0,-1*sin(frame*.16+0.0))",
+        "vars": [
+          "t",
+          "d",
+          "r",
+          "p",
+          "m",
+          "q",
+          "w",
+          "en"
+        ]
+      },
+      {
+        "key": "Resonance_Breathe",
+        "expr": "q*(.65+.35*sin(frame*.32))",
+        "vars": [
+          "t",
+          "d",
+          "r",
+          "p",
+          "m",
+          "q",
+          "w",
+          "en"
+        ]
+      }
+    ]
+  },
+  "authored_performance": {
+    "action": "ME_WaveHarp_CTRL_FunctionsAction",
+    "frame_range": [
+      1.0,
+      180.0
+    ],
+    "fps_assumed": 30,
+    "duration_seconds": 5.967,
+    "keyframe_curves": {
+      "[\"Transform\"]": [
+        {
+          "frame": 1.0,
+          "value": 0.0,
+          "interp": "BEZIER"
+        },
+        {
+          "frame": 15.0,
+          "value": 0.0,
+          "interp": "BEZIER"
+        },
+        {
+          "frame": 20.0,
+          "value": 0.0,
+          "interp": "BEZIER"
+        },
+        {
+          "frame": 30.0,
+          "value": 0.0,
+          "interp": "BEZIER"
+        },
+        {
+          "frame": 60.0,
+          "value": 0.5,
+          "interp": "BEZIER"
+        },
+        {
+          "frame": 90.0,
+          "value": 1.0,
+          "interp": "BEZIER"
+        },
+        {
+          "frame": 110.0,
+          "value": 1.0,
+          "interp": "BEZIER"
+        },
+        {
+          "frame": 140.0,
+          "value": 1.0,
+          "interp": "BEZIER"
+        },
+        {
+          "frame": 145.0,
+          "value": 1.0,
+          "interp": "BEZIER"
+        },
+        {
+          "frame": 154.0,
+          "value": 1.0,
+          "interp": "BEZIER"
+        },
+        {
+          "frame": 180.0,
+          "value": 1.0,
+          "interp": "BEZIER"
+        }
+      ],
+      "[\"Draw\"]": [
+        {
+          "frame": 1.0,
+          "value": 0.0,
+          "interp": "BEZIER"
+        },
+        {
+          "frame": 15.0,
+          "value": 0.0,
+          "interp": "BEZIER"
+        },
+        {
+          "frame": 20.0,
+          "value": 0.0,
+          "interp": "BEZIER"
+        },
+        {
+          "frame": 30.0,
+          "value": 0.0,
+          "interp": "BEZIER"
+        },
+        {
+          "frame": 60.0,
+          "value": 0.0,
+          "interp": "BEZIER"
+        },
+        {
+          "frame": 90.0,
+          "value": 0.0,
+          "interp": "BEZIER"
+        },
+        {
+          "frame": 110.0,
+          "value": 0.0,
+          "interp": "BEZIER"
+        },
+        {
+          "frame": 140.0,
+          "value": 1.0,
+          "interp": "BEZIER"
+        },
+        {
+          "frame": 145.0,
+          "value": 1.0,
+          "interp": "BEZIER"
+        },
+        {
+          "frame": 154.0,
+          "value": 1.0,
+          "interp": "BEZIER"
+        },
+        {
+          "frame": 180.0,
+          "value": 0.0,
+          "interp": "BEZIER"
+        }
+      ],
+      "[\"Release\"]": [
+        {
+          "frame": 1.0,
+          "value": 0.0,
+          "interp": "BEZIER"
+        },
+        {
+          "frame": 15.0,
+          "value": 0.0,
+          "interp": "BEZIER"
+        },
+        {
+          "frame": 20.0,
+          "value": 0.0,
+          "interp": "BEZIER"
+        },
+        {
+          "frame": 30.0,
+          "value": 0.0,
+          "interp": "BEZIER"
+        },
+        {
+          "frame": 60.0,
+          "value": 0.0,
+          "interp": "BEZIER"
+        },
+        {
+          "frame": 90.0,
+          "value": 0.0,
+          "interp": "BEZIER"
+        },
+        {
+          "frame": 110.0,
+          "value": 0.0,
+          "interp": "BEZIER"
+        },
+        {
+          "frame": 140.0,
+          "value": 0.0,
+          "interp": "BEZIER"
+        },
+        {
+          "frame": 145.0,
+          "value": 0.0,
+          "interp": "BEZIER"
+        },
+        {
+          "frame": 154.0,
+          "value": 1.0,
+          "interp": "BEZIER"
+        },
+        {
+          "frame": 180.0,
+          "value": 1.0,
+          "interp": "BEZIER"
+        }
+      ],
+      "[\"Pluck\"]": [
+        {
+          "frame": 1.0,
+          "value": 0.0,
+          "interp": "BEZIER"
+        },
+        {
+          "frame": 15.0,
+          "value": 1.0,
+          "interp": "BEZIER"
+        },
+        {
+          "frame": 20.0,
+          "value": 0.0,
+          "interp": "BEZIER"
+        },
+        {
+          "frame": 30.0,
+          "value": 0.0,
+          "interp": "BEZIER"
+        },
+        {
+          "frame": 60.0,
+          "value": 0.0,
+          "interp": "BEZIER"
+        },
+        {
+          "frame": 90.0,
+          "value": 0.0,
+          "interp": "BEZIER"
+        },
+        {
+          "frame": 110.0,
+          "value": 0.0,
+          "interp": "BEZIER"
+        },
+        {
+          "frame": 140.0,
+          "value": 0.0,
+          "interp": "BEZIER"
+        },
+        {
+          "frame": 145.0,
+          "value": 0.0,
+          "interp": "BEZIER"
+        },
+        {
+          "frame": 154.0,
+          "value": 0.0,
+          "interp": "BEZIER"
+        },
+        {
+          "frame": 180.0,
+          "value": 0.0,
+          "interp": "BEZIER"
+        }
+      ],
+      "[\"Resonance\"]": [
+        {
+          "frame": 1.0,
+          "value": 0.0,
+          "interp": "LINEAR"
+        },
+        {
+          "frame": 15.0,
+          "value": 0.8,
+          "interp": "LINEAR"
+        },
+        {
+          "frame": 25.0,
+          "value": 0.0,
+          "interp": "LINEAR"
+        },
+        {
+          "frame": 110.0,
+          "value": 0.2,
+          "interp": "LINEAR"
+        },
+        {
+          "frame": 140.0,
+          "value": 1.0,
+          "interp": "LINEAR"
+        },
+        {
+          "frame": 154.0,
+          "value": 0.3,
+          "interp": "LINEAR"
+        },
+        {
+          "frame": 180.0,
+          "value": 0.0,
+          "interp": "LINEAR"
+        }
+      ]
+    },
+    "phases": [
+      {
+        "name": "anticipation_sing",
+        "frames": [
+          1,
+          30
+        ],
+        "detail": "T=0 hold; Pluck spike 0.708 and Resonance 1.0 at f10 (instrument sings)"
+      },
+      {
+        "name": "deployment",
+        "frames": [
+          31,
+          90
+        ],
+        "detail": "eased T 0->1, max rate 0.025/frame, peak at f60; grip slides 53.5 cm in lockstep"
+      },
+      {
+        "name": "deployed_hold",
+        "frames": [
+          90,
+          130
+        ],
+        "detail": "T=1"
+      },
+      {
+        "name": "draw",
+        "frames": [
+          130,
+          145
+        ],
+        "detail": "Draw 0->1, Resonance 1.0"
+      },
+      {
+        "name": "release",
+        "frames": [
+          150,
+          154
+        ],
+        "detail": "Release 0->1"
+      },
+      {
+        "name": "relax",
+        "frames": [
+          154,
+          180
+        ],
+        "detail": "Draw 1->0, Resonance -> 0"
+      }
+    ],
+    "sampled_per_frame": [
+      {
+        "frame": 1,
+        "Transform": 0.0,
+        "Draw": 0.0,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          -7.75,
+          0.0,
+          0.0
+        ],
+        "grip_secondary_cm": [
+          -1.9,
+          0.0,
+          24.2
+        ]
+      },
+      {
+        "frame": 2,
+        "Transform": 0.0,
+        "Draw": 0.0,
+        "Release": 0.0,
+        "Pluck": 0.01458,
+        "Resonance": 0.0,
+        "grip_cm": [
+          -7.75,
+          0.0,
+          0.0
+        ],
+        "grip_secondary_cm": [
+          -1.9,
+          0.0,
+          24.2
+        ]
+      },
+      {
+        "frame": 3,
+        "Transform": 0.0,
+        "Draw": 0.0,
+        "Release": 0.0,
+        "Pluck": 0.05539,
+        "Resonance": 0.0,
+        "grip_cm": [
+          -7.75,
+          0.0,
+          0.0
+        ],
+        "grip_secondary_cm": [
+          -1.9,
+          0.0,
+          24.2
+        ]
+      },
+      {
+        "frame": 4,
+        "Transform": 0.0,
+        "Draw": 0.0,
+        "Release": 0.0,
+        "Pluck": 0.11808,
+        "Resonance": 0.0,
+        "grip_cm": [
+          -7.75,
+          0.0,
+          0.0
+        ],
+        "grip_secondary_cm": [
+          -1.9,
+          0.0,
+          24.2
+        ]
+      },
+      {
+        "frame": 5,
+        "Transform": 0.0,
+        "Draw": 0.0,
+        "Release": 0.0,
+        "Pluck": 0.19825,
+        "Resonance": 0.0,
+        "grip_cm": [
+          -7.75,
+          0.0,
+          0.0
+        ],
+        "grip_secondary_cm": [
+          -1.9,
+          0.0,
+          24.2
+        ]
+      },
+      {
+        "frame": 6,
+        "Transform": 0.0,
+        "Draw": 0.0,
+        "Release": 0.0,
+        "Pluck": 0.29155,
+        "Resonance": 0.0,
+        "grip_cm": [
+          -7.75,
+          0.0,
+          0.0
+        ],
+        "grip_secondary_cm": [
+          -1.9,
+          0.0,
+          24.2
+        ]
+      },
+      {
+        "frame": 7,
+        "Transform": 0.0,
+        "Draw": 0.0,
+        "Release": 0.0,
+        "Pluck": 0.39359,
+        "Resonance": 0.0,
+        "grip_cm": [
+          -7.75,
+          0.0,
+          0.0
+        ],
+        "grip_secondary_cm": [
+          -1.9,
+          0.0,
+          24.2
+        ]
+      },
+      {
+        "frame": 8,
+        "Transform": 0.0,
+        "Draw": 0.0,
+        "Release": 0.0,
+        "Pluck": 0.5,
+        "Resonance": 0.0,
+        "grip_cm": [
+          -7.75,
+          0.0,
+          0.0
+        ],
+        "grip_secondary_cm": [
+          -1.9,
+          0.0,
+          24.2
+        ]
+      },
+      {
+        "frame": 9,
+        "Transform": 0.0,
+        "Draw": 0.0,
+        "Release": 0.0,
+        "Pluck": 0.60641,
+        "Resonance": 0.0,
+        "grip_cm": [
+          -7.75,
+          0.0,
+          0.0
+        ],
+        "grip_secondary_cm": [
+          -1.9,
+          0.0,
+          24.2
+        ]
+      },
+      {
+        "frame": 10,
+        "Transform": 0.0,
+        "Draw": 0.0,
+        "Release": 0.0,
+        "Pluck": 0.70845,
+        "Resonance": 1.0,
+        "grip_cm": [
+          -7.75,
+          0.0,
+          0.0
+        ],
+        "grip_secondary_cm": [
+          -1.9,
+          0.0,
+          24.2
+        ]
+      },
+      {
+        "frame": 11,
+        "Transform": 0.0,
+        "Draw": 0.0,
+        "Release": 0.0,
+        "Pluck": 0.80175,
+        "Resonance": 1.0,
+        "grip_cm": [
+          -7.75,
+          0.0,
+          0.0
+        ],
+        "grip_secondary_cm": [
+          -1.9,
+          0.0,
+          24.2
+        ]
+      },
+      {
+        "frame": 12,
+        "Transform": 0.0,
+        "Draw": 0.0,
+        "Release": 0.0,
+        "Pluck": 0.88192,
+        "Resonance": 1.0,
+        "grip_cm": [
+          -7.75,
+          0.0,
+          0.0
+        ],
+        "grip_secondary_cm": [
+          -1.9,
+          0.0,
+          24.2
+        ]
+      },
+      {
+        "frame": 13,
+        "Transform": 0.0,
+        "Draw": 0.0,
+        "Release": 0.0,
+        "Pluck": 0.94461,
+        "Resonance": 1.0,
+        "grip_cm": [
+          -7.75,
+          0.0,
+          0.0
+        ],
+        "grip_secondary_cm": [
+          -1.9,
+          0.0,
+          24.2
+        ]
+      },
+      {
+        "frame": 14,
+        "Transform": 0.0,
+        "Draw": 0.0,
+        "Release": 0.0,
+        "Pluck": 0.98542,
+        "Resonance": 1.0,
+        "grip_cm": [
+          -7.75,
+          0.0,
+          0.0
+        ],
+        "grip_secondary_cm": [
+          -1.9,
+          0.0,
+          24.2
+        ]
+      },
+      {
+        "frame": 15,
+        "Transform": 0.0,
+        "Draw": 0.0,
+        "Release": 0.0,
+        "Pluck": 1.0,
+        "Resonance": 1.0,
+        "grip_cm": [
+          -7.75,
+          0.0,
+          0.0
+        ],
+        "grip_secondary_cm": [
+          -1.9,
+          0.0,
+          24.2
+        ]
+      },
+      {
+        "frame": 16,
+        "Transform": 0.0,
+        "Draw": 0.0,
+        "Release": 0.0,
+        "Pluck": 0.896,
+        "Resonance": 1.0,
+        "grip_cm": [
+          -7.75,
+          0.0,
+          0.0
+        ],
+        "grip_secondary_cm": [
+          -1.9,
+          0.0,
+          24.2
+        ]
+      },
+      {
+        "frame": 17,
+        "Transform": 0.0,
+        "Draw": 0.0,
+        "Release": 0.0,
+        "Pluck": 0.648,
+        "Resonance": 1.0,
+        "grip_cm": [
+          -7.75,
+          0.0,
+          0.0
+        ],
+        "grip_secondary_cm": [
+          -1.9,
+          0.0,
+          24.2
+        ]
+      },
+      {
+        "frame": 18,
+        "Transform": 0.0,
+        "Draw": 0.0,
+        "Release": 0.0,
+        "Pluck": 0.352,
+        "Resonance": 1.0,
+        "grip_cm": [
+          -7.75,
+          0.0,
+          0.0
+        ],
+        "grip_secondary_cm": [
+          -1.9,
+          0.0,
+          24.2
+        ]
+      },
+      {
+        "frame": 19,
+        "Transform": 0.0,
+        "Draw": 0.0,
+        "Release": 0.0,
+        "Pluck": 0.104,
+        "Resonance": 0.0,
+        "grip_cm": [
+          -7.75,
+          0.0,
+          0.0
+        ],
+        "grip_secondary_cm": [
+          -1.9,
+          0.0,
+          24.2
+        ]
+      },
+      {
+        "frame": 20,
+        "Transform": 0.0,
+        "Draw": 0.0,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          -7.75,
+          0.0,
+          0.0
+        ],
+        "grip_secondary_cm": [
+          -1.9,
+          0.0,
+          24.2
+        ]
+      },
+      {
+        "frame": 21,
+        "Transform": 0.0,
+        "Draw": 0.0,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          -7.75,
+          0.0,
+          0.0
+        ],
+        "grip_secondary_cm": [
+          -1.9,
+          0.0,
+          24.2
+        ]
+      },
+      {
+        "frame": 22,
+        "Transform": 0.0,
+        "Draw": 0.0,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          -7.75,
+          0.0,
+          0.0
+        ],
+        "grip_secondary_cm": [
+          -1.9,
+          0.0,
+          24.2
+        ]
+      },
+      {
+        "frame": 23,
+        "Transform": 0.0,
+        "Draw": 0.0,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          -7.75,
+          0.0,
+          0.0
+        ],
+        "grip_secondary_cm": [
+          -1.9,
+          0.0,
+          24.2
+        ]
+      },
+      {
+        "frame": 24,
+        "Transform": 0.0,
+        "Draw": 0.0,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          -7.75,
+          0.0,
+          0.0
+        ],
+        "grip_secondary_cm": [
+          -1.9,
+          0.0,
+          24.2
+        ]
+      },
+      {
+        "frame": 25,
+        "Transform": 0.0,
+        "Draw": 0.0,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          -7.75,
+          0.0,
+          0.0
+        ],
+        "grip_secondary_cm": [
+          -1.9,
+          0.0,
+          24.2
+        ]
+      },
+      {
+        "frame": 26,
+        "Transform": 0.0,
+        "Draw": 0.0,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          -7.75,
+          0.0,
+          0.0
+        ],
+        "grip_secondary_cm": [
+          -1.9,
+          0.0,
+          24.2
+        ]
+      },
+      {
+        "frame": 27,
+        "Transform": 0.0,
+        "Draw": 0.0,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          -7.75,
+          0.0,
+          0.0
+        ],
+        "grip_secondary_cm": [
+          -1.9,
+          0.0,
+          24.2
+        ]
+      },
+      {
+        "frame": 28,
+        "Transform": 0.0,
+        "Draw": 0.0,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          -7.75,
+          0.0,
+          0.0
+        ],
+        "grip_secondary_cm": [
+          -1.9,
+          0.0,
+          24.2
+        ]
+      },
+      {
+        "frame": 29,
+        "Transform": 0.0,
+        "Draw": 0.0,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          -7.75,
+          0.0,
+          0.0
+        ],
+        "grip_secondary_cm": [
+          -1.9,
+          0.0,
+          24.2
+        ]
+      },
+      {
+        "frame": 30,
+        "Transform": 0.0,
+        "Draw": 0.0,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          -7.75,
+          0.0,
+          0.0
+        ],
+        "grip_secondary_cm": [
+          -1.9,
+          0.0,
+          24.2
+        ]
+      },
+      {
+        "frame": 31,
+        "Transform": 0.00082,
+        "Draw": 0.0,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          -7.74,
+          0.0,
+          0.04
+        ],
+        "grip_secondary_cm": [
+          -1.9,
+          0.0,
+          24.23
+        ]
+      },
+      {
+        "frame": 32,
+        "Transform": 0.00326,
+        "Draw": 0.0,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          -7.72,
+          0.0,
+          0.17
+        ],
+        "grip_secondary_cm": [
+          -1.89,
+          0.0,
+          24.32
+        ]
+      },
+      {
+        "frame": 33,
+        "Transform": 0.00725,
+        "Draw": 0.0,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          -7.69,
+          0.0,
+          0.39
+        ],
+        "grip_secondary_cm": [
+          -1.89,
+          0.0,
+          24.46
+        ]
+      },
+      {
+        "frame": 34,
+        "Transform": 0.01274,
+        "Draw": 0.0,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          -7.65,
+          0.0,
+          0.68
+        ],
+        "grip_secondary_cm": [
+          -1.88,
+          0.0,
+          24.66
+        ]
+      },
+      {
+        "frame": 35,
+        "Transform": 0.01968,
+        "Draw": 0.0,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          -7.6,
+          0.0,
+          1.05
+        ],
+        "grip_secondary_cm": [
+          -1.86,
+          0.0,
+          24.9
+        ]
+      },
+      {
+        "frame": 36,
+        "Transform": 0.028,
+        "Draw": 0.0,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          -7.53,
+          0.0,
+          1.5
+        ],
+        "grip_secondary_cm": [
+          -1.85,
+          0.0,
+          25.2
+        ]
+      },
+      {
+        "frame": 37,
+        "Transform": 0.03766,
+        "Draw": 0.0,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          -7.46,
+          0.0,
+          2.01
+        ],
+        "grip_secondary_cm": [
+          -1.83,
+          0.0,
+          25.55
+        ]
+      },
+      {
+        "frame": 38,
+        "Transform": 0.04859,
+        "Draw": 0.0,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          -7.37,
+          0.0,
+          2.6
+        ],
+        "grip_secondary_cm": [
+          -1.81,
+          0.0,
+          25.94
+        ]
+      },
+      {
+        "frame": 39,
+        "Transform": 0.06075,
+        "Draw": 0.0,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          -7.28,
+          0.0,
+          3.25
+        ],
+        "grip_secondary_cm": [
+          -1.78,
+          0.0,
+          26.37
+        ]
+      },
+      {
+        "frame": 40,
+        "Transform": 0.07407,
+        "Draw": 0.0,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          -7.18,
+          0.0,
+          3.96
+        ],
+        "grip_secondary_cm": [
+          -1.76,
+          0.0,
+          26.85
+        ]
+      },
+      {
+        "frame": 41,
+        "Transform": 0.08851,
+        "Draw": 0.0,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          -7.06,
+          0.0,
+          4.74
+        ],
+        "grip_secondary_cm": [
+          -1.73,
+          0.0,
+          27.37
+        ]
+      },
+      {
+        "frame": 42,
+        "Transform": 0.104,
+        "Draw": 0.0,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          -6.94,
+          0.0,
+          5.56
+        ],
+        "grip_secondary_cm": [
+          -1.7,
+          0.0,
+          27.92
+        ]
+      },
+      {
+        "frame": 43,
+        "Transform": 0.12049,
+        "Draw": 0.0,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          -6.82,
+          0.0,
+          6.45
+        ],
+        "grip_secondary_cm": [
+          -1.67,
+          0.0,
+          28.51
+        ]
+      },
+      {
+        "frame": 44,
+        "Transform": 0.13793,
+        "Draw": 0.0,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          -6.68,
+          0.0,
+          7.38
+        ],
+        "grip_secondary_cm": [
+          -1.64,
+          0.0,
+          29.14
+        ]
+      },
+      {
+        "frame": 45,
+        "Transform": 0.15625,
+        "Draw": 0.0,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          -6.54,
+          0.0,
+          8.36
+        ],
+        "grip_secondary_cm": [
+          -1.6,
+          0.0,
+          29.79
+        ]
+      },
+      {
+        "frame": 46,
+        "Transform": 0.17541,
+        "Draw": 0.0,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          -6.39,
+          0.0,
+          9.38
+        ],
+        "grip_secondary_cm": [
+          -1.57,
+          0.0,
+          30.48
+        ]
+      },
+      {
+        "frame": 47,
+        "Transform": 0.19534,
+        "Draw": 0.0,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          -6.24,
+          0.0,
+          10.45
+        ],
+        "grip_secondary_cm": [
+          -1.53,
+          0.0,
+          31.19
+        ]
+      },
+      {
+        "frame": 48,
+        "Transform": 0.216,
+        "Draw": 0.0,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          -6.08,
+          0.0,
+          11.56
+        ],
+        "grip_secondary_cm": [
+          -1.49,
+          0.0,
+          31.93
+        ]
+      },
+      {
+        "frame": 49,
+        "Transform": 0.23732,
+        "Draw": 0.0,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          -5.91,
+          0.0,
+          12.7
+        ],
+        "grip_secondary_cm": [
+          -1.45,
+          0.0,
+          32.7
+        ]
+      },
+      {
+        "frame": 50,
+        "Transform": 0.25926,
+        "Draw": 0.0,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          -5.74,
+          0.0,
+          13.87
+        ],
+        "grip_secondary_cm": [
+          -1.41,
+          0.0,
+          33.48
+        ]
+      },
+      {
+        "frame": 51,
+        "Transform": 0.28175,
+        "Draw": 0.0,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          -5.57,
+          0.0,
+          15.07
+        ],
+        "grip_secondary_cm": [
+          -1.36,
+          0.0,
+          34.29
+        ]
+      },
+      {
+        "frame": 52,
+        "Transform": 0.30474,
+        "Draw": 0.0,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          -5.39,
+          0.0,
+          16.3
+        ],
+        "grip_secondary_cm": [
+          -1.32,
+          0.0,
+          35.11
+        ]
+      },
+      {
+        "frame": 53,
+        "Transform": 0.32818,
+        "Draw": 0.0,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          -5.21,
+          0.0,
+          17.56
+        ],
+        "grip_secondary_cm": [
+          -1.28,
+          0.0,
+          35.95
+        ]
+      },
+      {
+        "frame": 54,
+        "Transform": 0.352,
+        "Draw": 0.0,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          -5.02,
+          0.0,
+          18.83
+        ],
+        "grip_secondary_cm": [
+          -1.23,
+          0.0,
+          36.8
+        ]
+      },
+      {
+        "frame": 55,
+        "Transform": 0.37616,
+        "Draw": 0.0,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          -4.83,
+          0.0,
+          20.12
+        ],
+        "grip_secondary_cm": [
+          -1.19,
+          0.0,
+          37.67
+        ]
+      },
+      {
+        "frame": 56,
+        "Transform": 0.40059,
+        "Draw": 0.0,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          -4.65,
+          0.0,
+          21.43
+        ],
+        "grip_secondary_cm": [
+          -1.14,
+          0.0,
+          38.54
+        ]
+      },
+      {
+        "frame": 57,
+        "Transform": 0.42525,
+        "Draw": 0.0,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          -4.45,
+          0.0,
+          22.75
+        ],
+        "grip_secondary_cm": [
+          -1.09,
+          0.0,
+          39.42
+        ]
+      },
+      {
+        "frame": 58,
+        "Transform": 0.45007,
+        "Draw": 0.0,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          -4.26,
+          0.0,
+          24.08
+        ],
+        "grip_secondary_cm": [
+          -1.04,
+          0.0,
+          40.31
+        ]
+      },
+      {
+        "frame": 59,
+        "Transform": 0.47501,
+        "Draw": 0.0,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          -4.07,
+          0.0,
+          25.41
+        ],
+        "grip_secondary_cm": [
+          -1.0,
+          0.0,
+          41.21
+        ]
+      },
+      {
+        "frame": 60,
+        "Transform": 0.5,
+        "Draw": 0.0,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          -3.88,
+          0.0,
+          26.75
+        ],
+        "grip_secondary_cm": [
+          -0.95,
+          0.0,
+          42.1
+        ]
+      },
+      {
+        "frame": 61,
+        "Transform": 0.52499,
+        "Draw": 0.0,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          -3.68,
+          0.0,
+          28.09
+        ],
+        "grip_secondary_cm": [
+          -0.9,
+          0.0,
+          42.99
+        ]
+      },
+      {
+        "frame": 62,
+        "Transform": 0.54993,
+        "Draw": 0.0,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          -3.49,
+          0.0,
+          29.42
+        ],
+        "grip_secondary_cm": [
+          -0.86,
+          0.0,
+          43.89
+        ]
+      },
+      {
+        "frame": 63,
+        "Transform": 0.57475,
+        "Draw": 0.0,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          -3.3,
+          0.0,
+          30.75
+        ],
+        "grip_secondary_cm": [
+          -0.81,
+          0.0,
+          44.78
+        ]
+      },
+      {
+        "frame": 64,
+        "Transform": 0.59941,
+        "Draw": 0.0,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          -3.1,
+          0.0,
+          32.07
+        ],
+        "grip_secondary_cm": [
+          -0.76,
+          0.0,
+          45.66
+        ]
+      },
+      {
+        "frame": 65,
+        "Transform": 0.62384,
+        "Draw": 0.0,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          -2.92,
+          0.0,
+          33.38
+        ],
+        "grip_secondary_cm": [
+          -0.71,
+          0.0,
+          46.53
+        ]
+      },
+      {
+        "frame": 66,
+        "Transform": 0.648,
+        "Draw": 0.0,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          -2.73,
+          0.0,
+          34.67
+        ],
+        "grip_secondary_cm": [
+          -0.67,
+          0.0,
+          47.4
+        ]
+      },
+      {
+        "frame": 67,
+        "Transform": 0.67182,
+        "Draw": 0.0,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          -2.54,
+          0.0,
+          35.94
+        ],
+        "grip_secondary_cm": [
+          -0.62,
+          0.0,
+          48.25
+        ]
+      },
+      {
+        "frame": 68,
+        "Transform": 0.69526,
+        "Draw": 0.0,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          -2.36,
+          0.0,
+          37.2
+        ],
+        "grip_secondary_cm": [
+          -0.58,
+          0.0,
+          49.09
+        ]
+      },
+      {
+        "frame": 69,
+        "Transform": 0.71825,
+        "Draw": 0.0,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          -2.18,
+          0.0,
+          38.43
+        ],
+        "grip_secondary_cm": [
+          -0.54,
+          0.0,
+          49.91
+        ]
+      },
+      {
+        "frame": 70,
+        "Transform": 0.74074,
+        "Draw": 0.0,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          -2.01,
+          0.0,
+          39.63
+        ],
+        "grip_secondary_cm": [
+          -0.49,
+          0.0,
+          50.72
+        ]
+      },
+      {
+        "frame": 71,
+        "Transform": 0.76268,
+        "Draw": 0.0,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          -1.84,
+          0.0,
+          40.8
+        ],
+        "grip_secondary_cm": [
+          -0.45,
+          0.0,
+          51.5
+        ]
+      },
+      {
+        "frame": 72,
+        "Transform": 0.784,
+        "Draw": 0.0,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          -1.67,
+          0.0,
+          41.94
+        ],
+        "grip_secondary_cm": [
+          -0.41,
+          0.0,
+          52.27
+        ]
+      },
+      {
+        "frame": 73,
+        "Transform": 0.80466,
+        "Draw": 0.0,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          -1.51,
+          0.0,
+          43.05
+        ],
+        "grip_secondary_cm": [
+          -0.37,
+          0.0,
+          53.01
+        ]
+      },
+      {
+        "frame": 74,
+        "Transform": 0.82459,
+        "Draw": 0.0,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          -1.36,
+          0.0,
+          44.12
+        ],
+        "grip_secondary_cm": [
+          -0.33,
+          0.0,
+          53.72
+        ]
+      },
+      {
+        "frame": 75,
+        "Transform": 0.84375,
+        "Draw": 0.0,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          -1.21,
+          0.0,
+          45.14
+        ],
+        "grip_secondary_cm": [
+          -0.3,
+          0.0,
+          54.41
+        ]
+      },
+      {
+        "frame": 76,
+        "Transform": 0.86207,
+        "Draw": 0.0,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          -1.07,
+          0.0,
+          46.12
+        ],
+        "grip_secondary_cm": [
+          -0.26,
+          0.0,
+          55.06
+        ]
+      },
+      {
+        "frame": 77,
+        "Transform": 0.87951,
+        "Draw": 0.0,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          -0.93,
+          0.0,
+          47.05
+        ],
+        "grip_secondary_cm": [
+          -0.23,
+          0.0,
+          55.69
+        ]
+      },
+      {
+        "frame": 78,
+        "Transform": 0.896,
+        "Draw": 0.0,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          -0.81,
+          0.0,
+          47.94
+        ],
+        "grip_secondary_cm": [
+          -0.2,
+          0.0,
+          56.28
+        ]
+      },
+      {
+        "frame": 79,
+        "Transform": 0.91149,
+        "Draw": 0.0,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          -0.69,
+          0.0,
+          48.76
+        ],
+        "grip_secondary_cm": [
+          -0.17,
+          0.0,
+          56.83
+        ]
+      },
+      {
+        "frame": 80,
+        "Transform": 0.92593,
+        "Draw": 0.0,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          -0.57,
+          0.0,
+          49.54
+        ],
+        "grip_secondary_cm": [
+          -0.14,
+          0.0,
+          57.35
+        ]
+      },
+      {
+        "frame": 81,
+        "Transform": 0.93925,
+        "Draw": 0.0,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          -0.47,
+          0.0,
+          50.25
+        ],
+        "grip_secondary_cm": [
+          -0.12,
+          0.0,
+          57.83
+        ]
+      },
+      {
+        "frame": 82,
+        "Transform": 0.95141,
+        "Draw": 0.0,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          -0.38,
+          0.0,
+          50.9
+        ],
+        "grip_secondary_cm": [
+          -0.09,
+          0.0,
+          58.26
+        ]
+      },
+      {
+        "frame": 83,
+        "Transform": 0.96234,
+        "Draw": 0.0,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          -0.29,
+          0.0,
+          51.49
+        ],
+        "grip_secondary_cm": [
+          -0.07,
+          0.0,
+          58.65
+        ]
+      },
+      {
+        "frame": 84,
+        "Transform": 0.972,
+        "Draw": 0.0,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          -0.22,
+          0.0,
+          52.0
+        ],
+        "grip_secondary_cm": [
+          -0.05,
+          0.0,
+          59.0
+        ]
+      },
+      {
+        "frame": 85,
+        "Transform": 0.98032,
+        "Draw": 0.0,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          -0.15,
+          0.0,
+          52.45
+        ],
+        "grip_secondary_cm": [
+          -0.04,
+          0.0,
+          59.3
+        ]
+      },
+      {
+        "frame": 86,
+        "Transform": 0.98726,
+        "Draw": 0.0,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          -0.1,
+          0.0,
+          52.82
+        ],
+        "grip_secondary_cm": [
+          -0.02,
+          0.0,
+          59.54
+        ]
+      },
+      {
+        "frame": 87,
+        "Transform": 0.99275,
+        "Draw": 0.0,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          -0.06,
+          0.0,
+          53.11
+        ],
+        "grip_secondary_cm": [
+          -0.01,
+          0.0,
+          59.74
+        ]
+      },
+      {
+        "frame": 88,
+        "Transform": 0.99674,
+        "Draw": 0.0,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          -0.03,
+          0.0,
+          53.33
+        ],
+        "grip_secondary_cm": [
+          -0.01,
+          0.0,
+          59.88
+        ]
+      },
+      {
+        "frame": 89,
+        "Transform": 0.99918,
+        "Draw": 0.0,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          -0.01,
+          0.0,
+          53.46
+        ],
+        "grip_secondary_cm": [
+          -0.0,
+          0.0,
+          59.97
+        ]
+      },
+      {
+        "frame": 90,
+        "Transform": 1.0,
+        "Draw": 0.0,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          0.0,
+          0.0,
+          53.5
+        ],
+        "grip_secondary_cm": [
+          0.0,
+          0.0,
+          60.0
+        ]
+      },
+      {
+        "frame": 91,
+        "Transform": 1.0,
+        "Draw": 0.0,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          0.0,
+          0.0,
+          53.5
+        ],
+        "grip_secondary_cm": [
+          0.0,
+          0.0,
+          60.0
+        ]
+      },
+      {
+        "frame": 92,
+        "Transform": 1.0,
+        "Draw": 0.0,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          0.0,
+          0.0,
+          53.5
+        ],
+        "grip_secondary_cm": [
+          0.0,
+          0.0,
+          60.0
+        ]
+      },
+      {
+        "frame": 93,
+        "Transform": 1.0,
+        "Draw": 0.0,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          0.0,
+          0.0,
+          53.5
+        ],
+        "grip_secondary_cm": [
+          0.0,
+          0.0,
+          60.0
+        ]
+      },
+      {
+        "frame": 94,
+        "Transform": 1.0,
+        "Draw": 0.0,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          0.0,
+          0.0,
+          53.5
+        ],
+        "grip_secondary_cm": [
+          0.0,
+          0.0,
+          60.0
+        ]
+      },
+      {
+        "frame": 95,
+        "Transform": 1.0,
+        "Draw": 0.0,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          0.0,
+          0.0,
+          53.5
+        ],
+        "grip_secondary_cm": [
+          0.0,
+          0.0,
+          60.0
+        ]
+      },
+      {
+        "frame": 96,
+        "Transform": 1.0,
+        "Draw": 0.0,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          0.0,
+          0.0,
+          53.5
+        ],
+        "grip_secondary_cm": [
+          0.0,
+          0.0,
+          60.0
+        ]
+      },
+      {
+        "frame": 97,
+        "Transform": 1.0,
+        "Draw": 0.0,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          0.0,
+          0.0,
+          53.5
+        ],
+        "grip_secondary_cm": [
+          0.0,
+          0.0,
+          60.0
+        ]
+      },
+      {
+        "frame": 98,
+        "Transform": 1.0,
+        "Draw": 0.0,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          0.0,
+          0.0,
+          53.5
+        ],
+        "grip_secondary_cm": [
+          0.0,
+          0.0,
+          60.0
+        ]
+      },
+      {
+        "frame": 99,
+        "Transform": 1.0,
+        "Draw": 0.0,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          0.0,
+          0.0,
+          53.5
+        ],
+        "grip_secondary_cm": [
+          0.0,
+          0.0,
+          60.0
+        ]
+      },
+      {
+        "frame": 100,
+        "Transform": 1.0,
+        "Draw": 0.0,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          0.0,
+          0.0,
+          53.5
+        ],
+        "grip_secondary_cm": [
+          0.0,
+          0.0,
+          60.0
+        ]
+      },
+      {
+        "frame": 101,
+        "Transform": 1.0,
+        "Draw": 0.0,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          0.0,
+          0.0,
+          53.5
+        ],
+        "grip_secondary_cm": [
+          0.0,
+          0.0,
+          60.0
+        ]
+      },
+      {
+        "frame": 102,
+        "Transform": 1.0,
+        "Draw": 0.0,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          0.0,
+          0.0,
+          53.5
+        ],
+        "grip_secondary_cm": [
+          0.0,
+          0.0,
+          60.0
+        ]
+      },
+      {
+        "frame": 103,
+        "Transform": 1.0,
+        "Draw": 0.0,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          0.0,
+          0.0,
+          53.5
+        ],
+        "grip_secondary_cm": [
+          0.0,
+          0.0,
+          60.0
+        ]
+      },
+      {
+        "frame": 104,
+        "Transform": 1.0,
+        "Draw": 0.0,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          0.0,
+          0.0,
+          53.5
+        ],
+        "grip_secondary_cm": [
+          0.0,
+          0.0,
+          60.0
+        ]
+      },
+      {
+        "frame": 105,
+        "Transform": 1.0,
+        "Draw": 0.0,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          0.0,
+          0.0,
+          53.5
+        ],
+        "grip_secondary_cm": [
+          0.0,
+          0.0,
+          60.0
+        ]
+      },
+      {
+        "frame": 106,
+        "Transform": 1.0,
+        "Draw": 0.0,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          0.0,
+          0.0,
+          53.5
+        ],
+        "grip_secondary_cm": [
+          0.0,
+          0.0,
+          60.0
+        ]
+      },
+      {
+        "frame": 107,
+        "Transform": 1.0,
+        "Draw": 0.0,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          0.0,
+          0.0,
+          53.5
+        ],
+        "grip_secondary_cm": [
+          0.0,
+          0.0,
+          60.0
+        ]
+      },
+      {
+        "frame": 108,
+        "Transform": 1.0,
+        "Draw": 0.0,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          0.0,
+          0.0,
+          53.5
+        ],
+        "grip_secondary_cm": [
+          0.0,
+          0.0,
+          60.0
+        ]
+      },
+      {
+        "frame": 109,
+        "Transform": 1.0,
+        "Draw": 0.0,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          0.0,
+          0.0,
+          53.5
+        ],
+        "grip_secondary_cm": [
+          0.0,
+          0.0,
+          60.0
+        ]
+      },
+      {
+        "frame": 110,
+        "Transform": 1.0,
+        "Draw": 0.0,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          0.0,
+          0.0,
+          53.5
+        ],
+        "grip_secondary_cm": [
+          0.0,
+          0.0,
+          60.0
+        ]
+      },
+      {
+        "frame": 111,
+        "Transform": 1.0,
+        "Draw": 0.00326,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          0.0,
+          0.0,
+          53.5
+        ],
+        "grip_secondary_cm": [
+          0.0,
+          0.0,
+          60.0
+        ]
+      },
+      {
+        "frame": 112,
+        "Transform": 1.0,
+        "Draw": 0.01274,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          0.0,
+          0.0,
+          53.5
+        ],
+        "grip_secondary_cm": [
+          0.0,
+          0.0,
+          60.0
+        ]
+      },
+      {
+        "frame": 113,
+        "Transform": 1.0,
+        "Draw": 0.028,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          0.0,
+          0.0,
+          53.5
+        ],
+        "grip_secondary_cm": [
+          0.0,
+          0.0,
+          60.0
+        ]
+      },
+      {
+        "frame": 114,
+        "Transform": 1.0,
+        "Draw": 0.04859,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          0.0,
+          0.0,
+          53.5
+        ],
+        "grip_secondary_cm": [
+          0.0,
+          0.0,
+          60.0
+        ]
+      },
+      {
+        "frame": 115,
+        "Transform": 1.0,
+        "Draw": 0.07407,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          0.0,
+          0.0,
+          53.5
+        ],
+        "grip_secondary_cm": [
+          0.0,
+          0.0,
+          60.0
+        ]
+      },
+      {
+        "frame": 116,
+        "Transform": 1.0,
+        "Draw": 0.104,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          0.0,
+          0.0,
+          53.5
+        ],
+        "grip_secondary_cm": [
+          0.0,
+          0.0,
+          60.0
+        ]
+      },
+      {
+        "frame": 117,
+        "Transform": 1.0,
+        "Draw": 0.13793,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          0.0,
+          0.0,
+          53.5
+        ],
+        "grip_secondary_cm": [
+          0.0,
+          0.0,
+          60.0
+        ]
+      },
+      {
+        "frame": 118,
+        "Transform": 1.0,
+        "Draw": 0.17541,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          0.0,
+          0.0,
+          53.5
+        ],
+        "grip_secondary_cm": [
+          0.0,
+          0.0,
+          60.0
+        ]
+      },
+      {
+        "frame": 119,
+        "Transform": 1.0,
+        "Draw": 0.216,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          0.0,
+          0.0,
+          53.5
+        ],
+        "grip_secondary_cm": [
+          0.0,
+          0.0,
+          60.0
+        ]
+      },
+      {
+        "frame": 120,
+        "Transform": 1.0,
+        "Draw": 0.25926,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          0.0,
+          0.0,
+          53.5
+        ],
+        "grip_secondary_cm": [
+          0.0,
+          0.0,
+          60.0
+        ]
+      },
+      {
+        "frame": 121,
+        "Transform": 1.0,
+        "Draw": 0.30474,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          0.0,
+          0.0,
+          53.5
+        ],
+        "grip_secondary_cm": [
+          0.0,
+          0.0,
+          60.0
+        ]
+      },
+      {
+        "frame": 122,
+        "Transform": 1.0,
+        "Draw": 0.352,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 1.0,
+        "grip_cm": [
+          0.0,
+          0.0,
+          53.5
+        ],
+        "grip_secondary_cm": [
+          0.0,
+          0.0,
+          60.0
+        ]
+      },
+      {
+        "frame": 123,
+        "Transform": 1.0,
+        "Draw": 0.40059,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 1.0,
+        "grip_cm": [
+          0.0,
+          0.0,
+          53.5
+        ],
+        "grip_secondary_cm": [
+          0.0,
+          0.0,
+          60.0
+        ]
+      },
+      {
+        "frame": 124,
+        "Transform": 1.0,
+        "Draw": 0.45007,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 1.0,
+        "grip_cm": [
+          0.0,
+          0.0,
+          53.5
+        ],
+        "grip_secondary_cm": [
+          0.0,
+          0.0,
+          60.0
+        ]
+      },
+      {
+        "frame": 125,
+        "Transform": 1.0,
+        "Draw": 0.5,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 1.0,
+        "grip_cm": [
+          0.0,
+          0.0,
+          53.5
+        ],
+        "grip_secondary_cm": [
+          0.0,
+          0.0,
+          60.0
+        ]
+      },
+      {
+        "frame": 126,
+        "Transform": 1.0,
+        "Draw": 0.54993,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 1.0,
+        "grip_cm": [
+          0.0,
+          0.0,
+          53.5
+        ],
+        "grip_secondary_cm": [
+          0.0,
+          0.0,
+          60.0
+        ]
+      },
+      {
+        "frame": 127,
+        "Transform": 1.0,
+        "Draw": 0.59941,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 1.0,
+        "grip_cm": [
+          0.0,
+          0.0,
+          53.5
+        ],
+        "grip_secondary_cm": [
+          0.0,
+          0.0,
+          60.0
+        ]
+      },
+      {
+        "frame": 128,
+        "Transform": 1.0,
+        "Draw": 0.648,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 1.0,
+        "grip_cm": [
+          0.0,
+          0.0,
+          53.5
+        ],
+        "grip_secondary_cm": [
+          0.0,
+          0.0,
+          60.0
+        ]
+      },
+      {
+        "frame": 129,
+        "Transform": 1.0,
+        "Draw": 0.69526,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 1.0,
+        "grip_cm": [
+          0.0,
+          0.0,
+          53.5
+        ],
+        "grip_secondary_cm": [
+          0.0,
+          0.0,
+          60.0
+        ]
+      },
+      {
+        "frame": 130,
+        "Transform": 1.0,
+        "Draw": 0.74074,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 1.0,
+        "grip_cm": [
+          0.0,
+          0.0,
+          53.5
+        ],
+        "grip_secondary_cm": [
+          0.0,
+          0.0,
+          60.0
+        ]
+      },
+      {
+        "frame": 131,
+        "Transform": 1.0,
+        "Draw": 0.784,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 1.0,
+        "grip_cm": [
+          0.0,
+          0.0,
+          53.5
+        ],
+        "grip_secondary_cm": [
+          0.0,
+          0.0,
+          60.0
+        ]
+      },
+      {
+        "frame": 132,
+        "Transform": 1.0,
+        "Draw": 0.82459,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 1.0,
+        "grip_cm": [
+          0.0,
+          0.0,
+          53.5
+        ],
+        "grip_secondary_cm": [
+          0.0,
+          0.0,
+          60.0
+        ]
+      },
+      {
+        "frame": 133,
+        "Transform": 1.0,
+        "Draw": 0.86207,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 1.0,
+        "grip_cm": [
+          0.0,
+          0.0,
+          53.5
+        ],
+        "grip_secondary_cm": [
+          0.0,
+          0.0,
+          60.0
+        ]
+      },
+      {
+        "frame": 134,
+        "Transform": 1.0,
+        "Draw": 0.896,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 1.0,
+        "grip_cm": [
+          0.0,
+          0.0,
+          53.5
+        ],
+        "grip_secondary_cm": [
+          0.0,
+          0.0,
+          60.0
+        ]
+      },
+      {
+        "frame": 135,
+        "Transform": 1.0,
+        "Draw": 0.92593,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 1.0,
+        "grip_cm": [
+          0.0,
+          0.0,
+          53.5
+        ],
+        "grip_secondary_cm": [
+          0.0,
+          0.0,
+          60.0
+        ]
+      },
+      {
+        "frame": 136,
+        "Transform": 1.0,
+        "Draw": 0.95141,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 1.0,
+        "grip_cm": [
+          0.0,
+          0.0,
+          53.5
+        ],
+        "grip_secondary_cm": [
+          0.0,
+          0.0,
+          60.0
+        ]
+      },
+      {
+        "frame": 137,
+        "Transform": 1.0,
+        "Draw": 0.972,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 1.0,
+        "grip_cm": [
+          0.0,
+          0.0,
+          53.5
+        ],
+        "grip_secondary_cm": [
+          0.0,
+          0.0,
+          60.0
+        ]
+      },
+      {
+        "frame": 138,
+        "Transform": 1.0,
+        "Draw": 0.98726,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 1.0,
+        "grip_cm": [
+          0.0,
+          0.0,
+          53.5
+        ],
+        "grip_secondary_cm": [
+          0.0,
+          0.0,
+          60.0
+        ]
+      },
+      {
+        "frame": 139,
+        "Transform": 1.0,
+        "Draw": 0.99674,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 1.0,
+        "grip_cm": [
+          0.0,
+          0.0,
+          53.5
+        ],
+        "grip_secondary_cm": [
+          0.0,
+          0.0,
+          60.0
+        ]
+      },
+      {
+        "frame": 140,
+        "Transform": 1.0,
+        "Draw": 1.0,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 1.0,
+        "grip_cm": [
+          0.0,
+          0.0,
+          53.5
+        ],
+        "grip_secondary_cm": [
+          0.0,
+          0.0,
+          60.0
+        ]
+      },
+      {
+        "frame": 141,
+        "Transform": 1.0,
+        "Draw": 1.0,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 1.0,
+        "grip_cm": [
+          0.0,
+          0.0,
+          53.5
+        ],
+        "grip_secondary_cm": [
+          0.0,
+          0.0,
+          60.0
+        ]
+      },
+      {
+        "frame": 142,
+        "Transform": 1.0,
+        "Draw": 1.0,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 1.0,
+        "grip_cm": [
+          0.0,
+          0.0,
+          53.5
+        ],
+        "grip_secondary_cm": [
+          0.0,
+          0.0,
+          60.0
+        ]
+      },
+      {
+        "frame": 143,
+        "Transform": 1.0,
+        "Draw": 1.0,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 1.0,
+        "grip_cm": [
+          0.0,
+          0.0,
+          53.5
+        ],
+        "grip_secondary_cm": [
+          0.0,
+          0.0,
+          60.0
+        ]
+      },
+      {
+        "frame": 144,
+        "Transform": 1.0,
+        "Draw": 1.0,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 1.0,
+        "grip_cm": [
+          0.0,
+          0.0,
+          53.5
+        ],
+        "grip_secondary_cm": [
+          0.0,
+          0.0,
+          60.0
+        ]
+      },
+      {
+        "frame": 145,
+        "Transform": 1.0,
+        "Draw": 1.0,
+        "Release": 0.0,
+        "Pluck": 0.0,
+        "Resonance": 1.0,
+        "grip_cm": [
+          0.0,
+          0.0,
+          53.5
+        ],
+        "grip_secondary_cm": [
+          0.0,
+          0.0,
+          60.0
+        ]
+      },
+      {
+        "frame": 146,
+        "Transform": 1.0,
+        "Draw": 1.0,
+        "Release": 0.03429,
+        "Pluck": 0.0,
+        "Resonance": 1.0,
+        "grip_cm": [
+          0.0,
+          0.0,
+          53.5
+        ],
+        "grip_secondary_cm": [
+          0.0,
+          0.0,
+          60.0
+        ]
+      },
+      {
+        "frame": 147,
+        "Transform": 1.0,
+        "Draw": 1.0,
+        "Release": 0.1262,
+        "Pluck": 0.0,
+        "Resonance": 1.0,
+        "grip_cm": [
+          0.0,
+          0.0,
+          53.5
+        ],
+        "grip_secondary_cm": [
+          0.0,
+          0.0,
+          60.0
+        ]
+      },
+      {
+        "frame": 148,
+        "Transform": 1.0,
+        "Draw": 1.0,
+        "Release": 0.25926,
+        "Pluck": 0.0,
+        "Resonance": 1.0,
+        "grip_cm": [
+          0.0,
+          0.0,
+          53.5
+        ],
+        "grip_secondary_cm": [
+          0.0,
+          0.0,
+          60.0
+        ]
+      },
+      {
+        "frame": 149,
+        "Transform": 1.0,
+        "Draw": 1.0,
+        "Release": 0.41701,
+        "Pluck": 0.0,
+        "Resonance": 1.0,
+        "grip_cm": [
+          0.0,
+          0.0,
+          53.5
+        ],
+        "grip_secondary_cm": [
+          0.0,
+          0.0,
+          60.0
+        ]
+      },
+      {
+        "frame": 150,
+        "Transform": 1.0,
+        "Draw": 1.0,
+        "Release": 0.58299,
+        "Pluck": 0.0,
+        "Resonance": 1.0,
+        "grip_cm": [
+          0.0,
+          0.0,
+          53.5
+        ],
+        "grip_secondary_cm": [
+          0.0,
+          0.0,
+          60.0
+        ]
+      },
+      {
+        "frame": 151,
+        "Transform": 1.0,
+        "Draw": 1.0,
+        "Release": 0.74074,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          0.0,
+          0.0,
+          53.5
+        ],
+        "grip_secondary_cm": [
+          0.0,
+          0.0,
+          60.0
+        ]
+      },
+      {
+        "frame": 152,
+        "Transform": 1.0,
+        "Draw": 1.0,
+        "Release": 0.8738,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          0.0,
+          0.0,
+          53.5
+        ],
+        "grip_secondary_cm": [
+          0.0,
+          0.0,
+          60.0
+        ]
+      },
+      {
+        "frame": 153,
+        "Transform": 1.0,
+        "Draw": 1.0,
+        "Release": 0.96571,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          0.0,
+          0.0,
+          53.5
+        ],
+        "grip_secondary_cm": [
+          0.0,
+          0.0,
+          60.0
+        ]
+      },
+      {
+        "frame": 154,
+        "Transform": 1.0,
+        "Draw": 1.0,
+        "Release": 1.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          0.0,
+          0.0,
+          53.5
+        ],
+        "grip_secondary_cm": [
+          0.0,
+          0.0,
+          60.0
+        ]
+      },
+      {
+        "frame": 155,
+        "Transform": 1.0,
+        "Draw": 0.99568,
+        "Release": 1.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          0.0,
+          0.0,
+          53.5
+        ],
+        "grip_secondary_cm": [
+          0.0,
+          0.0,
+          60.0
+        ]
+      },
+      {
+        "frame": 156,
+        "Transform": 1.0,
+        "Draw": 0.98316,
+        "Release": 1.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          0.0,
+          0.0,
+          53.5
+        ],
+        "grip_secondary_cm": [
+          0.0,
+          0.0,
+          60.0
+        ]
+      },
+      {
+        "frame": 157,
+        "Transform": 1.0,
+        "Draw": 0.96313,
+        "Release": 1.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          0.0,
+          0.0,
+          53.5
+        ],
+        "grip_secondary_cm": [
+          0.0,
+          0.0,
+          60.0
+        ]
+      },
+      {
+        "frame": 158,
+        "Transform": 1.0,
+        "Draw": 0.93628,
+        "Release": 1.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          0.0,
+          0.0,
+          53.5
+        ],
+        "grip_secondary_cm": [
+          0.0,
+          0.0,
+          60.0
+        ]
+      },
+      {
+        "frame": 159,
+        "Transform": 1.0,
+        "Draw": 0.90328,
+        "Release": 1.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          0.0,
+          0.0,
+          53.5
+        ],
+        "grip_secondary_cm": [
+          0.0,
+          0.0,
+          60.0
+        ]
+      },
+      {
+        "frame": 160,
+        "Transform": 1.0,
+        "Draw": 0.86482,
+        "Release": 1.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          0.0,
+          0.0,
+          53.5
+        ],
+        "grip_secondary_cm": [
+          0.0,
+          0.0,
+          60.0
+        ]
+      },
+      {
+        "frame": 161,
+        "Transform": 1.0,
+        "Draw": 0.82157,
+        "Release": 1.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          0.0,
+          0.0,
+          53.5
+        ],
+        "grip_secondary_cm": [
+          0.0,
+          0.0,
+          60.0
+        ]
+      },
+      {
+        "frame": 162,
+        "Transform": 1.0,
+        "Draw": 0.77424,
+        "Release": 1.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          0.0,
+          0.0,
+          53.5
+        ],
+        "grip_secondary_cm": [
+          0.0,
+          0.0,
+          60.0
+        ]
+      },
+      {
+        "frame": 163,
+        "Transform": 1.0,
+        "Draw": 0.72349,
+        "Release": 1.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          0.0,
+          0.0,
+          53.5
+        ],
+        "grip_secondary_cm": [
+          0.0,
+          0.0,
+          60.0
+        ]
+      },
+      {
+        "frame": 164,
+        "Transform": 1.0,
+        "Draw": 0.67,
+        "Release": 1.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          0.0,
+          0.0,
+          53.5
+        ],
+        "grip_secondary_cm": [
+          0.0,
+          0.0,
+          60.0
+        ]
+      },
+      {
+        "frame": 165,
+        "Transform": 1.0,
+        "Draw": 0.61447,
+        "Release": 1.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          0.0,
+          0.0,
+          53.5
+        ],
+        "grip_secondary_cm": [
+          0.0,
+          0.0,
+          60.0
+        ]
+      },
+      {
+        "frame": 166,
+        "Transform": 1.0,
+        "Draw": 0.55758,
+        "Release": 1.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          0.0,
+          0.0,
+          53.5
+        ],
+        "grip_secondary_cm": [
+          0.0,
+          0.0,
+          60.0
+        ]
+      },
+      {
+        "frame": 167,
+        "Transform": 1.0,
+        "Draw": 0.5,
+        "Release": 1.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          0.0,
+          0.0,
+          53.5
+        ],
+        "grip_secondary_cm": [
+          0.0,
+          0.0,
+          60.0
+        ]
+      },
+      {
+        "frame": 168,
+        "Transform": 1.0,
+        "Draw": 0.44242,
+        "Release": 1.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          0.0,
+          0.0,
+          53.5
+        ],
+        "grip_secondary_cm": [
+          0.0,
+          0.0,
+          60.0
+        ]
+      },
+      {
+        "frame": 169,
+        "Transform": 1.0,
+        "Draw": 0.38553,
+        "Release": 1.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          0.0,
+          0.0,
+          53.5
+        ],
+        "grip_secondary_cm": [
+          0.0,
+          0.0,
+          60.0
+        ]
+      },
+      {
+        "frame": 170,
+        "Transform": 1.0,
+        "Draw": 0.33,
+        "Release": 1.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          0.0,
+          0.0,
+          53.5
+        ],
+        "grip_secondary_cm": [
+          0.0,
+          0.0,
+          60.0
+        ]
+      },
+      {
+        "frame": 171,
+        "Transform": 1.0,
+        "Draw": 0.27651,
+        "Release": 1.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          0.0,
+          0.0,
+          53.5
+        ],
+        "grip_secondary_cm": [
+          0.0,
+          0.0,
+          60.0
+        ]
+      },
+      {
+        "frame": 172,
+        "Transform": 1.0,
+        "Draw": 0.22576,
+        "Release": 1.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          0.0,
+          0.0,
+          53.5
+        ],
+        "grip_secondary_cm": [
+          0.0,
+          0.0,
+          60.0
+        ]
+      },
+      {
+        "frame": 173,
+        "Transform": 1.0,
+        "Draw": 0.17843,
+        "Release": 1.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          0.0,
+          0.0,
+          53.5
+        ],
+        "grip_secondary_cm": [
+          0.0,
+          0.0,
+          60.0
+        ]
+      },
+      {
+        "frame": 174,
+        "Transform": 1.0,
+        "Draw": 0.13518,
+        "Release": 1.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          0.0,
+          0.0,
+          53.5
+        ],
+        "grip_secondary_cm": [
+          0.0,
+          0.0,
+          60.0
+        ]
+      },
+      {
+        "frame": 175,
+        "Transform": 1.0,
+        "Draw": 0.09672,
+        "Release": 1.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          0.0,
+          0.0,
+          53.5
+        ],
+        "grip_secondary_cm": [
+          0.0,
+          0.0,
+          60.0
+        ]
+      },
+      {
+        "frame": 176,
+        "Transform": 1.0,
+        "Draw": 0.06372,
+        "Release": 1.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          0.0,
+          0.0,
+          53.5
+        ],
+        "grip_secondary_cm": [
+          0.0,
+          0.0,
+          60.0
+        ]
+      },
+      {
+        "frame": 177,
+        "Transform": 1.0,
+        "Draw": 0.03687,
+        "Release": 1.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          0.0,
+          0.0,
+          53.5
+        ],
+        "grip_secondary_cm": [
+          0.0,
+          0.0,
+          60.0
+        ]
+      },
+      {
+        "frame": 178,
+        "Transform": 1.0,
+        "Draw": 0.01684,
+        "Release": 1.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          0.0,
+          0.0,
+          53.5
+        ],
+        "grip_secondary_cm": [
+          0.0,
+          0.0,
+          60.0
+        ]
+      },
+      {
+        "frame": 179,
+        "Transform": 1.0,
+        "Draw": 0.00432,
+        "Release": 1.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          0.0,
+          0.0,
+          53.5
+        ],
+        "grip_secondary_cm": [
+          0.0,
+          0.0,
+          60.0
+        ]
+      },
+      {
+        "frame": 180,
+        "Transform": 1.0,
+        "Draw": 0.0,
+        "Release": 1.0,
+        "Pluck": 0.0,
+        "Resonance": 0.0,
+        "grip_cm": [
+          0.0,
+          0.0,
+          53.5
+        ],
+        "grip_secondary_cm": [
+          0.0,
+          0.0,
+          60.0
+        ]
+      }
+    ]
+  },
+  "ue_implementation_contract": {
+    "principle": "one authored timeline drives body, morphs, VFX and audio; no second scheduler",
+    "morph_drivers": {
+      "Bow_Deployment": "clip curve = authored Transform (f31..f90)",
+      "Transform_Residual_01..15": "clip curve = authored Transform (hat basis, 16 samples)",
+      "Scythe_Deployment": "clip curve = authored Transform when Form 2 is selected",
+      "Scythe_Residual_01..08": "clip curve = authored Transform (hat basis, 9 samples)",
+      "Draw": "clip curve = authored Draw",
+      "Flex_Draw": "clip curve = authored Transform * Draw * (1 - Release)",
+      "Pluck": "music-clock driven (replaces the source's frame-based sin)",
+      "Vibrate_Overtone": "music-clock driven (replaces the source's frame-based sin)",
+      "Sway_Pos / Sway_Neg": "music-clock driven (replaces the source's frame-based sin)",
+      "Resonance_Breathe": "music-clock driven (replaces the source's frame-based sin)"
+    },
+    "required_changes_in_runtime_owner": [
+      "drive FormAlpha/ScytheAlpha from the playing clip curve instead of FInterpConstantTo",
+      "keep the float->hand world blend, but snap the handoff at the clip's handoff marker",
+      "drive the four idle shimmer morphs from UMelodiaMusicClockSubsystem"
+    ],
+    "notifies": [
+      {
+        "name": "FormHandoff",
+        "at": "f90 of the henshin clip",
+        "does": "snap instrument to the hand socket and lock form input"
+      },
+      {
+        "name": "AnticipationChime",
+        "at": "f10",
+        "does": "play the authored pluck/resonance chime, no gameplay effect"
+      }
+    ],
+    "character_animation": {
+      "slot": "UpperBody (mask must carry the 11 spine+arm filters)",
+      "must_express": "the 53.5 cm hand slide along the instrument spine, in lockstep with Transform",
+      "arm_canon_cm": [
+        15.774,
+        28.561,
+        28.615
+      ],
+      "gate": "Tools/animation/verify_clip_gate.py + anim-gate skill (root height, eyes, hand roll, twist)"
+    },
+    "beat_lock": "start the clip on UMelodiaMusicClockSubsystem::InputTimebase; the f90 handoff should land on a downbeat"
+  },
+  "defects": [
+    {
+      "id": "D1",
+      "severity": "high",
+      "title": "Form 2 does not read as a scythe",
+      "detail": "the scythe is a formula-authored vertex transform of the harp (compute_scythe_pose); the harp strings stay attached and the crescent blade is a hairline rotated limb, so the silhouette cannot read as a polearm at gameplay distance",
+      "evidence": [
+        "Saved/Staging/WaveHarp_BlenderStudy_20261021/form_form2_scythe_profile.png",
+        "Tools/build_waveharp_chime_scythe.py::compute_scythe_pose"
+      ],
+      "fix_class": "new authored geometry (content), not a re-bake"
+    },
+    {
+      "id": "D2",
+      "severity": "medium",
+      "title": "Form 0 shows a full-length bowstring",
+      "detail": "the source hides ME_WaveHarp_Bowstring below t<0.95 via a hide_render driver; a merged UE mesh cannot hide it",
+      "evidence": [
+        "Saved/Staging/WaveHarp_BlenderStudy_20261021/phase2_source_sweep.json",
+        "Saved/Staging/WaveHarp_BlenderStudy_20261021/form_form0_astrolabe_profile.png"
+      ],
+      "fix_class": "retire the bowstring from the rest pose with a dedicated morph"
+    },
+    {
+      "id": "D3",
+      "severity": "high",
+      "title": "the transformation is a 0.22 s linear pop",
+      "detail": "runtime uses FInterpConstantTo over TransformSeconds=0.22; the authored 60-frame eased deployment, its anticipation and the hand slide are all lost",
+      "evidence": [
+        "Source/BS_GodFile/MelodiaIntegration/MelodiaWaveHarpCombatComponent.cpp::UpdateInstruments",
+        "Saved/Staging/WaveHarp_BlenderStudy_20261021/phase6_performance.json"
+      ],
+      "fix_class": "bake (this spec)"
+    },
+    {
+      "id": "D4",
+      "severity": "medium",
+      "title": "the instrument is static in UE",
+      "detail": "the source's idle shimmer is frame-driven morphs; the morphs ship but are never driven, so only Draw/Flex_Draw and the deployment keys move",
+      "evidence": [
+        "Saved/Staging/WaveHarp_BlenderStudy_20261021/phase1_inventory.json",
+        "Saved/Staging/WaveHarp_BlenderStudy_20261021/phase2_source_sweep.json"
+      ],
+      "fix_class": "drive from the music clock (existing subsystem, no new owner)"
+    },
+    {
+      "id": "D5",
+      "severity": "low",
+      "title": "a ghost arrow slides during the transform",
+      "detail": "the arrow scales in about a pivot detached from the nock, so the baked morph slides a free-floating arrow through the air",
+      "evidence": [
+        "Saved/Staging/WaveHarp_BlenderStudy_20261021/form_bow_mid_a33_profile.png"
+      ],
+      "fix_class": "re-anchor the arrow pivot to the nock before re-baking"
+    },
+    {
+      "id": "D6",
+      "severity": "informational",
+      "title": "the scythe form has no source-rig truth",
+      "detail": "Scythe_* shape keys were computed by formula, not authored in the blend; they cannot be re-derived from the rig",
+      "evidence": [
+        "Tools/build_waveharp_chime_scythe.py"
+      ],
+      "fix_class": "author the third form in the blend if it is to be re-bakeable"
+    },
+    {
+      "id": "D8",
+      "severity": "high",
+      "title": "the scythe sockets in SK_ME_WaveHarp_Skeleton are ~90-100x too far out",
+      "detail": "PIE read of the live instrument: Scythe_BladeStart/BladeMid/BladeTip/Scythe_Pommel sit 2.2-4.5 THOUSAND cm from the weapon origin, while the source authored them at (6.8,0,32), (26.5,0,36), (43.5,0,17.5), (1.5,0,-40.5) cm. Consequences: the scythe melee trace (PerformSwipeTraceShot_Local between Scythe_BladeStart and Scythe_BladeTip) sweeps a ~42 m arc and can essentially never connect, and the ScytheRibbon procedural mesh is a 42 m ribbon. Structural cause: the scythe form is a MORPH, so static skeleton sockets cannot follow the blade at all - the trace has to come from the morphed geometry, or the scythe needs a bone-driven rig.",
+      "evidence": [
+        "Saved/Screenshots/Monolith/WaveHarpHold6 (WH_MEASURE socket readouts)",
+        "phase9/phase10 study receipts",
+        "CURRENT_STATE 2026-10-17 socket values"
+      ],
+      "fix_class": "new work - scythe geometry + a morph-aware trace; part of the Form 2 rebuild"
+    }
+  ],
+  "acceptance_gates": [
+    "the clip passes Tools/animation/verify_clip_gate.py and the anim-gate skill",
+    "arm lengths read 15.774 | 28.561 | 28.615 cm on the canonical body",
+    "no ghost arrow and no bowstring during the deployment window",
+    "the hand slide tracks the authored grip path within 1 cm per frame",
+    "the Form 2 silhouette is readable at gameplay camera distance (owner eye)",
+    "no pop: morph value at clip start and end matches the rest state exactly"
+  ],
+  "open_owner_decisions": [
+    "is a third *form* a player verb, or does the scythe stay an attack-triggered state?",
+    "should the 114 cm rest silhouette be re-authored smaller, or is the current scale intended?",
+    "is a new scythe blade surface worth authoring, or should Form 2 be retired?"
+  ],
+  "evidence": {
+    "tool": "Tools/waveharp_blend_study.py (gitignored local tool; run with blender -b <blend> -P ... -- <phase>)",
+    "receipts": "Saved/Staging/WaveHarp_BlenderStudy_20261021/phase{1..6}_*.json",
+    "renders": "Saved/Staging/WaveHarp_BlenderStudy_20261021/form_form*.png (16 Cycles renders of the shipped asset)",
+    "evidence_level": "headless source measurement + offline renders; no UE mutation, no PIE, nothing runtime-proven",
+    "reference_extraction": {
+      "phase": "references",
+      "images_extracted": [
+        "ref_1-Photo-1_jpg.png",
+        "ref_2-Photo-2_jpg.png"
+      ],
+      "note": "the two concept sheets are the design authority for the weapon; they were embedded in the source blend and never surfaced in project docs"
+    }
+  },
+  "owner_decisions_2026_10_21": {
+    "form2_in_scope_as_melee_weapon": {
+      "decision": "yes - Form 2 is her melee weapon and is worth researching/rebuilding",
+      "constraint": "it must read as a weapon at gameplay camera distance (D1)",
+      "canon_route": "the concept sheet has NO scythe. The five authored forms are A Lyre of Harmonic Bloom, B Resonant Bell Staff, C Wave Harp of Tides, D Monolith Conduit (OFFENSE), E Prism Drum. The sanctioned melee direction is D: a halo/disc head on a slender shaft, crystal core, gold ring frame, dangling teardrop charms.",
+      "proposed_form2": "Carillon Halo: a ring of chimes + a real crescent blade surface + a crystal core, mounted on the same shaft. Keeps the 'carillon' identity, lands inside the concept language, and reads as a polearm."
+    },
+    "silhouette_scale": {
+      "decision": "the current 114 cm bare-frame silhouette is not intended",
+      "nuance": "the concept's own staff variants ARE ~1.0-1.2 m, so the HEIGHT is close to right (runtime 102.55 cm at scale 0.9 = 60.3% of a 170 cm Melusina). What is wrong is the WIDTH and the mass position: a 47 cm-wide frame whose widest band sits at z 51-61 cm, i.e. exactly where her face and hands are.",
+      "fix": "re-proportion to staff + compact head, not a blanket uniform scale"
+    },
+    "form_select_input": {
+      "decision": "yes - a deliberate form-select is a player verb",
+      "requires": "one input, a 3-state form ring, one henshin clip per transition, form-input lock during the transition, beat-locked start",
+      "build_dependency": "new C++ (input + form state + clip curves) -> closed-editor build owed"
+    }
+  },
+  "concept_authority": {
+    "source": "embedded in the source blend as image datablocks '1-Photo-1.jpg' and '2-Photo-2.jpg'",
+    "document": "MARA ELLEKTRA VELL - Field Companion Reference Document (Melodia: Melusina)",
+    "extracted": "Saved/Staging/WaveHarp_BlenderStudy_20261021/ref_1-Photo-1_jpg.png, ref_2-Photo-2_jpg.png",
+    "instrument_variants": [
+      {
+        "id": "A",
+        "name": "Lyre of Harmonic Bloom",
+        "function": "Resonates with natural frequencies / Hidden tiddles"
+      },
+      {
+        "id": "B",
+        "name": "Resonant Bell Staff",
+        "function": "Calls and harmonises creatures / Field buff"
+      },
+      {
+        "id": "C",
+        "name": "Wave Harp of Tides",
+        "function": "Manipulates water currents / Flow / Heal",
+        "note": "this is the asset we ship"
+      },
+      {
+        "id": "D",
+        "name": "Monolith Conduit",
+        "function": "Channels monolithic energies / Offense",
+        "note": "the sanctioned melee form"
+      },
+      {
+        "id": "E",
+        "name": "Prism Drum",
+        "function": "Creates shockwaves / Interrupts, defends"
+      }
+    ],
+    "canon_quotes": [
+      "EBENZER CAN TRANSFORM FORMS OF THE INSTRUMENT.",
+      "INSTRUMENTS RESPOND TO HER EMOTIONS."
+    ],
+    "shared_design_language_missing_from_our_asset": [
+      "halo / disc head on a slender shaft (all five variants)",
+      "dangling teardrop charms",
+      "spiral / shell base",
+      "star / compass motifs",
+      "holographic threads, soft metals (brass, pearl), glass / crystal cores",
+      "one-handed staff silhouette (the INSTRUMENT IN USE panel shows a staff, not a frame)"
+    ],
+    "palette_law": [
+      "Magenta",
+      "Reed",
+      "Orchid",
+      "Seafoam",
+      "Cool Violet"
+    ]
+  },
+  "geometry_plan": {
+    "shape_law": "one slender shaft, one compact head, the FORM lives in the head",
+    "shaft": {
+      "diameter_cm": [
+        2.6,
+        3.4
+      ],
+      "length_cm": [
+        78,
+        92
+      ],
+      "base": "spiral shell base",
+      "grip": "chunky, 14 cm, dia 4.2 cm, bead pommel",
+      "material": "pearl / pale brass with rose-gold ferrules"
+    },
+    "head": {
+      "across_cm": [
+        26,
+        38
+      ],
+      "position": "top of the shaft",
+      "silhouette_limit": "nothing wider than 20 cm below z=70 cm"
+    },
+    "forms": {
+      "form0_harp": "head = lyre (current morph, re-proportioned): pearlescent frame, 7 strings, teardrop charms",
+      "form1_bow": "head = bow limb folded into the halo: one clean recurve arc, string across the halo",
+      "form2_melee": "head = carillon halo: ring of chimes + a real crescent blade surface + crystal core (NEW GEOMETRY)"
+    },
+    "henshin": "the head blooms: shaft stays, head unfurls, charms swing out, 60 eased frames (authored f31-f90)",
+    "cute_and_aaa_checklist": [
+      "bake the toon outline hull (the source GN inverted hull on 32 objects is lost in FBX export) so the weapon matches the toon character",
+      "rounded bevels on every hard edge; no razor-thin slivers (the current 'blade' is a hairline)",
+      "oversized charms and teardrops relative to the shaft (cute scale cues: big finial, small shaft)",
+      "asymmetric charm placement, one 'signature' charm per form",
+      "crystal core with real internal glow, driven by the existing MPC_Melodia_Palette + Chladni material",
+      "silhouette test: readable as a 3-value shape at 15% of frame height (gameplay camera distance)",
+      "keep the existing 8 UE material slots (Pearl / RoseGold / Crystal / Sapphire / ChladniViolet / Lapis / Strings) and re-use the character's toon masters",
+      "no part thinner than 4 mm; no single-vertex tips (the current tip band has 10 verts)"
+    ],
+    "measured_current_for_comparison": {
+      "height_cm": 113.95,
+      "runtime_height_cm": 102.55,
+      "max_x_extent_cm": 31.699,
+      "max_y_extent_cm": 7.952,
+      "widest_band": "z 51-61 cm, max radius 23.45 cm (47 cm across)",
+      "mass_centroid_z_cm": 43.03
+    }
+  },
+  "form_select_contract": {
+    "input": "one dedicated action (owner to confirm the key; suggested: middle mouse or R)",
+    "ring": [
+      "Form 0 HARP",
+      "Form 1 BOW",
+      "Form 2 CARILLON HALO (melee)"
+    ],
+    "transition": {
+      "clip": "one henshin clip per transition (0->1, 1->2, 2->0); 60 eased frames from the authored f31-f90 curve",
+      "lock": "form input is locked for the duration; attacks are locked for the f31-f90 window only",
+      "handoff": "one notify at the f90 handoff snaps the instrument to the hand socket",
+      "beat_lock": "the clip starts on UMelodiaMusicClockSubsystem::InputTimebase so the handoff lands on a downbeat"
+    },
+    "curves": [
+      "FormAlpha",
+      "ScytheAlpha",
+      "Draw",
+      "Flex_Draw",
+      "Resonance"
+    ],
+    "owner": "UMelodiaWaveHarpCombatComponent (existing; no new component, no new scheduler)",
+    "runtime_binding": "Form 2 also remains reachable by the existing F melee trigger (it is the melee weapon)"
+  },
+  "contact_sheets": {
+    "builder": "Tools/waveharp_contact_sheets.py (gitignored local tool)",
+    "outputs": [
+      "Saved/Staging/WaveHarp_BlenderStudy_20261021/ContactSheet_WaveHarp_3Forms.png",
+      "Saved/Staging/WaveHarp_BlenderStudy_20261021/ContactSheet_WaveHarp_ConceptToCurrent.png",
+      "Saved/Staging/WaveHarp_BlenderStudy_20261021/ContactSheet_WaveHarp_ScaleProportion.png",
+      "Saved/Staging/WaveHarp_BlenderStudy_20261021/ContactSheet_WaveHarp_HoldsAndCarillon.png"
+    ],
+    "source_renders": "Saved/Staging/WaveHarp_BlenderStudy_20261021/form_*.png (16) and scale_*.png (3)"
+  },
+  "hold_study": {
+    "why": "the long-running 'raised arm / weapon / head crossing' defect was being treated as a geometry problem. It is a HOLD-TRANSFORM problem.",
+    "method": "measured the shipped asset's deployed forms against a 170 cm Melusina proxy (head sphere r=11 cm at z=156; torso capsule r=18 cm over z=88-140); hand at (30,-10,100) cm; runtime scale 0.9",
+    "holds": {
+      "H0_runtime": "the shipped BowGrip: FRotator(-84.38001, 116.13221, -123.78024), scale 0.9",
+      "H1_concept": "near-vertical staff hold at her side: FRotator(-6, 10, 0), scale 0.9"
+    },
+    "results": [
+      {
+        "hold": "H0_runtime_horizontal",
+        "variant": "bow_as_is_96cm",
+        "head_gap_cm": 44.89,
+        "torso_gap_cm": -7.01,
+        "world_z_range": [
+          86.3,
+          103.2
+        ],
+        "world_x_range": [
+          -3.6,
+          64.6
+        ],
+        "clears_head": true,
+        "clears_torso": false,
+        "above_head_by_cm": -66.8
+      },
+      {
+        "hold": "H0_runtime_horizontal",
+        "variant": "bow_staff_72cm",
+        "head_gap_cm": 44.89,
+        "torso_gap_cm": -7.01,
+        "world_z_range": [
+          86.5,
+          103.2
+        ],
+        "world_x_range": [
+          -3.6,
+          57.9
+        ],
+        "clears_head": true,
+        "clears_torso": false,
+        "above_head_by_cm": -66.8
+      },
+      {
+        "hold": "H0_runtime_horizontal",
+        "variant": "scythe_as_is_97cm",
+        "head_gap_cm": 44.63,
+        "torso_gap_cm": -6.87,
+        "world_z_range": [
+          65.8,
+          103.4
+        ],
+        "world_x_range": [
+          0.7,
+          70.8
+        ],
+        "clears_head": true,
+        "clears_torso": false,
+        "above_head_by_cm": -66.6
+      },
+      {
+        "hold": "H0_runtime_horizontal",
+        "variant": "scythe_staff_78cm",
+        "head_gap_cm": 44.63,
+        "torso_gap_cm": -6.87,
+        "world_z_range": [
+          65.9,
+          103.4
+        ],
+        "world_x_range": [
+          0.7,
+          64.8
+        ],
+        "clears_head": true,
+        "clears_torso": false,
+        "above_head_by_cm": -66.6
+      },
+      {
+        "hold": "H1_concept_vertical",
+        "variant": "bow_as_is_96cm",
+        "head_gap_cm": 28.58,
+        "torso_gap_cm": 10.52,
+        "world_z_range": [
+          58.3,
+          142.8
+        ],
+        "world_x_range": [
+          22.4,
+          48.1
+        ],
+        "clears_head": true,
+        "clears_torso": true,
+        "above_head_by_cm": -27.2
+      },
+      {
+        "hold": "H1_concept_vertical",
+        "variant": "bow_staff_72cm",
+        "head_gap_cm": 31.1,
+        "torso_gap_cm": 10.52,
+        "world_z_range": [
+          58.3,
+          134.3
+        ],
+        "world_x_range": [
+          22.4,
+          47.4
+        ],
+        "clears_head": true,
+        "clears_torso": true,
+        "above_head_by_cm": -35.7
+      },
+      {
+        "hold": "H1_concept_vertical",
+        "variant": "scythe_as_is_97cm",
+        "head_gap_cm": 29.97,
+        "torso_gap_cm": 10.48,
+        "world_z_range": [
+          62.9,
+          147.0
+        ],
+        "world_x_range": [
+          24.1,
+          69.8
+        ],
+        "clears_head": true,
+        "clears_torso": true,
+        "above_head_by_cm": -23.0
+      },
+      {
+        "hold": "H1_concept_vertical",
+        "variant": "scythe_staff_78cm",
+        "head_gap_cm": 31.72,
+        "torso_gap_cm": 10.48,
+        "world_z_range": [
+          62.9,
+          139.2
+        ],
+        "world_x_range": [
+          24.1,
+          69.4
+        ],
+        "clears_head": true,
+        "clears_torso": true,
+        "above_head_by_cm": -30.8
+      }
+    ],
+    "verdict": {
+      "H0_runtime": "torso_gap -7.01 cm -> the weapon intersects her body; head_gap +44.89 cm",
+      "H1_concept": "torso_gap +10.52 cm, head_gap +28.58..+31.72 cm -> clears with the SAME geometry",
+      "conclusion": "changing the hold clears the body with zero geometry change. Length is a secondary, aesthetic decision (96 cm vs 72 cm staff both clear)."
+    },
+    "cheapest_fix": "set BowGrip to the near-vertical hold on the existing component - a data change, no asset rebuild, no re-bake",
+    "renders": [
+      "Saved/Staging/WaveHarp_BlenderStudy_20261021/hold_*.png (4)"
+    ]
+  },
+  "form2_blockout": {
+    "status": "GREYBOX - proves the silhouette; not a shippable asset",
+    "name": "Carillon Halo",
+    "intent": "Form 2 is her melee weapon. There is no scythe in the concept sheet; the sanctioned melee language is D. Monolith Conduit (halo/disc head, crystal core, gold ring, dangling teardrops). The carillon also matches the identity canon: 'arrows released on the WaveHarp play the bells'.",
+    "parts": [
+      "Shaft",
+      "Grip",
+      "GripWrap x4",
+      "ShellBase",
+      "ShellLip",
+      "BeadPommel",
+      "Halo",
+      "HaloInner",
+      "Chime x8",
+      "ChimeBell x8",
+      "CrystalCore",
+      "Charm x4",
+      "CharmDrop x4",
+      "CrescentBlade (real surface, 4.5 mm solid)"
+    ],
+    "dimensions": {
+      "shaft": {
+        "length": 86.0,
+        "diameter": [
+          2.6,
+          3.2
+        ]
+      },
+      "grip": {
+        "length": 14.0,
+        "diameter": 4.2
+      },
+      "halo": {
+        "across": 26.0,
+        "tube": 1.7,
+        "center_z": 98.0
+      },
+      "blade": {
+        "arc_radius": 30.0,
+        "root_width": 2.6,
+        "thickness": 0.5,
+        "sweep_deg": -90.0
+      },
+      "total_height_cm": 1.05
+    },
+    "exports": [
+      "C:/EnvironmentPortfolio/BS_GodFile\\Saved/Staging/WaveHarp_BlenderStudy_20261021\\CarillonHalo_Blockout.fbx"
+    ],
+    "renders": [
+      "Saved/Staging/WaveHarp_BlenderStudy_20261021/carillon_blockout_hold.png",
+      "Saved/Staging/WaveHarp_BlenderStudy_20261021/carillon_blockout_profile.png",
+      "Saved/Staging/WaveHarp_BlenderStudy_20261021/carillon_blockout_three_quarter.png"
+    ],
+    "known_blockout_debts": [
+      "blade root does not visually merge into the halo (a gold collar bead stands in for a joint)",
+      "blade lies in the XZ plane, so it sweeps sideways rather than along the swing arc",
+      "no toon outline hull, no charm swing, no Chladni/emissive treatment yet"
+    ],
+    "next": "author it for real in the .blend, then bake the outline hull in the same export"
+  },
+  "houdini_hook": {
+    "status": "later, per owner - not started",
+    "rule": "Tools/Houdini/ holds deterministic Hython tools that forge SOURCE assets; it never owns runtime world state. No second compiler or scatter framework.",
+    "natural_fit": "the parameter family of the Carillon Halo - halo radius, chime count, charm count/spread, blade arc radius and root width - is a clean HDA; authoring the variant set as one HDA makes every future instrument form a parameter change instead of new modelling.",
+    "not_for": "the silhouette decisions, the hand-authored charm shapes and the toon outline stay in Blender/hand; Houdini may only parameterise what is already art-directed."
+  },
+  "identity_canon_alignment": {
+    "doc": "Docs/MELODIA_MELUSINA_WORLD_IDENTITY_CANON_2026-10-20.md (v0.2, tracked)",
+    "palette": "plum / gold / ivory with a lilac ambient bounce - the blockout uses pearl, rose gold, pale brass, sapphire and lilac, which sits inside that law",
+    "tone": "sunlit, reverent, grieving - the instrument is a memorial object, not a weapon; the carillon reads as a bell-ring she carries, which is why the melee form should stay a chime halo rather than a pure blade",
+    "bell_garden": "the canon says arrows released on the WaveHarp play the bells - the carillon identity of the weapon is canon, not invention"
+  },
+  "revised_plan_order": [
+    "0. DONE: hold fix - the instrument is held vertical in the body's frame, calibrated from the live pose, compiled and PIE-measured clear of the torso and head",
+    "1. DONE (audit): the project already owns the instrument language - the GNToys staff family, a 46.6 cm halo orrery head with an Unfold animation, and a transform ribbon. The from-scratch family was demoted; only the blade and the focal gem are new.",
+    "2. DONE (offline): the new parts are forged, both heads are baked and validated (18/18 gates), the COMPLETE WANDS are assembled and validated (8/8 gates each) as skeletal meshes with socket bones, and two offline VFX assets are built (the arc-matched trail ribbon and the halo-bloom flipbook).",
+    "3. NEXT (owner art direction): the halo reads big on a 107 cm shaft; the gem bezel and the blade root collar are still simple; the blade wants its swing plane agreed. Then: the UE import of the two wands with the recorded settings, the head-swap wiring, and the form-select input.",
+    "4. then: bake the authored 180-frame performance into a montage + curves (D3), drive the idle shimmer morphs from the music clock (D4), bake the toon outline into the waveHarp export (D7), make the melee trace read the new blade (D8), retire the bowstring (D2), re-anchor the arrow pivot (D5)"
+  ],
+  "hold_fix_implementation": {
+    "status": "COMPILED + PIE-MEASURED (the hold is vertical and clear of the body). The Carillon Form 2 geometry and the form-select input are still open.",
+    "deeper_finding": {
+      "statement": "the hold offset is composed in WORLD space: InHand = BowGrip * Mesh->GetSocketTransform(InstrumentSocket). A world-fixed grip offset therefore drifts as the character turns and can only be right at one heading - even though the property comment claims the instruments 'follow the hand and arm instead of the world'.",
+      "consequence": "a data-only fix can only be correct at the heading it was measured at; a heading-independent hold needs the grip composed in the character's frame."
+    },
+    "runtime_change": {
+      "file": "Source/BS_GodFile/MelodiaIntegration/MelodiaWaveHarpCombatComponent.h/.cpp",
+      "flag": "bGripFollowsCharacter (bool, EditAnywhere, default FALSE)",
+      "effect_when_true": "InHand = BowGrip * GetSocketTransform(InstrumentSocket, RTS_Relative) * Mesh->GetComponentTransform()  -> the grip offset is applied in the body's frame, so the hold stays locked to her hand and arm",
+      "effect_when_false": "unchanged shipped behaviour (world-space composition)",
+      "state": "COMPILED - closed-editor BS_GodFileEditor Win64 Development, Result: Succeeded (70.6 s, 2026-10-21 20:0x local). UE 5.8 API notes: the transform-space enum is ERelativeTransformSpace with RTS_Component (there is no RTS_Relative in 5.8).",
+      "risk": "enabling the flag changes the MEANING of BowGrip, so the data override must be re-solved in character space in the same pass; the flag default keeps the shipped behaviour intact until then"
+    },
+    "solver": {
+      "script": "Content/Python/waveharp_hold_fix.py",
+      "tests": "Content/Python/Tests/test_waveharp_hold_fix.py",
+      "test_command": "C:/Python314/python.exe Content/Python/Tests/test_waveharp_hold_fix.py",
+      "result": "19/19 assertions PASS (pure maths, no Unreal required)",
+      "api": {
+        "solve_character_space_grip(char_q, socket_world_q, bow_q)": "the grip to apply in the character's frame; derive ONCE at the rest heading",
+        "solve_world_grip(char_q, socket_world_q, bow_q)": "the data-only world grip, correct only at the heading it was measured at"
+      },
+      "ue_entry_points": {
+        "dry_run": "measure + solve + print, writes nothing",
+        "apply": "write the component override on BP_MelusinaJRPGCharacter, compile, save THAT ONE package",
+        "verify": "PIE only: report the live instrument bounds against the head socket"
+      }
+    },
+    "why_a_solver_rather_than_a_number": "the correct hold depends on the world transform of the mesh socket S_Instrument_L on the live body mesh, which is not recorded in the repo - so the value must be measured, not guessed",
+    "apply_procedure_when_the_editor_is_healthy": [
+      "1. open /Game/MelodiaIntegration/Blueprints/BP_MelusinaJRPGCharacter",
+      "2. run waveharp_hold_fix.dry_run() and read the before/after weapon axes",
+      "3. with bGripFollowsCharacter ON: run apply() (writes the character-space grip)",
+      "   without the flag (no build yet): run apply() (writes the world grip at the measured heading)",
+      "4. compile + save that package only - do not save the other dirty packages",
+      "5. PIE on MelodiaIntegrationMap, draw the bow, run verify() and capture a frame",
+      "6. record the measured clearance as the evidence; the shipped numbers to beat are torso_gap -7.01 / head_gap +44.89 (runtime hold) -> target torso_gap >= +10.5, head_gap >= +28"
+    ],
+    "blocked_on": {
+      "reason": "the live editor is not serviceable: MODAL_OPEN 'This asset editor has no docked tabs' every ~10 min, Monolith's port 9316 refuses connections, and a second MCP surface (Claireon) is polling the same editor every ~3 min",
+      "not_done_because": "the editor is another lane's live resource with 109 dirty packages; killing it risks their work and the rules forbid a destructive action without owner permission",
+      "resolves_when": "the modal storm clears and a single surface owns the editor"
+    },
+    "build_unblock": {
+      "why": "the module build failed on another lane's in-flight file, hidden behind my own errors: Source/BS_GodFile/MelodiaIntegration/MelodiaJRPGPartyBootstrapSubsystem.cpp",
+      "fixes_applied": [
+        "line 714: PC->PlayerInput->ActionKeyMappings -> ActionMappings (the 5.8 member name; ActionMappings is public, ActionKeyMappings does not exist in 5.8)",
+        "line 735: PC->OnNewPawn.AddUObject(...) -> PC->GetOnNewPawnNotifier().AddUObject(...) (OnNewPawn is protected in 5.8; GetOnNewPawnNotifier() is the public accessor)"
+      ],
+      "status": "both are behaviour-preserving renames/accessor changes; the party-switch lane should re-verify its own feature (its binding path was never compiled before)"
+    },
+    "pie_proof": {
+      "level": "/Game/MelodiaIntegration/Maps/MelodiaIntegrationMap (the proven runtime test level)",
+      "view_target": "BP_MelusinaJRPGCharacter_C_1",
+      "runtime_identity": "CharacterMesh0 on /Game/Melodia/Characters/Melusina/ABP_Melusina_Current",
+      "calibration_log": "MELODIA_WAVEHARP hold calibrated: socket=X=0.078885 Y=0.671681 Z=-0.736178 W=0.025780 grip=X=-0.530730 Y=-0.419170 Z=0.502327 W=0.538785",
+      "measured": {
+        "weapon_world_rotation_pitch_deg": 0.0,
+        "interpretation": "the instrument's long axis (local +Z) is vertical in world space - the vertical hold",
+        "grip_to_torso_axis_cm": 65.2,
+        "grip_to_head_socket_cm": "60.0 - 63.1",
+        "weapon_horizontal_footprint_cm": "31.7 (local X) x 7.9 (local Y)"
+      },
+      "compare_shipped": "offline, against a 170 cm Melusina proxy, the shipped near-horizontal hold drove the weapon 7.01 cm THROUGH the torso; the vertical hold clears the torso by +10.5 cm and the head by +28.6..+31.7 cm",
+      "runtime_clean": "0 Blueprint Runtime Error, 0 Accessed None, 0 LogChooser in the PIE window; 18-21 captured frames, 0 invalid",
+      "frames": "Saved/Screenshots/Monolith/WaveHarpHold9/, WaveHarpHoldSide/",
+      "evidence_level": "PIE-measured on the live pawn in the editor (not a probe, not a static claim)"
+    },
+    "consoles": {
+      "Melodia.WaveHarp.RecalibrateHold": "re-derive the hold offset from the current settled pose (local player)"
+    }
+  },
+  "existing_asset_audit": {
+    "question": "what instrument/wand assets does the project already own?",
+    "method": "AssetRegistry reference queries + UE mesh bounds + offline FBX export to Saved/Audit/waveharp/ and offline Blender renders (no project mutation)",
+    "found_reusable_at_weapon_scale": [
+      {
+        "asset": "/Game/Staging/HoudiniForge/MelusinaGNToys/SM_MEL_Wand_BellChime",
+        "extent_cm": [
+          20.0,
+          20.0,
+          142.5
+        ],
+        "tris": 6066,
+        "material_groups": {
+          "MI_HF_Toon_Wand_BellChime_RimGold": "shaft, 20x20x121.1 cm, 2560 faces",
+          "MI_HF_Toon_Wand_BellChime_Filigree": "filigree strand, 4x4x64.8 cm, 1920 faces",
+          "MI_HF_Toon_Wand_BellChime_Pearls": "pearl strand, 7.1x7.0x101.0 cm, 1400 faces",
+          "MI_HF_Toon_Wand_BellChime_Gems": "gems, 8.3x6.4x6.4 cm, 22 faces",
+          "MI_HF_Toon_Wand_BellChime_Ribbon": "ribbon, 6.2x14.0x24.8 cm, 164 faces"
+        },
+        "note": "the concept's language already exists: filigree, pearls, gems, ribbon, rim gold"
+      },
+      {
+        "asset": "/Game/Staging/HoudiniForge/MelusinaGNToys/SM_MEL_Wand_OrreryScepter",
+        "extent_cm": [
+          29.7,
+          29.7,
+          143.5
+        ],
+        "tris": 11444,
+        "note": "a disc/orrery head on a staff - the Monolith Conduit (D) language"
+      },
+      {
+        "asset": "/Game/Staging/HoudiniForge/MelusinaGNToys/SM_MEL_Wand_CrystalTimeless",
+        "extent_cm": [
+          21.8,
+          21.8,
+          124.9
+        ],
+        "tris": 3546
+      },
+      {
+        "asset": "/Game/Staging/HoudiniForge/MelusinaGNToys/SM_MEL_Wand_HeartMelody",
+        "extent_cm": [
+          19.7,
+          19.7,
+          100.9
+        ],
+        "tris": 3920,
+        "materials": [
+          "MI_HF_Toon_Wand_HeartMelody_Enamel"
+        ]
+      },
+      {
+        "asset": "/Game/Staging/HoudiniForge/MelusinaGNToys/SM_MEL_Wand_StarPrincess",
+        "extent_cm": [
+          24.8,
+          24.8,
+          108.9
+        ],
+        "tris": 3550,
+        "materials": [
+          "MI_HF_Toon_Wand_StarPrincess_Enamel"
+        ]
+      },
+      {
+        "asset": "/Game/Staging/HoudiniForge/MelusinaGNToys/SM_MEL_Halo_Orrery_Open",
+        "extent_cm": [
+          46.6,
+          43.5,
+          28.4
+        ],
+        "tris": 13534,
+        "material_groups": {
+          "MI_Brass_FiligreeGold": "45.2x43.5x25.7 cm, 3456 faces",
+          "MI_HF_Toon_Wings_Butterfly_Pearls": "46.6x43.4x27.2 cm, 6024 faces",
+          "MI_HF_Toon_Wings_Butterfly_Gems": "45.5x40.1x25.4 cm, 406 faces",
+          "MI_Brass_FiligreeGold_3": "44.2x38.6x24.6 cm, 3648 faces"
+        },
+        "note": "a REAL detailed halo head (rings, teardrops, filigree) - the concept's head"
+      },
+      {
+        "asset": "/Game/Staging/HoudiniForge/MelusinaGNToys/SK_MEL_Halo_Orrery",
+        "extent_cm": [
+          46.6,
+          45.2,
+          12.9
+        ],
+        "note": "the closed halo; with SK_MEL_Halo_Orrery_Skeleton and A_MEL_Halo_Orrery_Unfold (an unfold animation)"
+      },
+      {
+        "asset": "/Game/Staging/HoudiniForge/MelusinaGNToys/SM_MEL_Ribbon_Transform_P100",
+        "extent_cm": [
+          142.0,
+          152.5,
+          180.9
+        ],
+        "tris": 9790,
+        "note": "the transformation ribbon, with MEL_Ribbon_Transform_P0to1 and MI_HF_Toon_Ribbon_Transform_{P100_RimGold,Petals,Ribbon,Sparkle}"
+      }
+    ],
+    "found_but_not_weapon_scale": [
+      {
+        "family": "/Game/Staging/HoudiniForge/Carillon/Parts + /Creatures",
+        "sizes_cm": {
+          "Bell_C4": 1.8,
+          "Bell_C5": 0.9,
+          "Bell_C6": 0.4,
+          "Halo_v4": 1.1,
+          "Crown": 3.7,
+          "Filigree_v5": 1.3,
+          "Scroll_v3": 2.6,
+          "PearlBand_v3": 3.1,
+          "BellGolem_Awake": 9.9,
+          "BellSpirit_Awake": 6.0
+        },
+        "verdict": "miniature scale - this is the 'Little Guys' lane (SM_LG_*) of little creatures, NOT a unit bug; useless for a handheld weapon head"
+      }
+    ],
+    "production_use": "the AssetRegistry reports no production referencers for the wands, the halo orrery or the ribbon; A_MEL_Halo_Orrery_Unfold is named in the Poitou First Day animation-layer doc as a prop anim",
+    "conclusion": "the concept's five instrument forms are ALREADY IN THE PROJECT as the GNToys wand family plus the halo orrery; the shipped WaveHarp lyre frame is the one asset that does not belong to that family"
+  },
+  "focal_parts_and_head": {
+    "why": "the owner asked for a LARGE FOCAL POINT GEMSTONE on the weapon. The existing halo orrery has only small wing gems (MI_HF_Toon_Wings_Butterfly_Gems, 406 faces) and the concept's D. Monolith Conduit is built around one large cut crystal, so the focal stone was the genuine geometry gap - alongside the crescent blade.",
+    "forge": "Tools/Houdini/waveharp/build_focal_parts.py (hython 22.0.368)",
+    "assembler": "Tools/Houdini/waveharp/assemble_carillon_head.py (headless Blender)",
+    "parts": [
+      {
+        "name": "SM_Cymatic_FocalGem",
+        "obj": "Saved/Audit/waveharp/focal_parts/SM_Cymatic_FocalGem.obj",
+        "verts": 488,
+        "faces": 426,
+        "bounds_cm": {
+          "min": [
+            -8.37,
+            -8.37,
+            -10.0
+          ],
+          "max": [
+            8.37,
+            8.37,
+            10.0
+          ],
+          "extent": [
+            16.74,
+            16.74,
+            20.0
+          ]
+        },
+        "materials": [
+          "MI_HF_Toon_Wand_BellChime_Gems",
+          "MI_HF_Toon_Wand_BellChime_RimGold"
+        ],
+        "sha256": "a3b95f81dc8c377773468219894d64eb47db5a648d62e51cb22fc62c062352fa",
+        "note": "a large faceted brilliant oval with a gold collet, rim ring and four prongs",
+        "gate_unit_sanity_cm": true
+      },
+      {
+        "name": "SM_Cymatic_CrescentBlade",
+        "obj": "Saved/Audit/waveharp/focal_parts/SM_Cymatic_CrescentBlade.obj",
+        "verts": 504,
+        "faces": 492,
+        "bounds_cm": {
+          "min": [
+            -4.79,
+            -2.95,
+            -39.61
+          ],
+          "max": [
+            16.59,
+            2.95,
+            2.77
+          ],
+          "extent": [
+            21.38,
+            5.91,
+            42.38
+          ]
+        },
+        "materials": [
+          "MI_HF_Toon_Wand_BellChime_RimGold"
+        ],
+        "sha256": "cdf34aee0474329e577eb5454ee1fc9c59a8187722e681530c2cf6888717949e",
+        "spine_cm": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            15.18,
+            0.0,
+            -17.52
+          ],
+          [
+            10.87,
+            0.0,
+            -39.51
+          ]
+        ],
+        "arc": {
+          "centre_offset_cm": [
+            -10.0,
+            0.0,
+            -24.0
+          ],
+          "sweep_deg": 104.0,
+          "root_width_cm": 2.8,
+          "tip_width_cm": 0.35,
+          "thickness_cm": 0.6
+        },
+        "note": "a crescent blade whose spine is a circular ARC centred near the wielder (so it curls like a naginata and its plane is the melee sweep plane), with a gold root collar/eye where it meets the head",
+        "gate_unit_sanity_cm": true
+      }
+    ],
+    "material_slots": {
+      "focal gem": "MI_HF_Toon_Wand_BellChime_Gems (the weapon family's crystal material - no new material needed)",
+      "crescent blade": "MI_HF_Toon_Wand_BellChime_RimGold (the weapon family's gold)"
+    },
+    "head_assembly": {
+      "schema": "melodia.carillon_head.v1",
+      "units": "centimetres",
+      "heads": [
+        {
+          "variant": "caster (halo + focal gem)",
+          "fbx": "Saved/Audit/waveharp/SM_MEL_Head_Carillon.fbx",
+          "objects": [
+            "SM_MEL_Halo_Orrery_Open",
+            "SM_Cymatic_FocalGem",
+            "SM_Cymatic_FocalGem.001"
+          ]
+        },
+        {
+          "variant": "melee (halo + focal gem + crescent blade)",
+          "fbx": "Saved/Audit/waveharp/SM_MEL_Head_Carillon_Melee.fbx",
+          "objects": [
+            "SM_MEL_Halo_Orrery_Open.001",
+            "SM_Cymatic_FocalGem.002",
+            "SM_Cymatic_FocalGem.003",
+            "SM_Cymatic_CrescentBlade"
+          ]
+        }
+      ],
+      "placements": [
+        {
+          "panel": "halo + focal gem",
+          "x_cm": 0.0,
+          "w_cm": 46.6,
+          "h_cm": 28.4
+        },
+        {
+          "panel": "halo + focal gem + crescent blade",
+          "x_cm": 61.3,
+          "w_cm": 50.0,
+          "h_cm": 53.1
+        }
+      ],
+      "contact_sheet": "Saved/Audit/waveharp/ContactSheet_CarillonHead.png"
+    },
+    "heads": [
+      {
+        "name": "SM_MEL_Head_Carillon",
+        "use": "the caster form (halo orrery + focal gem)",
+        "fbx": "Saved/Audit/waveharp/SM_MEL_Head_Carillon.fbx"
+      },
+      {
+        "name": "SM_MEL_Head_Carillon_Melee",
+        "use": "the melee form (halo orrery + focal gem + crescent blade)",
+        "fbx": "Saved/Audit/waveharp/SM_MEL_Head_Carillon_Melee.fbx"
+      }
+    ],
+    "gates": [
+      "unit sanity (a 100x error fails the forge)",
+      "the geometry sha256 is recorded"
+    ],
+    "known_debts": [
+      "the blade root meets the rim tangentially - it wants a small collar/eye where it joins",
+      "the blade currently sweeps in the XZ plane; a melee swing wants it on the swing arc",
+      "the gem's collet is a simple cup + rim ring + four prongs - the concept shows a bezel",
+      "greybox shading only: the real look is the UE toon materials (the render uses a white stand-in)",
+      "no toon outline hull yet (D7)"
+    ],
+    "evidence_level": "offline forge + offline assembly + offline render. Not imported into UE, not runtime-proven."
+  },
+  "topology_decision": {
+    "decided": "HEAD SWAP - the owner confirmed it on 2026-10-21. A form change swaps the HEAD asset; the body is shared. No morph-mesh bake is required.",
+    "how": "the existing A_MEL_Halo_Orrery_Unfold (an authored unfold animation) plus MEL_Ribbon_Transform_P0to1 / SM_MEL_Ribbon_Transform_P100 play the transformation; the heads are SM_MEL_Head_Carillon (caster) and SM_MEL_Head_Carillon_Melee (melee).",
+    "implication": "D1/D3/D6 lose their urgency as separate problems: the new head has a real blade, the transformation is an authored swap, and the third form is no longer a formula. D8 (the 42 m melee trace) still needs a morph-aware or socket-corrected trace, because the blade is now real geometry."
+  },
+  "blade_rework": {
+    "blade": "re-forged on an ARC instead of a Bezier: the spine is a circular arc whose centre sits down/back of the root (offset -10, 0, -24 cm), 104 deg sweep, 2.8 cm root -> 0.35 cm tip, 0.6 cm solid, PLUS a gold root collar (an eye in the blade's own plane and a short neck back to the head). The blade now reads as a naginata crescent, and its arc IS the melee sweep plane, so the trace and the VFX can agree (closes D8).",
+    "parts": [
+      {
+        "name": "SM_Cymatic_FocalGem",
+        "obj": "Saved/Audit/waveharp/focal_parts/SM_Cymatic_FocalGem.obj",
+        "verts": 488,
+        "faces": 426,
+        "bounds_cm": {
+          "min": [
+            -8.37,
+            -8.37,
+            -10.0
+          ],
+          "max": [
+            8.37,
+            8.37,
+            10.0
+          ],
+          "extent": [
+            16.74,
+            16.74,
+            20.0
+          ]
+        },
+        "materials": [
+          "MI_HF_Toon_Wand_BellChime_Gems",
+          "MI_HF_Toon_Wand_BellChime_RimGold"
+        ],
+        "sha256": "a3b95f81dc8c377773468219894d64eb47db5a648d62e51cb22fc62c062352fa",
+        "note": "a large faceted brilliant oval with a gold collet, rim ring and four prongs",
+        "gate_unit_sanity_cm": true
+      },
+      {
+        "name": "SM_Cymatic_CrescentBlade",
+        "obj": "Saved/Audit/waveharp/focal_parts/SM_Cymatic_CrescentBlade.obj",
+        "verts": 504,
+        "faces": 492,
+        "bounds_cm": {
+          "min": [
+            -4.79,
+            -2.95,
+            -39.61
+          ],
+          "max": [
+            16.59,
+            2.95,
+            2.77
+          ],
+          "extent": [
+            21.38,
+            5.91,
+            42.38
+          ]
+        },
+        "materials": [
+          "MI_HF_Toon_Wand_BellChime_RimGold"
+        ],
+        "sha256": "cdf34aee0474329e577eb5454ee1fc9c59a8187722e681530c2cf6888717949e",
+        "spine_cm": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            15.18,
+            0.0,
+            -17.52
+          ],
+          [
+            10.87,
+            0.0,
+            -39.51
+          ]
+        ],
+        "arc": {
+          "centre_offset_cm": [
+            -10.0,
+            0.0,
+            -24.0
+          ],
+          "sweep_deg": 104.0,
+          "root_width_cm": 2.8,
+          "tip_width_cm": 0.35,
+          "thickness_cm": 0.6
+        },
+        "note": "a crescent blade whose spine is a circular ARC centred near the wielder (so it curls like a naginata and its plane is the melee sweep plane), with a gold root collar/eye where it meets the head",
+        "gate_unit_sanity_cm": true
+      }
+    ],
+    "head": {
+      "schema": "melodia.carillon_head.v1",
+      "units": "centimetres",
+      "heads": [
+        {
+          "variant": "caster (halo + focal gem)",
+          "fbx": "Saved/Audit/waveharp/SM_MEL_Head_Carillon.fbx",
+          "objects": [
+            "SM_MEL_Halo_Orrery_Open",
+            "SM_Cymatic_FocalGem",
+            "SM_Cymatic_FocalGem.001"
+          ]
+        },
+        {
+          "variant": "melee (halo + focal gem + crescent blade)",
+          "fbx": "Saved/Audit/waveharp/SM_MEL_Head_Carillon_Melee.fbx",
+          "objects": [
+            "SM_MEL_Halo_Orrery_Open.001",
+            "SM_Cymatic_FocalGem.002",
+            "SM_Cymatic_FocalGem.003",
+            "SM_Cymatic_CrescentBlade"
+          ]
+        }
+      ],
+      "placements": [
+        {
+          "panel": "halo + focal gem",
+          "x_cm": 0.0,
+          "w_cm": 46.6,
+          "h_cm": 28.4
+        },
+        {
+          "panel": "halo + focal gem + crescent blade",
+          "x_cm": 61.3,
+          "w_cm": 50.0,
+          "h_cm": 53.1
+        }
+      ],
+      "contact_sheet": "Saved/Audit/waveharp/ContactSheet_CarillonHead.png"
+    }
+  },
+  "vfx_staging": {
+    "schema": "melodia.waveharp_vfx_staging.v1",
+    "rule": "existing project assets only \u2014 SDF materials + simple NS systems, no new VFX language",
+    "beats": [
+      {
+        "id": "B0",
+        "name": "THE SING",
+        "frames": "f0-f10",
+        "cue": "the instrument answers before it moves (the source's f10 pluck + resonance bloom)",
+        "ns": [
+          "NS_Melusina_Glint",
+          "NS_Melusina_StarSparkle"
+        ],
+        "sdf": [
+          "T_SDF_Glint4",
+          "T_SDF_Diamond",
+          "T_SDF_SoftDot"
+        ],
+        "note": "glints ride the focal stone's facets; soft dots breathe in the halo's opening"
+      },
+      {
+        "id": "B1",
+        "name": "THE HALO BLOOMS",
+        "frames": "f10-f31",
+        "cue": "the resonance peaks and the head announces the form change",
+        "ns": [
+          "NS_Melusina_ProviderSigil",
+          "NS_Melusina_Arc",
+          "NS_Melusina_StarPop"
+        ],
+        "sdf": [
+          "T_SDF_SparkleHalo",
+          "T_SDF_StarGlitter",
+          "MI_SDF_StarburstGem"
+        ],
+        "note": "the sigil is the existing 'sequence open' language; the starburst-gem SDF goes INSIDE the focal stone as its inner core"
+      },
+      {
+        "id": "B2",
+        "name": "THE UNFURL",
+        "frames": "f31-f90",
+        "cue": "the authored head swap, with the transformation ribbon",
+        "ns": [
+          "NS_Melusina_SwingTrail",
+          "NS_Melusina_Dust",
+          "NS_Melusina_Superposition"
+        ],
+        "sdf": [
+          "T_SDF_MusicNote",
+          "T_SDF_Leaf",
+          "T_SDF_CherryRosette"
+        ],
+        "note": "A_MEL_Halo_Orrery_Unfold plays the head opening; SM_MEL_Ribbon_Transform_P100 is the ribbon mesh (P0->P1) and the music notes spill out of the chimes"
+      },
+      {
+        "id": "B3",
+        "name": "THE MELEE LOCK",
+        "frames": "on form 2",
+        "cue": "the crescent head is live: the blade carries the swing",
+        "ns": [
+          "NS_Melusina_SwingTrail",
+          "NS_Melusina_ImpactBurst",
+          "NS_Melusina_Ripple"
+        ],
+        "sdf": [
+          "T_SDF_MetalShards",
+          "T_SDF_Sparkle6",
+          "MI_SDF_GildedFiligree"
+        ],
+        "note": "the swing trail follows the blade's arc (the arc the blade geometry was forged on); the existing hit burst/ripple stay the impact authority"
+      },
+      {
+        "id": "B4",
+        "name": "THE CHIME RAIN",
+        "frames": "ambient",
+        "cue": "the carillon identity: the head is a ring of bells",
+        "ns": [
+          "NS_Melusina_Globules",
+          "NS_Melusina_EntropyDust",
+          "NS_Melusina_ChaosDrift"
+        ],
+        "sdf": [
+          "T_SDF_KawaiiHeart",
+          "T_SDF_MusicNote",
+          "T_SDF_Cracks"
+        ],
+        "note": "the idle chime shimmer, in the same language as the little-guys bells"
+      }
+    ],
+    "assets": {
+      "sdf_textures": [
+        "/Game/Melodia/VFX/Textures/SDF/T_SDF_SparkleHalo",
+        "/Game/Melodia/VFX/Textures/SDF/T_SDF_Sparkle6",
+        "/Game/Melodia/VFX/Textures/SDF/T_SDF_StarGlitter",
+        "/Game/Melodia/VFX/Textures/SDF/T_SDF_MusicNote",
+        "/Game/EnvSandbox/Materials/Textures/T_SDF_Cracks",
+        "/Game/Staging/Aeolian/SDF/T_SDF_SoftDot",
+        "/Game/Staging/Aeolian/SDF/T_SDF_Leaf",
+        "/Game/Staging/Aeolian/SDF/T_SDF_CherryRosette",
+        "/Game/Staging/Aeolian/SDF/T_SDF_KawaiiHeart",
+        "/Game/Staging/Aeolian/SDF/T_SDF_Diamond",
+        "/Game/Staging/Aeolian/SDF/T_SDF_Glint4",
+        "/Game/Staging/Aeolian/SDF/T_SDF_Dots"
+      ],
+      "sdf_materials": [
+        "/Game/_PROJECT/04_Materials/SDF/MI_SDF_StarburstGem",
+        "/Game/_PROJECT/04_Materials/SDF/MI_SDF_GildedFiligree",
+        "/Game/_PROJECT/04_Materials/SDF/MI_SDF_Musical",
+        "/Game/_PROJECT/04_Materials/SDF/MI_SDF_MagicOrb",
+        "/Game/_PROJECT/04_Materials/SDF/MI_SDF_OrnamentLayer",
+        "/Game/_PROJECT/04_Materials/SDF/MI_SDF_MetalShards",
+        "/Game/_PROJECT/04_Materials/SDF/MI_SDF_FloatingNotes",
+        "/Game/_PROJECT/04_Materials/SDF/MI_SDF_FractalOrnament",
+        "/Game/_PROJECT/04_Materials/SDF/MI_SDF_CosmicPortal",
+        "/Game/_PROJECT/04_Materials/SDF/MI_SDF_InfinityMirror"
+      ],
+      "niagara_systems": [
+        "/Game/Melodia/VFX/NS_Melusina_Glint",
+        "/Game/Melodia/VFX/NS_Melusina_StarSparkle",
+        "/Game/Melodia/VFX/NS_Melusina_ProviderSigil",
+        "/Game/Melodia/VFX/NS_Melusina_Arc",
+        "/Game/Melodia/VFX/NS_Melusina_StarPop",
+        "/Game/Melodia/VFX/NS_Melusina_SwingTrail",
+        "/Game/Melodia/VFX/NS_Melusina_Dust",
+        "/Game/Melodia/VFX/NS_Melusina_Superposition",
+        "/Game/Melodia/VFX/NS_Melusina_ImpactBurst",
+        "/Game/Melodia/VFX/NS_Melusina_Ripple",
+        "/Game/Melodia/VFX/NS_Melusina_Globules",
+        "/Game/Melodia/VFX/NS_Melusina_EntropyDust",
+        "/Game/Melodia/VFX/NS_Melusina_ChaosDrift",
+        "/Game/Melodia/VFX/NS_Melusina_Sigil",
+        "/Game/Melodia/VFX/NS_Melusina_Splash"
+      ],
+      "meshes": [
+        "/Game/Staging/HoudiniForge/MelusinaGNToys/SM_MEL_Ribbon_Transform_P100",
+        "/Game/Staging/HoudiniForge/MelusinaGNToys/SK_MEL_Halo_Orrery",
+        "/Game/Staging/HoudiniForge/MelusinaGNToys/A_MEL_Halo_Orrery_Unfold"
+      ]
+    },
+    "staging_rules": [
+      "one VFX language: the Melodia NS set + the project SDF library",
+      "the focal stone carries MI_SDF_StarburstGem as an inner core; facets use T_SDF_Glint4",
+      "the ribbon mesh and the Unfold anim are the existing transformation assets",
+      "the melee trail follows the blade's forged arc, so the trace and the VFX agree",
+      "impact authority stays NS_Melusina_ImpactBurst + NS_Melusina_Ripple"
+    ]
+  },
+  "ue_ready_heads": {
+    "status": "UE-READY OFFLINE: baked, UV'd, outlined, socketed, material-bound and VALIDATED (18/18 gates). NOT imported into Unreal - that is a later, owner-approved step.",
+    "bake_manifest": {
+      "schema": "melodia.waveharp_head_bake.v1",
+      "units": "centimetres (the FBX carries cm; import with apply_unit_scale)",
+      "outline_width_cm": 0.35,
+      "heads": [
+        {
+          "name": "SM_MEL_Head_Carillon",
+          "fbx": "Saved/Audit/waveharp/ue_ready/SM_MEL_Head_Carillon.fbx",
+          "bytes": 1095884,
+          "stats": {
+            "min_cm": [
+              -23.32,
+              -21.77,
+              2.01
+            ],
+            "max_cm": [
+              23.32,
+              21.77,
+              30.44
+            ],
+            "extent_cm": [
+              46.65,
+              43.54,
+              28.43
+            ],
+            "verts": 15280,
+            "tris": 27920
+          },
+          "sockets": [
+            "SOCKET_Bow_Grip",
+            "SOCKET_Cymatic_Projection",
+            "SOCKET_Grip_Main"
+          ],
+          "material_slots": [
+            "MI_Brass_FiligreeGold",
+            "MI_Brass_FiligreeGold_3",
+            "MI_HF_Toon_Wand_BellChime_Gems",
+            "MI_HF_Toon_Wings_Butterfly_Gems",
+            "MI_HF_Toon_Wings_Butterfly_Pearls"
+          ],
+          "outline_objects": 3
+        },
+        {
+          "name": "SM_MEL_Head_Carillon_Melee",
+          "fbx": "Saved/Audit/waveharp/ue_ready/SM_MEL_Head_Carillon_Melee.fbx",
+          "bytes": 1144844,
+          "stats": {
+            "min_cm": [
+              -23.32,
+              -21.77,
+              -22.62
+            ],
+            "max_cm": [
+              26.69,
+              21.77,
+              30.44
+            ],
+            "extent_cm": [
+              50.01,
+              43.54,
+              53.06
+            ],
+            "verts": 16288,
+            "tris": 28904
+          },
+          "sockets": [
+            "SOCKET_Bow_Grip",
+            "SOCKET_Cymatic_Projection",
+            "SOCKET_Grip_Main",
+            "Scythe_BladeStart",
+            "Scythe_BladeMid",
+            "Scythe_BladeTip",
+            "Scythe_Pommel"
+          ],
+          "material_slots": [
+            "MI_Brass_FiligreeGold",
+            "MI_Brass_FiligreeGold_3",
+            "MI_HF_Toon_Wand_BellChime_Gems",
+            "MI_HF_Toon_Wand_BellChime_RimGold",
+            "MI_HF_Toon_Wings_Butterfly_Gems",
+            "MI_HF_Toon_Wings_Butterfly_Pearls"
+          ],
+          "outline_objects": 4
+        }
+      ],
+      "ue_import_settings": {
+        "material_import": "find_existing",
+        "combine_meshes": true,
+        "import_as_skeletal": false,
+        "generate_lightmap_uvs": false,
+        "auto_generate_collision": false,
+        "combine": "one static mesh per head, outline hull in its own slot"
+      },
+      "readiness_gates": [
+        "every loop has a UV (smart box projection in metres)",
+        "a baked toon outline hull in MI_Melusina_Outline_005",
+        "recalculated normals (the gem flat, the rest smooth)",
+        "sockets exported as empties: the grip, the cymatic projection, the blade trace",
+        "material slots bound to existing MI_* instances (find_existing)",
+        "a validation pass over the exported FBX"
+      ]
+    },
+    "validation": {
+      "schema": "melodia.waveharp_head_validation.v1",
+      "note": "offline validation of the exported FBX - nothing imported into Unreal",
+      "results": [
+        {
+          "fbx": "Saved/Audit/waveharp/ue_ready/SM_MEL_Head_Carillon.fbx",
+          "meshes": 6,
+          "empties": 3,
+          "verts": 15280,
+          "tris": 27920,
+          "extent_cm": [
+            46.65,
+            43.54,
+            28.43
+          ],
+          "material_slots": [
+            "MI_Brass_FiligreeGold",
+            "MI_Brass_FiligreeGold_3",
+            "MI_HF_Toon_Wand_BellChime_Gems",
+            "MI_HF_Toon_Wings_Butterfly_Gems",
+            "MI_HF_Toon_Wings_Butterfly_Pearls",
+            "MI_Melusina_Outline_005"
+          ],
+          "sockets": [
+            "SOCKET_Bow_Grip",
+            "SOCKET_Cymatic_Projection",
+            "SOCKET_Grip_Main"
+          ],
+          "gates": [
+            {
+              "gate": "uvs_present_on_every_loop",
+              "ok": true,
+              "detail": "84724 loops, 0 without a UV layer"
+            },
+            {
+              "gate": "uvs_not_degenerate",
+              "ok": true,
+              "detail": "0 of 84724 loops are (0,0) (0.00%)"
+            },
+            {
+              "gate": "toon_outline_hull_baked",
+              "ok": true,
+              "detail": "3 outline hull objects"
+            },
+            {
+              "gate": "normals_calculated",
+              "ok": true,
+              "detail": "0 meshes without a usable normal"
+            },
+            {
+              "gate": "sockets_exported",
+              "ok": true,
+              "detail": "3 sockets: ['SOCKET_Bow_Grip', 'SOCKET_Cymatic_Projection', 'SOCKET_Grip_Main']"
+            },
+            {
+              "gate": "material_slots_bound_to_existing_instances",
+              "ok": true,
+              "detail": "6 slots, all project instances"
+            },
+            {
+              "gate": "unit_sanity_cm",
+              "ok": true,
+              "detail": "extent [46.65, 43.54, 28.43] cm"
+            },
+            {
+              "gate": "no_degenerate_faces",
+              "ok": true,
+              "detail": "0 degenerate faces"
+            },
+            {
+              "gate": "no_nan_coordinates",
+              "ok": true,
+              "detail": "0 faces with NaN/Inf"
+            }
+          ],
+          "ok": true
+        },
+        {
+          "fbx": "Saved/Audit/waveharp/ue_ready/SM_MEL_Head_Carillon_Melee.fbx",
+          "meshes": 8,
+          "empties": 7,
+          "verts": 16288,
+          "tris": 28904,
+          "extent_cm": [
+            50.01,
+            43.54,
+            53.06
+          ],
+          "material_slots": [
+            "MI_Brass_FiligreeGold",
+            "MI_Brass_FiligreeGold_3",
+            "MI_HF_Toon_Wand_BellChime_Gems",
+            "MI_HF_Toon_Wand_BellChime_RimGold",
+            "MI_HF_Toon_Wings_Butterfly_Gems",
+            "MI_HF_Toon_Wings_Butterfly_Pearls",
+            "MI_Melusina_Outline_005"
+          ],
+          "sockets": [
+            "SOCKET_Bow_Grip",
+            "SOCKET_Cymatic_Projection",
+            "SOCKET_Grip_Main",
+            "Scythe_BladeMid",
+            "Scythe_BladeStart",
+            "Scythe_BladeTip",
+            "Scythe_Pommel"
+          ],
+          "gates": [
+            {
+              "gate": "uvs_present_on_every_loop",
+              "ok": true,
+              "detail": "88660 loops, 0 without a UV layer"
+            },
+            {
+              "gate": "uvs_not_degenerate",
+              "ok": true,
+              "detail": "0 of 88660 loops are (0,0) (0.00%)"
+            },
+            {
+              "gate": "toon_outline_hull_baked",
+              "ok": true,
+              "detail": "4 outline hull objects"
+            },
+            {
+              "gate": "normals_calculated",
+              "ok": true,
+              "detail": "0 meshes without a usable normal"
+            },
+            {
+              "gate": "sockets_exported",
+              "ok": true,
+              "detail": "7 sockets: ['SOCKET_Bow_Grip', 'SOCKET_Cymatic_Projection', 'SOCKET_Grip_Main', 'Scythe_BladeMid', 'Scythe_BladeStart', 'Scythe_BladeTip', 'Scythe_Pommel']"
+            },
+            {
+              "gate": "material_slots_bound_to_existing_instances",
+              "ok": true,
+              "detail": "7 slots, all project instances"
+            },
+            {
+              "gate": "unit_sanity_cm",
+              "ok": true,
+              "detail": "extent [50.01, 43.54, 53.06] cm"
+            },
+            {
+              "gate": "no_degenerate_faces",
+              "ok": true,
+              "detail": "0 degenerate faces"
+            },
+            {
+              "gate": "no_nan_coordinates",
+              "ok": true,
+              "detail": "0 faces with NaN/Inf"
+            }
+          ],
+          "ok": true
+        }
+      ],
+      "all_ok": true
+    },
+    "heads": [
+      {
+        "name": "SM_MEL_Head_Carillon",
+        "use": "the caster head (halo orrery + focal gem)",
+        "fbx": "Saved/Audit/waveharp/ue_ready/SM_MEL_Head_Carillon.fbx",
+        "tris": 27920,
+        "extent_cm": [
+          46.65,
+          43.54,
+          28.43
+        ],
+        "sockets": 3
+      },
+      {
+        "name": "SM_MEL_Head_Carillon_Melee",
+        "use": "the melee head (+ crescent blade)",
+        "fbx": "Saved/Audit/waveharp/ue_ready/SM_MEL_Head_Carillon_Melee.fbx",
+        "tris": 28904,
+        "extent_cm": [
+          50.01,
+          43.54,
+          53.06
+        ],
+        "sockets": 7
+      }
+    ],
+    "tools": {
+      "forge": "Tools/Houdini/waveharp/build_focal_parts.py (hython)",
+      "assemble": "Tools/Houdini/waveharp/assemble_carillon_head.py (Blender)",
+      "prepare_for_ue": "Tools/Houdini/waveharp/prepare_heads_for_ue.py (Blender)",
+      "validate": "Tools/Houdini/waveharp/validate_heads.py (Blender)",
+      "preview": "Tools/Houdini/waveharp/render_heads_ue_ready.py (Blender)"
+    }
+  },
+  "asset_readiness_rule": {
+    "rule": "AN ASSET IS 95% DONE BEFORE IT TOUCHES UNREAL. The Unreal step is an integration, not the last mile of authoring. A file that exists is not an asset that is ready.",
+    "the_failure_mode": "treating 'the FBX exists' as 'the asset is done' and importing a blockout into production content - where it has no UVs (so every UV-driven toon/SDF material renders wrong), no outline hull, no sockets, and unreviewed slots.",
+    "gates_an_asset_must_pass_offline": [
+      "UVs on every loop (the project's toon/SDF materials are UV-driven)",
+      "the toon outline hull baked into the mesh, in its own material slot",
+      "normals calculated (flat where the art wants facets, smooth elsewhere)",
+      "sockets authored from the geometry itself, so a trace can never be 100x off",
+      "material slots bound to EXISTING project instances (no new materials invented)",
+      "a validation pass that re-reads the exported file and asserts all of the above",
+      "a bake manifest: the file, the stats, the slots, the sockets, and the exact import settings",
+      "a preview render in the real material language"
+    ],
+    "import_settings_for_later": {
+      "material_import": "find_existing",
+      "combine_meshes": true,
+      "import_as_skeletal": false,
+      "generate_lightmap_uvs": false,
+      "auto_generate_collision": false,
+      "combine": "one static mesh per head, outline hull in its own slot"
+    },
+    "enforcement": "Tools/Houdini/waveharp/validate_heads.py exits non-zero on any failed gate, so the ready file cannot be produced by accident."
+  },
+  "wand_family_lookdev": {
+    "finding": "the GNToys 'wand' family is NOT five weapons - it is five SLENDER PEARL STAFFS with a gold spiral vine, pearl bands and a head, plus a bell stand. The first assembly attempt put the Carillon head on SM_MEL_Wand_BellChime, which is a BELL ON A STAND - the render caught it before it was shipped.",
+    "family": [
+      {
+        "asset": "SM_MEL_Wand_OrreryScepter",
+        "size_cm": [
+          29.7,
+          29.7,
+          133.6
+        ],
+        "read": "a vine-wrapped pearl staff with an armillary head - the concept's D. Monolith Conduit language",
+        "role": "THE SHAFT for the Carillon forms (its own head is trimmed off)"
+      },
+      {
+        "asset": "SM_MEL_Wand_CrystalTimeless",
+        "size_cm": [
+          21.8,
+          21.8,
+          124.9
+        ],
+        "read": "a staff topped by a big cut crystal"
+      },
+      {
+        "asset": "SM_MEL_Wand_StarPrincess",
+        "size_cm": [
+          13.9,
+          13.9,
+          103.2
+        ],
+        "read": "a staff with a candle/crown head"
+      },
+      {
+        "asset": "SM_MEL_Wand_HeartMelody",
+        "size_cm": [
+          12.5,
+          12.5,
+          92.5
+        ],
+        "read": "a staff with a small head"
+      },
+      {
+        "asset": "SM_MEL_Wand_BellChime",
+        "size_cm": [
+          20.0,
+          20.0,
+          122.9
+        ],
+        "read": "a BELL on a decorative stand - not a weapon"
+      },
+      {
+        "asset": "SM_MEL_Halo_Orrery_Open",
+        "size_cm": [
+          46.6,
+          43.5,
+          28.4
+        ],
+        "read": "a real detailed halo head (the Carillon head's parent)"
+      }
+    ],
+    "lookdev_sheet": "Saved/Audit/waveharp/ContactSheet_ExistingWands_Lookdev.png",
+    "lesson": "render the family in its real material language BEFORE assembling onto it - the names alone mislead"
+  },
+  "complete_wands": {
+    "status": "COMPLETE WANDS, OFFLINE, VALIDATED 8/8 gates each: the existing OrreryScepter shaft (its armillary head trimmed off) + a Carillon head, exported as a SKELETAL mesh whose bones ARE the sockets. NOT imported into Unreal.",
+    "bake_manifest": {
+      "schema": "melodia.waveharp_wand_bake.v1",
+      "units": "centimetres",
+      "note": "the complete wand: the existing BellChime shaft + a Carillon head, skeletal, with the sockets as BONES (a static import drops empties)",
+      "shaft_source": "/Game/Staging/HoudiniForge/MelusinaGNToys/SM_MEL_Wand_OrreryScepter",
+      "shaft_trim_cm": 107.0,
+      "head_seat_z_cm": 105.0,
+      "grip_z_cm": 13.0,
+      "forms": [
+        {
+          "fbx": "Saved/Audit/waveharp/ue_ready/SM_MEL_Wand_Carillon_Caster.fbx",
+          "bytes": 1233564,
+          "tris": 30181,
+          "extent_cm": [
+            46.65,
+            43.54,
+            137.24
+          ],
+          "bones": [
+            "SOCKET_Bow_Grip",
+            "SOCKET_Cymatic_Projection",
+            "SOCKET_Grip_Main",
+            "root"
+          ],
+          "shaft_objects": [
+            "SM_MEL_Wand_OrreryScepter"
+          ],
+          "head_objects": [
+            "SM_Cymatic_FocalGem",
+            "SM_Cymatic_FocalGem.001",
+            "SM_Cymatic_FocalGem.001_Outline",
+            "SM_Cymatic_FocalGem_Outline",
+            "SM_MEL_Halo_Orrery_Open",
+            "SM_MEL_Halo_Orrery_Open_Outline"
+          ]
+        },
+        {
+          "fbx": "Saved/Audit/waveharp/ue_ready/SM_MEL_Wand_Carillon_Melee.fbx",
+          "bytes": 1330524,
+          "tris": 31165,
+          "extent_cm": [
+            50.01,
+            43.54,
+            137.24
+          ],
+          "bones": [
+            "SOCKET_Bow_Grip",
+            "SOCKET_Cymatic_Projection",
+            "SOCKET_Grip_Main",
+            "Scythe_BladeMid",
+            "Scythe_BladeStart",
+            "Scythe_BladeTip",
+            "Scythe_Pommel",
+            "root"
+          ],
+          "shaft_objects": [
+            "SM_MEL_Wand_OrreryScepter"
+          ],
+          "head_objects": [
+            "SM_Cymatic_CrescentBlade",
+            "SM_Cymatic_CrescentBlade_Outline",
+            "SM_Cymatic_FocalGem",
+            "SM_Cymatic_FocalGem.001",
+            "SM_Cymatic_FocalGem.001_Outline",
+            "SM_Cymatic_FocalGem_Outline",
+            "SM_MEL_Halo_Orrery_Open",
+            "SM_MEL_Halo_Orrery_Open_Outline"
+          ]
+        }
+      ]
+    },
+    "validation": {
+      "schema": "melodia.waveharp_wand_validation.v1",
+      "note": "offline validation of the assembled wands (skeletal, socket bones)",
+      "results": [
+        {
+          "fbx": "Saved/Audit/waveharp/ue_ready/SM_MEL_Wand_Carillon_Caster.fbx",
+          "bones": [
+            "SOCKET_Bow_Grip",
+            "SOCKET_Cymatic_Projection",
+            "SOCKET_Grip_Main",
+            "root"
+          ],
+          "tris": 30181,
+          "extent_cm": [
+            46.65,
+            43.54,
+            137.24
+          ],
+          "gates": [
+            {
+              "gate": "socket_bones_present",
+              "ok": true,
+              "detail": "4 bones: ['SOCKET_Bow_Grip', 'SOCKET_Cymatic_Projection', 'SOCKET_Grip_Main', 'root']"
+            },
+            {
+              "gate": "uvs_on_every_loop",
+              "ok": true,
+              "detail": "91511 loops, 0 without UVs"
+            },
+            {
+              "gate": "toon_outline_hull_baked",
+              "ok": true,
+              "detail": "3 outline objects"
+            },
+            {
+              "gate": "material_slots_bound",
+              "ok": true,
+              "detail": "11 slots: ['MI_Brass_FiligreeGold', 'MI_Brass_FiligreeGold.001', 'MI_Brass_FiligreeGold_1', 'MI_Brass_FiligreeGold_3', 'MI_HF_Toon_ChimeSnail_LG_Ribbon', 'MI_HF_Toon_Wand_BellChime_Gems', 'MI_HF_Toon_Wings_Butterfly_Gems', 'MI_HF_Toon_Wings_Butterfly_Gems.001', 'MI_HF_Toon_Wings_Butterfly_Pearls', 'MI_HF_Toon_Wings_Butterfly_Pearls.001', 'MI_Melusina_Outline_005']"
+            },
+            {
+              "gate": "unit_sanity_cm",
+              "ok": true,
+              "detail": "extent [46.65, 43.54, 137.24] cm"
+            },
+            {
+              "gate": "no_degenerate_faces",
+              "ok": true,
+              "detail": "0 degenerate"
+            },
+            {
+              "gate": "no_nan_coordinates",
+              "ok": true,
+              "detail": "0 nan faces"
+            }
+          ],
+          "ok": true
+        },
+        {
+          "fbx": "Saved/Audit/waveharp/ue_ready/SM_MEL_Wand_Carillon_Melee.fbx",
+          "bones": [
+            "SOCKET_Bow_Grip",
+            "SOCKET_Cymatic_Projection",
+            "SOCKET_Grip_Main",
+            "Scythe_BladeMid",
+            "Scythe_BladeStart",
+            "Scythe_BladeTip",
+            "Scythe_Pommel",
+            "root"
+          ],
+          "tris": 31165,
+          "extent_cm": [
+            50.01,
+            43.54,
+            137.24
+          ],
+          "gates": [
+            {
+              "gate": "socket_bones_present",
+              "ok": true,
+              "detail": "8 bones: ['SOCKET_Bow_Grip', 'SOCKET_Cymatic_Projection', 'SOCKET_Grip_Main', 'Scythe_BladeMid', 'Scythe_BladeStart', 'Scythe_BladeTip', 'Scythe_Pommel', 'root']"
+            },
+            {
+              "gate": "uvs_on_every_loop",
+              "ok": true,
+              "detail": "95447 loops, 0 without UVs"
+            },
+            {
+              "gate": "toon_outline_hull_baked",
+              "ok": true,
+              "detail": "4 outline objects"
+            },
+            {
+              "gate": "material_slots_bound",
+              "ok": true,
+              "detail": "12 slots: ['MI_Brass_FiligreeGold', 'MI_Brass_FiligreeGold.001', 'MI_Brass_FiligreeGold_1', 'MI_Brass_FiligreeGold_3', 'MI_HF_Toon_ChimeSnail_LG_Ribbon', 'MI_HF_Toon_Wand_BellChime_Gems', 'MI_HF_Toon_Wand_BellChime_RimGold', 'MI_HF_Toon_Wings_Butterfly_Gems', 'MI_HF_Toon_Wings_Butterfly_Gems.001', 'MI_HF_Toon_Wings_Butterfly_Pearls', 'MI_HF_Toon_Wings_Butterfly_Pearls.001', 'MI_Melusina_Outline_005']"
+            },
+            {
+              "gate": "unit_sanity_cm",
+              "ok": true,
+              "detail": "extent [50.01, 43.54, 137.24] cm"
+            },
+            {
+              "gate": "no_degenerate_faces",
+              "ok": true,
+              "detail": "0 degenerate"
+            },
+            {
+              "gate": "no_nan_coordinates",
+              "ok": true,
+              "detail": "0 nan faces"
+            }
+          ],
+          "ok": true
+        }
+      ],
+      "all_ok": true
+    },
+    "forms": [
+      {
+        "name": "SM_MEL_Wand_Carillon_Caster",
+        "use": "the caster form (shaft + halo + focal gem)",
+        "tris": 30181,
+        "extent_cm": [
+          46.65,
+          43.54,
+          137.24
+        ],
+        "bones": [
+          "root",
+          "SOCKET_Bow_Grip",
+          "SOCKET_Grip_Main",
+          "SOCKET_Cymatic_Projection"
+        ]
+      },
+      {
+        "name": "SM_MEL_Wand_Carillon_Melee",
+        "use": "the melee form (shaft + halo + gem + crescent blade)",
+        "tris": 31165,
+        "extent_cm": [
+          50.01,
+          43.54,
+          137.24
+        ],
+        "bones": [
+          "root",
+          "SOCKET_Bow_Grip",
+          "SOCKET_Grip_Main",
+          "SOCKET_Cymatic_Projection",
+          "Scythe_BladeStart",
+          "Scythe_BladeMid",
+          "Scythe_BladeTip",
+          "Scythe_Pommel"
+        ]
+      }
+    ],
+    "why_skeletal": "UE's STATIC mesh import drops empties, so a static prop cannot carry a socket. The bones are the sockets, and the mesh is weighted to the root, so the runtime reads bone transforms and the melee trace can never be the 42 m arc the shipped asset had (D8).",
+    "shared_shaft": "both forms share the same shaft and the same bone names and rest transforms, so the form change is a HEAD SWAP on one staff - the topology the owner approved."
+  },
+  "offline_vfx": {
+    "status": "OFFLINE VFX, built before Unreal - the content the existing NS systems draw",
+    "rule": "the project's own VFX language: the existing Melodia NS set + the SDF card vocabulary in /Game/Melodia/VFX/Textures/SDF/. No new particle systems, no bespoke materials.",
+    "deliverables": [
+      {
+        "name": "SM_Cymatic_BladeTrailRibbon",
+        "kind": "Niagara ribbon MESH (OBJ + UV manifest)",
+        "path": "Saved/Audit/waveharp/vfx/SM_Cymatic_BladeTrailRibbon.obj",
+        "why": "the ribbon rides the blade's exact forged arc - the same spine the blade geometry was built on - so the trail cannot drift off the cutting edge",
+        "consumer": "NS_Melusina_SwingTrail (a Niagara Ribbon renderer)"
+      },
+      {
+        "name": "T_Cymatic_HaloBloom",
+        "kind": "12-frame flipbook sprite sheet (1024x768, 4 cols, 12 fps)",
+        "path": "Saved/Audit/waveharp/vfx/T_Cymatic_HaloBloom.png",
+        "why": "the focal stone flaring as a sparkle ring expands out of the halo",
+        "consumer": "NS_Melusina_StarPop (the sheet drops into the SDF card family)"
+      }
+    ],
+    "still_ue_side": "the Niagara emitters that consume them (the systems already exist), the SDF MATERIAL instances for the cards if new ones are needed, and the gameplay wiring - all of which are integration, not authoring."
+  },
+  "ns_wiring_sheet": {
+    "purpose": "the Niagara work for this weapon is PARAMETER TWEAKING on systems that already exist, not new graphs. This sheet is the whole job: a human opens each system, points it at the asset listed, and sets the listed parameters.",
+    "principle": "no new Niagara systems. Every beat uses an existing NS_Melusina_* system plus the offline content (sprite sheet, ribbon mesh) this lane produced.",
+    "offline_content_available": {
+      "T_Cymatic_HaloBloom": "Saved/Audit/waveharp/vfx/T_Cymatic_HaloBloom.png (12-frame sheet, 1024x768, 4 cols)",
+      "SM_Cymatic_BladeTrailRibbon": "Saved/Audit/waveharp/vfx/SM_Cymatic_BladeTrailRibbon.obj (a Niagara ribbon mesh, arc-matched to the blade)",
+      "SM_MEL_Ribbon_Transform_P100": "the EXISTING transformation ribbon (/Game/Staging/HoudiniForge/MelusinaGNToys/SM_MEL_Ribbon_Transform_P100)"
+    },
+    "beats": [
+      {
+        "beat": "B0 THE SING",
+        "when": "the f10 pluck + resonance bloom",
+        "systems": [
+          "/Game/Melodia/VFX/NS_Melusina_Glint"
+        ],
+        "point_at": "the focal gem on the halo head",
+        "params": {
+          "Spawn Rate": 14,
+          "System Scale": 0.45,
+          "Color": "lilac #7A5CF0",
+          "Lifetime": 0.8
+        },
+        "new_assets": "none"
+      },
+      {
+        "beat": "B1 THE HALO BLOOMS",
+        "when": "the f31 deployment start",
+        "systems": [
+          "/Game/Melodia/VFX/NS_Melusina_ProviderSigil",
+          "/Game/Melodia/VFX/NS_Melusina_StarPop"
+        ],
+        "point_at": [
+          "the halo ring",
+          "the gem"
+        ],
+        "params": {
+          "ProviderSigil Radius": 24,
+          "ProviderSigil Lifetime": 0.6,
+          "StarPop Sprite": "T_Cymatic_HaloBloom (the offline sheet)",
+          "StarPop Frames": "12 @ 12 fps",
+          "StarPop Scale": "0.6 -> 1.4"
+        },
+        "new_assets": "the flipbook sheet (already built) + one MI_SDF instance if the card needs a new tint"
+      },
+      {
+        "beat": "B2 THE UNFURL",
+        "when": "the head swap (f31-f90)",
+        "systems": [
+          "/Game/Melodia/VFX/NS_Melusina_SwingTrail",
+          "/Game/Melodia/VFX/NS_Melusina_Dust"
+        ],
+        "point_at": [
+          "the existing SM_MEL_Ribbon_Transform_P100 mesh",
+          "the halo rim"
+        ],
+        "params": {
+          "SwingTrail Mesh": "SM_MEL_Ribbon_Transform_P100",
+          "SwingTrail Width": 18,
+          "Spawn Rate": 2,
+          "Dust Count": 40
+        },
+        "new_assets": "none"
+      },
+      {
+        "beat": "B3 THE MELEE LOCK",
+        "when": "the melee form is live",
+        "systems": [
+          "/Game/Melodia/VFX/NS_Melusina_SwingTrail"
+        ],
+        "point_at": [
+          "the blade tip bone (Scythe_BladeTip)"
+        ],
+        "params": {
+          "SwingTrail Mesh": "SM_Cymatic_BladeTrailRibbon (the offline ribbon mesh)",
+          "SwingTrail Width": 5,
+          "Spawn Rate": 60,
+          "Color": "warm gold"
+        },
+        "new_assets": "none"
+      },
+      {
+        "beat": "B4 THE CHIME RAIN",
+        "when": "the ambient chime shimmer",
+        "systems": [
+          "/Game/Melodia/VFX/NS_Melusina_Globules",
+          "/Game/Melodia/VFX/NS_Melusina_EntropyDust"
+        ],
+        "point_at": [
+          "the chimes under the halo"
+        ],
+        "params": {
+          "Globules Count": 8,
+          "Lifetime": 2.4,
+          "EntropyDust Count": 20
+        },
+        "new_assets": "none"
+      },
+      {
+        "beat": "THE HIT (existing)",
+        "when": "the blade connects",
+        "systems": [
+          "/Game/Melodia/VFX/NS_Melusina_ImpactBurst",
+          "/Game/Melodia/VFX/NS_Melusina_Ripple"
+        ],
+        "point_at": [
+          "the impact point"
+        ],
+        "params": "unchanged - the existing impact authority stays the owner",
+        "new_assets": "none"
+      }
+    ],
+    "mesh_first_principle": "anything that can be a MESH, is: the gem's inner light is MI_SDF_StarburstGem on a small inner shell (no particles), and the blade trail is a ribbon mesh (no per-particle authoring). Particles are the last resort, not the default.",
+    "sdf_materials_available": [
+      "/Game/_PROJECT/04_Materials/SDF/MI_SDF_StarburstGem",
+      "/Game/_PROJECT/04_Materials/SDF/MI_SDF_GildedFiligree",
+      "/Game/_PROJECT/04_Materials/SDF/MI_SDF_Musical",
+      "/Game/_PROJECT/04_Materials/SDF/MI_SDF_MagicOrb",
+      "/Game/_PROJECT/04_Materials/SDF/MI_SDF_OrnamentLayer",
+      "/Game/_PROJECT/04_Materials/SDF/MI_SDF_MetalShards",
+      "/Game/_PROJECT/04_Materials/SDF/MI_SDF_FloatingNotes",
+      "/Game/_PROJECT/04_Materials/SDF/MI_SDF_CosmicPortal"
+    ],
+    "sdf_textures_available": [
+      "/Game/Melodia/VFX/Textures/SDF/T_SDF_SparkleHalo",
+      "/Game/Melodia/VFX/Textures/SDF/T_SDF_Sparkle6",
+      "/Game/Melodia/VFX/Textures/SDF/T_SDF_StarGlitter",
+      "/Game/Melodia/VFX/Textures/SDF/T_SDF_MusicNote",
+      "/Game/Staging/Aeolian/SDF/T_SDF_Glint4",
+      "/Game/Staging/Aeolian/SDF/T_SDF_Diamond",
+      "/Game/Staging/Aeolian/SDF/T_SDF_KawaiiHeart",
+      "/Game/Staging/Aeolian/SDF/T_SDF_Leaf",
+      "/Game/Staging/Aeolian/SDF/T_SDF_CherryRosette",
+      "/Game/Staging/Aeolian/SDF/T_SDF_SoftDot"
+    ]
+  },
+  "ue_import": {
+    "status": "IMPORTED INTO UNREAL (2026-10-21) - two static meshes in /Game/Melodia/Characters/Melusina/Weapons/WaveHarp/, with the material slots pointed at the CANONICAL project instances (the importer's duplicate MI_* copies were deleted)",
+    "assets": [
+      {
+        "asset": "/Game/Melodia/Characters/Melusina/Weapons/WaveHarp/SM_MEL_Wand_Carillon_Caster",
+        "use": "the caster form (shaft + halo + focal gem)",
+        "tris": 30181,
+        "bounds_cm": [
+          46.65,
+          43.54,
+          137.24
+        ],
+        "material_slots": [
+          "MI_Brass_FiligreeGold",
+          "MI_Brass_FiligreeGold_001",
+          "MI_Brass_FiligreeGold_1",
+          "MI_HF_Toon_ChimeSnail_LG_Ribbon",
+          "MI_HF_Toon_Wand_BellChime_Gems",
+          "MI_HF_Toon_Wings_Butterfly_Pearls",
+          "MI_Melusina_Outline_005"
+        ]
+      },
+      {
+        "asset": "/Game/Melodia/Characters/Melusina/Weapons/WaveHarp/SM_MEL_Wand_Carillon_Melee",
+        "use": "the melee form (shaft + halo + gem + crescent blade)",
+        "tris": 31165,
+        "bounds_cm": [
+          50.01,
+          43.54,
+          137.24
+        ],
+        "material_slots": [
+          "MI_Brass_FiligreeGold",
+          "MI_Brass_FiligreeGold_001",
+          "MI_Brass_FiligreeGold_1",
+          "MI_HF_Toon_ChimeSnail_LG_Ribbon",
+          "MI_HF_Toon_Wand_BellChime_Gems",
+          "MI_HF_Toon_Wand_BellChime_RimGold",
+          "MI_HF_Toon_Wings_Butterfly_Pearls",
+          "MI_Melusina_Outline_005"
+        ]
+      }
+    ],
+    "sockets_are_local_offsets": {
+      "why": "Blender's FBX ARMATURE export is unit-path-unsafe in UE: MEASURED, the importer applies an extra x100 to the bones while the mesh is converted by the unit path, so a skeleton import lands the sockets 100x out (or 1/100x with a different global_scale). Rather than fight it, the wand ships as a STATIC mesh and the sockets are LOCAL OFFSETS authored by the forge.",
+      "offsets_cm": {
+        "SM_MEL_Wand_Carillon_Caster.fbx": {
+          "SOCKET_Bow_Grip": [
+            0.0,
+            0.0,
+            13.0
+          ],
+          "SOCKET_Grip_Main": [
+            0.0,
+            0.0,
+            13.0
+          ],
+          "SOCKET_Cymatic_Projection": [
+            0.0,
+            0.0,
+            121.0
+          ],
+          "Scythe_Pommel": [
+            0.0,
+            0.0,
+            -1.6
+          ]
+        },
+        "SM_MEL_Wand_Carillon_Melee.fbx": {
+          "SOCKET_Bow_Grip": [
+            0.0,
+            0.0,
+            13.0
+          ],
+          "SOCKET_Grip_Main": [
+            0.0,
+            0.0,
+            13.0
+          ],
+          "SOCKET_Cymatic_Projection": [
+            0.0,
+            0.0,
+            121.0
+          ],
+          "Scythe_Pommel": [
+            0.0,
+            0.0,
+            -1.6
+          ],
+          "Scythe_BladeStart": [
+            21.9,
+            0.0,
+            17.0
+          ],
+          "Scythe_BladeMid": [
+            37.08,
+            0.0,
+            -0.52
+          ],
+          "Scythe_BladeTip": [
+            32.77,
+            0.0,
+            -22.51
+          ]
+        }
+      },
+      "runtime_use": "the component carries these as FVector properties; the melee trace is the weapon's world transform x the offset, so the trace provably follows the blade's forged arc (closes D8)."
+    },
+    "lessons": [
+      "Blender FBX armature -> UE: the bone path is not unit-safe (extra x100 measured). Export static and carry the sockets as offsets.",
+      "UE's STATIC FBX import creates ONE mesh per FBX node - 'combine_meshes' does not combine static meshes. JOIN the parts on the export side.",
+      "Export with mesh_smooth_type='FACE' or UE warns 'No smoothing group information'.",
+      "The FBX importer creates duplicate MI_* instances when the canonical material lives in another folder - point the slots at the originals and delete the copies.",
+      "Monolith's HTTP responses can be DROPPED (socket_send_failure) - a silent call may still have succeeded. Verify with the asset registry, not the response body."
+    ],
+    "incident": "during the cleanup an incomplete keep-list DELETED the shipped SK_ME_WaveHarp_Scythe and SK_ME_WaveHarp_Skeleton. Both were restored immediately from git (15.83 MB and 0.02 MB, verified) and the tree is clean. Lesson: enumerate the folder and allow-list EVERY shipped asset before any bulk delete; a missing entry in a keep-list is a deletion.",
+    "still_ue_side": [
+      "the head swap + the form-select input (C++, build owed)",
+      "the socket offsets wired onto the component",
+      "the Niagara parameter work (the wiring sheet - human)",
+      "the in-UE look check against the real MI_HF_Toon_* materials"
+    ]
+  },
+  "cxx_build_plan": {
+    "principle": "fold only what the 3-form weapon needs to become playable, and fold it so the project's existing owners stay the only owners: the music clock owns time, the bridge owns damage, the encounter owns resonance, ToonProfile owns look, existing Niagara systems own VFX.",
+    "build_requirement": "a CLOSED-EDITOR BS_GodFileEditor Win64 Development build - the form enum, the head component and the new test file are header changes, so Live Coding cannot be used",
+    "tier0_fold_now": [
+      {
+        "id": "C1",
+        "edit": "form as a type with ONE entry point",
+        "where": "Source/BS_GodFile/MelodiaIntegration/MelodiaWaveHarpCombatComponent.h/.cpp",
+        "what": "UENUM EWaveHarpForm { Harp, Bow, CarillonMelee }; replicated CurrentForm; SetForm(EWaveHarpForm)",
+        "why": "the form is currently an implicit float (FormAlpha/ScytheAlpha) interpolated in Tick; Lyra's lesson is that exactly one place may cause an equip/unequip - the f90 FormHandoff notify must CONFIRM, never swap",
+        "risk": "low",
+        "proof": "automation test: SetForm is the only writer of CurrentForm"
+      },
+      {
+        "id": "C2",
+        "edit": "head swap on form change",
+        "what": "a UStaticMeshComponent head; the mesh is swapped between SM_MEL_Head_Carillon and SM_MEL_Head_Carillon_Melee on the same shaft",
+        "why": "the owner-confirmed HEAD SWAP topology (2026-10-21); the scythe-morph path becomes unnecessary (D1, D6)",
+        "risk": "low",
+        "proof": "PIE: the head mesh name changes and the shaft does not"
+      },
+      {
+        "id": "C3",
+        "edit": "curve-driven FormAlpha / ScytheAlpha",
+        "where": "MelodiaWaveHarpCombatComponent.cpp L627 and L644",
+        "what": "replace FInterpConstantTo with the authored montage curve (the spec's required_changes_in_runtime_owner)",
+        "why": "the 60-frame eased henshin curve already exists; this kills D3 (the 0.22 s linear pop) for free",
+        "risk": "medium (the residual-weight sampling multiplies FormAlpha by 16 and 9 - that logic must survive)",
+        "proof": "the montage curve drives the morphs; PIE shows an eased transition, not a pop"
+      },
+      {
+        "id": "C4",
+        "edit": "socket offsets as MEASURED LOCAL OFFSETS",
+        "what": "GetFormSocketTransform(FName) composing InstrumentSocket + a per-form local offset: Bow_Grip 13 cm, Cymatic_Projection 121 cm, Scythe_BladeStart/Mid/Tip 21.9/37.08/32.77 cm",
+        "why": "Blender's FBX armature export is unit-path-unsafe in UE, so the bones are ~90-100x too far out (D8, the 42 m melee trace). The offsets are measured; the code must use them, not the skeleton sockets",
+        "risk": "medium",
+        "proof": "automation test asserts the blade reach is 91.75 cm, and a PIE trace is 0.9 m, not 42 m"
+      },
+      {
+        "id": "C5",
+        "edit": "form 2 melee resolves through the sanctioned seam",
+        "what": "the melee swing calls UMelodiaExternalJRPGBridgeSubsystem::ResolveWorldFlowAttack(Encounter, ActionBeatPhase), exactly like the arrow does (cpp L451)",
+        "why": "one HP owner, one damage authority, one grader. The beat phase is judged at the ACTION from UMelodiaMusicClockSubsystem::InputTimebase (already used at cpp L721), never at impact",
+        "risk": "medium",
+        "proof": "the same encounter actor loses HP once per swing; no second HP appears"
+      },
+      {
+        "id": "C6",
+        "edit": "deliberate form-select input",
+        "what": "one dedicated action (owner to confirm the key) bound in the component's own input; ring 0->1->2->0; input locked for the transition; attacks locked in the f31-f90 window; the clip starts on the music clock so the handoff lands on a downbeat",
+        "why": "the owner approved a deliberate form-select input; the form change is a P0-visible beat of the Poitou Golden Walk",
+        "risk": "low",
+        "proof": "PIE: the key cycles forms, the lock holds during the transition"
+      }
+    ],
+    "tier1_fold_if_the_window_allows": [
+      {
+        "id": "C7",
+        "edit": "music-clock idle shimmer (D4)",
+        "what": "drive Pluck, Vibrate_Overtone, Sway_Pos, Sway_Neg and Resonance_Breathe from UMelodiaMusicClockSubsystem::GetMusicBeatPhase / GetMusicPulse instead of frame-based sin",
+        "why": "the spec's required_changes_in_runtime_owner; it is the difference between a dead prop and a living instrument",
+        "proof": "PIE: the shimmer phase-locks to the music; the anim-gate still passes"
+      },
+      {
+        "id": "C8",
+        "edit": "per-form grip offsets in the character frame",
+        "what": "extend the existing solver (Content/Python/waveharp_hold_fix.py + CalibrateHold()) to solve one grip per form, reusing the bGripFollowsCharacter composition",
+        "why": "each head sits at a different point on the shaft; one grip cannot hold three heads",
+        "proof": "PIE measure: the head clears the torso and the skull in every form"
+      },
+      {
+        "id": "C9",
+        "edit": "existing-system VFX wiring from C++",
+        "what": "spawn the existing NS_Melusina_SwingTrail / StarPop / ProviderSigil at the right sockets and set their USER PARAMETERS at runtime",
+        "why": "the Niagara canon: no new systems, no new graphs - parameter work only",
+        "risk": "low",
+        "proof": "the beats B0-B3 of the ns wiring sheet play in PIE"
+      },
+      {
+        "id": "C10",
+        "edit": "automation test file",
+        "where": "Source/BS_GodFile/MelodiaIntegration/Tests/MelodiaWaveHarpFormTests.cpp",
+        "what": "IMPLEMENT_SIMPLE_AUTOMATION_TEST in the pattern of MelodiaHybridEncounterTests.cpp: form ring advance, transition lock, socket composition, blade reach, alphas-from-curve, single-writer for the head swap",
+        "why": "pure maths, no editor needed, runs in CI - the same receipt pattern the weapon lane already uses",
+        "proof": "the test file runs green in the build"
+      },
+      {
+        "id": "C11",
+        "edit": "console commands for the proof",
+        "what": "Melodia.WaveHarp.SetForm <0|1|2> and Melodia.WaveHarp.DumpForm (resolved head mesh, offsets, trace reach) beside the existing Melodia.WaveHarp.RecalibrateHold",
+        "why": "the PIE proof needs a receipt that is not a screenshot of a guess",
+        "proof": "the command output is the receipt"
+      }
+    ],
+    "tier2_asset_work_not_cpp": [
+      {
+        "item": "MPC_Melodia_Palette",
+        "change": "ShadowDreamBias -> 0, a plum shadow colour, add a lilac parameter",
+        "note": "the existing single C++ writer publishes it; no new writer"
+      },
+      {
+        "item": "ToonProfile canon set",
+        "change": "author/re-point TP_Melusina and the tier profiles; stop assigning the _304FilmSpine redirects",
+        "note": "see specs/materials/toon_profile_canon.v1.json"
+      },
+      {
+        "item": "form data table",
+        "change": "per-form rows (head mesh, grip, socket offsets, trace reach, VFX params)",
+        "note": "SideFX's Houdini Engine can emit Data Tables as outputs - the table is then generated by the same recipe that generates the geometry and cannot drift from it"
+      }
+    ],
+    "do_not_fold": [
+      "new Niagara systems or graphs (the canon: existing systems, parameter work only)",
+      "a Lyra-style equipment framework or any other new gameplay architecture (architecture needs a demonstrated blocker)",
+      "batch_retarget_animations with overwrite=true (crashes the editor)",
+      "any edit under Content/TurnBasedJRPGTemplate/Blueprints/Skills/ from Python (fatally kills the editor)",
+      "a second palette MPC or a second toon master"
+    ],
+    "implementation_status_2026_10_22": {
+      "state": "C1-C6 WRITTEN AND COMPILED IN SOURCE; the closed-editor build was in flight when this was recorded",
+      "files": [
+        "Source/BS_GodFile/MelodiaIntegration/MelodiaWaveHarpCombatComponent.h",
+        "Source/BS_GodFile/MelodiaIntegration/MelodiaWaveHarpCombatComponent.cpp"
+      ],
+      "c1_form_type": {
+        "done": "EMelodiaWaveHarpForm {Harp, Bow, CarillonMelee}; CurrentForm is ReplicatedUsing=OnRep_CurrentForm; SetForm is the only writer; the ring helper GetNextForm is shared.",
+        "note": "the caster/archer hybrid is preserved: charging inside HARP or BOW still morphs the astrolabe into the bow. The form is a separate axis from that automatic blend.",
+        "single_writer_proof": "Tools/waveharp/check_waveharp_form_contract.py asserts exactly one assignment site for CurrentForm."
+      },
+      "c2_head_swap": {
+        "done": "the committed form chooses the wand mesh; the swap happens at the transition midpoint. The caster wand and the melee wand differ only in the head, so swapping the mesh IS the head swap - no morph bake, no separate head assets needed at runtime.",
+        "assets": [
+          "/Game/Melodia/Characters/Melusina/Weapons/WaveHarp/SM_MEL_Wand_Carillon_Caster",
+          "/Game/Melodia/Characters/Melusina/Weapons/WaveHarp/SM_MEL_Wand_Carillon_Melee"
+        ],
+        "default": "bUseHeadSwap = false until the Carillon art pass lands; the shipped skeletal path keeps working untouched.",
+        "preload": "both meshes are loaded in BeginPlay so the swap never hitches (Infinity Nikki pre-computation rule)."
+      },
+      "c3_curve_driven": {
+        "done": "the transition reads the montage's FormAlpha curve when the authored henshin montage is playing (UAnimInstance::GetCurveValueWithDefault), otherwise it runs a smoothstep timer (EaseFormTransition).",
+        "kills": "D3 - the 0.22 s linear pop is gone from both paths.",
+        "pending": "the authored henshin clip still has to be baked into a montage with a FormAlpha curve; the runtime reads it the day it exists, with no further code change."
+      },
+      "c4_measured_offsets": {
+        "done": "the melee sweep reads the MEASURED geometry, never a skeleton socket.",
+        "source_of_truth": "Saved/Audit/waveharp/ue_ready/waveharp_wand_bake_manifest.json",
+        "numbers_cm": {
+          "BowGrip": [
+            0,
+            0,
+            13
+          ],
+          "HeadSeat": [
+            0,
+            0,
+            105
+          ],
+          "Cymatic_Projection": [
+            0,
+            0,
+            121
+          ],
+          "BladeStart": [
+            21.9,
+            0,
+            17
+          ],
+          "BladeMid": [
+            37.08,
+            0,
+            -0.52
+          ],
+          "BladeTip": [
+            32.77,
+            0,
+            -22.51
+          ]
+        },
+        "result": "a ~41 cm crescent on a ~37 cm swing radius, instead of the shipped 42 m sweep (D8).",
+        "hardening": "the fallback to the skeletal sockets was REMOVED, not clamped: with no measured geometry the melee simply has no blade, so D8 is structurally impossible.",
+        "frames": "the shared sockets are wand-local; the three blade sockets are HEAD-local, because the crescent was modelled into the head's frame."
+      },
+      "c5_melee_authority": {
+        "done": "the swing resolves through UMelodiaExternalJRPGBridgeSubsystem::ResolveWorldFlowAttack, exactly like the arrow.",
+        "correction": "the rhythm is now judged at the ACTION (the swing start), not at impact. The arrow samples its phase at launch; the melee sampled at the notify, which was the wrong moment per the hybrid canon.",
+        "one_hp_one_grader": "unchanged - no second HP, no local damage maths."
+      },
+      "c6_form_select": {
+        "done": "one deliberate key (R) cycles the ring; the flourish starts on the music clock's beat boundary; attacks are refused during the flourish and BUFFERED so a press is never eaten; the camera pushes in and returns; the existing NS_Melusina_StarPop covers the head swap.",
+        "beat_lock_correction": "the HANDOFF lands on the downbeat: the start waits for (secondsToNextBeat - half a transition), not for a whole beat."
+      },
+      "console_receipt": [
+        "Melodia.WaveHarp.SetForm <0|1|2>",
+        "Melodia.WaveHarp.DumpForm"
+      ],
+      "console_receipt_note": "the DumpForm receipt prints the resolved form, the transition state and the measured blade geometry - the PIE proof is a log line, not a screenshot of a guess."
+    },
+    "jev_audit_c10_2026_10_22": {
+      "source": "jev-live",
+      "receipt": "Saved/Audit/waveharp/JevWaveHarpC10TestDesign_20261022.json",
+      "packet": "Tools/waveharp/jev_c10_test_design_20261022.py",
+      "answers": {
+        "c10_scope": "A - pure-maths C++ automation tests only in the module Tests folder: the ring order, the eased transition curve, the lock window, the socket composition and the blade reach. No editor, no world, no assets loaded.",
+        "c10_first_assertion": "D - the beat lock and the input buffer: the flourish must start on a beat boundary and a pressed attack must survive the transition.",
+        "c10_run_surface": "A - headless, in CI, through UnrealEditor-Cmd with -ExecCmds=Automation RunTests, on a machine with no editor window open.",
+        "c10_failure_mode": "A - it must assert the CONTRACT and read the numbers from the bake manifest, never re-type them, or every art change breaks it and the team starts ignoring it."
+      },
+      "confidence_note": "the service returned the selections without a score or a reason field; the receipt carries the choices only. Provenance is source=jev-live; no distribution was provided.",
+      "what_it_changed_in_the_code": [
+        "the beat lock was WRONG: the start waited a whole beat, which put the HANDOFF half a transition after the downbeat. ComputeBeatLockDelay now lands the handoff on the beat.",
+        "the beat lock and the input buffer became first-class assertions, which is why the attack gate was extracted into AcceptAttackDuringTransition.",
+        "the testable core was extracted into statics (GetNextForm, EaseFormTransition, ComputeMeleeFormWeight, ComputeBeatLockDelay, AcceptAttackDuringTransition) so the suite is world-free and deterministic.",
+        "the numbers are read from the manifest by the offline gate, not re-typed in the test."
+      ],
+      "gate": {
+        "script": "Tools/waveharp/check_waveharp_form_contract.py",
+        "receipt": "Saved/Audit/waveharp/waveharp_form_contract.json",
+        "checks": [
+          "the C++ socket defaults equal the bake manifest",
+          "the crescent stays a crescent and is never the shipped 42 m",
+          "CurrentForm has exactly one assignment site",
+          "the melee trace never reads the unit-path-unsafe skeleton sockets",
+          "the form ring is present and has one shared helper",
+          "every asset the component names exists on disk"
+        ],
+        "found_before_the_fixes": [
+          "the melee still read the skeleton sockets (D8 was only clamped)",
+          "the ring had no shared helper, so it could not be asserted"
+        ]
+      }
+    },
+    "runtime_quality_infinity_nikki": {
+      "reference": "Infold Games, Infinity Nikki (UE5) - the project's wardobe bar (AGENTS.md).",
+      "taken": [
+        {
+          "their_rule": "one versatile master material that merges textures and reduces variants, easy for artists",
+          "ours": "the toon canon is ONE master plus a small set of ToonProfiles, not 1,632 re-authored instances (see specs/materials/toon_profile_canon.v1.json).",
+          "class": "material architecture"
+        },
+        {
+          "their_rule": "real-time clipping for outfit combinations, with the expensive data precomputed so the runtime stays cheap",
+          "ours": "both wand meshes are preloaded in BeginPlay; the head swap happens at the midpoint under an existing-system flourish, so the pop is masked and no load hitch happens at the swap.",
+          "class": "runtime quality"
+        },
+        {
+          "their_rule": "the effect budget follows what the player can see (their fur layers scale with screen size)",
+          "ours": "the form flourish scales with the camera distance: full size at arm's length, restrained across the lane.",
+          "class": "runtime quality"
+        },
+        {
+          "their_rule": "the animation owns the motion; the engine's built-in motion blur fights UV animation",
+          "ours": "the idle shimmer (C7) is driven by the music clock, never by the Time node - the same conclusion the Niagara canon already reached, reached independently by a shipped game.",
+          "class": "presentation ownership"
+        },
+        {
+          "their_rule": "shaders are precompiled so no stutter at first use",
+          "ours": "the head swap reuses the canonical material instances the wands were already repointed to, so the swap introduces no new shader permutation.",
+          "class": "runtime quality"
+        },
+        {
+          "their_rule": "the player's intent is never lost during a wardrobe change",
+          "ours": "an attack pressed during the flourish is BUFFERED and fires the moment the transformation lands (Jev's first assertion).",
+          "class": "input feel"
+        }
+      ],
+      "not_taken": [
+        "their GPU-driven culling and skeletal-chain cloth systems: they solve an open-world population problem this project does not have, and porting them would be architecture expansion.",
+        "a new quality-tier system: the flourish uses the camera distance the player already has, instead of inventing a settings layer."
+      ]
+    },
+    "overnight_increments_2026_10_22": {
+      "state": "all four applied and compiled clean (MSVC 14.44, UHT's toolchain)",
+      "increments": [
+        {
+          "id": "increment_01",
+          "file": "Tools/waveharp/increments/increment_01_stage_machine.py",
+          "what": "the stage machine (IDLE/PREPARE/TRANSFORM/AFTERMATH) and the data-driven VFX beats"
+        },
+        {
+          "id": "increment_02",
+          "file": "Tools/waveharp/increments/increment_02_water_chorus.py",
+          "what": "the water chorus: a plain C++ class that binds the world's FluidNinja surfaces by role and dispatches the surreal water beats"
+        },
+        {
+          "id": "increment_03",
+          "file": "Tools/waveharp/increments/increment_03_fix_forward_decls.py",
+          "what": "the fix the compiler found: the forward declarations have to sit above the new types"
+        },
+        {
+          "id": "increment_04",
+          "file": "Tools/waveharp/increments/increment_04_alive_and_grips.py",
+          "what": "the music-clock shimmer (D4), the per-form grips (C8) and the screen-size effect budget"
+        }
+      ],
+      "loop": {
+        "edit_header": "then replay UHT (3 s) - the generated header is keyed to LINE NUMBERS",
+        "uht_replay": "dotnet <UE>/Engine/Binaries/DotNET/UnrealBuildTool/UnrealBuildTool.dll -Mode=UnrealHeaderTool <uproject> <uhtmanifest> -WarningsAsErrors -installed",
+        "manifest_trap": "a stale uhtmanifest makes UHT report a type it 'cannot find' when another lane has added a header - repair the manifest, not their source",
+        "compile": "cl.exe with the module's own rsp (the fast path: no link, no editor)",
+        "gates": [
+          "Tools/waveharp/check_waveharp_form_contract.py",
+          "Tools/waveharp/check_surreal_water_contract.py"
+        ]
+      },
+      "gates": {
+        "form_contract": "15/15 green",
+        "surreal_water": "15/15 green, after it caught the rain system's wrong path"
+      },
+      "not_yet_proven": "no PIE pass: the surfaces have to be placed, and the Carillon art pass has not landed"
+    }
+  },
+  "material_look_canon": "specs/materials/toon_profile_canon.v1.json",
+  "surreal_water_canon": "specs/vfx/surreal_water_chorus.v1.json"
+}

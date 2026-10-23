@@ -1,0 +1,88 @@
+{
+  "schema": "melodia.surreal_water_chorus.v1",
+  "status": "C++ WRITTEN AND COMPILED; the authored content is the editor pass",
+  "vision": "Water is what makes this game sing. Rain droplets disperse over the horizon when the beat hits; the Chladni figure and the FluidNinja dispersion share one field; the puddles sing with the bass; bubbles dot the skyline; Melusina's hair globulates and her movement leaves a trail. Surreal, reverent, grieving - the identity canon, with water as the instrument.",
+  "owner_decision_2026_10_22": "The owner asked for spectacle beyond the literal Jev pick (a covered hard cut). Jev's STRUCTURE is kept - a held beat, a covered middle, an aftermath that carries the weight - and the spectacle is built under it. Owner's word is canon.",
+  "what_the_cpp_does_now": {
+    "file": "Source/BS_GodFile/MelodiaIntegration/MelodiaWaterChorus.h/.cpp",
+    "why_a_plain_class": "It adds no reflected surface, so it needs no UHT pass and it owns no new authority on an existing surface. It READS the palette; it writes nothing.",
+    "behaviours": [
+      {
+        "beat": "rain over the horizon",
+        "system": "/Game/EnvSandbox/VFX/NS_Uni_RainRipples",
+        "where": "4200 cm ahead, 900 cm up, on every downbeat",
+        "scale": 2.4
+      },
+      {
+        "beat": "bubbles on the skyline",
+        "system": "/Game/Melodia/VFX/NS_Melusina_Globules",
+        "where": "2600 cm ahead, 1500 cm up, on every downbeat",
+        "scale": 1.6
+      },
+      {
+        "beat": "her hair globulates",
+        "system": "/Game/Melodia/VFX/NS_Melusina_Globules",
+        "where": "150 cm above her, on every downbeat",
+        "scale": 0.55
+      },
+      {
+        "beat": "the puddles answer",
+        "system": "/Game/Melodia/VFX/NS_Melusina_Splash",
+        "where": "her feet, on every downbeat",
+        "scale": 0.8
+      },
+      {
+        "beat": "the water transform",
+        "system": "globules + splash + pond mist",
+        "where": "her, at the form change",
+        "scale": 2.2
+      }
+    ],
+    "the_fluid_binding": {
+      "mechanism": "The world's FluidNinja Live Actors are found by class name and their exposed user parameters are bound BY ROLE (density, strength, beat, input, colour), not by hard-coded names. A renamed upstream parameter becomes a log line, not a silent no-op.",
+      "the_singing_puddles": "The bass band from MPC_Melodia_Palette drives the bound strength: the water moves with the music instead of near it. READ ONLY.",
+      "receipt": "MELODIA_WATER_CHORUS start/bound/burst lines in the log"
+    },
+    "flags": {
+      "bEnableWaterChorus": "false by default - the surfaces have to be placed in the level first"
+    }
+  },
+  "the_editor_pass_tomorrow": {
+    "why": "The authored content cannot be built offline: placing the FluidNinja Live Actors, choosing the presets, the bone tracking and the output materials are editor work. The C++ is ready to drive it the moment it exists.",
+    "steps": [
+      "place a FluidNinja Live Actor (BP_NinjaLive) for the Poitou canal and one per puddle area; give it the MI_FVOL/MI_HVOL output materials it needs",
+      "set the Live Component's user parameters so the ROLE names the C++ binds to exist (density / strength / beat / input / colour), or rename the C++ roles in one place (Tools/waveharp/increments/)",
+      "enable the bone reader on the character Live Actor and add Melusina's hair bones - that is what beads her hair",
+      "turn bEnableWaterChorus on BP_MelusinaJRPGCharacter",
+      "verify: the log must print MELODIA_WATER_CHORUS bound for each surface with the roles it found; a missing role is a one-line fix, not a mystery"
+    ],
+    "transparency_check": {
+      "finding": "the project sets NO explicit translucency or OIT options in Config/DefaultEngine.ini, so the water, the bubbles and the globules inherit the engine defaults - and they are exactly the case the reference studio had to solve: many small overlapping translucent sprites that sort wrongly.",
+      "reference": "Infinity Nikki redeveloped order-independent transparency for their sheer fabrics; the same sorting problem appears in a field of bubbles.",
+      "what_to_do": "check the sorting of the overlapping bubbles and globules in the editor pass; the project already owns MF_CustomTranslucency for translucent surfaces. A lookdev decision with a measured answer belongs to the editor pass, not to the night."
+    }
+  },
+  "canon_compliance": {
+    "no_new_niagara_graphs": "every system dispatched already exists in the project",
+    "one_writer_per_surface": "the chorus READS MPC_Melodia_Palette; UMelodiaAudioReactivePresentationSubsystem remains its only writer. The chorus writes nothing to any MPC.",
+    "presentation_only": "it never touches damage, resonance, save authority or the form",
+    "identity_canon": "plum and lilac water, gold light, no neon - the colour is the bound COLOUR role, lilac",
+    "reference_register": "Infinity Nikki: the effect budget follows the screen (the ribbon and the flourish scale with the camera distance), the animation owns the motion (the shimmer is music-clock driven, never Time-node driven), the precomputed expensive part (both wand meshes preload). Anime JRPG: a held beat, a covered transformation, an aftermath that carries the weight."
+  },
+  "jev": {
+    "source": "jev-live",
+    "receipt": "Saved/Audit/waveharp/JevWaveHarpTransitionalVfx_20261022.json",
+    "answers": {
+      "state_vocabulary": "B (a covered transformation with the weight in the aftermath)",
+      "vfx_surface": "A (the existing NS_Melusina_* family, user parameters per stage)",
+      "fluid_ninja_discipline": "A (FluidNinja belongs to the world; this lane only reads the clock)",
+      "next_cxx_increment": "A (a data-driven VFX descriptor table)"
+    },
+    "note": "The service returned the selections without a score or a reason field. The owner's later instruction superseded Jev's literal 'hard cut' and added the water register; Jev's structure was kept."
+  },
+  "evidence": {
+    "compile": "MSVC 14.44 (UBT's toolchain): the component and the chorus both compile clean",
+    "gates": "Tools/waveharp/check_waveharp_form_contract.py (form contract) and Tools/waveharp/check_surreal_water_contract.py (this contract)",
+    "not_yet_proven": "no PIE pass yet - the surfaces have to be placed first"
+  }
+}
