@@ -53,6 +53,28 @@ public:
  /** The water transform: a full burst around the character. Used on the form change. */
  void Burst(AActor* Owner, float Scale = 2.2f);
 
+ /** A note landed at Where (strength 0..1): the nearest live water takes a brush stamp there and a splash
+  *  rises. Called next to UMelodiaCymaticFieldComponent::BroadcastHit, so the ripple and the water are one hit. */
+ void Splash(const FVector& Where, float Strength);
+
+ int32 GetActiveSurfaceCount() const;
+
+ // --- Pure, world-free rules (unit-tested) ---
+
+ /** The water tint for a harmonic mode (0 rest, 1 major, 2 minor, 3 dominant, 4 chromatic). Phase 0..1 only moves the chromatic hue. */
+ static FLinearColor TintForMode(uint8 Mode, float Phase);
+
+ /** Churn 0..1: a consonant harmony calms the water, a dissonant one stirs it. */
+ static float TurbulenceForConsonance(float Consonance);
+
+ /** Sim-speed multiplier: dissonance runs the sim faster. */
+ static float SimSpeedScale(float Consonance);
+
+ /** Which surfaces stay simulated. Owned surfaces (distance <= 0) always stay on; the rest must be inside
+  *  Radius (Radius*Hysteresis if they were already on) and within the MaxActive nearest. */
+ static TArray<bool> SelectActiveSurfaces(const TArray<float>& Distances, const TArray<bool>& WasActive,
+  float Radius, float Hysteresis, int32 MaxActive);
+
 private:
  struct FSurface
  {
@@ -70,7 +92,18 @@ private:
   FName SimplePainter;
   FName VolumeRender;
   FName FogVolumeRender;
+  /** The character and puddle actors this chorus spawned: always simulated. */
+  bool bOwned = false;
+  /** Distance budget: a paused surface costs nothing. */
+  bool bActive = true;
+  /** The decaying brush stamp left by Splash(). */
+  FVector SplashAt = FVector::ZeroVector;
+  float SplashStrength = 0.f;
  };
+
+ /** Cm from the owner inside which a world surface keeps simulating. */
+ static constexpr float BudgetRadiusCm = 6000.f;
+ static constexpr int32 BudgetMaxActive = 6;
 
  /** Classify an exposed parameter name into a role. Empty means "not a role". */
  static FName RoleForParameter(const FString& ParameterName);

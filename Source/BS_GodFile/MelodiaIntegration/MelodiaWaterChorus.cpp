@@ -161,6 +161,7 @@ void FMelodiaWaterChorus::BindSurface(UNiagaraComponent* Niagara)
  if (!Niagara) return;
  FSurface Surface;
  Surface.Niagara = Niagara;
+ Surface.bOwned = Niagara->GetOwner() && (Niagara->GetOwner() == CharacterLive.Get() || Niagara->GetOwner() == PuddleLive.Get());
 
  TArray<FNiagaraVariable> Variables;
  Niagara->GetOverrideParameters().GetParameters(Variables);
@@ -328,6 +329,92 @@ void FMelodiaWaterChorus::Burst(AActor* Owner, const float Scale)
  UE_LOG(LogTemp, Log, TEXT("MELODIA_WATER_CHORUS burst scale=%.2f"), Scale);
 }
 
+FLinearColor FMelodiaWaterChorus::TintForMode(const uint8 Mode, const float Phase)
+{
+ switch (Mode)
+ {
+ case 1: return FLinearColor(0.95f, 0.72f, 0.55f, 1.f);   // major: warm rose-gold
+ case 2: return FLinearColor(0.22f, 0.28f, 0.72f, 1.f);   // minor: deep indigo
+ case 3: return FLinearColor(0.96f, 0.50f, 0.36f, 1.f);   // dominant: coral
+ case 4:                                                  // chromatic: an iridescent drift
+ {
+  const FLinearColor Hue = FLinearColor(FMath::Frac(Phase) * 360.f, 0.55f, 0.95f, 1.f).HSVToLinearRGB();
+  return FLinearColor(Hue.R, Hue.G, Hue.B, 1.f);
+ }
+ default: return FLinearColor(0.48f, 0.36f, 0.94f, 1.f);  // rest: the chorus lilac
+ }
+}
+
+float FMelodiaWaterChorus::TurbulenceForConsonance(const float Consonance)
+{
+ return FMath::Clamp(1.f - Consonance, 0.f, 1.f);
+}
+
+float FMelodiaWaterChorus::SimSpeedScale(const float Consonance)
+{
+ return FMath::Lerp(1.35f, 0.8f, FMath::Clamp(Consonance, 0.f, 1.f));
+}
+
+TArray<bool> FMelodiaWaterChorus::SelectActiveSurfaces(const TArray<float>& Distances, const TArray<bool>& WasActive,
+ const float Radius, const float Hysteresis, const int32 MaxActive)
+{
+ const int32 N = Distances.Num();
+ TArray<bool> Active;
+ Active.Init(false, N);
+ TArray<int32> Candidates;
+ for (int32 i = 0; i < N; ++i)
+ {
+  if (Distances[i] <= 0.f) { Active[i] = true; continue; }          // owned: always on
+  const bool bWas = WasActive.IsValidIndex(i) && WasActive[i];
+  if (Distances[i] <= Radius * (bWas ? Hysteresis : 1.f)) Candidates.Add(i);
+ }
+ Candidates.Sort([&Distances](const int32 A, const int32 B) { return Distances[A] < Distances[B]; });
+ int32 Room = FMath::Max(0, MaxActive);
+ for (int32 i = 0; i < N; ++i) if (Active[i]) --Room;
+ for (const int32 Index : Candidates)
+ {
+  if (Room <= 0) break;
+  Active[Index] = true;
+  --Room;
+ }
+ return Active;
+}
+
+int32 FMelodiaWaterChorus::GetActiveSurfaceCount() const
+{
+ int32 Count = 0;
+ for (const FSurface& Surface : Surfaces) if (Surface.bActive) ++Count;
+ return Count;
+}
+
+void FMelodiaWaterChorus::Splash(const FVector& Where, const float Strength)
+{
+ if (!bStarted) return;
+ const float S = FMath::Clamp(Strength, 0.f, 1.f);
+ FSurface* Nearest = nullptr;
+ float Best = BudgetRadiusCm;
+ for (FSurface& Surface : Surfaces)
+ {
+  const UNiagaraComponent* Niagara = Surface.Niagara.Get();
+  if (!Niagara || !Surface.bActive) continue;
+  const float D = static_cast<float>(FVector::Dist(Niagara->GetComponentLocation(), Where));
+  if (D < Best) { Best = D; Nearest = &Surface; }
+ }
+ if (Nearest)
+ {
+  Nearest->SplashAt = Where;
+  Nearest->SplashStrength = FMath::Max(Nearest->SplashStrength, S);
+ }
+ if (UNiagaraSystem* SplashSystem = LoadObject<UNiagaraSystem>(nullptr, MelodiaWaterChorusPaths::FootSplash))
+ {
+  UNiagaraFunctionLibrary::SpawnSystemAtLocation(nullptr, SplashSystem, Where + FVector(0.f, 0.f, 6.f), FRotator::ZeroRotator,
+   FVector(.4f + .8f * S));
+  ++Dispatches;
+ }
+ UE_LOG(LogTemp, Log, TEXT("MELODIA_WATER_CHORUS splash strength=%.2f surface=%s dist=%.0f"),
+  S, Nearest && Nearest->Niagara.IsValid() ? *Nearest->Niagara->GetName() : TEXT("-"), Nearest ? Best : -1.f);
+}
+
 void FMelodiaWaterChorus::Tick(float Delta, AActor* Owner)
 {
  if (!bStarted || !Owner) return;
@@ -363,30 +450,62 @@ void FMelodiaWaterChorus::Tick(float Delta, AActor* Owner)
  // disperses ALONG that figure: the fluid's input point rides the field's position and
  // its strength rides the field's tension. READ ONLY - the cymatics subsystem stays
  // the only publisher.
- const FWorldFieldSample Field =
-  UWorldFieldBus::SampleResonanceTension(Owner->GetActorLocation());
-
  // A downbeat is a wrap of the phase.
  const bool bBeat = PreviousPhase >= 0.f && Phase < PreviousPhase;
  PreviousPhase = Phase;
  if (bBeat) DispatchBeat(Owner);
 
+ // THE DISTANCE BUDGET: a live sim is the expensive part. Surfaces outside the radius are paused
+ // (they keep their state and cost nothing); owned surfaces always run.
+ {
+  TArray<float> Distances;
+  TArray<bool> WasActive;
+  for (const FSurface& Surface : Surfaces)
+  {
+   const UNiagaraComponent* Niagara = Surface.Niagara.Get();
+   Distances.Add(!Niagara ? TNumericLimits<float>::Max()
+    : (Surface.bOwned ? 0.f : static_cast<float>(FVector::Dist(Niagara->GetComponentLocation(), Owner->GetActorLocation()))));
+   WasActive.Add(Surface.bActive);
+  }
+  const TArray<bool> Active = SelectActiveSurfaces(Distances, WasActive, BudgetRadiusCm, 1.15f, BudgetMaxActive);
+  for (int32 i = 0; i < Surfaces.Num(); ++i)
+  {
+   if (Surfaces[i].bActive != Active[i])
+   {
+    Surfaces[i].bActive = Active[i];
+    if (UNiagaraComponent* Niagara = Surfaces[i].Niagara.Get()) Niagara->SetPaused(!Active[i]);
+    UE_LOG(LogTemp, Log, TEXT("MELODIA_WATER_CHORUS budget surface=%d %s"), i, Active[i] ? TEXT("on") : TEXT("paused"));
+   }
+  }
+ }
+
  // The water itself moves with the music: the beat and the bass drive the bound roles.
- for (const FSurface& Surface : Surfaces)
+ for (FSurface& Surface : Surfaces)
  {
   UNiagaraComponent* Niagara = Surface.Niagara.Get();
-  if (!Niagara) continue;
+  if (!Niagara || !Surface.bActive) continue;
+
+  // The harmony is read WHERE THE WATER IS: each surface takes the blended field at its own position.
+  const FWorldFieldSample Field = UWorldFieldBus::SampleResonanceTension(Niagara->GetComponentLocation());
+  const float Churn = TurbulenceForConsonance(Field.Consonance);
+  const float Time = static_cast<float>(World->GetTimeSeconds());
+
+  // The splash stamp decays; while it lives it overrides the dispersal point and presses harder.
+  const float Splash = Surface.SplashStrength;
+  Surface.SplashStrength = FMath::Max(0.f, Surface.SplashStrength - Delta * 2.5f);
+
   // FLUIDNINJA'S OWN PARAMETERS - this is where the water sings.
-  // The sim speeds up with the beat; the brush paints harder with the bass; the brush
-  // radius and direction follow the Chladni figure; the simple painter draws the trails.
+  // The sim speeds up with the beat (faster still when the harmony is dissonant); the brush paints harder
+  // with the bass; the brush radius and direction follow the Chladni figure; the simple painter draws the trails.
   if (!Surface.SimSpeed.IsNone())
-   Niagara->SetVariableFloat(Surface.SimSpeed, 1.f + 1.5f * Pulse);
+   Niagara->SetVariableFloat(Surface.SimSpeed, (1.f + 1.5f * Pulse) * SimSpeedScale(Field.Consonance));
   if (!Surface.BrushStrength.IsNone())
-   Niagara->SetVariableFloat(Surface.BrushStrength, 0.6f + 2.4f * FMath::Max(Bass, Field.Tension));
+   Niagara->SetVariableFloat(Surface.BrushStrength, 0.6f + 2.4f * FMath::Max(Bass, Field.Tension) + 3.f * Splash);
   if (!Surface.BrushSize.IsNone())
-   Niagara->SetVariableFloat(Surface.BrushSize, 60.f + 90.f * Field.Tension);
+   Niagara->SetVariableFloat(Surface.BrushSize, 60.f + 90.f * Field.Tension + 80.f * Splash);
   if (!Surface.BrushVelocity.IsNone())
-   Niagara->SetVariableVec3(Surface.BrushVelocity, FVector(0.f, 0.f, 40.f + 120.f * Pulse));
+   Niagara->SetVariableVec3(Surface.BrushVelocity, FVector(
+    Churn * 80.f * FMath::Sin(Time * 7.f), Churn * 80.f * FMath::Cos(Time * 5.f), 40.f + 120.f * Pulse));
   if (!Surface.SimplePainter.IsNone())
    Niagara->SetVariableBool(Surface.SimplePainter, true);
   if (!Surface.VolumeRender.IsNone()) Niagara->SetVariableBool(Surface.VolumeRender, true);
@@ -396,10 +515,10 @@ void FMelodiaWaterChorus::Tick(float Delta, AActor* Owner)
   if (!Surface.Strength.IsNone())
    Niagara->SetVariableFloat(Surface.Strength, 0.35f + 0.65f * FMath::Max(Bass, Field.Tension));
   if (!Surface.Density.IsNone()) Niagara->SetVariableFloat(Surface.Density, 0.4f + 0.6f * Pulse);
-  // The dispersal point rides the Chladni field.
+  // The dispersal point rides the Chladni field, until a note lands: then it rides the note.
   if (!Surface.Input.IsNone())
-   Niagara->SetVariablePosition(Surface.Input, Field.WorldPosition);
+   Niagara->SetVariablePosition(Surface.Input, Splash > 0.f ? Surface.SplashAt : Field.WorldPosition);
   if (!Surface.Colour.IsNone())
-   Niagara->SetVariableLinearColor(Surface.Colour, FLinearColor(0.48f, 0.36f, 0.94f, 1.f));
+   Niagara->SetVariableLinearColor(Surface.Colour, TintForMode(Field.Mode, Phase));
  }
 }

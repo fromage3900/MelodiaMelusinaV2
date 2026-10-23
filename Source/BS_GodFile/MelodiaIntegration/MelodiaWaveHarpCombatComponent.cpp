@@ -479,6 +479,7 @@ void UMelodiaWaveHarpCombatComponent::ResolveProjectileHit(AActor* Other, const 
   if (!Character.IsValid()) return;
   Bell->SetPressedForActor(Character.Get(), true);
   UMelodiaCymaticFieldComponent::BroadcastHit(GetWorld(), Bell->GetActorLocation(), 1.f);
+  if (bEnableWaterChorus) WaterChorus.Splash(Bell->GetActorLocation(), 1.f);
   FTimerHandle Release;
   GetWorld()->GetTimerManager().SetTimer(Release, FTimerDelegate::CreateWeakLambda(Bell,
    [Bell, Player = Character]() { if (Player.IsValid()) Bell->SetPressedForActor(Player.Get(), false); }), .25f, false);
@@ -498,6 +499,7 @@ void UMelodiaWaveHarpCombatComponent::ResolveProjectileHit(AActor* Other, const 
   if (auto* Audio = GetWorld()->GetGameInstance()->GetSubsystem<UMelodiaAudioReactivePresentationSubsystem>())
    Audio->PulseImpact(Ring);
   UMelodiaCymaticFieldComponent::BroadcastHit(GetWorld(), Other->GetActorLocation(), Ring);
+  if (bEnableWaterChorus) WaterChorus.Splash(Other->GetActorLocation(), Ring);
   for (const TSoftObjectPtr<UNiagaraSystem>& Fx : {HitBurstSystem, HitRippleSystem})
    if (UNiagaraSystem* System = Fx.LoadSynchronous())
     UNiagaraFunctionLibrary::SpawnSystemAtLocation(this, System, Other->GetActorLocation(),

@@ -9,6 +9,7 @@
 #include "CoreMinimal.h"
 #include "Misc/AutomationTest.h"
 #include "../MelodiaWaveHarpCombatComponent.h"
+#include "../MelodiaWaterChorus.h"
 
 #if WITH_DEV_AUTOMATION_TESTS
 
@@ -193,6 +194,54 @@ bool FWaveHarpAttackBufferTest::RunTest(const FString& Parameters)
  TestFalse(TEXT("with buffering off the attack is still refused"),
   UMelodiaWaveHarpCombatComponent::AcceptAttackDuringTransition(true, false, bBuffered));
  TestFalse(TEXT("with buffering off nothing is buffered"), bBuffered);
+ return true;
+}
+
+// ---------------------------------------------------------------------------
+// The water chorus rules: harmony is the water's character, distance is its budget.
+// ---------------------------------------------------------------------------
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(FWaveHarpWaterHarmonyTest,
+ "Melodia.WaveHarp.Water.HarmonyIsTheWatersCharacter",
+ EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
+bool FWaveHarpWaterHarmonyTest::RunTest(const FString& Parameters)
+{
+ TArray<FLinearColor> Tints;
+ for (uint8 Mode = 0; Mode <= 3; ++Mode) Tints.Add(FMelodiaWaterChorus::TintForMode(Mode, 0.f));
+ for (int32 A = 0; A < Tints.Num(); ++A)
+  for (int32 B = A + 1; B < Tints.Num(); ++B)
+   TestFalse(FString::Printf(TEXT("modes %d and %d have different water"), A, B), Tints[A].Equals(Tints[B], 0.02f));
+ TestFalse(TEXT("the chromatic water drifts with the phase"),
+  FMelodiaWaterChorus::TintForMode(4, 0.f).Equals(FMelodiaWaterChorus::TintForMode(4, 0.5f), 0.02f));
+ TestTrue(TEXT("a consonant harmony calms the water"),
+  FMelodiaWaterChorus::TurbulenceForConsonance(1.f) < FMelodiaWaterChorus::TurbulenceForConsonance(0.2f));
+ TestTrue(TEXT("full consonance has no churn"), FMath::IsNearlyZero(FMelodiaWaterChorus::TurbulenceForConsonance(1.f)));
+ TestTrue(TEXT("a dissonant harmony runs the sim faster"),
+  FMelodiaWaterChorus::SimSpeedScale(0.f) > FMelodiaWaterChorus::SimSpeedScale(1.f));
+ return true;
+}
+
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(FWaveHarpWaterBudgetTest,
+ "Melodia.WaveHarp.Water.DistanceBudgetKeepsTheNearSimsLive",
+ EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
+bool FWaveHarpWaterBudgetTest::RunTest(const FString& Parameters)
+{
+ // owned, near, far, near, near-but-over-the-cap
+ const TArray<float> Distances = { 0.f, 1000.f, 9000.f, 2000.f, 3000.f };
+ const TArray<bool> Was = { true, false, false, false, false };
+
+ const TArray<bool> Active = FMelodiaWaterChorus::SelectActiveSurfaces(Distances, Was, 6000.f, 1.15f, 3);
+ TestTrue(TEXT("an owned surface is always live"), Active[0]);
+ TestTrue(TEXT("the nearest world surface is live"), Active[1]);
+ TestFalse(TEXT("a surface outside the radius is paused"), Active[2]);
+ TestTrue(TEXT("the next nearest fills the cap"), Active[3]);
+ TestFalse(TEXT("past the cap, a farther surface is paused"), Active[4]);
+
+ // Hysteresis: 6500 cm is outside 6000 but inside 6000*1.15 when it was already live.
+ const TArray<float> Edge = { 6500.f };
+ TestFalse(TEXT("a paused surface at 6500 cm stays paused"),
+  FMelodiaWaterChorus::SelectActiveSurfaces(Edge, TArray<bool>{ false }, 6000.f, 1.15f, 4)[0]);
+ TestTrue(TEXT("a live surface at 6500 cm does not flicker off"),
+  FMelodiaWaterChorus::SelectActiveSurfaces(Edge, TArray<bool>{ true }, 6000.f, 1.15f, 4)[0]);
  return true;
 }
 
