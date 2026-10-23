@@ -35,6 +35,11 @@ import hda_promote_controls as promote
 import hou
 
 TYPE_NAME = "melodia::house_terrain::2.0"
+# the companion asset: same network and parameters, display on the passage + mycelium meshes (Houdini Engine drops mesh parts that share a geo with heightfield volumes)
+VARIANT = "caves" if "--caves" in sys.argv else "terrain"
+if VARIANT == "caves":
+    HDA_PATH = STAGE / "MelodiaHouseCaves_1.0.hda"
+    TYPE_NAME = "melodia::house_caves::1.0"
 LAYERS = ["Grass", "Ground", "Base", "Mud", "Path", "Rock", "Water"]
 
 # Measured from the live L_MelusinaHouse_P0 shell actors, 2026-10-23: x -1182..2570 cm, y -1179..27 cm.
@@ -705,21 +710,25 @@ def build_network(geo):
     clean.setInput(0, attr)
     clean.parm("group").set("@name=mask")
     clean.parm("grouptype").set(4)
-    out = geo.createNode("output", "OUT_HOUSE_TERRAIN_LANDSCAPE")
-    out.parm("outputidx").set(0)
+    out = geo.createNode("null", "OUT_HOUSE_TERRAIN_LANDSCAPE")
     out.setInput(0, clean)
-    out_caves = geo.createNode("output", "OUT_CAVE_POINTS")
-    out_caves.parm("outputidx").set(1)
+    out_caves = geo.createNode("null", "OUT_CAVE_POINTS")
     out_caves.setInput(0, caves)
-    out_paths = geo.createNode("output", "OUT_PATH_CURVES")
-    out_paths.parm("outputidx").set(2)
+    out_paths = geo.createNode("null", "OUT_PATH_CURVES")
     out_paths.setInput(0, paths)
-    out_pass = geo.createNode("output", "OUT_CAVE_PASSAGES")
-    out_pass.parm("outputidx").set(3)
+    out_pass = geo.createNode("null", "OUT_CAVE_PASSAGES")
     out_pass.setInput(0, pmat)
-    out_myc = geo.createNode("output", "OUT_MYCELIUM")
-    out_myc.parm("outputidx").set(4)
+    out_myc = geo.createNode("null", "OUT_MYCELIUM")
     out_myc.setInput(0, mmat)
+    if VARIANT == "caves":
+        cm = geo.createNode("merge", "caves_display")
+        cm.setInput(0, pmat)
+        cm.setInput(1, mmat)
+        cm.setDisplayFlag(True)
+        cm.setRenderFlag(True)
+    else:
+        out.setDisplayFlag(True)
+        out.setRenderFlag(True)
     for n in geo.children():
         n.moveToGoodPosition()
     return controls
@@ -976,11 +985,16 @@ def main():
         template = controls.parmTemplateGroup().find(inner)
         if isinstance(template, hou.StringParmTemplate):
             controls.parm(inner).setExpression('chs("../%s")' % promoted, hou.exprLanguage.Hscript)
-    hda = geo.createDigitalAsset(name=TYPE_NAME, hda_file_name=str(HDA_PATH), description="Melodia House Terrain (pad + horizon)", min_num_inputs=0, max_num_inputs=0, version="2.0")
+    hda = geo.createDigitalAsset(name=TYPE_NAME, hda_file_name=str(HDA_PATH), description=("Melodia House Caves (passages + Chladni mycelium)" if VARIANT == "caves" else "Melodia House Terrain (pad + horizon)"), min_num_inputs=0, max_num_inputs=0, version=("1.0" if VARIANT == "caves" else "2.0"))
     promote.stage2_promote_definition(hda, pairs, HDA_PATH, hou)
     hda.matchCurrentDefinition()
     hda.parm("source_filepath").set(str(IGN_TIFF))
 
+    if VARIANT == "caves":
+        hou.hipFile.save(str(AUDIT / "MelodiaHouseCaves.hip"))
+        g = hda.node("caves_display").geometry()
+        print("CAVES_HDA " + json.dumps({"hda": str(HDA_PATH), "prims": len(g.prims()), "points": len(g.points()), "errors": list(hda.node("caves_display").errors())}))
+        return 0
     report = {"asset": str(HDA_PATH), "type": TYPE_NAME, "house_footprint_m": HOUSE, "pad_margin_m": PAD_MARGIN, "controls": {k: hda.parm(k).eval() for k in NAMES}}
     arr, a, vols = gate(hda, report)
     drive_probe(hda, report)
