@@ -47,6 +47,9 @@ PARMS = [
     ("string_course", "String course bands (0/1)", 1, 0, 1, "i"),
     ("oculus_count", "Oculus windows", 3, 0, 8, "i"),
     ("oculus_r", "Oculus radius (m)", 0.62, 0.25, 1.4, "f"),
+    ("rose_petals", "Oculus rose tracery petals (0 = off)", 8, 0, 16, "i"),
+    ("tower_tracery", "Tower window tracery (0/1)", 1, 0, 1, "i"),
+    ("tower_windows", "Tower windows", 6, 0, 12, "i"),
     ("tracery_n", "Tracery Chladni mode n", 3, 1, 12, "i"),
     ("tracery_m", "Tracery Chladni mode m", 5, 1, 12, "i"),
     ("entrance", "Arched entrance surround (0/1)", 1, 0, 1, "i"),
@@ -82,6 +85,11 @@ VOL = {"salon": (0.3, 16.1, -11.8, 0.2, 7.2, 8.9), "bedroom": (-11.9, 0.3, -10.7
 PORCH = (22.9, 25.7, -7.8, -3.8)
 ROOF = {"salon": (0.5, 15.9, -11.7, -0.1, 8.2, 8.88, 0.03), "bedroom": (-11.9, 0.3, -10.7, -0.5, -5.3, 6.3, 0.03), "corridor": (17.0, 23.4, -7.9, -3.7, 19.8, 4.82, 0.065)}   # x0, x1, y0, y1, xc, crest z, k (traced live)
 def roofz(name, x): return ROOF[name][5] - ROOF[name][6] * P("roof_k") * (x - ROOF[name][4]) ** 2
+
+def sphere_out(M_, c, r, role, lat=4, lon=8):
+    """room_shell.sphere winds inward (fine for its tiny beads); flip the faces it adds so signed volume is outward."""
+    n0_ = len(M_.F); sphere(M_, c, r, role, lat, lon)
+    for i_ in range(n0_, len(M_.F)): M_.F[i_] = list(reversed(M_.F[i_]))
 
 def add(a, b): return (a[0] + b[0], a[1] + b[1], a[2] + b[2])
 def mul(a, s): return (a[0] * s, a[1] * s, a[2] * s)
@@ -123,7 +131,7 @@ def volute(c, u, v, r0, turns, n, w, d, role, sgn=1.0):
 
 def finial(x, y, z, s, role):
     beam(M, (x, y, z), (x, y, z + 0.30 * s), 0.05 * s, 0.05 * s, role)
-    sphere(M, (x, y, z + 0.36 * s), 0.07 * s, role, 4, 8)
+    sphere_out(M, (x, y, z + 0.36 * s), 0.07 * s, role, 4, 8)
     for sx in (-1, 1):
         beam(M, (x, y, z + 0.18 * s), (x + sx * 0.14 * s, y, z + 0.30 * s), 0.035 * s, 0.035 * s, role)
     octa(M, (x, y, z + 0.52 * s), 0.05 * s, 0.10 * s, role)
@@ -134,7 +142,7 @@ def treble_clef(x, y, z, s, role):
     beam(M, (x, y, z), (x, y, z + 1.1 * s), 0.05 * s, 0.05 * s, role)
     arc_beams((x, y, z + 0.80 * s), u, v, 0.22 * s, -math.pi * 0.4, math.pi * 1.6, 14, 0.04 * s, 0.05 * s, role)
     arc_beams((x - 0.02 * s, y, z + 0.30 * s), u, v, 0.18 * s, math.pi * 0.2, math.pi * 1.9, 12, 0.04 * s, 0.05 * s, role)
-    sphere(M, (x - 0.18 * s, y, z - 0.02 * s), 0.05 * s, role, 4, 8)
+    sphere_out(M, (x - 0.18 * s, y, z - 0.02 * s), 0.05 * s, role, 4, 8)
 
 def ring_vol(name):
     x0, x1, y0, y1, ez, rz = VOL[name]; return x0, x1, y0, y1, ez, rz
@@ -237,6 +245,15 @@ if nO > 0:
             if ax * ax + az * az < 1.0 and bx * bx + bz * bz < 1.0:
                 a = (c[0] + ax * r * 0.94, c[1] - 0.01, c[2] + az * r * 0.94); b = (c[0] + bx * r * 0.94, c[1] - 0.01, c[2] + bz * r * 0.94)
                 beam(M, a, b, 0.025 * S, 0.03 * S, "tracery")
+        npet = int(P("rose_petals"))
+        if npet > 0:
+            sphere_out(M, c, 0.09 * r, "tracery", 4, 8)
+            for kp in range(npet):
+                th = math.tau * kp / npet
+                ca = add(c, add(mul(u, 0.52 * r * math.cos(th)), mul(v, 0.52 * r * math.sin(th))))
+                arc_beams(ca, u, v, 0.26 * r, th - math.pi * 0.9, th + math.pi * 0.9, 8, 0.022 * S, 0.03 * S, "tracery")
+                beam(M, c, add(c, add(mul(u, 0.94 * r * math.cos(th)), mul(v, 0.94 * r * math.sin(th)))), 0.018 * S, 0.025 * S, "tracery")
+            arc_beams(c, u, v, 0.30 * r, 0, math.tau, 20, 0.02 * S, 0.028 * S, "tracery")
         for kk in range(8):
             th = math.tau * kk / 8
             beam(M, add(c, add(mul(u, r * 1.28 * math.cos(th)), mul(v, r * 1.28 * math.sin(th)))), add(c, add(mul(u, r * 1.5 * math.cos(th)), mul(v, r * 1.5 * math.sin(th)))), 0.04 * S, 0.05 * S, "oculus_frame")
@@ -270,9 +287,21 @@ if P("tower"):
         a = math.tau * k / 24; bx, by = tx + (tr + 0.52) * math.cos(a), ty + (tr + 0.52) * math.sin(a)
         beam(M, (bx, by, 7.25), (bx, by, 8.15), 0.04, 0.04, "tower_wall")
     lathe(tx, ty, [(tr + 0.55, 8.12), (tr + 0.55, 8.22)], "tower_wall", 24)
-    for k in range(6):
-        a = math.tau * (k + 0.5) / 6; wx, wy = tx + (tr + 0.02) * math.cos(a), ty + (tr + 0.02) * math.sin(a)
-        plate(pointed(0.28, 0.5, 8)[:], (wx, wy, 5.0 + 0.0), (-math.sin(a), math.cos(a), 0), (0, 0, 1), 0.08, "tower_window")
+    nw = int(P("tower_windows"))
+    for k in range(nw):
+        a = math.tau * (k + 0.5) / nw; rx, ry = math.cos(a), math.sin(a)
+        wx, wy = tx + (tr + 0.02) * rx, ty + (tr + 0.02) * ry
+        uu = (-ry, rx, 0.0); vv = (0.0, 0.0, 1.0); o = (wx, wy, 5.0)
+        plate(pointed(0.28, 0.5, 8)[:], o, uu, vv, 0.08, "tower_window")
+        if P("tower_tracery"):
+            outp = (rx * 0.05, ry * 0.05, 0.0); o2 = add(o, outp)
+            pts = [add(o2, add(mul(uu, x), mul(vv, z))) for x, z in pointed(0.34, 0.62, 10)]
+            for p_, q_ in zip(pts, pts[1:]): beam(M, p_, q_, 0.035 * S, 0.04 * S, "tracery")
+            beam(M, add(o2, (0, 0, 0.0)), add(o2, (0, 0, 0.55)), 0.03 * S, 0.035 * S, "tracery")
+            arc_beams(add(o2, (0, 0, 0.70)), uu, vv, 0.11, 0, math.tau, 12, 0.025 * S, 0.03 * S, "tracery")
+            for sg in (-1, 1):
+                arc_beams(add(o2, add(mul(uu, sg * 0.12), (0, 0, 0.30))), uu, vv, 0.10, math.pi * (0.5 if sg > 0 else -0.5), math.pi * (1.5 if sg > 0 else 0.5), 8, 0.022 * S, 0.03 * S, "tracery")
+            beam(M, add(o2, mul(uu, -0.34)), add(o2, mul(uu, 0.34)), 0.05 * S, 0.06 * S, "carved_trim")
     ch = P("cap_h") * S; cs = int(P("cap_style"))
     if cs == 0:
         prof = [(tr + 0.25, th_), (tr + 0.55, th_ + 0.35 * ch / 4.3), (tr + 0.70, th_ + 0.80 * ch / 4.3), (tr + 0.50, th_ + 1.45 * ch / 4.3), (tr * 0.62, th_ + 2.2 * ch / 4.3), (tr * 0.30, th_ + 3.0 * ch / 4.3), (tr * 0.10, th_ + 3.7 * ch / 4.3), (0.0, th_ + ch)]
@@ -329,14 +358,24 @@ if P("lanterns"):
     n0 = len(M.F)
     for (x, y) in ((px1, py0), (px1, py1), (px0, py0), (px0, py1)):
         beam(M, (x, y, 1.05 * S), (x, y, 1.38 * S), 0.05 * S, 0.05 * S, "porch_post")
-        sphere(M, (x, y, 1.52 * S), 0.12 * S, "lantern", 4, 10)
+        sphere_out(M, (x, y, 1.52 * S), 0.12 * S, "lantern", 4, 10)
         octa(M, (x, y, 1.72 * S), 0.08 * S, 0.10 * S, "lantern")
     mark(n0, "lanterns", "lantern")
 
 assert len(FEAT) == len(M.F), (len(FEAT), len(M.F))
+SV = {}
+for fi, (feat, role) in enumerate(FEAT):
+    pts_ = [M.P[i] for i in reversed(M.F[fi])]; a0 = pts_[0]; vol = 0.0
+    for i in range(1, len(pts_) - 1):
+        b_, c_ = pts_[i], pts_[i + 1]; nn = cross((b_[0] - a0[0], b_[1] - a0[1], b_[2] - a0[2]), (c_[0] - a0[0], c_[1] - a0[1], c_[2] - a0[2]))
+        vol += (a0[0] * nn[0] + a0[1] * nn[1] + a0[2] * nn[2]) / 6.0
+    SV[feat] = SV.get(feat, 0.0) + vol
 g = node.geometry(); g.clear()
 g.addAttrib(hou.attribType.Prim, "material_role", ""); g.addAttrib(hou.attribType.Prim, "feature", "")
 g.addAttrib(hou.attribType.Prim, "shop_materialpath", "")
+g.addAttrib(hou.attribType.Global, "signed_volume_json", "")
+import json as _j
+g.setGlobalAttribValue("signed_volume_json", _j.dumps(SV))
 flip = bool(P("engine_flip"))
 pts = g.createPoints([(p[0], p[2], p[1]) for p in M.P])     # (x, z, y): Houdini Y-up -> UE (x, y, z) unmirrored
 for face, (feat, role) in zip(M.F, FEAT):
@@ -454,8 +493,12 @@ def main():
     a["drive_roof_skin_off"] = features(hda)[1].get("roof_skin", 0) == 0
     hda.parm("roof_skin").set(1)
     a["restored_after_probes"] = sig(hda) == base
+    sv = json.loads(g.attribValue("signed_volume_json")) if g.findGlobalAttrib("signed_volume_json") else {}
+    closed = [k for k in sv if k not in ("roof_skin",)]
+    a["outward_winding_all_closed_features"] = bool(closed) and all(sv[k] > 0 for k in closed)
+    a["tracery_prims"] = features(hda)[1].get("oculi", 0) + features(hda)[1].get("tower", 0) > 5000
     report = {"asset": str(HDA_PATH), "type": TYPE_NAME, "feature_prims": cnt, "points": len(g.points()), "prims": len(g.prims()), "cook_seconds": cook_s,
-              "bounds_ue_m": [[round(v, 2) for v in ue_min], [round(v, 2) for v in ue_max]], "roles": roles, "errors": errs, "controls": {k: hda.parm(k).eval() for k in NAMES}, "assertions": a}
+              "bounds_ue_m": [[round(v, 2) for v in ue_min], [round(v, 2) for v in ue_max]], "roles": roles, "signed_volume_by_feature": sv, "errors": errs, "controls": {k: hda.parm(k).eval() for k in NAMES}, "assertions": a}
     (AUDIT / "exterior_kit_gate.json").write_text(json.dumps(report, indent=2), encoding="utf-8")
     hou.hipFile.save(str(AUDIT / "MelodiaHouseExteriorKit.hip"))
     failed = [k for k, v in a.items() if not v]
