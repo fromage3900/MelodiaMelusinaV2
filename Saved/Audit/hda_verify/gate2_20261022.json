@@ -33,11 +33,11 @@
   },
   {
    "name": "sg_drive",
-   "ok": false,
-   "detail": "default={'points': 232, 'prims': 348, 'hash': '848767a8d1c4547a', 'bbox': [[-0.525, -0.98, -0.92], [0.525, 1.07, 0.92]]} driven={'points': 232, 'prims': 348, 'hash': '848767a8d1c4547a', 'bbox': [[-0.525, -0.98, -0.92], ["
+   "ok": true,
+   "detail": "default={'points': 232, 'prims': 348, 'hash': '848767a8d1c4547a', 'bbox': [[-0.525, -0.98, -0.92], [0.525, 1.07, 0.92]]} driven={'points': 408, 'prims': 612, 'hash': 'a4cc044ea2a7d67f', 'bbox': [[-0.525, -0.98, -0.92], ["
   }
  ],
- "pass": false,
+ "pass": true,
  "measured": {
   "abbey_default": {
    "points": 512,
@@ -108,9 +108,9 @@
    ]
   },
   "sg_driven": {
-   "points": 232,
-   "prims": 348,
-   "hash": "848767a8d1c4547a",
+   "points": 408,
+   "prims": 612,
+   "hash": "a4cc044ea2a7d67f",
    "bbox": [
     [
      -0.525,

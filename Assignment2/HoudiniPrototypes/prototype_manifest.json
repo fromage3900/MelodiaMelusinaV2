@@ -1,0 +1,213 @@
+{
+  "schema": "melodia.houdini_three_prototypes.spike.v1",
+  "spike": true,
+  "engine": "Houdini 22.0.368",
+  "license_category": "Indie",
+  "units": "metres",
+  "axis": "Z-up",
+  "outputs": [
+    {
+      "id": "01_ResonantTracery",
+      "spike": true,
+      "concept": "static lancet/rose tracery with eight frequency-paired Lissajous ribbons and a driven Chladni contour; no geometry motion at runtime",
+      "network": "/obj/PROTO_01_ResonantTracery",
+      "output": "/obj/PROTO_01_ResonantTracery/OUT_TRACERY",
+      "default": {
+        "points": 28188,
+        "primitives": 14991,
+        "bbox_size_m": [
+          6.24,
+          0.24,
+          10.24
+        ],
+        "position_sha256_16": "ec07dc6f0936656b",
+        "primitive_roles": {
+          "stone_frame": 806,
+          "gold_came": 474,
+          "opal_glass": 2150,
+          "stone_mullion": 102,
+          "cymatic_lead": 691,
+          "lissajous_ribbon": 1536,
+          "lissajous_filament": 9232
+        }
+      },
+      "driven_parameter": {
+        "name": "mode_m",
+        "tested_value": 6,
+        "geometry": {
+          "points": 29380,
+          "primitives": 15289,
+          "bbox_size_m": [
+            6.24,
+            0.24,
+            10.24
+          ],
+          "position_sha256_16": "acb5df514cefd2a5",
+          "primitive_roles": {
+            "stone_frame": 806,
+            "gold_came": 474,
+            "opal_glass": 2150,
+            "stone_mullion": 102,
+            "cymatic_lead": 989,
+            "lissajous_ribbon": 1536,
+            "lissajous_filament": 9232
+          }
+        }
+      },
+      "restored_default_hash_matches": true,
+      "errors": [],
+      "obj": "C:\\EnvironmentPortfolio\\BS_GodFile\\Assignment2\\HoudiniPrototypes\\01_ResonantTracery.obj",
+      "saved_hip_reopen_recook": {
+        "passed": true,
+        "points": 28188,
+        "primitives": 14991,
+        "position_sha256_16": "ec07dc6f0936656b",
+        "errors": []
+      }
+    },
+    {
+      "id": "02_GravityFountainCascade",
+      "spike": true,
+      "concept": "tiered carved basins, spout jets, descending sheets and eight Lissajous ribbons per spill; sheets are static presentation geometry",
+      "network": "/obj/PROTO_02_GravityFountainCascade",
+      "output": "/obj/PROTO_02_GravityFountainCascade/OUT_FOUNTAIN",
+      "default": {
+        "points": 41832,
+        "primitives": 26812,
+        "bbox_size_m": [
+          4.76,
+          19.16,
+          8.2669
+        ],
+        "position_sha256_16": "81484f77ec9d29e6",
+        "primitive_roles": {
+          "carved_basin": 1344,
+          "receiving_pool": 144,
+          "fluted_support": 576,
+          "fountain_jet": 1460,
+          "falling_water_sheet": 1680,
+          "lissajous_flow_ribbon": 3072,
+          "lissajous_flow_filament": 18464,
+          "spillway_coping": 72
+        }
+      },
+      "driven_parameter": {
+        "name": "stage_drop",
+        "tested_value": 3.1,
+        "geometry": {
+          "points": 41832,
+          "primitives": 26812,
+          "bbox_size_m": [
+            4.76,
+            19.16,
+            9.2669
+          ],
+          "position_sha256_16": "38e5dddc1fd2e197",
+          "primitive_roles": {
+            "carved_basin": 1344,
+            "receiving_pool": 144,
+            "fluted_support": 576,
+            "fountain_jet": 1460,
+            "falling_water_sheet": 1680,
+            "lissajous_flow_ribbon": 3072,
+            "lissajous_flow_filament": 18464,
+            "spillway_coping": 72
+          }
+        }
+      },
+      "restored_default_hash_matches": true,
+      "errors": [],
+      "obj": "C:\\EnvironmentPortfolio\\BS_GodFile\\Assignment2\\HoudiniPrototypes\\02_GravityFountainCascade.obj",
+      "saved_hip_reopen_recook": {
+        "passed": true,
+        "points": 41832,
+        "primitives": 26812,
+        "position_sha256_16": "81484f77ec9d29e6",
+        "errors": []
+      }
+    },
+    {
+      "id": "03_AeolianSilkBridge",
+      "spike": true,
+      "concept": "static walkable deck, three wind-shaped veils, central oculus, suspended focus and seven frequency-paired Lissajous orbit ribbons; Vellum remains a later bake comparison",
+      "network": "/obj/PROTO_03_AeolianSilkBridge",
+      "output": "/obj/PROTO_03_AeolianSilkBridge/OUT_BRIDGE",
+      "default": {
+        "points": 39848,
+        "primitives": 26700,
+        "bbox_size_m": [
+          30.0194,
+          11.2855,
+          12.6274
+        ],
+        "position_sha256_16": "68d425ef18fd0473",
+        "primitive_roles": {
+          "walkable_deck": 640,
+          "deck_underside": 384,
+          "gold_guardrail": 1284,
+          "stone_support_arch": 1540,
+          "tracery_post": 204,
+          "aeolian_silk_veil": 1024,
+          "silk_edge_cord": 2700,
+          "listening_court_ring": 970,
+          "court_inlay": 128,
+          "orb_suspension": 10,
+          "resonance_orb": 800,
+          "orb_halo": 1552,
+          "lissajous_orbit_ribbon": 2048,
+          "lissajous_orbit_filament": 12336,
+          "bridge_gate_pier": 24,
+          "pier_crown": 1056
+        }
+      },
+      "driven_parameter": {
+        "name": "wind_amplitude",
+        "tested_value": 0.58,
+        "geometry": {
+          "points": 39848,
+          "primitives": 26700,
+          "bbox_size_m": [
+            30.0194,
+            11.2855,
+            12.6274
+          ],
+          "position_sha256_16": "bccbf9dd1e270ee2",
+          "primitive_roles": {
+            "walkable_deck": 640,
+            "deck_underside": 384,
+            "gold_guardrail": 1284,
+            "stone_support_arch": 1540,
+            "tracery_post": 204,
+            "aeolian_silk_veil": 1024,
+            "silk_edge_cord": 2700,
+            "listening_court_ring": 970,
+            "court_inlay": 128,
+            "orb_suspension": 10,
+            "resonance_orb": 800,
+            "orb_halo": 1552,
+            "lissajous_orbit_ribbon": 2048,
+            "lissajous_orbit_filament": 12336,
+            "bridge_gate_pier": 24,
+            "pier_crown": 1056
+          }
+        }
+      },
+      "restored_default_hash_matches": true,
+      "errors": [],
+      "obj": "C:\\EnvironmentPortfolio\\BS_GodFile\\Assignment2\\HoudiniPrototypes\\03_AeolianSilkBridge.obj",
+      "saved_hip_reopen_recook": {
+        "passed": true,
+        "points": 39848,
+        "primitives": 26700,
+        "position_sha256_16": "68d425ef18fd0473",
+        "errors": []
+      }
+    }
+  ],
+  "hip": "C:\\EnvironmentPortfolio\\BS_GodFile\\Assignment2\\HoudiniPrototypes\\Melusina_Three_Houdini_Prototypes.hip",
+  "limitations": [
+    "Offline Hython SOP prototypes only; no Houdini Engine or UE import/cook/PIE proof.",
+    "Fountain sheets and silk veils are baked static presentation meshes, not runtime solvers.",
+    "No collision, UV, material, capsule-clearance, performance, or full route acceptance yet."
+  ]
+}

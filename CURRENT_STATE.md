@@ -14,6 +14,27 @@
 Build: closed-editor `BS_GodFileEditor Win64 Development` Succeeded each time; `Melodia.WaveHarp.*` + `Melodia.Wardrobe.*` = **18/18** green. DLL receipts: strings are UTF-16 (`MELODIA_WATER_CHORUS splash|budget`, `MELODIA_TRANSFORM_WAVEHARP_FLOURISH`, `MELODIA_SEAM_PORTAL travel`).
 **Not in any commit:** `Build.cs` (the other lane's `AscentDialogueSystem`/`PhysicsCore`), `tools/gouache/` and `PIPELINE_REGISTRY.md` (root repo, `main` is a landing target), all `.uasset` (Perforce).
 
+### Houdini cathedral spike and college session — 2026-10-24
+
+**Source check:** `Docs/HoudiniForge/SOL_HANDOFF.md` assigns Cathedral v3 to Sol. Its canonical `Saved/Staging/GrokPrep/houdini_forge/cathedral_v3` folder is absent from both C: and G: in this checkout; do not infer which newer Cathedral version is canonical.
+
+**Three isolated spikes:** `Assignment2/HoudiniPrototypes/` is marked `spike: true`. `01_ResonantTracery` adds eight frequency-paired ribbons around the Gothic rose and a driven Chladni contour; `02_GravityFountainCascade` has three stepped basins and eight Lissajous strands along each spill; `03_AeolianSilkBridge` has a 28 m arched deck, three silk veils, opened oculus, suspended orb, and eight orbital Lissajous ribbons. Defaults: tracery 28,188 points / 14,991 prims; fountain 41,832 / 26,812; bridge 39,848 / 26,700.
+
+**Hython proof:** Houdini 22.0.368 reports Indie for the three spike cooks. Each parameter driver changes the mesh, restores the default, and passes a saved-HIP reopen recook with no node errors. `prototype_manifest.json` carries hashes and counts; `prototype_contact_sheet.png` is the visual review. Separately, Gate 2 registry verification is 5/5 PASS, 0 WARN, 0 FAIL; that verifier report identifies its own runtime license category as Apprentice, so keep it distinct from the Indie spike build.
+
+**Proof boundary:** no Houdini Engine cook, UE import, PIE traversal, material binding, UV, or collision result exists for these spikes. The current editor launch targets `L_MelodiaMainMenu`; the 2026-10-24 log ends with `MODAL_OPEN`, and Monolith is unavailable. The three systems remain offline prototypes.
+
+**Bounded college goal — 120 minutes:** deliver one traversable Melusina-scale “Resonance Water Court” slice that connects the existing room shell and door sockets to a focal fountain court, then across the Lissajous bridge toward the suspended orb. Reuse the current room-shell and Cathedral/Houdini authority; do not replace the main level or build a second PCG owner.
+
+1. **0–15 min, source and engine preflight:** locate the actual latest Cathedral v3 delivery and read its local handoff; confirm the owner-designated level, active Houdini Engine session, idle editor, clear modal state, and available VRAM. If the canonical delivery is still absent, proceed only with verified existing shell/cathedral sources.
+2. **15–40 min, shell first:** place one room-shell HDA in a controlled test level, measure its portal sockets against the existing BP_Door anchors, expose and live-drive one shell parameter, then restore the default. The rounded salon candidate remains excluded until its recorded 620 cm door residual is resolved; prior UE cooks also OOM'd, so do not retry while the editor is modal or memory-constrained.
+3. **40–80 min, assemble one route:** integrate the pointed tracery, built-in falling-water fountain, and bridge as named modular outputs. Keep a direct, continuous path from door to focal point; separate walkable deck collision from silk/water visuals. Match the current player capsule by measurement.
+4. **80–105 min, lookdev and cook:** bind the existing universal WallTrim material instances by role, recook one meaningful live parameter, and restore the chosen default. Keep water geometry static for collision; present motion through the existing UE water/VFX path.
+5. **105–120 min, proof:** traverse the full door → fountain → bridge → orb route in PIE; capture one clean image and record the UE cook, socket residual, clearances, and unresolved defects. Stop after this slice; full cathedral dressing, world-scale islands, and packaged proof remain later gates.
+
+**Acceptance:** live room-shell control is visible and recooks in UE; door/socket residual is ≤5 cm; route is continuously walkable at Melusina capsule scale; the fountain pours downward into its receivers; the bridge reaches a clear focal point; role materials resolve; PIE traversal and visual capture are recorded. If any gate fails, preserve the existing production level and report the measured blocker.
+
+
 ### 2. The gouache / Melusina pipeline (canon doc: `Docs/Materials/GOUACHE_SHADER_CANON.md`, sections 1-12)
 - Master: `M_Master_Toon_Universal`, default-OFF `bGouache_Active`; full function + 16-frame swirl flipbook + boil; shader permutations verified from the LOG. Backups in `Masters/_Backup/`.
 - Textures `/Game/EnvSandbox/Materials/Textures/Gouache/`: `T_Gouache_Pigment_RGBA`, `T_Gouache_PoolFlipbook`, `T_Gouache_Rebelle_Granulation`, `_Blotch`, `T_Gouache_Paper_Aquarelle` (placeholder).

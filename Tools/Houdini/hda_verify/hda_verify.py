@@ -15,10 +15,9 @@ Per entry (status=active in hda_registry.v1.json):
                  (and == points/prims when an exact pin is given)
   drive       -> expect.parm_drive sets a parameter, re-cooks, requires the
                  geometry to move (points/prims must differ from the default cook
-                 and match any pin, or bbox must move when the pin uses differ_bbox
-                 for outputs whose counts are constant (a single Volume primitive),
-                 then restores the value and re-proves the
-                 default cook against expect.outputs
+                 and match any pin, bbox must move for a constant-topology Volume,
+                 or point positions must change for same-count deformations), then
+                 restores the value and re-proves the default cook against pins
   errors      -> no node inside the instance may report an error
 
 Entries with status=missing are reported as OWED (warn, exit stays 0) so the
@@ -31,7 +30,9 @@ Receipt: <out-dir>/hda_verify_report.json
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
+import struct
 import sys
 import time
 from datetime import datetime
@@ -91,12 +92,9 @@ def custom_parm_names(node) -> tuple[list[str], str]:
 def output_problems(got: dict | None, want: dict, base: dict | None = None) -> list[str]:
     """Registry pin comparison for one cooked output. [] means it matched.
 
-    `base` is the default cook of the same output; when given, `want["differ"]`
-    requires the measured counts to have MOVED — that is what proves a parameter
-    actually drives the cook instead of merely existing on the dialog. For
-    outputs whose primitive count cannot move (a rasterized Volume is always one
-    primitive / one point), `want["differ_bbox"]` compares the bounding box
-    instead — still a real cook change, just measured on bounds.
+    `base` is the default cook of the same output. The registry can require count,
+    bounds, or point-position changes, so same-topology deformations are proven
+    without falsely failing when their point and primitive counts stay constant.
     """
     if got is None:
         return ["output node not found"]
@@ -121,18 +119,61 @@ def output_problems(got: dict | None, want: dict, base: dict | None = None) -> l
             problems.append(
                 f"bbox unchanged from the default cook ({got['bbox']}) "
                 "- the parameter does not drive the cook")
+    if (want.get("position_hash_differ") and base
+            and base.get("position_hash") and got.get("position_hash")):
+        if got["position_hash"] == base["position_hash"]:
+            problems.append(
+                "point positions unchanged from the default cook "
+                "- the parameter does not deform the output")
+    attribute_differ = want.get("attribute_differ")
+    if attribute_differ and base:
+        before = (base.get("attributes") or {}).get(attribute_differ)
+        after = (got.get("attributes") or {}).get(attribute_differ)
+        if before == after:
+            problems.append(
+                f"detail attribute {attribute_differ!r} unchanged from the default cook")
+    for name, expected in (want.get("attributes") or {}).items():
+        actual = (got.get("attributes") or {}).get(name)
+        if actual != expected:
+            problems.append(f"detail attribute {name!r}={actual!r}, expected {expected!r}")
     return problems
 
 
+def geometry_stats(geo) -> dict:
+    """Stable output counts, bounds, and geometry signature for drive probes."""
+    signature = hashlib.sha256()
+    points = geo.points()
+    for point in points:
+        position = point.position()
+        signature.update(struct.pack(
+            "!I3d", point.number(),
+            round(float(position[0]), 6),
+            round(float(position[1]), 6),
+            round(float(position[2]), 6),
+        ))
+    prims = geo.prims()
+    detail_attributes = {}
+    for name in ("hue_deg", "note", "mode_n", "mode_m"):
+        if geo.findGlobalAttrib(name) is not None:
+            detail_attributes[name] = geo.attribValue(name)
+    return {
+        "points": len(points),
+        "prims": len(prims),
+        "bbox": [round(v, 3) for v in geo.boundingBox().sizevec()],
+        "position_hash": signature.hexdigest()[:16],
+        "attributes": detail_attributes,
+    }
+
+
 def cook_outputs(inst) -> tuple[dict, list, list, float]:
-    """Force-cook every output SOP under the instance. Returns geometry stats."""
+    """Force-cook output SOPs; read locked SOP HDAs through their output geometry."""
     outputs: dict[str, dict] = {}
     errors: list[str] = []
     warnings: list[str] = []
     started = time.time()
 
     children = list(inst.allSubChildren())
-    for child in children:
+    for child in [inst, *children]:
         try:
             errs = child.errors()
         except Exception:
@@ -152,12 +193,18 @@ def cook_outputs(inst) -> tuple[dict, list, list, float]:
         rec: dict = {"node": child.name()}
         try:
             geo = child.geometry()  # cooks this branch
-            rec["points"] = len(geo.points())
-            rec["prims"] = len(geo.prims())
-            rec["bbox"] = [round(v, 3) for v in geo.boundingBox().sizevec()]
+            rec.update(geometry_stats(geo))
         except Exception as exc:
             rec["cook_error"] = f"{type(exc).__name__}: {exc}"
         outputs[child.name()] = rec
+
+    # Locked SOP HDAs expose cooked geometry on the instance, while
+    # allSubChildren() is empty. Their single output is the HDA's public output.
+    if inst.type().category().name() == "Sop" and not outputs:
+        try:
+            outputs["OUT"] = geometry_stats(inst.geometry())
+        except Exception as exc:
+            outputs["OUT"] = {"cook_error": f"{type(exc).__name__}: {exc}"}
 
     return outputs, errors, warnings, time.time() - started
 
@@ -222,12 +269,37 @@ def verify_entry(project_root: Path, entry: dict) -> dict:
     }
 
     node_type = entry.get("node_type") or definitions[0].nodeTypeName()
+    category_name = definitions[0].nodeTypeCategory().name()
+    rec["context"] = category_name
+    declared_context = entry.get("context")
+    if declared_context and declared_context != category_name:
+        check("context_matches", False,
+              f"registry declares {declared_context}; HDA definition is {category_name}")
+        return rec
+
     obj = _hou.node("/obj")
+    host = obj
+    container = None
+    if category_name == "Sop":
+        # SOP HDAs must be instantiated inside a geometry object. Creating them
+        # directly under /obj reports the misleading "Invalid node type name".
+        container = obj.createNode("geo", f"verify_host_{entry['id']}")
+        host = container
+    elif category_name != "Object":
+        check("create_node", False,
+              f"unsupported HDA context {category_name!r}; verifier supports Object and Sop")
+        return rec
+
     inst = None
     try:
-        inst = obj.createNode(node_type, f"verify_{entry['id']}")
+        inst = host.createNode(node_type, f"verify_{entry['id']}")
     except Exception as exc:
         check("create_node", False, f"{node_type}: {type(exc).__name__}: {exc}")
+        if container is not None:
+            try:
+                container.destroy()
+            except Exception:
+                pass
         return rec
     check("create_node", True, node_type)
 
@@ -305,7 +377,8 @@ def verify_entry(project_root: Path, entry: dict) -> dict:
                 drive_records.append({
                     "parm": pname, "set_to": want_value, "previous": previous,
                     "problems": problems,
-                    "outputs": {k: {kk: vv for kk, vv in v.items() if kk in ("points", "prims")}
+                    "outputs": {k: {kk: vv for kk, vv in v.items()
+                                    if kk in ("points", "prims", "attributes")}
                                 for k, v in driven_outputs.items()},
                 })
                 check(f"drive:{pname}={want_value}", not problems,
@@ -343,6 +416,11 @@ def verify_entry(project_root: Path, entry: dict) -> dict:
             inst.destroy()
         except Exception:
             pass
+        if container is not None:
+            try:
+                container.destroy()
+            except Exception:
+                pass
 
     return rec
 

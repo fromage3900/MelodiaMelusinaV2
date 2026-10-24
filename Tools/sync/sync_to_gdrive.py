@@ -32,7 +32,7 @@ RECEIPT = r"C:\EnvironmentPortfolio\BS_GodFile\Saved\Audit\gdrive_sync_20261022.
 
 # The trees that carry the project. Content is the bulk; the rest is code and contracts.
 TREES = ["Content", "Source", "specs", "Tools", "Docs", "Config", "Plugins",
-         "deploy", "RawArt", "Reference", "Scripts", "Imports",
+         "deploy", "RawArt", "Reference", "Scripts", "Imports", "Assignment2",
          # The audit receipts: the evidence behind every claim the project makes.
          # 5.1 GB - the renders, the manifests and the wand FBX/OBJ sources.
          "Saved/Audit"]
