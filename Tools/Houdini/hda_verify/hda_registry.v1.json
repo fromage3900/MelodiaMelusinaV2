@@ -820,7 +820,7 @@
     },
     {
       "id": "faraway_silk_ribbon",
-      "status": "missing",
+      "status": "active",
       "path": "hda/HDA_Faraway_SilkRibbon_1.0.hda",
       "node_type": "HDA_Faraway_SilkRibbon",
       "context": "Object",
@@ -829,7 +829,7 @@
       "mirror": [
         "Content/HDA/HDA_Faraway_SilkRibbon_1.0.hda"
       ],
-      "notes": "OWED 2026-10-23: builder --verify passed, but the repo gate FAILS its restore-after-drive probes (after driving flutter_amp/twist_turns/segments, the restored cook returns 121 pts / 1 prim - the guide curve - instead of the golden 2178 / 1920). Looks like a re-cook instability between output0 and the guide output. Do not promote until fixed. Registered 2026-10-23. Wide floating silk ribbon: optional input 0 guide curve (else built-in swooping 3D spline of `length` m), twist, width taper, edge ripple, two oppositely wound sheets. output0 = ribbon with point attrs rest_u / flutter_phase / edge_weight / uv / N for a later Vellum, VAT or UE WPO pass. output1 = guide resampled (points + polyline) with @pscale = local width. Builder and silk_ribbon_geometry.py live under Tools/ (gitignored 'Tools/*') - force-add. Builder --verify proves, with Houdini's own prim.normal(), that every front/back sheet pair faces away from each other (960/960 both ways, also with a curve input), 0 along-length fold-overs, guide length matches the control, edge ripple is stronger than centre ripple, twist_turns rotates the strip, and parm drive works. Materials: MI_Copernicus_SilkWaterfall (front), MI_Copernicus_FarawayCelestialSilk (back). Not imported to UE; no Vellum or VAT bake.",
+      "notes": "Fixed 2026-10-24: the restore-after-drive failure was the repo gate keying outputs by node name while the built-in Attribute Delete SOP cooks an inner `output0`; the guide branch's inner output0 (121 pts / 1 prim) overwrote the ribbon's after the first parameter change. Both attribdelete nodes are now detail wrangles (removepointattrib), so no hidden output nodes exist. Registered 2026-10-23. Wide floating silk ribbon: optional input 0 guide curve (else built-in swooping 3D spline of `length` m), twist, width taper, edge ripple, two oppositely wound sheets. output0 = ribbon with point attrs rest_u / flutter_phase / edge_weight / uv / N for a later Vellum, VAT or UE WPO pass. output1 = guide resampled (points + polyline) with @pscale = local width. Builder and silk_ribbon_geometry.py live under Tools/ (gitignored 'Tools/*') - force-add. Builder --verify proves, with Houdini's own prim.normal(), that every front/back sheet pair faces away from each other (960/960 both ways, also with a curve input), 0 along-length fold-overs, guide length matches the control, edge ripple is stronger than centre ripple, twist_turns rotates the strip, and parm drive works. Materials: MI_Copernicus_SilkWaterfall (front), MI_Copernicus_FarawayCelestialSilk (back). Not imported to UE; no Vellum or VAT bake.",
       "expect": {
         "parms": [
           "preview_mode",
