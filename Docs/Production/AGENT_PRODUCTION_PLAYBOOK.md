@@ -32,7 +32,7 @@ Default assumption: **Melodia already has enough architecture to author content.
 | Blueprint/editor mutation | one Unreal Editor + Monolith | multiple editors, competing MCP writers, persistent Python world refs |
 | Audio-reactive world presentation | existing PhraseBus / MPC / cymatics consumers | second OSC semantic bus or second MPC writer |
 | Blender procedural authoring | Melodia Studio 2.132.0 / GN source | copied legacy addon trees or stale laptop install as authority |
-| Evidence | committed verifier + audit receipt + live proof where required | screenshots alone, prose-only claims |
+| VFX / Niagara authoring | Monolith `niagara_query` + `Tools/verify_niagara_surface.py` + `Tools/niagara_ecosystem_audit.py` | hand-rolled T3D Niagara injection (`t3d_niagara_injector.py`, retired), second VFX writer, editing the plugin for WISHLIST items without a content block |
 
 ---
 
@@ -445,7 +445,33 @@ Do not send an agent a vague mission like "improve procedural generation." Send 
 
 ---
 
-# 11. Things agents should stop doing
+# 11. VFX / Niagara - Monolith Niagara lane
+
+The gap here is not missing actions: the plugin registers **129** Niagara
+actions and the project uses ~22 of them across ~42 scripts. The gap is
+discoverability, governance and reliability:
+
+- Read `Docs/AGENT_MCP_SURFACES.md` (Niagara section) for the grouped
+  representative list; the full list is `monolith_discover(namespace="niagara")`.
+- `specs/mcp_tool_policy.v1.json` declares all 129 as
+  `niagara_query.<action>` (reads `none`, mutations `editor`); default is
+  `deny`, so an undeclared action is refused.
+- Verify the surface before and after any change:
+  `python Tools/verify_niagara_surface.py` (static) and
+  `python Tools/verify_niagara_surface.py --live` (one editor, :9316).
+- Ecosystem-level audit of shipped systems:
+  `python Tools/niagara_ecosystem_audit.py [--contract]`.
+- Reliability limits that are NOT fixed by this lane:
+  `preview_system` renders black for mist-type systems; the driver divide-by-
+  zero in `CURRENT_STATE.md` (line ~1959); five renderer bindings report
+  `ok:false / materials_bound:0`. These are separate, content-driven fixes.
+- Do NOT fork the plugin for WISHLIST items (stateless-emitter authoring,
+  GPU read-back, scalar-field DI bulk fill) unless a real asset requires it;
+  fix docs/policy/verifier first, then one concrete blocker at a time.
+- Niagara promotion to the capability surface requires PIE-proven visual
+  evidence; the SDF-vs-NS split remains an owner decision.
+
+# 12. Things agents should stop doing
 
 - rebuilding already-proven systems because an old handoff says "TODO";
 - treating old branches as authority;

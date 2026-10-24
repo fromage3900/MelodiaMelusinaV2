@@ -1,0 +1,325 @@
+{
+  "schema": "melodia.vfx.universal_material.v1",
+  "title": "Universal VFX Material Master plan (based on M_Niagara_MelodiaFlipbook)",
+  "date": "2026-10-24",
+  "base_master": "/Game/Melodia/_PROJECT/VFX/Materials/M_Niagara_MelodiaFlipbook",
+  "base_master_stats": {
+    "blend_mode": "BLEND_Translucent",
+    "shading_model": "MSM_Unlit",
+    "material_domain": "MD_Surface",
+    "two_sided": true,
+    "expression_count": 38,
+    "parameter_count": 17,
+    "usage_niagara_sprites": true,
+    "usage_niagara_meshes": false,
+    "usage_niagara_ribbons": false
+  },
+  "constraint_note": "UE material blend mode, shading model, and material domain are compile-time properties of the Material asset, not instance parameters. A single Material cannot be both translucent and masked, or unlit and default-lit. Therefore 'truly universal' is achieved by ONE master per (blend, shading) combo, sharing the same expression graph and parameter philosophy. The flipbook master is the translucent-unlit base; a masked-lit variant is needed for petals/cards that require solid depth.",
+  "universal_masters": [
+    {
+      "name": "M_VFX_Universal_Translucent",
+      "path": "/Game/Melodia/_PROJECT/VFX/Materials/M_VFX_Universal_Translucent",
+      "base": "M_Niagara_MelodiaFlipbook",
+      "blend_mode": "BLEND_Translucent",
+      "shading_model": "MSM_Unlit",
+      "two_sided": true,
+      "covers": [
+        "mist sheets", "sparkle", "glitter", "motes", "dust", "ribbons", "trails",
+        "sigils", "globules", "impact bursts", "pollen", "wind fronts", "flipbooks",
+        "gouache pool swirl", "star sparkle", "arc", "superposition", "eye sparkle",
+        "cosmic portal (SDF composite)", "glitter sparkle (SDF composite)", "magic rune (SDF composite)",
+        "musical notation (SDF composite)", "orrery rings (SDF composite)", "harmonic iris (SDF composite)"
+      ],
+      "excluded": [
+        "SDF raymarched effects as primary shape (use SDF_CompositeMode=1 or separate SDF masters)",
+        "masked/lit petals and cards (use M_VFX_Universal_Masked)",
+        "solid opaque surfaces (not VFX)"
+      ]
+    },
+    {
+      "name": "M_VFX_Universal_Masked",
+      "path": "/Game/Melodia/_PROJECT/VFX/Materials/M_VFX_Universal_Masked",
+      "base": "M_Niagara_Morning_PetalCard",
+      "blend_mode": "BLEND_Masked",
+      "shading_model": "MSM_DefaultLit",
+      "two_sided": true,
+      "covers": [
+        "petal cards", "petal meshes", "petal sprites (solid)", "cherry rosette",
+        "note cards", "ornament cards", "any effect needing depth/occlusion"
+      ],
+      "excluded": [
+        "translucent effects (use M_VFX_Universal_Translucent)",
+        "SDF raymarched effects"
+      ]
+    }
+  ],
+  "sdf_masters": {
+    "note": "Already canonical. Keep separate — raymarched, fundamentally different rendering path. But their parameters are EXPOSED in the universal master's SDF group (group 11) so any instance can use SDF shapes as overlays, primary shapes, or glow.",
+    "masters": [
+      "/Game/EnvSandbox/Materials/VFX/SDF/Masters/M_VFX_SDF_CosmicPortal",
+      "/Game/EnvSandbox/Materials/VFX/SDF/Masters/M_VFX_SDF_GlitterSparkle",
+      "/Game/EnvSandbox/Materials/VFX/SDF/Masters/M_VFX_SDF_MagicRune"
+    ],
+    "sdf_presets": {
+      "0_none": { "description": "No SDF (standard texture-based VFX)" },
+      "1_cosmic_portal": { "source": "M_VFX_SDF_CosmicPortal", "params": ["PortalRadius", "PortalSoftness", "SwirlStrength", "ChromaticSpread", "CoreIntensity", "RimIntensity_SDF", "ProximityRadius", "ProxGain", "FlareGain", "RotationSpeed", "PulseRate"] },
+      "2_glitter_sparkle": { "source": "M_VFX_SDF_GlitterSparkle", "params": ["StarSize", "StarPointiness", "EdgeSoftness", "HaloRadius", "HaloFalloff", "HaloIntensity", "TwinkleSpeed", "TwinkleDepth", "PhaseOffset", "EmissiveBoost"] },
+      "3_magic_rune": { "source": "M_VFX_SDF_MagicRune", "params": ["RingRadiusOuter", "RingRadiusInner", "RingThickness", "SymmetrySlices", "RaySharpness", "CoreRadius", "RingRotationSpeed", "PulseSpeed", "EmissiveIntensity_SDF", "OpacityMaster_SDF", "RuneColorPrimary", "RuneColorSecondary", "BeatGain_SDF"] },
+      "4_musical_notation": { "source": "new (HLSL)", "params": ["NoteSize", "NoteSpacing", "StaffLines", "ClefType", "NoteGlow", "StaffOpacity", "NoteRotation", "NoteBeatSync"] },
+      "5_orrery_rings": { "source": "new (HLSL)", "params": ["RingCount", "RingRadius_0", "RingRadius_1", "RingRadius_2", "RingThickness_Orrery", "RingSpeed_0", "RingSpeed_1", "RingSpeed_2", "RingTilt", "PlanetSize", "OrbitEccentricity", "GlowIntensity_Orrery"] },
+      "6_harmonic_iris": { "source": "new (HLSL, derived from Magic Rune)", "params": ["IrisRadius", "PetalCount", "PetalSharpness", "IrisRotation", "ColorShift", "HarmonicFrequency"] }
+    }
+  },
+  "universal_parameters": {
+    "note": "All parameters use the Melodia parameter group convention (group names with pipe separators). Each parameter should have a sensible default so a bare instance renders correctly. Static switches create shader permutations but allow one master to serve multiple modes. Estimated 115 parameters across 18 groups, ~120 expressions.",
+    "groups": {
+      "01_Texture": {
+        "FlipbookTexture": { "type": "Texture2D", "default": "T_Alpha_sparkle_pulse_flipbook", "group": "01 | Texture" },
+        "SecondaryTexture": { "type": "Texture2D", "default": "none (white)", "group": "01 | Texture", "note": "Optional second texture for layered effects" },
+        "TextureTiling": { "type": "Vector2", "default": [1, 1], "group": "01 | Texture" },
+        "TexturePan": { "type": "Vector2", "default": [0, 0], "group": "01 | Texture" },
+        "TextureRotation": { "type": "Scalar", "default": 0.0, "group": "01 | Texture", "unit": "radians" }
+      },
+      "02_Flipbook": {
+        "FlipFPS": { "type": "Scalar", "default": 8.0, "group": "02 | Flipbook" },
+        "GridCols": { "type": "Scalar", "default": 1.0, "group": "02 | Flipbook", "note": "1 = no flipbook scrub (static texture)" },
+        "GridRows": { "type": "Scalar", "default": 1.0, "group": "02 | Flipbook", "note": "1 = no flipbook scrub (static texture)" },
+        "bFlipbook_Active": { "type": "StaticSwitch", "default": false, "group": "02 | Flipbook" }
+      },
+      "03_Color": {
+        "BaseColor": { "type": "Vector3 (RGB)", "default": [1, 1, 1], "group": "03 | Color" },
+        "EmissiveColor": { "type": "Vector3 (RGB)", "default": [1, 1, 1], "group": "03 | Color" },
+        "Intensity": { "type": "Scalar", "default": 1.0, "group": "03 | Color" },
+        "Alpha": { "type": "Scalar", "default": 1.0, "group": "03 | Color" },
+        "AlphaContrast": { "type": "Scalar", "default": 1.0, "group": "03 | Color" },
+        "AlphaBias": { "type": "Scalar", "default": 0.0, "group": "03 | Color" }
+      },
+      "04_Rim": {
+        "RimColor": { "type": "Vector3 (RGB)", "default": [1, 0.5, 1], "group": "04 | Rim" },
+        "RimPower": { "type": "Scalar", "default": 3.0, "group": "04 | Rim" },
+        "RimWidth": { "type": "Scalar", "default": 0.5, "group": "04 | Rim" },
+        "RimBias": { "type": "Scalar", "default": 0.0, "group": "04 | Rim" },
+        "RimClamp": { "type": "Scalar", "default": 1.0, "group": "04 | Rim" },
+        "RimIntensity": { "type": "Scalar", "default": 0.0, "group": "04 | Rim" },
+        "bRim_Active": { "type": "StaticSwitch", "default": false, "group": "04 | Rim" }
+      },
+      "05_NikkiHero": {
+        "bNikkiHero": { "type": "StaticSwitch", "default": false, "group": "05 | Nikki Hero" },
+        "DreamRimColor": { "type": "Vector3 (RGB)", "default": [0.8, 0.9, 1.0], "group": "05 | Nikki Hero" },
+        "DreamRimPower": { "type": "Scalar", "default": 4.0, "group": "05 | Nikki Hero" },
+        "DreamRimCycles": { "type": "Scalar", "default": 3.0, "group": "05 | Nikki Hero" },
+        "DreamRimStrength": { "type": "Scalar", "default": 0.5, "group": "05 | Nikki Hero" },
+        "bDreamRim_Active": { "type": "StaticSwitch", "default": false, "group": "05 | Nikki Hero" }
+      },
+      "06_DepthFade": {
+        "DepthFadeDistance": { "type": "Scalar", "default": 50.0, "group": "06 | Depth Fade", "unit": "cm" },
+        "bDepthFade_Active": { "type": "StaticSwitch", "default": false, "group": "06 | Depth Fade" }
+      },
+      "07_CameraFade": {
+        "CameraFadeStart": { "type": "Scalar", "default": 100.0, "group": "07 | Camera Fade", "unit": "cm" },
+        "CameraFadeEnd": { "type": "Scalar", "default": 50.0, "group": "07 | Camera Fade", "unit": "cm" },
+        "bCameraFade_Active": { "type": "StaticSwitch", "default": false, "group": "07 | Camera Fade" }
+      },
+      "08_Noise": {
+        "NoiseTexture": { "type": "Texture2D", "default": "none", "group": "08 | Noise" },
+        "NoiseStrength": { "type": "Scalar", "default": 0.0, "group": "08 | Noise" },
+        "NoiseSpeed": { "type": "Scalar", "default": 0.5, "group": "08 | Noise" },
+        "NoiseTiling": { "type": "Scalar", "default": 1.0, "group": "08 | Noise" },
+        "bNoise_Active": { "type": "StaticSwitch", "default": false, "group": "08 | Noise" }
+      },
+      "09_Secondary": {
+        "SecondaryBlendMode": { "type": "StaticSwitch", "default": 0, "group": "09 | Secondary", "note": "0=multiply, 1=add, 2=lerp" },
+        "SecondaryStrength": { "type": "Scalar", "default": 0.0, "group": "09 | Secondary" }
+      },
+      "10_MPC": {
+        "BeatPulse": { "type": "Scalar (MPC read)", "default": 0.0, "group": "10 | MPC", "note": "Read from MPC_Melodia_Palette.BeatPulse. Read-only." },
+        "bBeatPulse_Active": { "type": "StaticSwitch", "default": false, "group": "10 | MPC" },
+        "BeatGain": { "type": "Scalar", "default": 0.6, "group": "10 | MPC" }
+      },
+      "11_SDF": {
+        "SDF_Preset": { "type": "StaticSwitch", "default": 0, "group": "11 | SDF", "note": "0=none, 1=cosmic portal, 2=glitter, 3=magic rune, 4=musical notation, 5=orrery rings, 6=harmonic iris" },
+        "SDF_CompositeMode": { "type": "StaticSwitch", "default": 0, "group": "11 | SDF", "note": "0=alpha overlay, 1=primary shape, 2=glow overlay" },
+        "PortalRadius": { "type": "Scalar", "default": 0.5, "group": "11 | SDF | Cosmic Portal" },
+        "PortalSoftness": { "type": "Scalar", "default": 0.1, "group": "11 | SDF | Cosmic Portal" },
+        "SwirlStrength": { "type": "Scalar", "default": 1.0, "group": "11 | SDF | Cosmic Portal" },
+        "ChromaticSpread": { "type": "Scalar", "default": 0.3, "group": "11 | SDF | Cosmic Portal" },
+        "CoreIntensity": { "type": "Scalar", "default": 0.8, "group": "11 | SDF | Cosmic Portal" },
+        "RimIntensity_SDF": { "type": "Scalar", "default": 1.8, "group": "11 | SDF | Cosmic Portal" },
+        "ProximityRadius": { "type": "Scalar", "default": 1.0, "group": "11 | SDF | Cosmic Portal" },
+        "ProxGain": { "type": "Scalar", "default": 1.0, "group": "11 | SDF | Cosmic Portal" },
+        "FlareGain": { "type": "Scalar", "default": 1.0, "group": "11 | SDF | Cosmic Portal" },
+        "StarSize": { "type": "Scalar", "default": 0.3, "group": "11 | SDF | Glitter" },
+        "StarPointiness": { "type": "Scalar", "default": 4.0, "group": "11 | SDF | Glitter" },
+        "EdgeSoftness": { "type": "Scalar", "default": 0.05, "group": "11 | SDF | Glitter" },
+        "HaloRadius": { "type": "Scalar", "default": 0.5, "group": "11 | SDF | Glitter" },
+        "HaloFalloff": { "type": "Scalar", "default": 2.0, "group": "11 | SDF | Glitter" },
+        "HaloIntensity": { "type": "Scalar", "default": 1.0, "group": "11 | SDF | Glitter" },
+        "TwinkleSpeed": { "type": "Scalar", "default": 2.0, "group": "11 | SDF | Glitter" },
+        "TwinkleDepth": { "type": "Scalar", "default": 0.5, "group": "11 | SDF | Glitter" },
+        "PhaseOffset": { "type": "Scalar", "default": 0.0, "group": "11 | SDF | Glitter" },
+        "EmissiveBoost": { "type": "Scalar", "default": 1.0, "group": "11 | SDF | Glitter" },
+        "RingRadiusOuter": { "type": "Scalar", "default": 0.8, "group": "11 | SDF | Rune" },
+        "RingRadiusInner": { "type": "Scalar", "default": 0.5, "group": "11 | SDF | Rune" },
+        "RingThickness": { "type": "Scalar", "default": 0.05, "group": "11 | SDF | Rune" },
+        "SymmetrySlices": { "type": "Scalar", "default": 6.0, "group": "11 | SDF | Rune" },
+        "RaySharpness": { "type": "Scalar", "default": 0.5, "group": "11 | SDF | Rune" },
+        "CoreRadius": { "type": "Scalar", "default": 0.2, "group": "11 | SDF | Rune" },
+        "RingRotationSpeed": { "type": "Scalar", "default": 1.0, "group": "11 | SDF | Rune" },
+        "PulseSpeed": { "type": "Scalar", "default": 2.0, "group": "11 | SDF | Rune" },
+        "EmissiveIntensity_SDF": { "type": "Scalar", "default": 1.0, "group": "11 | SDF | Rune" },
+        "OpacityMaster_SDF": { "type": "Scalar", "default": 1.0, "group": "11 | SDF | Rune" },
+        "RuneColorPrimary": { "type": "Vector3 (RGB)", "default": [0.5, 0.8, 1.0], "group": "11 | SDF | Rune" },
+        "RuneColorSecondary": { "type": "Vector3 (RGB)", "default": [1.0, 0.5, 0.8], "group": "11 | SDF | Rune" },
+        "BeatGain_SDF": { "type": "Scalar", "default": 0.6, "group": "11 | SDF | Rune" },
+        "NoteSize": { "type": "Scalar", "default": 0.3, "group": "11 | SDF | Musical Notation" },
+        "NoteSpacing": { "type": "Scalar", "default": 0.5, "group": "11 | SDF | Musical Notation" },
+        "StaffLines": { "type": "Scalar", "default": 5.0, "group": "11 | SDF | Musical Notation" },
+        "ClefType": { "type": "Scalar", "default": 0.0, "group": "11 | SDF | Musical Notation", "note": "0=treble, 1=bass, 2=alto" },
+        "NoteGlow": { "type": "Scalar", "default": 1.0, "group": "11 | SDF | Musical Notation" },
+        "StaffOpacity": { "type": "Scalar", "default": 0.3, "group": "11 | SDF | Musical Notation" },
+        "NoteRotation": { "type": "Scalar", "default": 0.0, "group": "11 | SDF | Musical Notation" },
+        "NoteBeatSync": { "type": "Scalar", "default": 1.0, "group": "11 | SDF | Musical Notation" },
+        "RingCount": { "type": "Scalar", "default": 3.0, "group": "11 | SDF | Orrery" },
+        "RingRadius_0": { "type": "Scalar", "default": 0.8, "group": "11 | SDF | Orrery" },
+        "RingRadius_1": { "type": "Scalar", "default": 0.5, "group": "11 | SDF | Orrery" },
+        "RingRadius_2": { "type": "Scalar", "default": 0.2, "group": "11 | SDF | Orrery" },
+        "RingThickness_Orrery": { "type": "Scalar", "default": 0.03, "group": "11 | SDF | Orrery" },
+        "RingSpeed_0": { "type": "Scalar", "default": 1.0, "group": "11 | SDF | Orrery" },
+        "RingSpeed_1": { "type": "Scalar", "default": 0.7, "group": "11 | SDF | Orrery" },
+        "RingSpeed_2": { "type": "Scalar", "default": 0.4, "group": "11 | SDF | Orrery" },
+        "RingTilt": { "type": "Scalar", "default": 0.3, "group": "11 | SDF | Orrery" },
+        "PlanetSize": { "type": "Scalar", "default": 0.05, "group": "11 | SDF | Orrery" },
+        "OrbitEccentricity": { "type": "Scalar", "default": 0.1, "group": "11 | SDF | Orrery" },
+        "GlowIntensity_Orrery": { "type": "Scalar", "default": 1.0, "group": "11 | SDF | Orrery" },
+        "IrisRadius": { "type": "Scalar", "default": 0.5, "group": "11 | SDF | Harmonic Iris" },
+        "PetalCount": { "type": "Scalar", "default": 6.0, "group": "11 | SDF | Harmonic Iris" },
+        "PetalSharpness": { "type": "Scalar", "default": 0.5, "group": "11 | SDF | Harmonic Iris" },
+        "IrisRotation": { "type": "Scalar", "default": 1.0, "group": "11 | SDF | Harmonic Iris" },
+        "ColorShift": { "type": "Scalar", "default": 0.0, "group": "11 | SDF | Harmonic Iris" },
+        "HarmonicFrequency": { "type": "Scalar", "default": 440.0, "group": "11 | SDF | Harmonic Iris", "note": "Frequency in Hz for harmonic visualization" }
+      },
+      "12_Trail": {
+        "TrailLength": { "type": "Scalar", "default": 0.5, "group": "12 | Trail", "note": "Motion trail length (0 = no trail)" },
+        "TrailFade": { "type": "Scalar", "default": 0.5, "group": "12 | Trail" },
+        "TrailWidth": { "type": "Scalar", "default": 1.0, "group": "12 | Trail" },
+        "TrailColor": { "type": "Vector3 (RGB)", "default": [1, 1, 1], "group": "12 | Trail" },
+        "bTrail_Active": { "type": "StaticSwitch", "default": false, "group": "12 | Trail" }
+      },
+      "13_Distortion": {
+        "DistortionStrength": { "type": "Scalar", "default": 0.0, "group": "13 | Distortion", "note": "Screen-space refraction. 0 = disabled." },
+        "DistortionSpeed": { "type": "Scalar", "default": 1.0, "group": "13 | Distortion" },
+        "DistortionScale": { "type": "Scalar", "default": 1.0, "group": "13 | Distortion" },
+        "DistortionMask": { "type": "Texture2D", "default": "none", "group": "13 | Distortion" },
+        "bDistortion_Active": { "type": "StaticSwitch", "default": false, "group": "13 | Distortion" }
+      },
+      "14_Bloom": {
+        "BloomIntensity": { "type": "Scalar", "default": 1.0, "group": "14 | Bloom" },
+        "BloomThreshold": { "type": "Scalar", "default": 0.8, "group": "14 | Bloom" },
+        "BloomTint": { "type": "Vector3 (RGB)", "default": [1, 1, 1], "group": "14 | Bloom" },
+        "bBloom_Active": { "type": "StaticSwitch", "default": false, "group": "14 | Bloom" }
+      },
+      "15_DOF": {
+        "DOFStrength": { "type": "Scalar", "default": 0.0, "group": "15 | DOF", "note": "Depth of field integration. 0 = disabled." },
+        "DOFRadius": { "type": "Scalar", "default": 10.0, "group": "15 | DOF", "unit": "cm" },
+        "bDOF_Active": { "type": "StaticSwitch", "default": false, "group": "15 | DOF" }
+      },
+      "16_Interaction": {
+        "ProximityRadius_Interaction": { "type": "Scalar", "default": 100.0, "group": "16 | Interaction", "unit": "cm" },
+        "ProximityGain_Interaction": { "type": "Scalar", "default": 1.0, "group": "16 | Interaction" },
+        "WindResponse": { "type": "Scalar", "default": 0.0, "group": "16 | Interaction", "note": "How much wind affects the effect. 0 = no wind response." },
+        "CollisionResponse": { "type": "Scalar", "default": 0.0, "group": "16 | Interaction", "note": "How much collision affects the effect. 0 = no collision response." },
+        "bInteraction_Active": { "type": "StaticSwitch", "default": false, "group": "16 | Interaction" }
+      },
+      "17_Layering": {
+        "BaseLayerWeight": { "type": "Scalar", "default": 1.0, "group": "17 | Layering" },
+        "GlowLayerWeight": { "type": "Scalar", "default": 0.5, "group": "17 | Layering" },
+        "ParticleLayerWeight": { "type": "Scalar", "default": 1.0, "group": "17 | Layering" },
+        "CompositeMode": { "type": "StaticSwitch", "default": 0, "group": "17 | Layering", "note": "0=alpha blend, 1=additive, 2=multiply" }
+      },
+      "18_Temporal": {
+        "Accumulation": { "type": "Scalar", "default": 0.0, "group": "18 | Temporal", "note": "Trail/afterimage accumulation. 0 = disabled." },
+        "AfterimageCount": { "type": "Scalar", "default": 0.0, "group": "18 | Temporal" },
+        "AfterimageFade": { "type": "Scalar", "default": 0.5, "group": "18 | Temporal" },
+        "MotionBlurStrength": { "type": "Scalar", "default": 0.0, "group": "18 | Temporal" },
+        "bTemporal_Active": { "type": "StaticSwitch", "default": false, "group": "18 | Temporal" }
+      }
+    },
+    "particle_inputs": {
+      "ParticleColor": { "type": "ParticleColor (vertex)", "note": "Multiplied into final color/alpha" },
+      "ParticleRelativeTime": { "type": "ParticleRelativeTime", "note": "Used for flipbook scrub and rim animation" },
+      "Particles.SpriteSize": { "type": "Vector2", "note": "For mesh UV scaling" },
+      "Particles.SpriteRotation": { "type": "Scalar", "note": "For UV rotation" },
+      "Particles.Position": { "type": "Vector3", "note": "For world-space effects (distortion, interaction)" }
+    },
+    "estimated_expression_count": 120,
+    "estimated_parameter_count": 115
+  },
+  "migration_plan": {
+    "phase_1": "Create M_VFX_Universal_Translucent by duplicating M_Niagara_MelodiaFlipbook and adding the new parameter groups (DepthFade, CameraFade, Noise, Secondary, UV manipulation, static switches, SDF composite). Keep all existing params intact for backward compat.",
+    "phase_2": "Create M_VFX_Universal_Masked by duplicating M_Niagara_Morning_PetalCard and applying the same parameter philosophy (color, rim, depth fade, noise, MPC).",
+    "phase_3": "Create one MI per existing NS system, pointing at the universal master. Use the niagara_query set_renderer_material action. Batch via a script.",
+    "phase_4": "Audit all instances: verify no default materials remain, verify Fix-A invariants (SubUV disabled, SubImageSize 1x1), verify no double-scrub.",
+    "phase_5": "Retire redundant masters (mark deprecated, redirect consumers). Never cold-delete.",
+    "backward_compat": "Keep M_Niagara_MelodiaFlipbook as a redirect to M_VFX_Universal_Translucent (or keep it as-is for existing instances). New instances use the universal master."
+  },
+  "what_makes_it_universal": [
+    "1. Static switches make features optional at compile time (flipbook, rim, depth fade, camera fade, noise, beat pulse, SDF, trail, distortion, bloom, DOF, interaction, layering, temporal) — unused features cost zero.",
+    "2. All parameters have sensible defaults — a bare instance renders correctly without configuration.",
+    "3. Particle color is always multiplied — works for any Niagara renderer that provides particle color.",
+    "4. Texture is a parameter — any texture can be assigned per instance.",
+    "5. UV manipulation (tiling, pan, rotation) covers 90% of texture variation needs.",
+    "6. Rim lighting is configurable (color, power, width, bias, clamp, intensity) and can be disabled (intensity=0 or static switch).",
+    "7. Depth fade + camera fade handle soft intersection and distance culling.",
+    "8. Noise adds distortion for mist/fire/energy without a separate material.",
+    "9. Beat pulse (MPC read) enables audio-reactive effects on any instance.",
+    "10. Two-sided unlit translucent base is the right foundation for 80% of VFX.",
+    "11. SDF composite mode allows any instance to use SDF shapes (portal, glitter, rune, musical notation, orrery, harmonic iris) as overlays, primary shapes, or glow — without a separate material.",
+    "12. Masked/lit variant covers the remaining 20% (petals, cards, solid VFX).",
+    "13. AAA params (trail, distortion, bloom, DOF, interaction, layering, temporal) bring gacha-level quality.",
+    "14. SDF-themed params (musical notation, orrery rings, harmonic iris) are Melodia-specific and map to the project's musical/cymatic identity."
+  ],
+  "what_cannot_be_universal": [
+    "Blend mode (translucent vs masked vs additive) — compile-time, requires separate masters.",
+    "Shading model (unlit vs default-lit vs subsurface) — compile-time.",
+    "Material domain (surface vs post-process vs decal) — compile-time.",
+    "Raymarched SDF as primary shape (use SDF_CompositeMode=1, but the HLSL is in the master, not a separate asset).",
+    "Additive blending — if needed, create M_VFX_Universal_Additive (same graph, blend=BLEND_Additive)."
+  ],
+  "aaa_gacha_research": {
+    "source": "Infinity Nikki Epic developer interview + industry VFX production knowledge",
+    "principles": [
+      "Gameplay-integrated: effects react to player motion (footstep airflow, leaf scatter), not just play on a loop.",
+      "Particle-by-particle programming with inter-particle communication for complex behaviors.",
+      "Custom module library: build performance-optimized modules; rebuild collision from scratch if stock is insufficient.",
+      "Audio-reactive: beat sync, intensity scaling from music (already have BeatPulse via MPC).",
+      "Character-integrated: pose-driven effects (Aim Offset, Control Rig, Blend Space integration).",
+      "Layered rendering: multi-pass (base + rim + glow + particle overlay) with depth-aware compositing.",
+      "Temporal effects: trails, afterimages, motion blur integration, accumulation over time.",
+      "Material quality: sub-pixel sharpness, proper gamma, HDR emissive, bloom control, DOF integration."
+    ],
+    "melodia_specific": [
+      "Musical notation SDF: staff lines, note glyphs, clef types, beat-synced note glow — maps to the cymatic/music identity.",
+      "Orrery rings: concentric rotating rings with planets — celestial/musical visualization.",
+      "Harmonic iris: petal iris with harmonic frequency — audio-visual mapping.",
+      "Beat pulse: audio-reactive intensity scaling via MPC_Melodia_Palette.BeatPulse.",
+      "Gouache flipbook: material-owns-clock flipbook with Fix-A invariants (SubUV disabled, SubImageSize 1x1)."
+    ],
+    "niagara_side_not_material_side": [
+      "Per-particle logic (belongs in Niagara modules, not materials)",
+      "Collision (belongs in Niagara collision modules)",
+      "Spawning (belongs in Niagara emitters)",
+      "Audio analysis (belongs in the audio-reactive subsystem + MPC writer)",
+      "Footstep airflow (Niagara particle-by-particle, not material)"
+    ]
+  },
+  "estimated_scope": {
+    "new_masters": 2,
+    "new_instances": "~40 (one per existing NS system + MI)",
+    "retired_masters": "~15 (after redirect)",
+    "retired_instances": "~30 (after migration)",
+    "authoring_time": "3-4 sessions (master authoring + instance migration + audit)",
+    "total_parameters": 115,
+    "total_expressions": 120,
+    "static_switch_count": 18
+  }
+}

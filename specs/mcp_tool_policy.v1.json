@@ -523,75 +523,1005 @@
     "gaea_inspect_terrain": {
       "decision": "allow",
       "required_approval": "none",
-      "operations": [ "read" ]
+      "operations": [
+        "read"
+      ]
     },
     "gaea_list_recipes": {
       "decision": "allow",
       "required_approval": "none",
-      "operations": [ "read" ]
+      "operations": [
+        "read"
+      ]
     },
     "gaea_verify_build": {
       "decision": "allow",
       "required_approval": "none",
-      "operations": [ "read" ]
+      "operations": [
+        "read"
+      ]
     },
     "gaea_stage_example_for_export": {
       "decision": "allow",
       "required_approval": "owner",
-      "operations": [ "mutate" ],
+      "operations": [
+        "mutate"
+      ],
       "reason": "Copies a stock Gaea example into the project and writes an export recipe JSON; owner-gated write."
     },
-
     "gaea_build_terrain": {
       "decision": "allow",
       "required_approval": "owner",
-      "operations": [ "mutate" ],
+      "operations": [
+        "mutate"
+      ],
       "reason": "Runs headless Gaea Swarm to emit terrain maps; owner-gated exec."
     },
     "houdini_inspect_hip": {
       "decision": "allow",
       "required_approval": "none",
-      "operations": [ "read" ]
+      "operations": [
+        "read"
+      ]
     },
     "houdini_list_hips": {
       "decision": "allow",
       "required_approval": "none",
-      "operations": [ "read" ]
+      "operations": [
+        "read"
+      ]
     },
     "houdini_verify_build": {
       "decision": "allow",
       "required_approval": "none",
-      "operations": [ "read" ]
+      "operations": [
+        "read"
+      ]
     },
     "houdini_stage_choral_variants": {
       "decision": "allow",
       "required_approval": "owner",
-      "operations": [ "mutate" ],
+      "operations": [
+        "mutate"
+      ],
       "reason": "Stages Houdini choral variant recipe + COP params; owner-gated write."
     },
     "houdini_generate_variants": {
       "decision": "allow",
       "required_approval": "owner",
-      "operations": [ "mutate" ],
+      "operations": [
+        "mutate"
+      ],
       "reason": "Generates 12 chromatic coat PNGs via hython or PIL fallback; owner-gated write."
     },
     "houdini_build_hip": {
       "decision": "allow",
       "required_approval": "owner",
-      "operations": [ "mutate" ],
+      "operations": [
+        "mutate"
+      ],
       "reason": "Runs hython to cook HIP ROPs; owner-gated exec."
     },
     "houdini_stage_groom_variants": {
       "decision": "allow",
       "required_approval": "owner",
-      "operations": [ "mutate" ],
+      "operations": [
+        "mutate"
+      ],
       "reason": "Stages Houdini groom variant recipe from spec; owner-gated write."
     },
     "houdini_generate_grooms": {
       "decision": "allow",
       "required_approval": "owner",
-      "operations": [ "mutate" ],
+      "operations": [
+        "mutate"
+      ],
       "reason": "Generates 12 groom ABC placeholders or real grooms via hython wedge; owner-gated write."
+    },
+    "niagara_query.add_dynamic_input": {
+      "decision": "allow",
+      "required_approval": "editor",
+      "operations": [
+        "mutate"
+      ]
+    },
+    "niagara_query.add_emitter": {
+      "decision": "allow",
+      "required_approval": "editor",
+      "operations": [
+        "mutate"
+      ]
+    },
+    "niagara_query.add_event_handler": {
+      "decision": "allow",
+      "required_approval": "editor",
+      "operations": [
+        "mutate"
+      ]
+    },
+    "niagara_query.add_module": {
+      "decision": "allow",
+      "required_approval": "editor",
+      "operations": [
+        "mutate"
+      ]
+    },
+    "niagara_query.add_npc_parameter": {
+      "decision": "allow",
+      "required_approval": "editor",
+      "operations": [
+        "mutate"
+      ]
+    },
+    "niagara_query.add_renderer": {
+      "decision": "allow",
+      "required_approval": "editor",
+      "operations": [
+        "mutate"
+      ]
+    },
+    "niagara_query.add_simulation_stage": {
+      "decision": "allow",
+      "required_approval": "editor",
+      "operations": [
+        "mutate"
+      ]
+    },
+    "niagara_query.add_user_parameter": {
+      "decision": "allow",
+      "required_approval": "editor",
+      "operations": [
+        "mutate"
+      ]
+    },
+    "niagara_query.audit_cross_asset_refs": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "read"
+      ]
+    },
+    "niagara_query.auto_layout": {
+      "decision": "allow",
+      "required_approval": "editor",
+      "operations": [
+        "mutate"
+      ]
+    },
+    "niagara_query.batch_execute": {
+      "decision": "allow",
+      "required_approval": "editor",
+      "operations": [
+        "mutate"
+      ]
+    },
+    "niagara_query.clear_emitter_modules": {
+      "decision": "allow",
+      "required_approval": "editor",
+      "operations": [
+        "mutate"
+      ]
+    },
+    "niagara_query.clone_module_overrides": {
+      "decision": "allow",
+      "required_approval": "editor",
+      "operations": [
+        "mutate"
+      ]
+    },
+    "niagara_query.configure_curve_keys": {
+      "decision": "allow",
+      "required_approval": "editor",
+      "operations": [
+        "mutate"
+      ]
+    },
+    "niagara_query.configure_data_interface": {
+      "decision": "allow",
+      "required_approval": "editor",
+      "operations": [
+        "mutate"
+      ]
+    },
+    "niagara_query.configure_ribbon": {
+      "decision": "allow",
+      "required_approval": "editor",
+      "operations": [
+        "mutate"
+      ]
+    },
+    "niagara_query.configure_subuv": {
+      "decision": "allow",
+      "required_approval": "editor",
+      "operations": [
+        "mutate"
+      ]
+    },
+    "niagara_query.create_effect_type": {
+      "decision": "allow",
+      "required_approval": "editor",
+      "operations": [
+        "mutate"
+      ]
+    },
+    "niagara_query.create_emitter": {
+      "decision": "allow",
+      "required_approval": "editor",
+      "operations": [
+        "mutate"
+      ]
+    },
+    "niagara_query.create_function_from_hlsl": {
+      "decision": "allow",
+      "required_approval": "editor",
+      "operations": [
+        "mutate"
+      ]
+    },
+    "niagara_query.create_module_from_hlsl": {
+      "decision": "allow",
+      "required_approval": "editor",
+      "operations": [
+        "mutate"
+      ]
+    },
+    "niagara_query.create_npc": {
+      "decision": "allow",
+      "required_approval": "editor",
+      "operations": [
+        "mutate"
+      ]
+    },
+    "niagara_query.create_stateless_emitter": {
+      "decision": "allow",
+      "required_approval": "editor",
+      "operations": [
+        "mutate"
+      ]
+    },
+    "niagara_query.create_system": {
+      "decision": "allow",
+      "required_approval": "editor",
+      "operations": [
+        "mutate"
+      ]
+    },
+    "niagara_query.create_system_from_spec": {
+      "decision": "allow",
+      "required_approval": "editor",
+      "operations": [
+        "mutate"
+      ]
+    },
+    "niagara_query.diff_systems": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "read"
+      ]
+    },
+    "niagara_query.duplicate_emitter": {
+      "decision": "allow",
+      "required_approval": "editor",
+      "operations": [
+        "mutate"
+      ]
+    },
+    "niagara_query.duplicate_module": {
+      "decision": "allow",
+      "required_approval": "editor",
+      "operations": [
+        "mutate"
+      ]
+    },
+    "niagara_query.duplicate_system": {
+      "decision": "allow",
+      "required_approval": "editor",
+      "operations": [
+        "mutate"
+      ]
+    },
+    "niagara_query.export_system_spec": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "read"
+      ]
+    },
+    "niagara_query.find_niagara_references": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "read"
+      ]
+    },
+    "niagara_query.find_similar_systems": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "read"
+      ]
+    },
+    "niagara_query.get_all_parameters": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "read"
+      ]
+    },
+    "niagara_query.get_available_parameters": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "read"
+      ]
+    },
+    "niagara_query.get_compiled_gpu_hlsl": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "read"
+      ]
+    },
+    "niagara_query.get_custom_hlsl_text": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "read"
+      ]
+    },
+    "niagara_query.get_di_functions": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "read"
+      ]
+    },
+    "niagara_query.get_di_properties": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "read"
+      ]
+    },
+    "niagara_query.get_dynamic_input_inputs": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "read"
+      ]
+    },
+    "niagara_query.get_dynamic_input_tree": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "read"
+      ]
+    },
+    "niagara_query.get_dynamic_input_value": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "read"
+      ]
+    },
+    "niagara_query.get_effect_type": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "read"
+      ]
+    },
+    "niagara_query.get_emitter_parent": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "read"
+      ]
+    },
+    "niagara_query.get_emitter_property": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "read"
+      ]
+    },
+    "niagara_query.get_emitter_summary": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "read"
+      ]
+    },
+    "niagara_query.get_emitter_timing_summary": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "read"
+      ]
+    },
+    "niagara_query.get_event_handlers": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "read"
+      ]
+    },
+    "niagara_query.get_module_graph": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "read"
+      ]
+    },
+    "niagara_query.get_module_input_value": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "read"
+      ]
+    },
+    "niagara_query.get_module_inputs": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "read"
+      ]
+    },
+    "niagara_query.get_module_output_parameters": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "read"
+      ]
+    },
+    "niagara_query.get_module_script_inputs": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "read"
+      ]
+    },
+    "niagara_query.get_npc": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "read"
+      ]
+    },
+    "niagara_query.get_ordered_modules": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "read"
+      ]
+    },
+    "niagara_query.get_parameter_type": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "read"
+      ]
+    },
+    "niagara_query.get_parameter_value": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "read"
+      ]
+    },
+    "niagara_query.get_renderer_bindings": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "read"
+      ]
+    },
+    "niagara_query.get_scalability_settings": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "read"
+      ]
+    },
+    "niagara_query.get_simulation_stages": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "read"
+      ]
+    },
+    "niagara_query.get_static_switch_value": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "read"
+      ]
+    },
+    "niagara_query.get_system_diagnostics": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "read"
+      ]
+    },
+    "niagara_query.get_system_property": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "read"
+      ]
+    },
+    "niagara_query.get_system_summary": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "read"
+      ]
+    },
+    "niagara_query.get_system_timing": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "read"
+      ]
+    },
+    "niagara_query.get_user_parameters": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "read"
+      ]
+    },
+    "niagara_query.import_system_spec": {
+      "decision": "allow",
+      "required_approval": "editor",
+      "operations": [
+        "mutate"
+      ]
+    },
+    "niagara_query.list_available_renderers": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "read"
+      ]
+    },
+    "niagara_query.list_dynamic_inputs": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "read"
+      ]
+    },
+    "niagara_query.list_emitter_properties": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "read"
+      ]
+    },
+    "niagara_query.list_emitters": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "read"
+      ]
+    },
+    "niagara_query.list_module_scripts": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "read"
+      ]
+    },
+    "niagara_query.list_renderer_properties": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "read"
+      ]
+    },
+    "niagara_query.list_renderers": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "read"
+      ]
+    },
+    "niagara_query.list_system_data_interfaces": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "read"
+      ]
+    },
+    "niagara_query.list_systems": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "read"
+      ]
+    },
+    "niagara_query.move_module": {
+      "decision": "allow",
+      "required_approval": "editor",
+      "operations": [
+        "mutate"
+      ]
+    },
+    "niagara_query.preview_system": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "read"
+      ]
+    },
+    "niagara_query.query_niagara": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "read"
+      ]
+    },
+    "niagara_query.remove_dynamic_input": {
+      "decision": "allow",
+      "required_approval": "editor",
+      "operations": [
+        "mutate"
+      ]
+    },
+    "niagara_query.remove_emitter": {
+      "decision": "allow",
+      "required_approval": "editor",
+      "operations": [
+        "mutate"
+      ]
+    },
+    "niagara_query.remove_event_handler": {
+      "decision": "allow",
+      "required_approval": "editor",
+      "operations": [
+        "mutate"
+      ]
+    },
+    "niagara_query.remove_module": {
+      "decision": "allow",
+      "required_approval": "editor",
+      "operations": [
+        "mutate"
+      ]
+    },
+    "niagara_query.remove_npc_parameter": {
+      "decision": "allow",
+      "required_approval": "editor",
+      "operations": [
+        "mutate"
+      ]
+    },
+    "niagara_query.remove_renderer": {
+      "decision": "allow",
+      "required_approval": "editor",
+      "operations": [
+        "mutate"
+      ]
+    },
+    "niagara_query.remove_simulation_stage": {
+      "decision": "allow",
+      "required_approval": "editor",
+      "operations": [
+        "mutate"
+      ]
+    },
+    "niagara_query.remove_user_parameter": {
+      "decision": "allow",
+      "required_approval": "editor",
+      "operations": [
+        "mutate"
+      ]
+    },
+    "niagara_query.rename_emitter": {
+      "decision": "allow",
+      "required_approval": "editor",
+      "operations": [
+        "mutate"
+      ]
+    },
+    "niagara_query.rename_user_parameter": {
+      "decision": "allow",
+      "required_approval": "editor",
+      "operations": [
+        "mutate"
+      ]
+    },
+    "niagara_query.reorder_emitters": {
+      "decision": "allow",
+      "required_approval": "editor",
+      "operations": [
+        "mutate"
+      ]
+    },
+    "niagara_query.request_compile": {
+      "decision": "allow",
+      "required_approval": "editor",
+      "operations": [
+        "mutate",
+        "verify"
+      ]
+    },
+    "niagara_query.save_emitter_as_template": {
+      "decision": "allow",
+      "required_approval": "editor",
+      "operations": [
+        "mutate"
+      ]
+    },
+    "niagara_query.save_system": {
+      "decision": "allow",
+      "required_approval": "editor",
+      "operations": [
+        "mutate"
+      ]
+    },
+    "niagara_query.search_by_data_interface": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "read"
+      ]
+    },
+    "niagara_query.search_by_material": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "read"
+      ]
+    },
+    "niagara_query.search_by_parameter": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "read"
+      ]
+    },
+    "niagara_query.search_dynamic_inputs": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "read"
+      ]
+    },
+    "niagara_query.set_curve_value": {
+      "decision": "allow",
+      "required_approval": "editor",
+      "operations": [
+        "mutate"
+      ]
+    },
+    "niagara_query.set_custom_hlsl_text": {
+      "decision": "allow",
+      "required_approval": "editor",
+      "operations": [
+        "mutate"
+      ]
+    },
+    "niagara_query.set_dynamic_input_value": {
+      "decision": "allow",
+      "required_approval": "editor",
+      "operations": [
+        "mutate"
+      ]
+    },
+    "niagara_query.set_effect_type": {
+      "decision": "allow",
+      "required_approval": "editor",
+      "operations": [
+        "mutate"
+      ]
+    },
+    "niagara_query.set_effect_type_property": {
+      "decision": "allow",
+      "required_approval": "editor",
+      "operations": [
+        "mutate"
+      ]
+    },
+    "niagara_query.set_emitter_enabled": {
+      "decision": "allow",
+      "required_approval": "editor",
+      "operations": [
+        "mutate"
+      ]
+    },
+    "niagara_query.set_emitter_loop_profile": {
+      "decision": "allow",
+      "required_approval": "editor",
+      "operations": [
+        "mutate"
+      ]
+    },
+    "niagara_query.set_emitter_property": {
+      "decision": "allow",
+      "required_approval": "editor",
+      "operations": [
+        "mutate"
+      ]
+    },
+    "niagara_query.set_event_handler_property": {
+      "decision": "allow",
+      "required_approval": "editor",
+      "operations": [
+        "mutate"
+      ]
+    },
+    "niagara_query.set_fixed_bounds": {
+      "decision": "allow",
+      "required_approval": "editor",
+      "operations": [
+        "mutate"
+      ]
+    },
+    "niagara_query.set_fixed_tick_delta": {
+      "decision": "allow",
+      "required_approval": "editor",
+      "operations": [
+        "mutate"
+      ]
+    },
+    "niagara_query.set_module_enabled": {
+      "decision": "allow",
+      "required_approval": "editor",
+      "operations": [
+        "mutate"
+      ]
+    },
+    "niagara_query.set_module_input_binding": {
+      "decision": "allow",
+      "required_approval": "editor",
+      "operations": [
+        "mutate"
+      ]
+    },
+    "niagara_query.set_module_input_di": {
+      "decision": "allow",
+      "required_approval": "editor",
+      "operations": [
+        "mutate"
+      ]
+    },
+    "niagara_query.set_module_input_value": {
+      "decision": "allow",
+      "required_approval": "editor",
+      "operations": [
+        "mutate"
+      ]
+    },
+    "niagara_query.set_npc_default": {
+      "decision": "allow",
+      "required_approval": "editor",
+      "operations": [
+        "mutate"
+      ]
+    },
+    "niagara_query.set_parameter_default": {
+      "decision": "allow",
+      "required_approval": "editor",
+      "operations": [
+        "mutate"
+      ]
+    },
+    "niagara_query.set_particle_lifetime": {
+      "decision": "allow",
+      "required_approval": "editor",
+      "operations": [
+        "mutate"
+      ]
+    },
+    "niagara_query.set_renderer_binding": {
+      "decision": "allow",
+      "required_approval": "editor",
+      "operations": [
+        "mutate"
+      ]
+    },
+    "niagara_query.set_renderer_material": {
+      "decision": "allow",
+      "required_approval": "editor",
+      "operations": [
+        "mutate"
+      ]
+    },
+    "niagara_query.set_renderer_mesh": {
+      "decision": "allow",
+      "required_approval": "editor",
+      "operations": [
+        "mutate"
+      ]
+    },
+    "niagara_query.set_renderer_property": {
+      "decision": "allow",
+      "required_approval": "editor",
+      "operations": [
+        "mutate"
+      ]
+    },
+    "niagara_query.set_require_current_frame_data": {
+      "decision": "allow",
+      "required_approval": "editor",
+      "operations": [
+        "mutate"
+      ]
+    },
+    "niagara_query.set_scalability_settings": {
+      "decision": "allow",
+      "required_approval": "editor",
+      "operations": [
+        "mutate"
+      ]
+    },
+    "niagara_query.set_sim_stage_execute_behavior": {
+      "decision": "allow",
+      "required_approval": "editor",
+      "operations": [
+        "mutate"
+      ]
+    },
+    "niagara_query.set_sim_stage_iteration_count": {
+      "decision": "allow",
+      "required_approval": "editor",
+      "operations": [
+        "mutate"
+      ]
+    },
+    "niagara_query.set_simulation_stage_property": {
+      "decision": "allow",
+      "required_approval": "editor",
+      "operations": [
+        "mutate"
+      ]
+    },
+    "niagara_query.set_spawn_shape": {
+      "decision": "allow",
+      "required_approval": "editor",
+      "operations": [
+        "mutate"
+      ]
+    },
+    "niagara_query.set_static_switch_value": {
+      "decision": "allow",
+      "required_approval": "editor",
+      "operations": [
+        "mutate"
+      ]
+    },
+    "niagara_query.set_system_property": {
+      "decision": "allow",
+      "required_approval": "editor",
+      "operations": [
+        "mutate"
+      ]
+    },
+    "niagara_query.set_warmup_profile": {
+      "decision": "allow",
+      "required_approval": "editor",
+      "operations": [
+        "mutate"
+      ]
+    },
+    "niagara_query.trace_parameter_binding": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "read"
+      ]
+    },
+    "niagara_query.validate_system": {
+      "decision": "allow",
+      "required_approval": "none",
+      "operations": [
+        "read",
+        "verify"
+      ]
     }
   }
 }

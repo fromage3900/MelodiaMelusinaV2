@@ -21,7 +21,8 @@ void FMonolithNiagaraModule::StartupModule()
 	// FMonolithReflectionWalker.
 	FMonolithNiagaraBulkFillAdapter::Register();
 
-	UE_LOG(LogMonolith, Verbose, TEXT("Monolith — Niagara module loaded (42 actions)"));
+	UE_LOG(LogMonolith, Verbose, TEXT("Monolith - Niagara module loaded (%d actions)"),
+       FMonolithToolRegistry::Get().GetActions(TEXT("niagara")).Num());
 }
 
 void FMonolithNiagaraModule::ShutdownModule()
