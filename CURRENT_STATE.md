@@ -1,5 +1,15 @@
 # Melodia Melusina ? Current State
 
+### Verified House/material/runtime closeout — 2026-10-24
+
+**Landed:** universal master parameter layout `b1d0701b9`; deterministic worldgen `c00c0d74a` (offline determinism only, not UE visual acceptance); WaterChorus owner-context fix `c0ca90806` (Live Coding plus 3/3 automation, not rendered droplet acceptance).
+
+**House P0 ground/runtime:** fresh PIE spawn is `[-300, -576, 79.2125]`, walking/stop and a fresh restart passed with the canonical pawn. Proof used injected `AddMovementInput`, not physical keyboard input. The staging waist candidate's maximum measured first-ring deviation was `0.0000287 cm` with Kawaii enabled across idle/walk/turn/stop: **staging PASS**. Boot grounding remains **FAIL/OPEN** (`10.9375..11.6767 cm` idle clearance). No production AnimBP or wardrobe promotion occurred; run/sprint, bend, physical-input and packaged acceptance remain open.
+
+**House lighting:** saved only the existing `Vista_PPV_MorningConverged` exposure/highlight/bloom settings (`-1.5` exposure bias, `0.5` local highlight contrast, `0.45` bloom). Matched 1920×1080 PIE captures at the same spawn reduced near-white pixels from `2.3845%` to `0%` and p95 luma from `0.9389` to `0.8613`; actor count stayed `223`, with zero prioritized actor or PCG changes. Evidence: `Saved/Audit/HouseLighting_20261024/`. This is a bounded exposure improvement, not final beauty, material or VFX acceptance.
+
+**Recovery package:** `Saved/Packages/Melusina_P0_RuntimeCloseout_20261024.zip`, 28 files plus manifest, SHA256 `fddda8da79152752483d5c54dfd9bf45465d4699f1dad5518a1fc4f5844bc5db`; ZIP integrity and checksum verified. The saved House map is shared working-copy state, not an isolated binary containing only the ground or lighting edit.
+
 ## Melusina legs, footwear and layered skirt — bounded goal, 2026-10-23
 
 ### Sonnet runtime handoff — owner requested, 2026-10-24

@@ -1,0 +1,57 @@
+{
+  "pawn_capsule_sweeps": [
+    {
+      "xy": [
+        -300,
+        -576
+      ],
+      "blocking_actor": "MelodiaHouseTerrain_2_0_26_39_0_Landscape",
+      "blocking_class": "Landscape",
+      "impact_z": -10.937606811523438,
+      "capsule_center_z": 79.46231961250305
+    },
+    {
+      "xy": [
+        -800,
+        -576
+      ],
+      "blocking_actor": "Morning_Bed",
+      "blocking_class": "MelodiaBedActor",
+      "impact_z": 396.06242218017564,
+      "capsule_center_z": 477.0037531852722
+    },
+    {
+      "xy": [
+        -300,
+        -76
+      ],
+      "blocking_actor": "MelodiaHouseTerrain_2_0_26_39_0_Landscape",
+      "blocking_class": "Landscape",
+      "impact_z": -10.937599182128906,
+      "capsule_center_z": 79.46231961250305
+    },
+    {
+      "xy": [
+        200,
+        -576
+      ],
+      "blocking_actor": "MelodiaHouseTerrain_2_0_26_39_0_Landscape",
+      "blocking_class": "Landscape",
+      "impact_z": -10.937599182128906,
+      "capsule_center_z": 79.46231961250305
+    },
+    {
+      "xy": [
+        -300,
+        -1076
+      ],
+      "blocking_actor": "MelodiaHouseTerrain_2_0_26_39_0_Landscape",
+      "blocking_class": "Landscape",
+      "impact_z": -10.937599182128906,
+      "capsule_center_z": 79.46231961250305
+    }
+  ],
+  "spawn_blocker_removed": true,
+  "qualification": "Editor-world native pawn-profile sweeps, not live P0 movement/reload proof",
+  "map_saved": false
+}

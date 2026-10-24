@@ -1,0 +1,22 @@
+{
+  "schema": "melodia.house_lighting_pass.v1",
+  "level": "/Game/Melodia/Levels/Opening/L_MelusinaHouse_P0",
+  "volume": "/Game/Melodia/Levels/Opening/L_MelusinaHouse_P0.L_MelusinaHouse_P0:PersistentLevel.PostProcessVolume_0",
+  "scope": "Existing unbound morning post-process only; no actor, light, material, PCG or gameplay changes.",
+  "before": {
+    "override_auto_exposure_bias": "False",
+    "auto_exposure_bias": "-1.0",
+    "override_local_exposure_highlight_contrast_scale": "True",
+    "local_exposure_highlight_contrast_scale": "1.0",
+    "override_bloom_intensity": "True",
+    "bloom_intensity": "0.675000011920929"
+  },
+  "after": {
+    "override_auto_exposure_bias": "True",
+    "auto_exposure_bias": "-1.5",
+    "override_local_exposure_highlight_contrast_scale": "True",
+    "local_exposure_highlight_contrast_scale": "0.5",
+    "override_bloom_intensity": "True",
+    "bloom_intensity": "0.44999998807907104"
+  }
+}

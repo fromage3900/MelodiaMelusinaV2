@@ -1,0 +1,19 @@
+{
+  "actor": "/Game/Melodia/Levels/Opening/L_MelusinaHouse_P0.L_MelusinaHouse_P0:PersistentLevel.BlockingVolume_1",
+  "class": "BlockingVolume",
+  "label": "PCG_MeadowBloom_House",
+  "profile": "NoCollision",
+  "collision": "<CollisionEnabled.NO_COLLISION: 0>",
+  "backup": "C:/EnvironmentPortfolio/BS_GodFile/Saved/Audit/MelusinaLegSkirt_20261023/L_MelusinaHouse_P0_before_ground_collision.umap",
+  "backup_sha256": "e6b7e956ab565161c2273ba9f1ab09843eb1f38cbf8399f75e6ec6dac1721df3",
+  "real_pcg_volume_untouched": true,
+  "map_saved": true,
+  "saved_package": "/Game/Melodia/Levels/Opening/L_MelusinaHouse_P0",
+  "content_dirty_before": [
+    "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal"
+  ],
+  "content_dirty_after": [],
+  "content_packages_preserved_dirty": false,
+  "map_sha256": "37621823e8170cf0bec2cb0b3381bbaebbe74d1ba12526ed6275c79a5464282b",
+  "dirty_set_qualification": "Only the House map package was passed to save_packages. The master material became clean during the overlapping material pass; dirty-set preservation is not proven. Do not claim it remained unsaved."
+}

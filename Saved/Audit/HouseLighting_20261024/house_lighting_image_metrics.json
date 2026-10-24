@@ -1,0 +1,18 @@
+[
+  {
+    "file": "house_lighting_before.png",
+    "bytes": 2706831,
+    "mean_luma": 0.5425353937382529,
+    "p95_luma": 0.9388533369779587,
+    "near_white_pct": 2.384500385802469,
+    "dark_pct": 2.7609471450617282
+  },
+  {
+    "file": "house_lighting_after.png",
+    "bytes": 2823877,
+    "mean_luma": 0.4961982167330404,
+    "p95_luma": 0.8612823612093925,
+    "near_white_pct": 0.0,
+    "dark_pct": 3.0244984567901234
+  }
+]
