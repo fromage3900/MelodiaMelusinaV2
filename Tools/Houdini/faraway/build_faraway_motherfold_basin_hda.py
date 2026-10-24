@@ -32,6 +32,7 @@ TYPE_NAME = "HDA_Faraway_MotherfoldBasin"
 sys.path.insert(0, str(PROJECT_ROOT / "Tools" / "Houdini"))
 sys.path.insert(0, str(HERE))
 import hda_promote_controls as promote  # noqa: E402
+import chladni_field  # noqa: E402
 
 MAT_TERRAIN = "/Game/EnvSandbox/Materials/Instances/FarawayMother/P2/MI_Mother_Mantle"
 MAT_WATER = "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Copernicus_SilkWaterfall"
@@ -53,10 +54,12 @@ CONTROLS = [
     ("base_height", "Land Height at Rim (m)", "float", 30.0, 0.0, 400.0),
     ("pleat_wavelength", "Silk Pleat Wavelength (m)", "float", 30.0, 6.0, 120.0),
     ("pleat_depth", "Silk Pleat Height (m)", "float", 1.2, 0.0, 10.0),
+    ("pleat_angle", "Pleat Direction (deg, global)", "float", 35.0, -90.0, 90.0),
+    ("phase_warp", "Pleat Phase Warp (m of F)", "float", 80.0, 0.0, 127.0),
     ("seed", "Seed", "int", 20261023, 0, 99999999),
 ]
 
-VEX = r"""
+VEX = chladni_field.vex_function() + r"""
 // Global Faraway coordinates: world is +-4000 m. Houdini XZ plane = world XY. Never tile-local.
 float wx = @P.x, wy = @P.z;
 float u = (wx + 4000.0) / 8000.0, v = (wy + 4000.0) / 8000.0;
@@ -82,10 +85,10 @@ float c = 0.30 * bnk + 0.70 * (1.0 - smooth(r4, r3, r));
 float sd = chi("../controls/seed") * 0.001;
 float und = 0.55 * sin(2.0*M_PI*wx/2600.0 + sd*6.1) * cos(2.0*M_PI*wy/1900.0 + sd*3.7)
           + 0.45 * sin(2.0*M_PI*(wx + wy)/1100.0 + sd*1.3);
-float ang = 0.6 + 0.5*sin(wx/1500.0 + sd) + 0.4*cos(wy/1300.0 + 2.0*sd);
-float wl  = max(chf("../controls/pleat_wavelength"), 1.0);
-float ph  = (wx*cos(ang) + wy*sin(ang)) * (2.0*M_PI / wl);
-float pleat = pow(abs(sin(ph)), 0.8) * sign(sin(ph));
+// pleats on the SAME global phase as SilkPeak (chl_pleat, chladni_field.py); the old phase used a
+// position-dependent angle (dot(P, ang(P))) that multiplied its own frequency
+float pleat = chl_pleat(wx, wy, chf("../controls/pleat_wavelength"), chf("../controls/pleat_angle"),
+                        chf("../controls/phase_warp"), 1.0);
 float raw = und * 2.5 + pleat * chf("../controls/pleat_depth") * (1.0 - 0.6*c);
 // bound the base relief so dry land can never dip below the waterline (no stray puddles)
 float lim = 0.8 * D * (1.0 - fr);

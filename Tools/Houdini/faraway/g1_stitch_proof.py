@@ -95,7 +95,14 @@ def extract(geo):
     """Quad mesh arrays from a hou.Geometry: P (n,3), pv (f,4) point idx, vN (f,4,3) vertex normals, pn (f,3) prim normals."""
     P = np.array(geo.pointFloatAttribValues("P"), float).reshape(-1, 3)
     prims = geo.prims()
-    VN = np.array(geo.vertexFloatAttribValues("N"), float).reshape(-1, 3)
+    if geo.findVertexAttrib("N") is not None:
+        VN = np.array(geo.vertexFloatAttribValues("N"), float).reshape(-1, 3)
+    else:   # analytic normals are a POINT attribute: every vertex of a point carries that point's N
+        PN = np.array(geo.pointFloatAttribValues("N"), float).reshape(-1, 3)
+        VN = np.zeros((sum(len(pr.vertices()) for pr in prims), 3))
+        for pr in prims:
+            for v in pr.vertices():
+                VN[v.linearNumber()] = PN[v.point().number()]
     pv = np.empty((len(prims), 4), int)
     vl = np.empty((len(prims), 4), int)
     pn = np.empty((len(prims), 3), float)
@@ -130,7 +137,8 @@ class Oracle:
             c.destroy()
         ctl = geo.createNode("null", "controls")
         grp = ctl.parmTemplateGroup()
-        for name in ("height_scale", "pleat_wavelength", "pleat_depth", "seam_width", "seam_depth"):
+        for name in ("height_scale", "pleat_wavelength", "pleat_depth", "pleat_angle", "phase_warp", "pleat_exponent",
+                     "gather_length", "gather_floor", "seam_width", "seam_depth"):
             grp.append(hou.FloatParmTemplate(name, name, 1, default_value=(inst.parm(name).eval(),)))
         grp.append(hou.IntParmTemplate("seed", "seed", 1, default_value=(int(inst.parm("seed").eval()),)))
         ctl.setParmTemplateGroup(grp)
@@ -506,10 +514,12 @@ def main() -> int:
     fu.setInput(0, om)
     fu.parm("usetol3d").set(1); fu.parm("tol3d").set(0.001)
     nm = g2.createNode("normal", "normal")
-    for p_src in tiles[(0, 0)]["inst"].node("compute_normals").parms():
-        p_dst = nm.parm(p_src.name())
-        if p_dst is not None:
-            p_dst.set(p_src.eval())
+    src_nm = tiles[(0, 0)]["inst"].node("compute_normals")     # legacy HDA builds had one; analytic builds do not
+    if src_nm is not None:
+        for p_src in src_nm.parms():
+            p_dst = nm.parm(p_src.name())
+            if p_dst is not None:
+                p_dst.set(p_src.eval())
     nm.setInput(0, fu)
     nm.cook(force=True)
     mg = nm.geometry()

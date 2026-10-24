@@ -454,7 +454,7 @@
       "mirror": [
         "Content/HDA/HDA_Faraway_SilkPeak_1.0.hda"
       ],
-      "notes": "Registered 2026-10-23. Static far-field tile in GLOBAL Faraway coords (+-4000 m); Chladni (3,5) tension-oriented pleats + seam valley. Builder --verify proves faces up, adjacent-tile shared edge |dY|<=0.01 m (measured 0.0), height_scale drives. No Vellum, not imported to UE. Builder under gitignored Tools/ - force-add.",
+      "notes": "Registered 2026-10-23, rebuilt 2026-10-24. Static far-field tile in GLOBAL Faraway coords (+-4000 m); pleats on one global phase X*cos(th)+Y*sin(th)+phase_warp*F (F = Tools/Houdini/faraway/chladni_field.py, mode 3,5), lens-shaped gathers, seam valley, ANALYTIC point normals (no Normal SOP). Builder --verify proves faces up, adjacent-tile shared edge |dY|<=0.01 m (measured 0.0), height_scale drives; g1_stitch_proof PASS (border normal min dot 0.9999 vs limit 0.98). No Vellum, not imported to UE. Builder under gitignored Tools/ - force-add.",
       "expect": {
         "parms": [
           "tile_x",
@@ -464,6 +464,11 @@
           "height_scale",
           "pleat_wavelength",
           "pleat_depth",
+          "pleat_angle",
+          "phase_warp",
+          "pleat_exponent",
+          "gather_length",
+          "gather_floor",
           "seam_width",
           "seam_depth",
           "seed"
@@ -472,6 +477,24 @@
           {
             "parm": "height_scale",
             "value": 180.0,
+            "outputs": {
+              "output0": {
+                "position_hash_differ": true
+              }
+            }
+          },
+          {
+            "parm": "pleat_angle",
+            "value": 70.0,
+            "outputs": {
+              "output0": {
+                "position_hash_differ": true
+              }
+            }
+          },
+          {
+            "parm": "gather_length",
+            "value": 90.0,
             "outputs": {
               "output0": {
                 "position_hash_differ": true
@@ -722,7 +745,7 @@
       "mirror": [
         "Content/HDA/HDA_Faraway_MotherfoldBasin_1.0.hda"
       ],
-      "notes": "Registered 2026-10-23. Global-coord (+-4000 m) turquoise lake basin tile: output0 terrain (@depth01, @carve), output1 shoreline polylines at water level (closed loops / open chains ending on tile border, prim @depth), output2 water quad. Builder --verify proves faces up by prim.normal(), neighbour-tile shared edge |dY|<=0.01 (measured 0.0) with the shoreline meeting at the same border point, loop winding, water level drive. Builder + motherfold_basin_geometry.py + render_motherfold_basin_clay.py live under gitignored Tools/ - force-add. Not imported to UE.",
+      "notes": "Registered 2026-10-23. Global-coord (+-4000 m) turquoise lake basin tile: output0 terrain (@depth01, @carve), output1 shoreline polylines at water level (closed loops / open chains ending on tile border, prim @depth), output2 water quad. Builder --verify proves faces up by prim.normal(), neighbour-tile shared edge |dY|<=0.01 (measured 0.0) with the shoreline meeting at the same border point, loop winding, water level drive. Builder + motherfold_basin_geometry.py + render_motherfold_basin_clay.py live under gitignored Tools/ - force-add. Not imported to UE. 2026-10-24: pleat now on the shared global phase (chl_pleat, chladni_field.py) with pleat_angle / phase_warp; old position-dependent angle removed.",
       "expect": {
         "parms": [
           "preview_mode",
@@ -739,6 +762,8 @@
           "base_height",
           "pleat_wavelength",
           "pleat_depth",
+          "phase_warp",
+          "pleat_angle",
           "seed"
         ],
         "parm_drive": [
@@ -780,7 +805,7 @@
           "output1": {
             "min_points": 1,
             "min_prims": 1,
-            "points": 626,
+            "points": 622,
             "prims": 1
           },
           "output2": {

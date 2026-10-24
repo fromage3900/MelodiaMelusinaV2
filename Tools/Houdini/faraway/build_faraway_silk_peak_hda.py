@@ -4,10 +4,13 @@ HDA_Faraway_SilkPeak_1.0.hda: one terrain tile of pleated-silk landform, evaluat
 GLOBAL Faraway coordinates (8 km world, X/Y in [-4000, +4000] m, u=(X+4000)/8000) so
 neighbouring tiles share edges exactly (plan 90bfa88: no tile-local UV resets).
 
-Field = macro silk peaks (Gaussians) + directional pleats whose orientation/frequency follow the
-Chladni tension field (mode n,m = 3,5, same math as faraway_static_field.py) + a gentle
-walkable valley where |chladni| < seam_width (ResonantSeamWay). No Vellum: this is the static
-far-field tile; hero cloth patches are a later, separate gate.
+Field = macro silk peaks (Gaussians) + pleats on ONE globally continuous phase
+phi = X*cos(th) + Y*sin(th) + phase_warp*F(X,Y)  (F = the shared Chladni field, tools: chladni_field.py,
+mode 3,5) + a gentle walkable valley where |F| < seam_width (ResonantSeamWay). The phase gradient stays in
+[1-d, 1+d] with d = phase_warp*pi/1000 (0.25 at 80 m), so crests never alias or pinch (the old
+dot(P, dir(P)) phase multiplied its own frequency and pinched at the origin). Normals are analytic
+(central difference of the SAME height function at +-0.25 m), so tile borders match by construction.
+No Vellum: this is the static far-field tile; hero cloth patches are a later, separate gate.
 
 Usage: hython Tools/Houdini/faraway/build_faraway_silk_peak_hda.py [--out PATH] [--verify]
 """
@@ -24,7 +27,9 @@ DEFAULT_OUT = PROJECT_ROOT / "hda" / "HDA_Faraway_SilkPeak_1.0.hda"
 MIRROR_OUT = PROJECT_ROOT / "Content" / "HDA" / "HDA_Faraway_SilkPeak_1.0.hda"
 TYPE_NAME = "HDA_Faraway_SilkPeak"
 sys.path.insert(0, str(PROJECT_ROOT / "Tools" / "Houdini"))
+sys.path.insert(0, str(HERE))
 import hda_promote_controls as promote  # noqa: E402
+import chladni_field  # noqa: E402
 
 CONTROLS = [
     ("tile_x", "Tile Origin X (m, global)", "float", -125.0, -4000.0, 4000.0),
@@ -32,57 +37,68 @@ CONTROLS = [
     ("tile_size", "Tile Size (m)", "float", 250.0, 50.0, 1000.0),
     ("divisions", "Divisions", "int", 128, 16, 512),
     ("height_scale", "Peak Height (m)", "float", 90.0, 5.0, 400.0),
-    ("pleat_wavelength", "Pleat Wavelength (m)", "float", 22.0, 4.0, 80.0),
+    ("pleat_wavelength", "Pleat Wavelength (m)", "float", 36.0, 4.0, 80.0),
     ("pleat_depth", "Pleat Depth (m)", "float", 4.5, 0.0, 20.0),
+    ("pleat_angle", "Pleat Direction (deg, global)", "float", 35.0, -90.0, 90.0),
+    ("phase_warp", "Pleat Phase Warp (m of F)", "float", 80.0, 0.0, 127.0),
+    ("pleat_exponent", "Pleat Profile Exponent (>=1)", "float", 1.0, 1.0, 3.0),
+    ("gather_length", "Gather Length (m, fold taper along crest)", "float", 180.0, 60.0, 600.0),
+    ("gather_floor", "Gather Floor (min pleat strength 0-1)", "float", 0.25, 0.0, 1.0),
     ("seam_width", "Seam Valley Width (|Chladni|)", "float", 0.12, 0.02, 0.4),
     ("seam_depth", "Seam Valley Depth (m)", "float", 6.0, 0.0, 30.0),
     ("seed", "Seed", "int", 20260829, 0, 99999999),
 ]
 
-VEX = r"""
+VEX = chladni_field.vex_function() + r"""
 // Global Faraway coordinates: world is +-4000 m, u=(X+4000)/8000. Never tile-local.
+float silk_h(float wx; float wy) {
+    float chl = chl_F(wx, wy, 3, 5);
+    float sd = chi("../controls/seed") * 0.001;
+    float hs = chf("../controls/height_scale");
+    float h = 0;
+    float ax[] = {-900, 400, 1500, -2200, 2600, -300};
+    float ay[] = {300, -600, 900, -1400, -2000, 1800};
+    float radii[]   = {520, 380, 640, 900, 700, 450};
+    float heights[] = {1.00, 0.70, 0.85, 0.95, 0.60, 0.55};
+    for (int i = 0; i < len(ax); i++) {
+        float j = rand(sd + i*7.1) - 0.5;
+        vector2 c = set(ax[i] + j*80, ay[i] + (rand(sd + i*3.3) - 0.5)*80);
+        float d = length(set(wx, wy) - c);
+        h += heights[i] * exp(-(d*d) / (2.0*radii[i]*radii[i]));
+    }
+    h *= hs;
+
+    // pleats on the shared global phase (chl_pleat, chladni_field.py): |grad phi| in [1-d, 1+d], d = phase_warp*pi/1000
+    float th = chf("../controls/pleat_angle");
+    float pleat = chl_pleat(wx, wy, chf("../controls/pleat_wavelength"), th, chf("../controls/phase_warp"),
+                            chf("../controls/pleat_exponent"));
+    float ridge = clamp(h / max(hs, 1e-3), 0, 1);     // pleats live on the landform
+    // folds swell and taper along their own length (lens-shaped gathers, not corrugation): a slow global envelope
+    // crossing the crests at 90 deg; and they relax toward the nodal seam so the walkable route stays calm
+    float ga = radians(th) + 0.5*M_PI;
+    float gl = max(chf("../controls/gather_length"), 20.0);
+    float env = 0.5 + 0.5*sin(2.0*M_PI*((wx*cos(ga) + wy*sin(ga)) / gl) + 0.37*chl);
+    float gfl = clamp(chf("../controls/gather_floor"), 0.0, 1.0);
+    float gath = (gfl + (1.0 - gfl)*env) * (0.45 + 0.55*smooth(0.0, 0.8, abs(chl)));
+    h += pleat * chf("../controls/pleat_depth") * gath * (0.15 + 0.85*ridge);
+
+    // ResonantSeamWay: smooth walkable valley along nodal lines
+    h -= (1.0 - smooth(0.0, chf("../controls/seam_width"), abs(chl))) * chf("../controls/seam_depth");
+    return h;
+}
+
 float wx = @P.x, wy = @P.z;                       // Houdini XZ plane = world XY
 float u = (wx + 4000.0) / 8000.0, v = (wy + 4000.0) / 8000.0;
-int n = 3, m = 5;                                 // Chladni mode, matches faraway_static_field.py
-float chl = cos(n*M_PI*u)*cos(m*M_PI*v) - cos(m*M_PI*u)*cos(n*M_PI*v);
-
-// macro silk peaks (fixed global anchors, seeded jitter)
-float sd = chi("../controls/seed") * 0.001;
-float h = 0;
-float ax[] = {-900, 400, 1500, -2200, 2600, -300};
-float ay[] = {300, -600, 900, -1400, -2000, 1800};
-float radii[]     = {520, 380, 640, 900, 700, 450};
-float heights[]   = {1.00, 0.70, 0.85, 0.95, 0.60, 0.55};
-for (int i = 0; i < len(ax); i++) {
-    float j = rand(sd + i*7.1) - 0.5;
-    vector2 c = set(ax[i] + j*80, ay[i] + (rand(sd + i*3.3) - 0.5)*80);
-    float d = length(set(wx, wy) - c);
-    h += heights[i] * exp(-(d*d) / (2.0*radii[i]*radii[i]));
-}
-h *= chf("../controls/height_scale");
-
-// pleats: crest direction follows the tension gradient of the chladni field
-float du = 0.001;
-float gx = (cos(n*M_PI*(u+du))*cos(m*M_PI*v) - cos(m*M_PI*(u+du))*cos(n*M_PI*v) - chl) / du;
-float gy = (cos(n*M_PI*u)*cos(m*M_PI*(v+du)) - cos(m*M_PI*u)*cos(n*M_PI*(v+du)) - chl) / du;
-vector2 g = set(gx, gy);
-float gl = length(g);
-vector2 dir = gl > 1e-6 ? g / gl : set(1, 0);
-float wl = chf("../controls/pleat_wavelength");
-float phase = dot(set(wx, wy), dir) * (2.0*M_PI / wl);
-float pleat = pow(abs(sin(phase)), 0.7) * sign(sin(phase));     // sharper crests, rounded gathers
-float ridge = clamp(h / max(chf("../controls/height_scale"), 1e-3), 0, 1);  // pleats live on the landform
-h += pleat * chf("../controls/pleat_depth") * (0.15 + 0.85*ridge);
-
-// ResonantSeamWay: smooth walkable valley along nodal lines
-float sw = chf("../controls/seam_width");
-float seam = 1.0 - smooth(0.0, sw, abs(chl));
-h -= seam * chf("../controls/seam_depth");
-
-@P.y = h;
-f@tension = clamp(gl / 40.0, 0, 1);
+float e = 0.25;
+@P.y = silk_h(wx, wy);
+float hx = (silk_h(wx + e, wy) - silk_h(wx - e, wy)) / (2.0*e);
+float hz = (silk_h(wx, wy + e) - silk_h(wx, wy - e)) / (2.0*e);
+v@N = normalize(set(-hx, 1.0, -hz));              // analytic: identical on both sides of a tile border
+float chl = chl_F(wx, wy, 3, 5);
+vector2 g = chl_grad(wx, wy, 3, 5);
+f@tension = clamp(length(g) * 8000.0 / (8.0*M_PI), 0, 1);   // |grad_uv F| over its true maximum (not the saturating /8)
 f@resonance = clamp(abs(chl) / 2.0, 0, 1);
-f@seam = seam;
+f@seam = 1.0 - smooth(0.0, chf("../controls/seam_width"), abs(chl));
 v@uv = set(u, v, 0);                               // global UV
 """
 
@@ -133,12 +149,10 @@ def build_hda(out_path: Path) -> int:
     wr.parm("snippet").set(VEX)
     wr.setInput(0, xf)
     wr.setInput(1, controls)
-    nrm = geo.createNode("normal", "compute_normals")
-    nrm.setInput(0, wr)
-    at = geo.createNode("attribwrangle", "unreal_attrs")
+    at = geo.createNode("attribwrangle", "unreal_attrs")   # N is analytic, set in silk_field (no Normal SOP)
     at.parm("class").set(1)
     at.parm("snippet").set(ATTR)
-    at.setInput(0, nrm)
+    at.setInput(0, wr)
     out = geo.createNode("output", "output0")
     out.setInput(0, at)
     out.setDisplayFlag(True)
