@@ -46,7 +46,7 @@ CONTROLS = [
     ("gather_floor", "Gather Floor (min pleat strength 0-1)", "float", 0.25, 0.0, 1.0),
     ("seam_width", "Seam Valley Width (|Chladni|)", "float", 0.12, 0.02, 0.4),
     ("seam_depth", "Seam Valley Depth (m)", "float", 6.0, 0.0, 30.0),
-    ("seed", "Seed", "int", 20260829, 0, 99999999),
+    ("seed", "Seed (world seed; jitters peak anchors only)", "int", 3900, 0, 99999999),
 ]
 
 VEX = chladni_field.vex_function() + r"""

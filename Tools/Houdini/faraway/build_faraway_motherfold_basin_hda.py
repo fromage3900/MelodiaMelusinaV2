@@ -56,7 +56,7 @@ CONTROLS = [
     ("pleat_depth", "Silk Pleat Height (m)", "float", 1.2, 0.0, 10.0),
     ("pleat_angle", "Pleat Direction (deg, global)", "float", 35.0, -90.0, 90.0),
     ("phase_warp", "Pleat Phase Warp (m of F)", "float", 80.0, 0.0, 127.0),
-    ("seed", "Seed", "int", 20261023, 0, 99999999),
+    ("seed", "Seed (world seed)", "int", 3900, 0, 99999999),
 ]
 
 VEX = chladni_field.vex_function() + r"""
