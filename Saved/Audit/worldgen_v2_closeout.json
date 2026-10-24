@@ -1,0 +1,31 @@
+{
+  "scope": "Staged planetary terrain v2 and World Compiler integration only; offline proof, no UE import or live visual acceptance.",
+  "recipe": "recipes/planetary_world_deep.v1.json",
+  "validation": "PASS",
+  "python_compile": [
+    "Content/Python/planetary_field.py",
+    "Tools/world_compiler.py"
+  ],
+  "compile_status": "PASS",
+  "evidence_envelope_status": "pass",
+  "evidence_bundle": "Saved/Audit/WorldgenCloseout_20261024/run3/planetary_world_deep_3900",
+  "determinism": "Two independent compile outputs matched byte-for-byte for manifest, terrain, identity, dressing, signal, points, FX anchors, and planetary_height.r16; envelopes were excluded because run IDs differ.",
+  "terrain": {
+    "version": "fbm_domain_warp_v2",
+    "size": 129,
+    "seed": 1337,
+    "octaves": 5,
+    "warp_strength": 1.0,
+    "height_min": 0.16636701369227402,
+    "height_max": 0.6749968469985503,
+    "production_eligible": false
+  },
+  "commit_scope": [
+    ".hermes/plans/2026-10-24_140815-nms-worldgen-research.md",
+    "Content/Python/planetary_field.py",
+    "Tools/world_compiler.py",
+    "recipes/planetary_world_deep.v1.json",
+    "specs/schemas/world_recipe.v1.schema.json",
+    "Saved/Audit/worldgen_v2_closeout.json"
+  ]
+}

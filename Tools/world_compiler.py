@@ -897,15 +897,26 @@ def stage_terrain(recipe: dict[str, Any]) -> tuple[dict[str, Any] | None, dict[s
             tile = terrain.get("tile") or [0, 0]
             has_seed = terrain.get("seed") is not None
             field_seed = int(terrain["seed"]) if has_seed else int(recipe["world_seed"])
-            f = pf.field(size, field_seed, int(tile[0]), int(tile[1]))
+            version = terrain.get("version") or "v1"
+            octaves = int(terrain.get("octaves") or 5)
+            warp = float(terrain["warp_strength"]) if terrain.get("warp_strength") is not None else 1.0
+            if version == "v2":
+                f = pf.field_v2(size, field_seed, int(tile[0]), int(tile[1]), octaves=octaves, warp_strength=warp)
+                field_kind = "fbm_domain_warp_v2"
+            else:
+                f = pf.field(size, field_seed, int(tile[0]), int(tile[1]))
+                field_kind = "planetary_lab_v1"
             info = {
                 "kind": "planetary_lab",
                 "schema": pf.SCHEMA,
+                "version": field_kind,
                 "size": size,
                 "tile": [int(tile[0]), int(tile[1])],
                 "seed_source": "recipe" if has_seed else "world_seed",
                 "field_seed": field_seed,
                 "world_seed": int(recipe["world_seed"]),
+                "octaves": octaves if field_kind == "fbm_domain_warp_v2" else None,
+                "warp_strength": warp if field_kind == "fbm_domain_warp_v2" else None,
                 "height": pf.stats(f["height"]),
                 "slope": pf.stats(f["slope"]),
                 "cavity": pf.stats(f["cavity"]),
