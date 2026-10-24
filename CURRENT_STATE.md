@@ -1,5 +1,15 @@
 # Melodia Melusina ? Current State
 
+### Runtime Melusina closeout — staging HOLD, 2026-10-24
+
+**Scoped result:** `ABP_LegSkirt_WaistPinned_Candidate` is saved in staging with the canonical `root` FootPlacement reference, `root_x` pelvis, production idle/locomotion sources, and the existing grounded target corrections `18.841438 / 21.509117 cm` on the actual graph pins. Compile is **0 errors / 0 warnings**; the main AnimGraph remains **28 nodes / 25 connections**, topology+defaults fingerprint `6074ef1a4595dba77c74b612b14c8fd181109387`. No production AnimBP, wardrobe, pawn, map, skeleton, donor clip, material, or Niagara asset was promoted or changed by this closeout.
+
+**Fresh House P0 evidence:** the final injected-movement probe used the candidate and retained the full outfit. Idle sole clearance is `1.7779 / 5.1848 cm`, matching the production A/B, and maximum waist first-ring deviation remains `0.0000287 cm`. The full walk/turn/stop route still leaves the contact envelope: final clearances span `-9.1885..135.3031 cm` across all phases, including elevated/route-transition samples. **Animation verdict: HOLD — do not promote.** Run/sprint, controlled bend, reset/re-equip, reload, physical-input and packaged acceptance remain open. Evidence: `Saved/Audit/MelusinaLegSkirt_20261023/p0_candidate_final_contact_20261024.json` and `Saved/Audit/MelusinaRuntimeFinalize_20261024/closeout_summary.json`.
+
+**Shader / FluidNinja boundary:** live face instances `MI_Melusina_SBW_MELUSINA_006/007` use `T_Melusina_FaceSDF` at `0.65` strength. The existing master still computes `1 - SDFValue` without a light-angle terminator compare or mirrored-UV path; no unverified shader rewrite was landed during closeout. `MF_RampLUT` and its four ramp textures remain orphaned; no third ramp system was introduced. FluidNinja component presence/active flags are not visible-output proof, and the current sampler reports that this Python API lacks `NiagaraFunctionLibrary.get_data_interface`; effective binding and rendered droplets remain open. WaterChorus stays opt-in/default-off.
+
+**Recovery:** `Saved/Packages/Melusina_RuntimeFinalize_20261024.zip` contains 13 files including the before/after candidate, native assertions, production A/B, final numeric probe and four captures. ZIP integrity passed; SHA256 `322ae19d39ad11e595c43fcc3bd3760cba581c791846f075ffef9b0f8a673a46`. The House map became dirty from the PIE session and was deliberately not saved as part of this scoped commit.
+
 ### Verified House/material/runtime closeout — 2026-10-24
 
 **Landed:** universal master parameter layout `b1d0701b9`; deterministic worldgen `c00c0d74a` (offline determinism only, not UE visual acceptance); WaterChorus owner-context fix `c0ca90806` (Live Coding plus 3/3 automation, not rendered droplet acceptance).

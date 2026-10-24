@@ -1,0 +1,50 @@
+{
+  "Saved/Audit/MelusinaRuntimeFinalize_20261024/closeout_summary.json": {
+    "bytes": 3441,
+    "sha256": "5f504fa16731b147e4f89f5338baecd0c4db159adca67f449da4d62dfba62d93"
+  },
+  "Saved/Audit/MelusinaRuntimeFinalize_20261024/ABP_LegSkirt_WaistPinned_Candidate.before_root_fix.uasset": {
+    "bytes": 983749,
+    "sha256": "9480d6310cccb19daeb183dff116d228234e23d7b2a4385f880053cc989ff6c1"
+  },
+  "Saved/Audit/MelusinaRuntimeFinalize_20261024/footplacement_after.json": {
+    "bytes": 2642,
+    "sha256": "80f0566570b79044ce7a8568857470121d92af5f613533b3e8b4444a52d15ee6"
+  },
+  "Saved/Audit/MelusinaRuntimeFinalize_20261024/source_pose_restore_assert.json": {
+    "bytes": 8304,
+    "sha256": "9dd036e6c498a287afe54305bbec73a6bc366b0620ab4a179521c7d67ffdad7d"
+  },
+  "Saved/Audit/MelusinaRuntimeFinalize_20261024/grounded_target_restore_assert.json": {
+    "bytes": 3365,
+    "sha256": "b3d837376d9edd2465ed1b480451fd92f3e24c47deaef5f5a55d3219517f7ba8"
+  },
+  "Content/Staging/AnimationDoctor/LegSkirt_20261023/ABP_LegSkirt_WaistPinned_Candidate.uasset": {
+    "bytes": 984580,
+    "sha256": "64d2ef113087bb98088fd08dc3106401582141e9644cfa96b54c4dc204243500"
+  },
+  "Saved/Audit/MelusinaLegSkirt_20261023/p0_candidate_final_contact_20261024.json": {
+    "bytes": 255449,
+    "sha256": "46f41365c876a4e84d44299ec4aea53d1999f2b28e56976189335f848ed3edb9"
+  },
+  "Saved/Audit/MelusinaLegSkirt_20261023/p0_production_root_ab_20261024.json": {
+    "bytes": 252456,
+    "sha256": "adbb53591e69425056bfdb77b837d2c39222e2e3be1c101ec37a11882f58abc5"
+  },
+  "Saved/Audit/MelusinaLegSkirt_20261023/p0_candidate_final_contact_20261024_move_idle.png": {
+    "bytes": 1674603,
+    "sha256": "bd3dc1fc8262042f1e364eb0126c1490d93bd8fb0038f06725b5ab7ae1da4ab9"
+  },
+  "Saved/Audit/MelusinaLegSkirt_20261023/p0_candidate_final_contact_20261024_move_stop.png": {
+    "bytes": 1743873,
+    "sha256": "dec33983af6f85bf565e0ed467fd319b8948251f0ce400209a0e907173ecfaae"
+  },
+  "Saved/Audit/MelusinaLegSkirt_20261023/p0_candidate_final_contact_20261024_move_turn.png": {
+    "bytes": 1795644,
+    "sha256": "915a1fc03b801cb1f4d253710036f0a7086012c91b4ec43e74d3705e9b451711"
+  },
+  "Saved/Audit/MelusinaLegSkirt_20261023/p0_candidate_final_contact_20261024_move_walk.png": {
+    "bytes": 1712106,
+    "sha256": "3e037b3bb82502b43c8a78dffa0faa958babc0d8c0356c2fb948f1ebd25c323e"
+  }
+}

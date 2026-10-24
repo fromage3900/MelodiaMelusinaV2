@@ -1,0 +1,81 @@
+{
+  "date": "2026-10-24",
+  "scope": "Staging-only Melusina animation closeout; no production AnimBP, wardrobe, shader, Niagara, pawn, or map promotion.",
+  "candidate": "/Game/Staging/AnimationDoctor/LegSkirt_20261023/ABP_LegSkirt_WaistPinned_Candidate",
+  "candidate_sha256": "64d2ef113087bb98088fd08dc3106401582141e9644cfa96b54c4dc204243500",
+  "compile": {
+    "errors": 0,
+    "warnings": 0
+  },
+  "graph": {
+    "nodes": 28,
+    "connections": 25,
+    "topology_defaults_fingerprint": "6074ef1a4595dba77c74b612b14c8fd181109387"
+  },
+  "changes": {
+    "ik_foot_root_bone": "root",
+    "pelvis_bone": "root_x",
+    "idle": "/Game/Melodia/Characters/Melusina/Animations/Locomotion/A_Shin_Idle_stand_MocapConv",
+    "locomotion": "/Game/Melodia/Characters/Melusina/Animations/BS_Melusina_Locomotion",
+    "grounded_target_translation_z_cm": {
+      "left": 18.841438,
+      "right": 21.509117
+    },
+    "note": "Restored existing production solver inputs; no whole-character Z offset and no new rig, cloth solver, or gameplay authority."
+  },
+  "input_proof": "injected ACharacter.AddMovementInput, not physical input",
+  "world": "/Game/Melodia/Levels/Opening/UEDPIE_0_L_MelusinaHouse_P0.L_MelusinaHouse_P0",
+  "production_ab_idle_clearance_cm": {
+    "samples": 6,
+    "skin_samples": 3,
+    "speed_max_cm_s": 0.0,
+    "boot_clearance_min_cm": 1.777939796447754,
+    "boot_clearance_max_cm": 5.184779167175293,
+    "waist_deviation_max_cm": 10.491626653323973
+  },
+  "candidate_final_phases": {
+    "idle": {
+      "samples": 6,
+      "skin_samples": 3,
+      "speed_max_cm_s": 0.0,
+      "boot_clearance_min_cm": 1.777937889099121,
+      "boot_clearance_max_cm": 5.637652397155762,
+      "waist_deviation_max_cm": 2.8690582779311206e-05
+    },
+    "walk": {
+      "samples": 9,
+      "skin_samples": 5,
+      "speed_max_cm_s": 220.0,
+      "boot_clearance_min_cm": 1.526667594909668,
+      "boot_clearance_max_cm": 135.30307771485172,
+      "waist_deviation_max_cm": 2.869058278954647e-05
+    },
+    "turn": {
+      "samples": 6,
+      "skin_samples": 3,
+      "speed_max_cm_s": 220.0000000000007,
+      "boot_clearance_min_cm": -9.18850313857547,
+      "boot_clearance_max_cm": 21.192844994511688,
+      "waist_deviation_max_cm": 2.8690582796598786e-05
+    },
+    "stop": {
+      "samples": 6,
+      "skin_samples": 3,
+      "speed_max_cm_s": 0.0,
+      "boot_clearance_min_cm": -9.188495509180939,
+      "boot_clearance_max_cm": -2.705804221186554,
+      "waist_deviation_max_cm": 2.869058276185756e-05
+    }
+  },
+  "verdict": "HOLD \u2014 idle matches production, waist lock retained, but full House walk/turn/stop contact is outside the acceptance envelope. Do not promote.",
+  "shader_fx_boundary": "Live face instances MI_Melusina_SBW_MELUSINA_006/007 use T_Melusina_FaceSDF at 0.65 strength. Existing master still has no light-angle SDF compare or mirrored UV terminator; no shader edit landed. FluidNinja active flags are not visible-output proof; sampler reported missing Python get_data_interface API. No production shader/FX edit landed.",
+  "remaining": [
+    "full-route contact and plant acceptance",
+    "run/sprint and controlled bend",
+    "reset/re-equip and reload",
+    "physical input",
+    "packaged runtime",
+    "face-SDF two-direction rendered acceptance",
+    "FluidNinja effective binding and visible-output acceptance"
+  ]
+}
