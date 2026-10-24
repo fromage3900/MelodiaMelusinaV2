@@ -1,0 +1,3566 @@
+{
+  "asset": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
+  "scope": "layout only; no connections, values, or non-parameter positions changed",
+  "comment_count": 59,
+  "parameter_name_count": 436,
+  "parameter_node_count": 457,
+  "non_parameter_position_count": 941,
+  "save_batches": 4,
+  "comments": [
+    {
+      "name": "MaterialExpressionComment_0",
+      "text": "01 | Base Surface",
+      "x": 10000,
+      "y": -14000
+    },
+    {
+      "name": "MaterialExpressionComment_1",
+      "text": "02 | Palette Ramp",
+      "x": 10520,
+      "y": -14000
+    },
+    {
+      "name": "MaterialExpressionComment_2",
+      "text": "03 | Triplanar",
+      "x": 11040,
+      "y": -14000
+    },
+    {
+      "name": "MaterialExpressionComment_3",
+      "text": "04 | Texture Layer A",
+      "x": 11560,
+      "y": -14000
+    },
+    {
+      "name": "MaterialExpressionComment_4",
+      "text": "05 | Layer B Maps",
+      "x": 12080,
+      "y": -14000
+    },
+    {
+      "name": "MaterialExpressionComment_5",
+      "text": "06 | Layer B Blend",
+      "x": 12600,
+      "y": -14000
+    },
+    {
+      "name": "MaterialExpressionComment_6",
+      "text": "07 | Layer C Maps",
+      "x": 10000,
+      "y": -11120
+    },
+    {
+      "name": "MaterialExpressionComment_7",
+      "text": "08 | Layer C Blend",
+      "x": 10520,
+      "y": -11120
+    },
+    {
+      "name": "MaterialExpressionComment_8",
+      "text": "09 | Parallax",
+      "x": 11040,
+      "y": -11120
+    },
+    {
+      "name": "MaterialExpressionComment_9",
+      "text": "10 | Macro & Detail",
+      "x": 11560,
+      "y": -11120
+    },
+    {
+      "name": "MaterialExpressionComment_10",
+      "text": "11 | Temporal / Ink",
+      "x": 12080,
+      "y": -11120
+    },
+    {
+      "name": "MaterialExpressionComment_11",
+      "text": "12 | Color Ramp",
+      "x": 12600,
+      "y": -11120
+    },
+    {
+      "name": "MaterialExpressionComment_12",
+      "text": "13 | Shadow Color Ramp",
+      "x": 10000,
+      "y": -8380
+    },
+    {
+      "name": "MaterialExpressionComment_13",
+      "text": "14 | Nikki Rim & Glow",
+      "x": 10520,
+      "y": -8380
+    },
+    {
+      "name": "MaterialExpressionComment_14",
+      "text": "15 | Dream Rim & Bloom",
+      "x": 11040,
+      "y": -8380
+    },
+    {
+      "name": "MaterialExpressionComment_15",
+      "text": "16 | Nikki Dream Grade",
+      "x": 11560,
+      "y": -8380
+    },
+    {
+      "name": "MaterialExpressionComment_16",
+      "text": "17 | Nikki Sparkle",
+      "x": 12080,
+      "y": -8380
+    },
+    {
+      "name": "MaterialExpressionComment_17",
+      "text": "18 | Iridescence & Sheen",
+      "x": 12600,
+      "y": -8380
+    },
+    {
+      "name": "MaterialExpressionComment_18",
+      "text": "19 | Gilding",
+      "x": 10000,
+      "y": -5360
+    },
+    {
+      "name": "MaterialExpressionComment_19",
+      "text": "20 | Shadow Garden",
+      "x": 10520,
+      "y": -5360
+    },
+    {
+      "name": "MaterialExpressionComment_20",
+      "text": "21 | Shadow Dream",
+      "x": 11040,
+      "y": -5360
+    },
+    {
+      "name": "MaterialExpressionComment_21",
+      "text": "22 | Celestial / Nebula",
+      "x": 11560,
+      "y": -5360
+    },
+    {
+      "name": "MaterialExpressionComment_22",
+      "text": "23 | Fairy Dust",
+      "x": 12080,
+      "y": -5360
+    },
+    {
+      "name": "MaterialExpressionComment_23",
+      "text": "24 | Magical / Henshin",
+      "x": 12600,
+      "y": -5360
+    },
+    {
+      "name": "MaterialExpressionComment_24",
+      "text": "25 | VeinGlow / Madoka",
+      "x": 10000,
+      "y": -2760
+    },
+    {
+      "name": "MaterialExpressionComment_27",
+      "text": "26 | InkWear / Itto",
+      "x": 10520,
+      "y": -2760
+    },
+    {
+      "name": "MaterialExpressionComment_28",
+      "text": "27 | Impasto",
+      "x": 11040,
+      "y": -2760
+    },
+    {
+      "name": "MaterialExpressionComment_29",
+      "text": "28 | Sigil",
+      "x": 11560,
+      "y": -2760
+    },
+    {
+      "name": "MaterialExpressionComment_30",
+      "text": "29 | Dawn & Mist",
+      "x": 12080,
+      "y": -2760
+    },
+    {
+      "name": "MaterialExpressionComment_31",
+      "text": "30 | Glint & Halo",
+      "x": 12600,
+      "y": -2760
+    },
+    {
+      "name": "MaterialExpressionComment_32",
+      "text": "31 | Skin SSS",
+      "x": 10000,
+      "y": -1000
+    },
+    {
+      "name": "MaterialExpressionComment_33",
+      "text": "32 | Face SDF",
+      "x": 10520,
+      "y": -1000
+    },
+    {
+      "name": "MaterialExpressionComment_34",
+      "text": "33 | Elemental",
+      "x": 11040,
+      "y": -1000
+    },
+    {
+      "name": "MaterialExpressionComment_35",
+      "text": "34 | World / Weather",
+      "x": 11560,
+      "y": -1000
+    },
+    {
+      "name": "MaterialExpressionComment_36",
+      "text": "35 | Time of Day",
+      "x": 12080,
+      "y": -1000
+    },
+    {
+      "name": "MaterialExpressionComment_37",
+      "text": "36 | Cinematic",
+      "x": 12600,
+      "y": -1000
+    },
+    {
+      "name": "MaterialExpressionComment_38",
+      "text": "37 | DF Contact Blend",
+      "x": 10000,
+      "y": 1180
+    },
+    {
+      "name": "MaterialExpressionComment_39",
+      "text": "38 | SDF Seam Blend",
+      "x": 10520,
+      "y": 1180
+    },
+    {
+      "name": "MaterialExpressionComment_40",
+      "text": "39 | Gemstone",
+      "x": 11040,
+      "y": 1180
+    },
+    {
+      "name": "MaterialExpressionComment_41",
+      "text": "40 | Stack Layers",
+      "x": 11560,
+      "y": 1180
+    },
+    {
+      "name": "MaterialExpressionComment_42",
+      "text": "41 | Mesh Blend",
+      "x": 12080,
+      "y": 1180
+    },
+    {
+      "name": "MaterialExpressionComment_43",
+      "text": "42 | Global",
+      "x": 12600,
+      "y": 1180
+    },
+    {
+      "name": "MaterialExpressionComment_44",
+      "text": "43 | Legacy / Diagnostic",
+      "x": 10000,
+      "y": 3360
+    },
+    {
+      "name": "MaterialExpressionComment_45",
+      "text": "44 | Opacity",
+      "x": 10520,
+      "y": 3360
+    },
+    {
+      "name": "MaterialExpressionComment_46",
+      "text": "45 | Cloth Wind",
+      "x": 11040,
+      "y": 3360
+    },
+    {
+      "name": "MaterialExpressionComment_47",
+      "text": "46 | Audio Reactive",
+      "x": 11560,
+      "y": 3360
+    },
+    {
+      "name": "MaterialExpressionComment_48",
+      "text": "47 | Cymatics",
+      "x": 12080,
+      "y": 3360
+    },
+    {
+      "name": "MaterialExpressionComment_49",
+      "text": "48 | Advanced POM / Normal",
+      "x": 12600,
+      "y": 3360
+    },
+    {
+      "name": "MaterialExpressionComment_50",
+      "text": "49 | Resonance / Grazing",
+      "x": 10000,
+      "y": 4980
+    },
+    {
+      "name": "MaterialExpressionComment_51",
+      "text": "50 | LOD / Crossfade",
+      "x": 10520,
+      "y": 4980
+    },
+    {
+      "name": "MaterialExpressionComment_52",
+      "text": "51 | Ink / Oil Paint",
+      "x": 11040,
+      "y": 4980
+    },
+    {
+      "name": "MaterialExpressionComment_53",
+      "text": "52 | Toon Ramp / Chladni",
+      "x": 11560,
+      "y": 4980
+    },
+    {
+      "name": "MaterialExpressionComment_54",
+      "text": "53 | Musical Notes",
+      "x": 12080,
+      "y": 4980
+    },
+    {
+      "name": "MaterialExpressionComment_55",
+      "text": "54 | Magical Transform FX",
+      "x": 12600,
+      "y": 4980
+    },
+    {
+      "name": "MaterialExpressionComment_56",
+      "text": "55 | Gouache Base",
+      "x": 10000,
+      "y": 6600
+    },
+    {
+      "name": "MaterialExpressionComment_57",
+      "text": "56 | Gouache Flipbook / Boil",
+      "x": 10520,
+      "y": 6600
+    },
+    {
+      "name": "MaterialExpressionComment_58",
+      "text": "57 | Gouache Color / Shadow",
+      "x": 11040,
+      "y": 6600
+    },
+    {
+      "name": "MaterialExpressionComment_59",
+      "text": "58 | Gouache Pool / Bloom",
+      "x": 11560,
+      "y": 6600
+    },
+    {
+      "name": "MaterialExpressionComment_60",
+      "text": "59 | Gouache Lighting",
+      "x": 12080,
+      "y": 6600
+    }
+  ],
+  "parameters": [
+    {
+      "name": "BaseTint",
+      "node": "MaterialExpressionVectorParameter_144",
+      "x": 10020,
+      "y": -13820,
+      "group": "01 | Base Surface"
+    },
+    {
+      "name": "TextureWeight",
+      "node": "MaterialExpressionScalarParameter_686",
+      "x": 10020,
+      "y": -13680,
+      "group": "01 | Base Surface"
+    },
+    {
+      "name": "UVScale",
+      "node": "MaterialExpressionScalarParameter_687",
+      "x": 10020,
+      "y": -13540,
+      "group": "01 | Base Surface"
+    },
+    {
+      "name": "UVRotation",
+      "node": "MaterialExpressionScalarParameter_56",
+      "x": 10020,
+      "y": -13400,
+      "group": "01 | Base Surface"
+    },
+    {
+      "name": "UVOffsetU",
+      "node": "MaterialExpressionScalarParameter_57",
+      "x": 10020,
+      "y": -13260,
+      "group": "01 | Base Surface"
+    },
+    {
+      "name": "UVOffsetV",
+      "node": "MaterialExpressionScalarParameter_58",
+      "x": 10020,
+      "y": -13120,
+      "group": "01 | Base Surface"
+    },
+    {
+      "name": "Roughness",
+      "node": "MaterialExpressionScalarParameter_688",
+      "x": 10020,
+      "y": -12980,
+      "group": "01 | Base Surface"
+    },
+    {
+      "name": "Metallic",
+      "node": "MaterialExpressionScalarParameter_689",
+      "x": 10020,
+      "y": -12840,
+      "group": "01 | Base Surface"
+    },
+    {
+      "name": "RoughnessScale",
+      "node": "MaterialExpressionScalarParameter_690",
+      "x": 10020,
+      "y": -12700,
+      "group": "01 | Base Surface"
+    },
+    {
+      "name": "RoughnessBias",
+      "node": "MaterialExpressionScalarParameter_691",
+      "x": 10020,
+      "y": -12560,
+      "group": "01 | Base Surface"
+    },
+    {
+      "name": "MetallicScale",
+      "node": "MaterialExpressionScalarParameter_692",
+      "x": 10020,
+      "y": -12420,
+      "group": "01 | Base Surface"
+    },
+    {
+      "name": "MetallicBias",
+      "node": "MaterialExpressionScalarParameter_693",
+      "x": 10020,
+      "y": -12280,
+      "group": "01 | Base Surface"
+    },
+    {
+      "name": "PaletteRampLow",
+      "node": "MaterialExpressionVectorParameter_145",
+      "x": 10540,
+      "y": -13820,
+      "group": "02 | Palette Ramp"
+    },
+    {
+      "name": "PaletteRampMid",
+      "node": "MaterialExpressionVectorParameter_146",
+      "x": 10540,
+      "y": -13680,
+      "group": "02 | Palette Ramp"
+    },
+    {
+      "name": "PaletteRampHigh",
+      "node": "MaterialExpressionVectorParameter_147",
+      "x": 10540,
+      "y": -13540,
+      "group": "02 | Palette Ramp"
+    },
+    {
+      "name": "PaletteRampStrength",
+      "node": "MaterialExpressionScalarParameter_684",
+      "x": 10540,
+      "y": -13400,
+      "group": "02 | Palette Ramp"
+    },
+    {
+      "name": "PaletteRampDriver",
+      "node": "MaterialExpressionScalarParameter_685",
+      "x": 10540,
+      "y": -13260,
+      "group": "02 | Palette Ramp"
+    },
+    {
+      "name": "bTriplanar_Active",
+      "node": "MaterialExpressionStaticSwitchParameter_16",
+      "x": 11060,
+      "y": -13820,
+      "group": "03 | Triplanar"
+    },
+    {
+      "name": "bTriplanar_Active",
+      "node": "MaterialExpressionStaticSwitchParameter_3",
+      "x": 11060,
+      "y": -13680,
+      "group": "03 | Triplanar"
+    },
+    {
+      "name": "TriplanarWorldScale",
+      "node": "MaterialExpressionScalarParameter_6",
+      "x": 11060,
+      "y": -13540,
+      "group": "03 | Triplanar"
+    },
+    {
+      "name": "TriplanarSharpness",
+      "node": "MaterialExpressionScalarParameter_7",
+      "x": 11060,
+      "y": -13400,
+      "group": "03 | Triplanar"
+    },
+    {
+      "name": "TriplanarSlopeStart",
+      "node": "MaterialExpressionScalarParameter_61",
+      "x": 11060,
+      "y": -13260,
+      "group": "03 | Triplanar"
+    },
+    {
+      "name": "TriplanarSlopeEnd",
+      "node": "MaterialExpressionScalarParameter_62",
+      "x": 11060,
+      "y": -13120,
+      "group": "03 | Triplanar"
+    },
+    {
+      "name": "TriplanarBlend_Albedo",
+      "node": "MaterialExpressionScalarParameter_63",
+      "x": 11060,
+      "y": -12980,
+      "group": "03 | Triplanar"
+    },
+    {
+      "name": "TriplanarBlend_Normal",
+      "node": "MaterialExpressionScalarParameter_64",
+      "x": 11060,
+      "y": -12840,
+      "group": "03 | Triplanar"
+    },
+    {
+      "name": "TriplanarBlend_Roughness",
+      "node": "MaterialExpressionScalarParameter_65",
+      "x": 11060,
+      "y": -12700,
+      "group": "03 | Triplanar"
+    },
+    {
+      "name": "TriplanarDetailMap",
+      "node": "MaterialExpressionTextureObjectParameter_0",
+      "x": 11060,
+      "y": -12560,
+      "group": "03 | Triplanar"
+    },
+    {
+      "name": "bLayerA_Active",
+      "node": "MaterialExpressionStaticSwitchParameter_51",
+      "x": 11580,
+      "y": -13820,
+      "group": "04 | Texture Layer A"
+    },
+    {
+      "name": "Albedo",
+      "node": "MaterialExpressionTextureObjectParameter_84",
+      "x": 11580,
+      "y": -13680,
+      "group": "04 | Texture Layer A"
+    },
+    {
+      "name": "NormalMap",
+      "node": "MaterialExpressionTextureObjectParameter_85",
+      "x": 11580,
+      "y": -13540,
+      "group": "04 | Texture Layer A"
+    },
+    {
+      "name": "ORM",
+      "node": "MaterialExpressionTextureObjectParameter_86",
+      "x": 11580,
+      "y": -13400,
+      "group": "04 | Texture Layer A"
+    },
+    {
+      "name": "HeightMap",
+      "node": "MaterialExpressionTextureObjectParameter_87",
+      "x": 11580,
+      "y": -13260,
+      "group": "04 | Texture Layer A"
+    },
+    {
+      "name": "RoughnessMap",
+      "node": "MaterialExpressionTextureObjectParameter_88",
+      "x": 11580,
+      "y": -13120,
+      "group": "04 | Texture Layer A"
+    },
+    {
+      "name": "MetallicMap",
+      "node": "MaterialExpressionTextureObjectParameter_89",
+      "x": 11580,
+      "y": -12980,
+      "group": "04 | Texture Layer A"
+    },
+    {
+      "name": "EmissiveMap",
+      "node": "MaterialExpressionTextureSampleParameter2D_0",
+      "x": 11580,
+      "y": -12840,
+      "group": "04 | Texture Layer A"
+    },
+    {
+      "name": "bUseSeparateRoughnessMap",
+      "node": "MaterialExpressionStaticSwitchParameter_48",
+      "x": 11580,
+      "y": -12700,
+      "group": "04 | Texture Layer A"
+    },
+    {
+      "name": "bUseSeparateMetallicMap",
+      "node": "MaterialExpressionStaticSwitchParameter_49",
+      "x": 11580,
+      "y": -12560,
+      "group": "04 | Texture Layer A"
+    },
+    {
+      "name": "bUseHeightToNormal",
+      "node": "MaterialExpressionStaticSwitchParameter_50",
+      "x": 11580,
+      "y": -12420,
+      "group": "04 | Texture Layer A"
+    },
+    {
+      "name": "bUseEmissiveMap",
+      "node": "MaterialExpressionStaticSwitchParameter_13",
+      "x": 11580,
+      "y": -12280,
+      "group": "04 | Texture Layer A"
+    },
+    {
+      "name": "EmissiveMapIntensity",
+      "node": "MaterialExpressionScalarParameter_59",
+      "x": 11580,
+      "y": -12140,
+      "group": "04 | Texture Layer A"
+    },
+    {
+      "name": "EmissiveMapUVScale",
+      "node": "MaterialExpressionScalarParameter_60",
+      "x": 11580,
+      "y": -12000,
+      "group": "04 | Texture Layer A"
+    },
+    {
+      "name": "EmissiveMapTint",
+      "node": "MaterialExpressionVectorParameter_14",
+      "x": 11580,
+      "y": -11860,
+      "group": "04 | Texture Layer A"
+    },
+    {
+      "name": "LayerA_TextureWeight",
+      "node": "MaterialExpressionScalarParameter_696",
+      "x": 11580,
+      "y": -11720,
+      "group": "04 | Texture Layer A"
+    },
+    {
+      "name": "LayerA_ParallaxScale",
+      "node": "MaterialExpressionScalarParameter_697",
+      "x": 11580,
+      "y": -11580,
+      "group": "04 | Texture Layer A"
+    },
+    {
+      "name": "LayerA_NormalStrength",
+      "node": "MaterialExpressionScalarParameter_698",
+      "x": 11580,
+      "y": -11440,
+      "group": "04 | Texture Layer A"
+    },
+    {
+      "name": "bLayerB_Active",
+      "node": "MaterialExpressionStaticSwitchParameter_52",
+      "x": 12100,
+      "y": -13820,
+      "group": "05 | Layer B Maps"
+    },
+    {
+      "name": "LayerB_Albedo",
+      "node": "MaterialExpressionTextureObjectParameter_90",
+      "x": 12100,
+      "y": -13680,
+      "group": "05 | Layer B Maps"
+    },
+    {
+      "name": "LayerB_NormalMap",
+      "node": "MaterialExpressionTextureObjectParameter_91",
+      "x": 12100,
+      "y": -13540,
+      "group": "05 | Layer B Maps"
+    },
+    {
+      "name": "LayerB_ORM",
+      "node": "MaterialExpressionTextureObjectParameter_92",
+      "x": 12100,
+      "y": -13400,
+      "group": "05 | Layer B Maps"
+    },
+    {
+      "name": "LayerB_HeightMap",
+      "node": "MaterialExpressionTextureObjectParameter_93",
+      "x": 12100,
+      "y": -13260,
+      "group": "05 | Layer B Maps"
+    },
+    {
+      "name": "LayerB_RoughnessMap",
+      "node": "MaterialExpressionTextureObjectParameter_94",
+      "x": 12100,
+      "y": -13120,
+      "group": "05 | Layer B Maps"
+    },
+    {
+      "name": "LayerB_MetallicMap",
+      "node": "MaterialExpressionTextureObjectParameter_95",
+      "x": 12100,
+      "y": -12980,
+      "group": "05 | Layer B Maps"
+    },
+    {
+      "name": "LayerB_TextureWeight",
+      "node": "MaterialExpressionScalarParameter_699",
+      "x": 12100,
+      "y": -12840,
+      "group": "05 | Layer B Maps"
+    },
+    {
+      "name": "LayerB_ParallaxScale",
+      "node": "MaterialExpressionScalarParameter_700",
+      "x": 12100,
+      "y": -12700,
+      "group": "05 | Layer B Maps"
+    },
+    {
+      "name": "LayerB_NormalStrength",
+      "node": "MaterialExpressionScalarParameter_701",
+      "x": 12100,
+      "y": -12560,
+      "group": "05 | Layer B Maps"
+    },
+    {
+      "name": "LayerBlend",
+      "node": "MaterialExpressionScalarParameter_702",
+      "x": 12620,
+      "y": -13820,
+      "group": "06 | Layer B Blend"
+    },
+    {
+      "name": "LayerBlendMode",
+      "node": "MaterialExpressionScalarParameter_703",
+      "x": 12620,
+      "y": -13680,
+      "group": "06 | Layer B Blend"
+    },
+    {
+      "name": "LayerHeightBias",
+      "node": "MaterialExpressionScalarParameter_704",
+      "x": 12620,
+      "y": -13540,
+      "group": "06 | Layer B Blend"
+    },
+    {
+      "name": "LayerHeightSharpness",
+      "node": "MaterialExpressionScalarParameter_705",
+      "x": 12620,
+      "y": -13400,
+      "group": "06 | Layer B Blend"
+    },
+    {
+      "name": "LayerBlendSoftness",
+      "node": "MaterialExpressionScalarParameter_706",
+      "x": 12620,
+      "y": -13260,
+      "group": "06 | Layer B Blend"
+    },
+    {
+      "name": "LayerNormalBlend",
+      "node": "MaterialExpressionScalarParameter_707",
+      "x": 12620,
+      "y": -13120,
+      "group": "06 | Layer B Blend"
+    },
+    {
+      "name": "LayerRoughnessBlend",
+      "node": "MaterialExpressionScalarParameter_708",
+      "x": 12620,
+      "y": -12980,
+      "group": "06 | Layer B Blend"
+    },
+    {
+      "name": "LayerManualMix",
+      "node": "MaterialExpressionScalarParameter_709",
+      "x": 12620,
+      "y": -12840,
+      "group": "06 | Layer B Blend"
+    },
+    {
+      "name": "LayerBaseHeightScale",
+      "node": "MaterialExpressionScalarParameter_710",
+      "x": 12620,
+      "y": -12700,
+      "group": "06 | Layer B Blend"
+    },
+    {
+      "name": "LayerOverlayHeightScale",
+      "node": "MaterialExpressionScalarParameter_711",
+      "x": 12620,
+      "y": -12560,
+      "group": "06 | Layer B Blend"
+    },
+    {
+      "name": "LayerHeightInvert",
+      "node": "MaterialExpressionScalarParameter_712",
+      "x": 12620,
+      "y": -12420,
+      "group": "06 | Layer B Blend"
+    },
+    {
+      "name": "LayerAlphaBias",
+      "node": "MaterialExpressionScalarParameter_713",
+      "x": 12620,
+      "y": -12280,
+      "group": "06 | Layer B Blend"
+    },
+    {
+      "name": "LayerAlphaContrast",
+      "node": "MaterialExpressionScalarParameter_714",
+      "x": 12620,
+      "y": -12140,
+      "group": "06 | Layer B Blend"
+    },
+    {
+      "name": "LayerColorBlend",
+      "node": "MaterialExpressionScalarParameter_715",
+      "x": 12620,
+      "y": -12000,
+      "group": "06 | Layer B Blend"
+    },
+    {
+      "name": "LayerAOBlend",
+      "node": "MaterialExpressionScalarParameter_716",
+      "x": 12620,
+      "y": -11860,
+      "group": "06 | Layer B Blend"
+    },
+    {
+      "name": "LayerHeightBlend",
+      "node": "MaterialExpressionScalarParameter_717",
+      "x": 12620,
+      "y": -11720,
+      "group": "06 | Layer B Blend"
+    },
+    {
+      "name": "LayerMetallicBlend",
+      "node": "MaterialExpressionScalarParameter_718",
+      "x": 12620,
+      "y": -11580,
+      "group": "06 | Layer B Blend"
+    },
+    {
+      "name": "bLayerC_Active",
+      "node": "MaterialExpressionStaticSwitchParameter_53",
+      "x": 10020,
+      "y": -10940,
+      "group": "07 | Layer C Maps"
+    },
+    {
+      "name": "LayerC_Albedo",
+      "node": "MaterialExpressionTextureObjectParameter_96",
+      "x": 10020,
+      "y": -10800,
+      "group": "07 | Layer C Maps"
+    },
+    {
+      "name": "LayerC_NormalMap",
+      "node": "MaterialExpressionTextureObjectParameter_97",
+      "x": 10020,
+      "y": -10660,
+      "group": "07 | Layer C Maps"
+    },
+    {
+      "name": "LayerC_ORM",
+      "node": "MaterialExpressionTextureObjectParameter_98",
+      "x": 10020,
+      "y": -10520,
+      "group": "07 | Layer C Maps"
+    },
+    {
+      "name": "LayerC_HeightMap",
+      "node": "MaterialExpressionTextureObjectParameter_99",
+      "x": 10020,
+      "y": -10380,
+      "group": "07 | Layer C Maps"
+    },
+    {
+      "name": "LayerC_RoughnessMap",
+      "node": "MaterialExpressionTextureObjectParameter_100",
+      "x": 10020,
+      "y": -10240,
+      "group": "07 | Layer C Maps"
+    },
+    {
+      "name": "LayerC_MetallicMap",
+      "node": "MaterialExpressionTextureObjectParameter_101",
+      "x": 10020,
+      "y": -10100,
+      "group": "07 | Layer C Maps"
+    },
+    {
+      "name": "LayerC_TextureWeight",
+      "node": "MaterialExpressionScalarParameter_719",
+      "x": 10020,
+      "y": -9960,
+      "group": "07 | Layer C Maps"
+    },
+    {
+      "name": "LayerC_ParallaxScale",
+      "node": "MaterialExpressionScalarParameter_720",
+      "x": 10020,
+      "y": -9820,
+      "group": "07 | Layer C Maps"
+    },
+    {
+      "name": "LayerC_NormalStrength",
+      "node": "MaterialExpressionScalarParameter_721",
+      "x": 10020,
+      "y": -9680,
+      "group": "07 | Layer C Maps"
+    },
+    {
+      "name": "LayerCBlend",
+      "node": "MaterialExpressionScalarParameter_722",
+      "x": 10540,
+      "y": -10940,
+      "group": "08 | Layer C Blend"
+    },
+    {
+      "name": "LayerCBlendMode",
+      "node": "MaterialExpressionScalarParameter_723",
+      "x": 10540,
+      "y": -10800,
+      "group": "08 | Layer C Blend"
+    },
+    {
+      "name": "LayerCHeightBias",
+      "node": "MaterialExpressionScalarParameter_724",
+      "x": 10540,
+      "y": -10660,
+      "group": "08 | Layer C Blend"
+    },
+    {
+      "name": "LayerCHeightSharpness",
+      "node": "MaterialExpressionScalarParameter_725",
+      "x": 10540,
+      "y": -10520,
+      "group": "08 | Layer C Blend"
+    },
+    {
+      "name": "LayerCBlendSoftness",
+      "node": "MaterialExpressionScalarParameter_726",
+      "x": 10540,
+      "y": -10380,
+      "group": "08 | Layer C Blend"
+    },
+    {
+      "name": "LayerCNormalBlend",
+      "node": "MaterialExpressionScalarParameter_727",
+      "x": 10540,
+      "y": -10240,
+      "group": "08 | Layer C Blend"
+    },
+    {
+      "name": "LayerCRoughnessBlend",
+      "node": "MaterialExpressionScalarParameter_728",
+      "x": 10540,
+      "y": -10100,
+      "group": "08 | Layer C Blend"
+    },
+    {
+      "name": "LayerCManualMix",
+      "node": "MaterialExpressionScalarParameter_729",
+      "x": 10540,
+      "y": -9960,
+      "group": "08 | Layer C Blend"
+    },
+    {
+      "name": "LayerCBaseHeightScale",
+      "node": "MaterialExpressionScalarParameter_730",
+      "x": 10540,
+      "y": -9820,
+      "group": "08 | Layer C Blend"
+    },
+    {
+      "name": "LayerCOverlayHeightScale",
+      "node": "MaterialExpressionScalarParameter_731",
+      "x": 10540,
+      "y": -9680,
+      "group": "08 | Layer C Blend"
+    },
+    {
+      "name": "LayerCHeightInvert",
+      "node": "MaterialExpressionScalarParameter_732",
+      "x": 10540,
+      "y": -9540,
+      "group": "08 | Layer C Blend"
+    },
+    {
+      "name": "LayerCAlphaBias",
+      "node": "MaterialExpressionScalarParameter_733",
+      "x": 10540,
+      "y": -9400,
+      "group": "08 | Layer C Blend"
+    },
+    {
+      "name": "LayerCAlphaContrast",
+      "node": "MaterialExpressionScalarParameter_734",
+      "x": 10540,
+      "y": -9260,
+      "group": "08 | Layer C Blend"
+    },
+    {
+      "name": "LayerCColorBlend",
+      "node": "MaterialExpressionScalarParameter_735",
+      "x": 10540,
+      "y": -9120,
+      "group": "08 | Layer C Blend"
+    },
+    {
+      "name": "LayerCAOBlend",
+      "node": "MaterialExpressionScalarParameter_736",
+      "x": 10540,
+      "y": -8980,
+      "group": "08 | Layer C Blend"
+    },
+    {
+      "name": "LayerCHeightBlend",
+      "node": "MaterialExpressionScalarParameter_737",
+      "x": 10540,
+      "y": -8840,
+      "group": "08 | Layer C Blend"
+    },
+    {
+      "name": "LayerCMetallicBlend",
+      "node": "MaterialExpressionScalarParameter_738",
+      "x": 10540,
+      "y": -8700,
+      "group": "08 | Layer C Blend"
+    },
+    {
+      "name": "ParallaxScale",
+      "node": "MaterialExpressionScalarParameter_739",
+      "x": 11060,
+      "y": -10940,
+      "group": "09 | Parallax"
+    },
+    {
+      "name": "ParallaxStrength",
+      "node": "MaterialExpressionScalarParameter_740",
+      "x": 11060,
+      "y": -10800,
+      "group": "09 | Parallax"
+    },
+    {
+      "name": "ParallaxHeight",
+      "node": "MaterialExpressionScalarParameter_743",
+      "x": 11060,
+      "y": -10660,
+      "group": "09 | Parallax"
+    },
+    {
+      "name": "NormalStrength",
+      "node": "MaterialExpressionScalarParameter_744",
+      "x": 11060,
+      "y": -10520,
+      "group": "09 | Parallax"
+    },
+    {
+      "name": "NormalPower",
+      "node": "MaterialExpressionScalarParameter_746",
+      "x": 11060,
+      "y": -10380,
+      "group": "09 | Parallax"
+    },
+    {
+      "name": "HeightToNormalStrength",
+      "node": "MaterialExpressionScalarParameter_745",
+      "x": 11060,
+      "y": -10240,
+      "group": "09 | Parallax"
+    },
+    {
+      "name": "MacroVariationStrength",
+      "node": "MaterialExpressionScalarParameter_806",
+      "x": 11580,
+      "y": -10940,
+      "group": "10 | Macro & Detail"
+    },
+    {
+      "name": "MacroScale",
+      "node": "MaterialExpressionScalarParameter_807",
+      "x": 11580,
+      "y": -10800,
+      "group": "10 | Macro & Detail"
+    },
+    {
+      "name": "DetailNormal",
+      "node": "MaterialExpressionTextureObjectParameter_103",
+      "x": 11580,
+      "y": -10660,
+      "group": "10 | Macro & Detail"
+    },
+    {
+      "name": "DetailTiling",
+      "node": "MaterialExpressionScalarParameter_808",
+      "x": 11580,
+      "y": -10520,
+      "group": "10 | Macro & Detail"
+    },
+    {
+      "name": "DetailStrength",
+      "node": "MaterialExpressionScalarParameter_809",
+      "x": 11580,
+      "y": -10380,
+      "group": "10 | Macro & Detail"
+    },
+    {
+      "name": "TemporalStrength",
+      "node": "MaterialExpressionScalarParameter_747",
+      "x": 12100,
+      "y": -10940,
+      "group": "11 | Temporal / Ink"
+    },
+    {
+      "name": "WindSpeed",
+      "node": "MaterialExpressionScalarParameter_748",
+      "x": 12100,
+      "y": -10800,
+      "group": "11 | Temporal / Ink"
+    },
+    {
+      "name": "NoiseScale",
+      "node": "MaterialExpressionScalarParameter_749",
+      "x": 12100,
+      "y": -10660,
+      "group": "11 | Temporal / Ink"
+    },
+    {
+      "name": "SmearStrength",
+      "node": "MaterialExpressionScalarParameter_750",
+      "x": 12100,
+      "y": -10520,
+      "group": "11 | Temporal / Ink"
+    },
+    {
+      "name": "BoilIntensity",
+      "node": "MaterialExpressionScalarParameter_751",
+      "x": 12100,
+      "y": -10380,
+      "group": "11 | Temporal / Ink"
+    },
+    {
+      "name": "RampLow",
+      "node": "MaterialExpressionVectorParameter_0",
+      "x": 12620,
+      "y": -10940,
+      "group": "12 | Color Ramp"
+    },
+    {
+      "name": "RampMid",
+      "node": "MaterialExpressionVectorParameter_1",
+      "x": 12620,
+      "y": -10800,
+      "group": "12 | Color Ramp"
+    },
+    {
+      "name": "RampHigh",
+      "node": "MaterialExpressionVectorParameter_2",
+      "x": 12620,
+      "y": -10660,
+      "group": "12 | Color Ramp"
+    },
+    {
+      "name": "RampPosMid",
+      "node": "MaterialExpressionScalarParameter_0",
+      "x": 12620,
+      "y": -10520,
+      "group": "12 | Color Ramp"
+    },
+    {
+      "name": "RampContrast",
+      "node": "MaterialExpressionScalarParameter_1",
+      "x": 12620,
+      "y": -10380,
+      "group": "12 | Color Ramp"
+    },
+    {
+      "name": "RampStrength",
+      "node": "MaterialExpressionScalarParameter_2",
+      "x": 12620,
+      "y": -10240,
+      "group": "12 | Color Ramp"
+    },
+    {
+      "name": "ShadowRampLow",
+      "node": "MaterialExpressionVectorParameter_3",
+      "x": 10020,
+      "y": -8200,
+      "group": "13 | Shadow Color Ramp"
+    },
+    {
+      "name": "ShadowRampMid",
+      "node": "MaterialExpressionVectorParameter_4",
+      "x": 10020,
+      "y": -8060,
+      "group": "13 | Shadow Color Ramp"
+    },
+    {
+      "name": "ShadowRampHigh",
+      "node": "MaterialExpressionVectorParameter_5",
+      "x": 10020,
+      "y": -7920,
+      "group": "13 | Shadow Color Ramp"
+    },
+    {
+      "name": "ShadowRampPosMid",
+      "node": "MaterialExpressionScalarParameter_4",
+      "x": 10020,
+      "y": -7780,
+      "group": "13 | Shadow Color Ramp"
+    },
+    {
+      "name": "bShadowRamp_Active",
+      "node": "MaterialExpressionStaticSwitchParameter_9",
+      "x": 10020,
+      "y": -7640,
+      "group": "13 | Shadow Color Ramp"
+    },
+    {
+      "name": "bNikkiHero",
+      "node": "MaterialExpressionStaticSwitchParameter_0",
+      "x": 10540,
+      "y": -8200,
+      "group": "14 | Nikki Rim & Glow"
+    },
+    {
+      "name": "RimColor",
+      "node": "MaterialExpressionVectorParameter_148",
+      "x": 10540,
+      "y": -8060,
+      "group": "14 | Nikki Rim & Glow"
+    },
+    {
+      "name": "RimPower",
+      "node": "MaterialExpressionScalarParameter_752",
+      "x": 10540,
+      "y": -7920,
+      "group": "14 | Nikki Rim & Glow"
+    },
+    {
+      "name": "RimIntensity",
+      "node": "MaterialExpressionScalarParameter_753",
+      "x": 10540,
+      "y": -7780,
+      "group": "14 | Nikki Rim & Glow"
+    },
+    {
+      "name": "RimWidth",
+      "node": "MaterialExpressionScalarParameter_754",
+      "x": 10540,
+      "y": -7640,
+      "group": "14 | Nikki Rim & Glow"
+    },
+    {
+      "name": "RimBias",
+      "node": "MaterialExpressionScalarParameter_755",
+      "x": 10540,
+      "y": -7500,
+      "group": "14 | Nikki Rim & Glow"
+    },
+    {
+      "name": "RimClamp",
+      "node": "MaterialExpressionScalarParameter_756",
+      "x": 10540,
+      "y": -7360,
+      "group": "14 | Nikki Rim & Glow"
+    },
+    {
+      "name": "GlowColor",
+      "node": "MaterialExpressionVectorParameter_154",
+      "x": 10540,
+      "y": -7220,
+      "group": "14 | Nikki Rim & Glow"
+    },
+    {
+      "name": "GlowIntensity",
+      "node": "MaterialExpressionScalarParameter_775",
+      "x": 10540,
+      "y": -7080,
+      "group": "14 | Nikki Rim & Glow"
+    },
+    {
+      "name": "InnerGlowColor",
+      "node": "MaterialExpressionVectorParameter_155",
+      "x": 10540,
+      "y": -6940,
+      "group": "14 | Nikki Rim & Glow"
+    },
+    {
+      "name": "InnerGlowIntensity",
+      "node": "MaterialExpressionScalarParameter_777",
+      "x": 10540,
+      "y": -6800,
+      "group": "14 | Nikki Rim & Glow"
+    },
+    {
+      "name": "InnerGlowWidth",
+      "node": "MaterialExpressionScalarParameter_778",
+      "x": 10540,
+      "y": -6660,
+      "group": "14 | Nikki Rim & Glow"
+    },
+    {
+      "name": "BloomBoost",
+      "node": "MaterialExpressionScalarParameter_779",
+      "x": 10540,
+      "y": -6520,
+      "group": "14 | Nikki Rim & Glow"
+    },
+    {
+      "name": "DreamRimColor",
+      "node": "MaterialExpressionVectorParameter_7",
+      "x": 11060,
+      "y": -8200,
+      "group": "15 | Dream Rim & Bloom"
+    },
+    {
+      "name": "DreamRimPower",
+      "node": "MaterialExpressionScalarParameter_10",
+      "x": 11060,
+      "y": -8060,
+      "group": "15 | Dream Rim & Bloom"
+    },
+    {
+      "name": "DreamRimCycles",
+      "node": "MaterialExpressionScalarParameter_11",
+      "x": 11060,
+      "y": -7920,
+      "group": "15 | Dream Rim & Bloom"
+    },
+    {
+      "name": "DreamRimStrength",
+      "node": "MaterialExpressionScalarParameter_12",
+      "x": 11060,
+      "y": -7780,
+      "group": "15 | Dream Rim & Bloom"
+    },
+    {
+      "name": "bDreamRim_Active",
+      "node": "MaterialExpressionStaticSwitchParameter_15",
+      "x": 11060,
+      "y": -7640,
+      "group": "15 | Dream Rim & Bloom"
+    },
+    {
+      "name": "DreamBloomColor",
+      "node": "MaterialExpressionVectorParameter_8",
+      "x": 11060,
+      "y": -7500,
+      "group": "15 | Dream Rim & Bloom"
+    },
+    {
+      "name": "DreamBloomThreshold",
+      "node": "MaterialExpressionScalarParameter_13",
+      "x": 11060,
+      "y": -7360,
+      "group": "15 | Dream Rim & Bloom"
+    },
+    {
+      "name": "DreamBloomStrength",
+      "node": "MaterialExpressionScalarParameter_14",
+      "x": 11060,
+      "y": -7220,
+      "group": "15 | Dream Rim & Bloom"
+    },
+    {
+      "name": "DreamTint",
+      "node": "MaterialExpressionVectorParameter_149",
+      "x": 11580,
+      "y": -8200,
+      "group": "16 | Nikki Dream Grade"
+    },
+    {
+      "name": "DreamWarmth",
+      "node": "MaterialExpressionVectorParameter_16",
+      "x": 11580,
+      "y": -8060,
+      "group": "16 | Nikki Dream Grade"
+    },
+    {
+      "name": "PastelLift",
+      "node": "MaterialExpressionScalarParameter_757",
+      "x": 11580,
+      "y": -7920,
+      "group": "16 | Nikki Dream Grade"
+    },
+    {
+      "name": "DreamSaturation",
+      "node": "MaterialExpressionScalarParameter_758",
+      "x": 11580,
+      "y": -7780,
+      "group": "16 | Nikki Dream Grade"
+    },
+    {
+      "name": "DreamContrast",
+      "node": "MaterialExpressionScalarParameter_759",
+      "x": 11580,
+      "y": -7640,
+      "group": "16 | Nikki Dream Grade"
+    },
+    {
+      "name": "DreamShadowLift",
+      "node": "MaterialExpressionScalarParameter_760",
+      "x": 11580,
+      "y": -7500,
+      "group": "16 | Nikki Dream Grade"
+    },
+    {
+      "name": "DreamHighlightSoft",
+      "node": "MaterialExpressionScalarParameter_761",
+      "x": 11580,
+      "y": -7360,
+      "group": "16 | Nikki Dream Grade"
+    },
+    {
+      "name": "NikkiHeroGradeStrength",
+      "node": "MaterialExpressionScalarParameter_43",
+      "x": 11580,
+      "y": -7220,
+      "group": "16 | Nikki Dream Grade"
+    },
+    {
+      "name": "DreamIntensity",
+      "node": "MaterialExpressionScalarParameter_75",
+      "x": 11580,
+      "y": -7080,
+      "group": "16 | Nikki Dream Grade"
+    },
+    {
+      "name": "DreamComposition",
+      "node": "MaterialExpressionScalarParameter_76",
+      "x": 11580,
+      "y": -6940,
+      "group": "16 | Nikki Dream Grade"
+    },
+    {
+      "name": "DreamThreshold",
+      "node": "MaterialExpressionScalarParameter_77",
+      "x": 11580,
+      "y": -6800,
+      "group": "16 | Nikki Dream Grade"
+    },
+    {
+      "name": "DreamCompositeBlend",
+      "node": "MaterialExpressionScalarParameter_89",
+      "x": 11580,
+      "y": -6660,
+      "group": "16 | Nikki Dream Grade"
+    },
+    {
+      "name": "DreamCompositeBlend",
+      "node": "MaterialExpressionScalarParameter_91",
+      "x": 11580,
+      "y": -6520,
+      "group": "16 | Nikki Dream Grade"
+    },
+    {
+      "name": "DreamFlowStrength",
+      "node": "MaterialExpressionScalarParameter_15",
+      "x": 11580,
+      "y": -6380,
+      "group": "16 | Nikki Dream Grade"
+    },
+    {
+      "name": "DreamFlowSpeed",
+      "node": "MaterialExpressionScalarParameter_16",
+      "x": 11580,
+      "y": -6240,
+      "group": "16 | Nikki Dream Grade"
+    },
+    {
+      "name": "DreamFlowScale",
+      "node": "MaterialExpressionScalarParameter_17",
+      "x": 11580,
+      "y": -6100,
+      "group": "16 | Nikki Dream Grade"
+    },
+    {
+      "name": "DreamFlowCycles",
+      "node": "MaterialExpressionScalarParameter_18",
+      "x": 11580,
+      "y": -5960,
+      "group": "16 | Nikki Dream Grade"
+    },
+    {
+      "name": "DreamPulseAmp",
+      "node": "MaterialExpressionScalarParameter_19",
+      "x": 11580,
+      "y": -5820,
+      "group": "16 | Nikki Dream Grade"
+    },
+    {
+      "name": "DreamPulseSpeed",
+      "node": "MaterialExpressionScalarParameter_20",
+      "x": 11580,
+      "y": -5680,
+      "group": "16 | Nikki Dream Grade"
+    },
+    {
+      "name": "bSparkleAdvanced",
+      "node": "MaterialExpressionStaticSwitchParameter_56",
+      "x": 12100,
+      "y": -8200,
+      "group": "17 | Nikki Sparkle"
+    },
+    {
+      "name": "SparkleMask",
+      "node": "MaterialExpressionTextureSampleParameter2D_8",
+      "x": 12100,
+      "y": -8060,
+      "group": "17 | Nikki Sparkle"
+    },
+    {
+      "name": "SparkleScale",
+      "node": "MaterialExpressionScalarParameter_767",
+      "x": 12100,
+      "y": -7920,
+      "group": "17 | Nikki Sparkle"
+    },
+    {
+      "name": "SparkleIntensity",
+      "node": "MaterialExpressionScalarParameter_768",
+      "x": 12100,
+      "y": -7780,
+      "group": "17 | Nikki Sparkle"
+    },
+    {
+      "name": "SparkleThreshold",
+      "node": "MaterialExpressionScalarParameter_769",
+      "x": 12100,
+      "y": -7640,
+      "group": "17 | Nikki Sparkle"
+    },
+    {
+      "name": "SparkleContrast",
+      "node": "MaterialExpressionScalarParameter_770",
+      "x": 12100,
+      "y": -7500,
+      "group": "17 | Nikki Sparkle"
+    },
+    {
+      "name": "SparkleDriftSpeed",
+      "node": "MaterialExpressionScalarParameter_771",
+      "x": 12100,
+      "y": -7360,
+      "group": "17 | Nikki Sparkle"
+    },
+    {
+      "name": "SparkleTwinkleSpeed",
+      "node": "MaterialExpressionScalarParameter_772",
+      "x": 12100,
+      "y": -7220,
+      "group": "17 | Nikki Sparkle"
+    },
+    {
+      "name": "SparkleColor",
+      "node": "MaterialExpressionVectorParameter_151",
+      "x": 12100,
+      "y": -7080,
+      "group": "17 | Nikki Sparkle"
+    },
+    {
+      "name": "SparkleColorLow",
+      "node": "MaterialExpressionVectorParameter_152",
+      "x": 12100,
+      "y": -6940,
+      "group": "17 | Nikki Sparkle"
+    },
+    {
+      "name": "SparkleColorHigh",
+      "node": "MaterialExpressionVectorParameter_153",
+      "x": 12100,
+      "y": -6800,
+      "group": "17 | Nikki Sparkle"
+    },
+    {
+      "name": "SparkleColorLerp",
+      "node": "MaterialExpressionScalarParameter_774",
+      "x": 12100,
+      "y": -6660,
+      "group": "17 | Nikki Sparkle"
+    },
+    {
+      "name": "GlintIntensity",
+      "node": "MaterialExpressionScalarParameter_73",
+      "x": 12100,
+      "y": -6520,
+      "group": "17 | Nikki Sparkle"
+    },
+    {
+      "name": "bSheenUsesNormal",
+      "node": "MaterialExpressionStaticSwitchParameter_57",
+      "x": 12620,
+      "y": -8200,
+      "group": "18 | Iridescence & Sheen"
+    },
+    {
+      "name": "Iridescence",
+      "node": "MaterialExpressionScalarParameter_763",
+      "x": 12620,
+      "y": -8060,
+      "group": "18 | Iridescence & Sheen"
+    },
+    {
+      "name": "IridescenceTint",
+      "node": "MaterialExpressionVectorParameter_150",
+      "x": 12620,
+      "y": -7920,
+      "group": "18 | Iridescence & Sheen"
+    },
+    {
+      "name": "IridescencePower",
+      "node": "MaterialExpressionScalarParameter_764",
+      "x": 12620,
+      "y": -7780,
+      "group": "18 | Iridescence & Sheen"
+    },
+    {
+      "name": "IridescenceBias",
+      "node": "MaterialExpressionScalarParameter_765",
+      "x": 12620,
+      "y": -7640,
+      "group": "18 | Iridescence & Sheen"
+    },
+    {
+      "name": "IridescenceRoughnessAtten",
+      "node": "MaterialExpressionScalarParameter_766",
+      "x": 12620,
+      "y": -7500,
+      "group": "18 | Iridescence & Sheen"
+    },
+    {
+      "name": "IridescenceCycles",
+      "node": "MaterialExpressionScalarParameter_3",
+      "x": 12620,
+      "y": -7360,
+      "group": "18 | Iridescence & Sheen"
+    },
+    {
+      "name": "FabricSheen",
+      "node": "MaterialExpressionScalarParameter_780",
+      "x": 12620,
+      "y": -7220,
+      "group": "18 | Iridescence & Sheen"
+    },
+    {
+      "name": "SheenTint",
+      "node": "MaterialExpressionVectorParameter_156",
+      "x": 12620,
+      "y": -7080,
+      "group": "18 | Iridescence & Sheen"
+    },
+    {
+      "name": "SheenPower",
+      "node": "MaterialExpressionScalarParameter_781",
+      "x": 12620,
+      "y": -6940,
+      "group": "18 | Iridescence & Sheen"
+    },
+    {
+      "name": "SheenWidth",
+      "node": "MaterialExpressionScalarParameter_782",
+      "x": 12620,
+      "y": -6800,
+      "group": "18 | Iridescence & Sheen"
+    },
+    {
+      "name": "SheenBias",
+      "node": "MaterialExpressionScalarParameter_783",
+      "x": 12620,
+      "y": -6660,
+      "group": "18 | Iridescence & Sheen"
+    },
+    {
+      "name": "FabricType",
+      "node": "MaterialExpressionScalarParameter_66",
+      "x": 12620,
+      "y": -6520,
+      "group": "18 | Iridescence & Sheen"
+    },
+    {
+      "name": "FabricAnisoLevel",
+      "node": "MaterialExpressionScalarParameter_67",
+      "x": 12620,
+      "y": -6380,
+      "group": "18 | Iridescence & Sheen"
+    },
+    {
+      "name": "FabricWeaveScale",
+      "node": "MaterialExpressionScalarParameter_68",
+      "x": 12620,
+      "y": -6240,
+      "group": "18 | Iridescence & Sheen"
+    },
+    {
+      "name": "FabricWeaveStrength",
+      "node": "MaterialExpressionScalarParameter_69",
+      "x": 12620,
+      "y": -6100,
+      "group": "18 | Iridescence & Sheen"
+    },
+    {
+      "name": "FabricNormalBlend",
+      "node": "MaterialExpressionScalarParameter_90",
+      "x": 12620,
+      "y": -5960,
+      "group": "18 | Iridescence & Sheen"
+    },
+    {
+      "name": "ToonAnisotropy",
+      "node": "MaterialExpressionScalarParameter_5",
+      "x": 12620,
+      "y": -5820,
+      "group": "18 | Iridescence & Sheen"
+    },
+    {
+      "name": "GildingStrength",
+      "node": "MaterialExpressionScalarParameter_795",
+      "x": 10020,
+      "y": -5180,
+      "group": "19 | Gilding"
+    },
+    {
+      "name": "GoldTint",
+      "node": "MaterialExpressionVectorParameter_160",
+      "x": 10020,
+      "y": -5040,
+      "group": "19 | Gilding"
+    },
+    {
+      "name": "GoldRoughness",
+      "node": "MaterialExpressionScalarParameter_796",
+      "x": 10020,
+      "y": -4900,
+      "group": "19 | Gilding"
+    },
+    {
+      "name": "GoldEmissive",
+      "node": "MaterialExpressionVectorParameter_161",
+      "x": 10020,
+      "y": -4760,
+      "group": "19 | Gilding"
+    },
+    {
+      "name": "CurvatureSensitivity",
+      "node": "MaterialExpressionScalarParameter_797",
+      "x": 10020,
+      "y": -4620,
+      "group": "19 | Gilding"
+    },
+    {
+      "name": "GildingAmount",
+      "node": "MaterialExpressionScalarParameter_116",
+      "x": 10020,
+      "y": -4480,
+      "group": "19 | Gilding"
+    },
+    {
+      "name": "ShadowFlowerStrength",
+      "node": "MaterialExpressionScalarParameter_800",
+      "x": 10540,
+      "y": -5180,
+      "group": "20 | Shadow Garden"
+    },
+    {
+      "name": "ShadowFlowerScale",
+      "node": "MaterialExpressionScalarParameter_801",
+      "x": 10540,
+      "y": -5040,
+      "group": "20 | Shadow Garden"
+    },
+    {
+      "name": "ShadowFlowerColor",
+      "node": "MaterialExpressionVectorParameter_163",
+      "x": 10540,
+      "y": -4900,
+      "group": "20 | Shadow Garden"
+    },
+    {
+      "name": "ShadowDreamTint",
+      "node": "MaterialExpressionVectorParameter_162",
+      "x": 11060,
+      "y": -5180,
+      "group": "21 | Shadow Dream"
+    },
+    {
+      "name": "ShadowDreamStrength",
+      "node": "MaterialExpressionScalarParameter_798",
+      "x": 11060,
+      "y": -5040,
+      "group": "21 | Shadow Dream"
+    },
+    {
+      "name": "ShadowSoftness",
+      "node": "MaterialExpressionScalarParameter_799",
+      "x": 11060,
+      "y": -4900,
+      "group": "21 | Shadow Dream"
+    },
+    {
+      "name": "bCelestial_Active",
+      "node": "MaterialExpressionStaticSwitchParameter_2",
+      "x": 11580,
+      "y": -5180,
+      "group": "22 | Celestial / Nebula"
+    },
+    {
+      "name": "bCelestialUsesDreamPalette",
+      "node": "MaterialExpressionStaticSwitchParameter_20",
+      "x": 11580,
+      "y": -5040,
+      "group": "22 | Celestial / Nebula"
+    },
+    {
+      "name": "bCelestialUsesDreamPalette",
+      "node": "MaterialExpressionStaticSwitchParameter_21",
+      "x": 11580,
+      "y": -4900,
+      "group": "22 | Celestial / Nebula"
+    },
+    {
+      "name": "bCelestialUsesDreamPalette",
+      "node": "MaterialExpressionStaticSwitchParameter_22",
+      "x": 11580,
+      "y": -4760,
+      "group": "22 | Celestial / Nebula"
+    },
+    {
+      "name": "ConstellationRampLow",
+      "node": "MaterialExpressionVectorParameter_157",
+      "x": 11580,
+      "y": -4620,
+      "group": "22 | Celestial / Nebula"
+    },
+    {
+      "name": "ConstellationRampMid",
+      "node": "MaterialExpressionVectorParameter_158",
+      "x": 11580,
+      "y": -4480,
+      "group": "22 | Celestial / Nebula"
+    },
+    {
+      "name": "ConstellationRampHigh",
+      "node": "MaterialExpressionVectorParameter_159",
+      "x": 11580,
+      "y": -4340,
+      "group": "22 | Celestial / Nebula"
+    },
+    {
+      "name": "ConstellationStrength",
+      "node": "MaterialExpressionScalarParameter_784",
+      "x": 11580,
+      "y": -4200,
+      "group": "22 | Celestial / Nebula"
+    },
+    {
+      "name": "ConstellationScale",
+      "node": "MaterialExpressionScalarParameter_785",
+      "x": 11580,
+      "y": -4060,
+      "group": "22 | Celestial / Nebula"
+    },
+    {
+      "name": "CelestialStarIntensity",
+      "node": "MaterialExpressionScalarParameter_787",
+      "x": 11580,
+      "y": -3920,
+      "group": "22 | Celestial / Nebula"
+    },
+    {
+      "name": "CelestialNebulaStrength",
+      "node": "MaterialExpressionScalarParameter_789",
+      "x": 11580,
+      "y": -3780,
+      "group": "22 | Celestial / Nebula"
+    },
+    {
+      "name": "CelestialNebulaScale",
+      "node": "MaterialExpressionScalarParameter_790",
+      "x": 11580,
+      "y": -3640,
+      "group": "22 | Celestial / Nebula"
+    },
+    {
+      "name": "CelestialGalaxyStrength",
+      "node": "MaterialExpressionScalarParameter_791",
+      "x": 11580,
+      "y": -3500,
+      "group": "22 | Celestial / Nebula"
+    },
+    {
+      "name": "CelestialGalaxyScale",
+      "node": "MaterialExpressionScalarParameter_792",
+      "x": 11580,
+      "y": -3360,
+      "group": "22 | Celestial / Nebula"
+    },
+    {
+      "name": "CelestialToonSteps",
+      "node": "MaterialExpressionScalarParameter_794",
+      "x": 11580,
+      "y": -3220,
+      "group": "22 | Celestial / Nebula"
+    },
+    {
+      "name": "StarMap",
+      "node": "MaterialExpressionTextureObjectParameter_102",
+      "x": 11580,
+      "y": -3080,
+      "group": "22 | Celestial / Nebula"
+    },
+    {
+      "name": "bFairyDust_Active",
+      "node": "MaterialExpressionStaticSwitchParameter_4",
+      "x": 12100,
+      "y": -5180,
+      "group": "23 | Fairy Dust"
+    },
+    {
+      "name": "FairyGlyphMask",
+      "node": "MaterialExpressionTextureSampleParameter2D_9",
+      "x": 12100,
+      "y": -5040,
+      "group": "23 | Fairy Dust"
+    },
+    {
+      "name": "FairyMotifStyle",
+      "node": "MaterialExpressionScalarParameter_802",
+      "x": 12100,
+      "y": -4900,
+      "group": "23 | Fairy Dust"
+    },
+    {
+      "name": "FairyDustIntensity",
+      "node": "MaterialExpressionScalarParameter_803",
+      "x": 12100,
+      "y": -4760,
+      "group": "23 | Fairy Dust"
+    },
+    {
+      "name": "FairyDustScale",
+      "node": "MaterialExpressionScalarParameter_804",
+      "x": 12100,
+      "y": -4620,
+      "group": "23 | Fairy Dust"
+    },
+    {
+      "name": "FairyDustColor",
+      "node": "MaterialExpressionVectorParameter_164",
+      "x": 12100,
+      "y": -4480,
+      "group": "23 | Fairy Dust"
+    },
+    {
+      "name": "FairyHighlightThreshold",
+      "node": "MaterialExpressionScalarParameter_805",
+      "x": 12100,
+      "y": -4340,
+      "group": "23 | Fairy Dust"
+    },
+    {
+      "name": "MagicalTransform",
+      "node": "MaterialExpressionScalarParameter_810",
+      "x": 12620,
+      "y": -5180,
+      "group": "24 | Magical / Henshin"
+    },
+    {
+      "name": "MotifMask",
+      "node": "MaterialExpressionTextureObjectParameter_104",
+      "x": 12620,
+      "y": -5040,
+      "group": "24 | Magical / Henshin"
+    },
+    {
+      "name": "MotifScale",
+      "node": "MaterialExpressionScalarParameter_811",
+      "x": 12620,
+      "y": -4900,
+      "group": "24 | Magical / Henshin"
+    },
+    {
+      "name": "MotifColor",
+      "node": "MaterialExpressionVectorParameter_165",
+      "x": 12620,
+      "y": -4760,
+      "group": "24 | Magical / Henshin"
+    },
+    {
+      "name": "TransformGlow",
+      "node": "MaterialExpressionScalarParameter_812",
+      "x": 12620,
+      "y": -4620,
+      "group": "24 | Magical / Henshin"
+    },
+    {
+      "name": "WipeSoftness",
+      "node": "MaterialExpressionScalarParameter_813",
+      "x": 12620,
+      "y": -4480,
+      "group": "24 | Magical / Henshin"
+    },
+    {
+      "name": "MagicalPalette",
+      "node": "MaterialExpressionVectorParameter_166",
+      "x": 12620,
+      "y": -4340,
+      "group": "24 | Magical / Henshin"
+    },
+    {
+      "name": "bUseMagicalTransform",
+      "node": "MaterialExpressionStaticSwitchParameter_26",
+      "x": 12620,
+      "y": -4200,
+      "group": "24 | Magical / Henshin"
+    },
+    {
+      "name": "MadokaBlendAmount",
+      "node": "MaterialExpressionScalarParameter_843",
+      "x": 10020,
+      "y": -2580,
+      "group": "25 | VeinGlow / Madoka"
+    },
+    {
+      "name": "IttoBlendAmount",
+      "node": "MaterialExpressionScalarParameter_850",
+      "x": 10540,
+      "y": -2580,
+      "group": "26 | InkWear / Itto"
+    },
+    {
+      "name": "bImpasto_Active",
+      "node": "MaterialExpressionStaticSwitchParameter_14",
+      "x": 11060,
+      "y": -2580,
+      "group": "27 | Impasto"
+    },
+    {
+      "name": "ImpastoCoverage",
+      "node": "MaterialExpressionScalarParameter_8",
+      "x": 11060,
+      "y": -2440,
+      "group": "27 | Impasto"
+    },
+    {
+      "name": "ImpastoRoughness",
+      "node": "MaterialExpressionScalarParameter_9",
+      "x": 11060,
+      "y": -2300,
+      "group": "27 | Impasto"
+    },
+    {
+      "name": "SigilStrength",
+      "node": "MaterialExpressionScalarParameter_21",
+      "x": 11580,
+      "y": -2580,
+      "group": "28 | Sigil"
+    },
+    {
+      "name": "SigilSides",
+      "node": "MaterialExpressionScalarParameter_22",
+      "x": 11580,
+      "y": -2440,
+      "group": "28 | Sigil"
+    },
+    {
+      "name": "SigilRings",
+      "node": "MaterialExpressionScalarParameter_23",
+      "x": 11580,
+      "y": -2300,
+      "group": "28 | Sigil"
+    },
+    {
+      "name": "SigilSpeed",
+      "node": "MaterialExpressionScalarParameter_24",
+      "x": 11580,
+      "y": -2160,
+      "group": "28 | Sigil"
+    },
+    {
+      "name": "SigilSharp",
+      "node": "MaterialExpressionScalarParameter_25",
+      "x": 11580,
+      "y": -2020,
+      "group": "28 | Sigil"
+    },
+    {
+      "name": "SigilCycles",
+      "node": "MaterialExpressionScalarParameter_26",
+      "x": 11580,
+      "y": -1880,
+      "group": "28 | Sigil"
+    },
+    {
+      "name": "DawnStrength",
+      "node": "MaterialExpressionScalarParameter_27",
+      "x": 12100,
+      "y": -2580,
+      "group": "29 | Dawn & Mist"
+    },
+    {
+      "name": "DawnHeightScale",
+      "node": "MaterialExpressionScalarParameter_28",
+      "x": 12100,
+      "y": -2440,
+      "group": "29 | Dawn & Mist"
+    },
+    {
+      "name": "DawnBias",
+      "node": "MaterialExpressionScalarParameter_29",
+      "x": 12100,
+      "y": -2300,
+      "group": "29 | Dawn & Mist"
+    },
+    {
+      "name": "DawnLowColor",
+      "node": "MaterialExpressionVectorParameter_9",
+      "x": 12100,
+      "y": -2160,
+      "group": "29 | Dawn & Mist"
+    },
+    {
+      "name": "DawnHighColor",
+      "node": "MaterialExpressionVectorParameter_10",
+      "x": 12100,
+      "y": -2020,
+      "group": "29 | Dawn & Mist"
+    },
+    {
+      "name": "MistStrength",
+      "node": "MaterialExpressionScalarParameter_30",
+      "x": 12100,
+      "y": -1880,
+      "group": "29 | Dawn & Mist"
+    },
+    {
+      "name": "MistScale",
+      "node": "MaterialExpressionScalarParameter_31",
+      "x": 12100,
+      "y": -1740,
+      "group": "29 | Dawn & Mist"
+    },
+    {
+      "name": "MistSpeed",
+      "node": "MaterialExpressionScalarParameter_32",
+      "x": 12100,
+      "y": -1600,
+      "group": "29 | Dawn & Mist"
+    },
+    {
+      "name": "MistSharp",
+      "node": "MaterialExpressionScalarParameter_33",
+      "x": 12100,
+      "y": -1460,
+      "group": "29 | Dawn & Mist"
+    },
+    {
+      "name": "MistColor",
+      "node": "MaterialExpressionVectorParameter_11",
+      "x": 12100,
+      "y": -1320,
+      "group": "29 | Dawn & Mist"
+    },
+    {
+      "name": "GlintStrength",
+      "node": "MaterialExpressionScalarParameter_34",
+      "x": 12620,
+      "y": -2580,
+      "group": "30 | Glint & Halo"
+    },
+    {
+      "name": "GlintScale",
+      "node": "MaterialExpressionScalarParameter_35",
+      "x": 12620,
+      "y": -2440,
+      "group": "30 | Glint & Halo"
+    },
+    {
+      "name": "GlintSize",
+      "node": "MaterialExpressionScalarParameter_36",
+      "x": 12620,
+      "y": -2300,
+      "group": "30 | Glint & Halo"
+    },
+    {
+      "name": "GlintSharp",
+      "node": "MaterialExpressionScalarParameter_37",
+      "x": 12620,
+      "y": -2160,
+      "group": "30 | Glint & Halo"
+    },
+    {
+      "name": "GlintSpeed",
+      "node": "MaterialExpressionScalarParameter_38",
+      "x": 12620,
+      "y": -2020,
+      "group": "30 | Glint & Halo"
+    },
+    {
+      "name": "GlintColor",
+      "node": "MaterialExpressionVectorParameter_12",
+      "x": 12620,
+      "y": -1880,
+      "group": "30 | Glint & Halo"
+    },
+    {
+      "name": "HaloStrength",
+      "node": "MaterialExpressionScalarParameter_44",
+      "x": 12620,
+      "y": -1740,
+      "group": "30 | Glint & Halo"
+    },
+    {
+      "name": "HaloPower",
+      "node": "MaterialExpressionScalarParameter_45",
+      "x": 12620,
+      "y": -1600,
+      "group": "30 | Glint & Halo"
+    },
+    {
+      "name": "HaloColor",
+      "node": "MaterialExpressionVectorParameter_13",
+      "x": 12620,
+      "y": -1460,
+      "group": "30 | Glint & Halo"
+    },
+    {
+      "name": "SkinSSS_Strength",
+      "node": "MaterialExpressionScalarParameter_87",
+      "x": 10020,
+      "y": -820,
+      "group": "31 | Skin SSS"
+    },
+    {
+      "name": "SkinSSS_Radius",
+      "node": "MaterialExpressionScalarParameter_88",
+      "x": 10020,
+      "y": -680,
+      "group": "31 | Skin SSS"
+    },
+    {
+      "name": "SkinSSS_Color",
+      "node": "MaterialExpressionVectorParameter_17",
+      "x": 10020,
+      "y": -540,
+      "group": "31 | Skin SSS"
+    },
+    {
+      "name": "FaceSDF_Strength",
+      "node": "MaterialExpressionScalarParameter_85",
+      "x": 10540,
+      "y": -820,
+      "group": "32 | Face SDF"
+    },
+    {
+      "name": "FaceSDF_Tiling",
+      "node": "MaterialExpressionScalarParameter_86",
+      "x": 10540,
+      "y": -680,
+      "group": "32 | Face SDF"
+    },
+    {
+      "name": "FaceSDF_Texture",
+      "node": "MaterialExpressionTextureObjectParameter_6",
+      "x": 10540,
+      "y": -540,
+      "group": "32 | Face SDF"
+    },
+    {
+      "name": "bFaceSDF_UV1",
+      "node": "MaterialExpressionStaticBoolParameter_4",
+      "x": 10540,
+      "y": -400,
+      "group": "32 | Face SDF"
+    },
+    {
+      "name": "bElemental_Active",
+      "node": "MaterialExpressionStaticSwitchParameter_8",
+      "x": 11060,
+      "y": -820,
+      "group": "33 | Elemental"
+    },
+    {
+      "name": "ElementType",
+      "node": "MaterialExpressionScalarParameter_823",
+      "x": 11060,
+      "y": -680,
+      "group": "33 | Elemental"
+    },
+    {
+      "name": "ElementStrength",
+      "node": "MaterialExpressionScalarParameter_824",
+      "x": 11060,
+      "y": -540,
+      "group": "33 | Elemental"
+    },
+    {
+      "name": "ElementEmissiveBoost",
+      "node": "MaterialExpressionScalarParameter_825",
+      "x": 11060,
+      "y": -400,
+      "group": "33 | Elemental"
+    },
+    {
+      "name": "bWeather_Active",
+      "node": "MaterialExpressionStaticSwitchParameter_5",
+      "x": 11580,
+      "y": -820,
+      "group": "34 | World / Weather"
+    },
+    {
+      "name": "bWeather_Active",
+      "node": "MaterialExpressionStaticSwitchParameter_6",
+      "x": 11580,
+      "y": -680,
+      "group": "34 | World / Weather"
+    },
+    {
+      "name": "bWeather_Active",
+      "node": "MaterialExpressionStaticSwitchParameter_7",
+      "x": 11580,
+      "y": -540,
+      "group": "34 | World / Weather"
+    },
+    {
+      "name": "WetnessStrength",
+      "node": "MaterialExpressionScalarParameter_828",
+      "x": 11580,
+      "y": -400,
+      "group": "34 | World / Weather"
+    },
+    {
+      "name": "WetnessRoughness",
+      "node": "MaterialExpressionScalarParameter_829",
+      "x": 11580,
+      "y": -260,
+      "group": "34 | World / Weather"
+    },
+    {
+      "name": "WetnessDarken",
+      "node": "MaterialExpressionScalarParameter_830",
+      "x": 11580,
+      "y": -120,
+      "group": "34 | World / Weather"
+    },
+    {
+      "name": "WetnessNormalFlatten",
+      "node": "MaterialExpressionScalarParameter_831",
+      "x": 11580,
+      "y": 20,
+      "group": "34 | World / Weather"
+    },
+    {
+      "name": "SnowDustStrength",
+      "node": "MaterialExpressionScalarParameter_832",
+      "x": 11580,
+      "y": 160,
+      "group": "34 | World / Weather"
+    },
+    {
+      "name": "SnowDustColor",
+      "node": "MaterialExpressionVectorParameter_171",
+      "x": 11580,
+      "y": 300,
+      "group": "34 | World / Weather"
+    },
+    {
+      "name": "SnowUpBias",
+      "node": "MaterialExpressionScalarParameter_833",
+      "x": 11580,
+      "y": 440,
+      "group": "34 | World / Weather"
+    },
+    {
+      "name": "MossConcavityStrength",
+      "node": "MaterialExpressionScalarParameter_834",
+      "x": 11580,
+      "y": 580,
+      "group": "34 | World / Weather"
+    },
+    {
+      "name": "MossColor",
+      "node": "MaterialExpressionVectorParameter_172",
+      "x": 11580,
+      "y": 720,
+      "group": "34 | World / Weather"
+    },
+    {
+      "name": "MossCurvatureSens",
+      "node": "MaterialExpressionScalarParameter_835",
+      "x": 11580,
+      "y": 860,
+      "group": "34 | World / Weather"
+    },
+    {
+      "name": "UseUDSTimeOfDay",
+      "node": "MaterialExpressionStaticSwitchParameter_58",
+      "x": 12100,
+      "y": -820,
+      "group": "35 | Time of Day"
+    },
+    {
+      "name": "TimeOfDayWarmth",
+      "node": "MaterialExpressionScalarParameter_826",
+      "x": 12100,
+      "y": -680,
+      "group": "35 | Time of Day"
+    },
+    {
+      "name": "TimeOfDayMPCStrength",
+      "node": "MaterialExpressionScalarParameter_827",
+      "x": 12100,
+      "y": -540,
+      "group": "35 | Time of Day"
+    },
+    {
+      "name": "ContactRimStrength",
+      "node": "MaterialExpressionScalarParameter_836",
+      "x": 12620,
+      "y": -820,
+      "group": "36 | Cinematic"
+    },
+    {
+      "name": "ContactRimPower",
+      "node": "MaterialExpressionScalarParameter_837",
+      "x": 12620,
+      "y": -680,
+      "group": "36 | Cinematic"
+    },
+    {
+      "name": "ContactRimColor",
+      "node": "MaterialExpressionVectorParameter_173",
+      "x": 12620,
+      "y": -540,
+      "group": "36 | Cinematic"
+    },
+    {
+      "name": "DistanceFadeStrength",
+      "node": "MaterialExpressionScalarParameter_838",
+      "x": 12620,
+      "y": -400,
+      "group": "36 | Cinematic"
+    },
+    {
+      "name": "DistanceFadeStart",
+      "node": "MaterialExpressionScalarParameter_839",
+      "x": 12620,
+      "y": -260,
+      "group": "36 | Cinematic"
+    },
+    {
+      "name": "DistanceFadeEnd",
+      "node": "MaterialExpressionScalarParameter_840",
+      "x": 12620,
+      "y": -120,
+      "group": "36 | Cinematic"
+    },
+    {
+      "name": "AtmosphericFadeColor",
+      "node": "MaterialExpressionVectorParameter_174",
+      "x": 12620,
+      "y": 20,
+      "group": "36 | Cinematic"
+    },
+    {
+      "name": "DitherDissolveStrength",
+      "node": "MaterialExpressionScalarParameter_841",
+      "x": 12620,
+      "y": 160,
+      "group": "36 | Cinematic"
+    },
+    {
+      "name": "DitherEdgeGlow",
+      "node": "MaterialExpressionScalarParameter_842",
+      "x": 12620,
+      "y": 300,
+      "group": "36 | Cinematic"
+    },
+    {
+      "name": "bDFContactBlend_Active",
+      "node": "MaterialExpressionStaticSwitchParameter_10",
+      "x": 10020,
+      "y": 1360,
+      "group": "37 | DF Contact Blend"
+    },
+    {
+      "name": "bDFContactBlend_Active",
+      "node": "MaterialExpressionStaticSwitchParameter_11",
+      "x": 10020,
+      "y": 1500,
+      "group": "37 | DF Contact Blend"
+    },
+    {
+      "name": "bDFContactBlend_Active",
+      "node": "MaterialExpressionStaticSwitchParameter_12",
+      "x": 10020,
+      "y": 1640,
+      "group": "37 | DF Contact Blend"
+    },
+    {
+      "name": "DFContactBlendDistance",
+      "node": "MaterialExpressionScalarParameter_39",
+      "x": 10020,
+      "y": 1780,
+      "group": "37 | DF Contact Blend"
+    },
+    {
+      "name": "DFContactBlendSharpness",
+      "node": "MaterialExpressionScalarParameter_40",
+      "x": 10020,
+      "y": 1920,
+      "group": "37 | DF Contact Blend"
+    },
+    {
+      "name": "DFContactBlendStrength",
+      "node": "MaterialExpressionScalarParameter_41",
+      "x": 10020,
+      "y": 2060,
+      "group": "37 | DF Contact Blend"
+    },
+    {
+      "name": "DFContactNoiseBreakup",
+      "node": "MaterialExpressionScalarParameter_42",
+      "x": 10020,
+      "y": 2200,
+      "group": "37 | DF Contact Blend"
+    },
+    {
+      "name": "DFContactNoiseScale",
+      "node": "MaterialExpressionScalarParameter_46",
+      "x": 10020,
+      "y": 2340,
+      "group": "37 | DF Contact Blend"
+    },
+    {
+      "name": "DFContactWorldPositionOffset",
+      "node": "MaterialExpressionScalarParameter_47",
+      "x": 10020,
+      "y": 2480,
+      "group": "37 | DF Contact Blend"
+    },
+    {
+      "name": "DFContactGroundHeight",
+      "node": "MaterialExpressionScalarParameter_48",
+      "x": 10020,
+      "y": 2620,
+      "group": "37 | DF Contact Blend"
+    },
+    {
+      "name": "DFContactHeightFalloff",
+      "node": "MaterialExpressionScalarParameter_49",
+      "x": 10020,
+      "y": 2760,
+      "group": "37 | DF Contact Blend"
+    },
+    {
+      "name": "DFContactRoughness",
+      "node": "MaterialExpressionScalarParameter_50",
+      "x": 10020,
+      "y": 2900,
+      "group": "37 | DF Contact Blend"
+    },
+    {
+      "name": "DFContactTint",
+      "node": "MaterialExpressionVectorParameter_6",
+      "x": 10020,
+      "y": 3040,
+      "group": "37 | DF Contact Blend"
+    },
+    {
+      "name": "SDF_SeamBlendDistance",
+      "node": "MaterialExpressionScalarParameter_51",
+      "x": 10540,
+      "y": 1360,
+      "group": "38 | SDF Seam Blend"
+    },
+    {
+      "name": "SDF_SeamBlendSharpness",
+      "node": "MaterialExpressionScalarParameter_52",
+      "x": 10540,
+      "y": 1500,
+      "group": "38 | SDF Seam Blend"
+    },
+    {
+      "name": "SDF_SeamBlendNoiseScale",
+      "node": "MaterialExpressionScalarParameter_53",
+      "x": 10540,
+      "y": 1640,
+      "group": "38 | SDF Seam Blend"
+    },
+    {
+      "name": "SDF_SeamBlendNoiseBreakup",
+      "node": "MaterialExpressionScalarParameter_54",
+      "x": 10540,
+      "y": 1780,
+      "group": "38 | SDF Seam Blend"
+    },
+    {
+      "name": "SDF_SeamBlendStrength",
+      "node": "MaterialExpressionScalarParameter_55",
+      "x": 10540,
+      "y": 1920,
+      "group": "38 | SDF Seam Blend"
+    },
+    {
+      "name": "bGemstone_Active",
+      "node": "MaterialExpressionStaticSwitchParameter_17",
+      "x": 11060,
+      "y": 1360,
+      "group": "39 | Gemstone"
+    },
+    {
+      "name": "GemstoneTint",
+      "node": "MaterialExpressionVectorParameter_15",
+      "x": 11060,
+      "y": 1500,
+      "group": "39 | Gemstone"
+    },
+    {
+      "name": "GemstoneRoughness",
+      "node": "MaterialExpressionScalarParameter_72",
+      "x": 11060,
+      "y": 1640,
+      "group": "39 | Gemstone"
+    },
+    {
+      "name": "IOR",
+      "node": "MaterialExpressionScalarParameter_70",
+      "x": 11060,
+      "y": 1780,
+      "group": "39 | Gemstone"
+    },
+    {
+      "name": "Dispersion",
+      "node": "MaterialExpressionScalarParameter_71",
+      "x": 11060,
+      "y": 1920,
+      "group": "39 | Gemstone"
+    },
+    {
+      "name": "ChromaticStrength",
+      "node": "MaterialExpressionScalarParameter_74",
+      "x": 11060,
+      "y": 2060,
+      "group": "39 | Gemstone"
+    },
+    {
+      "name": "Stack2_Tiling",
+      "node": "MaterialExpressionScalarParameter_78",
+      "x": 11580,
+      "y": 1360,
+      "group": "40 | Stack Layers"
+    },
+    {
+      "name": "Stack2_Blend",
+      "node": "MaterialExpressionScalarParameter_79",
+      "x": 11580,
+      "y": 1500,
+      "group": "40 | Stack Layers"
+    },
+    {
+      "name": "Stack2_Metallic",
+      "node": "MaterialExpressionScalarParameter_80",
+      "x": 11580,
+      "y": 1640,
+      "group": "40 | Stack Layers"
+    },
+    {
+      "name": "Stack2_Roughness",
+      "node": "MaterialExpressionScalarParameter_81",
+      "x": 11580,
+      "y": 1780,
+      "group": "40 | Stack Layers"
+    },
+    {
+      "name": "Stack2_Albedo",
+      "node": "MaterialExpressionTextureObjectParameter_1",
+      "x": 11580,
+      "y": 1920,
+      "group": "40 | Stack Layers"
+    },
+    {
+      "name": "Stack2_Normal",
+      "node": "MaterialExpressionTextureObjectParameter_2",
+      "x": 11580,
+      "y": 2060,
+      "group": "40 | Stack Layers"
+    },
+    {
+      "name": "Stack2_ORM",
+      "node": "MaterialExpressionTextureObjectParameter_3",
+      "x": 11580,
+      "y": 2200,
+      "group": "40 | Stack Layers"
+    },
+    {
+      "name": "Stack3_Tiling",
+      "node": "MaterialExpressionScalarParameter_82",
+      "x": 11580,
+      "y": 2340,
+      "group": "40 | Stack Layers"
+    },
+    {
+      "name": "Stack3_Metallic",
+      "node": "MaterialExpressionScalarParameter_83",
+      "x": 11580,
+      "y": 2480,
+      "group": "40 | Stack Layers"
+    },
+    {
+      "name": "Stack3_Roughness",
+      "node": "MaterialExpressionScalarParameter_84",
+      "x": 11580,
+      "y": 2620,
+      "group": "40 | Stack Layers"
+    },
+    {
+      "name": "Stack3_Albedo",
+      "node": "MaterialExpressionTextureObjectParameter_4",
+      "x": 11580,
+      "y": 2760,
+      "group": "40 | Stack Layers"
+    },
+    {
+      "name": "Stack3_Normal",
+      "node": "MaterialExpressionTextureObjectParameter_5",
+      "x": 11580,
+      "y": 2900,
+      "group": "40 | Stack Layers"
+    },
+    {
+      "name": "bStackLayer3_Active",
+      "node": "MaterialExpressionStaticBoolParameter_3",
+      "x": 11580,
+      "y": 3040,
+      "group": "40 | Stack Layers"
+    },
+    {
+      "name": "bMeshBlendActivator_Active",
+      "node": "MaterialExpressionStaticSwitchParameter_1",
+      "x": 12100,
+      "y": 1360,
+      "group": "41 | Mesh Blend"
+    },
+    {
+      "name": "DIAG_TestBool",
+      "node": "MaterialExpressionStaticBoolParameter_0",
+      "x": 10020,
+      "y": 3540,
+      "group": "43 | Legacy / Diagnostic"
+    },
+    {
+      "name": "Param",
+      "node": "MaterialExpressionScalarParameter_92",
+      "x": 10020,
+      "y": 3680,
+      "group": "43 | Legacy / Diagnostic"
+    },
+    {
+      "name": "Param_1",
+      "node": "MaterialExpressionScalarParameter_93",
+      "x": 10020,
+      "y": 3820,
+      "group": "43 | Legacy / Diagnostic"
+    },
+    {
+      "name": "bGemstone_Active_LEGACY",
+      "node": "MaterialExpressionStaticBoolParameter_1",
+      "x": 10020,
+      "y": 3960,
+      "group": "43 | Legacy / Diagnostic"
+    },
+    {
+      "name": "bStackLayer2_Active_LEGACY",
+      "node": "MaterialExpressionStaticBoolParameter_2",
+      "x": 10020,
+      "y": 4100,
+      "group": "43 | Legacy / Diagnostic"
+    },
+    {
+      "name": "bUseOpacityMap",
+      "node": "MaterialExpressionStaticSwitchParameter_18",
+      "x": 10540,
+      "y": 3540,
+      "group": "44 | Opacity"
+    },
+    {
+      "name": "OpacityMap",
+      "node": "MaterialExpressionTextureObjectParameter_7",
+      "x": 10540,
+      "y": 3680,
+      "group": "44 | Opacity"
+    },
+    {
+      "name": "OpacityStrength",
+      "node": "MaterialExpressionScalarParameter_122",
+      "x": 10540,
+      "y": 3820,
+      "group": "44 | Opacity"
+    },
+    {
+      "name": "Opacity",
+      "node": "MaterialExpressionScalarParameter_137",
+      "x": 10540,
+      "y": 3960,
+      "group": "44 | Opacity"
+    },
+    {
+      "name": "bClothWind_Active",
+      "node": "MaterialExpressionStaticSwitchParameter_19",
+      "x": 11060,
+      "y": 3540,
+      "group": "45 | Cloth Wind"
+    },
+    {
+      "name": "Cloth_WindStrength",
+      "node": "MaterialExpressionScalarParameter_123",
+      "x": 11060,
+      "y": 3680,
+      "group": "45 | Cloth Wind"
+    },
+    {
+      "name": "Cloth_WindSpeed",
+      "node": "MaterialExpressionScalarParameter_124",
+      "x": 11060,
+      "y": 3820,
+      "group": "45 | Cloth Wind"
+    },
+    {
+      "name": "Cloth_FoldingAmount",
+      "node": "MaterialExpressionScalarParameter_125",
+      "x": 11060,
+      "y": 3960,
+      "group": "45 | Cloth Wind"
+    },
+    {
+      "name": "Cloth_DrapeScale",
+      "node": "MaterialExpressionScalarParameter_126",
+      "x": 11060,
+      "y": 4100,
+      "group": "45 | Cloth Wind"
+    },
+    {
+      "name": "Cloth_WindDirection",
+      "node": "MaterialExpressionVectorParameter_21",
+      "x": 11060,
+      "y": 4240,
+      "group": "45 | Cloth Wind"
+    },
+    {
+      "name": "AudioReactAmount",
+      "node": "MaterialExpressionScalarParameter_94",
+      "x": 11580,
+      "y": 3540,
+      "group": "46 | Audio Reactive"
+    },
+    {
+      "name": "AudioBeatGain",
+      "node": "MaterialExpressionScalarParameter_95",
+      "x": 11580,
+      "y": 3680,
+      "group": "46 | Audio Reactive"
+    },
+    {
+      "name": "AudioBassGain",
+      "node": "MaterialExpressionScalarParameter_96",
+      "x": 11580,
+      "y": 3820,
+      "group": "46 | Audio Reactive"
+    },
+    {
+      "name": "AudioMidGain",
+      "node": "MaterialExpressionScalarParameter_97",
+      "x": 11580,
+      "y": 3960,
+      "group": "46 | Audio Reactive"
+    },
+    {
+      "name": "AudioTrebleGain",
+      "node": "MaterialExpressionScalarParameter_98",
+      "x": 11580,
+      "y": 4100,
+      "group": "46 | Audio Reactive"
+    },
+    {
+      "name": "AudioReactivity",
+      "node": "MaterialExpressionScalarParameter_117",
+      "x": 11580,
+      "y": 4240,
+      "group": "46 | Audio Reactive"
+    },
+    {
+      "name": "Cymatic_ModeN",
+      "node": "MaterialExpressionScalarParameter_99",
+      "x": 12100,
+      "y": 3540,
+      "group": "47 | Cymatics"
+    },
+    {
+      "name": "Cymatic_ModeM",
+      "node": "MaterialExpressionScalarParameter_100",
+      "x": 12100,
+      "y": 3680,
+      "group": "47 | Cymatics"
+    },
+    {
+      "name": "Cymatic_BeatPulse",
+      "node": "MaterialExpressionScalarParameter_101",
+      "x": 12100,
+      "y": 3820,
+      "group": "47 | Cymatics"
+    },
+    {
+      "name": "Cymatic_BassIntensity",
+      "node": "MaterialExpressionScalarParameter_102",
+      "x": 12100,
+      "y": 3960,
+      "group": "47 | Cymatics"
+    },
+    {
+      "name": "Cymatic_MidIntensity",
+      "node": "MaterialExpressionScalarParameter_103",
+      "x": 12100,
+      "y": 4100,
+      "group": "47 | Cymatics"
+    },
+    {
+      "name": "Cymatic_EmissiveScale",
+      "node": "MaterialExpressionScalarParameter_104",
+      "x": 12100,
+      "y": 4240,
+      "group": "47 | Cymatics"
+    },
+    {
+      "name": "Cymatic_IridescenceShift",
+      "node": "MaterialExpressionScalarParameter_105",
+      "x": 12100,
+      "y": 4380,
+      "group": "47 | Cymatics"
+    },
+    {
+      "name": "Cymatic_UVDistortion",
+      "node": "MaterialExpressionScalarParameter_106",
+      "x": 12100,
+      "y": 4520,
+      "group": "47 | Cymatics"
+    },
+    {
+      "name": "CymaticAmplitude",
+      "node": "MaterialExpressionScalarParameter_107",
+      "x": 12100,
+      "y": 4660,
+      "group": "47 | Cymatics"
+    },
+    {
+      "name": "POM_StepCount",
+      "node": "MaterialExpressionScalarParameter_108",
+      "x": 12620,
+      "y": 3540,
+      "group": "48 | Advanced POM / Normal"
+    },
+    {
+      "name": "Toksvig_AntiAliasing_Weight",
+      "node": "MaterialExpressionScalarParameter_109",
+      "x": 12620,
+      "y": 3680,
+      "group": "48 | Advanced POM / Normal"
+    },
+    {
+      "name": "WPO_Resonance_Scale",
+      "node": "MaterialExpressionScalarParameter_110",
+      "x": 10020,
+      "y": 5160,
+      "group": "49 | Resonance / Grazing"
+    },
+    {
+      "name": "Grazing_Rim_Boost",
+      "node": "MaterialExpressionScalarParameter_111",
+      "x": 10020,
+      "y": 5300,
+      "group": "49 | Resonance / Grazing"
+    },
+    {
+      "name": "Grazing_Rim_Tint",
+      "node": "MaterialExpressionVectorParameter_19",
+      "x": 10020,
+      "y": 5440,
+      "group": "49 | Resonance / Grazing"
+    },
+    {
+      "name": "LOD_Tier_Index",
+      "node": "MaterialExpressionScalarParameter_112",
+      "x": 10540,
+      "y": 5160,
+      "group": "50 | LOD / Crossfade"
+    },
+    {
+      "name": "LOD_Distance_Min",
+      "node": "MaterialExpressionScalarParameter_119",
+      "x": 10540,
+      "y": 5300,
+      "group": "50 | LOD / Crossfade"
+    },
+    {
+      "name": "LOD_Distance_Max",
+      "node": "MaterialExpressionScalarParameter_120",
+      "x": 10540,
+      "y": 5440,
+      "group": "50 | LOD / Crossfade"
+    },
+    {
+      "name": "LOD_Distance_Bounds",
+      "node": "MaterialExpressionVectorParameter_20",
+      "x": 10540,
+      "y": 5580,
+      "group": "50 | LOD / Crossfade"
+    },
+    {
+      "name": "Dither_Crossfade_Window",
+      "node": "MaterialExpressionScalarParameter_121",
+      "x": 10540,
+      "y": 5720,
+      "group": "50 | LOD / Crossfade"
+    },
+    {
+      "name": "InkDensity",
+      "node": "MaterialExpressionScalarParameter_113",
+      "x": 11060,
+      "y": 5160,
+      "group": "51 | Ink / Oil Paint"
+    },
+    {
+      "name": "OilPaintMix",
+      "node": "MaterialExpressionScalarParameter_114",
+      "x": 11060,
+      "y": 5300,
+      "group": "51 | Ink / Oil Paint"
+    },
+    {
+      "name": "ShadowDepth",
+      "node": "MaterialExpressionScalarParameter_115",
+      "x": 11060,
+      "y": 5440,
+      "group": "51 | Ink / Oil Paint"
+    },
+    {
+      "name": "InkPanSpeed",
+      "node": "MaterialExpressionScalarParameter_118",
+      "x": 11060,
+      "y": 5580,
+      "group": "51 | Ink / Oil Paint"
+    },
+    {
+      "name": "InkColor",
+      "node": "MaterialExpressionVectorParameter_18",
+      "x": 11060,
+      "y": 5720,
+      "group": "51 | Ink / Oil Paint"
+    },
+    {
+      "name": "ChladniScale",
+      "node": "MaterialExpressionScalarParameter_127",
+      "x": 11580,
+      "y": 5160,
+      "group": "52 | Toon Ramp / Chladni"
+    },
+    {
+      "name": "ToonRampStrength",
+      "node": "MaterialExpressionScalarParameter_128",
+      "x": 11580,
+      "y": 5300,
+      "group": "52 | Toon Ramp / Chladni"
+    },
+    {
+      "name": "ToonRampStrength",
+      "node": "MaterialExpressionScalarParameter_129",
+      "x": 11580,
+      "y": 5440,
+      "group": "52 | Toon Ramp / Chladni"
+    },
+    {
+      "name": "ChladniColor",
+      "node": "MaterialExpressionVectorParameter_22",
+      "x": 11580,
+      "y": 5580,
+      "group": "52 | Toon Ramp / Chladni"
+    },
+    {
+      "name": "ChladniMask",
+      "node": "MaterialExpressionTextureObjectParameter_8",
+      "x": 11580,
+      "y": 5720,
+      "group": "52 | Toon Ramp / Chladni"
+    },
+    {
+      "name": "bToonRampEnabled",
+      "node": "MaterialExpressionStaticSwitchParameter_23",
+      "x": 11580,
+      "y": 5860,
+      "group": "52 | Toon Ramp / Chladni"
+    },
+    {
+      "name": "bToonRampEnabled",
+      "node": "MaterialExpressionStaticSwitchParameter_24",
+      "x": 11580,
+      "y": 6000,
+      "group": "52 | Toon Ramp / Chladni"
+    },
+    {
+      "name": "bToonRampActive",
+      "node": "MaterialExpressionStaticSwitchParameter_25",
+      "x": 11580,
+      "y": 6140,
+      "group": "52 | Toon Ramp / Chladni"
+    },
+    {
+      "name": "bRampFromTerminator",
+      "node": "MaterialExpressionStaticSwitchParameter_32",
+      "x": 11580,
+      "y": 6280,
+      "group": "52 | Toon Ramp / Chladni"
+    },
+    {
+      "name": "NoteScrollSpeed",
+      "node": "MaterialExpressionScalarParameter_130",
+      "x": 12100,
+      "y": 5160,
+      "group": "53 | Musical Notes"
+    },
+    {
+      "name": "NoteScrollAmp",
+      "node": "MaterialExpressionScalarParameter_131",
+      "x": 12100,
+      "y": 5300,
+      "group": "53 | Musical Notes"
+    },
+    {
+      "name": "MagicalTransformProgress",
+      "node": "MaterialExpressionScalarParameter_132",
+      "x": 12620,
+      "y": 5160,
+      "group": "54 | Magical Transform FX"
+    },
+    {
+      "name": "MagicalTransformDissolve",
+      "node": "MaterialExpressionScalarParameter_133",
+      "x": 12620,
+      "y": 5300,
+      "group": "54 | Magical Transform FX"
+    },
+    {
+      "name": "MagicalTransformBloom",
+      "node": "MaterialExpressionScalarParameter_134",
+      "x": 12620,
+      "y": 5440,
+      "group": "54 | Magical Transform FX"
+    },
+    {
+      "name": "MagicalTransformSparkle",
+      "node": "MaterialExpressionScalarParameter_135",
+      "x": 12620,
+      "y": 5580,
+      "group": "54 | Magical Transform FX"
+    },
+    {
+      "name": "MagicalTransformBeat",
+      "node": "MaterialExpressionScalarParameter_136",
+      "x": 12620,
+      "y": 5720,
+      "group": "54 | Magical Transform FX"
+    },
+    {
+      "name": "MagicalTransformTint",
+      "node": "MaterialExpressionVectorParameter_23",
+      "x": 12620,
+      "y": 5860,
+      "group": "54 | Magical Transform FX"
+    },
+    {
+      "name": "bGouache_Active",
+      "node": "MaterialExpressionStaticSwitchParameter_27",
+      "x": 10020,
+      "y": 6780,
+      "group": "55 | Gouache Base"
+    },
+    {
+      "name": "bGouache_Active",
+      "node": "MaterialExpressionStaticSwitchParameter_28",
+      "x": 10020,
+      "y": 6920,
+      "group": "55 | Gouache Base"
+    },
+    {
+      "name": "bGouache_Active",
+      "node": "MaterialExpressionStaticSwitchParameter_29",
+      "x": 10020,
+      "y": 7060,
+      "group": "55 | Gouache Base"
+    },
+    {
+      "name": "bGouache_Active",
+      "node": "MaterialExpressionStaticSwitchParameter_30",
+      "x": 10020,
+      "y": 7200,
+      "group": "55 | Gouache Base"
+    },
+    {
+      "name": "bGouache_Active",
+      "node": "MaterialExpressionStaticSwitchParameter_31",
+      "x": 10020,
+      "y": 7340,
+      "group": "55 | Gouache Base"
+    },
+    {
+      "name": "Gouache_Strength",
+      "node": "MaterialExpressionScalarParameter_138",
+      "x": 10020,
+      "y": 7480,
+      "group": "55 | Gouache Base"
+    },
+    {
+      "name": "Gouache_Strength",
+      "node": "MaterialExpressionScalarParameter_145",
+      "x": 10020,
+      "y": 7620,
+      "group": "55 | Gouache Base"
+    },
+    {
+      "name": "Gouache_UVTiling",
+      "node": "MaterialExpressionScalarParameter_139",
+      "x": 10020,
+      "y": 7760,
+      "group": "55 | Gouache Base"
+    },
+    {
+      "name": "Gouache_UVTiling",
+      "node": "MaterialExpressionScalarParameter_146",
+      "x": 10020,
+      "y": 7900,
+      "group": "55 | Gouache Base"
+    },
+    {
+      "name": "Gouache_PaperMean",
+      "node": "MaterialExpressionScalarParameter_140",
+      "x": 10020,
+      "y": 8040,
+      "group": "55 | Gouache Base"
+    },
+    {
+      "name": "Gouache_PaperMean",
+      "node": "MaterialExpressionScalarParameter_153",
+      "x": 10020,
+      "y": 8180,
+      "group": "55 | Gouache Base"
+    },
+    {
+      "name": "Gouache_PaperGrain",
+      "node": "MaterialExpressionScalarParameter_141",
+      "x": 10020,
+      "y": 8320,
+      "group": "55 | Gouache Base"
+    },
+    {
+      "name": "Gouache_PaperGrain",
+      "node": "MaterialExpressionScalarParameter_154",
+      "x": 10020,
+      "y": 8460,
+      "group": "55 | Gouache Base"
+    },
+    {
+      "name": "Gouache_ChalkLift",
+      "node": "MaterialExpressionScalarParameter_142",
+      "x": 10020,
+      "y": 8600,
+      "group": "55 | Gouache Base"
+    },
+    {
+      "name": "Gouache_ChalkLift",
+      "node": "MaterialExpressionScalarParameter_161",
+      "x": 10020,
+      "y": 8740,
+      "group": "55 | Gouache Base"
+    },
+    {
+      "name": "Gouache_NormalStrength",
+      "node": "MaterialExpressionScalarParameter_143",
+      "x": 10020,
+      "y": 8880,
+      "group": "55 | Gouache Base"
+    },
+    {
+      "name": "Gouache_NormalStrength",
+      "node": "MaterialExpressionScalarParameter_173",
+      "x": 10020,
+      "y": 9020,
+      "group": "55 | Gouache Base"
+    },
+    {
+      "name": "Gouache_TexelSize",
+      "node": "MaterialExpressionScalarParameter_144",
+      "x": 10020,
+      "y": 9160,
+      "group": "55 | Gouache Base"
+    },
+    {
+      "name": "Gouache_TexelSize",
+      "node": "MaterialExpressionScalarParameter_174",
+      "x": 10020,
+      "y": 9300,
+      "group": "55 | Gouache Base"
+    },
+    {
+      "name": "Gouache_DetileScale",
+      "node": "MaterialExpressionScalarParameter_147",
+      "x": 10020,
+      "y": 9440,
+      "group": "55 | Gouache Base"
+    },
+    {
+      "name": "Gouache_PaperTex",
+      "node": "MaterialExpressionTextureObjectParameter_9",
+      "x": 10020,
+      "y": 9580,
+      "group": "55 | Gouache Base"
+    },
+    {
+      "name": "Gouache_PigmentTex",
+      "node": "MaterialExpressionTextureObjectParameter_10",
+      "x": 10020,
+      "y": 9720,
+      "group": "55 | Gouache Base"
+    },
+    {
+      "name": "Gouache_FlipFPS",
+      "node": "MaterialExpressionScalarParameter_148",
+      "x": 10540,
+      "y": 6780,
+      "group": "56 | Gouache Flipbook / Boil"
+    },
+    {
+      "name": "Gouache_FlipAmount",
+      "node": "MaterialExpressionScalarParameter_149",
+      "x": 10540,
+      "y": 6920,
+      "group": "56 | Gouache Flipbook / Boil"
+    },
+    {
+      "name": "Gouache_FlipTiling",
+      "node": "MaterialExpressionScalarParameter_150",
+      "x": 10540,
+      "y": 7060,
+      "group": "56 | Gouache Flipbook / Boil"
+    },
+    {
+      "name": "Gouache_SwirlSpeed",
+      "node": "MaterialExpressionScalarParameter_151",
+      "x": 10540,
+      "y": 7200,
+      "group": "56 | Gouache Flipbook / Boil"
+    },
+    {
+      "name": "Gouache_SwirlDrift",
+      "node": "MaterialExpressionScalarParameter_152",
+      "x": 10540,
+      "y": 7340,
+      "group": "56 | Gouache Flipbook / Boil"
+    },
+    {
+      "name": "Gouache_FlipTex",
+      "node": "MaterialExpressionTextureObjectParameter_11",
+      "x": 10540,
+      "y": 7480,
+      "group": "56 | Gouache Flipbook / Boil"
+    },
+    {
+      "name": "Gouache_BoilFPS",
+      "node": "MaterialExpressionScalarParameter_171",
+      "x": 10540,
+      "y": 7620,
+      "group": "56 | Gouache Flipbook / Boil"
+    },
+    {
+      "name": "Gouache_BoilAmount",
+      "node": "MaterialExpressionScalarParameter_172",
+      "x": 10540,
+      "y": 7760,
+      "group": "56 | Gouache Flipbook / Boil"
+    },
+    {
+      "name": "Gouache_Band1",
+      "node": "MaterialExpressionScalarParameter_155",
+      "x": 11060,
+      "y": 6780,
+      "group": "57 | Gouache Color / Shadow"
+    },
+    {
+      "name": "Gouache_Band2",
+      "node": "MaterialExpressionScalarParameter_156",
+      "x": 11060,
+      "y": 6920,
+      "group": "57 | Gouache Color / Shadow"
+    },
+    {
+      "name": "Gouache_BandSoft",
+      "node": "MaterialExpressionScalarParameter_157",
+      "x": 11060,
+      "y": 7060,
+      "group": "57 | Gouache Color / Shadow"
+    },
+    {
+      "name": "Gouache_BleedJitter",
+      "node": "MaterialExpressionScalarParameter_158",
+      "x": 11060,
+      "y": 7200,
+      "group": "57 | Gouache Color / Shadow"
+    },
+    {
+      "name": "Gouache_ShadowMix",
+      "node": "MaterialExpressionScalarParameter_159",
+      "x": 11060,
+      "y": 7340,
+      "group": "57 | Gouache Color / Shadow"
+    },
+    {
+      "name": "Gouache_ShadowSat",
+      "node": "MaterialExpressionScalarParameter_160",
+      "x": 11060,
+      "y": 7480,
+      "group": "57 | Gouache Color / Shadow"
+    },
+    {
+      "name": "Gouache_ShadowTint",
+      "node": "MaterialExpressionVectorParameter_24",
+      "x": 11060,
+      "y": 7620,
+      "group": "57 | Gouache Color / Shadow"
+    },
+    {
+      "name": "Gouache_GranAmount",
+      "node": "MaterialExpressionScalarParameter_162",
+      "x": 11060,
+      "y": 7760,
+      "group": "57 | Gouache Color / Shadow"
+    },
+    {
+      "name": "Gouache_EdgePool",
+      "node": "MaterialExpressionScalarParameter_163",
+      "x": 11580,
+      "y": 6780,
+      "group": "58 | Gouache Pool / Bloom"
+    },
+    {
+      "name": "Gouache_EdgeHalo",
+      "node": "MaterialExpressionScalarParameter_164",
+      "x": 11580,
+      "y": 6920,
+      "group": "58 | Gouache Pool / Bloom"
+    },
+    {
+      "name": "Gouache_PoolAmount",
+      "node": "MaterialExpressionScalarParameter_165",
+      "x": 11580,
+      "y": 7060,
+      "group": "58 | Gouache Pool / Bloom"
+    },
+    {
+      "name": "Gouache_PoolPower",
+      "node": "MaterialExpressionScalarParameter_166",
+      "x": 11580,
+      "y": 7200,
+      "group": "58 | Gouache Pool / Bloom"
+    },
+    {
+      "name": "Gouache_BloomThresh",
+      "node": "MaterialExpressionScalarParameter_167",
+      "x": 11580,
+      "y": 7340,
+      "group": "58 | Gouache Pool / Bloom"
+    },
+    {
+      "name": "Gouache_BloomSoft",
+      "node": "MaterialExpressionScalarParameter_168",
+      "x": 11580,
+      "y": 7480,
+      "group": "58 | Gouache Pool / Bloom"
+    },
+    {
+      "name": "Gouache_BloomEdge",
+      "node": "MaterialExpressionScalarParameter_169",
+      "x": 11580,
+      "y": 7620,
+      "group": "58 | Gouache Pool / Bloom"
+    },
+    {
+      "name": "Gouache_BloomLift",
+      "node": "MaterialExpressionScalarParameter_170",
+      "x": 11580,
+      "y": 7760,
+      "group": "58 | Gouache Pool / Bloom"
+    },
+    {
+      "name": "Gouache_ChalkRoughness",
+      "node": "MaterialExpressionScalarParameter_175",
+      "x": 12100,
+      "y": 6780,
+      "group": "59 | Gouache Lighting"
+    },
+    {
+      "name": "Gouache_SunFollow",
+      "node": "MaterialExpressionScalarParameter_181",
+      "x": 12100,
+      "y": 6920,
+      "group": "59 | Gouache Lighting"
+    },
+    {
+      "name": "Gouache_KeyLightDir",
+      "node": "MaterialExpressionVectorParameter_25",
+      "x": 12100,
+      "y": 7060,
+      "group": "59 | Gouache Lighting"
+    },
+    {
+      "name": "EmissiveSoftCeiling",
+      "node": "MaterialExpressionScalarParameter_176",
+      "x": 12100,
+      "y": 7200,
+      "group": "59 | Gouache Lighting"
+    },
+    {
+      "name": "ShadowRampSunFollow",
+      "node": "MaterialExpressionScalarParameter_177",
+      "x": 12100,
+      "y": 7340,
+      "group": "59 | Gouache Lighting"
+    }
+  ]
+}

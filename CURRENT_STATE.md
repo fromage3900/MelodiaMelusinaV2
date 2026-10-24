@@ -36,6 +36,7 @@ Build: closed-editor `BS_GodFileEditor Win64 Development` Succeeded each time; `
 
 
 ### 2. The gouache / Melusina pipeline (canon doc: `Docs/Materials/GOUACHE_SHADER_CANON.md`, sections 1-12)
+- **Universal master layout closeout, 2026-10-24:** 59 existing comment headers and 457 direct parameter nodes (436 unique names) are organized into parameter-family columns at X ≥ 10000; 941 non-parameter positions are unchanged, with no connection or parameter-value edits. Four saved batches completed; native readback verified every placement. Recompile: 1,398 expressions, 335 VS / 1,413 PS instructions, 24 estimated PS texture samples. Evidence: `Saved/Audit/universal_material_layout_closeout.json`. This is layout/compile proof, not visual lookdev or face-SDF acceptance; ramp-library consolidation and face-SDF light-angle wiring remain separate shader work.
 - Master: `M_Master_Toon_Universal`, default-OFF `bGouache_Active`; full function + 16-frame swirl flipbook + boil; shader permutations verified from the LOG. Backups in `Masters/_Backup/`.
 - Textures `/Game/EnvSandbox/Materials/Textures/Gouache/`: `T_Gouache_Pigment_RGBA`, `T_Gouache_PoolFlipbook`, `T_Gouache_Rebelle_Granulation`, `_Blotch`, `T_Gouache_Paper_Aquarelle` (placeholder).
 - Suite `/Game/Melodia/Materials/Lookdev/`: `MI_Gouache_Toon_{Preset,Cloth,Stone,Soft,Wet,FoliageLive}`.
