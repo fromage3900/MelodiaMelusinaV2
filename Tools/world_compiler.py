@@ -880,6 +880,48 @@ def stage_terrain(recipe: dict[str, Any]) -> tuple[dict[str, Any] | None, dict[s
                                 None if mask.cells else ["ground probe has no plantable cells"])
         except Exception as exc:
             return {"kind": "ground_probe", "probe": terrain.get("probe"), "error": str(exc)}, _stage("FAIL", "ground_probe", "", [str(exc)])
+    if terrain and terrain.get("kind") == "house_hda":
+        try:
+            import hda_terrain_recipe as htr  # noqa: E402
+
+            manifest = htr.resolve(recipe)
+            note = f"{len(manifest['params'])} params, sha {manifest['manifest_sha256'][:12]}"
+            return {"kind": "house_hda", "manifest": manifest}, _stage("PASS", "Tools/hda_terrain_recipe.py", note)
+        except Exception as exc:
+            return {"kind": "house_hda", "error": str(exc)}, _stage("FAIL", "hda_terrain_recipe", "", [str(exc)])
+    if terrain and terrain.get("kind") == "planetary_lab":
+        try:
+            import planetary_field as pf  # noqa: E402
+
+            size = int(terrain.get("size") or 129)
+            tile = terrain.get("tile") or [0, 0]
+            has_seed = terrain.get("seed") is not None
+            field_seed = int(terrain["seed"]) if has_seed else int(recipe["world_seed"])
+            f = pf.field(size, field_seed, int(tile[0]), int(tile[1]))
+            info = {
+                "kind": "planetary_lab",
+                "schema": pf.SCHEMA,
+                "size": size,
+                "tile": [int(tile[0]), int(tile[1])],
+                "seed_source": "recipe" if has_seed else "world_seed",
+                "field_seed": field_seed,
+                "world_seed": int(recipe["world_seed"]),
+                "height": pf.stats(f["height"]),
+                "slope": pf.stats(f["slope"]),
+                "cavity": pf.stats(f["cavity"]),
+                "shoreline_frac": round(pf.fraction_above(f["shoreline"], 0.1), 4),
+                "biome": pf.biome_classes(f["biome"]),
+                "traversal": pf.stats(f["traversal"]),
+                "units": "normalized 0..1 (planetary lab native)",
+                "production_eligible": False,
+                # bytes; compile() writes it as planetary_height.r16 and strips it from the JSON.
+                "r16": pf.r16_bytes(f["height"]),
+                "note": "Reuses the Melodia Planetary Lab field math from the recipe seed (byte-faithful to the Houdini lab); Apprentice formula, technical/lookdev terrain.",
+            }
+            note = f"{size}x{size} seed {field_seed}, height {info['height']['min']:.3f}..{info['height']['max']:.3f}, shore {info['shoreline_frac']}"
+            return info, _stage("PASS", "Content/Python/planetary_field.py", note)
+        except Exception as exc:
+            return {"kind": "planetary_lab", "error": str(exc)}, _stage("FAIL", "planetary_field", "", [str(exc)])
     if not terrain or not terrain.get("handoff"):
         return None, _stage("SKIPPED", "Tools/terrain_handoff.py", "recipe.terrain is null")
     try:
@@ -1313,6 +1355,9 @@ def compile_recipe(recipe_path: Path, *, out_root: Path | None = None, constella
         "identity.json": _json_bytes(identity),
     }
     if terrain is not None:
+        if isinstance(terrain.get("r16"), (bytes, bytearray)):
+            files["planetary_height.r16"] = bytes(terrain["r16"])
+            terrain = {k: v for k, v in terrain.items() if k != "r16"}
         files["terrain.json"] = _json_bytes(terrain)
     if chapter is not None:
         files["chapter.json"] = _json_bytes(chapter)

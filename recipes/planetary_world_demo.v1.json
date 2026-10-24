@@ -1,0 +1,65 @@
+{
+  "schema": "melodia.world_recipe.v1",
+  "recipe_id": "planetary_world_demo",
+  "world_seed": 3900,
+  "identity": {
+    "mode_id": "lydian",
+    "root_pitch_class": 0,
+    "bpm": 96,
+    "movement_id": "petal_cantata",
+    "chunk": [0, 0]
+  },
+  "place": {
+    "level": "/Game/EnvSandbox/Monoliths/FarawayMother/Prototype/LV_FarawayMother_Prototype",
+    "anchor_cm": [0.0, 0.0, 0.0],
+    "up_axis_offset_cm": 4.0
+  },
+  "field": {
+    "kind": "radial_bands",
+    "band_count": 3,
+    "inner_radius_cm": 200.0,
+    "band_width_cm": 300.0,
+    "sector_deg": [0.0, 360.0],
+    "density_per_m2": 2.0,
+    "phyllotaxis_angle_rad": 2.399963,
+    "radial_jitter_cm": 18.0,
+    "scale_range": [0.85, 1.3],
+    "chladni": {
+      "modes": [[2, 3], [3, 4], [4, 5]],
+      "threshold": 0.35,
+      "plate_size_cm": 6000.0
+    }
+  },
+  "species": [
+    {
+      "species_id": "planetary_crystal_moss",
+      "mesh": "/Game/EnvSandbox/Monoliths/FarawayMother/UniverseFoundry/Meshes/SM_FloatingCrystal_Cluster_A",
+      "band_mi_prefix": "/Game/EnvSandbox/Monoliths/FarawayMother/UniverseFoundry/Materials/MI_FarawayCrystal_",
+      "scale_range": [0.85, 1.4],
+      "weight": 1.0,
+      "variants": 1,
+      "height_class": 1
+    }
+  ],
+  "palette": {
+    "bands": [
+      {"label": "B0_Rosegold", "tint": [0.96, 0.72, 0.64]},
+      {"label": "B1_Pearl", "tint": [1.0, 0.88, 0.75]},
+      {"label": "B2_Lavender", "tint": [0.68, 0.64, 0.94]}
+    ],
+    "parent_master": "/Game/Melodia/_PROJECT/04_Materials/M_Melodia_Palette",
+    "tint_parameter": "BandTint",
+    "active_lane": "wind"
+  },
+  "signal": {
+    "source_mpc": "/Game/Melodia/_PROJECT/04_Materials/MPC_Melodia_Palette",
+    "driver_mpc": "/Game/Melodia/Cymatics/MPC_Cymatics_Driver",
+    "lanes": ["Cymatic_BeatPulse", "Cymatic_BassIntensity", "Cymatic_MidIntensity", "Cymatic_EmissiveScale", "Cymatic_IridescenceShift", "Cymatic_UVDistortion", "Cymatic_ModeN", "Cymatic_ModeM"]
+  },
+  "terrain": {
+    "kind": "planetary_lab",
+    "size": 129,
+    "seed": 1337,
+    "tile": [0, 0]
+  }
+}
