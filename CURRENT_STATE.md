@@ -1,5 +1,20 @@
 # Melodia Melusina ? Current State
 
+## Sonifold geometry-intrinsic cymatics research — proposed 2026-10-24
+
+**Status: RESEARCH PLAN ONLY. No Sonifold installation, eigenbasis computation, HDA cook, Unreal import, or runtime proof has occurred.** This is a bounded extension of the existing MIDI/chord → Houdini cymatics → World Compiler → UE material/FX architecture, not a replacement audio system or a new PCG Python implementation.
+
+- **Research:** Joonhyung Bae, *Sonifold: Audio-Driven Nodal Surfaces on 3D Meshes* (published July 24, 2026), https://doi.org/10.1080/17513472.2026.2702915 ; source https://github.com/joonhyungbae/Sonifold ; demo https://joonhyungbae.github.io/Sonifold/ . Source code MIT-licensed; check separate terms for paper/figures.
+- **Acquisition:** clone the upstream repository into an isolated external research directory; Python 3.10, `conda env create -f environment.yml` then `conda activate sonifold`. CPU path: `USE_GPU=0 python -m precompute.run_step1` (POSIX syntax; on Windows PowerShell set `$env:USE_GPU="0"` first). GPU/CuPy optional. Do not inject dependencies into Houdini's bundled Python or Melodia's runtime.
+- **Hypothesis:** precompute 24–48 Laplace–Beltrami surface eigenmodes for one *closed, triangulated, static* Faraway Mother monolith proxy; map existing chord/MIDI coefficients to eigenmode weights and extract zero-level nodal curves. Geometry-specific spectral patterns can drive emissive ornament, displacement/relief masks and selective particles. These are intrinsic surface-Laplacian patterns, **not verified physical elastic vibration modes**.
+- **Gate A — offline reproducibility:** record source revision, mesh hash, units, topology, eigenvalues, solver parameters and seeds; verify eigenpair residuals, finite coefficients, nodal continuity, and stability under mesh refinement. Avoid assuming that independently solved eigenmode signs or ordering are stable across remeshing.
+- **Gate B — three-chord proof:** generate three chord-conditioned outputs on the same proxy, export per-vertex scalar fields or baked masks plus nodal curves; compare a baseline Chladni COP texture with the mesh-intrinsic result. Retain the existing canonical (3,5) Faraway cloth field unchanged.
+- **Gate C — Houdini/UE handoff:** only after offline success, import into a disposable Houdini graph; use existing Hython, cymatics material parameters, World Compiler and Unreal material/Niagara contracts. Test stable geometry, UV/mask fidelity, deterministic recook and packaged appearance. Do not add runtime eigen-solvers or duplicate the cymatics single-writer.
+- **Stop conditions:** unstable eigenbasis, non-manifold input, unacceptable precompute cost, failure to preserve mesh/attribute identity, or no visible improvement over the existing Chladni approach. No production asset or canonical level mutation without owner review.
+- **Adjacent research, deferred:** boundary-condition-aware Chladni tiling for cathedral tracery; acoustic-material redistribution as an art-directed thickness-field experiment; spatially varying m/n controls in Houdini Chladni COP. These are optional, not P0 requirements.
+- **Next action:** download and inspect Sonifold's mesh-loading and eigenbasis contracts; select one disposable monolith proxy; run a CPU baseline and collect three chord renders plus a mesh-refinement comparison.
+
+
 ## Workstation Git divergence alert — corrected 2026-10-22
 
 **Current disposition: earlier C: ahead/behind and dirty-tree alarms are WITHDRAWN as live blockers.** The owner reports the checkout issue was fixed and identifies the earlier claim as false. Previous C:/G: comparison tables and local-main warnings below are historical snapshots only; they must not be carried into Git Watch, agent handoffs or merge decisions as current facts. GitHub alone cannot inspect local C:/G: working trees. To assert any *new* local divergence, first run a fresh read-only `git status --short --branch` and `git rev-list --left-right --count origin/main...HEAD` in the exact checkout. Do not reset, rebase, delete or overwrite a workstation to satisfy an old report.
