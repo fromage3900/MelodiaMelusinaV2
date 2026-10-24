@@ -1,0 +1,24 @@
+{
+  "asset": "Source/BS_GodFile/MelodiaIntegration/MelodiaWaterChorus.cpp",
+  "scope": "Use the existing owner as world context for eight optional Niagara accent spawns; guard missing owner/world; preserve independent FluidNinja splash stamps.",
+  "static_readback": {
+    "owner_context_spawn_calls": 8,
+    "null_context_spawn_calls": 0
+  },
+  "live_coding": {
+    "result": "success",
+    "patch_applied": true,
+    "errors_since_compile": 0
+  },
+  "automation": {
+    "prefix": "Melodia.WaveHarp.Water",
+    "passed": 3,
+    "failed": 0,
+    "tests": [
+      "HarmonyIsTheWatersCharacter",
+      "UnitOwnFluidIsRecognised",
+      "DistanceBudgetKeepsTheNearSimsLive"
+    ]
+  },
+  "proof_boundary": "Compiled source and existing water automation pass. No P0 visual A/B or rendered droplet acceptance is claimed; WaterChorus remains opt-in and defaults off."
+}

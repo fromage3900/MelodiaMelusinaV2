@@ -1,5 +1,7 @@
 # Melodia Melusina ? Current State
 
+**WaterChorus build closeout, 2026-10-24:** Live Coding succeeded with the patch applied and zero errors; all eight optional Niagara accent spawns now use the existing owner as world context, with zero remaining null-context calls. Existing `Melodia.WaveHarp.Water.*` automation passes **3/3**. Evidence: `Saved/Audit/water_chorus_world_context_closeout.json`. This proves the loaded source fix, not a rendered P0 droplet A/B; WaterChorus remains opt-in and defaults off.
+
 ## SESSION CLOSE-OUT 2026-10-22 (night) - gouache canon, convergence, House P0 transfer, next 4 hours
 
 **Read this first next session. Everything below is verified unless marked NOT PROVEN.**

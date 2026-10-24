@@ -300,13 +300,14 @@ FVector FMelodiaWaterChorus::HorizonPoint(const AActor* Owner, const float Dista
 
 void FMelodiaWaterChorus::DispatchBeat(AActor* Owner)
 {
+ if (!Owner || !Owner->GetWorld()) return;
  ++Beats;
 
  // 1. RAIN OVER THE HORIZON: the droplets disperse where the sky meets the world.
  if (UNiagaraSystem* Rain = LoadObject<UNiagaraSystem>(nullptr, MelodiaWaterChorusPaths::HorizonRain))
  {
   const FVector Where = HorizonPoint(Owner, 4200.f, 900.f);
-  UNiagaraFunctionLibrary::SpawnSystemAtLocation(nullptr, Rain, Where, FRotator::ZeroRotator, FVector(2.4f));
+  UNiagaraFunctionLibrary::SpawnSystemAtLocation(Owner, Rain, Where, FRotator::ZeroRotator, FVector(2.4f));
   ++Dispatches;
  }
 
@@ -314,7 +315,7 @@ void FMelodiaWaterChorus::DispatchBeat(AActor* Owner)
  if (UNiagaraSystem* Bubbles = LoadObject<UNiagaraSystem>(nullptr, MelodiaWaterChorusPaths::SkylineBubbles))
  {
   const FVector Where = HorizonPoint(Owner, 2600.f, 1500.f);
-  UNiagaraFunctionLibrary::SpawnSystemAtLocation(nullptr, Bubbles, Where, FRotator::ZeroRotator, FVector(1.6f));
+  UNiagaraFunctionLibrary::SpawnSystemAtLocation(Owner, Bubbles, Where, FRotator::ZeroRotator, FVector(1.6f));
   ++Dispatches;
  }
 
@@ -324,7 +325,7 @@ void FMelodiaWaterChorus::DispatchBeat(AActor* Owner)
  if (UNiagaraSystem* Globules = LoadObject<UNiagaraSystem>(nullptr, MelodiaWaterChorusPaths::HairGlobules))
  {
   const FVector Where = Owner->GetActorLocation() + FVector(0.f, 0.f, 150.f);
-  UNiagaraFunctionLibrary::SpawnSystemAtLocation(nullptr, Globules, Where, FRotator::ZeroRotator, FVector(.55f));
+  UNiagaraFunctionLibrary::SpawnSystemAtLocation(Owner, Globules, Where, FRotator::ZeroRotator, FVector(.55f));
   ++Dispatches;
  }
 
@@ -332,32 +333,32 @@ void FMelodiaWaterChorus::DispatchBeat(AActor* Owner)
  if (UNiagaraSystem* Splash = LoadObject<UNiagaraSystem>(nullptr, MelodiaWaterChorusPaths::FootSplash))
  {
   const FVector Where = Owner->GetActorLocation() + FVector(0.f, 0.f, 6.f);
-  UNiagaraFunctionLibrary::SpawnSystemAtLocation(nullptr, Splash, Where, FRotator::ZeroRotator, FVector(.8f));
+  UNiagaraFunctionLibrary::SpawnSystemAtLocation(Owner, Splash, Where, FRotator::ZeroRotator, FVector(.8f));
   ++Dispatches;
  }
 }
 
 void FMelodiaWaterChorus::Burst(AActor* Owner, const float Scale)
 {
- if (!Owner) return;
+ if (!Owner || !Owner->GetWorld()) return;
  ++Dispatches;
  const FVector Base = Owner->GetActorLocation();
  if (UNiagaraSystem* Globules = LoadObject<UNiagaraSystem>(nullptr, MelodiaWaterChorusPaths::HairGlobules))
  {
   const FVector Where = Base + FVector(0.f, 0.f, 140.f);
-  UNiagaraFunctionLibrary::SpawnSystemAtLocation(nullptr, Globules, Where, FRotator::ZeroRotator,
+  UNiagaraFunctionLibrary::SpawnSystemAtLocation(Owner, Globules, Where, FRotator::ZeroRotator,
    FVector(Scale * .8f));
  }
  if (UNiagaraSystem* Splash = LoadObject<UNiagaraSystem>(nullptr, MelodiaWaterChorusPaths::FootSplash))
  {
   const FVector Where = Base + FVector(0.f, 0.f, 8.f);
-  UNiagaraFunctionLibrary::SpawnSystemAtLocation(nullptr, Splash, Where, FRotator::ZeroRotator,
+  UNiagaraFunctionLibrary::SpawnSystemAtLocation(Owner, Splash, Where, FRotator::ZeroRotator,
    FVector(Scale));
  }
  if (UNiagaraSystem* Mist = LoadObject<UNiagaraSystem>(nullptr, MelodiaWaterChorusPaths::SkylineMist))
  {
   const FVector Where = Base + FVector(0.f, 0.f, 60.f);
-  UNiagaraFunctionLibrary::SpawnSystemAtLocation(nullptr, Mist, Where, FRotator::ZeroRotator,
+  UNiagaraFunctionLibrary::SpawnSystemAtLocation(Owner, Mist, Where, FRotator::ZeroRotator,
    FVector(Scale * 1.4f));
  }
  UE_LOG(LogTemp, Log, TEXT("MELODIA_WATER_CHORUS burst scale=%.2f"), Scale);
@@ -439,9 +440,13 @@ void FMelodiaWaterChorus::Splash(const FVector& Where, const float Strength)
   Nearest->SplashAt = Where;
   Nearest->SplashStrength = FMath::Max(Nearest->SplashStrength, S);
  }
- if (UNiagaraSystem* SplashSystem = LoadObject<UNiagaraSystem>(nullptr, MelodiaWaterChorusPaths::FootSplash))
+ // A queued fluid stamp is valid independently of the optional Niagara accent.
+ // SpawnSystemAtLocation requires a real world context; nullptr never spawns.
+ AActor* Owner = ChorusOwner.Get();
+ if (UNiagaraSystem* SplashSystem = Owner && Owner->GetWorld()
+  ? LoadObject<UNiagaraSystem>(nullptr, MelodiaWaterChorusPaths::FootSplash) : nullptr)
  {
-  UNiagaraFunctionLibrary::SpawnSystemAtLocation(nullptr, SplashSystem, Where + FVector(0.f, 0.f, 6.f), FRotator::ZeroRotator,
+  UNiagaraFunctionLibrary::SpawnSystemAtLocation(Owner, SplashSystem, Where + FVector(0.f, 0.f, 6.f), FRotator::ZeroRotator,
    FVector(.4f + .8f * S));
   ++Dispatches;
  }
