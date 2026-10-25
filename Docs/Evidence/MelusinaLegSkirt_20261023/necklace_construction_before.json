@@ -1,0 +1,951 @@
+{
+  "format_version": 1,
+  "asset_path": "/Game/MelodiaIntegration/Blueprints/BP_MelusinaJRPGCharacter",
+  "graph_name": "UserConstructionScript",
+  "graph_type": "function",
+  "include_hidden_pins": false,
+  "nodes": [
+    {
+      "id": "K2Node_FunctionEntry_0",
+      "class": "K2Node_FunctionEntry",
+      "title": "Construction Script",
+      "pos": [
+        0,
+        0
+      ],
+      "pins": [
+        {
+          "id": "E086A9074C5DAABF74A02F97D1BEA73C",
+          "name": "then",
+          "direction": "output",
+          "type": "exec",
+          "connected_to": [
+            "K2Node_CallParentFunction_0.execute"
+          ],
+          "connected_to_ids": [
+            "AC805CAB4E9EC8E14B0A1DA19E450B23"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "K2Node_CallParentFunction_0",
+      "class": "K2Node_CallParentFunction",
+      "title": "Parent: Construction Script",
+      "pos": [
+        200,
+        0
+      ],
+      "function": "UserConstructionScript",
+      "function_class": "BP_JRPGCharacterBase_C",
+      "pins": [
+        {
+          "id": "AC805CAB4E9EC8E14B0A1DA19E450B23",
+          "name": "execute",
+          "direction": "input",
+          "type": "exec",
+          "connected_to": [
+            "K2Node_FunctionEntry_0.then"
+          ],
+          "connected_to_ids": [
+            "E086A9074C5DAABF74A02F97D1BEA73C"
+          ]
+        },
+        {
+          "id": "998E613D439ABB06097F998A9EC8FBFC",
+          "name": "then",
+          "direction": "output",
+          "type": "exec",
+          "connected_to": [
+            "K2Node_CallFunction_0.execute"
+          ],
+          "connected_to_ids": [
+            "33EB9C184478FCE2465C43B76397BC0A"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "K2Node_VariableGet_0",
+      "class": "K2Node_VariableGet",
+      "title": "Get Mesh",
+      "pos": [
+        300,
+        250
+      ],
+      "pins": [
+        {
+          "id": "ECDAE59742823DE725781ABFAAC8D2B5",
+          "name": "Mesh",
+          "direction": "output",
+          "type": "object:SkeletalMeshComponent",
+          "connected_to": [
+            "K2Node_CallFunction_0.Parent",
+            "K2Node_CallFunction_1.Parent",
+            "K2Node_CallFunction_2.Parent",
+            "K2Node_CallFunction_3.Parent"
+          ],
+          "connected_to_ids": [
+            "1C3EC240467BBD668B88708067EA0355",
+            "5442611D4ABDF147AEDECDA1EEF63C9C",
+            "26558B3A4013A6A4917CED9A163514EB",
+            "BEB46D8E46E2A58521F1EFB4ACF67ADA"
+          ]
+        }
+      ],
+      "variable_name": "Mesh",
+      "is_self_context": true
+    },
+    {
+      "id": "K2Node_CallFunction_0",
+      "class": "K2Node_CallFunction",
+      "title": "Attach Component To Component\nTarget is Scene Component",
+      "pos": [
+        450,
+        0
+      ],
+      "function": "K2_AttachToComponent",
+      "function_class": "SceneComponent",
+      "pins": [
+        {
+          "id": "33EB9C184478FCE2465C43B76397BC0A",
+          "name": "execute",
+          "direction": "input",
+          "type": "exec",
+          "connected_to": [
+            "K2Node_CallParentFunction_0.then"
+          ],
+          "connected_to_ids": [
+            "998E613D439ABB06097F998A9EC8FBFC"
+          ]
+        },
+        {
+          "id": "7890F360427E2AEDADED11B78990462D",
+          "name": "then",
+          "direction": "output",
+          "type": "exec",
+          "connected_to": [
+            "K2Node_CallFunction_1.execute"
+          ],
+          "connected_to_ids": [
+            "F50458E3488A52ED071184BE139B0116"
+          ]
+        },
+        {
+          "id": "7CAAF20842A65EF3C5CAEC9A3D425149",
+          "name": "self",
+          "direction": "input",
+          "type": "object:SceneComponent",
+          "connected_to": [
+            "K2Node_VariableGet_1.Regalia_v4_Circlet"
+          ],
+          "connected_to_ids": [
+            "5E40619F4731ACE0113AE2B1BDA0CA8B"
+          ]
+        },
+        {
+          "id": "1C3EC240467BBD668B88708067EA0355",
+          "name": "Parent",
+          "direction": "input",
+          "type": "object:SceneComponent",
+          "connected_to": [
+            "K2Node_VariableGet_0.Mesh"
+          ],
+          "connected_to_ids": [
+            "ECDAE59742823DE725781ABFAAC8D2B5"
+          ]
+        },
+        {
+          "id": "CD4EA07E45EC3DCB0A697DA911B8C0ED",
+          "name": "SocketName",
+          "direction": "input",
+          "type": "name",
+          "default_value": "head_x",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "47532F4848F8D8730497DAAD95CA8DD7",
+          "name": "LocationRule",
+          "direction": "input",
+          "type": "byte",
+          "default_value": "KeepRelative",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "4E1839C7494CAC5D05BC92A3F2A49192",
+          "name": "RotationRule",
+          "direction": "input",
+          "type": "byte",
+          "default_value": "KeepRelative",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "29995A2240BD017E17450499CE096272",
+          "name": "ScaleRule",
+          "direction": "input",
+          "type": "byte",
+          "default_value": "KeepRelative",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "E8B6F3814DDF22008AFB78BCF7EEC9B8",
+          "name": "bWeldSimulatedBodies",
+          "direction": "input",
+          "type": "bool",
+          "default_value": "TRUE",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "23B03F6A46C7D6E6BD6EDE9A572F7590",
+          "name": "ReturnValue",
+          "direction": "output",
+          "type": "bool",
+          "default_value": "false",
+          "connected_to": [],
+          "connected_to_ids": []
+        }
+      ]
+    },
+    {
+      "id": "K2Node_VariableGet_1",
+      "class": "K2Node_VariableGet",
+      "title": "Get Regalia_v4_Circlet",
+      "pos": [
+        450,
+        -150
+      ],
+      "pins": [
+        {
+          "id": "5E40619F4731ACE0113AE2B1BDA0CA8B",
+          "name": "Regalia_v4_Circlet",
+          "direction": "output",
+          "type": "object:StaticMeshComponent",
+          "connected_to": [
+            "K2Node_CallFunction_0.self"
+          ],
+          "connected_to_ids": [
+            "7CAAF20842A65EF3C5CAEC9A3D425149"
+          ]
+        }
+      ],
+      "variable_name": "Regalia_v4_Circlet",
+      "is_self_context": true
+    },
+    {
+      "id": "K2Node_CallFunction_1",
+      "class": "K2Node_CallFunction",
+      "title": "Attach Component To Component\nTarget is Scene Component",
+      "pos": [
+        850,
+        0
+      ],
+      "function": "K2_AttachToComponent",
+      "function_class": "SceneComponent",
+      "pins": [
+        {
+          "id": "F50458E3488A52ED071184BE139B0116",
+          "name": "execute",
+          "direction": "input",
+          "type": "exec",
+          "connected_to": [
+            "K2Node_CallFunction_0.then"
+          ],
+          "connected_to_ids": [
+            "7890F360427E2AEDADED11B78990462D"
+          ]
+        },
+        {
+          "id": "782DE88C44B2BA6F28708CA9CA99ADAF",
+          "name": "then",
+          "direction": "output",
+          "type": "exec",
+          "connected_to": [
+            "K2Node_CallFunction_2.execute"
+          ],
+          "connected_to_ids": [
+            "38C051584A5EC1178F7F93B84E800355"
+          ]
+        },
+        {
+          "id": "49FF087944CED7A1311BDCB90AE627A5",
+          "name": "self",
+          "direction": "input",
+          "type": "object:SceneComponent",
+          "connected_to": [
+            "K2Node_VariableGet_2.Regalia_v4_Earrings"
+          ],
+          "connected_to_ids": [
+            "FD7EC2794B5A6AA91C22D9A6A8E944A4"
+          ]
+        },
+        {
+          "id": "5442611D4ABDF147AEDECDA1EEF63C9C",
+          "name": "Parent",
+          "direction": "input",
+          "type": "object:SceneComponent",
+          "connected_to": [
+            "K2Node_VariableGet_0.Mesh"
+          ],
+          "connected_to_ids": [
+            "ECDAE59742823DE725781ABFAAC8D2B5"
+          ]
+        },
+        {
+          "id": "48B521214061B59E99EE0EA6947B8693",
+          "name": "SocketName",
+          "direction": "input",
+          "type": "name",
+          "default_value": "head_x",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "3991C1E945F84F0C2E3D928BE4A9D1E4",
+          "name": "LocationRule",
+          "direction": "input",
+          "type": "byte",
+          "default_value": "KeepRelative",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "1245E29A4AAC364C9D5FC089C47CF5B4",
+          "name": "RotationRule",
+          "direction": "input",
+          "type": "byte",
+          "default_value": "KeepRelative",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "1F565B0F4F943CAB3270598C09400B54",
+          "name": "ScaleRule",
+          "direction": "input",
+          "type": "byte",
+          "default_value": "KeepRelative",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "74548FD6431B964001EC2AA984838CD0",
+          "name": "bWeldSimulatedBodies",
+          "direction": "input",
+          "type": "bool",
+          "default_value": "TRUE",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "5875D2C34779B126AACA20A3FD36B8D4",
+          "name": "ReturnValue",
+          "direction": "output",
+          "type": "bool",
+          "default_value": "false",
+          "connected_to": [],
+          "connected_to_ids": []
+        }
+      ]
+    },
+    {
+      "id": "K2Node_VariableGet_2",
+      "class": "K2Node_VariableGet",
+      "title": "Get Regalia_v4_Earrings",
+      "pos": [
+        850,
+        -150
+      ],
+      "pins": [
+        {
+          "id": "FD7EC2794B5A6AA91C22D9A6A8E944A4",
+          "name": "Regalia_v4_Earrings",
+          "direction": "output",
+          "type": "object:StaticMeshComponent",
+          "connected_to": [
+            "K2Node_CallFunction_1.self"
+          ],
+          "connected_to_ids": [
+            "49FF087944CED7A1311BDCB90AE627A5"
+          ]
+        }
+      ],
+      "variable_name": "Regalia_v4_Earrings",
+      "is_self_context": true
+    },
+    {
+      "id": "K2Node_CallFunction_2",
+      "class": "K2Node_CallFunction",
+      "title": "Attach Component To Component\nTarget is Scene Component",
+      "pos": [
+        1250,
+        0
+      ],
+      "function": "K2_AttachToComponent",
+      "function_class": "SceneComponent",
+      "pins": [
+        {
+          "id": "38C051584A5EC1178F7F93B84E800355",
+          "name": "execute",
+          "direction": "input",
+          "type": "exec",
+          "connected_to": [
+            "K2Node_CallFunction_1.then"
+          ],
+          "connected_to_ids": [
+            "782DE88C44B2BA6F28708CA9CA99ADAF"
+          ]
+        },
+        {
+          "id": "37B6684A46856A4B8A408282AAF9D564",
+          "name": "then",
+          "direction": "output",
+          "type": "exec",
+          "connected_to": [
+            "K2Node_CallFunction_3.execute"
+          ],
+          "connected_to_ids": [
+            "BBF6D011490C09E6AE26DEA4E786BD25"
+          ]
+        },
+        {
+          "id": "33DEB00645F5EE4C68E8E19DB919D5B3",
+          "name": "self",
+          "direction": "input",
+          "type": "object:SceneComponent",
+          "connected_to": [
+            "K2Node_VariableGet_3.Regalia_v4_Necklace"
+          ],
+          "connected_to_ids": [
+            "E76E05CD4B44333ED42024A5967E25A9"
+          ]
+        },
+        {
+          "id": "26558B3A4013A6A4917CED9A163514EB",
+          "name": "Parent",
+          "direction": "input",
+          "type": "object:SceneComponent",
+          "connected_to": [
+            "K2Node_VariableGet_0.Mesh"
+          ],
+          "connected_to_ids": [
+            "ECDAE59742823DE725781ABFAAC8D2B5"
+          ]
+        },
+        {
+          "id": "C96DE1E141FE309BFD79CEBC191E1872",
+          "name": "SocketName",
+          "direction": "input",
+          "type": "name",
+          "default_value": "neck_x",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "0B6163FF45C8EAEE697C48AAEDDC56F3",
+          "name": "LocationRule",
+          "direction": "input",
+          "type": "byte",
+          "default_value": "KeepRelative",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "0734B62C47269DFFABF229A5C08A8EC9",
+          "name": "RotationRule",
+          "direction": "input",
+          "type": "byte",
+          "default_value": "KeepRelative",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "55681790456775A7A5E4AFBE3C15AA0B",
+          "name": "ScaleRule",
+          "direction": "input",
+          "type": "byte",
+          "default_value": "KeepRelative",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "10673F8A443BCA55A89BD19477B35B7A",
+          "name": "bWeldSimulatedBodies",
+          "direction": "input",
+          "type": "bool",
+          "default_value": "TRUE",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "9B6442734DF8B628C2B60C877ABED46F",
+          "name": "ReturnValue",
+          "direction": "output",
+          "type": "bool",
+          "default_value": "false",
+          "connected_to": [],
+          "connected_to_ids": []
+        }
+      ]
+    },
+    {
+      "id": "K2Node_VariableGet_3",
+      "class": "K2Node_VariableGet",
+      "title": "Get Regalia_v4_Necklace",
+      "pos": [
+        1250,
+        -150
+      ],
+      "pins": [
+        {
+          "id": "E76E05CD4B44333ED42024A5967E25A9",
+          "name": "Regalia_v4_Necklace",
+          "direction": "output",
+          "type": "object:StaticMeshComponent",
+          "connected_to": [
+            "K2Node_CallFunction_2.self"
+          ],
+          "connected_to_ids": [
+            "33DEB00645F5EE4C68E8E19DB919D5B3"
+          ]
+        }
+      ],
+      "variable_name": "Regalia_v4_Necklace",
+      "is_self_context": true
+    },
+    {
+      "id": "K2Node_CallFunction_3",
+      "class": "K2Node_CallFunction",
+      "title": "Attach Component To Component\nTarget is Scene Component",
+      "pos": [
+        1650,
+        0
+      ],
+      "function": "K2_AttachToComponent",
+      "function_class": "SceneComponent",
+      "pins": [
+        {
+          "id": "BBF6D011490C09E6AE26DEA4E786BD25",
+          "name": "execute",
+          "direction": "input",
+          "type": "exec",
+          "connected_to": [
+            "K2Node_CallFunction_2.then"
+          ],
+          "connected_to_ids": [
+            "37B6684A46856A4B8A408282AAF9D564"
+          ]
+        },
+        {
+          "id": "87F205C646975D385EFA9FA8B250A9B1",
+          "name": "then",
+          "direction": "output",
+          "type": "exec",
+          "connected_to": [
+            "K2Node_CallFunction_4.execute"
+          ],
+          "connected_to_ids": [
+            "162BF3F140BBFFCD62E0B991150AE612"
+          ]
+        },
+        {
+          "id": "B87934F04E81AE435E2956B8305C7C88",
+          "name": "self",
+          "direction": "input",
+          "type": "object:SceneComponent",
+          "connected_to": [
+            "K2Node_VariableGet_4.EyeBrows_v1"
+          ],
+          "connected_to_ids": [
+            "D76FC2344D5A22A49D461C8AE7691FE2"
+          ]
+        },
+        {
+          "id": "BEB46D8E46E2A58521F1EFB4ACF67ADA",
+          "name": "Parent",
+          "direction": "input",
+          "type": "object:SceneComponent",
+          "connected_to": [
+            "K2Node_VariableGet_0.Mesh"
+          ],
+          "connected_to_ids": [
+            "ECDAE59742823DE725781ABFAAC8D2B5"
+          ]
+        },
+        {
+          "id": "DACFE8B44CF2C7774FA54F9D683EFCF5",
+          "name": "SocketName",
+          "direction": "input",
+          "type": "name",
+          "default_value": "head_x",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "63AAAED240B3E2BCDC9DF4B728FB3406",
+          "name": "LocationRule",
+          "direction": "input",
+          "type": "byte",
+          "default_value": "KeepRelative",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "C89895074501F684DE49AEBAB5E7EB67",
+          "name": "RotationRule",
+          "direction": "input",
+          "type": "byte",
+          "default_value": "KeepRelative",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "E27C787541620CBE4DC35681274F04B9",
+          "name": "ScaleRule",
+          "direction": "input",
+          "type": "byte",
+          "default_value": "KeepRelative",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "2AB432BF4D9849DFE78DE7BE8AA3E8D3",
+          "name": "bWeldSimulatedBodies",
+          "direction": "input",
+          "type": "bool",
+          "default_value": "TRUE",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "A9C38AA1429AEFA57F1C35A0517D49D0",
+          "name": "ReturnValue",
+          "direction": "output",
+          "type": "bool",
+          "default_value": "false",
+          "connected_to": [],
+          "connected_to_ids": []
+        }
+      ]
+    },
+    {
+      "id": "K2Node_VariableGet_4",
+      "class": "K2Node_VariableGet",
+      "title": "Get EyeBrows_v1",
+      "pos": [
+        1650,
+        -150
+      ],
+      "pins": [
+        {
+          "id": "D76FC2344D5A22A49D461C8AE7691FE2",
+          "name": "EyeBrows_v1",
+          "direction": "output",
+          "type": "object:StaticMeshComponent",
+          "connected_to": [
+            "K2Node_CallFunction_3.self"
+          ],
+          "connected_to_ids": [
+            "B87934F04E81AE435E2956B8305C7C88"
+          ]
+        }
+      ],
+      "variable_name": "EyeBrows_v1",
+      "is_self_context": true
+    },
+    {
+      "id": "K2Node_CallFunction_4",
+      "class": "K2Node_CallFunction",
+      "title": "Attach Component To Component\nTarget is Scene Component",
+      "pos": [
+        2000,
+        0
+      ],
+      "function": "K2_AttachToComponent",
+      "function_class": "SceneComponent",
+      "pins": [
+        {
+          "id": "162BF3F140BBFFCD62E0B991150AE612",
+          "name": "execute",
+          "direction": "input",
+          "type": "exec",
+          "connected_to": [
+            "K2Node_CallFunction_3.then"
+          ],
+          "connected_to_ids": [
+            "87F205C646975D385EFA9FA8B250A9B1"
+          ]
+        },
+        {
+          "id": "82A4D3C3463628D9661312A46AF89C8D",
+          "name": "then",
+          "direction": "output",
+          "type": "exec",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "E6EFBF09475FDA274DB2CEB26FEB3967",
+          "name": "self",
+          "direction": "input",
+          "type": "object:SceneComponent",
+          "connected_to": [
+            "K2Node_VariableGet_5.MelusinaWings"
+          ],
+          "connected_to_ids": [
+            "DF4D241B40E710D4584EEFB13B3BC170"
+          ]
+        },
+        {
+          "id": "D655017143091AE6EB601A871A287C16",
+          "name": "Parent",
+          "direction": "input",
+          "type": "object:SceneComponent",
+          "connected_to": [
+            "K2Node_VariableGet_6.Mesh"
+          ],
+          "connected_to_ids": [
+            "C129351547656667CA2AA7B19D668C9A"
+          ]
+        },
+        {
+          "id": "4C5F41E649A06652D0FDE69985A9AB4D",
+          "name": "SocketName",
+          "direction": "input",
+          "type": "name",
+          "default_value": "WingSocket",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "A10F6FD64C387661C1179DAAA9531D4F",
+          "name": "LocationRule",
+          "direction": "input",
+          "type": "byte",
+          "default_value": "KeepRelative",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "6A49ED2442E5E6FF2B1B59881C32D912",
+          "name": "RotationRule",
+          "direction": "input",
+          "type": "byte",
+          "default_value": "KeepRelative",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "E9D640FD4D4789F1C4C65DB806C0EF62",
+          "name": "ScaleRule",
+          "direction": "input",
+          "type": "byte",
+          "default_value": "KeepRelative",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "6FFC65F04B2868FC7C350E9161E5CBBB",
+          "name": "bWeldSimulatedBodies",
+          "direction": "input",
+          "type": "bool",
+          "default_value": "TRUE",
+          "connected_to": [],
+          "connected_to_ids": []
+        },
+        {
+          "id": "93309E8944CB0EF92CF3A3B1BEBB901B",
+          "name": "ReturnValue",
+          "direction": "output",
+          "type": "bool",
+          "default_value": "false",
+          "connected_to": [],
+          "connected_to_ids": []
+        }
+      ]
+    },
+    {
+      "id": "K2Node_VariableGet_5",
+      "class": "K2Node_VariableGet",
+      "title": "Get MelusinaWings",
+      "pos": [
+        1800,
+        200
+      ],
+      "pins": [
+        {
+          "id": "DF4D241B40E710D4584EEFB13B3BC170",
+          "name": "MelusinaWings",
+          "direction": "output",
+          "type": "object:SkeletalMeshComponent",
+          "connected_to": [
+            "K2Node_CallFunction_4.self"
+          ],
+          "connected_to_ids": [
+            "E6EFBF09475FDA274DB2CEB26FEB3967"
+          ]
+        }
+      ],
+      "variable_name": "MelusinaWings",
+      "is_self_context": true
+    },
+    {
+      "id": "K2Node_VariableGet_6",
+      "class": "K2Node_VariableGet",
+      "title": "Get Mesh",
+      "pos": [
+        1800,
+        320
+      ],
+      "pins": [
+        {
+          "id": "C129351547656667CA2AA7B19D668C9A",
+          "name": "Mesh",
+          "direction": "output",
+          "type": "object:SkeletalMeshComponent",
+          "connected_to": [
+            "K2Node_CallFunction_4.Parent"
+          ],
+          "connected_to_ids": [
+            "D655017143091AE6EB601A871A287C16"
+          ]
+        }
+      ],
+      "variable_name": "Mesh",
+      "is_self_context": true
+    }
+  ],
+  "connections": [
+    {
+      "from_node": "K2Node_FunctionEntry_0",
+      "from_pin": "then",
+      "to_node": "K2Node_CallParentFunction_0",
+      "to_pin": "execute",
+      "from_pin_id": "E086A9074C5DAABF74A02F97D1BEA73C",
+      "to_pin_id": "AC805CAB4E9EC8E14B0A1DA19E450B23"
+    },
+    {
+      "from_node": "K2Node_CallParentFunction_0",
+      "from_pin": "then",
+      "to_node": "K2Node_CallFunction_0",
+      "to_pin": "execute",
+      "from_pin_id": "998E613D439ABB06097F998A9EC8FBFC",
+      "to_pin_id": "33EB9C184478FCE2465C43B76397BC0A"
+    },
+    {
+      "from_node": "K2Node_VariableGet_0",
+      "from_pin": "Mesh",
+      "to_node": "K2Node_CallFunction_0",
+      "to_pin": "Parent",
+      "from_pin_id": "ECDAE59742823DE725781ABFAAC8D2B5",
+      "to_pin_id": "1C3EC240467BBD668B88708067EA0355"
+    },
+    {
+      "from_node": "K2Node_VariableGet_0",
+      "from_pin": "Mesh",
+      "to_node": "K2Node_CallFunction_1",
+      "to_pin": "Parent",
+      "from_pin_id": "ECDAE59742823DE725781ABFAAC8D2B5",
+      "to_pin_id": "5442611D4ABDF147AEDECDA1EEF63C9C"
+    },
+    {
+      "from_node": "K2Node_VariableGet_0",
+      "from_pin": "Mesh",
+      "to_node": "K2Node_CallFunction_2",
+      "to_pin": "Parent",
+      "from_pin_id": "ECDAE59742823DE725781ABFAAC8D2B5",
+      "to_pin_id": "26558B3A4013A6A4917CED9A163514EB"
+    },
+    {
+      "from_node": "K2Node_VariableGet_0",
+      "from_pin": "Mesh",
+      "to_node": "K2Node_CallFunction_3",
+      "to_pin": "Parent",
+      "from_pin_id": "ECDAE59742823DE725781ABFAAC8D2B5",
+      "to_pin_id": "BEB46D8E46E2A58521F1EFB4ACF67ADA"
+    },
+    {
+      "from_node": "K2Node_CallFunction_0",
+      "from_pin": "then",
+      "to_node": "K2Node_CallFunction_1",
+      "to_pin": "execute",
+      "from_pin_id": "7890F360427E2AEDADED11B78990462D",
+      "to_pin_id": "F50458E3488A52ED071184BE139B0116"
+    },
+    {
+      "from_node": "K2Node_VariableGet_1",
+      "from_pin": "Regalia_v4_Circlet",
+      "to_node": "K2Node_CallFunction_0",
+      "to_pin": "self",
+      "from_pin_id": "5E40619F4731ACE0113AE2B1BDA0CA8B",
+      "to_pin_id": "7CAAF20842A65EF3C5CAEC9A3D425149"
+    },
+    {
+      "from_node": "K2Node_CallFunction_1",
+      "from_pin": "then",
+      "to_node": "K2Node_CallFunction_2",
+      "to_pin": "execute",
+      "from_pin_id": "782DE88C44B2BA6F28708CA9CA99ADAF",
+      "to_pin_id": "38C051584A5EC1178F7F93B84E800355"
+    },
+    {
+      "from_node": "K2Node_VariableGet_2",
+      "from_pin": "Regalia_v4_Earrings",
+      "to_node": "K2Node_CallFunction_1",
+      "to_pin": "self",
+      "from_pin_id": "FD7EC2794B5A6AA91C22D9A6A8E944A4",
+      "to_pin_id": "49FF087944CED7A1311BDCB90AE627A5"
+    },
+    {
+      "from_node": "K2Node_CallFunction_2",
+      "from_pin": "then",
+      "to_node": "K2Node_CallFunction_3",
+      "to_pin": "execute",
+      "from_pin_id": "37B6684A46856A4B8A408282AAF9D564",
+      "to_pin_id": "BBF6D011490C09E6AE26DEA4E786BD25"
+    },
+    {
+      "from_node": "K2Node_VariableGet_3",
+      "from_pin": "Regalia_v4_Necklace",
+      "to_node": "K2Node_CallFunction_2",
+      "to_pin": "self",
+      "from_pin_id": "E76E05CD4B44333ED42024A5967E25A9",
+      "to_pin_id": "33DEB00645F5EE4C68E8E19DB919D5B3"
+    },
+    {
+      "from_node": "K2Node_CallFunction_3",
+      "from_pin": "then",
+      "to_node": "K2Node_CallFunction_4",
+      "to_pin": "execute",
+      "from_pin_id": "87F205C646975D385EFA9FA8B250A9B1",
+      "to_pin_id": "162BF3F140BBFFCD62E0B991150AE612"
+    },
+    {
+      "from_node": "K2Node_VariableGet_4",
+      "from_pin": "EyeBrows_v1",
+      "to_node": "K2Node_CallFunction_3",
+      "to_pin": "self",
+      "from_pin_id": "D76FC2344D5A22A49D461C8AE7691FE2",
+      "to_pin_id": "B87934F04E81AE435E2956B8305C7C88"
+    },
+    {
+      "from_node": "K2Node_VariableGet_5",
+      "from_pin": "MelusinaWings",
+      "to_node": "K2Node_CallFunction_4",
+      "to_pin": "self",
+      "from_pin_id": "DF4D241B40E710D4584EEFB13B3BC170",
+      "to_pin_id": "E6EFBF09475FDA274DB2CEB26FEB3967"
+    },
+    {
+      "from_node": "K2Node_VariableGet_6",
+      "from_pin": "Mesh",
+      "to_node": "K2Node_CallFunction_4",
+      "to_pin": "Parent",
+      "from_pin_id": "C129351547656667CA2AA7B19D668C9A",
+      "to_pin_id": "D655017143091AE6EB601A871A287C16"
+    }
+  ]
+}

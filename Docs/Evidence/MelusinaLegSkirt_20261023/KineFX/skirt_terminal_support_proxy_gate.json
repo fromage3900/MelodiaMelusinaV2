@@ -1,0 +1,82 @@
+{
+ "schema": "melodia.skirt_terminal_support_proxy_gate.v1",
+ "passed": true,
+ "gates": {
+  "pinned_source_fbx": true,
+  "all_source_inputs_hash_unchanged": true,
+  "canonical465_joint_names_and_transforms_untouched": true,
+  "skirt30509_vertices_and_weights_untouched": true,
+  "exactly16_unique_virtual_terminals": true,
+  "all_existing_tip_parents_resolve": true,
+  "all_lengths_positive_and_within_measured_max": true,
+  "all_endpoints_follow_measured_unit_direction": true,
+  "proxy_obj_finite_geometry": true,
+  "no_production_skeleton_or_weights_created": true
+ },
+ "input_hashes_before": {
+  "SK_Melusina_V2_Skirt_R2_SmoothChains.fbx": "40356ebc1521e5420737c13a4cfc4d487be4a7650478cedbd2cb68c3817923ea",
+  "skirt_tip_reach.json": "2c8ea8c6ece547fbe201a349473edfcd051788894ad39ffd00f462f8d97d6d86",
+  "skeleton_hierarchy.json": "4a6e481b84ec6de21f2eedb712172e464c2414d017d0ba26529fa42e0a0c2b75",
+  "SK_Melusina_V2_Skirt_R2_SmoothChains_data.json": "5b5ff9d608d2a065554798188dedc377d5ca13dd0ba24c910ef718473bfa7918"
+ },
+ "input_hashes_after": {
+  "SK_Melusina_V2_Skirt_R2_SmoothChains.fbx": "40356ebc1521e5420737c13a4cfc4d487be4a7650478cedbd2cb68c3817923ea",
+  "skirt_tip_reach.json": "2c8ea8c6ece547fbe201a349473edfcd051788894ad39ffd00f462f8d97d6d86",
+  "skeleton_hierarchy.json": "4a6e481b84ec6de21f2eedb712172e464c2414d017d0ba26529fa42e0a0c2b75",
+  "SK_Melusina_V2_Skirt_R2_SmoothChains_data.json": "5b5ff9d608d2a065554798188dedc377d5ca13dd0ba24c910ef718473bfa7918"
+ },
+ "artifact_hashes": {
+  "skirt_terminal_support_proxy_candidate.json": "a964241f369e4655aad8cbf99d18f52baba7354b7074dea48e79473e976d1318",
+  "skirt_terminal_support_proxy_candidate.obj": "ace0129f132a3c5d6317a715002257f6cbd69c92f94090915b0cb2c013531bc0",
+  "skirt_terminal_support_proxy_breakdown.png": "4208f3aa3e53ba6f115f338f74fc0a0a716bfa0806f14649ba9453ea1ef62eef",
+  "skirt_terminal_support_proxy_breakdown.svg": "17bffe0cd33dee00d4d196deec809a1a8e0c49fdf85f0292c14f8c1e43a2f7e0"
+ },
+ "proxy_geometry": {
+  "vertices": 320,
+  "lines": 160
+ },
+ "native_axis_evidence": {
+  "status": "VERIFIED_NATIVE_REFERENCE_POSE_ONLY",
+  "passed": true,
+  "scope": "NATIVE_REFERENCE_POSE_ONLY",
+  "runtime_dynamics_proven": false,
+  "input_hashes": {
+   "native_body_tip_reference.json": "ae9e5c0fe687d3239d94ee60b812066fa44c47bfaf59b4059a4296a5817de54e",
+   "native_tip_axis_verification.json": "46276aa58864347ba0ef05c36220f672b9def5f12e7a2b5e0723351abcfa7f36"
+  },
+  "gates": {
+   "body_response_hash_matches_verification": true,
+   "exact_body_asset_and_skeletal_mesh_source": true,
+   "all16_tip_rows_resolved": true,
+   "all16_native_parents_match_proposal": true,
+   "all16_native_minus_y_aligned": true,
+   "all16_current_native_x_is_transverse": true,
+   "native_verification_passed": true
+  },
+  "asset_path": "/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Body",
+  "source_api": "animation.get_bone_ref_pose / USkeletalMesh.GetRefSkeleton",
+  "source_schema": "melodia.native_skirt_axis.v1",
+  "production_baseline_axis": "X_Positive",
+  "measured_terminal_axis": "Y_Negative",
+  "native_x_angle_range_degrees": [
+   89.99999069269384,
+   90.00001752968305
+  ],
+  "native_minus_y_angle_max_degrees": 3.610160435482575e-05,
+  "input_hashes_after": {
+   "native_body_tip_reference.json": "ae9e5c0fe687d3239d94ee60b812066fa44c47bfaf59b4059a4296a5817de54e",
+   "native_tip_axis_verification.json": "46276aa58864347ba0ef05c36220f672b9def5f12e7a2b5e0723351abcfa7f36"
+  },
+  "input_hashes_unchanged": true
+ },
+ "regeneration_preservation": {
+  "prior_artifacts_present": true,
+  "prior_obj_sha256": "ace0129f132a3c5d6317a715002257f6cbd69c92f94090915b0cb2c013531bc0",
+  "regenerated_obj_sha256": "ace0129f132a3c5d6317a715002257f6cbd69c92f94090915b0cb2c013531bc0",
+  "same_obj_geometry": true,
+  "same_terminal_geometry_and_lengths": true
+ },
+ "proof_scope": "OFFLINE_SOURCE_AND_DIAGNOSTIC_ARTIFACT_ONLY",
+ "runtime_certification": false,
+ "portfolio_final_acceptance": false
+}

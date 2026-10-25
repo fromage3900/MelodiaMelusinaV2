@@ -1,0 +1,71 @@
+{
+  "asset": "/Game/Melodia/Characters/Melusina/Physics/DA_Melusina_SkirtCollisionLimits",
+  "spheres": [
+    {
+      "bone": "c_kilt_master_x",
+      "offset": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "radius": 11.0
+    }
+  ],
+  "capsules": [
+    {
+      "bone": "root_x",
+      "offset": [
+        -3.5453403245264885e-06,
+        -12.819064897647081,
+        0.38433041390746325
+      ],
+      "rotation": "<Struct 'Rotator' (0x00000195E6A8F530) {pitch: -90.000000, yaw: 0.000015, roll: 0.000000}>",
+      "radius": 11.5,
+      "length": 14.0
+    },
+    {
+      "bone": "thigh_stretch_l",
+      "offset": [
+        -1.9055955320368412e-06,
+        6.477588387657377,
+        -2.517287796877099e-06
+      ],
+      "rotation": "<Struct 'Rotator' (0x00000195E6A8FCB0) {pitch: 11.721660, yaw: 180.000000, roll: 89.999997}>",
+      "radius": 7.5,
+      "length": 29.53780746459961
+    },
+    {
+      "bone": "thigh_stretch_r",
+      "offset": [
+        -1.7468078716831315e-06,
+        6.47758642087372,
+        -4.343030184372765e-07
+      ],
+      "rotation": "<Struct 'Rotator' (0x00000195E6A8A030) {pitch: -11.721621, yaw: 179.999998, roll: 90.000000}>",
+      "radius": 7.5,
+      "length": 29.537805557250977
+    },
+    {
+      "bone": "leg_stretch_l",
+      "offset": [
+        2.0130400315565566e-06,
+        -17.52897862343753,
+        -1.8455214707557843e-06
+      ],
+      "rotation": "<Struct 'Rotator' (0x00000195E6A8F7B0) {pitch: 77.771995, yaw: -179.999966, roll: 90.000028}>",
+      "radius": 5.0,
+      "length": 31.162628173828125
+    },
+    {
+      "bone": "leg_stretch_r",
+      "offset": [
+        -1.60706636620489e-06,
+        -17.52897817487909,
+        -1.488261798243684e-06
+      ],
+      "rotation": "<Struct 'Rotator' (0x00000195E6A8F2B0) {pitch: -77.772011, yaw: 179.999972, roll: 90.000023}>",
+      "radius": 5.0,
+      "length": 31.162628173828125
+    }
+  ]
+}

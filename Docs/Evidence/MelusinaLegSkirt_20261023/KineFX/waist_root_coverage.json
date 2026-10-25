@@ -1,0 +1,30 @@
+{
+  "schema": "melodia.waist_root_coverage.v1",
+  "source_hierarchy_sha256": "4a6e481b84ec6de21f2eedb712172e464c2414d017d0ba26529fa42e0a0c2b75",
+  "roots": [
+    "c_kilt_01_01_l",
+    "c_kilt_02_01_l",
+    "c_kilt_03_01_l",
+    "c_kilt_04_01_l",
+    "c_kilt_05_01_l",
+    "c_kilt_06_01_l",
+    "c_kilt_01_01_r",
+    "c_kilt_02_01_r",
+    "c_kilt_03_01_r",
+    "c_kilt_04_01_r",
+    "c_kilt_05_01_r",
+    "c_kilt_06_01_r",
+    "c_kilt_07_01_l",
+    "c_kilt_08_01_l",
+    "c_kilt_07_01_r",
+    "c_kilt_08_01_r",
+    "c_kilt_row_01_x"
+  ],
+  "old_subtree_count": 87,
+  "candidate_covered_count": 86,
+  "omitted": [
+    "c_kilt_master_x"
+  ],
+  "preserved_descendants": true,
+  "qualification": "Hierarchy coverage only. Master remains authored; root rotation, skin silhouette, lower dynamics and layer collision require runtime proof."
+}

@@ -1,0 +1,7 @@
+{
+  "finished": true,
+  "samples": 2,
+  "errors": [],
+  "retained_socket": "spine_03_x",
+  "relative": "<Struct 'Transform' (0x0000025C9F02BC00) {rotation: {x: 0.553780, y: -0.000000, z: -0.000000, w: 0.832663}, translation: {x: 0.000003, y: 100.965184, z: -63.661651}, scale3d: {x: 1.000005, y: 1.000005, z: 1.000010}}>"
+}

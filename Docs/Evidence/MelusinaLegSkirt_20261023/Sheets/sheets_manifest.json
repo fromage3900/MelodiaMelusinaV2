@@ -1,0 +1,130 @@
+{
+  "schema": "melodia.kinefx_working_sheets.v1",
+  "bounded_goal": "CURRENT_STATE.md / Melusina legs, footwear and layered skirt \u2014 2026-10-23",
+  "proof_tiers": {
+    "sheet_01": "staged live flat idle only",
+    "sheet_02": "KineFX bind / weight roundtrip with separate staged idle test",
+    "sheet_03": "KineFX source geometry / hierarchy / influence measurements",
+    "sheet_04": "observed runtime ownership plus local source contract",
+    "sheet_05": "offline measured proxy candidate only, if generated",
+    "sheet_06": "measured evidence summary plus proposed acceptance and portfolio sequence",
+    "sheet_07": "native body reference axes, guarded staged graph edit, and staged idle with original equipped boots",
+    "sheet_08": "saved canonical necklace attachment; clean compile, exact graph assertion, fresh PIE and construction re-entry",
+    "sheet_09": "recorded injected movement; waist localization, not repaired surface or synchronized quality comparison",
+    "sheet_10": "proposed water and sparkle cue treatment tied to inspected existing source owners; implementation open",
+    "sheet_11": "offline shirt/skirt bind clearance and shared chain weights; no shape edit or P0 garment acceptance"
+  },
+  "inputs_sha256": {
+    "runtime_layer_comparison.json": "71b002919867343ee12f12c3939c4c6e18e901f11cf7456fa8d9255939780eb6",
+    "ground_frame_clean_boots.json": "2e48017db79980c4af60b4daa98de650b200402c3b98d7deecc961f25296294e",
+    "baseline_skinned_bounds.json": "eafd8fcc0701d5de1d6fc390c9ff2be989b2c47cfd4e66af40a66729bed06728",
+    "A_Shin_Idle_stand_MocapConv_ground_frame.json": "950e4efd1dd6f291acbf4cd6cc14970752bf96a7ec3bd4ee5395696015b65e1f",
+    "A_Melusina_Walk_Mocap_RootX_SeamFix_recompression_control.json": "b276f8ea96550a67c7ee9871639b1849f8aa6d5c79b976de6eb50bcb9865c5f5",
+    "A_Melusina_Run_Mocap_RootX_SeamFix_recompression_control.json": "fd108b8501f24faae43dcfe46038b38a5e14181060c94499a12d277c4fc4861a",
+    "A_Melusina_Sprint_Mocap_RootX_recompression_control.json": "aed579938dda0a53d84b9ffab28a903ab00c88cdccff7ff8803efebca846b63c",
+    "KineFX/contact_summary.json": "df0407a38d7614eb79b8838ee3ed29606ec709af9f0932d00b6f4b8f5baf4645",
+    "KineFX/boots_candidate_roundtrip.json": "ff5454233b968a3930f0a48fc933f7878e94fb33412e3bfe96ab2c88d36dd558",
+    "KineFX/boots_weight_delta.json": "6ee63358baec5575fecca45df851fc1d4745c817abc373b0bdda3e80e972a866",
+    "KineFX/SK_Melusina_V2_Boots_data.json": "10b1c05dd4daa4c8ffa10eeb7b8237f8fe0a1a5871c7f72d834d04901af71701",
+    "KineFX/SK_Melusina_V2_Skirt_R2_SmoothChains_data.json": "5b5ff9d608d2a065554798188dedc377d5ca13dd0ba24c910ef718473bfa7918",
+    "KineFX/skirt_tip_reach.json": "2c8ea8c6ece547fbe201a349473edfcd051788894ad39ffd00f462f8d97d6d86",
+    "KineFX/native_tip_axis_verification.json": "46276aa58864347ba0ef05c36220f672b9def5f12e7a2b5e0723351abcfa7f36",
+    "native_skirt_axis_candidate.json": "c60d616b4e6839b4ae0abebdb7c22a00de2a4bd103e9af98b0c27a8a5ca41b02",
+    "native_axis_idle_contact.json": "f22daa16c7ff38c3e9dff7c03e265079a4502665f97e60eda86dad4396be2c7a",
+    "runtime_identity.json": "e8c6f9d9061649b1f6fe9b8e6352fa78861a60743eac2d2e4b56ec48e27b9665",
+    "editor_node_baseline.json": "7f5b0452caba00bf715552c02252670ade0fd2fc833408bb0d09af7c6a605736",
+    "KineFX/skirt_terminal_support_proxy_candidate.json": "a964241f369e4655aad8cbf99d18f52baba7354b7074dea48e79473e976d1318",
+    "KineFX/skirt_terminal_support_proxy_gate.json": "f7a82b38c2f048530c51bd58c0f1f8e76b08ed4180c616077fb7c6f81b407dc0",
+    "necklace_persisted_fix.json": "e6c577a500cc85138091fd424d6339425bb6b02b09e2e64f1bd57b83a916dcf2",
+    "necklace_fresh_pie.json": "10b5e0d576b05eebc7d85c1aa77b342bfb120a457130f1f7680596067585fc4d",
+    "necklace_final_capture.json": "3f9ea997d112303d31221dc362adc28ae4a0d6972327cb2ab3180364b18d426a",
+    "neck_static_before_all_on_outfit_front.png": "7c8fc0fa32313ddeb0e0f0943852f510db4ddf202154c6ad17af34426ca55d69",
+    "neck_saved_all_on_outfit_front.png": "5e05a4f17afd6d85d5fb331e9ebfe844146c96122f6125ec0f96da1ff6571b59",
+    "waist_duplicate_baseline.json": "b254f22d2a01889d1fa88b642d6f14057f48a93e353800645d0d021dd1830082",
+    "waist_constraint_clean.json": "87b8d7a8de43d684e88edf7bddf04987c3a98585ce63a5acf3b290b5d07e54ea",
+    "waist_kawaii_off.json": "a4593ac136daee1d4dc8268d935f6f0089f9c5b1dcbfbc74387004eb37f6448c",
+    "injected_locomotion_summary.json": "e30ed7c2a61aae2dd2d685d9de8f812c583753860a0b5eeec5ec348530b1ad6a",
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Source\\BS_GodFile\\MelodiaIntegration\\MelodiaWaveHarpCombatComponent.h": "96a54399d022e7d178ac0e47f79491ad686ab8c042e3e6690aa578094fabc696",
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Source\\BS_GodFile\\MelodiaIntegration\\MelodiaWaveHarpCombatComponent.cpp": "248a319f25e7d8bba47c29b2735f634c05fbc76062687cbd3e7583bf72c54e9c",
+    "C:\\EnvironmentPortfolio\\BS_GodFile\\Source\\BS_GodFile\\MelodiaIntegration\\MelodiaWaterChorus.cpp": "8891412ea9dd5fb8cabcac44bb51e1702603ce6d285e19c507af575cdfc301d3",
+    "KineFX/ShirtOverlap/SK_Melusina_V2_Shirt_Flared_data.json": "b57377c72d3d7c553d46781664c0c066d00e33309b14aa2b80cf4b9d7bd02661",
+    "KineFX/ShirtOverlap/shirt_skirt_overlap.json": "f49f7020c70e4c7609adc2cf4cfada23fd78383a84a44aef5376461439cd7d99",
+    "KineFX/ShirtOverlap/shirt_skeleton_intake.json": "ffc174a3b4ff0c17e57113fa4ae25eba14f53c12d1a030562edd7f6509e4594d",
+    "KineFX/ShirtOverlap/contact_geometry.json": "6fb108ed8db9fe3f862dd90a9a58c67c36a2989cccb26c2e0d834fc3990f125f",
+    "KineFX\\ShirtOverlap\\SK_Melusina_V2_Shirt_Flared_data.json": "b57377c72d3d7c553d46781664c0c066d00e33309b14aa2b80cf4b9d7bd02661",
+    "KineFX\\SK_Melusina_V2_Skirt_R2_SmoothChains_data.json": "5b5ff9d608d2a065554798188dedc377d5ca13dd0ba24c910ef718473bfa7918",
+    "SourceExports\\SK_Melusina_V2_Shirt_Flared.fbx": "eeff4f73d6c26c6899fdcc6864feae27183679ef5c6590234408e4432b52bca1"
+  },
+  "outputs": [
+    {
+      "file": "sheet_01_runtime_leg_grounding.png",
+      "sha256": "1195bf6c8d5e14646ddd4fa0ba113d11368efdf565e90db3036d9ecc23ce8f9b",
+      "bytes": 301290
+    },
+    {
+      "file": "sheet_02_boot_skinning.png",
+      "sha256": "3c250ac68cb4da0a4633a8f2bae5e7bd7ca6cca93dd3d4edf7ffce9bc5ce4f5a",
+      "bytes": 510874
+    },
+    {
+      "file": "sheet_03_skirt_layers_proxies.png",
+      "sha256": "7f32bf76db0a83873cf6e671aaf859f520a6ccdd3b45bdacabb244c2d861a15f",
+      "bytes": 403664
+    },
+    {
+      "file": "sheet_04_runtime_ownership.png",
+      "sha256": "0794fbe5099f0312c526efc895332c54e8c0b14dd679303337f3d45567a3ce20",
+      "bytes": 260962
+    },
+    {
+      "file": "sheet_05_rig_expansion.png",
+      "sha256": "e0dceff6ff72967c296b10154070597444aa005b7bccb0bc03e2e5404acac85d",
+      "bytes": 614298
+    },
+    {
+      "file": "sheet_06_gameplay_portfolio.png",
+      "sha256": "622acec4822645affd4945db3d58cf6acc0469a749c24a44c16c43e8816016ce",
+      "bytes": 324918
+    },
+    {
+      "file": "sheet_07_native_axis_correction.png",
+      "sha256": "6b4652d590782955911a19df8430ac5ac9c278e56ef9e613155f4d65503a4ce8",
+      "bytes": 291500
+    },
+    {
+      "file": "sheet_08_necklace_attachment.png",
+      "sha256": "2786e505ef25ffff580e4e8baaf09baee7f9fde864b58103658ed0f301b8493b",
+      "bytes": 1670142
+    },
+    {
+      "file": "sheet_09_waist_simulation_localization.png",
+      "sha256": "9749271150ad0ec864c086a5b135a0f6d6b47ff81b699aedbfadffb33728d4fa",
+      "bytes": 284537
+    },
+    {
+      "file": "sheet_10_water_sparkle_beat_plan.png",
+      "sha256": "4b639749447cbdd9bb3f922dc837d7ef009813d0b9f127f17418af48dd3aa066",
+      "bytes": 273781
+    },
+    {
+      "file": "sheet_11_shirt_hem_shared_chains.png",
+      "sha256": "8175681b3e3e49153f4f8c74e36283c383bde656d38e83d4ab081a543e5cf3df",
+      "bytes": 523913
+    }
+  ],
+  "open": [
+    "gait and transition contact FAIL in injected probe",
+    "saved waist-root candidate awaits House P0 acceptance",
+    "Kawaii proxy / collision and layer motion",
+    "shirt seam coverage in P0 motion",
+    "water / sparkle cue implementation",
+    "production admission",
+    "reload / reset / re-equip",
+    "target hardware profiling",
+    "packaged proof"
+  ],
+  "production_references_changed": {
+    "necklace_attachment_on_character_blueprint": true,
+    "body_animation_skeleton_wardrobe_catalog": false
+  }
+}

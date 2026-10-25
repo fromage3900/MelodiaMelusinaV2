@@ -1,0 +1,66 @@
+{
+  "schema": "melodia.cpp_vs_attached_waterfx.v1",
+  "rows": [
+    {
+      "path": "Attached FluidNinja core",
+      "trigger": "Character BP: WaterHairMesh \u2192 WaterHairFluid (hair_root)",
+      "source": "NinjaLiveCore; C++ skips a second character sim when an owned NinjaLive component exists",
+      "evidence": "Recorded P0 snapshot: present/active",
+      "unproven": "Effective buffer, tracked-bone inputs, changing pixels, visible droplet"
+    },
+    {
+      "path": "Attached hair-flow renderer",
+      "trigger": "WaterHairFluid \u2192 VFX_HairFlow",
+      "source": "NS_Melusina_HairFlow; texture DI User.NinjaVelocityDensityBuffer",
+      "evidence": "Recorded P0 snapshot: present/active",
+      "unproven": "Effective texture-user binding and visible consumption of the sim output"
+    },
+    {
+      "path": "Six attached globule components",
+      "trigger": "Character BP children of WaterHairMesh on A/B/C hair sockets",
+      "source": "NS_Melusina_Globules, separate ordinary Niagara systems",
+      "evidence": "All six present/active in recorded P0 snapshot",
+      "unproven": "Intended motion and overlap with C++ beat accents; these are not proof of FluidNinja output"
+    },
+    {
+      "path": "C++ WaterChorus gates/setup",
+      "trigger": "SetWaterChorusEnabled / Melodia.WaveHarp.WaterChorus 0|1; Tick initializes setups",
+      "source": "Default bEnableWaterChorus=false; valid World->SpawnActor creates optional character fallback and puddle",
+      "evidence": "Current C++ source; not current loaded-binary/instance proof",
+      "unproven": "Current enabled state, setup actor existence, bound surfaces and live parameter changes"
+    },
+    {
+      "path": "C++ beat/burst/splash accents",
+      "trigger": "Music phase wrap / committed form midpoint / resolved hit",
+      "source": "Chorus rain, globules, splash, mist; eight null-world spawn calls corrected to Owner context with guards",
+      "evidence": "Source fix prepared; compile and P0 NOT RUN",
+      "unproven": "Loaded DLL, successful spawned component, correct timing/placement; dispatch counter is requests, not success"
+    },
+    {
+      "path": "Direct combat/form Niagara",
+      "trigger": "ResolveProjectileHit / PlayFormVfxBeats",
+      "source": "Uses component this as valid world context; separate hit burst/ripple and authored form-stage systems",
+      "evidence": "Source path exists; no fresh event capture",
+      "unproven": "Actual hit timing and rendered result; form offset/parameter maps still not consumed"
+    }
+  ],
+  "snapshot": "Saved\\Audit\\MelusinaLegSkirt_20261023\\p0_shirt_water_before.json",
+  "snapshot_qualification": "Historical captured House P0 session, before ground blocker fix; not a current live readback",
+  "current_source_sha256": "8891412ea9dd5fb8cabcac44bb51e1702603ce6d285e19c507af575cdfc301d3",
+  "cpp_changed": true,
+  "cpp_compiled": false,
+  "loaded_binary_verified": false,
+  "p0_effect_verified": false,
+  "spawn_context_static_check": {
+    "owner_context_calls": 8,
+    "null_world_context_calls": 0,
+    "passed": true
+  },
+  "next_p0_checks": [
+    "actual chorus enabled getter",
+    "core/renderer topology and socket following",
+    "effective texture binding then changing RT data",
+    "release/hit/form timestamps and successfully spawned components",
+    "visible droplet and cancellation/re-equip/reload"
+  ]
+}

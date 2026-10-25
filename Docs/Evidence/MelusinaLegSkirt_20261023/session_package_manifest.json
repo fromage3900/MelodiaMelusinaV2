@@ -1,0 +1,1083 @@
+{
+  "schema": "melodia.melusina_session_package.v1",
+  "files": [
+    {
+      "path": "Content/Python/audit_melusina_water_hair.py",
+      "bytes": 9880,
+      "sha256": "a3d413da06e97a1a34395637985a88cc1438d871623ab6e124d4a4122c799331"
+    },
+    {
+      "path": "Content/Python/melusina_animation_doctor.py",
+      "bytes": 20914,
+      "sha256": "659f4043f5b864cdb94bbbef5ce377be97fed68c9e4137bdb04f86541c677466"
+    },
+    {
+      "path": "Content/Staging/AnimationDoctor/LegSkirt_20261023/A_Melusina_Run_Mocap_RootX_SeamFix_GroundFrame.uasset",
+      "bytes": 709383,
+      "sha256": "b83098d0b6292f314f2d45b5e71d605f257e690503ae7dcf525b602b897ff348"
+    },
+    {
+      "path": "Content/Staging/AnimationDoctor/LegSkirt_20261023/A_Melusina_Run_Mocap_RootX_SeamFix_RecompressionControl.uasset",
+      "bytes": 709410,
+      "sha256": "488ab7a78ddab8ce14921f8c659cb2a582c027ad9a92d662de54b7f778619524"
+    },
+    {
+      "path": "Content/Staging/AnimationDoctor/LegSkirt_20261023/A_Melusina_Sprint_Mocap_RootX_GroundFrame.uasset",
+      "bytes": 780053,
+      "sha256": "88a89856b9538bcfb6a6c23baf38c5e4314d91d95cbcaad8019c8e9a389c1d9f"
+    },
+    {
+      "path": "Content/Staging/AnimationDoctor/LegSkirt_20261023/A_Melusina_Sprint_Mocap_RootX_RecompressionControl.uasset",
+      "bytes": 780093,
+      "sha256": "0b23b7013af44f6b6d8f50cd8acda2c7ecbffa4e5a22547191f4543fc1a3df9c"
+    },
+    {
+      "path": "Content/Staging/AnimationDoctor/LegSkirt_20261023/A_Melusina_Walk_Mocap_RootX_SeamFix_GroundFrame.uasset",
+      "bytes": 709397,
+      "sha256": "2f5c43cc838e7a89ab4a1645d9b88b18a127c5613d7fc5085e5a3885eafec062"
+    },
+    {
+      "path": "Content/Staging/AnimationDoctor/LegSkirt_20261023/A_Melusina_Walk_Mocap_RootX_SeamFix_RecompressionControl.uasset",
+      "bytes": 709386,
+      "sha256": "3b4fa6224a87071e9be07d721cbd6a43f502452989b28b387fbe140b5a38a2f0"
+    },
+    {
+      "path": "Content/Staging/AnimationDoctor/LegSkirt_20261023/A_Shin_Idle_stand_MocapConv_GroundFrame.uasset",
+      "bytes": 911133,
+      "sha256": "139954c35d839413d2d76190203c12f9c1d2d6e96717f85b83f191a8a224b02d"
+    },
+    {
+      "path": "Content/Staging/AnimationDoctor/LegSkirt_20261023/ABP_LegSkirt_Axis_Candidate.uasset",
+      "bytes": 1036830,
+      "sha256": "5914795273f1f15d44c8c237124bc767ec88788f3a02233c8a116b303ccd7312"
+    },
+    {
+      "path": "Content/Staging/AnimationDoctor/LegSkirt_20261023/ABP_LegSkirt_ConstraintClean_Candidate.uasset",
+      "bytes": 977805,
+      "sha256": "d836b1c5200ec015c2245c9ffb9eb4a282adb23ac96f7d507d15caf3372efcba"
+    },
+    {
+      "path": "Content/Staging/AnimationDoctor/LegSkirt_20261023/ABP_LegSkirt_Locomotion_Candidate.uasset",
+      "bytes": 1036800,
+      "sha256": "7e24a314cfeda92b63c9b8d7fac41f3c437857431d82cbe8d133028430a033c5"
+    },
+    {
+      "path": "Content/Staging/AnimationDoctor/LegSkirt_20261023/ABP_LegSkirt_WaistPinned_Candidate.uasset",
+      "bytes": 984197,
+      "sha256": "d10ddc516ed2f59a8b0ffd43aaa34a7facf7dde616a928a55ad8cefd465ae7ef"
+    },
+    {
+      "path": "Content/Staging/AnimationDoctor/LegSkirt_20261023/ABP_LegTargetNeutral_Candidate.uasset",
+      "bytes": 1037193,
+      "sha256": "153a19a5e79147d5cc5dbefd72decc0b4dc5b44d7f42b186ffd7fce8cfcdece0"
+    },
+    {
+      "path": "Content/Staging/AnimationDoctor/LegSkirt_20261023/BS_LegSkirt_GroundFrame_Candidate.uasset",
+      "bytes": 8821,
+      "sha256": "09edefc4774901b662d4de824c94a644d788796059a1c24f9f66d8b38fd1d341"
+    },
+    {
+      "path": "Content/Staging/AnimationDoctor/LegSkirt_20261023/L_LegSkirtDiagnostic.umap",
+      "bytes": 21880,
+      "sha256": "3f264701aee0c754dbfc1a4d641521f274475bba1bd92e0def7fa9ebef131f0d"
+    },
+    {
+      "path": "Content/Staging/AnimationDoctor/LegSkirt_20261023/SK_Melusina_V2_Boots_WeightClean_Candidate.uasset",
+      "bytes": 1423718,
+      "sha256": "50bcb070c45d686df1fcba53af9dcac1374b29be7d9485a53d193726c29f686f"
+    },
+    {
+      "path": "CURRENT_STATE.md",
+      "bytes": 1014561,
+      "sha256": "e22386c1c7b9eb67e90210d97369d2f7ae000d394d0540c2da4687eca2d3f578"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/A_Melusina_Run_Mocap_RootX_SeamFix_ground_frame.json",
+      "bytes": 1075,
+      "sha256": "ea3af053aed5be27b836061d739cb5838aec8e241b10df6b9d9c6dd7ccb846aa"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/A_Melusina_Run_Mocap_RootX_SeamFix_recompression_control.json",
+      "bytes": 2259,
+      "sha256": "fd108b8501f24faae43dcfe46038b38a5e14181060c94499a12d277c4fc4861a"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/A_Melusina_Sprint_Mocap_RootX_ground_frame.json",
+      "bytes": 1062,
+      "sha256": "8cfdd681db8d1ef528fd5b5045cb9422f1583932147ac8bf7563e974afb7bd6f"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/A_Melusina_Sprint_Mocap_RootX_recompression_control.json",
+      "bytes": 2231,
+      "sha256": "aed579938dda0a53d84b9ffab28a903ab00c88cdccff7ff8803efebca846b63c"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/A_Melusina_Walk_Mocap_RootX_SeamFix_recompression_control.json",
+      "bytes": 2264,
+      "sha256": "b276f8ea96550a67c7ee9871639b1849f8aa6d5c79b976de6eb50bcb9865c5f5"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/A_Shin_Idle_stand_MocapConv_ground_frame.json",
+      "bytes": 954,
+      "sha256": "950e4efd1dd6f291acbf4cd6cc14970752bf96a7ec3bd4ee5395696015b65e1f"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/ABP_LegTargetNeutral_Candidate_before_axis.uasset",
+      "bytes": 1037193,
+      "sha256": "153a19a5e79147d5cc5dbefd72decc0b4dc5b44d7f42b186ffd7fce8cfcdece0"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/ABP_Melusina_Current_before.uasset",
+      "bytes": 1042432,
+      "sha256": "00a0087dbc140eb982be1be0674e4ee8523da553a757e530cb5fc4816cd12fc5"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/all_on_body_front.png",
+      "bytes": 828582,
+      "sha256": "8497cfc7b04ef6bf86f1d78d01079e6973b3bf1b1dc4b3176bbd6bc18b58a03b"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/all_on_body_side.png",
+      "bytes": 837930,
+      "sha256": "d06bd1963f3fdc9323b7d80592af5e8ca597bd79210924ec50c8b20cfd80638e"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/all_on_outfit_front.png",
+      "bytes": 851247,
+      "sha256": "1e8c3de50a89e6b0ced9e1c7c131020d328c043a38c205840d8c8da015be211b"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/all_on_outfit_side.png",
+      "bytes": 861631,
+      "sha256": "da9237a74b95a38d2727b6849a4189f8d40f34bc79bb21e901d339950faca983"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/all_solvers_off_body_front.png",
+      "bytes": 845874,
+      "sha256": "adf48ee2e38bd3315047f5d6bcde5fd6aa4d3f6e79645856865b65719687aca8"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/all_solvers_off_body_side.png",
+      "bytes": 834015,
+      "sha256": "f1611f153405e34b82f62d142621e672d8594c26aea177224ed5040cedfcc2c8"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/axis_all_on_body_front.png",
+      "bytes": 739720,
+      "sha256": "f7c1b6acee65f8c88d44cd4be7fdcc6b8fec682cfc2bc2d354f9cf73b1cb087c"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/axis_all_on_body_side.png",
+      "bytes": 745966,
+      "sha256": "e4a9e894c6079641b490599417d7e049fe96b9bb2d648b59388e45f5204c2a8a"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/axis_all_on_outfit_front.png",
+      "bytes": 808888,
+      "sha256": "6e92548fc38f54b8b88c02093c5f7380a23b2bf4b78427e5fc3c86385c6232f7"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/axis_all_on_outfit_side.png",
+      "bytes": 789488,
+      "sha256": "341fbfbbbf329d47bddae6d448e4cca7f057e54093826377d1c21a62812ea6ef"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/axis_clean_all_on_body_front.png",
+      "bytes": 735534,
+      "sha256": "6de34bc987681243a4b2446474528a8b57105373a1eafaaad817e47a2dc14784"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/axis_clean_all_on_body_side.png",
+      "bytes": 737084,
+      "sha256": "5367eca8ba8acdf0491e6e0298a99a8cb59b0b1c02375b8a2c52778f99794721"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/axis_clean_all_on_outfit_front.png",
+      "bytes": 812127,
+      "sha256": "d0e0f07af4538e7931571b98c5512815be44c485e52ffb8a94651b4093edd062"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/axis_clean_all_on_outfit_side.png",
+      "bytes": 789936,
+      "sha256": "c34679b468f49987bdb5dea724da6e4a29fc63be8ddc7696fc504ca4ae209c21"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/axis_clean_runtime_layer_comparison.json",
+      "bytes": 12199,
+      "sha256": "947be7cf520ad5fcb2ea20a7800c5dc93ff6a88a7cce2d5884e426f68fb98876"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/axis_runtime_layer_comparison.json",
+      "bytes": 12167,
+      "sha256": "1878f66a256c3c2ed043160d8f95c034a4684423e8cb02e070ebeb7f7e691c83"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/axis_source_graph_before.json",
+      "bytes": 43174,
+      "sha256": "3e654957efe69642e9819bddb8e8bd8aed278faaefbff4672ac8493e055073e8"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/baseline_skinned_bounds.json",
+      "bytes": 582,
+      "sha256": "eafd8fcc0701d5de1d6fc390c9ff2be989b2c47cfd4e66af40a66729bed06728"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/BP_MelusinaJRPGCharacter_before_necklace.uasset",
+      "bytes": 633736,
+      "sha256": "a13362a834900f278884349253e4812db60fc871908fb614e91a61b886e1cd8a"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/build_kinefx_sheets.py",
+      "bytes": 36640,
+      "sha256": "41ae81d1f08eebf8fd56e634f7ccb9e24979f5043ce23c8ff57e43add0b451ac"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/compare_runtime_layers.py",
+      "bytes": 6975,
+      "sha256": "f5046de6b975c67f33d2be38b7db46b1f0e05eed730d5d68d6d744581493363c"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/constraint_clean_native_readback.json",
+      "bytes": 228,
+      "sha256": "a22991a0cde165f20a40f4610a6aa12fbca594c772792e2c60c06d949c160d60"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/constraint_clean_transaction.json",
+      "bytes": 1135,
+      "sha256": "185cedb8f31ae2cec0d04d5104ae2e23c05f34fb4b911a444de4d5a823538c37"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/constraints_source_graph_before.json",
+      "bytes": 41753,
+      "sha256": "5f62232da180a8c69f10d3ef58585e8bd327725ea42742afbb2c9a85123705e1"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/cpp_vs_attached_waterfx.json",
+      "bytes": 3448,
+      "sha256": "ce32272a254139d7350b415f59be27bd3162da82ff4fe45e9898f17b22d307e8"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/editor_node_baseline.json",
+      "bytes": 18094,
+      "sha256": "7f5b0452caba00bf715552c02252670ade0fd2fc833408bb0d09af7c6a605736"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/fix_necklace_attachment.py",
+      "bytes": 5383,
+      "sha256": "0d4ba8c6649027423a7140549c57cfbd5d66d372c3487a2d52f080ffc25dcf8c"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/foot_legik_off_body_front.png",
+      "bytes": 833694,
+      "sha256": "5eb48f43d93e47c2fed85601776880edbcdff2eef772978f107ca39f5c3f9a21"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/foot_legik_off_body_side.png",
+      "bytes": 835163,
+      "sha256": "89fc5a595426c4569136c50714ee412c6b6aa9aed75afa54a60456992a9f7413"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/ground_frame_clean_boots.json",
+      "bytes": 2750,
+      "sha256": "2e48017db79980c4af60b4daa98de650b200402c3b98d7deecc961f25296294e"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/ground_frame_original_boots.json",
+      "bytes": 2740,
+      "sha256": "6bae1968b5f5b0a119359f4b9af5a2183e827601a8cfd579871276006f2deeb5"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/ground_reference_candidates.json",
+      "bytes": 3528,
+      "sha256": "38e628beabe4a65e585a882c47856185233c0c49d99f1b12948afc937ba8bbdd"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/grounded_all_on_body_front.png",
+      "bytes": 739274,
+      "sha256": "ff2b6782909634806101fb9b47b253c612718dd2909f18adb9ea71b2782d2680"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/grounded_all_on_body_side.png",
+      "bytes": 731913,
+      "sha256": "8c03e2921a9a5f023398f949b96073f4495eadd6482d8a6a8b065bc181e71e10"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/grounded_all_on_outfit_front.png",
+      "bytes": 815244,
+      "sha256": "3567223931a4acb5249365d9f8c4f7c9840f7b62215452c804a48fc8c09b5139"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/grounded_all_on_outfit_side.png",
+      "bytes": 780187,
+      "sha256": "0c1c59c761071147eb99458040a7c085ff0cb272d27cb5c3f42625e07170a040"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/grounded_runtime_layer_comparison.json",
+      "bytes": 12185,
+      "sha256": "148132378f0cdf6a0a14b2d56804f12613f153f1905735144b6caab9daba9e2f"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/injected_locomotion_contact.json",
+      "bytes": 62369,
+      "sha256": "081419f70e92c453eea1d35574bc648a1f561f6d9565a22b22b5d6b12f3787c3"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/injected_locomotion_summary.json",
+      "bytes": 1564,
+      "sha256": "e30ed7c2a61aae2dd2d685d9de8f812c583753860a0b5eeec5ec348530b1ad6a"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/interrupted_comparison.json",
+      "bytes": 3458,
+      "sha256": "4824b6f8f56d72618f65c0e8c5aeb4b0d180af5c2583a5fafa6de99225115ced"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/kawaii_off_outfit_front.png",
+      "bytes": 849227,
+      "sha256": "f00b94a9140b5f462621740c66bcbd6f16eb64ae881711483bf3a39cff12bee2"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/kawaii_off_outfit_side.png",
+      "bytes": 857207,
+      "sha256": "cb42a25e3bcc7b044ef0d5193beb1d4702e366e6065dd2b0572abd88866a545d"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/KineFX/audit_contact.py",
+      "bytes": 4659,
+      "sha256": "9c39dbd45fded235dce36277e17731f84e8d30bbdd925657f42f35d48c56c0e3"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/KineFX/bind_contact_debug.png",
+      "bytes": 810374,
+      "sha256": "3e84ba08805d1e483486ee60a9141be4d2ff4ea231cab145247c1f1e5c381be2"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/KineFX/boots_candidate_build.json",
+      "bytes": 43745,
+      "sha256": "a1d1401764253b60c5897e27d43943f2434404cf76e8540645ff8e090d313434"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/KineFX/boots_candidate_kinefx_data.json",
+      "bytes": 1253447,
+      "sha256": "45e548f129b56f589e974c3769d2631529f44bf9a0829e27ec17f02bd4ca34a9"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/KineFX/boots_candidate_roundtrip.json",
+      "bytes": 1863,
+      "sha256": "ff5454233b968a3930f0a48fc933f7878e94fb33412e3bfe96ab2c88d36dd558"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/KineFX/boots_candidate_roundtrip_blender_rejected.json",
+      "bytes": 3371,
+      "sha256": "59a7fb98bfbe626d21d7ecf95d9f7b8187dcc21705f71e04da3816b511e82e78"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/KineFX/boots_cluster_candidate_build.json",
+      "bytes": 37616,
+      "sha256": "0f58d63cacc8c11053bda6370a8984ba9fc66f6dc12ec218e0646a2d49629e9b"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/KineFX/boots_weight_delta.json",
+      "bytes": 418024,
+      "sha256": "6ee63358baec5575fecca45df851fc1d4745c817abc373b0bdda3e80e972a866"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/KineFX/build_boots_cluster_candidate.py",
+      "bytes": 8985,
+      "sha256": "94be7a2104c5a445c33c6880d45b6637af92aff7af44e8fc3e3f51527042d0b5"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/KineFX/build_boots_weight_candidate.py",
+      "bytes": 4994,
+      "sha256": "9392c625aac6da87b7e2d9edc47b291487b19084001eb75717c1002eeba3484e"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/KineFX/build_terminal_support_proxy.py",
+      "bytes": 19311,
+      "sha256": "e2d367d96770036d2c2a1104b502e827c37af45cb10a50ce4b66c19c0afec6f0"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/KineFX/contact_geometry.json",
+      "bytes": 336438,
+      "sha256": "035905ef5a8ea374e51b503be55f8312cc951ca4d3ac56d315ac7d615405bf97"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/KineFX/contact_summary.json",
+      "bytes": 22636,
+      "sha256": "df0407a38d7614eb79b8838ee3ed29606ec709af9f0932d00b6f4b8f5baf4645"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/KineFX/inspect_skeleton.py",
+      "bytes": 1398,
+      "sha256": "d9410658335841f0d931e2d3d57ae6782a881ac145925eb3d1ea2b64dc2f8dec"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/KineFX/measure_skirt_tip_reach.py",
+      "bytes": 7817,
+      "sha256": "46d0594cc667b998392003e7edf845fd6a82ca4e2f5d1f1dc9752bedeb42f9cf"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/KineFX/native_body_tip_reference.json",
+      "bytes": 32782,
+      "sha256": "ae9e5c0fe687d3239d94ee60b812066fa44c47bfaf59b4059a4296a5817de54e"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/KineFX/native_tip_axis_verification.json",
+      "bytes": 31838,
+      "sha256": "46276aa58864347ba0ef05c36220f672b9def5f12e7a2b5e0723351abcfa7f36"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/KineFX/ShirtOverlap/contact_geometry.json",
+      "bytes": 55890,
+      "sha256": "6fb108ed8db9fe3f862dd90a9a58c67c36a2989cccb26c2e0d834fc3990f125f"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/KineFX/ShirtOverlap/measure_shirt_overlap.py",
+      "bytes": 6611,
+      "sha256": "3e857e1451796f50e52ca3937ee4451c34ff0f19f2100061dbc437154af84a08"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/KineFX/ShirtOverlap/shirt_skeleton_intake.json",
+      "bytes": 524,
+      "sha256": "ffc174a3b4ff0c17e57113fa4ae25eba14f53c12d1a030562edd7f6509e4594d"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/KineFX/ShirtOverlap/shirt_skirt_overlap.json",
+      "bytes": 212503,
+      "sha256": "f49f7020c70e4c7609adc2cf4cfada23fd78383a84a44aef5376461439cd7d99"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/KineFX/ShirtOverlap/SK_Melusina_V2_Shirt_Flared_data.json",
+      "bytes": 232897,
+      "sha256": "b57377c72d3d7c553d46781664c0c066d00e33309b14aa2b80cf4b9d7bd02661"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/KineFX/SK_Melusina_V2_Body_data.json",
+      "bytes": 4515688,
+      "sha256": "29791005fe28403b63dab158a2a2c13b7338bd88091d1c574be5867983bb9cf6"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/KineFX/SK_Melusina_V2_Boots_data.json",
+      "bytes": 919212,
+      "sha256": "10b1c05dd4daa4c8ffa10eeb7b8237f8fe0a1a5871c7f72d834d04901af71701"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/KineFX/SK_Melusina_V2_Boots_WeightClean_BlenderRejected.fbx",
+      "bytes": 1257980,
+      "sha256": "b30c12f97ce2cfd8c143e2c87971ae51b8e57b0b5b979fbf608bddd98e0d7436"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/KineFX/SK_Melusina_V2_Boots_WeightClean_Candidate.fbx",
+      "bytes": 1017436,
+      "sha256": "7a2bc2d425210b970bf57711686884035647fc604373488319159310ef7bd91b"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/KineFX/SK_Melusina_V2_Skirt_R2_SmoothChains_data.json",
+      "bytes": 8816560,
+      "sha256": "5b5ff9d608d2a065554798188dedc377d5ca13dd0ba24c910ef718473bfa7918"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/KineFX/skeleton_hierarchy.json",
+      "bytes": 619787,
+      "sha256": "4a6e481b84ec6de21f2eedb712172e464c2414d017d0ba26529fa42e0a0c2b75"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/KineFX/skirt_terminal_support_proxy_breakdown.png",
+      "bytes": 434319,
+      "sha256": "4208f3aa3e53ba6f115f338f74fc0a0a716bfa0806f14649ba9453ea1ef62eef"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/KineFX/skirt_terminal_support_proxy_breakdown.svg",
+      "bytes": 220484,
+      "sha256": "17bffe0cd33dee00d4d196deec809a1a8e0c49fdf85f0292c14f8c1e43a2f7e0"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/KineFX/skirt_terminal_support_proxy_candidate.json",
+      "bytes": 73708,
+      "sha256": "a964241f369e4655aad8cbf99d18f52baba7354b7074dea48e79473e976d1318"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/KineFX/skirt_terminal_support_proxy_candidate.obj",
+      "bytes": 22466,
+      "sha256": "ace0129f132a3c5d6317a715002257f6cbd69c92f94090915b0cb2c013531bc0"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/KineFX/skirt_terminal_support_proxy_gate.json",
+      "bytes": 4044,
+      "sha256": "f7a82b38c2f048530c51bd58c0f1f8e76b08ed4180c616077fb7c6f81b407dc0"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/KineFX/skirt_tip_reach.json",
+      "bytes": 331935,
+      "sha256": "2c8ea8c6ece547fbe201a349473edfcd051788894ad39ffd00f462f8d97d6d86"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/KineFX/summarize_contact.py",
+      "bytes": 9669,
+      "sha256": "d9a3f3d494b87b2efc43b8e033d6aef948863c0eb9e95ceca19df15ba679f881"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/KineFX/verify_boots_candidate.py",
+      "bytes": 7384,
+      "sha256": "cbe6fe4973d11a1034d6b138ab0ee98fb54c843023591bfef71cc878b1003a1a"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/KineFX/verify_native_tip_axis.py",
+      "bytes": 2896,
+      "sha256": "f6cc76cc26bab5edf51dc42b5802ea9624411a424e68d08b57b4cba97ed598c9"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/KineFX/waist_root_coverage.json",
+      "bytes": 863,
+      "sha256": "07f8c9f0f65f0ad12448d15a62c64be592cba4406e25a55a36438698271b8c94"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/L_MelusinaHouse_P0_before_ground_collision.umap",
+      "bytes": 4337543,
+      "sha256": "e6b7e956ab565161c2273ba9f1ab09843eb1f38cbf8399f75e6ec6dac1721df3"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/legik_off_body_front.png",
+      "bytes": 837662,
+      "sha256": "248c7d5ffbadb264d8fb604a706222e4abc9997ead99310c31deaa6c886687e6"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/legik_off_body_side.png",
+      "bytes": 829625,
+      "sha256": "a00e2324f0f617aba0357bcf47b38652d9f7727dfefe861de59d47a5b41043c4"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/locomotion_source_graph_before.json",
+      "bytes": 41747,
+      "sha256": "5ab8caf4ca8ca5e56737b38b08f5aad90c088dff4b54e193b043424555037376"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/move_idle.png",
+      "bytes": 947599,
+      "sha256": "0dd53d562e830b73f2c47ad0411a84a3a5124d80273f32fd2517ef39ba311733"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/move_stop.png",
+      "bytes": 789266,
+      "sha256": "83e7cfbe56c6308e9e4221e9f4a740c1e6b8a092e9cabba632b52d41194cf784"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/move_turn.png",
+      "bytes": 904604,
+      "sha256": "dc6d7064735498b27452c326e20fdc2eeb6e86c0be6959ad9a2597ba97b7694c"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/move_walk.png",
+      "bytes": 956204,
+      "sha256": "2ffa0ebb920e27aeabc3c55c08ba370b026b7a686527cb84a83d58aeea7e024c"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/native_axis_idle_contact.json",
+      "bytes": 2731,
+      "sha256": "f22daa16c7ff38c3e9dff7c03e265079a4502665f97e60eda86dad4396be2c7a"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/native_skirt_axis_candidate.json",
+      "bytes": 2523,
+      "sha256": "c60d616b4e6839b4ae0abebdb7c22a00de2a4bd103e9af98b0c27a8a5ca41b02"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/neck_after_all_on_outfit_front.png",
+      "bytes": 993049,
+      "sha256": "c33772d6bb5e43117d0de21d5c75e850ca5ace90a2161a3800819eba18815b3a"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/neck_after_all_on_outfit_side.png",
+      "bytes": 921895,
+      "sha256": "3f583d134ff55d82dc8dbf76adbcd1651dba914d83df02a39e170df362b06e8a"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/neck_after_runtime_layer_comparison.json",
+      "bytes": 6348,
+      "sha256": "d84efc7b4ac324636c605694a39bc61a6bb4c8bbc31b3ab84b3302532a6fef0f"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/neck_before_all_on_outfit_front.png",
+      "bytes": 1016387,
+      "sha256": "20f87f1f0f22e7209b18076876aa0dc87d68377fee821f3896233e6c907e166b"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/neck_before_all_on_outfit_side.png",
+      "bytes": 947445,
+      "sha256": "49f36c0417d0a96cf583aec40851148e09126ce2ecfa711b9a58283513259e32"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/neck_before_runtime_layer_comparison.json",
+      "bytes": 6352,
+      "sha256": "503fe01456e21ea5023518008423a3e3c0fac8e2af79178ad8d301fca40e2724"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/neck_saved_all_on_outfit_front.png",
+      "bytes": 1012018,
+      "sha256": "5e05a4f17afd6d85d5fb331e9ebfe844146c96122f6125ec0f96da1ff6571b59"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/neck_saved_all_on_outfit_side.png",
+      "bytes": 947958,
+      "sha256": "f075e0289a07a96488f92eb06b97bde6d3c516f4472e2562a12afc272aa22cd1"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/neck_saved_runtime_layer_comparison.json",
+      "bytes": 6346,
+      "sha256": "96c6e430067576e34abb61aaf91a0398850ef9b20ed536169fce518d764933a3"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/neck_static_after_all_on_outfit_front.png",
+      "bytes": 1017718,
+      "sha256": "6e76c7c9359e141ba814a3517db9cb8d1a6c963c3a67119ad6c2e736d543e765"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/neck_static_after_all_on_outfit_side.png",
+      "bytes": 918941,
+      "sha256": "485b4c7b84c553b19a6b57e47f489a2a64d93eff8901076a1dae7a4c206cb7b6"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/neck_static_after_runtime_layer_comparison.json",
+      "bytes": 6367,
+      "sha256": "55933711d9bf0c33601deb5b6cdc11e31d208afe0bad1ccbab7271be77b212ee"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/neck_static_before_all_on_outfit_front.png",
+      "bytes": 1037249,
+      "sha256": "7c8fc0fa32313ddeb0e0f0943852f510db4ddf202154c6ad17af34426ca55d69"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/neck_static_before_all_on_outfit_side.png",
+      "bytes": 957972,
+      "sha256": "340c6e9bde24eccd800d296bb81a362b57ebdfc5c5ba04bca5033619bab09c68"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/neck_static_before_runtime_layer_comparison.json",
+      "bytes": 6372,
+      "sha256": "22826c6dcbb1b46dc1036382c9d781ad102598cc8287e3cb840fe1b1c69cbdf9"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/necklace_attachment_canary.json",
+      "bytes": 2148,
+      "sha256": "738aa0b16f22afec218e1714607f4faf647751b64ae42556ae510fef5f2e248f"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/necklace_canary_retention.json",
+      "bytes": 329,
+      "sha256": "d8f25bfff01304c564ab0d874bdf6f1e23e67089cfa474a126ee799bc71b13fb"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/necklace_construction_before.json",
+      "bytes": 28026,
+      "sha256": "7418d68b4a861e6ac74545929506434579de67b447490cf4bd41aaf0ee8194c9"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/necklace_final_capture.json",
+      "bytes": 85,
+      "sha256": "3f9ea997d112303d31221dc362adc28ae4a0d6972327cb2ab3180364b18d426a"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/necklace_fresh_pie.json",
+      "bytes": 760,
+      "sha256": "10b5e0d576b05eebc7d85c1aa77b342bfb120a457130f1f7680596067585fc4d"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/necklace_native_bind.json",
+      "bytes": 4224,
+      "sha256": "684c990be1336ce523914d3ff06a52d4e466248fa4acd8b123d2abe98fe6f04a"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/necklace_persisted_fix.json",
+      "bytes": 30900,
+      "sha256": "e6c577a500cc85138091fd424d6339425bb6b02b09e2e64f1bd57b83a916dcf2"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/neutral_target_canary.json",
+      "bytes": 1169,
+      "sha256": "f27a5f1a9e44e122cc1fdb5a876727c9dcbbf205f4bbc93f2d4aed621ba2c042"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/neutral_target_pin_canary.json",
+      "bytes": 1253,
+      "sha256": "c5a45328f9978f73b4413516213ba6a8b589f61a9152a25b83122555e27f9c7c"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/owned_startup_modal.log",
+      "bytes": 521415,
+      "sha256": "a93fdc683f678405c0014a79d12fee9084e5f7f4f42ef6661ad88e111043e5e6"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/p0_fluid_sampler_offline_checks.json",
+      "bytes": 554,
+      "sha256": "1ac51fefe5e9144a2babbf31fae72597930255f4b5e7b4f57beef8c36f064012"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/p0_ground_collision_after.json",
+      "bytes": 1475,
+      "sha256": "9521da7400633010955203c41140b7f00fcab3a1ddbe13c3317481aad9fa9566"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/p0_ground_collision_before.json",
+      "bytes": 886,
+      "sha256": "a8c943b80ebe132b59d12c251740cbeef97751a6e570ff967d95e8ae3bb5fcf0"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/p0_ground_collision_fix.json",
+      "bytes": 1118,
+      "sha256": "0bc4c460d0d571b1fed1bdcb3c03a799a76d8ef19491dab72637c1871fe32df6"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/p0_shirt_water_before.json",
+      "bytes": 24721,
+      "sha256": "f2b38a69b0826477e9ac05cbc1308c6906fc6eef0d1e2d0cda2898c2c8a072f8"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/p0_shirt_water_before.png",
+      "bytes": 1504878,
+      "sha256": "fab42ecbb8348d16a03ace7f7a70ff75913c949d222d8f366d62f87cac47552f"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/probe_locomotion_contact.py",
+      "bytes": 8611,
+      "sha256": "11fff47c6a63449a975006dc73bd7e8b666f765ea5ea7bb47baa9c08a2d058e3"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/probe_runtime_contact.py",
+      "bytes": 2649,
+      "sha256": "2c6aa3e747baa4357dbb5c780acb4fcc569052aa250b9e3fea40d623bf12113b"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/RecoveryPreserved/L_MelusinaHouse_P0_Auto1.umap",
+      "bytes": 6598813,
+      "sha256": "14928d5fc63482890f2787470379d16ef1094f438f3fbfb1e879e23f94dc7bb0"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/RecoveryPreserved/L_MelusinaHouse_P0_Auto2.umap",
+      "bytes": 4846155,
+      "sha256": "7fc414a55f9254653f67906e724ef128c33efcec5f2abf2387107977b5bc6b7f"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/RecoveryPreserved/L_MelusinaHouse_P0_Auto3.umap",
+      "bytes": 3352552,
+      "sha256": "eedb023dd9f9f8a0e6f3e4102e36bf24f4d45fb0fcb5c612e88e80698fc397fa"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/RecoveryPreserved/L_MelusinaHouse_P0_Auto4.umap",
+      "bytes": 4854257,
+      "sha256": "bad0b0addd6d4c8b3defb5ad1359116811880c254103e53bb2c99af3cb7f7977"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/RecoveryPreserved/L_MelusinaHouse_P0_disk.umap",
+      "bytes": 6598813,
+      "sha256": "14928d5fc63482890f2787470379d16ef1094f438f3fbfb1e879e23f94dc7bb0"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/runtime_identity.json",
+      "bytes": 4032,
+      "sha256": "e8c6f9d9061649b1f6fe9b8e6352fa78861a60743eac2d2e4b56ec48e27b9665"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/runtime_layer_comparison.json",
+      "bytes": 35544,
+      "sha256": "71b002919867343ee12f12c3939c4c6e18e901f11cf7456fa8d9255939780eb6"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/RuntimeSnapshots/BP_MelusinaJRPGCharacter_current.uasset",
+      "bytes": 632288,
+      "sha256": "db67d21c125c31eed104c319474db4bd212505eb1105db2d7923d2ebe8cc29da"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/RuntimeSnapshots/L_MelusinaHouse_P0_current.umap",
+      "bytes": 4339429,
+      "sha256": "836330a47bfc9378e4001c16b35eb1c98d9654be5986a18e24285baae2ce997f"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/Sheets/Melusina_TechnicalBreakdown.md",
+      "bytes": 23627,
+      "sha256": "841fe14335cc252544732b67a1d7da370d6e9e7547a003935e887ab5fc21509d"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/Sheets/sheet_01_runtime_leg_grounding.png",
+      "bytes": 301290,
+      "sha256": "1195bf6c8d5e14646ddd4fa0ba113d11368efdf565e90db3036d9ecc23ce8f9b"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/Sheets/sheet_02_boot_skinning.png",
+      "bytes": 510874,
+      "sha256": "3c250ac68cb4da0a4633a8f2bae5e7bd7ca6cca93dd3d4edf7ffce9bc5ce4f5a"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/Sheets/sheet_03_skirt_layers_proxies.png",
+      "bytes": 403664,
+      "sha256": "7f32bf76db0a83873cf6e671aaf859f520a6ccdd3b45bdacabb244c2d861a15f"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/Sheets/sheet_04_runtime_ownership.png",
+      "bytes": 260962,
+      "sha256": "0794fbe5099f0312c526efc895332c54e8c0b14dd679303337f3d45567a3ce20"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/Sheets/sheet_05_rig_expansion.png",
+      "bytes": 614298,
+      "sha256": "e0dceff6ff72967c296b10154070597444aa005b7bccb0bc03e2e5404acac85d"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/Sheets/sheet_06_gameplay_portfolio.png",
+      "bytes": 324918,
+      "sha256": "622acec4822645affd4945db3d58cf6acc0469a749c24a44c16c43e8816016ce"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/Sheets/sheet_07_native_axis_correction.png",
+      "bytes": 291500,
+      "sha256": "6b4652d590782955911a19df8430ac5ac9c278e56ef9e613155f4d65503a4ce8"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/Sheets/sheet_08_necklace_attachment.png",
+      "bytes": 1670142,
+      "sha256": "2786e505ef25ffff580e4e8baaf09baee7f9fde864b58103658ed0f301b8493b"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/Sheets/sheet_09_waist_simulation_localization.png",
+      "bytes": 284537,
+      "sha256": "9749271150ad0ec864c086a5b135a0f6d6b47ff81b699aedbfadffb33728d4fa"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/Sheets/sheet_10_water_sparkle_beat_plan.png",
+      "bytes": 273781,
+      "sha256": "4b639749447cbdd9bb3f922dc837d7ef009813d0b9f127f17418af48dd3aa066"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/Sheets/sheet_11_shirt_hem_shared_chains.png",
+      "bytes": 523913,
+      "sha256": "8175681b3e3e49153f4f8c74e36283c383bde656d38e83d4ab081a543e5cf3df"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/Sheets/sheets_manifest.json",
+      "bytes": 8463,
+      "sha256": "701a9a1a78bb53cef73ab748ce2d2b293e4421c24ed6ebf5b4c826eb64574e9c"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/SK_Melusina_Skeleton_before.uasset",
+      "bytes": 145688,
+      "sha256": "fd94722c8e6e4a073ea397a8d54a5e8c01134555d0e080d7071ebf082552163d"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/skirt_collision_baseline.json",
+      "bytes": 1974,
+      "sha256": "0a76eb13081bcd33e80034e16b9cb54ec0eb1b8310f502b702ec75a316fee2e2"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/skirt_constraint_baseline.json",
+      "bytes": 8372,
+      "sha256": "3d1f063ca0dc9086179a9bd0dcf51dd1cd04a2d38197181c5a84856e5fb358f3"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/source_only_skinned_bounds.json",
+      "bytes": 289,
+      "sha256": "ab55e26fa4683b9e795bd61ad9ff3b195e27012c7ee89cd60159e30e8285991a"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/SourceExports/exports.json",
+      "bytes": 859,
+      "sha256": "de5ce1c83103586aec3bff549b26594b6ab1ca9609ad7aa05ee18fc60e49d89b"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/SourceExports/SK_Melusina_V2_Body.fbx",
+      "bytes": 3903840,
+      "sha256": "602fbb6a357b77322fec137fbd639c6156886410a247511ed56538ac2b47a65b"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/SourceExports/SK_Melusina_V2_Boots.fbx",
+      "bytes": 1017760,
+      "sha256": "0b00805ad6af0e60c34c7f137e3d70c8404e2792b68b4198251d1d224a30c407"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/SourceExports/SK_Melusina_V2_Shirt_Flared.fbx",
+      "bytes": 831936,
+      "sha256": "eeff4f73d6c26c6899fdcc6864feae27183679ef5c6590234408e4432b52bca1"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/SourceExports/SK_Melusina_V2_Skirt_R2_SmoothChains.fbx",
+      "bytes": 2713216,
+      "sha256": "40356ebc1521e5420737c13a4cfc4d487be4a7650478cedbd2cb68c3817923ea"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/stage_ground_reference.py",
+      "bytes": 5491,
+      "sha256": "53142cec660ce120ca2f49d16afdbd49bb9bdadb1662b5c03b578b4d84be87e2"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/stage_native_skirt_axis.py",
+      "bytes": 3721,
+      "sha256": "7623842f8b6c866f7f299ed27e4d60115c5f8316604b31ce1ca6f40b5a87980e"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/staged_locomotion_binding.json",
+      "bytes": 1340,
+      "sha256": "8133492111687e5b0667bd09b021dc669a867b9919da185274c90240be69f0e5"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/staged_locomotion_blendspace.json",
+      "bytes": 4223,
+      "sha256": "14b7c3dd03387542fa6983838efc671eac5e17b231bb5bcfa41c3a08f1fccffb"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/staged_locomotion_blendspace_verified.json",
+      "bytes": 4727,
+      "sha256": "290ce8d9cf27958c4a630a0eb65578017401be95da72cc2a0f0ba2a2b4ac9b56"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/test_necklace_attachment.py",
+      "bytes": 2780,
+      "sha256": "07fc38e99a0ae6568a5d87aabf05673e0eddc8f178ccd48d36aa4e8ce9a40dec"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/verify_ground_recompression.py",
+      "bytes": 5789,
+      "sha256": "59ad0f45096a2f01966a61bd48d3b3d2f71e5b476efd5ee6de6439a83d0be6b2"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/waist_constraint_clean.json",
+      "bytes": 143942,
+      "sha256": "87b8d7a8de43d684e88edf7bddf04987c3a98585ce63a5acf3b290b5d07e54ea"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/waist_constraint_clean_move_idle.png",
+      "bytes": 936785,
+      "sha256": "c96ebc5af88d7de300a466a03dd9fabf07cdf96f50c4e70d0bf6ade38c41af59"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/waist_constraint_clean_move_stop.png",
+      "bytes": 800318,
+      "sha256": "5d9d9684473022d922bc28fd6b778d34edde499971bb2ee47d43ae84942e9aec"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/waist_constraint_clean_move_turn.png",
+      "bytes": 887782,
+      "sha256": "1bb934be92be5140ca7c41e8e4c9a7ea1de5bedf78f9af613e68894d1c2d51e2"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/waist_constraint_clean_move_walk.png",
+      "bytes": 944458,
+      "sha256": "bbcafd2b3955eaa9af8e6aef881fdab8e5204897efcdac2dbb00b159ead4a3af"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/waist_duplicate_baseline.json",
+      "bytes": 71693,
+      "sha256": "b254f22d2a01889d1fa88b642d6f14057f48a93e353800645d0d021dd1830082"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/waist_duplicate_baseline_move_idle.png",
+      "bytes": 943493,
+      "sha256": "7eb3da57b281e038cfcf5cda9c1b2f96766adac0ff9de918d0901afc90ee9275"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/waist_duplicate_baseline_move_stop.png",
+      "bytes": 786264,
+      "sha256": "609b4e66dde5c533229a40f190496d5eaaa6db5e644a1c89bd9188af80baaed9"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/waist_duplicate_baseline_move_turn.png",
+      "bytes": 899437,
+      "sha256": "1a298580b5192ff48e1b603c80cb45d8aac98cd13bbac0fd081b3afce27ceee5"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/waist_duplicate_baseline_move_walk.png",
+      "bytes": 949316,
+      "sha256": "9ca06cb3252441a9c66adae2abf8900ec2ed4927f649779b8994e843567d079b"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/waist_kawaii_off.json",
+      "bytes": 73447,
+      "sha256": "a4593ac136daee1d4dc8268d935f6f0089f9c5b1dcbfbc74387004eb37f6448c"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/waist_kawaii_off_move_idle.png",
+      "bytes": 1158212,
+      "sha256": "bc7a4f433643ff70225a42eacaaedfb605c43bbb3165c55572f28d4b481f6250"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/waist_kawaii_off_move_stop.png",
+      "bytes": 1208680,
+      "sha256": "a58710cdc85fa3765f5c2acc6d6113dffca3a90a76e05179e39a578fd562d5cb"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/waist_kawaii_off_move_turn.png",
+      "bytes": 1124857,
+      "sha256": "7754d20ec05f6c1392ff9fdd4a84cc12fe7437e5095e1e01cad6a3919abc8ede"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/waist_kawaii_off_move_walk.png",
+      "bytes": 1172230,
+      "sha256": "1516f2b8066731f42c274af9fe4ff99fa4e9b3be62ba5646e408ca69892ff878"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/waist_pin_candidate_native.json",
+      "bytes": 504,
+      "sha256": "d8182c72197dd12892ec7549b0963d7c321319a2d7a7ffc5abaec9db94a52416"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/waist_pin_editor_preserve_before.json",
+      "bytes": 1441,
+      "sha256": "c1ce2be0c210072d5ab193b6dd6137301a71394cd800ca5e6ed50c03770afd29"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/waist_pin_graph_after_unsaved.json",
+      "bytes": 43177,
+      "sha256": "de5b4da3a62a08c25a5bb91801c56b5b8719bc699ece7422f9ff5025329e8ea7"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/waist_pin_graph_before.json",
+      "bytes": 43182,
+      "sha256": "fa522bdce99206a3b40aa39155f383e6cc46da30d222f15daa251397030239bf"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/waist_pin_graph_expected.json",
+      "bytes": 43181,
+      "sha256": "35a8ab595e9049d0a0a43cd5814dbb69a1b8853913d702dd51dc0f533877d649"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/waist_pin_source_native.json",
+      "bytes": 144,
+      "sha256": "042583dbcdc659923f8eaba8cf0f6a7f2ad1fc4424ed65dc89e41d6747ff1264"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/waist_pin_transaction.json",
+      "bytes": 7313,
+      "sha256": "66f71923f88cc7174d84fb8ce58572abfeea38b8b6d404cfb3905cb022b86843"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/waist_pinned_diagnostic_aborted.json",
+      "bytes": 3348,
+      "sha256": "a9388fdc48dec7a1c5e2e2caf20a39b6ed86e726209b667bc90d07080c6842f0"
+    },
+    {
+      "path": "Saved/Audit/MelusinaLegSkirt_20261023/waist_ring_reference.json",
+      "bytes": 17399,
+      "sha256": "e7aaa266c51dcd840b2f3c2362b2069869879acd097846273fc000513feb9703"
+    },
+    {
+      "path": "Source/BS_GodFile/MelodiaIntegration/MelodiaWaterChorus.cpp",
+      "bytes": 23771,
+      "sha256": "8891412ea9dd5fb8cabcac44bb51e1702603ce6d285e19c507af575cdfc301d3"
+    },
+    {
+      "path": "specs/universal_rig/rig_contract.v1.json",
+      "bytes": 1392,
+      "sha256": "7502fd4609d1d30cbf4144b1af8f95934058c0f7ebf2486a2eac7acd6bc31e71"
+    }
+  ],
+  "acceptance": {
+    "necklace": "saved attachment; fresh PIE + reconstruction observed",
+    "ground_collision": "saved blocker removal; editor capsule sweeps only",
+    "leg_and_waist_candidates": "saved staging only; moving contact failed; waist P0 not tested",
+    "fluid_spawn_context": "source fix; not compiled or live verified",
+    "shirt": "bind analysis only; all weights retained",
+    "fluid_binding_observer": "prepared; offline guards only"
+  },
+  "runtime_snapshot_warning": "RuntimeSnapshots are whole shared working-copy captures, including pre-existing work. They are recovery evidence, not isolated production changes or auto-restore instructions.",
+  "p0_boundary": "All further runtime acceptance in House P0. Material pass retains editor control.",
+  "rejected_assets": "Files explicitly named BlenderRejected or containing failed gate receipts remain rejected; do not import them as accepted candidates.",
+  "dependencies": "Requires the existing BS_GodFile project and canonical skeleton/material/runtime assets. This is a source/evidence package, not a packaged game.",
+  "runtime_handoff": "CURRENT_STATE.md / Sonnet runtime handoff \u2014 owner requested, 2026-10-24"
+}

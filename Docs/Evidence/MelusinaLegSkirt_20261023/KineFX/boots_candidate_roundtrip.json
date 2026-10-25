@@ -1,0 +1,56 @@
+{
+ "schema": "melodia.boots_weight_candidate_roundtrip.v1",
+ "source": "C:/EnvironmentPortfolio/BS_GodFile/Saved/Audit/MelusinaLegSkirt_20261023/SourceExports/SK_Melusina_V2_Boots.fbx",
+ "candidate": "C:/EnvironmentPortfolio/BS_GodFile/Saved/Audit/MelusinaLegSkirt_20261023/KineFX/SK_Melusina_V2_Boots_WeightClean_Candidate.fbx",
+ "source_sha256": "0b00805ad6af0e60c34c7f137e3d70c8404e2792b68b4198251d1d224a30c407",
+ "candidate_sha256": "7a2bc2d425210b970bf57711686884035647fc604373488319159310ef7bd91b",
+ "counts": {
+  "source_points": 5540,
+  "candidate_points": 5540,
+  "source_primitives": 8176,
+  "candidate_primitives": 8176,
+  "source_joints": 465,
+  "candidate_joints": 465
+ },
+ "geometry": {
+  "max_vertex_nearest_distance_mm": 0.0,
+  "triangles_and_materials_equal_at_0_01mm": true,
+  "material_primitive_counts_source": {
+   "MI_Melusina_Nikki_Material_017": 8176
+  },
+  "material_primitive_counts_candidate": {
+   "MI_Melusina_Nikki_Material_017": 8176
+  }
+ },
+ "bind": {
+  "unknown_joints": [],
+  "missing_joints": [],
+  "max_joint_position_delta_mm": 0.0,
+  "max_matrix_element_delta": 0.0,
+  "hierarchy_changed": []
+ },
+ "weights": {
+  "candidate_vs_expected_mismatching_points": 0,
+  "max_weight_difference": 3.084172017775444e-08,
+  "kilt_weighted_points": 0,
+  "opposite_side_weighted_points": 0,
+  "more_than_4_influences": 0,
+  "unweighted_points": 0,
+  "weight_sums_outside_1e_5": 0
+ },
+ "gate": {
+  "same_vertex_count": true,
+  "same_topology_and_materials": true,
+  "no_vertex_drift": true,
+  "same_bone_names": true,
+  "same_hierarchy": true,
+  "same_bind_positions": true,
+  "same_bind_matrices": true,
+  "weights_exactly_requested": true,
+  "kilt_removed": true,
+  "opposite_side_removed": true,
+  "normalized_and_nonzero": true,
+  "at_most_4_influences": true
+ },
+ "passed": true
+}

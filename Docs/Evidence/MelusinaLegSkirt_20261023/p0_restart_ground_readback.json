@@ -1,0 +1,13 @@
+{
+  "world": "/Game/Melodia/Levels/Opening/UEDPIE_0_L_MelusinaHouse_P0.L_MelusinaHouse_P0",
+  "spawn_cm": [
+    -300.0,
+    -576.0,
+    79.21249961853027
+  ],
+  "movement_mode": "<MovementMode.MOVE_WALKING: 1>",
+  "anim_class": "/Game/Melodia/Characters/Melusina/ABP_Melusina_Current.ABP_Melusina_Current_C",
+  "bRuntimeIsGrounded": "True",
+  "Speed": "0.0",
+  "Velocity": "<Struct 'Vector' (0x000002393C793DC8) {x: 0.000000, y: 0.000000, z: 0.000000}>"
+}

@@ -1,0 +1,31 @@
+{
+  "source": "/Game/Melodia/Characters/Melusina/Animations/Locomotion/A_Shin_Idle_stand_MocapConv",
+  "candidate": "/Game/Staging/AnimationDoctor/LegSkirt_20261023/A_Shin_Idle_stand_MocapConv_GroundFrame",
+  "support_plane_cs_cm": -28.001,
+  "trajectory_delta_cm": -19.661219192504884,
+  "changed_tracks": [
+    {
+      "bone": "c_traj",
+      "position_readback_error_cm": 5.493164074721335e-07
+    },
+    {
+      "bone": "root_x",
+      "position_readback_error_cm": 2.456665043837347e-06
+    },
+    {
+      "bone": "c_root_master_x",
+      "position_readback_error_cm": 2.456665043837347e-06
+    }
+  ],
+  "compressed_pose_preservation": {
+    "frames": 162,
+    "bones_checked": 23,
+    "max_world_position_delta_cm": 1.9073486328125e-06,
+    "max_world_quaternion_component_delta": 0.0,
+    "ground_plane_range_cm": [
+      -28.000999450683597,
+      -28.000999450683597
+    ]
+  },
+  "runtime_admission": "UNVERIFIED"
+}

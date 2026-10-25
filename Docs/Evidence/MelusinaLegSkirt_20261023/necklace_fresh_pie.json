@@ -1,0 +1,33 @@
+{
+  "scope": "fresh PIE spawn after saved canonical BP fix",
+  "fresh_spawn": {
+    "socket": "spine_03_x",
+    "parent": "CharacterMesh0",
+    "location": [
+      3.0027302400158375e-06,
+      100.96518384664782,
+      -63.6616513513069
+    ],
+    "quaternion": [
+      0.55378038537124,
+      -1.7180819681741815e-08,
+      -1.1943963919115483e-08,
+      0.8326627677385848
+    ]
+  },
+  "after_construction_reentry": {
+    "socket": "spine_03_x",
+    "parent": "CharacterMesh0",
+    "location": [
+      3.0027302400158375e-06,
+      100.96518384664782,
+      -63.6616513513069
+    ],
+    "quaternion": [
+      0.55378038537124,
+      -1.7180819681741815e-08,
+      -1.1943963919115483e-08,
+      0.8326627677385848
+    ]
+  }
+}

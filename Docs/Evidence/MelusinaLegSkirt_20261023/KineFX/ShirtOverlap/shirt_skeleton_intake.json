@@ -1,0 +1,13 @@
+{
+  "raw_joint_name_sets_identical": false,
+  "shared_named_joints": 464,
+  "only_shirt_names": [
+    "SK_Melusina_Skeleton"
+  ],
+  "only_body_names": [
+    "root"
+  ],
+  "max_shared_joint_position_delta_cm": 0.00017120779274365223,
+  "shirt_wrapper_weighted_points": 0,
+  "qualification": "FBX intake wrapper name differs; shared names/positions match within export precision. No alias rename or UE skeleton import is admitted. Parent hierarchy and bind matrices need full intake validation before re-export."
+}

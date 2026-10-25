@@ -1,0 +1,34 @@
+{
+  "source": "/Game/Staging/AnimationDoctor/LegSkirt_20261023/ABP_LegSkirt_Axis_Candidate",
+  "candidate": "/Game/Staging/AnimationDoctor/LegSkirt_20261023/ABP_LegSkirt_Locomotion_Candidate",
+  "stable_source_fingerprints": [
+    "539b6b2403453e02007c04444bf492a6d9c53d53",
+    "539b6b2403453e02007c04444bf492a6d9c53d53",
+    "539b6b2403453e02007c04444bf492a6d9c53d53"
+  ],
+  "scope": "Locomotion state player asset only; main AnimGraph unchanged",
+  "compile": {
+    "asset_path": "/Game/Staging/AnimationDoctor/LegSkirt_20261023/ABP_LegSkirt_Locomotion_Candidate",
+    "success": true,
+    "status": "UpToDate",
+    "errors": [],
+    "warnings": [],
+    "error_count": 0,
+    "warning_count": 0
+  },
+  "assertion": {
+    "matched": true,
+    "mode": "exact",
+    "asset_path": "/Game/Staging/AnimationDoctor/LegSkirt_20261023/ABP_LegSkirt_Locomotion_Candidate",
+    "graph_name": "AnimGraph",
+    "missing_nodes": [],
+    "extra_nodes": [],
+    "missing_connections": [],
+    "pin_default_mismatches": [],
+    "forbidden_nodes_present": [],
+    "summary": "28/28 nodes, 25/25 connections, 0 default mismatches, 0 forbidden present"
+  },
+  "explicit_native_readback": "AnimStateNode_5.Locomotion.AnimGraphNode_BlendSpacePlayer_2.Node.BlendSpace = BS_LegSkirt_GroundFrame_Candidate",
+  "saved": true,
+  "runtime_admission": "UNVERIFIED"
+}

@@ -1,0 +1,17 @@
+[
+  {
+    "mesh": "/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Body.SK_Melusina_V2_Body",
+    "file": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\MelusinaLegSkirt_20261023\\SourceExports\\SK_Melusina_V2_Body.fbx",
+    "ok": true
+  },
+  {
+    "mesh": "/Game/Melodia/Characters/Melusina/Outfits/V2/Polish_20260920/SK_Melusina_V2_Skirt_R2_SmoothChains.SK_Melusina_V2_Skirt_R2_SmoothChains",
+    "file": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\MelusinaLegSkirt_20261023\\SourceExports\\SK_Melusina_V2_Skirt_R2_SmoothChains.fbx",
+    "ok": true
+  },
+  {
+    "mesh": "/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Boots.SK_Melusina_V2_Boots",
+    "file": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Audit\\MelusinaLegSkirt_20261023\\SourceExports\\SK_Melusina_V2_Boots.fbx",
+    "ok": true
+  }
+]

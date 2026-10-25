@@ -1,0 +1,109 @@
+{
+  "tag": "native_axis_idle_contact",
+  "pawn": "/Game/Staging/AnimationDoctor/LegSkirt_20261023/UEDPIE_0_L_LegSkirtDiagnostic.L_LegSkirtDiagnostic:PersistentLevel.BP_MelusinaJRPGCharacter_C_1",
+  "anim": "/Game/Staging/AnimationDoctor/LegSkirt_20261023/ABP_LegSkirt_Axis_Candidate.ABP_LegSkirt_Axis_Candidate_C",
+  "bones": {
+    "root": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "c_traj": [
+      1.8576358207825677e-15,
+      -3.552713678800503e-15,
+      -28.000999450683597
+    ],
+    "root_x": [
+      6.934180736541753,
+      3.3654420375823966,
+      90.76612949371341
+    ],
+    "head_x": [
+      6.306479411580636,
+      8.849062258550696,
+      154.15547384851445
+    ],
+    "c_kilt_master_x": [
+      8.803412090622238,
+      3.757202137142481,
+      103.28523489385391
+    ],
+    "thigh_stretch_l": [
+      16.418551987052215,
+      4.09344579587629,
+      90.6616540642761
+    ],
+    "leg_stretch_l": [
+      17.13656094332122,
+      0.9741146503315861,
+      51.928136871846476
+    ],
+    "foot_l": [
+      17.694602425319225,
+      -4.924324788183011,
+      13.428037643432596
+    ],
+    "toes_01_l": [
+      20.093791758445956,
+      4.715832887684407,
+      0.16696766608890812
+    ],
+    "c_foot_ik_l": [
+      17.694602425319193,
+      -4.924324788183011,
+      13.428037643432617
+    ],
+    "thigh_stretch_r": [
+      -2.5501902887074315,
+      2.6374364416784264,
+      90.87061256632323
+    ],
+    "leg_stretch_r": [
+      0.294182818471171,
+      -4.287735713740552,
+      52.73294015495557
+    ],
+    "foot_r": [
+      2.7400808424799736,
+      -6.747801288880538,
+      13.934417724609318
+    ],
+    "toes_01_r": [
+      0.3053034465382236,
+      2.8142603925840657,
+      0.6233930936909857
+    ],
+    "c_foot_ik_r": [
+      2.740080842479978,
+      -6.747801288880552,
+      13.934417724609375
+    ]
+  },
+  "knees": {
+    "l": 175.88763193866234,
+    "r": 173.3249406456661
+  },
+  "skin": [
+    {
+      "component": "CharacterMesh0",
+      "mesh": "/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Body.SK_Melusina_V2_Body",
+      "vertices": 20786,
+      "min_world_z": 9.447176933288574,
+      "per_foot_lowest_world_z": {
+        "l": 9.447176933288574,
+        "r": 9.958165168762207
+      }
+    },
+    {
+      "component": "WardrobeSlot_EMelodiaWardrobeSlot::Boots",
+      "mesh": "/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Boots.SK_Melusina_V2_Boots",
+      "vertices": 5540,
+      "min_world_z": -1.9073486328125e-06,
+      "per_foot_lowest_world_z": {
+        "l": -1.9073486328125e-06,
+        "r": 0.7391548156738281
+      }
+    }
+  ],
+  "speed": 0.0
+}

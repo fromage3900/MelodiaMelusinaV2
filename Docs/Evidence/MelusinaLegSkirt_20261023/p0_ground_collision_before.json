@@ -1,0 +1,30 @@
+{
+  "world": "/Game/Melodia/Levels/Opening/L_MelusinaHouse_P0.L_MelusinaHouse_P0",
+  "actor": "/Game/Melodia/Levels/Opening/L_MelusinaHouse_P0.L_MelusinaHouse_P0:PersistentLevel.BlockingVolume_1",
+  "component": "/Game/Melodia/Levels/Opening/L_MelusinaHouse_P0.L_MelusinaHouse_P0:PersistentLevel.BlockingVolume_1.BrushComponent0",
+  "profile": "InvisibleWall",
+  "collision": "<CollisionEnabled.QUERY_AND_PHYSICS: 3>",
+  "pawn_response": "<CollisionResponseType.ECR_BLOCK: 2>",
+  "bounds_center": [
+    -1150.0,
+    -95.0,
+    0.0
+  ],
+  "bounds_extent": [
+    20000.0,
+    20000.0,
+    2000.0
+  ],
+  "other_pcg_volumes": [
+    {
+      "label": "PCG_MeadowBloom_House",
+      "components": [
+        {
+          "name": "BrushComponent0",
+          "profile": "Custom",
+          "collision": "<CollisionEnabled.QUERY_ONLY: 1>"
+        }
+      ]
+    }
+  ]
+}

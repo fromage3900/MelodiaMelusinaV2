@@ -1,0 +1,34 @@
+{
+  "world": "/Game/Melodia/Levels/Opening/L_MelusinaHouse_P0.L_MelusinaHouse_P0",
+  "content": [
+    "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
+    "/Game/Melodia/VFX/NS_Melodia_ClickSparkle",
+    "/Game/Melodia/VFX/NS_Melodia_CursorTrail",
+    "/Game/Melodia/VFX/NS_Melusina_Arc",
+    "/Game/Melodia/VFX/NS_Melusina_ChaosDrift",
+    "/Game/Melodia/VFX/NS_Melusina_Dust",
+    "/Game/Melodia/VFX/NS_Melusina_EntropyDust",
+    "/Game/Melodia/VFX/NS_Melusina_EyeSparkle",
+    "/Game/Melodia/VFX/NS_Melusina_Glint",
+    "/Game/Melodia/VFX/NS_Melusina_Globules",
+    "/Game/Melodia/VFX/NS_Melusina_ImpactBurst",
+    "/Game/Melodia/VFX/NS_Melusina_ProviderSigil",
+    "/Game/Melodia/VFX/NS_Melusina_Ripple",
+    "/Game/Melodia/VFX/NS_Melusina_Sigil",
+    "/Game/Melodia/VFX/NS_Melusina_Splash",
+    "/Game/Melodia/VFX/NS_Melusina_StarPop",
+    "/Game/Melodia/VFX/NS_Melusina_StarSparkle",
+    "/Game/Melodia/VFX/NS_Melusina_Superposition",
+    "/Game/Melodia/VFX/NS_Melusina_SwingTrail",
+    "/Game/Melodia/VFX/NS_Morning_GlitterGlint",
+    "/Game/Melodia/VFX/NS_Morning_PetalDrift",
+    "/Game/Melodia/VFX/NS_Morning_PollenMote",
+    "/Game/Melodia/VFX/NS_Morning_PollenSparkle",
+    "/Game/Melodia/VFX/NS_Morning_PondMist",
+    "/Game/Melodia/VFX/NS_Morning_WindFront",
+    "/Game/Melodia/VFX/NS_Morning_WindRibbon"
+  ],
+  "maps": [
+    "/Game/Melodia/Levels/Opening/L_MelusinaHouse_P0"
+  ]
+}

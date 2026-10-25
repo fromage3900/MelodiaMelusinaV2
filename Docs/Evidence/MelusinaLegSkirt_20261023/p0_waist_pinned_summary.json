@@ -1,0 +1,63 @@
+{
+  "source": "p0_waist_pinned_closeout.json",
+  "world": "/Game/Melodia/Levels/Opening/UEDPIE_0_L_MelusinaHouse_P0.L_MelusinaHouse_P0",
+  "input_proof": "injected ACharacter.AddMovementInput, not physical input",
+  "candidate_anim": "/Game/Staging/AnimationDoctor/LegSkirt_20261023/ABP_LegSkirt_WaistPinned_Candidate",
+  "kawaii_enabled": 1,
+  "spawn_location_cm": [
+    -300.0,
+    -576.0,
+    79.21249961853027
+  ],
+  "finished": true,
+  "errors": [],
+  "screens": [
+    "C:/EnvironmentPortfolio/BS_GodFile/Saved/Audit/MelusinaLegSkirt_20261023/p0_waist_pinned_closeout_move_idle.png",
+    "C:/EnvironmentPortfolio/BS_GodFile/Saved/Audit/MelusinaLegSkirt_20261023/p0_waist_pinned_closeout_move_walk.png",
+    "C:/EnvironmentPortfolio/BS_GodFile/Saved/Audit/MelusinaLegSkirt_20261023/p0_waist_pinned_closeout_move_turn.png",
+    "C:/EnvironmentPortfolio/BS_GodFile/Saved/Audit/MelusinaLegSkirt_20261023/p0_waist_pinned_closeout_move_stop.png"
+  ],
+  "phases": {
+    "idle": {
+      "samples": 6,
+      "skin_samples": 3,
+      "speed_max_cm_s": 0.0,
+      "knee_min_deg": 149.79058413042068,
+      "knee_max_deg": 175.88765124581494,
+      "waist_deviation_max_cm": 2.8690582777191086e-05,
+      "boot_clearance_min_cm": 10.937500953674316,
+      "boot_clearance_max_cm": 11.676657199859626
+    },
+    "walk": {
+      "samples": 10,
+      "skin_samples": 5,
+      "speed_max_cm_s": 220.0,
+      "knee_min_deg": 95.59930904715792,
+      "knee_max_deg": 175.887726017592,
+      "waist_deviation_max_cm": 2.8690582777191086e-05,
+      "boot_clearance_min_cm": 9.932056903839111,
+      "boot_clearance_max_cm": 60.25760459899902
+    },
+    "turn": {
+      "samples": 6,
+      "skin_samples": 3,
+      "speed_max_cm_s": 0.0,
+      "knee_min_deg": 173.32496453453314,
+      "knee_max_deg": 175.88765137410792,
+      "waist_deviation_max_cm": 2.8690582759543694e-05,
+      "boot_clearance_min_cm": 10.937500953674316,
+      "boot_clearance_max_cm": 11.676657199859626
+    },
+    "stop": {
+      "samples": 6,
+      "skin_samples": 3,
+      "speed_max_cm_s": 0.0,
+      "knee_min_deg": 173.32496453453314,
+      "knee_max_deg": 175.88765137410792,
+      "waist_deviation_max_cm": 2.8690582759543694e-05,
+      "boot_clearance_min_cm": 10.937500953674316,
+      "boot_clearance_max_cm": 11.676657199859626
+    }
+  },
+  "proof_boundary": "Fresh P0 injected-movement/contact evidence; not physical-input, run/sprint, bend, restart/reload, packaged, or final visual acceptance."
+}

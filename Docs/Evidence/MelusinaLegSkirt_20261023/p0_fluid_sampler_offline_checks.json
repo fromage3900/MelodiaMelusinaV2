@@ -1,0 +1,20 @@
+{
+  "schema": "melodia.p0_fluid_sampler_offline_guards.v1",
+  "source_sha256": "a3d413da06e97a1a34395637985a88cc1438d871623ab6e124d4a4122c799331",
+  "guard_cases": [
+    {
+      "status": "NO_P0_GAME_WORLD",
+      "runtime_proven": false
+    },
+    {
+      "status": "NO_P0_GAME_WORLD",
+      "runtime_proven": false
+    },
+    {
+      "status": "WRONG_PAWN",
+      "runtime_proven": false
+    }
+  ],
+  "passed": true,
+  "qualification": "Offline guard cases only; no Unreal bindings, render-target readback or visible effect proof."
+}

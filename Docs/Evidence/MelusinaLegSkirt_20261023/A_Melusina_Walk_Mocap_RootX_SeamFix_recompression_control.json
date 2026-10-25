@@ -1,0 +1,62 @@
+{
+  "source": "/Game/Melodia/Characters/Melusina/Animations/Locomotion/A_Melusina_Walk_Mocap_RootX_SeamFix",
+  "candidate": "/Game/Staging/AnimationDoctor/LegSkirt_20261023/A_Melusina_Walk_Mocap_RootX_SeamFix_GroundFrame",
+  "control": "/Game/Staging/AnimationDoctor/LegSkirt_20261023/A_Melusina_Walk_Mocap_RootX_SeamFix_RecompressionControl",
+  "source_sha256_before": "7efdfee8e4b56a5b22d3873fe6bc16417781c9f1158bc032c26fa628bcc00060",
+  "runtime_admission": "UNVERIFIED",
+  "passed": true,
+  "preflight": {
+    "world": "/Game/Staging/AnimationDoctor/LegSkirt_20261023/L_LegSkirtDiagnostic.L_LegSkirtDiagnostic",
+    "pie": false,
+    "source_exists": true,
+    "candidate_exists": true,
+    "control_exists": false
+  },
+  "duplicate": {
+    "duplicated": "/Game/Staging/AnimationDoctor/LegSkirt_20261023/A_Melusina_Walk_Mocap_RootX_SeamFix_RecompressionControl.A_Melusina_Walk_Mocap_RootX_SeamFix_RecompressionControl"
+  },
+  "compressed_pose_control": {
+    "frames": 36,
+    "bones_checked": 23,
+    "metrics": {
+      "source_vs_control": {
+        "max_world_position_delta_cm": 0.011680514333156177,
+        "max_world_quaternion_component_delta": 0.0008679722948987667,
+        "worst_position": {
+          "frame": 30,
+          "bone": "toes_01_l"
+        },
+        "worst_rotation": {
+          "frame": 35,
+          "bone": "toes_01_r"
+        }
+      },
+      "source_vs_candidate": {
+        "max_world_position_delta_cm": 0.011681051902265354,
+        "max_world_quaternion_component_delta": 0.0008679722948987667,
+        "worst_position": {
+          "frame": 30,
+          "bone": "toes_01_l"
+        },
+        "worst_rotation": {
+          "frame": 35,
+          "bone": "toes_01_r"
+        }
+      },
+      "control_vs_candidate": {
+        "max_world_position_delta_cm": 9.5367431640625e-06,
+        "max_world_quaternion_component_delta": 0.0,
+        "worst_position": {
+          "frame": 7,
+          "bone": "root_x"
+        }
+      }
+    }
+  },
+  "gates": {
+    "position_same_codec_control": true,
+    "rotation_same_codec_control": true
+  },
+  "source_sha256_after": "7efdfee8e4b56a5b22d3873fe6bc16417781c9f1158bc032c26fa628bcc00060",
+  "source_file_unchanged": true
+}

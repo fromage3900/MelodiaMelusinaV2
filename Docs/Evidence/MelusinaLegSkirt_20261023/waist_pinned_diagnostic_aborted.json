@@ -1,0 +1,111 @@
+{
+  "phase": 0,
+  "phase_started": 13.400339543819427,
+  "started": 113165.515,
+  "samples": [
+    {
+      "t": 13.400339543819427,
+      "phase": "idle",
+      "elapsed": 0.0,
+      "location": [
+        0.0,
+        0.0,
+        90.14999961853027
+      ],
+      "velocity": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "speed": 0.0,
+      "knees": {
+        "l": 162.16843255776558,
+        "r": 161.42957401265195
+      },
+      "bones_cs": {
+        "root_x": [
+          6.934180736541753,
+          3.3654420375823966,
+          89.86972721949174
+        ],
+        "c_traj": [
+          1.8576358207825677e-15,
+          -3.552713678800503e-15,
+          -28.000999450683597
+        ],
+        "thigh_stretch_l": [
+          16.418551987052215,
+          4.09344579587629,
+          89.76525179005444
+        ],
+        "leg_stretch_l": [
+          17.43082971276964,
+          5.567542211841987,
+          50.94085931167089
+        ],
+        "foot_l": [
+          17.694602425319207,
+          -4.924324788182993,
+          13.428037643432589
+        ],
+        "thigh_stretch_r": [
+          -2.5501902887074315,
+          2.6374364416784264,
+          89.97421029210156
+        ],
+        "leg_stretch_r": [
+          0.6566364088560182,
+          -8.250303586672016,
+          52.80293234368189
+        ],
+        "foot_r": [
+          2.740080842479996,
+          -6.747801288880549,
+          13.934417724609382
+        ]
+      },
+      "waist_ring_deviation_cm": {
+        "c_kilt_01_01_l": 2.8690582772651918e-05,
+        "c_kilt_02_01_l": 8.543239719479169e-06,
+        "c_kilt_03_01_l": 8.99694550973966e-06,
+        "c_kilt_04_01_l": 2.631799837583155e-05,
+        "c_kilt_05_01_l": 2.1229966592922574e-05,
+        "c_kilt_06_01_l": 1.6099875139121417e-05,
+        "c_kilt_07_01_l": 1.5495373337151568e-05,
+        "c_kilt_08_01_l": 1.9073486594578543e-06,
+        "c_kilt_01_01_r": 8.09219497752339e-06,
+        "c_kilt_02_01_r": 2.5177724376875685e-05,
+        "c_kilt_03_01_r": 1.799389116785454e-05,
+        "c_kilt_04_01_r": 7.896659181306189e-06,
+        "c_kilt_05_01_r": 1.0813274616814106e-05,
+        "c_kilt_06_01_r": 9.392602722852904e-06,
+        "c_kilt_07_01_r": 2.339905594094488e-05,
+        "c_kilt_08_01_r": 1.5407080175174727e-05
+      },
+      "anim": "/Game/Staging/AnimationDoctor/LegSkirt_20261023/ABP_LegSkirt_WaistPinned_Candidate.ABP_LegSkirt_WaistPinned_Candidate_C",
+      "boots": "/Game/Staging/AnimationDoctor/LegSkirt_20261023/SK_Melusina_V2_Boots_WeightClean_Candidate.SK_Melusina_V2_Boots_WeightClean_Candidate"
+    }
+  ],
+  "skin": [
+    {
+      "t": 13.400339543819427,
+      "phase": "idle",
+      "speed": 0.0,
+      "minimum_world_z": 0.0,
+      "vertices": 5540
+    }
+  ],
+  "screens": [],
+  "errors": [
+    "Owner changed runtime acceptance to P0 only; diagnostic run stopped, not accepted"
+  ],
+  "finished": true,
+  "last_sample": 13.400339543819427,
+  "last_skin": 13.400339543819427,
+  "input_proof": "injected ACharacter.AddMovementInput, not physical input",
+  "max_walk_speed": 300.0,
+  "requested_speed": 220.0,
+  "candidate_anim": "/Game/Staging/AnimationDoctor/LegSkirt_20261023/ABP_LegSkirt_WaistPinned_Candidate",
+  "kawaii_enabled": 1,
+  "handle": null
+}

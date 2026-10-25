@@ -1,0 +1,14 @@
+[
+  {
+    "name": "CharacterMesh0",
+    "verts": 20786,
+    "min_z": -1.4038200378417969,
+    "max_z": 200.40891075134277
+  },
+  {
+    "name": "WardrobeSlot_EMelodiaWardrobeSlot::Boots",
+    "verts": 5540,
+    "min_z": -10.85099983215332,
+    "max_z": 29.268062591552734
+  }
+]

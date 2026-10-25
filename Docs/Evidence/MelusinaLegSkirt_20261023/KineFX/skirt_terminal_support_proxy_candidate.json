@@ -1,0 +1,2824 @@
+{
+ "schema": "melodia.skirt_terminal_support_proxy.v1",
+ "authority": "DIAGNOSTIC_CANDIDATE_ONLY",
+ "source_pins": {
+  "SK_Melusina_V2_Skirt_R2_SmoothChains.fbx": "40356ebc1521e5420737c13a4cfc4d487be4a7650478cedbd2cb68c3817923ea",
+  "skirt_tip_reach.json": "2c8ea8c6ece547fbe201a349473edfcd051788894ad39ffd00f462f8d97d6d86",
+  "skeleton_hierarchy.json": "4a6e481b84ec6de21f2eedb712172e464c2414d017d0ba26529fa42e0a0c2b75",
+  "SK_Melusina_V2_Skirt_R2_SmoothChains_data.json": "5b5ff9d608d2a065554798188dedc377d5ca13dd0ba24c910ef718473bfa7918"
+ },
+ "coordinate_system": {
+  "units": "metres",
+  "up": "Y",
+  "source": "Existing KineFX FBX Character Import, convertunits=1"
+ },
+ "canonical_joint_count": 465,
+ "canonical_joint_changes": 0,
+ "virtual_terminal_count": 16,
+ "skinning_weight_changes": 0,
+ "mesh_vertex_changes": 0,
+ "selection": "For each terminal, max(p95 dominant-tip vertices, p95 vertices with tip weight >0.25). Maximum support envelope uses max of both sets.",
+ "selection_cohorts": {
+  "dominant": "Tip bone has the largest source skin weight at that vertex.",
+  "weight_gt_0_25": "Tip bone source skin weight is strictly >0.25.",
+  "candidate_estimator": "Maximum of the two separately computed signed forward p95 values; not a pooled percentile.",
+  "envelope_estimator": "Maximum of both signed forward maxima."
+ },
+ "purpose": "Visualize measured missing longitudinal terminal support; reviewable proposal before any native Kawaii or skeleton changes.",
+ "is_physics_tuning": false,
+ "is_ue_importable_skeleton": false,
+ "collision_radius_m": null,
+ "axial_endpoints_are_surface_contacts": false,
+ "axial_projection_limitation": "Endpoints lie on measured bone longitudinal axes, not necessarily on the cloth surface. Lateral skin offsets can place the axial endpoint outside the silhouette. Nearest surface distances are measured; these lines are not collision bounds.",
+ "layer_policy": "Preserve all29 topology islands and shared64 radial bones. The three large hem islands remain on one radial rig; coincident seams are intentional.",
+ "native_axis_status": "VERIFIED_NATIVE_REFERENCE_POSE_ONLY: all16 terminals align Y_Negative; current X_Positive is transverse. Runtime Kawaii dynamics remain pending.",
+ "production_gates_pending": [
+  "Integrate the verified native Y_Negative axis into one bounded Kawaii candidate and prove runtime behavior; reference-pose axis proof alone does not certify dynamics.",
+  "Owner review of candidate endpoint reach and silhouette on the fully dressed hero.",
+  "One-owner Kawaii integration with actual body/leg collision primitives and temporal stability measurements.",
+  "Walk/run/turn/stop, crouch/steps/slopes and combat real-input runtime captures, plus restart/readback.",
+  "If actual joints are added: shared USkeleton/body/wardrobe leader-pose compatibility, retarget and LOD/bone-reduction checks.",
+  "Target-platform frame cost, skinning influence, animation budget and packaged proof."
+ ],
+ "terminals": [
+  {
+   "name": "DIAG_terminal_01_04_l",
+   "existing_parent_tip": "c_kilt_01_04_l",
+   "existing_previous": "c_kilt_01_03_l",
+   "head_m": [
+    0.057862795889377594,
+    0.46539929509162903,
+    0.5609275102615356
+   ],
+   "forward_unit": [
+    0.05209664896026712,
+    -0.91223788681988,
+    0.4063348090153123
+   ],
+   "candidate_p95_length_cm": 16.029718897852153,
+   "measured_max_length_cm": 16.913259586626417,
+   "candidate_endpoint_m": [
+    0.06621374227290923,
+    0.3191701261546956,
+    0.6260618379308146
+   ],
+   "maximum_envelope_endpoint_m": [
+    0.06667403736396109,
+    0.31111013324622744,
+    0.6296519713011182
+   ],
+   "current_3cm_endpoint_m": [
+    0.05942569535818561,
+    0.43803215848703264,
+    0.573117554531995
+   ],
+   "dominant_vertex_count": 1256,
+   "weight_gt_0_25_vertex_count": 2094,
+   "dominant_forward_cm": {
+    "min": 6.3416752957118225,
+    "p50": 13.679526504887985,
+    "p95": 16.029718897852153,
+    "max": 16.913259586626417
+   },
+   "weight_gt_0_25_forward_cm": {
+    "min": 6.3416752957118225,
+    "p50": 13.546373474894628,
+    "p95": 16.003324403315,
+    "max": 16.913259586626417
+   },
+   "lateral_span_u_cm": 11.354741529384741,
+   "lateral_span_v_cm": 5.730889864566151,
+   "imported_axis_dot_forward": {
+    "X": -5.8278946639328535e-08,
+    "Y": 0.9999999999994844,
+    "Z": 1.0289199192999513e-06
+   },
+   "layer_reach": {
+    "0": {
+     "points": 1488,
+     "p95_cm": 16.202999235142812,
+     "max_cm": 16.913259586626417
+    },
+    "1": {
+     "points": 497,
+     "p95_cm": 13.789626985957012,
+     "max_cm": 13.934751282598887
+    },
+    "2": {
+     "points": 103,
+     "p95_cm": 13.03753231736408,
+     "max_cm": 13.045881954503407
+    },
+    "3": {
+     "points": 1,
+     "p95_cm": 13.655655719572168,
+     "max_cm": 13.655655719572168
+    },
+    "4": {
+     "points": 3,
+     "p95_cm": 13.123808158265362,
+     "max_cm": 13.393721467566385
+    },
+    "11": {
+     "points": 2,
+     "p95_cm": 13.64255900697188,
+     "max_cm": 13.655655719572168
+    }
+   },
+   "weighted_to_candidate": false,
+   "candidate_endpoint_to_nearest_skin_cm": 6.514270400496557,
+   "nearest_skin_point": {
+    "i": 8064,
+    "p_m": [
+     0.06699170172214508,
+     0.31615087389945984,
+     0.5609937906265259
+    ]
+   },
+   "native_body_axis_evidence": {
+    "best_axis": "Y_Negative",
+    "component_head_cm": [
+     5.7862782743694705,
+     56.09272225406501,
+     46.53995333214992
+    ],
+    "parent_component_head_cm": [
+     4.905993005570512,
+     49.22682623396997,
+     61.954165634648724
+    ],
+    "chain_direction": [
+     0.0520966992608227,
+     0.40633477895523046,
+     -0.9122378973368359
+    ],
+    "component_axes": {
+     "X_Positive": [
+      -0.9881959377165359,
+      0.1527549640134188,
+      0.01160644862975875
+     ],
+     "Y_Positive": [
+      -0.05209678218499257,
+      -0.4063348816952845,
+      0.91223784683801
+     ],
+     "Z_Positive": [
+      0.1440649643962943,
+      0.9008650758503952,
+      0.4094965215316928
+     ],
+     "X_Negative": [
+      0.9881959377165359,
+      -0.1527549640134188,
+      -0.01160644862975875
+     ],
+     "Y_Negative": [
+      0.05209678218499257,
+      0.4063348816952845,
+      -0.91223784683801
+     ],
+     "Z_Negative": [
+      -0.1440649643962943,
+      -0.9008650758503952,
+      -0.4094965215316928
+     ]
+    },
+    "axis_angle_degrees": {
+     "X_Positive": 89.99999623766332,
+     "Y_Positive": 179.99999194551555,
+     "Z_Positive": 90.00000717231363,
+     "X_Negative": 90.00000376233668,
+     "Y_Negative": 8.054484469784713e-06,
+     "Z_Negative": 89.99999282768638
+    },
+    "axis_dot_chain": {
+     "X_Positive": 6.566516253490862e-08,
+     "Y_Positive": -0.9999999999999901,
+     "Z_Positive": -1.251804876770124e-07,
+     "X_Negative": -6.566516253490862e-08,
+     "Y_Negative": 0.9999999999999901,
+     "Z_Negative": 1.251804876770124e-07
+    },
+    "proof_scope": "NATIVE_REFERENCE_POSE_ONLY"
+   }
+  },
+  {
+   "name": "DIAG_terminal_02_04_l",
+   "existing_parent_tip": "c_kilt_02_04_l",
+   "existing_previous": "c_kilt_02_03_l",
+   "head_m": [
+    0.19280977547168732,
+    0.4553159475326538,
+    0.46574926376342773
+   ],
+   "forward_unit": [
+    0.1968754190100378,
+    -0.944928919172486,
+    0.26143719532832294
+   ],
+   "candidate_p95_length_cm": 16.065055595693917,
+   "measured_max_length_cm": 17.313732016388013,
+   "candidate_endpoint_m": [
+    0.22443792098990523,
+    0.3035125913278043,
+    0.5077492945407457
+   ],
+   "maximum_envelope_endpoint_m": [
+    0.22689625792522627,
+    0.2917134867217779,
+    0.5110137991537345
+   ],
+   "current_3cm_endpoint_m": [
+    0.19871603804198845,
+    0.4269680799574792,
+    0.47359237962327744
+   ],
+   "dominant_vertex_count": 2582,
+   "weight_gt_0_25_vertex_count": 3320,
+   "dominant_forward_cm": {
+    "min": 5.58999738449388,
+    "p50": 13.64899077125199,
+    "p95": 16.00771865576618,
+    "max": 17.313732016388013
+   },
+   "weight_gt_0_25_forward_cm": {
+    "min": 1.0702001220019626,
+    "p50": 13.680135464689924,
+    "p95": 16.065055595693917,
+    "max": 17.313732016388013
+   },
+   "lateral_span_u_cm": 26.19807428825259,
+   "lateral_span_v_cm": 8.311281519594289,
+   "imported_axis_dot_forward": {
+    "X": -8.877474992022374e-07,
+    "Y": 0.9999999999991473,
+    "Z": 9.500673647730514e-07
+   },
+   "layer_reach": {
+    "0": {
+     "points": 2377,
+     "p95_cm": 16.270280796806297,
+     "max_cm": 17.313732016388013
+    },
+    "1": {
+     "points": 745,
+     "p95_cm": 14.334536803430542,
+     "max_cm": 14.543788792463955
+    },
+    "2": {
+     "points": 166,
+     "p95_cm": 13.48398974059318,
+     "max_cm": 13.543025280741915
+    },
+    "3": {
+     "points": 14,
+     "p95_cm": 13.620843704853502,
+     "max_cm": 14.09201044147964
+    },
+    "4": {
+     "points": 10,
+     "p95_cm": 13.675391080290911,
+     "max_cm": 13.954946601577772
+    },
+    "11": {
+     "points": 8,
+     "p95_cm": 14.044038097513987,
+     "max_cm": 14.09201044147964
+    }
+   },
+   "weighted_to_candidate": false,
+   "candidate_endpoint_to_nearest_skin_cm": 0.8129410251611245,
+   "nearest_skin_point": {
+    "i": 12847,
+    "p_m": [
+     0.22160272300243378,
+     0.30708831548690796,
+     0.5010215044021606
+    ]
+   },
+   "native_body_axis_evidence": {
+    "best_axis": "Y_Negative",
+    "component_head_cm": [
+     19.280982692361754,
+     46.57491438365015,
+     45.53162920747231
+    ],
+    "parent_component_head_cm": [
+     15.999410110050366,
+     42.21721297087204,
+     61.28195129138081
+    ],
+    "chain_direction": [
+     0.19687552140157705,
+     0.26143707513206904,
+     -0.9449289310944216
+    ],
+    "component_axes": {
+     "X_Positive": [
+      -0.8856331615751385,
+      0.4608728259527903,
+      -0.05701001154809369
+     ],
+     "Y_Positive": [
+      -0.1968756102943145,
+      -0.26143688941880083,
+      0.9449289639556314
+     ],
+     "Z_Positive": [
+      0.4205875618580106,
+      0.8480843066283628,
+      0.3222717978058634
+     ],
+     "X_Negative": [
+      0.8856331615751385,
+      -0.4608728259527903,
+      0.05701001154809369
+     ],
+     "Y_Negative": [
+      0.1968756102943145,
+      0.26143688941880083,
+      -0.9449289639556314
+     ],
+     "Z_Negative": [
+      -0.4205875618580106,
+      -0.8480843066283628,
+      -0.3222717978058634
+     ]
+    },
+    "axis_angle_degrees": {
+     "X_Positive": 89.99999069269384,
+     "Y_Positive": 179.99998804716896,
+     "Z_Positive": 89.99999251123708,
+     "X_Negative": 90.00000930730616,
+     "Y_Negative": 1.1952831047522336e-05,
+     "Z_Negative": 90.00000748876292
+    },
+    "axis_dot_chain": {
+     "X_Positive": 1.6244313690710888e-07,
+     "Y_Positive": -0.9999999999999782,
+     "Z_Positive": 1.307035697867276e-07,
+     "X_Negative": -1.6244313690710888e-07,
+     "Y_Negative": 0.9999999999999782,
+     "Z_Negative": -1.307035697867276e-07
+    },
+    "proof_scope": "NATIVE_REFERENCE_POSE_ONLY"
+   }
+  },
+  {
+   "name": "DIAG_terminal_03_04_l",
+   "existing_parent_tip": "c_kilt_03_04_l",
+   "existing_previous": "c_kilt_03_03_l",
+   "head_m": [
+    0.33625972270965576,
+    0.4501003324985504,
+    0.39517924189567566
+   ],
+   "forward_unit": [
+    0.36593251156615547,
+    -0.9124479859258371,
+    0.18311763967124722
+   ],
+   "candidate_p95_length_cm": 12.871650690139996,
+   "measured_max_length_cm": 13.883622618962773,
+   "candidate_endpoint_m": [
+    0.38336127736010744,
+    0.3326532150209589,
+    0.41874950482618783
+   ],
+   "maximum_envelope_endpoint_m": [
+    0.3870644116555931,
+    0.3234194975382806,
+    0.4206026039363837
+   ],
+   "current_3cm_endpoint_m": [
+    0.3472376980566404,
+    0.4227268929207753,
+    0.40067277108581306
+   ],
+   "dominant_vertex_count": 1640,
+   "weight_gt_0_25_vertex_count": 2281,
+   "dominant_forward_cm": {
+    "min": 7.258544375208952,
+    "p50": 10.346064009772437,
+    "p95": 12.595228708988184,
+    "max": 13.611120770121007
+   },
+   "weight_gt_0_25_forward_cm": {
+    "min": 2.2781517353347267,
+    "p50": 10.416353601508906,
+    "p95": 12.871650690139996,
+    "max": 13.883622618962773
+   },
+   "lateral_span_u_cm": 13.42390413273974,
+   "lateral_span_v_cm": 5.01882126458528,
+   "imported_axis_dot_forward": {
+    "X": 1.8710425998813494e-07,
+    "Y": 0.9999999999993072,
+    "Z": -1.1936020026750636e-06
+   },
+   "layer_reach": {
+    "0": {
+     "points": 1664,
+     "p95_cm": 13.033231112108323,
+     "max_cm": 13.883622618962773
+    },
+    "1": {
+     "points": 499,
+     "p95_cm": 10.793807648280058,
+     "max_cm": 10.99638781768619
+    },
+    "2": {
+     "points": 112,
+     "p95_cm": 9.960862386479242,
+     "max_cm": 10.008133210529197
+    },
+    "3": {
+     "points": 1,
+     "p95_cm": 10.145933232485913,
+     "max_cm": 10.145933232485913
+    },
+    "4": {
+     "points": 3,
+     "p95_cm": 9.857004127086448,
+     "max_cm": 10.14572187729506
+    },
+    "11": {
+     "points": 2,
+     "p95_cm": 10.14592266472637,
+     "max_cm": 10.145933232485913
+    }
+   },
+   "weighted_to_candidate": false,
+   "candidate_endpoint_to_nearest_skin_cm": 5.7223636061288765,
+   "nearest_skin_point": {
+    "i": 20206,
+    "p_m": [
+     0.33154651522636414,
+     0.3332536220550537,
+     0.3944716453552246
+    ]
+   },
+   "native_body_axis_evidence": {
+    "best_axis": "Y_Negative",
+    "component_head_cm": [
+     33.62597529051486,
+     39.51793260415943,
+     45.01002603801777
+    ],
+    "parent_component_head_cm": [
+     27.239660860060994,
+     36.322128755062934,
+     60.93421498161321
+    ],
+    "chain_direction": [
+     0.3659325608555375,
+     0.1831179311991302,
+     -0.9124479076522994
+    ],
+    "component_axes": {
+     "X_Positive": [
+      -0.611421445121056,
+      0.7864667144012598,
+      -0.08737232734090779
+     ],
+     "Y_Positive": [
+      -0.36593257093605575,
+      -0.18311814802550247,
+      0.9124478600949419
+     ],
+     "Z_Positive": [
+      0.7016104118199843,
+      0.5898625695893895,
+      0.3997561494501299
+     ],
+     "X_Negative": [
+      0.611421445121056,
+      -0.7864667144012598,
+      0.08737232734090779
+     ],
+     "Y_Negative": [
+      0.36593257093605575,
+      0.18311814802550247,
+      -0.9124478600949419
+     ],
+     "Z_Negative": [
+      -0.7016104118199843,
+      -0.5898625695893895,
+      -0.3997561494501299
+     ]
+    },
+    "axis_angle_degrees": {
+     "X_Positive": 90.00000917924697,
+     "Y_Positive": 179.9999873077423,
+     "Z_Positive": 90.00000882250175,
+     "X_Negative": 89.99999082075303,
+     "Y_Negative": 1.2692257719825012e-05,
+     "Z_Negative": 89.99999117749825
+    },
+    "axis_dot_chain": {
+     "X_Positive": -1.6020808253636165e-07,
+     "Y_Positive": -0.9999999999999755,
+     "Z_Positive": -1.53981703859829e-07,
+     "X_Negative": 1.6020808253636165e-07,
+     "Y_Negative": 0.9999999999999755,
+     "Z_Negative": 1.53981703859829e-07
+    },
+    "proof_scope": "NATIVE_REFERENCE_POSE_ONLY"
+   }
+  },
+  {
+   "name": "DIAG_terminal_04_04_l",
+   "existing_parent_tip": "c_kilt_04_04_l",
+   "existing_previous": "c_kilt_04_03_l",
+   "head_m": [
+    0.3803374469280243,
+    0.4581826329231262,
+    0.26678234338760376
+   ],
+   "forward_unit": [
+    0.4047961152504347,
+    -0.9129889248605991,
+    0.050905089726314016
+   ],
+   "candidate_p95_length_cm": 14.75119360569654,
+   "measured_max_length_cm": 16.34078990504285,
+   "candidate_endpoint_m": [
+    0.44004970559695444,
+    0.32350586901837197,
+    0.2742914517282859
+   ],
+   "maximum_envelope_endpoint_m": [
+    0.44648432966487295,
+    0.3089930308553462,
+    0.2751006371507543
+   ],
+   "current_3cm_endpoint_m": [
+    0.39248133038553734,
+    0.43079296517730825,
+    0.2683094960793932
+   ],
+   "dominant_vertex_count": 2046,
+   "weight_gt_0_25_vertex_count": 2348,
+   "dominant_forward_cm": {
+    "min": 8.479855679028466,
+    "p50": 12.232772968059734,
+    "p95": 14.50476301639052,
+    "max": 15.654802214709324
+   },
+   "weight_gt_0_25_forward_cm": {
+    "min": 3.4299966748891677,
+    "p50": 12.15262742122932,
+    "p95": 14.75119360569654,
+    "max": 16.34078990504285
+   },
+   "lateral_span_u_cm": 18.56063983392577,
+   "lateral_span_v_cm": 6.1810276983541215,
+   "imported_axis_dot_forward": {
+    "X": -1.5781282796641854e-06,
+    "Y": 0.9999999999851377,
+    "Z": 5.251181388319608e-06
+   },
+   "layer_reach": {
+    "0": {
+     "points": 1691,
+     "p95_cm": 14.994431339959046,
+     "max_cm": 16.34078990504285
+    },
+    "1": {
+     "points": 533,
+     "p95_cm": 12.899540708160796,
+     "max_cm": 13.177749066455164
+    },
+    "2": {
+     "points": 110,
+     "p95_cm": 12.104749463925947,
+     "max_cm": 12.287342728868222
+    },
+    "3": {
+     "points": 4,
+     "p95_cm": 12.149713393708774,
+     "max_cm": 12.250947261767884
+    },
+    "4": {
+     "points": 6,
+     "p95_cm": 12.138328149558731,
+     "max_cm": 12.312695168520754
+    },
+    "11": {
+     "points": 4,
+     "p95_cm": 12.303432982507823,
+     "max_cm": 12.312695168520754
+    }
+   },
+   "weighted_to_candidate": false,
+   "candidate_endpoint_to_nearest_skin_cm": 5.2151213351871375,
+   "nearest_skin_point": {
+    "i": 15395,
+    "p_m": [
+     0.3899839222431183,
+     0.3162423372268677,
+     0.2616262435913086
+    ]
+   },
+   "native_body_axis_evidence": {
+    "best_axis": "Y_Negative",
+    "component_head_cm": [
+     38.03373778404548,
+     26.67824414734172,
+     45.81829669047519
+    ],
+    "parent_component_head_cm": [
+     31.092804847762512,
+     25.805381190659155,
+     61.473062769698515
+    ],
+    "chain_direction": [
+     0.4047964482136378,
+     0.05090552349171289,
+     -0.9129887530477351
+    ],
+    "component_axes": {
+     "X_Positive": [
+      -0.20144407580807777,
+      0.9788839133793851,
+      -0.03473569416162697
+     ],
+     "Y_Positive": [
+      -0.40479681254388233,
+      -0.050905553439007406,
+      0.9129885898429296
+     ],
+     "Z_Positive": [
+      0.8919416039607876,
+      0.19797704098235488,
+      0.4065037101524764
+     ],
+     "X_Negative": [
+      0.20144407580807777,
+      -0.9788839133793851,
+      0.03473569416162697
+     ],
+     "Y_Negative": [
+      0.40479681254388233,
+      0.050905553439007406,
+      -0.9129885898429296
+     ],
+     "Z_Negative": [
+      -0.8919416039607876,
+      -0.19797704098235488,
+      -0.4065037101524764
+     ]
+    },
+    "axis_angle_degrees": {
+     "X_Positive": 89.9999971497483,
+     "Y_Positive": 179.9999770431713,
+     "Z_Positive": 90.00002275980522,
+     "X_Negative": 90.0000028502517,
+     "Y_Negative": 2.295682871002444e-05,
+     "Z_Negative": 89.99997724019478
+    },
+    "axis_dot_chain": {
+     "X_Positive": 4.97462767437562e-08,
+     "Y_Positive": -0.9999999999999197,
+     "Z_Positive": -3.972335382625841e-07,
+     "X_Negative": -4.97462767437562e-08,
+     "Y_Negative": 0.9999999999999197,
+     "Z_Negative": 3.972335382625841e-07
+    },
+    "proof_scope": "NATIVE_REFERENCE_POSE_ONLY"
+   }
+  },
+  {
+   "name": "DIAG_terminal_05_04_l",
+   "existing_parent_tip": "c_kilt_05_04_l",
+   "existing_previous": "c_kilt_05_03_l",
+   "head_m": [
+    0.40289875864982605,
+    0.4510589838027954,
+    0.14930611848831177
+   ],
+   "forward_unit": [
+    0.4352074571641458,
+    -0.8990580425817456,
+    -0.047844595283047436
+   ],
+   "candidate_p95_length_cm": 14.733633694675547,
+   "measured_max_length_cm": 15.00802862653794,
+   "candidate_endpoint_m": [
+    0.4670206312003033,
+    0.3185950651062809,
+    0.14225687107660753
+   ],
+   "maximum_envelope_endpoint_m": [
+    0.4682148184058489,
+    0.3161280954029354,
+    0.1421255879319808
+   ],
+   "current_3cm_endpoint_m": [
+    0.4159549823647504,
+    0.424087242525343,
+    0.14787078062982034
+   ],
+   "dominant_vertex_count": 335,
+   "weight_gt_0_25_vertex_count": 579,
+   "dominant_forward_cm": {
+    "min": 6.1591214394988905,
+    "p50": 12.892589190354656,
+    "p95": 14.733633694675547,
+    "max": 15.00802862653794
+   },
+   "weight_gt_0_25_forward_cm": {
+    "min": 2.8993496865721213,
+    "p50": 12.046877672150902,
+    "p95": 14.50437476796152,
+    "max": 15.00802862653794
+   },
+   "lateral_span_u_cm": 28.212492222209413,
+   "lateral_span_v_cm": 12.951209959431578,
+   "imported_axis_dot_forward": {
+    "X": 5.288717726926303e-07,
+    "Y": 0.9999999999980083,
+    "Z": 1.8450829360516138e-06
+   },
+   "layer_reach": {
+    "0": {
+     "points": 410,
+     "p95_cm": 14.618071238594126,
+     "max_cm": 15.00802862653794
+    },
+    "1": {
+     "points": 125,
+     "p95_cm": 11.98441933365858,
+     "max_cm": 12.262885358199389
+    },
+    "2": {
+     "points": 8,
+     "p95_cm": 10.176017321730082,
+     "max_cm": 10.222388204271168
+    },
+    "3": {
+     "points": 1,
+     "p95_cm": 11.455013160838924,
+     "max_cm": 11.455013160838924
+    },
+    "4": {
+     "points": 5,
+     "p95_cm": 11.32370239944184,
+     "max_cm": 11.528562912498549
+    },
+    "5": {
+     "points": 2,
+     "p95_cm": 10.287003401829201,
+     "max_cm": 10.504260347215007
+    },
+    "7": {
+     "points": 4,
+     "p95_cm": 10.599029306929197,
+     "max_cm": 11.049336213303883
+    },
+    "8": {
+     "points": 5,
+     "p95_cm": 11.008790722494675,
+     "max_cm": 11.316570084702194
+    },
+    "11": {
+     "points": 2,
+     "p95_cm": 11.524885424915569,
+     "max_cm": 11.528562912498549
+    },
+    "14": {
+     "points": 3,
+     "p95_cm": 7.648219937699643,
+     "max_cm": 8.047290170805981
+    },
+    "16": {
+     "points": 3,
+     "p95_cm": 7.745956132571824,
+     "max_cm": 8.136011067291406
+    },
+    "18": {
+     "points": 1,
+     "p95_cm": 2.8993496865721213,
+     "max_cm": 2.8993496865721213
+    },
+    "20": {
+     "points": 1,
+     "p95_cm": 2.927763564773876,
+     "max_cm": 2.927763564773876
+    },
+    "22": {
+     "points": 7,
+     "p95_cm": 11.2363999232827,
+     "max_cm": 11.316570084702194
+    },
+    "24": {
+     "points": 2,
+     "p95_cm": 2.926342870863788,
+     "max_cm": 2.927763564773876
+    }
+   },
+   "weighted_to_candidate": false,
+   "candidate_endpoint_to_nearest_skin_cm": 7.804995591111265,
+   "nearest_skin_point": {
+    "i": 19963,
+    "p_m": [
+     0.3924819827079773,
+     0.31426429748535156,
+     0.16499516367912292
+    ]
+   },
+   "native_body_axis_evidence": {
+    "best_axis": "Y_Negative",
+    "component_head_cm": [
+     40.2898887522763,
+     14.930621561342019,
+     45.10588006391155
+    ],
+    "parent_component_head_cm": [
+     32.59690625774745,
+     15.77634456902204,
+     60.99811969266369
+    ],
+    "chain_direction": [
+     0.4352083079766878,
+     -0.047844341183818,
+     -0.8990576442502197
+    ],
+    "component_axes": {
+     "X_Positive": [
+      0.21750868604120485,
+      0.9745951401796531,
+      0.053425501727460134
+     ],
+     "Y_Positive": [
+      -0.43520799407381633,
+      0.04784438512375273,
+      0.8990577938633173
+     ],
+     "Z_Positive": [
+      0.8736612463597511,
+      -0.21880408485750968,
+      0.43455816533439345
+     ],
+     "X_Negative": [
+      -0.21750868604120485,
+      -0.9745951401796531,
+      -0.053425501727460134
+     ],
+     "Y_Negative": [
+      0.43520799407381633,
+      -0.04784438512375273,
+      -0.8990577938633173
+     ],
+     "Z_Negative": [
+      -0.8736612463597511,
+      0.21880408485750968,
+      -0.43455816533439345
+     ]
+    },
+    "axis_angle_degrees": {
+     "X_Positive": 89.99999317645066,
+     "Y_Positive": 179.999979904555,
+     "Z_Positive": 89.99998111266802,
+     "X_Negative": 90.00000682354936,
+     "Y_Negative": 2.0095444986978942e-05,
+     "Z_Negative": 90.00001888733198
+    },
+    "axis_dot_chain": {
+     "X_Positive": 1.1909340277144187e-07,
+     "Y_Positive": -0.9999999999999385,
+     "Z_Positive": 3.2964612996407017e-07,
+     "X_Negative": -1.1909340277144187e-07,
+     "Y_Negative": 0.9999999999999385,
+     "Z_Negative": -3.2964612996407017e-07
+    },
+    "proof_scope": "NATIVE_REFERENCE_POSE_ONLY"
+   }
+  },
+  {
+   "name": "DIAG_terminal_06_04_l",
+   "existing_parent_tip": "c_kilt_06_04_l",
+   "existing_previous": "c_kilt_06_03_l",
+   "head_m": [
+    0.27949491143226624,
+    0.3631415069103241,
+    0.05622905492782593
+   ],
+   "forward_unit": [
+    0.23540547899538833,
+    -0.9663717809931306,
+    -0.10348836339954673
+   ],
+   "candidate_p95_length_cm": 12.320674744891228,
+   "measured_max_length_cm": 13.674702697817503,
+   "candidate_endpoint_m": [
+    0.3084984548309413,
+    0.2440779829477479,
+    0.043478590274556715
+   ],
+   "maximum_envelope_endpoint_m": [
+    0.31168591081925884,
+    0.23099303890390943,
+    0.04207732890610093
+   ],
+   "current_3cm_endpoint_m": [
+    0.28655707580212786,
+    0.3341503534805302,
+    0.053124404025839525
+   ],
+   "dominant_vertex_count": 2110,
+   "weight_gt_0_25_vertex_count": 2353,
+   "dominant_forward_cm": {
+    "min": 6.494770088277252,
+    "p50": 9.599154858726466,
+    "p95": 12.320674744891228,
+    "max": 13.674702697817503
+   },
+   "weight_gt_0_25_forward_cm": {
+    "min": 1.1238230189610658,
+    "p50": 9.59714439467193,
+    "p95": 12.237125393183163,
+    "max": 13.674702697817503
+   },
+   "lateral_span_u_cm": 19.455678744131298,
+   "lateral_span_v_cm": 6.839201321799565,
+   "imported_axis_dot_forward": {
+    "X": 3.910798945795362e-07,
+    "Y": 0.9999999999999147,
+    "Z": -1.2586887619913186e-07
+   },
+   "layer_reach": {
+    "0": {
+     "points": 1688,
+     "p95_cm": 12.518021262389123,
+     "max_cm": 13.674702697817503
+    },
+    "1": {
+     "points": 527,
+     "p95_cm": 11.2446650324613,
+     "max_cm": 11.53787572198018
+    },
+    "2": {
+     "points": 112,
+     "p95_cm": 10.014305449399348,
+     "max_cm": 10.408027687433352
+    },
+    "3": {
+     "points": 5,
+     "p95_cm": 7.895737761607808,
+     "max_cm": 8.290868701826444
+    },
+    "4": {
+     "points": 3,
+     "p95_cm": 8.32378335665545,
+     "max_cm": 8.520659111898029
+    },
+    "5": {
+     "points": 5,
+     "p95_cm": 10.65063615842851,
+     "max_cm": 10.65063615842851
+    },
+    "6": {
+     "points": 7,
+     "p95_cm": 10.41743956947926,
+     "max_cm": 10.41743956947926
+    },
+    "11": {
+     "points": 6,
+     "p95_cm": 10.592337011191196,
+     "max_cm": 10.65063615842851
+    }
+   },
+   "weighted_to_candidate": false,
+   "candidate_endpoint_to_nearest_skin_cm": 1.0626117209219348,
+   "nearest_skin_point": {
+    "i": 18017,
+    "p_m": [
+     0.30782264471054077,
+     0.25180521607398987,
+     0.03621584177017212
+    ]
+   },
+   "native_body_axis_evidence": {
+    "best_axis": "Y_Negative",
+    "component_head_cm": [
+     27.949484107846082,
+     5.622913643796554,
+     36.31417929544577
+    ],
+    "parent_component_head_cm": [
+     23.36429720336572,
+     7.638644500246944,
+     55.136990029275665
+    ],
+    "chain_direction": [
+     0.23540559777461115,
+     -0.10348854629061392,
+     -0.9663717324730859
+    ],
+    "component_axes": {
+     "X_Positive": [
+      0.6140498689554051,
+      0.7865572566527416,
+      0.06534860704531564
+     ],
+     "Y_Positive": [
+      -0.23540559650624257,
+      0.10348862581688387,
+      0.9663717242656022
+     ],
+     "Z_Positive": [
+      0.7533438548029644,
+      -0.6087838584698565,
+      0.24870715730988485
+     ],
+     "X_Negative": [
+      -0.6140498689554051,
+      -0.7865572566527416,
+      -0.06534860704531564
+     ],
+     "Y_Negative": [
+      0.23540559650624257,
+      -0.10348862581688387,
+      -0.9663717242656022
+     ],
+     "Z_Negative": [
+      -0.7533438548029644,
+      0.6087838584698565,
+      -0.24870715730988485
+     ]
+    },
+    "axis_angle_degrees": {
+     "X_Positive": 89.99999640214254,
+     "Y_Positive": 179.99999548225452,
+     "Z_Positive": 90.00000283614405,
+     "X_Negative": 90.00000359785746,
+     "Y_Negative": 4.517745487845102e-06,
+     "Z_Negative": 89.99999716385595
+    },
+    "axis_dot_chain": {
+     "X_Positive": 6.279445864676436e-08,
+     "Y_Positive": -0.9999999999999969,
+     "Z_Positive": -4.950005173809391e-08,
+     "X_Negative": -6.279445864676436e-08,
+     "Y_Negative": 0.9999999999999969,
+     "Z_Negative": 4.950005173809391e-08
+    },
+    "proof_scope": "NATIVE_REFERENCE_POSE_ONLY"
+   }
+  },
+  {
+   "name": "DIAG_terminal_07_04_l",
+   "existing_parent_tip": "c_kilt_07_04_l",
+   "existing_previous": "c_kilt_07_03_l",
+   "head_m": [
+    0.21634626388549805,
+    0.29452523589134216,
+    -0.053102925419807434
+   ],
+   "forward_unit": [
+    0.1875520297602905,
+    -0.962625170591629,
+    -0.19538939857687349
+   ],
+   "candidate_p95_length_cm": 9.83712627923476,
+   "measured_max_length_cm": 10.302684218525668,
+   "candidate_endpoint_m": [
+    0.23479599389228578,
+    0.1998305822645446,
+    -0.0723236272940518
+   ],
+   "maximum_envelope_endpoint_m": [
+    0.23566915725713605,
+    0.19534900435724262,
+    -0.0732332781516592
+   ],
+   "current_3cm_endpoint_m": [
+    0.22197282477830677,
+    0.2656464807735933,
+    -0.05896460737711364
+   ],
+   "dominant_vertex_count": 514,
+   "weight_gt_0_25_vertex_count": 1834,
+   "dominant_forward_cm": {
+    "min": 7.314044281862166,
+    "p50": 8.058767652265338,
+    "p95": 9.83712627923476,
+    "max": 10.302684218525668
+   },
+   "weight_gt_0_25_forward_cm": {
+    "min": 0.6409352458249213,
+    "p50": 6.41805119021962,
+    "p95": 9.13113045089846,
+    "max": 10.302684218525668
+   },
+   "lateral_span_u_cm": 13.566418258701843,
+   "lateral_span_v_cm": 6.205852094853139,
+   "imported_axis_dot_forward": {
+    "X": -2.4892898346170406e-07,
+    "Y": 0.9999999999999744,
+    "Z": -2.494125095556824e-08
+   },
+   "layer_reach": {
+    "0": {
+     "points": 1307,
+     "p95_cm": 9.407484399993725,
+     "max_cm": 10.302684218525668
+    },
+    "1": {
+     "points": 413,
+     "p95_cm": 7.35589086699474,
+     "max_cm": 7.650518223245101
+    },
+    "2": {
+     "points": 88,
+     "p95_cm": 6.2854232432233985,
+     "max_cm": 6.3516869030216405
+    },
+    "5": {
+     "points": 5,
+     "p95_cm": 7.195459250304248,
+     "max_cm": 7.543253317908424
+    },
+    "6": {
+     "points": 5,
+     "p95_cm": 7.060236219356039,
+     "max_cm": 7.41602251449409
+    },
+    "9": {
+     "points": 3,
+     "p95_cm": 2.1758332520014525,
+     "max_cm": 2.1832618237819927
+    },
+    "10": {
+     "points": 3,
+     "p95_cm": 2.2270631580894786,
+     "max_cm": 2.2348409794474438
+    },
+    "11": {
+     "points": 4,
+     "p95_cm": 7.5241686973962745,
+     "max_cm": 7.543253317908424
+    },
+    "24": {
+     "points": 6,
+     "p95_cm": 2.2219461905310807,
+     "max_cm": 2.2348409794474438
+    }
+   },
+   "weighted_to_candidate": false,
+   "candidate_endpoint_to_nearest_skin_cm": 1.8172273676056858,
+   "nearest_skin_point": {
+    "i": 9768,
+    "p_m": [
+     0.21955865621566772,
+     0.20623652637004852,
+     -0.07987471669912338
+    ]
+   },
+   "native_body_axis_evidence": {
+    "best_axis": "Y_Negative",
+    "component_head_cm": [
+     21.634624778893635,
+     -5.310303364853876,
+     29.45256055603963
+    ],
+    "parent_component_head_cm": [
+     17.52167793939271,
+     -1.0254823069856975,
+     50.56257729706472
+    ],
+    "chain_direction": [
+     0.18755200901929786,
+     -0.19538954162336902,
+     -0.9626251455977216
+    ],
+    "component_axes": {
+     "X_Positive": [
+      0.8597349299000249,
+      0.5066294271186002,
+      0.06467204873265245
+     ],
+     "Y_Positive": [
+      -0.187552133234519,
+      0.19538972362676776,
+      0.9626250844540861
+     ],
+     "Z_Positive": [
+      0.47505794133871787,
+      -0.8397317902035949,
+      0.26300280016092015
+     ],
+     "X_Negative": [
+      -0.8597349299000249,
+      -0.5066294271186002,
+      -0.06467204873265245
+     ],
+     "Y_Negative": [
+      0.187552133234519,
+      -0.19538972362676776,
+      -0.9626250844540861
+     ],
+     "Z_Negative": [
+      -0.47505794133871787,
+      0.8397317902035949,
+      -0.26300280016092015
+     ]
+    },
+    "axis_angle_degrees": {
+     "X_Positive": 90.00000106215896,
+     "Y_Positive": 179.9999868563218,
+     "Z_Positive": 90.00001305910699,
+     "X_Negative": 89.99999893784104,
+     "Y_Negative": 1.314367821619951e-05,
+     "Z_Negative": 89.99998694089301
+    },
+    "axis_dot_chain": {
+     "X_Positive": -1.85381709705279e-08,
+     "Y_Positive": -0.9999999999999737,
+     "Z_Positive": -2.2792441446706224e-07,
+     "X_Negative": 1.85381709705279e-08,
+     "Y_Negative": 0.9999999999999737,
+     "Z_Negative": 2.2792441446706224e-07
+    },
+    "proof_scope": "NATIVE_REFERENCE_POSE_ONLY"
+   }
+  },
+  {
+   "name": "DIAG_terminal_08_04_l",
+   "existing_parent_tip": "c_kilt_08_04_l",
+   "existing_previous": "c_kilt_08_03_l",
+   "head_m": [
+    0.06160622090101242,
+    0.2623860836029053,
+    -0.09750909358263016
+   ],
+   "forward_unit": [
+    0.04311636099465653,
+    -0.973559968818538,
+    -0.22432558152967236
+   ],
+   "candidate_p95_length_cm": 9.420630259524678,
+   "measured_max_length_cm": 9.8256109487772,
+   "candidate_endpoint_m": [
+    0.06566805385168092,
+    0.17067059858576705,
+    -0.11864197719606917
+   ],
+   "maximum_envelope_endpoint_m": [
+    0.06584266678761769,
+    0.1667278687137591,
+    -0.11955045248231777
+   ],
+   "current_3cm_endpoint_m": [
+    0.06289971173085211,
+    0.23317928453834913,
+    -0.10423886102852033
+   ],
+   "dominant_vertex_count": 395,
+   "weight_gt_0_25_vertex_count": 2092,
+   "dominant_forward_cm": {
+    "min": 7.595162603318507,
+    "p50": 8.288966722663957,
+    "p95": 9.420630259524678,
+    "max": 9.8256109487772
+   },
+   "weight_gt_0_25_forward_cm": {
+    "min": 3.2607993579924193,
+    "p50": 6.3169202043012245,
+    "p95": 8.733738159812301,
+    "max": 9.8256109487772
+   },
+   "lateral_span_u_cm": 15.833274638950295,
+   "lateral_span_v_cm": 4.345528911684431,
+   "imported_axis_dot_forward": {
+    "X": 3.373607017053587e-08,
+    "Y": 0.9999999999999901,
+    "Z": 1.6159076023394302e-07
+   },
+   "layer_reach": {
+    "0": {
+     "points": 1536,
+     "p95_cm": 8.879152588890104,
+     "max_cm": 9.8256109487772
+    },
+    "1": {
+     "points": 445,
+     "p95_cm": 6.437349957731334,
+     "max_cm": 6.695571440450212
+    },
+    "2": {
+     "points": 96,
+     "p95_cm": 5.682664049559703,
+     "max_cm": 5.705328958725128
+    },
+    "5": {
+     "points": 4,
+     "p95_cm": 5.696435003439655,
+     "max_cm": 5.743114231238487
+    },
+    "6": {
+     "points": 5,
+     "p95_cm": 5.555886886283118,
+     "max_cm": 5.618210354600153
+    },
+    "11": {
+     "points": 6,
+     "p95_cm": 5.711888262078904,
+     "max_cm": 5.743114231238487
+    }
+   },
+   "weighted_to_candidate": false,
+   "candidate_endpoint_to_nearest_skin_cm": 2.263326616671628,
+   "nearest_skin_point": {
+    "i": 2479,
+    "p_m": [
+     0.06665264815092087,
+     0.18623462319374084,
+     -0.1350449174642563
+    ]
+   },
+   "native_body_axis_evidence": {
+    "best_axis": "Y_Negative",
+    "component_head_cm": [
+     6.160617268212919,
+     -9.750843244143503,
+     26.238621872554145
+    ],
+    "parent_component_head_cm": [
+     5.178268460703303,
+     -4.639891327577065,
+     48.41994561176708
+    ],
+    "chain_direction": [
+     0.043116257859495764,
+     -0.22432471954724253,
+     -0.973560172001836
+    ],
+    "component_axes": {
+     "X_Positive": [
+      0.9877949738826587,
+      0.15555908207616145,
+      0.007903262350424753
+     ],
+     "Y_Positive": [
+      -0.04311625920243267,
+      0.22432455836552076,
+      0.9735602090813401
+     ],
+     "Z_Positive": [
+      0.14967323663416324,
+      -0.9620186404107438,
+      0.2282937969759968
+     ],
+     "X_Negative": [
+      -0.9877949738826587,
+      -0.15555908207616145,
+      -0.007903262350424753
+     ],
+     "Y_Negative": [
+      0.04311625920243267,
+      -0.22432455836552076,
+      -0.9735602090813401
+     ],
+     "Z_Negative": [
+      -0.14967323663416324,
+      0.9620186404107438,
+      -0.2282937969759968
+     ]
+    },
+    "axis_angle_degrees": {
+     "X_Positive": 90.0000014958082,
+     "Y_Positive": 179.9999905311922,
+     "Z_Positive": 89.99999064223329,
+     "X_Negative": 89.99999850419181,
+     "Y_Negative": 9.468807791963592e-06,
+     "Z_Negative": 90.00000935776673
+    },
+    "axis_dot_chain": {
+     "X_Positive": -2.6106777962532635e-08,
+     "Y_Positive": -0.9999999999999863,
+     "Z_Positive": 1.6332383990635274e-07,
+     "X_Negative": 2.6106777962532635e-08,
+     "Y_Negative": 0.9999999999999863,
+     "Z_Negative": -1.6332383990635274e-07
+    },
+    "proof_scope": "NATIVE_REFERENCE_POSE_ONLY"
+   }
+  },
+  {
+   "name": "DIAG_terminal_01_04_r",
+   "existing_parent_tip": "c_kilt_01_04_r",
+   "existing_previous": "c_kilt_01_03_r",
+   "head_m": [
+    -0.057469576597213745,
+    0.4653988778591156,
+    0.5610520839691162
+   ],
+   "forward_unit": [
+    -0.054432827242123116,
+    -0.9123983617693315,
+    0.40566771717634764
+   ],
+   "candidate_p95_length_cm": 16.33915599262442,
+   "measured_max_length_cm": 17.04112437146162,
+   "candidate_endpoint_m": [
+    -0.0663634411515,
+    0.3163206862554748,
+    0.6273347650902781
+   ],
+   "maximum_envelope_endpoint_m": [
+    -0.06674554238644678,
+    0.3099159382668255,
+    0.6301824241880067
+   ],
+   "current_3cm_endpoint_m": [
+    -0.059102561414477436,
+    0.4380269270060356,
+    0.5732221154844066
+   ],
+   "dominant_vertex_count": 1279,
+   "weight_gt_0_25_vertex_count": 2076,
+   "dominant_forward_cm": {
+    "min": 6.29148579898292,
+    "p50": 13.890488628094852,
+    "p95": 16.33915599262442,
+    "max": 17.04112437146162
+   },
+   "weight_gt_0_25_forward_cm": {
+    "min": 6.29148579898292,
+    "p50": 13.61511182624628,
+    "p95": 16.08719989987112,
+    "max": 17.04112437146162
+   },
+   "lateral_span_u_cm": 13.57909125951796,
+   "lateral_span_v_cm": 5.397778503315205,
+   "imported_axis_dot_forward": {
+    "X": -1.0361449942964633e-07,
+    "Y": 0.9999999999998804,
+    "Z": -5.295454494225414e-07
+   },
+   "layer_reach": {
+    "0": {
+     "points": 1470,
+     "p95_cm": 16.26704402862775,
+     "max_cm": 17.04112437146162
+    },
+    "1": {
+     "points": 490,
+     "p95_cm": 13.972581671381631,
+     "max_cm": 14.139319491220517
+    },
+    "2": {
+     "points": 103,
+     "p95_cm": 13.166733494105786,
+     "max_cm": 13.196119076304619
+    },
+    "3": {
+     "points": 3,
+     "p95_cm": 14.086398598624825,
+     "max_cm": 14.140919100549572
+    },
+    "4": {
+     "points": 6,
+     "p95_cm": 13.688712343710952,
+     "max_cm": 13.806510667706679
+    },
+    "11": {
+     "points": 4,
+     "p95_cm": 14.090757835623139,
+     "max_cm": 14.140919100549572
+    }
+   },
+   "weighted_to_candidate": false,
+   "candidate_endpoint_to_nearest_skin_cm": 6.7752348650322105,
+   "nearest_skin_point": {
+    "i": 20134,
+    "p_m": [
+     -0.05855664983391762,
+     0.3145208954811096,
+     0.5600577592849731
+    ]
+   },
+   "native_body_axis_evidence": {
+    "best_axis": "Y_Negative",
+    "component_head_cm": [
+     -5.746961683372054,
+     56.10520399411152,
+     46.539942189603295
+    ],
+    "parent_component_head_cm": [
+     -4.827357718293642,
+     49.25176010986553,
+     61.95416159910405
+    ],
+    "chain_direction": [
+     -0.05443316172493996,
+     0.40566878079103685,
+     -0.9123978689125377
+    ],
+    "component_axes": {
+     "X_Positive": [
+      -0.9886131089719864,
+      -0.15027551943665765,
+      -0.007835114982314026
+     ],
+     "Y_Positive": [
+      0.05443314460345163,
+      -0.40566862330761716,
+      0.9123979399539888
+     ],
+     "Z_Positive": [
+      -0.14028953466785424,
+      0.9015820740907317,
+      0.40922928798038344
+     ],
+     "X_Negative": [
+      0.9886131089719864,
+      0.15027551943665765,
+      0.007835114982314026
+     ],
+     "Y_Negative": [
+      -0.05443314460345163,
+      0.40566862330761716,
+      -0.9123979399539888
+     ],
+     "Z_Negative": [
+      0.14028953466785424,
+      -0.9015820740907317,
+      -0.40922928798038344
+     ]
+    },
+    "axis_angle_degrees": {
+     "X_Positive": 90.0000004180296,
+     "Y_Positive": 179.9999901168555,
+     "Z_Positive": 89.9999900615637,
+     "X_Negative": 89.99999958197041,
+     "Y_Negative": 9.88314448090898e-06,
+     "Z_Negative": 90.00000993843632
+    },
+    "axis_dot_chain": {
+     "X_Positive": -7.2959928246532635e-09,
+     "Y_Positive": -0.9999999999999851,
+     "Z_Positive": 1.7345843621261597e-07,
+     "X_Negative": 7.2959928246532635e-09,
+     "Y_Negative": 0.9999999999999851,
+     "Z_Negative": -1.7345843621261597e-07
+    },
+    "proof_scope": "NATIVE_REFERENCE_POSE_ONLY"
+   }
+  },
+  {
+   "name": "DIAG_terminal_02_04_r",
+   "existing_parent_tip": "c_kilt_02_04_r",
+   "existing_previous": "c_kilt_02_03_r",
+   "head_m": [
+    -0.1924165040254593,
+    0.4553162455558777,
+    0.4658738076686859
+   ],
+   "forward_unit": [
+    -0.19918025222197652,
+    -0.9446718786622532,
+    0.26061901079836625
+   ],
+   "candidate_p95_length_cm": 16.474899060161015,
+   "measured_max_length_cm": 17.633126957954882,
+   "candidate_endpoint_m": [
+    -0.22523124952680404,
+    0.29968250709654476,
+    0.5088105266293069
+   ],
+   "maximum_envelope_endpoint_m": [
+    -0.22753821077493516,
+    0.28874105385526505,
+    0.511829088719328
+   ],
+   "current_3cm_endpoint_m": [
+    -0.19839191159211858,
+    0.4269760891960101,
+    0.4736923779926369
+   ],
+   "dominant_vertex_count": 2693,
+   "weight_gt_0_25_vertex_count": 3439,
+   "dominant_forward_cm": {
+    "min": 5.590166747469336,
+    "p50": 14.119558858712244,
+    "p95": 16.451230053457905,
+    "max": 17.633126957954882
+   },
+   "weight_gt_0_25_forward_cm": {
+    "min": 1.0572419559312627,
+    "p50": 14.128181428755484,
+    "p95": 16.474899060161015,
+    "max": 17.633126957954882
+   },
+   "lateral_span_u_cm": 34.03575322090534,
+   "lateral_span_v_cm": 8.146303383065371,
+   "imported_axis_dot_forward": {
+    "X": 4.84097191549581e-07,
+    "Y": 0.9999999999997374,
+    "Z": 5.460690937250341e-07
+   },
+   "layer_reach": {
+    "0": {
+     "points": 2468,
+     "p95_cm": 16.65625635422995,
+     "max_cm": 17.633126957954882
+    },
+    "1": {
+     "points": 767,
+     "p95_cm": 14.566125091417309,
+     "max_cm": 14.801794992824144
+    },
+    "2": {
+     "points": 171,
+     "p95_cm": 13.744541903042451,
+     "max_cm": 13.793897940738379
+    },
+    "3": {
+     "points": 15,
+     "p95_cm": 13.528826242189751,
+     "max_cm": 14.01436689536798
+    },
+    "4": {
+     "points": 10,
+     "p95_cm": 13.611755689561825,
+     "max_cm": 13.8778749874971
+    },
+    "11": {
+     "points": 8,
+     "p95_cm": 13.966594727613172,
+     "max_cm": 14.01436689536798
+    }
+   },
+   "weighted_to_candidate": false,
+   "candidate_endpoint_to_nearest_skin_cm": 1.4831789199450667,
+   "nearest_skin_point": {
+    "i": 1002,
+    "p_m": [
+     -0.22184430062770844,
+     0.2999974191188812,
+     0.4943740665912628
+    ]
+   },
+   "native_body_axis_evidence": {
+    "best_axis": "Y_Negative",
+    "component_head_cm": [
+     -19.241629770146684,
+     46.5874034172777,
+     45.53164061227873
+    ],
+    "parent_component_head_cm": [
+     -15.92075183995284,
+     42.24214940929615,
+     61.281961205794445
+    ],
+    "chain_direction": [
+     -0.19917944888654324,
+     0.26061942557800954,
+     -0.9446719336111565
+    ],
+    "component_axes": {
+     "X_Positive": [
+      -0.8861564273822752,
+      -0.45947482657418603,
+      0.06008052890666038
+     ],
+     "Y_Positive": [
+      0.19917966334324616,
+      -0.2606191700080625,
+      0.9446719589014908
+     ],
+     "Z_Positive": [
+      -0.4183948469084598,
+      0.8490939476694732,
+      0.3224673938734213
+     ],
+     "X_Negative": [
+      0.8861564273822752,
+      0.45947482657418603,
+      -0.06008052890666038
+     ],
+     "Y_Negative": [
+      -0.19917966334324616,
+      0.2606191700080625,
+      -0.9446719589014908
+     ],
+     "Z_Negative": [
+      0.4183948469084598,
+      -0.8490939476694732,
+      -0.3224673938734213
+     ]
+    },
+    "axis_angle_degrees": {
+     "X_Positive": 90.00001752968305,
+     "Y_Positive": 179.99998085185368,
+     "Z_Positive": 89.99999224039684,
+     "X_Negative": 89.99998247031695,
+     "Y_Negative": 1.9148146328926346e-05,
+     "Z_Negative": 90.00000775960318
+    },
+    "axis_dot_chain": {
+     "X_Positive": -3.0595068611916076e-07,
+     "Y_Positive": -0.9999999999999442,
+     "Z_Positive": 1.3543062393761574e-07,
+     "X_Negative": 3.0595068611916076e-07,
+     "Y_Negative": 0.9999999999999442,
+     "Z_Negative": -1.3543062393761574e-07
+    },
+    "proof_scope": "NATIVE_REFERENCE_POSE_ONLY"
+   }
+  },
+  {
+   "name": "DIAG_terminal_03_04_r",
+   "existing_parent_tip": "c_kilt_03_04_r",
+   "existing_previous": "c_kilt_03_03_r",
+   "head_m": [
+    -0.3360462486743927,
+    0.4500996768474579,
+    0.3955491781234741
+   ],
+   "forward_unit": [
+    -0.3671325059097228,
+    -0.9123911857690262,
+    0.18098631781280464
+   ],
+   "candidate_p95_length_cm": 13.674060982268616,
+   "measured_max_length_cm": 14.766058562528805,
+   "candidate_endpoint_m": [
+    -0.3862481714182191,
+    0.3253387497085575,
+    0.42029735759075953
+   ],
+   "maximum_envelope_endpoint_m": [
+    -0.3902572494991019,
+    0.31537546003745254,
+    0.42227372380187733
+   ],
+   "current_3cm_endpoint_m": [
+    -0.3470602238516844,
+    0.4227279412743871,
+    0.4009787676578583
+   ],
+   "dominant_vertex_count": 1564,
+   "weight_gt_0_25_vertex_count": 2243,
+   "dominant_forward_cm": {
+    "min": 7.246073459942191,
+    "p50": 11.11560699494309,
+    "p95": 13.375506814788126,
+    "max": 14.43251101056533
+   },
+   "weight_gt_0_25_forward_cm": {
+    "min": 2.267466988863396,
+    "p50": 11.218248322839434,
+    "p95": 13.674060982268616,
+    "max": 14.766058562528805
+   },
+   "lateral_span_u_cm": 13.023670433046602,
+   "lateral_span_v_cm": 4.954993977623118,
+   "imported_axis_dot_forward": {
+    "X": 3.800904426613045e-07,
+    "Y": 0.9999999999999095,
+    "Z": -1.4885758065296565e-08
+   },
+   "layer_reach": {
+    "0": {
+     "points": 1633,
+     "p95_cm": 13.84810859325613,
+     "max_cm": 14.766058562528805
+    },
+    "1": {
+     "points": 495,
+     "p95_cm": 11.614088719764016,
+     "max_cm": 11.836742761273124
+    },
+    "2": {
+     "points": 111,
+     "p95_cm": 10.820528265633486,
+     "max_cm": 10.88113839290567
+    },
+    "4": {
+     "points": 3,
+     "p95_cm": 9.842582791322693,
+     "max_cm": 10.13108382814275
+    },
+    "11": {
+     "points": 1,
+     "p95_cm": 10.13108382814275,
+     "max_cm": 10.13108382814275
+    }
+   },
+   "weighted_to_candidate": false,
+   "candidate_endpoint_to_nearest_skin_cm": 5.5284849243079845,
+   "nearest_skin_point": {
+    "i": 1385,
+    "p_m": [
+     -0.33765164017677307,
+     0.32646650075912476,
+     0.3939625918865204
+    ]
+   },
+   "native_body_axis_evidence": {
+    "best_axis": "Y_Negative",
+    "component_head_cm": [
+     -33.604635122830416,
+     39.55493412977066,
+     45.00998239561048
+    ],
+    "parent_component_head_cm": [
+     -27.19695823482514,
+     36.39611675637802,
+     60.934183868389596
+    ],
+    "chain_direction": [
+     -0.3671333103621919,
+     0.18098713455638396,
+     -0.9123907000553917
+    ],
+    "component_axes": {
+     "X_Positive": [
+      -0.6114451175222234,
+      -0.7861412315954893,
+      0.0900934639347461
+     ],
+     "Y_Positive": [
+      0.36713325832766563,
+      -0.18098706805001868,
+      0.912390734185946
+     ],
+     "Z_Positive": [
+      -0.7009622235812325,
+      0.590953166658903,
+      0.39928225095522235
+     ],
+     "X_Negative": [
+      0.6114451175222234,
+      0.7861412315954893,
+      -0.0900934639347461
+     ],
+     "Y_Negative": [
+      -0.36713325832766563,
+      0.18098706805001868,
+      -0.912390734185946
+     ],
+     "Z_Negative": [
+      0.7009622235812325,
+      -0.590953166658903,
+      -0.39928225095522235
+     ]
+    },
+    "axis_angle_degrees": {
+     "X_Positive": 90.00000099649961,
+     "Y_Positive": 179.9999947369858,
+     "Z_Positive": 89.99999487752189,
+     "X_Negative": 89.9999990035004,
+     "Y_Negative": 5.263014220319208e-06,
+     "Z_Negative": 90.00000512247811
+    },
+    "axis_dot_chain": {
+     "X_Positive": -1.7392199083698934e-08,
+     "Y_Positive": -0.9999999999999958,
+     "Z_Positive": 8.940410897717577e-08,
+     "X_Negative": 1.7392199083698934e-08,
+     "Y_Negative": 0.9999999999999958,
+     "Z_Negative": -8.940410897717577e-08
+    },
+    "proof_scope": "NATIVE_REFERENCE_POSE_ONLY"
+   }
+  },
+  {
+   "name": "DIAG_terminal_04_04_r",
+   "existing_parent_tip": "c_kilt_04_04_r",
+   "existing_previous": "c_kilt_04_03_r",
+   "head_m": [
+    -0.38033726811408997,
+    0.4581829905509949,
+    0.2672094702720642
+   ],
+   "forward_unit": [
+    -0.40484584086622205,
+    -0.913102039183416,
+    0.0484201525442569
+   ],
+   "candidate_p95_length_cm": 15.564135498683388,
+   "measured_max_length_cm": 17.099205525915906,
+   "candidate_endpoint_m": [
+    -0.4433480233472929,
+    0.3160665519312469,
+    0.27474564842272153
+   ],
+   "maximum_envelope_endpoint_m": [
+    -0.4495626905069277,
+    0.3020497962096934,
+    0.2754889316715687
+   ],
+   "current_3cm_endpoint_m": [
+    -0.39248264334007665,
+    0.4307899293754924,
+    0.26866207484839194
+   ],
+   "dominant_vertex_count": 1879,
+   "weight_gt_0_25_vertex_count": 2379,
+   "dominant_forward_cm": {
+    "min": 8.462044869495374,
+    "p50": 12.948684969273405,
+    "p95": 15.364124088914599,
+    "max": 16.5736336925795
+   },
+   "weight_gt_0_25_forward_cm": {
+    "min": 3.4163772303749367,
+    "p50": 12.948684969273405,
+    "p95": 15.564135498683388,
+    "max": 17.099205525915906
+   },
+   "lateral_span_u_cm": 18.093576652239012,
+   "lateral_span_v_cm": 5.756785930115295,
+   "imported_axis_dot_forward": {
+    "X": 6.013047743922554e-07,
+    "Y": 0.9999999999973644,
+    "Z": -2.197194399821815e-06
+   },
+   "layer_reach": {
+    "0": {
+     "points": 1713,
+     "p95_cm": 15.782940671722892,
+     "max_cm": 17.099205525915906
+    },
+    "1": {
+     "points": 540,
+     "p95_cm": 13.82082943419677,
+     "max_cm": 14.066393089738074
+    },
+    "2": {
+     "points": 112,
+     "p95_cm": 12.84042945147807,
+     "max_cm": 13.0966879202751
+    },
+    "3": {
+     "points": 4,
+     "p95_cm": 12.150984681341477,
+     "max_cm": 12.255636851820261
+    },
+    "4": {
+     "points": 6,
+     "p95_cm": 12.138014449880078,
+     "max_cm": 12.317977367506803
+    },
+    "11": {
+     "points": 4,
+     "p95_cm": 12.308626290153821,
+     "max_cm": 12.317977367506803
+    }
+   },
+   "weighted_to_candidate": false,
+   "candidate_endpoint_to_nearest_skin_cm": 4.257543530687134,
+   "nearest_skin_point": {
+    "i": 12115,
+    "p_m": [
+     -0.4023076295852661,
+     0.31184595823287964,
+     0.2642318308353424
+    ]
+   },
+   "native_body_axis_evidence": {
+    "best_axis": "Y_Negative",
+    "component_head_cm": [
+     -38.03372788337894,
+     26.720960561354943,
+     45.818315399576164
+    ],
+    "parent_component_head_cm": [
+     -31.092794639448748,
+     25.890805624861663,
+     61.473075725174446
+    ],
+    "chain_direction": [
+     -0.4048466660411744,
+     0.048420788174390265,
+     -0.9131016396151727
+    ],
+    "component_axes": {
+     "X_Positive": [
+      -0.20034753812743342,
+      -0.9790292920490765,
+      0.03691218330254337
+     ],
+     "Y_Positive": [
+      0.4048463051783716,
+      -0.04842079799399099,
+      0.9131017990919994
+     ],
+     "Z_Positive": [
+      -0.8921660905625686,
+      0.19788145853391387,
+      0.4060573792197274
+     ],
+     "X_Negative": [
+      0.20034753812743342,
+      0.9790292920490765,
+      -0.03691218330254337
+     ],
+     "Y_Negative": [
+      -0.4048463051783716,
+      0.04842079799399099,
+      -0.9131017990919994
+     ],
+     "Z_Negative": [
+      0.8921660905625686,
+      -0.19788145853391387,
+      -0.4060573792197274
+     ]
+    },
+    "axis_angle_degrees": {
+     "X_Positive": 89.99999496952861,
+     "Y_Positive": 179.99997739514353,
+     "Z_Positive": 89.99997795469359,
+     "X_Negative": 90.0000050304714,
+     "Y_Negative": 2.2604856486221263e-05,
+     "Z_Negative": 90.00002204530641
+    },
+    "axis_dot_chain": {
+     "X_Positive": 8.779828874344586e-08,
+     "Y_Positive": -0.9999999999999222,
+     "Z_Positive": 3.847631813679031e-07,
+     "X_Negative": -8.779828874344586e-08,
+     "Y_Negative": 0.9999999999999222,
+     "Z_Negative": -3.847631813679031e-07
+    },
+    "proof_scope": "NATIVE_REFERENCE_POSE_ONLY"
+   }
+  },
+  {
+   "name": "DIAG_terminal_05_04_r",
+   "existing_parent_tip": "c_kilt_05_04_r",
+   "existing_previous": "c_kilt_05_03_r",
+   "head_m": [
+    -0.40289878845214844,
+    0.45105892419815063,
+    0.14973320066928864
+   ],
+   "forward_unit": [
+    -0.43515641015143175,
+    -0.8989512513710902,
+    -0.0502548143213143
+   ],
+   "candidate_p95_length_cm": 15.172359239958977,
+   "measured_max_length_cm": 15.95817044910593,
+   "candidate_endpoint_m": [
+    -0.468922282256033,
+    0.3146668109480222,
+    0.14210835970508448
+   ],
+   "maximum_envelope_endpoint_m": [
+    -0.4723417901043244,
+    0.3076027512499814,
+    0.1417134517410116
+   ],
+   "current_3cm_endpoint_m": [
+    -0.41595348075669136,
+    0.4240903866570179,
+    0.1482255562396492
+   ],
+   "dominant_vertex_count": 959,
+   "weight_gt_0_25_vertex_count": 1461,
+   "dominant_forward_cm": {
+    "min": 8.630021598048833,
+    "p50": 12.888884679249864,
+    "p95": 15.16750881054379,
+    "max": 15.95817044910593
+   },
+   "weight_gt_0_25_forward_cm": {
+    "min": 0.07342828894737538,
+    "p50": 12.578648126478848,
+    "p95": 15.172359239958977,
+    "max": 15.95817044910593
+   },
+   "lateral_span_u_cm": 17.768217882325064,
+   "lateral_span_v_cm": 12.53907502639705,
+   "imported_axis_dot_forward": {
+    "X": -1.4243969900319773e-07,
+    "Y": 0.9999999999998436,
+    "Z": -5.347802844851645e-07
+   },
+   "layer_reach": {
+    "0": {
+     "points": 1027,
+     "p95_cm": 15.358263185640537,
+     "max_cm": 15.95817044910593
+    },
+    "1": {
+     "points": 319,
+     "p95_cm": 13.30030450056664,
+     "max_cm": 13.428893450051474
+    },
+    "2": {
+     "points": 67,
+     "p95_cm": 12.24316921962603,
+     "max_cm": 12.46909616200335
+    },
+    "3": {
+     "points": 1,
+     "p95_cm": 11.453278786373986,
+     "max_cm": 11.453278786373986
+    },
+    "4": {
+     "points": 5,
+     "p95_cm": 11.32558908128643,
+     "max_cm": 11.526877786864212
+    },
+    "5": {
+     "points": 2,
+     "p95_cm": 10.30313453652395,
+     "max_cm": 10.520434258975301
+    },
+    "7": {
+     "points": 4,
+     "p95_cm": 11.184135305780396,
+     "max_cm": 11.634861254203614
+    },
+    "8": {
+     "points": 4,
+     "p95_cm": 11.416130068435464,
+     "max_cm": 11.894711488157522
+    },
+    "9": {
+     "points": 2,
+     "p95_cm": 7.860077381001031,
+     "max_cm": 8.031833355630836
+    },
+    "10": {
+     "points": 1,
+     "p95_cm": 8.050780916018727,
+     "max_cm": 8.050780916018727
+    },
+    "11": {
+     "points": 2,
+     "p95_cm": 11.523197836839701,
+     "max_cm": 11.526877786864212
+    },
+    "13": {
+     "points": 4,
+     "p95_cm": 8.020443242726078,
+     "max_cm": 8.630021598048833
+    },
+    "15": {
+     "points": 5,
+     "p95_cm": 7.9093571927800355,
+     "max_cm": 8.704168690010473
+    },
+    "17": {
+     "points": 4,
+     "p95_cm": 7.516565431741422,
+     "max_cm": 8.031833355630836
+    },
+    "19": {
+     "points": 3,
+     "p95_cm": 7.585136912213364,
+     "max_cm": 8.050780916018727
+    },
+    "22": {
+     "points": 7,
+     "p95_cm": 11.81675641797135,
+     "max_cm": 11.894711488157522
+    },
+    "24": {
+     "points": 4,
+     "p95_cm": 8.047938781960545,
+     "max_cm": 8.050780916018727
+    }
+   },
+   "weighted_to_candidate": false,
+   "candidate_endpoint_to_nearest_skin_cm": 6.556360825361421,
+   "nearest_skin_point": {
+    "i": 14442,
+    "p_m": [
+     -0.4039389193058014,
+     0.306755006313324,
+     0.13848170638084412
+    ]
+   },
+   "native_body_axis_evidence": {
+    "best_axis": "Y_Negative",
+    "component_head_cm": [
+     -40.289900700804374,
+     14.973341163662123,
+     45.10590517046995
+    ],
+    "parent_component_head_cm": [
+     -32.59691103482495,
+     15.86177567571492,
+     60.998126632741375
+    ],
+    "chain_direction": [
+     -0.43515746510070935,
+     -0.05025470291251976,
+     -0.898950746927939
+    ],
+    "component_axes": {
+     "X_Positive": [
+      0.21851809008564932,
+      -0.9744834686718482,
+      -0.05130120457263165
+     ],
+     "Y_Positive": [
+      0.43515689776284716,
+      0.05025470982638491,
+      0.8989510211739463
+     ],
+     "Z_Positive": [
+      -0.8734347821301457,
+      -0.2187611332607984,
+      0.4350347663574903
+     ],
+     "X_Negative": [
+      -0.21851809008564932,
+      0.9744834686718482,
+      0.05130120457263165
+     ],
+     "Y_Negative": [
+      -0.43515689776284716,
+      -0.05025470982638491,
+      -0.8989510211739463
+     ],
+     "Z_Negative": [
+      0.8734347821301457,
+      0.2187611332607984,
+      -0.4350347663574903
+     ]
+    },
+    "axis_angle_degrees": {
+     "X_Positive": 90.0000082952935,
+     "Y_Positive": 179.99996389839566,
+     "Z_Positive": 89.9999648589695,
+     "X_Negative": 89.9999917047065,
+     "Y_Negative": 3.610160435482575e-05,
+     "Z_Negative": 90.0000351410305
+    },
+    "axis_dot_chain": {
+     "X_Positive": -1.4478018389024738e-07,
+     "Y_Positive": -0.9999999999998015,
+     "Z_Positive": 6.133266847903329e-07,
+     "X_Negative": 1.4478018389024738e-07,
+     "Y_Negative": 0.9999999999998015,
+     "Z_Negative": -6.133266847903329e-07
+    },
+    "proof_scope": "NATIVE_REFERENCE_POSE_ONLY"
+   }
+  },
+  {
+   "name": "DIAG_terminal_06_04_r",
+   "existing_parent_tip": "c_kilt_06_04_r",
+   "existing_previous": "c_kilt_06_03_r",
+   "head_m": [
+    -0.2797083556652069,
+    0.3631420135498047,
+    0.056598953902721405
+   ],
+   "forward_unit": [
+    -0.23432321035510542,
+    -0.9664288785024242,
+    -0.10539381331664473
+   ],
+   "candidate_p95_length_cm": 13.557637888905582,
+   "measured_max_length_cm": 15.481667725909215,
+   "candidate_endpoint_m": [
+    -0.31147704801481063,
+    0.23211708574863474,
+    0.04231004233594156
+   ],
+   "maximum_envelope_endpoint_m": [
+    -0.31598549649706764,
+    0.2135227057728285,
+    0.04028223392137341
+   ],
+   "current_3cm_endpoint_m": [
+    -0.28673805197586005,
+    0.334149147194732,
+    0.05343713950322206
+   ],
+   "dominant_vertex_count": 2135,
+   "weight_gt_0_25_vertex_count": 2412,
+   "dominant_forward_cm": {
+    "min": 7.523071974162107,
+    "p50": 10.614496195071032,
+    "p95": 13.403100191150294,
+    "max": 14.538788189490123
+   },
+   "weight_gt_0_25_forward_cm": {
+    "min": 1.1100551650903026,
+    "p50": 10.53678995704423,
+    "p95": 13.557637888905582,
+    "max": 15.481667725909215
+   },
+   "lateral_span_u_cm": 18.363334802136468,
+   "lateral_span_v_cm": 5.1582314942168725,
+   "imported_axis_dot_forward": {
+    "X": -2.8838970271871813e-07,
+    "Y": 0.9999999999999426,
+    "Z": 7.486424715718667e-08
+   },
+   "layer_reach": {
+    "0": {
+     "points": 1712,
+     "p95_cm": 13.841081356700114,
+     "max_cm": 15.481667725909215
+    },
+    "1": {
+     "points": 553,
+     "p95_cm": 12.013716139330228,
+     "max_cm": 12.499705266193201
+    },
+    "2": {
+     "points": 120,
+     "p95_cm": 11.49703237518528,
+     "max_cm": 11.74032223407548
+    },
+    "3": {
+     "points": 5,
+     "p95_cm": 7.878051931075161,
+     "max_cm": 8.276501869276437
+    },
+    "4": {
+     "points": 3,
+     "p95_cm": 8.30807160966601,
+     "max_cm": 8.506556872972117
+    },
+    "5": {
+     "points": 6,
+     "p95_cm": 10.653070857430091,
+     "max_cm": 10.653070857430091
+    },
+    "6": {
+     "points": 7,
+     "p95_cm": 10.420202245182637,
+     "max_cm": 10.420202245182637
+    },
+    "11": {
+     "points": 6,
+     "p95_cm": 10.594853704368228,
+     "max_cm": 10.653070857430091
+    }
+   },
+   "weighted_to_candidate": false,
+   "candidate_endpoint_to_nearest_skin_cm": 1.8850511929474258,
+   "nearest_skin_point": {
+    "i": 10852,
+    "p_m": [
+     -0.3170119822025299,
+     0.2462686449289322,
+     0.03115478903055191
+    ]
+   },
+   "native_body_axis_evidence": {
+    "best_axis": "Y_Negative",
+    "component_head_cm": [
+     -27.970834907428515,
+     5.659907547954642,
+     36.314212302249786
+    ],
+    "parent_component_head_cm": [
+     -23.407008272297723,
+     7.712626787021829,
+     55.13700497207459
+    ],
+    "chain_direction": [
+     -0.23432304052593206,
+     -0.10539388366370676,
+     -0.9664289120079984
+    ],
+    "component_axes": {
+     "X_Positive": [
+      0.6151744606893804,
+      -0.7858329773803279,
+      -0.06345797488967897
+     ],
+     "Y_Positive": [
+      0.2343230163241426,
+      0.10539378582724507,
+      0.9664289285455793
+     ],
+     "Z_Positive": [
+      -0.7527636461308991,
+      -0.6093920589986137,
+      0.2489743189430277
+     ],
+     "X_Negative": [
+      -0.6151744606893804,
+      0.7858329773803279,
+      0.06345797488967897
+     ],
+     "Y_Negative": [
+      -0.2343230163241426,
+      -0.10539378582724507,
+      -0.9664289285455793
+     ],
+     "Z_Negative": [
+      0.7527636461308991,
+      0.6093920589986137,
+      -0.2489743189430277
+     ]
+    },
+    "axis_angle_degrees": {
+     "X_Positive": 89.99999650808844,
+     "Y_Positive": 179.9999942094254,
+     "Z_Positive": 89.99999530424286,
+     "X_Negative": 90.00000349191156,
+     "Y_Negative": 5.7905745997743736e-06,
+     "Z_Negative": 90.00000469575714
+    },
+    "axis_dot_chain": {
+     "X_Positive": 6.094535383305288e-08,
+     "Y_Positive": -0.9999999999999949,
+     "Z_Positive": 8.195642300923289e-08,
+     "X_Negative": -6.094535383305288e-08,
+     "Y_Negative": 0.9999999999999949,
+     "Z_Negative": -8.195642300923289e-08
+    },
+    "proof_scope": "NATIVE_REFERENCE_POSE_ONLY"
+   }
+  },
+  {
+   "name": "DIAG_terminal_07_04_r",
+   "existing_parent_tip": "c_kilt_07_04_r",
+   "existing_previous": "c_kilt_07_03_r",
+   "head_m": [
+    -0.21671618521213531,
+    0.2945253252983093,
+    -0.05288933217525482
+   ],
+   "forward_unit": [
+    -0.18588849401957203,
+    -0.9627447206574298,
+    -0.19638755214468923
+   ],
+   "candidate_p95_length_cm": 10.222924248854177,
+   "measured_max_length_cm": 11.163253416502757,
+   "candidate_endpoint_m": [
+    -0.235719425143092,
+    0.19610466179565753,
+    -0.0729658828651854
+   ],
+   "maximum_envelope_endpoint_m": [
+    -0.23746738887166072,
+    0.1870516923773189,
+    -0.07481257229963298
+   ],
+   "current_3cm_endpoint_m": [
+    -0.22229284003272248,
+    0.2656429836785864,
+    -0.0587809587395955
+   ],
+   "dominant_vertex_count": 881,
+   "weight_gt_0_25_vertex_count": 1985,
+   "dominant_forward_cm": {
+    "min": 7.309213231411333,
+    "p50": 8.224288479787194,
+    "p95": 10.222924248854177,
+    "max": 10.816004035562909
+   },
+   "weight_gt_0_25_forward_cm": {
+    "min": 0.8650380900133308,
+    "p50": 7.221517216468736,
+    "p95": 9.981440543861508,
+    "max": 11.163253416502757
+   },
+   "lateral_span_u_cm": 16.245116637456302,
+   "lateral_span_v_cm": 5.3069950677950155,
+   "imported_axis_dot_forward": {
+    "X": -2.2311778296867273e-07,
+    "Y": 0.9999999999999464,
+    "Z": -2.262186794491555e-07
+   },
+   "layer_reach": {
+    "0": {
+     "points": 1448,
+     "p95_cm": 10.17495251011323,
+     "max_cm": 11.163253416502757
+    },
+    "1": {
+     "points": 424,
+     "p95_cm": 8.031257077331004,
+     "max_cm": 8.224298015945534
+    },
+    "2": {
+     "points": 91,
+     "p95_cm": 6.950409038384181,
+     "max_cm": 7.23385014482368
+    },
+    "5": {
+     "points": 5,
+     "p95_cm": 7.194568677208263,
+     "max_cm": 7.545572351519608
+    },
+    "6": {
+     "points": 5,
+     "p95_cm": 7.0595524989010645,
+     "max_cm": 7.418627387081445
+    },
+    "9": {
+     "points": 2,
+     "p95_cm": 2.145272882035984,
+     "max_cm": 2.2126536605634923
+    },
+    "10": {
+     "points": 2,
+     "p95_cm": 2.196572755633397,
+     "max_cm": 2.2629439167273975
+    },
+    "11": {
+     "points": 4,
+     "p95_cm": 7.526530606853883,
+     "max_cm": 7.545572351519608
+    },
+    "24": {
+     "points": 4,
+     "p95_cm": 2.2554003783028116,
+     "max_cm": 2.2629439167273975
+    }
+   },
+   "weighted_to_candidate": false,
+   "candidate_endpoint_to_nearest_skin_cm": 0.8166043831734042,
+   "nearest_skin_point": {
+    "i": 19496,
+    "p_m": [
+     -0.23375791311264038,
+     0.20058642327785492,
+     -0.07950427383184433
+    ]
+   },
+   "native_body_axis_evidence": {
+    "best_axis": "Y_Negative",
+    "component_head_cm": [
+     -21.67161841840227,
+     -5.28892359155993,
+     29.452544733197556
+    ],
+    "parent_component_head_cm": [
+     -17.595659315182466,
+     -0.9827537097483745,
+     50.56255623528176
+    ],
+    "chain_direction": [
+     -0.1858884896941267,
+     -0.1963874993406967,
+     -0.9627447322639291
+    ],
+    "component_axes": {
+     "X_Positive": [
+      0.8606060821941315,
+      -0.5053491282042651,
+      -0.06308272278252569
+     ],
+     "Y_Positive": [
+      0.18588856562926023,
+      0.19638754092200064,
+      0.962744709120183
+     ],
+     "Z_Positive": [
+      -0.47413353863522884,
+      -0.8402703091230813,
+      0.2629509367685106
+     ],
+     "X_Negative": [
+      -0.8606060821941315,
+      0.5053491282042651,
+      0.06308272278252569
+     ],
+     "Y_Negative": [
+      -0.18588856562926023,
+      -0.19638754092200064,
+      -0.962744709120183
+     ],
+     "Z_Negative": [
+      0.47413353863522884,
+      0.8402703091230813,
+      -0.2629509367685106
+     ]
+    },
+    "axis_angle_degrees": {
+     "X_Positive": 89.99999737601759,
+     "Y_Positive": 179.99999487735812,
+     "Z_Positive": 90.0000044134136,
+     "X_Negative": 90.00000262398241,
+     "Y_Negative": 5.122641877509565e-06,
+     "Z_Negative": 89.99999558658641
+    },
+    "axis_dot_chain": {
+     "X_Positive": 4.5797132579294964e-08,
+     "Y_Positive": -0.999999999999996,
+     "Z_Positive": -7.70285984441621e-08,
+     "X_Negative": -4.5797132579294964e-08,
+     "Y_Negative": 0.999999999999996,
+     "Z_Negative": 7.70285984441621e-08
+    },
+    "proof_scope": "NATIVE_REFERENCE_POSE_ONLY"
+   }
+  },
+  {
+   "name": "DIAG_terminal_08_04_r",
+   "existing_parent_tip": "c_kilt_08_04_r",
+   "existing_previous": "c_kilt_08_03_r",
+   "head_m": [
+    -0.06206240504980087,
+    0.2623860239982605,
+    -0.09750908613204956
+   ],
+   "forward_unit": [
+    -0.041117458942125665,
+    -0.9736421506600291,
+    -0.22434419321269639
+   ],
+   "candidate_p95_length_cm": 9.77448553293088,
+   "measured_max_length_cm": 10.133330341288826,
+   "candidate_endpoint_m": [
+    -0.06608142512560775,
+    0.1672175128394789,
+    -0.11943757684159508
+   ],
+   "maximum_envelope_endpoint_m": [
+    -0.06622897299235027,
+    0.16372364852985072,
+    -0.12024262433179135
+   ],
+   "current_3cm_endpoint_m": [
+    -0.06329592881806465,
+    0.23317675947845962,
+    -0.10423941192843045
+   ],
+   "dominant_vertex_count": 593,
+   "weight_gt_0_25_vertex_count": 2189,
+   "dominant_forward_cm": {
+    "min": 7.601781906445562,
+    "p50": 8.582150093726085,
+    "p95": 9.77448553293088,
+    "max": 10.133330341288826
+   },
+   "weight_gt_0_25_forward_cm": {
+    "min": 3.1997075567107345,
+    "p50": 6.697468748714703,
+    "p95": 9.247687007998321,
+    "max": 10.133330341288826
+   },
+   "lateral_span_u_cm": 19.350975352305504,
+   "lateral_span_v_cm": 4.569275963620595,
+   "imported_axis_dot_forward": {
+    "X": 1.904237630390134e-07,
+    "Y": 0.9999999999999779,
+    "Z": -9.32814368604347e-08
+   },
+   "layer_reach": {
+    "0": {
+     "points": 1622,
+     "p95_cm": 9.368426364183083,
+     "max_cm": 10.133330341288826
+    },
+    "1": {
+     "points": 453,
+     "p95_cm": 6.672062793516735,
+     "max_cm": 6.9153527707777
+    },
+    "2": {
+     "points": 103,
+     "p95_cm": 5.979722115811805,
+     "max_cm": 6.0107232939893205
+    },
+    "5": {
+     "points": 3,
+     "p95_cm": 5.3512777381890055,
+     "max_cm": 5.351985048804985
+    },
+    "6": {
+     "points": 4,
+     "p95_cm": 5.234162037710742,
+     "max_cm": 5.235398101955702
+    },
+    "11": {
+     "points": 4,
+     "p95_cm": 5.350924082881016,
+     "max_cm": 5.351985048804985
+    }
+   },
+   "weighted_to_candidate": false,
+   "candidate_endpoint_to_nearest_skin_cm": 2.6696738695710907,
+   "nearest_skin_point": {
+    "i": 4587,
+    "p_m": [
+     -0.07628987729549408,
+     0.18365150690078735,
+     -0.13783396780490875
+    ]
+   },
+   "native_body_axis_evidence": {
+    "best_axis": "Y_Negative",
+    "component_head_cm": [
+     -6.20624061317027,
+     -9.75088086841043,
+     26.238624789397168
+    ],
+    "parent_component_head_cm": [
+     -5.269509189144024,
+     -4.639920095811927,
+     48.419944278453386
+    ],
+    "chain_direction": [
+     -0.04111753708280896,
+     -0.22434404751026343,
+     -0.9736421809324801
+    ],
+    "component_axes": {
+     "X_Positive": [
+      0.9881043633166565,
+      -0.15365474125207673,
+      -0.00632358168623022
+     ],
+     "Y_Positive": [
+      0.04111756791874771,
+      0.22434415159726057,
+      0.9736421556468026
+     ],
+     "Z_Positive": [
+      -0.14818607492957037,
+      -0.9623200726031141,
+      0.22799334433729648
+     ],
+     "X_Negative": [
+      -0.9881043633166565,
+      0.15365474125207673,
+      0.00632358168623022
+     ],
+     "Y_Negative": [
+      -0.04111756791874771,
+      -0.22434415159726057,
+      -0.9736421556468026
+     ],
+     "Z_Negative": [
+      0.14818607492957037,
+      0.9623200726031141,
+      -0.22799334433729648
+     ]
+    },
+    "axis_angle_degrees": {
+     "X_Positive": 89.99999916144412,
+     "Y_Positive": 179.99999355415034,
+     "Z_Positive": 90.00000633115096,
+     "X_Negative": 90.00000083855589,
+     "Y_Negative": 6.445849674396954e-06,
+     "Z_Negative": 89.99999366884904
+    },
+    "axis_dot_chain": {
+     "X_Positive": 1.4635561059947455e-08,
+     "Y_Positive": -0.9999999999999937,
+     "Z_Positive": -1.1049942956389142e-07,
+     "X_Negative": -1.4635561059947455e-08,
+     "Y_Negative": 0.9999999999999937,
+     "Z_Negative": 1.1049942956389142e-07
+    },
+    "proof_scope": "NATIVE_REFERENCE_POSE_ONLY"
+   }
+  }
+ ],
+ "max_endpoint_to_nearest_skin_cm": 7.804995591111265,
+ "candidate_length_range_cm": [
+  9.420630259524678,
+  16.474899060161015
+ ],
+ "maximum_measured_reach_cm": 17.633126957954882,
+ "dominant_only_p95_max_cm": 16.451230053457905,
+ "weight_gt_0_25_only_p95_max_cm": 16.474899060161015,
+ "native_axis_evidence": {
+  "status": "VERIFIED_NATIVE_REFERENCE_POSE_ONLY",
+  "passed": true,
+  "scope": "NATIVE_REFERENCE_POSE_ONLY",
+  "runtime_dynamics_proven": false,
+  "input_hashes": {
+   "native_body_tip_reference.json": "ae9e5c0fe687d3239d94ee60b812066fa44c47bfaf59b4059a4296a5817de54e",
+   "native_tip_axis_verification.json": "46276aa58864347ba0ef05c36220f672b9def5f12e7a2b5e0723351abcfa7f36"
+  },
+  "gates": {
+   "body_response_hash_matches_verification": true,
+   "exact_body_asset_and_skeletal_mesh_source": true,
+   "all16_tip_rows_resolved": true,
+   "all16_native_parents_match_proposal": true,
+   "all16_native_minus_y_aligned": true,
+   "all16_current_native_x_is_transverse": true,
+   "native_verification_passed": true
+  },
+  "asset_path": "/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Body",
+  "source_api": "animation.get_bone_ref_pose / USkeletalMesh.GetRefSkeleton",
+  "source_schema": "melodia.native_skirt_axis.v1",
+  "production_baseline_axis": "X_Positive",
+  "measured_terminal_axis": "Y_Negative",
+  "native_x_angle_range_degrees": [
+   89.99999069269384,
+   90.00001752968305
+  ],
+  "native_minus_y_angle_max_degrees": 3.610160435482575e-05,
+  "input_hashes_after": {
+   "native_body_tip_reference.json": "ae9e5c0fe687d3239d94ee60b812066fa44c47bfaf59b4059a4296a5817de54e",
+   "native_tip_axis_verification.json": "46276aa58864347ba0ef05c36220f672b9def5f12e7a2b5e0723351abcfa7f36"
+  },
+  "input_hashes_unchanged": true
+ }
+}

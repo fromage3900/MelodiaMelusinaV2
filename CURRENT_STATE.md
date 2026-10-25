@@ -22,6 +22,8 @@
 
 ## Melusina legs, footwear and layered skirt — bounded goal, 2026-10-23
 
+**Durable offline intake (2026-10-24):** The 11 KineFX sheets, source exports, analysis helpers and receipts are preserved under `Docs/Evidence/MelusinaLegSkirt_20261023/`; staging assets remain under `Content/Staging/AnimationDoctor/LegSkirt_20261023/`. The original ZIP is a frozen earlier recovery snapshot, not the latest runtime verdict. Read the newer runtime closeout above first: moving contact remains HOLD; do not promote. Whole shared pawn/map snapshots remain local recovery files only. Historical sheets and receipts retain their original proof dates and do not supersede the latest P0 failure.
+
 ### Sonnet runtime handoff — owner requested, 2026-10-24
 
 **Immediate task:** finish the staged Melusina runtime repair in **House P0 only**, after the active material pass releases editor control. Preserve the current look-development work. No new HDA, shader master, FX router or garment solver. This is a handoff of actual saved candidates and evidence, **not a claim that the runtime leg/skirt/FluidNinja repair is complete**.

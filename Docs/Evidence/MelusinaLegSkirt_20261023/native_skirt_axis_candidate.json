@@ -1,0 +1,70 @@
+{
+  "source": "/Game/Staging/AnimationDoctor/LegSkirt_20261023/ABP_LegTargetNeutral_Candidate",
+  "candidate": "/Game/Staging/AnimationDoctor/LegSkirt_20261023/ABP_LegSkirt_Axis_Candidate",
+  "axis_before": "X_Positive",
+  "axis_after": "Y_Negative",
+  "runtime_admission": "UNVERIFIED",
+  "stable_source_fingerprints": [
+    "539b6b2403453e02007c04444bf492a6d9c53d53",
+    "539b6b2403453e02007c04444bf492a6d9c53d53",
+    "539b6b2403453e02007c04444bf492a6d9c53d53"
+  ],
+  "property_edit": {
+    "asset_path": "/Game/Staging/AnimationDoctor/LegSkirt_20261023/ABP_LegSkirt_Axis_Candidate",
+    "node_id": "AnimGraphNode_KawaiiPhysics_0",
+    "property_path": "BoneForwardAxis",
+    "old_value": "X_Positive",
+    "new_value": "Y_Negative"
+  },
+  "compile": {
+    "asset_path": "/Game/Staging/AnimationDoctor/LegSkirt_20261023/ABP_LegSkirt_Axis_Candidate",
+    "success": true,
+    "status": "UpToDate",
+    "errors": [],
+    "warnings": [],
+    "error_count": 0,
+    "warning_count": 0
+  },
+  "graph_assertion": {
+    "matched": true,
+    "mode": "exact",
+    "asset_path": "/Game/Staging/AnimationDoctor/LegSkirt_20261023/ABP_LegSkirt_Axis_Candidate",
+    "graph_name": "AnimGraph",
+    "missing_nodes": [],
+    "extra_nodes": [],
+    "missing_connections": [],
+    "pin_default_mismatches": [],
+    "forbidden_nodes_present": [],
+    "summary": "28/28 nodes, 25/25 connections, 0 default mismatches, 0 forbidden present"
+  },
+  "native_readback": {
+    "axis": "<BoneForwardAxis.Y_NEGATIVE: 3>",
+    "dummy_length": 3.0,
+    "damping": 0.30000001192092896
+  },
+  "after_fingerprint": {
+    "asset_path": "/Game/Staging/AnimationDoctor/LegSkirt_20261023/ABP_LegSkirt_Axis_Candidate",
+    "graph_name": "AnimGraph",
+    "mode": "topology+defaults",
+    "node_count": 28,
+    "connection_count": 25,
+    "fingerprint": "539b6b2403453e02007c04444bf492a6d9c53d53",
+    "node_class_histogram": {
+      "AnimGraphNode_BlendSpacePlayer": 1,
+      "AnimGraphNode_ComponentToLocalSpace": 3,
+      "AnimGraphNode_CopyBone": 3,
+      "AnimGraphNode_FootPlacement": 1,
+      "AnimGraphNode_KawaiiPhysics": 1,
+      "AnimGraphNode_LayeredBoneBlend": 1,
+      "AnimGraphNode_LegIK": 1,
+      "AnimGraphNode_LocalToComponentSpace": 3,
+      "AnimGraphNode_ModifyBone": 3,
+      "AnimGraphNode_ModifyCurve": 1,
+      "AnimGraphNode_Root": 1,
+      "AnimGraphNode_Slot": 5,
+      "AnimGraphNode_StateMachine": 1,
+      "K2Node_VariableGet": 3
+    }
+  },
+  "passed": true
+}

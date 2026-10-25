@@ -1,0 +1,123 @@
+{
+  "samples": [
+    {
+      "bones_cs": {
+        "root": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "root_x": [
+          6.935153659803184,
+          3.3653624322441456,
+          62.76517295837404
+        ],
+        "spine_01_x": [
+          7.065577325539081,
+          3.470993095949537,
+          75.3412015305907
+        ],
+        "head_x": [
+          5.024917442151203,
+          7.428883211252105,
+          126.2307131807006
+        ],
+        "c_kilt_master_x": [
+          8.804385013883666,
+          3.7571225318042307,
+          75.28427835851454
+        ],
+        "thigh_stretch_l": [
+          16.419524910313644,
+          4.0933661905380365,
+          62.66069752893674
+        ],
+        "leg_stretch_l": [
+          18.650266700822296,
+          24.566012970832073,
+          29.699726022829026
+        ],
+        "foot_l": [
+          17.701095759528837,
+          -4.924856077840293,
+          4.268478393554666
+        ],
+        "toes_01_l": [
+          20.10028509265556,
+          4.71530159802712,
+          -8.992591583789027
+        ],
+        "c_foot_ik_l": [
+          17.70109575952883,
+          -4.9248560778403,
+          4.2684783935546875
+        ],
+        "thigh_stretch_r": [
+          -2.5492173654460037,
+          2.6373568363401763,
+          62.86965603098386
+        ],
+        "leg_stretch_r": [
+          2.3964809825317808,
+          -28.308870062388305,
+          39.882667683332734
+        ],
+        "foot_r": [
+          2.7400808424799568,
+          -6.747801288880554,
+          7.442539215087869
+        ],
+        "toes_01_r": [
+          0.30530344653820585,
+          2.814260392584041,
+          -5.868485415830463
+        ],
+        "c_foot_ik_r": [
+          2.740080842479978,
+          -6.747801288880552,
+          7.442539215087891
+        ]
+      },
+      "derived": {
+        "l": {
+          "thigh_length": 38.86555181330956,
+          "calf_length": 38.9533135779642,
+          "knee_angle": 98.8288550709847,
+          "hip_foot_distance": 59.09840955793915
+        },
+        "r": {
+          "thigh_length": 38.86554418391469,
+          "calf_length": 38.95330130497181,
+          "knee_angle": 93.03535529654746,
+          "hip_foot_distance": 56.464352888267
+        }
+      },
+      "actor": "<Struct 'Vector' (0x0000025C9F0336C0) {x: 0.000000, y: 0.000000, z: 90.150000}>",
+      "velocity": "<Struct 'Vector' (0x0000025C9F0336C0) {x: 0.000000, y: 0.000000, z: 0.000000}>",
+      "cvars": {
+        "a.AnimNode.FootPlacement.Enable": 1,
+        "a.AnimNode.LegIK.Enable": 1,
+        "a.AnimNode.KawaiiPhysics.Enable": 1
+      },
+      "case": "all_on_outfit",
+      "view": "front",
+      "image": "../../../../../../EnvironmentPortfolio/BS_GodFile/Saved/Audit/MelusinaLegSkirt_20261023/all_on_outfit_front.png"
+    }
+  ],
+  "errors": [
+    "MelodiaHairComponent: Internal Error - ObjectInstance is null!"
+  ],
+  "phase": 0,
+  "view": 1,
+  "stage": "begin",
+  "started_wall": 34228.015,
+  "saved_cvars": {
+    "a.AnimNode.FootPlacement.Enable": 1,
+    "a.AnimNode.LegIK.Enable": 1,
+    "a.AnimNode.KawaiiPhysics.Enable": 1
+  },
+  "finished": true,
+  "handle": null,
+  "phase_start": 120.04285230487585,
+  "pending": "../../../../../../EnvironmentPortfolio/BS_GodFile/Saved/Audit/MelusinaLegSkirt_20261023/all_on_outfit_front.png"
+}

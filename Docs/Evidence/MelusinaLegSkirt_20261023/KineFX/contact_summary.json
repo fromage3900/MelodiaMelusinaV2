@@ -1,0 +1,1147 @@
+{
+ "schema": "melodia.leg_skirt_contact_summary.v1",
+ "provenance": [
+  {
+   "file": "C:/EnvironmentPortfolio/BS_GodFile/Saved/Audit/MelusinaLegSkirt_20261023/SourceExports/SK_Melusina_V2_Body.fbx",
+   "sha256": "602fbb6a357b77322fec137fbd639c6156886410a247511ed56538ac2b47a65b",
+   "points": 20906,
+   "joints": 465
+  },
+  {
+   "file": "C:/EnvironmentPortfolio/BS_GodFile/Saved/Audit/MelusinaLegSkirt_20261023/SourceExports/SK_Melusina_V2_Boots.fbx",
+   "sha256": "0b00805ad6af0e60c34c7f137e3d70c8404e2792b68b4198251d1d224a30c407",
+   "points": 5540,
+   "joints": 465
+  },
+  {
+   "file": "C:/EnvironmentPortfolio/BS_GodFile/Saved/Audit/MelusinaLegSkirt_20261023/SourceExports/SK_Melusina_V2_Skirt_R2_SmoothChains.fbx",
+   "sha256": "40356ebc1521e5420737c13a4cfc4d487be4a7650478cedbd2cb68c3817923ea",
+   "points": 30509,
+   "joints": 465
+  }
+ ],
+ "axes": "Houdini metres; Y is vertical. UE Z = Houdini Y * 100.",
+ "contact_qualification": "Rest/bind geometry evidence only. Runtime poses and collision contact require parent runtime measurements.",
+ "body": {
+  "kilt_points_any": 0,
+  "kilt_points_over_1pct": 0,
+  "kilt_max_weight": 0,
+  "opposite_side_points_over_1pct": 824,
+  "opposite_side_max_weight": 0.3968871533870697,
+  "lowest_bind_point": {
+   "index": 6937,
+   "position_m": [
+    0.09122876077890396,
+    -0.15254095196723938,
+    0.2960045039653778
+   ],
+   "weights": [
+    [
+     "foot_l",
+     0.7508201599121094
+    ],
+    [
+     "toes_01_l",
+     0.24917982518672943
+    ]
+   ]
+  },
+  "feet": {
+   "l": {
+    "lowest_point": {
+     "index": 6937,
+     "position_m": [
+      0.09122876077890396,
+      -0.15254095196723938,
+      0.2960045039653778
+     ],
+     "weights": [
+      [
+       "foot_l",
+       0.7508201599121094
+      ],
+      [
+       "toes_01_l",
+       0.24917982518672943
+      ]
+     ]
+    },
+    "y_quantiles_cm": {
+     "min": -15.254095196723938,
+     "p01": -15.085820108652115,
+     "p05": -14.373418092727661,
+     "p50": -2.4661246687173843
+    }
+   },
+   "r": {
+    "lowest_point": {
+     "index": 2440,
+     "position_m": [
+      -0.09124347567558289,
+      -0.1525261253118515,
+      0.2959744334220886
+     ],
+     "weights": [
+      [
+       "foot_r",
+       0.7433127164840698
+      ],
+      [
+       "toes_01_r",
+       0.2566872537136078
+      ]
+     ]
+    },
+    "y_quantiles_cm": {
+     "min": -15.25261253118515,
+     "p01": -15.086407572031021,
+     "p05": -14.37375470995903,
+     "p50": -2.4660871364176273
+    }
+   }
+  }
+ },
+ "boots": {
+  "kilt_points_any": 211,
+  "kilt_points_over_1pct": 180,
+  "kilt_max_weight": 0.05757229030132294,
+  "opposite_side_points_over_1pct": 689,
+  "opposite_side_max_weight": 0.27525749057531357,
+  "lowest_bind_point": {
+   "index": 4177,
+   "position_m": [
+    0.11331215500831604,
+    -0.23857064545154572,
+    0.13282911479473114
+   ],
+   "weights": [
+    [
+     "foot_l",
+     0.7479667067527771
+    ],
+    [
+     "toes_01_l",
+     0.10086213797330856
+    ],
+    [
+     "leg_twist_l",
+     0.11432059109210968
+    ],
+    [
+     "c_kilt_08_04_l",
+     0.03685053810477257
+    ]
+   ]
+  },
+  "feet": {
+   "l": {
+    "lowest_point": {
+     "index": 4177,
+     "position_m": [
+      0.11331215500831604,
+      -0.23857064545154572,
+      0.13282911479473114
+     ],
+     "weights": [
+      [
+       "foot_l",
+       0.7479667067527771
+      ],
+      [
+       "toes_01_l",
+       0.10086213797330856
+      ],
+      [
+       "leg_twist_l",
+       0.11432059109210968
+      ],
+      [
+       "c_kilt_08_04_l",
+       0.03685053810477257
+      ]
+     ]
+    },
+    "y_quantiles_cm": {
+     "min": -23.85706454515457,
+     "p01": -23.74439437687397,
+     "p05": -23.587030172348022,
+     "p50": -5.182692781090736
+    }
+   },
+   "r": {
+    "lowest_point": {
+     "index": 3368,
+     "position_m": [
+      -0.08246423304080963,
+      -0.2362462729215622,
+      0.13249024748802185
+     ],
+     "weights": [
+      [
+       "foot_l",
+       0.05194171145558357
+      ],
+      [
+       "foot_r",
+       0.7580682039260864
+      ],
+      [
+       "toes_01_r",
+       0.08374151587486267
+      ],
+      [
+       "leg_twist_r",
+       0.10624857246875763
+      ]
+     ]
+    },
+    "y_quantiles_cm": {
+     "min": -23.62462729215622,
+     "p01": -23.512017339468002,
+     "p05": -23.35468977689743,
+     "p50": -4.950322583317757
+    }
+   }
+  },
+  "bind_min_below_barefoot_cm": 8.602969348430634,
+  "contact_islands": [
+   {
+    "point_count": 130,
+    "bounds_m": {
+     "min": [
+      -0.15571842,
+      -0.23394881,
+      0.22915792
+     ],
+     "max": [
+      -0.03506669,
+      -0.17775372,
+      0.42774028
+     ]
+    },
+    "sample_ids": [
+     3389,
+     3390,
+     3391
+    ],
+    "top_influence_sum": [
+     [
+      "toes_01_r",
+      99.93289113044739
+     ],
+     [
+      "foot_r",
+      30.067109189927578
+     ]
+    ]
+   },
+   {
+    "point_count": 130,
+    "bounds_m": {
+     "min": [
+      0.04005771,
+      -0.23627213,
+      0.2294967
+     ],
+     "max": [
+      0.16070944,
+      -0.18007761,
+      0.42807901
+     ]
+    },
+    "sample_ids": [
+     4198,
+     4199,
+     4200
+    ],
+    "top_influence_sum": [
+     [
+      "toes_01_l",
+      105.54134410619736
+     ],
+     [
+      "foot_l",
+      24.407690595835447
+     ],
+     [
+      "leg_twist_l",
+      0.05096513405442238
+     ]
+    ]
+   },
+   {
+    "point_count": 120,
+    "bounds_m": {
+     "min": [
+      -0.12644662,
+      -0.23587665,
+      0.10314884
+     ],
+     "max": [
+      -0.06433873,
+      -0.10644829,
+      0.1725457
+     ]
+    },
+    "sample_ids": [
+     4868,
+     4869,
+     4870
+    ],
+    "top_influence_sum": [
+     [
+      "foot_r",
+      92.64411395788193
+     ],
+     [
+      "leg_twist_r",
+      12.972564339637756
+     ],
+     [
+      "toes_01_r",
+      10.304280132055283
+     ],
+     [
+      "foot_l",
+      3.474189373664558
+     ],
+     [
+      "c_kilt_08_04_r",
+      0.6048523709177971
+     ]
+    ]
+   },
+   {
+    "point_count": 120,
+    "bounds_m": {
+     "min": [
+      0.06932978,
+      -0.2382011,
+      0.10348757
+     ],
+     "max": [
+      0.13143766,
+      -0.10877266,
+      0.17288448
+     ]
+    },
+    "sample_ids": [
+     5144,
+     5145,
+     5146
+    ],
+    "top_influence_sum": [
+     [
+      "foot_l",
+      90.94927901029587
+     ],
+     [
+      "leg_twist_l",
+      13.858701504766941
+     ],
+     [
+      "toes_01_l",
+      12.339467488229275
+     ],
+     [
+      "c_kilt_08_04_l",
+      2.7806210410781205
+     ],
+     [
+      "foot_r",
+      0.07193102687597275
+     ]
+    ]
+   },
+   {
+    "point_count": 118,
+    "bounds_m": {
+     "min": [
+      -0.15235063,
+      -0.23512019,
+      0.23101443
+     ],
+     "max": [
+      -0.03843449,
+      -0.22746366,
+      0.42209679
+     ]
+    },
+    "sample_ids": [
+     3250,
+     3251,
+     3252
+    ],
+    "top_influence_sum": [
+     [
+      "toes_01_r",
+      91.74499148130417
+     ],
+     [
+      "foot_r",
+      26.255008727312088
+     ]
+    ]
+   },
+   {
+    "point_count": 118,
+    "bounds_m": {
+     "min": [
+      0.04342551,
+      -0.23744395,
+      0.23135325
+     ],
+     "max": [
+      0.15734163,
+      -0.22978763,
+      0.42243561
+     ]
+    },
+    "sample_ids": [
+     4059,
+     4060,
+     4061
+    ],
+    "top_influence_sum": [
+     [
+      "toes_01_l",
+      99.32301825284958
+     ],
+     [
+      "foot_l",
+      18.67698175087571
+     ]
+    ]
+   },
+   {
+    "point_count": 21,
+    "bounds_m": {
+     "min": [
+      -0.1176602,
+      -0.23624627,
+      0.11479983
+     ],
+     "max": [
+      -0.07312512,
+      -0.23436315,
+      0.16919906
+     ]
+    },
+    "sample_ids": [
+     3368,
+     3369,
+     3370
+    ],
+    "top_influence_sum": [
+     [
+      "foot_r",
+      15.892393290996552
+     ],
+     [
+      "leg_twist_r",
+      2.2274662405252457
+     ],
+     [
+      "toes_01_r",
+      1.757320523262024
+     ],
+     [
+      "foot_l",
+      1.122819870710373
+     ]
+    ]
+   },
+   {
+    "point_count": 21,
+    "bounds_m": {
+     "min": [
+      0.07811618,
+      -0.23857065,
+      0.11513864
+     ],
+     "max": [
+      0.12265128,
+      -0.2366876,
+      0.16953796
+     ]
+    },
+    "sample_ids": [
+     4177,
+     4178,
+     4179
+    ],
+    "top_influence_sum": [
+     [
+      "foot_l",
+      15.675135374069214
+     ],
+     [
+      "leg_twist_l",
+      2.395803779363632
+     ],
+     [
+      "toes_01_l",
+      2.1158465147018433
+     ],
+     [
+      "c_kilt_08_04_l",
+      0.8132143095135689
+     ]
+    ]
+   }
+  ]
+ },
+ "skirt": {
+  "kilt_points_any": 30354,
+  "kilt_points_over_1pct": 30354,
+  "kilt_max_weight": 1.000000049592927,
+  "opposite_side_points_over_1pct": 5387,
+  "opposite_side_max_weight": 1.0,
+  "island_point_counts": [
+   20781,
+   6476,
+   1440,
+   191,
+   191,
+   145,
+   145,
+   91,
+   91,
+   91,
+   91,
+   56,
+   56,
+   51,
+   51,
+   51,
+   51,
+   51,
+   51,
+   51,
+   51,
+   50,
+   50,
+   50,
+   50,
+   14,
+   14,
+   14,
+   14
+  ],
+  "weighted_bones": [
+   "c_kilt_01_01_l",
+   "c_kilt_01_01_r",
+   "c_kilt_01_02_l",
+   "c_kilt_01_02_r",
+   "c_kilt_01_03_l",
+   "c_kilt_01_03_r",
+   "c_kilt_01_04_l",
+   "c_kilt_01_04_r",
+   "c_kilt_02_01_l",
+   "c_kilt_02_01_r",
+   "c_kilt_02_02_l",
+   "c_kilt_02_02_r",
+   "c_kilt_02_03_l",
+   "c_kilt_02_03_r",
+   "c_kilt_02_04_l",
+   "c_kilt_02_04_r",
+   "c_kilt_03_01_l",
+   "c_kilt_03_01_r",
+   "c_kilt_03_02_l",
+   "c_kilt_03_02_r",
+   "c_kilt_03_03_l",
+   "c_kilt_03_03_r",
+   "c_kilt_03_04_l",
+   "c_kilt_03_04_r",
+   "c_kilt_04_01_l",
+   "c_kilt_04_01_r",
+   "c_kilt_04_02_l",
+   "c_kilt_04_02_r",
+   "c_kilt_04_03_l",
+   "c_kilt_04_03_r",
+   "c_kilt_04_04_l",
+   "c_kilt_04_04_r",
+   "c_kilt_05_01_l",
+   "c_kilt_05_01_r",
+   "c_kilt_05_02_l",
+   "c_kilt_05_02_r",
+   "c_kilt_05_03_l",
+   "c_kilt_05_03_r",
+   "c_kilt_05_04_l",
+   "c_kilt_05_04_r",
+   "c_kilt_06_01_l",
+   "c_kilt_06_01_r",
+   "c_kilt_06_02_l",
+   "c_kilt_06_02_r",
+   "c_kilt_06_03_l",
+   "c_kilt_06_03_r",
+   "c_kilt_06_04_l",
+   "c_kilt_06_04_r",
+   "c_kilt_07_01_l",
+   "c_kilt_07_01_r",
+   "c_kilt_07_02_l",
+   "c_kilt_07_02_r",
+   "c_kilt_07_03_l",
+   "c_kilt_07_03_r",
+   "c_kilt_07_04_l",
+   "c_kilt_07_04_r",
+   "c_kilt_08_01_l",
+   "c_kilt_08_01_r",
+   "c_kilt_08_02_l",
+   "c_kilt_08_02_r",
+   "c_kilt_08_03_l",
+   "c_kilt_08_03_r",
+   "c_kilt_08_04_l",
+   "c_kilt_08_04_r",
+   "leg_stretch_l",
+   "leg_stretch_r",
+   "root_x",
+   "thigh_stretch_l",
+   "thigh_stretch_r",
+   "thigh_twist_2_l",
+   "thigh_twist_2_r",
+   "thigh_twist_l",
+   "thigh_twist_r"
+  ],
+  "kilt_bones_present": [
+   "c_kilt_01_01_l",
+   "c_kilt_01_01_r",
+   "c_kilt_01_02_l",
+   "c_kilt_01_02_r",
+   "c_kilt_01_03_l",
+   "c_kilt_01_03_r",
+   "c_kilt_01_04_l",
+   "c_kilt_01_04_r",
+   "c_kilt_02_01_l",
+   "c_kilt_02_01_r",
+   "c_kilt_02_02_l",
+   "c_kilt_02_02_r",
+   "c_kilt_02_03_l",
+   "c_kilt_02_03_r",
+   "c_kilt_02_04_l",
+   "c_kilt_02_04_r",
+   "c_kilt_03_01_l",
+   "c_kilt_03_01_r",
+   "c_kilt_03_02_l",
+   "c_kilt_03_02_r",
+   "c_kilt_03_03_l",
+   "c_kilt_03_03_r",
+   "c_kilt_03_04_l",
+   "c_kilt_03_04_r",
+   "c_kilt_04_01_l",
+   "c_kilt_04_01_r",
+   "c_kilt_04_02_l",
+   "c_kilt_04_02_r",
+   "c_kilt_04_03_l",
+   "c_kilt_04_03_r",
+   "c_kilt_04_04_l",
+   "c_kilt_04_04_r",
+   "c_kilt_05_01_l",
+   "c_kilt_05_01_r",
+   "c_kilt_05_02_l",
+   "c_kilt_05_02_r",
+   "c_kilt_05_03_l",
+   "c_kilt_05_03_r",
+   "c_kilt_05_04_l",
+   "c_kilt_05_04_r",
+   "c_kilt_06_01_l",
+   "c_kilt_06_01_r",
+   "c_kilt_06_02_l",
+   "c_kilt_06_02_r",
+   "c_kilt_06_03_l",
+   "c_kilt_06_03_r",
+   "c_kilt_06_04_l",
+   "c_kilt_06_04_r",
+   "c_kilt_07_01_l",
+   "c_kilt_07_01_r",
+   "c_kilt_07_02_l",
+   "c_kilt_07_02_r",
+   "c_kilt_07_03_l",
+   "c_kilt_07_03_r",
+   "c_kilt_07_04_l",
+   "c_kilt_07_04_r",
+   "c_kilt_08_01_l",
+   "c_kilt_08_01_r",
+   "c_kilt_08_02_l",
+   "c_kilt_08_02_r",
+   "c_kilt_08_03_l",
+   "c_kilt_08_03_r",
+   "c_kilt_08_04_l",
+   "c_kilt_08_04_r",
+   "c_kilt_main_01_01_x",
+   "c_kilt_main_01_02_x",
+   "c_kilt_main_01_03_x",
+   "c_kilt_main_01_04_x",
+   "c_kilt_main_03_01_l",
+   "c_kilt_main_03_01_r",
+   "c_kilt_main_03_02_l",
+   "c_kilt_main_03_02_r",
+   "c_kilt_main_03_03_l",
+   "c_kilt_main_03_03_r",
+   "c_kilt_main_03_04_l",
+   "c_kilt_main_03_04_r",
+   "c_kilt_main_05_01_l",
+   "c_kilt_main_05_01_r",
+   "c_kilt_main_05_02_l",
+   "c_kilt_main_05_02_r",
+   "c_kilt_main_05_03_l",
+   "c_kilt_main_05_03_r",
+   "c_kilt_main_05_04_l",
+   "c_kilt_main_05_04_r",
+   "c_kilt_main_07_01_l",
+   "c_kilt_main_07_01_r",
+   "c_kilt_main_07_02_l",
+   "c_kilt_main_07_02_r",
+   "c_kilt_main_07_03_l",
+   "c_kilt_main_07_03_r",
+   "c_kilt_main_07_04_l",
+   "c_kilt_main_07_04_r",
+   "c_kilt_main_08_01_x",
+   "c_kilt_main_08_02_x",
+   "c_kilt_main_08_03_x",
+   "c_kilt_main_08_04_x",
+   "c_kilt_master_x",
+   "c_kilt_row_01_x",
+   "c_kilt_row_02_x",
+   "c_kilt_row_03_x",
+   "c_kilt_row_04_x"
+  ],
+  "leg_bound_points": 226,
+  "hem_layers": [
+   {
+    "island": 0,
+    "points": 20781,
+    "sample_ids": [
+     784,
+     785,
+     786
+    ],
+    "bind_y_minmax_cm": [
+     17.193010449409485,
+     35.201865434646606
+    ],
+    "kilt_influence_sum": 20781.000004327623,
+    "non_kilt_influence_sum": 0
+   },
+   {
+    "island": 1,
+    "points": 6476,
+    "sample_ids": [
+     21542,
+     21543,
+     21544
+    ],
+    "bind_y_minmax_cm": [
+     20.065471529960632,
+     32.95656144618988
+    ],
+    "kilt_influence_sum": 6476.000000922009,
+    "non_kilt_influence_sum": 0
+   },
+   {
+    "island": 2,
+    "points": 1440,
+    "sample_ids": [
+     28018,
+     28019,
+     28020
+    ],
+    "bind_y_minmax_cm": [
+     21.060331165790558,
+     33.23465287685394
+    ],
+    "kilt_influence_sum": 1439.9999998279382,
+    "non_kilt_influence_sum": 0
+   }
+  ],
+  "hem_pair_nearest_vertex_dist_cm": [
+   {
+    "a": 0,
+    "b": 1,
+    "min": 0.0,
+    "p05": 0.21795462123837098,
+    "median": 2.5879534392614643,
+    "coincident_points": 720,
+    "coincident_weights_l1_max": 0.0
+   },
+   {
+    "a": 0,
+    "b": 2,
+    "min": 0.0,
+    "p05": 0.3547209911162753,
+    "median": 2.825358230989711,
+    "coincident_points": 720,
+    "coincident_weights_l1_max": 0.0
+   },
+   {
+    "a": 1,
+    "b": 2,
+    "min": 0.0,
+    "p05": 0.0,
+    "median": 0.7642358144127545,
+    "coincident_points": 720,
+    "coincident_weights_l1_max": 0.0
+   }
+  ],
+  "radial_chains": [
+   {
+    "names": [
+     "c_kilt_01_01_l",
+     "c_kilt_01_02_l",
+     "c_kilt_01_03_l",
+     "c_kilt_01_04_l"
+    ],
+    "parent": "c_kilt_master_x",
+    "start_y_cm": 92.7825927734375,
+    "tip_y_cm": 46.53995633125305,
+    "chain_length_cm": 50.69142577157953
+   },
+   {
+    "names": [
+     "c_kilt_02_01_l",
+     "c_kilt_02_02_l",
+     "c_kilt_02_03_l",
+     "c_kilt_02_04_l"
+    ],
+    "parent": "c_kilt_master_x",
+    "start_y_cm": 92.7825927734375,
+    "tip_y_cm": 45.531630516052246,
+    "chain_length_cm": 50.00477980175786
+   },
+   {
+    "names": [
+     "c_kilt_03_01_l",
+     "c_kilt_03_02_l",
+     "c_kilt_03_03_l",
+     "c_kilt_03_04_l"
+    ],
+    "parent": "c_kilt_master_x",
+    "start_y_cm": 92.78259873390198,
+    "tip_y_cm": 45.0100302696228,
+    "chain_length_cm": 52.35648736959534
+   },
+   {
+    "names": [
+     "c_kilt_04_01_l",
+     "c_kilt_04_02_l",
+     "c_kilt_04_03_l",
+     "c_kilt_04_04_l"
+    ],
+    "parent": "c_kilt_master_x",
+    "start_y_cm": 92.7825927734375,
+    "tip_y_cm": 45.81829607486725,
+    "chain_length_cm": 51.44017045972579
+   },
+   {
+    "names": [
+     "c_kilt_05_01_l",
+     "c_kilt_05_02_l",
+     "c_kilt_05_03_l",
+     "c_kilt_05_04_l"
+    ],
+    "parent": "c_kilt_master_x",
+    "start_y_cm": 92.78258681297302,
+    "tip_y_cm": 45.10588049888611,
+    "chain_length_cm": 53.029643921780306
+   },
+   {
+    "names": [
+     "c_kilt_06_01_l",
+     "c_kilt_06_02_l",
+     "c_kilt_06_03_l",
+     "c_kilt_06_04_l"
+    ],
+    "parent": "c_kilt_master_x",
+    "start_y_cm": 92.7825927734375,
+    "tip_y_cm": 36.3141804933548,
+    "chain_length_cm": 58.43342569062058
+   },
+   {
+    "names": [
+     "c_kilt_07_01_l",
+     "c_kilt_07_02_l",
+     "c_kilt_07_03_l",
+     "c_kilt_07_04_l"
+    ],
+    "parent": "c_kilt_master_x",
+    "start_y_cm": 92.78258085250854,
+    "tip_y_cm": 29.45255935192108,
+    "chain_length_cm": 65.7888733193228
+   },
+   {
+    "names": [
+     "c_kilt_08_01_l",
+     "c_kilt_08_02_l",
+     "c_kilt_08_03_l",
+     "c_kilt_08_04_l"
+    ],
+    "parent": "c_kilt_master_x",
+    "start_y_cm": 92.78258681297302,
+    "tip_y_cm": 26.23862326145172,
+    "chain_length_cm": 68.35115499644465
+   },
+   {
+    "names": [
+     "c_kilt_01_01_r",
+     "c_kilt_01_02_r",
+     "c_kilt_01_03_r",
+     "c_kilt_01_04_r"
+    ],
+    "parent": "c_kilt_master_x",
+    "start_y_cm": 92.78259873390198,
+    "tip_y_cm": 46.539947390556335,
+    "chain_length_cm": 50.68255755809723
+   },
+   {
+    "names": [
+     "c_kilt_02_01_r",
+     "c_kilt_02_02_r",
+     "c_kilt_02_03_r",
+     "c_kilt_02_04_r"
+    ],
+    "parent": "c_kilt_master_x",
+    "start_y_cm": 92.78258681297302,
+    "tip_y_cm": 45.53163945674896,
+    "chain_length_cm": 50.01836979069523
+   },
+   {
+    "names": [
+     "c_kilt_03_01_r",
+     "c_kilt_03_02_r",
+     "c_kilt_03_03_r",
+     "c_kilt_03_04_r"
+    ],
+    "parent": "c_kilt_master_x",
+    "start_y_cm": 92.7825927734375,
+    "tip_y_cm": 45.00998556613922,
+    "chain_length_cm": 52.359813226098865
+   },
+   {
+    "names": [
+     "c_kilt_04_01_r",
+     "c_kilt_04_02_r",
+     "c_kilt_04_03_r",
+     "c_kilt_04_04_r"
+    ],
+    "parent": "c_kilt_master_x",
+    "start_y_cm": 92.78258085250854,
+    "tip_y_cm": 45.81831991672516,
+    "chain_length_cm": 51.43376598819353
+   },
+   {
+    "names": [
+     "c_kilt_05_01_r",
+     "c_kilt_05_02_r",
+     "c_kilt_05_03_r",
+     "c_kilt_05_04_r"
+    ],
+    "parent": "c_kilt_master_x",
+    "start_y_cm": 92.7825927734375,
+    "tip_y_cm": 45.10590434074402,
+    "chain_length_cm": 53.03592327332363
+   },
+   {
+    "names": [
+     "c_kilt_06_01_r",
+     "c_kilt_06_02_r",
+     "c_kilt_06_03_r",
+     "c_kilt_06_04_r"
+    ],
+    "parent": "c_kilt_master_x",
+    "start_y_cm": 92.78258085250854,
+    "tip_y_cm": 36.314213275909424,
+    "chain_length_cm": 58.42992367838136
+   },
+   {
+    "names": [
+     "c_kilt_07_01_r",
+     "c_kilt_07_02_r",
+     "c_kilt_07_03_r",
+     "c_kilt_07_04_r"
+    ],
+    "parent": "c_kilt_master_x",
+    "start_y_cm": 92.78258085250854,
+    "tip_y_cm": 29.452547430992126,
+    "chain_length_cm": 65.78071091572369
+   },
+   {
+    "names": [
+     "c_kilt_08_01_r",
+     "c_kilt_08_02_r",
+     "c_kilt_08_03_r",
+     "c_kilt_08_04_r"
+    ],
+    "parent": "c_kilt_master_x",
+    "start_y_cm": 92.78258681297302,
+    "tip_y_cm": 26.23862326145172,
+    "chain_length_cm": 68.34540010272302
+   }
+  ],
+  "root_level_kilt_main_controls": [
+   "c_kilt_main_03_01_l",
+   "c_kilt_main_05_01_l",
+   "c_kilt_main_03_01_r",
+   "c_kilt_main_05_01_r",
+   "c_kilt_main_07_01_l",
+   "c_kilt_main_07_01_r",
+   "c_kilt_main_01_01_x",
+   "c_kilt_main_01_02_x",
+   "c_kilt_main_01_03_x",
+   "c_kilt_main_08_01_x",
+   "c_kilt_main_08_02_x",
+   "c_kilt_main_08_03_x",
+   "c_kilt_main_01_04_x",
+   "c_kilt_main_08_04_x"
+  ],
+  "real_radial_chain_count": 16,
+  "central_row_chain": [
+   {
+    "name": "c_kilt_row_01_x",
+    "parent": "c_kilt_master_x"
+   },
+   {
+    "name": "c_kilt_row_02_x",
+    "parent": "c_kilt_row_01_x"
+   },
+   {
+    "name": "c_kilt_row_03_x",
+    "parent": "c_kilt_row_02_x"
+   },
+   {
+    "name": "c_kilt_row_04_x",
+    "parent": "c_kilt_row_03_x"
+   }
+  ]
+ },
+ "bind_skeleton_comparison": {
+  "boots": {
+   "names_equal": true,
+   "all_joints_max_pos_delta_cm": [
+    0.0,
+    "toes_01_r"
+   ],
+   "weighted_joints_max_pos_delta_cm": [
+    0.0,
+    "toes_01_r"
+   ],
+   "kilt_max_pos_delta_cm": [
+    0.0,
+    "c_kilt_row_04_x"
+   ],
+   "largest_10_pos_deltas_cm": [
+    [
+     0.0,
+     "toes_01_r"
+    ],
+    [
+     0.0,
+     "toes_01_l"
+    ],
+    [
+     0.0,
+     "thumb3_r"
+    ],
+    [
+     0.0,
+     "thumb3_l"
+    ],
+    [
+     0.0,
+     "thumb2_r"
+    ],
+    [
+     0.0,
+     "thumb2_l"
+    ],
+    [
+     0.0,
+     "thumb1_r"
+    ],
+    [
+     0.0,
+     "thumb1_l"
+    ],
+    [
+     0.0,
+     "thigh_twist_r"
+    ],
+    [
+     0.0,
+     "thigh_twist_l"
+    ]
+   ],
+   "matrix3x3_max_element_delta": 0.0
+  },
+  "skirt": {
+   "names_equal": true,
+   "all_joints_max_pos_delta_cm": [
+    0.663763173328614,
+    "c_hand_ik_l"
+   ],
+   "weighted_joints_max_pos_delta_cm": [
+    6.808726031498418e-05,
+    "c_kilt_08_04_l"
+   ],
+   "kilt_max_pos_delta_cm": [
+    6.808726031498418e-05,
+    "c_kilt_08_04_l"
+   ],
+   "largest_10_pos_deltas_cm": [
+    [
+     0.663763173328614,
+     "c_hand_ik_l"
+    ],
+    [
+     0.663739994074851,
+     "c_hand_ik_r"
+    ],
+    [
+     0.21451080239197473,
+     "Retopo_Cube_003_001"
+    ],
+    [
+     0.10397550994195981,
+     "c_spine_03_x"
+    ],
+    [
+     0.00016129775683209582,
+     "brow_T_R_001"
+    ],
+    [
+     0.00016129087361973297,
+     "brow_T_L_001"
+    ],
+    [
+     0.000157078313268476,
+     "DEF-forehead_R_002"
+    ],
+    [
+     0.00015545846647912237,
+     "DEF_forhead_04_L"
+    ],
+    [
+     0.00015544596816725168,
+     "DEF-brow_T_R"
+    ],
+    [
+     0.00015543704018634895,
+     "DEF_forhead_03_R"
+    ]
+   ],
+   "weighted_matrix3x3_max_element_delta": 5.774199962615967e-08
+  }
+ },
+ "ground_reference": {
+  "c_traj_parent": "c_pos",
+  "c_traj_direct_children": [
+   "c_root_master_x",
+   "root_x"
+  ],
+  "c_traj_bind_position_m": [
+   -1.3260939901726942e-08,
+   -0.08339780569076538,
+   1.3587226455058499e-08
+  ],
+  "footwear_plane_caution": "Use true heel/forefoot support; preserve all direct-child world matrices. Fix boot kilt and opposite-leg leakage before final contact measurement. Bind plane differs from source animation plane."
+ }
+}

@@ -1,0 +1,563 @@
+{
+  "world": "/Game/Melodia/Levels/Opening/UEDPIE_0_L_MelusinaHouse_P0.L_MelusinaHouse_P0",
+  "paused": false,
+  "pawn": "/Game/Melodia/Levels/Opening/UEDPIE_0_L_MelusinaHouse_P0.L_MelusinaHouse_P0:PersistentLevel.BP_MelusinaJRPGCharacter_C_1",
+  "location": "<Struct 'Vector' (0x00000194DA4EF9E0) {x: -300.000000, y: -576.000000, z: 2090.399977}>",
+  "components": [
+    {
+      "name": "CollisionCylinder",
+      "class": "CapsuleComponent",
+      "parent": null,
+      "socket": "None",
+      "location": "<Struct 'Vector' (0x0000019640ED3260) {x: -300.000000, y: -576.000000, z: 2090.399977}>",
+      "visible": false
+    },
+    {
+      "name": "Arrow",
+      "class": "ArrowComponent",
+      "parent": "CollisionCylinder",
+      "socket": "None",
+      "location": "<Struct 'Vector' (0x0000019640ED37B0) {x: -300.000000, y: -576.000000, z: 2090.399977}>",
+      "visible": false
+    },
+    {
+      "name": "CharacterMesh0",
+      "class": "SkeletalMeshComponent",
+      "parent": "CollisionCylinder",
+      "socket": "None",
+      "location": "<Struct 'Vector' (0x0000019640ED3760) {x: -300.000000, y: -576.000000, z: 2017.399977}>",
+      "visible": true,
+      "asset": "<Object '/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Body.SK_Melusina_V2_Body' (0x0000019648D7B400) Class 'SkeletalMesh'>"
+    },
+    {
+      "name": "SpringArm",
+      "class": "SpringArmComponent",
+      "parent": "CollisionCylinder",
+      "socket": "None",
+      "location": "<Struct 'Vector' (0x0000019640ED2D60) {x: -300.000000, y: -576.000000, z: 2098.892241}>",
+      "visible": true
+    },
+    {
+      "name": "Camera",
+      "class": "CameraComponent",
+      "parent": "SpringArm",
+      "socket": "None",
+      "location": "<Struct 'Vector' (0x0000019640ED2D60) {x: -700.000000, y: -576.000000, z: 2148.892241}>",
+      "visible": true
+    },
+    {
+      "name": "CameraProxyMeshComponent_0",
+      "class": "CameraProxyMeshComponent",
+      "parent": "Camera",
+      "socket": "None",
+      "location": "<Struct 'Vector' (0x0000019640ED3CB0) {x: -700.000000, y: -576.000000, z: 2148.892241}>",
+      "visible": false,
+      "asset": "<Object '/Engine/EditorMeshes/MatineeCam_SM.MatineeCam_SM' (0x000001951CB5E000) Class 'StaticMesh'>"
+    },
+    {
+      "name": "DrawFrustumComponent_0",
+      "class": "DrawFrustumComponent",
+      "parent": "Camera",
+      "socket": "None",
+      "location": "<Struct 'Vector' (0x0000019640ED2DB0) {x: -700.000000, y: -576.000000, z: 2148.892241}>",
+      "visible": false
+    },
+    {
+      "name": "BattleDetector",
+      "class": "SphereComponent",
+      "parent": "CharacterMesh0",
+      "socket": "None",
+      "location": "<Struct 'Vector' (0x0000019640ED2DB0) {x: -300.000000, y: -576.000000, z: 2047.399977}>",
+      "visible": false
+    },
+    {
+      "name": "InteractionArea",
+      "class": "SphereComponent",
+      "parent": "CharacterMesh0",
+      "socket": "None",
+      "location": "<Struct 'Vector' (0x0000019640ED2DB0) {x: -200.000000, y: -576.001680, z: 2105.513854}>",
+      "visible": false
+    },
+    {
+      "name": "PartyMember1SpringArm",
+      "class": "SpringArmComponent",
+      "parent": "CollisionCylinder",
+      "socket": "None",
+      "location": "<Struct 'Vector' (0x0000019640ED3490) {x: -300.000000, y: -576.000000, z: 2090.399977}>",
+      "visible": true
+    },
+    {
+      "name": "PartyMember1Location",
+      "class": "ArrowComponent",
+      "parent": "PartyMember1SpringArm",
+      "socket": "None",
+      "location": "<Struct 'Vector' (0x0000019640ED2C20) {x: -441.421356, y: -717.421356, z: 2090.399977}>",
+      "visible": false
+    },
+    {
+      "name": "PartyMember2SpringArm",
+      "class": "SpringArmComponent",
+      "parent": "CollisionCylinder",
+      "socket": "None",
+      "location": "<Struct 'Vector' (0x0000019640ED31C0) {x: -300.000000, y: -576.000000, z: 2090.399977}>",
+      "visible": true
+    },
+    {
+      "name": "PartyMember2Location",
+      "class": "ArrowComponent",
+      "parent": "PartyMember2SpringArm",
+      "socket": "None",
+      "location": "<Struct 'Vector' (0x0000019640ED3080) {x: -441.421356, y: -434.578644, z: 2090.399977}>",
+      "visible": false
+    },
+    {
+      "name": "WaterHairMesh",
+      "class": "MelodiaHairComponent",
+      "parent": "CharacterMesh0",
+      "socket": "head_x",
+      "location": "<Struct 'Vector' (0x0000019640ED2AE0) {x: -317.521290, y: -552.528420, z: 2003.344661}>",
+      "visible": true,
+      "asset": "<Object '/Game/Melodia/Characters/Melusina/Hair/SK_MelusinaHair.SK_MelusinaHair' (0x0000019565F58C00) Class 'SkeletalMesh'>"
+    },
+    {
+      "name": "VFX_Globules_A",
+      "class": "NiagaraComponent",
+      "parent": "WaterHairMesh",
+      "socket": "A_DEF_hair_bbone_017",
+      "location": "<Struct 'Vector' (0x0000019640ED3300) {x: -271.443775, y: -597.179118, z: 2166.572353}>",
+      "visible": true,
+      "asset": "<Object '/Game/Melodia/VFX/NS_Melusina_Globules.NS_Melusina_Globules' (0x00000196505B3000) Class 'NiagaraSystem'>",
+      "active": true
+    },
+    {
+      "name": "VFX_Globules_B",
+      "class": "NiagaraComponent",
+      "parent": "WaterHairMesh",
+      "socket": "B_DEF_hair_bbone_007",
+      "location": "<Struct 'Vector' (0x0000019640ED3530) {x: -293.297678, y: -601.594689, z: 2134.593763}>",
+      "visible": true,
+      "asset": "<Object '/Game/Melodia/VFX/NS_Melusina_Globules.NS_Melusina_Globules' (0x00000196505B3000) Class 'NiagaraSystem'>",
+      "active": true
+    },
+    {
+      "name": "VFX_Globules_C",
+      "class": "NiagaraComponent",
+      "parent": "WaterHairMesh",
+      "socket": "C_DEF_hair_bbone_119",
+      "location": "<Struct 'Vector' (0x0000019640ED3670) {x: -293.061901, y: -598.568351, z: 2153.104097}>",
+      "visible": true,
+      "asset": "<Object '/Game/Melodia/VFX/NS_Melusina_Globules.NS_Melusina_Globules' (0x00000196505B3000) Class 'NiagaraSystem'>",
+      "active": true
+    },
+    {
+      "name": "VFX_Globules_A1",
+      "class": "NiagaraComponent",
+      "parent": "WaterHairMesh",
+      "socket": "A_DEF_hair_bbone_009",
+      "location": "<Struct 'Vector' (0x0000019640ED3710) {x: -272.310287, y: -587.249198, z: 2166.375952}>",
+      "visible": true,
+      "asset": "<Object '/Game/Melodia/VFX/NS_Melusina_Globules.NS_Melusina_Globules' (0x00000196505B3000) Class 'NiagaraSystem'>",
+      "active": true
+    },
+    {
+      "name": "VFX_Globules_B1",
+      "class": "NiagaraComponent",
+      "parent": "WaterHairMesh",
+      "socket": "B_DEF_hair_bbone_003",
+      "location": "<Struct 'Vector' (0x0000019640ED34E0) {x: -293.390098, y: -601.470381, z: 2134.630560}>",
+      "visible": true,
+      "asset": "<Object '/Game/Melodia/VFX/NS_Melusina_Globules.NS_Melusina_Globules' (0x00000196505B3000) Class 'NiagaraSystem'>",
+      "active": true
+    },
+    {
+      "name": "VFX_Globules_C1",
+      "class": "NiagaraComponent",
+      "parent": "WaterHairMesh",
+      "socket": "C_DEF_hair_bbone_059",
+      "location": "<Struct 'Vector' (0x00000194DA4EF120) {x: -293.143719, y: -598.405355, z: 2153.179577}>",
+      "visible": true,
+      "asset": "<Object '/Game/Melodia/VFX/NS_Melusina_Globules.NS_Melusina_Globules' (0x00000196505B3000) Class 'NiagaraSystem'>",
+      "active": true
+    },
+    {
+      "name": "WaterHairFlipCache",
+      "class": "GeometryCacheComponent",
+      "parent": "WaterHairMesh",
+      "socket": "None",
+      "location": "<Struct 'Vector' (0x00000194DA4EED10) {x: -317.521290, y: -552.528420, z: 2003.344661}>",
+      "visible": true
+    },
+    {
+      "name": "WaterHairFluid",
+      "class": "NinjaLiveComponent_C",
+      "parent": "WaterHairMesh",
+      "socket": "hair_root",
+      "location": "<Struct 'Vector' (0x00000194DA4EEF90) {x: -292.161758, y: -580.911095, z: 2143.336682}>",
+      "visible": true,
+      "asset": "<Object '/Game/FluidNinjaLive/NinjaLiveCore.NinjaLiveCore' (0x00000196505B9000) Class 'NiagaraSystem'>",
+      "active": true
+    },
+    {
+      "name": "VFX_HairFlow",
+      "class": "NiagaraComponent",
+      "parent": "WaterHairFluid",
+      "socket": "None",
+      "location": "<Struct 'Vector' (0x00000194DA4EEEA0) {x: -292.161758, y: -580.911095, z: 2143.336682}>",
+      "visible": true,
+      "asset": "<Object '/Game/Melodia/Characters/Melusina/VFX/FluidNinja/NS_Melusina_HairFlow.NS_Melusina_HairFlow' (0x00000196505B0000) Class 'NiagaraSystem'>",
+      "active": true
+    },
+    {
+      "name": "VFX_EyeSparkle_L",
+      "class": "NiagaraComponent",
+      "parent": "CharacterMesh0",
+      "socket": "master_eye_L",
+      "location": "<Struct 'Vector' (0x00000194DA4EEBD0) {x: -276.370004, y: -586.291659, z: 2151.857100}>",
+      "visible": true,
+      "asset": "<Object '/Game/Melodia/VFX/NS_Melusina_EyeSparkle.NS_Melusina_EyeSparkle' (0x0000019645DF1000) Class 'NiagaraSystem'>",
+      "active": true
+    },
+    {
+      "name": "VFX_EyeSparkle_R",
+      "class": "NiagaraComponent",
+      "parent": "CharacterMesh0",
+      "socket": "master_eye_R",
+      "location": "<Struct 'Vector' (0x00000194DA4EEF40) {x: -283.067460, y: -595.247313, z: 2151.254629}>",
+      "visible": true,
+      "asset": "<Object '/Game/Melodia/VFX/NS_Melusina_EyeSparkle.NS_Melusina_EyeSparkle' (0x0000019645DF1000) Class 'NiagaraSystem'>",
+      "active": true
+    },
+    {
+      "name": "VFX_Trail",
+      "class": "NiagaraComponent",
+      "parent": "CharacterMesh0",
+      "socket": "hand_r",
+      "location": "<Struct 'Vector' (0x00000194DA4EEEF0) {x: -336.510016, y: -540.336872, z: 2093.342039}>",
+      "visible": true,
+      "asset": "<Object '/Game/Melodia/VFX/NS_Melusina_SwingTrail.NS_Melusina_SwingTrail' (0x00000196505B5000) Class 'NiagaraSystem'>",
+      "active": true
+    },
+    {
+      "name": "VFX_Splash",
+      "class": "NiagaraComponent",
+      "parent": "CharacterMesh0",
+      "socket": "hand_r",
+      "location": "<Struct 'Vector' (0x00000194DA4EEA40) {x: -336.510016, y: -540.336872, z: 2093.342039}>",
+      "visible": true,
+      "asset": "<Object '/Game/Melodia/VFX/NS_Melusina_Splash.NS_Melusina_Splash' (0x0000019565E1D000) Class 'NiagaraSystem'>",
+      "active": true
+    },
+    {
+      "name": "VFX_Ripple",
+      "class": "NiagaraComponent",
+      "parent": "CharacterMesh0",
+      "socket": "foot_l",
+      "location": "<Struct 'Vector' (0x00000194DA4EEDB0) {x: -304.924332, y: -593.694685, z: 2021.418234}>",
+      "visible": true,
+      "asset": "<Object '/Game/Melodia/VFX/NS_Melusina_Ripple.NS_Melusina_Ripple' (0x0000019565E10000) Class 'NiagaraSystem'>",
+      "active": true
+    },
+    {
+      "name": "VFX_Glint",
+      "class": "NiagaraComponent",
+      "parent": "CharacterMesh0",
+      "socket": "hand_r",
+      "location": "<Struct 'Vector' (0x00000194DA4EEA90) {x: -336.510016, y: -540.336872, z: 2093.342039}>",
+      "visible": true,
+      "asset": "<Object '/Game/Melodia/VFX/NS_Melusina_Glint.NS_Melusina_Glint' (0x0000019647A79000) Class 'NiagaraSystem'>",
+      "active": true
+    },
+    {
+      "name": "VFX_Dust",
+      "class": "NiagaraComponent",
+      "parent": "CharacterMesh0",
+      "socket": "None",
+      "location": "<Struct 'Vector' (0x00000194DA4EEC70) {x: -300.000000, y: -576.000000, z: 2017.399977}>",
+      "visible": true,
+      "asset": "<Object '/Game/Melodia/VFX/NS_Melusina_Dust.NS_Melusina_Dust' (0x00000196424B5000) Class 'NiagaraSystem'>",
+      "active": true
+    },
+    {
+      "name": "VFX_Sigil",
+      "class": "NiagaraComponent",
+      "parent": "CharacterMesh0",
+      "socket": "foot_l",
+      "location": "<Struct 'Vector' (0x00000194DA4EED60) {x: -304.924332, y: -593.694685, z: 2021.418234}>",
+      "visible": true,
+      "asset": "<Object '/Game/Melodia/VFX/NS_Melusina_Sigil.NS_Melusina_Sigil' (0x0000019647A7B000) Class 'NiagaraSystem'>",
+      "active": true
+    },
+    {
+      "name": "VFX_Arc",
+      "class": "NiagaraComponent",
+      "parent": "CharacterMesh0",
+      "socket": "hand_r",
+      "location": "<Struct 'Vector' (0x00000194DA4EECC0) {x: -336.510016, y: -540.336872, z: 2093.342039}>",
+      "visible": true,
+      "asset": "<Object '/Game/Melodia/VFX/NS_Melusina_Arc.NS_Melusina_Arc' (0x0000019647A77000) Class 'NiagaraSystem'>",
+      "active": true
+    },
+    {
+      "name": "VFX_EntropyDust",
+      "class": "NiagaraComponent",
+      "parent": "CharacterMesh0",
+      "socket": "None",
+      "location": "<Struct 'Vector' (0x00000194DA4EEC20) {x: -300.000000, y: -576.000000, z: 2017.399977}>",
+      "visible": true,
+      "asset": "<Object '/Game/Melodia/VFX/NS_Melusina_EntropyDust.NS_Melusina_EntropyDust' (0x0000019570502000) Class 'NiagaraSystem'>",
+      "active": true
+    },
+    {
+      "name": "VFX_ChaosDrift",
+      "class": "NiagaraComponent",
+      "parent": "CharacterMesh0",
+      "socket": "None",
+      "location": "<Struct 'Vector' (0x00000194DA4EEB80) {x: -300.000000, y: -576.000000, z: 2017.399977}>",
+      "visible": true,
+      "asset": "<Object '/Game/Melodia/VFX/NS_Melusina_ChaosDrift.NS_Melusina_ChaosDrift' (0x000001944A53A000) Class 'NiagaraSystem'>",
+      "active": true
+    },
+    {
+      "name": "VFX_Superposition",
+      "class": "NiagaraComponent",
+      "parent": "CharacterMesh0",
+      "socket": "hand_r",
+      "location": "<Struct 'Vector' (0x00000194DA4EEB30) {x: -336.510016, y: -540.336872, z: 2093.342039}>",
+      "visible": true,
+      "asset": "<Object '/Game/Melodia/VFX/NS_Melusina_Superposition.NS_Melusina_Superposition' (0x00000196505B4000) Class 'NiagaraSystem'>",
+      "active": true
+    },
+    {
+      "name": "VFX_ProviderSigil",
+      "class": "NiagaraComponent",
+      "parent": "CharacterMesh0",
+      "socket": "foot_l",
+      "location": "<Struct 'Vector' (0x00000194DA4EE860) {x: -304.924332, y: -593.694685, z: 2021.418234}>",
+      "visible": true,
+      "asset": "<Object '/Game/Melodia/VFX/NS_Melusina_ProviderSigil.NS_Melusina_ProviderSigil' (0x0000019647A7A000) Class 'NiagaraSystem'>",
+      "active": true
+    },
+    {
+      "name": "HandInstrument_Violin",
+      "class": "StaticMeshComponent",
+      "parent": "CharacterMesh0",
+      "socket": "S_Instrument_L",
+      "location": "<Struct 'Vector' (0x00000194DA4EE9F0) {x: -267.254639, y: -636.095860, z: 2126.033030}>",
+      "visible": true,
+      "asset": "<Object '/Game/EnvSandbox/Meshes/Environment/violin.violin' (0x0000019499E74800) Class 'StaticMesh'>"
+    },
+    {
+      "name": "HandProp_Wand",
+      "class": "StaticMeshComponent",
+      "parent": "CharacterMesh0",
+      "socket": "S_Instrument_R",
+      "location": "<Struct 'Vector' (0x00000194DA4EE950) {x: -328.498479, y: -472.100928, z: 2118.012234}>",
+      "visible": false,
+      "asset": "<Object '/Game/EnvSandbox/Greybox_Kit/SM_Retopo_wand.SM_Retopo_wand' (0x0000019499E7C000) Class 'StaticMesh'>"
+    },
+    {
+      "name": "EyeIrises",
+      "class": "StaticMeshComponent",
+      "parent": "CharacterMesh0",
+      "socket": "head_x",
+      "location": "<Struct 'Vector' (0x00000194DA4EE810) {x: -317.919553, y: -552.235607, z: 2003.419368}>",
+      "visible": true,
+      "asset": "<Object '/Game/SM_R_Iris_002.SM_R_Iris_002' (0x000001944BD76800) Class 'StaticMesh'>"
+    },
+    {
+      "name": "EyeLashes",
+      "class": "StaticMeshComponent",
+      "parent": "CharacterMesh0",
+      "socket": "head_x",
+      "location": "<Struct 'Vector' (0x00000194DA4EE900) {x: -317.521241, y: -552.528454, z: 2003.344629}>",
+      "visible": true,
+      "asset": "<Object '/Game/SM_R_Eyelash.SM_R_Eyelash' (0x00000194B57AC000) Class 'StaticMesh'>"
+    },
+    {
+      "name": "RegaliaRoot",
+      "class": "SceneComponent",
+      "parent": "CollisionCylinder",
+      "socket": "None",
+      "location": "<Struct 'Vector' (0x00000195FC71F670) {x: -300.000000, y: -576.000000, z: 2017.399977}>",
+      "visible": true
+    },
+    {
+      "name": "Regalia_Wings",
+      "class": "StaticMeshComponent",
+      "parent": "RegaliaRoot",
+      "socket": "None",
+      "location": "<Struct 'Vector' (0x00000194DA4EE8B0) {x: -300.000000, y: -576.000000, z: 2017.399977}>",
+      "visible": false,
+      "asset": "<Object '/Game/Melusina/FX/Regalia20260922/TMP_FX_AngelWings_Carrier.TMP_FX_AngelWings_Carrier' (0x000001944BFE9800) Class 'StaticMesh'>"
+    },
+    {
+      "name": "Regalia_RingOuter",
+      "class": "StaticMeshComponent",
+      "parent": "RegaliaRoot",
+      "socket": "None",
+      "location": "<Struct 'Vector' (0x00000194DA4EE7C0) {x: -368.000000, y: -411.000039, z: 2191.513194}>",
+      "visible": false,
+      "asset": "<Object '/Game/Melusina/FX/Regalia20260922/TMP_FX_ClockworkRing_Outer.TMP_FX_ClockworkRing_Outer' (0x000001944BFE1800) Class 'StaticMesh'>"
+    },
+    {
+      "name": "Regalia_RingMid",
+      "class": "StaticMeshComponent",
+      "parent": "RegaliaRoot",
+      "socket": "None",
+      "location": "<Struct 'Vector' (0x00000194DA4EE630) {x: -368.000000, y: -412.881672, z: 2166.552216}>",
+      "visible": false,
+      "asset": "<Object '/Game/Melusina/FX/Regalia20260922/TMP_FX_ClockworkRing_Mid.TMP_FX_ClockworkRing_Mid' (0x000001944BFE2800) Class 'StaticMesh'>"
+    },
+    {
+      "name": "Regalia_RingInner",
+      "class": "StaticMeshComponent",
+      "parent": "RegaliaRoot",
+      "socket": "None",
+      "location": "<Struct 'Vector' (0x00000194DA4EFFD0) {x: -368.000000, y: -739.152273, z: 2216.023863}>",
+      "visible": false,
+      "asset": "<Object '/Game/Melusina/FX/Regalia20260922/TMP_FX_ClockworkRing_Inner.TMP_FX_ClockworkRing_Inner' (0x000001944BFE1000) Class 'StaticMesh'>"
+    },
+    {
+      "name": "Regalia_v4_Circlet",
+      "class": "StaticMeshComponent",
+      "parent": "CharacterMesh0",
+      "socket": "head_x",
+      "location": "<Struct 'Vector' (0x00000194DA4EF670) {x: -317.520997, y: -552.528676, z: 2003.345224}>",
+      "visible": true,
+      "asset": "<Object '/Game/Melodia/Characters/Melusina/Regalia_v4/SM_Regalia_v4_Circlet.SM_Regalia_v4_Circlet' (0x0000019499D3E000) Class 'StaticMesh'>"
+    },
+    {
+      "name": "Regalia_v4_Necklace",
+      "class": "StaticMeshComponent",
+      "parent": "CharacterMesh0",
+      "socket": "spine_03_x",
+      "location": "<Struct 'Vector' (0x00000194DA4EF8A0) {x: -351.428408, y: -612.923524, z: 2016.468971}>",
+      "visible": true,
+      "asset": "<Object '/Game/Melodia/Characters/Melusina/Regalia_v4/SM_Regalia_v4_Necklace.SM_Regalia_v4_Necklace' (0x0000019499D3C000) Class 'StaticMesh'>"
+    },
+    {
+      "name": "Regalia_v4_Earrings",
+      "class": "StaticMeshComponent",
+      "parent": "CharacterMesh0",
+      "socket": "head_x",
+      "location": "<Struct 'Vector' (0x00000194DA4EF940) {x: -317.520997, y: -552.528676, z: 2003.345224}>",
+      "visible": true,
+      "asset": "<Object '/Game/Melodia/Characters/Melusina/Regalia_v4/SM_Regalia_v4_Earrings.SM_Regalia_v4_Earrings' (0x0000019499D32000) Class 'StaticMesh'>"
+    },
+    {
+      "name": "VFX_StarSparkle",
+      "class": "NiagaraComponent",
+      "parent": "CollisionCylinder",
+      "socket": "None",
+      "location": "<Struct 'Vector' (0x00000194DA4EF2B0) {x: -300.000000, y: -576.000000, z: 2110.399977}>",
+      "visible": true,
+      "asset": "<Object '/Game/Melodia/VFX/NS_Melusina_StarSparkle.NS_Melusina_StarSparkle' (0x00000196424B7000) Class 'NiagaraSystem'>",
+      "active": true
+    },
+    {
+      "name": "EyeBrows_v1",
+      "class": "StaticMeshComponent",
+      "parent": "CharacterMesh0",
+      "socket": "head_x",
+      "location": "<Struct 'Vector' (0x00000194DA4EF350) {x: -317.572371, y: -552.491107, z: 2003.357834}>",
+      "visible": true,
+      "asset": "<Object '/Game/Melodia/Characters/Melusina/Eyebrows_v1/SM_Melusina_Brows_v1.SM_Melusina_Brows_v1' (0x000001944BFEB800) Class 'StaticMesh'>"
+    },
+    {
+      "name": "HatMesh",
+      "class": "SkeletalMeshComponent",
+      "parent": "CharacterMesh0",
+      "socket": "None",
+      "location": "<Struct 'Vector' (0x00000194DA4EF210) {x: -300.000000, y: -576.000000, z: 2017.399977}>",
+      "visible": true,
+      "asset": "<Object '/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Hat_Fixed.SK_Melusina_V2_Hat_Fixed' (0x0000019648D7C800) Class 'SkeletalMesh'>"
+    },
+    {
+      "name": "MelusinaWings",
+      "class": "SkeletalMeshComponent",
+      "parent": "CharacterMesh0",
+      "socket": "WingSocket",
+      "location": "<Struct 'Vector' (0x00000194DA4EF3F0) {x: -309.565376, y: -583.457680, z: 2117.185368}>",
+      "visible": true,
+      "asset": "<Object '/Game/Staging/HoudiniForge/MelusinaWings/Butterfly/SK_MEL_Wings_Butterfly.SK_MEL_Wings_Butterfly' (0x0000019648D7E600) Class 'SkeletalMesh'>"
+    },
+    {
+      "name": "ACFVault",
+      "class": "ACFVaultComponent",
+      "parent": "CollisionCylinder",
+      "socket": "None",
+      "location": "<Struct 'Vector' (0x00000194DA4EF300) {x: -300.000000, y: -576.000000, z: 2090.399977}>",
+      "visible": false
+    },
+    {
+      "name": "BubbleSprintPresentation",
+      "class": "ChildActorComponent",
+      "parent": "CollisionCylinder",
+      "socket": "None",
+      "location": "<Struct 'Vector' (0x00000194DA4EF580) {x: -300.000000, y: -576.000000, z: 2090.399977}>",
+      "visible": true
+    },
+    {
+      "name": "WaveHarpInstrumentPresentation",
+      "class": "SkeletalMeshComponent",
+      "parent": "CollisionCylinder",
+      "socket": "None",
+      "location": "<Struct 'Vector' (0x00000194DA4EF530) {x: -245.000000, y: -611.000000, z: 2112.763364}>",
+      "visible": true,
+      "asset": "<Object '/Game/Melodia/Characters/Melusina/Weapons/WaveHarp/SK_ME_WaveHarp_Scythe.SK_ME_WaveHarp_Scythe' (0x000001955558F000) Class 'SkeletalMesh'>"
+    },
+    {
+      "name": "WaveHarpWandPresentation",
+      "class": "StaticMeshComponent",
+      "parent": "CollisionCylinder",
+      "socket": "None",
+      "location": "<Struct 'Vector' (0x00000194DA4EF850) {x: -245.000000, y: -611.000000, z: 2099.763364}>",
+      "visible": false,
+      "asset": "<Object '/Game/Melodia/Characters/Melusina/Weapons/WaveHarp/SM_MEL_Wand_Carillon_Caster.SM_MEL_Wand_Carillon_Caster' (0x0000019658A25800) Class 'StaticMesh'>"
+    },
+    {
+      "name": "ScytheBladeRibbon",
+      "class": "ProceduralMeshComponent",
+      "parent": "CollisionCylinder",
+      "socket": "None",
+      "location": "<Struct 'Vector' (0x00000194DA4EFF30) {x: -300.000000, y: -576.000000, z: 2090.399977}>",
+      "visible": false
+    },
+    {
+      "name": "WardrobeSlot_EMelodiaWardrobeSlot::Shirt",
+      "class": "SkeletalMeshComponent",
+      "parent": "CharacterMesh0",
+      "socket": "None",
+      "location": "<Struct 'Vector' (0x00000194DA4EFCB0) {x: -300.000000, y: -576.000000, z: 2017.399977}>",
+      "visible": true,
+      "asset": "<Object '/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Shirt_Flared.SK_Melusina_V2_Shirt_Flared' (0x0000019648D7D200) Class 'SkeletalMesh'>"
+    },
+    {
+      "name": "WardrobeSlot_EMelodiaWardrobeSlot::Skirt",
+      "class": "SkeletalMeshComponent",
+      "parent": "CharacterMesh0",
+      "socket": "None",
+      "location": "<Struct 'Vector' (0x00000194DA4EFAD0) {x: -300.000000, y: -576.000000, z: 2017.399977}>",
+      "visible": true,
+      "asset": "<Object '/Game/Melodia/Characters/Melusina/Outfits/V2/Polish_20260920/SK_Melusina_V2_Skirt_R2_SmoothChains.SK_Melusina_V2_Skirt_R2_SmoothChains' (0x0000019648D7A000) Class 'SkeletalMesh'>"
+    },
+    {
+      "name": "WardrobeSlot_EMelodiaWardrobeSlot::Boots",
+      "class": "SkeletalMeshComponent",
+      "parent": "CharacterMesh0",
+      "socket": "None",
+      "location": "<Struct 'Vector' (0x00000194DA4EFBC0) {x: -300.000000, y: -576.000000, z: 2017.399977}>",
+      "visible": true,
+      "asset": "<Object '/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Boots.SK_Melusina_V2_Boots' (0x0000019648D7BE00) Class 'SkeletalMesh'>"
+    },
+    {
+      "name": "WardrobeSlot_EMelodiaWardrobeSlot::Accessories",
+      "class": "SkeletalMeshComponent",
+      "parent": "CharacterMesh0",
+      "socket": "None",
+      "location": "<Struct 'Vector' (0x00000194DA4EF9E0) {x: -300.000000, y: -576.000000, z: 2017.399977}>",
+      "visible": true,
+      "asset": "<Object '/Game/Melodia/Characters/Melusina/Outfits/V2/SK_Melusina_V2_Accessories.SK_Melusina_V2_Accessories' (0x0000019648D7AA00) Class 'SkeletalMesh'>"
+    }
+  ]
+}

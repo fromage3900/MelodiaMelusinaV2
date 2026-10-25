@@ -1,0 +1,1928 @@
+{
+  "asset": "/Game/MelodiaIntegration/Blueprints/BP_MelusinaJRPGCharacter",
+  "scope": "necklace construction socket and its component bind transform only",
+  "file_sha256_before": "a13362a834900f278884349253e4812db60fc871908fb614e91a61b886e1cd8a",
+  "passed": true,
+  "components_before": {
+    "VFX_ProviderSigil_GEN_VARIABLE": {
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quat": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "Regalia_v4_Earrings_GEN_VARIABLE": {
+      "location": [
+        0.0,
+        144.2292,
+        -15.8968
+      ],
+      "quat": [
+        0.7071065,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "RegaliaRoot_GEN_VARIABLE": {
+      "location": [
+        0.0,
+        0.0,
+        -73.0
+      ],
+      "quat": [
+        -0.0,
+        0.0,
+        -0.7071068,
+        0.7071068
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "EyeLashes_GEN_VARIABLE": {
+      "location": [
+        8e-07,
+        144.2298389,
+        -15.8970352
+      ],
+      "quat": [
+        0.7071065,
+        -0.0,
+        0.0,
+        0.707107
+      ],
+      "scale": [
+        9.9596122,
+        9.9596152,
+        9.9596603
+      ]
+    },
+    "EyeIrises_GEN_VARIABLE": {
+      "location": [
+        8e-07,
+        144.2298385,
+        -16.3970354
+      ],
+      "quat": [
+        0.7071065,
+        -0.0,
+        0.0,
+        0.707107
+      ],
+      "scale": [
+        9.9596122,
+        9.9596152,
+        9.9596603
+      ]
+    },
+    "HandProp_Wand_GEN_VARIABLE": {
+      "location": [
+        0.0,
+        0.0,
+        73.0
+      ],
+      "quat": [
+        0.0,
+        -0.0,
+        0.7071068,
+        0.7071068
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "HandInstrument_Violin_GEN_VARIABLE": {
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quat": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "VFX_ChaosDrift_GEN_VARIABLE": {
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quat": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "VFX_Superposition_GEN_VARIABLE": {
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quat": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "VFX_EntropyDust_GEN_VARIABLE": {
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quat": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "VFX_Arc_GEN_VARIABLE": {
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quat": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "VFX_Dust_GEN_VARIABLE": {
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quat": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "VFX_Glint_GEN_VARIABLE": {
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quat": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "VFX_Ripple_GEN_VARIABLE": {
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quat": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "VFX_Splash_GEN_VARIABLE": {
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quat": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "Regalia_v4_Necklace_GEN_VARIABLE": {
+      "location": [
+        0.0,
+        135.2627,
+        -25.6174
+      ],
+      "quat": [
+        0.7333058,
+        0.0,
+        0.0,
+        0.679899
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "VFX_Trail_GEN_VARIABLE": {
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quat": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "Regalia_Wings_GEN_VARIABLE": {
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quat": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "scale": [
+        10.0,
+        10.0,
+        10.0
+      ]
+    },
+    "BubbleSprintPresentation_GEN_VARIABLE": {
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quat": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "ACFVault_GEN_VARIABLE": {
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quat": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "MelusinaWings_GEN_VARIABLE": {
+      "location": [
+        6.0,
+        0.0,
+        -25.0
+      ],
+      "quat": [
+        0.5799307,
+        -0.3731033,
+        0.4688946,
+        0.5519167
+      ],
+      "scale": [
+        0.3225,
+        0.3225,
+        0.3225
+      ]
+    },
+    "HatMesh_GEN_VARIABLE": {
+      "location": [
+        0.0,
+        0.0,
+        -90.0
+      ],
+      "quat": [
+        -0.0,
+        0.0,
+        -0.7071068,
+        0.7071068
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "EyeBrows_v1_GEN_VARIABLE": {
+      "location": [
+        1.8e-06,
+        144.2262408,
+        -15.9616153
+      ],
+      "quat": [
+        0.7069455,
+        -0.0,
+        0.0,
+        0.707268
+      ],
+      "scale": [
+        1.000005,
+        1.000005,
+        1.000005
+      ]
+    },
+    "VFX_StarSparkle_GEN_VARIABLE": {
+      "location": [
+        0.0,
+        0.0,
+        20.0
+      ],
+      "quat": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "Regalia_RingOuter_GEN_VARIABLE": {
+      "location": [
+        0.0,
+        -68.0,
+        9.0
+      ],
+      "quat": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "scale": [
+        10.0,
+        10.0,
+        10.0
+      ]
+    },
+    "Regalia_RingMid_GEN_VARIABLE": {
+      "location": [
+        0.0,
+        -68.0,
+        9.0
+      ],
+      "quat": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "scale": [
+        10.0,
+        10.0,
+        10.0
+      ]
+    },
+    "Regalia_RingInner_GEN_VARIABLE": {
+      "location": [
+        0.0,
+        -68.0,
+        9.0
+      ],
+      "quat": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "scale": [
+        10.0,
+        10.0,
+        10.0
+      ]
+    },
+    "Regalia_v4_Circlet_GEN_VARIABLE": {
+      "location": [
+        0.0,
+        144.2292,
+        -15.8968
+      ],
+      "quat": [
+        0.7071065,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "VFX_Sigil_GEN_VARIABLE": {
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quat": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "VFX_EyeSparkle_R_GEN_VARIABLE": {
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quat": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "PartyMember1Location_GEN_VARIABLE": {
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quat": [
+        -0.0,
+        0.7071068,
+        0.0,
+        0.7071068
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "VFX_HairFlow_GEN_VARIABLE": {
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quat": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "WaterHairFluid_GEN_VARIABLE": {
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quat": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "WaterHairMesh_GEN_VARIABLE": {
+      "location": [
+        0.0001,
+        144.1994,
+        -15.9001
+      ],
+      "quat": [
+        0.7071068,
+        0.0,
+        0.0,
+        0.7071068
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "PartyMember2Location_GEN_VARIABLE": {
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quat": [
+        -0.0,
+        0.7071068,
+        0.0,
+        0.7071068
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "VFX_EyeSparkle_L_GEN_VARIABLE": {
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quat": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "PartyMember2SpringArm_GEN_VARIABLE": {
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quat": [
+        -0.0,
+        0.0,
+        -0.3826834,
+        0.9238795
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "PartyMember1SpringArm_GEN_VARIABLE": {
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quat": [
+        0.0,
+        -0.0,
+        0.3826834,
+        0.9238795
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "InteractionArea_GEN_VARIABLE": {
+      "location": [
+        0.0016799,
+        100.0,
+        88.1138763
+      ],
+      "quat": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "BattleDetector_GEN_VARIABLE": {
+      "location": [
+        0.0,
+        0.0,
+        30.0
+      ],
+      "quat": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "Camera_GEN_VARIABLE": {
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quat": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "SpringArm_GEN_VARIABLE": {
+      "location": [
+        0.0,
+        0.0,
+        8.4922638
+      ],
+      "quat": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "CharacterMesh0": {
+      "location": [
+        0.0,
+        0.0,
+        -73.0
+      ],
+      "quat": [
+        -0.0,
+        0.0,
+        -0.7071068,
+        0.7071068
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "Arrow": {
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quat": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "CollisionCylinder": {
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quat": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "VFX_Globules_A_GEN_VARIABLE": {
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quat": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "VFX_Globules_B_GEN_VARIABLE": {
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quat": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "VFX_Globules_C_GEN_VARIABLE": {
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quat": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "VFX_Globules_A1_GEN_VARIABLE": {
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quat": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "WaterHairFlipCache_GEN_VARIABLE": {
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quat": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "scale": [
+        0.01,
+        0.01,
+        0.01
+      ]
+    },
+    "VFX_Globules_C1_GEN_VARIABLE": {
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quat": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "VFX_Globules_B1_GEN_VARIABLE": {
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quat": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    }
+  },
+  "stable_before_fingerprints": [
+    "2091f29a342756a83505f01306d9b7075a03b3d3",
+    "2091f29a342756a83505f01306d9b7075a03b3d3",
+    "2091f29a342756a83505f01306d9b7075a03b3d3"
+  ],
+  "template_edit": {
+    "template": "/Game/MelodiaIntegration/Blueprints/BP_MelusinaJRPGCharacter.BP_MelusinaJRPGCharacter_C:Regalia_v4_Necklace_GEN_VARIABLE",
+    "relative": "<Struct 'Transform' (0x0000025C98532FA0) {rotation: {x: 0.553780, y: -0.000000, z: -0.000000, w: 0.832663}, translation: {x: 0.000003, y: 100.965184, z: -63.661651}, scale3d: {x: 1.000005, y: 1.000005, z: 1.000010}}>"
+  },
+  "compile": {
+    "asset_path": "/Game/MelodiaIntegration/Blueprints/BP_MelusinaJRPGCharacter",
+    "success": true,
+    "status": "UpToDate",
+    "errors": [],
+    "warnings": [],
+    "error_count": 0,
+    "warning_count": 0
+  },
+  "graph_assertion": {
+    "matched": true,
+    "mode": "exact",
+    "asset_path": "/Game/MelodiaIntegration/Blueprints/BP_MelusinaJRPGCharacter",
+    "graph_name": "UserConstructionScript",
+    "missing_nodes": [],
+    "extra_nodes": [],
+    "missing_connections": [],
+    "pin_default_mismatches": [],
+    "forbidden_nodes_present": [],
+    "summary": "14/14 nodes, 16/16 connections, 0 default mismatches, 0 forbidden present"
+  },
+  "components_after": {
+    "VFX_ProviderSigil_GEN_VARIABLE": {
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quat": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "Regalia_v4_Earrings_GEN_VARIABLE": {
+      "location": [
+        0.0,
+        144.2292,
+        -15.8968
+      ],
+      "quat": [
+        0.7071065,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "RegaliaRoot_GEN_VARIABLE": {
+      "location": [
+        0.0,
+        0.0,
+        -73.0
+      ],
+      "quat": [
+        -0.0,
+        0.0,
+        -0.7071068,
+        0.7071068
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "EyeLashes_GEN_VARIABLE": {
+      "location": [
+        8e-07,
+        144.2298389,
+        -15.8970352
+      ],
+      "quat": [
+        0.7071065,
+        -0.0,
+        0.0,
+        0.707107
+      ],
+      "scale": [
+        9.9596122,
+        9.9596152,
+        9.9596603
+      ]
+    },
+    "EyeIrises_GEN_VARIABLE": {
+      "location": [
+        8e-07,
+        144.2298385,
+        -16.3970354
+      ],
+      "quat": [
+        0.7071065,
+        -0.0,
+        0.0,
+        0.707107
+      ],
+      "scale": [
+        9.9596122,
+        9.9596152,
+        9.9596603
+      ]
+    },
+    "HandProp_Wand_GEN_VARIABLE": {
+      "location": [
+        0.0,
+        0.0,
+        73.0
+      ],
+      "quat": [
+        0.0,
+        -0.0,
+        0.7071068,
+        0.7071068
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "HandInstrument_Violin_GEN_VARIABLE": {
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quat": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "VFX_ChaosDrift_GEN_VARIABLE": {
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quat": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "VFX_Superposition_GEN_VARIABLE": {
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quat": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "VFX_EntropyDust_GEN_VARIABLE": {
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quat": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "VFX_Arc_GEN_VARIABLE": {
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quat": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "VFX_Dust_GEN_VARIABLE": {
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quat": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "VFX_Glint_GEN_VARIABLE": {
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quat": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "VFX_Ripple_GEN_VARIABLE": {
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quat": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "VFX_Splash_GEN_VARIABLE": {
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quat": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "Regalia_v4_Necklace_GEN_VARIABLE": {
+      "location": [
+        3e-06,
+        100.9651838,
+        -63.6616514
+      ],
+      "quat": [
+        0.5537804,
+        -0.0,
+        -0.0,
+        0.8326628
+      ],
+      "scale": [
+        1.000005,
+        1.0000052,
+        1.0000098
+      ]
+    },
+    "VFX_Trail_GEN_VARIABLE": {
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quat": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "Regalia_Wings_GEN_VARIABLE": {
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quat": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "scale": [
+        10.0,
+        10.0,
+        10.0
+      ]
+    },
+    "BubbleSprintPresentation_GEN_VARIABLE": {
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quat": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "ACFVault_GEN_VARIABLE": {
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quat": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "MelusinaWings_GEN_VARIABLE": {
+      "location": [
+        6.0,
+        0.0,
+        -25.0
+      ],
+      "quat": [
+        0.5799307,
+        -0.3731033,
+        0.4688946,
+        0.5519167
+      ],
+      "scale": [
+        0.3225,
+        0.3225,
+        0.3225
+      ]
+    },
+    "HatMesh_GEN_VARIABLE": {
+      "location": [
+        0.0,
+        0.0,
+        -90.0
+      ],
+      "quat": [
+        -0.0,
+        0.0,
+        -0.7071068,
+        0.7071068
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "EyeBrows_v1_GEN_VARIABLE": {
+      "location": [
+        1.8e-06,
+        144.2262408,
+        -15.9616153
+      ],
+      "quat": [
+        0.7069455,
+        -0.0,
+        0.0,
+        0.707268
+      ],
+      "scale": [
+        1.000005,
+        1.000005,
+        1.000005
+      ]
+    },
+    "VFX_StarSparkle_GEN_VARIABLE": {
+      "location": [
+        0.0,
+        0.0,
+        20.0
+      ],
+      "quat": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "Regalia_RingOuter_GEN_VARIABLE": {
+      "location": [
+        0.0,
+        -68.0,
+        9.0
+      ],
+      "quat": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "scale": [
+        10.0,
+        10.0,
+        10.0
+      ]
+    },
+    "Regalia_RingMid_GEN_VARIABLE": {
+      "location": [
+        0.0,
+        -68.0,
+        9.0
+      ],
+      "quat": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "scale": [
+        10.0,
+        10.0,
+        10.0
+      ]
+    },
+    "Regalia_RingInner_GEN_VARIABLE": {
+      "location": [
+        0.0,
+        -68.0,
+        9.0
+      ],
+      "quat": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "scale": [
+        10.0,
+        10.0,
+        10.0
+      ]
+    },
+    "Regalia_v4_Circlet_GEN_VARIABLE": {
+      "location": [
+        0.0,
+        144.2292,
+        -15.8968
+      ],
+      "quat": [
+        0.7071065,
+        0.0,
+        0.0,
+        0.707107
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "VFX_Sigil_GEN_VARIABLE": {
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quat": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "VFX_EyeSparkle_R_GEN_VARIABLE": {
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quat": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "PartyMember1Location_GEN_VARIABLE": {
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quat": [
+        -0.0,
+        0.7071068,
+        0.0,
+        0.7071068
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "VFX_HairFlow_GEN_VARIABLE": {
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quat": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "WaterHairFluid_GEN_VARIABLE": {
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quat": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "WaterHairMesh_GEN_VARIABLE": {
+      "location": [
+        0.0001,
+        144.1994,
+        -15.9001
+      ],
+      "quat": [
+        0.7071068,
+        0.0,
+        0.0,
+        0.7071068
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "PartyMember2Location_GEN_VARIABLE": {
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quat": [
+        -0.0,
+        0.7071068,
+        0.0,
+        0.7071068
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "VFX_EyeSparkle_L_GEN_VARIABLE": {
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quat": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "PartyMember2SpringArm_GEN_VARIABLE": {
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quat": [
+        -0.0,
+        0.0,
+        -0.3826834,
+        0.9238795
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "PartyMember1SpringArm_GEN_VARIABLE": {
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quat": [
+        0.0,
+        -0.0,
+        0.3826834,
+        0.9238795
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "InteractionArea_GEN_VARIABLE": {
+      "location": [
+        0.0016799,
+        100.0,
+        88.1138763
+      ],
+      "quat": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "BattleDetector_GEN_VARIABLE": {
+      "location": [
+        0.0,
+        0.0,
+        30.0
+      ],
+      "quat": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "Camera_GEN_VARIABLE": {
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quat": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "SpringArm_GEN_VARIABLE": {
+      "location": [
+        0.0,
+        0.0,
+        8.4922638
+      ],
+      "quat": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "CharacterMesh0": {
+      "location": [
+        0.0,
+        0.0,
+        -73.0
+      ],
+      "quat": [
+        -0.0,
+        0.0,
+        -0.7071068,
+        0.7071068
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "Arrow": {
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quat": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "CollisionCylinder": {
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quat": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "VFX_Globules_A_GEN_VARIABLE": {
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quat": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "VFX_Globules_B_GEN_VARIABLE": {
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quat": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "VFX_Globules_C_GEN_VARIABLE": {
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quat": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "VFX_Globules_A1_GEN_VARIABLE": {
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quat": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "WaterHairFlipCache_GEN_VARIABLE": {
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quat": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "scale": [
+        0.01,
+        0.01,
+        0.01
+      ]
+    },
+    "VFX_Globules_C1_GEN_VARIABLE": {
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quat": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "VFX_Globules_B1_GEN_VARIABLE": {
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quat": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    }
+  },
+  "other_component_defaults_unchanged": true,
+  "after_fingerprint": {
+    "asset_path": "/Game/MelodiaIntegration/Blueprints/BP_MelusinaJRPGCharacter",
+    "graph_name": "UserConstructionScript",
+    "mode": "topology+defaults",
+    "node_count": 14,
+    "connection_count": 16,
+    "fingerprint": "56af2501c92bee5526574325a1a67aacd171f468",
+    "node_class_histogram": {
+      "K2Node_CallFunction": 5,
+      "K2Node_CallParentFunction": 1,
+      "K2Node_FunctionEntry": 1,
+      "K2Node_VariableGet": 7
+    }
+  },
+  "file_sha256_after": "db67d21c125c31eed104c319474db4bd212505eb1105db2d7923d2ebe8cc29da"
+}

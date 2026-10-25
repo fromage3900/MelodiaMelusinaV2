@@ -1,0 +1,11 @@
+{
+  "schema": "melodia.melusina_p0_runtime_closeout.v1",
+  "ground": "PASS: fresh House P0 spawn, injected movement, stop and fresh PIE restart; spawn Z=79.2125 cm, Walking.",
+  "waist": "PASS for staging candidate only: maximum first-ring deviation 0.0000287 cm with Kawaii enabled across idle/walk/turn/stop.",
+  "boots": "FAIL / OPEN: idle boot clearance 10.9375..11.6767 cm above traced P0 floor; no production AnimBP or wardrobe promotion.",
+  "input_proof": "Injected AddMovementInput, not physical keyboard input.",
+  "visual_boundary": "Four P0 captures inspected; overexposure and initial white-card VFX prevent final beauty acceptance. No run/sprint, bend, packaged, physical-input, or final FluidNinja droplet acceptance.",
+  "package": "Saved\\Packages\\Melusina_P0_RuntimeCloseout_20261024.zip",
+  "sha256": "fddda8da79152752483d5c54dfd9bf45465d4699f1dad5518a1fc4f5844bc5db",
+  "file_count": 28
+}

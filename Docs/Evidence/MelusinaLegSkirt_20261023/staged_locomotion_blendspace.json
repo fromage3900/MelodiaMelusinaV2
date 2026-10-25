@@ -1,0 +1,118 @@
+{
+  "source": {
+    "asset_path": "/Game/Melodia/Characters/Melusina/Animations/BS_Melusina_Locomotion",
+    "skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton.SK_Melusina_Skeleton",
+    "is_1d": true,
+    "axis_x": {
+      "name": "Speed",
+      "min": 0,
+      "max": 750,
+      "grid_divisions": 4,
+      "snap_to_grid": false,
+      "wrap_input": false
+    },
+    "axis_y": {
+      "name": "None",
+      "min": 0,
+      "max": 100,
+      "grid_divisions": 4,
+      "snap_to_grid": false,
+      "wrap_input": false
+    },
+    "interpolate_using_grid": false,
+    "triangulation_baked": true,
+    "samples": [
+      {
+        "index": 0,
+        "animation": "/Game/Melodia/Characters/Melusina/Animations/Locomotion/A_Melusina_Sprint_Mocap_RootX.A_Melusina_Sprint_Mocap_RootX",
+        "x": 630,
+        "y": 0,
+        "rate_scale": 1,
+        "root_motion_speed_known": false,
+        "root_motion_speed_note": "root motion disabled (root-locked) — authored speed is unknowable"
+      },
+      {
+        "index": 1,
+        "animation": "/Game/Melodia/Characters/Melusina/Animations/Locomotion/A_Melusina_Walk_Mocap_RootX_SeamFix.A_Melusina_Walk_Mocap_RootX_SeamFix",
+        "x": 220,
+        "y": 0,
+        "rate_scale": 1,
+        "root_motion_speed_known": false,
+        "root_motion_speed_note": "root motion disabled (root-locked) — authored speed is unknowable"
+      },
+      {
+        "index": 2,
+        "animation": "/Game/Melodia/Characters/Melusina/Animations/Locomotion/A_Shin_Idle_stand_MocapConv.A_Shin_Idle_stand_MocapConv",
+        "x": 0,
+        "y": 0,
+        "rate_scale": 1,
+        "root_motion_speed_known": false,
+        "root_motion_speed_note": "root motion disabled (root-locked) — authored speed is unknowable"
+      },
+      {
+        "index": 3,
+        "animation": "/Game/Melodia/Characters/Melusina/Animations/Locomotion/A_Melusina_Run_Mocap_RootX_SeamFix.A_Melusina_Run_Mocap_RootX_SeamFix",
+        "x": 380,
+        "y": 0,
+        "rate_scale": 1,
+        "root_motion_speed_known": false,
+        "root_motion_speed_note": "root motion disabled (root-locked) — authored speed is unknowable"
+      }
+    ],
+    "sample_count": 4
+  },
+  "candidate": {
+    "asset_path": "/Game/Staging/AnimationDoctor/LegSkirt_20261023/BS_LegSkirt_GroundFrame_Candidate",
+    "skeleton": "/Game/Melodia/Characters/Melusina/SK_Melusina_Skeleton.SK_Melusina_Skeleton",
+    "is_1d": true,
+    "axis_x": {
+      "name": "Speed",
+      "min": 0,
+      "max": 750,
+      "grid_divisions": 4,
+      "snap_to_grid": false,
+      "wrap_input": false
+    },
+    "axis_y": {
+      "name": "None",
+      "min": 0,
+      "max": 100,
+      "grid_divisions": 4,
+      "snap_to_grid": false,
+      "wrap_input": false
+    },
+    "interpolate_using_grid": false,
+    "triangulation_baked": true,
+    "samples": [
+      {
+        "index": 0,
+        "animation": "/Game/Melodia/Characters/Melusina/Animations/Locomotion/A_Melusina_Run_Mocap_RootX_SeamFix.A_Melusina_Run_Mocap_RootX_SeamFix",
+        "x": 380,
+        "y": 0,
+        "rate_scale": 1,
+        "root_motion_speed_known": false,
+        "root_motion_speed_note": "root motion disabled (root-locked) — authored speed is unknowable"
+      },
+      {
+        "index": 1,
+        "animation": "/Game/Staging/AnimationDoctor/LegSkirt_20261023/A_Melusina_Sprint_Mocap_RootX_GroundFrame.A_Melusina_Sprint_Mocap_RootX_GroundFrame",
+        "x": 630,
+        "y": 0,
+        "rate_scale": 1,
+        "root_motion_speed_known": false,
+        "root_motion_speed_note": "root motion disabled (root-locked) — authored speed is unknowable"
+      },
+      {
+        "index": 2,
+        "animation": "/Game/Staging/AnimationDoctor/LegSkirt_20261023/A_Melusina_Walk_Mocap_RootX_SeamFix_GroundFrame.A_Melusina_Walk_Mocap_RootX_SeamFix_GroundFrame",
+        "x": 220,
+        "y": 0,
+        "rate_scale": 1,
+        "root_motion_speed_known": false,
+        "root_motion_speed_note": "root motion disabled (root-locked) — authored speed is unknowable"
+      }
+    ],
+    "sample_count": 3
+  },
+  "scope": "Initial intermediate readback; superseded by staged_locomotion_blendspace_verified.json. No runtime or production admission."
+}
