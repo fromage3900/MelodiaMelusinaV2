@@ -11,6 +11,48 @@ nikki_musical_decorations (vertical wall bead strings).
 import math,random,json
 TAU=math.tau
 
+# --------------------------------------------------------------------------- UE material contract
+# One material instance per material_role, emitted as the `unreal_material` prim attribute, which is
+# the attribute Houdini Engine turns into a UE material section. The older `shop_materialpath`
+# (`/mat/Cathedral_<role>`) matches no asset in this project and is kept only as a provenance mirror:
+# every room cooked before 2026-10-25 arrived grey because nothing resolved that path.
+# Two roles have no dedicated instance in the RoomShell family; each borrows one deliberately.
+ROOM_SHELL_MI='/Game/Melodia/HoudiniFoundry/RoomShell/MI_RoomShell_'
+DEFAULT_ROLE_MATERIALS={
+ 'floor_stone':ROOM_SHELL_MI+'floor_stone',
+ 'wall_plaster':ROOM_SHELL_MI+'wall_plaster',
+ 'stone':ROOM_SHELL_MI+'stone',
+ 'trim_gold':ROOM_SHELL_MI+'trim_gold',
+ 'crystal_glass':ROOM_SHELL_MI+'crystal_glass',
+ 'ribbon_silk':ROOM_SHELL_MI+'ribbon_silk',
+ # gold star pendants and trim share one gold instance
+ 'gold':ROOM_SHELL_MI+'trim_gold',
+ # panels are carved plaster fields, not a different surface: they share the wall material
+ 'panel':ROOM_SHELL_MI+'wall_plaster',
+ # provisional borrow: the family carries no pearl instance, and pearl_shell is 68% of the
+ # bedroom's faces (the Nikki bead/star decor), so it cannot be left unmapped
+ 'pearl_shell':'/Game/EnvSandbox/Materials/Instances/NikkiHero/MI_Nikki_Show_PearlSheen',
+}
+
+def role_materials(override_json=''):
+    """Resolve material_role -> UE material path, applying a JSON override when supplied."""
+    m=dict(DEFAULT_ROLE_MATERIALS)
+    raw=(override_json or '').strip()
+    if raw and raw!='{}':
+        extra=json.loads(raw)
+        if not isinstance(extra,dict):
+            raise ValueError('material_map_json must be a JSON object of role -> /Game/ material path')
+        for k,v in extra.items():
+            if not str(v).startswith('/Game/'):
+                raise ValueError('material_map_json target must be a /Game/ asset path: %r'%(v,))
+            m[str(k)]=str(v)
+    return m
+
+def unmapped_roles(roles,mapping=None):
+    """Roles present in the mesh with no material assigned."""
+    mapping=mapping or DEFAULT_ROLE_MATERIALS
+    return sorted(set(r for r in roles if r not in mapping))
+
 # --------------------------------------------------------------------------- mesh helpers
 class Mesh:
     def __init__(self):self.P=[];self.F=[];self.R=[]
@@ -614,6 +656,7 @@ def gate(M,rep):
         out['chladni_from_room']=(rep['chladni'] is None) or rep['chladni']['mode']==ac['chladni_mode']
     if rep['params'].get('dawn_puzzle') and rep['params'].get('floor_medallion') and rep['windows']:
         lp=rep.get('light_puzzle');out['dawn_puzzle_ok']=bool(lp) and lp['center_error_m']<1e-6 and 8<=lp['sun_elevation_deg']<=45
+    out['roles_mapped']=not unmapped_roles(M.R)
     out['all_pass']=all(v for k,v in out.items() if isinstance(v,bool))
     out['prims']=len(M.F)
     return out
@@ -656,8 +699,12 @@ def cook(node):
                 return cache[vi]
             place_streamers(M,rep,lib,loader)
     gt=gate(M,rep)
+    mats=role_materials(h.evalParm('material_map_json') if h.parm('material_map_json') else '')
+    missing=unmapped_roles(M.R,mats)
+    if missing:raise ValueError('no UE material assigned for material_role: %s'%(', '.join(missing),))
     g=node.geometry();g.clear()
     g.addAttrib(hou.attribType.Prim,'material_role','');g.addAttrib(hou.attribType.Prim,'shop_materialpath','')
+    g.addAttrib(hou.attribType.Prim,'unreal_material','')
     g.addAttrib(hou.attribType.Vertex,'uv',(0.,0.,0.))
     g.addAttrib(hou.attribType.Global,'gate_json','');g.addAttrib(hou.attribType.Global,'sockets_json','')
     yup=bool(h.evalParm('engine_y_up'))
@@ -669,6 +716,7 @@ def cook(node):
     for face,role in zip(M.F,M.R):
         face=list(reversed(face)) if flip else face
         poly=g.createPolygon();poly.setAttribValue('material_role',role);poly.setAttribValue('shop_materialpath','/mat/Cathedral_'+role)
+        poly.setAttribValue('unreal_material',mats[role])
         if render_group is not None:render_group.add(poly)
         uvs=_uv(M.P,face)
         for i,uv in zip(face,uvs):

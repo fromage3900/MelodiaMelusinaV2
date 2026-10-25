@@ -27,6 +27,9 @@ def build(source_hda, destination, floor_collision=False):
     collision = hou.ToggleParmTemplate("simple_floor_collision", "Simple Floor Collision", default_value=floor_collision)
     collision.setHelp("Emit an invisible collision_geo_simple_box_main_geo matching only the floor slab, paired with rendered_main_geo. Walls and door apertures are not included in this convex box. Validate the cooked Unreal BodySetup before promotion.")
     templates.append(collision)
+    materials = hou.StringParmTemplate("material_map_json", "Material Map Override (JSON)", 1, default_value=("{}",))
+    materials.setHelp('Optional JSON object overriding material_role -> UE material path, e.g. {"pearl_shell":"/Game/EnvSandbox/Materials/Instances/NikkiHero/MI_Nikki_Show_PearlSheen"}. Every role the mesh emits must resolve to an existing /Game/ asset: the cook raises rather than cooking an unmapped role. Unlisted roles keep the module default.')
+    templates.append(materials)
     candidate.setParmTemplateGroup(templates)
     assert before == hashlib.sha256(source_hda.read_bytes()).hexdigest(), "Source HDA changed"
     return {"source_hda": str(source_hda), "source_sha256": before, "candidate_hda": str(destination), "candidate_type": candidate_type, "candidate_sha256": hashlib.sha256(destination.read_bytes()).hexdigest(), "module_sha256": hashlib.sha256(source.read_bytes()).hexdigest()}

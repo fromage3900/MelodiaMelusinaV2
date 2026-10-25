@@ -111,6 +111,8 @@ def build(source_hda, destination, salon_defaults=True, tiers=(1.0, 0.92, 0.84))
         (hou.IntParmTemplate("plan_segments", "Plan Tessellation", 1, default_value=(96,)), "plan_segments"),
         (hou.StringParmTemplate("tiers_json", "Tier Setbacks (JSON)", 1,
                                 default_value=(json.dumps([float(t) for t in tiers], separators=(",", ":")),)), "tiers_json"),
+        (hou.StringParmTemplate("material_map_json", "Material Map Override (JSON)", 1,
+                                default_value=("{}",)), "material_map_json"),
     ):
         if templates.find(name) is not None:
             continue
@@ -126,6 +128,10 @@ def build(source_hda, destination, salon_defaults=True, tiers=(1.0, 0.92, 0.84))
                              'lower = stepped setback (ziggurat massing). Empty array [] = single volume (no tiers). '
                              'Controls the exterior silhouette from distance. tiers[0] must stay 1.0 so the base '
                              'footprint and the floor slab keep matching the interior.')
+        elif name == "material_map_json":
+            template.setHelp('Optional JSON object overriding material_role -> UE material path. Every role the '
+                             'mesh emits must resolve to an existing /Game/ asset: the cook raises rather than '
+                             'cooking an unmapped role. Unlisted roles keep the module default.')
         templates.append(template)
         appended.append(name)
     candidate.setParmTemplateGroup(templates)

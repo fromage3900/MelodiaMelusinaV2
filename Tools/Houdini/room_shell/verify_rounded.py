@@ -15,6 +15,8 @@ from pathlib import Path
 
 import hou
 
+from room_shell_rounded import DEFAULT_ROLE_MATERIALS
+
 TYPE = "melodia::room_shell_rounded::1.0"
 SALON = dict(room_w=15.84, room_d=12.06, room_h=7.6, wall_t=0.24, engine_y_up=0, engine_flip=0)
 PORTALS = [dict(id="salon_entry", theta=0.25, width=2.4, height=3.2),
@@ -35,16 +37,29 @@ def snapshot(node):
     digest.update(repr(geo.vertexFloatAttribValues("uv")).encode())
     digest.update(repr([[v.point().number() for v in p.vertices()] for p in geo.prims()]).encode())
     payload = json.loads(geo.attribValue("sockets_json"))
+    prim_attrs = [a.name() for a in geo.primAttribs()]
+    role_counts, material_mismatch = {}, 0
+    if "unreal_material" in prim_attrs:
+        for prim in geo.prims():
+            role = prim.attribValue("material_role")
+            if not role:
+                continue
+            role_counts[role] = role_counts.get(role, 0) + 1
+            if prim.attribValue("unreal_material") != DEFAULT_ROLE_MATERIALS.get(role):
+                material_mismatch += 1
     return dict(
         points=len(geo.points()),
         prims=len(geo.prims()),
         bbox=[list(geo.boundingBox().minvec()), list(geo.boundingBox().maxvec())],
         vertex_attributes=[a.name() for a in geo.vertexAttribs()],
-        prim_attributes=[a.name() for a in geo.primAttribs()],
+        prim_attributes=prim_attrs,
         geometry_sha256=digest.hexdigest(),
         gate=json.loads(geo.attribValue("gate_json")),
         sockets=payload,
         panel_prims=sum(1 for p in geo.prims() if p.attribValue("material_role") == "panel"),
+        role_prim_counts=role_counts,
+        unmapped_roles=[r for r in sorted(role_counts) if r not in DEFAULT_ROLE_MATERIALS],
+        material_mismatch_count=material_mismatch,
         errors=list(node.errors()),
         warnings=list(node.warnings()),
     )
@@ -142,11 +157,19 @@ def main(source, candidate, out):
     report["checks"]["uv_attribute_present"] = "uv" in ell["vertex_attributes"]
     report["checks"]["material_role_present"] = "material_role" in ell["prim_attributes"]
     report["checks"]["material_path_present"] = "shop_materialpath" in ell["prim_attributes"]
+    report["checks"]["unreal_material_present"] = "unreal_material" in ell["prim_attributes"]
+    report["checks"]["unreal_material_matches_role"] = ell["material_mismatch_count"] == 0
+    report["checks"]["roles_mapped"] = ell["unmapped_roles"] == []
+    report["checks"]["wall_body_uses_wall_plaster"] = "wall" not in ell["role_prim_counts"]
 
     # ---- tier setbacks: exterior massing only, base footprint must not move
     report["checks"]["tiers_parm_present"] = node.parm("tiers_json") is not None
     tier_template = node.parm("tiers_json").parmTemplate()
-    staged_default = json.loads(tier_template.defaultValue() or "[]")
+    raw_default = tier_template.defaultValue()
+    # Houdini 22 returns a StringParmTemplate default as a 1-tuple, not a str.
+    if isinstance(raw_default, (tuple, list)):
+        raw_default = raw_default[0] if raw_default else ""
+    staged_default = json.loads(raw_default or "[]")
     report["checks"]["tier_default_matches_stage"] = staged_default == STAGED_TIERS
 
     configure(0, 16, 2.6, 96, tiers=[])
@@ -206,8 +229,11 @@ def main(source, candidate, out):
     report["checks"]["canonical_hda_unchanged"] = (
         canonical_sha == hashlib.sha256(Path(source).read_bytes()).hexdigest())
     report["all_pass"] = all(report["checks"].values())
-    report["limits"] = ("Native packaged-HDA geometry only. UE import, capsule traversal, lighting, "
-                        "dressing placement and the packaged route remain pending.")
+    report["limits"] = ("Native packaged-HDA geometry only. Each prim carries `unreal_material` mapping "
+                        "material_role to a /Game/ material instance and every target was confirmed present "
+                        "on disk, but that is file presence - NOT proof that Unreal Engine resolves the "
+                        "override or that the material looks right. UE import, material readback, capsule "
+                        "traversal, lighting, dressing placement and the packaged route remain pending.")
     path = out / "room_shell_rounded_verify.json"
     path.write_text(json.dumps(report, indent=2))
     print(json.dumps(dict(checks=report["checks"], all_pass=report["all_pass"],

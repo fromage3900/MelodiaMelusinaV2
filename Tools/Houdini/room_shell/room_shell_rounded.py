@@ -20,6 +20,50 @@ import math
 
 TAU = math.tau
 
+# --------------------------------------------------------------------------- UE material contract
+# Kept in step with room_shell.py; the stager asserts the two maps are identical so the family
+# cannot drift into two vocabularies again.
+ROOM_SHELL_MI = "/Game/Melodia/HoudiniFoundry/RoomShell/MI_RoomShell_"
+DEFAULT_ROLE_MATERIALS = {
+    "floor_stone": ROOM_SHELL_MI + "floor_stone",
+    "wall_plaster": ROOM_SHELL_MI + "wall_plaster",
+    "stone": ROOM_SHELL_MI + "stone",
+    "trim_gold": ROOM_SHELL_MI + "trim_gold",
+    "crystal_glass": ROOM_SHELL_MI + "crystal_glass",
+    "ribbon_silk": ROOM_SHELL_MI + "ribbon_silk",
+    # gold star pendants share the trim material: the family has one gold instance
+    "gold": ROOM_SHELL_MI + "trim_gold",
+    # panels are carved plaster fields, not a different surface: share the wall material
+    "panel": ROOM_SHELL_MI + "wall_plaster",
+    # provisional borrow: the family carries no pearl instance
+    "pearl_shell": "/Game/EnvSandbox/Materials/Instances/NikkiHero/MI_Nikki_Show_PearlSheen",
+}
+# The wall body used to be emitted as the role "wall", which no material instance answers to -
+# the salon's entire visible wall surface had no target. It now uses the same role as the rect
+# shell. WALL_BODY_ROLE stays a named constant because gate() selects the wall solid by it.
+WALL_BODY_ROLE = "wall_plaster"
+
+
+def role_materials(override_json=""):
+    """Resolve material_role -> UE material path, applying a JSON override when supplied."""
+    m = dict(DEFAULT_ROLE_MATERIALS)
+    raw = (override_json or "").strip()
+    if raw and raw != "{}":
+        extra = json.loads(raw)
+        if not isinstance(extra, dict):
+            raise ValueError("material_map_json must be a JSON object of role -> /Game/ material path")
+        for k, v in extra.items():
+            if not str(v).startswith("/Game/"):
+                raise ValueError("material_map_json target must be a /Game/ asset path: %r" % (v,))
+            m[str(k)] = str(v)
+    return m
+
+
+def unmapped_roles(roles, mapping=None):
+    """Roles present in the mesh with no material assigned."""
+    mapping = mapping or DEFAULT_ROLE_MATERIALS
+    return sorted(set(r for r in roles if r not in mapping))
+
 # --------------------------------------------------------------------------- mesh helpers
 # Mirrored from room_shell.py: identical storage contract (Mesh.poly reverses CCW input).
 class Mesh:
@@ -547,7 +591,7 @@ def build(**kw):
             z0 = z_clear
             z1 = H
             if z1 - z0 >= 1e-6:
-                hexa_rings(M, [(x, y, z0) for x, y in ring2], [(x, y, z1) for x, y in ring2], "wall")
+                hexa_rings(M, [(x, y, z0) for x, y in ring2], [(x, y, z1) for x, y in ring2], WALL_BODY_ROLE)
                 report["solids"] += 1
         else:
             # tiered setbacks for solid segments
@@ -563,7 +607,7 @@ def build(**kw):
                 z1 = z_top
                 if z1 - z0 < 1e-6:
                     continue
-                hexa_rings(M, [(x, y, z0) for x, y in ring2], [(x, y, z1) for x, y in ring2], "wall")
+                hexa_rings(M, [(x, y, z0) for x, y in ring2], [(x, y, z1) for x, y in ring2], WALL_BODY_ROLE)
                 report["solids"] += 1
 
     # cornice ledges at tier transitions (solid segments only)
@@ -589,7 +633,7 @@ def build(**kw):
     # ---- floor slab, tucked under the wall band (outer curve)
     outer2 = [(verts[i][0] + nrm[i][0] * t, verts[i][1] + nrm[i][1] * t) for i in range(len(verts) - 1)]
     floor_ring = _ensure_ccw(outer2)
-    prism(M, floor_ring, -float(p["floor_t"]), 0.0, "stone", cx, cy)
+    prism(M, floor_ring, -float(p["floor_t"]), 0.0, "floor_stone", cx, cy)
     report["solids"] += 1
 
     # ---- ceiling slab above the clear height
@@ -804,7 +848,7 @@ def gate(M, rep):
     if rep["openings"] and dense:
         wall_base = []
         for face, role in zip(M.F, M.R):
-            if role != "wall":
+            if role != WALL_BODY_ROLE:
                 continue
             for idx in face:
                 q = M.P[idx]
@@ -860,7 +904,7 @@ def gate(M, rep):
                           and all(b <= a + 1e-9 for a, b in zip(tiers, tiers[1:])))
     soffit = []
     for face, role in zip(M.F, M.R):
-        if role != "wall":
+        if role != WALL_BODY_ROLE:
             continue
         for idx in face:
             v = M.P[idx]
@@ -905,6 +949,7 @@ def gate(M, rep):
     out["decor_clear_of_doorways"] = not in_door
 
     out["walls_present"] = rep["solids"] > 0 and len(M.F) > 6 * p["segments"]
+    out["roles_mapped"] = not unmapped_roles(M.R)
     out["all_pass"] = all(v for k, v in out.items() if isinstance(v, bool))
     out["prims"] = len(M.F)
     out["points"] = len(M.P)
@@ -946,10 +991,15 @@ def cook(node):
             kw["tiers"] = tiers
     M, rep = build(**kw)
     gt = gate(M, rep)
+    mats = role_materials(h.evalParm("material_map_json") if h.parm("material_map_json") else "")
+    missing = unmapped_roles(M.R, mats)
+    if missing:
+        raise ValueError("no UE material assigned for material_role: %s" % (", ".join(missing),))
     g = node.geometry()
     g.clear()
     g.addAttrib(hou.attribType.Prim, "material_role", "")
     g.addAttrib(hou.attribType.Prim, "shop_materialpath", "")
+    g.addAttrib(hou.attribType.Prim, "unreal_material", "")
     g.addAttrib(hou.attribType.Vertex, "uv", (0.0, 0.0, 0.0))
     g.addAttrib(hou.attribType.Global, "gate_json", "")
     g.addAttrib(hou.attribType.Global, "sockets_json", "")
@@ -962,6 +1012,7 @@ def cook(node):
         poly = g.createPolygon()
         poly.setAttribValue("material_role", role)
         poly.setAttribValue("shop_materialpath", "/mat/Cathedral_" + role)
+        poly.setAttribValue("unreal_material", mats[role])
         uvs = _uv(M.P, face)
         for i, uv in zip(face, uvs):
             v = poly.addVertex(pts[i])

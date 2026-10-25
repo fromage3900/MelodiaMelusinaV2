@@ -3,8 +3,8 @@
   "license": "licenseCategoryType.Indie",
   "source_hda": "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\HDA\\MelodiaRoomShell_1.0.hda",
   "source_sha256": "96958ab67cf436d9c61ee2af8b000add0c0f84d079c877d4101fd4bb6f46261d",
-  "candidate_hda": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Staging\\PoitouInteriors_20261025\\MelodiaRoomShell_Rounded_1.0.hda",
-  "candidate_sha256": "d1c2b1cc43d63aff8d05016d762b34d91c526a723dc34f9e99c131d6bc5c2ad5",
+  "candidate_hda": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Staging\\PoitouInteriorsMaterials_20261025\\MelodiaRoomShell_Rounded_1.0.hda",
+  "candidate_sha256": "fc5edb883ad5a17589504a46039671db05868a7e296503d695a49276558d9de2",
   "candidate_type": "melodia::room_shell_rounded::1.0",
   "checks": {
     "deterministic_repeat": true,
@@ -20,6 +20,10 @@
     "uv_attribute_present": true,
     "material_role_present": true,
     "material_path_present": true,
+    "unreal_material_present": true,
+    "unreal_material_matches_role": true,
+    "roles_mapped": true,
+    "wall_body_uses_wall_plaster": true,
     "tiers_parm_present": true,
     "tier_default_matches_stage": true,
     "empty_tiers_is_single_volume": true,
@@ -52,8 +56,9 @@
         "uv"
       ],
       "prim_attributes": [
+        "shop_materialpath",
         "material_role",
-        "shop_materialpath"
+        "unreal_material"
       ],
       "geometry_sha256": "96d72e0a2a8ed8a8b2575b1075631450c6e8f09bfac551c6062170a14835f88d",
       "gate": {
@@ -72,6 +77,7 @@
         "portal_arch_follows_profile": true,
         "decor_clear_of_doorways": true,
         "walls_present": true,
+        "roles_mapped": true,
         "all_pass": true,
         "prims": 18240,
         "points": 72416
@@ -248,6 +254,15 @@
         }
       },
       "panel_prims": 3848,
+      "role_prim_counts": {
+        "wall_plaster": 2280,
+        "panel": 3848,
+        "floor_stone": 408,
+        "trim_gold": 5296,
+        "pearl_shell": 6408
+      },
+      "unmapped_roles": [],
+      "material_mismatch_count": 0,
       "errors": [],
       "warnings": []
     },
@@ -270,8 +285,9 @@
         "uv"
       ],
       "prim_attributes": [
+        "shop_materialpath",
         "material_role",
-        "shop_materialpath"
+        "unreal_material"
       ],
       "geometry_sha256": "19f977f135b71ac052e16aaaeb4208b9f9e7fbfeafc357d9bea2eae7ca9863f3",
       "gate": {
@@ -290,6 +306,7 @@
         "portal_arch_follows_profile": true,
         "decor_clear_of_doorways": true,
         "walls_present": true,
+        "roles_mapped": true,
         "all_pass": true,
         "prims": 20634,
         "points": 81992
@@ -466,6 +483,15 @@
         }
       },
       "panel_prims": 3860,
+      "role_prim_counts": {
+        "wall_plaster": 2280,
+        "panel": 3860,
+        "floor_stone": 408,
+        "trim_gold": 5914,
+        "pearl_shell": 8172
+      },
+      "unmapped_roles": [],
+      "material_mismatch_count": 0,
       "errors": [],
       "warnings": []
     },
@@ -488,8 +514,9 @@
         "uv"
       ],
       "prim_attributes": [
+        "shop_materialpath",
         "material_role",
-        "shop_materialpath"
+        "unreal_material"
       ],
       "geometry_sha256": "f8229f44d99e24b8cc26e5fc3f200e54b7fa5033db0d068fe9799e0ff5a29901",
       "gate": {
@@ -508,6 +535,7 @@
         "portal_arch_follows_profile": true,
         "decor_clear_of_doorways": true,
         "walls_present": true,
+        "roles_mapped": true,
         "all_pass": true,
         "prims": 18240,
         "points": 72416
@@ -684,6 +712,15 @@
         }
       },
       "panel_prims": 3848,
+      "role_prim_counts": {
+        "wall_plaster": 2280,
+        "panel": 3848,
+        "floor_stone": 408,
+        "trim_gold": 5296,
+        "pearl_shell": 6408
+      },
+      "unmapped_roles": [],
+      "material_mismatch_count": 0,
       "errors": [],
       "warnings": []
     },
@@ -706,8 +743,9 @@
         "uv"
       ],
       "prim_attributes": [
+        "shop_materialpath",
         "material_role",
-        "shop_materialpath"
+        "unreal_material"
       ],
       "geometry_sha256": "07f6af726c0708dd144411de771adb7e4ffb684f1dcc512c313fea1bef56c0d2",
       "gate": {
@@ -726,6 +764,7 @@
         "portal_arch_follows_profile": true,
         "decor_clear_of_doorways": true,
         "walls_present": true,
+        "roles_mapped": true,
         "all_pass": true,
         "prims": 15240,
         "points": 60608
@@ -902,6 +941,15 @@
         }
       },
       "panel_prims": 2504,
+      "role_prim_counts": {
+        "wall_plaster": 1320,
+        "panel": 2504,
+        "floor_stone": 264,
+        "trim_gold": 4744,
+        "pearl_shell": 6408
+      },
+      "unmapped_roles": [],
+      "material_mismatch_count": 0,
       "errors": [],
       "warnings": []
     },
@@ -924,8 +972,9 @@
         "uv"
       ],
       "prim_attributes": [
+        "shop_materialpath",
         "material_role",
-        "shop_materialpath"
+        "unreal_material"
       ],
       "geometry_sha256": "7924c96bda8db87b68d5fb7d17bc61387297af9e16ac2eb00209a8fbe6276643",
       "gate": {
@@ -944,6 +993,7 @@
         "portal_arch_follows_profile": true,
         "decor_clear_of_doorways": true,
         "walls_present": true,
+        "roles_mapped": true,
         "all_pass": true,
         "prims": 16128,
         "points": 63968
@@ -1118,6 +1168,15 @@
         }
       },
       "panel_prims": 2792,
+      "role_prim_counts": {
+        "wall_plaster": 1224,
+        "floor_stone": 408,
+        "panel": 2792,
+        "trim_gold": 5296,
+        "pearl_shell": 6408
+      },
+      "unmapped_roles": [],
+      "material_mismatch_count": 0,
       "errors": [],
       "warnings": []
     },
@@ -1140,8 +1199,9 @@
         "uv"
       ],
       "prim_attributes": [
+        "shop_materialpath",
         "material_role",
-        "shop_materialpath"
+        "unreal_material"
       ],
       "geometry_sha256": "96d72e0a2a8ed8a8b2575b1075631450c6e8f09bfac551c6062170a14835f88d",
       "gate": {
@@ -1160,6 +1220,7 @@
         "portal_arch_follows_profile": true,
         "decor_clear_of_doorways": true,
         "walls_present": true,
+        "roles_mapped": true,
         "all_pass": true,
         "prims": 18240,
         "points": 72416
@@ -1336,6 +1397,15 @@
         }
       },
       "panel_prims": 3848,
+      "role_prim_counts": {
+        "wall_plaster": 2280,
+        "panel": 3848,
+        "floor_stone": 408,
+        "trim_gold": 5296,
+        "pearl_shell": 6408
+      },
+      "unmapped_roles": [],
+      "material_mismatch_count": 0,
       "errors": [],
       "warnings": []
     },
@@ -1358,8 +1428,9 @@
         "uv"
       ],
       "prim_attributes": [
+        "shop_materialpath",
         "material_role",
-        "shop_materialpath"
+        "unreal_material"
       ],
       "geometry_sha256": "98f90799859a533c1628b0c74f9a06f8869c5459f4f25d32b407e40423d69628",
       "gate": {
@@ -1378,6 +1449,7 @@
         "portal_arch_follows_profile": true,
         "decor_clear_of_doorways": true,
         "walls_present": true,
+        "roles_mapped": true,
         "all_pass": true,
         "prims": 18240,
         "points": 72416
@@ -1554,6 +1626,15 @@
         }
       },
       "panel_prims": 3848,
+      "role_prim_counts": {
+        "wall_plaster": 2280,
+        "panel": 3848,
+        "floor_stone": 408,
+        "trim_gold": 5296,
+        "pearl_shell": 6408
+      },
+      "unmapped_roles": [],
+      "material_mismatch_count": 0,
       "errors": [],
       "warnings": []
     }

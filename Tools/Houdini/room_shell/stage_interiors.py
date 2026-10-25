@@ -27,6 +27,7 @@ Run with hython:
 from pathlib import Path
 import argparse
 import hashlib
+import importlib.util
 import json
 
 import hou
@@ -171,7 +172,23 @@ def copy_variant(source_hda, module_path, type_name, label, destination):
 
 
 # ------------------------------------------------------------------ measurement
-def snapshot(node, yup):
+def load_module(path):
+    """Load a RoomShell module by path so its material contract can be read without hou."""
+    spec = importlib.util.spec_from_file_location("melodia_%s" % path.stem, str(path))
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+def resolve_game_path(game_path, content_root):
+    """Resolve a /Game/ asset path to its .uasset on disk, or None when it does not exist."""
+    if not game_path.startswith("/Game/"):
+        return None
+    candidate = Path(content_root) / (game_path[len("/Game/"):] + ".uasset")
+    return candidate if candidate.is_file() else None
+
+
+def snapshot(node, yup, role_materials=None):
     node.parm("engine_y_up").set(yup)
     if node.parm("engine_flip"):
         node.parm("engine_flip").set(yup)
@@ -185,6 +202,17 @@ def snapshot(node, yup):
     digest.update(repr([[v.point().number() for v in p.vertices()] for p in geo.prims()]).encode())
     rendered = geo.findPrimGroup("rendered_main_geo")
     collision = geo.findPrimGroup("collision_geo_simple_box_main_geo")
+    prim_attrs = [a.name() for a in geo.primAttribs()]
+    role_counts, material_mismatch = {}, []
+    if role_materials and "unreal_material" in prim_attrs:
+        for prim in geo.prims():
+            role = prim.attribValue("material_role")
+            if not role:
+                continue                       # the collision slab carries no material role
+            target = prim.attribValue("unreal_material")
+            role_counts[role] = role_counts.get(role, 0) + 1
+            if target != role_materials.get(role):
+                material_mismatch.append([role, target])
     collision_bounds = None
     if collision:
         points = [tuple(v.point().position()) for p in collision.prims() for v in p.vertices()]
@@ -202,7 +230,11 @@ def snapshot(node, yup):
         collision_group_prims=len(collision.prims()) if collision else None,
         collision_bounds=collision_bounds,
         vertex_attributes=[a.name() for a in geo.vertexAttribs()],
-        prim_attributes=[a.name() for a in geo.primAttribs()],
+        prim_attributes=prim_attrs,
+        role_prim_counts=dict(sorted(role_counts.items())),
+        unmapped_roles=[r for r in sorted(role_counts) if r not in (role_materials or {})],
+        material_mismatch=material_mismatch[:8],
+        material_mismatch_count=len(material_mismatch),
         errors=list(node.errors()),
         warnings=list(node.warnings()),
     )
@@ -232,6 +264,14 @@ def main(rect_source, rounded_source, out_dir, audit_dir):
     audit_dir.mkdir(parents=True, exist_ok=True)
     modules = dict(rect=Path(__file__).with_name("room_shell.py"),
                    rounded=Path(__file__).with_name("room_shell_rounded.py"))
+    loaded = {k: load_module(v) for k, v in modules.items()}
+    # One material contract for the whole family: the two modules must not drift into two
+    # vocabularies (the rounded shell used to emit a "wall" role that no instance answers to).
+    role_maps_agree = loaded["rect"].DEFAULT_ROLE_MATERIALS == loaded["rounded"].DEFAULT_ROLE_MATERIALS
+    role_materials = dict(loaded["rect"].DEFAULT_ROLE_MATERIALS)
+    content_root = Path(__file__).resolve().parents[3] / "Content"
+    material_targets = {role: [path, resolve_game_path(path, content_root) is not None]
+                        for role, path in sorted(role_materials.items())}
     sources = dict(rect=Path(rect_source), rounded=Path(rounded_source))
     source_sha = {k: hashlib.sha256(v.read_bytes()).hexdigest() for k, v in sources.items()}
 
@@ -249,6 +289,10 @@ def main(rect_source, rounded_source, out_dir, audit_dir):
                  for k, v in modules.items()},
         standard_portal=dict(STANDARD_PORTAL, bay_m=BAY_M, module_m=MODULE_M,
                              head_clearance_m=HEAD_CLEARANCE_M),
+        material_contract=dict(role_materials=role_materials,
+                               targets=material_targets,
+                               role_maps_agree=role_maps_agree,
+                               content_root=str(content_root)),
         variants={},
         checks={},
     )
@@ -306,9 +350,9 @@ def main(rect_source, rounded_source, out_dir, audit_dir):
             defaults_landed = defaults_landed and json.loads(at_default["tiers_json"]) == variant["tiers"] \
                 and at_default["plan_shape"] == variant["plan_shape"]
 
-        native = snapshot(node, 0)          # measure in the native Houdini frame
-        repeat = snapshot(node, 0)
-        ue = snapshot(node, 1)              # UE/Houdini Engine frame stays the shipped default
+        native = snapshot(node, 0, role_materials)   # measure in the native Houdini frame
+        repeat = snapshot(node, 0, role_materials)
+        ue = snapshot(node, 1, role_materials)       # UE/Houdini Engine frame stays the shipped default
 
         W, D, H = variant["room_w"], variant["room_d"], variant["room_h"]
         t = 0.24
@@ -429,7 +473,12 @@ def main(rect_source, rounded_source, out_dir, audit_dir):
                 uv_attribute_present="uv" in native["vertex_attributes"],
                 material_role_present="material_role" in native["prim_attributes"],
                 material_path_present="shop_materialpath" in native["prim_attributes"],
+                unreal_material_present="unreal_material" in native["prim_attributes"],
+                unreal_material_matches_role=native["material_mismatch_count"] == 0,
+                roles_mapped=native["unmapped_roles"] == [],
+                module_gate_roles_mapped=bool(native["gate"].get("roles_mapped")),
             ),
+            role_prim_counts=native["role_prim_counts"],
             window_conflicts=window_conflicts,
         )
         # Simple floor collision is a rect-only feature; the rounded plan has no
@@ -446,17 +495,24 @@ def main(rect_source, rounded_source, out_dir, audit_dir):
     report["checks"]["all_variants_pass"] = all(v["all_pass"] for v in report["variants"].values())
     report["checks"]["sources_unchanged"] = all(
         source_sha[k] == hashlib.sha256(sources[k].read_bytes()).hexdigest() for k in sources)
+    report["checks"]["role_maps_agree"] = role_maps_agree
+    report["checks"]["material_targets_exist"] = all(ok for _, ok in material_targets.values())
     report["checks"]["one_standard_portal_across_family"] = all(
         v["checks"]["portals_match_standard_width"] and v["portal_checks"] and
         all(q["standard_height"] for q in v["portal_checks"].values())
         for v in report["variants"].values())
     report["all_pass"] = all(report["checks"].values())
-    report["limits"] = ("Native packaged-HDA geometry only. Nothing was imported into UE: HDA asset "
-                        "registration, actor placement, capsule/BodySetup sweep, lighting, dressing "
-                        "fill and the packaged route remain pending (editor was held by another "
-                        "session). opening_sockets stay diagnostic JSON - no Houdini Engine "
-                        "mesh_socketX_* attributes are emitted yet. The rect family inherits the "
-                        "absolute streamer_lib type default from the source HDA.")
+    report["limits"] = ("Native packaged-HDA geometry only. Each variant now emits an "
+                        "`unreal_material` prim attribute resolving material_role to an existing "
+                        "/Game/ material instance, and every target .uasset was found on disk; that "
+                        "is file presence, NOT proof that Unreal Engine resolves the override or that "
+                        "the material looks correct - both need an import, cook and material readback "
+                        "in the editor. Nothing was imported into UE: HDA asset registration, actor "
+                        "placement, capsule/BodySetup sweep, lighting, dressing fill and the packaged "
+                        "route remain pending (editor was held by another session). opening_sockets "
+                        "stay diagnostic JSON - no Houdini Engine mesh_socketX_* attributes are "
+                        "emitted yet. The rect family inherits the absolute streamer_lib type "
+                        "default from the source HDA.")
 
     manifest = dict(
         contract="melodia.p0.poitou_interior_stage.v1",

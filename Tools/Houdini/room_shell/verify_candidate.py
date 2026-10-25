@@ -6,6 +6,8 @@ from pathlib import Path
 import sys
 import hou
 
+from room_shell import DEFAULT_ROLE_MATERIALS
+
 FIXTURE = dict(room_w=15.36, room_d=11.52, room_h=7.2, wall_t=.24, panel_w=3.6,
                seed=2, decor=3, interlock=0, door_wall=3, door_w=1.8, door_h=3.2,
                engine_y_up=0, engine_flip=0)
@@ -29,6 +31,14 @@ def snapshot(node):
         render.deletePrims(render.findPrimGroup(collision.name()).prims(), False)
         geo=render
     payload = json.loads(geo.attribValue("sockets_json"))
+    prim_attrs=[a.name() for a in geo.primAttribs()]
+    role_counts={};mismatch=0
+    if 'unreal_material' in prim_attrs:
+        for prim in geo.prims():
+            role=prim.attribValue('material_role')
+            if not role:continue
+            role_counts[role]=role_counts.get(role,0)+1
+            if prim.attribValue('unreal_material')!=DEFAULT_ROLE_MATERIALS.get(role):mismatch+=1
     digest = hashlib.sha256()
     digest.update(repr(geo.pointFloatAttribValues("P")).encode())
     digest.update(repr(geo.vertexFloatAttribValues("uv")).encode())
@@ -39,6 +49,9 @@ def snapshot(node):
                 geometry_sha256=digest.hexdigest(), sockets=payload,
                 gate=json.loads(geo.attribValue("gate_json")), floor_collision=collision_info,
                 rendered_group_prims=rendered_group_prims,
+                prim_attributes=prim_attrs,role_prim_counts=role_counts,
+                unmapped_roles=[r for r in sorted(role_counts) if r not in DEFAULT_ROLE_MATERIALS],
+                material_mismatch_count=mismatch,
                 errors=list(node.errors()), warnings=list(node.warnings()))
 
 
@@ -77,6 +90,9 @@ def main(source, candidate, out):
                 candidate_sha256=hashlib.sha256(Path(candidate).read_bytes()).hexdigest(),checks={})
     report['default_legacy']=snapshot(old);report['default_candidate']=snapshot(new)
     report['checks']['default_geometry_identical']=report['default_legacy']['geometry_sha256']==report['default_candidate']['geometry_sha256']
+    report['checks']['unreal_material_emitted']='unreal_material' in report['default_candidate']['prim_attributes']
+    report['checks']['unreal_material_matches_role']=report['default_candidate']['material_mismatch_count']==0
+    report['checks']['roles_mapped']=not report['default_candidate']['unmapped_roles']
     for n in (old,new):
         for k,v in FIXTURE.items():n.parm(k).set(v)
     a,b=snapshot(old),snapshot(new)
