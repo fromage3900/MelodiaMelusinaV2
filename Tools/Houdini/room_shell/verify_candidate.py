@@ -16,6 +16,18 @@ def snapshot(node):
     if node.errors():
         raise RuntimeError(str(node.errors()))
     geo = node.geometry()
+    collision = geo.findPrimGroup('collision_geo_simple_box_main_geo')
+    render_group = geo.findPrimGroup('rendered_main_geo')
+    rendered_group_prims=len(render_group.prims()) if render_group else None
+    collision_info = None
+    if collision:
+        vertices=[tuple(v.point().position()) for p in collision.prims() for v in p.vertices()]
+        collision_info=dict(prims=len(collision.prims()),
+                            bounds=[[min(p[i] for p in vertices) for i in range(3)],
+                                    [max(p[i] for p in vertices) for i in range(3)]])
+        render=hou.Geometry();render.merge(geo)
+        render.deletePrims(render.findPrimGroup(collision.name()).prims(), False)
+        geo=render
     payload = json.loads(geo.attribValue("sockets_json"))
     digest = hashlib.sha256()
     digest.update(repr(geo.pointFloatAttribValues("P")).encode())
@@ -25,7 +37,9 @@ def snapshot(node):
                 bbox=[list(geo.boundingBox().minvec()), list(geo.boundingBox().maxvec())],
                 vertex_attributes=[a.name() for a in geo.vertexAttribs()],
                 geometry_sha256=digest.hexdigest(), sockets=payload,
-                gate=json.loads(geo.attribValue("gate_json")), errors=list(node.errors()), warnings=list(node.warnings()))
+                gate=json.loads(geo.attribValue("gate_json")), floor_collision=collision_info,
+                rendered_group_prims=rendered_group_prims,
+                errors=list(node.errors()), warnings=list(node.warnings()))
 
 
 def portal_rays(node, record):
@@ -55,7 +69,9 @@ def main(source, candidate, out):
     for path in (source,candidate):hou.hda.installFile(path)
     parent=hou.node('/obj').createNode('geo','room_explicit_verification');parent.deleteItems(parent.children())
     old=parent.createNode('melodia::room_shell','legacy')
-    new=parent.createNode('melodia::room_shell_explicit::1.0','candidate')
+    candidate_type=next(d.nodeTypeName() for d in hou.hda.definitionsInFile(candidate)
+                        if d.nodeTypeName() in ('melodia::room_shell_explicit::1.0','melodia::room_shell_contact::1.0'))
+    new=parent.createNode(candidate_type,'candidate')
     report=dict(version=hou.applicationVersionString(),license=str(hou.licenseCategory()),
                 source_hda=source,source_sha256=original_sha,candidate_hda=candidate,
                 candidate_sha256=hashlib.sha256(Path(candidate).read_bytes()).hexdigest(),checks={})
@@ -66,6 +82,23 @@ def main(source, candidate, out):
     a,b=snapshot(old),snapshot(new)
     report['legacy_fixture']=a;report['candidate_legacy_fixture']=b
     report['checks']['legacy_fixture_identical']=a['geometry_sha256']==b['geometry_sha256'] and a['bbox']==b['bbox']
+    if new.parm('simple_floor_collision') and new.evalParm('simple_floor_collision'):
+        collision=b['floor_collision']
+        expected=[[-FIXTURE['wall_t'],-FIXTURE['wall_t'],-.2],
+                  [FIXTURE['room_w']+FIXTURE['wall_t'],FIXTURE['room_d']+FIXTURE['wall_t'],0.]]
+        report['checks']['simple_floor_six_faces']=bool(collision) and collision['prims']==6
+        report['checks']['explicit_render_group_matches_main_mesh']=b['rendered_group_prims']==b['prims']
+        report['checks']['simple_floor_matches_rendered_slab']=bool(collision) and all(
+            abs(collision['bounds'][j][i]-expected[j][i])<1e-5 for j in range(2) for i in range(3))
+        new.parm('engine_y_up').set(1)
+        transformed=snapshot(new)['floor_collision']
+        report['engine_y_up_floor_collision']=transformed
+        report['checks']['simple_floor_engine_up_axis']=all(
+            abs(transformed['bounds'][j][i]-v)<1e-5
+            for j,row in enumerate([[-FIXTURE['wall_t'],-.2,-(FIXTURE['room_d']+FIXTURE['wall_t'])],
+                                    [FIXTURE['room_w']+FIXTURE['wall_t'],0.,FIXTURE['wall_t']]])
+            for i,v in enumerate(row))
+        new.parm('engine_y_up').set(0)
     old.parm('room_w').set(16.8);wide=snapshot(old);report['legacy_wide']=wide
     center=lambda q:(q['s0']+q['s1'])/2
     report['legacy_hazard_move_m']=center(wide['sockets']['door'])-center(a['sockets']['door'])

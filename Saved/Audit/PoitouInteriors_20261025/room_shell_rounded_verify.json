@@ -1,0 +1,1573 @@
+{
+  "version": "22.0.368",
+  "license": "licenseCategoryType.Indie",
+  "source_hda": "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\HDA\\MelodiaRoomShell_1.0.hda",
+  "source_sha256": "96958ab67cf436d9c61ee2af8b000add0c0f84d079c877d4101fd4bb6f46261d",
+  "candidate_hda": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Staging\\PoitouInteriors_20261025\\MelodiaRoomShell_Rounded_1.0.hda",
+  "candidate_sha256": "d1c2b1cc43d63aff8d05016d762b34d91c526a723dc34f9e99c131d6bc5c2ad5",
+  "candidate_type": "melodia::room_shell_rounded::1.0",
+  "checks": {
+    "deterministic_repeat": true,
+    "shape_changes_geometry": true,
+    "tessellation_changes_geometry": true,
+    "coarse_still_gates": true,
+    "all_variants_gate_pass": true,
+    "salon_footprint_exact": true,
+    "two_named_portals": true,
+    "portals_are_native_cuts": true,
+    "portals_floor_level": true,
+    "portals_are_standard_width": true,
+    "uv_attribute_present": true,
+    "material_role_present": true,
+    "material_path_present": true,
+    "tiers_parm_present": true,
+    "tier_default_matches_stage": true,
+    "empty_tiers_is_single_volume": true,
+    "tiers_change_geometry": true,
+    "deeper_setback_changes_geometry": true,
+    "tiers_preserve_base_footprint": true,
+    "tiers_gate_pass": true,
+    "tiers_add_ledge_solids": true,
+    "invalid_portals_rejected": true,
+    "invalid_tiers_rejected": true,
+    "canonical_hda_unchanged": true
+  },
+  "variants": {
+    "ellipse": {
+      "points": 72416,
+      "prims": 18240,
+      "bbox": [
+        [
+          -0.23999999463558197,
+          -0.23999999463558197,
+          -0.11999999731779099
+        ],
+        [
+          16.079999923706055,
+          12.300000190734863,
+          7.78000020980835
+        ]
+      ],
+      "vertex_attributes": [
+        "uv"
+      ],
+      "prim_attributes": [
+        "material_role",
+        "shop_materialpath"
+      ],
+      "geometry_sha256": "96d72e0a2a8ed8a8b2575b1075631450c6e8f09bfac551c6062170a14835f88d",
+      "gate": {
+        "solid_volume_positive": true,
+        "bounds_ok": true,
+        "aperture_jambs_exact": true,
+        "portals_empty_below_header": true,
+        "apertures_floor_level": true,
+        "apertures_header_clear": true,
+        "sockets_match_apertures": true,
+        "plan_profile_error_mm": 0.0091,
+        "plan_matches_shape": true,
+        "bay_rhythm_ok": true,
+        "tiers_valid": true,
+        "portal_arch_max_dev_m": 0.1081,
+        "portal_arch_follows_profile": true,
+        "decor_clear_of_doorways": true,
+        "walls_present": true,
+        "all_pass": true,
+        "prims": 18240,
+        "points": 72416
+      },
+      "sockets": {
+        "sockets": [
+          {
+            "id": "salon_entry",
+            "wall": "CURVE",
+            "theta": 0.25,
+            "bay": 0,
+            "centre_local_m": [
+              7.92,
+              12.06,
+              0.0
+            ],
+            "inward": [
+              -0.0,
+              -1.0,
+              0.0
+            ],
+            "up": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "clear_width_m": 2.4,
+            "clear_height_m": 3.2,
+            "floor_z_m": 0.0,
+            "spring_z_m": 1.95,
+            "arch_rise_m": 1.25,
+            "arch_profile": "pointed",
+            "pier_m": 0.023,
+            "s0": 9.806636,
+            "s1": 12.206636,
+            "kind": "door",
+            "native_cut": true
+          },
+          {
+            "id": "salon_front",
+            "wall": "CURVE",
+            "theta": 0.75,
+            "bay": 0,
+            "centre_local_m": [
+              7.92,
+              0.0,
+              0.0
+            ],
+            "inward": [
+              -0.0,
+              1.0,
+              0.0
+            ],
+            "up": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "clear_width_m": 2.4,
+            "clear_height_m": 3.2,
+            "floor_z_m": 0.0,
+            "spring_z_m": 1.95,
+            "arch_rise_m": 1.25,
+            "arch_profile": "pointed",
+            "pier_m": 0.023,
+            "s0": 31.819908,
+            "s1": 34.219908,
+            "kind": "door",
+            "native_cut": true
+          }
+        ],
+        "windows": [],
+        "door": null,
+        "chladni": null,
+        "streamers": null,
+        "room": {
+          "anchor_ue_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "room_yaw_ue": 0.0,
+          "plan_shape": "ellipse",
+          "perimeter_m": 44.0265,
+          "interior_axes_m": [
+            15.84,
+            12.06
+          ]
+        },
+        "opening_sockets": [
+          {
+            "id": "salon_entry",
+            "wall": "CURVE",
+            "theta": 0.25,
+            "bay": 0,
+            "centre_local_m": [
+              7.92,
+              12.06,
+              0.0
+            ],
+            "inward": [
+              -0.0,
+              -1.0,
+              0.0
+            ],
+            "up": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "clear_width_m": 2.4,
+            "clear_height_m": 3.2,
+            "floor_z_m": 0.0,
+            "spring_z_m": 1.95,
+            "arch_rise_m": 1.25,
+            "arch_profile": "pointed",
+            "pier_m": 0.023,
+            "s0": 9.806636,
+            "s1": 12.206636,
+            "kind": "door",
+            "native_cut": true
+          },
+          {
+            "id": "salon_front",
+            "wall": "CURVE",
+            "theta": 0.75,
+            "bay": 0,
+            "centre_local_m": [
+              7.92,
+              0.0,
+              0.0
+            ],
+            "inward": [
+              -0.0,
+              1.0,
+              0.0
+            ],
+            "up": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "clear_width_m": 2.4,
+            "clear_height_m": 3.2,
+            "floor_z_m": 0.0,
+            "spring_z_m": 1.95,
+            "arch_rise_m": 1.25,
+            "arch_profile": "pointed",
+            "pier_m": 0.023,
+            "s0": 31.819908,
+            "s1": 34.219908,
+            "kind": "door",
+            "native_cut": true
+          }
+        ],
+        "plan": {
+          "W": 15.84,
+          "D": 12.06,
+          "H": 7.6,
+          "wall_t": 0.24,
+          "shape": "ellipse",
+          "sides": 16,
+          "exponent": 2.6,
+          "segments": 96,
+          "perimeter_m": 44.0265,
+          "openings": 2,
+          "tiers": [
+            1.0,
+            0.92,
+            0.84
+          ],
+          "bays": 18,
+          "bay_m_actual": 2.4459
+        }
+      },
+      "panel_prims": 3848,
+      "errors": [],
+      "warnings": []
+    },
+    "superellipse": {
+      "points": 81992,
+      "prims": 20634,
+      "bbox": [
+        [
+          -0.23999999463558197,
+          -0.23999999463558197,
+          -0.11999999731779099
+        ],
+        [
+          16.079999923706055,
+          12.300000190734863,
+          7.78000020980835
+        ]
+      ],
+      "vertex_attributes": [
+        "uv"
+      ],
+      "prim_attributes": [
+        "material_role",
+        "shop_materialpath"
+      ],
+      "geometry_sha256": "19f977f135b71ac052e16aaaeb4208b9f9e7fbfeafc357d9bea2eae7ca9863f3",
+      "gate": {
+        "solid_volume_positive": true,
+        "bounds_ok": true,
+        "aperture_jambs_exact": true,
+        "portals_empty_below_header": true,
+        "apertures_floor_level": true,
+        "apertures_header_clear": true,
+        "sockets_match_apertures": true,
+        "plan_profile_error_mm": 0.0083,
+        "plan_matches_shape": true,
+        "bay_rhythm_ok": true,
+        "tiers_valid": true,
+        "portal_arch_max_dev_m": 0.1079,
+        "portal_arch_follows_profile": true,
+        "decor_clear_of_doorways": true,
+        "walls_present": true,
+        "all_pass": true,
+        "prims": 20634,
+        "points": 81992
+      },
+      "sockets": {
+        "sockets": [
+          {
+            "id": "salon_entry",
+            "wall": "CURVE",
+            "theta": 0.25,
+            "bay": 0,
+            "centre_local_m": [
+              7.92,
+              12.06,
+              0.0
+            ],
+            "inward": [
+              -0.0,
+              -1.0,
+              0.0
+            ],
+            "up": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "clear_width_m": 2.4,
+            "clear_height_m": 3.2,
+            "floor_z_m": 0.0,
+            "spring_z_m": 1.95,
+            "arch_rise_m": 1.25,
+            "arch_profile": "pointed",
+            "pier_m": 0.0138,
+            "s0": 10.331077,
+            "s1": 12.731077,
+            "kind": "door",
+            "native_cut": true
+          },
+          {
+            "id": "salon_front",
+            "wall": "CURVE",
+            "theta": 0.75,
+            "bay": 0,
+            "centre_local_m": [
+              7.92,
+              0.0,
+              0.0
+            ],
+            "inward": [
+              -0.0,
+              1.0,
+              0.0
+            ],
+            "up": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "clear_width_m": 2.4,
+            "clear_height_m": 3.2,
+            "floor_z_m": 0.0,
+            "spring_z_m": 1.95,
+            "arch_rise_m": 1.25,
+            "arch_profile": "pointed",
+            "pier_m": 0.0138,
+            "s0": 33.393231,
+            "s1": 35.793231,
+            "kind": "door",
+            "native_cut": true
+          }
+        ],
+        "windows": [],
+        "door": null,
+        "chladni": null,
+        "streamers": null,
+        "room": {
+          "anchor_ue_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "room_yaw_ue": 0.0,
+          "plan_shape": "superellipse",
+          "perimeter_m": 46.1243,
+          "interior_axes_m": [
+            15.84,
+            12.06
+          ]
+        },
+        "opening_sockets": [
+          {
+            "id": "salon_entry",
+            "wall": "CURVE",
+            "theta": 0.25,
+            "bay": 0,
+            "centre_local_m": [
+              7.92,
+              12.06,
+              0.0
+            ],
+            "inward": [
+              -0.0,
+              -1.0,
+              0.0
+            ],
+            "up": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "clear_width_m": 2.4,
+            "clear_height_m": 3.2,
+            "floor_z_m": 0.0,
+            "spring_z_m": 1.95,
+            "arch_rise_m": 1.25,
+            "arch_profile": "pointed",
+            "pier_m": 0.0138,
+            "s0": 10.331077,
+            "s1": 12.731077,
+            "kind": "door",
+            "native_cut": true
+          },
+          {
+            "id": "salon_front",
+            "wall": "CURVE",
+            "theta": 0.75,
+            "bay": 0,
+            "centre_local_m": [
+              7.92,
+              0.0,
+              0.0
+            ],
+            "inward": [
+              -0.0,
+              1.0,
+              0.0
+            ],
+            "up": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "clear_width_m": 2.4,
+            "clear_height_m": 3.2,
+            "floor_z_m": 0.0,
+            "spring_z_m": 1.95,
+            "arch_rise_m": 1.25,
+            "arch_profile": "pointed",
+            "pier_m": 0.0138,
+            "s0": 33.393231,
+            "s1": 35.793231,
+            "kind": "door",
+            "native_cut": true
+          }
+        ],
+        "plan": {
+          "W": 15.84,
+          "D": 12.06,
+          "H": 7.6,
+          "wall_t": 0.24,
+          "shape": "superellipse",
+          "sides": 16,
+          "exponent": 2.6,
+          "segments": 96,
+          "perimeter_m": 46.1243,
+          "openings": 2,
+          "tiers": [
+            1.0,
+            0.92,
+            0.84
+          ],
+          "bays": 19,
+          "bay_m_actual": 2.4276
+        }
+      },
+      "panel_prims": 3860,
+      "errors": [],
+      "warnings": []
+    },
+    "polygon": {
+      "points": 72416,
+      "prims": 18240,
+      "bbox": [
+        [
+          -0.2399998903274536,
+          -0.23999997973442078,
+          -0.11999999731779099
+        ],
+        [
+          16.079999923706055,
+          12.300000190734863,
+          7.78000020980835
+        ]
+      ],
+      "vertex_attributes": [
+        "uv"
+      ],
+      "prim_attributes": [
+        "material_role",
+        "shop_materialpath"
+      ],
+      "geometry_sha256": "f8229f44d99e24b8cc26e5fc3f200e54b7fa5033db0d068fe9799e0ff5a29901",
+      "gate": {
+        "solid_volume_positive": true,
+        "bounds_ok": true,
+        "aperture_jambs_exact": true,
+        "portals_empty_below_header": true,
+        "apertures_floor_level": true,
+        "apertures_header_clear": true,
+        "sockets_match_apertures": true,
+        "plan_profile_error_mm": 0.0,
+        "plan_matches_shape": true,
+        "bay_rhythm_ok": true,
+        "tiers_valid": true,
+        "portal_arch_max_dev_m": 0.1088,
+        "portal_arch_follows_profile": true,
+        "decor_clear_of_doorways": true,
+        "walls_present": true,
+        "all_pass": true,
+        "prims": 18240,
+        "points": 72416
+      },
+      "sockets": {
+        "sockets": [
+          {
+            "id": "salon_entry",
+            "wall": "CURVE",
+            "theta": 0.25,
+            "bay": 0,
+            "centre_local_m": [
+              7.92,
+              12.06,
+              0.0
+            ],
+            "inward": [
+              -0.0,
+              -1.0,
+              0.0
+            ],
+            "up": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "clear_width_m": 2.4,
+            "clear_height_m": 3.2,
+            "floor_z_m": 0.0,
+            "spring_z_m": 1.95,
+            "arch_rise_m": 1.25,
+            "arch_profile": "pointed",
+            "pier_m": 0.0151,
+            "s0": 9.736053,
+            "s1": 12.136053,
+            "kind": "door",
+            "native_cut": true
+          },
+          {
+            "id": "salon_front",
+            "wall": "CURVE",
+            "theta": 0.75,
+            "bay": 0,
+            "centre_local_m": [
+              7.92,
+              0.0,
+              0.0
+            ],
+            "inward": [
+              0.0,
+              1.0,
+              0.0
+            ],
+            "up": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "clear_width_m": 2.4,
+            "clear_height_m": 3.2,
+            "floor_z_m": 0.0,
+            "spring_z_m": 1.95,
+            "arch_rise_m": 1.25,
+            "arch_profile": "pointed",
+            "pier_m": 0.0151,
+            "s0": 31.60816,
+            "s1": 34.00816,
+            "kind": "door",
+            "native_cut": true
+          }
+        ],
+        "windows": [],
+        "door": null,
+        "chladni": null,
+        "streamers": null,
+        "room": {
+          "anchor_ue_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "room_yaw_ue": 0.0,
+          "plan_shape": "polygon",
+          "perimeter_m": 43.7442,
+          "interior_axes_m": [
+            15.84,
+            12.06
+          ]
+        },
+        "opening_sockets": [
+          {
+            "id": "salon_entry",
+            "wall": "CURVE",
+            "theta": 0.25,
+            "bay": 0,
+            "centre_local_m": [
+              7.92,
+              12.06,
+              0.0
+            ],
+            "inward": [
+              -0.0,
+              -1.0,
+              0.0
+            ],
+            "up": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "clear_width_m": 2.4,
+            "clear_height_m": 3.2,
+            "floor_z_m": 0.0,
+            "spring_z_m": 1.95,
+            "arch_rise_m": 1.25,
+            "arch_profile": "pointed",
+            "pier_m": 0.0151,
+            "s0": 9.736053,
+            "s1": 12.136053,
+            "kind": "door",
+            "native_cut": true
+          },
+          {
+            "id": "salon_front",
+            "wall": "CURVE",
+            "theta": 0.75,
+            "bay": 0,
+            "centre_local_m": [
+              7.92,
+              0.0,
+              0.0
+            ],
+            "inward": [
+              0.0,
+              1.0,
+              0.0
+            ],
+            "up": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "clear_width_m": 2.4,
+            "clear_height_m": 3.2,
+            "floor_z_m": 0.0,
+            "spring_z_m": 1.95,
+            "arch_rise_m": 1.25,
+            "arch_profile": "pointed",
+            "pier_m": 0.0151,
+            "s0": 31.60816,
+            "s1": 34.00816,
+            "kind": "door",
+            "native_cut": true
+          }
+        ],
+        "plan": {
+          "W": 15.84,
+          "D": 12.06,
+          "H": 7.6,
+          "wall_t": 0.24,
+          "shape": "polygon",
+          "sides": 16,
+          "exponent": 2.6,
+          "segments": 96,
+          "perimeter_m": 43.7442,
+          "openings": 2,
+          "tiers": [
+            1.0,
+            0.92,
+            0.84
+          ],
+          "bays": 18,
+          "bay_m_actual": 2.4302
+        }
+      },
+      "panel_prims": 3848,
+      "errors": [],
+      "warnings": []
+    },
+    "ellipse_coarse": {
+      "points": 60608,
+      "prims": 15240,
+      "bbox": [
+        [
+          -0.23999999463558197,
+          -0.23999999463558197,
+          -0.11999999731779099
+        ],
+        [
+          16.079999923706055,
+          12.300000190734863,
+          7.78000020980835
+        ]
+      ],
+      "vertex_attributes": [
+        "uv"
+      ],
+      "prim_attributes": [
+        "material_role",
+        "shop_materialpath"
+      ],
+      "geometry_sha256": "07f6af726c0708dd144411de771adb7e4ffb684f1dcc512c313fea1bef56c0d2",
+      "gate": {
+        "solid_volume_positive": true,
+        "bounds_ok": true,
+        "aperture_jambs_exact": true,
+        "portals_empty_below_header": true,
+        "apertures_floor_level": true,
+        "apertures_header_clear": true,
+        "sockets_match_apertures": true,
+        "plan_profile_error_mm": 0.0091,
+        "plan_matches_shape": true,
+        "bay_rhythm_ok": true,
+        "tiers_valid": true,
+        "portal_arch_max_dev_m": 0.1081,
+        "portal_arch_follows_profile": true,
+        "decor_clear_of_doorways": true,
+        "walls_present": true,
+        "all_pass": true,
+        "prims": 15240,
+        "points": 60608
+      },
+      "sockets": {
+        "sockets": [
+          {
+            "id": "salon_entry",
+            "wall": "CURVE",
+            "theta": 0.25,
+            "bay": 0,
+            "centre_local_m": [
+              7.92,
+              12.06,
+              0.0
+            ],
+            "inward": [
+              -0.0,
+              -1.0,
+              0.0
+            ],
+            "up": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "clear_width_m": 2.4,
+            "clear_height_m": 3.2,
+            "floor_z_m": 0.0,
+            "spring_z_m": 1.95,
+            "arch_rise_m": 1.25,
+            "arch_profile": "pointed",
+            "pier_m": 0.023,
+            "s0": 9.806636,
+            "s1": 12.206636,
+            "kind": "door",
+            "native_cut": true
+          },
+          {
+            "id": "salon_front",
+            "wall": "CURVE",
+            "theta": 0.75,
+            "bay": 0,
+            "centre_local_m": [
+              7.92,
+              0.0,
+              0.0
+            ],
+            "inward": [
+              -0.0,
+              1.0,
+              0.0
+            ],
+            "up": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "clear_width_m": 2.4,
+            "clear_height_m": 3.2,
+            "floor_z_m": 0.0,
+            "spring_z_m": 1.95,
+            "arch_rise_m": 1.25,
+            "arch_profile": "pointed",
+            "pier_m": 0.023,
+            "s0": 31.819908,
+            "s1": 34.219908,
+            "kind": "door",
+            "native_cut": true
+          }
+        ],
+        "windows": [],
+        "door": null,
+        "chladni": null,
+        "streamers": null,
+        "room": {
+          "anchor_ue_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "room_yaw_ue": 0.0,
+          "plan_shape": "ellipse",
+          "perimeter_m": 44.0265,
+          "interior_axes_m": [
+            15.84,
+            12.06
+          ]
+        },
+        "opening_sockets": [
+          {
+            "id": "salon_entry",
+            "wall": "CURVE",
+            "theta": 0.25,
+            "bay": 0,
+            "centre_local_m": [
+              7.92,
+              12.06,
+              0.0
+            ],
+            "inward": [
+              -0.0,
+              -1.0,
+              0.0
+            ],
+            "up": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "clear_width_m": 2.4,
+            "clear_height_m": 3.2,
+            "floor_z_m": 0.0,
+            "spring_z_m": 1.95,
+            "arch_rise_m": 1.25,
+            "arch_profile": "pointed",
+            "pier_m": 0.023,
+            "s0": 9.806636,
+            "s1": 12.206636,
+            "kind": "door",
+            "native_cut": true
+          },
+          {
+            "id": "salon_front",
+            "wall": "CURVE",
+            "theta": 0.75,
+            "bay": 0,
+            "centre_local_m": [
+              7.92,
+              0.0,
+              0.0
+            ],
+            "inward": [
+              -0.0,
+              1.0,
+              0.0
+            ],
+            "up": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "clear_width_m": 2.4,
+            "clear_height_m": 3.2,
+            "floor_z_m": 0.0,
+            "spring_z_m": 1.95,
+            "arch_rise_m": 1.25,
+            "arch_profile": "pointed",
+            "pier_m": 0.023,
+            "s0": 31.819908,
+            "s1": 34.219908,
+            "kind": "door",
+            "native_cut": true
+          }
+        ],
+        "plan": {
+          "W": 15.84,
+          "D": 12.06,
+          "H": 7.6,
+          "wall_t": 0.24,
+          "shape": "ellipse",
+          "sides": 16,
+          "exponent": 2.6,
+          "segments": 48,
+          "perimeter_m": 44.0265,
+          "openings": 2,
+          "tiers": [
+            1.0,
+            0.92,
+            0.84
+          ],
+          "bays": 18,
+          "bay_m_actual": 2.4459
+        }
+      },
+      "panel_prims": 2504,
+      "errors": [],
+      "warnings": []
+    },
+    "tiers_single": {
+      "points": 63968,
+      "prims": 16128,
+      "bbox": [
+        [
+          -0.23999999463558197,
+          -0.23999999463558197,
+          -0.11999999731779099
+        ],
+        [
+          16.079999923706055,
+          12.300000190734863,
+          7.78000020980835
+        ]
+      ],
+      "vertex_attributes": [
+        "uv"
+      ],
+      "prim_attributes": [
+        "material_role",
+        "shop_materialpath"
+      ],
+      "geometry_sha256": "7924c96bda8db87b68d5fb7d17bc61387297af9e16ac2eb00209a8fbe6276643",
+      "gate": {
+        "solid_volume_positive": true,
+        "bounds_ok": true,
+        "aperture_jambs_exact": true,
+        "portals_empty_below_header": true,
+        "apertures_floor_level": true,
+        "apertures_header_clear": true,
+        "sockets_match_apertures": true,
+        "plan_profile_error_mm": 0.0091,
+        "plan_matches_shape": true,
+        "bay_rhythm_ok": true,
+        "tiers_valid": true,
+        "portal_arch_max_dev_m": 0.1081,
+        "portal_arch_follows_profile": true,
+        "decor_clear_of_doorways": true,
+        "walls_present": true,
+        "all_pass": true,
+        "prims": 16128,
+        "points": 63968
+      },
+      "sockets": {
+        "sockets": [
+          {
+            "id": "salon_entry",
+            "wall": "CURVE",
+            "theta": 0.25,
+            "bay": 0,
+            "centre_local_m": [
+              7.92,
+              12.06,
+              0.0
+            ],
+            "inward": [
+              -0.0,
+              -1.0,
+              0.0
+            ],
+            "up": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "clear_width_m": 2.4,
+            "clear_height_m": 3.2,
+            "floor_z_m": 0.0,
+            "spring_z_m": 1.95,
+            "arch_rise_m": 1.25,
+            "arch_profile": "pointed",
+            "pier_m": 0.023,
+            "s0": 9.806636,
+            "s1": 12.206636,
+            "kind": "door",
+            "native_cut": true
+          },
+          {
+            "id": "salon_front",
+            "wall": "CURVE",
+            "theta": 0.75,
+            "bay": 0,
+            "centre_local_m": [
+              7.92,
+              0.0,
+              0.0
+            ],
+            "inward": [
+              -0.0,
+              1.0,
+              0.0
+            ],
+            "up": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "clear_width_m": 2.4,
+            "clear_height_m": 3.2,
+            "floor_z_m": 0.0,
+            "spring_z_m": 1.95,
+            "arch_rise_m": 1.25,
+            "arch_profile": "pointed",
+            "pier_m": 0.023,
+            "s0": 31.819908,
+            "s1": 34.219908,
+            "kind": "door",
+            "native_cut": true
+          }
+        ],
+        "windows": [],
+        "door": null,
+        "chladni": null,
+        "streamers": null,
+        "room": {
+          "anchor_ue_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "room_yaw_ue": 0.0,
+          "plan_shape": "ellipse",
+          "perimeter_m": 44.0265,
+          "interior_axes_m": [
+            15.84,
+            12.06
+          ]
+        },
+        "opening_sockets": [
+          {
+            "id": "salon_entry",
+            "wall": "CURVE",
+            "theta": 0.25,
+            "bay": 0,
+            "centre_local_m": [
+              7.92,
+              12.06,
+              0.0
+            ],
+            "inward": [
+              -0.0,
+              -1.0,
+              0.0
+            ],
+            "up": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "clear_width_m": 2.4,
+            "clear_height_m": 3.2,
+            "floor_z_m": 0.0,
+            "spring_z_m": 1.95,
+            "arch_rise_m": 1.25,
+            "arch_profile": "pointed",
+            "pier_m": 0.023,
+            "s0": 9.806636,
+            "s1": 12.206636,
+            "kind": "door",
+            "native_cut": true
+          },
+          {
+            "id": "salon_front",
+            "wall": "CURVE",
+            "theta": 0.75,
+            "bay": 0,
+            "centre_local_m": [
+              7.92,
+              0.0,
+              0.0
+            ],
+            "inward": [
+              -0.0,
+              1.0,
+              0.0
+            ],
+            "up": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "clear_width_m": 2.4,
+            "clear_height_m": 3.2,
+            "floor_z_m": 0.0,
+            "spring_z_m": 1.95,
+            "arch_rise_m": 1.25,
+            "arch_profile": "pointed",
+            "pier_m": 0.023,
+            "s0": 31.819908,
+            "s1": 34.219908,
+            "kind": "door",
+            "native_cut": true
+          }
+        ],
+        "plan": {
+          "W": 15.84,
+          "D": 12.06,
+          "H": 7.6,
+          "wall_t": 0.24,
+          "shape": "ellipse",
+          "sides": 16,
+          "exponent": 2.6,
+          "segments": 96,
+          "perimeter_m": 44.0265,
+          "openings": 2,
+          "tiers": [
+            1.0
+          ],
+          "bays": 18,
+          "bay_m_actual": 2.4459
+        }
+      },
+      "panel_prims": 2792,
+      "errors": [],
+      "warnings": []
+    },
+    "tiers_stepped": {
+      "points": 72416,
+      "prims": 18240,
+      "bbox": [
+        [
+          -0.23999999463558197,
+          -0.23999999463558197,
+          -0.11999999731779099
+        ],
+        [
+          16.079999923706055,
+          12.300000190734863,
+          7.78000020980835
+        ]
+      ],
+      "vertex_attributes": [
+        "uv"
+      ],
+      "prim_attributes": [
+        "material_role",
+        "shop_materialpath"
+      ],
+      "geometry_sha256": "96d72e0a2a8ed8a8b2575b1075631450c6e8f09bfac551c6062170a14835f88d",
+      "gate": {
+        "solid_volume_positive": true,
+        "bounds_ok": true,
+        "aperture_jambs_exact": true,
+        "portals_empty_below_header": true,
+        "apertures_floor_level": true,
+        "apertures_header_clear": true,
+        "sockets_match_apertures": true,
+        "plan_profile_error_mm": 0.0091,
+        "plan_matches_shape": true,
+        "bay_rhythm_ok": true,
+        "tiers_valid": true,
+        "portal_arch_max_dev_m": 0.1081,
+        "portal_arch_follows_profile": true,
+        "decor_clear_of_doorways": true,
+        "walls_present": true,
+        "all_pass": true,
+        "prims": 18240,
+        "points": 72416
+      },
+      "sockets": {
+        "sockets": [
+          {
+            "id": "salon_entry",
+            "wall": "CURVE",
+            "theta": 0.25,
+            "bay": 0,
+            "centre_local_m": [
+              7.92,
+              12.06,
+              0.0
+            ],
+            "inward": [
+              -0.0,
+              -1.0,
+              0.0
+            ],
+            "up": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "clear_width_m": 2.4,
+            "clear_height_m": 3.2,
+            "floor_z_m": 0.0,
+            "spring_z_m": 1.95,
+            "arch_rise_m": 1.25,
+            "arch_profile": "pointed",
+            "pier_m": 0.023,
+            "s0": 9.806636,
+            "s1": 12.206636,
+            "kind": "door",
+            "native_cut": true
+          },
+          {
+            "id": "salon_front",
+            "wall": "CURVE",
+            "theta": 0.75,
+            "bay": 0,
+            "centre_local_m": [
+              7.92,
+              0.0,
+              0.0
+            ],
+            "inward": [
+              -0.0,
+              1.0,
+              0.0
+            ],
+            "up": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "clear_width_m": 2.4,
+            "clear_height_m": 3.2,
+            "floor_z_m": 0.0,
+            "spring_z_m": 1.95,
+            "arch_rise_m": 1.25,
+            "arch_profile": "pointed",
+            "pier_m": 0.023,
+            "s0": 31.819908,
+            "s1": 34.219908,
+            "kind": "door",
+            "native_cut": true
+          }
+        ],
+        "windows": [],
+        "door": null,
+        "chladni": null,
+        "streamers": null,
+        "room": {
+          "anchor_ue_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "room_yaw_ue": 0.0,
+          "plan_shape": "ellipse",
+          "perimeter_m": 44.0265,
+          "interior_axes_m": [
+            15.84,
+            12.06
+          ]
+        },
+        "opening_sockets": [
+          {
+            "id": "salon_entry",
+            "wall": "CURVE",
+            "theta": 0.25,
+            "bay": 0,
+            "centre_local_m": [
+              7.92,
+              12.06,
+              0.0
+            ],
+            "inward": [
+              -0.0,
+              -1.0,
+              0.0
+            ],
+            "up": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "clear_width_m": 2.4,
+            "clear_height_m": 3.2,
+            "floor_z_m": 0.0,
+            "spring_z_m": 1.95,
+            "arch_rise_m": 1.25,
+            "arch_profile": "pointed",
+            "pier_m": 0.023,
+            "s0": 9.806636,
+            "s1": 12.206636,
+            "kind": "door",
+            "native_cut": true
+          },
+          {
+            "id": "salon_front",
+            "wall": "CURVE",
+            "theta": 0.75,
+            "bay": 0,
+            "centre_local_m": [
+              7.92,
+              0.0,
+              0.0
+            ],
+            "inward": [
+              -0.0,
+              1.0,
+              0.0
+            ],
+            "up": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "clear_width_m": 2.4,
+            "clear_height_m": 3.2,
+            "floor_z_m": 0.0,
+            "spring_z_m": 1.95,
+            "arch_rise_m": 1.25,
+            "arch_profile": "pointed",
+            "pier_m": 0.023,
+            "s0": 31.819908,
+            "s1": 34.219908,
+            "kind": "door",
+            "native_cut": true
+          }
+        ],
+        "plan": {
+          "W": 15.84,
+          "D": 12.06,
+          "H": 7.6,
+          "wall_t": 0.24,
+          "shape": "ellipse",
+          "sides": 16,
+          "exponent": 2.6,
+          "segments": 96,
+          "perimeter_m": 44.0265,
+          "openings": 2,
+          "tiers": [
+            1.0,
+            0.92,
+            0.84
+          ],
+          "bays": 18,
+          "bay_m_actual": 2.4459
+        }
+      },
+      "panel_prims": 3848,
+      "errors": [],
+      "warnings": []
+    },
+    "tiers_hard_stepped": {
+      "points": 72416,
+      "prims": 18240,
+      "bbox": [
+        [
+          -0.23999999463558197,
+          -0.23999999463558197,
+          -0.11999999731779099
+        ],
+        [
+          16.079999923706055,
+          12.300000190734863,
+          7.78000020980835
+        ]
+      ],
+      "vertex_attributes": [
+        "uv"
+      ],
+      "prim_attributes": [
+        "material_role",
+        "shop_materialpath"
+      ],
+      "geometry_sha256": "98f90799859a533c1628b0c74f9a06f8869c5459f4f25d32b407e40423d69628",
+      "gate": {
+        "solid_volume_positive": true,
+        "bounds_ok": true,
+        "aperture_jambs_exact": true,
+        "portals_empty_below_header": true,
+        "apertures_floor_level": true,
+        "apertures_header_clear": true,
+        "sockets_match_apertures": true,
+        "plan_profile_error_mm": 0.0091,
+        "plan_matches_shape": true,
+        "bay_rhythm_ok": true,
+        "tiers_valid": true,
+        "portal_arch_max_dev_m": 0.1081,
+        "portal_arch_follows_profile": true,
+        "decor_clear_of_doorways": true,
+        "walls_present": true,
+        "all_pass": true,
+        "prims": 18240,
+        "points": 72416
+      },
+      "sockets": {
+        "sockets": [
+          {
+            "id": "salon_entry",
+            "wall": "CURVE",
+            "theta": 0.25,
+            "bay": 0,
+            "centre_local_m": [
+              7.92,
+              12.06,
+              0.0
+            ],
+            "inward": [
+              -0.0,
+              -1.0,
+              0.0
+            ],
+            "up": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "clear_width_m": 2.4,
+            "clear_height_m": 3.2,
+            "floor_z_m": 0.0,
+            "spring_z_m": 1.95,
+            "arch_rise_m": 1.25,
+            "arch_profile": "pointed",
+            "pier_m": 0.023,
+            "s0": 9.806636,
+            "s1": 12.206636,
+            "kind": "door",
+            "native_cut": true
+          },
+          {
+            "id": "salon_front",
+            "wall": "CURVE",
+            "theta": 0.75,
+            "bay": 0,
+            "centre_local_m": [
+              7.92,
+              0.0,
+              0.0
+            ],
+            "inward": [
+              -0.0,
+              1.0,
+              0.0
+            ],
+            "up": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "clear_width_m": 2.4,
+            "clear_height_m": 3.2,
+            "floor_z_m": 0.0,
+            "spring_z_m": 1.95,
+            "arch_rise_m": 1.25,
+            "arch_profile": "pointed",
+            "pier_m": 0.023,
+            "s0": 31.819908,
+            "s1": 34.219908,
+            "kind": "door",
+            "native_cut": true
+          }
+        ],
+        "windows": [],
+        "door": null,
+        "chladni": null,
+        "streamers": null,
+        "room": {
+          "anchor_ue_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "room_yaw_ue": 0.0,
+          "plan_shape": "ellipse",
+          "perimeter_m": 44.0265,
+          "interior_axes_m": [
+            15.84,
+            12.06
+          ]
+        },
+        "opening_sockets": [
+          {
+            "id": "salon_entry",
+            "wall": "CURVE",
+            "theta": 0.25,
+            "bay": 0,
+            "centre_local_m": [
+              7.92,
+              12.06,
+              0.0
+            ],
+            "inward": [
+              -0.0,
+              -1.0,
+              0.0
+            ],
+            "up": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "clear_width_m": 2.4,
+            "clear_height_m": 3.2,
+            "floor_z_m": 0.0,
+            "spring_z_m": 1.95,
+            "arch_rise_m": 1.25,
+            "arch_profile": "pointed",
+            "pier_m": 0.023,
+            "s0": 9.806636,
+            "s1": 12.206636,
+            "kind": "door",
+            "native_cut": true
+          },
+          {
+            "id": "salon_front",
+            "wall": "CURVE",
+            "theta": 0.75,
+            "bay": 0,
+            "centre_local_m": [
+              7.92,
+              0.0,
+              0.0
+            ],
+            "inward": [
+              -0.0,
+              1.0,
+              0.0
+            ],
+            "up": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "clear_width_m": 2.4,
+            "clear_height_m": 3.2,
+            "floor_z_m": 0.0,
+            "spring_z_m": 1.95,
+            "arch_rise_m": 1.25,
+            "arch_profile": "pointed",
+            "pier_m": 0.023,
+            "s0": 31.819908,
+            "s1": 34.219908,
+            "kind": "door",
+            "native_cut": true
+          }
+        ],
+        "plan": {
+          "W": 15.84,
+          "D": 12.06,
+          "H": 7.6,
+          "wall_t": 0.24,
+          "shape": "ellipse",
+          "sides": 16,
+          "exponent": 2.6,
+          "segments": 96,
+          "perimeter_m": 44.0265,
+          "openings": 2,
+          "tiers": [
+            1.0,
+            0.85,
+            0.7
+          ],
+          "bays": 18,
+          "bay_m_actual": 2.4459
+        }
+      },
+      "panel_prims": 3848,
+      "errors": [],
+      "warnings": []
+    }
+  },
+  "invalid_cases": 6,
+  "invalid_tier_cases": {
+    "[0.0]": true,
+    "[1.0, 1.5]": true,
+    "[1.0, 0.5, 0.9]": true,
+    "[-0.2]": true,
+    "[1.0, 0.0]": true,
+    "[0.5, 1.0]": true,
+    "\"nope\"": true
+  },
+  "all_pass": true,
+  "limits": "Native packaged-HDA geometry only. UE import, capsule traversal, lighting, dressing placement and the packaged route remain pending."
+}

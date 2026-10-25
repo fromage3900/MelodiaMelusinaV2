@@ -235,6 +235,34 @@ def _s_on_plan(pts, p):
 
 
 # --------------------------------------------------------------------------- portals
+def validate_tiers(records):
+    """Tier setbacks are exterior massing ratios: finite, in (0, 1], non-increasing, base 1.0.
+
+    tiers[0] must be 1.0 so the floor slab (built at the full wall thickness) and
+    the base footprint keep matching the interior AABB. A zero or negative ratio
+    would emit a degenerate wall band, and an increasing ratio would grow the
+    upper massing outward past the base - both are rejected instead of cooked.
+    """
+    if records is None or records == []:
+        return [1.0]
+    if not isinstance(records, (list, tuple)):
+        raise ValueError("tier setbacks must be an array of ratios")
+    tiers = []
+    for value in records:
+        if isinstance(value, bool) or not isinstance(value, (int, float)) or not math.isfinite(value):
+            raise ValueError("tier setback must be a finite number")
+        value = float(value)
+        if not 0.0 < value <= 1.0 + 1e-9:
+            raise ValueError("tier setback must be in (0, 1]")
+        tiers.append(min(value, 1.0))
+    if abs(tiers[0] - 1.0) > 1e-9:
+        raise ValueError("base tier must be 1.0 so the floor slab and base footprint stay exact")
+    for lower, upper in zip(tiers, tiers[1:]):
+        if upper > lower + 1e-9:
+            raise ValueError("tier setbacks must be non-increasing")
+    return tiers
+
+
 def validate_openings(records, perimeter, H, bays=0):
     """Named floor-level portals in native metres / perimeter fractions / bay indices."""
     if not isinstance(records, list):
@@ -432,9 +460,7 @@ def build(**kw):
     bays = max(4, min(96, bays))
     bay_m = P / float(bays)
 
-    tiers = [float(x) for x in (p.get("tiers") or [])]
-    if not tiers:
-        tiers = [1.0]
+    tiers = validate_tiers(p.get("tiers"))
 
     openings = validate_openings(p.get("openings") or [], P, H, bays)
 
@@ -829,6 +855,9 @@ def gate(M, rep):
     # ---- pointed heads: the wall soffit above a portal must follow the arch profile
     tiers = p.get("tiers") or [1.0]
     n_tiers = len(tiers)
+    out["tiers_valid"] = (abs(tiers[0] - 1.0) <= 1e-9
+                          and all(0.0 < t <= 1.0 + 1e-9 for t in tiers)
+                          and all(b <= a + 1e-9 for a, b in zip(tiers, tiers[1:])))
     soffit = []
     for face, role in zip(M.F, M.R):
         if role != "wall":
@@ -909,8 +938,11 @@ def cook(node):
         elif records != []:
             raise ValueError("explicit openings must be an array")
     if h.parm("tiers_json"):
-        tiers = json.loads(h.evalParm("tiers_json"))
-        if isinstance(tiers, list):
+        raw = h.evalParm("tiers_json").strip()
+        if raw:
+            tiers = json.loads(raw)
+            if not isinstance(tiers, list):
+                raise ValueError("tier setbacks must be a JSON array")
             kw["tiers"] = tiers
     M, rep = build(**kw)
     gt = gate(M, rep)

@@ -664,12 +664,26 @@ def cook(node):
     P=[(p[0],p[2],-p[1]) for p in M.P] if yup else M.P      # Houdini Engine swaps Y/Z: emit (x, z, -y) so UE gets (x*100, -y*100, z*100)
     pts=g.createPoints(P)
     flip=yup and bool(h.evalParm('engine_flip'))     # Houdini Engine's Y/Z swap is a reflection: reverse winding so UE front faces stay outward
+    collision_enabled=bool(h.parm('simple_floor_collision') and h.evalParm('simple_floor_collision'))
+    render_group=g.createPrimGroup('rendered_main_geo') if collision_enabled else None
     for face,role in zip(M.F,M.R):
         face=list(reversed(face)) if flip else face
         poly=g.createPolygon();poly.setAttribValue('material_role',role);poly.setAttribValue('shop_materialpath','/mat/Cathedral_'+role)
+        if render_group is not None:render_group.add(poly)
         uvs=_uv(M.P,face)
         for i,uv in zip(face,uvs):
             v=poly.addVertex(pts[i]);v.setAttribValue('uv',(uv[0]*.5,uv[1]*.5,0.))
+    # Invisible simple collision is a separate slab, never a box around the room.
+    # The existing rendered floor and all portal geometry remain unchanged.
+    if collision_enabled:
+        collision=g.createPrimGroup('collision_geo_simple_box_main_geo')
+        for face,role in zip(M.F,M.R):
+            if role!='floor_stone':continue
+            face=list(reversed(face)) if flip else face
+            poly=g.createPolygon()
+            for i in face:
+                point=g.createPoint();point.setPosition(P[i]);poly.addVertex(point)
+            collision.add(poly)
     payload=dict(sockets=rep['sockets'],windows=rep['windows'],door=rep['door'],chladni=rep['chladni'],streamers=rep.get('streamers_placed'),room=manifest(rep))
     if rep.get('opening_sockets'):payload['opening_sockets']=rep['opening_sockets']
     g.setGlobalAttribValue('gate_json',json.dumps(gt));g.setGlobalAttribValue('sockets_json',json.dumps(payload))
