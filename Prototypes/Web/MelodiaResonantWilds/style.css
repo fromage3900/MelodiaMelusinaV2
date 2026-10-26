@@ -1,14 +1,14 @@
 :root {
-  --night: #1C1426;  /* plum.900 */
-  --night-2: #241B2E;  /* plum.800 */
-  --plum: #463A54;  /* plum.600 */
-  --paper: #FFF8EE;  /* ivory.50 */
+  --night: #120A20;  /* Figma Foundations: Abyss */
+  --night-2: #241B2E;  /* Figma Foundations: Ink */
+  --plum: #2A1646;  /* Figma Foundations: Plum */
+  --paper: #FCFBF8;  /* Figma Foundations: Ivory */
   --ink: #2a2039;
-  --lavender: #C2BAE0;  /* lavender.300 */
+  --lavender: #F0DCF0;  /* Figma Foundations: Lavender */
   --blue: #91b9e7;
-  --aqua: #82d2db;
-  --rose: #D6A9B0;  /* sakura.500 */
-  --gold: #C9A86A;  /* gold.500 */
+  --aqua: #86E4FF;  /* Figma Foundations: Aqua */
+  --rose: #FF93B5;  /* Figma Foundations: Rose */
+  --gold: #DDC79B;  /* Figma Foundations: Champagne */
   --gold-hi: #ffd978;  /* kept bright for text on dark panels (token gold.300 is too pale there) */
   --glass: rgba(23, 18, 37, 0.72);
   --line: rgba(217, 188, 114, 0.35);

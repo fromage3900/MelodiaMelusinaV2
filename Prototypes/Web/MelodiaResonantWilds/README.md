@@ -169,4 +169,4 @@ Not yet done: water foam at the shoreline, and new title art (needs artwork).
 ## 🔤 Typography and tokens
 
 - All UI text, including canvas labels, uses **Times New Roman** (with Times and serif fallbacks).
-- Base colours (surfaces, text, gold and rose accents) follow `melodia-design-system/tokens.json`, the Figma-synced token file from 2026-09-22. Check these against the live Figma file before a release.
+- Colours follow the Figma file's "01 · FOUNDATIONS" page (Void/Abyss/Ink/Plum surfaces, Ivory text, Champagne, Rose, Aqua, Lavender). The Figma page's typefaces (Kaisei Decol, Klee One, JetBrains Mono) are not used, because the requested font is Times New Roman.
