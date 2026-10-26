@@ -119,3 +119,12 @@ export function fmt(n) {
   if (n >= 1e4) return (n / 1e3).toFixed(1) + 'k';
   return Math.round(n).toString();
 }
+
+// Haptics: short vibration on phones that support it. Respects the Settings toggle.
+export const haptic = {
+  on: true,
+  buzz(pattern) {
+    if (!this.on) return;
+    try { navigator.vibrate?.(pattern); } catch { /* unsupported or blocked */ }
+  },
+};

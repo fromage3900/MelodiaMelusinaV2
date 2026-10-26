@@ -384,13 +384,15 @@ export class Activities {
     return { ...RIFT_STYLE, bpm: 124 + Math.min(24, tier * 2), motif: [0, 3, 7, 10, 8, 7] };
   }
 
-  enterRift(tier, portal) {
+  enterRift(tier, portal, daily = null) {
+    const rand = daily ? mulberry32(daily.seed) : Math.random;
     const g = this.g, P = g.player;
     g.clearWorldEnemies();
     g.combat.reset();
     g.decals.clear();
-    const burden = tier >= 3 ? pick(Math.random, BURDENS) : null;
+    const burden = tier >= 3 ? pick(rand, BURDENS) : null;
     this.rift = {
+      rand, daily: daily ? daily.date : null, kills: 0,
       tier, burden, progress: 0, time: 0, limit: 240, guardian: null, done: false, spawnT: 0, exit: null,
       level: g.profile.level + Math.max(0, tier - 1) * 2, hpMul: 1 + (tier - 1) * 0.15,
       returnPos: portal ? new THREE.Vector3(portal.x + 3, 0, portal.z + 3) : P.pos.clone(),
@@ -425,15 +427,15 @@ export class Activities {
       const alive = g.enemies.filter((e) => !e.dead).length;
       if (r.spawnT <= 0 && alive < 8 + Math.min(r.tier, 8)) {
         r.spawnT = 0.5;
-        const a = Math.random() * Math.PI * 2, rr = 20 + Math.random() * 10;
-        const elite = Math.random() < 0.1;
-        const def = elite ? RIFT_POOL[RIFT_POOL.length - 1 - Math.floor(Math.random() * 12)] : RIFT_POOL[Math.floor(Math.random() * 30)];
-        const e = g.spawnEnemy(def.id, r.level, { x: Math.cos(a) * rr, z: Math.sin(a) * rr, elite, rift: true, aggro: true, hpMul: r.hpMul, affixes: elite ? [pick(Math.random, ELITE_AFFIXES).id] : [] });
+        const a = r.rand() * Math.PI * 2, rr = 20 + r.rand() * 10;
+        const elite = r.rand() < 0.1;
+        const def = elite ? RIFT_POOL[RIFT_POOL.length - 1 - Math.floor(r.rand() * 12)] : RIFT_POOL[Math.floor(r.rand() * 30)];
+        const e = g.spawnEnemy(def.id, r.level, { x: Math.cos(a) * rr, z: Math.sin(a) * rr, elite, rift: true, aggro: true, hpMul: r.hpMul, affixes: elite ? [pick(r.rand, ELITE_AFFIXES).id] : [] });
         g.particles.burst(e.pos.x, 0.5, e.pos.z, new THREE.Color(ELEMENT_STYLE[e.element].color), 12, { speed: 5, life: 0.5, kind: 2 });
       }
     } else if (!r.guardian) {
       for (const e of g.enemies) if (!e.dead) g.removeEnemy(e);
-      const def = RIFT_POOL[RIFT_POOL.length - 1 - Math.floor(Math.random() * 6)];
+      const def = RIFT_POOL[RIFT_POOL.length - 1 - Math.floor(r.rand() * 6)];
       r.guardian = g.spawnEnemy(def.id, r.level + 1, { x: 0, z: -12, boss: true, bossName: `Rift Guardian · ${def.name}`, rift: true, aggro: true, hpMul: r.hpMul * 0.55 });
       g.ui.banner('Rift Guardian', `${def.name} · ${def.element}`);
       g.shake(0.6);
@@ -445,6 +447,7 @@ export class Activities {
   riftKill(e) {
     const r = this.rift;
     if (!r || r.progress >= 100) return;
+    r.kills++;
     r.progress = Math.min(100, r.progress + (e.elite ? 11 : 3.4));
   }
 
@@ -460,6 +463,12 @@ export class Activities {
     g.profile.notes += notes;
     g.profile.stats.rifts++;
     if (inTime && r.tier > g.profile.riftTier) g.profile.riftTier = r.tier;
+    if (r.daily) {
+      const best = g.profile.daily && g.profile.daily.date === r.daily ? g.profile.daily : null;
+      if (!best || (inTime && (!best.cleared || r.time < best.time))) {
+        g.profile.daily = { date: r.daily, cleared: inTime, time: Math.round(r.time), tier: r.tier, kills: r.kills };
+      }
+    }
     g.bountyEvent('rift', 1);
     g.ui.banner(inTime ? `Rift Tier ${r.tier} cleared!` : 'Rift cleared (over time)', `+${notes} Golden Notes${inTime ? ` · Tier ${r.tier + 1} unlocked` : ''}`);
     g.audio.levelUp();

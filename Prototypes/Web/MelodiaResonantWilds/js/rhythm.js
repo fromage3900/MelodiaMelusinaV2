@@ -3,7 +3,7 @@
 // are the rules JSON values (generated/ue_data.js).
 
 import { RULES, GRADE, DYNAMICS, MODIFIERS } from './design.js';
-import { clamp } from './util.js';
+import { clamp, haptic } from './util.js';
 
 export class Rhythm {
   constructor(game) {
@@ -61,6 +61,7 @@ export class Rhythm {
 
   register(res, hits = 0, showLabel = true) {
     const g = this.g, P = g.player, grade = res.grade;
+    if (grade === 'Perfect') haptic.buzz(12); else if (grade === 'Great') haptic.buzz(6);
     if (grade === 'Miss') {
       if (this.combo >= 8) g.overlay.text(P.pos.x, P.pos.y + 3.2, P.pos.z, 'combo lost', '#8d8698', 13, { life: 0.8 });
       this.combo = 0;

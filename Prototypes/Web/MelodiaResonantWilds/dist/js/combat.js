@@ -4,7 +4,7 @@
 
 import * as THREE from 'three';
 import { ELEMENT_STYLE, MODIFIERS, RULES, elementMultiplier } from './design.js';
-import { clamp, angleDiff } from './util.js';
+import { clamp, angleDiff, haptic } from './util.js';
 
 const projGeo = new THREE.IcosahedronGeometry(0.28, 0);
 const tornadoGeo = new THREE.ConeGeometry(1.1, 2.8, 10, 1, true).translate(0, 1.4, 0).rotateX(Math.PI);
@@ -134,6 +134,7 @@ export class Combat {
     g.particles.burst(e.pos.x, e.pos.y + e.scale, e.pos.z, _col.set('#ffffff'), 24, { speed: 10, life: 0.7, kind: 3, size: 0.9 });
     g.world.pulse(e.pos.x, e.pos.z, 1.6, true);
     g.shake(0.5);
+    haptic.buzz([30, 40, 60]);
     g.audio.kill(true);
   }
 

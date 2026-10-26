@@ -14,7 +14,7 @@ import { Progress, saveProfile, loadProfile, wipeProfile } from './progress.js';
 import { Activities } from './activities.js';
 import { UI } from './ui.js';
 import { BIOMES, HUB, DIFFICULTY, RARITIES, SKILL_BY_ID, SHARD_BY_ELEMENT, ELEMENT_STYLE, MODIFIERS, RULES, xpToNext } from './design.js';
-import { clamp, lerp } from './util.js';
+import { clamp, lerp, haptic } from './util.js';
 
 const _c = new THREE.Color();
 const isTouch = matchMedia('(pointer: coarse)').matches;
@@ -82,6 +82,7 @@ export class Game {
     this.camTarget = this.player.pos.clone();
     this.applyQuality();
     this.resize();
+    haptic.on = this.profile.settings.haptics !== false;
     window.addEventListener('resize', () => this.resize());
     document.addEventListener('visibilitychange', () => {
       if (document.hidden) { this.save(); this.audio.suspend(); } else if (this.started) this.audio.resume();
@@ -271,6 +272,7 @@ export class Game {
     R.encore = Math.min(R.encoreMax, R.encore + RULES.ultimate.gain_perfect);
     R.crescendo = Math.min(RULES.crescendo.max, R.crescendo + RULES.crescendo.gain.perfect);
     if (src && !src.dead) src.slowUntil = this.time + this.audio.spb * 2;
+    haptic.buzz([8, 20, 14]);
     if (P.stats.arias.has('TempoShift')) for (let i = 0; i < 4; i++) this.cooldowns[i] -= 4 * this.audio.spb;
     this.world.pulse(P.pos.x, P.pos.z, 1.5, true);
     this.audio.grade('Perfect');
@@ -454,6 +456,7 @@ export class Game {
     }
     P.hp -= d;
     P.hurtT = 1;
+    haptic.buzz(d > P.stats.maxHp * 0.1 ? [40, 30, 40] : 18);
     this.overlay.text(P.pos.x, P.pos.y + 2.2, P.pos.z, '-' + d, '#ff6b81', 18);
     this.audio.hurt();
     this.shake(0.25);

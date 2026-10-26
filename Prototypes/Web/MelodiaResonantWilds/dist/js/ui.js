@@ -1,7 +1,7 @@
 // HUD, touch controls, keyboard, and menu panels.
 
 import { SLOTS, SLOT_BY_ID, RARITIES, SKILLS, SKILL_BY_ID, ELEMENT_STYLE, ARIA_BY_ID, BIOMES, BLESSINGS, DIFFICULTY, xpToNext, HONE_MAX, honeChance, TUTORIAL, WORLD_RADIUS, RULES } from './design.js';
-import { fmt, clamp } from './util.js';
+import { fmt, clamp, haptic } from './util.js';
 
 const $ = (id) => document.getElementById(id);
 const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
@@ -650,7 +650,15 @@ export class UI {
     const max = pr.riftTier + 1;
     if (!this.riftTier || this.riftTier > max) this.riftTier = max;
     const T = this.riftTier;
-    body.innerHTML = `<div class="card" style="text-align:center"><h3>Resonance Rift</h3>
+    const date = new Date().toLocaleDateString('en-CA');
+    const d = pr.daily && pr.daily.date === date ? pr.daily : null;
+    const mmss = (t) => `${Math.floor(t / 60)}:${String(t % 60).padStart(2, '0')}`;
+    const card = `<div class="card" style="text-align:center;margin-bottom:10px"><h3>Daily Rift · ${date}</h3>
+      <div class="muted">One seeded Tier 3 rift a day. Everyone gets the same enemies and Burden.</div>
+      ${d ? `<div class="stats" style="max-width:320px;margin:8px auto"><span>Your result</span><span>${d.cleared ? 'Cleared ' + mmss(d.time) : 'Not in time'}</span><span>Slimes</span><span>${d.kills}</span></div>` : ''}
+      <button class="primary" id="dailyrift">${d ? 'Play again (best time kept)' : "Play today's Daily Rift ◎"}</button>
+      ${d ? '<button class="btn" id="copyscore" style="margin-top:6px">Copy score card</button>' : ''}</div>`;
+    body.innerHTML = card + `<div class="card" style="text-align:center"><h3>Resonance Rift</h3>
       <div class="muted">Silence waves of dissonance to fill the bar, then defeat the Rift Guardian. Clear within 4:00 to unlock the next tier. Tier 3+ adds a Burden from DT_Burdens for extra rarity.</div>
       <div class="tiers"><button id="tminus">−</button><span>Tier ${T}</span><button id="tplus">+</button></div>
       <div class="stats" style="max-width:320px;margin:0 auto"><span>Enemy level</span><span>${pr.level + Math.max(0, T - 1) * 2}</span><span>Tempo</span><span>${124 + Math.min(24, T * 2)} BPM</span>
@@ -659,6 +667,14 @@ export class UI {
     $('tminus').addEventListener('click', () => { this.riftTier = Math.max(1, T - 1); this.render(); });
     $('tplus').addEventListener('click', () => { this.riftTier = Math.min(max, T + 1); this.render(); });
     $('enterrift').addEventListener('click', () => { const p = this.riftPortal; this.close(); g.activities.enterRift(T, p); });
+    $('dailyrift').addEventListener('click', () => {
+      const seed = [...date].reduce((h, c) => Math.imul(h ^ c.charCodeAt(0), 16777619) >>> 0, 2166136261);
+      this.close(); g.activities.enterRift(3, null, { date, seed: seed || 1 });
+    });
+    if (d && $('copyscore')) $('copyscore').addEventListener('click', async () => {
+      const text = `Melodia · Resonant Wilds Daily ${date}: ${d.cleared ? 'Tier ' + d.tier + ' cleared in ' + mmss(d.time) : 'not cleared in time'} · ${d.kills} slimes`;
+      try { await navigator.clipboard.writeText(text); this.toast('Score card copied', 'gold'); } catch { this.toast(text, 'soft'); }
+    });
   }
 
   render_settings(body) {
@@ -672,6 +688,7 @@ export class UI {
       <div class="row"><span>Audio latency offset<br><small class="muted">${st.offsetMs} ms · Bluetooth headphones usually need +150–250</small></span>
         <div class="seg"><button data-o="-10">−10</button><button data-o="10">+10</button><button id="calib" class="on">Calibrate</button></div></div>
       <div class="row"><span>Graphics</span>${seg('quality', [['auto', 'Auto'], ['low', 'Low'], ['high', 'High']])}</div>
+      <div class="row"><span>Vibration</span>${seg('haptics', [[true, 'On'], [false, 'Off']])}</div>
       <div class="row"><span>Screen shake</span>${seg('shake', [[true, 'On'], [false, 'Off']])}</div>
       <div class="row"><span>Controls</span><span class="muted">Touch: left thumb moves, right cluster fights. Keys: WASD · Space/J attack (hold = auto) · Q E R F or 1–4 skills · Shift dodge · T Encore · X interact · I K M B menus.</span></div>
       <div class="row"><span>Save</span><button class="btn" id="wipe">Reset progress</button></div>
@@ -684,6 +701,7 @@ export class UI {
       if (v === 'true') v = true; else if (v === 'false') v = false;
       st[key] = v;
       if (key === 'quality') g.applyQuality();
+      if (key === 'haptics') haptic.on = v;
       this.render();
     })));
     body.querySelectorAll('[data-o]').forEach((b) => b.addEventListener('click', () => { st.offsetMs += +b.dataset.o; this.render(); }));
