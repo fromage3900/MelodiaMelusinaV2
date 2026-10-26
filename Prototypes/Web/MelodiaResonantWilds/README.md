@@ -81,6 +81,58 @@ python Prototypes/Web/MelodiaResonantWilds/tools/export_ue_data.py
 
 ## 🗂 Files
 
-`js/audio.js` beat clock and procedural score · `js/rhythm.js` judging, combo, Crescendo, Encore · `js/world.js` streamed terrain, biomes, props, landmarks, water, rift arena · `js/entities.js` Melusina, sheep, slimes, boss phrases · `js/combat.js` damage, skills, projectiles · `js/loot.js` items, forge · `js/activities.js` camps, shrines, bosses, events, rifts · `js/progress.js` save, XP, bounties, exploration · `js/ui.js` HUD, touch controls, panels · `js/game.js` loop.
+`js/audio.js` beat clock and procedural score · `js/rhythm.js` judging, combo, Crescendo, Encore · `js/world.js` streamed terrain, biomes, props, landmarks, water, rift arena · `js/chibi.js` Melusina (code-built chibi, posed from game state) · `js/entities.js` sheep, slimes, boss phrases · `js/combat.js` damage, skills, projectiles · `js/loot.js` items, forge · `js/activities.js` camps, shrines, bosses, events, rifts · `js/progress.js` save, XP, bounties, exploration · `js/ui.js` HUD, touch controls, panels · `js/game.js` loop.
 
 Terrain follows the idea in [OpenWorldJS](https://github.com/obecerra3/OpenWorldJS): tiles centred on the player and streamed from a noise heightmap with biomes. Here the tiles are small CPU chunks with analytic normals, so they are cheap on phones. Beat ripples and the Crescendo glow are injected into the terrain and water shaders.
+
+## 🧁 Melusina (code-built chibi)
+
+`js/chibi.js` builds her from primitives. The look follows the Melusina chibi sprite sheet and pixel art:
+
+- lavender wavy hair with side and back locks, a fringe and purple hair clips
+- a pink flowered beret, a lavender heart vest with a pink neck bow
+- pink puff sleeves and long pink gloves
+- a cream-and-pink skirt with a navy ruffle and a white treble-clef emblem
+- dark-brown skin, big purple eyes, pink lace-up boots with white socks
+
+She is posed every frame from game state: run cycle, beat-locked bounce, attack swing, V-arm cast, dash lean, hurt flinch and blinking. Wardrobe gear recolours her skirt, and the circlet, gold boot cuffs and lyre/baton toggle through the same fields as before.
+
+## 📦 Playable folder for a website section
+
+`dist/` is the whole game in one static folder. Rebuild it after any change:
+
+```powershell
+python Prototypes/Web/MelodiaResonantWilds/tools/build_dist.py
+```
+
+Copy `dist/` into your site as `/resonant-wilds/` and embed it:
+
+```html
+<iframe src="/resonant-wilds/index.html" width="100%" height="520" style="border:0" allow="autoplay" title="Melodia — Resonant Wilds"></iframe>
+```
+
+## 🎨 Next steps in ChatGPT (image prompts)
+
+Use these to keep iterating on the design before the next model pass.
+
+**1. Front reference, matched to the sprite sheet**
+```
+Full-body chibi reference of "Melusina" for a mobile rhythm game, 2.5 heads tall, soft toon shading, matte collectible-toy finish. Long wavy lavender hair with pale iridescent highlights, side and back locks reaching the waist, a fringe with two purple hair clips. A pink flowered beret tilted to one side. Dark warm-brown skin, big purple eyes with white highlights, small smile, rosy cheeks. Lavender vest with a small pink heart, pink bow at the neck, pink puff sleeves, long pink gloves. Pink skirt over a cream petticoat, navy ruffle at the hem, white treble-clef emblem on the front. Pink lace-up boots with white socks. Symmetrical A-pose, plain white background, no shadows, no text.
+```
+
+**2. Pose sheet matching the code animations**
+```
+Chibi sprite sheet of the same character, six poses in a 3x2 grid on a plain background, same scale and baseline: idle, run cycle, attack with a gold lyre-bow raised to one side, cast with both arms raised out in a V, dodge leaning forward, hurt flinch with a small sweat drop. Keep the outfit, colours and hair identical in every frame.
+```
+
+**3. Beret and flower icon for the HUD**
+```
+Round game icon, 256 px: a pink flowered beret with a small gold centre flower, soft toon shading, dark plum outline, transparent background.
+```
+
+**4. Rhythm telegraph art**
+```
+Set of three flat ground-warning rings for a rhythm action game, pastel pink, lavender and gold, thin outline, transparent background, readable on dark and light terrain. One solid ring, one dashed ring, one cone.
+```
+
+Send the results back and I'll wire them in.

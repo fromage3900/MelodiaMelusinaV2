@@ -196,6 +196,7 @@ export class Combat {
     const aimX = t ? t.pos.x : P.pos.x + fwdX * 6, aimZ = t ? t.pos.z : P.pos.z + fwdZ * 6;
     g.audio.skill(skill);
     P.swing(3);
+    P.castPose();
     let hits = 0;
     switch (skill.kind) {
       case 'strike': {

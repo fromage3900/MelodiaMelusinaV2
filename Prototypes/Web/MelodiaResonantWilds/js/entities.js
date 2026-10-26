@@ -34,52 +34,6 @@ export function blob(r) {
   return m;
 }
 
-// ------------------------------------------------------------------ Melusina
-export function buildMelusina() {
-  const g = new THREE.Group();
-  const body = new THREE.Group();
-  g.add(body);
-  const gownMat = toon('#bda8df');
-  const gown = withOutline(new THREE.Mesh(new THREE.ConeGeometry(0.62, 1.25, 14), gownMat));
-  gown.position.y = 0.62;
-  const bodice = new THREE.Mesh(new THREE.CylinderGeometry(0.19, 0.3, 0.5, 10), toon('#f6f0f8'));
-  bodice.position.y = 1.38;
-  const head = withOutline(new THREE.Mesh(new THREE.SphereGeometry(0.26, 16, 12), toon('#ffe3d6')));
-  head.position.y = 1.86;
-  const hairMat = toon('#82d2db');
-  const hair = new THREE.Mesh(new THREE.SphereGeometry(0.3, 14, 10, 0, Math.PI * 2, 0, Math.PI * 0.62), hairMat);
-  hair.position.set(0, 1.9, -0.03);
-  const tail = new THREE.Mesh(new THREE.ConeGeometry(0.2, 1.0, 8), hairMat);
-  tail.position.set(0, 1.5, -0.3);
-  tail.rotation.x = 0.45;
-  const eyeMat = new THREE.MeshBasicMaterial({ color: '#2a1f3a' });
-  for (const s of [-1, 1]) {
-    const e = new THREE.Mesh(new THREE.SphereGeometry(0.04, 6, 6), eyeMat);
-    e.position.set(0.09 * s, 1.88, 0.23);
-    body.add(e);
-  }
-  const crown = new THREE.Mesh(new THREE.TorusGeometry(0.2, 0.045, 6, 14), toon('#ffd978', { emissive: '#d9bc72', emissiveIntensity: 0.3 }));
-  crown.position.y = 2.12; crown.rotation.x = Math.PI / 2; crown.visible = false;
-  const shoes = new THREE.Mesh(new THREE.BoxGeometry(0.5, 0.1, 0.3), toon('#f3b6cf'));
-  shoes.position.set(0, 0.05, 0.08);
-  shoes.visible = false;
-  body.add(gown, bodice, head, hair, tail, crown, shoes);
-  // Floating instrument by her right hand.
-  const inst = new THREE.Group();
-  inst.position.set(0.62, 1.2, 0.15);
-  const instMat = toon('#ffe7a8', { emissive: '#ffcf6a', emissiveIntensity: 0.35 });
-  const lyre = new THREE.Mesh(new THREE.TorusGeometry(0.22, 0.04, 6, 14, Math.PI * 1.3), instMat);
-  lyre.rotation.z = -Math.PI * 0.15;
-  const baton = new THREE.Mesh(new THREE.CylinderGeometry(0.025, 0.04, 0.8, 6), instMat);
-  baton.rotation.x = Math.PI / 2.3;
-  baton.visible = false;
-  inst.add(lyre, baton);
-  body.add(inst);
-  g.scale.setScalar(1.25);
-  const shadow = blob(0.85);
-  return { group: g, body, gownMat, hairMat, crown, shoes, inst, instMat, lyre, baton, shadow };
-}
-
 // ------------------------------------------------------------------ Choral Sheep
 export function buildSheep() {
   const g = new THREE.Group();
