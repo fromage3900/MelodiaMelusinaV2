@@ -32,9 +32,15 @@ An entry may carry separate **design status** and **implementation status**. New
 | Faraway Mother (P1) | Lace Wings; Méduses du Silence; Seam Eels; Bobbin Choir; Voilettes | RESEARCH CANDIDATES / selectively deferred | Not audited | [Regional ecology](Regions/FARAWAY_MOTHER.md) |
 | Poitou / Melusina's Morning (P0) | Doily Moth | USER-REPORTED EXISTING; preserve | Local completion reported, no Git-verified output found in this pass | [Regional roster](Regions/POITOU.md) |
 | Poitou / Melusina's Morning (P0) | Ganipote, Feux Follets, Frêne-Têtard, Beliche, eel, marsh bird | RESEARCH CANDIDATES | No new implementations authorized | [Regional roster](Regions/POITOU.md) |
+| HoudiniForge — architectural Carillon | BellSpirit, ChandelierWraith, BellGolem, InvertedTower; fifth Hydra concept | SOURCE VERIFIED .uasset names; regional location NOT LOCKED | Historic Ocean Cathedral/Aeolian staging; live behavior unproven | [Recovery dossier](Creatures/CARILLON_FAMILY_RECOVERY.md) |
+| HoudiniForge — LittleGuys / Gaudy | ChimeSnail, PearlJellybell, JellybellQueen, MusicBoxMimic, Dingle | OWNER-MADE EXISTING; tracked UE packages; Faraway/Poitou reuse candidates | Nine animation families, incomplete integration verification | [Recovery dossier](Creatures/CARILLON_FAMILY_RECOVERY.md) |
 | Existing cross-project motif creature | Choral Sheep | Established project creature | [Integration runbook](../CHORAL_SHEEP_INTEGRATION_RUNBOOK.md); **does not certify this session's PIE** | Future dedicated entry only if useful |
 
 These are **index entries**, not a quota, spawn list, release promise, or evidence that all region designs have been committed.
+
+## Existing HoudiniForge recovery (2026-10-26)
+
+The original Carillon/architectural line and smaller Gaudy/LittleGuys designs were recovered in repo documentation and tracked UE paths. See [source/variant dossier](Creatures/CARILLON_FAMILY_RECOVERY.md) and [tomorrow's preservation checklist](CARILLON_SOURCE_RECOVERY_2026-10-26.md). These are **existing assets**, not permission to add enemies or repurpose P0 chapters; historical Ocean Cathedral/Aeolian context is preserved.
 
 ## Canonical editorial entry contract
 

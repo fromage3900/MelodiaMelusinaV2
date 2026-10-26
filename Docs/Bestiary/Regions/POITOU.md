@@ -22,6 +22,10 @@ The current [P0 golden walk](../../Plans/POITOU_P0_GOLDEN_WALK_2026-10-21.md) is
 
 **Folklore provenance discipline:** local legends, historical creatures, actual fauna, and entirely invented animals must be kept distinct. A generated image or model pitch is not a regional historical source.
 
+## HoudiniForge reuse option (not a P0 requirement)
+
+The existing [Carillon/LittleGuys recovery dossier](../Creatures/CARILLON_FAMILY_RECOVERY.md) identifies **MusicBoxMimic** as a reasonable optional Poitou interior candidate, and larger Carillon BellSpirit/ChandelierWraith/BellGolem/InvertedTower as **historical Ocean Cathedral/Aeolian assets**, not native Poitou folklore. Do not move cathedral-scale models into the authored 8–12-minute Poitou P0 golden walk by default. The original source/UE staging belongs to HoudiniForge and should be audited before reinterpretation.
+
 ## NPC boundary
 
 A marsh boatman / *pigouilleur* is a potential grounded **human NPC reference**, not part of this enemy roster and not an extra compulsory P0 NPC. The Golden Walk currently budgets one existing dialogue beat.

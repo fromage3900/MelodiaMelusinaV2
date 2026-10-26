@@ -23,6 +23,10 @@ The Mother is wounded; the smaller beings echo vulnerabilities in the fabric on 
 
 **Only Les Emmaillotés have explicit owner-approved species identity in this pass.** The presence of other candidates here is not approval for a six-enemy production backlog. The earlier proposed “two interactive + one ambient” allocation is a planning suggestion, not a canon roster decision.
 
+## Existing pink/lavender HoudiniForge candidates — owner identification (2026-10-26)
+
+The owner rediscovered ChimeSnail, PearlJellybell and JellybellQueen models from the HoudiniForge collection and is considering the pink/lavender forms for **Faraway Mother**. These already have tracked UE staging packages and animation-family folders; they are **existing asset reuse candidates**, not a newly commissioned bestiary family or confirmed Faraway inhabitants. Their original work context was Ocean Cathedral/Aeolian. Preserve Les Emmaillotés' priority and no-dolls/nonviolent identity. See [Carillon recovery dossier](../Creatures/CARILLON_FAMILY_RECOVERY.md). Pending: choose exactly which variant(s) fit, verify original source and UE behavior, and make any Faraway child material look without overwriting Gaudy masters.
+
 ## Musical/geographic connection
 
 The authored Faraway Mother's existing Chladni basis is `(3,5)`; nodal seam corridors are derived offline by its PCG/Hython field. Keep placement conditional on verified world-space mapping, traversability, and current asset availability. A signed `F=0` contour is *not* itself a safe walkable path.
