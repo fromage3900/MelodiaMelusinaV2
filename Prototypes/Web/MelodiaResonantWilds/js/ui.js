@@ -348,7 +348,7 @@ export class UI {
       const ev = g.activities.event;
       if (ev) {
         const [x, y] = toMap(clamp(ev.x, P.pos.x - range * 0.95, P.pos.x + range * 0.95), clamp(ev.z, P.pos.z - range * 0.95, P.pos.z + range * 0.95));
-        c.fillStyle = '#ffd978'; c.font = 'bold 26px sans-serif'; c.textAlign = 'center'; c.textBaseline = 'middle'; c.fillText('★', x, y);
+        c.fillStyle = '#ffd978'; c.font = 'bold 26px "Times New Roman", serif'; c.textAlign = 'center'; c.textBaseline = 'middle'; c.fillText('★', x, y);
       }
     }
     const ob = this.obj && this.obj.target;
@@ -373,7 +373,7 @@ export class UI {
   poiIcon(c, p, x, y, s) {
     const g = this.g, pr = g.profile;
     c.textAlign = 'center'; c.textBaseline = 'middle';
-    const glyph = (t, col, size) => { c.font = `bold ${size * s}px sans-serif`; c.lineWidth = 4; c.strokeStyle = 'rgba(23,18,37,.85)'; c.strokeText(t, x, y); c.fillStyle = col; c.fillText(t, x, y); };
+    const glyph = (t, col, size) => { c.font = `bold ${size * s}px "Times New Roman", serif`; c.lineWidth = 4; c.strokeStyle = 'rgba(23,18,37,.85)'; c.strokeText(t, x, y); c.fillStyle = col; c.fillText(t, x, y); };
     switch (p.type) {
       case 'camp': if (g.time - p.clearedAt > 150) { c.fillStyle = '#ff6b81'; c.beginPath(); c.arc(x, y, 5 * s, 0, Math.PI * 2); c.fill(); } break;
       case 'chest': if (g.time - p.openedAt > 600) glyph('▣', '#ffd978', 18); break;
@@ -588,7 +588,7 @@ export class UI {
     c.drawImage(fog, 0, 0, W, W);
     const ext = ov.extent;
     const to = (x, z) => [((x + ext) / (ext * 2)) * W, ((z + ext) / (ext * 2)) * W];
-    c.font = 'italic bold 20px Georgia, serif'; c.textAlign = 'center';
+    c.font = 'italic bold 20px "Times New Roman", serif'; c.textAlign = 'center';
     for (const b of BIOMES) {
       const [x, y] = to(b.cx * 1.05, b.cz * 1.05);
       c.lineWidth = 4; c.strokeStyle = 'rgba(23,18,37,.8)';

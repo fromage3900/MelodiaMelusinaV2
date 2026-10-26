@@ -16,7 +16,7 @@ function makeAtlas() {
   g.addColorStop(0, 'rgba(255,255,255,1)'); g.addColorStop(0.4, 'rgba(255,255,255,0.6)'); g.addColorStop(1, 'rgba(255,255,255,0)');
   c.fillStyle = g; c.fillRect(0, 0, h, h);
   c.fillStyle = '#fff'; c.textAlign = 'center'; c.textBaseline = 'middle';
-  c.font = `bold ${h * 0.8}px serif`;
+  c.font = `bold ${h * 0.8}px "Times New Roman", serif`;
   c.fillText('♪', h * 1.5, h * 0.55); // 1: note
   c.fillText('♫', h * 0.5, h * 1.55); // 2: beamed notes
   // 3: star
@@ -259,7 +259,7 @@ export class Overlay {
     for (const l of labels) {
       const p = this.project(l.x, l.y, l.z);
       if (!p) continue;
-      c.font = '600 12px system-ui, sans-serif';
+      c.font = "600 12px \'Times New Roman\', Times, serif";
       const w = c.measureText(l.text).width + 10;
       c.fillStyle = 'rgba(20,14,34,0.72)';
       c.fillRect(p.x - w / 2, p.y - 9, w, 18);
@@ -282,7 +282,7 @@ export class Overlay {
         c.fillRect(p.x - w / 2, p.y + h + 2, w * clamp(b.tough, 0, 1), 2);
       }
       if (b.name) {
-        c.font = '700 11px system-ui, sans-serif';
+        c.font = "700 11px \'Times New Roman\', Times, serif";
         c.lineWidth = 3; c.strokeStyle = 'rgba(15,10,25,0.9)';
         c.strokeText(b.name, p.x, p.y - 8);
         c.fillStyle = b.nameColor || '#ffd978';
@@ -299,7 +299,7 @@ export class Overlay {
       const k = t.t / t.life;
       const pop = k < 0.12 ? 1 + (0.12 - k) * 4 : 1;
       c.globalAlpha = k > 0.7 ? 1 - (k - 0.7) / 0.3 : 1;
-      c.font = `${t.bold ? 800 : 600} ${Math.round(t.size * pop)}px system-ui, sans-serif`;
+      c.font = `${t.bold ? 800 : 600} ${Math.round(t.size * pop)}px 'Times New Roman', Times, serif`;
       if (t.stroke) { c.lineWidth = 4; c.strokeStyle = 'rgba(20,12,34,0.85)'; c.strokeText(t.str, p.x + t.jitter, p.y); }
       c.fillStyle = t.color;
       c.fillText(t.str, p.x + t.jitter, p.y);

@@ -165,3 +165,8 @@ On the Daily Rift leaderboard, tap **Duel** next to a rival's clear. Their time 
 - **Feedback:** Perfect hits flash the screen and throw a burst of petals. Telegraphs breathe while they wait to land.
 
 Not yet done: water foam at the shoreline, and new title art (needs artwork).
+
+## 🔤 Typography and tokens
+
+- All UI text, including canvas labels, uses **Times New Roman** (with Times and serif fallbacks).
+- Base colours (surfaces, text, gold and rose accents) follow `melodia-design-system/tokens.json`, the Figma-synced token file from 2026-09-22. Check these against the live Figma file before a release.
