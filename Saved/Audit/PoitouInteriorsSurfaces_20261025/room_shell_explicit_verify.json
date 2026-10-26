@@ -1,0 +1,4248 @@
+{
+  "version": "22.0.368",
+  "license": "licenseCategoryType.Indie",
+  "source_hda": "C:\\EnvironmentPortfolio\\BS_GodFile\\Content\\HDA\\MelodiaRoomShell_1.0.hda",
+  "source_sha256": "96958ab67cf436d9c61ee2af8b000add0c0f84d079c877d4101fd4bb6f46261d",
+  "candidate_hda": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Staging\\PoitouInteriorsSurfaces_20261025\\MelodiaRoomShell_ContactFloor_1.0.hda",
+  "candidate_sha256": "078775c054951813981387e50511bd1479562d074e32102f5ff56bbd215fecbd",
+  "checks": {
+    "default_geometry_identical": true,
+    "unreal_material_emitted": true,
+    "unreal_material_matches_role": true,
+    "roles_mapped": true,
+    "dressing_surfaces_ok": true,
+    "promotion_preserves_rendered_geometry": true,
+    "promotion_default_delta_is_only_the_collision_slab": true,
+    "promotion_removes_no_parameter": true,
+    "legacy_fixture_identical": true,
+    "simple_floor_six_faces": true,
+    "explicit_render_group_matches_main_mesh": true,
+    "simple_floor_matches_rendered_slab": true,
+    "simple_floor_engine_up_axis": true,
+    "legacy_hazard_reproduced": true,
+    "explicit_two_real_clear_portals": true,
+    "stable_named_socket_frames": true,
+    "explicit_gate_pass": true,
+    "same_wall_seam_crossing_clear": true,
+    "invalid_apertures_rejected": true,
+    "invalid_hda_cook_rejected": true,
+    "canonical_hda_unchanged": true
+  },
+  "default_legacy": {
+    "points": 74540,
+    "prims": 20035,
+    "bbox": [
+      [
+        -0.27000001072883606,
+        -0.20000000298023224,
+        -9.270000457763672
+      ],
+      [
+        7.269999980926514,
+        3.5999999046325684,
+        0.27000001072883606
+      ]
+    ],
+    "vertex_attributes": [
+      "uv"
+    ],
+    "geometry_sha256": "782c305a4cecc3166d65cab73c26df6477a5345955353d6ddfe96f038a1510c8",
+    "sockets": {
+      "sockets": [
+        {
+          "id": "joint_S_0",
+          "wall": "S",
+          "s": 1.4,
+          "type": "half_lap"
+        },
+        {
+          "id": "joint_S_1",
+          "wall": "S",
+          "s": 2.8,
+          "type": "half_lap"
+        },
+        {
+          "id": "joint_S_2",
+          "wall": "S",
+          "s": 4.2,
+          "type": "half_lap"
+        },
+        {
+          "id": "joint_S_3",
+          "wall": "S",
+          "s": 5.6,
+          "type": "half_lap"
+        },
+        {
+          "id": "joint_N_0",
+          "wall": "N",
+          "s": 1.4,
+          "type": "half_lap"
+        },
+        {
+          "id": "joint_N_1",
+          "wall": "N",
+          "s": 2.8,
+          "type": "half_lap"
+        },
+        {
+          "id": "joint_N_2",
+          "wall": "N",
+          "s": 4.2,
+          "type": "half_lap"
+        },
+        {
+          "id": "joint_N_3",
+          "wall": "N",
+          "s": 5.6,
+          "type": "half_lap"
+        },
+        {
+          "id": "joint_W_0",
+          "wall": "W",
+          "s": 1.5,
+          "type": "half_lap"
+        },
+        {
+          "id": "joint_W_1",
+          "wall": "W",
+          "s": 3.0,
+          "type": "half_lap"
+        },
+        {
+          "id": "joint_W_2",
+          "wall": "W",
+          "s": 4.5,
+          "type": "half_lap"
+        },
+        {
+          "id": "joint_W_3",
+          "wall": "W",
+          "s": 6.0,
+          "type": "half_lap"
+        },
+        {
+          "id": "joint_W_4",
+          "wall": "W",
+          "s": 7.5,
+          "type": "half_lap"
+        },
+        {
+          "id": "joint_E_0",
+          "wall": "E",
+          "s": 1.5,
+          "type": "half_lap"
+        },
+        {
+          "id": "joint_E_1",
+          "wall": "E",
+          "s": 3.0,
+          "type": "half_lap"
+        },
+        {
+          "id": "joint_E_2",
+          "wall": "E",
+          "s": 4.5,
+          "type": "half_lap"
+        },
+        {
+          "id": "joint_E_3",
+          "wall": "E",
+          "s": 6.0,
+          "type": "half_lap"
+        },
+        {
+          "id": "joint_E_4",
+          "wall": "E",
+          "s": 7.5,
+          "type": "half_lap"
+        }
+      ],
+      "windows": [
+        {
+          "wall": "S",
+          "panel": 4,
+          "s0": 5.8,
+          "s1": 6.8,
+          "z0": 0.95,
+          "z1": 2.8499999999999996,
+          "rise": 0.76,
+          "family": "geometric"
+        },
+        {
+          "wall": "N",
+          "panel": 1,
+          "s0": 1.5999999999999996,
+          "s1": 2.5999999999999996,
+          "z0": 0.95,
+          "z1": 2.8499999999999996,
+          "rise": 0.76,
+          "family": "geometric"
+        },
+        {
+          "wall": "W",
+          "panel": 1,
+          "s0": 1.75,
+          "s1": 2.75,
+          "z0": 0.95,
+          "z1": 2.8499999999999996,
+          "rise": 0.76,
+          "family": "geometric"
+        },
+        {
+          "wall": "W",
+          "panel": 4,
+          "s0": 6.25,
+          "s1": 7.25,
+          "z0": 0.95,
+          "z1": 2.8499999999999996,
+          "rise": 0.76,
+          "family": "geometric"
+        },
+        {
+          "wall": "E",
+          "panel": 1,
+          "s0": 1.75,
+          "s1": 2.75,
+          "z0": 0.95,
+          "z1": 2.8499999999999996,
+          "rise": 0.76,
+          "family": "geometric"
+        },
+        {
+          "wall": "E",
+          "panel": 2,
+          "s0": 3.25,
+          "s1": 4.25,
+          "z0": 0.95,
+          "z1": 2.8499999999999996,
+          "rise": 0.76,
+          "family": "geometric"
+        }
+      ],
+      "door": {
+        "wall": "S",
+        "panel": 1,
+        "s0": 1.5999999999999996,
+        "s1": 2.5999999999999996,
+        "h": 2.15
+      },
+      "chladni": {
+        "mode": [
+          5,
+          6
+        ],
+        "hz": 1677.5
+      },
+      "streamers": [
+        {
+          "socket": 0,
+          "kind": "swag",
+          "variant": 7,
+          "yaw_deg": -1.15,
+          "length_m": 1.7
+        },
+        {
+          "socket": 1,
+          "kind": "swag",
+          "variant": 3,
+          "yaw_deg": -114.26,
+          "length_m": 1.65
+        },
+        {
+          "socket": 2,
+          "kind": "swag",
+          "variant": 0,
+          "yaw_deg": 95.28,
+          "length_m": 2.04
+        },
+        {
+          "socket": 3,
+          "kind": "swag",
+          "variant": 4,
+          "yaw_deg": 74.81,
+          "length_m": 2.7
+        },
+        {
+          "socket": 4,
+          "kind": "window",
+          "variant": 7,
+          "yaw_deg": 88.85,
+          "length_m": 1.7
+        },
+        {
+          "socket": 5,
+          "kind": "window",
+          "variant": 6,
+          "yaw_deg": 74.03,
+          "length_m": 1.63
+        }
+      ],
+      "room": {
+        "acoustics": {
+          "c": 343.0,
+          "axial_modes_hz": {
+            "x": [
+              24.5,
+              49.0,
+              73.5,
+              98.0,
+              122.5,
+              147.0
+            ],
+            "y": [
+              19.06,
+              38.11,
+              57.17,
+              76.22,
+              95.28,
+              114.33
+            ],
+            "z": [
+              50.44,
+              100.88,
+              151.32,
+              201.76,
+              252.21,
+              302.65
+            ]
+          },
+          "f_low_hz": 19.06,
+          "octave_shift": 3,
+          "room_note_hz": 152.44,
+          "room_note": "D#3",
+          "room_midi": 51,
+          "panels": {
+            "nx": 5,
+            "ny": 6
+          },
+          "antinodes": {
+            "x": [
+              0.0,
+              1.4,
+              2.8,
+              4.2,
+              5.6,
+              7.0
+            ],
+            "y": [
+              0.0,
+              1.5,
+              3.0,
+              4.5,
+              6.0,
+              7.5,
+              9.0
+            ]
+          },
+          "nodes": {
+            "x": [
+              0.7,
+              2.1,
+              3.5,
+              4.9,
+              6.3
+            ],
+            "y": [
+              0.75,
+              2.25,
+              3.75,
+              5.25,
+              6.75,
+              8.25
+            ]
+          },
+          "chladni_mode": [
+            5,
+            6
+          ],
+          "chladni_hz": 1677.5,
+          "note": "octave-shifted; real axial modes are infrasonic"
+        },
+        "light_puzzle": {
+          "window": 0,
+          "wall": "S",
+          "sun_elevation_deg": 23.512,
+          "sun_azimuth_room_deg": 301.218,
+          "sun_dir_to_sun_room": [
+            0.47527,
+            -0.784196,
+            0.398942
+          ],
+          "patch": [
+            [
+              4.6625,
+              1.80637
+            ],
+            [
+              5.6025,
+              1.80637
+            ],
+            [
+              4.28013,
+              3.98829
+            ],
+            [
+              4.16583,
+              4.16824
+            ],
+            [
+              4.04254,
+              4.34583
+            ],
+            [
+              3.91187,
+              4.51875
+            ],
+            [
+              3.77553,
+              4.68473
+            ],
+            [
+              3.6353,
+              4.84161
+            ],
+            [
+              3.49302,
+              4.98733
+            ],
+            [
+              3.35055,
+              5.11999
+            ],
+            [
+              3.20974,
+              5.23785
+            ],
+            [
+              3.07245,
+              5.33938
+            ],
+            [
+              2.94046,
+              5.42324
+            ],
+            [
+              2.91012,
+              5.33938
+            ],
+            [
+              2.89589,
+              5.23785
+            ],
+            [
+              2.89795,
+              5.11999
+            ],
+            [
+              2.91627,
+              4.98733
+            ],
+            [
+              2.95062,
+              4.84161
+            ],
+            [
+              3.00055,
+              4.68473
+            ],
+            [
+              3.06541,
+              4.51875
+            ],
+            [
+              3.14434,
+              4.34583
+            ],
+            [
+              3.23631,
+              4.16824
+            ],
+            [
+              3.34013,
+              3.98829
+            ]
+          ],
+          "center_error_m": 0.0,
+          "approx_equinox_solar_hour": 8.49,
+          "note": "room frame, azimuth CCW from +x. UE sun: travel dir = -S with y mirrored, then add the room actor yaw.",
+          "directional_light_ue": {
+            "pitch": -23.512,
+            "yaw": -121.218,
+            "roll": 0.0
+          },
+          "medallion_ue_cm": [
+            350.0,
+            -450.0,
+            0.0
+          ]
+        },
+        "anchor_ue_cm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "room_yaw_ue": -0.0
+      }
+    },
+    "gate": {
+      "solid_volume_positive": true,
+      "bounds_ok": true,
+      "joint_max_error_mm": 0.0,
+      "joints": 18,
+      "joints_fit": true,
+      "windows_in_panels": true,
+      "door_clear": true,
+      "panes_fit": true,
+      "floor_inlay_up": true,
+      "streamers_placed": 6,
+      "streamers_wanted": 6,
+      "streamers_ok": true,
+      "keys_on_antinodes": true,
+      "windows_on_nodes": true,
+      "room_note_audible": true,
+      "pilasters_match_joints": true,
+      "chladni_from_room": true,
+      "dawn_puzzle_ok": true,
+      "all_pass": true,
+      "prims": 20035
+    },
+    "floor_collision": null,
+    "rendered_group_prims": null,
+    "prim_attributes": [
+      "material_role",
+      "shop_materialpath"
+    ],
+    "role_prim_counts": {
+      "floor_stone": 6,
+      "wall_plaster": 1614,
+      "stone": 288,
+      "trim_gold": 5133,
+      "crystal_glass": 432,
+      "pearl_shell": 10816,
+      "ribbon_silk": 1746
+    },
+    "raw_points": 74540,
+    "raw_prims": 20035,
+    "global_attributes": [
+      "sockets_json",
+      "gate_json"
+    ],
+    "prim_groups": [],
+    "unmapped_roles": [],
+    "material_mismatch_count": 0,
+    "errors": [],
+    "warnings": []
+  },
+  "default_candidate": {
+    "points": 74540,
+    "prims": 20035,
+    "bbox": [
+      [
+        -0.27000001072883606,
+        -0.20000000298023224,
+        -9.270000457763672
+      ],
+      [
+        7.269999980926514,
+        3.5999999046325684,
+        0.27000001072883606
+      ]
+    ],
+    "vertex_attributes": [
+      "uv"
+    ],
+    "geometry_sha256": "782c305a4cecc3166d65cab73c26df6477a5345955353d6ddfe96f038a1510c8",
+    "sockets": {
+      "sockets": [
+        {
+          "id": "joint_S_0",
+          "wall": "S",
+          "s": 1.4,
+          "type": "half_lap"
+        },
+        {
+          "id": "joint_S_1",
+          "wall": "S",
+          "s": 2.8,
+          "type": "half_lap"
+        },
+        {
+          "id": "joint_S_2",
+          "wall": "S",
+          "s": 4.2,
+          "type": "half_lap"
+        },
+        {
+          "id": "joint_S_3",
+          "wall": "S",
+          "s": 5.6,
+          "type": "half_lap"
+        },
+        {
+          "id": "joint_N_0",
+          "wall": "N",
+          "s": 1.4,
+          "type": "half_lap"
+        },
+        {
+          "id": "joint_N_1",
+          "wall": "N",
+          "s": 2.8,
+          "type": "half_lap"
+        },
+        {
+          "id": "joint_N_2",
+          "wall": "N",
+          "s": 4.2,
+          "type": "half_lap"
+        },
+        {
+          "id": "joint_N_3",
+          "wall": "N",
+          "s": 5.6,
+          "type": "half_lap"
+        },
+        {
+          "id": "joint_W_0",
+          "wall": "W",
+          "s": 1.5,
+          "type": "half_lap"
+        },
+        {
+          "id": "joint_W_1",
+          "wall": "W",
+          "s": 3.0,
+          "type": "half_lap"
+        },
+        {
+          "id": "joint_W_2",
+          "wall": "W",
+          "s": 4.5,
+          "type": "half_lap"
+        },
+        {
+          "id": "joint_W_3",
+          "wall": "W",
+          "s": 6.0,
+          "type": "half_lap"
+        },
+        {
+          "id": "joint_W_4",
+          "wall": "W",
+          "s": 7.5,
+          "type": "half_lap"
+        },
+        {
+          "id": "joint_E_0",
+          "wall": "E",
+          "s": 1.5,
+          "type": "half_lap"
+        },
+        {
+          "id": "joint_E_1",
+          "wall": "E",
+          "s": 3.0,
+          "type": "half_lap"
+        },
+        {
+          "id": "joint_E_2",
+          "wall": "E",
+          "s": 4.5,
+          "type": "half_lap"
+        },
+        {
+          "id": "joint_E_3",
+          "wall": "E",
+          "s": 6.0,
+          "type": "half_lap"
+        },
+        {
+          "id": "joint_E_4",
+          "wall": "E",
+          "s": 7.5,
+          "type": "half_lap"
+        }
+      ],
+      "windows": [
+        {
+          "wall": "S",
+          "panel": 4,
+          "s0": 5.8,
+          "s1": 6.8,
+          "z0": 0.95,
+          "z1": 2.8499999999999996,
+          "rise": 0.76,
+          "family": "geometric"
+        },
+        {
+          "wall": "N",
+          "panel": 1,
+          "s0": 1.5999999999999996,
+          "s1": 2.5999999999999996,
+          "z0": 0.95,
+          "z1": 2.8499999999999996,
+          "rise": 0.76,
+          "family": "geometric"
+        },
+        {
+          "wall": "W",
+          "panel": 1,
+          "s0": 1.75,
+          "s1": 2.75,
+          "z0": 0.95,
+          "z1": 2.8499999999999996,
+          "rise": 0.76,
+          "family": "geometric"
+        },
+        {
+          "wall": "W",
+          "panel": 4,
+          "s0": 6.25,
+          "s1": 7.25,
+          "z0": 0.95,
+          "z1": 2.8499999999999996,
+          "rise": 0.76,
+          "family": "geometric"
+        },
+        {
+          "wall": "E",
+          "panel": 1,
+          "s0": 1.75,
+          "s1": 2.75,
+          "z0": 0.95,
+          "z1": 2.8499999999999996,
+          "rise": 0.76,
+          "family": "geometric"
+        },
+        {
+          "wall": "E",
+          "panel": 2,
+          "s0": 3.25,
+          "s1": 4.25,
+          "z0": 0.95,
+          "z1": 2.8499999999999996,
+          "rise": 0.76,
+          "family": "geometric"
+        }
+      ],
+      "door": {
+        "wall": "S",
+        "panel": 1,
+        "s0": 1.5999999999999996,
+        "s1": 2.5999999999999996,
+        "h": 2.15
+      },
+      "chladni": {
+        "mode": [
+          5,
+          6
+        ],
+        "hz": 1677.5
+      },
+      "streamers": [
+        {
+          "socket": 0,
+          "kind": "swag",
+          "variant": 7,
+          "yaw_deg": -1.15,
+          "length_m": 1.7
+        },
+        {
+          "socket": 1,
+          "kind": "swag",
+          "variant": 3,
+          "yaw_deg": -114.26,
+          "length_m": 1.65
+        },
+        {
+          "socket": 2,
+          "kind": "swag",
+          "variant": 0,
+          "yaw_deg": 95.28,
+          "length_m": 2.04
+        },
+        {
+          "socket": 3,
+          "kind": "swag",
+          "variant": 4,
+          "yaw_deg": 74.81,
+          "length_m": 2.7
+        },
+        {
+          "socket": 4,
+          "kind": "window",
+          "variant": 7,
+          "yaw_deg": 88.85,
+          "length_m": 1.7
+        },
+        {
+          "socket": 5,
+          "kind": "window",
+          "variant": 6,
+          "yaw_deg": 74.03,
+          "length_m": 1.63
+        }
+      ],
+      "room": {
+        "acoustics": {
+          "c": 343.0,
+          "axial_modes_hz": {
+            "x": [
+              24.5,
+              49.0,
+              73.5,
+              98.0,
+              122.5,
+              147.0
+            ],
+            "y": [
+              19.06,
+              38.11,
+              57.17,
+              76.22,
+              95.28,
+              114.33
+            ],
+            "z": [
+              50.44,
+              100.88,
+              151.32,
+              201.76,
+              252.21,
+              302.65
+            ]
+          },
+          "f_low_hz": 19.06,
+          "octave_shift": 3,
+          "room_note_hz": 152.44,
+          "room_note": "D#3",
+          "room_midi": 51,
+          "panels": {
+            "nx": 5,
+            "ny": 6
+          },
+          "antinodes": {
+            "x": [
+              0.0,
+              1.4,
+              2.8,
+              4.2,
+              5.6,
+              7.0
+            ],
+            "y": [
+              0.0,
+              1.5,
+              3.0,
+              4.5,
+              6.0,
+              7.5,
+              9.0
+            ]
+          },
+          "nodes": {
+            "x": [
+              0.7,
+              2.1,
+              3.5,
+              4.9,
+              6.3
+            ],
+            "y": [
+              0.75,
+              2.25,
+              3.75,
+              5.25,
+              6.75,
+              8.25
+            ]
+          },
+          "chladni_mode": [
+            5,
+            6
+          ],
+          "chladni_hz": 1677.5,
+          "note": "octave-shifted; real axial modes are infrasonic"
+        },
+        "light_puzzle": {
+          "window": 0,
+          "wall": "S",
+          "sun_elevation_deg": 23.512,
+          "sun_azimuth_room_deg": 301.218,
+          "sun_dir_to_sun_room": [
+            0.47527,
+            -0.784196,
+            0.398942
+          ],
+          "patch": [
+            [
+              4.6625,
+              1.80637
+            ],
+            [
+              5.6025,
+              1.80637
+            ],
+            [
+              4.28013,
+              3.98829
+            ],
+            [
+              4.16583,
+              4.16824
+            ],
+            [
+              4.04254,
+              4.34583
+            ],
+            [
+              3.91187,
+              4.51875
+            ],
+            [
+              3.77553,
+              4.68473
+            ],
+            [
+              3.6353,
+              4.84161
+            ],
+            [
+              3.49302,
+              4.98733
+            ],
+            [
+              3.35055,
+              5.11999
+            ],
+            [
+              3.20974,
+              5.23785
+            ],
+            [
+              3.07245,
+              5.33938
+            ],
+            [
+              2.94046,
+              5.42324
+            ],
+            [
+              2.91012,
+              5.33938
+            ],
+            [
+              2.89589,
+              5.23785
+            ],
+            [
+              2.89795,
+              5.11999
+            ],
+            [
+              2.91627,
+              4.98733
+            ],
+            [
+              2.95062,
+              4.84161
+            ],
+            [
+              3.00055,
+              4.68473
+            ],
+            [
+              3.06541,
+              4.51875
+            ],
+            [
+              3.14434,
+              4.34583
+            ],
+            [
+              3.23631,
+              4.16824
+            ],
+            [
+              3.34013,
+              3.98829
+            ]
+          ],
+          "center_error_m": 0.0,
+          "approx_equinox_solar_hour": 8.49,
+          "note": "room frame, azimuth CCW from +x. UE sun: travel dir = -S with y mirrored, then add the room actor yaw.",
+          "directional_light_ue": {
+            "pitch": -23.512,
+            "yaw": -121.218,
+            "roll": 0.0
+          },
+          "medallion_ue_cm": [
+            350.0,
+            -450.0,
+            0.0
+          ]
+        },
+        "anchor_ue_cm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "room_yaw_ue": -0.0
+      }
+    },
+    "gate": {
+      "solid_volume_positive": true,
+      "bounds_ok": true,
+      "joint_max_error_mm": 0.0,
+      "joints": 18,
+      "joints_fit": true,
+      "windows_in_panels": true,
+      "door_clear": true,
+      "panes_fit": true,
+      "floor_inlay_up": true,
+      "streamers_placed": 6,
+      "streamers_wanted": 6,
+      "streamers_ok": true,
+      "keys_on_antinodes": true,
+      "windows_on_nodes": true,
+      "room_note_audible": true,
+      "pilasters_match_joints": true,
+      "chladni_from_room": true,
+      "dawn_puzzle_ok": true,
+      "dressing_surfaces_ok": true,
+      "dressing_surface_areas": {
+        "surface_ceiling": 70.9104,
+        "surface_floor": 70.9104,
+        "surface_ledge": 7.9922,
+        "surface_sill": 4.8733,
+        "surface_wall": 236.1402
+      },
+      "roles_mapped": true,
+      "all_pass": true,
+      "prims": 20035
+    },
+    "floor_collision": {
+      "prims": 6,
+      "points": 24,
+      "bounds": [
+        [
+          -0.23999999463558197,
+          -0.20000000298023224,
+          -9.239999771118164
+        ],
+        [
+          7.239999771118164,
+          0.0,
+          0.23999999463558197
+        ]
+      ]
+    },
+    "rendered_group_prims": 20035,
+    "prim_attributes": [
+      "shop_materialpath",
+      "material_role",
+      "unreal_material"
+    ],
+    "role_prim_counts": {
+      "floor_stone": 6,
+      "wall_plaster": 1614,
+      "stone": 288,
+      "trim_gold": 5133,
+      "crystal_glass": 432,
+      "pearl_shell": 10816,
+      "ribbon_silk": 1746
+    },
+    "raw_points": 74564,
+    "raw_prims": 20041,
+    "global_attributes": [
+      "sockets_json",
+      "gate_json",
+      "surfaces_json"
+    ],
+    "prim_groups": [
+      "collision_geo_simple_box_main_geo",
+      "rendered_main_geo",
+      "surface_ceiling",
+      "surface_floor",
+      "surface_ledge",
+      "surface_sill",
+      "surface_wall"
+    ],
+    "unmapped_roles": [],
+    "material_mismatch_count": 0,
+    "errors": [],
+    "warnings": []
+  },
+  "promotion_delta": {
+    "type_name": {
+      "shipped": "melodia::room_shell",
+      "candidate": "melodia::room_shell_contact::1.0"
+    },
+    "parms_added": [
+      "material_map_json",
+      "openings_json",
+      "simple_floor_collision"
+    ],
+    "parms_removed": [],
+    "prim_attributes_added": [
+      "unreal_material"
+    ],
+    "global_attributes_added": [
+      "surfaces_json"
+    ],
+    "prim_groups_added": [
+      "collision_geo_simple_box_main_geo",
+      "rendered_main_geo",
+      "surface_ceiling",
+      "surface_floor",
+      "surface_ledge",
+      "surface_sill",
+      "surface_wall"
+    ],
+    "geometry_identical_at_defaults": true,
+    "points": {
+      "shipped": 74540,
+      "candidate": 74540
+    },
+    "prims": {
+      "shipped": 20035,
+      "candidate": 20035
+    },
+    "role_prim_counts": {
+      "shipped": {
+        "floor_stone": 6,
+        "wall_plaster": 1614,
+        "stone": 288,
+        "trim_gold": 5133,
+        "crystal_glass": 432,
+        "pearl_shell": 10816,
+        "ribbon_silk": 1746
+      },
+      "candidate": {
+        "floor_stone": 6,
+        "wall_plaster": 1614,
+        "stone": 288,
+        "trim_gold": 5133,
+        "crystal_glass": 432,
+        "pearl_shell": 10816,
+        "ribbon_silk": 1746
+      }
+    },
+    "raw": {
+      "shipped": {
+        "points": 74540,
+        "prims": 20035
+      },
+      "candidate": {
+        "points": 74564,
+        "prims": 20041
+      },
+      "delta": {
+        "points": 24,
+        "prims": 6
+      },
+      "collision_slab": {
+        "prims": 6,
+        "points": 24,
+        "bounds": [
+          [
+            -0.23999999463558197,
+            -0.20000000298023224,
+            -9.239999771118164
+          ],
+          [
+            7.239999771118164,
+            0.0,
+            0.23999999463558197
+          ]
+        ]
+      }
+    }
+  },
+  "legacy_fixture": {
+    "points": 40380,
+    "prims": 10143,
+    "bbox": [
+      [
+        -0.27000001072883606,
+        -0.27000001072883606,
+        -0.20000000298023224
+      ],
+      [
+        15.630000114440918,
+        11.789999961853027,
+        7.400000095367432
+      ]
+    ],
+    "vertex_attributes": [
+      "uv"
+    ],
+    "geometry_sha256": "742eaa9a7162fade1c9954133046814bc35e70a287c4b35ca69362f620504921",
+    "sockets": {
+      "sockets": [
+        {
+          "id": "joint_S_0",
+          "wall": "S",
+          "s": 3.84,
+          "type": "half_lap"
+        },
+        {
+          "id": "joint_S_1",
+          "wall": "S",
+          "s": 7.68,
+          "type": "half_lap"
+        },
+        {
+          "id": "joint_S_2",
+          "wall": "S",
+          "s": 11.52,
+          "type": "half_lap"
+        },
+        {
+          "id": "joint_N_0",
+          "wall": "N",
+          "s": 3.84,
+          "type": "half_lap"
+        },
+        {
+          "id": "joint_N_1",
+          "wall": "N",
+          "s": 7.68,
+          "type": "half_lap"
+        },
+        {
+          "id": "joint_N_2",
+          "wall": "N",
+          "s": 11.52,
+          "type": "half_lap"
+        },
+        {
+          "id": "joint_W_0",
+          "wall": "W",
+          "s": 3.84,
+          "type": "half_lap"
+        },
+        {
+          "id": "joint_W_1",
+          "wall": "W",
+          "s": 7.68,
+          "type": "half_lap"
+        },
+        {
+          "id": "joint_E_0",
+          "wall": "E",
+          "s": 3.84,
+          "type": "half_lap"
+        },
+        {
+          "id": "joint_E_1",
+          "wall": "E",
+          "s": 7.68,
+          "type": "half_lap"
+        }
+      ],
+      "windows": [
+        {
+          "wall": "S",
+          "panel": 1,
+          "s0": 5.26,
+          "s1": 6.26,
+          "z0": 0.95,
+          "z1": 2.8499999999999996,
+          "rise": 0.76,
+          "family": "geometric"
+        },
+        {
+          "wall": "S",
+          "panel": 3,
+          "s0": 12.94,
+          "s1": 13.94,
+          "z0": 0.95,
+          "z1": 2.8499999999999996,
+          "rise": 0.76,
+          "family": "geometric"
+        },
+        {
+          "wall": "N",
+          "panel": 0,
+          "s0": 1.42,
+          "s1": 2.42,
+          "z0": 0.95,
+          "z1": 2.8499999999999996,
+          "rise": 0.76,
+          "family": "geometric"
+        },
+        {
+          "wall": "N",
+          "panel": 3,
+          "s0": 12.94,
+          "s1": 13.94,
+          "z0": 0.95,
+          "z1": 2.8499999999999996,
+          "rise": 0.76,
+          "family": "geometric"
+        },
+        {
+          "wall": "W",
+          "panel": 2,
+          "s0": 9.100000000000001,
+          "s1": 10.100000000000001,
+          "z0": 0.95,
+          "z1": 2.8499999999999996,
+          "rise": 0.76,
+          "family": "geometric"
+        },
+        {
+          "wall": "E",
+          "panel": 0,
+          "s0": 1.42,
+          "s1": 2.42,
+          "z0": 0.95,
+          "z1": 2.8499999999999996,
+          "rise": 0.76,
+          "family": "geometric"
+        }
+      ],
+      "door": {
+        "wall": "W",
+        "panel": 1,
+        "s0": 4.859999999999999,
+        "s1": 6.66,
+        "h": 3.2
+      },
+      "chladni": {
+        "mode": [
+          3,
+          4
+        ],
+        "hz": 687.5
+      },
+      "streamers": [
+        {
+          "socket": 0,
+          "kind": "window",
+          "variant": 5,
+          "yaw_deg": -156.61,
+          "length_m": 1.23
+        },
+        {
+          "socket": 1,
+          "kind": "window",
+          "variant": 1,
+          "yaw_deg": -66.05,
+          "length_m": 1.76
+        },
+        {
+          "socket": 2,
+          "kind": "window",
+          "variant": 4,
+          "yaw_deg": 74.81,
+          "length_m": 2.7
+        },
+        {
+          "socket": 3,
+          "kind": "window",
+          "variant": 4,
+          "yaw_deg": -105.19,
+          "length_m": 2.7
+        },
+        {
+          "socket": 4,
+          "kind": "window",
+          "variant": 4,
+          "yaw_deg": 164.81,
+          "length_m": 2.7
+        },
+        {
+          "socket": 5,
+          "kind": "window",
+          "variant": 0,
+          "yaw_deg": -174.72,
+          "length_m": 2.04
+        }
+      ],
+      "room": {
+        "acoustics": {
+          "c": 343.0,
+          "axial_modes_hz": {
+            "x": [
+              11.17,
+              22.33,
+              33.5,
+              44.66,
+              55.83,
+              66.99
+            ],
+            "y": [
+              14.89,
+              29.77,
+              44.66,
+              59.55,
+              74.44,
+              89.32
+            ],
+            "z": [
+              23.82,
+              47.64,
+              71.46,
+              95.28,
+              119.1,
+              142.92
+            ]
+          },
+          "f_low_hz": 11.17,
+          "octave_shift": 4,
+          "room_note_hz": 178.65,
+          "room_note": "F3",
+          "room_midi": 53,
+          "panels": {
+            "nx": 4,
+            "ny": 3
+          },
+          "antinodes": {
+            "x": [
+              0.0,
+              3.84,
+              7.68,
+              11.52,
+              15.36
+            ],
+            "y": [
+              0.0,
+              3.84,
+              7.68,
+              11.52
+            ]
+          },
+          "nodes": {
+            "x": [
+              1.92,
+              5.76,
+              9.6,
+              13.44
+            ],
+            "y": [
+              1.92,
+              5.76,
+              9.6
+            ]
+          },
+          "chladni_mode": [
+            3,
+            4
+          ],
+          "chladni_hz": 687.5,
+          "note": "octave-shifted; real axial modes are infrasonic"
+        },
+        "light_puzzle": {
+          "window": 0,
+          "wall": "S",
+          "sun_elevation_deg": 20.805,
+          "sun_azimuth_room_deg": 251.917,
+          "sun_dir_to_sun_room": [
+            -0.290161,
+            -0.888619,
+            0.355194
+          ],
+          "patch": [
+            [
+              6.09057,
+              2.33175
+            ],
+            [
+              7.03057,
+              2.33175
+            ],
+            [
+              7.93734,
+              5.10873
+            ],
+            [
+              8.00688,
+              5.33775
+            ],
+            [
+              8.06503,
+              5.56378
+            ],
+            [
+              8.11102,
+              5.78386
+            ],
+            [
+              8.14426,
+              5.99511
+            ],
+            [
+              8.16431,
+              6.19478
+            ],
+            [
+              8.1709,
+              6.38024
+            ],
+            [
+              8.16396,
+              6.54908
+            ],
+            [
+              8.14357,
+              6.69909
+            ],
+            [
+              8.11,
+              6.8283
+            ],
+            [
+              8.06368,
+              6.93503
+            ],
+            [
+              7.94767,
+              6.8283
+            ],
+            [
+              7.82971,
+              6.69909
+            ],
+            [
+              7.71136,
+              6.54908
+            ],
+            [
+              7.59415,
+              6.38024
+            ],
+            [
+              7.47963,
+              6.19478
+            ],
+            [
+              7.36928,
+              5.99511
+            ],
+            [
+              7.26456,
+              5.78386
+            ],
+            [
+              7.16683,
+              5.56378
+            ],
+            [
+              7.07737,
+              5.33775
+            ],
+            [
+              6.99734,
+              5.10873
+            ]
+          ],
+          "center_error_m": 0.0,
+          "approx_equinox_solar_hour": 8.18,
+          "note": "room frame, azimuth CCW from +x. UE sun: travel dir = -S with y mirrored, then add the room actor yaw.",
+          "directional_light_ue": {
+            "pitch": -20.805,
+            "yaw": -71.917,
+            "roll": 0.0
+          },
+          "medallion_ue_cm": [
+            768.0,
+            -576.0,
+            0.0
+          ]
+        },
+        "anchor_ue_cm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "room_yaw_ue": -0.0
+      }
+    },
+    "gate": {
+      "solid_volume_positive": true,
+      "bounds_ok": true,
+      "joint_max_error_mm": 0.0,
+      "joints": 10,
+      "joints_fit": true,
+      "windows_in_panels": true,
+      "door_clear": true,
+      "panes_fit": true,
+      "floor_inlay_up": true,
+      "streamers_placed": 6,
+      "streamers_wanted": 6,
+      "streamers_ok": true,
+      "keys_on_antinodes": true,
+      "windows_on_nodes": true,
+      "room_note_audible": true,
+      "pilasters_match_joints": true,
+      "chladni_from_room": true,
+      "dawn_puzzle_ok": true,
+      "all_pass": true,
+      "prims": 10143
+    },
+    "floor_collision": null,
+    "rendered_group_prims": null,
+    "prim_attributes": [
+      "material_role",
+      "shop_materialpath"
+    ],
+    "role_prim_counts": {
+      "floor_stone": 6,
+      "wall_plaster": 1518,
+      "stone": 1176,
+      "trim_gold": 5007,
+      "crystal_glass": 432,
+      "ribbon_silk": 2004
+    },
+    "raw_points": 40380,
+    "raw_prims": 10143,
+    "global_attributes": [
+      "sockets_json",
+      "gate_json"
+    ],
+    "prim_groups": [],
+    "unmapped_roles": [],
+    "material_mismatch_count": 0,
+    "errors": [],
+    "warnings": []
+  },
+  "candidate_legacy_fixture": {
+    "points": 40380,
+    "prims": 10143,
+    "bbox": [
+      [
+        -0.27000001072883606,
+        -0.27000001072883606,
+        -0.20000000298023224
+      ],
+      [
+        15.630000114440918,
+        11.789999961853027,
+        7.400000095367432
+      ]
+    ],
+    "vertex_attributes": [
+      "uv"
+    ],
+    "geometry_sha256": "742eaa9a7162fade1c9954133046814bc35e70a287c4b35ca69362f620504921",
+    "sockets": {
+      "sockets": [
+        {
+          "id": "joint_S_0",
+          "wall": "S",
+          "s": 3.84,
+          "type": "half_lap"
+        },
+        {
+          "id": "joint_S_1",
+          "wall": "S",
+          "s": 7.68,
+          "type": "half_lap"
+        },
+        {
+          "id": "joint_S_2",
+          "wall": "S",
+          "s": 11.52,
+          "type": "half_lap"
+        },
+        {
+          "id": "joint_N_0",
+          "wall": "N",
+          "s": 3.84,
+          "type": "half_lap"
+        },
+        {
+          "id": "joint_N_1",
+          "wall": "N",
+          "s": 7.68,
+          "type": "half_lap"
+        },
+        {
+          "id": "joint_N_2",
+          "wall": "N",
+          "s": 11.52,
+          "type": "half_lap"
+        },
+        {
+          "id": "joint_W_0",
+          "wall": "W",
+          "s": 3.84,
+          "type": "half_lap"
+        },
+        {
+          "id": "joint_W_1",
+          "wall": "W",
+          "s": 7.68,
+          "type": "half_lap"
+        },
+        {
+          "id": "joint_E_0",
+          "wall": "E",
+          "s": 3.84,
+          "type": "half_lap"
+        },
+        {
+          "id": "joint_E_1",
+          "wall": "E",
+          "s": 7.68,
+          "type": "half_lap"
+        }
+      ],
+      "windows": [
+        {
+          "wall": "S",
+          "panel": 1,
+          "s0": 5.26,
+          "s1": 6.26,
+          "z0": 0.95,
+          "z1": 2.8499999999999996,
+          "rise": 0.76,
+          "family": "geometric"
+        },
+        {
+          "wall": "S",
+          "panel": 3,
+          "s0": 12.94,
+          "s1": 13.94,
+          "z0": 0.95,
+          "z1": 2.8499999999999996,
+          "rise": 0.76,
+          "family": "geometric"
+        },
+        {
+          "wall": "N",
+          "panel": 0,
+          "s0": 1.42,
+          "s1": 2.42,
+          "z0": 0.95,
+          "z1": 2.8499999999999996,
+          "rise": 0.76,
+          "family": "geometric"
+        },
+        {
+          "wall": "N",
+          "panel": 3,
+          "s0": 12.94,
+          "s1": 13.94,
+          "z0": 0.95,
+          "z1": 2.8499999999999996,
+          "rise": 0.76,
+          "family": "geometric"
+        },
+        {
+          "wall": "W",
+          "panel": 2,
+          "s0": 9.100000000000001,
+          "s1": 10.100000000000001,
+          "z0": 0.95,
+          "z1": 2.8499999999999996,
+          "rise": 0.76,
+          "family": "geometric"
+        },
+        {
+          "wall": "E",
+          "panel": 0,
+          "s0": 1.42,
+          "s1": 2.42,
+          "z0": 0.95,
+          "z1": 2.8499999999999996,
+          "rise": 0.76,
+          "family": "geometric"
+        }
+      ],
+      "door": {
+        "wall": "W",
+        "panel": 1,
+        "s0": 4.859999999999999,
+        "s1": 6.66,
+        "h": 3.2
+      },
+      "chladni": {
+        "mode": [
+          3,
+          4
+        ],
+        "hz": 687.5
+      },
+      "streamers": [
+        {
+          "socket": 0,
+          "kind": "window",
+          "variant": 5,
+          "yaw_deg": -156.61,
+          "length_m": 1.23
+        },
+        {
+          "socket": 1,
+          "kind": "window",
+          "variant": 1,
+          "yaw_deg": -66.05,
+          "length_m": 1.76
+        },
+        {
+          "socket": 2,
+          "kind": "window",
+          "variant": 4,
+          "yaw_deg": 74.81,
+          "length_m": 2.7
+        },
+        {
+          "socket": 3,
+          "kind": "window",
+          "variant": 4,
+          "yaw_deg": -105.19,
+          "length_m": 2.7
+        },
+        {
+          "socket": 4,
+          "kind": "window",
+          "variant": 4,
+          "yaw_deg": 164.81,
+          "length_m": 2.7
+        },
+        {
+          "socket": 5,
+          "kind": "window",
+          "variant": 0,
+          "yaw_deg": -174.72,
+          "length_m": 2.04
+        }
+      ],
+      "room": {
+        "acoustics": {
+          "c": 343.0,
+          "axial_modes_hz": {
+            "x": [
+              11.17,
+              22.33,
+              33.5,
+              44.66,
+              55.83,
+              66.99
+            ],
+            "y": [
+              14.89,
+              29.77,
+              44.66,
+              59.55,
+              74.44,
+              89.32
+            ],
+            "z": [
+              23.82,
+              47.64,
+              71.46,
+              95.28,
+              119.1,
+              142.92
+            ]
+          },
+          "f_low_hz": 11.17,
+          "octave_shift": 4,
+          "room_note_hz": 178.65,
+          "room_note": "F3",
+          "room_midi": 53,
+          "panels": {
+            "nx": 4,
+            "ny": 3
+          },
+          "antinodes": {
+            "x": [
+              0.0,
+              3.84,
+              7.68,
+              11.52,
+              15.36
+            ],
+            "y": [
+              0.0,
+              3.84,
+              7.68,
+              11.52
+            ]
+          },
+          "nodes": {
+            "x": [
+              1.92,
+              5.76,
+              9.6,
+              13.44
+            ],
+            "y": [
+              1.92,
+              5.76,
+              9.6
+            ]
+          },
+          "chladni_mode": [
+            3,
+            4
+          ],
+          "chladni_hz": 687.5,
+          "note": "octave-shifted; real axial modes are infrasonic"
+        },
+        "light_puzzle": {
+          "window": 0,
+          "wall": "S",
+          "sun_elevation_deg": 20.805,
+          "sun_azimuth_room_deg": 251.917,
+          "sun_dir_to_sun_room": [
+            -0.290161,
+            -0.888619,
+            0.355194
+          ],
+          "patch": [
+            [
+              6.09057,
+              2.33175
+            ],
+            [
+              7.03057,
+              2.33175
+            ],
+            [
+              7.93734,
+              5.10873
+            ],
+            [
+              8.00688,
+              5.33775
+            ],
+            [
+              8.06503,
+              5.56378
+            ],
+            [
+              8.11102,
+              5.78386
+            ],
+            [
+              8.14426,
+              5.99511
+            ],
+            [
+              8.16431,
+              6.19478
+            ],
+            [
+              8.1709,
+              6.38024
+            ],
+            [
+              8.16396,
+              6.54908
+            ],
+            [
+              8.14357,
+              6.69909
+            ],
+            [
+              8.11,
+              6.8283
+            ],
+            [
+              8.06368,
+              6.93503
+            ],
+            [
+              7.94767,
+              6.8283
+            ],
+            [
+              7.82971,
+              6.69909
+            ],
+            [
+              7.71136,
+              6.54908
+            ],
+            [
+              7.59415,
+              6.38024
+            ],
+            [
+              7.47963,
+              6.19478
+            ],
+            [
+              7.36928,
+              5.99511
+            ],
+            [
+              7.26456,
+              5.78386
+            ],
+            [
+              7.16683,
+              5.56378
+            ],
+            [
+              7.07737,
+              5.33775
+            ],
+            [
+              6.99734,
+              5.10873
+            ]
+          ],
+          "center_error_m": 0.0,
+          "approx_equinox_solar_hour": 8.18,
+          "note": "room frame, azimuth CCW from +x. UE sun: travel dir = -S with y mirrored, then add the room actor yaw.",
+          "directional_light_ue": {
+            "pitch": -20.805,
+            "yaw": -71.917,
+            "roll": 0.0
+          },
+          "medallion_ue_cm": [
+            768.0,
+            -576.0,
+            0.0
+          ]
+        },
+        "anchor_ue_cm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "room_yaw_ue": -0.0
+      }
+    },
+    "gate": {
+      "solid_volume_positive": true,
+      "bounds_ok": true,
+      "joint_max_error_mm": 0.0,
+      "joints": 10,
+      "joints_fit": true,
+      "windows_in_panels": true,
+      "door_clear": true,
+      "panes_fit": true,
+      "floor_inlay_up": true,
+      "streamers_placed": 6,
+      "streamers_wanted": 6,
+      "streamers_ok": true,
+      "keys_on_antinodes": true,
+      "windows_on_nodes": true,
+      "room_note_audible": true,
+      "pilasters_match_joints": true,
+      "chladni_from_room": true,
+      "dawn_puzzle_ok": true,
+      "dressing_surfaces_ok": true,
+      "dressing_surface_areas": {
+        "surface_ceiling": 190.08,
+        "surface_floor": 190.08,
+        "surface_ledge": 17.1322,
+        "surface_sill": 12.1105,
+        "surface_wall": 885.161
+      },
+      "roles_mapped": true,
+      "all_pass": true,
+      "prims": 10143
+    },
+    "floor_collision": {
+      "prims": 6,
+      "points": 24,
+      "bounds": [
+        [
+          -0.23999999463558197,
+          -0.23999999463558197,
+          -0.20000000298023224
+        ],
+        [
+          15.600000381469727,
+          11.760000228881836,
+          0.0
+        ]
+      ]
+    },
+    "rendered_group_prims": 10143,
+    "prim_attributes": [
+      "shop_materialpath",
+      "material_role",
+      "unreal_material"
+    ],
+    "role_prim_counts": {
+      "floor_stone": 6,
+      "wall_plaster": 1518,
+      "stone": 1176,
+      "trim_gold": 5007,
+      "crystal_glass": 432,
+      "ribbon_silk": 2004
+    },
+    "raw_points": 40404,
+    "raw_prims": 10149,
+    "global_attributes": [
+      "sockets_json",
+      "gate_json",
+      "surfaces_json"
+    ],
+    "prim_groups": [
+      "collision_geo_simple_box_main_geo",
+      "rendered_main_geo",
+      "surface_ceiling",
+      "surface_floor",
+      "surface_ledge",
+      "surface_sill",
+      "surface_wall"
+    ],
+    "unmapped_roles": [],
+    "material_mismatch_count": 0,
+    "errors": [],
+    "warnings": []
+  },
+  "engine_y_up_floor_collision": {
+    "prims": 6,
+    "points": 24,
+    "bounds": [
+      [
+        -0.23999999463558197,
+        -0.20000000298023224,
+        -11.760000228881836
+      ],
+      [
+        15.600000381469727,
+        0.0,
+        0.23999999463558197
+      ]
+    ]
+  },
+  "legacy_wide": {
+    "points": 41140,
+    "prims": 10333,
+    "bbox": [
+      [
+        -0.27000001072883606,
+        -0.27000001072883606,
+        -0.20000000298023224
+      ],
+      [
+        17.06999969482422,
+        11.789999961853027,
+        7.400000095367432
+      ]
+    ],
+    "vertex_attributes": [
+      "uv"
+    ],
+    "geometry_sha256": "d1df83ad3b6787b8b3f0d78605f29aee7f17c408e4ab64d1804e373329f04bdc",
+    "sockets": {
+      "sockets": [
+        {
+          "id": "joint_S_0",
+          "wall": "S",
+          "s": 3.36,
+          "type": "half_lap"
+        },
+        {
+          "id": "joint_S_1",
+          "wall": "S",
+          "s": 6.72,
+          "type": "half_lap"
+        },
+        {
+          "id": "joint_S_2",
+          "wall": "S",
+          "s": 10.08,
+          "type": "half_lap"
+        },
+        {
+          "id": "joint_S_3",
+          "wall": "S",
+          "s": 13.44,
+          "type": "half_lap"
+        },
+        {
+          "id": "joint_N_0",
+          "wall": "N",
+          "s": 3.36,
+          "type": "half_lap"
+        },
+        {
+          "id": "joint_N_1",
+          "wall": "N",
+          "s": 6.72,
+          "type": "half_lap"
+        },
+        {
+          "id": "joint_N_2",
+          "wall": "N",
+          "s": 10.08,
+          "type": "half_lap"
+        },
+        {
+          "id": "joint_N_3",
+          "wall": "N",
+          "s": 13.44,
+          "type": "half_lap"
+        },
+        {
+          "id": "joint_W_0",
+          "wall": "W",
+          "s": 3.84,
+          "type": "half_lap"
+        },
+        {
+          "id": "joint_W_1",
+          "wall": "W",
+          "s": 7.68,
+          "type": "half_lap"
+        },
+        {
+          "id": "joint_E_0",
+          "wall": "E",
+          "s": 3.84,
+          "type": "half_lap"
+        },
+        {
+          "id": "joint_E_1",
+          "wall": "E",
+          "s": 7.68,
+          "type": "half_lap"
+        }
+      ],
+      "windows": [
+        {
+          "wall": "S",
+          "panel": 3,
+          "s0": 11.260000000000002,
+          "s1": 12.260000000000002,
+          "z0": 0.95,
+          "z1": 2.8499999999999996,
+          "rise": 0.76,
+          "family": "geometric"
+        },
+        {
+          "wall": "S",
+          "panel": 4,
+          "s0": 14.620000000000001,
+          "s1": 15.620000000000001,
+          "z0": 0.95,
+          "z1": 2.8499999999999996,
+          "rise": 0.76,
+          "family": "geometric"
+        },
+        {
+          "wall": "N",
+          "panel": 0,
+          "s0": 1.1800000000000002,
+          "s1": 2.18,
+          "z0": 0.95,
+          "z1": 2.8499999999999996,
+          "rise": 0.76,
+          "family": "geometric"
+        },
+        {
+          "wall": "N",
+          "panel": 1,
+          "s0": 4.540000000000001,
+          "s1": 5.540000000000001,
+          "z0": 0.95,
+          "z1": 2.8499999999999996,
+          "rise": 0.76,
+          "family": "geometric"
+        },
+        {
+          "wall": "W",
+          "panel": 1,
+          "s0": 5.26,
+          "s1": 6.26,
+          "z0": 0.95,
+          "z1": 2.8499999999999996,
+          "rise": 0.76,
+          "family": "geometric"
+        },
+        {
+          "wall": "E",
+          "panel": 0,
+          "s0": 1.42,
+          "s1": 2.42,
+          "z0": 0.95,
+          "z1": 2.8499999999999996,
+          "rise": 0.76,
+          "family": "geometric"
+        }
+      ],
+      "door": {
+        "wall": "W",
+        "panel": 2,
+        "s0": 8.700000000000001,
+        "s1": 10.500000000000002,
+        "h": 3.2
+      },
+      "chladni": {
+        "mode": [
+          3,
+          5
+        ],
+        "hz": 935.0
+      },
+      "streamers": [
+        {
+          "socket": 0,
+          "kind": "window",
+          "variant": 5,
+          "yaw_deg": -156.61,
+          "length_m": 1.23
+        },
+        {
+          "socket": 1,
+          "kind": "window",
+          "variant": 1,
+          "yaw_deg": -66.05,
+          "length_m": 1.76
+        },
+        {
+          "socket": 2,
+          "kind": "window",
+          "variant": 4,
+          "yaw_deg": 74.81,
+          "length_m": 2.7
+        },
+        {
+          "socket": 3,
+          "kind": "window",
+          "variant": 4,
+          "yaw_deg": -105.19,
+          "length_m": 2.7
+        },
+        {
+          "socket": 4,
+          "kind": "window",
+          "variant": 4,
+          "yaw_deg": 164.81,
+          "length_m": 2.7
+        },
+        {
+          "socket": 5,
+          "kind": "window",
+          "variant": 0,
+          "yaw_deg": -174.72,
+          "length_m": 2.04
+        }
+      ],
+      "room": {
+        "acoustics": {
+          "c": 343.0,
+          "axial_modes_hz": {
+            "x": [
+              10.21,
+              20.42,
+              30.62,
+              40.83,
+              51.04,
+              61.25
+            ],
+            "y": [
+              14.89,
+              29.77,
+              44.66,
+              59.55,
+              74.44,
+              89.32
+            ],
+            "z": [
+              23.82,
+              47.64,
+              71.46,
+              95.28,
+              119.1,
+              142.92
+            ]
+          },
+          "f_low_hz": 10.21,
+          "octave_shift": 4,
+          "room_note_hz": 163.33,
+          "room_note": "E3",
+          "room_midi": 52,
+          "panels": {
+            "nx": 5,
+            "ny": 3
+          },
+          "antinodes": {
+            "x": [
+              0.0,
+              3.36,
+              6.72,
+              10.08,
+              13.44,
+              16.8
+            ],
+            "y": [
+              0.0,
+              3.84,
+              7.68,
+              11.52
+            ]
+          },
+          "nodes": {
+            "x": [
+              1.68,
+              5.04,
+              8.4,
+              11.76,
+              15.12
+            ],
+            "y": [
+              1.92,
+              5.76,
+              9.6
+            ]
+          },
+          "chladni_mode": [
+            3,
+            5
+          ],
+          "chladni_hz": 935.0,
+          "note": "octave-shifted; real axial modes are infrasonic"
+        },
+        "light_puzzle": {
+          "window": 0,
+          "wall": "S",
+          "sun_elevation_deg": 19.139,
+          "sun_azimuth_room_deg": 299.745,
+          "sun_dir_to_sun_room": [
+            0.468714,
+            -0.82025,
+            0.327866
+          ],
+          "patch": [
+            [
+              9.889,
+              2.33175
+            ],
+            [
+              10.829,
+              2.33175
+            ],
+            [
+              9.24215,
+              5.10873
+            ],
+            [
+              9.10604,
+              5.33775
+            ],
+            [
+              8.96122,
+              5.56378
+            ],
+            [
+              8.80959,
+              5.78386
+            ],
+            [
+              8.65314,
+              5.99511
+            ],
+            [
+              8.49389,
+              6.19478
+            ],
+            [
+              8.33395,
+              6.38024
+            ],
+            [
+              8.1754,
+              6.54908
+            ],
+            [
+              8.02031,
+              6.69909
+            ],
+            [
+              7.87071,
+              6.8283
+            ],
+            [
+              7.72855,
+              6.93503
+            ],
+            [
+              7.70838,
+              6.8283
+            ],
+            [
+              7.70645,
+              6.69909
+            ],
+            [
+              7.7228,
+              6.54908
+            ],
+            [
+              7.7572,
+              6.38024
+            ],
+            [
+              7.80922,
+              6.19478
+            ],
+            [
+              7.87816,
+              5.99511
+            ],
+            [
+              7.96313,
+              5.78386
+            ],
+            [
+              8.06302,
+              5.56378
+            ],
+            [
+              8.17653,
+              5.33775
+            ],
+            [
+              8.30215,
+              5.10873
+            ]
+          ],
+          "center_error_m": 0.0,
+          "approx_equinox_solar_hour": 7.99,
+          "note": "room frame, azimuth CCW from +x. UE sun: travel dir = -S with y mirrored, then add the room actor yaw.",
+          "directional_light_ue": {
+            "pitch": -19.139,
+            "yaw": -119.745,
+            "roll": 0.0
+          },
+          "medallion_ue_cm": [
+            840.0,
+            -576.0,
+            0.0
+          ]
+        },
+        "anchor_ue_cm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "room_yaw_ue": -0.0
+      }
+    },
+    "gate": {
+      "solid_volume_positive": true,
+      "bounds_ok": true,
+      "joint_max_error_mm": 0.0,
+      "joints": 12,
+      "joints_fit": true,
+      "windows_in_panels": true,
+      "door_clear": true,
+      "panes_fit": true,
+      "floor_inlay_up": true,
+      "streamers_placed": 6,
+      "streamers_wanted": 6,
+      "streamers_ok": true,
+      "keys_on_antinodes": true,
+      "windows_on_nodes": true,
+      "room_note_audible": true,
+      "pilasters_match_joints": true,
+      "chladni_from_room": true,
+      "dawn_puzzle_ok": true,
+      "all_pass": true,
+      "prims": 10333
+    },
+    "floor_collision": null,
+    "rendered_group_prims": null,
+    "prim_attributes": [
+      "material_role",
+      "shop_materialpath"
+    ],
+    "role_prim_counts": {
+      "floor_stone": 6,
+      "wall_plaster": 1542,
+      "stone": 1188,
+      "trim_gold": 5161,
+      "crystal_glass": 432,
+      "ribbon_silk": 2004
+    },
+    "raw_points": 41140,
+    "raw_prims": 10333,
+    "global_attributes": [
+      "sockets_json",
+      "gate_json"
+    ],
+    "prim_groups": [],
+    "unmapped_roles": [],
+    "material_mismatch_count": 0,
+    "errors": [],
+    "warnings": []
+  },
+  "legacy_hazard_move_m": 3.8400000000000016,
+  "explicit_variants": [
+    {
+      "points": 40356,
+      "prims": 10137,
+      "bbox": [
+        [
+          -0.27000001072883606,
+          -0.27000001072883606,
+          -0.20000000298023224
+        ],
+        [
+          15.630000114440918,
+          11.789999961853027,
+          7.400000095367432
+        ]
+      ],
+      "vertex_attributes": [
+        "uv"
+      ],
+      "geometry_sha256": "d829706e322eec67a8e832b629275b77131e551907922ec0d3a07870c99a54ef",
+      "sockets": {
+        "sockets": [
+          {
+            "id": "joint_S_0",
+            "wall": "S",
+            "s": 3.84,
+            "type": "half_lap"
+          },
+          {
+            "id": "joint_S_2",
+            "wall": "S",
+            "s": 11.52,
+            "type": "half_lap"
+          },
+          {
+            "id": "joint_N_0",
+            "wall": "N",
+            "s": 3.84,
+            "type": "half_lap"
+          },
+          {
+            "id": "joint_N_1",
+            "wall": "N",
+            "s": 7.68,
+            "type": "half_lap"
+          },
+          {
+            "id": "joint_N_2",
+            "wall": "N",
+            "s": 11.52,
+            "type": "half_lap"
+          },
+          {
+            "id": "joint_W_0",
+            "wall": "W",
+            "s": 3.84,
+            "type": "half_lap"
+          },
+          {
+            "id": "joint_W_1",
+            "wall": "W",
+            "s": 7.68,
+            "type": "half_lap"
+          },
+          {
+            "id": "joint_E_0",
+            "wall": "E",
+            "s": 3.84,
+            "type": "half_lap"
+          },
+          {
+            "id": "joint_E_1",
+            "wall": "E",
+            "s": 7.68,
+            "type": "half_lap"
+          }
+        ],
+        "windows": [
+          {
+            "wall": "S",
+            "panel": 1,
+            "s0": 5.26,
+            "s1": 6.26,
+            "z0": 0.95,
+            "z1": 2.8499999999999996,
+            "rise": 0.76,
+            "family": "geometric"
+          },
+          {
+            "wall": "S",
+            "panel": 3,
+            "s0": 12.94,
+            "s1": 13.94,
+            "z0": 0.95,
+            "z1": 2.8499999999999996,
+            "rise": 0.76,
+            "family": "geometric"
+          },
+          {
+            "wall": "N",
+            "panel": 0,
+            "s0": 1.42,
+            "s1": 2.42,
+            "z0": 0.95,
+            "z1": 2.8499999999999996,
+            "rise": 0.76,
+            "family": "geometric"
+          },
+          {
+            "wall": "N",
+            "panel": 3,
+            "s0": 12.94,
+            "s1": 13.94,
+            "z0": 0.95,
+            "z1": 2.8499999999999996,
+            "rise": 0.76,
+            "family": "geometric"
+          },
+          {
+            "wall": "W",
+            "panel": 2,
+            "s0": 9.100000000000001,
+            "s1": 10.100000000000001,
+            "z0": 0.95,
+            "z1": 2.8499999999999996,
+            "rise": 0.76,
+            "family": "geometric"
+          },
+          {
+            "wall": "E",
+            "panel": 1,
+            "s0": 5.26,
+            "s1": 6.26,
+            "z0": 0.95,
+            "z1": 2.8499999999999996,
+            "rise": 0.76,
+            "family": "geometric"
+          }
+        ],
+        "door": {
+          "id": "salon_entry",
+          "wall": "W",
+          "s": 5.76,
+          "s0": 4.859999999999999,
+          "s1": 6.66,
+          "h": 3.2,
+          "width": 1.8,
+          "height": 3.2,
+          "panel": null
+        },
+        "chladni": {
+          "mode": [
+            3,
+            4
+          ],
+          "hz": 687.5
+        },
+        "streamers": [
+          {
+            "socket": 0,
+            "kind": "window",
+            "variant": 5,
+            "yaw_deg": 113.39,
+            "length_m": 1.23
+          },
+          {
+            "socket": 1,
+            "kind": "window",
+            "variant": 1,
+            "yaw_deg": -66.05,
+            "length_m": 1.76
+          },
+          {
+            "socket": 2,
+            "kind": "window",
+            "variant": 4,
+            "yaw_deg": 74.81,
+            "length_m": 2.7
+          },
+          {
+            "socket": 3,
+            "kind": "window",
+            "variant": 4,
+            "yaw_deg": -105.19,
+            "length_m": 2.7
+          },
+          {
+            "socket": 4,
+            "kind": "window",
+            "variant": 4,
+            "yaw_deg": -15.19,
+            "length_m": 2.7
+          },
+          {
+            "socket": 5,
+            "kind": "window",
+            "variant": 0,
+            "yaw_deg": 5.28,
+            "length_m": 2.04
+          }
+        ],
+        "room": {
+          "acoustics": {
+            "c": 343.0,
+            "axial_modes_hz": {
+              "x": [
+                11.17,
+                22.33,
+                33.5,
+                44.66,
+                55.83,
+                66.99
+              ],
+              "y": [
+                14.89,
+                29.77,
+                44.66,
+                59.55,
+                74.44,
+                89.32
+              ],
+              "z": [
+                23.82,
+                47.64,
+                71.46,
+                95.28,
+                119.1,
+                142.92
+              ]
+            },
+            "f_low_hz": 11.17,
+            "octave_shift": 4,
+            "room_note_hz": 178.65,
+            "room_note": "F3",
+            "room_midi": 53,
+            "panels": {
+              "nx": 4,
+              "ny": 3
+            },
+            "antinodes": {
+              "x": [
+                0.0,
+                3.84,
+                7.68,
+                11.52,
+                15.36
+              ],
+              "y": [
+                0.0,
+                3.84,
+                7.68,
+                11.52
+              ]
+            },
+            "nodes": {
+              "x": [
+                1.92,
+                5.76,
+                9.6,
+                13.44
+              ],
+              "y": [
+                1.92,
+                5.76,
+                9.6
+              ]
+            },
+            "chladni_mode": [
+              3,
+              4
+            ],
+            "chladni_hz": 687.5,
+            "note": "octave-shifted; real axial modes are infrasonic"
+          },
+          "light_puzzle": {
+            "window": 0,
+            "wall": "S",
+            "sun_elevation_deg": 20.805,
+            "sun_azimuth_room_deg": 251.917,
+            "sun_dir_to_sun_room": [
+              -0.290161,
+              -0.888619,
+              0.355194
+            ],
+            "patch": [
+              [
+                6.09057,
+                2.33175
+              ],
+              [
+                7.03057,
+                2.33175
+              ],
+              [
+                7.93734,
+                5.10873
+              ],
+              [
+                8.00688,
+                5.33775
+              ],
+              [
+                8.06503,
+                5.56378
+              ],
+              [
+                8.11102,
+                5.78386
+              ],
+              [
+                8.14426,
+                5.99511
+              ],
+              [
+                8.16431,
+                6.19478
+              ],
+              [
+                8.1709,
+                6.38024
+              ],
+              [
+                8.16396,
+                6.54908
+              ],
+              [
+                8.14357,
+                6.69909
+              ],
+              [
+                8.11,
+                6.8283
+              ],
+              [
+                8.06368,
+                6.93503
+              ],
+              [
+                7.94767,
+                6.8283
+              ],
+              [
+                7.82971,
+                6.69909
+              ],
+              [
+                7.71136,
+                6.54908
+              ],
+              [
+                7.59415,
+                6.38024
+              ],
+              [
+                7.47963,
+                6.19478
+              ],
+              [
+                7.36928,
+                5.99511
+              ],
+              [
+                7.26456,
+                5.78386
+              ],
+              [
+                7.16683,
+                5.56378
+              ],
+              [
+                7.07737,
+                5.33775
+              ],
+              [
+                6.99734,
+                5.10873
+              ]
+            ],
+            "center_error_m": 0.0,
+            "approx_equinox_solar_hour": 8.18,
+            "note": "room frame, azimuth CCW from +x. UE sun: travel dir = -S with y mirrored, then add the room actor yaw.",
+            "directional_light_ue": {
+              "pitch": -20.805,
+              "yaw": -71.917,
+              "roll": 0.0
+            },
+            "medallion_ue_cm": [
+              768.0,
+              -576.0,
+              0.0
+            ]
+          },
+          "anchor_ue_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "room_yaw_ue": -0.0
+        },
+        "opening_sockets": [
+          {
+            "id": "salon_entry",
+            "wall": "W",
+            "center_local_m": [
+              0.0,
+              5.76,
+              0.0
+            ],
+            "inward": [
+              1.0,
+              0.0,
+              0.0
+            ],
+            "up": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "clear_width_m": 1.8,
+            "clear_height_m": 3.2,
+            "floor_z_m": 0.0,
+            "s0": 4.859999999999999,
+            "s1": 6.66,
+            "kind": "door",
+            "native_cut": true
+          },
+          {
+            "id": "salon_front",
+            "wall": "S",
+            "center_local_m": [
+              7.68,
+              0.0,
+              0.0
+            ],
+            "inward": [
+              0.0,
+              1.0,
+              0.0
+            ],
+            "up": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "clear_width_m": 2.4,
+            "clear_height_m": 3.2,
+            "floor_z_m": 0.0,
+            "s0": 6.4799999999999995,
+            "s1": 8.879999999999999,
+            "kind": "door",
+            "native_cut": true
+          }
+        ]
+      },
+      "gate": {
+        "solid_volume_positive": true,
+        "bounds_ok": true,
+        "joint_max_error_mm": 0.0,
+        "joints": 10,
+        "joints_fit": true,
+        "windows_in_panels": true,
+        "door_clear": true,
+        "panes_fit": true,
+        "floor_inlay_up": true,
+        "streamers_placed": 6,
+        "streamers_wanted": 6,
+        "streamers_ok": true,
+        "keys_on_antinodes": true,
+        "windows_on_nodes": true,
+        "room_note_audible": true,
+        "pilasters_match_joints": true,
+        "chladni_from_room": true,
+        "dawn_puzzle_ok": true,
+        "dressing_surfaces_ok": true,
+        "dressing_surface_areas": {
+          "surface_ceiling": 190.08,
+          "surface_floor": 190.08,
+          "surface_ledge": 16.8211,
+          "surface_sill": 11.9372,
+          "surface_wall": 871.8286
+        },
+        "roles_mapped": true,
+        "all_pass": true,
+        "prims": 10137
+      },
+      "floor_collision": {
+        "prims": 6,
+        "points": 24,
+        "bounds": [
+          [
+            -0.23999999463558197,
+            -0.23999999463558197,
+            -0.20000000298023224
+          ],
+          [
+            15.600000381469727,
+            11.760000228881836,
+            0.0
+          ]
+        ]
+      },
+      "rendered_group_prims": 10137,
+      "prim_attributes": [
+        "shop_materialpath",
+        "material_role",
+        "unreal_material"
+      ],
+      "role_prim_counts": {
+        "floor_stone": 6,
+        "wall_plaster": 1542,
+        "stone": 1182,
+        "trim_gold": 4971,
+        "crystal_glass": 432,
+        "ribbon_silk": 2004
+      },
+      "raw_points": 40380,
+      "raw_prims": 10143,
+      "global_attributes": [
+        "sockets_json",
+        "gate_json",
+        "surfaces_json"
+      ],
+      "prim_groups": [
+        "collision_geo_simple_box_main_geo",
+        "rendered_main_geo",
+        "surface_ceiling",
+        "surface_floor",
+        "surface_ledge",
+        "surface_sill",
+        "surface_wall"
+      ],
+      "unmapped_roles": [],
+      "material_mismatch_count": 0,
+      "errors": [],
+      "warnings": [],
+      "room_w": 15.36,
+      "aperture_rays": {
+        "salon_entry": {
+          "samples": 42,
+          "blocked": [],
+          "pass_clear": true
+        },
+        "salon_front": {
+          "samples": 42,
+          "blocked": [],
+          "pass_clear": true
+        }
+      }
+    },
+    {
+      "points": 37172,
+      "prims": 9333,
+      "bbox": [
+        [
+          -0.23999999463558197,
+          -0.27000001072883606,
+          -0.20000000298023224
+        ],
+        [
+          17.06999969482422,
+          11.789999961853027,
+          7.400000095367432
+        ]
+      ],
+      "vertex_attributes": [
+        "uv"
+      ],
+      "geometry_sha256": "a36ff54de152c68a1fb56738b8a8daf10f00a74e4b178c9b7e0b3a6375a0e73a",
+      "sockets": {
+        "sockets": [
+          {
+            "id": "joint_S_0",
+            "wall": "S",
+            "s": 3.36,
+            "type": "half_lap"
+          },
+          {
+            "id": "joint_S_2",
+            "wall": "S",
+            "s": 10.08,
+            "type": "half_lap"
+          },
+          {
+            "id": "joint_S_3",
+            "wall": "S",
+            "s": 13.44,
+            "type": "half_lap"
+          },
+          {
+            "id": "joint_N_0",
+            "wall": "N",
+            "s": 3.36,
+            "type": "half_lap"
+          },
+          {
+            "id": "joint_N_1",
+            "wall": "N",
+            "s": 6.72,
+            "type": "half_lap"
+          },
+          {
+            "id": "joint_N_2",
+            "wall": "N",
+            "s": 10.08,
+            "type": "half_lap"
+          },
+          {
+            "id": "joint_N_3",
+            "wall": "N",
+            "s": 13.44,
+            "type": "half_lap"
+          },
+          {
+            "id": "joint_W_0",
+            "wall": "W",
+            "s": 3.84,
+            "type": "half_lap"
+          },
+          {
+            "id": "joint_W_1",
+            "wall": "W",
+            "s": 7.68,
+            "type": "half_lap"
+          },
+          {
+            "id": "joint_E_0",
+            "wall": "E",
+            "s": 3.84,
+            "type": "half_lap"
+          },
+          {
+            "id": "joint_E_1",
+            "wall": "E",
+            "s": 7.68,
+            "type": "half_lap"
+          }
+        ],
+        "windows": [
+          {
+            "wall": "S",
+            "panel": 3,
+            "s0": 11.260000000000002,
+            "s1": 12.260000000000002,
+            "z0": 0.95,
+            "z1": 2.8499999999999996,
+            "rise": 0.76,
+            "family": "geometric"
+          },
+          {
+            "wall": "S",
+            "panel": 4,
+            "s0": 14.620000000000001,
+            "s1": 15.620000000000001,
+            "z0": 0.95,
+            "z1": 2.8499999999999996,
+            "rise": 0.76,
+            "family": "geometric"
+          },
+          {
+            "wall": "N",
+            "panel": 0,
+            "s0": 1.1800000000000002,
+            "s1": 2.18,
+            "z0": 0.95,
+            "z1": 2.8499999999999996,
+            "rise": 0.76,
+            "family": "geometric"
+          },
+          {
+            "wall": "N",
+            "panel": 1,
+            "s0": 4.540000000000001,
+            "s1": 5.540000000000001,
+            "z0": 0.95,
+            "z1": 2.8499999999999996,
+            "rise": 0.76,
+            "family": "geometric"
+          },
+          {
+            "wall": "E",
+            "panel": 0,
+            "s0": 1.42,
+            "s1": 2.42,
+            "z0": 0.95,
+            "z1": 2.8499999999999996,
+            "rise": 0.76,
+            "family": "geometric"
+          }
+        ],
+        "door": {
+          "id": "salon_entry",
+          "wall": "W",
+          "s": 5.76,
+          "s0": 4.859999999999999,
+          "s1": 6.66,
+          "h": 3.2,
+          "width": 1.8,
+          "height": 3.2,
+          "panel": null
+        },
+        "chladni": {
+          "mode": [
+            3,
+            5
+          ],
+          "hz": 935.0
+        },
+        "streamers": [
+          {
+            "socket": 0,
+            "kind": "window",
+            "variant": 5,
+            "yaw_deg": -156.61,
+            "length_m": 1.23
+          },
+          {
+            "socket": 1,
+            "kind": "window",
+            "variant": 1,
+            "yaw_deg": -66.05,
+            "length_m": 1.76
+          },
+          {
+            "socket": 2,
+            "kind": "window",
+            "variant": 4,
+            "yaw_deg": 164.81,
+            "length_m": 2.7
+          },
+          {
+            "socket": 3,
+            "kind": "window",
+            "variant": 4,
+            "yaw_deg": 74.81,
+            "length_m": 2.7
+          },
+          {
+            "socket": 4,
+            "kind": "window",
+            "variant": 4,
+            "yaw_deg": 74.81,
+            "length_m": 2.7
+          },
+          {
+            "socket": 5,
+            "kind": "window",
+            "variant": 0,
+            "yaw_deg": 5.28,
+            "length_m": 2.04
+          }
+        ],
+        "room": {
+          "acoustics": {
+            "c": 343.0,
+            "axial_modes_hz": {
+              "x": [
+                10.21,
+                20.42,
+                30.62,
+                40.83,
+                51.04,
+                61.25
+              ],
+              "y": [
+                14.89,
+                29.77,
+                44.66,
+                59.55,
+                74.44,
+                89.32
+              ],
+              "z": [
+                23.82,
+                47.64,
+                71.46,
+                95.28,
+                119.1,
+                142.92
+              ]
+            },
+            "f_low_hz": 10.21,
+            "octave_shift": 4,
+            "room_note_hz": 163.33,
+            "room_note": "E3",
+            "room_midi": 52,
+            "panels": {
+              "nx": 5,
+              "ny": 3
+            },
+            "antinodes": {
+              "x": [
+                0.0,
+                3.36,
+                6.72,
+                10.08,
+                13.44,
+                16.8
+              ],
+              "y": [
+                0.0,
+                3.84,
+                7.68,
+                11.52
+              ]
+            },
+            "nodes": {
+              "x": [
+                1.68,
+                5.04,
+                8.4,
+                11.76,
+                15.12
+              ],
+              "y": [
+                1.92,
+                5.76,
+                9.6
+              ]
+            },
+            "chladni_mode": [
+              3,
+              5
+            ],
+            "chladni_hz": 935.0,
+            "note": "octave-shifted; real axial modes are infrasonic"
+          },
+          "light_puzzle": {
+            "window": 0,
+            "wall": "S",
+            "sun_elevation_deg": 19.139,
+            "sun_azimuth_room_deg": 299.745,
+            "sun_dir_to_sun_room": [
+              0.468714,
+              -0.82025,
+              0.327866
+            ],
+            "patch": [
+              [
+                9.889,
+                2.33175
+              ],
+              [
+                10.829,
+                2.33175
+              ],
+              [
+                9.24215,
+                5.10873
+              ],
+              [
+                9.10604,
+                5.33775
+              ],
+              [
+                8.96122,
+                5.56378
+              ],
+              [
+                8.80959,
+                5.78386
+              ],
+              [
+                8.65314,
+                5.99511
+              ],
+              [
+                8.49389,
+                6.19478
+              ],
+              [
+                8.33395,
+                6.38024
+              ],
+              [
+                8.1754,
+                6.54908
+              ],
+              [
+                8.02031,
+                6.69909
+              ],
+              [
+                7.87071,
+                6.8283
+              ],
+              [
+                7.72855,
+                6.93503
+              ],
+              [
+                7.70838,
+                6.8283
+              ],
+              [
+                7.70645,
+                6.69909
+              ],
+              [
+                7.7228,
+                6.54908
+              ],
+              [
+                7.7572,
+                6.38024
+              ],
+              [
+                7.80922,
+                6.19478
+              ],
+              [
+                7.87816,
+                5.99511
+              ],
+              [
+                7.96313,
+                5.78386
+              ],
+              [
+                8.06302,
+                5.56378
+              ],
+              [
+                8.17653,
+                5.33775
+              ],
+              [
+                8.30215,
+                5.10873
+              ]
+            ],
+            "center_error_m": 0.0,
+            "approx_equinox_solar_hour": 7.99,
+            "note": "room frame, azimuth CCW from +x. UE sun: travel dir = -S with y mirrored, then add the room actor yaw.",
+            "directional_light_ue": {
+              "pitch": -19.139,
+              "yaw": -119.745,
+              "roll": 0.0
+            },
+            "medallion_ue_cm": [
+              840.0,
+              -576.0,
+              0.0
+            ]
+          },
+          "anchor_ue_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "room_yaw_ue": -0.0
+        },
+        "opening_sockets": [
+          {
+            "id": "salon_entry",
+            "wall": "W",
+            "center_local_m": [
+              0.0,
+              5.76,
+              0.0
+            ],
+            "inward": [
+              1.0,
+              0.0,
+              0.0
+            ],
+            "up": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "clear_width_m": 1.8,
+            "clear_height_m": 3.2,
+            "floor_z_m": 0.0,
+            "s0": 4.859999999999999,
+            "s1": 6.66,
+            "kind": "door",
+            "native_cut": true
+          },
+          {
+            "id": "salon_front",
+            "wall": "S",
+            "center_local_m": [
+              7.68,
+              0.0,
+              0.0
+            ],
+            "inward": [
+              0.0,
+              1.0,
+              0.0
+            ],
+            "up": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "clear_width_m": 2.4,
+            "clear_height_m": 3.2,
+            "floor_z_m": 0.0,
+            "s0": 6.4799999999999995,
+            "s1": 8.879999999999999,
+            "kind": "door",
+            "native_cut": true
+          }
+        ]
+      },
+      "gate": {
+        "solid_volume_positive": true,
+        "bounds_ok": true,
+        "joint_max_error_mm": 0.0,
+        "joints": 12,
+        "joints_fit": true,
+        "windows_in_panels": true,
+        "door_clear": true,
+        "panes_fit": true,
+        "floor_inlay_up": true,
+        "streamers_placed": 6,
+        "streamers_wanted": 6,
+        "streamers_ok": true,
+        "keys_on_antinodes": true,
+        "windows_on_nodes": true,
+        "room_note_audible": true,
+        "pilasters_match_joints": true,
+        "chladni_from_room": true,
+        "dawn_puzzle_ok": true,
+        "dressing_surfaces_ok": true,
+        "dressing_surface_areas": {
+          "surface_ceiling": 207.36,
+          "surface_floor": 207.36,
+          "surface_ledge": 17.5881,
+          "surface_sill": 12.3636,
+          "surface_wall": 901.3926
+        },
+        "roles_mapped": true,
+        "all_pass": true,
+        "prims": 9333
+      },
+      "floor_collision": {
+        "prims": 6,
+        "points": 24,
+        "bounds": [
+          [
+            -0.23999999463558197,
+            -0.23999999463558197,
+            -0.20000000298023224
+          ],
+          [
+            17.040000915527344,
+            11.760000228881836,
+            0.0
+          ]
+        ]
+      },
+      "rendered_group_prims": 9333,
+      "prim_attributes": [
+        "shop_materialpath",
+        "material_role",
+        "unreal_material"
+      ],
+      "role_prim_counts": {
+        "floor_stone": 6,
+        "wall_plaster": 1350,
+        "stone": 1182,
+        "trim_gold": 4431,
+        "crystal_glass": 360,
+        "ribbon_silk": 2004
+      },
+      "raw_points": 37196,
+      "raw_prims": 9339,
+      "global_attributes": [
+        "sockets_json",
+        "gate_json",
+        "surfaces_json"
+      ],
+      "prim_groups": [
+        "collision_geo_simple_box_main_geo",
+        "rendered_main_geo",
+        "surface_ceiling",
+        "surface_floor",
+        "surface_ledge",
+        "surface_sill",
+        "surface_wall"
+      ],
+      "unmapped_roles": [],
+      "material_mismatch_count": 0,
+      "errors": [],
+      "warnings": [],
+      "room_w": 16.8,
+      "aperture_rays": {
+        "salon_entry": {
+          "samples": 42,
+          "blocked": [],
+          "pass_clear": true
+        },
+        "salon_front": {
+          "samples": 42,
+          "blocked": [],
+          "pass_clear": true
+        }
+      }
+    }
+  ],
+  "same_wall": {
+    "points": 40996,
+    "prims": 10297,
+    "bbox": [
+      [
+        -0.27000001072883606,
+        -0.27000001072883606,
+        -0.20000000298023224
+      ],
+      [
+        17.06999969482422,
+        11.789999961853027,
+        7.400000095367432
+      ]
+    ],
+    "vertex_attributes": [
+      "uv"
+    ],
+    "geometry_sha256": "ec3100100ce69987ad4278a0964547ceb0ed4d5c93840e05b47298e17be5e67a",
+    "sockets": {
+      "sockets": [
+        {
+          "id": "joint_S_0",
+          "wall": "S",
+          "s": 3.36,
+          "type": "half_lap"
+        },
+        {
+          "id": "joint_S_1",
+          "wall": "S",
+          "s": 6.72,
+          "type": "half_lap"
+        },
+        {
+          "id": "joint_S_2",
+          "wall": "S",
+          "s": 10.08,
+          "type": "half_lap"
+        },
+        {
+          "id": "joint_S_3",
+          "wall": "S",
+          "s": 13.44,
+          "type": "half_lap"
+        },
+        {
+          "id": "joint_N_0",
+          "wall": "N",
+          "s": 3.36,
+          "type": "half_lap"
+        },
+        {
+          "id": "joint_N_1",
+          "wall": "N",
+          "s": 6.72,
+          "type": "half_lap"
+        },
+        {
+          "id": "joint_N_2",
+          "wall": "N",
+          "s": 10.08,
+          "type": "half_lap"
+        },
+        {
+          "id": "joint_N_3",
+          "wall": "N",
+          "s": 13.44,
+          "type": "half_lap"
+        },
+        {
+          "id": "joint_E_0",
+          "wall": "E",
+          "s": 3.84,
+          "type": "half_lap"
+        },
+        {
+          "id": "joint_E_1",
+          "wall": "E",
+          "s": 7.68,
+          "type": "half_lap"
+        }
+      ],
+      "windows": [
+        {
+          "wall": "S",
+          "panel": 3,
+          "s0": 11.260000000000002,
+          "s1": 12.260000000000002,
+          "z0": 0.95,
+          "z1": 2.8499999999999996,
+          "rise": 0.76,
+          "family": "geometric"
+        },
+        {
+          "wall": "S",
+          "panel": 4,
+          "s0": 14.620000000000001,
+          "s1": 15.620000000000001,
+          "z0": 0.95,
+          "z1": 2.8499999999999996,
+          "rise": 0.76,
+          "family": "geometric"
+        },
+        {
+          "wall": "N",
+          "panel": 0,
+          "s0": 1.1800000000000002,
+          "s1": 2.18,
+          "z0": 0.95,
+          "z1": 2.8499999999999996,
+          "rise": 0.76,
+          "family": "geometric"
+        },
+        {
+          "wall": "N",
+          "panel": 1,
+          "s0": 4.540000000000001,
+          "s1": 5.540000000000001,
+          "z0": 0.95,
+          "z1": 2.8499999999999996,
+          "rise": 0.76,
+          "family": "geometric"
+        },
+        {
+          "wall": "W",
+          "panel": 1,
+          "s0": 5.26,
+          "s1": 6.26,
+          "z0": 0.95,
+          "z1": 2.8499999999999996,
+          "rise": 0.76,
+          "family": "geometric"
+        },
+        {
+          "wall": "E",
+          "panel": 0,
+          "s0": 1.42,
+          "s1": 2.42,
+          "z0": 0.95,
+          "z1": 2.8499999999999996,
+          "rise": 0.76,
+          "family": "geometric"
+        }
+      ],
+      "door": {
+        "id": "west_a",
+        "wall": "W",
+        "s": 3.84,
+        "s0": 2.94,
+        "s1": 4.74,
+        "h": 3.2,
+        "width": 1.8,
+        "height": 3.2,
+        "panel": null
+      },
+      "chladni": {
+        "mode": [
+          3,
+          5
+        ],
+        "hz": 935.0
+      },
+      "streamers": [
+        {
+          "socket": 0,
+          "kind": "window",
+          "variant": 5,
+          "yaw_deg": -156.61,
+          "length_m": 1.23
+        },
+        {
+          "socket": 1,
+          "kind": "window",
+          "variant": 1,
+          "yaw_deg": -66.05,
+          "length_m": 1.76
+        },
+        {
+          "socket": 2,
+          "kind": "window",
+          "variant": 4,
+          "yaw_deg": 74.81,
+          "length_m": 2.7
+        },
+        {
+          "socket": 3,
+          "kind": "window",
+          "variant": 4,
+          "yaw_deg": -105.19,
+          "length_m": 2.7
+        },
+        {
+          "socket": 4,
+          "kind": "window",
+          "variant": 4,
+          "yaw_deg": 164.81,
+          "length_m": 2.7
+        },
+        {
+          "socket": 5,
+          "kind": "window",
+          "variant": 0,
+          "yaw_deg": -174.72,
+          "length_m": 2.04
+        }
+      ],
+      "room": {
+        "acoustics": {
+          "c": 343.0,
+          "axial_modes_hz": {
+            "x": [
+              10.21,
+              20.42,
+              30.62,
+              40.83,
+              51.04,
+              61.25
+            ],
+            "y": [
+              14.89,
+              29.77,
+              44.66,
+              59.55,
+              74.44,
+              89.32
+            ],
+            "z": [
+              23.82,
+              47.64,
+              71.46,
+              95.28,
+              119.1,
+              142.92
+            ]
+          },
+          "f_low_hz": 10.21,
+          "octave_shift": 4,
+          "room_note_hz": 163.33,
+          "room_note": "E3",
+          "room_midi": 52,
+          "panels": {
+            "nx": 5,
+            "ny": 3
+          },
+          "antinodes": {
+            "x": [
+              0.0,
+              3.36,
+              6.72,
+              10.08,
+              13.44,
+              16.8
+            ],
+            "y": [
+              0.0,
+              3.84,
+              7.68,
+              11.52
+            ]
+          },
+          "nodes": {
+            "x": [
+              1.68,
+              5.04,
+              8.4,
+              11.76,
+              15.12
+            ],
+            "y": [
+              1.92,
+              5.76,
+              9.6
+            ]
+          },
+          "chladni_mode": [
+            3,
+            5
+          ],
+          "chladni_hz": 935.0,
+          "note": "octave-shifted; real axial modes are infrasonic"
+        },
+        "light_puzzle": {
+          "window": 0,
+          "wall": "S",
+          "sun_elevation_deg": 19.139,
+          "sun_azimuth_room_deg": 299.745,
+          "sun_dir_to_sun_room": [
+            0.468714,
+            -0.82025,
+            0.327866
+          ],
+          "patch": [
+            [
+              9.889,
+              2.33175
+            ],
+            [
+              10.829,
+              2.33175
+            ],
+            [
+              9.24215,
+              5.10873
+            ],
+            [
+              9.10604,
+              5.33775
+            ],
+            [
+              8.96122,
+              5.56378
+            ],
+            [
+              8.80959,
+              5.78386
+            ],
+            [
+              8.65314,
+              5.99511
+            ],
+            [
+              8.49389,
+              6.19478
+            ],
+            [
+              8.33395,
+              6.38024
+            ],
+            [
+              8.1754,
+              6.54908
+            ],
+            [
+              8.02031,
+              6.69909
+            ],
+            [
+              7.87071,
+              6.8283
+            ],
+            [
+              7.72855,
+              6.93503
+            ],
+            [
+              7.70838,
+              6.8283
+            ],
+            [
+              7.70645,
+              6.69909
+            ],
+            [
+              7.7228,
+              6.54908
+            ],
+            [
+              7.7572,
+              6.38024
+            ],
+            [
+              7.80922,
+              6.19478
+            ],
+            [
+              7.87816,
+              5.99511
+            ],
+            [
+              7.96313,
+              5.78386
+            ],
+            [
+              8.06302,
+              5.56378
+            ],
+            [
+              8.17653,
+              5.33775
+            ],
+            [
+              8.30215,
+              5.10873
+            ]
+          ],
+          "center_error_m": 0.0,
+          "approx_equinox_solar_hour": 7.99,
+          "note": "room frame, azimuth CCW from +x. UE sun: travel dir = -S with y mirrored, then add the room actor yaw.",
+          "directional_light_ue": {
+            "pitch": -19.139,
+            "yaw": -119.745,
+            "roll": 0.0
+          },
+          "medallion_ue_cm": [
+            840.0,
+            -576.0,
+            0.0
+          ]
+        },
+        "anchor_ue_cm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "room_yaw_ue": -0.0
+      },
+      "opening_sockets": [
+        {
+          "id": "west_a",
+          "wall": "W",
+          "center_local_m": [
+            0.0,
+            3.84,
+            0.0
+          ],
+          "inward": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "up": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "clear_width_m": 1.8,
+          "clear_height_m": 3.2,
+          "floor_z_m": 0.0,
+          "s0": 2.94,
+          "s1": 4.74,
+          "kind": "door",
+          "native_cut": true
+        },
+        {
+          "id": "west_b",
+          "wall": "W",
+          "center_local_m": [
+            0.0,
+            8.4,
+            0.0
+          ],
+          "inward": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "up": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "clear_width_m": 1.8,
+          "clear_height_m": 3.2,
+          "floor_z_m": 0.0,
+          "s0": 7.5,
+          "s1": 9.3,
+          "kind": "door",
+          "native_cut": true
+        }
+      ]
+    },
+    "gate": {
+      "solid_volume_positive": true,
+      "bounds_ok": true,
+      "joint_max_error_mm": 0.0,
+      "joints": 12,
+      "joints_fit": true,
+      "windows_in_panels": true,
+      "door_clear": true,
+      "panes_fit": true,
+      "floor_inlay_up": true,
+      "streamers_placed": 6,
+      "streamers_wanted": 6,
+      "streamers_ok": true,
+      "keys_on_antinodes": true,
+      "windows_on_nodes": true,
+      "room_note_audible": true,
+      "pilasters_match_joints": true,
+      "chladni_from_room": true,
+      "dawn_puzzle_ok": true,
+      "dressing_surfaces_ok": true,
+      "dressing_surface_areas": {
+        "surface_ceiling": 207.36,
+        "surface_floor": 207.36,
+        "surface_ledge": 17.84,
+        "surface_sill": 12.5317,
+        "surface_wall": 918.523
+      },
+      "roles_mapped": true,
+      "all_pass": true,
+      "prims": 10297
+    },
+    "floor_collision": {
+      "prims": 6,
+      "points": 24,
+      "bounds": [
+        [
+          -0.23999999463558197,
+          -0.23999999463558197,
+          -0.20000000298023224
+        ],
+        [
+          17.040000915527344,
+          11.760000228881836,
+          0.0
+        ]
+      ]
+    },
+    "rendered_group_prims": 10297,
+    "prim_attributes": [
+      "shop_materialpath",
+      "material_role",
+      "unreal_material"
+    ],
+    "role_prim_counts": {
+      "floor_stone": 6,
+      "wall_plaster": 1566,
+      "stone": 1188,
+      "trim_gold": 5101,
+      "crystal_glass": 432,
+      "ribbon_silk": 2004
+    },
+    "raw_points": 41020,
+    "raw_prims": 10303,
+    "global_attributes": [
+      "sockets_json",
+      "gate_json",
+      "surfaces_json"
+    ],
+    "prim_groups": [
+      "collision_geo_simple_box_main_geo",
+      "rendered_main_geo",
+      "surface_ceiling",
+      "surface_floor",
+      "surface_ledge",
+      "surface_sill",
+      "surface_wall"
+    ],
+    "unmapped_roles": [],
+    "material_mismatch_count": 0,
+    "errors": [],
+    "warnings": [],
+    "aperture_rays": {
+      "west_a": {
+        "samples": 42,
+        "blocked": [],
+        "pass_clear": true
+      },
+      "west_b": {
+        "samples": 42,
+        "blocked": [],
+        "pass_clear": true
+      }
+    }
+  },
+  "invalid_rejections": [
+    "explicit openings must be an array",
+    "explicit openings must be an array",
+    "opening must retain 0.3 m corner clearance",
+    "opening size must be positive with 0.6 m of wall above",
+    "opening size must be positive with 0.6 m of wall above",
+    "opening wall must be S, N, W or E",
+    "opening s must be a finite number",
+    "opening ids must be unique nonempty strings",
+    "openings on the same wall overlap or touch"
+  ],
+  "invalid_hda_errors": [
+    "Invalid source /obj/room_explicit_verification/candidate/COOK.\n(Error:       Python error: Traceback (most recent call last):\n  File \"/obj/room_explicit_verification/candidate/COOK\", line 1, in <module>\n  File \"melodia::Sop/room_shell_contact::1.0, PythonModule\", line 770, in cook\n  File \"melodia::Sop/room_shell_contact::1.0, PythonModule\", line 354, in build\n  File \"melodia::Sop/room_shell_contact::1.0, PythonModule\", line 329, in validate_openings\nValueError: opening must retain 0.3 m corner clearance\n)."
+  ],
+  "all_pass": true,
+  "limits": "Native rendered-geometry ray samples only. UE capsule sweep, actor integration, live look and packaged route remain pending."
+}

@@ -203,6 +203,8 @@ def snapshot(node, yup, role_materials=None):
     rendered = geo.findPrimGroup("rendered_main_geo")
     collision = geo.findPrimGroup("collision_geo_simple_box_main_geo")
     prim_attrs = [a.name() for a in geo.primAttribs()]
+    global_attrs = [a.name() for a in geo.globalAttribs()]
+    surfaces = json.loads(geo.attribValue("surfaces_json")) if "surfaces_json" in global_attrs else None
     role_counts, material_mismatch = {}, []
     if role_materials and "unreal_material" in prim_attrs:
         for prim in geo.prims():
@@ -231,6 +233,8 @@ def snapshot(node, yup, role_materials=None):
         collision_bounds=collision_bounds,
         vertex_attributes=[a.name() for a in geo.vertexAttribs()],
         prim_attributes=prim_attrs,
+        global_attributes=global_attrs,
+        surfaces=surfaces,
         role_prim_counts=dict(sorted(role_counts.items())),
         unmapped_roles=[r for r in sorted(role_counts) if r not in (role_materials or {})],
         material_mismatch=material_mismatch[:8],
@@ -378,6 +382,16 @@ def main(rect_source, rounded_source, out_dir, audit_dir):
         # the single documented exception and is declared exempt per variant.
         bay_aligned = all(abs(v / BAY_M - round(v / BAY_M)) < 1e-9 for v in (W, D))
         bay_expected = variant.get("bay_aligned", True)
+        # Poitou brief rule 1: modular geometry snaps to 0.6 m, bays to 2.4 m. The bay check
+        # only proves a variant matched its OWN declaration, so a variant that declares itself
+        # exempt would pass at any dimension whatsoever - the exception would silently become
+        # a licence. Enforce the module grid on every non-exempt variant, and make an exemption
+        # pay for itself with a written reason instead of a bare `false`.
+        dims = dict(room_w=W, room_d=D, room_h=H)
+        off_grid = sorted(k for k, v in dims.items()
+                          if abs(v / MODULE_M - round(v / MODULE_M)) > 1e-9)
+        grid_note = (variant.get("bay_note") or "").strip()
+        module_grid_ok = (not off_grid) if bay_expected else bool(grid_note)
 
         portal_checks = {}
         sockets_out = native["sockets"].get("opening_sockets") or []
@@ -462,6 +476,7 @@ def main(rect_source, rounded_source, out_dir, audit_dir):
                 prims_unchanged_by_engine_frame=
                     ue["prims"] == native["prims"] and ue["points"] == native["points"],
                 bay_aligned=bay_aligned == bay_expected,
+                module_grid=module_grid_ok,
                 portals_survive=portals_survive,
                 portals_floor_level=portals_floor_level,
                 portals_native_cut=portals_native_cut,
@@ -477,8 +492,22 @@ def main(rect_source, rounded_source, out_dir, audit_dir):
                 unreal_material_matches_role=native["material_mismatch_count"] == 0,
                 roles_mapped=native["unmapped_roles"] == [],
                 module_gate_roles_mapped=bool(native["gate"].get("roles_mapped")),
+                dressing_surfaces_ok=(bool(native["surfaces"])
+                                      and native["gate"].get("dressing_surfaces_ok") is True),
+                surface_groups_match_areas=(bool(native["surfaces"])
+                                            and sorted(native["surfaces"]["groups"])
+                                            == sorted(native["surfaces"]["areas"])),
+                surfaces_survive_engine_frame=(bool(native["surfaces"]) and bool(ue["surfaces"])
+                                               and sorted(ue["surfaces"]["groups"])
+                                               == sorted(native["surfaces"]["groups"])),
             ),
+            grid=dict(module_m=MODULE_M, bay_m=BAY_M,
+                      beats={k: round(v / MODULE_M, 6) for k, v in dims.items()},
+                      off_grid=off_grid, note=grid_note,
+                      portal_width_beats=round(STANDARD_PORTAL["width"] / MODULE_M, 6),
+                      portal_height_beats=round(STANDARD_PORTAL["height"] / MODULE_M, 6)),
             role_prim_counts=native["role_prim_counts"],
+            dressing_surface_areas=native["surfaces"]["areas"] if native["surfaces"] else None,
             window_conflicts=window_conflicts,
         )
         # Simple floor collision is a rect-only feature; the rounded plan has no
@@ -523,6 +552,7 @@ def main(rect_source, rounded_source, out_dir, audit_dir):
                        hda=v["hda"], hda_sha256=v["hda_sha256"],
                        label=v["label"], story_tag=v["story_tag"],
                        declared=v["declared"], sockets=v["sockets"],
+                       grid=v["grid"],
                        prims=v["native"]["prims"], points=v["native"]["points"],
                        bbox=v["native"]["bbox"])
                   for v in report["variants"].values()],

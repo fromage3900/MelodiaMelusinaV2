@@ -18,6 +18,7 @@ def snapshot(node):
     if node.errors():
         raise RuntimeError(str(node.errors()))
     geo = node.geometry()
+    raw_points, raw_prims = len(geo.points()), len(geo.prims())
     collision = geo.findPrimGroup('collision_geo_simple_box_main_geo')
     render_group = geo.findPrimGroup('rendered_main_geo')
     rendered_group_prims=len(render_group.prims()) if render_group else None
@@ -25,6 +26,8 @@ def snapshot(node):
     if collision:
         vertices=[tuple(v.point().position()) for p in collision.prims() for v in p.vertices()]
         collision_info=dict(prims=len(collision.prims()),
+                            points=len({v.point().number() for p in collision.prims()
+                                        for v in p.vertices()}),
                             bounds=[[min(p[i] for p in vertices) for i in range(3)],
                                     [max(p[i] for p in vertices) for i in range(3)]])
         render=hou.Geometry();render.merge(geo)
@@ -33,12 +36,15 @@ def snapshot(node):
     payload = json.loads(geo.attribValue("sockets_json"))
     prim_attrs=[a.name() for a in geo.primAttribs()]
     role_counts={};mismatch=0
-    if 'unreal_material' in prim_attrs:
-        for prim in geo.prims():
-            role=prim.attribValue('material_role')
-            if not role:continue
-            role_counts[role]=role_counts.get(role,0)+1
-            if prim.attribValue('unreal_material')!=DEFAULT_ROLE_MATERIALS.get(role):mismatch+=1
+    # Count roles whether or not the material attribute exists: gating the census on
+    # `unreal_material` made the shipped asset report zero prims per role, which reads as
+    # "the old shell has no roles" when it only means "the old shell never resolved them".
+    has_material = 'unreal_material' in prim_attrs
+    for prim in geo.prims():
+        role=prim.attribValue('material_role')
+        if not role:continue
+        role_counts[role]=role_counts.get(role,0)+1
+        if has_material and prim.attribValue('unreal_material')!=DEFAULT_ROLE_MATERIALS.get(role):mismatch+=1
     digest = hashlib.sha256()
     digest.update(repr(geo.pointFloatAttribValues("P")).encode())
     digest.update(repr(geo.vertexFloatAttribValues("uv")).encode())
@@ -50,6 +56,9 @@ def snapshot(node):
                 gate=json.loads(geo.attribValue("gate_json")), floor_collision=collision_info,
                 rendered_group_prims=rendered_group_prims,
                 prim_attributes=prim_attrs,role_prim_counts=role_counts,
+                raw_points=raw_points, raw_prims=raw_prims,
+                global_attributes=[a.name() for a in geo.globalAttribs()],
+                prim_groups=sorted(g.name() for g in geo.primGroups()),
                 unmapped_roles=[r for r in sorted(role_counts) if r not in DEFAULT_ROLE_MATERIALS],
                 material_mismatch_count=mismatch,
                 errors=list(node.errors()), warnings=list(node.warnings()))
@@ -93,6 +102,53 @@ def main(source, candidate, out):
     report['checks']['unreal_material_emitted']='unreal_material' in report['default_candidate']['prim_attributes']
     report['checks']['unreal_material_matches_role']=report['default_candidate']['material_mismatch_count']==0
     report['checks']['roles_mapped']=not report['default_candidate']['unmapped_roles']
+    report['checks']['dressing_surfaces_ok']=report['default_candidate']['gate'].get('dressing_surfaces_ok') is True
+    # ---- promotion delta ---------------------------------------------------
+    # Promotion overwrites the definition every house interior actor resolves through, so the
+    # owner's question is not "does the candidate work" but "what changes for the actors that are
+    # already placed". Answer it explicitly instead of leaving it to be inferred from a digest:
+    # record exactly which parameters, attributes and groups appear, and prove that at the type's
+    # own defaults the RENDERED geometry is untouched - same points, same prims, same digest - so
+    # promotion cannot move or re-tessellate a room somebody has already dressed. The RAW cook is
+    # compared separately below, because `snapshot` filters the collision group out and a
+    # rendered-only comparison would hide the one default delta that actually exists.
+    legacy, cand = report['default_legacy'], report['default_candidate']
+    legacy_parms = sorted(p.name() for p in old.parms())
+    candidate_parms = sorted(p.name() for p in new.parms())
+    report['promotion_delta'] = dict(
+        type_name={'shipped': 'melodia::room_shell', 'candidate': candidate_type},
+        parms_added=sorted(set(candidate_parms) - set(legacy_parms)),
+        parms_removed=sorted(set(legacy_parms) - set(candidate_parms)),
+        prim_attributes_added=sorted(set(cand['prim_attributes']) - set(legacy['prim_attributes'])),
+        global_attributes_added=sorted(set(cand['global_attributes']) - set(legacy['global_attributes'])),
+        prim_groups_added=sorted(set(cand['prim_groups']) - set(legacy['prim_groups'])),
+        geometry_identical_at_defaults=cand['geometry_sha256'] == legacy['geometry_sha256'],
+        points={'shipped': legacy['points'], 'candidate': cand['points']},
+        prims={'shipped': legacy['prims'], 'candidate': cand['prims']},
+        role_prim_counts={'shipped': legacy['role_prim_counts'], 'candidate': cand['role_prim_counts']},
+    )
+    # `snapshot` deletes the collision group before measuring, so the rendered comparison above
+    # cannot see it. The candidate bakes `simple_floor_collision = 1` as a TYPE default, so its raw
+    # cook DOES carry an invisible slab the shipped asset has not got. That is a real default delta
+    # and the one place promotion changes geometry, so measure it explicitly rather than let a
+    # post-filter snapshot make the shells look byte-identical.
+    slab = cand['floor_collision'] or {}
+    delta_points = cand['raw_points'] - legacy['raw_points']
+    delta_prims = cand['raw_prims'] - legacy['raw_prims']
+    report['promotion_delta']['raw'] = dict(
+        shipped={'points': legacy['raw_points'], 'prims': legacy['raw_prims']},
+        candidate={'points': cand['raw_points'], 'prims': cand['raw_prims']},
+        delta={'points': delta_points, 'prims': delta_prims},
+        collision_slab=slab or None)
+    rendered_identical = (report['promotion_delta']['geometry_identical_at_defaults']
+                          and legacy['points'] == cand['points']
+                          and legacy['prims'] == cand['prims'])
+    report['checks']['promotion_preserves_rendered_geometry'] = rendered_identical
+    report['checks']['promotion_default_delta_is_only_the_collision_slab'] = (
+        rendered_identical
+        and delta_prims == slab.get('prims', 0)
+        and delta_points == slab.get('points', 0))
+    report['checks']['promotion_removes_no_parameter'] = not report['promotion_delta']['parms_removed']
     for n in (old,new):
         for k,v in FIXTURE.items():n.parm(k).set(v)
     a,b=snapshot(old),snapshot(new)

@@ -64,6 +64,98 @@ def unmapped_roles(roles, mapping=None):
     mapping = mapping or DEFAULT_ROLE_MATERIALS
     return sorted(set(r for r in roles if r not in mapping))
 
+
+# --------------------------------------------------------------------------- dressing surfaces
+# Identical contract to room_shell.py: what a PCG fill graph samples is a plane a prop can stand
+# on, not a material role. `wall_plaster` is both wall body and ceiling slab here too, and `panel`
+# is both wall surface and a narrow ledge, so the surface comes from role AND face geometry.
+DRESSING_SURFACES = ("surface_floor", "surface_wall", "surface_ceiling", "surface_sill", "surface_ledge")
+REQUIRED_SURFACES = ("surface_floor", "surface_wall", "surface_ceiling")
+
+
+def _face_newell(pts):
+    """Newell vector of a planar face: twice the area times the unit normal."""
+    ax = ay = az = 0.0
+    n = len(pts)
+    for i in range(n):
+        x0, y0, z0 = pts[i]
+        x1, y1, z1 = pts[(i + 1) % n]
+        ax += (y0 - y1) * (z0 + z1)
+        ay += (z0 - z1) * (x0 + x1)
+        az += (x0 - x1) * (y0 + y1)
+    return ax, ay, az
+
+
+def face_area(pts):
+    ax, ay, az = _face_newell(pts)
+    return 0.5 * math.sqrt(ax * ax + ay * ay + az * az)
+
+
+def face_normal(pts):
+    ax, ay, az = _face_newell(pts)
+    length = math.sqrt(ax * ax + ay * ay + az * az)
+    return (0.0, 0.0, 0.0) if length < 1e-12 else (ax / length, ay / length, az / length)
+
+
+def face_normal_z(pts):
+    return face_normal(pts)[2]
+
+
+def _faces_room(pts, n, centre):
+    """True when a face turns into the room - an interior wall face, not an outer one."""
+    if centre is None:
+        return True
+    cx, cy = centre
+    gx = sum(q[0] for q in pts) / len(pts)
+    gy = sum(q[1] for q in pts) / len(pts)
+    return n[0] * (cx - gx) + n[1] * (cy - gy) > 0.0
+
+
+def dressing_surface(role, pts, H, centre=None):
+    """The dressable surface a face belongs to, or None. Planes only: a vertical face is wall.
+
+    `centre` is the plan centre; when given, a wall face counts only if it looks INTO the room.
+    The rounded shell's walls are solid tier bands, so without that test the wall surface would
+    include the outside of the building and a scatter would push props through the wall.
+    """
+    if not pts:
+        return None
+    zc = sum(q[2] for q in pts) / len(pts)
+    n = face_normal(pts)
+    nz = n[2]
+    if role == "floor_stone":
+        return "surface_floor" if nz > 0.5 else None
+    if role == "wall_plaster":
+        if zc >= H - 1e-6:
+            return "surface_ceiling" if nz < -0.5 else None
+        return "surface_wall" if abs(nz) < 0.5 and _faces_room(pts, n, centre) else None
+    if role == "panel":
+        if abs(nz) < 0.5:
+            return "surface_wall" if _faces_room(pts, n, centre) else None
+        return "surface_ledge" if nz > 0.5 and zc > 0.3 else None
+    if role == "stone":
+        return "surface_sill" if nz > 0.5 and zc > 0.05 else None
+    if role == "trim_gold":
+        return "surface_ledge" if nz > 0.5 and zc > 0.3 else None
+    return None
+
+
+def dressing_surface_areas(M, H, centre=None):
+    """name -> total area in m^2, for every named dressing surface the mesh actually exposes.
+
+    Normals are evaluated on the RIGHT-HAND order. `Mesh.poly` stores each face reversed, which is
+    why `signed_volume_righthand` also walks `reversed(f)`; reading `M.F` index order directly
+    inverts every normal and would pick the floor's underside as the walkable surface.
+    """
+    areas = {}
+    for face, role in zip(M.F, M.R):
+        pts = [M.P[i] for i in reversed(face)]
+        name = dressing_surface(role, pts, H, centre)
+        if name is None:
+            continue
+        areas[name] = areas.get(name, 0.0) + face_area(pts)
+    return areas
+
 # --------------------------------------------------------------------------- mesh helpers
 # Mirrored from room_shell.py: identical storage contract (Mesh.poly reverses CCW input).
 class Mesh:
@@ -949,6 +1041,9 @@ def gate(M, rep):
     out["decor_clear_of_doorways"] = not in_door
 
     out["walls_present"] = rep["solids"] > 0 and len(M.F) > 6 * p["segments"]
+    surfaces = dressing_surface_areas(M, H, (W / 2.0, D / 2.0))
+    out["dressing_surfaces_ok"] = all(surfaces.get(k, 0.0) > 1e-9 for k in REQUIRED_SURFACES)
+    out["dressing_surface_areas"] = {k: round(v, 4) for k, v in sorted(surfaces.items())}
     out["roles_mapped"] = not unmapped_roles(M.R)
     out["all_pass"] = all(v for k, v in out.items() if isinstance(v, bool))
     out["prims"] = len(M.F)
@@ -1003,10 +1098,12 @@ def cook(node):
     g.addAttrib(hou.attribType.Vertex, "uv", (0.0, 0.0, 0.0))
     g.addAttrib(hou.attribType.Global, "gate_json", "")
     g.addAttrib(hou.attribType.Global, "sockets_json", "")
+    g.addAttrib(hou.attribType.Global, "surfaces_json", "")
     yup = bool(h.evalParm("engine_y_up"))
     P = [(q[0], q[2], -q[1]) for q in M.P] if yup else M.P
     pts = g.createPoints(P)
     flip = yup and bool(h.evalParm("engine_flip"))
+    polys = []
     for face, role in zip(M.F, M.R):
         face = list(reversed(face)) if flip else face
         poly = g.createPolygon()
@@ -1017,10 +1114,28 @@ def cook(node):
         for i, uv in zip(face, uvs):
             v = poly.addVertex(pts[i])
             v.setAttribValue("uv", (uv[0] * 0.5, uv[1] * 0.5, 0.0))
+        polys.append(poly)
+    # Named dressing surfaces as prim groups - classified from the RIGHT-HAND face order, because
+    # `Mesh.poly` stores faces reversed; reading M.F index order directly would invert every normal
+    # and tag the floor's underside as the walkable surface.
+    Hf = float(kw["H"])
+    centre = (float(kw["W"]) / 2.0, float(kw["D"]) / 2.0)
+    surface_groups = {}
+    for idx, (face, role) in enumerate(zip(M.F, M.R)):
+        name = dressing_surface(role, [M.P[i] for i in reversed(face)], Hf, centre)
+        if name is None:
+            continue
+        grp = surface_groups.get(name)
+        if grp is None:
+            grp = surface_groups[name] = g.createPrimGroup(name)
+        grp.add(polys[idx])
     payload = dict(sockets=rep["sockets"], windows=[], door=None, chladni=None, streamers=None,
                    room=rep["room"], opening_sockets=rep["sockets"], plan=rep["params"])
     g.setGlobalAttribValue("gate_json", json.dumps(gt))
     g.setGlobalAttribValue("sockets_json", json.dumps(payload))
+    g.setGlobalAttribValue("surfaces_json", json.dumps(dict(
+        required=list(REQUIRED_SURFACES), areas=gt["dressing_surface_areas"],
+        groups=sorted(surface_groups), engine_flip=bool(flip))))
 
 
 # --------------------------------------------------------------------------- self-test

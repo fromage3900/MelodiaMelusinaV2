@@ -161,6 +161,7 @@ def main(source, candidate, out):
     report["checks"]["unreal_material_matches_role"] = ell["material_mismatch_count"] == 0
     report["checks"]["roles_mapped"] = ell["unmapped_roles"] == []
     report["checks"]["wall_body_uses_wall_plaster"] = "wall" not in ell["role_prim_counts"]
+    report["checks"]["dressing_surfaces_ok"] = ell["gate"].get("dressing_surfaces_ok") is True
 
     # ---- tier setbacks: exterior massing only, base footprint must not move
     report["checks"]["tiers_parm_present"] = node.parm("tiers_json") is not None

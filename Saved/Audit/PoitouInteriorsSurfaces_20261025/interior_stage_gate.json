@@ -1,0 +1,1873 @@
+{
+  "version": "22.0.368",
+  "license": "licenseCategoryType.Indie",
+  "source_hdas": {
+    "rect": {
+      "path": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Staging\\PoitouInteriorsSurfaces_20261025\\MelodiaRoomShell_ContactFloor_1.0.hda",
+      "sha256": "078775c054951813981387e50511bd1479562d074e32102f5ff56bbd215fecbd"
+    },
+    "rounded": {
+      "path": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Staging\\PoitouInteriorsSurfaces_20261025\\MelodiaRoomShell_Rounded_1.0.hda",
+      "sha256": "05a1071ba02ffae3228a5e888e7805c6509148952f4700d442e63320547dd15d"
+    }
+  },
+  "modules": {
+    "rect": {
+      "path": "C:\\EnvironmentPortfolio\\BS_GodFile\\Tools\\Houdini\\room_shell\\room_shell.py",
+      "sha256": "1b40dcc70760d6bd3e72463a172ec6c099b3c0f8bfac3d825819ed50c52b7bec"
+    },
+    "rounded": {
+      "path": "C:\\EnvironmentPortfolio\\BS_GodFile\\Tools\\Houdini\\room_shell\\room_shell_rounded.py",
+      "sha256": "85cf55c1999b31069d10ec92c0dd76a517854c1b473b22d2615351cc043d5a89"
+    }
+  },
+  "standard_portal": {
+    "width": 2.4,
+    "height": 3.2,
+    "bay_m": 2.4,
+    "module_m": 0.6,
+    "head_clearance_m": 0.6
+  },
+  "material_contract": {
+    "role_materials": {
+      "floor_stone": "/Game/Melodia/HoudiniFoundry/RoomShell/MI_RoomShell_floor_stone",
+      "wall_plaster": "/Game/Melodia/HoudiniFoundry/RoomShell/MI_RoomShell_wall_plaster",
+      "stone": "/Game/Melodia/HoudiniFoundry/RoomShell/MI_RoomShell_stone",
+      "trim_gold": "/Game/Melodia/HoudiniFoundry/RoomShell/MI_RoomShell_trim_gold",
+      "crystal_glass": "/Game/Melodia/HoudiniFoundry/RoomShell/MI_RoomShell_crystal_glass",
+      "ribbon_silk": "/Game/Melodia/HoudiniFoundry/RoomShell/MI_RoomShell_ribbon_silk",
+      "gold": "/Game/Melodia/HoudiniFoundry/RoomShell/MI_RoomShell_trim_gold",
+      "panel": "/Game/Melodia/HoudiniFoundry/RoomShell/MI_RoomShell_wall_plaster",
+      "pearl_shell": "/Game/EnvSandbox/Materials/Instances/NikkiHero/MI_Nikki_Show_PearlSheen"
+    },
+    "targets": {
+      "crystal_glass": [
+        "/Game/Melodia/HoudiniFoundry/RoomShell/MI_RoomShell_crystal_glass",
+        true
+      ],
+      "floor_stone": [
+        "/Game/Melodia/HoudiniFoundry/RoomShell/MI_RoomShell_floor_stone",
+        true
+      ],
+      "gold": [
+        "/Game/Melodia/HoudiniFoundry/RoomShell/MI_RoomShell_trim_gold",
+        true
+      ],
+      "panel": [
+        "/Game/Melodia/HoudiniFoundry/RoomShell/MI_RoomShell_wall_plaster",
+        true
+      ],
+      "pearl_shell": [
+        "/Game/EnvSandbox/Materials/Instances/NikkiHero/MI_Nikki_Show_PearlSheen",
+        true
+      ],
+      "ribbon_silk": [
+        "/Game/Melodia/HoudiniFoundry/RoomShell/MI_RoomShell_ribbon_silk",
+        true
+      ],
+      "stone": [
+        "/Game/Melodia/HoudiniFoundry/RoomShell/MI_RoomShell_stone",
+        true
+      ],
+      "trim_gold": [
+        "/Game/Melodia/HoudiniFoundry/RoomShell/MI_RoomShell_trim_gold",
+        true
+      ],
+      "wall_plaster": [
+        "/Game/Melodia/HoudiniFoundry/RoomShell/MI_RoomShell_wall_plaster",
+        true
+      ]
+    },
+    "role_maps_agree": true,
+    "content_root": "C:\\EnvironmentPortfolio\\BS_GodFile\\Content"
+  },
+  "variants": {
+    "bedroom": {
+      "id": "bedroom",
+      "family": "rect",
+      "type_name": "melodia::room_shell_poitou_bedroom::1.0",
+      "label": "Melodia Poitou Interior - Bedroom",
+      "story_tag": "the scholar's own clutter breaking the clean system",
+      "hda": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Staging\\PoitouInteriorsSurfaces_20261025\\variants\\MelodiaRoomShell_Poitou_bedroom_1.0.hda",
+      "hda_sha256": "0f21caca5c9da838b9c4be32fb55b295d6578f50210ab63eb66de145c83f801c",
+      "module": "C:\\EnvironmentPortfolio\\BS_GodFile\\Tools\\Houdini\\room_shell\\room_shell.py",
+      "module_sha256": "1b40dcc70760d6bd3e72463a172ec6c099b3c0f8bfac3d825819ed50c52b7bec",
+      "source_sha256": "078775c054951813981387e50511bd1479562d074e32102f5ff56bbd215fecbd",
+      "declared": {
+        "room_w": 7.2,
+        "room_d": 9.6,
+        "room_h": 4.2,
+        "wall_t": 0.24,
+        "exterior_projection_m": 0.03,
+        "portals": [
+          {
+            "id": "bedroom_door",
+            "wall": "S",
+            "s": 3.6,
+            "width": 2.4,
+            "height": 3.2
+          }
+        ],
+        "decor": "nikki_bead_swag",
+        "windows_long": 2,
+        "windows_short": 0,
+        "plan_shape": null,
+        "tiers": null,
+        "bay_aligned_expected": true,
+        "bay_note": null,
+        "simple_floor_collision_supported": true
+      },
+      "defaults_requested": {
+        "room_w": 7.2,
+        "room_d": 9.6,
+        "room_h": 4.2,
+        "wall_t": 0.24,
+        "engine_y_up": 1,
+        "engine_flip": 1,
+        "decor": 1,
+        "windows_long": 2,
+        "windows_short": 0,
+        "openings_json": "[{\"id\":\"bedroom_door\",\"wall\":\"S\",\"s\":3.6,\"width\":2.4,\"height\":3.2}]",
+        "simple_floor_collision": 1
+      },
+      "defaults_missing": [],
+      "at_default": {
+        "room_w": 7.2,
+        "room_d": 9.6,
+        "room_h": 4.2,
+        "wall_t": 0.24,
+        "engine_y_up": 1,
+        "engine_flip": 1,
+        "openings_json": "[{\"id\":\"bedroom_door\",\"wall\":\"S\",\"s\":3.6,\"width\":2.4,\"height\":3.2}]",
+        "decor": "nikki_bead_swag",
+        "windows_long": 2,
+        "windows_short": 0,
+        "simple_floor_collision": 1,
+        "tiers_json": null,
+        "plan_shape": null
+      },
+      "native": {
+        "points": 73444,
+        "prims": 19913,
+        "bbox": [
+          [
+            -0.27000001072883606,
+            -0.23999999463558197,
+            -0.20000000298023224
+          ],
+          [
+            7.46999979019165,
+            9.84000015258789,
+            4.400000095367432
+          ]
+        ],
+        "geometry_sha256": "b31ee8a60a2a7ef136d5c7b2b4c2a7aa3efaf4ab69b74bf873ccdb5798f58e66",
+        "gate": {
+          "solid_volume_positive": true,
+          "bounds_ok": true,
+          "joint_max_error_mm": 0.0,
+          "joints": 18,
+          "joints_fit": true,
+          "windows_in_panels": true,
+          "door_clear": true,
+          "panes_fit": true,
+          "floor_inlay_up": true,
+          "streamers_placed": 6,
+          "streamers_wanted": 6,
+          "streamers_ok": true,
+          "keys_on_antinodes": true,
+          "windows_on_nodes": true,
+          "room_note_audible": true,
+          "pilasters_match_joints": true,
+          "chladni_from_room": true,
+          "dawn_puzzle_ok": true,
+          "dressing_surfaces_ok": true,
+          "dressing_surface_areas": {
+            "surface_ceiling": 77.4144,
+            "surface_floor": 77.4144,
+            "surface_ledge": 7.7178,
+            "surface_sill": 4.694,
+            "surface_wall": 304.2225
+          },
+          "roles_mapped": true,
+          "all_pass": true,
+          "prims": 19907
+        },
+        "rendered_group_prims": 19907,
+        "collision_group_prims": 6,
+        "collision_bounds": [
+          [
+            -0.23999999463558197,
+            -0.23999999463558197,
+            -0.20000000298023224
+          ],
+          [
+            7.440000057220459,
+            9.84000015258789,
+            0.0
+          ]
+        ],
+        "warnings": []
+      },
+      "ue_frame": {
+        "points": 73444,
+        "prims": 19913,
+        "bbox": [
+          [
+            -0.27000001072883606,
+            -0.20000000298023224,
+            -9.84000015258789
+          ],
+          [
+            7.46999979019165,
+            4.400000095367432,
+            0.23999999463558197
+          ]
+        ],
+        "geometry_sha256": "91be5fc2f5919c29aed34c37c359855d7693a5e5bebb517fec74cd1fd0a62fe9"
+      },
+      "sockets": [
+        {
+          "id": "bedroom_door",
+          "wall": "S",
+          "theta": null,
+          "bay": null,
+          "centre_local_m": [
+            3.6,
+            0.0,
+            0.0
+          ],
+          "clear_width_m": 2.4,
+          "clear_height_m": 3.2,
+          "floor_z_m": 0.0,
+          "s0": 2.4000000000000004,
+          "s1": 4.8,
+          "native_cut": true
+        }
+      ],
+      "windows": [
+        {
+          "wall": "W",
+          "s0": 3.5,
+          "s1": 4.5
+        },
+        {
+          "wall": "W",
+          "s0": 5.1,
+          "s1": 6.1
+        },
+        {
+          "wall": "E",
+          "s0": 1.9,
+          "s1": 2.9
+        },
+        {
+          "wall": "E",
+          "s0": 3.5,
+          "s1": 4.5
+        }
+      ],
+      "portal_checks": {
+        "bedroom_door": {
+          "standard_width": true,
+          "standard_height": true,
+          "head_clearance_ok": true,
+          "corner_clearance_ok": true
+        }
+      },
+      "checks": {
+        "defaults_landed": true,
+        "cooks_at_defaults": true,
+        "gate_all_pass": true,
+        "deterministic": true,
+        "footprint_exact": true,
+        "engine_y_up_axis": true,
+        "prims_unchanged_by_engine_frame": true,
+        "bay_aligned": true,
+        "module_grid": true,
+        "portals_survive": true,
+        "portals_floor_level": true,
+        "portals_native_cut": true,
+        "portals_match_standard_width": true,
+        "portal_rules": true,
+        "windows_clear_of_portals": true,
+        "uv_attribute_present": true,
+        "material_role_present": true,
+        "material_path_present": true,
+        "unreal_material_present": true,
+        "unreal_material_matches_role": true,
+        "roles_mapped": true,
+        "module_gate_roles_mapped": true,
+        "dressing_surfaces_ok": true,
+        "surface_groups_match_areas": true,
+        "surfaces_survive_engine_frame": true,
+        "rendered_group_matches": true,
+        "simple_floor_collision": true
+      },
+      "grid": {
+        "module_m": 0.6,
+        "bay_m": 2.4,
+        "beats": {
+          "room_w": 12.0,
+          "room_d": 16.0,
+          "room_h": 7.0
+        },
+        "off_grid": [],
+        "note": "",
+        "portal_width_beats": 4.0,
+        "portal_height_beats": 5.333333
+      },
+      "role_prim_counts": {
+        "crystal_glass": 288,
+        "floor_stone": 6,
+        "pearl_shell": 12160,
+        "ribbon_silk": 1746,
+        "stone": 252,
+        "trim_gold": 4273,
+        "wall_plaster": 1182
+      },
+      "dressing_surface_areas": {
+        "surface_ceiling": 77.4144,
+        "surface_floor": 77.4144,
+        "surface_ledge": 7.7178,
+        "surface_sill": 4.694,
+        "surface_wall": 304.2225
+      },
+      "window_conflicts": [],
+      "all_pass": true
+    },
+    "bedroom_small": {
+      "id": "bedroom_small",
+      "family": "rect",
+      "type_name": "melodia::room_shell_poitou_bedroom_small::1.0",
+      "label": "Melodia Poitou Interior - Small Bedroom",
+      "story_tag": "a narrower bedchamber of the same house, same system",
+      "hda": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Staging\\PoitouInteriorsSurfaces_20261025\\variants\\MelodiaRoomShell_Poitou_bedroom_small_1.0.hda",
+      "hda_sha256": "7fc561aae4bae3caa9635e98b1520f0132c823fb542535047269a189d26a2397",
+      "module": "C:\\EnvironmentPortfolio\\BS_GodFile\\Tools\\Houdini\\room_shell\\room_shell.py",
+      "module_sha256": "1b40dcc70760d6bd3e72463a172ec6c099b3c0f8bfac3d825819ed50c52b7bec",
+      "source_sha256": "078775c054951813981387e50511bd1479562d074e32102f5ff56bbd215fecbd",
+      "declared": {
+        "room_w": 4.8,
+        "room_d": 7.2,
+        "room_h": 4.2,
+        "wall_t": 0.24,
+        "exterior_projection_m": 0.03,
+        "portals": [
+          {
+            "id": "bedroom_small_door",
+            "wall": "S",
+            "s": 2.4,
+            "width": 2.4,
+            "height": 3.2
+          }
+        ],
+        "decor": "paris_haussmann",
+        "windows_long": 2,
+        "windows_short": 0,
+        "plan_shape": null,
+        "tiers": null,
+        "bay_aligned_expected": true,
+        "bay_note": null,
+        "simple_floor_collision_supported": true
+      },
+      "defaults_requested": {
+        "room_w": 4.8,
+        "room_d": 7.2,
+        "room_h": 4.2,
+        "wall_t": 0.24,
+        "engine_y_up": 1,
+        "engine_flip": 1,
+        "decor": 0,
+        "windows_long": 2,
+        "windows_short": 0,
+        "openings_json": "[{\"id\":\"bedroom_small_door\",\"wall\":\"S\",\"s\":2.4,\"width\":2.4,\"height\":3.2}]",
+        "simple_floor_collision": 1
+      },
+      "defaults_missing": [],
+      "at_default": {
+        "room_w": 4.8,
+        "room_d": 7.2,
+        "room_h": 4.2,
+        "wall_t": 0.24,
+        "engine_y_up": 1,
+        "engine_flip": 1,
+        "openings_json": "[{\"id\":\"bedroom_small_door\",\"wall\":\"S\",\"s\":2.4,\"width\":2.4,\"height\":3.2}]",
+        "decor": "paris_haussmann",
+        "windows_long": 2,
+        "windows_short": 0,
+        "simple_floor_collision": 1,
+        "tiers_json": null,
+        "plan_shape": null
+      },
+      "native": {
+        "points": 21444,
+        "prims": 5393,
+        "bbox": [
+          [
+            -0.27000001072883606,
+            -0.23999999463558197,
+            -0.20000000298023224
+          ],
+          [
+            5.070000171661377,
+            7.440000057220459,
+            4.400000095367432
+          ]
+        ],
+        "geometry_sha256": "f32a4e6243af85703b8d094d5ea8cba1756688ac956e5672f8f0cfb7d8900122",
+        "gate": {
+          "solid_volume_positive": true,
+          "bounds_ok": true,
+          "joint_max_error_mm": 0.0,
+          "joints": 12,
+          "joints_fit": true,
+          "windows_in_panels": true,
+          "door_clear": true,
+          "panes_fit": true,
+          "floor_inlay_up": true,
+          "streamers_placed": 6,
+          "streamers_wanted": 6,
+          "streamers_ok": true,
+          "keys_on_antinodes": true,
+          "windows_on_nodes": true,
+          "room_note_audible": true,
+          "pilasters_match_joints": true,
+          "chladni_from_room": true,
+          "dawn_puzzle_ok": true,
+          "dressing_surfaces_ok": true,
+          "dressing_surface_areas": {
+            "surface_ceiling": 40.5504,
+            "surface_floor": 40.5504,
+            "surface_ledge": 5.4474,
+            "surface_sill": 3.5105,
+            "surface_wall": 216.7665
+          },
+          "roles_mapped": true,
+          "all_pass": true,
+          "prims": 5387
+        },
+        "rendered_group_prims": 5387,
+        "collision_group_prims": 6,
+        "collision_bounds": [
+          [
+            -0.23999999463558197,
+            -0.23999999463558197,
+            -0.20000000298023224
+          ],
+          [
+            5.039999961853027,
+            7.440000057220459,
+            0.0
+          ]
+        ],
+        "warnings": []
+      },
+      "ue_frame": {
+        "points": 21444,
+        "prims": 5393,
+        "bbox": [
+          [
+            -0.27000001072883606,
+            -0.20000000298023224,
+            -7.440000057220459
+          ],
+          [
+            5.070000171661377,
+            4.400000095367432,
+            0.23999999463558197
+          ]
+        ],
+        "geometry_sha256": "1deb1f79852ec8b16835fca151e8fe87b5105ca7b9c50866d867e9078d6dc459"
+      },
+      "sockets": [
+        {
+          "id": "bedroom_small_door",
+          "wall": "S",
+          "theta": null,
+          "bay": null,
+          "centre_local_m": [
+            2.4,
+            0.0,
+            0.0
+          ],
+          "clear_width_m": 2.4,
+          "clear_height_m": 3.2,
+          "floor_z_m": 0.0,
+          "s0": 1.2,
+          "s1": 3.5999999999999996,
+          "native_cut": true
+        }
+      ],
+      "windows": [
+        {
+          "wall": "W",
+          "s0": 4.54,
+          "s1": 5.54
+        },
+        {
+          "wall": "W",
+          "s0": 5.98,
+          "s1": 6.98
+        },
+        {
+          "wall": "E",
+          "s0": 0.21999999999999997,
+          "s1": 1.22
+        },
+        {
+          "wall": "E",
+          "s0": 4.54,
+          "s1": 5.54
+        }
+      ],
+      "portal_checks": {
+        "bedroom_small_door": {
+          "standard_width": true,
+          "standard_height": true,
+          "head_clearance_ok": true,
+          "corner_clearance_ok": true
+        }
+      },
+      "checks": {
+        "defaults_landed": true,
+        "cooks_at_defaults": true,
+        "gate_all_pass": true,
+        "deterministic": true,
+        "footprint_exact": true,
+        "engine_y_up_axis": true,
+        "prims_unchanged_by_engine_frame": true,
+        "bay_aligned": true,
+        "module_grid": true,
+        "portals_survive": true,
+        "portals_floor_level": true,
+        "portals_native_cut": true,
+        "portals_match_standard_width": true,
+        "portal_rules": true,
+        "windows_clear_of_portals": true,
+        "uv_attribute_present": true,
+        "material_role_present": true,
+        "material_path_present": true,
+        "unreal_material_present": true,
+        "unreal_material_matches_role": true,
+        "roles_mapped": true,
+        "module_gate_roles_mapped": true,
+        "dressing_surfaces_ok": true,
+        "surface_groups_match_areas": true,
+        "surfaces_survive_engine_frame": true,
+        "rendered_group_matches": true,
+        "simple_floor_collision": true
+      },
+      "grid": {
+        "module_m": 0.6,
+        "bay_m": 2.4,
+        "beats": {
+          "room_w": 8.0,
+          "room_d": 12.0,
+          "room_h": 7.0
+        },
+        "off_grid": [],
+        "note": "",
+        "portal_width_beats": 4.0,
+        "portal_height_beats": 5.333333
+      },
+      "role_prim_counts": {
+        "crystal_glass": 288,
+        "floor_stone": 6,
+        "ribbon_silk": 1746,
+        "stone": 216,
+        "trim_gold": 2021,
+        "wall_plaster": 1110
+      },
+      "dressing_surface_areas": {
+        "surface_ceiling": 40.5504,
+        "surface_floor": 40.5504,
+        "surface_ledge": 5.4474,
+        "surface_sill": 3.5105,
+        "surface_wall": 216.7665
+      },
+      "window_conflicts": [],
+      "all_pass": true
+    },
+    "landing": {
+      "id": "landing",
+      "family": "rect",
+      "type_name": "melodia::room_shell_poitou_landing::1.0",
+      "label": "Melodia Poitou Interior - Landing",
+      "story_tag": "a threshold, barely lived in",
+      "hda": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Staging\\PoitouInteriorsSurfaces_20261025\\variants\\MelodiaRoomShell_Poitou_landing_1.0.hda",
+      "hda_sha256": "fdafb81701e04d27446877be4a391dfdbec643ac6356fb9fa855b703e02029c6",
+      "module": "C:\\EnvironmentPortfolio\\BS_GodFile\\Tools\\Houdini\\room_shell\\room_shell.py",
+      "module_sha256": "1b40dcc70760d6bd3e72463a172ec6c099b3c0f8bfac3d825819ed50c52b7bec",
+      "source_sha256": "078775c054951813981387e50511bd1479562d074e32102f5ff56bbd215fecbd",
+      "declared": {
+        "room_w": 4.8,
+        "room_d": 4.8,
+        "room_h": 4.2,
+        "wall_t": 0.24,
+        "exterior_projection_m": 0.0,
+        "portals": [
+          {
+            "id": "landing_in",
+            "wall": "W",
+            "s": 2.4,
+            "width": 2.4,
+            "height": 3.2
+          },
+          {
+            "id": "landing_out",
+            "wall": "E",
+            "s": 2.4,
+            "width": 2.4,
+            "height": 3.2
+          }
+        ],
+        "decor": "paris_haussmann",
+        "windows_long": 0,
+        "windows_short": 0,
+        "plan_shape": null,
+        "tiers": null,
+        "bay_aligned_expected": true,
+        "bay_note": null,
+        "simple_floor_collision_supported": true
+      },
+      "defaults_requested": {
+        "room_w": 4.8,
+        "room_d": 4.8,
+        "room_h": 4.2,
+        "wall_t": 0.24,
+        "engine_y_up": 1,
+        "engine_flip": 1,
+        "decor": 0,
+        "windows_long": 0,
+        "windows_short": 0,
+        "openings_json": "[{\"id\":\"landing_in\",\"wall\":\"W\",\"s\":2.4,\"width\":2.4,\"height\":3.2},{\"id\":\"landing_out\",\"wall\":\"E\",\"s\":2.4,\"width\":2.4,\"height\":3.2}]",
+        "simple_floor_collision": 1
+      },
+      "defaults_missing": [],
+      "at_default": {
+        "room_w": 4.8,
+        "room_d": 4.8,
+        "room_h": 4.2,
+        "wall_t": 0.24,
+        "engine_y_up": 1,
+        "engine_flip": 1,
+        "openings_json": "[{\"id\":\"landing_in\",\"wall\":\"W\",\"s\":2.4,\"width\":2.4,\"height\":3.2},{\"id\":\"landing_out\",\"wall\":\"E\",\"s\":2.4,\"width\":2.4,\"height\":3.2}]",
+        "decor": "paris_haussmann",
+        "windows_long": 0,
+        "windows_short": 0,
+        "simple_floor_collision": 1,
+        "tiers_json": null,
+        "plan_shape": null
+      },
+      "native": {
+        "points": 4072,
+        "prims": 1018,
+        "bbox": [
+          [
+            -0.23999999463558197,
+            -0.23999999463558197,
+            -0.20000000298023224
+          ],
+          [
+            5.039999961853027,
+            5.039999961853027,
+            4.400000095367432
+          ]
+        ],
+        "geometry_sha256": "e5fbc0dffd2b93dc18b6d19c4cf533bbda4c83c82becbc5d0049b40ad4c4133f",
+        "gate": {
+          "solid_volume_positive": true,
+          "bounds_ok": true,
+          "joint_max_error_mm": 0.0,
+          "joints": 8,
+          "joints_fit": true,
+          "windows_in_panels": true,
+          "door_clear": true,
+          "panes_fit": true,
+          "floor_inlay_up": true,
+          "streamers_placed": 0,
+          "streamers_wanted": 0,
+          "streamers_ok": true,
+          "keys_on_antinodes": true,
+          "windows_on_nodes": true,
+          "room_note_audible": true,
+          "pilasters_match_joints": true,
+          "chladni_from_room": true,
+          "dressing_surfaces_ok": true,
+          "dressing_surface_areas": {
+            "surface_ceiling": 27.8784,
+            "surface_floor": 27.8784,
+            "surface_ledge": 3.3245,
+            "surface_sill": 2.2094,
+            "surface_wall": 141.0912
+          },
+          "roles_mapped": true,
+          "all_pass": true,
+          "prims": 1012
+        },
+        "rendered_group_prims": 1012,
+        "collision_group_prims": 6,
+        "collision_bounds": [
+          [
+            -0.23999999463558197,
+            -0.23999999463558197,
+            -0.20000000298023224
+          ],
+          [
+            5.039999961853027,
+            5.039999961853027,
+            0.0
+          ]
+        ],
+        "warnings": []
+      },
+      "ue_frame": {
+        "points": 4072,
+        "prims": 1018,
+        "bbox": [
+          [
+            -0.23999999463558197,
+            -0.20000000298023224,
+            -5.039999961853027
+          ],
+          [
+            5.039999961853027,
+            4.400000095367432,
+            0.23999999463558197
+          ]
+        ],
+        "geometry_sha256": "fb54a422fc0f1ae97090cae2db41a41241c3d1382c1c5368e43438b4548471c5"
+      },
+      "sockets": [
+        {
+          "id": "landing_in",
+          "wall": "W",
+          "theta": null,
+          "bay": null,
+          "centre_local_m": [
+            0.0,
+            2.4,
+            0.0
+          ],
+          "clear_width_m": 2.4,
+          "clear_height_m": 3.2,
+          "floor_z_m": 0.0,
+          "s0": 1.2,
+          "s1": 3.5999999999999996,
+          "native_cut": true
+        },
+        {
+          "id": "landing_out",
+          "wall": "E",
+          "theta": null,
+          "bay": null,
+          "centre_local_m": [
+            4.8,
+            2.4,
+            0.0
+          ],
+          "clear_width_m": 2.4,
+          "clear_height_m": 3.2,
+          "floor_z_m": 0.0,
+          "s0": 1.2,
+          "s1": 3.5999999999999996,
+          "native_cut": true
+        }
+      ],
+      "windows": [],
+      "portal_checks": {
+        "landing_in": {
+          "standard_width": true,
+          "standard_height": true,
+          "head_clearance_ok": true,
+          "corner_clearance_ok": true
+        },
+        "landing_out": {
+          "standard_width": true,
+          "standard_height": true,
+          "head_clearance_ok": true,
+          "corner_clearance_ok": true
+        }
+      },
+      "checks": {
+        "defaults_landed": true,
+        "cooks_at_defaults": true,
+        "gate_all_pass": true,
+        "deterministic": true,
+        "footprint_exact": true,
+        "engine_y_up_axis": true,
+        "prims_unchanged_by_engine_frame": true,
+        "bay_aligned": true,
+        "module_grid": true,
+        "portals_survive": true,
+        "portals_floor_level": true,
+        "portals_native_cut": true,
+        "portals_match_standard_width": true,
+        "portal_rules": true,
+        "windows_clear_of_portals": true,
+        "uv_attribute_present": true,
+        "material_role_present": true,
+        "material_path_present": true,
+        "unreal_material_present": true,
+        "unreal_material_matches_role": true,
+        "roles_mapped": true,
+        "module_gate_roles_mapped": true,
+        "dressing_surfaces_ok": true,
+        "surface_groups_match_areas": true,
+        "surfaces_survive_engine_frame": true,
+        "rendered_group_matches": true,
+        "simple_floor_collision": true
+      },
+      "grid": {
+        "module_m": 0.6,
+        "bay_m": 2.4,
+        "beats": {
+          "room_w": 8.0,
+          "room_d": 8.0,
+          "room_h": 7.0
+        },
+        "off_grid": [],
+        "note": "",
+        "portal_width_beats": 4.0,
+        "portal_height_beats": 5.333333
+      },
+      "role_prim_counts": {
+        "floor_stone": 6,
+        "stone": 144,
+        "trim_gold": 640,
+        "wall_plaster": 222
+      },
+      "dressing_surface_areas": {
+        "surface_ceiling": 27.8784,
+        "surface_floor": 27.8784,
+        "surface_ledge": 3.3245,
+        "surface_sill": 2.2094,
+        "surface_wall": 141.0912
+      },
+      "window_conflicts": [],
+      "all_pass": true
+    },
+    "landing_wide": {
+      "id": "landing_wide",
+      "family": "rect",
+      "type_name": "melodia::room_shell_poitou_landing_wide::1.0",
+      "label": "Melodia Poitou Interior - Long Landing",
+      "story_tag": "the stair hall: the house's circulation held in one long room",
+      "hda": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Staging\\PoitouInteriorsSurfaces_20261025\\variants\\MelodiaRoomShell_Poitou_landing_wide_1.0.hda",
+      "hda_sha256": "162817222ea8b7f4644e109a3754c648f60171502d412612d86e12a70538e7f3",
+      "module": "C:\\EnvironmentPortfolio\\BS_GodFile\\Tools\\Houdini\\room_shell\\room_shell.py",
+      "module_sha256": "1b40dcc70760d6bd3e72463a172ec6c099b3c0f8bfac3d825819ed50c52b7bec",
+      "source_sha256": "078775c054951813981387e50511bd1479562d074e32102f5ff56bbd215fecbd",
+      "declared": {
+        "room_w": 9.6,
+        "room_d": 4.8,
+        "room_h": 4.2,
+        "wall_t": 0.24,
+        "exterior_projection_m": 0.03,
+        "portals": [
+          {
+            "id": "landing_in",
+            "wall": "W",
+            "s": 2.4,
+            "width": 2.4,
+            "height": 3.2
+          },
+          {
+            "id": "landing_out",
+            "wall": "E",
+            "s": 2.4,
+            "width": 2.4,
+            "height": 3.2
+          }
+        ],
+        "decor": "paris_haussmann",
+        "windows_long": 1,
+        "windows_short": 0,
+        "plan_shape": null,
+        "tiers": null,
+        "bay_aligned_expected": true,
+        "bay_note": null,
+        "simple_floor_collision_supported": true
+      },
+      "defaults_requested": {
+        "room_w": 9.6,
+        "room_d": 4.8,
+        "room_h": 4.2,
+        "wall_t": 0.24,
+        "engine_y_up": 1,
+        "engine_flip": 1,
+        "decor": 0,
+        "windows_long": 1,
+        "windows_short": 0,
+        "openings_json": "[{\"id\":\"landing_in\",\"wall\":\"W\",\"s\":2.4,\"width\":2.4,\"height\":3.2},{\"id\":\"landing_out\",\"wall\":\"E\",\"s\":2.4,\"width\":2.4,\"height\":3.2}]",
+        "simple_floor_collision": 1
+      },
+      "defaults_missing": [],
+      "at_default": {
+        "room_w": 9.6,
+        "room_d": 4.8,
+        "room_h": 4.2,
+        "wall_t": 0.24,
+        "engine_y_up": 1,
+        "engine_flip": 1,
+        "openings_json": "[{\"id\":\"landing_in\",\"wall\":\"W\",\"s\":2.4,\"width\":2.4,\"height\":3.2},{\"id\":\"landing_out\",\"wall\":\"E\",\"s\":2.4,\"width\":2.4,\"height\":3.2}]",
+        "decor": "paris_haussmann",
+        "windows_long": 1,
+        "windows_short": 0,
+        "simple_floor_collision": 1,
+        "tiers_json": null,
+        "plan_shape": null
+      },
+      "native": {
+        "points": 17212,
+        "prims": 4319,
+        "bbox": [
+          [
+            -0.23999999463558197,
+            -0.27000001072883606,
+            -0.20000000298023224
+          ],
+          [
+            9.84000015258789,
+            5.070000171661377,
+            4.400000095367432
+          ]
+        ],
+        "geometry_sha256": "45c3577a02fa1e6ef02c68fe388ff28d48c6f1d26cbec1a5d7785d2e93bfac2d",
+        "gate": {
+          "solid_volume_positive": true,
+          "bounds_ok": true,
+          "joint_max_error_mm": 0.0,
+          "joints": 14,
+          "joints_fit": true,
+          "windows_in_panels": true,
+          "door_clear": true,
+          "panes_fit": true,
+          "floor_inlay_up": true,
+          "streamers_placed": 6,
+          "streamers_wanted": 6,
+          "streamers_ok": true,
+          "keys_on_antinodes": true,
+          "windows_on_nodes": true,
+          "room_note_audible": true,
+          "pilasters_match_joints": true,
+          "chladni_from_room": true,
+          "dawn_puzzle_ok": true,
+          "dressing_surfaces_ok": true,
+          "dressing_surface_areas": {
+            "surface_ceiling": 53.2224,
+            "surface_floor": 53.2224,
+            "surface_ledge": 5.7418,
+            "surface_sill": 3.6557,
+            "surface_wall": 236.5769
+          },
+          "roles_mapped": true,
+          "all_pass": true,
+          "prims": 4313
+        },
+        "rendered_group_prims": 4313,
+        "collision_group_prims": 6,
+        "collision_bounds": [
+          [
+            -0.23999999463558197,
+            -0.23999999463558197,
+            -0.20000000298023224
+          ],
+          [
+            9.84000015258789,
+            5.039999961853027,
+            0.0
+          ]
+        ],
+        "warnings": []
+      },
+      "ue_frame": {
+        "points": 17212,
+        "prims": 4319,
+        "bbox": [
+          [
+            -0.23999999463558197,
+            -0.20000000298023224,
+            -5.070000171661377
+          ],
+          [
+            9.84000015258789,
+            4.400000095367432,
+            0.27000001072883606
+          ]
+        ],
+        "geometry_sha256": "9c18293b41a856e6648f2f720055c0149afc7997221724482157777ad204bca6"
+      },
+      "sockets": [
+        {
+          "id": "landing_in",
+          "wall": "W",
+          "theta": null,
+          "bay": null,
+          "centre_local_m": [
+            0.0,
+            2.4,
+            0.0
+          ],
+          "clear_width_m": 2.4,
+          "clear_height_m": 3.2,
+          "floor_z_m": 0.0,
+          "s0": 1.2,
+          "s1": 3.5999999999999996,
+          "native_cut": true
+        },
+        {
+          "id": "landing_out",
+          "wall": "E",
+          "theta": null,
+          "bay": null,
+          "centre_local_m": [
+            9.6,
+            2.4,
+            0.0
+          ],
+          "clear_width_m": 2.4,
+          "clear_height_m": 3.2,
+          "floor_z_m": 0.0,
+          "s0": 1.2,
+          "s1": 3.5999999999999996,
+          "native_cut": true
+        }
+      ],
+      "windows": [
+        {
+          "wall": "S",
+          "s0": 1.9,
+          "s1": 2.9
+        },
+        {
+          "wall": "N",
+          "s0": 1.9,
+          "s1": 2.9
+        }
+      ],
+      "portal_checks": {
+        "landing_in": {
+          "standard_width": true,
+          "standard_height": true,
+          "head_clearance_ok": true,
+          "corner_clearance_ok": true
+        },
+        "landing_out": {
+          "standard_width": true,
+          "standard_height": true,
+          "head_clearance_ok": true,
+          "corner_clearance_ok": true
+        }
+      },
+      "checks": {
+        "defaults_landed": true,
+        "cooks_at_defaults": true,
+        "gate_all_pass": true,
+        "deterministic": true,
+        "footprint_exact": true,
+        "engine_y_up_axis": true,
+        "prims_unchanged_by_engine_frame": true,
+        "bay_aligned": true,
+        "module_grid": true,
+        "portals_survive": true,
+        "portals_floor_level": true,
+        "portals_native_cut": true,
+        "portals_match_standard_width": true,
+        "portal_rules": true,
+        "windows_clear_of_portals": true,
+        "uv_attribute_present": true,
+        "material_role_present": true,
+        "material_path_present": true,
+        "unreal_material_present": true,
+        "unreal_material_matches_role": true,
+        "roles_mapped": true,
+        "module_gate_roles_mapped": true,
+        "dressing_surfaces_ok": true,
+        "surface_groups_match_areas": true,
+        "surfaces_survive_engine_frame": true,
+        "rendered_group_matches": true,
+        "simple_floor_collision": true
+      },
+      "grid": {
+        "module_m": 0.6,
+        "bay_m": 2.4,
+        "beats": {
+          "room_w": 16.0,
+          "room_d": 8.0,
+          "room_h": 7.0
+        },
+        "off_grid": [],
+        "note": "",
+        "portal_width_beats": 4.0,
+        "portal_height_beats": 5.333333
+      },
+      "role_prim_counts": {
+        "crystal_glass": 144,
+        "floor_stone": 6,
+        "ribbon_silk": 1746,
+        "stone": 204,
+        "trim_gold": 1487,
+        "wall_plaster": 726
+      },
+      "dressing_surface_areas": {
+        "surface_ceiling": 53.2224,
+        "surface_floor": 53.2224,
+        "surface_ledge": 5.7418,
+        "surface_sill": 3.6557,
+        "surface_wall": 236.5769
+      },
+      "window_conflicts": [],
+      "all_pass": true
+    },
+    "salon_measured": {
+      "id": "salon_measured",
+      "family": "rounded",
+      "type_name": "melodia::room_shell_poitou_salon_measured::1.0",
+      "label": "Melodia Poitou Interior - Salon (measured)",
+      "story_tag": "the library reaching into the salon - the house's scholarship on display",
+      "hda": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Staging\\PoitouInteriorsSurfaces_20261025\\variants\\MelodiaRoomShell_Poitou_salon_measured_1.0.hda",
+      "hda_sha256": "c25b4b613735f0c25592bd22f8dee54294ee2c4cdc9f06ea9d4ebefad91654c4",
+      "module": "C:\\EnvironmentPortfolio\\BS_GodFile\\Tools\\Houdini\\room_shell\\room_shell_rounded.py",
+      "module_sha256": "85cf55c1999b31069d10ec92c0dd76a517854c1b473b22d2615351cc043d5a89",
+      "source_sha256": "05a1071ba02ffae3228a5e888e7805c6509148952f4700d442e63320547dd15d",
+      "declared": {
+        "room_w": 15.84,
+        "room_d": 12.06,
+        "room_h": 7.6,
+        "wall_t": 0.24,
+        "exterior_projection_m": 0.0,
+        "portals": [
+          {
+            "id": "salon_entry",
+            "theta": 0.25,
+            "width": 2.4,
+            "height": 3.2
+          },
+          {
+            "id": "salon_front",
+            "theta": 0.75,
+            "width": 2.4,
+            "height": 3.2
+          }
+        ],
+        "decor": null,
+        "windows_long": null,
+        "windows_short": null,
+        "plan_shape": 0,
+        "tiers": [
+          1.0,
+          0.92,
+          0.84
+        ],
+        "bay_aligned_expected": false,
+        "bay_note": "measured artist salon from L_MelusinaHouse_P0; 15.84/2.4 = 6.6 bays",
+        "simple_floor_collision_supported": false
+      },
+      "defaults_requested": {
+        "room_w": 15.84,
+        "room_d": 12.06,
+        "room_h": 7.6,
+        "wall_t": 0.24,
+        "engine_y_up": 1,
+        "engine_flip": 1,
+        "plan_shape": 0,
+        "plan_sides": 16,
+        "plan_exponent": 2.6,
+        "plan_segments": 96,
+        "tiers_json": "[1.0,0.92,0.84]",
+        "openings_json": "[{\"id\":\"salon_entry\",\"theta\":0.25,\"width\":2.4,\"height\":3.2},{\"id\":\"salon_front\",\"theta\":0.75,\"width\":2.4,\"height\":3.2}]"
+      },
+      "defaults_missing": [],
+      "at_default": {
+        "room_w": 15.84,
+        "room_d": 12.06,
+        "room_h": 7.6,
+        "wall_t": 0.24,
+        "engine_y_up": 1,
+        "engine_flip": 1,
+        "openings_json": "[{\"id\":\"salon_entry\",\"theta\":0.25,\"width\":2.4,\"height\":3.2},{\"id\":\"salon_front\",\"theta\":0.75,\"width\":2.4,\"height\":3.2}]",
+        "decor": "nikki_bead_swag",
+        "windows_long": 2,
+        "windows_short": 1,
+        "simple_floor_collision": null,
+        "tiers_json": "[1.0,0.92,0.84]",
+        "plan_shape": 0
+      },
+      "native": {
+        "points": 72416,
+        "prims": 18240,
+        "bbox": [
+          [
+            -0.23999999463558197,
+            -0.23999999463558197,
+            -0.11999999731779099
+          ],
+          [
+            16.079999923706055,
+            12.300000190734863,
+            7.78000020980835
+          ]
+        ],
+        "geometry_sha256": "96d72e0a2a8ed8a8b2575b1075631450c6e8f09bfac551c6062170a14835f88d",
+        "gate": {
+          "solid_volume_positive": true,
+          "bounds_ok": true,
+          "aperture_jambs_exact": true,
+          "portals_empty_below_header": true,
+          "apertures_floor_level": true,
+          "apertures_header_clear": true,
+          "sockets_match_apertures": true,
+          "plan_profile_error_mm": 0.0091,
+          "plan_matches_shape": true,
+          "bay_rhythm_ok": true,
+          "tiers_valid": true,
+          "portal_arch_max_dev_m": 0.1081,
+          "portal_arch_follows_profile": true,
+          "decor_clear_of_doorways": true,
+          "walls_present": true,
+          "dressing_surfaces_ok": true,
+          "dressing_surface_areas": {
+            "surface_ceiling": 160.6724,
+            "surface_floor": 160.6724,
+            "surface_ledge": 21.0064,
+            "surface_wall": 824.5017
+          },
+          "roles_mapped": true,
+          "all_pass": true,
+          "prims": 18240,
+          "points": 72416
+        },
+        "rendered_group_prims": null,
+        "collision_group_prims": null,
+        "collision_bounds": null,
+        "warnings": []
+      },
+      "ue_frame": {
+        "points": 72416,
+        "prims": 18240,
+        "bbox": [
+          [
+            -0.23999999463558197,
+            -0.11999999731779099,
+            -12.300000190734863
+          ],
+          [
+            16.079999923706055,
+            7.78000020980835,
+            0.23999999463558197
+          ]
+        ],
+        "geometry_sha256": "f5f77f89ba701696259e6d7832ffe79e2dcf174f66f5f7625a3940bc852c8a0c"
+      },
+      "sockets": [
+        {
+          "id": "salon_entry",
+          "wall": "CURVE",
+          "theta": 0.25,
+          "bay": 0,
+          "centre_local_m": [
+            7.92,
+            12.06,
+            0.0
+          ],
+          "clear_width_m": 2.4,
+          "clear_height_m": 3.2,
+          "floor_z_m": 0.0,
+          "s0": 9.806636,
+          "s1": 12.206636,
+          "native_cut": true
+        },
+        {
+          "id": "salon_front",
+          "wall": "CURVE",
+          "theta": 0.75,
+          "bay": 0,
+          "centre_local_m": [
+            7.92,
+            0.0,
+            0.0
+          ],
+          "clear_width_m": 2.4,
+          "clear_height_m": 3.2,
+          "floor_z_m": 0.0,
+          "s0": 31.819908,
+          "s1": 34.219908,
+          "native_cut": true
+        }
+      ],
+      "windows": [],
+      "portal_checks": {
+        "salon_entry": {
+          "standard_width": true,
+          "standard_height": true,
+          "head_clearance_ok": true
+        },
+        "salon_front": {
+          "standard_width": true,
+          "standard_height": true,
+          "head_clearance_ok": true
+        }
+      },
+      "checks": {
+        "defaults_landed": true,
+        "cooks_at_defaults": true,
+        "gate_all_pass": true,
+        "deterministic": true,
+        "footprint_exact": true,
+        "engine_y_up_axis": true,
+        "prims_unchanged_by_engine_frame": true,
+        "bay_aligned": true,
+        "module_grid": true,
+        "portals_survive": true,
+        "portals_floor_level": true,
+        "portals_native_cut": true,
+        "portals_match_standard_width": true,
+        "portal_rules": true,
+        "windows_clear_of_portals": true,
+        "uv_attribute_present": true,
+        "material_role_present": true,
+        "material_path_present": true,
+        "unreal_material_present": true,
+        "unreal_material_matches_role": true,
+        "roles_mapped": true,
+        "module_gate_roles_mapped": true,
+        "dressing_surfaces_ok": true,
+        "surface_groups_match_areas": true,
+        "surfaces_survive_engine_frame": true
+      },
+      "grid": {
+        "module_m": 0.6,
+        "bay_m": 2.4,
+        "beats": {
+          "room_w": 26.4,
+          "room_d": 20.1,
+          "room_h": 12.666667
+        },
+        "off_grid": [
+          "room_d",
+          "room_h",
+          "room_w"
+        ],
+        "note": "measured artist salon from L_MelusinaHouse_P0; 15.84/2.4 = 6.6 bays",
+        "portal_width_beats": 4.0,
+        "portal_height_beats": 5.333333
+      },
+      "role_prim_counts": {
+        "floor_stone": 408,
+        "panel": 3848,
+        "pearl_shell": 6408,
+        "trim_gold": 5296,
+        "wall_plaster": 2280
+      },
+      "dressing_surface_areas": {
+        "surface_ceiling": 160.6724,
+        "surface_floor": 160.6724,
+        "surface_ledge": 21.0064,
+        "surface_wall": 824.5017
+      },
+      "window_conflicts": [],
+      "all_pass": true
+    },
+    "salon_bay": {
+      "id": "salon_bay",
+      "family": "rounded",
+      "type_name": "melodia::room_shell_poitou_salon_bay::1.0",
+      "label": "Melodia Poitou Interior - Salon (bay aligned)",
+      "story_tag": "the same salon snapped to the 2.4 m bay grid so it joins the house kit",
+      "hda": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Staging\\PoitouInteriorsSurfaces_20261025\\variants\\MelodiaRoomShell_Poitou_salon_bay_1.0.hda",
+      "hda_sha256": "d15016ff3dc3a3a5b2eb9fe10de3ac66fdc90eb386209f2572b1c95466ceabc2",
+      "module": "C:\\EnvironmentPortfolio\\BS_GodFile\\Tools\\Houdini\\room_shell\\room_shell_rounded.py",
+      "module_sha256": "85cf55c1999b31069d10ec92c0dd76a517854c1b473b22d2615351cc043d5a89",
+      "source_sha256": "05a1071ba02ffae3228a5e888e7805c6509148952f4700d442e63320547dd15d",
+      "declared": {
+        "room_w": 16.8,
+        "room_d": 12.0,
+        "room_h": 7.2,
+        "wall_t": 0.24,
+        "exterior_projection_m": 0.0,
+        "portals": [
+          {
+            "id": "salon_entry",
+            "theta": 0.25,
+            "width": 2.4,
+            "height": 3.2
+          },
+          {
+            "id": "salon_front",
+            "theta": 0.75,
+            "width": 2.4,
+            "height": 3.2
+          }
+        ],
+        "decor": null,
+        "windows_long": null,
+        "windows_short": null,
+        "plan_shape": 1,
+        "tiers": [
+          1.0,
+          0.92,
+          0.84
+        ],
+        "bay_aligned_expected": true,
+        "bay_note": null,
+        "simple_floor_collision_supported": false
+      },
+      "defaults_requested": {
+        "room_w": 16.8,
+        "room_d": 12.0,
+        "room_h": 7.2,
+        "wall_t": 0.24,
+        "engine_y_up": 1,
+        "engine_flip": 1,
+        "plan_shape": 1,
+        "plan_sides": 16,
+        "plan_exponent": 2.6,
+        "plan_segments": 96,
+        "tiers_json": "[1.0,0.92,0.84]",
+        "openings_json": "[{\"id\":\"salon_entry\",\"theta\":0.25,\"width\":2.4,\"height\":3.2},{\"id\":\"salon_front\",\"theta\":0.75,\"width\":2.4,\"height\":3.2}]"
+      },
+      "defaults_missing": [],
+      "at_default": {
+        "room_w": 16.8,
+        "room_d": 12.0,
+        "room_h": 7.2,
+        "wall_t": 0.24,
+        "engine_y_up": 1,
+        "engine_flip": 1,
+        "openings_json": "[{\"id\":\"salon_entry\",\"theta\":0.25,\"width\":2.4,\"height\":3.2},{\"id\":\"salon_front\",\"theta\":0.75,\"width\":2.4,\"height\":3.2}]",
+        "decor": "nikki_bead_swag",
+        "windows_long": 2,
+        "windows_short": 1,
+        "simple_floor_collision": null,
+        "tiers_json": "[1.0,0.92,0.84]",
+        "plan_shape": 1
+      },
+      "native": {
+        "points": 85256,
+        "prims": 21450,
+        "bbox": [
+          [
+            -0.23999999463558197,
+            -0.23999999463558197,
+            -0.11999999731779099
+          ],
+          [
+            17.040000915527344,
+            12.239999771118164,
+            7.380000114440918
+          ]
+        ],
+        "geometry_sha256": "49cb50c3d23800ba1ac2e29d28e9c123522dfa99e751104317e4bad953e4357a",
+        "gate": {
+          "solid_volume_positive": true,
+          "bounds_ok": true,
+          "aperture_jambs_exact": true,
+          "portals_empty_below_header": true,
+          "apertures_floor_level": true,
+          "apertures_header_clear": true,
+          "sockets_match_apertures": true,
+          "plan_profile_error_mm": 0.0094,
+          "plan_matches_shape": true,
+          "bay_rhythm_ok": true,
+          "tiers_valid": true,
+          "portal_arch_max_dev_m": 0.1079,
+          "portal_arch_follows_profile": true,
+          "decor_clear_of_doorways": true,
+          "walls_present": true,
+          "dressing_surfaces_ok": true,
+          "dressing_surface_areas": {
+            "surface_ceiling": 183.6968,
+            "surface_floor": 183.6968,
+            "surface_ledge": 22.7447,
+            "surface_wall": 830.7401
+          },
+          "roles_mapped": true,
+          "all_pass": true,
+          "prims": 21450,
+          "points": 85256
+        },
+        "rendered_group_prims": null,
+        "collision_group_prims": null,
+        "collision_bounds": null,
+        "warnings": []
+      },
+      "ue_frame": {
+        "points": 85256,
+        "prims": 21450,
+        "bbox": [
+          [
+            -0.23999999463558197,
+            -0.11999999731779099,
+            -12.239999771118164
+          ],
+          [
+            17.040000915527344,
+            7.380000114440918,
+            0.23999999463558197
+          ]
+        ],
+        "geometry_sha256": "db1fceb2c62a9121e21cd1a3538e6cd213605a7d0d6d5c1734d53078d3156c84"
+      },
+      "sockets": [
+        {
+          "id": "salon_entry",
+          "wall": "CURVE",
+          "theta": 0.25,
+          "bay": 0,
+          "centre_local_m": [
+            8.4,
+            12.0,
+            0.0
+          ],
+          "clear_width_m": 2.4,
+          "clear_height_m": 3.2,
+          "floor_z_m": 0.0,
+          "s0": 10.723367,
+          "s1": 13.123367,
+          "native_cut": true
+        },
+        {
+          "id": "salon_front",
+          "wall": "CURVE",
+          "theta": 0.75,
+          "bay": 0,
+          "centre_local_m": [
+            8.4,
+            0.0,
+            0.0
+          ],
+          "clear_width_m": 2.4,
+          "clear_height_m": 3.2,
+          "floor_z_m": 0.0,
+          "s0": 34.570102,
+          "s1": 36.970102,
+          "native_cut": true
+        }
+      ],
+      "windows": [],
+      "portal_checks": {
+        "salon_entry": {
+          "standard_width": true,
+          "standard_height": true,
+          "head_clearance_ok": true
+        },
+        "salon_front": {
+          "standard_width": true,
+          "standard_height": true,
+          "head_clearance_ok": true
+        }
+      },
+      "checks": {
+        "defaults_landed": true,
+        "cooks_at_defaults": true,
+        "gate_all_pass": true,
+        "deterministic": true,
+        "footprint_exact": true,
+        "engine_y_up_axis": true,
+        "prims_unchanged_by_engine_frame": true,
+        "bay_aligned": true,
+        "module_grid": true,
+        "portals_survive": true,
+        "portals_floor_level": true,
+        "portals_native_cut": true,
+        "portals_match_standard_width": true,
+        "portal_rules": true,
+        "windows_clear_of_portals": true,
+        "uv_attribute_present": true,
+        "material_role_present": true,
+        "material_path_present": true,
+        "unreal_material_present": true,
+        "unreal_material_matches_role": true,
+        "roles_mapped": true,
+        "module_gate_roles_mapped": true,
+        "dressing_surfaces_ok": true,
+        "surface_groups_match_areas": true,
+        "surfaces_survive_engine_frame": true
+      },
+      "grid": {
+        "module_m": 0.6,
+        "bay_m": 2.4,
+        "beats": {
+          "room_w": 28.0,
+          "room_d": 20.0,
+          "room_h": 12.0
+        },
+        "off_grid": [],
+        "note": "",
+        "portal_width_beats": 4.0,
+        "portal_height_beats": 5.333333
+      },
+      "role_prim_counts": {
+        "floor_stone": 408,
+        "panel": 3848,
+        "pearl_shell": 8766,
+        "trim_gold": 6148,
+        "wall_plaster": 2280
+      },
+      "dressing_surface_areas": {
+        "surface_ceiling": 183.6968,
+        "surface_floor": 183.6968,
+        "surface_ledge": 22.7447,
+        "surface_wall": 830.7401
+      },
+      "window_conflicts": [],
+      "all_pass": true
+    },
+    "salon_bay_stepped": {
+      "id": "salon_bay_stepped",
+      "family": "rounded",
+      "type_name": "melodia::room_shell_poitou_salon_bay_stepped::1.0",
+      "label": "Melodia Poitou Interior - Salon (bay, stepped massing)",
+      "story_tag": "the salon seen from the canal: the ziggurat that tells you it is the big room",
+      "hda": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Staging\\PoitouInteriorsSurfaces_20261025\\variants\\MelodiaRoomShell_Poitou_salon_bay_stepped_1.0.hda",
+      "hda_sha256": "128e65ffd1ae1cd816812a78a71f570f3da5db4a477583ac7aa96c64faa4a120",
+      "module": "C:\\EnvironmentPortfolio\\BS_GodFile\\Tools\\Houdini\\room_shell\\room_shell_rounded.py",
+      "module_sha256": "85cf55c1999b31069d10ec92c0dd76a517854c1b473b22d2615351cc043d5a89",
+      "source_sha256": "05a1071ba02ffae3228a5e888e7805c6509148952f4700d442e63320547dd15d",
+      "declared": {
+        "room_w": 16.8,
+        "room_d": 12.0,
+        "room_h": 7.2,
+        "wall_t": 0.24,
+        "exterior_projection_m": 0.0,
+        "portals": [
+          {
+            "id": "salon_entry",
+            "theta": 0.25,
+            "width": 2.4,
+            "height": 3.2
+          },
+          {
+            "id": "salon_front",
+            "theta": 0.75,
+            "width": 2.4,
+            "height": 3.2
+          }
+        ],
+        "decor": null,
+        "windows_long": null,
+        "windows_short": null,
+        "plan_shape": 1,
+        "tiers": [
+          1.0,
+          0.85,
+          0.7
+        ],
+        "bay_aligned_expected": true,
+        "bay_note": null,
+        "simple_floor_collision_supported": false
+      },
+      "defaults_requested": {
+        "room_w": 16.8,
+        "room_d": 12.0,
+        "room_h": 7.2,
+        "wall_t": 0.24,
+        "engine_y_up": 1,
+        "engine_flip": 1,
+        "plan_shape": 1,
+        "plan_sides": 16,
+        "plan_exponent": 2.6,
+        "plan_segments": 96,
+        "tiers_json": "[1.0,0.85,0.7]",
+        "openings_json": "[{\"id\":\"salon_entry\",\"theta\":0.25,\"width\":2.4,\"height\":3.2},{\"id\":\"salon_front\",\"theta\":0.75,\"width\":2.4,\"height\":3.2}]"
+      },
+      "defaults_missing": [],
+      "at_default": {
+        "room_w": 16.8,
+        "room_d": 12.0,
+        "room_h": 7.2,
+        "wall_t": 0.24,
+        "engine_y_up": 1,
+        "engine_flip": 1,
+        "openings_json": "[{\"id\":\"salon_entry\",\"theta\":0.25,\"width\":2.4,\"height\":3.2},{\"id\":\"salon_front\",\"theta\":0.75,\"width\":2.4,\"height\":3.2}]",
+        "decor": "nikki_bead_swag",
+        "windows_long": 2,
+        "windows_short": 1,
+        "simple_floor_collision": null,
+        "tiers_json": "[1.0,0.85,0.7]",
+        "plan_shape": 1
+      },
+      "native": {
+        "points": 85256,
+        "prims": 21450,
+        "bbox": [
+          [
+            -0.23999999463558197,
+            -0.23999999463558197,
+            -0.11999999731779099
+          ],
+          [
+            17.040000915527344,
+            12.239999771118164,
+            7.380000114440918
+          ]
+        ],
+        "geometry_sha256": "a5820b888499748b9ceed7d366f3826367fd4f7ddf0b747e012b78e729424674",
+        "gate": {
+          "solid_volume_positive": true,
+          "bounds_ok": true,
+          "aperture_jambs_exact": true,
+          "portals_empty_below_header": true,
+          "apertures_floor_level": true,
+          "apertures_header_clear": true,
+          "sockets_match_apertures": true,
+          "plan_profile_error_mm": 0.0094,
+          "plan_matches_shape": true,
+          "bay_rhythm_ok": true,
+          "tiers_valid": true,
+          "portal_arch_max_dev_m": 0.1079,
+          "portal_arch_follows_profile": true,
+          "decor_clear_of_doorways": true,
+          "walls_present": true,
+          "dressing_surfaces_ok": true,
+          "dressing_surface_areas": {
+            "surface_ceiling": 183.6968,
+            "surface_floor": 183.6968,
+            "surface_ledge": 24.2225,
+            "surface_wall": 820.1795
+          },
+          "roles_mapped": true,
+          "all_pass": true,
+          "prims": 21450,
+          "points": 85256
+        },
+        "rendered_group_prims": null,
+        "collision_group_prims": null,
+        "collision_bounds": null,
+        "warnings": []
+      },
+      "ue_frame": {
+        "points": 85256,
+        "prims": 21450,
+        "bbox": [
+          [
+            -0.23999999463558197,
+            -0.11999999731779099,
+            -12.239999771118164
+          ],
+          [
+            17.040000915527344,
+            7.380000114440918,
+            0.23999999463558197
+          ]
+        ],
+        "geometry_sha256": "0b2feb90bc178d1ecfc8dfce02617c48e9ad1ad15718f956d021aec853d4fe01"
+      },
+      "sockets": [
+        {
+          "id": "salon_entry",
+          "wall": "CURVE",
+          "theta": 0.25,
+          "bay": 0,
+          "centre_local_m": [
+            8.4,
+            12.0,
+            0.0
+          ],
+          "clear_width_m": 2.4,
+          "clear_height_m": 3.2,
+          "floor_z_m": 0.0,
+          "s0": 10.723367,
+          "s1": 13.123367,
+          "native_cut": true
+        },
+        {
+          "id": "salon_front",
+          "wall": "CURVE",
+          "theta": 0.75,
+          "bay": 0,
+          "centre_local_m": [
+            8.4,
+            0.0,
+            0.0
+          ],
+          "clear_width_m": 2.4,
+          "clear_height_m": 3.2,
+          "floor_z_m": 0.0,
+          "s0": 34.570102,
+          "s1": 36.970102,
+          "native_cut": true
+        }
+      ],
+      "windows": [],
+      "portal_checks": {
+        "salon_entry": {
+          "standard_width": true,
+          "standard_height": true,
+          "head_clearance_ok": true
+        },
+        "salon_front": {
+          "standard_width": true,
+          "standard_height": true,
+          "head_clearance_ok": true
+        }
+      },
+      "checks": {
+        "defaults_landed": true,
+        "cooks_at_defaults": true,
+        "gate_all_pass": true,
+        "deterministic": true,
+        "footprint_exact": true,
+        "engine_y_up_axis": true,
+        "prims_unchanged_by_engine_frame": true,
+        "bay_aligned": true,
+        "module_grid": true,
+        "portals_survive": true,
+        "portals_floor_level": true,
+        "portals_native_cut": true,
+        "portals_match_standard_width": true,
+        "portal_rules": true,
+        "windows_clear_of_portals": true,
+        "uv_attribute_present": true,
+        "material_role_present": true,
+        "material_path_present": true,
+        "unreal_material_present": true,
+        "unreal_material_matches_role": true,
+        "roles_mapped": true,
+        "module_gate_roles_mapped": true,
+        "dressing_surfaces_ok": true,
+        "surface_groups_match_areas": true,
+        "surfaces_survive_engine_frame": true
+      },
+      "grid": {
+        "module_m": 0.6,
+        "bay_m": 2.4,
+        "beats": {
+          "room_w": 28.0,
+          "room_d": 20.0,
+          "room_h": 12.0
+        },
+        "off_grid": [],
+        "note": "",
+        "portal_width_beats": 4.0,
+        "portal_height_beats": 5.333333
+      },
+      "role_prim_counts": {
+        "floor_stone": 408,
+        "panel": 3848,
+        "pearl_shell": 8766,
+        "trim_gold": 6148,
+        "wall_plaster": 2280
+      },
+      "dressing_surface_areas": {
+        "surface_ceiling": 183.6968,
+        "surface_floor": 183.6968,
+        "surface_ledge": 24.2225,
+        "surface_wall": 820.1795
+      },
+      "window_conflicts": [],
+      "all_pass": true
+    }
+  },
+  "checks": {
+    "all_variants_pass": true,
+    "sources_unchanged": true,
+    "role_maps_agree": true,
+    "material_targets_exist": true,
+    "one_standard_portal_across_family": true
+  },
+  "all_pass": true,
+  "limits": "Native packaged-HDA geometry only. Each variant now emits an `unreal_material` prim attribute resolving material_role to an existing /Game/ material instance, and every target .uasset was found on disk; that is file presence, NOT proof that Unreal Engine resolves the override or that the material looks correct - both need an import, cook and material readback in the editor. Nothing was imported into UE: HDA asset registration, actor placement, capsule/BodySetup sweep, lighting, dressing fill and the packaged route remain pending (editor was held by another session). opening_sockets stay diagnostic JSON - no Houdini Engine mesh_socketX_* attributes are emitted yet. The rect family inherits the absolute streamer_lib type default from the source HDA."
+}

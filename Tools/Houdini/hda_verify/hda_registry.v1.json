@@ -379,30 +379,112 @@
       "status": "active",
       "path": "Content/HDA/MelodiaRoomShell_1.0.hda",
       "node_type": "melodia::room_shell",
-      "context": "Object",
+      "context": "Sop",
       "label": "Melodia Room Shell",
       "builder": "Tools/Houdini/room_shell/room_shell.py",
-      "notes": "The one interior geometry owner: floor medallion, skirting, chair rail, bead swags, acoustic tuning, Chladni dawn puzzle, streamer ribbons. 33 parms; every house interior actor in L_MelusinaHouse_P0 (HDA_House_Bedroom, HDA_House_Salon, HDA_Corridor_Garden_Live, HDA_Gallery_Upper_Live, HDA_Porch_Live) resolves through this definition. KNOWN DRIFT (2026-10-25): the embedded PythonModule in this .hda predates the repo module - it has no openings_json and no simple_floor_collision. Do not treat a cook of this file as current module behaviour. Convergence candidate below."
+      "notes": "The one interior geometry owner: floor medallion, skirting, chair rail, bead swags, acoustic tuning, Chladni dawn puzzle, streamer ribbons. 33 parms; every house interior actor in L_MelusinaHouse_P0 (HDA_House_Bedroom, HDA_House_Salon, HDA_Corridor_Garden_Live, HDA_Gallery_Upper_Live, HDA_Porch_Live) resolves through this definition. KNOWN DRIFT (2026-10-25): the embedded PythonModule in this .hda predates the repo module - it has no openings_json and no simple_floor_collision. Do not treat a cook of this file as current module behaviour. Convergence candidate below.",
+      "expect": {
+        "parms": [
+          "room_w",
+          "room_d",
+          "room_h",
+          "wall_t"
+        ],
+        "outputs": {
+          "OUT": {
+            "min_points": 74540,
+            "min_prims": 20035
+          }
+        },
+        "parm_drive": [
+          {
+            "parm": "room_w",
+            "value": 9.8,
+            "outputs": {
+              "OUT": {
+                "differ_bbox": true
+              }
+            }
+          }
+        ]
+      }
     },
     {
       "id": "melodia_room_shell_contact",
-      "status": "missing",
-      "path": "Content/HDA/MelodiaRoomShell_ContactFloor_1.0.hda",
+      "status": "candidate",
+      "path": "hda/MelodiaRoomShell_ContactFloor_1.0.hda",
       "node_type": "melodia::room_shell_contact::1.0",
-      "context": "Object",
-      "label": "Melodia RoomShell - explicit doors + simple floor collision",
+      "context": "Sop",
+      "label": "Melodia Room Shell - Explicit Doors",
       "builder": "Tools/Houdini/room_shell/build_candidate.py",
-      "notes": "Candidate only: Saved/Staging/SalonConvergence_20261022/MelodiaRoomShell_ContactFloor_1.0.hda, SHA256 16aca6101ebd3328a4711183d0135f8b72476e3cc09a26f70a2ae7fa13e94626. Its embedded PythonModule EQUALS Tools/Houdini/room_shell/room_shell.py, so this is the converged rectangular definition. 35 parms: adds openings_json (named floor-level portals) and simple_floor_collision (invisible collision_geo_simple_box_main_geo floor slab paired with rendered_main_geo). Hython verifier 14/14, receipt Saved/Audit/MelusinaLegSkirt_20261023/room_shell_explicit_verify.json. NOT promoted to Content/HDA and NOT imported to UE; promoting it overwrites the definition the house actors resolve, so it needs a duplicate-cook comparison and owner sign-off first. Tools/Houdini/room_shell/stage_interiors.py derives the seven Poitou interior variants from this definition."
+      "notes": "Convergence candidate. Lives at hda/MelodiaRoomShell_ContactFloor_1.0.hda (git-tracked, and no live actor resolves it - Content/HDA still holds the stale MelodiaRoomShell_1.0.hda the house actors cook). SHA256 078775c054951813981387e50511bd1479562d074e32102f5ff56bbd215fecbd, 61,517 bytes, 2026-10-25 material+surfaces generation; its embedded PythonModule EQUALS Tools/Houdini/room_shell/room_shell.py, so this is the converged rectangular definition. 36 parms: adds openings_json (named floor-level portals), simple_floor_collision (invisible collision_geo_simple_box_main_geo floor slab paired with rendered_main_geo) and material_map_json. Rect gate 20/20, receipt Saved/Audit/PoitouInteriorsSurfaces_20261025/room_shell_explicit_verify.json. PROMOTION EVIDENCE (2026-10-25): duplicate cook against the shipped Content/HDA asset at type defaults gives IDENTICAL geometry - 74,540 points and 20,035 prims on both sides, same digest - and an identical role census covering 100% of prims (pearl_shell 10,816; trim_gold 5,133; ribbon_silk 1,746; wall_plaster 1,614; crystal_glass 432; stone 288; floor_stone 6). The delta is additive only: 3 parameters (none removed), the unreal_material prim attribute, the surfaces_json global attribute, and 7 prim groups. The shipped shell already assigns material_role and never resolved it to a material; this candidate resolves it, so promotion's risk is appearance, not geometry, and only the editor can retire it. NOT promoted and NOT imported to UE - in-place promotion vs a sibling type is an owner decision. Tools/Houdini/room_shell/stage_interiors.py derives the seven Poitou interior variants from this definition.",
+      "expect": {
+        "parms": [
+          "room_w",
+          "room_d",
+          "room_h",
+          "wall_t",
+          "openings_json",
+          "simple_floor_collision",
+          "material_map_json",
+          "decor"
+        ],
+        "outputs": {
+          "OUT": {
+            "min_points": 74564,
+            "min_prims": 20041
+          }
+        },
+        "parm_drive": [
+          {
+            "parm": "room_w",
+            "value": 9.8,
+            "outputs": {
+              "OUT": {
+                "differ_bbox": true
+              }
+            }
+          }
+        ]
+      }
     },
     {
       "id": "melodia_room_shell_rounded",
-      "status": "missing",
-      "path": "Content/HDA/MelodiaRoomShell_Rounded_1.0.hda",
+      "status": "candidate",
+      "path": "hda/MelodiaRoomShell_Rounded_1.0.hda",
       "node_type": "melodia::room_shell_rounded::1.0",
-      "context": "Object",
-      "label": "Melodia Round Salon Shell - curved plan, tier setbacks",
+      "context": "Sop",
+      "label": "Melodia Round Salon Shell - Curved Plan",
       "builder": "Tools/Houdini/room_shell/build_rounded_hda.py",
-      "notes": "Candidate only: Saved/Staging/PoitouInteriors_20261025/MelodiaRoomShell_Rounded_1.0.hda, built 2026-10-25 from the converged contact-floor definition. Ellipse / superellipse / polygon plan, theta or bay portals cut as exact plan vertices, and tiers_json setback ratios for zigzag-ziggurat exterior massing (steps only the wall band, so the interior volume and base footprint do not move). Rebuilt to close a real drift: the 2026-10-22 copy had no tiers_json and no tier geometry, and build_rounded_hda.py mutated the template returned by ParmTemplateGroup.find(), which does not persist, so every salon drop-in default had been silently ignored. Defaults are now clone()+replace() with readback, and validate_tiers rejects ratios outside (0,1], a non-monotonic vector, a non-1.0 base tier and non-array JSON. Gate: Tools/Houdini/room_shell/verify_rounded.py. Rounded plan has NO simple floor collision slab yet."
+      "notes": "Candidate. Lives at hda/MelodiaRoomShell_Rounded_1.0.hda (git-tracked; no live actor resolves it), SHA256 05a1071ba02ffae3228a5e888e7805c6509148952f4700d442e63320547dd15d, 59,733 bytes, built 2026-10-25 from the converged contact-floor definition. Ellipse / superellipse / polygon plan, theta or bay portals cut as exact plan vertices, and tiers_json setback ratios for zigzag-ziggurat exterior massing (steps only the wall band, so the interior volume and base footprint do not move). Rebuilt to close a real drift: the 2026-10-22 copy had no tiers_json and no tier geometry, and build_rounded_hda.py mutated the template returned by ParmTemplateGroup.find(), which does not persist, so every salon drop-in default had been silently ignored. Defaults are now clone()+replace() with readback, and validate_tiers rejects ratios outside (0,1], a non-monotonic vector, a non-1.0 base tier and non-array JSON. Rounded gate 29/29 on 18,240 prims / 72,416 points, receipt Saved/Audit/PoitouInteriorsSurfaces_20261025/round_shell_verify.json. The rounded shell emits no windows and has NO crystal_glass or stone role, so surface_sill must be exactly 0.0 for it. Rounded plan has NO simple floor collision slab yet, and opening sockets are diagnostic JSON only (no Houdini Engine mesh_socketX_* attributes).",
+      "expect": {
+        "parms": [
+          "room_w",
+          "room_d",
+          "room_h",
+          "wall_t",
+          "tiers_json",
+          "material_map_json",
+          "plan_shape"
+        ],
+        "outputs": {
+          "OUT": {
+            "min_points": 72416,
+            "min_prims": 18240
+          }
+        },
+        "parm_drive": [
+          {
+            "parm": "room_w",
+            "value": 18.0,
+            "outputs": {
+              "OUT": {
+                "differ_bbox": true
+              }
+            }
+          }
+        ]
+      }
     },
     {
       "id": "faraway_heart_gate",

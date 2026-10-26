@@ -53,6 +53,85 @@ def unmapped_roles(roles,mapping=None):
     mapping=mapping or DEFAULT_ROLE_MATERIALS
     return sorted(set(r for r in roles if r not in mapping))
 
+# --------------------------------------------------------------------------- dressing surfaces
+# What a PCG fill graph samples is not a material role but a *plane a prop can stand on or hang
+# on*. Two roles carry more than one surface - `wall_plaster` is both the wall body and the
+# ceiling slab, `trim_gold` and `panel` are both wall surface and narrow ledges - so the surface
+# is decided from the role AND the face geometry, never the role alone.
+DRESSING_SURFACES=('surface_floor','surface_wall','surface_ceiling','surface_sill','surface_ledge')
+REQUIRED_SURFACES=('surface_floor','surface_wall','surface_ceiling')
+
+def _face_newell(pts):
+    """Newell vector of a planar face: twice the area times the unit normal."""
+    ax=ay=az=0.0
+    n=len(pts)
+    for i in range(n):
+        x0,y0,z0=pts[i];x1,y1,z1=pts[(i+1)%n]
+        ax+=(y0-y1)*(z0+z1);ay+=(z0-z1)*(x0+x1);az+=(x0-x1)*(y0+y1)
+    return ax,ay,az
+
+def face_area(pts):
+    ax,ay,az=_face_newell(pts)
+    return .5*math.sqrt(ax*ax+ay*ay+az*az)
+
+def face_normal(pts):
+    ax,ay,az=_face_newell(pts)
+    L=math.sqrt(ax*ax+ay*ay+az*az)
+    return (0.,0.,0.) if L<1e-12 else (ax/L,ay/L,az/L)
+
+def face_normal_z(pts):
+    return face_normal(pts)[2]
+
+def _faces_room(pts,n,centre):
+    """True when a face turns into the room - i.e. it is an interior wall face, not an outer one."""
+    if centre is None:return True
+    cx,cy=centre
+    gx=sum(q[0] for q in pts)/len(pts);gy=sum(q[1] for q in pts)/len(pts)
+    return n[0]*(cx-gx)+n[1]*(cy-gy)>0.
+
+def dressing_surface(role,pts,H,centre=None):
+    """The dressable surface a face belongs to, or None. Planes only: a vertical face is wall.
+
+    `centre` is the plan centre; when given, a wall face counts only if it looks INTO the room,
+    because the shell's walls are solid slabs whose outer faces are not dressable. Without that
+    test the wall surface would include the outside of the building and a scatter would put props
+    through the wall.
+    """
+    if not pts:return None
+    zc=sum(q[2] for q in pts)/len(pts)
+    n=face_normal(pts);nz=n[2]
+    if role=='floor_stone':
+        return 'surface_floor' if nz>.5 else None          # the walkable top face only
+    if role=='wall_plaster':
+        if zc>=H-1e-6:
+            return 'surface_ceiling' if nz<-.5 else None    # slab underside, not its top cap
+        return 'surface_wall' if abs(nz)<.5 and _faces_room(pts,n,centre) else None
+    if role=='panel':
+        if abs(nz)<.5:
+            return 'surface_wall' if _faces_room(pts,n,centre) else None
+        return 'surface_ledge' if nz>.5 and zc>.3 else None
+    if role=='stone':
+        return 'surface_sill' if nz>.5 and zc>.05 else None  # window sills and reveals
+    if role=='trim_gold':
+        return 'surface_ledge' if nz>.5 and zc>.3 else None  # cornice tops a small prop sits on
+    return None
+
+def dressing_surface_areas(M,H,centre=None):
+    """name -> total area in m^2, for every named dressing surface the mesh actually exposes.
+
+    Face normals are evaluated on the RIGHT-HAND order. `Mesh.poly` stores each face reversed
+    (`F.append(list(reversed(range(...))))`), which is why `signed_volume_righthand` also walks
+    `reversed(f)`; reading `M.F` straight would invert every normal and pick the underside of the
+    floor as the walkable surface.
+    """
+    areas={}
+    for face,role in zip(M.F,M.R):
+        pts=[M.P[i] for i in reversed(face)]
+        name=dressing_surface(role,pts,H,centre)
+        if name is None:continue
+        areas[name]=areas.get(name,0.)+face_area(pts)
+    return areas
+
 # --------------------------------------------------------------------------- mesh helpers
 class Mesh:
     def __init__(self):self.P=[];self.F=[];self.R=[]
@@ -656,6 +735,9 @@ def gate(M,rep):
         out['chladni_from_room']=(rep['chladni'] is None) or rep['chladni']['mode']==ac['chladni_mode']
     if rep['params'].get('dawn_puzzle') and rep['params'].get('floor_medallion') and rep['windows']:
         lp=rep.get('light_puzzle');out['dawn_puzzle_ok']=bool(lp) and lp['center_error_m']<1e-6 and 8<=lp['sun_elevation_deg']<=45
+    surfaces=dressing_surface_areas(M,H,(W/2.,D/2.))
+    out['dressing_surfaces_ok']=all(surfaces.get(k,0.)>1e-9 for k in REQUIRED_SURFACES)
+    out['dressing_surface_areas']={k:round(v,4) for k,v in sorted(surfaces.items())}
     out['roles_mapped']=not unmapped_roles(M.R)
     out['all_pass']=all(v for k,v in out.items() if isinstance(v,bool))
     out['prims']=len(M.F)
@@ -707,12 +789,14 @@ def cook(node):
     g.addAttrib(hou.attribType.Prim,'unreal_material','')
     g.addAttrib(hou.attribType.Vertex,'uv',(0.,0.,0.))
     g.addAttrib(hou.attribType.Global,'gate_json','');g.addAttrib(hou.attribType.Global,'sockets_json','')
+    g.addAttrib(hou.attribType.Global,'surfaces_json','')
     yup=bool(h.evalParm('engine_y_up'))
     P=[(p[0],p[2],-p[1]) for p in M.P] if yup else M.P      # Houdini Engine swaps Y/Z: emit (x, z, -y) so UE gets (x*100, -y*100, z*100)
     pts=g.createPoints(P)
     flip=yup and bool(h.evalParm('engine_flip'))     # Houdini Engine's Y/Z swap is a reflection: reverse winding so UE front faces stay outward
     collision_enabled=bool(h.parm('simple_floor_collision') and h.evalParm('simple_floor_collision'))
     render_group=g.createPrimGroup('rendered_main_geo') if collision_enabled else None
+    polys=[]
     for face,role in zip(M.F,M.R):
         face=list(reversed(face)) if flip else face
         poly=g.createPolygon();poly.setAttribValue('material_role',role);poly.setAttribValue('shop_materialpath','/mat/Cathedral_'+role)
@@ -721,6 +805,18 @@ def cook(node):
         uvs=_uv(M.P,face)
         for i,uv in zip(face,uvs):
             v=poly.addVertex(pts[i]);v.setAttribValue('uv',(uv[0]*.5,uv[1]*.5,0.))
+        polys.append(poly)
+    # Named dressing surfaces as prim groups: the planes a PCG fill graph samples. Classified from
+    # the RIGHT-HAND face order - `Mesh.poly` stores faces reversed, so reading M.F index order
+    # would invert every normal and tag the floor's underside as the walkable surface. `engine_flip`
+    # then only reverses the winding actually emitted, never the classification.
+    Hf=float(kw['H']);centre=(float(kw['W'])/2.,float(kw['D'])/2.);surface_groups={}
+    for idx,(face,role) in enumerate(zip(M.F,M.R)):
+        name=dressing_surface(role,[M.P[i] for i in reversed(face)],Hf,centre)
+        if name is None:continue
+        grp=surface_groups.get(name)
+        if grp is None:grp=surface_groups[name]=g.createPrimGroup(name)
+        grp.add(polys[idx])
     # Invisible simple collision is a separate slab, never a box around the room.
     # The existing rendered floor and all portal geometry remain unchanged.
     if collision_enabled:
@@ -735,3 +831,6 @@ def cook(node):
     payload=dict(sockets=rep['sockets'],windows=rep['windows'],door=rep['door'],chladni=rep['chladni'],streamers=rep.get('streamers_placed'),room=manifest(rep))
     if rep.get('opening_sockets'):payload['opening_sockets']=rep['opening_sockets']
     g.setGlobalAttribValue('gate_json',json.dumps(gt));g.setGlobalAttribValue('sockets_json',json.dumps(payload))
+    g.setGlobalAttribValue('surfaces_json',json.dumps(dict(
+        required=list(REQUIRED_SURFACES),areas=gt['dressing_surface_areas'],
+        groups=sorted(surface_groups),engine_flip=bool(flip))))

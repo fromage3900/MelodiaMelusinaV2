@@ -1,0 +1,444 @@
+{
+  "schema": "melodia.hda_verify_report.v1",
+  "gate": 2,
+  "generated": "2026-10-25T20:56:59",
+  "houdini_version": "22.0.368",
+  "license": "licenseCategoryType.Indie",
+  "project_root": "C:\\EnvironmentPortfolio\\BS_GodFile",
+  "registry": "C:\\EnvironmentPortfolio\\BS_GodFile\\Tools\\Houdini\\hda_verify\\hda_registry.v1.json",
+  "counts": {
+    "PASS": 3,
+    "WARN": 0,
+    "FAIL": 0
+  },
+  "entries": [
+    {
+      "id": "melodia_room_shell",
+      "status": "active",
+      "path": "Content/HDA/MelodiaRoomShell_1.0.hda",
+      "node_type": "melodia::room_shell",
+      "checks": [
+        {
+          "name": "file_present",
+          "ok": true,
+          "detail": "47247 bytes"
+        },
+        {
+          "name": "definition_found",
+          "ok": true,
+          "detail": "melodia::room_shell (Melodia Room Shell)"
+        },
+        {
+          "name": "create_node",
+          "ok": true,
+          "detail": "melodia::room_shell"
+        },
+        {
+          "name": "parms_required",
+          "ok": true,
+          "detail": "source=definition; missing=[]; required=['room_w', 'room_d', 'room_h', 'wall_t']"
+        },
+        {
+          "name": "parms_exposed",
+          "ok": true,
+          "detail": "33 parameter(s) declared on the HDA type - 0 means the controls still live only on an inner node, so the asset cooks at defaults only"
+        },
+        {
+          "name": "output:OUT",
+          "ok": true,
+          "detail": "points=74540 prims=20035 bbox=[7.54, 3.8, 9.54]"
+        },
+        {
+          "name": "drive:room_w=9.8",
+          "ok": true,
+          "detail": "driven cook 1.317s: OUT=85116/22983"
+        },
+        {
+          "name": "restore_after_drive:room_w",
+          "ok": true,
+          "detail": "golden cook restored: OUT=74540/20035"
+        }
+      ],
+      "result": "PASS",
+      "definition": {
+        "node_type": "melodia::room_shell",
+        "description": "Melodia Room Shell",
+        "disabled": false
+      },
+      "context": "Sop",
+      "parms": {
+        "source": "definition",
+        "names": [
+          "bead_count",
+          "bead_r",
+          "chair_rail",
+          "cornice_override",
+          "dawn_puzzle",
+          "decor",
+          "door_h",
+          "door_w",
+          "door_wall",
+          "droop",
+          "engine_flip",
+          "engine_y_up",
+          "floor_medallion",
+          "glass_mode",
+          "head",
+          "interlock",
+          "lap",
+          "latitude",
+          "panel_w",
+          "room_d",
+          "room_h",
+          "room_w",
+          "seed",
+          "sill",
+          "skirting",
+          "streamer_lib",
+          "streamers",
+          "tuning",
+          "wall_t",
+          "win_h",
+          "win_w",
+          "windows_long",
+          "windows_short"
+        ],
+        "count": 33
+      },
+      "network": [
+        {
+          "path": "COOK",
+          "type": "Sop/python"
+        },
+        {
+          "path": "OUT",
+          "type": "Sop/output"
+        }
+      ],
+      "cook": {
+        "seconds": 1.201,
+        "outputs": {
+          "OUT": {
+            "points": 74540,
+            "prims": 20035,
+            "bbox": [
+              7.54,
+              3.8,
+              9.54
+            ],
+            "position_hash": "29bc51e0b7715880",
+            "attributes": {}
+          }
+        },
+        "node_errors": [],
+        "node_warnings": [],
+        "node_warning_count": 0
+      },
+      "drive": [
+        {
+          "parm": "room_w",
+          "set_to": 9.8,
+          "previous": 7.0,
+          "problems": [],
+          "outputs": {
+            "OUT": {
+              "points": 85116,
+              "prims": 22983,
+              "attributes": {}
+            }
+          }
+        }
+      ],
+      "wall_seconds": 3.811
+    },
+    {
+      "id": "melodia_room_shell_contact",
+      "status": "candidate",
+      "path": "hda/MelodiaRoomShell_ContactFloor_1.0.hda",
+      "node_type": "melodia::room_shell_contact::1.0",
+      "checks": [
+        {
+          "name": "file_present",
+          "ok": true,
+          "detail": "61517 bytes"
+        },
+        {
+          "name": "definition_found",
+          "ok": true,
+          "detail": "melodia::room_shell_contact::1.0 (Melodia Room Shell - Explicit Doors)"
+        },
+        {
+          "name": "create_node",
+          "ok": true,
+          "detail": "melodia::room_shell_contact::1.0"
+        },
+        {
+          "name": "parms_required",
+          "ok": true,
+          "detail": "source=definition; missing=[]; required=['room_w', 'room_d', 'room_h', 'wall_t', 'openings_json', 'simple_floor_collision', 'material_map_json', 'decor']"
+        },
+        {
+          "name": "parms_exposed",
+          "ok": true,
+          "detail": "36 parameter(s) declared on the HDA type - 0 means the controls still live only on an inner node, so the asset cooks at defaults only"
+        },
+        {
+          "name": "output:OUT",
+          "ok": true,
+          "detail": "points=74564 prims=20041 bbox=[7.54, 3.8, 9.54]"
+        },
+        {
+          "name": "drive:room_w=9.8",
+          "ok": true,
+          "detail": "driven cook 1.73s: OUT=85140/22989"
+        },
+        {
+          "name": "restore_after_drive:room_w",
+          "ok": true,
+          "detail": "golden cook restored: OUT=74564/20041"
+        }
+      ],
+      "result": "PASS",
+      "definition": {
+        "node_type": "melodia::room_shell_contact::1.0",
+        "description": "Melodia Room Shell - Explicit Doors",
+        "disabled": false
+      },
+      "context": "Sop",
+      "parms": {
+        "source": "definition",
+        "names": [
+          "bead_count",
+          "bead_r",
+          "chair_rail",
+          "cornice_override",
+          "dawn_puzzle",
+          "decor",
+          "door_h",
+          "door_w",
+          "door_wall",
+          "droop",
+          "engine_flip",
+          "engine_y_up",
+          "floor_medallion",
+          "glass_mode",
+          "head",
+          "interlock",
+          "lap",
+          "latitude",
+          "material_map_json",
+          "openings_json",
+          "panel_w",
+          "room_d",
+          "room_h",
+          "room_w",
+          "seed",
+          "sill",
+          "simple_floor_collision",
+          "skirting",
+          "streamer_lib",
+          "streamers",
+          "tuning",
+          "wall_t",
+          "win_h",
+          "win_w",
+          "windows_long",
+          "windows_short"
+        ],
+        "count": 36
+      },
+      "network": [
+        {
+          "path": "COOK",
+          "type": "Sop/python"
+        },
+        {
+          "path": "OUT",
+          "type": "Sop/output"
+        }
+      ],
+      "cook": {
+        "seconds": 1.336,
+        "outputs": {
+          "OUT": {
+            "points": 74564,
+            "prims": 20041,
+            "bbox": [
+              7.54,
+              3.8,
+              9.54
+            ],
+            "position_hash": "b746cff74e8074bf",
+            "attributes": {}
+          }
+        },
+        "node_errors": [],
+        "node_warnings": [],
+        "node_warning_count": 0
+      },
+      "drive": [
+        {
+          "parm": "room_w",
+          "set_to": 9.8,
+          "previous": 7.0,
+          "problems": [],
+          "outputs": {
+            "OUT": {
+              "points": 85140,
+              "prims": 22989,
+              "attributes": {}
+            }
+          }
+        }
+      ],
+      "wall_seconds": 4.46
+    },
+    {
+      "id": "melodia_room_shell_rounded",
+      "status": "candidate",
+      "path": "hda/MelodiaRoomShell_Rounded_1.0.hda",
+      "node_type": "melodia::room_shell_rounded::1.0",
+      "checks": [
+        {
+          "name": "file_present",
+          "ok": true,
+          "detail": "59733 bytes"
+        },
+        {
+          "name": "definition_found",
+          "ok": true,
+          "detail": "melodia::room_shell_rounded::1.0 (Melodia Round Salon Shell - Curved Plan)"
+        },
+        {
+          "name": "create_node",
+          "ok": true,
+          "detail": "melodia::room_shell_rounded::1.0"
+        },
+        {
+          "name": "parms_required",
+          "ok": true,
+          "detail": "source=definition; missing=[]; required=['room_w', 'room_d', 'room_h', 'wall_t', 'tiers_json', 'material_map_json', 'plan_shape']"
+        },
+        {
+          "name": "parms_exposed",
+          "ok": true,
+          "detail": "40 parameter(s) declared on the HDA type - 0 means the controls still live only on an inner node, so the asset cooks at defaults only"
+        },
+        {
+          "name": "output:OUT",
+          "ok": true,
+          "detail": "points=72416 prims=18240 bbox=[16.32, 7.9, 12.54]"
+        },
+        {
+          "name": "drive:room_w=18.0",
+          "ok": true,
+          "detail": "driven cook 125.309s: OUT=87272/21954"
+        },
+        {
+          "name": "restore_after_drive:room_w",
+          "ok": true,
+          "detail": "golden cook restored: OUT=72416/18240"
+        }
+      ],
+      "result": "PASS",
+      "definition": {
+        "node_type": "melodia::room_shell_rounded::1.0",
+        "description": "Melodia Round Salon Shell - Curved Plan",
+        "disabled": false
+      },
+      "context": "Sop",
+      "parms": {
+        "source": "definition",
+        "names": [
+          "bead_count",
+          "bead_r",
+          "chair_rail",
+          "cornice_override",
+          "dawn_puzzle",
+          "decor",
+          "door_h",
+          "door_w",
+          "door_wall",
+          "droop",
+          "engine_flip",
+          "engine_y_up",
+          "floor_medallion",
+          "glass_mode",
+          "head",
+          "interlock",
+          "lap",
+          "latitude",
+          "material_map_json",
+          "openings_json",
+          "panel_w",
+          "plan_exponent",
+          "plan_segments",
+          "plan_shape",
+          "plan_sides",
+          "room_d",
+          "room_h",
+          "room_w",
+          "seed",
+          "sill",
+          "skirting",
+          "streamer_lib",
+          "streamers",
+          "tiers_json",
+          "tuning",
+          "wall_t",
+          "win_h",
+          "win_w",
+          "windows_long",
+          "windows_short"
+        ],
+        "count": 40
+      },
+      "network": [
+        {
+          "path": "COOK",
+          "type": "Sop/python"
+        },
+        {
+          "path": "OUT",
+          "type": "Sop/output"
+        }
+      ],
+      "cook": {
+        "seconds": 98.765,
+        "outputs": {
+          "OUT": {
+            "points": 72416,
+            "prims": 18240,
+            "bbox": [
+              16.32,
+              7.9,
+              12.54
+            ],
+            "position_hash": "8da99340baef05f3",
+            "attributes": {}
+          }
+        },
+        "node_errors": [],
+        "node_warnings": [],
+        "node_warning_count": 0
+      },
+      "drive": [
+        {
+          "parm": "room_w",
+          "set_to": 18.0,
+          "previous": 15.84,
+          "problems": [],
+          "outputs": {
+            "OUT": {
+              "points": 87272,
+              "prims": 21954,
+              "attributes": {}
+            }
+          }
+        }
+      ],
+      "wall_seconds": 322.477
+    }
+  ],
+  "overall": "PASS"
+}
