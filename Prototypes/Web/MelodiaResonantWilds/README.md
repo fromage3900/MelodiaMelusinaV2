@@ -136,3 +136,17 @@ Set of three flat ground-warning rings for a rhythm action game, pastel pink, la
 ```
 
 Send the results back and I'll wire them in.
+
+## 🏆 Daily leaderboard server
+
+`server/server.mjs` is a small dependency-free Node server for the Daily Rift leaderboard.
+
+```bash
+PORT=8787 DATA_DIR=./server/data node Prototypes/Web/MelodiaResonantWilds/server/server.mjs
+```
+
+- `POST /api/daily` takes `{date, name, cleared, time, tier, kills}`. It keeps each player's best run per day.
+- `GET /api/daily?date=YYYY-MM-DD` returns the top 20.
+- Inputs are validated and size-limited. Set `ALLOW_ORIGIN` to your site's origin.
+
+The game reads the server from `<meta name="melodia-api" content="https://your-host">`, or from same-origin `/api` when the meta tag is absent. With no server, the game stays fully playable and shows "Leaderboard offline".

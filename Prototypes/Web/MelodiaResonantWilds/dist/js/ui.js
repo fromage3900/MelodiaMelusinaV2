@@ -2,6 +2,7 @@
 
 import { SLOTS, SLOT_BY_ID, RARITIES, SKILLS, SKILL_BY_ID, ELEMENT_STYLE, ARIA_BY_ID, BIOMES, BLESSINGS, DIFFICULTY, xpToNext, HONE_MAX, honeChance, TUTORIAL, WORLD_RADIUS, RULES } from './design.js';
 import { fmt, clamp, haptic } from './util.js';
+import { fetchDaily } from './net.js';
 
 const $ = (id) => document.getElementById(id);
 const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
@@ -657,7 +658,14 @@ export class UI {
       <div class="muted">One seeded Tier 3 rift a day. Everyone gets the same enemies and Burden.</div>
       ${d ? `<div class="stats" style="max-width:320px;margin:8px auto"><span>Your result</span><span>${d.cleared ? 'Cleared ' + mmss(d.time) : 'Not in time'}</span><span>Slimes</span><span>${d.kills}</span></div>` : ''}
       <button class="primary" id="dailyrift">${d ? 'Play again (best time kept)' : "Play today's Daily Rift ◎"}</button>
-      ${d ? '<button class="btn" id="copyscore" style="margin-top:6px">Copy score card</button>' : ''}</div>`;
+      ${d ? '<button class="btn" id="copyscore" style="margin-top:6px">Copy score card</button>' : ''}
+      <div id="dailyboard" class="muted" style="margin-top:8px;text-align:left"></div></div>`;
+    fetchDaily(date).then((top) => {
+      const box = $('dailyboard');
+      if (!box) return;
+      if (top === null) { box.textContent = 'Leaderboard offline. Your results still save on this device.'; return; }
+      box.innerHTML = top.length ? '<b>Today\'s top runs</b>' + top.map((t, i) => `<div>${i + 1}. ${esc(t.name)} · ${t.cleared ? mmss(t.time) : 'not cleared'} · ${t.kills} slimes</div>`).join('') : 'No runs yet today. Be the first.';
+    });
     body.innerHTML = card + `<div class="card" style="text-align:center"><h3>Resonance Rift</h3>
       <div class="muted">Silence waves of dissonance to fill the bar, then defeat the Rift Guardian. Clear within 4:00 to unlock the next tier. Tier 3+ adds a Burden from DT_Burdens for extra rarity.</div>
       <div class="tiers"><button id="tminus">−</button><span>Tier ${T}</span><button id="tplus">+</button></div>

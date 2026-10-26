@@ -5,6 +5,7 @@ import * as THREE from 'three';
 import { BIOMES, HUB, WORLD_SEED, RIFT_POOL, BURDENS, ELITE_AFFIXES, RIFT_STYLE, ELEMENT_STYLE } from './design.js';
 import { Enemy } from './entities.js';
 import { mulberry32, pick, clamp } from './util.js';
+import { postDaily } from './net.js';
 import { makeBeam } from './fx.js';
 
 const L = (hex, o = {}) => new THREE.MeshLambertMaterial({ color: hex, flatShading: true, ...o });
@@ -467,6 +468,7 @@ export class Activities {
       const best = g.profile.daily && g.profile.daily.date === r.daily ? g.profile.daily : null;
       if (!best || (inTime && (!best.cleared || r.time < best.time))) {
         g.profile.daily = { date: r.daily, cleared: inTime, time: Math.round(r.time), tier: r.tier, kills: r.kills };
+        postDaily({ date: r.daily, name: g.playerName(), cleared: inTime, time: Math.round(r.time), tier: r.tier, kills: r.kills });
       }
     }
     g.bountyEvent('rift', 1);

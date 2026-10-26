@@ -140,6 +140,13 @@ export class Game {
   }
 
   // ------------------------------------------------------------ helpers
+  // Leaderboard name: chosen once, kept in settings. Letters, numbers, space, _ and -.
+  playerName() {
+    const st = this.profile.settings;
+    if (!st.name) st.name = 'Wanderer' + Math.floor(1000 + Math.random() * 9000);
+    return st.name;
+  }
+
   get difficultyDef() { return DIFFICULTY[this.profile.settings.difficulty] || DIFFICULTY.standard; }
   windowScale() { return this.difficultyDef.windowScale * this.activities.burdenScale('window'); }
   encoreGainScale() { return this.activities.burdenScale('encore'); }
