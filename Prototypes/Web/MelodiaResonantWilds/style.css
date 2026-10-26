@@ -9,7 +9,7 @@
   --aqua: #82d2db;
   --rose: #D6A9B0;  /* sakura.500 */
   --gold: #C9A86A;  /* gold.500 */
-  --gold-hi: #DDC79B;  /* gold.300 */
+  --gold-hi: #ffd978;  /* kept bright for text on dark panels (token gold.300 is too pale there) */
   --glass: rgba(23, 18, 37, 0.72);
   --line: rgba(217, 188, 114, 0.35);
   --soft: rgba(246, 240, 248, 0.14);
