@@ -208,6 +208,7 @@ export class Decals {
       } else if (d.manual) {
         // progress set by owner
       } else {
+        if (d.t <= d.dur) u.uAlpha.value = 0.85 + 0.15 * Math.sin(d.t * 12);
         u.uProgress.value = clamp(d.t / d.dur, 0, 1);
         if (d.t >= d.dur + d.fade) this.release(d);
         else if (d.t > d.dur) u.uAlpha.value = 1 - (d.t - d.dur) / d.fade;

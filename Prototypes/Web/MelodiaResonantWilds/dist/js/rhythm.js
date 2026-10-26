@@ -86,6 +86,8 @@ export class Rhythm {
     if (grade === 'Perfect') {
       g.profile.stats.perfects++;
       g.bountyEvent('perfects', 1);
+      g.ui.flash('#ffe7a0', 0.2);
+      g.particles.burst(P.pos.x, P.pos.y + 1.2, P.pos.z, { r: 1, g: 0.72, b: 0.85 }, 10, { kind: 3, speed: 4, life: 0.9, size: 0.7, gravity: 1.5 });
       this.perfectRun++;
       if (P.stats.arias.has('HarmonyShield')) P.shield = Math.min(P.stats.maxHp * 0.3, P.shield + P.stats.maxHp * 0.03);
       if (P.stats.arias.has('SkyboundRefrain') && this.perfectRun % 4 === 0) g.skyboundStrike();

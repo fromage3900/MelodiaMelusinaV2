@@ -305,6 +305,21 @@ export class UI {
     el.classList.remove('hidden');
   }
 
+  // Brief full-screen tint, used on Perfect hits.
+  flash(color, alpha = 0.2) {
+    let el = $('screenflash');
+    if (!el) {
+      el = document.createElement('div');
+      el.id = 'screenflash';
+      el.style.cssText = 'position:fixed;inset:0;pointer-events:none;z-index:4;opacity:0;transition:opacity .25s';
+      document.body.appendChild(el);
+    }
+    el.style.background = color;
+    el.style.opacity = alpha;
+    clearTimeout(this._fl);
+    this._fl = setTimeout(() => { el.style.opacity = 0; }, 70);
+  }
+
   tracker() {
     const pr = this.g.profile;
     $('tracker').innerHTML = pr.bounties.map((b) => `<div class="trk ${b.done ? 'done' : ''}">${b.done ? '✓ ' : ''}${esc(b.text)}<div class="p"><i style="width:${(b.prog / b.n) * 100}%"></i></div></div>`).join('');

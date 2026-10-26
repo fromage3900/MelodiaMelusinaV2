@@ -183,7 +183,8 @@ export class World {
       }
       out.lerp(_c2, this.hub);
     }
-    const v = 0.93 + n2 * 0.1;
+    const n3 = this.N2.noise(x * 0.45 + 3, z * 0.45 - 7) * 0.5 + 0.5;
+    const v = 0.9 + n2 * 0.1 + n3 * 0.08;
     out.multiplyScalar(v);
     return out;
   }
@@ -557,6 +558,7 @@ export class World {
       c.position.set(Math.cos(a) * (RIFT_RADIUS + 3), 11.5, Math.sin(a) * (RIFT_RADIUS + 3));
       g.add(c);
     }
+    this.riftRings = g.children.filter((c) => c.geometry && c.geometry.type === 'RingGeometry');
     g.visible = false;
     this.riftGroup = g;
     this.scene.add(g);
@@ -600,6 +602,7 @@ export class World {
     }
     if (this.pendulum) this.pendulum.rotation.z = Math.sin(beatPhase * Math.PI) * 0.45 * (this._pendDir || 1);
     if (this.forgeFire) this.forgeFire.scale.setScalar(0.85 + Math.sin(t * 9) * 0.12);
+    if (this.riftRings) this.riftRings.forEach((r, i) => { r.material.opacity = 0.25 + 0.2 * Math.sin(t * 2 + i * 0.8); });
     // Landmarks go translucent when Melusina is under them so the camera never loses her.
     for (const lm of this.landmarks) {
       const near = Math.hypot(lm.position.x - player.x, lm.position.z - player.z) < 48;

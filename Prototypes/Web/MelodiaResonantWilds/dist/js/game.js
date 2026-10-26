@@ -26,6 +26,14 @@ export class Game {
     this.renderer = new THREE.WebGLRenderer({ canvas: this.canvas, antialias: !isTouch, powerPreference: 'high-performance' });
     this.scene = new THREE.Scene();
     this.scene.background = new THREE.Color('#f3e6dc');
+    this.sky = new THREE.Mesh(new THREE.SphereGeometry(330, 24, 12), new THREE.ShaderMaterial({
+      uniforms: { top: { value: new THREE.Color('#f3e6dc') }, bottom: { value: new THREE.Color('#f3e6dc') } },
+      vertexShader: 'varying vec3 vP; void main(){ vP = position; gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }',
+      fragmentShader: 'uniform vec3 top; uniform vec3 bottom; varying vec3 vP; void main(){ float h = clamp(normalize(vP).y * 1.6 + 0.2, 0.0, 1.0); gl_FragColor = vec4(mix(bottom, top, h), 1.0); }',
+      side: THREE.BackSide, depthWrite: false,
+    }));
+    this.sky.renderOrder = -1;
+    this.scene.add(this.sky);
     this.scene.fog = new THREE.Fog('#f3e6dc', 75, 175);
     this.camera = new THREE.PerspectiveCamera(42, 1, 0.5, 400);
     this.hemi = new THREE.HemisphereLight('#ffffff', '#8f7fa3', 1.5);
@@ -846,6 +854,8 @@ export class Game {
     const k = Math.min(1, dt * 1.5);
     this.scene.fog.color.lerp(this.pal.fog, k);
     this.scene.background.lerp(this.pal.fog, k);
+    this.sky.material.uniforms.bottom.value.copy(this.scene.fog.color);
+    this.sky.material.uniforms.top.value.copy(this.pal.light).lerp(this.scene.fog.color, 0.35);
     this.world.water.material.color.lerp(this.pal.water, k);
     this.sun.color.lerp(this.pal.light, k);
     if (this.world.inRift) { this.scene.fog.near = 45; this.scene.fog.far = 110; } else { this.scene.fog.near = 75; this.scene.fog.far = 175; }
@@ -862,10 +872,11 @@ export class Game {
     this.camTarget.x = lerp(this.camTarget.x, P.pos.x + P.vel.x * lead, Math.min(1, dt * 6));
     this.camTarget.z = lerp(this.camTarget.z, P.pos.z + P.vel.z * lead, Math.min(1, dt * 6));
     this.camTarget.y = lerp(this.camTarget.y, P.pos.y, Math.min(1, dt * 4));
-    const dist = portrait ? 34 : 31;
+    const dist = portrait ? 26 : 24;
     const encoreZoom = this.rhythm.encoreActive ? 0.88 : 1;
     this.shakeAmt = Math.max(0, this.shakeAmt - dt * 2.2);
     const s = this.shakeAmt * this.shakeAmt;
+    this.sky.position.copy(this.camera.position);
     this.camera.position.set(
       this.camTarget.x + (Math.random() - 0.5) * s,
       this.camTarget.y + dist * 0.8 * encoreZoom + (Math.random() - 0.5) * s,

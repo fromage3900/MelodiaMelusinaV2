@@ -154,3 +154,14 @@ The game reads the server from `<meta name="melodia-api" content="https://your-h
 ## ⚔️ Duels
 
 On the Daily Rift leaderboard, tap **Duel** next to a rival's clear. Their time is then shown on your rift HUD, and a faster clear wins the duel. This works on the same daily rift for everyone, so no extra server work is needed. Duels are stored on the device.
+
+## ✨ Visual pass
+
+- **Melusina:** the fringe covers the hairline with overlapping bangs, the skirt has two extra ruffle tiers, attack swings leave a gold trail, and three sparkles orbit her head.
+- **Camera:** follows closer, so she reads better on a phone.
+- **Sky:** a gradient dome that follows the biome's palette.
+- **Ground:** finer colour mottling.
+- **Rift:** the stave rings pulse.
+- **Feedback:** Perfect hits flash the screen and throw a burst of petals. Telegraphs breathe while they wait to land.
+
+Not yet done: water foam at the shoreline, and new title art (needs artwork).

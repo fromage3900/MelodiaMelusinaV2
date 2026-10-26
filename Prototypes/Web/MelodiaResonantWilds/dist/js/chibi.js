@@ -82,6 +82,11 @@ export function buildChibi() {
   const ruffle = part(new THREE.TorusGeometry(0.5, 0.05, 6, 26), PAL.ruffle, 0, -0.2, 0);
   ruffle.rotation.x = Math.PI / 2;
   skirt.add(ruffle);
+  for (const [y, r] of [[-0.08, 0.36], [-0.14, 0.44]]) {
+    const tier = part(new THREE.TorusGeometry(r, 0.035, 6, 30), PAL.skirtInner, 0, y, 0);
+    tier.rotation.x = Math.PI / 2;
+    skirt.add(tier);
+  }
   // Treble-clef emblem on the front panel, built from tube strokes.
   const clef = new THREE.Group();
   clef.position.set(0, 0.0, 0.5);
@@ -190,10 +195,10 @@ export function buildChibi() {
 
   // Long lavender hair: a crown, a swept fringe, a full back, and hanging side and back locks.
   const hairMat = toon(PAL.hair);
-  const cap = new THREE.Mesh(new THREE.SphereGeometry(0.49, 24, 14, 0, Math.PI * 2, 0, Math.PI * 0.4), hairMat);
+  const cap = new THREE.Mesh(new THREE.SphereGeometry(0.49, 24, 14, 0, Math.PI * 2, 0, Math.PI * 0.36), hairMat);
   cap.position.y = 0.03;
   head.add(cap);
-  for (const [x, y, z, rz] of [[-0.2, 0.16, 0.36, 0.5], [0, 0.2, 0.41, 0], [0.2, 0.16, 0.36, -0.5]]) {
+  for (const [x, y, z, rz] of [[-0.3, 0.1, 0.3, 0.9], [-0.2, 0.16, 0.36, 0.5], [-0.08, 0.19, 0.41, 0.2], [0.08, 0.19, 0.41, -0.2], [0.2, 0.16, 0.36, -0.5], [0.3, 0.1, 0.3, -0.9]]) {
     const bang = new THREE.Mesh(new THREE.SphereGeometry(0.13, 10, 8), toon(PAL.hairLight));
     bang.scale.set(1.3, 0.6, 0.55);
     bang.position.set(x, y, z);
@@ -268,6 +273,21 @@ export function buildChibi() {
   baton.visible = false;
   inst.add(lyre, baton);
   arms.R.hand.add(inst);
+  // Swing trail: a faint arc in front of Melusina that follows the attack swing.
+  const trail = new THREE.Mesh(
+    new THREE.TorusGeometry(0.75, 0.05, 6, 24, Math.PI * 0.9),
+    new THREE.MeshBasicMaterial({ color: PAL.gold, transparent: true, opacity: 0, depthWrite: false }),
+  );
+  trail.position.set(0, 0.95, 0);
+  trail.rotation.x = Math.PI / 2;
+  chest.add(trail);
+  // Sparkles that circle the head, matching the sprite sheet's star accents.
+  const sparkles = [];
+  for (let k = 0; k < 3; k++) {
+    const sp = part(new THREE.OctahedronGeometry(0.05, 0), '#ffffff', 0, 0, 0, { emissive: '#fff4c2', emissiveIntensity: 0.9 });
+    sparkles.push(sp);
+    root.add(sp);
+  }
 
   root.scale.setScalar(1.35);
   const shadow = blob(0.9);
@@ -328,6 +348,17 @@ export function buildChibi() {
       to(seg.rotation, 'x', target, dt, 6);
     });
 
+    // Attack trail follows the swing and fades out at its end.
+    const sw = swing >= 0 ? clamp(swing, 0, 1) : -1;
+    trail.material.opacity = sw >= 0 ? Math.sin(sw * Math.PI) * 0.55 : 0;
+    trail.rotation.z = sw >= 0 ? lerp(-1.2, 1.2, easeOut(sw)) : 0;
+    // Sparkles orbit the head, bobbing with the beat.
+    sparkles.forEach((sp, k) => {
+      const a = t * 0.9 + (k * Math.PI * 2) / 3;
+      sp.position.set(Math.cos(a) * 0.62, 1.9 + Math.sin(t * 2 + k) * 0.08 + b2 * 0.05, Math.sin(a) * 0.5);
+      sp.rotation.y = t * 3;
+    });
+
     // Blink every ~3.4 s.
     const blink = t % 3.4 < 0.12 ? 0.12 : 1;
     for (const e of eyes) e.scale.y = blink;
@@ -345,6 +376,6 @@ export function buildChibi() {
     lyre,
     baton,
     pose,
-    rig: { root, hips, chest, head, eyes, arms, legs, tail },
+    rig: { root, hips, chest, head, eyes, arms, legs, tail, trail, sparkles },
   };
 }
