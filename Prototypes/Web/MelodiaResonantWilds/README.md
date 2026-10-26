@@ -150,3 +150,7 @@ PORT=8787 DATA_DIR=./server/data node Prototypes/Web/MelodiaResonantWilds/server
 - Inputs are validated and size-limited. Set `ALLOW_ORIGIN` to your site's origin.
 
 The game reads the server from `<meta name="melodia-api" content="https://your-host">`, or from same-origin `/api` when the meta tag is absent. With no server, the game stays fully playable and shows "Leaderboard offline".
+
+## ⚔️ Duels
+
+On the Daily Rift leaderboard, tap **Duel** next to a rival's clear. Their time is then shown on your rift HUD, and a faster clear wins the duel. This works on the same daily rift for everyone, so no extra server work is needed. Duels are stored on the device.

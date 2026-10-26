@@ -472,6 +472,12 @@ export class Activities {
       }
     }
     g.bountyEvent('rift', 1);
+    const duel = r.daily && g.profile.duel && g.profile.duel.date === r.daily ? g.profile.duel : null;
+    if (duel && inTime) {
+      const at = `${Math.floor(duel.time / 60)}:${String(duel.time % 60).padStart(2, '0')}`;
+      if (Math.round(r.time) < duel.time) g.ui.toast(`Duel won against ${duel.name}!`, 'gold');
+      else g.ui.toast(`${duel.name}'s ${at} still stands. Try again tomorrow or retry today.`, 'soft');
+    }
     g.ui.banner(inTime ? `Rift Tier ${r.tier} cleared!` : 'Rift cleared (over time)', `+${notes} Golden Notes${inTime ? ` · Tier ${r.tier + 1} unlocked` : ''}`);
     g.audio.levelUp();
     const exit = new THREE.Group();

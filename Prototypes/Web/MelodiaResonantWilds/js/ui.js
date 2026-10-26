@@ -260,7 +260,8 @@ export class UI {
     const rift = g.activities.rift;
     $('riftbar').classList.toggle('hidden', !rift || !!boss);
     if (rift) {
-      $('riftlabel').textContent = `Rift Tier ${rift.tier} · ${Math.floor(rift.progress)}%`;
+      const duel = rift.daily && pr.duel && pr.duel.date === rift.daily ? pr.duel : null;
+      $('riftlabel').textContent = `Rift Tier ${rift.tier} · ${Math.floor(rift.progress)}%` + (duel ? ` · Duel ${duel.name} ${Math.floor(duel.time / 60)}:${String(duel.time % 60).padStart(2, '0')}` : '');
       const left = Math.max(0, rift.limit - rift.time);
       $('rifttime').textContent = rift.done ? 'Cleared' : `${Math.floor(left / 60)}:${String(Math.floor(left % 60)).padStart(2, '0')}`;
       $('rifttime').style.color = left < 30 ? '#ff8a9a' : '';
@@ -664,7 +665,14 @@ export class UI {
       const box = $('dailyboard');
       if (!box) return;
       if (top === null) { box.textContent = 'Leaderboard offline. Your results still save on this device.'; return; }
-      box.innerHTML = top.length ? '<b>Today\'s top runs</b>' + top.map((t, i) => `<div>${i + 1}. ${esc(t.name)} · ${t.cleared ? mmss(t.time) : 'not cleared'} · ${t.kills} slimes</div>`).join('') : 'No runs yet today. Be the first.';
+      const me = g.playerName();
+      box.innerHTML = top.length ? '<b>Today\'s top runs</b>' + top.map((t, i) => `<div style="display:flex;align-items:center;gap:6px;margin:3px 0"><span style="flex:1">${i + 1}. ${esc(t.name)} · ${t.cleared ? mmss(t.time) : 'not cleared'} · ${t.kills} slimes</span>${t.cleared && t.name !== me ? `<button class="btn" data-duel="${i}">Duel</button>` : ''}</div>`).join('') : 'No runs yet today. Be the first.';
+      box.querySelectorAll('[data-duel]').forEach((b) => b.addEventListener('click', () => {
+        const t = top[+b.dataset.duel];
+        g.profile.duel = { date, name: t.name, time: t.time };
+        this.toast(`Duel set: beat ${t.name}'s ${mmss(t.time)} in today's Daily Rift`, 'gold');
+        g.save();
+      }));
     });
     body.innerHTML = card + `<div class="card" style="text-align:center"><h3>Resonance Rift</h3>
       <div class="muted">Silence waves of dissonance to fill the bar, then defeat the Rift Guardian. Clear within 4:00 to unlock the next tier. Tier 3+ adds a Burden from DT_Burdens for extra rarity.</div>
