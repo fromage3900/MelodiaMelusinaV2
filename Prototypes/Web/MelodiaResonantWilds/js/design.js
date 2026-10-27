@@ -66,7 +66,7 @@ const BIOME_PLAY = {
     prog: [[0, 'maj'], [9, 'min'], [5, 'maj'], [7, 'maj']],
     elements: ['Radiant', 'Gale', 'Forte'], boss: 'SlimeRadianceWaltz', bossName: 'Maestra of the Petal Waltz',
     colors: { grass: '#a7d98f', grass2: '#f4bfd6', rock: '#b99f96', sand: '#f3dfc4', snow: '#fff4fa', fog: '#f6dbe7', water: '#8fd8e6', light: '#fff1e6' },
-    props: [['sakura', 7], ['flower', 34], ['rock', 3], ['lantern', 1.2], ['bell', 2.5], ['note', 0.25]],
+    props: [['sakura', 14], ['flower', 55], ['bush', 10], ['grass', 40], ['rock', 5], ['lantern', 2.2], ['bell', 3.5], ['note', 0.45]],
     motif: [0, 2, 4, 7, 4, 2],
   },
   liquid_cathedral: {
@@ -74,7 +74,7 @@ const BIOME_PLAY = {
     prog: [[0, 'maj'], [7, 'maj'], [9, 'min'], [5, 'maj']],
     elements: ['Tide', 'Arcane'], boss: 'SlimeTideSurge', bossName: 'Cantor of the Liquid Nave',
     colors: { grass: '#7fc7a9', grass2: '#bfe6d8', rock: '#9fb1c2', sand: '#e7e0cf', snow: '#f4fbff', fog: '#cfe8f1', water: '#4fb8d8', light: '#eaf7ff' },
-    props: [['pillar', 2.2], ['reed', 14], ['lily', 10], ['rock', 3], ['bell', 2], ['note', 0.35]],
+    props: [['pillar', 4.5], ['reed', 28], ['lily', 18], ['rock', 5], ['bell', 3], ['lantern', 1.5], ['note', 0.5], ['grass', 18]],
     motif: [0, 4, 7, 11, 9, 7],
   },
   fugue_grotto: {
@@ -82,7 +82,7 @@ const BIOME_PLAY = {
     prog: [[0, 'min'], [8, 'maj'], [3, 'maj'], [10, 'maj']],
     elements: ['Stone', 'Umbral'], boss: 'SlimeStonemaul', bossName: 'The Fugue Maw',
     colors: { grass: '#8a8f6e', grass2: '#6d6582', rock: '#6f6474', sand: '#b8a58c', snow: '#d9d4e6', fog: '#b7aec6', water: '#6aa6b8', light: '#f2e6ff' },
-    props: [['stalagmite', 9], ['mushroom', 7], ['rock', 8], ['bell', 1.5], ['note', 0.3]],
+    props: [['stalagmite', 16], ['mushroom', 14], ['rock', 12], ['bush', 8], ['bell', 2.5], ['note', 0.45]],
     motif: [0, 3, 7, 5, 3, 2],
   },
   cadence_crystal_ridge: {
@@ -90,7 +90,7 @@ const BIOME_PLAY = {
     prog: [[0, 'min'], [5, 'min'], [7, 'maj'], [0, 'min']],
     elements: ['Forte', 'Arcane', 'Radiant'], boss: 'SlimeMelodicStorm', bossName: 'Toccata Colossus',
     colors: { grass: '#9aa6c4', grass2: '#c9b8ea', rock: '#7d7896', sand: '#d8cfe6', snow: '#f3f0ff', fog: '#d6d0ee', water: '#7fb6e8', light: '#f7f2ff' },
-    props: [['crystal', 10], ['rock', 6], ['spire', 1], ['bell', 1.5], ['note', 0.4]],
+    props: [['crystal', 18], ['rock', 9], ['spire', 2.2], ['bell', 2.5], ['note', 0.55], ['lantern', 1.4]],
     motif: [0, 7, 12, 10, 7, 3],
   },
   aurora_glacier: {
@@ -98,7 +98,7 @@ const BIOME_PLAY = {
     prog: [[0, 'min'], [8, 'maj'], [5, 'min'], [7, 'maj']],
     elements: ['Tide', 'Gale', 'Umbral'], boss: 'SlimeShadowWaltz', bossName: 'Aurora Fugue-Wyrm',
     colors: { grass: '#dbeaf4', grass2: '#bcd6ea', rock: '#8ea3b8', sand: '#e9f1f7', snow: '#ffffff', fog: '#d9e8f5', water: '#9fd6ee', light: '#eef8ff' },
-    props: [['pine', 8], ['icespike', 6], ['rock', 4], ['bell', 1.5], ['note', 0.3]],
+    props: [['pine', 16], ['icespike', 12], ['rock', 7], ['bell', 2.5], ['note', 0.45], ['crystal', 3]],
     motif: [0, 5, 7, 8, 7, 3],
   },
 };

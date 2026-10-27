@@ -46,14 +46,22 @@ export class Activities {
     BIOMES.forEach((b, bi) => {
       const ax = Math.cos(b.angle), az = Math.sin(b.angle);
       add({ type: 'boss', id: 'boss_' + b.id, biome: bi, x: b.cx - ax * 30, z: b.cz - az * 30, bx: b.cx - ax * 17, bz: b.cz - az * 17, name: b.bossName, cdUntil: 0 });
+      // Starter packs sit just past the safe-zone gate so combat begins on the road out.
+      [[72, 0], [88, 0.07], [105, -0.08]].forEach(([r, da], k) => {
+        const a = b.angle + da;
+        add({
+          type: 'camp', biome: bi, x: Math.cos(a) * r, z: Math.sin(a) * r,
+          active: false, clearedAt: -999, enemies: [], starter: true, id: `camp_gate_${b.id}_${k}`,
+        });
+      });
       [[240, -0.18], [520, 0.2]].forEach(([r, da], k) => {
         const s = spot(b.angle + da, 0.12, r - 30, r + 30, 30);
         if (s) add({ type: 'pylon', id: `pylon_${b.id}_${k}`, biome: bi, ...s, name: `${b.name.split('—')[0].trim()} Pylon ${k + 1}` });
       });
       const rs = spot(b.angle + 0.32, 0.1, 300, 380);
       if (rs) add({ type: 'rift', id: 'rift_' + b.id, biome: bi, ...rs, name: 'Rift Gate' });
-      for (let i = 0; i < 16; i++) { const s = spot(b.angle, 0.55, 110, 640, 46); if (s) add({ type: 'camp', biome: bi, ...s, active: false, clearedAt: -999, enemies: [] }); }
-      for (let i = 0; i < 7; i++) { const s = spot(b.angle, 0.55, 100, 650, 26); if (s) add({ type: 'chest', biome: bi, ...s, openedAt: -999 }); }
+      for (let i = 0; i < 20; i++) { const s = spot(b.angle, 0.55, 120, 640, 40); if (s) add({ type: 'camp', biome: bi, ...s, active: false, clearedAt: -999, enemies: [] }); }
+      for (let i = 0; i < 9; i++) { const s = spot(b.angle, 0.55, 100, 650, 24); if (s) add({ type: 'chest', biome: bi, ...s, openedAt: -999 }); }
       for (let i = 0; i < 3; i++) { const s = spot(b.angle, 0.5, 140, 600, 40); if (s) add({ type: 'shrine', id: `shrine_${b.id}_${i}`, biome: bi, ...s, name: 'Music-Key Shrine', cdUntil: 0 }); }
       for (let i = 0; i < 5; i++) { const s = spot(b.angle, 0.55, 120, 650, 30); if (s) add({ type: 'sheet', id: `sheet_${b.id}_${i}`, biome: bi, ...s }); }
     });
@@ -140,9 +148,11 @@ export class Activities {
     for (const p of this.pois) {
       const d = Math.hypot(p.x - P.pos.x, p.z - P.pos.z);
       if (p.type === 'camp') {
-        const ready = g.time - p.clearedAt > 150;
-        if (!p.active && ready && d < 60 && !P.dead) this.spawnCamp(p);
-        else if (p.active && d > 115) this.despawnCamp(p);
+        const ready = g.time - p.clearedAt > (p.starter ? 70 : 150);
+        const spawnR = p.starter ? 78 : 60;
+        const despawnR = p.starter ? 140 : 115;
+        if (!p.active && ready && d < spawnR && !P.dead) this.spawnCamp(p);
+        else if (p.active && d > despawnR) this.despawnCamp(p);
         else if (p.active && p.enemies.every((e) => e.dead)) this.clearCamp(p);
       } else if (p.type === 'chest') {
         const closed = g.time - p.openedAt > 600;
@@ -183,16 +193,24 @@ export class Activities {
     const rng = Math.random;
     p.active = true;
     p.enemies = [];
-    const lvl = this.enemyLevel(p);
-    const elite = rng() < 0.16 + p.biome * 0.02;
-    const n = 3 + Math.floor(rng() * 3) + (p.biome >= 2 ? 1 : 0);
+    const lvl = p.starter ? Math.max(1, Math.min(this.enemyLevel(p), 3 + p.biome)) : this.enemyLevel(p);
+    const elite = !p.starter && rng() < 0.18 + p.biome * 0.02;
+    const n = p.starter ? 3 + Math.floor(rng() * 2) : 3 + Math.floor(rng() * 3) + (p.biome >= 2 ? 1 : 0);
     for (let i = 0; i < n; i++) {
       const a = (i / n) * Math.PI * 2 + rng(), r = 2 + rng() * 4;
       const isElite = elite && i === 0;
       const def = isElite ? pick(rng, b.elites) : pick(rng, b.trash);
       const affixes = isElite ? [pick(rng, ELITE_AFFIXES).id] : [];
       if (isElite && lvl >= 15 && rng() < 0.5) affixes.push(pick(rng, ELITE_AFFIXES.filter((x) => !affixes.includes(x.id))).id);
-      p.enemies.push(g.spawnEnemy(def.id, lvl, { x: p.x + Math.cos(a) * r, z: p.z + Math.sin(a) * r, elite: isElite, affixes, camp: p }));
+      // Starter packs wake hungry: aggro as soon as the player leaves the gate.
+      p.enemies.push(g.spawnEnemy(def.id, lvl, {
+        x: p.x + Math.cos(a) * r, z: p.z + Math.sin(a) * r,
+        elite: isElite, affixes, camp: p, aggro: !!p.starter && i === 0,
+      }));
+    }
+    if (p.starter && !this._starterToast) {
+      this._starterToast = true;
+      g.ui.toast('Melody slimes ahead — dodge the red rings on the beat', 'rose');
     }
   }
 

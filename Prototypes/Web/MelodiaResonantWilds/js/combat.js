@@ -420,16 +420,22 @@ export class Combat {
   resolveEnemyStrike(e, s) {
     const g = this.g, P = g.player;
     const p = s.params;
-    if (s.kind === 'bolt') { this.enemyShoot(e, s.nx, s.nz); return; }
+    if (s.kind === 'bolt') {
+      this.enemyShoot(e, s.nx, s.nz);
+      g.particles.burst(e.pos.x, e.pos.y + 0.9 * e.scale, e.pos.z, _col.set(ELEMENT_STYLE[e.element].color), 8, { speed: 5, life: 0.35 });
+      return;
+    }
     if (s.kind === 'lunge') {
       const tx = e.pos.x + s.nx * 6.5, tz = e.pos.z + s.nz * 6.5;
       e.hop = null;
       e.dash = { fx: e.pos.x, fz: e.pos.z, tx, tz, t: 0, dur: 0.16 };
     }
-    g.particles.burst(p.x, g.world.height(p.x, p.z) + 0.3, p.z, _col.set('#ff8aa0'), s.shape === 'circle' ? 10 : 6, { speed: 6, life: 0.4 });
-    if (e.boss || e.elite) g.shake(e.boss ? 0.35 : 0.15);
-    const inside = Combat.inShape(P.pos.x, P.pos.z, 0.35, s.shape, p);
-    const dodgedFrom = P.dodgeFrom && g.time - P.lastDodgeTime < 0.5 && Combat.inShape(P.dodgeFrom.x, P.dodgeFrom.z, 0.35, s.shape, p);
+    g.particles.burst(p.x, g.world.height(p.x, p.z) + 0.3, p.z, _col.set('#ff8aa0'), s.shape === 'circle' ? 16 : 10, { speed: 7, life: 0.45, size: s.shape === 'circle' ? (p.r || 2) * 0.6 : 1.2 });
+    this.flash(s.shape, p.x, p.z, p, '#ff8aa0');
+    g.world.pulse(p.x, p.z, e.boss ? 1.4 : 0.7);
+    g.shake(e.boss ? 0.35 : e.elite ? 0.18 : 0.1);
+    const inside = Combat.inShape(P.pos.x, P.pos.z, 0.4, s.shape, p);
+    const dodgedFrom = P.dodgeFrom && g.time - P.lastDodgeTime < 0.5 && Combat.inShape(P.dodgeFrom.x, P.dodgeFrom.z, 0.4, s.shape, p);
     if ((inside || dodgedFrom) && P.lastDodgeGrade && P.lastDodgeGrade !== 'Miss' && g.time - P.lastDodgeTime < 0.5) {
       g.perfectDodge(e);
       return;

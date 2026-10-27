@@ -366,7 +366,8 @@ export class Game {
     if (e.elite || e.boss) return true;
     let n = 0;
     for (const o of this.enemies) if (!o.dead && !o.elite && !o.boss && o.strikes.length) n++;
-    return n < (this.activities.rift ? 4 : 3);
+    // Allow denser pressure so packs feel like they fight back, while keeping telegraphs readable.
+    return n < (this.activities.rift ? 5 : 4);
   }
 
   spawnAdds(boss, n) {
@@ -750,8 +751,17 @@ export class Game {
     const bars = [];
     for (const e of this.enemies) {
       if (e.dead || e.boss) continue;
-      if (e.hp < e.maxHp || e.elite) {
-        bars.push({ x: e.pos.x, y: e.pos.y + 1.9 * e.scale + 0.3, z: e.pos.z, w: e.elite ? 64 : 38, h: e.elite ? 6 : 4, frac: e.hp / e.maxHp, color: e.elite ? '#ff9a4a' : '#ff6b81', tough: e.maxTough ? e.tough / e.maxTough : undefined, broken: e.broken, name: e.elite ? e.name : null, nameColor: '#ffb27a' });
+      if (e.hp < e.maxHp || e.elite || e.aggro || e.strikes.length) {
+        bars.push({
+          x: e.pos.x, y: e.pos.y + 1.9 * e.scale + 0.3, z: e.pos.z,
+          w: e.elite ? 64 : 42, h: e.elite ? 6 : 5,
+          frac: e.hp / e.maxHp,
+          color: e.elite ? '#ff9a4a' : e.strikes.length ? '#ff5470' : '#ff6b81',
+          tough: e.maxTough ? e.tough / e.maxTough : undefined,
+          broken: e.broken,
+          name: e.elite ? e.name : (e.strikes.length ? '♪' : null),
+          nameColor: e.elite ? '#ffb27a' : '#ffb3c1',
+        });
       }
     }
     this.overlay.draw(dt, bars, labels);
@@ -838,7 +848,13 @@ export class Game {
     this.scene.background.lerp(this.pal.fog, k);
     this.world.water.material.color.lerp(this.pal.water, k);
     this.sun.color.lerp(this.pal.light, k);
-    if (this.world.inRift) { this.scene.fog.near = 45; this.scene.fog.far = 110; } else { this.scene.fog.near = 75; this.scene.fog.far = 175; }
+    if (this.world.inRift) { this.scene.fog.near = 45; this.scene.fog.far = 110; }
+    else {
+      // Pull fog in a bit during fights so telegraphs and biome color pop.
+      const combatFog = this.inCombat ? 1 : 0;
+      this.scene.fog.near = lerp(70, 55, combatFog);
+      this.scene.fog.far = lerp(190, 145, combatFog);
+    }
     this.ui.tutorialTick(dt);
     this.profile.stats.playSeconds += dt;
     this._save += dt;
