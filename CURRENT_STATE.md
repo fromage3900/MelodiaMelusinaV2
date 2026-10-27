@@ -1,5 +1,14 @@
 # Melodia Melusina ? Current State
 
+## Source-control convergence checkpoint — 2026-10-27
+
+**Status: remote staging only; NOT a merge or a local-asset checkpoint.** Fresh-main branch `integration/poitou-faraway-stability-20261027` was created to receive selectively validated Poitou/Faraway source. `feature/poitou-sanctuary-convergence` remains untouched, 81 commits ahead and 100 behind `main` at audit time. GitHub comparison returned its 300-file display limit (294 `Content/` paths), so the diff is incomplete and must not be used to declare unique source absent. No local Houdini/Unreal/Perforce work was inspected or preserved by this remote operation.
+
+**Branch graveyard policy:** Issue #327 remains the governing branch-retirement contract. Preserve all active PR, workstation, and Perforce/binary recovery lanes until their unique semantics or asset provenance is established. No remote branches were deleted in this checkpoint. PR #201 is historical/resolved, not a health proxy.
+
+**Faraway handoff:** PR #540 (`Faraway Mother — offline HDA UVs + existing ClothTrim PBR instance handoff`) is open. Validate its exact diff, static gates, offline UV outputs, and single-editor-writer asset ownership before merging. Next action: inventory/checkpoint local Poitou and Faraway sources and P4 changelists, then selectively port source to the fresh-main integration branch. Do not rebase the 81-commit legacy lane or claim UE cook/PIE proof from GitHub alone.
+
+
 ## Capstone/portfolio direction — Paul + Cory feedback, owner decision 2026-10-27
 
 **Status: OWNER-APPROVED PRIORITY SHIFT / PRESENTATION PLAN, not a claim that three showcases are finished.** The capstone remains **Melodia Melusina**. The owner's hiring-facing identity is **technical environment artist / procedural worldbuilder**. Stop treating exhaustive hand-modeling, adding more worlds, or finishing every asset as the measure of success; prioritize three excellent, understandable, reusable systems with convincing art direction and honest Unreal runtime proof.
