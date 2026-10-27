@@ -1,0 +1,206 @@
+{
+ "outputs": [
+  {
+   "path": "/obj/probe/poitou_layout_live_v6/heightfield_1km/output1",
+   "outputidx": 0,
+   "points": 2,
+   "prims": 2,
+   "prim_attribs": [
+    "name"
+   ],
+   "point_attribs": [
+    "P"
+   ]
+  },
+  {
+   "path": "/obj/probe/poitou_layout_live_v6/create_mask_layers/output1",
+   "outputidx": 0,
+   "points": 22,
+   "prims": 22,
+   "prim_attribs": [
+    "name"
+   ],
+   "point_attribs": [
+    "P"
+   ]
+  },
+  {
+   "path": "/obj/probe/poitou_layout_live_v6/output_landscape",
+   "outputidx": 0,
+   "points": 9,
+   "prims": 9,
+   "prim_attribs": [
+    "unreal_landscape_layer_name",
+    "unreal_landscape_material",
+    "unreal_landscape_layer_info",
+    "unreal_material",
+    "name"
+   ],
+   "point_attribs": [
+    "P"
+   ],
+   "unreal_material_samples": [
+    "",
+    "/Game/EnvSandbox/Poitou/Materials/MI_Poitou_Landscape_Nikki.MI_Poitou_Landscape_Nikki"
+   ]
+  },
+  {
+   "path": "/obj/probe/poitou_layout_live_v6/output_points",
+   "outputidx": 1,
+   "points": 14260,
+   "prims": 9,
+   "prim_attribs": [
+    "width",
+    "depth",
+    "type",
+    "name"
+   ],
+   "point_attribs": [
+    "unreal_instance",
+    "band",
+    "tangentu",
+    "unreal_material",
+    "orient",
+    "scale",
+    "yaw",
+    "height_m",
+    "pollard_head_m",
+    "type",
+    "P",
+    "unreal_split_attr"
+   ]
+  },
+  {
+   "path": "/obj/probe/poitou_layout_live_v6/output_route_curve",
+   "outputidx": 2,
+   "points": 261,
+   "prims": 1,
+   "prim_attribs": [
+    "buffer",
+    "unreal_output_curve",
+    "half_width",
+    "name"
+   ],
+   "point_attribs": [
+    "P",
+    "abbey_los"
+   ]
+  },
+  {
+   "path": "/obj/probe/poitou_layout_live_v6/output_skirt_mesh",
+   "outputidx": 3,
+   "points": 14280,
+   "prims": 14000,
+   "prim_attribs": [
+    "unreal_material"
+   ],
+   "point_attribs": [
+    "P"
+   ],
+   "unreal_material_samples": [
+    "/Game/EnvSandbox/Poitou/Materials/MI_Poitou_FarStone.MI_Poitou_FarStone"
+   ]
+  },
+  {
+   "path": "/obj/probe/poitou_layout_live_v6/output_water",
+   "outputidx": 4,
+   "points": 12275,
+   "prims": 9847,
+   "prim_attribs": [
+    "unreal_material"
+   ],
+   "point_attribs": [
+    "P"
+   ],
+   "unreal_material_samples": [
+    "/Game/EnvSandbox/Materials/Instances/Water/v10/Integrated/MI_WaterV10_Integrated_CalmPond.MI_WaterV10_Integrated_CalmPond"
+   ]
+  },
+  {
+   "path": "/obj/probe/poitou_layout_live_v6/output_masonry",
+   "outputidx": 5,
+   "points": 447052,
+   "prims": 329439,
+   "prim_attribs": [
+    "element",
+    "width",
+    "depth",
+    "type",
+    "unreal_material",
+    "name"
+   ],
+   "point_attribs": [
+    "P",
+    "Alpha",
+    "Cd"
+   ],
+   "unreal_material_samples": [
+    "",
+    "/Game/EnvSandbox/Poitou/Materials/MI_Poitou_Arase_Brick.MI_Poitou_Arase_Brick",
+    "/Game/Melodia/Meshes/Poitou/M_Limestone_Rubble_Core.M_Limestone_Rubble_Core",
+    "/Game/Melodia/Meshes/Poitou/M_Tufa_Stone_Blocks.M_Tufa_Stone_Blocks"
+   ]
+  },
+  {
+   "path": "/obj/probe/poitou_layout_live_v6/output_collision",
+   "outputidx": 7,
+   "points": 13259,
+   "prims": 678,
+   "prim_attribs": [
+    "element",
+    "width",
+    "depth",
+    "type",
+    "unreal_material",
+    "name"
+   ],
+   "point_attribs": [
+    "type",
+    "Cd",
+    "yaw",
+    "tangentu",
+    "P",
+    "Alpha",
+    "pollard_head_m",
+    "scale",
+    "height_m"
+   ],
+   "unreal_material_samples": [
+    "/Game/Melodia/Meshes/Poitou/M_Poitou_Stone_Plinth.M_Poitou_Stone_Plinth"
+   ]
+  },
+  {
+   "path": "/obj/probe/poitou_layout_live_v6/output_generated",
+   "outputidx": 6,
+   "points": 571346,
+   "prims": 278322,
+   "prim_attribs": [
+    "type",
+    "width",
+    "depth",
+    "note",
+    "piano_key",
+    "element",
+    "unreal_material",
+    "name"
+   ],
+   "point_attribs": [
+    "type",
+    "Cd",
+    "yaw",
+    "tangentu",
+    "P",
+    "Alpha",
+    "pollard_head_m",
+    "scale",
+    "height_m"
+   ],
+   "unreal_material_samples": [
+    "",
+    "/Game/EnvSandbox/Poitou/Materials/MI_Poitou_Arase_Brick.MI_Poitou_Arase_Brick",
+    "/Game/EnvSandbox/Poitou/Materials/MI_Poitou_Poplar_Band1.MI_Poitou_Poplar_Band1",
+    "/Game/EnvSandbox/Poitou/Materials/MI_Poitou_Ruin_Limestone.MI_Poitou_Ruin_Limestone"
+   ]
+  }
+ ]
+}

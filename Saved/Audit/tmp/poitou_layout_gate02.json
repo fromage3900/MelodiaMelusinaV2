@@ -1,0 +1,604 @@
+{
+ "gate0": {
+  "node_type": "poitou_layout_live_v6",
+  "category": "<hou.OpNodeTypeCategory for Sop>",
+  "description": "Poitou Layout Live",
+  "version": "1.0",
+  "parms": [
+   [
+    "full_res",
+    "Full res heightfield (1009, else 505)"
+   ],
+   [
+    "nikki_layers",
+    "Nikki master layers (Grass/Ground/Base/Mud/Path/Rock/Water)"
+   ],
+   [
+    "ign_calib",
+    "IGN RGE ALTI calibration"
+   ],
+   [
+    "ign_field",
+    "Field level (m)"
+   ],
+   [
+    "ign_noise",
+    "Field noise +- (m)"
+   ],
+   [
+    "ign_water",
+    "Water level (m)"
+   ],
+   [
+    "ign_bank_min",
+    "Bank min above water (m)"
+   ],
+   [
+    "ign_bank_max",
+    "Bank max above water (m)"
+   ],
+   [
+    "ign_rise",
+    "Abbey rise above fields (m)"
+   ],
+   [
+    "ign_jetty",
+    "Jetty stage above water (m)"
+   ],
+   [
+    "instance_preview",
+    "Placeholder unreal_instance meshes"
+   ],
+   [
+    "use_ue_input0",
+    "Use UE canal curves (input 1) if connected"
+   ],
+   [
+    "use_ue_input1",
+    "Use UE route curve (input 2) if connected"
+   ],
+   [
+    "shell_cluster_radius",
+    "Remove placeholder buildings within R of church (room shells there)"
+   ],
+   [
+    "ue_canal_width",
+    "UE canal default width (m)"
+   ],
+   [
+    "ue_canal_depth",
+    "UE canal default depth (m)"
+   ],
+   [
+    "real_meshes",
+    "Use project meshes (else BasicShapes)"
+   ],
+   [
+    "landscape_material",
+    "Landscape material"
+   ],
+   [
+    "layerinfo_dir",
+    "LayerInfo folder"
+   ],
+   [
+    "marsh_base",
+    "Marsh Base"
+   ],
+   [
+    "marsh_noise",
+    "Marsh Noise"
+   ],
+   [
+    "village_lift",
+    "Village Lift"
+   ],
+   [
+    "village_blend",
+    "Village Blend"
+   ],
+   [
+    "bank_drop",
+    "Bank Drop"
+   ],
+   [
+    "ditch_spacing",
+    "Ditch Spacing"
+   ],
+   [
+    "ditch_warp",
+    "Ditch Warp"
+   ],
+   [
+    "abbey_len",
+    "Abbey Len"
+   ],
+   [
+    "abbey_wid",
+    "Abbey Wid"
+   ],
+   [
+    "abbey_rot",
+    "Abbey Rot"
+   ],
+   [
+    "ditch_halfw",
+    "Ditch Halfw"
+   ],
+   [
+    "ditch_ymax",
+    "Ditch Ymax"
+   ],
+   [
+    "ditch_depth",
+    "Ditch Depth"
+   ],
+   [
+    "seed",
+    "Seed"
+   ],
+   [
+    "rise_centerx",
+    "Rise centre X (m)"
+   ],
+   [
+    "rise_centery",
+    "Rise centre Y/north (m)"
+   ],
+   [
+    "rise_radius",
+    "Rise Radius"
+   ],
+   [
+    "rise_height",
+    "Rise Height"
+   ],
+   [
+    "rise_plateau",
+    "Rise Plateau"
+   ],
+   [
+    "iles_count",
+    "Island count"
+   ],
+   [
+    "iles_seed",
+    "Island seed"
+   ],
+   [
+    "iles_radius",
+    "Island radius (m)"
+   ],
+   [
+    "iles_hmin",
+    "Island min height (m)"
+   ],
+   [
+    "iles_hmax",
+    "Island max height (m)"
+   ],
+   [
+    "lane_spacing",
+    "Village lane house spacing (m)"
+   ],
+   [
+    "radial_lanes",
+    "Radial lanes from church"
+   ],
+   [
+    "row_gap",
+    "Tree row gap fraction"
+   ],
+   [
+    "flow_slope_gain",
+    "Flow mask slope gain"
+   ],
+   [
+    "snap_canals",
+    "Snap canal widths to 2.4 m"
+   ],
+   [
+    "water_res",
+    "Water mesh cell (m)"
+   ],
+   [
+    "water_drop",
+    "Water level below marsh base (m)"
+   ],
+   [
+    "water_material",
+    "Water material"
+   ],
+   [
+    "horizon_on",
+    "Horizon ring + bands"
+   ],
+   [
+    "skirt_extent",
+    "Skirt extent (m, square)"
+   ],
+   [
+    "swell_amp",
+    "Swell max height (m)"
+   ],
+   [
+    "swell_ramp",
+    "Swell ramp distance (m)"
+   ],
+   [
+    "swell_freq",
+    "Swell noise freq"
+   ],
+   [
+    "band0_dist",
+    "Band 0 radius (m)"
+   ],
+   [
+    "band1_dist",
+    "Band 1 radius (m)"
+   ],
+   [
+    "band2_dist",
+    "Band 2 radius (m)"
+   ],
+   [
+    "band_spacing",
+    "Band tree spacing (m)"
+   ],
+   [
+    "band_gap",
+    "Band gap threshold"
+   ],
+   [
+    "spire_dist",
+    "Far spire radius (m)"
+   ],
+   [
+    "spire_angle",
+    "Far spire angle (deg)"
+   ],
+   [
+    "spire_height",
+    "Far spire height (m)"
+   ],
+   [
+    "mist_strength",
+    "Mist mask strength"
+   ],
+   [
+    "spire_count",
+    "Far spires"
+   ],
+   [
+    "skirt_material",
+    "Skirt material"
+   ],
+   [
+    "revetment_on",
+    "Generate the canal revetment"
+   ],
+   [
+    "revetment_bed_drop",
+    "Bed below the water line (m)"
+   ],
+   [
+    "revetment_min_height",
+    "Minimum revetment height (m)"
+   ],
+   [
+    "revetment_max_height",
+    "Maximum revetment height (m)"
+   ],
+   [
+    "revetment_barrier_height",
+    "Central barrier height (m)"
+   ],
+   [
+    "masonry_ashlar_material",
+    "Ashlar facing material"
+   ],
+   [
+    "masonry_core_material",
+    "Rubble core material"
+   ],
+   [
+    "masonry_band_material",
+    "Chaine / arase band material"
+   ],
+   [
+    "masonry_roof_material",
+    "Roof tile material"
+   ],
+   [
+    "foundation_material",
+    "Foundation / plinth material"
+   ],
+   [
+    "lane_material",
+    "Lane surface material"
+   ],
+   [
+    "roof_material",
+    "Village roof material"
+   ],
+   [
+    "poplar_bark_material",
+    "Poplar bark material"
+   ],
+   [
+    "poplar_foliage_material",
+    "Poplar foliage material"
+   ],
+   [
+    "lane_length",
+    "Village lane length (m)"
+   ],
+   [
+    "abbey_bays",
+    "Abbey nave bays"
+   ],
+   [
+    "abbey_bay_length",
+    "Abbey bay length (m)"
+   ],
+   [
+    "abbey_nave_width",
+    "Abbey nave width (m)"
+   ],
+   [
+    "abbey_wall_height",
+    "Abbey wall height (m)"
+   ],
+   [
+    "abbey_gallery_height",
+    "Abbey gallery sill (m)"
+   ],
+   [
+    "abbey_westwork_height",
+    "Abbey westwork height (m)"
+   ],
+   [
+    "abbey_portal_span",
+    "Abbey portal span (m)"
+   ],
+   [
+    "lock_on",
+    "Generate the lock"
+   ],
+   [
+    "lock_u",
+    "Lock position along bief (0..1)"
+   ],
+   [
+    "lock_chamber_l",
+    "Lock chamber length (m)"
+   ],
+   [
+    "lock_coping_h",
+    "Coping above bank (m)"
+   ],
+   [
+    "lock_gate_style",
+    "Gate leaves"
+   ],
+   [
+    "lock_steps_n",
+    "Piano steps (treads)"
+   ],
+   [
+    "lock_step_note_base",
+    "Step scale root (degrees)"
+   ],
+   [
+    "jetty_len",
+    "Jetty length (m)"
+   ],
+   [
+    "jetty_wid",
+    "Jetty width (m)"
+   ],
+   [
+    "lockhouse_style",
+    "Lockhouse"
+   ],
+   [
+    "lock_ornament",
+    "Ornament scale (Nikki 1.3-1.5x)"
+   ],
+   [
+    "lock_lamp",
+    "Lamp finial at mid-chamber"
+   ],
+   [
+    "lock_bridge",
+    "Footbridge over the lock tail"
+   ]
+  ],
+  "n_parms": 102,
+  "parm_names": [
+   "full_res",
+   "nikki_layers",
+   "ign_calib",
+   "ign_field",
+   "ign_noise",
+   "ign_water",
+   "ign_bank_min",
+   "ign_bank_max",
+   "ign_rise",
+   "ign_jetty",
+   "instance_preview",
+   "use_ue_input0",
+   "use_ue_input1",
+   "shell_cluster_radius",
+   "ue_canal_width",
+   "ue_canal_depth",
+   "real_meshes",
+   "landscape_material",
+   "layerinfo_dir",
+   "marsh_base",
+   "marsh_noise",
+   "village_lift",
+   "village_blend",
+   "bank_drop",
+   "ditch_spacing",
+   "ditch_warp",
+   "abbey_len",
+   "abbey_wid",
+   "abbey_rot",
+   "ditch_halfw",
+   "ditch_ymax",
+   "ditch_depth",
+   "seed",
+   "rise_centerx",
+   "rise_centery",
+   "rise_radius",
+   "rise_height",
+   "rise_plateau",
+   "iles_count",
+   "iles_seed",
+   "iles_radius",
+   "iles_hmin",
+   "iles_hmax",
+   "lane_spacing",
+   "radial_lanes",
+   "row_gap",
+   "flow_slope_gain",
+   "snap_canals",
+   "water_res",
+   "water_drop",
+   "water_material",
+   "horizon_on",
+   "skirt_extent",
+   "swell_amp",
+   "swell_ramp",
+   "swell_freq",
+   "band0_dist",
+   "band1_dist",
+   "band2_dist",
+   "band_spacing",
+   "band_gap",
+   "spire_dist",
+   "spire_angle",
+   "spire_height",
+   "mist_strength",
+   "spire_count",
+   "skirt_material",
+   "revetment_on",
+   "revetment_bed_drop",
+   "revetment_min_height",
+   "revetment_max_height",
+   "revetment_barrier_height",
+   "masonry_ashlar_material",
+   "masonry_core_material",
+   "masonry_band_material",
+   "masonry_roof_material",
+   "foundation_material",
+   "lane_material",
+   "roof_material",
+   "poplar_bark_material",
+   "poplar_foliage_material",
+   "lane_length",
+   "abbey_bays",
+   "abbey_bay_length",
+   "abbey_nave_width",
+   "abbey_wall_height",
+   "abbey_gallery_height",
+   "abbey_westwork_height",
+   "abbey_portal_span",
+   "lock_on",
+   "lock_u",
+   "lock_chamber_l",
+   "lock_coping_h",
+   "lock_gate_style",
+   "lock_steps_n",
+   "lock_step_note_base",
+   "jetty_len",
+   "jetty_wid",
+   "lockhouse_style",
+   "lock_ornament",
+   "lock_lamp",
+   "lock_bridge"
+  ]
+ },
+ "gate2": {
+  "instance": "/obj/gate2_host/poitou_layout_live_v6",
+  "outputs": [
+   {
+    "node": "output1",
+    "outputidx": 0,
+    "points": 2,
+    "prims": 2,
+    "hash": "0d966793d622fcdb"
+   },
+   {
+    "node": "output1",
+    "outputidx": 0,
+    "points": 22,
+    "prims": 22,
+    "hash": "097629de378fbc52"
+   },
+   {
+    "node": "output_landscape",
+    "outputidx": 0,
+    "points": 9,
+    "prims": 9,
+    "hash": "74dbe31f2cf77a05"
+   },
+   {
+    "node": "output_points",
+    "outputidx": 1,
+    "points": 14260,
+    "prims": 9,
+    "hash": "01ceef22771a3b40"
+   },
+   {
+    "node": "output_route_curve",
+    "outputidx": 2,
+    "points": 261,
+    "prims": 1,
+    "hash": "340a742e1813452d"
+   },
+   {
+    "node": "output_skirt_mesh",
+    "outputidx": 3,
+    "points": 14280,
+    "prims": 14000,
+    "hash": "5ad170bc79748561"
+   },
+   {
+    "node": "output_water",
+    "outputidx": 4,
+    "points": 12275,
+    "prims": 9847,
+    "hash": "9fdc3afb79902173"
+   },
+   {
+    "node": "output_masonry",
+    "outputidx": 5,
+    "points": 447052,
+    "prims": 329439,
+    "hash": "big"
+   },
+   {
+    "node": "output_generated",
+    "outputidx": 6,
+    "points": 571346,
+    "prims": 278322,
+    "hash": "big"
+   },
+   {
+    "node": "output_collision",
+    "outputidx": 7,
+    "points": 13259,
+    "prims": 678,
+    "hash": "a3119dbd4a36cd41"
+   }
+  ],
+  "deterministic": true,
+  "errors": [],
+  "drive_lock_on_differs": true
+ },
+ "file": "C:\\EnvironmentPortfolio\\BS_GodFile\\Tools\\Poitou\\hda\\poitou_layout_live.hdalc",
+ "file_sha256": "ae2fcd23055ba3922a7dff86d74b5dc7cfa37cffe32423b6f7c2604214c50279",
+ "file_size": 89226
+}
