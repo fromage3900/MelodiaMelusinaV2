@@ -6,6 +6,7 @@
 import * as THREE from 'three';
 import { Simplex2, mulberry32, clamp, lerp, smoothstep, angleDiff } from './util.js';
 import { BIOMES, HUB, WORLD_RADIUS, WORLD_SEED, RIFT_STYLE } from './design.js';
+import { celMaterial } from './cel.js';
 
 export const CHUNK = 64;
 const SEG = 28;
@@ -50,8 +51,15 @@ export class World {
       uPlayer: { value: new THREE.Vector3() },
       uCres: { value: 0 },
       uRingColor: { value: new THREE.Color('#ffe8b0') },
+      uChladni: { value: 0.65 },
+      uCaustics: { value: 0.55 },
+      uIsRift: { value: 0 },
     };
-    this.terrainMat = new THREE.MeshLambertMaterial({ vertexColors: true });
+    // Compare new effects with ?chladni=0 and/or ?caustics=0.
+    const shaderFlags = new URLSearchParams(window.location.search);
+    if (shaderFlags.get('chladni') === '0') this.uniforms.uChladni.value = 0;
+    if (shaderFlags.get('caustics') === '0') this.uniforms.uCaustics.value = 0;
+    this.terrainMat = celMaterial('#ffffff', { vertexColors: true });
     this._resonate(this.terrainMat);
     this._buildIndex();
     this._buildPropLibrary();
@@ -277,7 +285,7 @@ export class World {
 
   // ------------------------------------------------------------------ props
   _buildPropLibrary() {
-    const L = (hex, o = {}) => new THREE.MeshLambertMaterial({ color: hex, flatShading: true, ...o });
+    const L = (hex, o = {}) => celMaterial(hex, { flatShading: true, ...o });
     const M = (geo, mat, y = 0, sx = 1, sy = 1, sz = 1) => ({ geo, mat, m: new THREE.Matrix4().compose(new THREE.Vector3(0, y, 0), new THREE.Quaternion(), new THREE.Vector3(sx, sy, sz)) });
     const white = L('#ffffff');
     const glow = (hex) => L('#ffffff', { emissive: hex, emissiveIntensity: 0.55 });
@@ -378,14 +386,32 @@ export class World {
         .replace('#include <begin_vertex>', '#include <begin_vertex>\nvWP = (modelMatrix * vec4(transformed, 1.0)).xyz;');
       sh.fragmentShader = sh.fragmentShader
         .replace('#include <common>', `#include <common>
-          varying vec3 vWP; uniform float uTime; uniform vec4 uRipple; uniform vec4 uRipple2; uniform vec3 uPlayer; uniform float uCres; uniform vec3 uRingColor;
-          float ripple(vec4 r){ float age = uTime - r.z; if(age < 0.0 || age > 1.2) return 0.0; float d = distance(vWP.xz, r.xy); float rad = age * 30.0; return exp(-pow((d - rad) / 1.4, 2.0)) * r.w * (1.0 - age / 1.2); }`)
+          varying vec3 vWP; uniform float uTime; uniform vec4 uRipple; uniform vec4 uRipple2; uniform vec3 uPlayer; uniform float uCres; uniform vec3 uRingColor; uniform float uChladni; uniform float uCaustics; uniform float uIsRift;
+          float ripple(vec4 r){ float age = uTime - r.z; if(age < 0.0 || age > 1.2) return 0.0; float d = distance(vWP.xz, r.xy); float rad = age * 30.0; return exp(-pow((d - rad) / 1.4, 2.0)) * r.w * (1.0 - age / 1.2); }
+          float rwChladni(vec2 p) {
+            vec2 q = (p - uPlayer.xz) * 0.24;
+            float a = sin(q.x * 2.0) * sin(q.y * 3.0);
+            float b = sin(q.x * 3.0) * sin(q.y * 2.0);
+            return 1.0 - smoothstep(0.018, 0.09, abs(a - b));
+          }
+          float rwCaustic(vec2 p, float t) {
+            vec2 q = p * 0.73;
+            float waves = sin(q.x + t * 0.87) * sin(q.y - t * 0.63);
+            float cross = sin((q.x + q.y) * 0.85 - t * 0.47);
+            return pow(max(0.0, 0.55 + 0.28 * waves + 0.22 * cross), 5.0);
+          }`)
         .replace('#include <emissivemap_fragment>', `#include <emissivemap_fragment>
           float pd = distance(vWP.xz, uPlayer.xz);
           float glow = exp(-pow(pd / (3.0 + uCres * 5.0), 2.0)) * (0.06 + uCres * 0.22);
-          totalEmissiveRadiance += uRingColor * (ripple(uRipple) * 0.45 + ripple(uRipple2) * 0.7 + glow);`);
+          float musicalZone = 1.0 - smoothstep(7.0, 18.0, pd);
+          float scoreLines = rwChladni(vWP.xz) * musicalZone * (0.15 + uCres * 0.85) * uChladni;
+          // Caustics affect shallow terrain, not the rift floor.
+          float shore = 1.0 - smoothstep(0.0, 2.2, abs(vWP.y));
+          float causticLight = rwCaustic(vWP.xz, uTime) * shore * uCaustics * (1.0 - uIsRift);
+          totalEmissiveRadiance += uRingColor * (ripple(uRipple) * 0.45 + ripple(uRipple2) * 0.7 + glow + scoreLines * 0.38);
+          totalEmissiveRadiance += vec3(0.28, 0.70, 0.90) * causticLight * 0.3;`);
     };
-    mat.customProgramCacheKey = () => 'resonate';
+    mat.customProgramCacheKey = () => 'resonate-cel-v1';
   }
 
   pulse(x, z, strength = 1, big = false) {
@@ -415,13 +441,15 @@ export class World {
             objectNormal = normalize(vec3(-dx, 1.0, -dz)); }`);
       sh.fragmentShader = sh.fragmentShader
         .replace('#include <common>', `#include <common>
-          varying vec3 vWP; uniform float uTime; uniform vec4 uRipple; uniform vec4 uRipple2; uniform vec3 uRingColor;
+          varying vec3 vWP; uniform float uTime; uniform vec4 uRipple; uniform vec4 uRipple2; uniform vec3 uRingColor; uniform float uCaustics;
           float ripple(vec4 r){ float age = uTime - r.z; if(age < 0.0 || age > 1.2) return 0.0; float d = distance(vWP.xz, r.xy); float rad = age * 30.0; return exp(-pow((d - rad) / 1.4, 2.0)) * r.w * (1.0 - age / 1.2); }`)
         .replace('#include <emissivemap_fragment>', `#include <emissivemap_fragment>
           float sparkle = pow(max(0.0, sin(vWP.x * 1.7 + uTime * 2.0) * sin(vWP.z * 1.3 - uTime * 1.6)), 12.0) * 0.35;
-          totalEmissiveRadiance += uRingColor * (ripple(uRipple) * 0.5 + ripple(uRipple2) * 0.7) + vec3(sparkle);`);
+          float waterCaustic = pow(max(0.0, 0.5 + 0.5 * sin(vWP.x * 0.78 + uTime * 0.9) * sin(vWP.z * 0.93 - uTime * 0.64)), 6.0);
+          totalEmissiveRadiance += uRingColor * (ripple(uRipple) * 0.5 + ripple(uRipple2) * 0.7) + vec3(sparkle);
+          totalEmissiveRadiance += vec3(0.3, 0.65, 0.95) * waterCaustic * uCaustics * 0.38;`);
     };
-    mat.customProgramCacheKey = () => 'water';
+    mat.customProgramCacheKey = () => 'water-caustics-v1';
     this.water = new THREE.Mesh(geo, mat);
     this.water.position.y = WATER;
     this.water.renderOrder = 2;
@@ -431,7 +459,7 @@ export class World {
   // ------------------------------------------------------------------ hub + landmarks
   _buildHub() {
     const g = new THREE.Group();
-    const L = (hex, o = {}) => new THREE.MeshLambertMaterial({ color: hex, flatShading: true, ...o });
+    const L = (hex, o = {}) => celMaterial(hex, { flatShading: true, ...o });
     const add = (geo, mat, x, y, z, ry = 0) => { const m = new THREE.Mesh(geo, mat); m.position.set(x, y, z); m.rotation.y = ry; g.add(m); return m; };
     const h = 2.2;
     // Metronome obelisk: its pendulum swings on the beat (see update()).
@@ -477,7 +505,7 @@ export class World {
   }
 
   _buildLandmarks() {
-    const L = (hex, o = {}) => new THREE.MeshLambertMaterial({ color: hex, flatShading: true, ...o });
+    const L = (hex, o = {}) => celMaterial(hex, { flatShading: true, ...o });
     this.landmarks = [];
     for (const b of BIOMES) {
       const g = new THREE.Group();
@@ -535,7 +563,7 @@ export class World {
   // ------------------------------------------------------------------ rift arena
   _buildRift() {
     const g = new THREE.Group();
-    const floorMat = new THREE.MeshLambertMaterial({ color: '#3b2a55' });
+    const floorMat = celMaterial('#3b2a55');
     this._resonate(floorMat);
     const floor = new THREE.Mesh(new THREE.CircleGeometry(RIFT_RADIUS + 4, 64), floorMat);
     floor.rotation.x = -Math.PI / 2;
@@ -546,8 +574,8 @@ export class World {
       ring.rotation.x = -Math.PI / 2; ring.position.y = 0.02;
       g.add(ring);
     }
-    const pm = new THREE.MeshLambertMaterial({ color: '#2a2140', flatShading: true });
-    const cm = new THREE.MeshLambertMaterial({ color: '#ffffff', emissive: '#8f6bff', emissiveIntensity: 0.6, flatShading: true });
+    const pm = celMaterial('#2a2140', { flatShading: true });
+    const cm = celMaterial('#ffffff', { emissive: '#8f6bff', emissiveIntensity: 0.6, flatShading: true });
     for (let i = 0; i < 12; i++) {
       const a = (i / 12) * Math.PI * 2;
       const p = new THREE.Mesh(new THREE.CylinderGeometry(1, 1.3, 10, 6), pm);
@@ -564,6 +592,7 @@ export class World {
 
   setRift(on) {
     this.inRift = on;
+    this.uniforms.uIsRift.value = on ? 1 : 0;
     this.root.visible = !on;
     this.water.visible = !on;
     this.riftGroup.visible = on;
