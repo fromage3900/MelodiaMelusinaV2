@@ -32,7 +32,7 @@
 | `js/world.js:_buildHub/_buildLandmarks` | houses, obelisk, scenic setpieces | curated GLB kits, maintain occlusion behaviour | not created |
 
 Terrain chunks and water are **shader/geometry systems**, not first-order GLB replacement candidates.
-The 14 `world.props` families use `InstancedMesh`. Future imported foliage should be baked into compatible shared geometry/material components and instanced per chunk, not loaded or duplicated per plant.
+The 15 `world.props` families use `InstancedMesh`. Future imported foliage should be baked into compatible shared geometry/material components and instanced per chunk, not loaded or duplicated per plant.
 
 ## Model intake P0
 
