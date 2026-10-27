@@ -1,0 +1,4 @@
+float skirt_h(float x; float y){
+  float dx=max(max(-x,x-1000.0),0.0), dy=max(max(-y,y-1000.0),0.0); float de=length(set(dx,dy));
+  float n=fit(noise(set(x,y,ch("../seed")+3.7)*ch("../swell_freq")),0.2,0.8,0,1);
+  return ch("../marsh_base")-0.3 + ch("../swell_amp")*smooth(0,ch("../swell_ramp"),de)*n; }

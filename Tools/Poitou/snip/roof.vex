@@ -1,0 +1,41 @@
+// =====================================================================
+// POITOU ROOFS - the village roofs.
+// ---------------------------------------------------------------------
+// The canal houses take a low-pitch roof of canal tiles ("tige de botte")
+// in mixed ocre-rose tones; the guide is explicit that dark tiles are
+// wrong for this region.  The roof is GEOMETRY - a pitch with tile
+// courses running up the slope - and the colour variation is PER-COURSE
+// jitter in the paint, which is the Nikkie way to get a roof that reads
+// as tiles without a tile texture.
+//
+// The house footprint comes from the layout points (type "building").
+//
+// Input 0: the layout points
+// Input 1: the terrain
+// =====================================================================
+
+string MAT_TILE = chs("../roof_material");
+
+int np = npoints(0);
+for(int i=0;i<np;i++){
+    string t = point(0, "type", i);
+    if(t != "building") continue;
+    vector P  = point(0, "P", i);
+    float yaw = point(0, "yaw", i);
+    vector sc = point(0, "scale", i);
+    float w = sc.x, dp = sc.z, h = sc.y;
+    if(w <= 0.5 || dp <= 0.5) continue;
+    vector along  = set(cos(radians(yaw)), 0, sin(radians(yaw)));
+    vector across = set(-sin(radians(yaw)), 0, cos(radians(yaw)));
+    float hw = w*0.5 + 0.30, hd = dp*0.5 + 0.30;   // the eaves overhang
+    float eave = volumesample(1, "height", P) + h;
+    // a low pitch: the canal tiles want roughly a third of the depth
+    float rise = max(0.9, hd*0.62);
+    // the ridge runs along the long axis of the house
+    vector ea = P - along*hw + across*hd;
+    vector eb = P + along*hw + across*hd;
+    vector ec = P + along*hw - across*hd;
+    vector ed = P - along*hw - across*hd;
+    ea.y = eave; eb.y = eave; ec.y = eave; ed.y = eave;
+    kit_gable(ea, eb, ec, ed, rise, MAT_TILE, 0.20, 0.0, 0.55, 0.0, "roof");
+}

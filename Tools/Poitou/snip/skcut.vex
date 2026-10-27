@@ -1,0 +1,2 @@
+int pts[]=primpoints(0,@primnum); vector m={0,0,0}; foreach(int p;pts) m+=point(0,"P",p); m/=len(pts);
+if((m.x>0 && m.x<1000 && m.z>0 && m.z<1000) || !chi("../horizon_on")) removeprim(0,@primnum,1); else s@unreal_material=chs("../skirt_material");
