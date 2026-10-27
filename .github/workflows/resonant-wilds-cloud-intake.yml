@@ -33,3 +33,25 @@ jobs:
           curl --fail --silent --show-error -I http://127.0.0.1:8765/Prototypes/Web/MelodiaResonantWilds/assets/models/resonance-shrine.glb
           curl --fail --silent --show-error -I http://127.0.0.1:8765/Prototypes/Web/MelodiaResonantWilds/js/asset-loader.js
           curl --fail --silent --show-error -I http://127.0.0.1:8765/Prototypes/Web/MelodiaResonantWilds/sw.js
+  headless-webgl:
+    needs: zero-dependency-smoke
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install Playwright only for cloud QA
+        run: |
+          npm install --no-save --no-package-lock playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - name: Start site and test three WebGL states
+        env:
+          GAME_URL: http://127.0.0.1:8765/Prototypes/Web/MelodiaResonantWilds/
+        run: |
+          python3 -m http.server 8765 --bind 127.0.0.1 >/tmp/resonant-wilds-browser.log 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid" 2>/dev/null || true' EXIT
+          sleep 2
+          node Prototypes/Web/MelodiaResonantWilds/tools/browser_smoke.mjs
