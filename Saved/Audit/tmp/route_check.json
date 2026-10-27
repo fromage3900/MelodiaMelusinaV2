@@ -1,0 +1,71 @@
+{
+ "legs": [
+  {
+   "from": "origin",
+   "to": "basin_east",
+   "samples": 16,
+   "grounded": 16,
+   "foreign_hits": []
+  },
+  {
+   "from": "basin_east",
+   "to": "basin_heart",
+   "samples": 61,
+   "grounded": 61,
+   "foreign_hits": []
+  },
+  {
+   "from": "basin_heart",
+   "to": "couture_arrival",
+   "samples": 90,
+   "grounded": 90,
+   "foreign_hits": []
+  },
+  {
+   "from": "couture_arrival",
+   "to": "cathedral_porch_south",
+   "samples": 50,
+   "grounded": 50,
+   "foreign_hits": [
+    {
+     "at": [
+      -43714,
+      -19616
+     ],
+     "actor": "HDA_Faraway_Cathedral_V2_LIVE_20261026"
+    }
+   ]
+  },
+  {
+   "from": "cathedral_porch_south",
+   "to": "cathedral_porch_north",
+   "samples": 5,
+   "grounded": 5,
+   "foreign_hits": [
+    {
+     "at": [
+      -45000,
+      -18000
+     ],
+     "actor": "HDA_Faraway_Cathedral_V2_LIVE_20261026"
+    }
+   ]
+  },
+  {
+   "from": "cathedral_porch_north",
+   "to": "cathedral_vestibule",
+   "samples": 15,
+   "grounded": 15,
+   "foreign_hits": [
+    {
+     "at": [
+      -45000,
+      -18000
+     ],
+     "actor": "HDA_Faraway_Cathedral_V2_LIVE_20261026"
+    }
+   ]
+  }
+ ],
+ "blocking_foreign_hits": []
+}

@@ -1,0 +1,41 @@
+{
+  "_doc": "Faraway dressing artist config. Edit values, then run Saved/Audit/tmp/rebuild_dress_split.py via Monolith. density = 0..1 fraction of authored points kept (deterministic stride). scale = multiplier on authored scale. meshes = weighted [path, weight, material_override] list.",
+  "seed": 3900,
+  "biomes": {
+    "WeaveRidge": {
+      "enable": true,
+      "density": 1.0,
+      "scale": 1.5,
+      "meshes": [
+        ["/Game/EnvSandbox/Meshes/SurrealFlora/CrystalTip_d0_1239", 2.0, "/Game/EnvSandbox/Monoliths/FarawayMother/Blockout/Materials/MI_BLK_BlossomWhiteEmit"],
+        ["/Game/EnvSandbox/Meshes/SurrealFlora/CrystalTip_d0_5179", 1.0, "/Game/EnvSandbox/Monoliths/FarawayMother/Blockout/Materials/MI_BLK_BlossomWhiteEmit"]
+      ]
+    },
+    "LaceCanopy": {
+      "enable": true,
+      "density": 1.0,
+      "scale": 3.0,
+      "meshes": [
+        ["/Game/EnvSandbox/Monoliths/FarawayMother/Intake_20261026/Trees/SM_Faraway_DwarfSakura_00/canopy_proxy", 2.0, "/Game/EnvSandbox/Monoliths/FarawayMother/Blockout/Materials/MI_BLK_BlossomEmit"],
+        ["/Game/EnvSandbox/Monoliths/FarawayMother/Intake_20261026/Trees/SM_Faraway_DwarfSakura_01/canopy_proxy", 1.0, "/Game/EnvSandbox/Monoliths/FarawayMother/Blockout/Materials/MI_BLK_BlossomEmit"]
+      ]
+    },
+    "FrillValley": {
+      "enable": true,
+      "density": 1.0,
+      "scale": 1.2,
+      "meshes": [
+        ["/Game/EnvSandbox/Meshes/Environment/flower_redA/StaticMeshes/flower_redA", 2.0, "/Game/EnvSandbox/Monoliths/FarawayMother/Blockout/Materials/MI_BLK_BlossomEmit"],
+        ["/Game/EnvSandbox/Meshes/Environment/Bush01_Art", 1.0, "/Game/EnvSandbox/Monoliths/FarawayMother/Blockout/Materials/MI_BLK_BlossomEmit"]
+      ]
+    },
+    "ResonantSeamWay": {
+      "enable": true,
+      "density": 1.0,
+      "scale": 0.8,
+      "meshes": [
+        ["/Game/EnvSandbox/Meshes/OrnamentMusical/SM_Orn_PearlJewel", 1.0, "/Game/EnvSandbox/Monoliths/FarawayMother/Blockout/Materials/MI_BLK_BlossomWhiteEmit"]
+      ]
+    }
+  }
+}

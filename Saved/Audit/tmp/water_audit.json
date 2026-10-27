@@ -1,0 +1,442 @@
+{
+ "materials": {
+  "/Game/EnvSandbox/Monoliths/FarawayMother/Blockout/Materials/MI_BLK_Pearl.MI_BLK_Pearl": 168,
+  "/Game/EnvSandbox/Monoliths/FarawayMother/Blockout/Materials/MI_BLK_RockLilac.MI_BLK_RockLilac": 32,
+  "/Game/EnvSandbox/Monoliths/FarawayMother/Blockout/Materials/MI_BLK_Waterfall.MI_BLK_Waterfall": 19,
+  "/Game/EnvSandbox/Monoliths/FarawayMother/Blockout/Materials/MI_BLK_BlossomWhiteEmit.MI_BLK_BlossomWhiteEmit": 5,
+  "/Game/EnvSandbox/Monoliths/FarawayMother/Blockout/Materials/MI_BLK_LilacEmit.MI_BLK_LilacEmit": 1,
+  "/Game/EnvSandbox/Monoliths/FarawayMother/Blockout/Materials/MI_BLK_BlossomEmit.MI_BLK_BlossomEmit": 7,
+  "/Engine/EditorMaterials/Camera/MI_CineMat_CameraBody.MI_CineMat_CameraBody": 4,
+  "/Game/EnvSandbox/Monoliths/FarawayMother/Blockout/Materials/MI_BLK_Mist.MI_BLK_Mist": 16,
+  "/Game/EnvSandbox/Monoliths/FarawayMother/Materials/Couture_20261026/MI_Couture_structure.MI_Couture_structure": 1,
+  "/Game/EnvSandbox/Materials/Instances/FarawayMother/P2/MI_Mother_Mantle.MI_Mother_Mantle": 42,
+  "/Engine/EngineMaterials/WorldGridMaterial.WorldGridMaterial": 1,
+  "/Game/EnvSandbox/Monoliths/FarawayMother/Materials/RoomLookdev_20261026/MI_ArchitectureQuiet.MI_ArchitectureQuiet": 16,
+  "/Game/EnvSandbox/Monoliths/FarawayMother/Materials/Couture_20261026/MI_Couture_tracery.MI_Couture_tracery": 4,
+  "/Game/EnvSandbox/Monoliths/FarawayMother/Materials/Couture_20261026/MI_Couture_lace.MI_Couture_lace": 3,
+  "/Game/EnvSandbox/Monoliths/FarawayMother/Materials/Couture_20261026/MI_Couture_fabric.MI_Couture_fabric": 1,
+  "/Game/EnvSandbox/Monoliths/FarawayMother/Materials/Couture_20261026/MI_Couture_gems.MI_Couture_gems": 4,
+  "/Game/EnvSandbox/Monoliths/FarawayMother/Materials/Couture_20261026/MI_Couture_settings.MI_Couture_settings": 1,
+  "/Game/EnvSandbox/Monoliths/FarawayMother/Materials/Couture_20261026/MI_Couture_water.MI_Couture_water": 1,
+  "/Game/EnvSandbox/Monoliths/FarawayMother/Materials/Couture_20261026/MI_Couture_ribbons.MI_Couture_ribbons": 5,
+  "/Engine/EditorMaterials/MatineeCam_mat.MatineeCam_mat": 28,
+  "/Game/EnchantedInteriors/Materials/KB3D_ECI_BooksAtlas.KB3D_ECI_BooksAtlas": 4,
+  "/Game/EnchantedInteriors/Materials/KB3D_ECI_WoodDamageGradientA.KB3D_ECI_WoodDamageGradientA": 14,
+  "/Game/EnchantedInteriors/Materials/KB3D_ECI_MetalTrimA.KB3D_ECI_MetalTrimA": 7,
+  "/Game/EnvSandbox/Monoliths/FarawayMother/Materials/Village_20261026/MI_Village_terrain.MI_Village_terrain": 1,
+  "/Game/EnvSandbox/Monoliths/FarawayMother/Materials/Village_20261026/MI_Village_roads.MI_Village_roads": 1,
+  "/Game/EnvSandbox/Monoliths/FarawayMother/Materials/Village_20261026/MI_Village_chiffon.MI_Village_chiffon": 2,
+  "/Game/EnvSandbox/Monoliths/FarawayMother/Materials/Village_20261026/MI_Village_courts.MI_Village_courts": 1,
+  "/Game/EnvSandbox/Monoliths/FarawayMother/Materials/Village_20261026/MI_Village_foundations.MI_Village_foundations": 1,
+  "/Game/EnvSandbox/Monoliths/FarawayMother/Materials/Village_20261026/MI_Village_plot_guides.MI_Village_plot_guides": 1,
+  "/HoudiniEngine/houdini_default_material.houdini_default_material": 13,
+  "/Game/EnchantedInteriors/Materials/KB3D_ECI_TranslLiquidAtlas.KB3D_ECI_TranslLiquidAtlas": 1,
+  "/Game/EnvSandbox/Materials/Instances/Oceanology/MI_Oceanology_Melodia_Hero.MI_Oceanology_Melodia_Hero": 2,
+  "/Game/EnvSandbox/Monoliths/FarawayMother/Materials/Couture_20261026/MI_Couture_flowers.MI_Couture_flowers": 101,
+  "/Game/EnvSandbox/Materials/Masters/M_Water_Oceanology_Melodia_Inst.M_Water_Oceanology_Melodia_Inst": 1,
+  "/Game/EnvSandbox/Materials/Instances/FarawayMother/P2/MI_Mother_Veil.MI_Mother_Veil": 20,
+  "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Copernicus_GildedLoom.MI_Copernicus_GildedLoom": 28,
+  "/Game/EnvSandbox/Materials/Instances/FarawayMother/P2/MI_Mother_Cradle.MI_Mother_Cradle": 32,
+  "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Copernicus_SilkWaterfall.MI_Copernicus_SilkWaterfall": 34,
+  "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Copernicus_CherryBlossomWood.MI_Copernicus_CherryBlossomWood": 240,
+  "/Game/EnvSandbox/Monoliths/FarawayMother/Materials/MI_Faraway_SilkMountain_Lilac.MI_Faraway_SilkMountain_Lilac": 54,
+  "/Game/EnvSandbox/Monoliths/FarawayMother/Materials/MI_Faraway_SilkMountain.MI_Faraway_SilkMountain": 6,
+  "/Game/Staging/HoudiniForge/Materials/Toon/MI_HF_Toon_BellSpirit_Carillon_v1_Paint.MI_HF_Toon_BellSpirit_Carillon_v1_Paint": 2,
+  "/Game/Staging/HoudiniForge/Materials/Toon/MI_HF_Toon_BellGolem_Carillon_v3_Paint.MI_HF_Toon_BellGolem_Carillon_v3_Paint": 1,
+  "/Game/_ThirdParty/UltraDynamicSky/Blueprints/System/Editor_UI/Editor_Materials/UDS_Clock_Material.UDS_Clock_Material": 1,
+  "/Game/EnvSandbox/Monoliths/FarawayMother/Blockout/L_FarawayMother_Blockout.L_FarawayMother_Blockout:PersistentLevel.Ultra_Dynamic_Sky_C_1.Sky_Sphere.MID_UDS_K_0": 1,
+  "/Game/_ThirdParty/UltraDynamicSky/Blueprints/System/Editor_UI/Editor_Materials/UDS_EditorLabel.UDS_EditorLabel": 1,
+  "/Game/_ThirdParty/UltraDynamicSky/Blueprints/System/Editor_UI/Editor_Materials/UDS_Compass_Material.UDS_Compass_Material": 1,
+  "/Game/_ThirdParty/UltraDynamicSky/Blueprints/System/Editor_UI/Editor_Materials/UDS_Compass_Material_Letters.UDS_Compass_Material_Letters": 4,
+  "/Game/_ThirdParty/UltraDynamicSky/Blueprints/System/Editor_UI/Editor_Materials/Editor_SunHandle_Material.Editor_SunHandle_Material": 1,
+  "/Game/_ThirdParty/UltraDynamicSky/Blueprints/System/Editor_UI/Editor_Materials/Editor_Sun_Glow.Editor_Sun_Glow": 1,
+  "/Game/_ThirdParty/UltraDynamicSky/Blueprints/System/Editor_UI/Editor_Materials/Editor_MoonHandle_Material.Editor_MoonHandle_Material": 1,
+  "/Game/_ThirdParty/UltraDynamicSky/Blueprints/System/Editor_UI/Editor_Materials/Editor_Moon_Glow.Editor_Moon_Glow": 1
+ },
+ "water_actors": [
+  {
+   "label": "PCG_WaterEdgeScatter_NearRim",
+   "mesh": "no_mesh",
+   "mats": [
+    "/Game/EnvSandbox/Monoliths/FarawayMother/Blockout/Materials/MI_BLK_RockLilac.MI_BLK_RockLilac"
+   ]
+  },
+  {
+   "label": "PCG_WaterEdgeScatter_NearRim",
+   "mesh": "no_mesh",
+   "mats": [
+    "/Game/EnvSandbox/Monoliths/FarawayMother/Blockout/Materials/MI_BLK_RockLilac.MI_BLK_RockLilac"
+   ]
+  },
+  {
+   "label": "PCG_WaterEdgeScatter_NearRim",
+   "mesh": "no_mesh",
+   "mats": [
+    "/Game/EnvSandbox/Monoliths/FarawayMother/Blockout/Materials/MI_BLK_RockLilac.MI_BLK_RockLilac"
+   ]
+  },
+  {
+   "label": "PCG_WaterEdgeScatter_NearRim",
+   "mesh": "no_mesh",
+   "mats": [
+    "/Game/EnvSandbox/Monoliths/FarawayMother/Blockout/Materials/MI_BLK_RockLilac.MI_BLK_RockLilac"
+   ]
+  },
+  {
+   "label": "PCG_WaterEdgeScatter_NearRim",
+   "mesh": "no_mesh",
+   "mats": [
+    "/Game/EnvSandbox/Monoliths/FarawayMother/Blockout/Materials/MI_BLK_RockLilac.MI_BLK_RockLilac"
+   ]
+  },
+  {
+   "label": "PCG_WaterEdgeScatter_NearRim",
+   "mesh": "no_mesh",
+   "mats": [
+    "/Game/EnvSandbox/Monoliths/FarawayMother/Blockout/Materials/MI_BLK_RockLilac.MI_BLK_RockLilac"
+   ]
+  },
+  {
+   "label": "PCG_WaterEdgeScatter_NearRim",
+   "mesh": "no_mesh",
+   "mats": [
+    "/Game/EnvSandbox/Monoliths/FarawayMother/Blockout/Materials/MI_BLK_RockLilac.MI_BLK_RockLilac"
+   ]
+  },
+  {
+   "label": "PCG_WaterEdgeScatter_NearRim",
+   "mesh": "no_mesh",
+   "mats": [
+    "/Game/EnvSandbox/Monoliths/FarawayMother/Blockout/Materials/MI_BLK_RockLilac.MI_BLK_RockLilac"
+   ]
+  },
+  {
+   "label": "PCG_WaterEdgeScatter_NearRim",
+   "mesh": "no_mesh",
+   "mats": [
+    "/Game/EnvSandbox/Monoliths/FarawayMother/Blockout/Materials/MI_BLK_RockLilac.MI_BLK_RockLilac"
+   ]
+  },
+  {
+   "label": "PCG_WaterEdgeScatter_NearRim",
+   "mesh": "no_mesh",
+   "mats": [
+    "/Game/EnvSandbox/Monoliths/FarawayMother/Blockout/Materials/MI_BLK_RockLilac.MI_BLK_RockLilac"
+   ]
+  },
+  {
+   "label": "PCG_WaterEdgeScatter_NearRim",
+   "mesh": "no_mesh",
+   "mats": [
+    "/Game/EnvSandbox/Monoliths/FarawayMother/Blockout/Materials/MI_BLK_RockLilac.MI_BLK_RockLilac"
+   ]
+  },
+  {
+   "label": "PCG_WaterEdgeScatter_NearRim",
+   "mesh": "no_mesh",
+   "mats": [
+    "/Game/EnvSandbox/Monoliths/FarawayMother/Blockout/Materials/MI_BLK_RockLilac.MI_BLK_RockLilac"
+   ]
+  },
+  {
+   "label": "PCG_WaterEdgeScatter_NearRim",
+   "mesh": "no_mesh",
+   "mats": [
+    "/Game/EnvSandbox/Monoliths/FarawayMother/Blockout/Materials/MI_BLK_RockLilac.MI_BLK_RockLilac"
+   ]
+  },
+  {
+   "label": "PCG_WaterEdgeScatter_NearRim",
+   "mesh": "no_mesh",
+   "mats": [
+    "/Game/EnvSandbox/Monoliths/FarawayMother/Blockout/Materials/MI_BLK_RockLilac.MI_BLK_RockLilac"
+   ]
+  },
+  {
+   "label": "PCG_WaterEdgeScatter_NearRim",
+   "mesh": "no_mesh",
+   "mats": [
+    "/Game/EnvSandbox/Monoliths/FarawayMother/Blockout/Materials/MI_BLK_RockLilac.MI_BLK_RockLilac"
+   ]
+  },
+  {
+   "label": "PCG_WaterEdgeScatter_NearRim",
+   "mesh": "no_mesh",
+   "mats": [
+    "/Game/EnvSandbox/Monoliths/FarawayMother/Blockout/Materials/MI_BLK_RockLilac.MI_BLK_RockLilac"
+   ]
+  },
+  {
+   "label": "PCG_WaterEdgeScatter_GateRim",
+   "mesh": "no_mesh",
+   "mats": [
+    "/Game/EnvSandbox/Monoliths/FarawayMother/Blockout/Materials/MI_BLK_RockLilac.MI_BLK_RockLilac"
+   ]
+  },
+  {
+   "label": "PCG_WaterEdgeScatter_GateRim",
+   "mesh": "no_mesh",
+   "mats": [
+    "/Game/EnvSandbox/Monoliths/FarawayMother/Blockout/Materials/MI_BLK_RockLilac.MI_BLK_RockLilac"
+   ]
+  },
+  {
+   "label": "PCG_WaterEdgeScatter_GateRim",
+   "mesh": "no_mesh",
+   "mats": [
+    "/Game/EnvSandbox/Monoliths/FarawayMother/Blockout/Materials/MI_BLK_RockLilac.MI_BLK_RockLilac"
+   ]
+  },
+  {
+   "label": "PCG_WaterEdgeScatter_GateRim",
+   "mesh": "no_mesh",
+   "mats": [
+    "/Game/EnvSandbox/Monoliths/FarawayMother/Blockout/Materials/MI_BLK_RockLilac.MI_BLK_RockLilac"
+   ]
+  },
+  {
+   "label": "PCG_WaterEdgeScatter_GateRim",
+   "mesh": "no_mesh",
+   "mats": [
+    "/Game/EnvSandbox/Monoliths/FarawayMother/Blockout/Materials/MI_BLK_RockLilac.MI_BLK_RockLilac"
+   ]
+  },
+  {
+   "label": "PCG_WaterEdgeScatter_GateRim",
+   "mesh": "no_mesh",
+   "mats": [
+    "/Game/EnvSandbox/Monoliths/FarawayMother/Blockout/Materials/MI_BLK_RockLilac.MI_BLK_RockLilac"
+   ]
+  },
+  {
+   "label": "PCG_WaterEdgeScatter_GateRim",
+   "mesh": "no_mesh",
+   "mats": [
+    "/Game/EnvSandbox/Monoliths/FarawayMother/Blockout/Materials/MI_BLK_RockLilac.MI_BLK_RockLilac"
+   ]
+  },
+  {
+   "label": "PCG_WaterEdgeScatter_GateRim",
+   "mesh": "no_mesh",
+   "mats": [
+    "/Game/EnvSandbox/Monoliths/FarawayMother/Blockout/Materials/MI_BLK_RockLilac.MI_BLK_RockLilac"
+   ]
+  },
+  {
+   "label": "PCG_WaterEdgeScatter_GateRim",
+   "mesh": "no_mesh",
+   "mats": [
+    "/Game/EnvSandbox/Monoliths/FarawayMother/Blockout/Materials/MI_BLK_RockLilac.MI_BLK_RockLilac"
+   ]
+  },
+  {
+   "label": "PCG_WaterEdgeScatter_GateRim",
+   "mesh": "no_mesh",
+   "mats": [
+    "/Game/EnvSandbox/Monoliths/FarawayMother/Blockout/Materials/MI_BLK_RockLilac.MI_BLK_RockLilac"
+   ]
+  },
+  {
+   "label": "PCG_WaterEdgeScatter_GateRim",
+   "mesh": "no_mesh",
+   "mats": [
+    "/Game/EnvSandbox/Monoliths/FarawayMother/Blockout/Materials/MI_BLK_RockLilac.MI_BLK_RockLilac"
+   ]
+  },
+  {
+   "label": "PCG_WaterEdgeScatter_GateRim",
+   "mesh": "no_mesh",
+   "mats": [
+    "/Game/EnvSandbox/Monoliths/FarawayMother/Blockout/Materials/MI_BLK_RockLilac.MI_BLK_RockLilac"
+   ]
+  },
+  {
+   "label": "PCG_WaterEdgeScatter_GateRim",
+   "mesh": "no_mesh",
+   "mats": [
+    "/Game/EnvSandbox/Monoliths/FarawayMother/Blockout/Materials/MI_BLK_RockLilac.MI_BLK_RockLilac"
+   ]
+  },
+  {
+   "label": "PCG_WaterEdgeScatter_GateRim",
+   "mesh": "no_mesh",
+   "mats": [
+    "/Game/EnvSandbox/Monoliths/FarawayMother/Blockout/Materials/MI_BLK_RockLilac.MI_BLK_RockLilac"
+   ]
+  },
+  {
+   "label": "PCG_WaterEdgeScatter_GateRim",
+   "mesh": "no_mesh",
+   "mats": [
+    "/Game/EnvSandbox/Monoliths/FarawayMother/Blockout/Materials/MI_BLK_RockLilac.MI_BLK_RockLilac"
+   ]
+  },
+  {
+   "label": "PCG_WaterEdgeScatter_GateRim",
+   "mesh": "no_mesh",
+   "mats": [
+    "/Game/EnvSandbox/Monoliths/FarawayMother/Blockout/Materials/MI_BLK_RockLilac.MI_BLK_RockLilac"
+   ]
+  },
+  {
+   "label": "PCG_EscherWaterfall_01",
+   "mesh": "no_mesh",
+   "mats": [
+    "/Game/EnvSandbox/Monoliths/FarawayMother/Blockout/Materials/MI_BLK_Waterfall.MI_BLK_Waterfall"
+   ]
+  },
+  {
+   "label": "PCG_EscherWaterfall_02",
+   "mesh": "no_mesh",
+   "mats": [
+    "/Game/EnvSandbox/Monoliths/FarawayMother/Blockout/Materials/MI_BLK_Waterfall.MI_BLK_Waterfall"
+   ]
+  },
+  {
+   "label": "PCG_EscherWaterfall_03",
+   "mesh": "no_mesh",
+   "mats": [
+    "/Game/EnvSandbox/Monoliths/FarawayMother/Blockout/Materials/MI_BLK_Waterfall.MI_BLK_Waterfall"
+   ]
+  },
+  {
+   "label": "BLK_Waterfall_01_A",
+   "mesh": "no_mesh",
+   "mats": [
+    "/Game/EnvSandbox/Monoliths/FarawayMother/Blockout/Materials/MI_BLK_Waterfall.MI_BLK_Waterfall"
+   ]
+  },
+  {
+   "label": "BLK_Waterfall_01_B",
+   "mesh": "no_mesh",
+   "mats": [
+    "/Game/EnvSandbox/Monoliths/FarawayMother/Blockout/Materials/MI_BLK_Waterfall.MI_BLK_Waterfall"
+   ]
+  },
+  {
+   "label": "BLK_Waterfall_02_A",
+   "mesh": "no_mesh",
+   "mats": [
+    "/Game/EnvSandbox/Monoliths/FarawayMother/Blockout/Materials/MI_BLK_Waterfall.MI_BLK_Waterfall"
+   ]
+  },
+  {
+   "label": "BLK_Waterfall_02_B",
+   "mesh": "no_mesh",
+   "mats": [
+    "/Game/EnvSandbox/Monoliths/FarawayMother/Blockout/Materials/MI_BLK_Waterfall.MI_BLK_Waterfall"
+   ]
+  },
+  {
+   "label": "BLK_Waterfall_03_A",
+   "mesh": "no_mesh",
+   "mats": [
+    "/Game/EnvSandbox/Monoliths/FarawayMother/Blockout/Materials/MI_BLK_Waterfall.MI_BLK_Waterfall"
+   ]
+  },
+  {
+   "label": "BLK_Waterfall_03_B",
+   "mesh": "no_mesh",
+   "mats": [
+    "/Game/EnvSandbox/Monoliths/FarawayMother/Blockout/Materials/MI_BLK_Waterfall.MI_BLK_Waterfall"
+   ]
+  },
+  {
+   "label": "BLK_Waterfall_04_A",
+   "mesh": "no_mesh",
+   "mats": [
+    "/Game/EnvSandbox/Monoliths/FarawayMother/Blockout/Materials/MI_BLK_Waterfall.MI_BLK_Waterfall"
+   ]
+  },
+  {
+   "label": "BLK_Waterfall_04_B",
+   "mesh": "no_mesh",
+   "mats": [
+    "/Game/EnvSandbox/Monoliths/FarawayMother/Blockout/Materials/MI_BLK_Waterfall.MI_BLK_Waterfall"
+   ]
+  },
+  {
+   "label": "BLK_Waterfall_05_A",
+   "mesh": "no_mesh",
+   "mats": [
+    "/Game/EnvSandbox/Monoliths/FarawayMother/Blockout/Materials/MI_BLK_Waterfall.MI_BLK_Waterfall"
+   ]
+  },
+  {
+   "label": "BLK_Waterfall_05_B",
+   "mesh": "no_mesh",
+   "mats": [
+    "/Game/EnvSandbox/Monoliths/FarawayMother/Blockout/Materials/MI_BLK_Waterfall.MI_BLK_Waterfall"
+   ]
+  },
+  {
+   "label": "BLK_Waterfall_06_A",
+   "mesh": "no_mesh",
+   "mats": [
+    "/Game/EnvSandbox/Monoliths/FarawayMother/Blockout/Materials/MI_BLK_Waterfall.MI_BLK_Waterfall"
+   ]
+  },
+  {
+   "label": "BLK_Waterfall_06_B",
+   "mesh": "no_mesh",
+   "mats": [
+    "/Game/EnvSandbox/Monoliths/FarawayMother/Blockout/Materials/MI_BLK_Waterfall.MI_BLK_Waterfall"
+   ]
+  },
+  {
+   "label": "BLK_Waterfall_07_A",
+   "mesh": "no_mesh",
+   "mats": [
+    "/Game/EnvSandbox/Monoliths/FarawayMother/Blockout/Materials/MI_BLK_Waterfall.MI_BLK_Waterfall"
+   ]
+  },
+  {
+   "label": "BLK_Waterfall_07_B",
+   "mesh": "no_mesh",
+   "mats": [
+    "/Game/EnvSandbox/Monoliths/FarawayMother/Blockout/Materials/MI_BLK_Waterfall.MI_BLK_Waterfall"
+   ]
+  },
+  {
+   "label": "BLK_Waterfall_08_A",
+   "mesh": "no_mesh",
+   "mats": [
+    "/Game/EnvSandbox/Monoliths/FarawayMother/Blockout/Materials/MI_BLK_Waterfall.MI_BLK_Waterfall"
+   ]
+  },
+  {
+   "label": "BLK_Waterfall_08_B",
+   "mesh": "no_mesh",
+   "mats": [
+    "/Game/EnvSandbox/Monoliths/FarawayMother/Blockout/Materials/MI_BLK_Waterfall.MI_BLK_Waterfall"
+   ]
+  }
+ ],
+ "hda_outputs": {
+  "/Game/EnvSandbox/Monoliths/FarawayMother/Materials/Couture_20261026/MI_Couture_structure.MI_Couture_structure": 1,
+  "/Game/EnvSandbox/Materials/Instances/FarawayMother/P2/MI_Mother_Mantle.MI_Mother_Mantle": 42,
+  "/Game/EnvSandbox/Monoliths/FarawayMother/Materials/RoomLookdev_20261026/MI_ArchitectureQuiet.MI_ArchitectureQuiet": 16,
+  "/Game/EnvSandbox/Monoliths/FarawayMother/Materials/Couture_20261026/MI_Couture_tracery.MI_Couture_tracery": 4,
+  "/Game/EnvSandbox/Monoliths/FarawayMother/Materials/Couture_20261026/MI_Couture_lace.MI_Couture_lace": 1,
+  "/Game/EnvSandbox/Monoliths/FarawayMother/Materials/Couture_20261026/MI_Couture_fabric.MI_Couture_fabric": 1,
+  "/Game/EnvSandbox/Monoliths/FarawayMother/Materials/Couture_20261026/MI_Couture_gems.MI_Couture_gems": 1,
+  "/Game/EnvSandbox/Monoliths/FarawayMother/Materials/Couture_20261026/MI_Couture_settings.MI_Couture_settings": 1,
+  "/Game/EnvSandbox/Monoliths/FarawayMother/Materials/Couture_20261026/MI_Couture_water.MI_Couture_water": 1,
+  "/Game/EnvSandbox/Monoliths/FarawayMother/Materials/Couture_20261026/MI_Couture_ribbons.MI_Couture_ribbons": 1,
+  "/Game/EnvSandbox/Monoliths/FarawayMother/Materials/Village_20261026/MI_Village_terrain.MI_Village_terrain": 1,
+  "/Game/EnvSandbox/Monoliths/FarawayMother/Materials/Village_20261026/MI_Village_roads.MI_Village_roads": 1,
+  "/Game/EnvSandbox/Monoliths/FarawayMother/Materials/Village_20261026/MI_Village_chiffon.MI_Village_chiffon": 2,
+  "/Game/EnvSandbox/Monoliths/FarawayMother/Materials/Village_20261026/MI_Village_courts.MI_Village_courts": 1,
+  "/Game/EnvSandbox/Monoliths/FarawayMother/Materials/Village_20261026/MI_Village_foundations.MI_Village_foundations": 1,
+  "/Game/EnvSandbox/Monoliths/FarawayMother/Materials/Village_20261026/MI_Village_plot_guides.MI_Village_plot_guides": 1,
+  "/HoudiniEngine/houdini_default_material.houdini_default_material": 13,
+  "/Game/EnvSandbox/Materials/Instances/Oceanology/MI_Oceanology_Melodia_Hero.MI_Oceanology_Melodia_Hero": 2,
+  "/Game/EnvSandbox/Materials/Instances/FarawayMother/P2/MI_Mother_Veil.MI_Mother_Veil": 20,
+  "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Copernicus_GildedLoom.MI_Copernicus_GildedLoom": 28,
+  "/Game/EnvSandbox/Materials/Instances/FarawayMother/P2/MI_Mother_Cradle.MI_Mother_Cradle": 32,
+  "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Copernicus_SilkWaterfall.MI_Copernicus_SilkWaterfall": 34,
+  "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Copernicus_CherryBlossomWood.MI_Copernicus_CherryBlossomWood": 240
+ },
+ "dead": [],
+ "MI_BLK_Waterfall_parent": "/Engine/BasicShapes/BasicShapeMaterial.BasicShapeMaterial"
+}
