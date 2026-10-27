@@ -368,6 +368,9 @@ export class UI {
       case 'forge': glyph('⚒', '#ffcf7a', 18); break;
       case 'board': glyph('📜', '#fff', 16); break;
       case 'font': glyph('✧', '#8fe0ff', 18); break;
+      case 'overlook': glyph('⌂', (pr.vistas || []).includes(p.id) ? '#ffd978' : '#f6f0f8', 18); break;
+      case 'photo': glyph('▭', '#c8b6ef', 16); break;
+      case 'chime': glyph('♫', '#9fe6ff', 16); break;
     }
   }
 

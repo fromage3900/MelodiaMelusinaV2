@@ -6,6 +6,7 @@
 import * as THREE from 'three';
 import { Simplex2, mulberry32, clamp, lerp, smoothstep, angleDiff } from './util.js';
 import { BIOMES, HUB, WORLD_RADIUS, WORLD_SEED, RIFT_STYLE } from './design.js';
+import { propWorkflowMul, approachIdentity, OW_RULES } from './openworld.js';
 
 export const CHUNK = 64;
 const SEG = 28;
@@ -334,14 +335,20 @@ export class World {
         if (!def) continue;
         // Hub fringe only gets soft ground cover / lanterns so roads stay readable.
         if (fringe && type !== 'flower' && type !== 'grass' && type !== 'bush' && type !== 'lantern' && type !== 'rock') continue;
-        const density = fringe ? 0.55 : 1.35;
-        const tries = Math.floor(count * bw * density + rng());
+        // Anime OW workflow: denser near-player / approach-corridor dressing, softer far field.
+        const px = this.game.player?.pos?.x ?? 0, pz = this.game.player?.pos?.z ?? 0;
+        const sampleX = x0 + CHUNK / 2, sampleZ = z0 + CHUNK / 2;
+        const wfMul = propWorkflowMul(b, sampleX, sampleZ, type, { x: px, z: pz });
+        const density = (fringe ? 0.55 : 1.15) * wfMul;
+        const tries = Math.min(OW_RULES.mobile.chunkPropBudget, Math.floor(count * bw * density + rng()));
         for (let t = 0; t < tries; t++) {
           const x = x0 + rng() * CHUNK, z = z0 + rng() * CHUNK;
           const h = this.sample(x, z);
           if (this.r < HUB.radius - 4 || this.r > WORLD_RADIUS - 40) continue;
           if (this.hub > 0.55 && type !== 'flower' && type !== 'grass' && type !== 'lantern') continue;
-          if (rng() > this.W[bi] * (fringe ? 1.1 : 1.55)) continue;
+          // Approach corridors push biome identity props (Genshin gate → region blend).
+          const idBoost = approachIdentity(b, x, z);
+          if (rng() > this.W[bi] * (fringe ? 1.1 : 1.45 + idBoost * 0.5)) continue;
           if (def.water === 'on') { if (h > -0.15) continue; }
           else if (def.water === 'shore') { if (h < -0.3 || h > 1.0) continue; }
           else if (h < 0.35) continue;

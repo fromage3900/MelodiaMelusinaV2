@@ -12,7 +12,7 @@ export function defaultProfile() {
     v: 1, level: 1, xp: 0, gold: 0, shards: 0, notes: 0,
     inventory: [], equipment: {},
     loadout: STARTING_SKILLS.slice(), learned: STARTING_SKILLS.slice(),
-    blessings: [], pylons: ['pylon_hub'], shrines: [], sheets: [],
+    blessings: [], pylons: ['pylon_hub'], shrines: [], sheets: [], vistas: [], photos: [],
     riftTier: 0, bounties: null, bountySet: 0, movement: 0, maestros: [],
     settings: { music: 0.75, sfx: 0.9, offsetMs: 0, difficulty: 'standard', quality: 'auto', autoSalvage: false, shake: true },
     stats: { kills: 0, perfects: 0, bestCombo: 0, bosses: 0, rifts: 0, playSeconds: 0 },

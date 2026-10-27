@@ -312,7 +312,7 @@ export class Game {
     if (r) return r.exit && Math.hypot(P.pos.x, P.pos.z - 6) < 3.5 ? { label: 'Leave the Rift ◎', fn: () => this.activities.exitRift() } : null;
     let best = null, bd = 4;
     for (const p of this.activities.pois) {
-      if (!['forge', 'board', 'font', 'rift', 'boss', 'shrine', 'pylon'].includes(p.type)) continue;
+      if (!['forge', 'board', 'font', 'rift', 'boss', 'shrine', 'pylon', 'overlook', 'photo', 'chime'].includes(p.type)) continue;
       const d = Math.hypot(p.x - P.pos.x, p.z - P.pos.z);
       if (d < bd) { bd = d; best = p; }
     }
@@ -326,6 +326,9 @@ export class Game {
       case 'boss': return p.alive && !p.alive.dead ? null : { label: `Summon ${p.name} ♛`, fn: () => this.activities.summonBoss(p) };
       case 'shrine': return this.activities.shrine ? null : { label: 'Play the shrine 𝄞', fn: () => this.activities.startShrine(p) };
       case 'pylon': return this.profile.pylons.includes(p.id) ? { label: 'Fast travel ◆', fn: () => this.ui.open('map') } : null;
+      case 'overlook': return { label: 'Take in the vista ♪', fn: () => this.activities.viewOverlook(p) };
+      case 'photo': return { label: 'Whim Frame ✧', fn: () => this.activities.snapPhoto(p) };
+      case 'chime': return { label: 'Ring the chimes ♪', fn: () => this.activities.ringChimes(p) };
     }
     return null;
   }

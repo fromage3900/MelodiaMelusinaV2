@@ -2,6 +2,7 @@
 // (browsers require a gesture), then hand over to the game loop.
 
 import { Game } from './game.js';
+import { workflowManifest } from './openworld.js';
 
 const state = document.getElementById('loadstate');
 const play = document.getElementById('play');
@@ -14,6 +15,7 @@ function fail(err) {
 try {
   const game = new Game();
   window.__melodia = game;
+  window.__rwOpenWorld = workflowManifest();
   game.warm((msg) => { state.textContent = msg; }).then(() => {
     play.disabled = false;
     state.textContent = 'Ready. Headphones recommended.';

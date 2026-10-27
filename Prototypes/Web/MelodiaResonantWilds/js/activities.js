@@ -6,6 +6,7 @@ import { BIOMES, HUB, WORLD_SEED, RIFT_POOL, BURDENS, ELITE_AFFIXES, RIFT_STYLE,
 import { Enemy } from './entities.js';
 import { mulberry32, pick, clamp } from './util.js';
 import { makeBeam } from './fx.js';
+import { planExploration, biomeWorkflow, OW_RULES } from './openworld.js';
 
 const L = (hex, o = {}) => new THREE.MeshLambertMaterial({ color: hex, flatShading: true, ...o });
 
@@ -45,8 +46,9 @@ export class Activities {
     };
     BIOMES.forEach((b, bi) => {
       const ax = Math.cos(b.angle), az = Math.sin(b.angle);
+      const wf = biomeWorkflow(b);
       add({ type: 'boss', id: 'boss_' + b.id, biome: bi, x: b.cx - ax * 30, z: b.cz - az * 30, bx: b.cx - ax * 17, bz: b.cz - az * 17, name: b.bossName, cdUntil: 0 });
-      // Starter packs sit just past the safe-zone gate so combat begins on the road out.
+      // Gate camps (Nikki/Genshin first-pressure ring just past the safe hub).
       [[72, 0], [88, 0.07], [105, -0.08]].forEach(([r, da], k) => {
         const a = b.angle + da;
         add({
@@ -54,17 +56,24 @@ export class Activities {
           active: false, clearedAt: -999, enemies: [], starter: true, id: `camp_gate_${b.id}_${k}`,
         });
       });
+      // Reveal overlook anchored on the workflow vista point (Genshin Stone-Gate reveal).
+      add({
+        type: 'overlook', id: `vista_${b.id}`, biome: bi,
+        x: wf.reveal.x, z: wf.reveal.z,
+        name: `${b.name.split('—')[0].trim()} Reveal`,
+        vistaLine: wf.vistaLine, gateFeeling: wf.gateFeeling, workflow: 'vista',
+      });
       [[240, -0.18], [520, 0.2]].forEach(([r, da], k) => {
         const s = spot(b.angle + da, 0.12, r - 30, r + 30, 30);
         if (s) add({ type: 'pylon', id: `pylon_${b.id}_${k}`, biome: bi, ...s, name: `${b.name.split('—')[0].trim()} Pylon ${k + 1}` });
       });
       const rs = spot(b.angle + 0.32, 0.1, 300, 380);
       if (rs) add({ type: 'rift', id: 'rift_' + b.id, biome: bi, ...rs, name: 'Rift Gate' });
-      for (let i = 0; i < 20; i++) { const s = spot(b.angle, 0.55, 120, 640, 40); if (s) add({ type: 'camp', biome: bi, ...s, active: false, clearedAt: -999, enemies: [] }); }
-      for (let i = 0; i < 9; i++) { const s = spot(b.angle, 0.55, 100, 650, 24); if (s) add({ type: 'chest', biome: bi, ...s, openedAt: -999 }); }
-      for (let i = 0; i < 3; i++) { const s = spot(b.angle, 0.5, 140, 600, 40); if (s) add({ type: 'shrine', id: `shrine_${b.id}_${i}`, biome: bi, ...s, name: 'Music-Key Shrine', cdUntil: 0 }); }
-      for (let i = 0; i < 5; i++) { const s = spot(b.angle, 0.55, 120, 650, 30); if (s) add({ type: 'sheet', id: `sheet_${b.id}_${i}`, biome: bi, ...s }); }
+      // Density-budgeted exploration from the anime OW workflow (camps/chests/shrines/sheets + chimes/photos).
+      const planned = planExploration(b, bi, rng, this.pois.slice());
+      for (const p of planned.pois) add(p);
     });
+    this.workflowRules = OW_RULES;
     for (const p of this.pois) {
       p.y = W.sample(p.x, p.z);
       p.level = p.biome >= 0 ? W.zoneLevel(p.x, p.z) : 1;
@@ -127,6 +136,35 @@ export class Activities {
       orb.position.y = 1.8;
       p.spin = orb;
       grp.add(altar, orb);
+    } else if (p.type === 'overlook') {
+      // Vista platform — Genshin-style reveal perch with a framed view toward the landmark.
+      const deck = new THREE.Mesh(new THREE.CylinderGeometry(3.2, 3.6, 0.45, 10), L('#efe6d8'));
+      deck.position.y = 0.25;
+      const rail = new THREE.Mesh(new THREE.TorusGeometry(3.1, 0.08, 6, 24), L('#d9bc72', { emissive: '#d9a84a', emissiveIntensity: 0.25 }));
+      rail.rotation.x = Math.PI / 2; rail.position.y = 1.1;
+      p.clefMat = L('#ffffff', { emissive: '#ffd978', emissiveIntensity: 0.7 });
+      const lens = new THREE.Mesh(new THREE.TorusGeometry(0.7, 0.12, 8, 20), p.clefMat);
+      lens.position.y = 2.2;
+      p.spin = lens;
+      grp.add(deck, rail, lens);
+    } else if (p.type === 'photo') {
+      // Nikki-style "whim frame" — a floating picture frame that pulses on the beat.
+      const frame = new THREE.Mesh(new THREE.BoxGeometry(2.4, 1.7, 0.12), L('#f7f0ff', { emissive: '#c8b6ef', emissiveIntensity: 0.35 }));
+      frame.position.y = 2.1;
+      const pane = new THREE.Mesh(new THREE.PlaneGeometry(1.9, 1.2), new THREE.MeshBasicMaterial({ color: '#9fe6ff', transparent: true, opacity: 0.35, side: THREE.DoubleSide }));
+      pane.position.y = 2.1; pane.position.z = 0.08;
+      p.spin = frame;
+      grp.add(frame, pane);
+    } else if (p.type === 'chime') {
+      for (let k = 0; k < 3; k++) {
+        const a = (k / 3) * Math.PI * 2;
+        const pole = new THREE.Mesh(new THREE.CylinderGeometry(0.06, 0.06, 2.2 + k * 0.3, 5), L('#5f8f5a'));
+        pole.position.set(Math.cos(a) * 1.1, 1.1 + k * 0.1, Math.sin(a) * 1.1);
+        const bell = new THREE.Mesh(new THREE.ConeGeometry(0.32, 0.5, 8, 1, true), L('#9fe6ff', { emissive: '#62c8ff', emissiveIntensity: 0.55, side: THREE.DoubleSide }));
+        bell.position.set(Math.cos(a) * 1.1, 2.3 + k * 0.15, Math.sin(a) * 1.1);
+        grp.add(pole, bell);
+      }
+      p.spin = grp.children[grp.children.length - 1];
     } else return;
     p.mesh = grp;
     g.world.root.add(grp);
@@ -137,9 +175,10 @@ export class Activities {
     const g = this.g, P = g.player;
     if (this.rift) return this.updateRift(dt);
     for (const p of this.pois) {
-      if (p.spin) {
+      if (p.spin && p.type !== 'chime') {
         p.spin.rotation.y += dt * 1.5;
-        p.spin.position.y = (p.type === 'pylon' ? 3 : p.type === 'sheet' ? 1.4 : p.type === 'rift' ? 2.6 : 2) + Math.sin(g.time * 2 + p.x) * 0.15;
+        const baseY = p.type === 'pylon' ? 3 : p.type === 'sheet' ? 1.4 : p.type === 'rift' ? 2.6 : p.type === 'overlook' ? 2.2 : p.type === 'photo' ? 2.1 : 2;
+        p.spin.position.y = baseY + Math.sin(g.time * 2 + p.x) * 0.15;
       }
     }
     this._acc += dt;
@@ -178,9 +217,65 @@ export class Activities {
         p.clefMat.emissive.set(done ? '#ffd978' : '#62c8ff');
       } else if (p.type === 'boss') {
         p.orbMat.emissiveIntensity = p.alive && !p.alive.dead ? 1.5 : g.time > p.cdUntil ? 0.7 : 0.1;
+      } else if (p.type === 'overlook' && !p.revealed && d < 10 && !P.dead) {
+        // Auto-reveal on approach — Genshin "veil falls away" moment.
+        this.viewOverlook(p, true);
+      } else if ((p.type === 'photo' || p.type === 'chime') && d < 3.2 && !P.dead && !p.autoDone) {
+        // Soft collect on walk-in so density reads without forcing a button.
+        if (p.type === 'photo') this.snapPhoto(p, true);
+        else this.ringChimes(p, true);
       }
     }
     this.updateEvent();
+  }
+
+  viewOverlook(p, soft = false) {
+    if (p.revealed && soft) return;
+    const g = this.g;
+    p.revealed = true;
+    g.profile.vistas = g.profile.vistas || [];
+    if (p.id && !g.profile.vistas.includes(p.id)) {
+      g.profile.vistas.push(p.id);
+      g.profile.notes += 2;
+      g.progress.addXp(40);
+    }
+    const title = p.name || 'Overlook';
+    const sub = p.vistaLine || p.gateFeeling || 'A new motif opens across the wilds.';
+    g.ui.banner(title, sub);
+    if (!soft) g.audio.levelUp();
+    g.world.pulse(p.x, p.z, 1.8, true);
+    g.particles.burst(p.x, p.y + 2, p.z, new THREE.Color('#ffd978'), 18, { speed: 5, life: 1.1, kind: 1, gravity: -1 });
+    g.save();
+  }
+
+  snapPhoto(p, soft = false) {
+    if (p.autoDone && soft) return;
+    const g = this.g;
+    p.autoDone = true;
+    g.profile.photos = g.profile.photos || [];
+    const id = p.id || `photo_${p.biome}_${Math.round(p.x)}_${Math.round(p.z)}`;
+    if (!g.profile.photos.includes(id)) {
+      g.profile.photos.push(id);
+      g.profile.notes += 1;
+      g.ui.toast('Whim Frame captured — Golden Note +1', 'aqua');
+      g.progress.addXp(25);
+    } else if (!soft) g.ui.toast('Already framed this whim', 'lavender');
+    g.world.pulse(p.x, p.z, 1.1, true);
+    g.audio.ui();
+    g.save();
+  }
+
+  ringChimes(p, soft = false) {
+    if (p.autoDone && soft) return;
+    const g = this.g;
+    p.autoDone = true;
+    g.audio.chime(Math.floor(Math.random() * 8));
+    g.particles.burst(p.x, p.y + 2.2, p.z, new THREE.Color('#9fe6ff'), 12, { speed: 3, life: 0.9, kind: 1, gravity: -2 });
+    if (!soft) {
+      g.player.sp = Math.min(g.player.stats.spMax, g.player.sp + 1);
+      g.ui.toast('Chimes restore 1 Harmony ◆', 'aqua');
+    }
+    g.world.pulse(p.x, p.z, 0.9);
   }
 
   // ------------------------------------------------------------ camps
