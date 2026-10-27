@@ -9,6 +9,7 @@
   <meta name="description" content="Melodia — Resonant Wilds: a mobile open-world rhythm ARPG built on Melodia Melusina's UE rules, skills and enemy data." />
   <title>Melodia — Resonant Wilds</title>
   <link rel="stylesheet" href="style.css" />
+  <link rel="manifest" href="manifest.json" />
   <script type="importmap">{ "imports": { "three": "./vendor/three.module.min.js" } }</script>
 </head>
 <body>
@@ -105,5 +106,12 @@
   </div>
 
   <script type="module" src="js/main.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js').catch(() => {});
+      });
+    }
+  </script>
 </body>
 </html>
