@@ -149,29 +149,29 @@ export const BIOME_DESTINATIONS = Object.freeze({
     { key: 'quay', name: 'Canal Quay Choir', kit: 'quay', r: 180, da: -0.1, gate: null, line: 'Pilgrims once sang from this pier into the nave.' },
     { key: 'nave', name: 'Organ Nave Walk', kit: 'nave', r: 300, da: 0.09, gate: 'purify', line: 'Colonnades hold a dissonant hush until cleansed.' },
   ],
+  choir_marsh: [
+    { key: 'reed', name: 'Mist Choir Reedwalk', kit: 'quay', r: 178, da: 0.09, gate: null, line: 'Reeds hum a soft choir under the fog veil.', fashionPhoto: 'modulation' },
+    { key: 'lantern', name: 'Lantern Marsh Atelier', kit: 'archive', r: 292, da: -0.1, gate: 'float', line: 'Float lanterns frame a mist-colour photo set.', fashionPhoto: 'modulation' },
+  ],
   fugue_grotto: [
     { key: 'amph', name: 'Echo Amphitheater', kit: 'amph', r: 190, da: 0.08, gate: null, line: 'Stone seats answer every footfall twice.' },
     { key: 'cave', name: 'Subject Cave', kit: 'cave', r: 310, da: -0.11, gate: 'purify', line: 'The subject theme sleeps behind a blot of dissonance.' },
+  ],
+  glass_orchard: [
+    { key: 'prism', name: 'Prism Picnic Glade', kit: 'tea', r: 182, da: -0.08, gate: null, line: 'Glass leaves cast a fashion-ready light pool.', fashionPhoto: 'veil' },
+    { key: 'mirror', name: 'Mirror Orchard Balcony', kit: 'stair', r: 298, da: 0.11, gate: 'float', line: 'Wardrobe Veil colour unlocks the gold frame.', fashionPhoto: 'veil' },
   ],
   cadence_crystal_ridge: [
     { key: 'metro', name: 'Metronome Plaza', kit: 'metro', r: 185, da: -0.07, gate: null, line: 'Stepped plates tick a toccata into the ridge wind.' },
     { key: 'stair', name: 'Crystal Stair Garden', kit: 'stair', r: 295, da: 0.13, gate: 'float', line: 'Shard steps rise — wardrobe cadence required.' },
   ],
+  starlit_moor: [
+    { key: 'moongate', name: 'Starlit Moongate', kit: 'amph', r: 188, da: 0.07, gate: null, line: 'A moor ring waits for a gold Reprise photo.', fashionPhoto: 'reprise' },
+    { key: 'bells', name: 'Bellflower Night Shelf', kit: 'shelf', r: 302, da: -0.12, gate: 'float', line: 'High bells want the matching fashion Encore tint.', fashionPhoto: 'reprise' },
+  ],
   aurora_glacier: [
     { key: 'shelf', name: 'Aurora Shelf', kit: 'shelf', r: 195, da: 0.1, gate: null, line: 'A glacial ledge opens under the green curtain.' },
     { key: 'hollow', name: 'Ice Choir Hollow', kit: 'hollow', r: 305, da: -0.09, gate: 'purify', line: 'Ice voices wait for Harmonize to thaw the mouth.' },
-  ],
-  choir_marsh: [
-    { key: 'jetty', name: 'Mist Choir Jetty', kit: 'quay', r: 180, da: 0.09, gate: null, line: 'Reed posts hum a soft choir into the marsh fog.' },
-    { key: 'canticle', name: 'Reed Canticle Mouth', kit: 'nave', r: 300, da: -0.11, gate: 'purify', line: 'A blot seals the canticle until Sheep Harmonize parts it.' },
-  ],
-  glass_orchard: [
-    { key: 'prism', name: 'Prism Picnic Grove', kit: 'tea', r: 185, da: -0.08, gate: null, line: 'Glass fruit clinks like bells over porcelain light.' },
-    { key: 'bellfruit', name: 'Bellfruit Cloister', kit: 'stair', r: 295, da: 0.12, gate: 'float', line: 'Shard steps lift into the orchard — wardrobe cadence required.' },
-  ],
-  starlit_moor: [
-    { key: 'nightbell', name: 'Nightbell Overlook', kit: 'shelf', r: 190, da: 0.1, gate: null, line: 'High bells drone across the moor under a star curtain.' },
-    { key: 'moorhollow', name: 'Moor Hollow Chorus', kit: 'hollow', r: 310, da: -0.1, gate: 'purify', line: 'The hollow waits for Harmonize before the chorus wakes.' },
   ],
 });
 
@@ -272,7 +272,15 @@ export function planExploration(b, bi, rng, occupied) {
       name: d.name, kit: d.kit, gate: d.gate || null, line: d.line,
       key: d.key, workflow: 'destination', revealed: false, dewTaken: false,
       needsPurify: d.gate === 'purify', needsFloat: d.gate === 'float', purified: d.gate !== 'purify',
+      fashionPhoto: d.fashionPhoto || null,
     });
+    // Outfit → space → photo setpiece: a Whim Frame pinned at the destination that wants a fashion Encore tint.
+    if (d.fashionPhoto) {
+      pin('photo', d.r + 8, d.da + 0.02, {
+        name: `${d.name} Fashion Frame`, workflow: 'fashion', challenge: true,
+        fashionEncore: d.fashionPhoto, setpiece: true,
+      });
+    }
   });
 
   // Approach / midland get denser content (Genshin first-impression ring).
