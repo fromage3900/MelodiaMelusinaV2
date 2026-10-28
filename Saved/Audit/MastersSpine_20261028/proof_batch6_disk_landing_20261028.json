@@ -1,0 +1,35 @@
+{
+  "schema": "melodia.masters_spine_batch6_disk_proof.v1",
+  "when": "2026-10-28",
+  "title": "Batch 6 (M_Master_Toon_Universal) disk landing after storage-crisis recovery",
+  "batch": {
+    "tool": "Tools/masters_spine_batch.py",
+    "rule_source": "specs/materials/master_spine_canon.v1.json",
+    "result": "ok=True touched=35 groups_after=45 ungrouped_after=0",
+    "expr_count": {"before": 1398, "after": 1398}
+  },
+  "timeline": [
+    {"t": "~15:50", "event": "Attempt 1 (editor PID 46348): batch ok in-editor, but its save never flushed; editor process died during the save window and the in-memory mutations were lost."},
+    {"t": "15:50-16:05", "event": "Attempt 2 (PID 6392): batch ok in-editor; EditorLoadingAndSavingUtils.save_packages returned False. Game thread wedged on building /Game/Custom/BGSlopes/SM_Slope_01 (Required Memory Estimate 12,416 MB) with a MODAL_OPEN; mutations lost again when this instance was replaced."},
+    {"t": "root cause", "event": "C: drive at 0.9 GB free. Zen DDC (--data-dir C:/UE_DDC/Zen, --gc-low-diskspace-threshold 2147483648) returns 507 Insufficient Storage; UMaterial saves abort with no disk write and no surfaced error."},
+    {"t": "16:2x", "event": "FIX: pruned 94,659 cold (>3 days) classic-DDC files (C:/UE_DDC/Buckets 4.15 GB + C:/UE_DDC/Content 11.08 GB = 15.23 GB). Hot entries and the active Zen store untouched. C: free: 0.9 -> 17.2 GB. Saved/Audit evidence NOT touched."},
+    {"t": "16:31", "event": "Owner-restarted editor (PID 31492); owner dismissed a boot modal (crash-recovery prompt)."},
+    {"t": "16:34", "event": "Attempt 3 (PID 31492, Monolith run_python): batch ok; THIS TIME the save reached disk - byte-verified."}
+  ],
+  "disk_verification": {
+    "file": "Content/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.uasset",
+    "timestamp_before": "2026-10-24 14:42:17",
+    "timestamp_after": "2026-10-28 16:34:06",
+    "size_before": 827341,
+    "size_after": 827985,
+    "committed_hash": "3bc374fa5145d14db7863fb1b1559481b67792a6",
+    "disk_hash": "f3c9f0e0f63e9aa3491d5be0e672830a08d2802a",
+    "byte_check": "All six group-name strings '41 | Audio React', '42 | Toon Ramp', '43 | Opacity', '44 | Cloth Wind', '45 | Note Scroll', '46 | Magical Transform' are present in the saved uasset's name table. Old bare group names no longer appear as group labels (remaining substring hits are parameter names like NoteScrollSpeed / MagicalTransform)."
+  },
+  "durable_trap": [
+    "C: below Zen's 2 GB low-disk-space guard makes editor saves silently fail: save_asset returns True (or save_packages False) while nothing reaches disk. NEVER trust a save return value - verify by disk timestamp + git hash-object.",
+    "Emergency lever proven on this workstation: prune classic-DDC files older than 3 days under C:/UE_DDC/Buckets + C:/UE_DDC/Content (rebuildable on demand, ~15 GB here). Never prune the active Zen store, project Saved/Audit evidence, tracked Content working files, or anything under Perforce."
+  ],
+  "editor_pids_this_pass": [46348, 6392, 58572, 31492],
+  "evidence_level": "editor proof (deterministic batch re-run) + byte-level disk verification + git hash delta"
+}
