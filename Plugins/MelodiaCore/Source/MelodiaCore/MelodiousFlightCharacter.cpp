@@ -11,6 +11,8 @@
 #include "GameFramework/PlayerController.h"
 #include "EngineUtils.h"
 #include "MelodiaPartySubsystem.h"
+#include "MelodiaRhythmReactivitySubsystem.h"
+#include "Components/SkeletalMeshComponent.h"
 #include "SirPerchPoint.h"
 
 AMelodiousFlightCharacter::AMelodiousFlightCharacter()
@@ -44,6 +46,13 @@ void AMelodiousFlightCharacter::BeginPlay()
 	{
 		Party->RegisterPawn(this, 1);
 	}
+	if (UMelodiaRhythmReactivitySubsystem* Reactivity = UMelodiaRhythmReactivitySubsystem::Get(this))
+	{
+		if (USkeletalMeshComponent* SkelMesh = GetMesh())
+		{
+			Reactivity->RegisterReactiveMeshComponent(SkelMesh);
+		}
+	}
 }
 
 void AMelodiousFlightCharacter::CreateInputMappingContext()
@@ -72,8 +81,13 @@ void AMelodiousFlightCharacter::CreateInputMappingContext()
 	FlightMappingContext->MapKey(LookAction, EKeys::Mouse2D);
 
 	AscendAction = NewObject<UInputAction>(this, TEXT("IA_Flight_Ascend"));
-	AscendAction->ValueType = EInputActionValueType::Boolean;
+	AscendAction->ValueType = EInputActionValueType::Axis1D;
 	FlightMappingContext->MapKey(AscendAction, EKeys::SpaceBar);
+	FlightMappingContext->MapKey(AscendAction, EKeys::E);
+	FEnhancedActionKeyMapping& DescendMappingC = FlightMappingContext->MapKey(AscendAction, EKeys::C);
+	DescendMappingC.Modifiers.Add(NewObject<UInputModifierNegate>(FlightMappingContext));
+	FEnhancedActionKeyMapping& DescendMappingQ = FlightMappingContext->MapKey(AscendAction, EKeys::Q);
+	DescendMappingQ.Modifiers.Add(NewObject<UInputModifierNegate>(FlightMappingContext));
 
 	BoostAction = NewObject<UInputAction>(this, TEXT("IA_Flight_Boost"));
 	BoostAction->ValueType = EInputActionValueType::Boolean;
@@ -119,6 +133,10 @@ void AMelodiousFlightCharacter::SetupPlayerInputComponent(UInputComponent* Playe
 
 void AMelodiousFlightCharacter::UnPossessed()
 {
+	if (bIsBoosting)
+	{
+		OnBoostCompleted();
+	}
 	RemoveMappingContextOnUnpossess(FlightMappingContext);
 	Super::UnPossessed();
 }
@@ -160,9 +178,22 @@ void AMelodiousFlightCharacter::OnLookTriggered(const FInputActionValue& Value)
 
 void AMelodiousFlightCharacter::OnAscendTriggered(const FInputActionValue& Value)
 {
+	const float AscendValue = Value.Get<float>();
+	if (FMath::IsNearlyZero(AscendValue))
+	{
+		return;
+	}
+	// Downward press while hovering near an authored perch settles Sir onto it immediately.
+	if (AscendValue < 0.0f && !bIsPerched && GetVelocity().SizeSquared() < FMath::Square(150.0f))
+	{
+		if (TryLandOnNearestPerch())
+		{
+			return;
+		}
+	}
 	LeavePerch();
 	SecondsSinceSteering = 0.0f;
-	AddMovementInput(FVector::UpVector, 1.0f);
+	AddMovementInput(FVector::UpVector, AscendValue);
 }
 
 void AMelodiousFlightCharacter::OnBoostStarted()
@@ -184,12 +215,80 @@ void AMelodiousFlightCharacter::Tick(float DeltaSeconds)
 {
 	Super::Tick(DeltaSeconds);
 
+	USkeletalMeshComponent* SkelMesh = GetMesh();
+
+	float BeatPulse = 0.0f;
+	if (const UMelodiaRhythmReactivitySubsystem* Reactivity = UMelodiaRhythmReactivitySubsystem::Get(this))
+	{
+		const FMelodiaRhythmReactivitySignal& Sig = Reactivity->GetSignal();
+		BeatPulse = FMath::Max(Sig.BeatPulse, Sig.NotePulse);
+	}
+
+	const float CurrentYaw = GetActorRotation().Yaw;
+	float YawRateDegPerSec = 0.0f;
+	if (bHasPreviousYaw && DeltaSeconds > KINDA_SMALL_NUMBER)
+	{
+		YawRateDegPerSec = FMath::FindDeltaAngleDegrees(PreviousActorYaw, CurrentYaw) / DeltaSeconds;
+	}
+	PreviousActorYaw = CurrentYaw;
+	bHasPreviousYaw = true;
+
 	if (bIsPerched)
 	{
+		if (SkelMesh && DeltaSeconds > 0.0f)
+		{
+			const FRotator CurrentRel = SkelMesh->GetRelativeRotation();
+			const FRotator TargetRel(0.0f, -90.0f, 0.0f);
+			SkelMesh->SetRelativeRotation(FMath::RInterpTo(CurrentRel, TargetRel, DeltaSeconds, 8.0f));
+
+			// Cockatoo signature: raise the treble-clef crest when perched and pulse with the music beat.
+			const float TargetCrest = FMath::Clamp(0.45f + BeatPulse * 0.55f, 0.0f, 1.0f);
+			CurrentCrestRaise = FMath::FInterpTo(CurrentCrestRaise, TargetCrest, DeltaSeconds, 7.0f);
+			SkelMesh->SetMorphTarget(TEXT("Crest_Raise"), CurrentCrestRaise);
+		}
 		// Perched birds stay perched until the player steers; the takeoff is
 		// driven from the input handlers so it happens on the same frame the
 		// stick moves, not one tick later.
 		return;
+	}
+
+	if (SkelMesh && DeltaSeconds > 0.0f)
+	{
+		const FVector Vel = GetVelocity();
+		const float Speed = Vel.Size();
+		const FRotator CurrentRel = SkelMesh->GetRelativeRotation();
+
+		// Note: CharacterMesh0 has RelativeRotation Yaw = -90 (so +Y of the mesh faces actor +X forward,
+		// and +X of the mesh faces actor +Y right). Therefore:
+		//   * Mesh Roll tilts nose up/down along actor forward (+X)
+		//   * Mesh Pitch banks left/right around actor forward (+X)
+		float TargetNoseTilt = 0.0f;
+		float TargetBank = 0.0f;
+
+		if (Speed > 25.0f)
+		{
+			const float VertRatio = FMath::Clamp(Vel.Z / FMath::Max(Speed, CruiseSpeed), -1.0f, 1.0f);
+			TargetNoseTilt = FMath::Clamp(VertRatio * 28.0f, -24.0f, 24.0f);
+
+			const FVector Accel = GetCharacterMovement() ? GetCharacterMovement()->GetCurrentAcceleration() : FVector::ZeroVector;
+			const float RightLateral = FVector::DotProduct(Accel.GetSafeNormal2D(), GetActorRightVector());
+			const float SpeedAlpha = FMath::Clamp(Speed / CruiseSpeed, 0.0f, 1.25f);
+			const float StrafeBank = RightLateral * 22.0f * SpeedAlpha;
+			const float TurnBank = FMath::Clamp(YawRateDegPerSec / 180.0f, -1.0f, 1.0f) * 20.0f * SpeedAlpha;
+			TargetBank = FMath::Clamp(StrafeBank + TurnBank, -28.0f, 28.0f);
+		}
+
+		const FRotator TargetRel(TargetBank, -90.0f, -TargetNoseTilt);
+		SkelMesh->SetRelativeRotation(FMath::RInterpTo(CurrentRel, TargetRel, DeltaSeconds, 6.0f));
+
+		// Cockatoo aerodynamics: fold the treble-clef crest sleekly during cruise/boost flight,
+		// fan it open during low-speed hover/braking or on strong musical beats.
+		const float HoverAlpha = 1.0f - FMath::Clamp(Speed / FMath::Max(1.0f, CruiseSpeed * 0.55f), 0.0f, 1.0f);
+		const float TargetCrest = bIsBoosting
+			? (BeatPulse * 0.25f)
+			: FMath::Clamp(HoverAlpha * 0.65f + BeatPulse * 0.55f, 0.0f, 1.0f);
+		CurrentCrestRaise = FMath::FInterpTo(CurrentCrestRaise, TargetCrest, DeltaSeconds, 8.0f);
+		SkelMesh->SetMorphTarget(TEXT("Crest_Raise"), CurrentCrestRaise);
 	}
 
 	SecondsSinceSteering += DeltaSeconds;
