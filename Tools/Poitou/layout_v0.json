@@ -1,0 +1,304 @@
+{
+ "frame": {
+  "size_m": 1000,
+  "origin": "SW corner",
+  "x": "east",
+  "y": "north",
+  "units": "m"
+ },
+ "canals": [
+  {
+   "name": "bief_00",
+   "type": "bief",
+   "width": 18,
+   "depth": 2.5,
+   "points": [
+    [
+     0,
+     430
+    ],
+    [
+     250,
+     440
+    ],
+    [
+     420,
+     470
+    ],
+    [
+     600,
+     455
+    ],
+    [
+     1000,
+     470
+    ]
+   ]
+  },
+  {
+   "name": "conche_01",
+   "type": "conche",
+   "width": 7,
+   "depth": 2.0,
+   "points": [
+    [
+     380,
+     0
+    ],
+    [
+     390,
+     200
+    ],
+    [
+     400,
+     460
+    ]
+   ]
+  },
+  {
+   "name": "conche_02",
+   "type": "conche",
+   "width": 6,
+   "depth": 2.0,
+   "points": [
+    [
+     600,
+     455
+    ],
+    [
+     610,
+     700
+    ],
+    [
+     640,
+     1000
+    ]
+   ]
+  },
+  {
+   "name": "conche_03",
+   "type": "conche",
+   "width": 5,
+   "depth": 2.0,
+   "points": [
+    [
+     0,
+     250
+    ],
+    [
+     380,
+     230
+    ]
+   ]
+  },
+  {
+   "name": "conche_04",
+   "type": "conche",
+   "width": 5,
+   "depth": 2.0,
+   "points": [
+    [
+     390,
+     200
+    ],
+    [
+     1000,
+     180
+    ]
+   ]
+  },
+  {
+   "name": "conche_05",
+   "type": "conche",
+   "width": 5,
+   "depth": 2.0,
+   "points": [
+    [
+     610,
+     700
+    ],
+    [
+     1000,
+     720
+    ]
+   ]
+  },
+  {
+   "name": "fosse_06",
+   "type": "fosse",
+   "width": 4,
+   "depth": 1.5,
+   "points": [
+    [
+     150,
+     437
+    ],
+    [
+     140,
+     1000
+    ]
+   ]
+  },
+  {
+   "name": "fosse_07",
+   "type": "fosse",
+   "width": 4,
+   "depth": 1.5,
+   "points": [
+    [
+     800,
+     463
+    ],
+    [
+     820,
+     180
+    ]
+   ]
+  },
+  {
+   "name": "fosse_08",
+   "type": "fosse",
+   "width": 4,
+   "depth": 1.5,
+   "points": [
+    [
+     250,
+     440
+    ],
+    [
+     260,
+     0
+    ]
+   ]
+  }
+ ],
+ "ditch_grid": {
+  "spacing": 17.5,
+  "range": "15-20 m",
+  "irregular": "noise-warped lattice, cross drains ~70 m",
+  "half_width": 1.2,
+  "y_max": 420
+ },
+ "zones": {
+  "village": [
+   [
+    380,
+    480
+   ],
+   [
+    620,
+    480
+   ],
+   [
+    640,
+    640
+   ],
+   [
+    520,
+    700
+   ],
+   [
+    400,
+    650
+   ]
+  ],
+  "mist": {
+   "rule": "x<200 or (y>900 and not rise) or x+y<300"
+  },
+  "meadow": {
+   "rule": "y<425 and not mist"
+  }
+ },
+ "rise": {
+  "center": [
+   830,
+   860
+  ],
+  "radius": 140,
+  "height": 20,
+  "ruin": {
+   "name": "Maillezais-style abbey",
+   "center": [
+    830,
+    870
+   ],
+   "footprint_m": [
+    105,
+    32
+   ],
+   "height": 25,
+   "rot_deg": 20
+  }
+ },
+ "route": {
+  "points": [
+   [
+    80,
+    60
+   ],
+   [
+    330,
+    320
+   ],
+   [
+    470,
+    500
+   ],
+   [
+    560,
+    600
+   ],
+   [
+    700,
+    560
+   ],
+   [
+    800,
+    820
+   ],
+   [
+    900,
+    930
+   ]
+  ],
+  "path_half_width": 2.0,
+  "buffer": 4.0,
+  "beats": [
+   "Landing jetty in the mist",
+   "Meadow footbridge",
+   "Grand Port & barques",
+   "Romanesque church square",
+   "Quereux lane / balais to water",
+   "Poplar allee & lock",
+   "Ruin on limestone rise"
+  ]
+ },
+ "landmarks": {
+  "A_church_steeple": [
+   520,
+   580
+  ],
+  "B_ruin_keep": [
+   830,
+   870
+  ],
+  "C_grand_port_crane": [
+   470,
+   475
+  ],
+  "D_lock": [
+   700,
+   465
+  ],
+  "E_lone_ash": [
+   200,
+   330
+  ]
+ },
+ "barque": {
+  "size_m": [
+   4.6,
+   1.55
+  ]
+ }
+}
