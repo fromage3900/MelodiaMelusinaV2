@@ -1,0 +1,329 @@
+{
+  "sourceRepository": "fromage3900/my-site",
+  "sourceCommit": "8f200e1b78a10814287f5d7e4f232edd98e3718f",
+  "targetRepository": "fromage3900/MelodiaMelusinaV2",
+  "modelRoot": "assets/models",
+  "bundledModel": "harmonic-grove-37.glb",
+  "optionalModels": [
+    {
+      "filename": "arc_arched_trellis.glb",
+      "blobSha": "c8b5e240b238c7403f63a40415ed702c9881e049",
+      "bytes": 31308
+    },
+    {
+      "filename": "arc_broken_lyre_gate.glb",
+      "blobSha": "ea96c696d634324542f41ddc874e2cc95d697051",
+      "bytes": 18272
+    },
+    {
+      "filename": "arc_garden_balustrade.glb",
+      "blobSha": "f9ae73c06302723dc0994d996e497779e070ca02",
+      "bytes": 22964
+    },
+    {
+      "filename": "arc_lyre_gate.glb",
+      "blobSha": "fbd28b4046c55b0999f7945acfb5a2483e22562d",
+      "bytes": 20160
+    },
+    {
+      "filename": "arc_moonbridge.glb",
+      "blobSha": "be086789aedc90b73cc77af1303ddfb001fdab07",
+      "bytes": 47444
+    },
+    {
+      "filename": "arc_pearl_stairs.glb",
+      "blobSha": "25c34a01120f44c7316ece5211df9264d390690f",
+      "bytes": 8468
+    },
+    {
+      "filename": "arc_wall_corner.glb",
+      "blobSha": "11cad355c9ad0f0d38eb3266e82e51f099e3789f",
+      "bytes": 8180
+    },
+    {
+      "filename": "arc_wall_straight.glb",
+      "blobSha": "f612ad1a5ea3c90fb524dbca7e8b57c2a2a5e7b4",
+      "bytes": 6720
+    },
+    {
+      "filename": "bush_jade_topiary.glb",
+      "blobSha": "50251e285f79a2e3ca1f95ed6ad2570703609421",
+      "bytes": 19360
+    },
+    {
+      "filename": "bush_laceleaf_hedge.glb",
+      "blobSha": "d6e2e310645c8ce42f519561cf2e8fc26237235e",
+      "bytes": 44952
+    },
+    {
+      "filename": "bush_lavender_hedge.glb",
+      "blobSha": "8224f0b2eae8f41f6dc42b37dcd400c208d38f46",
+      "bytes": 44952
+    },
+    {
+      "filename": "bush_pearlescent_bramble.glb",
+      "blobSha": "a4f9e503130d77be51fee245ea517193e536bfb9",
+      "bytes": 56600
+    },
+    {
+      "filename": "bush_rosebell_hedge.glb",
+      "blobSha": "c00be4fbd475c86e36bc6293550d20df1647e14e",
+      "bytes": 44928
+    },
+    {
+      "filename": "can_amethyst_oak.glb",
+      "blobSha": "5f9e5cccf20ac806ad612000011d2d76b4ca405c",
+      "bytes": 40908
+    },
+    {
+      "filename": "can_blush_cherry.glb",
+      "blobSha": "9155f3222b3bcdf36543578c23902fd5b82ec9c1",
+      "bytes": 32468
+    },
+    {
+      "filename": "can_cyan_cypress.glb",
+      "blobSha": "5cdb64ed38e510e25eb7f37c4083dc5d65c786c8",
+      "bytes": 63784
+    },
+    {
+      "filename": "can_jade_bonsai.glb",
+      "blobSha": "029fbd654b5f9095996ac16b3f3a9b4e95827169",
+      "bytes": 28224
+    },
+    {
+      "filename": "can_lantern_sapling.glb",
+      "blobSha": "259b34ceab3bdf1543ee67a2e1b5aaaae577c043",
+      "bytes": 42340
+    },
+    {
+      "filename": "can_moonwillow.glb",
+      "blobSha": "d4d611e3d8eb10bd162498fa5644273f960ccf16",
+      "bytes": 98652
+    },
+    {
+      "filename": "int_checkpoint_spire.glb",
+      "blobSha": "17fde3293b0bee522cf12f638c1fa0fb6f2ce934",
+      "bytes": 24320
+    },
+    {
+      "filename": "int_echo_bowl.glb",
+      "blobSha": "69c1f206d965f214c96a5df45ffb17c0eeb86572",
+      "bytes": 23476
+    },
+    {
+      "filename": "int_harmony_switch.glb",
+      "blobSha": "76c893926399d9b848ad2596d4ca9e2de76ce249",
+      "bytes": 18796
+    },
+    {
+      "filename": "int_lyre_lock.glb",
+      "blobSha": "69b5a16275ff32ffc7ecf602f3ddeaceca112482",
+      "bytes": 19852
+    },
+    {
+      "filename": "int_song_prism.glb",
+      "blobSha": "3d2f3a5a203212253af710c4d0072b27877ff4cc",
+      "bytes": 21052
+    },
+    {
+      "filename": "int_tuning_plinth.glb",
+      "blobSha": "183c6f23f560ddc9d0b25116495e5a09828872c7",
+      "bytes": 25412
+    },
+    {
+      "filename": "orn_breeze_ribbon.glb",
+      "blobSha": "a1a1677a3d0a4d366bafcd6053cb2dae41c9e64e",
+      "bytes": 8948
+    },
+    {
+      "filename": "orn_choral_ring_chimes.glb",
+      "blobSha": "a3c4b9be2797fc5114059baa1a2d013a67d7b475",
+      "bytes": 31076
+    },
+    {
+      "filename": "orn_crescent_mobile.glb",
+      "blobSha": "bf3d62f2d871b90f59e412a394b2b40c431fc2f3",
+      "bytes": 30572
+    },
+    {
+      "filename": "orn_lantern_chain.glb",
+      "blobSha": "4ebbb64ff997b6762aa635749eed04b3474327e7",
+      "bytes": 39188
+    },
+    {
+      "filename": "orn_memory_urn.glb",
+      "blobSha": "772001513de5cbd5e12393e65dda5aca2165cbc5",
+      "bytes": 22744
+    },
+    {
+      "filename": "orn_wisp_nest.glb",
+      "blobSha": "71b3827de878e4fdecc6169f4900af20172f2fa5",
+      "bytes": 61604
+    },
+    {
+      "filename": "pick_cyan_note.glb",
+      "blobSha": "4f6415e3cda8afc82102ba69136c2b79659457e3",
+      "bytes": 17940
+    },
+    {
+      "filename": "pick_dew_pearls.glb",
+      "blobSha": "764c7dc7533a8f01a1b122b5d43eb93385e1f035",
+      "bytes": 24480
+    },
+    {
+      "filename": "pick_gold_chord.glb",
+      "blobSha": "dee35ab301e653e7b45737ba8252faa5cd981969",
+      "bytes": 18484
+    },
+    {
+      "filename": "pick_lavender_note.glb",
+      "blobSha": "b98af24d674898572fac76cde36fee5de538cee5",
+      "bytes": 17984
+    },
+    {
+      "filename": "pick_moonseal.glb",
+      "blobSha": "3a73e55f93c37d38fbea4e69482dd97033d2b168",
+      "bytes": 18448
+    },
+    {
+      "filename": "pick_rose_petals.glb",
+      "blobSha": "5a09bb8070393c0d3040528e95a2d15fb24f0227",
+      "bytes": 28296
+    },
+    {
+      "filename": "pick_starshard.glb",
+      "blobSha": "99e69f246dfbdc4195555869a926a37f02b95e98",
+      "bytes": 17508
+    },
+    {
+      "filename": "pond_floating_pads.glb",
+      "blobSha": "5d79f17135adeefae5880bc1eb88dc1145623769",
+      "bytes": 8984
+    },
+    {
+      "filename": "pond_lily_pads.glb",
+      "blobSha": "86d734295a5fbb1907c19a6c748fcd9073401bee",
+      "bytes": 15772
+    },
+    {
+      "filename": "pond_lotus_glow.glb",
+      "blobSha": "434c01a7df4533124d132aaa476b563d8824678b",
+      "bytes": 53840
+    },
+    {
+      "filename": "pond_riverfan.glb",
+      "blobSha": "96b2a850e5ba4ef59c2033ae44c177cb3d3224be",
+      "bytes": 24224
+    },
+    {
+      "filename": "pond_shellstone.glb",
+      "blobSha": "7265e819ce5e931abcc48c0ee2c3e90c1b44d817",
+      "bytes": 30760
+    },
+    {
+      "filename": "pond_singing_rushes.glb",
+      "blobSha": "ae012e7772351dc561d0c7f99bd933ec8dcf502d",
+      "bytes": 43764
+    },
+    {
+      "filename": "prp_celestial_signpost.glb",
+      "blobSha": "7fa4916a53c1bc54487088e11e77198b680a7a19",
+      "bytes": 13404
+    },
+    {
+      "filename": "prp_choral_bellpost.glb",
+      "blobSha": "715a41ec4da7014d56823a20cb75ae42dcc3649d",
+      "bytes": 19296
+    },
+    {
+      "filename": "prp_dream_fountain.glb",
+      "blobSha": "7fd8558bb27e158b4363065e2cb40af381602c86",
+      "bytes": 21676
+    },
+    {
+      "filename": "prp_harp_plinth.glb",
+      "blobSha": "a664144bb0030a8a66b70390b3b816b3a94e1ca6",
+      "bytes": 18840
+    },
+    {
+      "filename": "prp_note_obelisk.glb",
+      "blobSha": "0995b0070a63d12d01dc88d368cfb7301987fbd4",
+      "bytes": 26336
+    },
+    {
+      "filename": "prp_resonance_cache.glb",
+      "blobSha": "ef0031f6ec7a332506f58b5a1e2410e36b518d37",
+      "bytes": 12620
+    },
+    {
+      "filename": "prp_waystone_monolith.glb",
+      "blobSha": "d47d0ff0de9bd81de2472083e1986e88a0975a22",
+      "bytes": 21240
+    },
+    {
+      "filename": "scat_crystal_spores.glb",
+      "blobSha": "4bfcafced96a2e2fd7d2a7b5601de89b35c5aa78",
+      "bytes": 27848
+    },
+    {
+      "filename": "scat_fallen_pearl_log.glb",
+      "blobSha": "325bfbb2d1afd170726900e2e3920e00deef9429",
+      "bytes": 28576
+    },
+    {
+      "filename": "scat_hollow_moonstone.glb",
+      "blobSha": "f65a706a910d35a09b3ef840d783de1093015166",
+      "bytes": 19352
+    },
+    {
+      "filename": "scat_lichen_slates.glb",
+      "blobSha": "9d435b03c0ee31ba6a999d4c47b839f097efd69c",
+      "bytes": 32496
+    },
+    {
+      "filename": "scat_moonmoss_patch.glb",
+      "blobSha": "2300091c49fe5b0b7c98dfa99eb2fc9c0e156807",
+      "bytes": 38812
+    },
+    {
+      "filename": "scat_satin_root_tangle.glb",
+      "blobSha": "21f51f3c1adc8e47f7c32a43c03e2d35b6d055db",
+      "bytes": 30696
+    },
+    {
+      "filename": "way_dual_milestones.glb",
+      "blobSha": "4f8a88fab27b29129741f2e48da1cb84c9756d39",
+      "bytes": 23056
+    },
+    {
+      "filename": "way_feather_banner.glb",
+      "blobSha": "d4fc4bf286318a2534e3612792a6b8e5fbcce5a4",
+      "bytes": 10992
+    },
+    {
+      "filename": "way_harmonic_arrow.glb",
+      "blobSha": "b81fc6901f384e05635913c07524282627b5179b",
+      "bytes": 12036
+    },
+    {
+      "filename": "way_lullaby_stone.glb",
+      "blobSha": "943f5c9f19d00b9a16732f45eb34d9d3ee032083",
+      "bytes": 18740
+    },
+    {
+      "filename": "way_petite_goal_arch.glb",
+      "blobSha": "354097a11edf6b742de85aa5e6f427b171fd049f",
+      "bytes": 16980
+    },
+    {
+      "filename": "way_songwheel.glb",
+      "blobSha": "65ed5062da0ffd15f52337695ab3e96a7fe45e3a",
+      "bytes": 28716
+    }
+  ],
+  "interactiveFamilies": [
+    "INT_",
+    "PICK_"
+  ],
+  "policy": "Loaded on demand; never scatter interaction or pickup models as generic terrain decoration."
+}
