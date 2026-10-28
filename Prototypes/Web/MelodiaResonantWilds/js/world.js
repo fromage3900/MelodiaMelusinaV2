@@ -6,6 +6,7 @@
 import * as THREE from 'three';
 import { Simplex2, mulberry32, clamp, lerp, smoothstep, angleDiff } from './util.js';
 import { BIOMES, HUB, WORLD_RADIUS, WORLD_SEED, RIFT_STYLE } from './design.js';
+import { propWorkflowMul, approachIdentity, OW_RULES } from './openworld.js';
 import { environmentMaterial, legacyRender } from './cel.js';
 import { installBellflowers, animateBellflowers } from './bellflower.js';
 import { createFlowerbedParts } from './flowerbeds.js';
@@ -206,15 +207,24 @@ export class World {
       const p = this.hubPal;
       _c2.copy(p.grass).lerp(p.grass2, n * 0.4);
       const r = this.r;
-      if (r < 30) {
+      if (r < 36) {
         // Plaza: a stave of five rings, like a score laid in the stone.
-        const ring = Math.abs(((r % 5) + 5) % 5 - 2.5) < 0.25 && r > 8 && r < 28 ? 0.25 : 0;
+        const ring = Math.abs(((r % 5) + 5) % 5 - 2.5) < 0.28 && r > 8 && r < 34 ? 0.32 : 0;
+        const spoke = (() => {
+          for (const b of BIOMES) {
+            const d = Math.abs(angleDiff(Math.atan2(z, x), b.angle));
+            if (d < 0.08 && r > 28 && r < 95) return 0.22;
+          }
+          return 0;
+        })();
         _c3.copy(p.sand).multiplyScalar(1 - ring);
-        _c2.lerp(_c3, 1 - smoothstep(27, 30, r));
+        _c2.lerp(_c3, 1 - smoothstep(33, 36, r));
+        if (spoke) _c2.lerp(p.sand, spoke);
       }
       out.lerp(_c2, this.hub);
     }
-    const v = 0.93 + n2 * 0.1;
+    // Slight biome-tint punch so transitions read from the camera.
+    const v = 0.9 + n2 * 0.14;
     out.multiplyScalar(v);
     return out;
   }
@@ -332,6 +342,8 @@ export class World {
       mistorb: { parts: [M(new THREE.SphereGeometry(0.55, 10, 8), glow('#b8e8e0'), 1.4)], tint: 0, palette: ['#b8e8e0', '#d0f0ff', '#e8d8ff'] },
       glassleaf: { parts: [M(new THREE.CylinderGeometry(0.12, 0.2, 2.8, 5), L('#8aa8a0'), 1.4), M(new THREE.OctahedronGeometry(1.6, 0), L('#ffffff', { emissive: '#7fd8c8', emissiveIntensity: 0.4 }), 3.6)], tint: 0, palette: ['#c8fff0', '#a8e8ff', '#e0fff8'] },
       starbloom: { parts: [M(new THREE.ConeGeometry(0.35, 0.9, 6), glow('#c8d8ff'), 0.55)], tint: 0, palette: ['#c8d8ff', '#ffe8b0', '#e8c8ff', '#b0fff0'] },
+      grass: { parts: [M(new THREE.ConeGeometry(0.18, 0.7, 4), white, 0.32)], tint: 0, palette: ['#8fd48a', '#a7d98f', '#6fba7a', '#c5e89a'] },
+      bush: { parts: [M(new THREE.IcosahedronGeometry(0.85, 0), white, 0.55, 1.2, 0.75, 1.1)], tint: 0, palette: ['#6fba7a', '#89c98f', '#5a9e72', '#a7d98f', '#c9b8ea'] },
     };
     // Small authored flower clusters; the original cone flowers remain one URL flag away.
     this.flowerbedsEnabled = new URLSearchParams(window.location.search).get('flowerbeds') !== '0';
@@ -345,32 +357,45 @@ export class World {
     const rng = mulberry32((cx * 73856093) ^ (cz * 19349663) ^ WORLD_SEED);
     const x0 = cx * CHUNK, z0 = cz * CHUNK;
     const center = this.dominantBiome(x0 + CHUNK / 2, z0 + CHUNK / 2);
-    if (center.r < HUB.radius + 10 || center.r > WORLD_RADIUS - 30) return;
+    // Dress the hub fringe and biomes; keep the inner plaza clear for gameplay.
+    if (center.r < HUB.radius - 8 || center.r > WORLD_RADIUS - 30) return;
     const buckets = new Map();
     const tmpQ = new THREE.Quaternion(), tmpE = new THREE.Euler(), tmpS = new THREE.Vector3(), tmpP = new THREE.Vector3(), tmpM = new THREE.Matrix4();
     const pois = this.game.poiNear ? this.game.poiNear(x0 + CHUNK / 2, z0 + CHUNK / 2, CHUNK) : [];
+    const fringe = center.r < HUB.radius + 28;
     for (let bi = 0; bi < BIOMES.length; bi++) {
       this.sample(x0 + CHUNK / 2, z0 + CHUNK / 2);
       const bw = this.W[bi];
-      if (bw < 0.1) continue;
+      if (bw < 0.08) continue;
       const b = BIOMES[bi];
       for (const [type, count] of b.props) {
         const def = this.props[type];
-        const tries = Math.floor(count * bw + rng());
+        if (!def) continue;
+        // Hub fringe only gets soft ground cover / lanterns so roads stay readable.
+        if (fringe && type !== 'flower' && type !== 'grass' && type !== 'bush' && type !== 'lantern' && type !== 'rock') continue;
+        // Anime OW workflow: denser near-player / approach-corridor dressing, softer far field.
+        const px = this.game.player?.pos?.x ?? 0, pz = this.game.player?.pos?.z ?? 0;
+        const sampleX = x0 + CHUNK / 2, sampleZ = z0 + CHUNK / 2;
+        const wfMul = propWorkflowMul(b, sampleX, sampleZ, type, { x: px, z: pz });
+        const density = (fringe ? 0.55 : 1.15) * wfMul;
+        const tries = Math.min(OW_RULES.mobile.chunkPropBudget, Math.floor(count * bw * density + rng()));
         for (let t = 0; t < tries; t++) {
           const x = x0 + rng() * CHUNK, z = z0 + rng() * CHUNK;
           const h = this.sample(x, z);
-          if (this.hub > 0.01 || this.r > WORLD_RADIUS - 40) continue;
-          if (rng() > this.W[bi] * 1.4) continue;
+          if (this.r < HUB.radius - 4 || this.r > WORLD_RADIUS - 40) continue;
+          if (this.hub > 0.55 && type !== 'flower' && type !== 'grass' && type !== 'lantern') continue;
+          // Approach corridors push biome identity props (Genshin gate → region blend).
+          const idBoost = approachIdentity(b, x, z);
+          if (rng() > this.W[bi] * (fringe ? 1.1 : 1.45 + idBoost * 0.5)) continue;
           if (def.water === 'on') { if (h > -0.15) continue; }
           else if (def.water === 'shore') { if (h < -0.3 || h > 1.0) continue; }
           else if (h < 0.35) continue;
           const hx = this.sample(x + 1.5, z), hz = this.sample(x, z + 1.5);
-          if (!def.water && (Math.abs(hx - h) > 1.6 || Math.abs(hz - h) > 1.6) && type !== 'rock' && type !== 'crystal') continue;
+          if (!def.water && (Math.abs(hx - h) > 1.6 || Math.abs(hz - h) > 1.6) && type !== 'rock' && type !== 'crystal' && type !== 'grass') continue;
           let blocked = false;
-          for (const p of pois) if ((p.x - x) ** 2 + (p.z - z) ** 2 < 49) { blocked = true; break; }
+          for (const p of pois) if ((p.x - x) ** 2 + (p.z - z) ** 2 < 36) { blocked = true; break; }
           if (blocked) continue;
-          const s = type === 'flower' ? 0.7 + rng() * 0.8 : 0.75 + rng() * 0.6;
+          const s = type === 'flower' || type === 'grass' ? 0.65 + rng() * 0.9 : 0.75 + rng() * 0.7;
           const y = def.water === 'on' ? WATER : h - 0.05;
           tmpE.set(type === 'rock' ? rng() * 0.5 : 0, rng() * Math.PI * 2, type === 'rock' ? rng() * 0.4 : 0);
           tmpQ.setFromEuler(tmpE);
@@ -525,7 +550,7 @@ export class World {
     this.fontPos = new THREE.Vector3(0, h, 13);
     add(new THREE.CylinderGeometry(1.6, 1.2, 1, 10), L('#e0e8f0'), 0, h + 0.5, 13);
     add(new THREE.CylinderGeometry(1.35, 1.35, 0.1, 16), L('#8fe0ff', { emissive: '#5fc6ff', emissiveIntensity: 0.6 }), 0, h + 1.02, 13);
-    // Four optional bellflower lanterns, preserving original plaza fallback.
+    // Plaza lantern ring: every 3rd site can promote to a beat-reactive Bellflower.
     const bellflowerSites = [];
     for (let i = 0; i < 12; i++) {
       const a = (i / 12) * Math.PI * 2, x = Math.cos(a) * 31, z = Math.sin(a) * 31;
@@ -534,6 +559,47 @@ export class World {
       if (i % 3 === 0) bellflowerSites.push({ index: i, x, z, angle: a, stem, light });
     }
     this.bellflowerLanterns = installBellflowers(g, bellflowerSites, h);
+    // Market stalls + garden rings so the hub reads as a lived-in village.
+    const stall = [[-8, 6, '#f3b6cf'], [8, 6, '#9fd4e6'], [-6, -18, '#c8b6ef'], [6, -18, '#ffd98a']];
+    for (const [x, z, cloth] of stall) {
+      add(new THREE.BoxGeometry(3.2, 0.15, 2.2), L('#8a6a5a'), x, h + 1.55, z);
+      add(new THREE.BoxGeometry(3.4, 0.08, 2.4), L(cloth, { emissive: cloth, emissiveIntensity: 0.15 }), x, h + 2.55, z);
+      add(new THREE.CylinderGeometry(0.08, 0.08, 2.4, 5), L('#6b4a3a'), x - 1.4, h + 1.2, z - 0.9);
+      add(new THREE.CylinderGeometry(0.08, 0.08, 2.4, 5), L('#6b4a3a'), x + 1.4, h + 1.2, z - 0.9);
+      add(new THREE.CylinderGeometry(0.08, 0.08, 2.4, 5), L('#6b4a3a'), x - 1.4, h + 1.2, z + 0.9);
+      add(new THREE.CylinderGeometry(0.08, 0.08, 2.4, 5), L('#6b4a3a'), x + 1.4, h + 1.2, z + 0.9);
+    }
+    for (let ring = 0; ring < 3; ring++) {
+      const rr = 18 + ring * 4.5;
+      for (let i = 0; i < 10 + ring * 4; i++) {
+        const a = (i / (10 + ring * 4)) * Math.PI * 2 + ring * 0.2;
+        const fx = Math.cos(a) * rr, fz = Math.sin(a) * rr;
+        if (Math.abs(fx) < 6 && fz > -4 && fz < 16) continue;
+        add(new THREE.ConeGeometry(0.22, 0.55, 5), L(['#ffd1e3', '#d8c3ff', '#fff1a8', '#9fe6ff'][i % 4]), fx, h + 0.28, fz);
+      }
+    }
+    // Radiating music-roads toward each biome — stone ribbons with note markers.
+    const roadMat = L('#e8dccb');
+    const noteMat = L('#ffd978', { emissive: '#d9a84a', emissiveIntensity: 0.45 });
+    for (const b of BIOMES) {
+      const ax = Math.cos(b.angle), az = Math.sin(b.angle);
+      for (let s = 0; s < 14; s++) {
+        const r = 34 + s * 5.2;
+        const x = ax * r, z = az * r;
+        const slab = add(new THREE.BoxGeometry(3.6 - s * 0.05, 0.12, 4.6), roadMat, x, h + 0.04, z, Math.atan2(ax, az));
+        slab.position.y = this.sample(x, z) + 0.08;
+        if (s % 3 === 0) {
+          const n = add(new THREE.SphereGeometry(0.35, 8, 6), noteMat, x + ax * 1.6, h + 0.5, z + az * 1.6);
+          n.position.y = this.sample(x + ax * 1.6, z + az * 1.6) + 0.55;
+        }
+      }
+      // Gate arch at the safe-zone edge.
+      const gx = ax * (HUB.radius + 2), gz = az * (HUB.radius + 2);
+      const gy = this.sample(gx, gz);
+      add(new THREE.BoxGeometry(0.7, 5.2, 0.7), L('#f4ecff'), gx + az * 3.2, gy + 2.6, gz - ax * 3.2);
+      add(new THREE.BoxGeometry(0.7, 5.2, 0.7), L('#f4ecff'), gx - az * 3.2, gy + 2.6, gz + ax * 3.2);
+      add(new THREE.BoxGeometry(7.2, 0.7, 0.7), L('#ffd978', { emissive: '#d9a84a', emissiveIntensity: 0.35 }), gx, gy + 5.4, gz, Math.atan2(ax, az));
+    }
     this.hubGroup = g;
     this.root.add(g);
   }
@@ -607,6 +673,9 @@ export class World {
         aur.position.set(0, y + 30, -30);
         g.add(aur);
       }
+      // Nikki silhouette pass — taller landmarks readable from hub roads.
+      const ls = new URLSearchParams(window.location.search).get('nikkilook') === '1' ? (OW_RULES.landmarkScale || 1.35) : 1;
+      g.scale.set(ls, ls, ls);
       g.userData.mats = [];
       g.traverse((o) => { if (o.material && !g.userData.mats.includes(o.material)) g.userData.mats.push(o.material); });
       this.landmarks.push(g);
