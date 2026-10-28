@@ -288,19 +288,31 @@ export class Combat {
         const r = this.area(skill.radius);
         const p = { x: P.pos.x, z: P.pos.z, r };
         hits = this.hitAll(this.enemiesIn('circle', p), c * skill.coef, o);
+        // Floor + Burst share one (n,m); Perfect hops the plate mode first.
+        const mode = o.perfect ? g.world.hopMode(true) : g.world.getMode();
+        const samples = g.world.chladniSamples(p.x, p.z, r, o.perfect ? 56 : 40);
         this.flash('ring', p.x, p.z, { r, inner: r * 0.35 }, color);
         this.flash('circle', p.x, p.z, { r: r * 0.45 }, color);
-        const spokes = skill.spokes || 8;
-        for (let k = 0; k < spokes; k++) {
-          const ang = (k / spokes) * Math.PI * 2;
-          for (let s = 1; s <= 5; s++) {
-            const x = P.pos.x + Math.sin(ang) * (r * s / 5);
-            const z = P.pos.z + Math.cos(ang) * (r * s / 5);
-            g.particles.emit(x, P.pos.y + 0.5, z, _col.set(color), { speed: 2, life: 0.55, size: 0.4, kind: 1, size: 0.7 });
+        for (const s of samples.nodal) {
+          g.particles.emit(s.x, P.pos.y + 0.45, s.z, _col.set(color), { speed: 1.6, life: 0.6, spread: 0.35, kind: 1, size: 0.65 });
+        }
+        if (o.perfect) {
+          for (const s of samples.antinode) {
+            g.particles.emit(s.x, P.pos.y + 0.7, s.z, _col.set('#ffe7a8'), { speed: 3.2, life: 0.5, spread: 0.5, kind: 3, size: 0.85 });
           }
         }
-        g.world.pulse(p.x, p.z, 1.6, true);
-        g.shake(0.25);
+        // Light radial scaffolding keyed to max(n,m) so spokes still read as a figure.
+        const spokes = Math.max(skill.spokes || 8, 2 * Math.max(mode.n, mode.m));
+        for (let k = 0; k < spokes; k++) {
+          const ang = (k / spokes) * Math.PI * 2;
+          for (let s = 1; s <= 4; s++) {
+            const x = P.pos.x + Math.sin(ang) * (r * s / 4);
+            const z = P.pos.z + Math.cos(ang) * (r * s / 4);
+            g.particles.emit(x, P.pos.y + 0.5, z, _col.set(color), { speed: 2, life: 0.45, spread: 0.35, kind: 1, size: 0.55 });
+          }
+        }
+        g.world.pulse(p.x, p.z, o.perfect ? 2.0 : 1.6, true);
+        g.shake(o.perfect ? 0.32 : 0.25);
         break;
       }
       case 'nova': {

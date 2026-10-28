@@ -5,14 +5,20 @@
 ## Shipped in this experiment
 
 - **Cel-shading baseline**: one shared three-tone, nearest-filtered gradient is used by Melusina, Choral Sheep, slimes, terrain, instanced props, plaza, landmarks, and Rift geometry. `js/cel.js` is the material helper.
-- **Chladni**: a bounded nodal-line glow near Melusina, whose response scales with the existing Crescendo level. This extends the existing `World._resonate()` injection and does not touch the rhythm clock.
+- **Chladni (real plate modes)**: bounded nodal-line glow near Melusina uses the rectangular plate field
+  `cos(nπx)cos(mπy) − cos(mπx)cos(nπy)`, driven by live uniforms `uModeN` / `uModeM` / `uPhase` / `uSharpness`.
+  Default mode is Faraway canon **(3,5)**. Response still scales with Crescendo; ceremony flashes add a short `uCeremony` bloom.
+  Extends `World._resonate()` and does not touch the rhythm clock.
+- **Chladni Burst sync**: `Web_Cymatic_ChladniBurst` samples the same field for nodal particles; **Perfect** hops the mode ladder and sparks antinode gold.
+- **Shore / water lace**: terrain caustics and near-player water caustics brighten on antinodes and dim on nodal lines (still gated by `uCaustics` / `uIsRift`).
 - **Caustics**: low-cost interference highlights on the water surface and gently animated illumination near the waterline of terrain. Disable ground caustics in the Rift; retain existing wave displacement and beat ripple uniforms.
 
 ## A/B comparisons
 
 Open a local dev server from the repo root with `python -m http.server 8080`, visit `/Prototypes/Web/MelodiaResonantWilds/` and compare:
 
-- No query string — all effects enabled.
+- No query string — all effects enabled, mode (3,5).
+- `?mode=2,3` / `?mode=5,7` — pin a plate mode (comma, `x`, or `/` separators).
 - `?chladni=0` — cel + caustics, but no Chladni.
 - `?caustics=0` — cel + Chladni, but no caustics.
 - `?chladni=0&caustics=0` — cel baseline only.
@@ -20,20 +26,32 @@ Open a local dev server from the repo root with `python -m http.server 8080`, vi
 
 ## Publish / preview
 
-**Canonical public mirror (owner publish):** `https://fromage3900.github.io/my-site/resonant-wilds/` after syncing this folder into `fromage3900/my-site/resonant-wilds/` and confirming the SW cache (`resonant-wilds-v9-*`) activates.
+**Canonical public mirror (owner publish):** `https://fromage3900.github.io/my-site/resonant-wilds/` after syncing this folder into `fromage3900/my-site/resonant-wilds/` and confirming the SW cache (`resonant-wilds-v11-*`) activates.
 
 Temporary raw.githack previews are retired for release claims — use the GH Pages mirror or a local `python -m http.server` from the repo root. Try `?avatar=chibi&shrine=glb` or `?render=legacy` at the end. GitHub Actions Chromium smoke checks structural boot; desktop and iPhone Safari gameplay QA remain required before calling the mirror browser-approved.
 
-In devtools the existing `window.__melodia.world.uniforms` offers live sliders via `uChladni.value` and `uCaustics.value` (nominal range 0–1). Set either to 0 without recompiling a program. Keep the actual rhythm clock as the source of beat events.
+In devtools `window.__melodia.world.uniforms` offers live sliders:
+
+| Uniform | Range | Notes |
+|---------|-------|-------|
+| `uChladni` | 0–1 | Master nodal intensity |
+| `uCaustics` | 0–1 | Shore + water caustics |
+| `uModeN` / `uModeM` | ≥1 | Plate indices (or `world.setMode(n,m)` / `world.hopMode(true)`) |
+| `uSharpness` | 0–1.5 | Nodal line thinness |
+| `uCeremony` | 0–1 | Transient Recital bloom (driven by `ceremonyFigure`) |
+| `uPhase` | free | Beat-driven in `frame()` |
+
+Keep the actual rhythm clock as the source of beat events.
 
 ## Acceptance before publishing
 
-1. `node --check` for `js/world.js`, `js/entities.js`, and `js/cel.js`, plus optional `node tools/check_shader_lab.mjs`.
+1. `node --check` for `js/world.js`, `js/entities.js`, `js/cel.js`, `js/combat.js`, `js/ui.js`, plus `node tools/check_shader_lab.mjs`.
 2. Desktop Chrome: no shader compile errors; world, water, characters, and Rift visible; movement, strikes, loot, saves still work.
-3. iPhone Safari: reliable first-tap Web Audio unlock and touch movement; visually compare all query combinations in landscape.
-4. Observe frame pacing in Shorewake and Liquid Cathedral while moving; keep existing automatic render resolution and avoid new postprocessing.
-5. Check near-shore caustics and Chladni overlap; avoid washed-out colors. Confirm the Rift has no water caustics.
-6. If the mobile FPS degrades materially, reduce `uCaustics`, then `uChladni`, instead of changing render-pipeline authority.
+3. Cast **Chladni Burst** on Perfect and confirm the floor figure changes mode; Recital inherit/miss flashes should bloom nodal particles.
+4. iPhone Safari: reliable first-tap Web Audio unlock and touch movement; visually compare all query combinations in landscape.
+5. Observe frame pacing in Shorewake and Liquid Cathedral while moving; keep existing automatic render resolution and avoid new postprocessing.
+6. Check near-shore caustics and Chladni overlap; avoid washed-out colors. Confirm the Rift has no water caustics.
+7. If the mobile FPS degrades materially, reduce `uCaustics`, then `uChladni`, instead of changing render-pipeline authority.
 
 ## GLB follow-up
 

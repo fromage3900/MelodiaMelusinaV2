@@ -1,5 +1,6 @@
 // HUD, touch controls, keyboard, and menu panels.
 
+import * as THREE from 'three';
 import { SLOTS, SLOT_BY_ID, RARITIES, SKILLS, SKILL_BY_ID, ELEMENT_STYLE, ARIA_BY_ID, BIOMES, BLESSINGS, DIFFICULTY, xpToNext, HONE_MAX, honeChance, TUTORIAL, WORLD_RADIUS, RULES, MOTIF_BY_ID, AFFIX_BY_KEY } from './design.js';
 import { fmt, clamp } from './util.js';
 
@@ -236,14 +237,25 @@ export class UI {
   /** Full-screen Recital ceremony flash: goal | bank | inherit | miss */
   ceremonyFlash(kind = 'goal') {
     const el = $('ceremonyflash');
-    if (!el) return;
-    el.className = `on ${kind}`;
-    el.classList.remove('hidden');
-    clearTimeout(this._cf);
-    this._cf = setTimeout(() => {
-      el.classList.add('hidden');
-      el.className = 'hidden';
-    }, 520);
+    if (el) {
+      el.className = `on ${kind}`;
+      el.classList.remove('hidden');
+      clearTimeout(this._cf);
+      this._cf = setTimeout(() => {
+        el.classList.add('hidden');
+        el.className = 'hidden';
+      }, 520);
+    }
+    // Ground nodal bloom (same plate modes as the floor shader).
+    const pos = this.g?.player?.pos;
+    const samples = this.g?.world?.ceremonyFigure?.(kind, pos?.x, pos?.z);
+    if (samples?.nodal?.length && this.g?.particles) {
+      const col = kind === 'miss' ? '#6a5a88' : kind === 'inherit' ? '#c690ff' : kind === 'bank' ? '#7fd0e4' : '#ffe7a8';
+      const c = new THREE.Color(col);
+      for (const s of samples.nodal.slice(0, 28)) {
+        this.g.particles.emit(s.x, (pos?.y ?? 0) + 0.5, s.z, c, { speed: 2.4, life: 0.7, spread: 0.45, kind: 3, size: 0.75 });
+      }
+    }
   }
 
   hint(text) {
