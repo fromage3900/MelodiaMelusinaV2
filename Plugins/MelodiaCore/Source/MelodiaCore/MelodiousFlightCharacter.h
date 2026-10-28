@@ -11,7 +11,8 @@ class ASirPerchPoint;
 
 /**
  * Sir Melodious free-flight exploration pawn. Always airborne (MOVE_Flying);
- * WASD steers along the camera (including pitch), Space ascends, Shift boosts,
+ * WASD steers along the camera (including pitch), Space/E/RT ascend, C/Q/LeftAlt/LT
+ * descend, Shift boosts,
  * Ctrl hands control back to the party subsystem.
  */
 UCLASS(Blueprintable)
