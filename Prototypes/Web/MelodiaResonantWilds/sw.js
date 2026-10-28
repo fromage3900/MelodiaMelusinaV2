@@ -1,11 +1,11 @@
 // Resonant Wilds PWA cache. Keep shader, character, icon and GLB updates fresh.
 // The browser game remains playable online even if optional preview assets fail.
-const CACHE = 'resonant-wilds-v9-20261028-publish-grove';
+const CACHE = 'resonant-wilds-v10-20261028-fun-mixamo';
 const ASSETS = [
   './', './index.html', './style.css', './manifest.json',
   './icon-192.png', './icon-512.png',
   './js/main.js', './js/game.js', './js/audio.js', './js/rhythm.js',
-  './js/world.js', './js/entities.js', './js/cel.js', './js/painterly.js', './js/npr-tuner.js', './js/chibi.js',
+  './js/world.js', './js/entities.js', './js/cel.js', './js/painterly.js', './js/npr-tuner.js', './js/chibi.js', './js/mixamo.js',
   './js/asset-loader.js', './js/bellflower.js', './js/flowerbeds.js', './js/openworld.js', './js/postfx.js', './js/grove.js',
   './js/combat.js', './js/loot.js', './js/echo.js', './js/encore.js',
   './js/activities.js', './js/progress.js', './js/ui.js',
@@ -22,6 +22,7 @@ const ASSETS = [
   './vendor/shaders/LuminosityHighPassShader.js', './vendor/shaders/OutputShader.js',
   './assets/models/resonance-shrine.glb',
   './assets/models/harmonic-grove-37.glb',
+  './assets/models/mixamo-hero.glb',
   './assets/icons/charm_brooch.svg', './assets/icons/charm_clef_pendant.svg',
   './assets/icons/charm_music_box.svg', './assets/icons/charm_shell_charm.svg',
   './assets/icons/echo_phrase.svg',

@@ -5,7 +5,9 @@ import * as THREE from 'three';
 import {
   BIOMES, HUB, WORLD_SEED, RIFT_POOL, BURDENS, ELITE_AFFIXES, RIFT_STYLE, ELEMENT_STYLE,
   RECITAL_GOALS, RECITAL_BLESSINGS, WEB_SKILLS, WEB_SKILL_IDS,
+  MAESTRO_EXAMS, ENCORE_CONCERT_SKINS,
 } from './design.js';
+import { ENCORE_BY_ID } from './encore.js';
 import { Enemy } from './entities.js';
 import { mulberry32, pick, clamp } from './util.js';
 import { makeBeam } from './fx.js';
@@ -488,6 +490,7 @@ export class Activities {
     if (first) {
       g.profile.destinations.push(p.id);
       g.progress.addXp(20);
+      g.progress.dailyEvent('destination', 1);
       // First visit: temporary biome motif buff (speed + Perfect window) for ~90s.
       g.profile.destBuffs = g.profile.destBuffs || {};
       g.profile.destBuffs[p.biome ?? p.id] = g.time + 90;
@@ -620,6 +623,16 @@ export class Activities {
   snapPhoto(p, soft = false) {
     if (p.autoDone && soft) return;
     const g = this.g, P = g.player;
+    // Fashion setpiece: select the matching Encore (wardrobe / concert trail tints the shot).
+    if (p.fashionEncore && !soft) {
+      const want = p.fashionEncore;
+      if (g.encoreSys?.selected !== want) {
+        const v = ENCORE_BY_ID[want];
+        g.ui.toast(`Fashion frame — select ${v?.short || want} Encore, then frame`, 'lavender');
+        g.overlay.text(p.x, p.y + 2.6, p.z, '👗', '#f3b6cf', 26, { life: 0.9, rise: 0.2 });
+        return;
+      }
+    }
     // Challenge frames need Melusina facing the prompt angle (Nikki whim pose).
     if (p.challenge && !soft && typeof p.aimAngle === 'number') {
       const err = Math.abs(((P.facing - p.aimAngle + Math.PI * 3) % (Math.PI * 2)) - Math.PI);
@@ -634,10 +647,18 @@ export class Activities {
     const id = p.id || `photo_${p.biome}_${Math.round(p.x)}_${Math.round(p.z)}`;
     if (!g.profile.photos.includes(id)) {
       g.profile.photos.push(id);
-      const bonus = p.challenge ? 2 : 1;
+      let bonus = p.challenge ? 2 : 1;
+      if (p.fashionEncore) {
+        bonus += 2;
+        g.profile.fashionGold = g.profile.fashionGold || [];
+        if (!g.profile.fashionGold.includes(id)) g.profile.fashionGold.push(id);
+        g.ui.toast(`Gold fashion photo — Golden Notes +${bonus}`, 'gold');
+      } else {
+        g.ui.toast(p.challenge ? `Whim challenge framed — Golden Notes +${bonus}` : 'Whim Frame captured — Golden Note +1', 'aqua');
+      }
       g.profile.notes += bonus;
-      g.ui.toast(p.challenge ? `Whim challenge framed — Golden Notes +${bonus}` : 'Whim Frame captured — Golden Note +1', 'aqua');
-      g.progress.addXp(p.challenge ? 40 : 25);
+      g.progress.addXp(p.fashionEncore ? 55 : p.challenge ? 40 : 25);
+      g.progress.dailyEvent('photo', 1);
     } else if (!soft) g.ui.toast('Already framed this whim', 'lavender');
     // Sheep photobomb — hops into frame for the snap (Nikki companion delight).
     if (!soft && Math.random() < 0.55) {
@@ -659,9 +680,14 @@ export class Activities {
     if (p.open) return;
     if (g.enemies.some((e) => !e.dead && e.aggro)) { g.ui.toast('Clear the dissonance before the bridge will listen'); return; }
     const gr = g.rhythm.judge(performance.now());
+    const biome = typeof p.biome === 'number' ? BIOMES[p.biome] : null;
+    const phraseSoft = biome && g.profile.phrasebook?.[biome.id];
     const keyOpen = g._keyModulation && gr.grade !== 'Miss';
-    if (!keyOpen && (gr.grade === 'Miss' || gr.grade === 'Good')) {
-      g.ui.toast('Answer on the beat — Great or Perfect opens the Phrase Bridge', 'soft');
+    const softOk = phraseSoft && gr.grade !== 'Miss';
+    if (!keyOpen && !softOk && (gr.grade === 'Miss' || gr.grade === 'Good')) {
+      g.ui.toast(phraseSoft
+        ? 'Phrasebook softens this biome — still need Good+'
+        : 'Answer on the beat — Great or Perfect opens the Phrase Bridge', 'soft');
       g.audio.fail();
       g.ui.gradeFlash(gr.grade, gr.err);
       return;
@@ -675,8 +701,9 @@ export class Activities {
       g.profile.gates.push(p.id);
       g.profile.notes += 2;
       g.progress.addXp(35);
+      g.progress.dailyEvent('gate', 1);
     }
-    g.ui.banner('Phrase Bridge opens', 'The ribbon dissolves on your answer');
+    g.ui.banner('Phrase Bridge opens', phraseSoft ? 'Phrasebook softens the ribbon' : 'The ribbon dissolves on your answer');
     g.world.pulse(p.x, p.z, 1.6, true);
     g.particles.burst(p.x, p.y + 1.6, p.z, new THREE.Color('#62c8ff'), 22, { speed: 6, life: 0.9, kind: 1 });
     g.audio.levelUp();
@@ -703,6 +730,7 @@ export class Activities {
       g.profile.notes += 1;
       g.progress.addXp(30);
       g.player.sp = Math.min(g.player.stats.spMax, g.player.sp + 2);
+      g.progress.dailyEvent('cleanse', 1);
     }
     g.ui.toast('Dissonance cleansed — Sheep Harmonize ♪', 'aqua');
     g.world.pulse(p.x, p.z, 1.4, true);
@@ -851,14 +879,46 @@ export class Activities {
     const e = g.spawnEnemy(b.boss, lvl, { x: p.bx, z: p.bz, boss: true, bossName: b.bossName, aggro: true });
     e.poi = p;
     p.alive = e;
-    g.ui.banner(b.bossName, `Maestro of ${b.name.split('—')[0].trim()} · Lv ${lvl}`);
+    const exam = MAESTRO_EXAMS[b.id];
+    if (exam) {
+      e.examEncore = exam.encore;
+      e.examCast = false;
+      const v = ENCORE_BY_ID[exam.encore];
+      g.ui.banner(b.bossName, `Encore exam · ${v?.short || exam.encore} · Lv ${lvl}`);
+      g.ui.toast(exam.hint, 'lavender');
+      // Highway / Encore button nudge toward the counter.
+      if (g.encoreSys && g.encoreSys.selected !== exam.encore) {
+        g.encoreSys.selected = exam.encore;
+        g.profile.settings.encoreVariant = exam.encore;
+      }
+    } else {
+      g.ui.banner(b.bossName, `Maestro of ${b.name.split('—')[0].trim()} · Lv ${lvl}`);
+    }
     g.world.pulse(p.bx, p.bz, 2, true);
     g.shake(0.6);
   }
 
   bossDefeated(e) {
+    const g = this.g;
     const p = e.poi;
-    if (p) { p.cdUntil = this.g.time + 180; p.alive = null; }
+    if (p) { p.cdUntil = g.time + 180; p.alive = null; }
+    // Maestro Encore exam pass → concert trail unlock (fashion-only).
+    if (e.examEncore && e.examCast) {
+      const pr = g.profile;
+      pr.maestroExams = pr.maestroExams || [];
+      const bid = p && BIOMES[p.biome] ? BIOMES[p.biome].id : null;
+      if (bid && !pr.maestroExams.includes(bid)) pr.maestroExams.push(bid);
+      if (!pr.concertSkins.includes(e.examEncore)) {
+        pr.concertSkins.push(e.examEncore);
+        const skin = ENCORE_CONCERT_SKINS[e.examEncore];
+        g.ui.banner('Encore exam passed', skin ? `${skin.name} unlocked` : 'Concert trail unlocked');
+        g.audio.levelUp();
+      } else {
+        g.ui.toast('Encore exam cleared — trail already owned', 'gold');
+      }
+    } else if (e.examEncore && !e.examCast) {
+      g.ui.toast('Maestro fell — cast the hinted Encore next time for a concert trail', 'soft');
+    }
   }
 
   // ------------------------------------------------------------ Elite Chorus events
@@ -974,7 +1034,19 @@ export class Activities {
       g.player.recalc();
       g.bountyEvent('shrine', 1);
     }
-    g.ui.banner(`Phrase answered — ${Math.round(score * 100)}%`, first ? 'Attuned: +1% damage forever · +10 Golden Notes' : 'The shrine rewards you again');
+    // Phrasebook mini-loop: a solid shrine answer softens this biome's Phrase Bridges (Good+).
+    let phraseLine = '';
+    if (score >= 0.7 && typeof p.biome === 'number' && BIOMES[p.biome]) {
+      const bid = BIOMES[p.biome].id;
+      g.profile.phrasebook = g.profile.phrasebook || {};
+      if (!g.profile.phrasebook[bid]) {
+        g.profile.phrasebook[bid] = true;
+        phraseLine = ' · Phrasebook entry inked';
+        g.ui.toast(`Phrasebook · ${BIOMES[p.biome].name.split('—')[0].trim()} bridges now accept Good`, 'aqua');
+      }
+    }
+    g.ui.banner(`Phrase answered — ${Math.round(score * 100)}%`,
+      (first ? 'Attuned: +1% damage forever · +10 Golden Notes' : 'The shrine rewards you again') + phraseLine);
     g.audio.levelUp();
     g.world.pulse(p.x, p.z, 2, true);
     g.save();

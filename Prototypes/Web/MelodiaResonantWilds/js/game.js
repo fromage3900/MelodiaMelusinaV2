@@ -370,7 +370,7 @@ export class Game {
     const p = best;
     switch (p.type) {
       case 'forge': return { label: 'Synthesis ⟡', fn: () => this.ui.open('forge') };
-      case 'board': return { label: 'Bounties 📜', fn: () => this.ui.open('bounties') };
+      case 'board': return { label: 'Daily Recital · Bounties 📜', fn: () => this.ui.open('bounties') };
       case 'font': return { label: 'Blessing Font ✧', fn: () => this.ui.open('blessings') };
       case 'rift': return { label: 'Enter Rift ◎', fn: () => { this.ui.riftPortal = p; this.ui.open('rift'); } };
       case 'boss': return p.alive && !p.alive.dead ? null : { label: `Summon ${p.name} ♛`, fn: () => this.activities.summonBoss(p) };

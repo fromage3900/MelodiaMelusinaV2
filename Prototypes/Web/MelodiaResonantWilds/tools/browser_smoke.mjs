@@ -13,6 +13,7 @@ const browser = await chromium.launch({
 const variants = [
   { name: 'desktop-default', query: '', chibi: false, shrine: false, mobile: false },
   { name: 'desktop-chibi-shrine', query: '?avatar=chibi&shrine=glb', chibi: true, shrine: true, mobile: false },
+  { name: 'desktop-mixamo', query: '?avatar=mixamo', chibi: false, shrine: false, mobile: false, mixamo: true },
   { name: 'mobile-baseline', query: '?chladni=0&caustics=0', chibi: false, shrine: false, mobile: true },
   { name: 'desktop-legacy-render', query: '?render=legacy', chibi: false, shrine: false, mobile: false, legacy: true },
   { name: 'desktop-bellflower-off', query: '?bellflower=0', chibi: false, shrine: false, mobile: false, bellflower: false },
@@ -101,6 +102,9 @@ try {
       await page.waitForFunction(() => window.__melodia.activities.pois.some(
         p => p.type === 'shrine' && !!p.assetVisual
       ), null, { timeout: 45000 });
+    }
+    if (test.mixamo) {
+      await page.waitForFunction(() => window.__melodia.player.m?.mixamo === true, null, { timeout: 45000 });
     }
     if (test.tune) {
       await page.waitForFunction(() => window.__melodiaShaderTuner?.enabled === true, null, { timeout: 10000 });

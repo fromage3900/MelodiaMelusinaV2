@@ -3,7 +3,7 @@
 // Cast keeps the free-Perfect window + camera juice; each id owns its verb.
 
 import * as THREE from 'three';
-import { ARIAS, RULES, SKILL_BY_ID } from './design.js';
+import { ARIAS, ENCORE_CONCERT_SKINS, RULES, SKILL_BY_ID } from './design.js';
 import { clamp } from './util.js';
 
 const _c = new THREE.Color();
@@ -138,7 +138,13 @@ export class EncoreSystem {
   }
 
   fashionSkin() {
-    const eq = this.g.profile.equipment || {};
+    const pr = this.g.profile;
+    // Maestro / Daily concert skins win when unlocked for the selected Encore.
+    const concertId = this.selected;
+    if ((pr.concertSkins || []).includes(concertId) && ENCORE_CONCERT_SKINS[concertId]) {
+      return ENCORE_CONCERT_SKINS[concertId];
+    }
+    const eq = pr.equipment || {};
     const gown = eq.gown?.base || eq.gown?.name || '';
     const shoes = eq.shoes?.base || eq.shoes?.name || '';
     const head = eq.head?.base || eq.head?.name || '';
@@ -149,6 +155,11 @@ export class EncoreSystem {
     // Opus gown always reads concert gold.
     if (eq.gown?.rarity >= 4) return ENCORE_FASHION.gold;
     return null;
+  }
+
+  /** True when selected Encore's concert trail is unlocked (exam / daily). */
+  hasConcertSkin(id = this.selected) {
+    return (this.g.profile.concertSkins || []).includes(id);
   }
 
   biomeFavored(v = this.variant) {
@@ -265,6 +276,11 @@ export class EncoreSystem {
     g.shake(0.55);
     g.audio.encoreVariant(v.id);
     g.sheep?.reactEncore?.(v, this.color);
+    g.progress?.dailyEvent?.('encore', 1);
+    // Maestro exam: mark live bosses if this cast matches their counter Encore.
+    for (const e of g.enemies) {
+      if (e.boss && !e.dead && e.examEncore === v.id) e.examCast = true;
+    }
     if (favored) g.ui.toast(`${v.short} resonates with this biome (+12% power)`, 'gold');
     if (skin) g.ui.toast(`Fashion Encore — ${skin.name}`, 'lavender');
 
