@@ -1,0 +1,486 @@
+{
+ "probe": "masters_spine_proving_probe.v1",
+ "master": "M_Master_Toon_Character",
+ "master_rows": {
+  "path": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Character",
+  "expr_count": 77,
+  "params": [
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "CharacterUVTiling",
+    "group": "02 | Character Maps",
+    "sort_priority": "10",
+    "default_value": 1.0,
+    "slider_min": 0.0,
+    "slider_max": 0.0
+   },
+   {
+    "c": "TextureSampleParameter2D",
+    "parameter_name": "CharacterAlbedo",
+    "group": "02 | Character Maps",
+    "sort_priority": "11",
+    "tex": "<Object '/Engine/EngineResources/DefaultTexture.DefaultTexture' (0x00000265556D3000) Class 'Texture2D'>"
+   },
+   {
+    "c": "TextureSampleParameter2D",
+    "parameter_name": "CharacterNormal",
+    "group": "02 | Character Maps",
+    "sort_priority": "12",
+    "tex": "<Object '/Engine/EngineResources/DefaultTexture.DefaultTexture' (0x00000265556D3000) Class 'Texture2D'>"
+   },
+   {
+    "c": "TextureSampleParameter2D",
+    "parameter_name": "CharacterRoughnessMap",
+    "group": "02 | Character Maps",
+    "sort_priority": "13",
+    "tex": "<Object '/Engine/EngineResources/DefaultTexture.DefaultTexture' (0x00000265556D3000) Class 'Texture2D'>"
+   },
+   {
+    "c": "VectorParameter",
+    "parameter_name": "CharacterBaseTint",
+    "group": "01 | Character Surface",
+    "sort_priority": "20",
+    "rgb": [
+     1.0,
+     1.0,
+     1.0,
+     1.0
+    ]
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "CharacterMaterialID",
+    "group": "03 | Character Role",
+    "sort_priority": "30",
+    "default_value": 1.0,
+    "slider_min": 0.0,
+    "slider_max": 0.0
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "CharacterRoleBlend",
+    "group": "03 | Character Role",
+    "sort_priority": "31",
+    "default_value": 0.0,
+    "slider_min": 0.0,
+    "slider_max": 0.0
+   },
+   {
+    "c": "VectorParameter",
+    "parameter_name": "CharacterRoleTint",
+    "group": "03 | Character Role",
+    "sort_priority": "32",
+    "rgb": [
+     1.0,
+     1.0,
+     1.0,
+     1.0
+    ]
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "CharacterFaceSDFTiling",
+    "group": "04 | Character Face SDF",
+    "sort_priority": "40",
+    "default_value": 1.0,
+    "slider_min": 0.0,
+    "slider_max": 0.0
+   },
+   {
+    "c": "TextureSampleParameter2D",
+    "parameter_name": "CharacterFaceSDF",
+    "group": "04 | Character Face SDF",
+    "sort_priority": "41",
+    "tex": "<Object '/Engine/EngineResources/DefaultTexture.DefaultTexture' (0x00000265556D3000) Class 'Texture2D'>"
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "CharacterFaceSDFStrength",
+    "group": "04 | Character Face SDF",
+    "sort_priority": "42",
+    "default_value": 0.0,
+    "slider_min": 0.0,
+    "slider_max": 0.0
+   },
+   {
+    "c": "VectorParameter",
+    "parameter_name": "CharacterFaceTint",
+    "group": "04 | Character Face SDF",
+    "sort_priority": "43",
+    "rgb": [
+     1.0,
+     0.55,
+     0.45,
+     1.0
+    ]
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "CharacterRoughness",
+    "group": "01 | Character Surface",
+    "sort_priority": "21",
+    "default_value": 0.55,
+    "slider_min": 0.0,
+    "slider_max": 0.0
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "CharacterRoughnessBlend",
+    "group": "01 | Character Surface",
+    "sort_priority": "22",
+    "default_value": 0.0,
+    "slider_min": 0.0,
+    "slider_max": 0.0
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "CharacterHeroSheenPower",
+    "group": "05 | Character Sheen",
+    "sort_priority": "50",
+    "default_value": 5.0,
+    "slider_min": 0.0,
+    "slider_max": 0.0
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "CharacterHeroSheenStrength",
+    "group": "05 | Character Sheen",
+    "sort_priority": "51",
+    "default_value": 0.0,
+    "slider_min": 0.0,
+    "slider_max": 0.0
+   },
+   {
+    "c": "VectorParameter",
+    "parameter_name": "CharacterHeroSheenColor",
+    "group": "05 | Character Sheen",
+    "sort_priority": "52",
+    "rgb": [
+     1.0,
+     0.85,
+     0.65,
+     1.0
+    ]
+   },
+   {
+    "c": "VectorParameter",
+    "parameter_name": "CharacterEmissiveBase",
+    "group": "05 | Character Sheen",
+    "sort_priority": "53",
+    "rgb": [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "CharacterWindSpeed",
+    "group": "06 | Character Wind",
+    "sort_priority": "60",
+    "default_value": 0.75,
+    "slider_min": 0.0,
+    "slider_max": 0.0
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "CharacterWindAmplitude",
+    "group": "06 | Character Wind",
+    "sort_priority": "61",
+    "default_value": 0.0,
+    "slider_min": 0.0,
+    "slider_max": 0.0
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "CymaticsLandscapeAmount",
+    "group": "07 | Cymatics",
+    "sort_priority": "32",
+    "default_value": 0.0,
+    "slider_min": 0.0,
+    "slider_max": 0.0
+   },
+   {
+    "c": "CollectionParameter",
+    "parameter_name": "Cymatic_BeatPulse",
+    "group": "07 | Cymatics",
+    "sort_priority": "32"
+   },
+   {
+    "c": "VectorParameter",
+    "parameter_name": "CymaticsTint",
+    "group": "07 | Cymatics",
+    "sort_priority": "32",
+    "rgb": [
+     1.0,
+     0.9,
+     0.9,
+     1.0
+    ]
+   },
+   {
+    "c": "TextureSampleParameter2D",
+    "parameter_name": "ChladniPatternTexture",
+    "group": "08 | Chladni Fleece",
+    "sort_priority": "32",
+    "tex": "<Object '/Game/Melodia/Companions/ChoralSheep/Textures/T_Chladni_C_ROOT.T_Chladni_C_ROOT' (0x00000266EF77C000) Class 'Texture2D'>"
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "ChladniUVTiling",
+    "group": "08 | Chladni Fleece",
+    "sort_priority": "32",
+    "default_value": 1.0,
+    "slider_min": 0.0,
+    "slider_max": 0.0
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "ChladniIntensity",
+    "group": "08 | Chladni Fleece",
+    "sort_priority": "32",
+    "default_value": 0.0,
+    "slider_min": 0.0,
+    "slider_max": 0.0
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "HarmonizeActive",
+    "group": "08 | Chladni Fleece",
+    "sort_priority": "32",
+    "default_value": 0.0,
+    "slider_min": 0.0,
+    "slider_max": 0.0
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "BeatAccent",
+    "group": "08 | Chladni Fleece",
+    "sort_priority": "32",
+    "default_value": 1.0,
+    "slider_min": 0.0,
+    "slider_max": 0.0
+   },
+   {
+    "c": "VectorParameter",
+    "parameter_name": "ChladniPearlSilkColor",
+    "group": "08 | Chladni Fleece",
+    "sort_priority": "32",
+    "rgb": [
+     0.96,
+     0.91,
+     0.96,
+     1.0
+    ]
+   },
+   {
+    "c": "VectorParameter",
+    "parameter_name": "ChladniLilacHaloColor",
+    "group": "08 | Chladni Fleece",
+    "sort_priority": "32",
+    "rgb": [
+     0.58,
+     0.4,
+     0.72,
+     1.0
+    ]
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "ChladniEmissiveStrength",
+    "group": "08 | Chladni Fleece",
+    "sort_priority": "32",
+    "default_value": 2.5,
+    "slider_min": 0.0,
+    "slider_max": 0.0
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "ChladniSheenStrength",
+    "group": "08 | Chladni Fleece",
+    "sort_priority": "32",
+    "default_value": 0.5,
+    "slider_min": 0.0,
+    "slider_max": 0.0
+   }
+  ]
+ },
+ "toon_profiles": [
+  {
+   "name": "TP_Character",
+   "class": "ToonProfile",
+   "path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Character"
+  },
+  {
+   "name": "TP_Cool",
+   "class": "ToonProfile",
+   "path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Cool"
+  },
+  {
+   "name": "TP_Cosmic",
+   "class": "ObjectRedirector",
+   "path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Cosmic"
+  },
+  {
+   "name": "TP_Default",
+   "class": "ObjectRedirector",
+   "path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Default"
+  },
+  {
+   "name": "TP_Environment",
+   "class": "ToonProfile",
+   "path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Environment"
+  },
+  {
+   "name": "TP_Foliage",
+   "class": "ObjectRedirector",
+   "path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Foliage"
+  },
+  {
+   "name": "TP_Glass",
+   "class": "ObjectRedirector",
+   "path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Glass"
+  },
+  {
+   "name": "TP_Gold",
+   "class": "ObjectRedirector",
+   "path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Gold"
+  },
+  {
+   "name": "TP_Hatched",
+   "class": "ToonProfile",
+   "path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Hatched"
+  },
+  {
+   "name": "TP_Hero",
+   "class": "ObjectRedirector",
+   "path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Hero"
+  },
+  {
+   "name": "TP_Impressionist_Dry",
+   "class": "ObjectRedirector",
+   "path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Impressionist_Dry"
+  },
+  {
+   "name": "TP_Impressionist_Impasto",
+   "class": "ObjectRedirector",
+   "path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Impressionist_Impasto"
+  },
+  {
+   "name": "TP_Impressionist_Wet",
+   "class": "ObjectRedirector",
+   "path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Impressionist_Wet"
+  },
+  {
+   "name": "TP_Iridescent_Flow",
+   "class": "ToonProfile",
+   "path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Iridescent_Flow"
+  },
+  {
+   "name": "TP_Iridescent_Foam",
+   "class": "ToonProfile",
+   "path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Iridescent_Foam"
+  },
+  {
+   "name": "TP_Iridescent_Scales",
+   "class": "ToonProfile",
+   "path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Iridescent_Scales"
+  },
+  {
+   "name": "TP_Melusina",
+   "class": "ObjectRedirector",
+   "path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Melusina"
+  },
+  {
+   "name": "TP_NikkiDream",
+   "class": "ObjectRedirector",
+   "path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_NikkiDream"
+  },
+  {
+   "name": "TP_Ornamental",
+   "class": "ObjectRedirector",
+   "path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Ornamental"
+  },
+  {
+   "name": "TP_Simple_Cool",
+   "class": "ToonProfile",
+   "path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Simple_Cool"
+  },
+  {
+   "name": "TP_Simple_HighContrast",
+   "class": "ToonProfile",
+   "path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Simple_HighContrast"
+  },
+  {
+   "name": "TP_Simple_LowContrast",
+   "class": "ToonProfile",
+   "path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Simple_LowContrast"
+  },
+  {
+   "name": "TP_Simple_Metallic",
+   "class": "ToonProfile",
+   "path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Simple_Metallic"
+  },
+  {
+   "name": "TP_Simple_Soft",
+   "class": "ToonProfile",
+   "path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Simple_Soft"
+  },
+  {
+   "name": "TP_Simple_ThreeTone",
+   "class": "ToonProfile",
+   "path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Simple_ThreeTone"
+  },
+  {
+   "name": "TP_Simple_TwoTone",
+   "class": "ToonProfile",
+   "path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Simple_TwoTone"
+  },
+  {
+   "name": "TP_Simple_Warm",
+   "class": "ToonProfile",
+   "path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Simple_Warm"
+  },
+  {
+   "name": "TP_SoftPainterly",
+   "class": "ToonProfile",
+   "path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_SoftPainterly"
+  },
+  {
+   "name": "TP_Stone",
+   "class": "ToonProfile",
+   "path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Stone"
+  },
+  {
+   "name": "TP_Stucco",
+   "class": "ObjectRedirector",
+   "path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Stucco"
+  },
+  {
+   "name": "TP_Test",
+   "class": "ToonProfile",
+   "path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Test"
+  },
+  {
+   "name": "TP_TwoTone",
+   "class": "ToonProfile",
+   "path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_TwoTone"
+  },
+  {
+   "name": "TP_Warm",
+   "class": "ToonProfile",
+   "path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Warm"
+  },
+  {
+   "name": "TP_Water",
+   "class": "ObjectRedirector",
+   "path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Water"
+  },
+  {
+   "name": "TP_Wood",
+   "class": "ObjectRedirector",
+   "path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Wood"
+  }
+ ]
+}

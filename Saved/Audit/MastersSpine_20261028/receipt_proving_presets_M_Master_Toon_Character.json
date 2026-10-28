@@ -1,0 +1,313 @@
+{
+ "schema": "melodia.proving_presets_receipt.v1",
+ "when": "2026-10-28",
+ "master": "M_Master_Toon_Character",
+ "master_path": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Character",
+ "out_dir": "/Game/EnvSandbox/Materials/Instances/Proving",
+ "presets": [
+  {
+   "name": "MI_Prove_ToonChar_01_Surface",
+   "status": "repaired_authored",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_ToonChar_01_Surface",
+   "overrides": {
+    "CharacterBaseTint": {
+     "kind": "vector",
+     "value": [
+      0.93,
+      0.86,
+      0.8,
+      1.0
+     ],
+     "readback": [
+      0.93,
+      0.86,
+      0.8,
+      1.0
+     ],
+     "ok": true
+    },
+    "CharacterRoughness": {
+     "kind": "scalar",
+     "value": 0.7,
+     "readback": 0.7,
+     "ok": true
+    },
+    "CharacterRoughnessBlend": {
+     "kind": "scalar",
+     "value": 0.5,
+     "readback": 0.5,
+     "ok": true
+    }
+   },
+   "saved_return": true
+  },
+  {
+   "name": "MI_Prove_ToonChar_02_Maps",
+   "status": "repaired_authored",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_ToonChar_02_Maps",
+   "overrides": {
+    "CharacterUVTiling": {
+     "kind": "scalar",
+     "value": 2.0,
+     "readback": 2.0,
+     "ok": true
+    },
+    "CharacterAlbedo": {
+     "kind": "texture",
+     "value": "/Game/EnvSandbox/Materials/Textures/T_Ramp_4Band",
+     "readback": "<Object '/Game/EnvSandbox/Materials/Textures/T_Ramp_4Band.T_Ramp_4Band' (0x00000267020C0C00) Class 'Texture2D'>",
+     "ok": true
+    },
+    "CharacterRoughnessMap": {
+     "kind": "texture",
+     "value": "/Game/EnvSandbox/Materials/Textures/T_Noise_White",
+     "readback": "<Object '/Game/EnvSandbox/Materials/Textures/T_Noise_White.T_Noise_White' (0x00000266F3916000) Class 'Texture2D'>",
+     "ok": true
+    }
+   },
+   "saved_return": true
+  },
+  {
+   "name": "MI_Prove_ToonChar_03_Role",
+   "status": "repaired_authored",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_ToonChar_03_Role",
+   "overrides": {
+    "CharacterMaterialID": {
+     "kind": "scalar",
+     "value": 2.0,
+     "readback": 2.0,
+     "ok": true
+    },
+    "CharacterRoleBlend": {
+     "kind": "scalar",
+     "value": 0.4,
+     "readback": 0.4,
+     "ok": true
+    },
+    "CharacterRoleTint": {
+     "kind": "vector",
+     "value": [
+      0.75,
+      0.65,
+      0.95,
+      1.0
+     ],
+     "readback": [
+      0.75,
+      0.65,
+      0.95,
+      1.0
+     ],
+     "ok": true
+    }
+   },
+   "saved_return": true
+  },
+  {
+   "name": "MI_Prove_ToonChar_04_FaceSDF",
+   "status": "repaired_authored",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_ToonChar_04_FaceSDF",
+   "overrides": {
+    "CharacterFaceSDFTiling": {
+     "kind": "scalar",
+     "value": 2.0,
+     "readback": 2.0,
+     "ok": true
+    },
+    "CharacterFaceSDFStrength": {
+     "kind": "scalar",
+     "value": 0.8,
+     "readback": 0.8,
+     "ok": true
+    },
+    "CharacterFaceTint": {
+     "kind": "vector",
+     "value": [
+      0.92,
+      0.72,
+      0.62,
+      1.0
+     ],
+     "readback": [
+      0.92,
+      0.72,
+      0.62,
+      1.0
+     ],
+     "ok": true
+    }
+   },
+   "saved_return": true
+  },
+  {
+   "name": "MI_Prove_ToonChar_05_Sheen",
+   "status": "repaired_authored",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_ToonChar_05_Sheen",
+   "overrides": {
+    "CharacterHeroSheenPower": {
+     "kind": "scalar",
+     "value": 16.0,
+     "readback": 16.0,
+     "ok": true
+    },
+    "CharacterHeroSheenStrength": {
+     "kind": "scalar",
+     "value": 1.0,
+     "readback": 1.0,
+     "ok": true
+    },
+    "CharacterHeroSheenColor": {
+     "kind": "vector",
+     "value": [
+      1.0,
+      0.88,
+      0.5,
+      1.0
+     ],
+     "readback": [
+      1.0,
+      0.88,
+      0.5,
+      1.0
+     ],
+     "ok": true
+    },
+    "CharacterEmissiveBase": {
+     "kind": "vector",
+     "value": [
+      0.04,
+      0.02,
+      0.012,
+      1.0
+     ],
+     "readback": [
+      0.04,
+      0.02,
+      0.012,
+      1.0
+     ],
+     "ok": true
+    }
+   },
+   "saved_return": true
+  },
+  {
+   "name": "MI_Prove_ToonChar_06_Wind",
+   "status": "repaired_authored",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_ToonChar_06_Wind",
+   "overrides": {
+    "CharacterWindSpeed": {
+     "kind": "scalar",
+     "value": 2.0,
+     "readback": 2.0,
+     "ok": true
+    },
+    "CharacterWindAmplitude": {
+     "kind": "scalar",
+     "value": 0.35,
+     "readback": 0.35,
+     "ok": true
+    }
+   },
+   "saved_return": true
+  },
+  {
+   "name": "MI_Prove_ToonChar_07_Cymatics",
+   "status": "repaired_authored",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_ToonChar_07_Cymatics",
+   "overrides": {
+    "CymaticsLandscapeAmount": {
+     "kind": "scalar",
+     "value": 0.6,
+     "readback": 0.6,
+     "ok": true
+    },
+    "CymaticsTint": {
+     "kind": "vector",
+     "value": [
+      0.82,
+      0.74,
+      1.0,
+      1.0
+     ],
+     "readback": [
+      0.82,
+      0.74,
+      1.0,
+      1.0
+     ],
+     "ok": true
+    }
+   },
+   "saved_return": true
+  },
+  {
+   "name": "MI_Prove_ToonChar_08_Chladni",
+   "status": "repaired_authored",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_ToonChar_08_Chladni",
+   "overrides": {
+    "ChladniUVTiling": {
+     "kind": "scalar",
+     "value": 3.0,
+     "readback": 3.0,
+     "ok": true
+    },
+    "ChladniIntensity": {
+     "kind": "scalar",
+     "value": 1.0,
+     "readback": 1.0,
+     "ok": true
+    },
+    "HarmonizeActive": {
+     "kind": "scalar",
+     "value": 1.0,
+     "readback": 1.0,
+     "ok": true
+    },
+    "BeatAccent": {
+     "kind": "scalar",
+     "value": 1.5,
+     "readback": 1.5,
+     "ok": true
+    },
+    "ChladniEmissiveStrength": {
+     "kind": "scalar",
+     "value": 4.0,
+     "readback": 4.0,
+     "ok": true
+    },
+    "ChladniSheenStrength": {
+     "kind": "scalar",
+     "value": 0.9,
+     "readback": 0.9,
+     "ok": true
+    },
+    "ChladniPearlSilkColor": {
+     "kind": "vector",
+     "value": [
+      0.88,
+      0.84,
+      1.0,
+      1.0
+     ],
+     "readback": [
+      0.88,
+      0.84,
+      1.0,
+      1.0
+     ],
+     "ok": true
+    }
+   },
+   "saved_return": true
+  }
+ ],
+ "non_mi_collection_params": [
+  "Cymatic_BeatPulse"
+ ],
+ "param_set_sizes": {
+  "scalar": 18,
+  "vector": 8,
+  "texture": 5
+ }
+}

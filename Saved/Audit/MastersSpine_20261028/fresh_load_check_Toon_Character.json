@@ -1,0 +1,135 @@
+{
+ "when": "2026-10-28",
+ "rows": [
+  {
+   "name": "MI_Prove_ToonChar_01_Surface",
+   "fresh_load": "OK",
+   "parent": "<Object '/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Character.M_",
+   "n_scalar": 2,
+   "n_vector": 1,
+   "n_texture": 0,
+   "scalar_names": [
+    "?",
+    "?"
+   ],
+   "vector_names": [
+    "?"
+   ],
+   "texture_names": []
+  },
+  {
+   "name": "MI_Prove_ToonChar_02_Maps",
+   "fresh_load": "OK",
+   "parent": "<Object '/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Character.M_",
+   "n_scalar": 1,
+   "n_vector": 0,
+   "n_texture": 2,
+   "scalar_names": [
+    "?"
+   ],
+   "vector_names": [],
+   "texture_names": [
+    "?",
+    "?"
+   ]
+  },
+  {
+   "name": "MI_Prove_ToonChar_03_Role",
+   "fresh_load": "OK",
+   "parent": "<Object '/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Character.M_",
+   "n_scalar": 2,
+   "n_vector": 1,
+   "n_texture": 0,
+   "scalar_names": [
+    "?",
+    "?"
+   ],
+   "vector_names": [
+    "?"
+   ],
+   "texture_names": []
+  },
+  {
+   "name": "MI_Prove_ToonChar_04_FaceSDF",
+   "fresh_load": "OK",
+   "parent": "<Object '/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Character.M_",
+   "n_scalar": 2,
+   "n_vector": 1,
+   "n_texture": 0,
+   "scalar_names": [
+    "?",
+    "?"
+   ],
+   "vector_names": [
+    "?"
+   ],
+   "texture_names": []
+  },
+  {
+   "name": "MI_Prove_ToonChar_05_Sheen",
+   "fresh_load": "OK",
+   "parent": "<Object '/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Character.M_",
+   "n_scalar": 2,
+   "n_vector": 2,
+   "n_texture": 0,
+   "scalar_names": [
+    "?",
+    "?"
+   ],
+   "vector_names": [
+    "?",
+    "?"
+   ],
+   "texture_names": []
+  },
+  {
+   "name": "MI_Prove_ToonChar_06_Wind",
+   "fresh_load": "OK",
+   "parent": "<Object '/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Character.M_",
+   "n_scalar": 2,
+   "n_vector": 0,
+   "n_texture": 0,
+   "scalar_names": [
+    "?",
+    "?"
+   ],
+   "vector_names": [],
+   "texture_names": []
+  },
+  {
+   "name": "MI_Prove_ToonChar_07_Cymatics",
+   "fresh_load": "OK",
+   "parent": "<Object '/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Character.M_",
+   "n_scalar": 1,
+   "n_vector": 1,
+   "n_texture": 0,
+   "scalar_names": [
+    "?"
+   ],
+   "vector_names": [
+    "?"
+   ],
+   "texture_names": []
+  },
+  {
+   "name": "MI_Prove_ToonChar_08_Chladni",
+   "fresh_load": "OK",
+   "parent": "<Object '/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Character.M_",
+   "n_scalar": 6,
+   "n_vector": 1,
+   "n_texture": 0,
+   "scalar_names": [
+    "?",
+    "?",
+    "?",
+    "?",
+    "?",
+    "?"
+   ],
+   "vector_names": [
+    "?"
+   ],
+   "texture_names": []
+  }
+ ]
+}

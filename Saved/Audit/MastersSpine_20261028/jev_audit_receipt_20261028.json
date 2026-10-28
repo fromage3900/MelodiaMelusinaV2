@@ -1,0 +1,14 @@
+{
+  "schema": "melodia.jev_audit_receipt.v1",
+  "when": "2026-10-28",
+  "title": "Jev judgment: next material-lane step after the six-master spine polish",
+  "route": {"provider": "nous", "model": "reflection/beam-1.0-501b-a23b:free", "source": "jev-live", "transport": "jev_mcp.jev_ask called directly from agent driver (stdio MCP not mounted in opencode session)"},
+  "judgments": [
+    {"question": "thin-context probe (direct API, options with inline descriptions)", "choice": "B", "confidence": 0.72, "reason": "Shared PBR-clamp + Toksvig MF lane is the highest-leverage missing cross-master material lane; improves all six masters rather than a single master or research-only step."},
+    {"question": "full-context ask (adapter-validated, context carries option descriptions + landed-state facts + live-use lens)", "choice": "A", "confidence": 0.78, "reason": "Worked, in-editor-verifiable preset instances on the newly canonized families give immediate production value with low risk and no graph surgery."}
+  ],
+  "synthesis": "A (proving-preset MI families on Character/Water/Toon_Universal) is the next step; B (shared clamp MF) is the second thread and benefits from A: preset instances make the clamp-MF adoption visually proveable per master. Jev verdict flipped when context was enriched - the ask-quality dependency is the expected behavior of the service.",
+  "service_fix_today": "jev_mcp.py NOUS_MODEL pin retired (LongCat-2.5-preview:free 404 'no longer free'); now env-default reflection/beam-1.0-501b-a23b:free; call_nous now sends response_format json_object for Nous (beam validated through it). ornith/ornith-1.5-122b:free and stepfun/step-3.7-flash:free confirmed available as alternates.",
+  "adapter_note": "jev_ask validates choice-in-options strictly; models answering with a letter ('B') fail ValueError against long option strings - driver keeps option labels as bare letters and carries nuance in context. Harden the adapter later if desirable (not repo code).",
+  "ask_files": "C:/Users/froma/AppData/Local/Temp/opencode/jev_audit_ask.py (driver), jev_mcp.py (canonical adapter)"
+}
