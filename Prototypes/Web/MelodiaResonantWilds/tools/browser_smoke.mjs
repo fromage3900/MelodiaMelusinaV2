@@ -13,6 +13,7 @@ const browser = await chromium.launch({
 const variants = [
   { name: 'desktop-default', query: '', chibi: false, shrine: false, mobile: false },
   { name: 'desktop-chibi-shrine', query: '?avatar=chibi&shrine=glb', chibi: true, shrine: true, mobile: false },
+  { name: 'desktop-mixamo', query: '?avatar=mixamo', chibi: false, shrine: false, mobile: false, mixamo: true },
   { name: 'mobile-baseline', query: '?chladni=0&caustics=0', chibi: false, shrine: false, mobile: true },
   { name: 'desktop-legacy-render', query: '?render=legacy', chibi: false, shrine: false, mobile: false, legacy: true },
   { name: 'desktop-bellflower-off', query: '?bellflower=0', chibi: false, shrine: false, mobile: false, bellflower: false },
@@ -57,7 +58,7 @@ try {
     await page.waitForFunction(() => !!window.__melodia &&
       !document.querySelector('#play').disabled, null, { timeout: 90000 });
     const before = await page.evaluate(() => ({
-      chibi: typeof window.__melodia.player.m.pose === 'function',
+      chibi: typeof window.__melodia.player.m.pose === 'function' && !window.__melodia.player.m.mixamo,
       shrineCount: window.__melodia.activities.pois.filter(p => p.type === 'shrine').length,
       uniforms: Object.keys(window.__melodia.world.uniforms),
       legacyTerrain: !!window.__melodia.world.terrainMat.isMeshLambertMaterial,
@@ -94,7 +95,7 @@ try {
     assert.equal(before.painterly, !!test.painterly, test.name + ': wrong painterly state');
     assert.equal(before.postfx, !!test.postfx, test.name + ': unexpected postprocessing state');
     assert.equal(before.worldexp, !!test.worldexp, test.name + ': world expansion flag mismatch');
-    if (test.worldexp) assert.ok(before.destinations >= 10, test.name + ': destination POIs not generated');
+    if (test.worldexp) assert.ok(before.destinations >= 16, test.name + ': destination POIs not generated');
     else assert.equal(before.destinations, 0, test.name + ': default map received opt-in destinations');
     if (test.npr) assert.equal(before.paletteSize, 12, test.name + ': missing RGB NPR gradient');
     else if (!test.legacy) assert.equal(before.paletteSize, 3, test.name + ': v1 gradient regression');
@@ -111,6 +112,9 @@ try {
       await page.waitForFunction(() => window.__melodia.activities.pois.some(
         p => p.type === 'shrine' && !!p.assetVisual
       ), null, { timeout: 45000 });
+    }
+    if (test.mixamo) {
+      await page.waitForFunction(() => window.__melodia.player.m?.mixamo === true, null, { timeout: 45000 });
     }
     if (test.tune) {
       await page.waitForFunction(() => window.__melodiaShaderTuner?.enabled === true, null, { timeout: 10000 });

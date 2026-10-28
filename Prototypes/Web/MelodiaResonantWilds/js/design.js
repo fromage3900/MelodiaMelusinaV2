@@ -464,6 +464,45 @@ export const BOUNTY_TEMPLATES = [
   { id: 'kills', text: 'Defeat {n} slimes', n: [30, 60] },
 ];
 
+/** Shorewake Daily Recital — one board per calendar day (UTC day key). */
+export const DAILY_RECITAL_TEMPLATES = [
+  { id: 'visit_dest', text: 'Visit {n} named destination', n: [1, 2], kind: 'destination' },
+  { id: 'perfect_camp', text: 'Land {n} Perfect hits in the wilds', n: [12, 24], kind: 'perfects' },
+  { id: 'cast_encore', text: 'Cast Encore {n} times', n: [1, 2], kind: 'encore' },
+  { id: 'whim', text: 'Frame {n} Whim photo', n: [1, 2], kind: 'photo' },
+  { id: 'harmonize', text: 'Ask Sheep to Harmonize {n} blot', n: [1, 2], kind: 'cleanse' },
+  { id: 'bridge', text: 'Open {n} Phrase Bridge', n: [1, 1], kind: 'gate' },
+];
+
+/**
+ * Maestro Encore exams — telegraphed counter Encore per biome Maestro.
+ * First clear while that Encore is (or was) active unlocks a concert skin.
+ */
+export const MAESTRO_EXAMS = Object.freeze({
+  sakura_terrace: { encore: 'cascade', hint: 'Crescendo Cascade answers the Waltz swarm' },
+  liquid_cathedral: { encore: 'duet', hint: 'Choral Duet answers the Nave blot-phase' },
+  choir_marsh: { encore: 'modulation', hint: 'Key Modulation softens Mist Choir dissonance' },
+  fugue_grotto: { encore: 'subject', hint: 'Subject & Answer mirrors the Fugue Maw' },
+  glass_orchard: { encore: 'veil', hint: 'Aria Veil Step dances the Prismarch' },
+  cadence_crystal_ridge: { encore: 'cadenza', hint: 'Break Cadenza shatters the Toccata bar' },
+  starlit_moor: { encore: 'reprise', hint: 'Encore Reprise echoes the Harbinger phrase' },
+  aurora_glacier: { encore: 'dew', hint: 'Resonance Dew Bloom thaws the Fugue-Wyrm' },
+});
+
+/** Concert skins unlocked by Maestro exams (fashion-only). */
+export const ENCORE_CONCERT_SKINS = Object.freeze({
+  cascade: { id: 'concert_cascade', name: 'Waltz Concert Trail', color: '#ffc98a', particle: 1 },
+  subject: { id: 'concert_subject', name: 'Fugue Concert Trail', color: '#b9a0ff', particle: 3 },
+  cadenza: { id: 'concert_cadenza', name: 'Break Concert Trail', color: '#ff7a90', particle: 2 },
+  reprise: { id: 'concert_reprise', name: 'Starlit Concert Trail', color: '#ffe9a8', particle: 1 },
+  duet: { id: 'concert_duet', name: 'Nave Concert Trail', color: '#8fd8ff', particle: 3 },
+  veil: { id: 'concert_veil', name: 'Glass Concert Trail', color: '#f0e8ff', particle: 1 },
+  modulation: { id: 'concert_modulation', name: 'Mist Concert Trail', color: '#a8f5c8', particle: 3 },
+  dew: { id: 'concert_dew', name: 'Aurora Concert Trail', color: '#c8f4ff', particle: 3 },
+  overture: { id: 'concert_overture', name: 'Daily Overture Trail', color: '#f7c4d8', particle: 1 },
+  recital: { id: 'concert_recital', name: 'Rift Concert Trail', color: '#d4b0ff', particle: 2 },
+});
+
 export function xpToNext(level) {
   return Math.floor(45 * Math.pow(level, 1.55) + 25 * level);
 }

@@ -15,7 +15,16 @@ assert.match(a, /get\('worldexp'\) === '1'/);
 assert.match(design, /get\('dressing'\) === 'dense'/);
 assert.match(a, /planExploration\(b, bi, rng, this\.pois\.slice\(\)\)/);
 assert.match(smoke, /desktop-worldexp-postfx/);
-assert.match(sw, /resonant-wilds-v9/);
+assert.match(smoke, /destinations >= 16/);
+assert.match(sw, /resonant-wilds-v10-20261028-nikki-dest/);
+const ow = read('js/openworld.js');
+for (const id of ['choir_marsh', 'glass_orchard', 'starlit_moor']) {
+  assert.match(ow, new RegExp(id + '\\s*:'));
+}
+assert.match(ow, /Mist Choir Reedwalk/);
+assert.match(ow, /Prism Picnic Glade/);
+assert.match(ow, /Starlit Moongate/);
+assert.match(ow, /fashionPhoto/);
 for (const p of ['js/openworld.js','js/postfx.js','vendor/postprocessing/OutlinePass.js',
  'vendor/postprocessing/UnrealBloomPass.js','vendor/shaders/FXAAShader.js']) {
  assert.ok(existsSync(join(root,p)), p+' missing');

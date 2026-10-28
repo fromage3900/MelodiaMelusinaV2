@@ -1,12 +1,16 @@
 // Save profile, XP/levels, bounties and exploration.
 
-import { BOUNTY_TEMPLATES, ELEMENTS, STARTING_SKILLS, SKILLS, WEB_SKILLS, MOTIF_BY_ID, xpToNext, MAX_LEVEL, RULES } from './design.js';
+import { BOUNTY_TEMPLATES, DAILY_RECITAL_TEMPLATES, ELEMENTS, STARTING_SKILLS, SKILLS, WEB_SKILLS, MOTIF_BY_ID, xpToNext, MAX_LEVEL, RULES } from './design.js';
 import { pick, randInt } from './util.js';
 import { WORLD_RADIUS } from './design.js';
 
 export const SAVE_KEY = 'melodia_resonant_wilds_v2';
 export const SAVE_KEY_LEGACY = 'melodia_resonant_wilds_v1';
 const GRID = 72;
+
+export function dayKey(ms = Date.now()) {
+  return new Date(ms).toISOString().slice(0, 10);
+}
 
 export function defaultProfile() {
   return {
@@ -17,7 +21,9 @@ export function defaultProfile() {
     loadout: STARTING_SKILLS.slice(), learned: STARTING_SKILLS.slice(),
     blessings: [], pylons: ['pylon_hub'], shrines: [], sheets: [], vistas: [], photos: [], gates: [], cleanses: [], destinations: [], dews: [],
     dewBonusTier: 0, destBuffs: {},
-    riftTier: 0, bounties: null, bountySet: 0, movement: 0, maestros: [],
+    phrasebook: {}, concertSkins: [], fashionGold: [],
+    daily: null,
+    riftTier: 0, bounties: null, bountySet: 0, movement: 0, maestros: [], maestroExams: [],
     settings: { music: 0.75, sfx: 0.9, offsetMs: 0, difficulty: 'standard', quality: 'auto', autoSalvage: false, shake: true, encoreVariant: 'cascade' },
     stats: { kills: 0, perfects: 0, bestCombo: 0, bosses: 0, rifts: 0, playSeconds: 0 },
     explored: '', tutorial: 0, lastSeen: 0, spawn: null,
@@ -38,6 +44,10 @@ export function loadProfile() {
       motifs: { ...(p.motifs || {}) },
       echoLineage: { ...base.echoLineage, ...(p.echoLineage || {}) },
       oshiAria: p.oshiAria ?? null,
+      phrasebook: { ...(p.phrasebook || {}) },
+      concertSkins: Array.isArray(p.concertSkins) ? p.concertSkins : [],
+      fashionGold: Array.isArray(p.fashionGold) ? p.fashionGold : [],
+      maestroExams: Array.isArray(p.maestroExams) ? p.maestroExams : [],
       v: 2,
     };
     // One-time migrate: ensure icons on existing items
@@ -75,6 +85,68 @@ export class Progress {
     this.grid = new Uint8Array(GRID * GRID);
     this._decodeExplored(game.profile.explored);
     if (!game.profile.bounties) game.profile.bounties = [this.newBounty(), this.newBounty(), this.newBounty()];
+    this.ensureDaily();
+  }
+
+  // ------------------------------------------------------------ Daily Recital
+  ensureDaily() {
+    const pr = this.g.profile;
+    const today = dayKey();
+    if (pr.daily && pr.daily.day === today && Array.isArray(pr.daily.tasks) && pr.daily.tasks.length) return pr.daily;
+    pr.daily = this.rollDaily(today);
+    return pr.daily;
+  }
+
+  rollDaily(day = dayKey()) {
+    const used = new Set();
+    const tasks = [];
+    const pool = DAILY_RECITAL_TEMPLATES.slice();
+    while (tasks.length < 3 && pool.length) {
+      const i = Math.floor(Math.random() * pool.length);
+      const t = pool.splice(i, 1)[0];
+      if (used.has(t.id)) continue;
+      used.add(t.id);
+      const n = randInt(Math.random, t.n[0], t.n[1]);
+      tasks.push({ tid: t.id, kind: t.kind, text: t.text.replace('{n}', n), n, prog: 0, done: false });
+    }
+    return { day, tasks, claimed: false };
+  }
+
+  dailyEvent(kind, amount = 1) {
+    const daily = this.ensureDaily();
+    let changed = false;
+    for (const t of daily.tasks) {
+      if (t.done || t.kind !== kind) continue;
+      t.prog = Math.min(t.n, t.prog + amount);
+      if (t.prog >= t.n) {
+        t.done = true;
+        this.g.ui.toast(`Daily Recital: ${t.text}`, 'gold');
+        this.g.audio.chime?.(3);
+      }
+      changed = true;
+    }
+    if (changed) this.g.save();
+  }
+
+  claimDaily() {
+    const g = this.g, pr = g.profile;
+    const daily = this.ensureDaily();
+    if (daily.claimed) { g.ui.toast('Daily Recital already claimed today', 'soft'); return false; }
+    if (!daily.tasks.every((t) => t.done)) { g.ui.toast('Finish all three Daily Recital tasks first', 'lavender'); return false; }
+    daily.claimed = true;
+    pr.notes += 12;
+    pr.gold += 80 + pr.level * 10;
+    this.addXp(xpToNext(pr.level) * 0.22);
+    // Fashion-only trail unlock for today's board.
+    if (!pr.concertSkins.includes('overture')) {
+      pr.concertSkins.push('overture');
+      g.ui.banner('Daily Recital complete', '+12 Golden Notes · Daily Overture Trail unlocked');
+    } else {
+      g.ui.banner('Daily Recital complete', '+12 Golden Notes · gold & XP');
+    }
+    g.audio.levelUp();
+    g.save();
+    return true;
   }
 
   // ------------------------------------------------------------ XP
@@ -127,6 +199,9 @@ export class Progress {
         this.g.audio.levelUp();
       }
     }
+    // Mirror a few bounty kinds into Daily Recital progress.
+    if (type === 'perfects') this.dailyEvent('perfects', amount);
+    if (type === 'chests' || type === 'shrine') { /* board-adjacent; no auto mirror */ }
   }
 
   claim(i) {

@@ -134,7 +134,10 @@ export class UI {
       }
       else if (c === 'BracketLeft') g.encore(true);
       else if (c === 'BracketRight') { g.encoreSys.cycle(-1); }
-      else if (c === 'KeyH') g.sheep.harmonize(false);
+      else if (c === 'KeyH') {
+        g.sheep.setConcertHold(true);
+        g.sheep.harmonize(false);
+      }
       else if (c === 'KeyX' || c === 'Enter') g.interact();
       else if (c === 'KeyI') this.open('wardrobe');
       else if (c === 'KeyK') this.open('skills');
@@ -144,6 +147,7 @@ export class UI {
     window.addEventListener('keyup', (e) => {
       this.keys.delete(e.code);
       if (e.code === 'Space' || e.code === 'KeyJ') this.attackHeld = false;
+      if (e.code === 'KeyH') g.sheep.setConcertHold(false);
     });
     window.addEventListener('blur', () => { this.keys.clear(); this.attackHeld = false; });
   }
@@ -653,7 +657,20 @@ export class UI {
 
   render_bounties(body) {
     const g = this.g, pr = g.profile;
-    body.innerHTML = `<div class="card"><h3>Bounties · Chorus Cache ${pr.bountySet}/3</h3><div class="muted">Claim three bounties for a Chorus Cache (Virtuoso item + 25 Golden Notes). New bounties roll in as you claim.</div></div>
+    const daily = g.progress.ensureDaily();
+    const dailyDone = daily.tasks.filter((t) => t.done).length;
+    const phraseN = Object.keys(pr.phrasebook || {}).length;
+    const concertN = (pr.concertSkins || []).length;
+    body.innerHTML = `<div class="card"><h3>Daily Recital · ${daily.day}</h3>
+      <div class="muted">Three tasks each UTC day. Clear all for Golden Notes + Daily Overture Trail (fashion-only).</div>
+      <div style="margin-top:8px">${daily.tasks.map((t) => `<div class="bounty ${t.done ? 'done' : ''}"><b>${esc(t.text)}</b>
+        <div class="p"><i style="width:${(t.prog / t.n) * 100}%"></i></div>
+        <div class="muted">${t.prog}/${t.n}</div></div>`).join('')}</div>
+      <div style="margin-top:8px;display:flex;justify-content:space-between;align-items:center">
+        <span class="muted">${dailyDone}/3 · ${daily.claimed ? 'claimed today' : 'claim when complete'}</span>
+        <button class="btn gold" data-daily="1" ${daily.claimed || dailyDone < 3 ? 'disabled' : ''}>Claim Recital</button>
+      </div></div>
+      <div class="card" style="margin-top:10px"><h3>Bounties · Chorus Cache ${pr.bountySet}/3</h3><div class="muted">Claim three bounties for a Chorus Cache (Virtuoso item + 25 Golden Notes). New bounties roll in as you claim.</div></div>
       <div style="margin-top:10px">${pr.bounties.map((b, i) => `<div class="bounty ${b.done ? 'done' : ''}"><b>${esc(b.text)}</b>
         <div class="p"><i style="width:${(b.prog / b.n) * 100}%"></i></div>
         <div style="display:flex;justify-content:space-between;align-items:center"><span class="muted">${b.prog}/${b.n} · reward: gold, XP, Resonant+ item, 6 Golden Notes</span>
@@ -662,8 +679,12 @@ export class UI {
         <span>Slimes defeated</span><span>${fmt(pr.stats.kills)}</span><span>Perfect hits</span><span>${fmt(pr.stats.perfects)}</span>
         <span>Best combo</span><span>${pr.stats.bestCombo}</span><span>Maestros defeated</span><span>${pr.stats.bosses}</span>
         <span>Rifts cleared</span><span>${pr.stats.rifts} (best tier ${pr.riftTier})</span><span>Shrines attuned</span><span>${pr.shrines.length}/15</span>
-        <span>Sheet music</span><span>${pr.sheets.length}/25</span><span>Explored</span><span>${g.progress.percent()}%</span></div></div>`;
+        <span>Sheet music</span><span>${pr.sheets.length}/25</span><span>Explored</span><span>${g.progress.percent()}%</span>
+        <span>Phrasebook biomes</span><span>${phraseN}/8</span><span>Concert trails</span><span>${concertN}</span>
+        <span>Fashion gold frames</span><span>${(pr.fashionGold || []).length}</span><span>Encore exams</span><span>${(pr.maestroExams || []).length}</span>
+      </div></div>`;
     body.querySelectorAll('[data-c]').forEach((el) => el.addEventListener('click', () => { g.progress.claim(+el.dataset.c); this.render(); }));
+    body.querySelectorAll('[data-daily]').forEach((el) => el.addEventListener('click', () => { g.progress.claimDaily(); this.render(); }));
   }
 
   render_map(body) {

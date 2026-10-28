@@ -27,8 +27,9 @@ No build step. three.js r170 is vendored in `vendor/` (MIT, licence alongside).
 | Four skill buttons | Q E R F or 1–4 | Skills (cost Harmony ◆, cooldowns in beats) |
 | ⤳ | Shift / right click | Dodge. On the landing beat it becomes a **Perfect Dodge** |
 | ENCORE | T / C | Ultimate: ×3 burst, then two bars of guaranteed Perfects |
-| Gold pill | X / Enter | Interact (forge, bounties, font, rift, shrine, Maestro, pylon) |
-| Menu row | I K M B | Wardrobe · Skills · Map (fast travel) · Bounties |
+| Gold pill | X / Enter | Interact (forge, Daily Recital / bounties, font, rift, shrine, Maestro, pylon) |
+| Sheep | H (tap / double-tap / hold) | Harmonize · sniff Dew/blots · concert mode |
+| Menu row | I K M B | Wardrobe · Skills · Map (fast travel) · Daily Recital / Bounties |
 
 ## 🗺 Open-world workflow (mobile anime research → live rules)
 
@@ -41,7 +42,7 @@ No build step. three.js r170 is vendored in `vendor/` (MIT, licence alongside).
 | Genshin gate → reveal → landmark | Hub gate arches → Reveal overlooks (~140 m) → biome core landmark |
 | Genshin exploration density | Budgeted camps / chests / shrines / sheets / chimes / whim frames per biome |
 | Nikki outfit → puzzle → space | Phrase Bridges, Aria Veils (Wardrobe), sheep Harmonize cleanses, Whim Frame angle challenges |
-| Nikki named subareas (Florawish-style) | 10 authored micro-destinations + Resonance Dew collectibles; float/purify gates |
+| Nikki named subareas (Florawish-style) | 16 authored micro-destinations (2 per biome) + Resonance Dew; fashion photo frames in Mist/Glass/Starlit; float/purify gates |
 | Nikki “details all the time” look | Denser near dressing, taller landmarks, selective UnrealBloomPass, soft TOD tint, gown sway |
 | ZZZ signature hub district | Shorewake keeps forge / board / font / rift within a short walk |
 | WuWa TOD / atmosphere maintainability | Soft sun/fog TOD cycle + biome palette swaps; workflow keeps prop budgets phone-safe |
@@ -64,6 +65,12 @@ Inspect the live recipe in the browser console: `window.__rwOpenWorld`.
   9. **Resonance Dew Bloom** — spend Dew for a cymatic blast + map ping
   10. **Rift Recital** — mid-Rift Echo Phrase bank + buff
   Each cast has a tuned SFX stinger, bloom pulse (when `?postfx=1`), and ring/particle juice. Cycle shows a **one-beat preview**; biome-favored Encores get +12% power; fashion skins (gown/shoes) recolor trails only; end-of-cast toast replays the highlight.
+- **Shorewake Daily Recital** (hub board): three UTC-day tasks (destinations, Perfects, Encore casts, Whim frames, Harmonize, bridges). Claim all for Golden Notes + **Daily Overture Trail**.
+- **Maestro Encore exams:** each biome Maestro telegraphs a counter Encore; cast it during the fight to unlock that Encore's **concert trail** (fashion-only).
+- **Phrasebook:** answer a shrine at ≥70% to ink that biome — Phrase Bridges there then accept Good+.
+- **Sheep concert mode:** hold **H** (~0.35s) to toggle a beat-ring metronome that auto-Harmonizes nearby blots. Double-tap H still sniffs for Dew/blots.
+- **Fashion photo setpieces** (Mist Choir / Glass Orchard / Starlit Moor destinations): Whim Frames that need the matching Encore selected for a gold photo.
+- **Mixamo hero (opt-in):** `?avatar=mixamo` loads `assets/models/mixamo-hero.glb` (Three.js Mixamo Soldier) with Idle/Walk/Run mixer; procedural Melusina stays the default fallback. Also `?avatar=chibi`.
 - **Dew sets & destinations:** first visit grants a 90s motif buff; Dew milestones at 3 / 6 / 10 (Encore charge → Harmony+buff → full Encore + extra Perfect beat); float destinations reveal a **secret ledge** after Dew. Double-tap **H** (Sheep Harmonize) out of combat sniffs toward Dew/blots; Whim Frames can sheep-photobomb.
 - **Open world.** Eight biomes sit around Shorewake Village on a **2×** map (radius 1400). Each has its own tempo, meter, key, ethereal score style, and a continuous **region ambience** bed:
   - Petal Cantata: soft waltz, 3/4
@@ -85,7 +92,7 @@ Inspect the live recipe in the browser console: `window.__rwOpenWorld`.
   - Music-key shrines: call and response, where you answer the shrine's phrase on the next bar
   - **Vista overlooks** (auto-reveal banners) and **Whim Frames** / **chime clusters** from the OW density budget
   - **Phrase Bridges** (answer Great/Perfect on the beat), **Dissonant Blots** (Sheep Harmonize cleanse), **Aria Veils** (equip shoes or an Opus Aria)
-  - **Named destinations** (Petal Tea Terrace, Canal Quay Choir, Echo Amphitheater, …) with **Resonance Dew** collectibles; float ledges need Wardrobe, purify caves need Harmonize
+  - **Named destinations** (16 across all 8 biomes — Petal Tea Terrace, Mist Choir Jetty, Prism Picnic Grove, Nightbell Overlook, …) with **Resonance Dew** collectibles; float ledges need Wardrobe, purify caves need Harmonize
   - Whim Frame **angle challenges** — face the landmark prompt before framing
   - Biome **Maestros** (world bosses) with toughness **BREAK**
   - **Resonance Rifts** (Recitals): tiered, infinite and timed, with DT_Burdens at tier 3+
@@ -94,12 +101,13 @@ Inspect the live recipe in the browser console: `window.__rwOpenWorld`.
 - **Harmonic Synthesis (Atelier / cymatics).** Salvage always yields **Motifs** (element materials) plus gold/shards. At the Forge, spend Motifs into Chladni **cymatic loops** to raise Synthesis Quality and transfer Motifs as traits. **Temper** (hone +1…+15 with pity) is the follow-up step. Opus Aria = Super Trait slot.
 - **Echo Lineage (Uma inheritance).** Clearing a Rift banks a residual Phrase. The next Recital shows pass chance (Arias + Blessings as Score Supports, plus pity). Inherited Motifs buff that run only — re-clear to breed a stronger Echo.
 - **Retention hooks:**
-  - Bounties (3 claimed = Chorus Cache)
+  - Daily Recital board + Bounties (3 claimed = Chorus Cache)
   - Blessings bought with Golden Notes (DT_Blessings)
-  - Shrine attunement: +1% damage each
+  - Shrine attunement: +1% damage each · Phrasebook softens biome bridges
   - Exploration fog on the map
   - An idle reward from your Choral Sheep when you return
   - Staged **Rift Clear** reward reveal
+  - Concert trails from Maestro exams / Daily Recital
 - **Cooler loops + Recital polish:**
   - Beat-synced Harmonic Synthesis (ring pulses + Motif chords)
   - Echo **Phrase Pedigree** card on clear / wardrobe
