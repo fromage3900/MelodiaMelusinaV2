@@ -126,9 +126,16 @@ export class AudioEngine {
     this.master.connect(comp).connect(ctx.destination);
     this.musicBus = ctx.createGain(); this.musicBus.gain.value = this.volumes.music; this.musicBus.connect(this.master);
     this.sfxBus = ctx.createGain(); this.sfxBus.gain.value = this.volumes.sfx; this.sfxBus.connect(this.master);
-    this.reverb = ctx.createConvolver(); this.reverb.buffer = this._impulse(4.2);
-    this.reverbSend = ctx.createGain(); this.reverbSend.gain.value = 0.48;
-    this.reverbSend.connect(this.reverb).connect(this.master);
+    // Dry and wet signals must pass through their own volume bus.
+    // Previously the shared convolver fed master directly: music and SFX still
+    // leaked through when their corresponding slider was set to zero.
+    const impulse = this._impulse(3.0);
+    this.reverb = ctx.createConvolver(); this.reverb.buffer = impulse;
+    this.reverbSend = ctx.createGain(); this.reverbSend.gain.value = 0.40;
+    this.reverbSend.connect(this.reverb).connect(this.musicBus);
+    this.sfxReverb = ctx.createConvolver(); this.sfxReverb.buffer = impulse;
+    this.sfxReverbSend = ctx.createGain(); this.sfxReverbSend.gain.value = 0.28;
+    this.sfxReverbSend.connect(this.sfxReverb).connect(this.sfxBus);
     this.layers = {};
     for (const k of ['drums', 'bass', 'pad', 'arp', 'lead', 'ambience']) {
       const g = ctx.createGain(); g.gain.value = MIX[0][k] ?? 1;
@@ -143,10 +150,10 @@ export class AudioEngine {
   }
 
   setVolumes(music, sfx) {
-    this.volumes = { music, sfx };
+    this.volumes = { music: clamp(Number(music) || 0, 0, 1), sfx: clamp(Number(sfx) || 0, 0, 1) };
     if (!this.ctx) return;
-    this.musicBus.gain.setTargetAtTime(music, this.ctx.currentTime, 0.05);
-    this.sfxBus.gain.setTargetAtTime(sfx, this.ctx.currentTime, 0.05);
+    this.musicBus.gain.setTargetAtTime(this.volumes.music, this.ctx.currentTime, 0.05);
+    this.sfxBus.gain.setTargetAtTime(this.volumes.sfx, this.ctx.currentTime, 0.05);
   }
 
   suspend() { if (this.ctx && this.ctx.state === 'running') this.ctx.suspend(); }
@@ -372,7 +379,7 @@ export class AudioEngine {
     o.start(t); sub.start(t); o.stop(t + dur + 0.08); sub.stop(t + dur + 0.08);
   }
 
-  _pad(t, notes, dur, kind) {
+  _pad(t, notes, dur, kind, out = this.layers.pad) {
     const ctx = this.ctx;
     const f = ctx.createBiquadFilter(); f.type = 'lowpass';
     const tone = {
@@ -390,7 +397,9 @@ export class AudioEngine {
     g.gain.linearRampToValueAtTime(tone.peak, t + tone.atk);
     g.gain.setValueAtTime(tone.peak, t + Math.max(tone.atk, dur - 0.5));
     g.gain.linearRampToValueAtTime(0.0001, t + dur + 0.6);
-    f.connect(g); g.connect(this.layers.pad); g.connect(this.reverbSend);
+    f.connect(g);
+    g.connect(out);
+    g.connect(out === this.sfxBus ? this.sfxReverbSend : this.reverbSend);
     const dets = kind === 'choir' || kind === 'star' ? [-12, 0, 12] : [-7, 7];
     for (const n of notes) {
       for (const det of dets) {
@@ -419,7 +428,7 @@ export class AudioEngine {
     } else if (bed.kind === 'petals') {
       this._voice('bell', t, midi + 12, 1.6, g * 0.7, out, true);
     } else if (bed.kind === 'choir') {
-      this._pad(t, [chord[0], chord[1], chord[2]], 2.4, 'choir');
+      this._pad(t, [chord[0], chord[1], chord[2]], 2.4, 'choir', this.layers.ambience);
     } else if (bed.kind === 'glass' || bed.kind === 'stars') {
       this._voice('bell', t, midi + 12, 2.0, g, out, true);
       if (Math.random() > 0.55) this._voice('bell', t + 0.08, midi + 19, 1.6, g * 0.55, out, true);
@@ -437,7 +446,7 @@ export class AudioEngine {
     const freq = midiToFreq(midi);
     const g = ctx.createGain();
     g.connect(out);
-    if (verb) g.connect(this.reverbSend);
+    if (verb) g.connect(out === this.sfxBus ? this.sfxReverbSend : this.reverbSend);
     if (kind === 'box' || kind === 'bell') {
       const car = ctx.createOscillator(), mod = ctx.createOscillator(), mg = ctx.createGain();
       car.frequency.value = freq; mod.frequency.value = freq * (kind === 'box' ? 3.5 : 2.76);
@@ -542,7 +551,7 @@ export class AudioEngine {
     const t = this.now;
     const n = [1, 2, 3, 4, 7][rarityIndex];
     for (let i = 0; i < n; i++) this._voice(rarityIndex >= 3 ? 'bell' : 'box', t + i * 0.07, this.degree(i * 2, 1 + (i > 3 ? 1 : 0)), 0.9, 0.08 + rarityIndex * 0.02, this.sfxBus, true);
-    if (rarityIndex === 4) this._pad(t, [this.degree(0), this.degree(2), this.degree(4)].map((x) => x + 12), 2.2, 'ice');
+    if (rarityIndex === 4) this._pad(t, [this.degree(0), this.degree(2), this.degree(4)].map((x) => x + 12), 2.2, 'ice', this.sfxBus);
   }
 
   pickup() {
@@ -565,7 +574,7 @@ export class AudioEngine {
     if (!this.running) return;
     const t = this.now;
     for (let i = 0; i < 8; i++) this._voice('saw', t + i * 0.05, this.degree(i, 0), 0.4, 0.08, this.sfxBus, true);
-    this._pad(t, [this.degree(0, 1), this.degree(2, 1), this.degree(4, 1)], 3, 'ice');
+    this._pad(t, [this.degree(0, 1), this.degree(2, 1), this.degree(4, 1)], 3, 'ice', this.sfxBus);
   }
 
   /** Cycle-select blip — short motif fingerprint per Encore id. */
@@ -588,10 +597,10 @@ export class AudioEngine {
     this.encore();
     if (id === 'cascade') {
       for (let i = 0; i < 6; i++) this._voice('saw', t + 0.15 + i * 0.07, this.degree(i % 5, 1), 0.35, 0.1, this.sfxBus, true);
-      this._pad(t, [this.degree(0, 1), this.degree(4, 1), this.degree(7 % 8, 1)], 2.4, 'organ');
+      this._pad(t, [this.degree(0, 1), this.degree(4, 1), this.degree(7 % 8, 1)], 2.4, 'organ', this.sfxBus);
     } else if (id === 'subject') {
       [0, 7, 4].forEach((d, i) => this._voice('pluck', t + i * 0.12, this.degree(d % 8, 0), 0.55, 0.12, this.sfxBus, true));
-      this._pad(t + 0.1, [this.degree(0, 0), this.degree(2, 0), this.degree(4, 0)], 2.2, 'dark');
+      this._pad(t + 0.1, [this.degree(0, 0), this.degree(2, 0), this.degree(4, 0)], 2.2, 'dark', this.sfxBus);
     } else if (id === 'cadenza') {
       this._kick(t, 0.9, this.sfxBus);
       this._noiseHit(t, 0.28, this.sfxBus, 'lowpass', 900, 0.2);
@@ -601,23 +610,23 @@ export class AudioEngine {
     } else if (id === 'duet') {
       this._voice('bell', t, this.degree(0, 1), 1.0, 0.12, this.sfxBus, true);
       this._voice('bell', t + 0.08, this.degree(4, 1), 1.0, 0.12, this.sfxBus, true);
-      this._pad(t, [this.degree(0, 1), this.degree(2, 1), this.degree(4, 1)], 2.8, 'ice');
+      this._pad(t, [this.degree(0, 1), this.degree(2, 1), this.degree(4, 1)], 2.8, 'ice', this.sfxBus);
     } else if (id === 'veil') {
       this._noiseHit(t, 0.18, this.sfxBus, 'bandpass', 1400, 0.22, 0.5);
       [7, 9, 12, 16].forEach((d, i) => this._voice('bell', t + 0.05 + i * 0.09, this.degree(d % 8, Math.floor(d / 8)), 0.7, 0.1, this.sfxBus, true));
     } else if (id === 'overture') {
       [0, 2, 4, 5, 7, 9, 11, 12].forEach((d, i) => this._voice('bell', t + i * 0.055, this.degree(d % 8, Math.floor(d / 8)), 0.55, 0.09, this.sfxBus, true));
-      this._pad(t, [this.degree(0, 1), this.degree(2, 1), this.degree(4, 1), this.degree(5, 1)], 3.2, 'soft');
+      this._pad(t, [this.degree(0, 1), this.degree(2, 1), this.degree(4, 1), this.degree(5, 1)], 3.2, 'soft', this.sfxBus);
     } else if (id === 'modulation') {
-      this._pad(t, [this.degree(0, 1), this.degree(5, 1), this.degree(7 % 8, 1)], 3.0, 'organ');
+      this._pad(t, [this.degree(0, 1), this.degree(5, 1), this.degree(7 % 8, 1)], 3.0, 'organ', this.sfxBus);
       [0, 5, 7, 11].forEach((d, i) => this._voice('organlead', t + 0.1 + i * 0.08, this.degree(d % 8, 1), 0.45, 0.12, this.sfxBus, true));
     } else if (id === 'dew') {
       for (let i = 0; i < 10; i++) this._voice('bell', t + i * 0.04, this.degree((i * 3) % 8, 1), 0.5, 0.07, this.sfxBus, true);
-      this._pad(t, [this.degree(4, 1), this.degree(7 % 8, 1), this.degree(2, 2)], 2.5, 'ice');
+      this._pad(t, [this.degree(4, 1), this.degree(7 % 8, 1), this.degree(2, 2)], 2.5, 'ice', this.sfxBus);
     } else if (id === 'recital') {
       this._kick(t, 0.7, this.sfxBus);
       [0, 3, 7, 10, 14].forEach((d, i) => this._voice('pluck', t + 0.06 + i * 0.07, this.degree(d % 8, Math.floor(d / 8)), 0.5, 0.11, this.sfxBus, true));
-      this._pad(t, [this.degree(0, 0), this.degree(3, 0), this.degree(7 % 8, 0)], 2.8, 'dark');
+      this._pad(t, [this.degree(0, 0), this.degree(3, 0), this.degree(7 % 8, 0)], 2.8, 'dark', this.sfxBus);
     }
   }
 
@@ -678,7 +687,7 @@ export class AudioEngine {
     for (let i = 0; i < n; i++) {
       this._voice(quality >= 70 ? 'bell' : 'box', t + i * 0.07, this.degree(i * 2, 1), 0.7, 0.09 + quality * 0.0008, this.sfxBus, true);
     }
-    if (quality >= 60) this._pad(t, [this.degree(0, 1), this.degree(2, 1), this.degree(4, 1)], 1.6, 'ice');
+    if (quality >= 60) this._pad(t, [this.degree(0, 1), this.degree(2, 1), this.degree(4, 1)], 1.6, 'ice', this.sfxBus);
   }
 
   /** Recital ceremony fanfare: goal | bank | inherit | miss */
@@ -698,12 +707,12 @@ export class AudioEngine {
     }
     if (kind === 'bank') {
       [0, 2, 4, 7, 9, 11, 14].forEach((d, i) => this._voice('bell', t + i * 0.07, this.degree(d, 0), 1.1, 0.13, this.sfxBus, true));
-      this._pad(t, [this.degree(0, 1), this.degree(2, 1), this.degree(4, 1)], 1.8, 'ice');
+      this._pad(t, [this.degree(0, 1), this.degree(2, 1), this.degree(4, 1)], 1.8, 'ice', this.sfxBus);
       return;
     }
     // inherit pass — Winning Live flourish + Motif motif
     [0, 4, 7, 11, 12, 16].forEach((d, i) => this._voice(i > 3 ? 'bell' : 'box', t + i * 0.055, this.degree(d % 12, Math.floor(d / 12)), 0.85, 0.12, this.sfxBus, true));
-    this._pad(t + 0.1, [this.degree(0, 1), this.degree(4, 1), this.degree(7, 1)], 2.0, 'organ');
+    this._pad(t + 0.1, [this.degree(0, 1), this.degree(4, 1), this.degree(7, 1)], 2.0, 'organ', this.sfxBus);
   }
 
   // ---------------------------------------------------------------- buffers
