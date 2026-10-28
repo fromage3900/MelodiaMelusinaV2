@@ -27,7 +27,7 @@ export class Game {
     this.renderer = new THREE.WebGLRenderer({ canvas: this.canvas, antialias: !isTouch, powerPreference: 'high-performance' });
     this.scene = new THREE.Scene();
     this.scene.background = new THREE.Color('#f3e6dc');
-    this.scene.fog = new THREE.Fog('#f3e6dc', 75, 175);
+    this.scene.fog = new THREE.Fog('#f3e6dc', 90, 280);
     this.camera = new THREE.PerspectiveCamera(42, 1, 0.5, 400);
     this.hemi = new THREE.HemisphereLight('#ffffff', '#8f7fa3', 1.5);
     this.sun = new THREE.DirectionalLight('#fff1e6', 1.7);
@@ -93,7 +93,7 @@ export class Game {
 
   // ------------------------------------------------------------ boot
   async warm(progress) {
-    progress('Raising the five biomes…');
+    progress('Raising the eight biomes…');
     await new Promise((r) => setTimeout(r, 20));
     this.world.warm(this.player.pos.x, this.player.pos.z);
     progress('Drawing the map…');
@@ -162,7 +162,10 @@ export class Game {
     const d = this.world.dominantBiome(this.player.pos.x, this.player.pos.z);
     if (d.r < HUB.radius + 20) return { ...HUB, motif: [0, 4, 7, 9, 7, 4] };
     const b = d.biome;
-    return { id: b.id, bpm: b.bpm, meter: b.meter, key: b.key, mode: b.mode, prog: b.prog, style: b.style, motif: b.motif };
+    return {
+      id: b.id, bpm: b.bpm, meter: b.meter, key: b.key, mode: b.mode, prog: b.prog,
+      style: b.style, motif: b.motif, ambience: b.ambience,
+    };
   }
 
   musicIntensity() {
@@ -840,7 +843,7 @@ export class Game {
     this.scene.background.lerp(this.pal.fog, k);
     this.world.water.material.color.lerp(this.pal.water, k);
     this.sun.color.lerp(this.pal.light, k);
-    if (this.world.inRift) { this.scene.fog.near = 45; this.scene.fog.far = 110; } else { this.scene.fog.near = 75; this.scene.fog.far = 175; }
+    if (this.world.inRift) { this.scene.fog.near = 45; this.scene.fog.far = 110; } else { this.scene.fog.near = 90; this.scene.fog.far = 280; }
     this.ui.tutorialTick(dt);
     this.profile.stats.playSeconds += dt;
     this._save += dt;

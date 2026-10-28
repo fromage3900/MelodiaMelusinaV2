@@ -2080,6 +2080,31 @@ export const UE = {
    "source_file": "Docs/WorldGen/GAEA_SETUP_CADENCE_CRYSTAL_RIDGE_2026-08-24.json"
   },
   {
+   "id": "choir_marsh",
+   "name": "Mist Choir \u2014 Choir Marsh",
+   "seed": 3900,
+   "movement": "mist_choir",
+   "midi_preset": "ethereal_choir_pad",
+   "dressing": "mist_wetland",
+   "intent": "A fogged wetland where reeds and still water carry a slow choral bed; soft terraces and shallow lakes make a reverent approach route.",
+   "graph_chain": [
+    "MultiFractal",
+    "Erosion2",
+    "FlowMap",
+    "Lake",
+    "Weathering",
+    "SatMap"
+   ],
+   "height_range_m": [
+    0.0,
+    280.0
+   ],
+   "terrace_strength": 0.06,
+   "flow_strength": 0.78,
+   "waterline_m": 18.0,
+   "source_file": "Docs/WorldGen/GAEA_SETUP_CHOIR_MARSH_2026-10-28.json"
+  },
+  {
    "id": "fugue_grotto",
    "name": "Fugue Grotto \u2014 Collapsed Gullies",
    "seed": 3900,
@@ -2105,6 +2130,31 @@ export const UE = {
    "flow_strength": null,
    "waterline_m": null,
    "source_file": "Docs/WorldGen/GAEA_SETUP_FUGUE_GROTTO_2026-08-24.json"
+  },
+  {
+   "id": "glass_orchard",
+   "name": "Glass Orchard \u2014 Resonance Grove",
+   "seed": 3900,
+   "movement": "glass_orchard",
+   "midi_preset": "crystalline_arp_ethereal",
+   "dressing": "glass_grove",
+   "intent": "A luminous orchard of translucent canopy and soft crystal understory; gentle ridges and bright water keep traversal readable under an ethereal glass score.",
+   "graph_chain": [
+    "Ridge",
+    "Erosion2",
+    "ColorErosion",
+    "FlowMap",
+    "Weathering",
+    "SatMap"
+   ],
+   "height_range_m": [
+    0.0,
+    420.0
+   ],
+   "terrace_strength": 0.1,
+   "flow_strength": 0.45,
+   "waterline_m": 28.0,
+   "source_file": "Docs/WorldGen/GAEA_SETUP_GLASS_ORCHARD_2026-10-28.json"
   },
   {
    "id": "liquid_cathedral",
@@ -2158,6 +2208,31 @@ export const UE = {
    "flow_strength": 0.65,
    "waterline_m": 42.0,
    "source_file": "Docs/WorldGen/GAEA_SETUP_SAKURA_TERRACE_2026-08-24.json"
+  },
+  {
+   "id": "starlit_moor",
+   "name": "Starlit Moor \u2014 Luminous Heath",
+   "seed": 3900,
+   "movement": "starlit_moor",
+   "midi_preset": "starlit_bell_drone",
+   "dressing": "night_heath",
+   "intent": "An open night heath with sparse pines and starbloom under a high-bell drone; long sightlines and soft undulation for a late-route ethereal walk.",
+   "graph_chain": [
+    "MultiFractal",
+    "Erosion2",
+    "FlowMap",
+    "Weathering",
+    "SatMap",
+    "RadialGradient"
+   ],
+   "height_range_m": [
+    0.0,
+    360.0
+   ],
+   "terrace_strength": 0.04,
+   "flow_strength": 0.22,
+   "waterline_m": 12.0,
+   "source_file": "Docs/WorldGen/GAEA_SETUP_STARLIT_MOOR_2026-10-28.json"
   }
  ]
 };

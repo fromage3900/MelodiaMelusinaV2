@@ -1,7 +1,7 @@
 // Open world: chunk-streamed terrain around the player (the OpenWorldJS idea
-// of player-centred tiles, rebuilt for phones as small CPU chunks), five
-// biomes from the Gaea setups arranged around Shorewake Village, props,
-// landmarks, water and the rift arena.
+// of player-centred tiles, rebuilt for phones as small CPU chunks), eight
+// biomes arranged around Shorewake Village, props, landmarks, water and the
+// rift arena.
 
 import * as THREE from 'three';
 import { Simplex2, mulberry32, clamp, lerp, smoothstep, angleDiff } from './util.js';
@@ -14,8 +14,8 @@ export const CHUNK = 64;
 const SEG = 28;
 const VIEW = 2;
 export const WATER = 0;
-const BIOME_R = 390;
-const SIGMA = 0.28;
+const BIOME_R = 780;
+const SIGMA = 0.22;
 export const RIFT_RADIUS = 34;
 
 const _c1 = new THREE.Color(), _c2 = new THREE.Color(), _c3 = new THREE.Color();
@@ -114,7 +114,7 @@ export class World {
   // Level of the zone at a point: rises through each biome with distance.
   zoneLevel(x, z) {
     const d = this.dominantBiome(x, z);
-    const t = clamp((d.r - 90) / 520, 0, 1);
+    const t = clamp((d.r - 90) / 1040, 0, 1);
     return Math.round(lerp(d.biome.levels[0], d.biome.levels[1], t));
   }
 
@@ -140,15 +140,33 @@ export class World {
         h = this._rivers(h, x, z, 0.03 + 0.06 * b.flow);
         return lerp(h, -0.6, 1 - smoothstep(26, 44, dc));
       }
+      case 'choir_marsh': {
+        let h = 1.1 + (N.fbm(x * 0.0032 + 11, z * 0.0032 - 8, 4) * 0.5 + 0.5) * b.amp * 0.45;
+        h = this._rivers(h, x, z, 0.04 + 0.08 * b.flow, -1.1);
+        const pool = N.noise(x * 0.0055 - 19, z * 0.0055 + 41);
+        if (pool < -0.28) h = lerp(h, -0.85, smoothstep(-0.28, -0.55, pool));
+        return h;
+      }
       case 'fugue_grotto': {
         const g = Math.abs(N.noise(x * 0.0075 + 100, z * 0.0075));
         return 1.2 + smoothstep(0.05, 0.3, g) * b.amp * 0.75 + N.fbm(x * 0.02, z * 0.02, 2) * 1.1;
+      }
+      case 'glass_orchard': {
+        let h = 2.0 + (N.fbm(x * 0.004 + 3, z * 0.004 - 9, 4) * 0.5 + 0.5) * b.amp * 0.65;
+        const swell = 1 - smoothstep(0, 220, dc);
+        h += swell * b.amp * 0.25;
+        return this._rivers(h, x, z, 0.025 + 0.04 * b.flow);
       }
       case 'cadence_crystal_ridge': {
         const rg = 1 - Math.abs(N.fbm(x * 0.0055 - 50, z * 0.0055 + 20, 3));
         let h = 2.6 + rg * rg * b.amp * 0.8;
         if (b.radial) h += b.amp * 0.5 * (1 - smoothstep(0, 200, dc));
         return lerp(h, 3 + b.amp * 0.5, 1 - smoothstep(16, 30, dc));
+      }
+      case 'starlit_moor': {
+        let h = 2.2 + (N.fbm(x * 0.0028 + 22, z * 0.0028 - 17, 4) * 0.5 + 0.5) * b.amp * 0.4;
+        if (b.radial) h += b.amp * 0.2 * (1 - smoothstep(0, 260, dc));
+        return this._rivers(h, x, z, 0.018 + 0.03 * b.flow);
       }
       case 'aurora_glacier': {
         let h = 2.6 + (N.fbm(x * 0.003 + 7, z * 0.003 - 3, 5) * 0.5 + 0.5) * b.amp * 0.55;
@@ -177,7 +195,9 @@ export class World {
       const b = BIOMES[i], p = b.pal;
       _c1.copy(p.grass).lerp(p.grass2, smoothstep(0.55, 0.85, n) * 0.7);
       if (b.id === 'aurora_glacier') _c1.lerp(p.snow, 0.5 + 0.4 * n2);
+      if (b.id === 'starlit_moor') _c1.lerp(p.rock, 0.25 + 0.2 * n2);
       if (b.id === 'cadence_crystal_ridge' && h > 18) _c1.lerp(p.snow, smoothstep(18, 26, h));
+      if (b.id === 'glass_orchard' && h > 14) _c1.lerp(p.snow, smoothstep(14, 22, h) * 0.45);
       _c1.lerp(p.rock, rock);
       if (h < 0.7) _c1.lerp(p.sand, smoothstep(0.7, 0.1, h));
       out.r += _c1.r * w; out.g += _c1.g * w; out.b += _c1.b * w;
@@ -308,6 +328,10 @@ export class World {
       spire: { parts: [M(new THREE.OctahedronGeometry(1, 0), L('#ffffff', { emissive: '#8a6cff', emissiveIntensity: 0.4 }), 7, 1.4, 8, 1.4)] },
       pine: { parts: [M(new THREE.CylinderGeometry(0.15, 0.2, 1.2, 5), L('#6b5044'), 0.6), M(new THREE.ConeGeometry(1.5, 4.2, 7), L('#4f7f78'), 3.0), M(new THREE.ConeGeometry(0.7, 1.4, 7), L('#ffffff'), 4.6)] },
       icespike: { parts: [M(new THREE.ConeGeometry(0.6, 3.6, 5), L('#bfe9ff', { emissive: '#4aa8d8', emissiveIntensity: 0.25 }), 1.8)] },
+      willow: { parts: [M(new THREE.CylinderGeometry(0.18, 0.32, 4.2, 6), L('#5a6e58'), 2.1), M(new THREE.IcosahedronGeometry(2.4, 0), white, 5.0)], tint: 1, palette: ['#8fbfa8', '#a8d4bc', '#7eaa96'] },
+      mistorb: { parts: [M(new THREE.SphereGeometry(0.55, 10, 8), glow('#b8e8e0'), 1.4)], tint: 0, palette: ['#b8e8e0', '#d0f0ff', '#e8d8ff'] },
+      glassleaf: { parts: [M(new THREE.CylinderGeometry(0.12, 0.2, 2.8, 5), L('#8aa8a0'), 1.4), M(new THREE.OctahedronGeometry(1.6, 0), L('#ffffff', { emissive: '#7fd8c8', emissiveIntensity: 0.4 }), 3.6)], tint: 0, palette: ['#c8fff0', '#a8e8ff', '#e0fff8'] },
+      starbloom: { parts: [M(new THREE.ConeGeometry(0.35, 0.9, 6), glow('#c8d8ff'), 0.55)], tint: 0, palette: ['#c8d8ff', '#ffe8b0', '#e8c8ff', '#b0fff0'] },
     };
     // Small authored flower clusters; the original cone flowers remain one URL flag away.
     this.flowerbedsEnabled = new URLSearchParams(window.location.search).get('flowerbeds') !== '0';
@@ -554,6 +578,26 @@ export class World {
           const a = (i / 8) * Math.PI * 2, px = Math.cos(a) * 9, pz = Math.sin(a) * 9;
           add(new THREE.OctahedronGeometry(1.4, 0), L('#ffffff', { emissive: i % 2 ? '#62c8ff' : '#e38bff', emissiveIntensity: 0.5 }), px, gy(px, pz) + 4, pz, [1, 3, 1], [0.2, a, 0.2]);
         }
+      } else if (b.id === 'choir_marsh') {
+        for (let i = 0; i < 8; i++) {
+          const a = (i / 8) * Math.PI * 2, px = Math.cos(a) * 18, pz = Math.sin(a) * 18;
+          add(new THREE.CylinderGeometry(0.35, 0.55, 7 + (i % 3), 6), L('#5a7a68'), px, gy(px, pz) + 4, pz);
+          add(new THREE.IcosahedronGeometry(2.2, 0), L('#8fbfa8'), px, gy(px, pz) + 9, pz);
+        }
+        add(new THREE.SphereGeometry(2.4, 16, 12), L('#ffffff', { emissive: '#9fe8d8', emissiveIntensity: 0.55 }), 0, y + 5, 0);
+      } else if (b.id === 'glass_orchard') {
+        for (let i = 0; i < 7; i++) {
+          const a = (i / 7) * Math.PI * 2, px = Math.cos(a) * 14, pz = Math.sin(a) * 14;
+          add(new THREE.CylinderGeometry(0.25, 0.4, 8, 6), L('#8aa8a0'), px, gy(px, pz) + 4, pz);
+          add(new THREE.OctahedronGeometry(2.2, 0), L('#ffffff', { emissive: '#7fd8c8', emissiveIntensity: 0.45 }), px, gy(px, pz) + 10, pz);
+        }
+        add(new THREE.OctahedronGeometry(3.4, 0), L('#ffffff', { emissive: '#a8fff0', emissiveIntensity: 0.65 }), 0, y + 14, 0, [1, 1.6, 1]);
+      } else if (b.id === 'starlit_moor') {
+        for (let i = 0; i < 16; i++) {
+          const a = (i / 16) * Math.PI * 2, rr = 8 + (i % 4) * 5, px = Math.cos(a) * rr, pz = Math.sin(a) * rr;
+          add(new THREE.SphereGeometry(0.35 + (i % 3) * 0.15, 8, 6), L('#ffffff', { emissive: i % 2 ? '#c8d8ff' : '#ffe8b0', emissiveIntensity: 0.85 }), px, gy(px, pz) + 1.2 + (i % 5) * 0.4, pz);
+        }
+        add(new THREE.TorusGeometry(10, 0.35, 8, 32), L('#ffffff', { emissive: '#90a8ff', emissiveIntensity: 0.5 }), 0, y + 16, 0, [1, 0.35, 1], [Math.PI / 2, 0, 0]);
       } else if (b.id === 'aurora_glacier') {
         for (let i = 0; i < 11; i++) {
           const hgt = 6 + Math.sin(i * 0.7) * 3 + (5 - Math.abs(i - 5)) * 1.6;

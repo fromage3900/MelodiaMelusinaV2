@@ -1,0 +1,54 @@
+{
+  "schema": "melodia.gaea_setup.v1",
+  "setup_id": "starlit_moor",
+  "status": "web_prototype_recipe_stub_native_export_pending",
+  "display_name": "Starlit Moor — Luminous Heath",
+  "world_seed": 3900,
+  "musical_binding": {
+    "movement_id": "starlit_moor",
+    "midi_preset": "starlit_bell_drone",
+    "dressing_style": "night_heath",
+    "design_intent": "An open night heath with sparse pines and starbloom under a high-bell drone; long sightlines and soft undulation for a late-route ethereal walk."
+  },
+  "source": {
+    "provider": "procedural heath recipe; geographic DEM not claimed",
+    "dataset": "procedural",
+    "source_mesh": null,
+    "source_extent_m": null,
+    "working_window_m": [7000.0, 7000.0],
+    "source_units": "meters"
+  },
+  "gaea_reference": {
+    "path": null,
+    "gaea_version": "2.2.3.2",
+    "validated": false,
+    "resolution": 2048,
+    "bake_resolution": 2048,
+    "key_nodes": ["MultiFractal", "Erosion2", "FlowMap", "Weathering", "SatMap"]
+  },
+  "recipe": {
+    "graph_chain": ["MultiFractal", "Erosion2", "FlowMap", "Weathering", "SatMap", "RadialGradient"],
+    "target_resolution": 4097,
+    "output_extent_m": [7000.0, 7000.0],
+    "height_range_m": [0.0, 360.0],
+    "erosion_iterations": 24,
+    "terrace_strength": 0.04,
+    "flow_strength": 0.22,
+    "slope_mask_range": [0.05, 0.48],
+    "waterline_m": 12.0
+  },
+  "outputs": {
+    "mesh_obj": "Saved/Audit/gaea_setups/starlit_moor/StarlitMoor_4097.obj",
+    "heightfield_png16": "Saved/Audit/gaea_setups/starlit_moor/StarlitMoor_4097_height.png",
+    "masks": ["flow", "slope", "curvature", "height"],
+    "manifest": "Saved/Audit/gaea_setups/starlit_moor/handoff_manifest.json"
+  },
+  "ue5_8": {
+    "target": "Mesh Terrain",
+    "content_namespace": "/Game/_PROJECT/ResonantWorld/Offline/GaeaSetups/StarlitMoor",
+    "classic_landscape_used": false,
+    "pcg_profile": "night_heath",
+    "hero_capture": "Saved/Audit/gaea_setups/starlit_moor/PIE_StarlitMoor_1920x1080.png"
+  },
+  "gates": ["web_prototype_playable", "metric_extent_verified", "native_or_recorded_export", "mesh_terrain_partition_built", "pcg_reads_partition", "clean_pie", "lookdev_approved"]
+}
