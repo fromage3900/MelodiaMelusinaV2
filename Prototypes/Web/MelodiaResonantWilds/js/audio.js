@@ -664,6 +664,48 @@ export class AudioEngine {
     this._voice('pluck', t + 0.12, this.degree(3, -1) - 1, 0.5, 0.14, this.sfxBus);
   }
 
+  motifChord(element) {
+    if (!this.running) return;
+    const t = this.now;
+    const voice = { Forte: 'saw', Tide: 'soft', Gale: 'pluck', Radiant: 'bell', Stone: 'pluck', Arcane: 'box', Umbral: 'soft' }[element] || 'box';
+    [0, 2, 4].forEach((d, i) => this._voice(voice, t + i * 0.06, this.degree(d, 1), 0.35, 0.1, this.sfxBus, true));
+  }
+
+  synthResolve(quality = 50) {
+    if (!this.running) return;
+    const t = this.now;
+    const n = 3 + Math.floor(quality / 25);
+    for (let i = 0; i < n; i++) {
+      this._voice(quality >= 70 ? 'bell' : 'box', t + i * 0.07, this.degree(i * 2, 1), 0.7, 0.09 + quality * 0.0008, this.sfxBus, true);
+    }
+    if (quality >= 60) this._pad(t, [this.degree(0, 1), this.degree(2, 1), this.degree(4, 1)], 1.6, 'ice');
+  }
+
+  /** Recital ceremony fanfare: goal | bank | inherit | miss */
+  fanfare(kind = 'goal') {
+    if (!this.running) return;
+    const t = this.now;
+    if (kind === 'miss') {
+      this._voice('pluck', t, this.degree(4, 0), 0.35, 0.12, this.sfxBus, true);
+      this._voice('pluck', t + 0.1, this.degree(2, -1), 0.5, 0.14, this.sfxBus, true);
+      this._noiseHit(t + 0.05, 0.14, this.sfxBus, 'lowpass', 500, 0.1);
+      return;
+    }
+    if (kind === 'goal') {
+      [0, 2, 4, 7].forEach((d, i) => this._voice('bell', t + i * 0.06, this.degree(d, 1), 0.7, 0.11, this.sfxBus, true));
+      this._rim(t + 0.2, 0.3, this.sfxBus, 2400);
+      return;
+    }
+    if (kind === 'bank') {
+      [0, 2, 4, 7, 9, 11, 14].forEach((d, i) => this._voice('bell', t + i * 0.07, this.degree(d, 0), 1.1, 0.13, this.sfxBus, true));
+      this._pad(t, [this.degree(0, 1), this.degree(2, 1), this.degree(4, 1)], 1.8, 'ice');
+      return;
+    }
+    // inherit pass — Winning Live flourish + Motif motif
+    [0, 4, 7, 11, 12, 16].forEach((d, i) => this._voice(i > 3 ? 'bell' : 'box', t + i * 0.055, this.degree(d % 12, Math.floor(d / 12)), 0.85, 0.12, this.sfxBus, true));
+    this._pad(t + 0.1, [this.degree(0, 1), this.degree(4, 1), this.degree(7, 1)], 2.0, 'organ');
+  }
+
   // ---------------------------------------------------------------- buffers
   _noiseBuffer() {
     const ctx = this.ctx;

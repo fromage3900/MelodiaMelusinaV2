@@ -338,3 +338,182 @@ h1 { font-family: Georgia, 'Times New Roman', serif; font-size: clamp(40px, 9vw,
   background: rgba(98,200,255,.1); border: 1px solid rgba(98,200,255,.35);
   font-size: 12px; color: #9fe4ff;
 }
+
+
+/* ============================================================ Cooler loops */
+.cymatic .ring.beatpulse { animation: ringBeat 0.28s ease-out; }
+.cymatic .ring.justfilled { animation: ringFill 0.55s ease-out; border-color: var(--gold-hi) !important; }
+@keyframes ringBeat {
+  0% { transform: scale(1); filter: brightness(1); }
+  40% { transform: scale(1.06); filter: brightness(1.35); }
+  100% { transform: scale(1); filter: brightness(1); }
+}
+@keyframes ringFill {
+  0% { box-shadow: 0 0 0 rgba(217,188,114,0); }
+  50% { box-shadow: 0 0 28px rgba(217,188,114,.85); }
+  100% { box-shadow: 0 0 14px rgba(217,188,114,.45); }
+}
+
+#recgoals {
+  position: absolute; left: calc(10px + var(--sal)); top: calc(118px + var(--sat));
+  width: min(44vw, 280px); pointer-events: none;
+  background: linear-gradient(160deg, rgba(28,22,48,.92), rgba(18,14,32,.88));
+  border: 1px solid rgba(98,200,255,.42);
+  box-shadow: 0 8px 24px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.06);
+  border-radius: 12px; padding: 8px 10px; font-size: 11px; line-height: 1.35;
+}
+#recgoals b { display: block; font-size: 9.5px; letter-spacing: .12em; text-transform: uppercase; color: var(--aqua); margin-bottom: 5px; }
+#recgoals .bless {
+  font-size: 10px; color: var(--gold-hi); margin: 0 0 5px; padding: 4px 6px;
+  border-radius: 8px; background: rgba(217,188,114,.12); border: 1px solid rgba(217,188,114,.28);
+}
+#recgoals .echo-on {
+  font-size: 10px; color: #c690ff; margin: 0 0 5px; letter-spacing: .04em;
+}
+#recgoals .g { opacity: .92; margin: 4px 0; display: flex; align-items: center; gap: 4px; flex-wrap: wrap; }
+#recgoals .g.done { color: var(--gold-hi); text-decoration: line-through; opacity: .72; }
+#recgoals .g i { display: inline-block; width: 44px; height: 3px; background: rgba(255,255,255,.12); border-radius: 2px; vertical-align: middle; overflow: hidden; flex: 0 0 44px; }
+#recgoals .g i em { display: block; height: 100%; background: linear-gradient(90deg, var(--aqua), #b89cff); }
+
+.pedigree {
+  margin-top: 8px; padding: 10px 12px; border-radius: 12px;
+  background: linear-gradient(135deg, rgba(98,200,255,.16), rgba(55,41,77,.9));
+  border: 1px solid rgba(98,200,255,.48); font-size: 11px; line-height: 1.45; text-align: left;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.08);
+}
+.pedigree .title { font-weight: 800; color: var(--aqua); letter-spacing: .08em; text-transform: uppercase; font-size: 10px; margin-bottom: 5px; }
+.oshi-pin {
+  cursor: pointer; margin-left: 6px; font-size: 12px; opacity: .55;
+  padding: 2px 8px; border-radius: 999px; border: 1px solid transparent;
+  transition: opacity .15s, border-color .15s, background .15s;
+}
+.oshi-pin:hover { opacity: .9; border-color: rgba(217,188,114,.35); }
+.oshi-pin.on {
+  opacity: 1; color: var(--gold-hi);
+  background: rgba(217,188,114,.14); border-color: rgba(217,188,114,.55);
+  filter: drop-shadow(0 0 4px rgba(217,188,114,.7));
+}
+
+#ceremonyflash {
+  position: fixed; inset: 0; z-index: 35; pointer-events: none;
+  opacity: 0; mix-blend-mode: screen;
+}
+#ceremonyflash.hidden { display: none !important; }
+#ceremonyflash.on { animation: ceremonyBurst .5s ease-out forwards; }
+#ceremonyflash.goal { background: radial-gradient(ellipse at 50% 45%, rgba(130,227,236,.55), transparent 55%); }
+#ceremonyflash.bank { background: radial-gradient(ellipse at 50% 40%, rgba(255,217,120,.65), rgba(198,144,255,.25) 45%, transparent 62%); }
+#ceremonyflash.inherit { background: radial-gradient(ellipse at 50% 42%, rgba(198,144,255,.7), rgba(98,200,255,.3) 40%, transparent 60%); }
+#ceremonyflash.miss { background: radial-gradient(ellipse at 50% 50%, rgba(141,134,152,.45), transparent 50%); }
+@keyframes ceremonyBurst {
+  0% { opacity: 0; }
+  18% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+#motifmorph {
+  position: fixed; inset: 0; z-index: 45; display: grid; place-items: center;
+  background: rgba(10, 6, 20, .55); pointer-events: none;
+}
+#motifmorph.hidden { display: none !important; }
+.morphstage { position: relative; width: 160px; height: 160px; text-align: center; }
+.morphfrom, .morphto { position: absolute; inset: 20px; display: grid; place-items: center; transition: transform .45s ease, opacity .45s ease; }
+.morphfrom img, .morphto img { width: 72px; height: 72px; filter: drop-shadow(0 4px 12px rgba(0,0,0,.5)); }
+.morphfrom.flip { transform: scale(.2) rotate(-25deg); opacity: 0; }
+.morphto { opacity: 0; transform: scale(.4) rotate(20deg); }
+.morphto.show { opacity: 1; transform: scale(1) rotate(0); }
+.morphflash {
+  position: absolute; inset: 30px; border-radius: 50%; opacity: 0;
+  box-shadow: 0 0 40px currentColor; transition: opacity .2s;
+}
+.morphflash.on { opacity: .9; animation: morphBurst .5s ease-out; }
+@keyframes morphBurst {
+  0% { transform: scale(.5); opacity: 1; }
+  100% { transform: scale(1.6); opacity: 0; }
+}
+.morphlabel {
+  position: absolute; left: 50%; bottom: -28px; transform: translateX(-50%);
+  white-space: nowrap; font-size: 12px; font-weight: 700; text-shadow: 0 2px 6px #000;
+  max-width: 80vw; overflow: hidden; text-overflow: ellipsis;
+}
+
+.rewardcard.pedigree-card { width: min(320px, 90%); text-align: left; }
+
+
+/* ============================================================ Resonant Wilds loop UI (Figma slice) */
+.slotbox .ico { width: 70%; height: 70%; object-fit: contain; pointer-events: none; filter: drop-shadow(0 1px 2px rgba(0,0,0,.45)); }
+.slotbox .ico-fallback { font-size: 22px; line-height: 1; }
+.motifchip {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 5px 10px; border-radius: 999px; font-size: 11px; font-weight: 700;
+  background: rgba(98, 200, 255, .15); border: 1px solid rgba(98, 200, 255, .55); color: #9fe4ff;
+}
+.motifchip img { width: 18px; height: 18px; }
+.motifbag { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
+.motifbag .motifchip { cursor: pointer; }
+.motifbag .motifchip.on { outline: 2px solid #fff; background: rgba(217,188,114,.22); border-color: var(--gold); color: var(--gold-hi); }
+.motifbag .motifchip.dim { opacity: .45; }
+
+.synth-wrap { display: grid; grid-template-columns: minmax(0,.9fr) minmax(0,1.2fr) minmax(0,1fr); gap: 10px; }
+@media (max-width: 800px) { .synth-wrap { grid-template-columns: 1fr; } }
+.cymatic {
+  position: relative; width: min(220px, 100%); aspect-ratio: 1; margin: 8px auto;
+}
+.cymatic .ring {
+  position: absolute; inset: 0; margin: auto; border-radius: 50%;
+  border: 3px solid rgba(246,240,248,.18); transition: border-color .2s, box-shadow .2s;
+}
+.cymatic .ring.r0 { width: 92%; height: 92%; }
+.cymatic .ring.r1 { width: 70%; height: 70%; }
+.cymatic .ring.r2 { width: 48%; height: 48%; }
+.cymatic .ring.r3 { width: 26%; height: 26%; }
+.cymatic .ring.filled { border-color: var(--gold-hi); box-shadow: 0 0 14px rgba(217,188,114,.45); }
+.cymatic .ring.partial { border-color: var(--aqua); }
+.cymatic .hub {
+  position: absolute; left: 50%; top: 50%; width: 28px; height: 28px; margin: -14px 0 0 -14px;
+  border-radius: 50%; background: radial-gradient(circle at 35% 30%, #fff, var(--gold-hi) 55%, var(--gold));
+  box-shadow: 0 0 12px rgba(255,217,120,.6);
+}
+.loop-row { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; margin-top: 6px; }
+
+#riftreward {
+  position: fixed; inset: 0; z-index: 40; display: grid; place-items: center;
+  background: rgba(12, 8, 22, .88); pointer-events: auto; padding: 16px;
+}
+#riftreward.hidden { display: none !important; }
+.rewardbox {
+  width: min(860px, 96vw); max-height: 92dvh; overflow: auto;
+  background: linear-gradient(160deg, rgba(55,41,77,.95), rgba(23,18,37,.98));
+  border: 1px solid var(--line); border-radius: 18px; padding: 22px 20px 18px;
+  text-align: center; box-shadow: 0 20px 60px rgba(0,0,0,.55);
+}
+.rewardkicker { font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--lavender); }
+.rewardtitle {
+  font-family: Georgia, 'Times New Roman', serif; font-style: italic; font-weight: 700;
+  font-size: clamp(24px, 4vw, 34px); color: var(--gold-hi); margin: 6px 0 4px;
+  text-shadow: 0 0 18px rgba(217,188,114,.35);
+}
+.rewardsub { font-size: 13px; opacity: .8; margin-bottom: 14px; }
+.rewardrow { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin: 10px 0 16px; }
+.rewardcard {
+  width: 140px; padding: 12px 10px; border-radius: 14px; background: rgba(10,6,20,.65);
+  border: 2px solid var(--soft); opacity: 0; transform: translateY(12px) scale(.96);
+  animation: rewardIn .45s ease forwards;
+}
+.rewardcard .slotbox { width: 64px; height: 64px; margin: 0 auto 8px; }
+.rewardcard b { display: block; font-size: 12px; line-height: 1.3; }
+.rewardcard .meta { font-size: 10px; opacity: .7; margin-top: 4px; }
+.rewardlineage {
+  display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px; border-radius: 999px;
+  background: rgba(55,41,77,.9); border: 1px solid rgba(98,200,255,.45); color: #9fe4ff;
+  font-size: 12px; font-weight: 700; margin-bottom: 14px;
+}
+.rewardlineage img { width: 22px; height: 22px; }
+@keyframes rewardIn {
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.echo-banner {
+  margin-top: 8px; padding: 8px 10px; border-radius: 10px;
+  background: rgba(98,200,255,.1); border: 1px solid rgba(98,200,255,.35);
+  font-size: 12px; color: #9fe4ff;
+}
