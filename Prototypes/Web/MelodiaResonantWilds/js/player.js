@@ -2,6 +2,7 @@
 
 import * as THREE from 'three';
 import { buildMelusina, buildSheep } from './entities.js';
+import { buildChibi } from './chibi.js';
 import { RULES, MODIFIERS, RARITIES, BLESSINGS } from './design.js';
 import { clamp, lerp, angleDiff } from './util.js';
 import { WORLD_RADIUS } from './design.js';
@@ -13,7 +14,9 @@ const _c = new THREE.Color();
 export class Player {
   constructor(game) {
     this.g = game;
-    this.m = buildMelusina();
+    // Opt-in visual-only comparison; do not migrate saves or alter combat values.
+    this.m = new URLSearchParams(window.location.search).get('avatar') === 'chibi'
+      ? buildChibi() : buildMelusina();
     game.scene.add(this.m.group, this.m.shadow);
     this.pos = new THREE.Vector3(0, 2.2, 8);
     this.vel = new THREE.Vector3();
@@ -87,7 +90,8 @@ export class Player {
   dress() {
     const eq = this.g.profile.equipment;
     const gown = eq.gown;
-    this.m.gownMat.color.set(gown ? RARITIES[gown.rarity].color : '#bda8df').lerp(_c.set('#bda8df'), 0.35);
+    const baseGown = this.m.pose ? '#f9b4d2' : '#bda8df';
+    this.m.gownMat.color.set(gown ? RARITIES[gown.rarity].color : baseGown).lerp(_c.set(baseGown), 0.35);
     this.m.crown.visible = !!eq.head;
     if (eq.head) this.m.crown.material.color.set(RARITIES[eq.head.rarity].color);
     this.m.shoes.visible = !!eq.shoes;
@@ -168,14 +172,30 @@ export class Player {
     m.group.position.set(this.pos.x, this.pos.y + bob + arcY, this.pos.z);
     m.shadow.position.set(this.pos.x, this.pos.y + 0.05, this.pos.z);
     m.group.rotation.y = this.facing + (this.spin ? g.time * 18 : 0);
-    const lean = moving ? 0.12 : 0;
-    m.body.rotation.x = lerp(m.body.rotation.x, lean, Math.min(1, dt * 8));
-    const stretch = this.dash ? 1.15 : 1;
-    m.body.scale.set(1 / Math.sqrt(stretch), stretch * (1 + beatK * beatK * 0.03), 1 / Math.sqrt(stretch));
     this.swingT = Math.max(0, this.swingT - dt * 4);
-    m.inst.rotation.y = this.swingT * Math.PI * 2 * (this.swingStep % 2 ? -1 : 1);
-    m.inst.position.y = 1.2 + Math.sin(g.time * 2.4) * 0.06;
     this.hurtT = Math.max(0, this.hurtT - dt * 3);
+    if (m.pose) {
+      // The unreleased chibi has its own arm/leg/hair animation hierarchy.
+      // Treat this as a presentation layer, not a new player controller.
+      const speed = clamp(Math.hypot(this.vel.x, this.vel.z) / S.moveSpeed, 0, 1);
+      m.pose(dt, g.time, {
+        speed,
+        beatPhase: g.beatPhase,
+        swing: this.swingT > 0 ? 1 - this.swingT : -1,
+        swingStep: this.swingStep ?? 0,
+        cast: 0,
+        dodge: this.dash ? 1 : 0,
+        hurt: this.hurtT,
+        stretch: this.dash ? 1.15 : 1,
+      });
+    } else {
+      const lean = moving ? 0.12 : 0;
+      m.body.rotation.x = lerp(m.body.rotation.x, lean, Math.min(1, dt * 8));
+      const stretch = this.dash ? 1.15 : 1;
+      m.body.scale.set(1 / Math.sqrt(stretch), stretch * (1 + beatK * beatK * 0.03), 1 / Math.sqrt(stretch));
+      m.inst.rotation.y = this.swingT * Math.PI * 2 * (this.swingStep % 2 ? -1 : 1);
+      m.inst.position.y = 1.2 + Math.sin(g.time * 2.4) * 0.06;
+    }
     m.gownMat.emissive.setRGB(this.hurtT * 0.9, this.hurtT * 0.1, this.hurtT * 0.2);
     if (this.invulnUntil > g.time && Math.random() < 0.6) g.particles.emit(this.pos.x, this.pos.y + 1, this.pos.z, _c.set('#ffffff'), { speed: 1, life: 0.35, size: 0.5, kind: 3 });
   }
