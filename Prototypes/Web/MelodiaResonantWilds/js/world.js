@@ -347,6 +347,7 @@ export class World {
     };
     // Small authored flower clusters; the original cone flowers remain one URL flag away.
     this.flowerbedsEnabled = new URLSearchParams(window.location.search).get('flowerbeds') !== '0';
+    this.worldExpansionEnabled = new URLSearchParams(window.location.search).get('worldexp') === '1';
     if (this.flowerbedsEnabled) this.props.flower.parts = createFlowerbedParts(M, L);
     // Note sculpture pieces are offset sideways (head / stem / flag).
     const np = this.props.note;
@@ -357,12 +358,13 @@ export class World {
     const rng = mulberry32((cx * 73856093) ^ (cz * 19349663) ^ WORLD_SEED);
     const x0 = cx * CHUNK, z0 = cz * CHUNK;
     const center = this.dominantBiome(x0 + CHUNK / 2, z0 + CHUNK / 2);
-    // Dress the hub fringe and biomes; keep the inner plaza clear for gameplay.
-    if (center.r < HUB.radius - 8 || center.r > WORLD_RADIUS - 30) return;
+    // Preserve the existing hub/terrain scatter unless the authored world expansion is selected.
+    const expanded = this.worldExpansionEnabled;
+    if (center.r < (expanded ? HUB.radius - 8 : HUB.radius + 10) || center.r > WORLD_RADIUS - 30) return;
     const buckets = new Map();
     const tmpQ = new THREE.Quaternion(), tmpE = new THREE.Euler(), tmpS = new THREE.Vector3(), tmpP = new THREE.Vector3(), tmpM = new THREE.Matrix4();
     const pois = this.game.poiNear ? this.game.poiNear(x0 + CHUNK / 2, z0 + CHUNK / 2, CHUNK) : [];
-    const fringe = center.r < HUB.radius + 28;
+    const fringe = expanded && center.r < HUB.radius + 28;
     for (let bi = 0; bi < BIOMES.length; bi++) {
       this.sample(x0 + CHUNK / 2, z0 + CHUNK / 2);
       const bw = this.W[bi];
@@ -376,17 +378,18 @@ export class World {
         // Anime OW workflow: denser near-player / approach-corridor dressing, softer far field.
         const px = this.game.player?.pos?.x ?? 0, pz = this.game.player?.pos?.z ?? 0;
         const sampleX = x0 + CHUNK / 2, sampleZ = z0 + CHUNK / 2;
-        const wfMul = propWorkflowMul(b, sampleX, sampleZ, type, { x: px, z: pz });
-        const density = (fringe ? 0.55 : 1.15) * wfMul;
-        const tries = Math.min(OW_RULES.mobile.chunkPropBudget, Math.floor(count * bw * density + rng()));
+        const wfMul = expanded ? propWorkflowMul(b, sampleX, sampleZ, type, { x: px, z: pz }) : 1;
+        const density = expanded ? (fringe ? 0.55 : 1.15) * wfMul : 1;
+        const tries = expanded ? Math.min(OW_RULES.mobile.chunkPropBudget, Math.floor(count * bw * density + rng())) : Math.floor(count * bw + rng());
         for (let t = 0; t < tries; t++) {
           const x = x0 + rng() * CHUNK, z = z0 + rng() * CHUNK;
           const h = this.sample(x, z);
-          if (this.r < HUB.radius - 4 || this.r > WORLD_RADIUS - 40) continue;
+          if (this.r < (expanded ? HUB.radius - 4 : HUB.radius + 10) || this.r > WORLD_RADIUS - 40) continue;
+          if (!expanded && this.hub > 0.01) continue;
           if (this.hub > 0.55 && type !== 'flower' && type !== 'grass' && type !== 'lantern') continue;
           // Approach corridors push biome identity props (Genshin gate → region blend).
-          const idBoost = approachIdentity(b, x, z);
-          if (rng() > this.W[bi] * (fringe ? 1.1 : 1.45 + idBoost * 0.5)) continue;
+          const idBoost = expanded ? approachIdentity(b, x, z) : 0;
+          if (rng() > (expanded ? this.W[bi] * (fringe ? 1.1 : 1.45 + idBoost * 0.5) : this.W[bi] * 1.4)) continue;
           if (def.water === 'on') { if (h > -0.15) continue; }
           else if (def.water === 'shore') { if (h < -0.3 || h > 1.0) continue; }
           else if (h < 0.35) continue;
