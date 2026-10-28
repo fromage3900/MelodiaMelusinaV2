@@ -7,59 +7,92 @@ import { midiToFreq, clamp } from './util.js';
 const SCALES = { major: [0, 2, 4, 5, 7, 9, 11], minor: [0, 2, 3, 5, 7, 8, 10] };
 const ALL16 = [...Array(16).keys()];
 
-// Step lists are 16th notes inside one bar. Tone patterns index chord tones
-// [root, third, fifth, octave, ninth].
+// Ethereal identity: every region keeps meter/motif character, but drums are
+// soft, pads dominate, and bells/glass voices carry the lead. Tone patterns
+// index chord tones [root, third, fifth, octave, ninth].
 const STYLES = {
   morning: {
-    kick: [0, 8], snare: [], rim: [4, 12], hat: [2, 6, 10, 14],
+    kick: [0], snare: [], rim: [8], hat: [4, 12],
     bass: { steps: [0, 8], len: 7, tones: [0, 2] },
-    arp: { steps: [0, 3, 6, 8, 11, 14], tones: [0, 2, 3, 1, 2, 4], oct: 12, voice: 'box' },
-    pad: 'soft', leadVoice: 'box',
+    arp: { steps: [0, 4, 8, 12], tones: [0, 2, 3, 1], oct: 12, voice: 'bell' },
+    pad: 'soft', leadVoice: 'bell',
   },
   waltz: {
-    kick: [0], snare: [], rim: [4, 8], hat: [2, 6, 10],
-    bass: { steps: [0, 4, 8], len: 3, tones: [0, 2, 2] },
-    arp: { steps: [0, 2, 4, 6, 8, 10], tones: [0, 1, 2, 3, 2, 1], oct: 12, voice: 'box' },
+    kick: [0], snare: [], rim: [4, 8], hat: [6, 10],
+    bass: { steps: [0, 8], len: 5, tones: [0, 2] },
+    arp: { steps: [0, 2, 4, 6, 8, 10], tones: [0, 1, 2, 3, 2, 1], oct: 12, voice: 'bell' },
     pad: 'soft', leadVoice: 'bell',
   },
   cathedral: {
-    kick: [0, 8], snare: [12], rim: [4], hat: [4, 12],
+    kick: [0], snare: [], rim: [8], hat: [4, 12],
     bass: { steps: [0, 8], len: 8, tones: [0, 2] },
     arp: { steps: [0, 4, 8, 12], tones: [0, 1, 2, 3], oct: 12, voice: 'bell' },
-    pad: 'organ', leadVoice: 'bell',
+    pad: 'choir', leadVoice: 'bell', chordBars: 2,
+  },
+  choir: {
+    kick: [0], snare: [], rim: [], hat: [8], shimmer: [0, 6, 10, 14],
+    bass: { steps: [0], len: 15, tones: [0] },
+    arp: { steps: [0, 6, 10], tones: [0, 2, 3], oct: 12, voice: 'soft' },
+    pad: 'choir', leadVoice: 'bell', chordBars: 2,
   },
   fugue: {
-    kick: [0, 6, 8], snare: [4, 12], rim: [], hat: [0, 2, 4, 6, 8, 10, 12, 14],
-    bass: { steps: [0, 2, 4, 6, 8, 10, 12, 14], len: 2, tones: [0, 2, 3, 2, 0, 2, 1, 2] },
+    kick: [0, 8], snare: [], rim: [4], hat: [2, 6, 10, 14],
+    bass: { steps: [0, 4, 8, 12], len: 3, tones: [0, 2, 3, 2] },
     arp: { steps: [0, 6, 8, 14], tones: [3, 2, 1, 2], oct: 12, voice: 'pluck' },
-    pad: 'dark', leadVoice: 'pluck', canon: 7,
+    pad: 'dark', leadVoice: 'bell', canon: 7,
+  },
+  glass: {
+    kick: [0], snare: [], rim: [8], hat: [4, 12], shimmer: [2, 6, 10, 14],
+    bass: { steps: [0, 8], len: 7, tones: [0, 2] },
+    arp: { steps: [0, 3, 6, 8, 11, 14], tones: [0, 2, 4, 3, 2, 1], oct: 24, voice: 'bell' },
+    pad: 'glass', leadVoice: 'bell',
   },
   toccata: {
-    kick: [0, 4, 8, 12], snare: [4, 12], rim: [], hat: ALL16,
-    bass: { steps: [0, 2, 4, 6, 8, 10, 12, 14], len: 1, tones: [0, 3, 0, 3, 0, 3, 0, 3] },
-    arp: { steps: ALL16, tones: [0, 1, 2, 3, 4, 3, 2, 1, 0, 1, 2, 3, 4, 3, 2, 1], oct: 12, voice: 'organlead' },
-    pad: 'organ', leadVoice: 'organlead',
+    kick: [0, 8], snare: [12], rim: [4], hat: [2, 6, 10, 14],
+    bass: { steps: [0, 4, 8, 12], len: 3, tones: [0, 3, 0, 3] },
+    arp: { steps: [0, 2, 4, 6, 8, 10, 12, 14], tones: [0, 1, 2, 3, 4, 3, 2, 1], oct: 12, voice: 'bell' },
+    pad: 'glass', leadVoice: 'bell',
+  },
+  starlit: {
+    kick: [0], snare: [], rim: [], hat: [8], shimmer: [0, 4, 8, 12],
+    bass: { steps: [0], len: 15, tones: [0] },
+    arp: { steps: [0, 5, 8, 13], tones: [0, 2, 4, 3], oct: 24, voice: 'bell' },
+    pad: 'star', leadVoice: 'bell', chordBars: 2,
   },
   glacial: {
-    kick: [0, 10], snare: [8], rim: [], hat: [4, 12], shimmer: [2, 6, 10, 14],
+    kick: [0], snare: [], rim: [10], hat: [4, 12], shimmer: [2, 6, 10, 14],
     bass: { steps: [0], len: 15, tones: [0] },
     arp: { steps: [0, 3, 6, 8, 11, 14], tones: [0, 2, 4, 3, 2, 1], oct: 24, voice: 'bell' },
     pad: 'ice', leadVoice: 'bell', chordBars: 2,
   },
   rift: {
-    kick: [0, 4, 8, 11, 12], snare: [4, 12], rim: [14], hat: [0, 2, 4, 6, 8, 10, 12, 14],
-    bass: { steps: [0, 3, 6, 8, 11, 14], len: 2, tones: [0, 0, 3, 0, 2, 1] },
-    arp: { steps: ALL16, tones: [0, 2, 3, 2, 1, 2, 3, 4, 0, 2, 3, 2, 1, 2, 4, 3], oct: 12, voice: 'pluck' },
-    pad: 'dark', leadVoice: 'organlead',
+    kick: [0, 8], snare: [12], rim: [4, 14], hat: [2, 6, 10, 14],
+    bass: { steps: [0, 6, 8, 14], len: 3, tones: [0, 3, 0, 2] },
+    arp: { steps: [0, 3, 6, 8, 11, 14], tones: [0, 2, 3, 2, 1, 4], oct: 12, voice: 'pluck' },
+    pad: 'dark', leadVoice: 'bell',
   },
 };
 
-// Layer mix per intensity: 0 explore, 1 combat, 2 encore.
+// Layer mix per intensity: 0 explore, 1 combat, 2 encore. Explore is pad-led.
 const MIX = [
-  { drums: 0.55, bass: 0.35, pad: 0.9, arp: 0.7, lead: 0.0 },
-  { drums: 1.0, bass: 1.0, pad: 0.6, arp: 0.85, lead: 0.45 },
-  { drums: 1.15, bass: 1.1, pad: 0.7, arp: 1.0, lead: 1.0 },
+  { drums: 0.22, bass: 0.28, pad: 1.15, arp: 0.55, lead: 0.18, ambience: 1.0 },
+  { drums: 0.7, bass: 0.75, pad: 0.85, arp: 0.9, lead: 0.55, ambience: 0.55 },
+  { drums: 0.95, bass: 0.95, pad: 0.95, arp: 1.0, lead: 1.0, ambience: 0.4 },
 ];
+
+// Continuous per-region beds (not scored on the beat grid).
+const AMBIENCE = {
+  hub: { kind: 'breeze', notes: [0, 4, 7], rate: 0.35, gain: 0.045 },
+  petal: { kind: 'petals', notes: [0, 2, 4, 7], rate: 0.4, gain: 0.05 },
+  nave: { kind: 'water', notes: [0, 5, 7], rate: 0.28, gain: 0.055 },
+  choir: { kind: 'choir', notes: [0, 3, 7, 10], rate: 0.22, gain: 0.07 },
+  grotto: { kind: 'drip', notes: [0, 3, 7], rate: 0.45, gain: 0.04 },
+  glass: { kind: 'glass', notes: [0, 4, 7, 11], rate: 0.32, gain: 0.055 },
+  crystal: { kind: 'glass', notes: [0, 5, 7, 12], rate: 0.3, gain: 0.05 },
+  star: { kind: 'stars', notes: [0, 5, 7, 12, 14], rate: 0.25, gain: 0.06 },
+  glacier: { kind: 'wind', notes: [0, 3, 7], rate: 0.2, gain: 0.05 },
+  rift: { kind: 'rift', notes: [0, 1, 6, 8], rate: 0.5, gain: 0.06 },
+};
 
 export class AudioEngine {
   constructor() {
@@ -76,6 +109,8 @@ export class AudioEngine {
     this.volumes = { music: 0.75, sfx: 0.9 };
     this._sfxBudget = 0;
     this._budgetReset = 0;
+    this._ambienceId = null;
+    this._nextAmbience = 0;
   }
 
   get running() { return !!this.ctx && this.ctx.state === 'running'; }
@@ -91,16 +126,18 @@ export class AudioEngine {
     this.master.connect(comp).connect(ctx.destination);
     this.musicBus = ctx.createGain(); this.musicBus.gain.value = this.volumes.music; this.musicBus.connect(this.master);
     this.sfxBus = ctx.createGain(); this.sfxBus.gain.value = this.volumes.sfx; this.sfxBus.connect(this.master);
-    this.reverb = ctx.createConvolver(); this.reverb.buffer = this._impulse(2.2);
-    this.reverbSend = ctx.createGain(); this.reverbSend.gain.value = 0.32;
+    this.reverb = ctx.createConvolver(); this.reverb.buffer = this._impulse(4.2);
+    this.reverbSend = ctx.createGain(); this.reverbSend.gain.value = 0.48;
     this.reverbSend.connect(this.reverb).connect(this.master);
     this.layers = {};
-    for (const k of ['drums', 'bass', 'pad', 'arp', 'lead']) {
-      const g = ctx.createGain(); g.gain.value = MIX[0][k]; g.connect(this.musicBus); this.layers[k] = g;
+    for (const k of ['drums', 'bass', 'pad', 'arp', 'lead', 'ambience']) {
+      const g = ctx.createGain(); g.gain.value = MIX[0][k] ?? 1;
+      g.connect(this.musicBus); this.layers[k] = g;
     }
     this.noise = this._noiseBuffer();
     this._applyDef(def);
     this.nextStepTime = ctx.currentTime + 0.12;
+    this._nextAmbience = ctx.currentTime + 0.2;
     this._timer = setInterval(() => this._schedule(), 25);
     ctx.resume();
   }
@@ -116,11 +153,16 @@ export class AudioEngine {
   resume() { if (this.ctx && this.ctx.state !== 'running') this.ctx.resume(); }
 
   // Request a new score (biome/rift/hub). Applied on the next bar line so the
-  // groove never skips mid-bar.
+  // groove never skips mid-bar. Ambience crossfades immediately.
   setScore(def) {
     if (!this.def) { this._applyDef(def); return; }
-    if (this.def.id === def.id && this.def.bpm === def.bpm) { this.pending = null; return; }
+    if (this.def.id === def.id && this.def.bpm === def.bpm) {
+      this.pending = null;
+      this._setAmbience(def.ambience || def.id);
+      return;
+    }
     this.pending = def;
+    this._setAmbience(def.ambience || def.id);
   }
 
   setIntensity(level) {
@@ -128,7 +170,10 @@ export class AudioEngine {
     if (level === this.intensity || !this.ctx) return;
     this.intensity = level;
     const t = this.ctx.currentTime;
-    for (const k in this.layers) this.layers[k].gain.setTargetAtTime(MIX[level][k], t, 0.6);
+    for (const k in this.layers) {
+      const v = MIX[level][k];
+      if (v != null) this.layers[k].gain.setTargetAtTime(v, t, 0.6);
+    }
   }
 
   get bpm() { return this.def ? this.def.bpm : 100; }
@@ -191,6 +236,14 @@ export class AudioEngine {
     this.def = def;
     this.style = STYLES[def.style] || STYLES.morning;
     this.scale = SCALES[def.mode] || SCALES.major;
+    this._setAmbience(def.ambience || def.id);
+  }
+
+  _setAmbience(id) {
+    const bed = AMBIENCE[id] || AMBIENCE.hub;
+    if (this._ambienceId === id) return;
+    this._ambienceId = id;
+    this._ambience = bed;
   }
 
   _schedule() {
@@ -203,6 +256,11 @@ export class AudioEngine {
       this.stepInBar++;
       if (this.stepInBar >= this.meter * 4) { this.stepInBar = 0; this.bar++; }
       this.nextStepTime += this.spb / 4;
+    }
+    while (this._nextAmbience < horizon) {
+      this._ambiencePulse(this._nextAmbience);
+      const rate = this._ambience?.rate || 0.35;
+      this._nextAmbience += rate * (0.7 + Math.random() * 0.6);
     }
   }
 
@@ -227,13 +285,13 @@ export class AudioEngine {
     }
     const chord = this._chord();
     const D = this.layers.drums;
-    if (st.kick.includes(s)) this._kick(t, s === 0 ? 1 : 0.8, D);
-    if (st.snare.includes(s)) this._snare(t, 0.55, D);
-    if (st.rim.includes(s)) this._rim(t, 0.35, D);
-    if (st.hat.includes(s)) this._hat(t, s % 4 === 2 ? 0.22 : 0.13, D);
-    if (st.shimmer && st.shimmer.includes(s)) this._voice('box', t, chord[(s / 2) % 5 | 0] + 24, stepDur * 3, 0.05, this.layers.arp, true);
-    // Beat click keeps the grid audible in every style (rhythm is the verb).
-    if (s % 4 === 0) this._rim(t, s === 0 ? 0.3 : 0.18, D, s === 0 ? 1800 : 1400);
+    if (st.kick.includes(s)) this._kick(t, s === 0 ? 0.55 : 0.4, D);
+    if (st.snare.includes(s)) this._snare(t, 0.32, D);
+    if (st.rim.includes(s)) this._rim(t, 0.22, D);
+    if (st.hat.includes(s)) this._hat(t, s % 4 === 2 ? 0.12 : 0.07, D);
+    if (st.shimmer && st.shimmer.includes(s)) this._voice('bell', t, chord[(s / 2) % 5 | 0] + 24, stepDur * 4, 0.04, this.layers.arp, true);
+    // Soft beat click keeps the grid audible without breaking the ethereal bed.
+    if (s % 4 === 0) this._rim(t, s === 0 ? 0.16 : 0.1, D, s === 0 ? 1600 : 1200);
 
     const bi = st.bass.steps.indexOf(s);
     if (bi >= 0) this._bass(t, chord[st.bass.tones[bi % st.bass.tones.length]] - 24, stepDur * st.bass.len);
@@ -317,21 +375,59 @@ export class AudioEngine {
   _pad(t, notes, dur, kind) {
     const ctx = this.ctx;
     const f = ctx.createBiquadFilter(); f.type = 'lowpass';
-    f.frequency.value = kind === 'organ' ? 1800 : kind === 'ice' ? 2600 : kind === 'dark' ? 700 : 1100;
+    const tone = {
+      organ: { cutoff: 1600, peak: 0.045, atk: 0.2, wave: 'triangle' },
+      ice: { cutoff: 2800, peak: 0.055, atk: 0.7, wave: 'triangle' },
+      dark: { cutoff: 650, peak: 0.05, atk: 0.8, wave: 'sawtooth' },
+      choir: { cutoff: 1400, peak: 0.065, atk: 1.1, wave: 'sine' },
+      glass: { cutoff: 3200, peak: 0.05, atk: 0.55, wave: 'triangle' },
+      star: { cutoff: 3600, peak: 0.048, atk: 0.9, wave: 'sine' },
+      soft: { cutoff: 1200, peak: 0.055, atk: 0.7, wave: 'sine' },
+    }[kind] || { cutoff: 1200, peak: 0.05, atk: 0.6, wave: 'sine' };
+    f.frequency.value = tone.cutoff;
     const g = ctx.createGain();
-    const atk = kind === 'organ' ? 0.06 : 0.5;
     g.gain.setValueAtTime(0.0001, t);
-    g.gain.linearRampToValueAtTime(0.05, t + atk);
-    g.gain.setValueAtTime(0.05, t + Math.max(atk, dur - 0.3));
-    g.gain.linearRampToValueAtTime(0.0001, t + dur + 0.2);
+    g.gain.linearRampToValueAtTime(tone.peak, t + tone.atk);
+    g.gain.setValueAtTime(tone.peak, t + Math.max(tone.atk, dur - 0.5));
+    g.gain.linearRampToValueAtTime(0.0001, t + dur + 0.6);
     f.connect(g); g.connect(this.layers.pad); g.connect(this.reverbSend);
+    const dets = kind === 'choir' || kind === 'star' ? [-12, 0, 12] : [-7, 7];
     for (const n of notes) {
-      for (const det of [-7, 7]) {
+      for (const det of dets) {
         const o = ctx.createOscillator();
-        o.type = kind === 'organ' ? 'square' : kind === 'ice' ? 'triangle' : 'sawtooth';
+        o.type = tone.wave;
         o.frequency.value = midiToFreq(n); o.detune.value = det;
-        o.connect(f); o.start(t); o.stop(t + dur + 0.3);
+        o.connect(f); o.start(t); o.stop(t + dur + 0.7);
       }
+    }
+  }
+
+  // Soft, non-grid bed that follows the current region's ambience profile.
+  _ambiencePulse(t) {
+    const bed = this._ambience || AMBIENCE.hub;
+    if (!this.def || !this.layers.ambience) return;
+    const chord = this._chord();
+    const pick = bed.notes[Math.floor(Math.random() * bed.notes.length)];
+    const midi = chord[0] + pick + (bed.kind === 'stars' || bed.kind === 'glass' ? 12 : 0);
+    const out = this.layers.ambience;
+    const g = bed.gain * (0.7 + Math.random() * 0.5);
+    if (bed.kind === 'water' || bed.kind === 'breeze' || bed.kind === 'wind') {
+      this._noiseHit(t, g * 0.9, out, 'bandpass', bed.kind === 'water' ? 600 : 900, 0.9 + Math.random() * 0.8, 0.4);
+      this._voice('soft', t, midi, 1.4, g * 0.55, out, true);
+    } else if (bed.kind === 'drip') {
+      this._voice('pluck', t, midi + 12, 0.35, g, out, true);
+    } else if (bed.kind === 'petals') {
+      this._voice('bell', t, midi + 12, 1.6, g * 0.7, out, true);
+    } else if (bed.kind === 'choir') {
+      this._pad(t, [chord[0], chord[1], chord[2]], 2.4, 'choir');
+    } else if (bed.kind === 'glass' || bed.kind === 'stars') {
+      this._voice('bell', t, midi + 12, 2.0, g, out, true);
+      if (Math.random() > 0.55) this._voice('bell', t + 0.08, midi + 19, 1.6, g * 0.55, out, true);
+    } else if (bed.kind === 'rift') {
+      this._noiseHit(t, g, out, 'bandpass', 420, 0.5, 0.8);
+      this._voice('soft', t, midi - 12, 1.1, g * 0.7, out, true);
+    } else {
+      this._voice('soft', t, midi, 1.5, g, out, true);
     }
   }
 

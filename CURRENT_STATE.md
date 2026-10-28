@@ -1,5 +1,9 @@
 # Melodia Melusina ? Current State
 
+### Resonant Wilds ethereal expansion — 2026-10-28
+
+Web prototype `Prototypes/Web/MelodiaResonantWilds/`: map radius **700 → 1400** (biome ring 390 → 780); **8 biomes** (added Mist Choir / Choir Marsh, Glass Orchard, Starlit Moor via new `Docs/WorldGen/GAEA_SETUP_*` stubs + `BIOME_PLAY`); all procedural scores soft-rewritten toward an ethereal identity (pad-led explore mix, longer reverb, quieter drums) with **per-region ambience** beds in `js/audio.js`. Content placement radii scaled with the map. Regenerated `js/generated/ue_data.js` (8 biomes). Browser/WebGL play proof still owed on device.
+
 ### Almost Gate v03 final HDA + UE instantiation — 2026-10-27 evening
 
 `HDA_Faraway_AlmostGate_v03` built in Houdini 22.0.368 (Indie) as the final ornate landmark: reusable ornament layer (scrollwork volutes, parametric heart frames/tokens, scallop shell fans, vine tendrils, ivy strands with diamond leaves, wisteria racemes with four-sided bell blossoms, floating star shards, displaced-icosahedron float shards) + Chladni (3,5) antinode crystal inlays (1365 crystal prims, 388 moving prims) + per-primitive UE motion/glow metadata (`float_phase`, `float_amp_m`, `orbit_radius_m`, `spin_rate`, `chladni_F`, `crystal_glow`). Candidate `Saved/Staging/HoudiniForge/FarawayAlmostGateV3_20261027_02/` (gitignored scratch): manifest `melodia.faraway_almost_gate_v3_candidate.v1`, full technical breakdown in its `DESIGN_NOTE.md`, three verified review renders + Chladni-parity COP sparkle texture (`CrystalSparkle_COP.png`, H22 Copernicus headless bake findings documented). Native gates PASS: determinism, portal production+collision clear (130x190 m), control drive/restore exact, FBX roundtrip, fresh-process locked-HDA. Builders committed on lane: `Assignment2/HoudiniPrototypes/faraway_almost_gate_v3.py` + `faraway_almost_gate_ornaments.py`.

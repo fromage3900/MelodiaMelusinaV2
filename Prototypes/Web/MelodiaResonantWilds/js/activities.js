@@ -46,16 +46,16 @@ export class Activities {
     BIOMES.forEach((b, bi) => {
       const ax = Math.cos(b.angle), az = Math.sin(b.angle);
       add({ type: 'boss', id: 'boss_' + b.id, biome: bi, x: b.cx - ax * 30, z: b.cz - az * 30, bx: b.cx - ax * 17, bz: b.cz - az * 17, name: b.bossName, cdUntil: 0 });
-      [[240, -0.18], [520, 0.2]].forEach(([r, da], k) => {
-        const s = spot(b.angle + da, 0.12, r - 30, r + 30, 30);
+      [[480, -0.18], [1040, 0.2]].forEach(([r, da], k) => {
+        const s = spot(b.angle + da, 0.12, r - 40, r + 40, 40);
         if (s) add({ type: 'pylon', id: `pylon_${b.id}_${k}`, biome: bi, ...s, name: `${b.name.split('—')[0].trim()} Pylon ${k + 1}` });
       });
-      const rs = spot(b.angle + 0.32, 0.1, 300, 380);
+      const rs = spot(b.angle + 0.32, 0.1, 600, 760);
       if (rs) add({ type: 'rift', id: 'rift_' + b.id, biome: bi, ...rs, name: 'Rift Gate' });
-      for (let i = 0; i < 16; i++) { const s = spot(b.angle, 0.55, 110, 640, 46); if (s) add({ type: 'camp', biome: bi, ...s, active: false, clearedAt: -999, enemies: [] }); }
-      for (let i = 0; i < 7; i++) { const s = spot(b.angle, 0.55, 100, 650, 26); if (s) add({ type: 'chest', biome: bi, ...s, openedAt: -999 }); }
-      for (let i = 0; i < 3; i++) { const s = spot(b.angle, 0.5, 140, 600, 40); if (s) add({ type: 'shrine', id: `shrine_${b.id}_${i}`, biome: bi, ...s, name: 'Music-Key Shrine', cdUntil: 0 }); }
-      for (let i = 0; i < 5; i++) { const s = spot(b.angle, 0.55, 120, 650, 30); if (s) add({ type: 'sheet', id: `sheet_${b.id}_${i}`, biome: bi, ...s }); }
+      for (let i = 0; i < 22; i++) { const s = spot(b.angle, 0.55, 200, 1280, 56); if (s) add({ type: 'camp', biome: bi, ...s, active: false, clearedAt: -999, enemies: [] }); }
+      for (let i = 0; i < 10; i++) { const s = spot(b.angle, 0.55, 180, 1300, 36); if (s) add({ type: 'chest', biome: bi, ...s, openedAt: -999 }); }
+      for (let i = 0; i < 3; i++) { const s = spot(b.angle, 0.5, 260, 1200, 50); if (s) add({ type: 'shrine', id: `shrine_${b.id}_${i}`, biome: bi, ...s, name: 'Music-Key Shrine', cdUntil: 0 }); }
+      for (let i = 0; i < 6; i++) { const s = spot(b.angle, 0.55, 220, 1280, 40); if (s) add({ type: 'sheet', id: `sheet_${b.id}_${i}`, biome: bi, ...s }); }
     });
     for (const p of this.pois) {
       p.y = W.sample(p.x, p.z);
@@ -388,7 +388,7 @@ export class Activities {
 
   // ------------------------------------------------------------ Resonance Rifts
   riftDef(tier) {
-    return { ...RIFT_STYLE, bpm: 124 + Math.min(24, tier * 2), motif: [0, 3, 7, 10, 8, 7] };
+    return { ...RIFT_STYLE, bpm: 108 + Math.min(20, tier * 2), motif: [0, 3, 7, 10, 8, 7] };
   }
 
   enterRift(tier, portal) {

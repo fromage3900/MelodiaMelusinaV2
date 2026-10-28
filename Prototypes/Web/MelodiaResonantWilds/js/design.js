@@ -59,10 +59,12 @@ export const MODIFIERS = Object.fromEntries(RULES.modifiers.map((m) => [m.id, m]
 // ---------------------------------------------------------------------------
 // Biomes: identity from the Gaea setups, gameplay from here.
 // angle = position around Shorewake (radians, XZ plane). Levels rise with order.
+// Eight wedges: five original Gaea biomes + three ethereal inventions.
 // ---------------------------------------------------------------------------
 const BIOME_PLAY = {
   sakura_terrace: {
-    order: 0, levels: [1, 9], bpm: 96, meter: 3, key: 62, mode: 'major', style: 'waltz',
+    order: 0, levels: [1, 9], bpm: 88, meter: 3, key: 62, mode: 'major', style: 'waltz',
+    ambience: 'petal',
     prog: [[0, 'maj'], [9, 'min'], [5, 'maj'], [7, 'maj']],
     elements: ['Radiant', 'Gale', 'Forte'], boss: 'SlimeRadianceWaltz', bossName: 'Maestra of the Petal Waltz',
     colors: { grass: '#a7d98f', grass2: '#f4bfd6', rock: '#b99f96', sand: '#f3dfc4', snow: '#fff4fa', fog: '#f6dbe7', water: '#8fd8e6', light: '#fff1e6' },
@@ -70,31 +72,62 @@ const BIOME_PLAY = {
     motif: [0, 2, 4, 7, 4, 2],
   },
   liquid_cathedral: {
-    order: 1, levels: [8, 17], bpm: 108, meter: 4, key: 63, mode: 'major', style: 'cathedral',
+    order: 1, levels: [8, 16], bpm: 96, meter: 4, key: 63, mode: 'major', style: 'cathedral',
+    ambience: 'nave',
     prog: [[0, 'maj'], [7, 'maj'], [9, 'min'], [5, 'maj']],
     elements: ['Tide', 'Arcane'], boss: 'SlimeTideSurge', bossName: 'Cantor of the Liquid Nave',
     colors: { grass: '#7fc7a9', grass2: '#bfe6d8', rock: '#9fb1c2', sand: '#e7e0cf', snow: '#f4fbff', fog: '#cfe8f1', water: '#4fb8d8', light: '#eaf7ff' },
     props: [['pillar', 2.2], ['reed', 14], ['lily', 10], ['rock', 3], ['bell', 2], ['note', 0.35]],
     motif: [0, 4, 7, 11, 9, 7],
   },
+  choir_marsh: {
+    order: 2, levels: [12, 21], bpm: 72, meter: 4, key: 65, mode: 'minor', style: 'choir',
+    ambience: 'choir',
+    prog: [[0, 'min'], [5, 'maj'], [8, 'maj'], [7, 'maj']],
+    elements: ['Tide', 'Umbral', 'Radiant'], boss: 'SlimeTidalHarmony', bossName: 'Cantor of the Mist Choir',
+    colors: { grass: '#6ea89a', grass2: '#9bc4b8', rock: '#7a8a92', sand: '#d5e4dc', snow: '#eef8f4', fog: '#c5ddd6', water: '#5aa8b8', light: '#e8f6f2' },
+    props: [['willow', 5], ['reed', 18], ['lily', 8], ['mistorb', 2.5], ['bell', 1.8], ['note', 0.3]],
+    motif: [0, 3, 7, 10, 7, 3],
+  },
   fugue_grotto: {
-    order: 2, levels: [16, 25], bpm: 120, meter: 4, key: 62, mode: 'minor', style: 'fugue',
+    order: 3, levels: [16, 25], bpm: 104, meter: 4, key: 62, mode: 'minor', style: 'fugue',
+    ambience: 'grotto',
     prog: [[0, 'min'], [8, 'maj'], [3, 'maj'], [10, 'maj']],
     elements: ['Stone', 'Umbral'], boss: 'SlimeStonemaul', bossName: 'The Fugue Maw',
     colors: { grass: '#8a8f6e', grass2: '#6d6582', rock: '#6f6474', sand: '#b8a58c', snow: '#d9d4e6', fog: '#b7aec6', water: '#6aa6b8', light: '#f2e6ff' },
     props: [['stalagmite', 9], ['mushroom', 7], ['rock', 8], ['bell', 1.5], ['note', 0.3]],
     motif: [0, 3, 7, 5, 3, 2],
   },
+  glass_orchard: {
+    order: 4, levels: [20, 29], bpm: 100, meter: 4, key: 69, mode: 'major', style: 'glass',
+    ambience: 'glass',
+    prog: [[0, 'maj'], [4, 'maj'], [9, 'min'], [7, 'maj']],
+    elements: ['Arcane', 'Radiant', 'Forte'], boss: 'SlimeStarfall', bossName: 'Glass Orchard Prismarch',
+    colors: { grass: '#b8dcc8', grass2: '#d4f0e8', rock: '#a8c0c8', sand: '#e8f4f0', snow: '#f5fffc', fog: '#d8f0ea', water: '#7ec8d8', light: '#f0fffa' },
+    props: [['glassleaf', 8], ['crystal', 6], ['flower', 12], ['bell', 2.2], ['note', 0.4], ['spire', 0.6]],
+    motif: [0, 4, 7, 11, 14, 11],
+  },
   cadence_crystal_ridge: {
-    order: 3, levels: [24, 33], bpm: 132, meter: 4, key: 57, mode: 'minor', style: 'toccata',
+    order: 5, levels: [24, 33], bpm: 112, meter: 4, key: 57, mode: 'minor', style: 'toccata',
+    ambience: 'crystal',
     prog: [[0, 'min'], [5, 'min'], [7, 'maj'], [0, 'min']],
     elements: ['Forte', 'Arcane', 'Radiant'], boss: 'SlimeMelodicStorm', bossName: 'Toccata Colossus',
     colors: { grass: '#9aa6c4', grass2: '#c9b8ea', rock: '#7d7896', sand: '#d8cfe6', snow: '#f3f0ff', fog: '#d6d0ee', water: '#7fb6e8', light: '#f7f2ff' },
     props: [['crystal', 10], ['rock', 6], ['spire', 1], ['bell', 1.5], ['note', 0.4]],
     motif: [0, 7, 12, 10, 7, 3],
   },
+  starlit_moor: {
+    order: 6, levels: [28, 38], bpm: 80, meter: 4, key: 71, mode: 'minor', style: 'starlit',
+    ambience: 'star',
+    prog: [[0, 'min'], [8, 'maj'], [5, 'maj'], [10, 'maj']],
+    elements: ['Arcane', 'Gale', 'Radiant'], boss: 'SlimeMelodicHarbinger', bossName: 'Harbinger of the Starlit Moor',
+    colors: { grass: '#6a7a98', grass2: '#8a9ab8', rock: '#5a6280', sand: '#c8d0e8', snow: '#eef0ff', fog: '#1a2240', water: '#4a68a0', light: '#c8d8ff' },
+    props: [['starbloom', 10], ['pine', 4], ['rock', 5], ['mistorb', 3], ['bell', 2], ['note', 0.45]],
+    motif: [0, 5, 7, 12, 7, 5],
+  },
   aurora_glacier: {
-    order: 4, levels: [32, 45], bpm: 84, meter: 4, key: 66, mode: 'minor', style: 'glacial',
+    order: 7, levels: [34, 48], bpm: 76, meter: 4, key: 66, mode: 'minor', style: 'glacial',
+    ambience: 'glacier',
     prog: [[0, 'min'], [8, 'maj'], [5, 'min'], [7, 'maj']],
     elements: ['Tide', 'Gale', 'Umbral'], boss: 'SlimeShadowWaltz', bossName: 'Aurora Fugue-Wyrm',
     colors: { grass: '#dbeaf4', grass2: '#bcd6ea', rock: '#8ea3b8', sand: '#e9f1f7', snow: '#ffffff', fog: '#d9e8f5', water: '#9fd6ee', light: '#eef8ff' },
@@ -102,6 +135,8 @@ const BIOME_PLAY = {
     motif: [0, 5, 7, 8, 7, 3],
   },
 };
+
+const BIOME_COUNT = Object.keys(BIOME_PLAY).length;
 
 export const BIOMES = UE.biomes
   .filter((b) => BIOME_PLAY[b.id])
@@ -111,7 +146,7 @@ export const BIOMES = UE.biomes
     return {
       ...b,
       ...play,
-      angle: -Math.PI / 2 + play.order * ((Math.PI * 2) / 5),
+      angle: -Math.PI / 2 + play.order * ((Math.PI * 2) / BIOME_COUNT),
       amp: 7 + hr / 90,
       terrace: b.terrace_strength ?? 0,
       flow: b.flow_strength ?? 0.25,
@@ -122,7 +157,8 @@ export const BIOMES = UE.biomes
   .sort((a, b) => a.order - b.order);
 
 export const HUB = {
-  id: 'hub', name: 'Shorewake Village', bpm: 90, meter: 4, key: 60, mode: 'major', style: 'morning',
+  id: 'hub', name: 'Shorewake Village', bpm: 84, meter: 4, key: 60, mode: 'major', style: 'morning',
+  ambience: 'hub',
   prog: [[0, 'maj'], [5, 'maj'], [9, 'min'], [7, 'maj']],
   colors: { grass: '#b4dea0', grass2: '#e9d6a8', rock: '#c0aa98', sand: '#f1e2c6', snow: '#fff', fog: '#f3e6dc', water: '#86d4e4', light: '#fff4e6' },
   radius: 60,
@@ -130,11 +166,12 @@ export const HUB = {
 
 export const RIFT_STYLE = {
   id: 'rift', name: 'Resonance Rift', meter: 4, key: 61, mode: 'minor', style: 'rift',
+  ambience: 'rift',
   prog: [[0, 'min'], [1, 'maj'], [8, 'maj'], [7, 'maj']],
   colors: { grass: '#3b2a55', grass2: '#5b3d78', rock: '#2a2140', sand: '#6b5590', snow: '#c8b4ff', fog: '#1d1430', water: '#7b5cff', light: '#d9c8ff' },
 };
 
-export const WORLD_RADIUS = 700;
+export const WORLD_RADIUS = 1400;
 
 // ---------------------------------------------------------------------------
 // Skills: every UE skill chart becomes a castable skill. `kind` picks the

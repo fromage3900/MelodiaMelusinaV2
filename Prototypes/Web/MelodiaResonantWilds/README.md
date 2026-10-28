@@ -33,14 +33,17 @@ No build step. three.js r170 is vendored in `vendor/` (MIT, licence alongside).
 ## 🔁 The loop
 
 - **Rhythm language.** Taps are graded against the beat you actually hear, using Web Audio output latency plus a calibration offset. Grades are PERFECT / GREAT / GOOD / MISS. On-beat hits build a combo and a **Crescendo** meter shown as dynamics (pp → p → mf → f → ff), which raises crit and move speed. They also fill **Encore** and refund **Harmony**. Slimes hop on the beat. Their attacks are telegraphs that land on a counted beat (elites and bosses count "3, 2, 1" aloud).
-- **Open world.** Five biomes from the Gaea world-gen setups sit around Shorewake Village, each with its own tempo, meter, key and style:
-  - Petal Cantata: waltz, 3/4
-  - Liquid Cathedral: organ, 4/4
+- **Open world.** Eight biomes sit around Shorewake Village on a **2×** map (radius 1400). Each has its own tempo, meter, key, ethereal score style, and a continuous **region ambience** bed:
+  - Petal Cantata: soft waltz, 3/4
+  - Liquid Cathedral: choral nave, 4/4
+  - Mist Choir (Choir Marsh): choir pads, 4/4
   - Fugue Grotto: subject and answer, 4/4
-  - Cadence Cathedral: toccata, 4/4
-  - Aurora Glacier: glacial, 4/4
+  - Glass Orchard: crystalline bells, 4/4
+  - Cadence Cathedral: glass toccata, 4/4
+  - Starlit Moor: high-bell drone, 4/4
+  - Aurora Glacier: glacial shimmer, 4/4
 
-  The score changes on the next bar line when you cross a border.
+  The score changes on the next bar line when you cross a border; ambience crossfades immediately. Explore mixes are pad-led; combat still lifts drums without leaving the ethereal identity.
 - **Things to do:**
   - Slime camps, which respawn
   - Elite Chorus events
