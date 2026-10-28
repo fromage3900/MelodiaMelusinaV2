@@ -219,7 +219,7 @@ export const WEB_SKILLS = [
     id: 'Web_Cymatic_ChladniBurst', name: 'Chladni Burst', element: 'Arcane', tier: 2, sp: 3, power: 1.35,
     kind: 'chladni', radius: 5.2, spokes: 8, coef: 1.35, cd: 10, tough: 1.1,
     unlockLevel: 8, pitches: [60, 64, 67, 72, 67, 64],
-    desc: 'Expand a Chladni figure on the beat — ring + radial spokes.',
+    desc: 'Expand the floor’s (n,m) Chladni figure on the beat. Perfect hops the plate mode.',
   },
   {
     id: 'Web_Echo_PhraseRecall', name: 'Phrase Recall', element: 'Umbral', tier: 2, sp: 4, power: 1.8,

@@ -11,26 +11,29 @@ const browser = await chromium.launch({
     '--use-angle=swiftshader', '--enable-unsafe-swiftshader'],
 });
 const variants = [
-  { name: 'desktop-default', query: '', chibi: false, shrine: false, mobile: false, npr: true },
-  { name: 'desktop-v1-cel', query: '?npr=v1', chibi: false, shrine: false, mobile: false, v1: true },
-  { name: 'desktop-chibi-shrine', query: '?avatar=chibi&shrine=glb', chibi: true, shrine: true, mobile: false },
-  { name: 'desktop-mixamo', query: '?avatar=mixamo', chibi: false, shrine: false, mobile: false, mixamo: true },
-  { name: 'mobile-baseline', query: '?chladni=0&caustics=0', chibi: false, shrine: false, mobile: true },
-  { name: 'desktop-legacy-render', query: '?render=legacy', chibi: false, shrine: false, mobile: false, legacy: true },
-  { name: 'desktop-bellflower-off', query: '?bellflower=0', chibi: false, shrine: false, mobile: false, bellflower: false },
-  { name: 'desktop-petal-cantata', query: '?flowerbeds=1', chibi: false, shrine: false, mobile: false, flowerbed: true },
-  { name: 'desktop-original-flowers', query: '?flowerbeds=0', chibi: false, shrine: false, mobile: false, flowerbed: false },
-  { name: 'desktop-npr-v2', query: '?npr=v2&avatar=chibi&shrine=glb', chibi: true, shrine: true, mobile: false, npr: true },
-  { name: 'retired-kuwahara-flag', query: '?npr=v2&kuwahara=1&avatar=chibi&shrine=glb', chibi: true, shrine: true, mobile: false, npr: true },
-  { name: 'mobile-npr-v2', query: '?npr=v2', chibi: false, shrine: false, mobile: true, npr: true },
-  { name: 'desktop-live-tuner', query: '?npr=v2&avatar=chibi&shrine=glb&tune=1&look=soft', chibi: true, shrine: true, mobile: false, npr: true, tune: true },
-  { name: 'desktop-worldexp', query: '?worldexp=1', chibi: false, shrine: false, mobile: false, worldexp: true },
+  // Desktop soft-defaults OutlinePass; phones stay off unless ?postfx=1.
+  { name: 'desktop-default', query: '', chibi: false, shrine: false, mobile: false, npr: true, postfx: true },
+  { name: 'desktop-postfx-off', query: '?postfx=0', chibi: false, shrine: false, mobile: false, npr: true, postfx: false },
+  { name: 'desktop-v1-cel', query: '?npr=v1', chibi: false, shrine: false, mobile: false, v1: true, postfx: true },
+  { name: 'desktop-chibi-shrine', query: '?avatar=chibi&shrine=glb', chibi: true, shrine: true, mobile: false, postfx: true },
+  { name: 'desktop-mixamo', query: '?avatar=mixamo', chibi: false, shrine: false, mobile: false, mixamo: true, postfx: true },
+  { name: 'mobile-baseline', query: '?chladni=0&caustics=0', chibi: false, shrine: false, mobile: true, postfx: false },
+  { name: 'desktop-legacy-render', query: '?render=legacy', chibi: false, shrine: false, mobile: false, legacy: true, postfx: true },
+  { name: 'desktop-bellflower-off', query: '?bellflower=0', chibi: false, shrine: false, mobile: false, bellflower: false, postfx: true },
+  { name: 'desktop-petal-cantata', query: '?flowerbeds=1', chibi: false, shrine: false, mobile: false, flowerbed: true, postfx: true },
+  { name: 'desktop-original-flowers', query: '?flowerbeds=0', chibi: false, shrine: false, mobile: false, flowerbed: false, postfx: true },
+  { name: 'desktop-npr-v2', query: '?npr=v2&avatar=chibi&shrine=glb', chibi: true, shrine: true, mobile: false, npr: true, postfx: true },
+  { name: 'retired-kuwahara-flag', query: '?npr=v2&kuwahara=1&avatar=chibi&shrine=glb', chibi: true, shrine: true, mobile: false, npr: true, postfx: true },
+  { name: 'mobile-npr-v2', query: '?npr=v2', chibi: false, shrine: false, mobile: true, npr: true, postfx: false },
+  { name: 'desktop-live-tuner', query: '?npr=v2&avatar=chibi&shrine=glb&tune=1&look=soft', chibi: true, shrine: true, mobile: false, npr: true, tune: true, postfx: true },
+  { name: 'desktop-worldexp', query: '?worldexp=1', chibi: false, shrine: false, mobile: false, worldexp: true, postfx: true },
   { name: 'desktop-worldexp-postfx', query: '?worldexp=1&postfx=1&dressing=dense&nikkilook=1&daycycle=1', chibi: false, shrine: false, mobile: false, worldexp: true, postfx: true },
-  { name: 'desktop-npr-colour-review', query: '?npr=v2', chibi: false, shrine: false, mobile: false, npr: true },
-  { name: 'desktop-grove-glb', query: '?grove=glb', chibi: false, shrine: false, mobile: false, grove: 'glb' },
-  { name: 'desktop-grove-full', query: '?grove=full&npr=v2&avatar=chibi&shrine=glb', chibi: true, shrine: true, mobile: false, npr: true, grove: 'full' },
-  { name: 'mobile-grove-dense', query: '?grove=glb&worldexp=1&dressing=dense', chibi: false, shrine: false, mobile: true, worldexp: true, grove: 'glb' },
-  { name: 'desktop-grove-fallback', query: '?grove=glb', chibi: false, shrine: false, mobile: false, grove: 'fallback' },
+  { name: 'desktop-npr-colour-review', query: '?npr=v2', chibi: false, shrine: false, mobile: false, npr: true, postfx: true },
+  { name: 'desktop-grove-glb', query: '?grove=glb', chibi: false, shrine: false, mobile: false, grove: 'glb', postfx: true },
+  { name: 'desktop-grove-full', query: '?grove=full&npr=v2&avatar=chibi&shrine=glb', chibi: true, shrine: true, mobile: false, npr: true, grove: 'full', postfx: true },
+  { name: 'mobile-grove-dense', query: '?grove=glb&worldexp=1&dressing=dense', chibi: false, shrine: false, mobile: true, worldexp: true, grove: 'glb', postfx: false },
+  { name: 'desktop-grove-fallback', query: '?grove=glb', chibi: false, shrine: false, mobile: false, grove: 'fallback', postfx: true },
+  { name: 'desktop-chladni-mode', query: '?mode=5,7', chibi: false, shrine: false, mobile: false, npr: true, postfx: true, mode: [5, 7] },
 ];
 try {
   for (const test of variants) {
@@ -66,6 +69,8 @@ try {
       legacyTerrain: !!window.__melodia.world.terrainMat.isMeshLambertMaterial,
       chladni: window.__melodia.world.uniforms.uChladni.value,
       caustics: window.__melodia.world.uniforms.uCaustics.value,
+      modeN: window.__melodia.world.uniforms.uModeN.value,
+      modeM: window.__melodia.world.uniforms.uModeM.value,
       heritageTimeline: window.__melodia.activities.shrineTimeline.sample(2).values,
       retiredPostFX: 'painterly' in window.__melodia,
       postfx: !!window.__melodia.postfx,
@@ -121,6 +126,15 @@ try {
     assert.ok(Math.abs(before.heritageTimeline.rise) < 0.001, test.name + ': timeline lift wrong');
     assert.ok(before.uniforms.includes('uChladni') && before.uniforms.includes('uCaustics'),
       test.name + ': shader uniforms missing');
+    assert.ok(before.uniforms.includes('uModeN') && before.uniforms.includes('uModeM'),
+      test.name + ': Chladni plate mode uniforms missing');
+    if (test.mode) {
+      assert.equal(before.modeN, test.mode[0], test.name + ': pinned mode N');
+      assert.equal(before.modeM, test.mode[1], test.name + ': pinned mode M');
+    } else if (!test.legacy) {
+      assert.equal(before.modeN, 3, test.name + ': default Faraway mode N');
+      assert.equal(before.modeM, 5, test.name + ': default Faraway mode M');
+    }
     if (test.shrine) {
       await page.waitForFunction(() => window.__melodia.activities.pois.some(
         p => p.type === 'shrine' && !!p.assetVisual

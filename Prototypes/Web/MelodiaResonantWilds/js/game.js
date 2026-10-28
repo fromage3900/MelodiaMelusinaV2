@@ -77,8 +77,15 @@ export class Game {
     this.activities = new Activities(this);
     this.echo = new Echo(this);
     this.ui = new UI(this);
-    // Heavy postprocessing is opt-in until measured on iPhone Safari.
-    this.postfx = new URLSearchParams(location.search).get('postfx') === '1' ? new PostFX(this) : null;
+    // OutlinePass + soft bloom: desktop soft-default; phones stay off unless ?postfx=1.
+    // Opt out with ?postfx=0. Quality "low" / adaptive scale still disables the composer.
+    {
+      const q = new URLSearchParams(location.search);
+      const flag = q.get('postfx');
+      const coarse = typeof matchMedia === 'function' && matchMedia('(pointer: coarse)').matches;
+      const want = flag === '1' || (flag !== '0' && !coarse && !isTouch);
+      this.postfx = want ? new PostFX(this) : null;
+    }
     this.daycycleEnabled = new URLSearchParams(location.search).get('daycycle') === '1';
     this.encoreSys = new EncoreSystem(this);
     this._outlineInteract = null;

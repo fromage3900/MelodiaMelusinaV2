@@ -47,6 +47,9 @@ export class World {
     this.queue = [];
     this.chimes = [];
 
+    // Musical plate modes — Faraway canon (3,5) is the default rung.
+    this.modeLadder = [[1, 2], [2, 3], [3, 4], [3, 5], [4, 5], [5, 7], [2, 5], [4, 7]];
+    this.modeIndex = 3;
     this.uniforms = {
       uTime: { value: 0 },
       uRipple: { value: new THREE.Vector4(0, 0, -99, 0) },
@@ -57,12 +60,22 @@ export class World {
       uChladni: { value: 0.65 },
       uCaustics: { value: 0.55 },
       uIsRift: { value: 0 },
+      uModeN: { value: 3 },
+      uModeM: { value: 5 },
+      uPhase: { value: 0 },
+      uSharpness: { value: 1 },
+      uCeremony: { value: 0 },
     };
-    // Compare new effects with ?chladni=0 and/or ?caustics=0.
+    // Compare new effects with ?chladni=0 and/or ?caustics=0. Pin modes with ?mode=3,5.
     const shaderFlags = new URLSearchParams(window.location.search);
     if (shaderFlags.get('chladni') === '0') this.uniforms.uChladni.value = 0;
     if (shaderFlags.get('caustics') === '0') this.uniforms.uCaustics.value = 0;
     if (legacyRender) { this.uniforms.uChladni.value = 0; this.uniforms.uCaustics.value = 0; }
+    const modeQ = shaderFlags.get('mode');
+    if (modeQ) {
+      const parts = modeQ.split(/[,x/]/).map(Number).filter((v) => Number.isFinite(v) && v > 0);
+      if (parts.length >= 2) this.setMode(parts[0], parts[1]);
+    }
     this.terrainMat = environmentMaterial('#ffffff', { vertexColors: true });
     this._resonate(this.terrainMat);
     this._buildIndex();
@@ -462,12 +475,19 @@ export class World {
       sh.fragmentShader = sh.fragmentShader
         .replace('#include <common>', `#include <common>
           varying vec3 vWP; uniform float uTime; uniform vec4 uRipple; uniform vec4 uRipple2; uniform vec3 uPlayer; uniform float uCres; uniform vec3 uRingColor; uniform float uChladni; uniform float uCaustics; uniform float uIsRift;
+          uniform float uModeN; uniform float uModeM; uniform float uPhase; uniform float uSharpness; uniform float uCeremony;
           float ripple(vec4 r){ float age = uTime - r.z; if(age < 0.0 || age > 1.2) return 0.0; float d = distance(vWP.xz, r.xy); float rad = age * 30.0; return exp(-pow((d - rad) / 1.4, 2.0)) * r.w * (1.0 - age / 1.2); }
+          // Rectangular Chladni plate: a cos(nπx)cos(mπy) − b cos(mπx)cos(nπy).
+          float rwChladniField(vec2 p) {
+            vec2 q = (p - uPlayer.xz) * 0.18;
+            float n = max(uModeN, 1.0), m = max(uModeM, 1.0);
+            float a = cos(n * 3.14159265 * q.x + uPhase) * cos(m * 3.14159265 * q.y);
+            float b = cos(m * 3.14159265 * q.x) * cos(n * 3.14159265 * q.y + uPhase * 0.7);
+            return a - b;
+          }
           float rwChladni(vec2 p) {
-            vec2 q = (p - uPlayer.xz) * 0.24;
-            float a = sin(q.x * 2.0) * sin(q.y * 3.0);
-            float b = sin(q.x * 3.0) * sin(q.y * 2.0);
-            return 1.0 - smoothstep(0.018, 0.09, abs(a - b));
+            float edge = mix(0.07, 0.022, clamp(uSharpness, 0.0, 1.5));
+            return 1.0 - smoothstep(edge * 0.22, edge, abs(rwChladniField(p)));
           }
           float rwCaustic(vec2 p, float t) {
             vec2 q = p * 0.73;
@@ -479,19 +499,105 @@ export class World {
           float pd = distance(vWP.xz, uPlayer.xz);
           float glow = exp(-pow(pd / (3.0 + uCres * 5.0), 2.0)) * (0.06 + uCres * 0.22);
           float musicalZone = 1.0 - smoothstep(7.0, 18.0, pd);
-          float scoreLines = rwChladni(vWP.xz) * musicalZone * (0.15 + uCres * 0.85) * uChladni;
-          // Caustics affect shallow terrain, not the rift floor.
+          float field = rwChladniField(vWP.xz);
+          float scoreLines = rwChladni(vWP.xz) * musicalZone * (0.15 + uCres * 0.85 + uCeremony * 0.55) * uChladni;
+          // Caustics affect shallow terrain, not the rift floor; antinodes brighten the lace.
           float shore = 1.0 - smoothstep(0.0, 2.2, abs(vWP.y));
-          float causticLight = rwCaustic(vWP.xz, uTime) * shore * uCaustics * (1.0 - uIsRift);
+          float antinode = smoothstep(0.0, 0.55, abs(field));
+          float causticLight = rwCaustic(vWP.xz, uTime) * shore * uCaustics * (1.0 - uIsRift)
+            * mix(0.55, 1.18, antinode * uChladni);
           totalEmissiveRadiance += uRingColor * (ripple(uRipple) * 0.45 + ripple(uRipple2) * 0.7 + glow + scoreLines * 0.38);
-          totalEmissiveRadiance += vec3(0.28, 0.70, 0.90) * causticLight * 0.3;`);
+          totalEmissiveRadiance += vec3(0.28, 0.70, 0.90) * causticLight * 0.3;
+          totalEmissiveRadiance += uRingColor * scoreLines * uCeremony * 0.22;`);
     };
-    mat.customProgramCacheKey = () => 'resonate-cel-v1';
+    // Preserve hard-cel compose key from #571, bump for plate-mode uniforms.
+    mat.customProgramCacheKey = () => 'resonate-cel-hard-v2-modes';
   }
 
   pulse(x, z, strength = 1, big = false) {
     const u = big ? this.uniforms.uRipple2 : this.uniforms.uRipple;
     u.value.set(x, z, this.uniforms.uTime.value, strength);
+  }
+
+  getMode() {
+    return { n: this.uniforms.uModeN.value, m: this.uniforms.uModeM.value, index: this.modeIndex };
+  }
+
+  setMode(n, m) {
+    const nn = Math.max(1, Math.round(n));
+    const mm = Math.max(1, Math.round(m));
+    this.uniforms.uModeN.value = nn;
+    this.uniforms.uModeM.value = mm;
+    const idx = this.modeLadder.findIndex(([a, b]) => a === nn && b === mm);
+    if (idx >= 0) this.modeIndex = idx;
+    return this.getMode();
+  }
+
+  /** Perfect casts advance the plate mode; Good/Miss leave the floor figure alone. */
+  hopMode(perfect = true) {
+    if (!perfect) return this.getMode();
+    this.modeIndex = (this.modeIndex + 1) % this.modeLadder.length;
+    const [n, m] = this.modeLadder[this.modeIndex];
+    this.uniforms.uSharpness.value = Math.min(1.45, (this.uniforms.uSharpness.value || 1) + 0.06);
+    return this.setMode(n, m);
+  }
+
+  /**
+   * Sample the same rectangular plate field the floor shader uses.
+   * Returns nodal (sand-line) and antinode points for combat / ceremony VFX.
+   */
+  chladniSamples(cx, cz, radius, count = 40) {
+    const n = this.uniforms.uModeN.value;
+    const m = this.uniforms.uModeM.value;
+    const phase = this.uniforms.uPhase.value;
+    const scale = 0.18;
+    const PI = Math.PI;
+    const fieldAt = (x, z) => {
+      const qx = (x - cx) * scale;
+      const qz = (z - cz) * scale;
+      const a = Math.cos(n * PI * qx + phase) * Math.cos(m * PI * qz);
+      const b = Math.cos(m * PI * qx) * Math.cos(n * PI * qz + phase * 0.7);
+      return a - b;
+    };
+    const nodal = [];
+    const antinode = [];
+    const steps = 26;
+    for (let i = 0; i < steps; i++) {
+      for (let j = 0; j < steps; j++) {
+        const x = cx + ((i / (steps - 1)) - 0.5) * 2 * radius;
+        const z = cz + ((j / (steps - 1)) - 0.5) * 2 * radius;
+        if (Math.hypot(x - cx, z - cz) > radius) continue;
+        const f = fieldAt(x, z);
+        const af = Math.abs(f);
+        if (af < 0.085) nodal.push({ x, z, f });
+        else if (af > 0.55) antinode.push({ x, z, f });
+      }
+    }
+    const thin = (arr, k) => {
+      if (arr.length <= k) return arr;
+      const out = [];
+      for (let i = 0; i < k; i++) out.push(arr[Math.floor((i + 0.5) * arr.length / k)]);
+      return out;
+    };
+    return { nodal: thin(nodal, count), antinode: thin(antinode, Math.max(8, count >> 1)), n, m };
+  }
+
+  /** Recital ceremony: brief nodal bloom + optional mode hop / miss damp. */
+  ceremonyFigure(kind = 'goal', x, z) {
+    const px = x ?? this.uniforms.uPlayer.value.x;
+    const pz = z ?? this.uniforms.uPlayer.value.z;
+    const boost = kind === 'inherit' ? 1 : kind === 'bank' ? 0.85 : kind === 'miss' ? 0.4 : 0.7;
+    this._ceremonyUntil = this.uniforms.uTime.value + 0.55;
+    this._ceremonyBoost = boost;
+    if (kind === 'miss') {
+      this._ceremonyModeRestore = this.getMode();
+      this.setMode(1, 2);
+      this.uniforms.uSharpness.value = 0.55;
+    } else if (kind === 'inherit') {
+      this.hopMode(true);
+    }
+    this.pulse(px, pz, 1.4 + boost, true);
+    return this.chladniSamples(px, pz, 6.5, 36);
   }
 
   // ------------------------------------------------------------------ water
@@ -516,15 +622,27 @@ export class World {
             objectNormal = normalize(vec3(-dx, 1.0, -dz)); }`);
       sh.fragmentShader = sh.fragmentShader
         .replace('#include <common>', `#include <common>
-          varying vec3 vWP; uniform float uTime; uniform vec4 uRipple; uniform vec4 uRipple2; uniform vec3 uRingColor; uniform float uCaustics;
-          float ripple(vec4 r){ float age = uTime - r.z; if(age < 0.0 || age > 1.2) return 0.0; float d = distance(vWP.xz, r.xy); float rad = age * 30.0; return exp(-pow((d - rad) / 1.4, 2.0)) * r.w * (1.0 - age / 1.2); }`)
+          varying vec3 vWP; uniform float uTime; uniform vec4 uRipple; uniform vec4 uRipple2; uniform vec3 uPlayer; uniform vec3 uRingColor; uniform float uCaustics; uniform float uChladni;
+          uniform float uModeN; uniform float uModeM; uniform float uPhase; uniform float uCeremony;
+          float ripple(vec4 r){ float age = uTime - r.z; if(age < 0.0 || age > 1.2) return 0.0; float d = distance(vWP.xz, r.xy); float rad = age * 30.0; return exp(-pow((d - rad) / 1.4, 2.0)) * r.w * (1.0 - age / 1.2); }
+          float rwChladniField(vec2 p) {
+            vec2 q = (p - uPlayer.xz) * 0.18;
+            float n = max(uModeN, 1.0), m = max(uModeM, 1.0);
+            float a = cos(n * 3.14159265 * q.x + uPhase) * cos(m * 3.14159265 * q.y);
+            float b = cos(m * 3.14159265 * q.x) * cos(n * 3.14159265 * q.y + uPhase * 0.7);
+            return a - b;
+          }`)
         .replace('#include <emissivemap_fragment>', `#include <emissivemap_fragment>
           float sparkle = pow(max(0.0, sin(vWP.x * 1.7 + uTime * 2.0) * sin(vWP.z * 1.3 - uTime * 1.6)), 12.0) * 0.35;
           float waterCaustic = pow(max(0.0, 0.5 + 0.5 * sin(vWP.x * 0.78 + uTime * 0.9) * sin(vWP.z * 0.93 - uTime * 0.64)), 6.0);
+          float nearPlayer = 1.0 - smoothstep(6.0, 16.0, distance(vWP.xz, uPlayer.xz));
+          float antinode = smoothstep(0.0, 0.55, abs(rwChladniField(vWP.xz)));
+          float lace = mix(1.0, 0.62 + 0.7 * antinode, nearPlayer * uChladni);
           totalEmissiveRadiance += uRingColor * (ripple(uRipple) * 0.5 + ripple(uRipple2) * 0.7) + vec3(sparkle);
-          totalEmissiveRadiance += vec3(0.3, 0.65, 0.95) * waterCaustic * uCaustics * 0.38;`);
+          totalEmissiveRadiance += vec3(0.3, 0.65, 0.95) * waterCaustic * uCaustics * 0.38 * lace;
+          totalEmissiveRadiance += uRingColor * nearPlayer * antinode * uCeremony * 0.18;`);
     };
-    mat.customProgramCacheKey = () => 'water-caustics-v1';
+    mat.customProgramCacheKey = () => 'water-caustics-v2-modes';
     this.water = new THREE.Mesh(geo, mat);
     this.water.position.y = WATER;
     this.water.renderOrder = 2;
@@ -764,6 +882,20 @@ export class World {
     U.uTime.value = t;
     U.uPlayer.value.copy(player);
     U.uCres.value = crescendo;
+    U.uPhase.value = t * 0.28 + beatPhase * Math.PI;
+    if (this._ceremonyUntil != null) {
+      const rem = this._ceremonyUntil - t;
+      if (rem <= 0) {
+        U.uCeremony.value = 0;
+        if (this._ceremonyModeRestore) {
+          this.setMode(this._ceremonyModeRestore.n, this._ceremonyModeRestore.m);
+          this._ceremonyModeRestore = null;
+        }
+        this._ceremonyUntil = null;
+      } else {
+        U.uCeremony.value = (this._ceremonyBoost || 0.7) * (rem / 0.55);
+      }
+    }
     if (!this.inRift) {
       const s = 300 / 60;
       this.water.position.x = Math.round(player.x / s) * s;

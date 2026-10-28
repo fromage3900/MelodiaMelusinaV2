@@ -55,7 +55,7 @@ assert.ok(model.byteLength < 1024 * 1024, 'P0 GLB must fit 1 MiB');
 const manifest = JSON.parse(file('manifest.json'));
 for (const icon of manifest.icons) assert.ok(exists(icon.src), 'missing PWA icon ' + icon.src);
 const sw = file('sw.js');
-assert.match(sw, /resonant-wilds-v11/);
+assert.match(sw, /resonant-wilds-v12/);
 assert.match(sw, /js\/mixamo\.js/);
 assert.match(sw, /mixamo-hero\.glb/);
 assert.match(sw, /js\/echo\.js/);
