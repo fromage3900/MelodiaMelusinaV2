@@ -161,6 +161,18 @@ export const BIOME_DESTINATIONS = Object.freeze({
     { key: 'shelf', name: 'Aurora Shelf', kit: 'shelf', r: 195, da: 0.1, gate: null, line: 'A glacial ledge opens under the green curtain.' },
     { key: 'hollow', name: 'Ice Choir Hollow', kit: 'hollow', r: 305, da: -0.09, gate: 'purify', line: 'Ice voices wait for Harmonize to thaw the mouth.' },
   ],
+  choir_marsh: [
+    { key: 'jetty', name: 'Mist Choir Jetty', kit: 'quay', r: 180, da: 0.09, gate: null, line: 'Reed posts hum a soft choir into the marsh fog.' },
+    { key: 'canticle', name: 'Reed Canticle Mouth', kit: 'nave', r: 300, da: -0.11, gate: 'purify', line: 'A blot seals the canticle until Sheep Harmonize parts it.' },
+  ],
+  glass_orchard: [
+    { key: 'prism', name: 'Prism Picnic Grove', kit: 'tea', r: 185, da: -0.08, gate: null, line: 'Glass fruit clinks like bells over porcelain light.' },
+    { key: 'bellfruit', name: 'Bellfruit Cloister', kit: 'stair', r: 295, da: 0.12, gate: 'float', line: 'Shard steps lift into the orchard — wardrobe cadence required.' },
+  ],
+  starlit_moor: [
+    { key: 'nightbell', name: 'Nightbell Overlook', kit: 'shelf', r: 190, da: 0.1, gate: null, line: 'High bells drone across the moor under a star curtain.' },
+    { key: 'moorhollow', name: 'Moor Hollow Chorus', kit: 'hollow', r: 310, da: -0.1, gate: 'purify', line: 'The hollow waits for Harmonize before the chorus wakes.' },
+  ],
 });
 
 /** Attach impression + workflow rings onto each biome (called once from design consumers). */

@@ -94,7 +94,7 @@ try {
     assert.equal(before.painterly, !!test.painterly, test.name + ': wrong painterly state');
     assert.equal(before.postfx, !!test.postfx, test.name + ': unexpected postprocessing state');
     assert.equal(before.worldexp, !!test.worldexp, test.name + ': world expansion flag mismatch');
-    if (test.worldexp) assert.ok(before.destinations >= 10, test.name + ': destination POIs not generated');
+    if (test.worldexp) assert.ok(before.destinations >= 16, test.name + ': destination POIs not generated');
     else assert.equal(before.destinations, 0, test.name + ': default map received opt-in destinations');
     if (test.npr) assert.equal(before.paletteSize, 12, test.name + ': missing RGB NPR gradient');
     else if (!test.legacy) assert.equal(before.paletteSize, 3, test.name + ': v1 gradient regression');
