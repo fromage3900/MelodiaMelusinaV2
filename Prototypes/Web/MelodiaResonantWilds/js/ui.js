@@ -133,6 +133,7 @@ export class UI {
       }
       else if (c === 'BracketLeft') g.encore(true);
       else if (c === 'BracketRight') { g.encoreSys.cycle(-1); }
+      else if (c === 'KeyH') g.sheep.harmonize(false);
       else if (c === 'KeyX' || c === 'Enter') g.interact();
       else if (c === 'KeyI') this.open('wardrobe');
       else if (c === 'KeyK') this.open('skills');
@@ -189,11 +190,12 @@ export class UI {
     this._gf = setTimeout(() => el.classList.remove('show'), 380);
   }
 
-  /** Highway pulse when a Perfect lands — thicker approach ring flash. */
-  beatSpark() {
+  /** Highway pulse when a Perfect lands — tint follows selected Encore / fashion. */
+  beatSpark(color = null) {
     const ring = $('approach');
     if (!ring) return;
-    ring.style.borderColor = '#ffd978';
+    const col = color || this.g.encoreSys?.accentColor?.() || '#ffd978';
+    ring.style.borderColor = col;
     ring.style.opacity = '1';
     ring.animate?.(
       [{ transform: 'scale(1.05)', borderWidth: '3px' }, { transform: 'scale(1.55)', borderWidth: '1px' }],
@@ -256,7 +258,8 @@ export class UI {
     const ring = $('approach');
     ring.style.transform = `scale(${1 + toNext * 0.9})`;
     ring.style.opacity = (0.35 + (1 - toNext) * 0.65).toFixed(2);
-    ring.style.borderColor = toNext < 0.12 || toNext > 0.9 ? '#ffd978' : '#82d2db';
+    const encCol = g.encoreSys?.accentColor?.() || '#ffd978';
+    ring.style.borderColor = toNext < 0.12 || toNext > 0.9 ? encCol : '#82d2db';
     // Skills
     for (let i = 0; i < 4; i++) {
       const b = document.querySelector(`.skill[data-i="${i}"]`);

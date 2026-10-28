@@ -476,9 +476,15 @@ export class Activities {
     const g = this.g;
     p.revealed = true;
     g.profile.destinations = g.profile.destinations || [];
-    if (p.id && !g.profile.destinations.includes(p.id)) {
+    const first = p.id && !g.profile.destinations.includes(p.id);
+    if (first) {
       g.profile.destinations.push(p.id);
       g.progress.addXp(20);
+      // First visit: temporary biome motif buff (speed + Perfect window) for ~90s.
+      g.profile.destBuffs = g.profile.destBuffs || {};
+      g.profile.destBuffs[p.biome ?? p.id] = g.time + 90;
+      g.player.recalc();
+      g.ui.toast('First visit motif — +Perfect window & speed for 90s', 'aqua');
     }
     g.ui.banner(p.name, p.line || 'A named place opens along the motif.');
     if (!soft) g.audio.levelUp();
@@ -527,11 +533,61 @@ export class Activities {
       g.profile.notes += 2;
       g.progress.addXp(50);
       g.ui.toast(`Resonance Dew — ${p.name}`, 'gold');
+      this._applyDewSetBonus();
+      this._spawnSecretLedge(p);
     }
     g.particles.burst(p.x, p.y + 2.2, p.z, new THREE.Color('#9fe6ff'), 22, { speed: 6, life: 0.9, kind: 3 });
     g.world.pulse(p.x, p.z, 1.4, true);
     g.audio.levelUp();
     g.save();
+  }
+
+  /** Dew collection milestones: 3 / 6 / 10 real Dews (not _open flags). */
+  _applyDewSetBonus() {
+    const g = this.g;
+    const n = (g.profile.dews || []).filter((id) => !String(id).endsWith('_open')).length;
+    const prev = g.profile.dewBonusTier || 0;
+    let tier = 0;
+    if (n >= 10) tier = 3;
+    else if (n >= 6) tier = 2;
+    else if (n >= 3) tier = 1;
+    if (tier <= prev) return;
+    g.profile.dewBonusTier = tier;
+    if (tier === 1) {
+      g.rhythm.encore = Math.min(g.rhythm.encoreMax, g.rhythm.encore + g.rhythm.encoreMax * 0.35);
+      g.ui.banner('Dew Set I', '3 Dews — Encore charge gifted');
+    } else if (tier === 2) {
+      g.player.sp = Math.min(g.player.stats.spMax, g.player.sp + 2);
+      g.ui.banner('Dew Set II', '6 Dews — Harmony +2 · motif buff extended');
+      g.profile.destBuffs = g.profile.destBuffs || {};
+      g.profile.destBuffs.global = g.time + 120;
+    } else if (tier === 3) {
+      g.rhythm.encore = g.rhythm.encoreMax;
+      g.ui.banner('Dew Set III', '10 Dews — Encore ready · +1 Perfect-window beat on cast');
+    }
+    g.audio.encoreSelect('dew');
+    g.player.recalc();
+  }
+
+  /** Nikki “oh!” — a secret float ledge appears after Dew at float-gated destinations. */
+  _spawnSecretLedge(p) {
+    if (!p.needsFloat || p.secretLedge) return;
+    const g = this.g;
+    const mat = (hex, o = {}) => new THREE.MeshLambertMaterial({ color: hex, flatShading: true, ...o });
+    const grp = new THREE.Group();
+    const ax = Math.cos((p.biomeAngle || 0) + 0.4), az = Math.sin((p.biomeAngle || 0) + 0.4);
+    const lx = p.x + ax * 6, lz = p.z + az * 6;
+    const y = g.world.height(lx, lz) + 2.4;
+    const plank = new THREE.Mesh(new THREE.BoxGeometry(3.2, 0.18, 1.4), mat('#f4ecff', { emissive: '#c8b6ef', emissiveIntensity: 0.25 }));
+    plank.position.set(lx, y, lz);
+    grp.add(plank);
+    const gem = new THREE.Mesh(new THREE.OctahedronGeometry(0.35, 0), mat('#ffffff', { emissive: '#ffd978', emissiveIntensity: 0.8 }));
+    gem.position.set(lx, y + 0.7, lz);
+    grp.add(gem);
+    g.scene.add(grp);
+    p.secretLedge = grp;
+    g.ui.toast('A secret ledge unfolds above the Dew…', 'lavender');
+    g.overlay.text(lx, y + 1.4, lz, '✧', '#ffd978', 18, { life: 1.6 });
   }
 
   viewOverlook(p, soft = false) {
@@ -575,6 +631,15 @@ export class Activities {
       g.ui.toast(p.challenge ? `Whim challenge framed — Golden Notes +${bonus}` : 'Whim Frame captured — Golden Note +1', 'aqua');
       g.progress.addXp(p.challenge ? 40 : 25);
     } else if (!soft) g.ui.toast('Already framed this whim', 'lavender');
+    // Sheep photobomb — hops into frame for the snap (Nikki companion delight).
+    if (!soft && Math.random() < 0.55) {
+      g.sheep.pos.set(p.x + Math.sin(P.facing + 0.9) * 1.6, p.y, p.z + Math.cos(P.facing + 0.9) * 1.6);
+      g.sheep.pos.y = g.world.height(g.sheep.pos.x, g.sheep.pos.z);
+      g.sheep.hopT = 1;
+      g.sheep.glow = 1;
+      g.ui.toast('Sheep photobomb ♪', 'aqua');
+      g.overlay.text(g.sheep.pos.x, g.sheep.pos.y + 1.6, g.sheep.pos.z, '✧', '#ffffff', 16, { life: 0.9 });
+    }
     g.world.pulse(p.x, p.z, 1.1, true);
     g.particles.burst(p.x, p.y + 2, p.z, new THREE.Color('#c8b6ef'), 16, { speed: 4, life: 0.8, kind: 1 });
     g.audio.ui();
