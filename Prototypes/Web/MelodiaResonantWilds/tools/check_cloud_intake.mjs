@@ -41,6 +41,10 @@ const manifest = JSON.parse(file('manifest.json'));
 for (const icon of manifest.icons) assert.ok(exists(icon.src), 'missing PWA icon ' + icon.src);
 const sw = file('sw.js');
 assert.match(sw, /resonant-wilds-v9/);
+assert.match(sw, /js\/echo\.js/);
+assert.match(sw, /assets\/icons\/echo_phrase\.svg/);
+assert.match(sw, /js\/grove\.js/);
+assert.match(sw, /harmonic-grove-37\.glb/);
 for (const path of sw.matchAll(/'\.\/([^']+)'/g)) {
   const p = path[1];
   if (p) assert.ok(exists(p), 'missing offline dependency ' + p);

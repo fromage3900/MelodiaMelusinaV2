@@ -3,7 +3,7 @@
 **Authoritative gameplay:** `fromage3900/MelodiaMelusinaV2/Prototypes/Web/MelodiaResonantWilds/`.
 **Published web mirror:** `fromage3900/my-site/resonant-wilds/`.
 **Rule:** maintain gameplay saves, collision/POI rules, and rhythm clock; replace presentation only.
-**Branch status:** experiment, not yet merged or browser approved.
+**Branch status:** publish lane `cursor/resonant-wilds-publish-d99d` (PR #565) — loop stack rebased on current main (SW v9). Cloud Chromium boot + SW precache QA PASS 2026-10-28 (`Saved`/`artifacts/rw-publish-qa`). iPhone Safari QA + owner `tools/sync_to_mysite.sh` mirror into my-site still required before flipping to browser-approved.
 
 ## Procedural artwork inventory
 

@@ -1,12 +1,13 @@
-// Resonant Wilds PWA cache v2. Keep shader, character and GLB updates fresh.
+// Resonant Wilds PWA cache. Keep shader, character, icon and GLB updates fresh.
 // The browser game remains playable online even if optional preview assets fail.
-const CACHE = 'resonant-wilds-v9-20261028-grove-canary';
+const CACHE = 'resonant-wilds-v9-20261028-publish-grove';
 const ASSETS = [
   './', './index.html', './style.css', './manifest.json',
   './icon-192.png', './icon-512.png',
   './js/main.js', './js/game.js', './js/audio.js', './js/rhythm.js',
   './js/world.js', './js/entities.js', './js/cel.js', './js/painterly.js', './js/npr-tuner.js', './js/chibi.js',
-  './js/asset-loader.js', './js/bellflower.js', './js/flowerbeds.js', './js/openworld.js', './js/postfx.js', './js/grove.js', './js/combat.js', './js/loot.js',
+  './js/asset-loader.js', './js/bellflower.js', './js/flowerbeds.js', './js/openworld.js', './js/postfx.js', './js/grove.js',
+  './js/combat.js', './js/loot.js', './js/echo.js', './js/encore.js',
   './js/activities.js', './js/progress.js', './js/ui.js',
   './js/player.js', './js/design.js', './js/fx.js', './js/util.js',
   './js/generated/ue_data.js',
@@ -21,6 +22,25 @@ const ASSETS = [
   './vendor/shaders/LuminosityHighPassShader.js', './vendor/shaders/OutputShader.js',
   './assets/models/resonance-shrine.glb',
   './assets/models/harmonic-grove-37.glb',
+  './assets/icons/charm_brooch.svg', './assets/icons/charm_clef_pendant.svg',
+  './assets/icons/charm_music_box.svg', './assets/icons/charm_shell_charm.svg',
+  './assets/icons/echo_phrase.svg',
+  './assets/icons/gloves_gauntlets.svg', './assets/icons/gloves_gloves.svg', './assets/icons/gloves_mitts.svg',
+  './assets/icons/gown_coat.svg', './assets/icons/gown_dress.svg', './assets/icons/gown_gown.svg',
+  './assets/icons/gown_kimono.svg', './assets/icons/gown_robe.svg',
+  './assets/icons/head_circlet.svg', './assets/icons/head_ribbon.svg', './assets/icons/head_sun_hat.svg',
+  './assets/icons/head_tiara.svg', './assets/icons/head_veil.svg',
+  './assets/icons/instrument_baton.svg', './assets/icons/instrument_chime_staff.svg',
+  './assets/icons/instrument_flute.svg', './assets/icons/instrument_harp.svg',
+  './assets/icons/instrument_lyre.svg', './assets/icons/instrument_violin_bow.svg',
+  './assets/icons/motif_arcane.svg', './assets/icons/motif_forte.svg', './assets/icons/motif_gale.svg',
+  './assets/icons/motif_radiant.svg', './assets/icons/motif_stone.svg', './assets/icons/motif_tide.svg',
+  './assets/icons/motif_umbral.svg',
+  './assets/icons/rarity_common.svg', './assets/icons/rarity_opus.svg', './assets/icons/rarity_resonant.svg',
+  './assets/icons/rarity_tuned.svg', './assets/icons/rarity_virtuoso.svg',
+  './assets/icons/shoes_boots.svg', './assets/icons/shoes_heels.svg', './assets/icons/shoes_slippers.svg',
+  './assets/icons/slot_charm.svg', './assets/icons/slot_gloves.svg', './assets/icons/slot_gown.svg',
+  './assets/icons/slot_head.svg', './assets/icons/slot_instrument.svg', './assets/icons/slot_shoes.svg',
 ];
 
 self.addEventListener('install', (event) => {
