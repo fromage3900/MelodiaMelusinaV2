@@ -167,6 +167,18 @@ export class UI {
     this._gf = setTimeout(() => el.classList.remove('show'), 380);
   }
 
+  /** Highway pulse when a Perfect lands — thicker approach ring flash. */
+  beatSpark() {
+    const ring = $('approach');
+    if (!ring) return;
+    ring.style.borderColor = '#ffd978';
+    ring.style.opacity = '1';
+    ring.animate?.(
+      [{ transform: 'scale(1.05)', borderWidth: '3px' }, { transform: 'scale(1.55)', borderWidth: '1px' }],
+      { duration: 220, easing: 'ease-out' },
+    );
+  }
+
   dynamicsUp(d) {
     const el = $('dynmark');
     el.animate([{ transform: 'scale(2)' }, { transform: 'scale(1)' }], { duration: 400, easing: 'ease-out' });
@@ -369,6 +381,13 @@ export class UI {
       case 'forge': glyph('⚒', '#ffcf7a', 18); break;
       case 'board': glyph('📜', '#fff', 16); break;
       case 'font': glyph('✧', '#8fe0ff', 18); break;
+      case 'overlook': glyph('⌂', (pr.vistas || []).includes(p.id) ? '#ffd978' : '#f6f0f8', 18); break;
+      case 'photo': glyph('▭', '#c8b6ef', 16); break;
+      case 'chime': glyph('♫', '#9fe6ff', 16); break;
+      case 'musicgate': glyph('═', p.open ? '#62c8ff' : '#9fe6ff', 16); break;
+      case 'cleanse': glyph('◎', p.cleared ? '#8fd8ff' : '#c690ff', 16); break;
+      case 'ariagate': glyph('◈', p.open ? '#ffd978' : '#e8dff8', 16); break;
+      case 'destination': glyph('◇', (pr.dews || []).includes(p.id) ? '#ffd978' : '#9fe6ff', 18); break;
     }
   }
 

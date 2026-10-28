@@ -116,8 +116,8 @@ const decalFrag = `uniform int uShape; uniform vec4 uDim; uniform float uProgres
     else if (uShape == 2) { inside = step(abs(vL.x), uDim.y * 0.5) * step(0.0, vL.y) * step(vL.y, uDim.x); fill = inside * step(vL.y, uDim.x * uProgress); edge = inside * max(smoothstep(uDim.y * 0.5 - 0.3, uDim.y * 0.5, abs(vL.x)), smoothstep(uDim.x - 0.3, uDim.x, vL.y)); }
     else { float r = length(vL); float a = abs(atan(vL.x, vL.y)); inside = step(r, uDim.x) * step(a, uDim.y); fill = inside * step(r, uDim.x * uProgress); edge = inside * max(smoothstep(uDim.x - 0.35, uDim.x, r), smoothstep(uDim.y - 0.06, uDim.y, a)); }
     if (inside < 0.5) discard;
-    float a = (0.16 + fill * 0.34 + edge * 0.6) * uAlpha;
-    gl_FragColor = vec4(uColor * (1.0 + edge * 0.6), a);
+    float a = (0.22 + fill * 0.42 + edge * 0.72) * uAlpha;
+    gl_FragColor = vec4(uColor * (1.0 + edge * 0.75 + fill * 0.25), a);
   }`;
 
 export class Decals {

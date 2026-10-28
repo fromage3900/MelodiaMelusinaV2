@@ -30,6 +30,25 @@ No build step. three.js r170 is vendored in `vendor/` (MIT, licence alongside).
 | Gold pill | X / Enter | Interact (forge, bounties, font, rift, shrine, Maestro, pylon) |
 | Menu row | I K M B | Wardrobe · Skills · Map (fast travel) · Bounties |
 
+## 🗺 Open-world workflow (mobile anime research → live rules)
+
+`js/openworld.js` encodes production patterns from **Infinity Nikki**, **Genshin Impact**, **Wuthering Waves** and **Zenless Zone Zero**, then drives the existing World / Activities generators (no second world authority).
+
+| Research pattern | Resonant Wilds rule |
+|---|---|
+| Nikki Impression → Creation → Production | Per-biome impression card → gate/vista/landmark graph → dressed POIs |
+| Nikki “details all the time” | Near / mid / far dressing layers denser at the player’s feet |
+| Genshin gate → reveal → landmark | Hub gate arches → Reveal overlooks (~140 m) → biome core landmark |
+| Genshin exploration density | Budgeted camps / chests / shrines / sheets / chimes / whim frames per biome |
+| Nikki outfit → puzzle → space | Phrase Bridges, Aria Veils (Wardrobe), sheep Harmonize cleanses, Whim Frame angle challenges |
+| Nikki named subareas (Florawish-style) | 10 authored micro-destinations + Resonance Dew collectibles; float/purify gates |
+| Nikki “details all the time” look | Denser near dressing, taller landmarks, selective UnrealBloomPass, soft TOD tint, gown sway |
+| ZZZ signature hub district | Shorewake keeps forge / board / font / rift within a short walk |
+| WuWa TOD / atmosphere maintainability | Soft sun/fog TOD cycle + biome palette swaps; workflow keeps prop budgets phone-safe |
+| three.js OutlinePass + Bloom | Vendored r170 EffectComposer; outlines threats; bloom on emissives (off on `low` quality) |
+
+Inspect the live recipe in the browser console: `window.__rwOpenWorld`.
+
 ## 🔁 The loop
 
 - **Rhythm language.** Taps are graded against the beat you actually hear, using Web Audio output latency plus a calibration offset. Grades are PERFECT / GREAT / GOOD / MISS. On-beat hits build a combo and a **Crescendo** meter shown as dynamics (pp → p → mf → f → ff), which raises crit and move speed. They also fill **Encore** and refund **Harmony**. Slimes hop on the beat. Their attacks are telegraphs that land on a counted beat (elites and bosses count "3, 2, 1" aloud).
@@ -51,6 +70,10 @@ No build step. three.js r170 is vendored in `vendor/` (MIT, licence alongside).
   - Lost Sheet Music, which teaches skills
   - Pylons for fast travel
   - Music-key shrines: call and response, where you answer the shrine's phrase on the next bar
+  - **Vista overlooks** (auto-reveal banners) and **Whim Frames** / **chime clusters** from the OW density budget
+  - **Phrase Bridges** (answer Great/Perfect on the beat), **Dissonant Blots** (Sheep Harmonize cleanse), **Aria Veils** (equip shoes or an Opus Aria)
+  - **Named destinations** (Petal Tea Terrace, Canal Quay Choir, Echo Amphitheater, …) with **Resonance Dew** collectibles; float ledges need Wardrobe, purify caves need Harmonize
+  - Whim Frame **angle challenges** — face the landmark prompt before framing
   - Biome **Maestros** (world bosses) with toughness **BREAK**
   - **Resonance Rifts** (Recitals): tiered, infinite and timed, with DT_Burdens at tier 3+
   - The **Movement** chain: one per biome, which gives new players a direction
@@ -87,7 +110,7 @@ python Prototypes/Web/MelodiaResonantWilds/tools/export_ue_data.py
 
 ## 🗂 Files
 
-`js/audio.js` beat clock and procedural score · `js/rhythm.js` judging, combo, Crescendo, Encore · `js/world.js` streamed terrain, biomes, props, landmarks, water, rift arena · `js/entities.js` Melusina, sheep, slimes, boss phrases · `js/combat.js` damage, skills, projectiles · `js/loot.js` items, Motifs, Harmonic Synthesis, temper · `js/echo.js` Echo Lineage · `js/activities.js` camps, shrines, bosses, events, rifts · `js/progress.js` save, XP, bounties, exploration · `js/ui.js` HUD, touch controls, panels, rift reward reveal · `js/game.js` loop · `assets/icons/` SVG icon pack + `manifest.json`.
+`js/openworld.js` anime OW workflow recipe (gates, vistas, density, dressing layers, destinations) · `js/audio.js` beat clock and procedural score · `js/rhythm.js` judging, combo, Crescendo, Encore · `js/world.js` streamed terrain, biomes, props, landmarks, water, rift arena · `js/entities.js` Melusina, sheep, slimes, boss phrases · `js/combat.js` damage, skills, projectiles · `js/loot.js` items, Motifs, Harmonic Synthesis, temper · `js/echo.js` Echo Lineage · `js/activities.js` camps, shrines, bosses, events, rifts, overlooks, destinations · `js/progress.js` save, XP, bounties, exploration · `js/ui.js` HUD, touch controls, panels, rift reward reveal · `js/postfx.js` OutlinePass + selective bloom · `js/game.js` loop · `assets/icons/` SVG icon pack + `manifest.json`.
 
 UI frames live in Figma: [Resonant Wilds Web UI](https://www.figma.com/design/Vin9X81mAyJ4GQIjGBmzcI).
 
