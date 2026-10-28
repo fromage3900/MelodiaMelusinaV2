@@ -10,7 +10,7 @@
 | Source | Procedural asset | Preferred replacement | Status |
 | --- | --- | --- | --- |
 | `js/activities.js:buildMesh` | Music-Key Shrine (four stelae + knot) | `assets/models/resonance-shrine.glb` | **staged; opt-in `?shrine=glb`; fallback retained** |
-| `js/player.js` + `js/entities.js` | Melusina primitive character | recovered `js/chibi.js` (temporary) / later authored GLB | **staged; opt-in `?avatar=chibi`** |
+| `js/player.js` + `js/entities.js` | Melusina primitive character | recovered `js/chibi.js` (temporary) / Mixamo Soldier GLB / later authored Melusina GLB | **staged; opt-in `?avatar=chibi` or `?avatar=mixamo` (`assets/models/mixamo-hero.glb`, Three.js r170 Mixamo Soldier + AnimationMixer)** |
 | `js/entities.js` | Choral Sheep | low-poly sheep GLB with existing runtime object as fallback | not created |
 | `js/entities.js` | Melody Slime + bosses | authored variant GLBs with existing collider/gameplay | not created |
 | `js/world.js:_buildPropLibrary` | `sakura` | stylized instanced tree | not created |
