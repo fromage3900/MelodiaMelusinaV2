@@ -13,6 +13,7 @@ import { Rhythm } from './rhythm.js';
 import { Progress, saveProfile, loadProfile, wipeProfile } from './progress.js';
 import { Activities } from './activities.js';
 import { UI } from './ui.js';
+import { PostFX } from './postfx.js';
 import { BIOMES, HUB, DIFFICULTY, RARITIES, SKILL_BY_ID, SHARD_BY_ELEMENT, ELEMENT_STYLE, MODIFIERS, RULES, xpToNext } from './design.js';
 import { clamp, lerp } from './util.js';
 
@@ -73,6 +74,8 @@ export class Game {
     this.sheep = new Sheep(this);
     this.activities = new Activities(this);
     this.ui = new UI(this);
+    this.postfx = new PostFX(this);
+    this._outlineInteract = null;
 
     this.firstRunGear();
     const sp = this.profile.spawn;
@@ -213,6 +216,8 @@ export class Game {
     }
     this.autoAttackBeat = gr.beat ? gr.beat.index : this.beatIndex;
     this.rhythm.register(gr, hits);
+    if (gr.grade === 'Miss') this.combat.missPressure();
+    else if (gr.grade === 'Perfect' && hits) this.combat.perfectJuice(gr);
   }
 
   // Holding attack auto-fires on each beat at a flat ×1.0 — tapping on the
@@ -240,6 +245,8 @@ export class Game {
     this.cooldowns[i] = this.time + total;
     const hits = this.combat.cast(sk, gr);
     this.rhythm.register(gr, hits);
+    if (gr.grade === 'Miss') this.combat.missPressure();
+    else if (gr.grade === 'Perfect' && hits) this.combat.perfectJuice(gr);
   }
 
   dodge(perfMs) {
@@ -250,13 +257,22 @@ export class Game {
     const mv = this.ui.move();
     const ang = mv.x || mv.z ? Math.atan2(mv.x, mv.z) : P.facing;
     P.dodgeFrom = { x: P.pos.x, z: P.pos.z };
-    P.startDash(ang, 5.5, 0.22, gr.grade !== 'Miss');
+    const perfectish = gr.grade === 'Perfect' || gr.grade === 'Great';
+    P.startDash(ang, perfectish ? 6.4 : 5.5, perfectish ? 0.26 : 0.22, gr.grade !== 'Miss');
     P.lastDodgeTime = this.time;
     P.lastDodgeGrade = gr.grade;
     this.dodgeReadyAt = this.time + (gr.grade === 'Perfect' && P.stats.arias.has('SwiftTempo') ? 0.25 : this.dodgeCd);
     this.audio.dodge();
     this.ui.gradeFlash(gr.grade, gr.err);
-    for (let k = 0; k < 8; k++) this.particles.emit(P.pos.x, P.pos.y + 0.8, P.pos.z, _c.set('#ffffff'), { speed: 2, life: 0.4, size: 0.7 });
+    const spark = perfectish ? 16 : 8;
+    const col = gr.grade === 'Perfect' ? '#ffd978' : gr.grade === 'Great' ? '#c9b6ef' : '#ffffff';
+    for (let k = 0; k < spark; k++) {
+      this.particles.emit(P.pos.x, P.pos.y + 0.8, P.pos.z, _c.set(col), {
+        dir: { x: Math.sin(ang + Math.PI), y: 0.15, z: Math.cos(ang + Math.PI) },
+        speed: perfectish ? 5 + Math.random() * 4 : 2, life: 0.4, size: perfectish ? 0.9 : 0.7, kind: perfectish ? 3 : 0,
+      });
+    }
+    if (perfectish) this.decals.spawn('ring', P.pos.x, P.pos.z, { r: 1.6, inner: 1.2, flash: true, dur: 0.28, color: col });
   }
 
   perfectDodge(src) {
@@ -265,14 +281,17 @@ export class Game {
     P.lastDodgeGrade = null;
     const great = g === 'Perfect' || g === 'Great';
     this.overlay.text(P.pos.x, P.pos.y + 3, P.pos.z, great ? 'PERFECT DODGE' : 'DODGE', great ? '#ffd978' : '#c9b6ef', great ? 22 : 16, { life: 0.9 });
-    P.invulnUntil = Math.max(P.invulnUntil, this.time + 0.3);
+    P.invulnUntil = Math.max(P.invulnUntil, this.time + (great ? 0.55 : 0.3));
     if (!great) return;
     P.nextCrit = true;
+    P.heal(P.stats.maxHp * 0.04, true);
     R.encore = Math.min(R.encoreMax, R.encore + RULES.ultimate.gain_perfect);
     R.crescendo = Math.min(RULES.crescendo.max, R.crescendo + RULES.crescendo.gain.perfect);
     if (src && !src.dead) src.slowUntil = this.time + this.audio.spb * 2;
     if (P.stats.arias.has('TempoShift')) for (let i = 0; i < 4; i++) this.cooldowns[i] -= 4 * this.audio.spb;
     this.world.pulse(P.pos.x, P.pos.z, 1.5, true);
+    this.particles.burst(P.pos.x, P.pos.y + 1.2, P.pos.z, _c.set('#ffd978'), 28, { speed: 9, life: 0.55, kind: 3, size: 0.9 });
+    this.shake(0.22);
     this.audio.grade('Perfect');
   }
 
@@ -310,12 +329,13 @@ export class Game {
     const P = this.player;
     const r = this.activities.rift;
     if (r) return r.exit && Math.hypot(P.pos.x, P.pos.z - 6) < 3.5 ? { label: 'Leave the Rift ◎', fn: () => this.activities.exitRift() } : null;
-    let best = null, bd = 4;
+    let best = null, bd = 4.5;
     for (const p of this.activities.pois) {
-      if (!['forge', 'board', 'font', 'rift', 'boss', 'shrine', 'pylon', 'overlook', 'photo', 'chime'].includes(p.type)) continue;
+      if (!['forge', 'board', 'font', 'rift', 'boss', 'shrine', 'pylon', 'overlook', 'photo', 'chime', 'musicgate', 'cleanse', 'ariagate'].includes(p.type)) continue;
       const d = Math.hypot(p.x - P.pos.x, p.z - P.pos.z);
       if (d < bd) { bd = d; best = p; }
     }
+    this._outlineInteract = best && best.mesh && !best.open && !best.cleared && !best.autoDone ? best : null;
     if (!best) return null;
     const p = best;
     switch (p.type) {
@@ -327,8 +347,11 @@ export class Game {
       case 'shrine': return this.activities.shrine ? null : { label: 'Play the shrine 𝄞', fn: () => this.activities.startShrine(p) };
       case 'pylon': return this.profile.pylons.includes(p.id) ? { label: 'Fast travel ◆', fn: () => this.ui.open('map') } : null;
       case 'overlook': return { label: 'Take in the vista ♪', fn: () => this.activities.viewOverlook(p) };
-      case 'photo': return { label: 'Whim Frame ✧', fn: () => this.activities.snapPhoto(p) };
+      case 'photo': return { label: p.challenge && !p.autoDone ? 'Frame the whim ✧' : 'Whim Frame ✧', fn: () => this.activities.snapPhoto(p) };
       case 'chime': return { label: 'Ring the chimes ♪', fn: () => this.activities.ringChimes(p) };
+      case 'musicgate': return p.open ? null : { label: 'Answer the bridge 𝄞', fn: () => this.activities.openMusicGate(p) };
+      case 'cleanse': return p.cleared ? null : { label: 'Ask Sheep to Harmonize ♪', fn: () => this.activities.cleanseSpot(p) };
+      case 'ariagate': return p.open ? null : { label: 'Wardrobe gate ✧', fn: () => this.activities.tryAriaGate(p) };
     }
     return null;
   }
@@ -675,6 +698,10 @@ export class Game {
     this.baseRatio = q === 'low' ? 1 : q === 'high' ? Math.min(dpr, 2) : Math.min(dpr, isTouch ? 1.5 : 2);
     this._fps.scale = 1;
     this.renderer.setPixelRatio(this.baseRatio);
+    if (this.postfx) {
+      this.postfx.setEnabled(q !== 'low');
+      this.postfx.resize();
+    }
   }
 
   resize() {
@@ -685,6 +712,7 @@ export class Game {
     this.camera.updateProjectionMatrix();
     this.overlay.resize();
     this.particles.mat.uniforms.uScale.value = (h * this.renderer.getPixelRatio()) / (2 * Math.tan((this.camera.fov * Math.PI) / 360));
+    if (this.postfx) this.postfx.resize();
   }
 
   adaptQuality(dt) {
@@ -698,6 +726,7 @@ export class Game {
     else if (fps > 57 && f.scale < 1) f.scale = Math.min(1, f.scale + 0.1);
     else return;
     this.renderer.setPixelRatio(Math.max(0.75, this.baseRatio * f.scale));
+    if (this.postfx) this.postfx.setEnabled(f.scale > 0.7);
     this.resize();
   }
 
@@ -769,7 +798,8 @@ export class Game {
     }
     this.overlay.draw(dt, bars, labels);
     this.ui.update(dt);
-    this.renderer.render(this.scene, this.camera);
+    if (this.postfx) this.postfx.render();
+    else this.renderer.render(this.scene, this.camera);
   }
 
   simulate(dt) {

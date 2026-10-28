@@ -40,8 +40,10 @@ No build step. three.js r170 is vendored in `vendor/` (MIT, licence alongside).
 | Nikki “details all the time” | Near / mid / far dressing layers denser at the player’s feet |
 | Genshin gate → reveal → landmark | Hub gate arches → Reveal overlooks (~140 m) → biome core landmark |
 | Genshin exploration density | Budgeted camps / chests / shrines / sheets / chimes / whim frames per biome |
+| Nikki outfit → puzzle → space | Phrase Bridges, Aria Veils (Wardrobe), sheep Harmonize cleanses, Whim Frame angle challenges |
 | ZZZ signature hub district | Shorewake keeps forge / board / font / rift within a short walk |
 | WuWa TOD / atmosphere maintainability | Biome palette/fog already swaps on zone change; workflow keeps prop budgets phone-safe |
+| three.js OutlinePass | Vendored r170 EffectComposer pipeline; outlines aggro/windup threats + nearby interactables (off on `low` quality) |
 
 Inspect the live recipe in the browser console: `window.__rwOpenWorld`.
 
@@ -64,6 +66,8 @@ Inspect the live recipe in the browser console: `window.__rwOpenWorld`.
   - Pylons for fast travel
   - Music-key shrines: call and response, where you answer the shrine's phrase on the next bar
   - **Vista overlooks** (auto-reveal banners) and **Whim Frames** / **chime clusters** from the OW density budget
+  - **Phrase Bridges** (answer Great/Perfect on the beat), **Dissonant Blots** (Sheep Harmonize cleanse), **Aria Veils** (equip shoes or an Opus Aria)
+  - Whim Frame **angle challenges** — face the landmark prompt before framing
   - Biome **Maestros** (world bosses) with toughness **BREAK**
   - **Resonance Rifts**: tiered, infinite and timed, with DT_Burdens at tier 3+
   - The **Movement** chain: one per biome, which gives new players a direction

@@ -193,7 +193,9 @@ export class Enemy {
     this.comboLeft = 0;
     const bpm = this.def.bpm;
     // Attack often enough that packs actually pressure you between player swings.
-    this.attackEvery = this.affixes.includes('presto') ? 2 : bpm >= 140 ? 3 : bpm >= 120 ? 3 : 4;
+    this.baseAttackEvery = this.affixes.includes('presto') ? 2 : bpm >= 140 ? 3 : bpm >= 120 ? 3 : 4;
+    this.attackEvery = this.baseAttackEvery;
+    this._missBoostUntil = -1;
     const el = this.def.element;
     this.attackKind = el === 'Gale' ? 'lunge' : el === 'Arcane' || el === 'Radiant' || el === 'Umbral' ? 'bolt' : el === 'Tide' && this.id % 2 ? 'bolt' : 'slam';
     this.range = this.attackKind === 'bolt' ? 12 : this.attackKind === 'lunge' ? 7.2 : 2.6 * this.scale + 0.8;
@@ -254,6 +256,10 @@ export class Enemy {
       }
     }
     if (this.broken) return;
+    if (this._missBoostUntil >= 0 && beat.index > this._missBoostUntil) {
+      this.attackEvery = this.baseAttackEvery;
+      this._missBoostUntil = -1;
+    }
     if (this.stunUntil === beat.index - 1 && this.maxTough) {
       this.tough = this.maxTough;
       this.weakUntil = beat.index + beat.meter * 4;

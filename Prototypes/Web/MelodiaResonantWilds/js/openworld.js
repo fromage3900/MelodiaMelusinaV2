@@ -56,21 +56,28 @@ export const OW_RULES = Object.freeze({
   // Exploration density budget per biome ring (targets, not hard caps).
   // Inspired by Genshin's POI/puzzle/resource mix — musicalized for Melodia.
   density: {
-    campsPerBiome: 18,
+    // Cap identical combat camps so verb variety has room (Nikki/Genshin mix).
+    campsPerBiome: 14,
     chestsPerBiome: 10,
     shrinesPerBiome: 3,
     sheetsPerBiome: 5,
     overlooksPerBiome: 4,
     chimeClustersPerBiome: 6,
-    photoSpotsPerBiome: 3,
+    photoSpotsPerBiome: 4,
+    musicGatesPerBiome: 2,
+    cleansePerBiome: 2,
+    ariaGatesPerBiome: 1,
     minSpacing: {
-      camp: 38,
+      camp: 42,
       chest: 22,
       shrine: 48,
       sheet: 30,
       overlook: 55,
       chime: 28,
       photo: 40,
+      musicgate: 70,
+      cleanse: 55,
+      ariagate: 90,
     },
   },
   // Mobile perf: keep streamed prop budgets honest on phones.
@@ -201,8 +208,14 @@ export function planExploration(b, bi, rng, occupied) {
 
   // Approach / midland get denser content (Genshin first-impression ring).
   take('overlook', D.overlooksPerBiome, 130, 360, 0.35, D.minSpacing.overlook, { name: `${b.name.split('—')[0].trim()} Overlook`, workflow: 'vista' });
-  take('photo', D.photoSpotsPerBiome, 100, 420, 0.4, D.minSpacing.photo, { name: 'Whim Frame', workflow: 'impression' });
+  take('photo', D.photoSpotsPerBiome, 100, 420, 0.4, D.minSpacing.photo, { name: 'Whim Frame', workflow: 'impression', challenge: true });
   take('chime', D.chimeClustersPerBiome, 90, 480, 0.5, D.minSpacing.chime, { name: 'Resonance Chimes', workflow: 'detail' });
+  // Distinct verbs (not more camps): music bridge, sheep cleanse blot, Wardrobe aria gate.
+  take('musicgate', D.musicGatesPerBiome, 150, 380, 0.35, D.minSpacing.musicgate, { name: 'Phrase Bridge', workflow: 'puzzle', open: false });
+  take('cleanse', D.cleansePerBiome, 120, 450, 0.4, D.minSpacing.cleanse, { name: 'Dissonant Blot', workflow: 'companion', cleared: false });
+  take('ariagate', D.ariaGatesPerBiome, 200, 480, 0.3, D.minSpacing.ariagate, {
+    name: 'Aria Veil', workflow: 'traversal', open: false, needAria: true, needSlot: 'shoes',
+  });
 
   // Core combat / reward density — counts tuned by ring weights.
   const campN = Math.round(D.campsPerBiome);
@@ -214,11 +227,21 @@ export function planExploration(b, bi, rng, occupied) {
   take('shrine', D.shrinesPerBiome, 140, 600, 0.5, D.minSpacing.shrine, { id: null, name: 'Music-Key Shrine', cdUntil: 0 });
   take('sheet', D.sheetsPerBiome, 120, 650, 0.55, D.minSpacing.sheet);
 
-  // Stamp shrine/sheet ids after placement.
-  let si = 0, sh = 0;
+  // Stamp shrine/sheet/photo ids + Whim Frame facing prompts after placement.
+  let si = 0, sh = 0, ph = 0, mg = 0, cl = 0, ag = 0;
   for (const p of out) {
     if (p.type === 'shrine') p.id = `shrine_${b.id}_${si++}`;
     if (p.type === 'sheet') p.id = `sheet_${b.id}_${sh++}`;
+    if (p.type === 'photo') {
+      p.id = `photo_${b.id}_${ph++}`;
+      // Angle prompt: face the biome landmark (or a random scenic heading).
+      p.aimAngle = Math.atan2(wf.core.x - p.x, wf.core.z - p.z);
+      p.aimLabel = ph % 2 ? 'Face the landmark' : 'Frame the skyline';
+      p.challenge = ph % 2 === 1 || D.photoSpotsPerBiome <= 3;
+    }
+    if (p.type === 'musicgate') p.id = `mgate_${b.id}_${mg++}`;
+    if (p.type === 'cleanse') p.id = `cleanse_${b.id}_${cl++}`;
+    if (p.type === 'ariagate') p.id = `agate_${b.id}_${ag++}`;
   }
   return { pois: out, workflow: wf };
 }

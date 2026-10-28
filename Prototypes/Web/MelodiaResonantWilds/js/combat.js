@@ -77,6 +77,30 @@ export class Combat {
     this.g.decals.spawn(shape, x, z, { ...params, flash: true, dur: 0.35, color });
   }
 
+  /** Perfect-on-hit juice: highway pulse + sparkles (readability, not a new system). */
+  perfectJuice(gr) {
+    const g = this.g, P = g.player;
+    g.world.pulse(P.pos.x, P.pos.z, 1.15 + Math.min(0.8, g.rhythm.combo * 0.02), true);
+    g.particles.burst(P.pos.x, P.pos.y + 1.1, P.pos.z, _col.set('#ffd978'), 14, { speed: 7, life: 0.4, kind: 3, size: 0.7, gravity: -1 });
+    g.ui.beatSpark?.();
+    P.heal(P.stats.maxHp * 0.02, true);
+  }
+
+  /** Miss raises pack pressure — next windups land sooner. */
+  missPressure() {
+    const g = this.g, P = g.player;
+    let n = 0;
+    for (const e of g.enemies) {
+      if (e.dead || !e.aggro) continue;
+      if (Math.hypot(e.pos.x - P.pos.x, e.pos.z - P.pos.z) > 22) continue;
+      e.nextAttackBeat = Math.min(e.nextAttackBeat, g.beatIndex + 1);
+      e.attackEvery = Math.max(2, e.attackEvery - 1);
+      e._missBoostUntil = g.beatIndex + g.audio.meter * 2;
+      n++;
+    }
+    if (n) g.overlay.text(P.pos.x, P.pos.y + 2.6, P.pos.z, 'tempo slips…', '#ff8aa0', 13, { life: 0.7 });
+  }
+
   // ------------------------------------------------------------ damage
   damage(e, coef, o = {}) {
     if (!e || e.dead) return 0;
@@ -113,8 +137,10 @@ export class Combat {
     const col = crit ? '#ffd978' : em > 1 ? '#ffffff' : ELEMENT_STYLE[o.element]?.color || '#ffffff';
     g.overlay.text(e.pos.x, e.pos.y + 1.4 * e.scale + 0.4, e.pos.z, crit ? dmg + '!' : String(dmg), col, crit ? 26 : em > 1 ? 21 : 17);
     if (em > 1 && Math.random() < 0.3) g.overlay.text(e.pos.x, e.pos.y + 1.9 * e.scale + 0.8, e.pos.z, 'WEAK', '#ffffff', 12, { life: 0.6 });
-    _col.set(ELEMENT_STYLE[o.element]?.color || '#ffffff');
-    g.particles.burst(e.pos.x, e.pos.y + 0.8 * e.scale, e.pos.z, _col, crit ? 9 : 5, { speed: 6, life: 0.45, size: 0.5 });
+    _col.set(o.perfect ? '#ffd978' : ELEMENT_STYLE[o.element]?.color || '#ffffff');
+    const sparks = o.perfect ? (crit ? 18 : 12) : crit ? 9 : 5;
+    g.particles.burst(e.pos.x, e.pos.y + 0.8 * e.scale, e.pos.z, _col, sparks, { speed: o.perfect ? 9 : 6, life: 0.45, size: o.perfect ? 0.75 : 0.5, kind: o.perfect ? 3 : 0 });
+    if (o.perfect) g.decals.spawn('ring', e.pos.x, e.pos.z, { r: 1.4 * e.scale, inner: 1.0 * e.scale, flash: true, dur: 0.22, color: '#ffd978' });
     g.audio.hit(crit);
     if (o.perfect && S.arias.has('EchoingBeat') && !o.echo) {
       this.queue.push({ beat: g.beatIndex + 1, fn: () => this.damage(e, coef * 0.5, { ...o, echo: true, perfect: false }) });

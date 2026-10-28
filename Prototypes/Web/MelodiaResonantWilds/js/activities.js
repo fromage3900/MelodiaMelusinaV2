@@ -165,6 +165,45 @@ export class Activities {
         grp.add(pole, bell);
       }
       p.spin = grp.children[grp.children.length - 1];
+    } else if (p.type === 'musicgate') {
+      // Phrase Bridge — two posts + a sealed ribbon until answered on the beat.
+      const plank = new THREE.Mesh(new THREE.BoxGeometry(7.2, 0.28, 2.4), L('#c9b48a'));
+      plank.position.y = 0.2;
+      p.plank = plank;
+      for (const s of [-1, 1]) {
+        const post = new THREE.Mesh(new THREE.CylinderGeometry(0.28, 0.35, 3.2, 8), L('#d8d0e4'));
+        post.position.set(s * 3.4, 1.6, 0);
+        grp.add(post);
+      }
+      p.clefMat = L('#ffffff', { emissive: '#62c8ff', emissiveIntensity: 0.7, transparent: true, opacity: 0.95 });
+      const ribbon = new THREE.Mesh(new THREE.BoxGeometry(6.4, 1.6, 0.12), p.clefMat);
+      ribbon.position.y = 1.6;
+      p.barrier = ribbon;
+      p.spin = ribbon;
+      grp.add(plank, ribbon);
+      grp.rotation.y = Math.atan2(-p.x, -p.z) + Math.PI / 2;
+    } else if (p.type === 'cleanse') {
+      // Dissonant blot — sheep Harmonize clears it.
+      p.blotMat = new THREE.MeshBasicMaterial({ color: '#6b3a78', transparent: true, opacity: 0.55, depthWrite: false });
+      const blot = new THREE.Mesh(new THREE.CircleGeometry(2.8, 24), p.blotMat);
+      blot.rotation.x = -Math.PI / 2;
+      blot.position.y = 0.08;
+      const thorn = new THREE.Mesh(new THREE.IcosahedronGeometry(0.7, 0), L('#8a4a9a', { emissive: '#ff5470', emissiveIntensity: 0.45 }));
+      thorn.position.y = 0.9;
+      p.spin = thorn;
+      p.blot = blot;
+      grp.add(blot, thorn);
+    } else if (p.type === 'ariagate') {
+      // Wardrobe / Aria veil — needs an equipped Opus aria (or shoes slot gear).
+      const arch = new THREE.Mesh(new THREE.TorusGeometry(2.4, 0.22, 8, 28, Math.PI), L('#e8dff8', { emissive: '#c8b6ef', emissiveIntensity: 0.4 }));
+      arch.rotation.z = Math.PI; arch.position.y = 0.2;
+      p.veilMat = new THREE.MeshBasicMaterial({ color: '#b89cff', transparent: true, opacity: 0.45, side: THREE.DoubleSide });
+      const veil = new THREE.Mesh(new THREE.PlaneGeometry(4.2, 3.4), p.veilMat);
+      veil.position.y = 1.8;
+      p.barrier = veil;
+      p.spin = arch;
+      grp.add(arch, veil);
+      grp.rotation.y = Math.atan2(-p.x, -p.z);
     } else return;
     p.mesh = grp;
     g.world.root.add(grp);
@@ -175,10 +214,15 @@ export class Activities {
     const g = this.g, P = g.player;
     if (this.rift) return this.updateRift(dt);
     for (const p of this.pois) {
-      if (p.spin && p.type !== 'chime') {
+      if (p.spin && p.type !== 'chime' && p.type !== 'musicgate' && p.type !== 'ariagate') {
         p.spin.rotation.y += dt * 1.5;
-        const baseY = p.type === 'pylon' ? 3 : p.type === 'sheet' ? 1.4 : p.type === 'rift' ? 2.6 : p.type === 'overlook' ? 2.2 : p.type === 'photo' ? 2.1 : 2;
+        const baseY = p.type === 'pylon' ? 3 : p.type === 'sheet' ? 1.4 : p.type === 'rift' ? 2.6 : p.type === 'overlook' ? 2.2 : p.type === 'photo' ? 2.1 : p.type === 'cleanse' ? 0.9 : 2;
         p.spin.position.y = baseY + Math.sin(g.time * 2 + p.x) * 0.15;
+      } else if (p.spin && (p.type === 'musicgate' || p.type === 'ariagate') && !p.open) {
+        p.spin.rotation.y += dt * 0.8;
+      }
+      if (p.type === 'cleanse' && !p.cleared && p.blotMat) {
+        p.blotMat.opacity = 0.4 + Math.sin(g.time * 3 + p.x) * 0.15;
       }
     }
     this._acc += dt;
@@ -220,13 +264,37 @@ export class Activities {
       } else if (p.type === 'overlook' && !p.revealed && d < 10 && !P.dead) {
         // Auto-reveal on approach — Genshin "veil falls away" moment.
         this.viewOverlook(p, true);
-      } else if ((p.type === 'photo' || p.type === 'chime') && d < 3.2 && !P.dead && !p.autoDone) {
-        // Soft collect on walk-in so density reads without forcing a button.
-        if (p.type === 'photo') this.snapPhoto(p, true);
-        else this.ringChimes(p, true);
+      } else if (p.type === 'photo' && d < 3.2 && !P.dead && !p.autoDone && !p.challenge) {
+        this.snapPhoto(p, true);
+      } else if (p.type === 'chime' && d < 3.2 && !P.dead && !p.autoDone) {
+        this.ringChimes(p, true);
+      } else if (p.type === 'musicgate' && !p.open && d < 5.5) {
+        // Soft block: push Melusina back while the ribbon is sealed.
+        this._pushFromGate(p, P);
+      } else if (p.type === 'ariagate' && !p.open && d < 3.2) {
+        this._pushFromGate(p, P);
       }
     }
     this.updateEvent();
+  }
+
+  _pushFromGate(p, P) {
+    const dx = P.pos.x - p.x, dz = P.pos.z - p.z, d = Math.hypot(dx, dz) || 1;
+    const min = p.type === 'musicgate' ? 4.2 : 2.6;
+    if (d < min) {
+      P.pos.x = p.x + (dx / d) * min;
+      P.pos.z = p.z + (dz / d) * min;
+    }
+  }
+
+  nearCleanse(x, z, r) {
+    return this.pois.some((p) => p.type === 'cleanse' && !p.cleared && Math.hypot(p.x - x, p.z - z) < r);
+  }
+
+  cleanseNear(x, z, r) {
+    for (const p of this.pois) {
+      if (p.type === 'cleanse' && !p.cleared && Math.hypot(p.x - x, p.z - z) < r) this.finishCleanse(p);
+    }
   }
 
   viewOverlook(p, soft = false) {
@@ -250,18 +318,109 @@ export class Activities {
 
   snapPhoto(p, soft = false) {
     if (p.autoDone && soft) return;
-    const g = this.g;
+    const g = this.g, P = g.player;
+    // Challenge frames need Melusina facing the prompt angle (Nikki whim pose).
+    if (p.challenge && !soft && typeof p.aimAngle === 'number') {
+      const err = Math.abs(((P.facing - p.aimAngle + Math.PI * 3) % (Math.PI * 2)) - Math.PI);
+      if (err > 0.55) {
+        g.ui.toast(`${p.aimLabel || 'Face the prompt'} — turn toward the ◇`, 'lavender');
+        g.overlay.text(p.x, p.y + 2.6, p.z, '◇', '#c8b6ef', 28, { life: 0.9, rise: 0.2 });
+        return;
+      }
+    }
     p.autoDone = true;
     g.profile.photos = g.profile.photos || [];
     const id = p.id || `photo_${p.biome}_${Math.round(p.x)}_${Math.round(p.z)}`;
     if (!g.profile.photos.includes(id)) {
       g.profile.photos.push(id);
-      g.profile.notes += 1;
-      g.ui.toast('Whim Frame captured — Golden Note +1', 'aqua');
-      g.progress.addXp(25);
+      const bonus = p.challenge ? 2 : 1;
+      g.profile.notes += bonus;
+      g.ui.toast(p.challenge ? `Whim challenge framed — Golden Notes +${bonus}` : 'Whim Frame captured — Golden Note +1', 'aqua');
+      g.progress.addXp(p.challenge ? 40 : 25);
     } else if (!soft) g.ui.toast('Already framed this whim', 'lavender');
     g.world.pulse(p.x, p.z, 1.1, true);
+    g.particles.burst(p.x, p.y + 2, p.z, new THREE.Color('#c8b6ef'), 16, { speed: 4, life: 0.8, kind: 1 });
     g.audio.ui();
+    g.save();
+  }
+
+  openMusicGate(p) {
+    const g = this.g;
+    if (p.open) return;
+    if (g.enemies.some((e) => !e.dead && e.aggro)) { g.ui.toast('Clear the dissonance before the bridge will listen'); return; }
+    const gr = g.rhythm.judge(performance.now());
+    if (gr.grade === 'Miss' || gr.grade === 'Good') {
+      g.ui.toast('Answer on the beat — Great or Perfect opens the Phrase Bridge', 'soft');
+      g.audio.fail();
+      g.ui.gradeFlash(gr.grade, gr.err);
+      return;
+    }
+    p.open = true;
+    if (p.barrier) {
+      p.barrier.visible = false;
+    }
+    g.profile.gates = g.profile.gates || [];
+    if (p.id && !g.profile.gates.includes(p.id)) {
+      g.profile.gates.push(p.id);
+      g.profile.notes += 2;
+      g.progress.addXp(35);
+    }
+    g.ui.banner('Phrase Bridge opens', 'The ribbon dissolves on your answer');
+    g.world.pulse(p.x, p.z, 1.6, true);
+    g.particles.burst(p.x, p.y + 1.6, p.z, new THREE.Color('#62c8ff'), 22, { speed: 6, life: 0.9, kind: 1 });
+    g.audio.levelUp();
+    g.save();
+  }
+
+  cleanseSpot(p) {
+    if (p.cleared) return;
+    const g = this.g;
+    // Pull sheep in and force a Harmonize pulse.
+    g.sheep.pos.set(p.x + 1.2, p.y, p.z + 1.2);
+    g.sheep.harmonize(true);
+  }
+
+  finishCleanse(p) {
+    if (p.cleared) return;
+    const g = this.g;
+    p.cleared = true;
+    if (p.blot) p.blot.visible = false;
+    if (p.spin) p.spin.visible = false;
+    g.profile.cleanses = g.profile.cleanses || [];
+    if (p.id && !g.profile.cleanses.includes(p.id)) {
+      g.profile.cleanses.push(p.id);
+      g.profile.notes += 1;
+      g.progress.addXp(30);
+      g.player.sp = Math.min(g.player.stats.spMax, g.player.sp + 2);
+    }
+    g.ui.toast('Dissonance cleansed — Sheep Harmonize ♪', 'aqua');
+    g.world.pulse(p.x, p.z, 1.4, true);
+    g.save();
+  }
+
+  tryAriaGate(p) {
+    const g = this.g, P = g.player, pr = g.profile;
+    if (p.open) return;
+    const hasAria = P.stats.arias && P.stats.arias.size > 0;
+    const outfit = ['shoes', 'gown', 'gloves', 'head'].find((s) => pr.equipment?.[s]);
+    if (!hasAria && !outfit) {
+      g.ui.toast('Wardrobe gate — equip an outfit piece or Opus Aria to part the veil', 'lavender');
+      return;
+    }
+    p.open = true;
+    if (p.barrier) p.barrier.visible = false;
+    if (p.veilMat) p.veilMat.opacity = 0.08;
+    g.profile.gates = g.profile.gates || [];
+    if (p.id && !g.profile.gates.includes(p.id)) {
+      g.profile.gates.push(p.id);
+      g.profile.notes += 3;
+      g.progress.addXp(45);
+    }
+    const why = hasAria ? 'Your Aria parts the veil' : `Your ${outfit} carries the cadence through`;
+    g.ui.banner('Aria Veil opens', why);
+    g.world.pulse(p.x, p.z, 1.5, true);
+    g.particles.burst(p.x, p.y + 1.8, p.z, new THREE.Color('#ffd978'), 20, { speed: 5, life: 1, kind: 3 });
+    g.audio.levelUp();
     g.save();
   }
 

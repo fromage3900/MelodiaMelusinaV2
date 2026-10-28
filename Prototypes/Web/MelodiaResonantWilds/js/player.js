@@ -201,11 +201,13 @@ export class Sheep {
     if (beat.inBar === 0 && beat.bar % this.every === 0 && g.inCombat) this.harmonize();
   }
 
-  // Harmonize: the proven UE companion verb — heal, Harmony, and a cymatic pulse.
-  harmonize() {
+  // Harmonize: the proven UE companion verb — heal, Harmony, cleanse, and a cymatic pulse.
+  harmonize(force = false) {
     const g = this.g, P = g.player;
+    if (!force && !g.inCombat && !g.activities.nearCleanse(this.pos.x, this.pos.z, 6)) return;
     P.heal(P.stats.maxHp * 0.05);
     P.sp = Math.min(P.stats.spMax, P.sp + 1);
+    P.cleanse();
     this.glow = 1;
     g.decals.spawn('ring', this.pos.x, this.pos.z, { r: 5, inner: 4.2, flash: true, dur: 0.6, color: '#62c8ff' });
     for (let k = 0; k < 24; k++) {
@@ -213,6 +215,7 @@ export class Sheep {
       g.particles.emit(this.pos.x + Math.cos(a) * 1.2, this.pos.y + 0.8, this.pos.z + Math.sin(a) * 1.2, _c.set('#8fd8ff'), { dir: { x: Math.cos(a), y: 0.2, z: Math.sin(a) }, speed: 7, life: 0.6, kind: k % 2 ? 1 : 0, size: 0.7, gravity: 0 });
     }
     for (const e of g.combat.enemiesIn('circle', { x: this.pos.x, z: this.pos.z, r: 5 })) g.combat.damage(e, 0.45, { element: 'Tide', tough: 0.6 });
+    g.activities.cleanseNear(this.pos.x, this.pos.z, 6);
     g.overlay.text(this.pos.x, this.pos.y + 1.8, this.pos.z, 'Harmonize ♪', '#8fd8ff', 14, { life: 1 });
     g.audio.chime(4);
   }
