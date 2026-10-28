@@ -206,10 +206,16 @@ export class Player {
       m.body.rotation.x = lerp(m.body.rotation.x, lean, Math.min(1, dt * 8));
       const stretch = this.dash ? 1.15 : 1;
       m.body.scale.set(1 / Math.sqrt(stretch), stretch * (1 + beatK * beatK * 0.03), 1 / Math.sqrt(stretch));
+      // Nikki fabric feel: gown sway on move + soft beat breathe (legacy procedural body).
+      const sway = moving ? Math.sin(g.time * 9) * 0.08 : Math.sin(g.time * 2.2) * 0.03;
+      m.body.rotation.z = lerp(m.body.rotation.z || 0, sway, Math.min(1, dt * 10));
       m.inst.rotation.y = this.swingT * Math.PI * 2 * (this.swingStep % 2 ? -1 : 1);
       m.inst.position.y = 1.2 + Math.sin(g.time * 2.4) * 0.06;
     }
-    m.gownMat.emissive.setRGB(this.hurtT * 0.9, this.hurtT * 0.1, this.hurtT * 0.2);
+    if (m.gownMat) {
+      m.gownMat.emissiveIntensity = 0.05 + beatK * beatK * 0.12;
+      m.gownMat.emissive.setRGB(this.hurtT * 0.9, this.hurtT * 0.1, this.hurtT * 0.2);
+    }
     if (this.invulnUntil > g.time && Math.random() < 0.6) g.particles.emit(this.pos.x, this.pos.y + 1, this.pos.z, _c.set('#ffffff'), { speed: 1, life: 0.35, size: 0.5, kind: 3 });
   }
 }
@@ -234,11 +240,13 @@ export class Sheep {
     if (beat.inBar === 0 && beat.bar % this.every === 0 && g.inCombat) this.harmonize();
   }
 
-  // Harmonize: the proven UE companion verb — heal, Harmony, and a cymatic pulse.
-  harmonize() {
+  // Harmonize: the proven UE companion verb — heal, Harmony, cleanse, and a cymatic pulse.
+  harmonize(force = false) {
     const g = this.g, P = g.player;
+    if (!force && !g.inCombat && !g.activities.nearCleanse(this.pos.x, this.pos.z, 6)) return;
     P.heal(P.stats.maxHp * 0.05);
     P.sp = Math.min(P.stats.spMax, P.sp + 1);
+    P.cleanse();
     this.glow = 1;
     g.decals.spawn('ring', this.pos.x, this.pos.z, { r: 5, inner: 4.2, flash: true, dur: 0.6, color: '#62c8ff' });
     for (let k = 0; k < 24; k++) {
@@ -246,6 +254,7 @@ export class Sheep {
       g.particles.emit(this.pos.x + Math.cos(a) * 1.2, this.pos.y + 0.8, this.pos.z + Math.sin(a) * 1.2, _c.set('#8fd8ff'), { dir: { x: Math.cos(a), y: 0.2, z: Math.sin(a) }, speed: 7, life: 0.6, kind: k % 2 ? 1 : 0, size: 0.7, gravity: 0 });
     }
     for (const e of g.combat.enemiesIn('circle', { x: this.pos.x, z: this.pos.z, r: 5 })) g.combat.damage(e, 0.45, { element: 'Tide', tough: 0.6 });
+    g.activities.cleanseNear(this.pos.x, this.pos.z, 6);
     g.overlay.text(this.pos.x, this.pos.y + 1.8, this.pos.z, 'Harmonize ♪', '#8fd8ff', 14, { life: 1 });
     g.audio.chime(4);
   }
@@ -266,8 +275,11 @@ export class Sheep {
     this.hopT = Math.max(0, this.hopT - dt * 3.5);
     const hop = Math.sin(this.hopT * Math.PI) * 0.35;
     const mm = this.m;
-    mm.group.position.set(this.pos.x, this.pos.y + hop, this.pos.z);
+    // Beat fluff bob — companion presence without a full mixer.
+    const fluff = Math.sin(g.beatPhase * Math.PI * 2) * 0.04 + Math.sin(g.time * 3.1) * 0.02;
+    mm.group.position.set(this.pos.x, this.pos.y + hop + fluff, this.pos.z);
     mm.group.rotation.y = this.facing;
+    mm.group.scale.setScalar(1 + fluff * 0.8 + this.glow * 0.06);
     mm.shadow.position.set(this.pos.x, this.pos.y + 0.05, this.pos.z);
     mm.group.visible = mm.shadow.visible = !P.dead;
     this.glow = Math.max(0, this.glow - dt * 1.5);

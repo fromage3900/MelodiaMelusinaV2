@@ -22,6 +22,8 @@ const variants = [
   { name: 'desktop-painterly', query: '?npr=v2&kuwahara=1&avatar=chibi&shrine=glb', chibi: true, shrine: true, mobile: false, npr: true, painterly: true },
   { name: 'mobile-npr-v2', query: '?npr=v2&kuwahara=0', chibi: false, shrine: false, mobile: true, npr: true },
   { name: 'desktop-live-tuner', query: '?npr=v2&kuwahara=1&avatar=chibi&shrine=glb&tune=1&look=soft', chibi: true, shrine: true, mobile: false, npr: true, painterly: true, tune: true },
+  { name: 'desktop-worldexp', query: '?worldexp=1', chibi: false, shrine: false, mobile: false, worldexp: true },
+  { name: 'desktop-worldexp-postfx', query: '?worldexp=1&postfx=1&dressing=dense&nikkilook=1&daycycle=1', chibi: false, shrine: false, mobile: false, worldexp: true, postfx: true },
 ];
 try {
   for (const test of variants) {
@@ -50,6 +52,9 @@ try {
       chladni: window.__melodia.world.uniforms.uChladni.value,
       caustics: window.__melodia.world.uniforms.uCaustics.value,
       painterly: !!window.__melodia.painterly,
+      postfx: !!window.__melodia.postfx,
+      worldexp: !!window.__melodia.world.worldExpansionEnabled,
+      destinations: window.__melodia.activities.pois.filter(p => p.type === 'destination').length,
       paletteSize: window.__melodia.world.terrainMat.gradientMap?.image?.data?.length || 0,
       bellflowers: window.__melodia.world.hubGroup.children.filter(o => o.name.startsWith('RW_Bellflower_Plaza_')).length,
       flowerParts: window.__melodia.world.props.flower.parts.length,
@@ -66,6 +71,10 @@ try {
     assert.equal(before.boxLanterns, 12 - expectedFlowers, test.name + ': original lantern fallback mismatch');
     assert.equal(before.legacyTerrain, !!test.legacy, test.name + ': wrong environment shading');
     assert.equal(before.painterly, !!test.painterly, test.name + ': wrong painterly state');
+    assert.equal(before.postfx, !!test.postfx, test.name + ': unexpected postprocessing state');
+    assert.equal(before.worldexp, !!test.worldexp, test.name + ': world expansion flag mismatch');
+    if (test.worldexp) assert.ok(before.destinations >= 10, test.name + ': destination POIs not generated');
+    else assert.equal(before.destinations, 0, test.name + ': default map received opt-in destinations');
     if (test.npr) assert.equal(before.paletteSize, 12, test.name + ': missing RGB NPR gradient');
     else if (!test.legacy) assert.equal(before.paletteSize, 3, test.name + ': v1 gradient regression');
     if (test.legacy) {

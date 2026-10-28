@@ -182,13 +182,19 @@ export class Enemy {
     this.squash = 0;
     this.phrase = 0;
     this.enraged = false;
+    this.windup = 0;
+    this.comboLeft = 0;
     const bpm = this.def.bpm;
-    this.attackEvery = this.affixes.includes('presto') ? 3 : bpm >= 140 ? 4 : bpm >= 128 ? 5 : 6;
+    // Attack often enough that packs actually pressure you between player swings.
+    this.baseAttackEvery = this.affixes.includes('presto') ? 2 : bpm >= 140 ? 3 : bpm >= 120 ? 3 : 4;
+    this.attackEvery = this.baseAttackEvery;
+    this._missBoostUntil = -1;
     const el = this.def.element;
     this.attackKind = el === 'Gale' ? 'lunge' : el === 'Arcane' || el === 'Radiant' || el === 'Umbral' ? 'bolt' : el === 'Tide' && this.id % 2 ? 'bolt' : 'slam';
-    this.range = this.attackKind === 'bolt' ? 11 : this.attackKind === 'lunge' ? 6.5 : 2.2 * this.scale + 0.6;
+    this.range = this.attackKind === 'bolt' ? 12 : this.attackKind === 'lunge' ? 7.2 : 2.6 * this.scale + 0.8;
     const m = buildSlime(el, this.scale, this.elite, this.boss);
     this.mesh = m.group; this.bodyMesh = m.body; this.mat = m.mat;
+    this.baseEmissive = this.mat.emissive.clone();
     this.shadow = blob(this.radius * 0.95);
     this.mesh.position.copy(this.pos);
     game.scene.add(this.mesh, this.shadow);
@@ -216,8 +222,14 @@ export class Enemy {
     const spb = this.game.audio.spb;
     const beatsAway = land - this.game.beatIndex;
     const color = this.boss ? '#ff4d6d' : this.elite ? '#ff7a45' : '#ff5a6e';
-    const decal = this.game.decals.spawn(shape, params.x, params.z, { ...params, dur: Math.max(0.2, beatsAway * spb), color });
+    const decal = this.game.decals.spawn(shape, params.x, params.z, {
+      ...params,
+      dur: Math.max(0.2, beatsAway * spb),
+      color,
+      alpha: this.boss ? 1 : this.elite ? 0.95 : 0.88,
+    });
     this.strikes.push({ shape, params, land, decal, ...extra });
+    this.windup = Math.max(this.windup, beatsAway * spb);
   }
 
   onBeat(beat) {
@@ -229,35 +241,52 @@ export class Enemy {
       if (s.land <= beat.index) {
         this.strikes.splice(i, 1);
         g.combat.resolveEnemyStrike(this, s);
-      } else if ((this.boss || this.elite) && s.land - beat.index <= 3) {
-        g.overlay.text(s.params.x, g.world.height(s.params.x, s.params.z) + 1, s.params.z, String(s.land - beat.index), '#ffb3c1', 22, { life: 0.5, rise: 0.4 });
-        if (this.boss) g.audio.tick(s.land - beat.index === 1);
+      } else if (s.land - beat.index <= 3) {
+        // Every slime counts down — telegraphs must stay readable in a pack.
+        const remain = s.land - beat.index;
+        g.overlay.text(s.params.x, g.world.height(s.params.x, s.params.z) + 1.1, s.params.z, String(remain), remain === 1 ? '#ffe07a' : '#ffb3c1', remain === 1 ? 26 : 20, { life: 0.45, rise: 0.35 });
+        if (this.boss || remain === 1) g.audio.tick(remain === 1);
       }
     }
     if (this.broken) return;
+    if (this._missBoostUntil >= 0 && beat.index > this._missBoostUntil) {
+      this.attackEvery = this.baseAttackEvery;
+      this._missBoostUntil = -1;
+    }
     if (this.stunUntil === beat.index - 1 && this.maxTough) {
       this.tough = this.maxTough;
       this.weakUntil = beat.index + beat.meter * 4;
     }
     const dx = P.pos.x - this.pos.x, dz = P.pos.z - this.pos.z;
     const dist = Math.hypot(dx, dz);
-    if (!this.aggro && !P.dead && dist < (this.elite || this.boss ? 17 : 13) && !g.safeZone) { this.aggro = true; this.nextAttackBeat = Math.max(this.nextAttackBeat, beat.index + 2); }
-    if (this.aggro && (P.dead || g.safeZone || Math.hypot(P.pos.x - this.home.x, P.pos.z - this.home.z) > (this.rift ? 999 : 42))) {
+    const aggroR = this.elite || this.boss ? 20 : 16;
+    if (!this.aggro && !P.dead && dist < aggroR && !g.safeZone) {
+      this.aggro = true;
+      this.nextAttackBeat = Math.max(this.nextAttackBeat, beat.index + 1);
+      g.overlay.text(this.pos.x, this.pos.y + 2.2 * this.scale, this.pos.z, '!', '#ff6b81', 28, { life: 0.55, rise: 0.8 });
+      g.audio.tick(false);
+    }
+    if (this.aggro && (P.dead || g.safeZone || Math.hypot(P.pos.x - this.home.x, P.pos.z - this.home.z) > (this.rift ? 999 : 55))) {
       this.aggro = false;
+      this.comboLeft = 0;
       this.hp = Math.min(this.maxHp, this.hp + this.maxHp * 0.25);
     }
     if (this.boss && this.aggro) return this.bossBeat(beat, dist);
     // Attack tokens: only a few slimes wind up at once, so every telegraph stays readable.
-    if (this.aggro && this.strikes.length === 0 && dist <= this.range && beat.index >= this.nextAttackBeat && this.silenceUntil < beat.index && g.attackTokens(this)) {
+    if (this.aggro && this.strikes.length === 0 && dist <= this.range * 1.15 && beat.index >= this.nextAttackBeat && this.silenceUntil < beat.index && g.attackTokens(this)) {
       this.startAttack(beat, dx / (dist || 1), dz / (dist || 1));
       return;
     }
     if (this.strikes.length) return;
-    // Movement: one hop per beat towards the player, or a lazy wander.
+    // Movement: hop toward the player each beat, or close the gap hard when out of range.
     if (this.aggro) {
-      if (dist > this.range * 0.8) {
-        const step = Math.min(dist - this.range * 0.6, (0.9 + this.def.speed / 55) * (this.slowUntil > g.time ? 0.5 : 1));
+      if (dist > this.range * 0.7) {
+        const step = Math.min(dist - this.range * 0.45, (1.35 + this.def.speed / 48) * (this.slowUntil > g.time ? 0.5 : 1));
         this.startHop(this.pos.x + (dx / dist) * step, this.pos.z + (dz / dist) * step, beat.spb);
+      } else if (dist < this.range * 0.35 && this.attackKind === 'slam') {
+        // Sidestep to keep slam circles from stacking on the same spot.
+        const side = beat.index % 2 ? 1 : -1;
+        this.startHop(this.pos.x - (dz / dist) * 1.4 * side, this.pos.z + (dx / dist) * 1.4 * side, beat.spb * 0.85);
       }
     } else if (beat.index % 4 === this.id % 4 && Math.random() < 0.5) {
       const a = Math.random() * Math.PI * 2, r = Math.random() * 4;
@@ -274,19 +303,41 @@ export class Enemy {
 
   startAttack(beat, nx, nz) {
     const g = this.game;
+    const P = g.player;
     const w = this.windupBeats();
     const land = beat.index + w;
     this.facing = Math.atan2(nx, nz);
     this.nextAttackBeat = land + this.attackEvery;
+    // Aim slam/lunge at where Melusina is heading so standing still is unsafe.
+    const lead = Math.min(2.4, Math.hypot(P.vel.x, P.vel.z) * beat.spb * w * 0.7);
+    const ax = P.pos.x + (P.vel.x || 0) * lead * 0.15 + nx * 0.2;
+    const az = P.pos.z + (P.vel.z || 0) * lead * 0.15 + nz * 0.2;
     const x = this.pos.x, z = this.pos.z;
-    if (this.attackKind === 'slam') this.strike('circle', { x, z, r: 2.2 * this.scale + 0.4 }, land, { kind: 'slam' });
-    else if (this.attackKind === 'lunge') this.strike('rect', { x, z, len: 7, width: 1.5 * this.scale + 0.6, angle: this.facing }, land, { kind: 'lunge', nx, nz });
-    else this.strike('rect', { x, z, len: 14, width: 0.9, angle: this.facing, alpha: 0.6 }, land, { kind: 'bolt', nx, nz });
+    if (this.attackKind === 'slam') {
+      const sx = lerp(x, ax, 0.55), sz = lerp(z, az, 0.55);
+      this.strike('circle', { x: sx, z: sz, r: 2.4 * this.scale + 0.55 }, land, { kind: 'slam' });
+      // Short follow-up hop-slam keeps melee packs threatening after the first ring.
+      if (this.comboLeft > 0 || (!this.elite && Math.random() < 0.45)) {
+        this.comboLeft = Math.max(this.comboLeft - 1, 0);
+        this.strike('circle', { x: ax, z: az, r: 1.8 * this.scale + 0.4 }, land + 1, { kind: 'slam', mult: 0.75 });
+        this.nextAttackBeat = land + 1 + this.attackEvery;
+      } else if (Math.random() < 0.35) this.comboLeft = 1;
+    } else if (this.attackKind === 'lunge') {
+      this.facing = Math.atan2(ax - x, az - z);
+      const lx = Math.sin(this.facing), lz = Math.cos(this.facing);
+      this.strike('rect', { x, z, len: 7.5, width: 1.7 * this.scale + 0.6, angle: this.facing }, land, { kind: 'lunge', nx: lx, nz: lz });
+    } else {
+      this.facing = Math.atan2(ax - x, az - z);
+      const bx = Math.sin(this.facing), bz = Math.cos(this.facing);
+      this.strike('rect', { x, z, len: 15, width: 1.05, angle: this.facing, alpha: 0.75 }, land, { kind: 'bolt', nx: bx, nz: bz });
+    }
     if (this.affixes.includes('canon')) {
       const s = this.strikes[this.strikes.length - 1];
       this.strike(s.shape, { ...s.params }, land + 1, { kind: s.kind, nx: s.nx, nz: s.nz, echo: true });
     }
-    this.squash = 0.4;
+    this.squash = 0.55;
+    this.mat.emissive.set('#ff5a6e');
+    this.mat.emissiveIntensity = 1.6;
   }
 
   // Bosses play phrases: one pattern per bar, windups counted aloud.
@@ -350,15 +401,27 @@ export class Enemy {
     this.shadow.scale.setScalar(this.radius * (1 - yOff * 0.15));
     const cur = this.mesh.rotation.y;
     this.mesh.rotation.y = cur + angleDiff(this.facing, cur) * Math.min(1, dt * 10);
-    // Jelly: squash on landing + a breath on every beat.
+    // Jelly: squash on landing + a breath on every beat; swell while winding up.
     this.squash = Math.max(0, this.squash - dt * 2.5);
+    this.windup = Math.max(0, this.windup - dt);
     const beatK = 1 - g.beatPhase;
-    const s = 1 + Math.sin(this.squash * 12) * this.squash * 0.35 + beatK * beatK * 0.06;
+    const wind = this.windup > 0 ? 0.12 + Math.sin(g.time * 18) * 0.08 : 0;
+    const s = 1 + Math.sin(this.squash * 12) * this.squash * 0.35 + beatK * beatK * 0.06 + wind;
     this.bodyMesh.scale.set(s, 0.8 / s, s);
     if (this.flash > 0) {
       this.flash -= dt;
+      this.mat.emissive.copy(this.baseEmissive);
       this.mat.emissiveIntensity = 1 + this.flash * 12;
-    } else this.mat.emissiveIntensity = this.broken ? 2.5 + Math.sin(g.time * 20) : 1;
+    } else if (this.broken) {
+      this.mat.emissive.set('#ffffff');
+      this.mat.emissiveIntensity = 2.5 + Math.sin(g.time * 20);
+    } else if (this.windup > 0) {
+      this.mat.emissive.set('#ff5a6e');
+      this.mat.emissiveIntensity = 1.5 + Math.sin(g.time * 22) * 1.1;
+    } else {
+      this.mat.emissive.copy(this.baseEmissive);
+      this.mat.emissiveIntensity = this.aggro ? 1.35 : 1;
+    }
   }
 }
 
