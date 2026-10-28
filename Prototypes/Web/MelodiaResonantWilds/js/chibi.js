@@ -6,10 +6,10 @@
 
 import * as THREE from 'three';
 import { toon, blob } from './entities.js';
-import { nprV2 } from './cel.js';
+import { nprV2, registerInkMaterial } from './cel.js';
 import { clamp, lerp } from './util.js';
 
-const INK = new THREE.MeshBasicMaterial({ color: nprV2 ? '#302344' : '#2a1f3a', side: THREE.BackSide });
+const INK = registerInkMaterial(new THREE.MeshBasicMaterial({ color: nprV2 ? '#302344' : '#2a1f3a', side: THREE.BackSide }));
 const PAL = {
   skin: '#a6705a', blush: '#e5707f', eyeWhite: '#ffffff', iris: '#8e6ce0', pupil: '#2c1d4a',
   hair: '#b8a4f0', hairLight: '#ddd4ff', hairDeep: '#8a74d6', clip: '#7c5fd6',

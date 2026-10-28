@@ -18,6 +18,7 @@ const variants = [
   { name: 'desktop-npr-v2', query: '?npr=v2&avatar=chibi&shrine=glb', chibi: true, shrine: true, mobile: false, npr: true },
   { name: 'desktop-painterly', query: '?npr=v2&kuwahara=1&avatar=chibi&shrine=glb', chibi: true, shrine: true, mobile: false, npr: true, painterly: true },
   { name: 'mobile-npr-v2', query: '?npr=v2&kuwahara=0', chibi: false, shrine: false, mobile: true, npr: true },
+  { name: 'desktop-live-tuner', query: '?npr=v2&kuwahara=1&avatar=chibi&shrine=glb&tune=1&look=soft', chibi: true, shrine: true, mobile: false, npr: true, painterly: true, tune: true },
 ];
 try {
   for (const test of variants) {
@@ -64,6 +65,40 @@ try {
       await page.waitForFunction(() => window.__melodia.activities.pois.some(
         p => p.type === 'shrine' && !!p.assetVisual
       ), null, { timeout: 45000 });
+    }
+    if (test.tune) {
+      await page.waitForFunction(() => window.__melodiaShaderTuner?.enabled === true, null, { timeout: 10000 });
+      const tuning = await page.evaluate(() => {
+        const lab = window.__melodiaShaderTuner;
+        lab.apply({
+          strength: 0.41, radius: 3, anisotropy: 2.6,
+          edgeProtect: 3.5, shadow: 0.62, ink: 0.73, scale: 0.45,
+        }, 'custom');
+        const u = window.__melodia.painterly.material.uniforms;
+        return {
+          strength: u.uStrength.value, radius: u.uRadius.value,
+          anisotropy: u.uAnisotropy.value, edge: u.uEdgeProtect.value,
+          scale: window.__melodia.painterly.scale,
+          tint: lab.state().shadow, ink: lab.state().ink,
+          url: location.search,
+          sliders: lab.panel.shadowRoot.querySelectorAll('input[type=range]').length,
+        };
+      });
+      assert.equal(tuning.strength, 0.41);
+      assert.equal(tuning.radius, 3);
+      assert.equal(tuning.anisotropy, 2.6);
+      assert.equal(tuning.edge, 3.5);
+      assert.equal(tuning.scale, 0.45);
+      assert.equal(tuning.tint, 0.62);
+      assert.equal(tuning.ink, 0.73);
+      assert.equal(tuning.sliders, 7);
+      assert.match(tuning.url, /paint=0.41/);
+      assert.match(tuning.url, /ink=0.73/);
+      await page.reload({ waitUntil: 'domcontentloaded' });
+      await page.waitForFunction(() => !!window.__melodiaShaderTuner?.enabled && !document.querySelector('#play').disabled, null, { timeout: 90000 });
+      const persisted = await page.evaluate(() => window.__melodiaShaderTuner.state());
+      assert.equal(persisted.strength, 0.41, 'reload retained strength');
+      assert.equal(persisted.ink, 0.73, 'reload retained ink');
     }
     await page.locator('#play').click();
     await page.waitForFunction(() => window.__melodia.started &&

@@ -8,6 +8,53 @@ export const nprV2 = !legacyRender && flags.get('npr') === 'v2';
 
 let gradient;
 const ramps = new Map();
+const inkMaterials = new Set();
+let shadowTint = 0.82;
+let inkOpacity = 0.85;
+const V1_BANDS = [80, 167, 255];
+
+// Recolour *existing* ramp textures in place so no mesh or shader rebuild is needed.
+function writePalette(role, texture) {
+  const data = texture.image.data;
+  NPR_PALETTES[role].forEach((rgb, i) => {
+    for (let c = 0; c < 3; c++) {
+      data[i * 4 + c] = Math.round(V1_BANDS[i] * (1 - shadowTint) + rgb[c] * shadowTint);
+    }
+    data[i * 4 + 3] = 255;
+  });
+  texture.needsUpdate = true;
+}
+export function setNPRShadowTint(value) {
+  const n = Number(value);
+  if (Number.isFinite(n)) shadowTint = Math.max(0, Math.min(1, n));
+  for (const [role, texture] of ramps) writePalette(role, texture);
+  return shadowTint;
+}
+export function getNPRShadowTint() { return shadowTint; }
+
+// Track only outline materials. V1 rendering stays untouched.
+export function registerInkMaterial(mat) {
+  if (nprV2) {
+    inkMaterials.add(mat);
+    mat.opacity = inkOpacity;
+    mat.transparent = inkOpacity < 0.999;
+    mat.depthWrite = !mat.transparent;
+  }
+  return mat;
+}
+export function setNPRInkOpacity(value) {
+  const n = Number(value);
+  if (Number.isFinite(n)) inkOpacity = Math.max(0, Math.min(1, n));
+  for (const mat of inkMaterials) {
+    const transparent = inkOpacity < 0.999;
+    if (mat.transparent !== transparent) mat.needsUpdate = true;
+    mat.transparent = transparent;
+    mat.depthWrite = !transparent;
+    mat.opacity = inkOpacity;
+  }
+  return inkOpacity;
+}
+export function getNPRInkOpacity() { return inkOpacity; }
 // Multiplicative RGB shadow / midtone / light ramps, keeping author-authored
 // texture maps, vertex colours, gear dyes and per-material emissive intact.
 // Chosen to colour *lighting*, not overwrite surface albedo.
@@ -36,14 +83,14 @@ export function paletteGradient(role = 'default') {
   role = NPR_PALETTES[role] ? role : 'default';
   if (ramps.has(role)) return ramps.get(role);
   const pixels = new Uint8Array(12);
-  NPR_PALETTES[role].forEach((rgb, i) => pixels.set([...rgb, 255], i * 4));
+  // Populated by writePalette below; preserves a single GPU texture per role.
   const texture = new THREE.DataTexture(pixels, 3, 1, THREE.RGBAFormat);
   texture.minFilter = THREE.NearestFilter;
   texture.magFilter = THREE.NearestFilter;
   texture.generateMipmaps = false;
   texture.colorSpace = THREE.NoColorSpace;
-  texture.needsUpdate = true;
   ramps.set(role, texture);
+  writePalette(role, texture);
   return texture;
 }
 

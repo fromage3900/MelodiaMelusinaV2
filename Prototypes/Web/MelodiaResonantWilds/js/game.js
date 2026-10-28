@@ -759,7 +759,7 @@ export class Game {
     }
     this.overlay.draw(dt, bars, labels);
     this.ui.update(dt);
-    if (this.painterly) this.painterly.render(this.renderer, this.scene, this.camera);
+    if (this.painterly && this.painterly.settings.strength > 0) this.painterly.render(this.renderer, this.scene, this.camera);
     else this.renderer.render(this.scene, this.camera);
   }
 

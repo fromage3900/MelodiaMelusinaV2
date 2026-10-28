@@ -56,3 +56,13 @@ The directional Kuwahara method follows the *ideas* in Kyprianidis, Kang and Dö
 - Compare in live desktop browser: rim/ink readability, skin tone preservation, underwater vs shoreline colours, shadow ramps not washed out.
 - Check mobile Safari movement/audio and base-vs-V2 FPS/memory: `?kuwahara=1` is intentionally experimental and should never silently enable at mobile launch.
 - Only after this, promote an opt-in/shader release to main. The reference paper and code do not justify claiming visual perfection or a full MToon renderer.
+
+## Live-look tuning (cloud branch only)
+
+Open `?npr=v2&kuwahara=1&avatar=chibi&shrine=glb&tune=1` for a small collapsible overlay. The shader updates **without reloading or altering gameplay**.
+
+Preset links: `&look=soft` (watercolour), `&look=storybook` (balanced), `&look=dream` (dramatic). Sliders set `paint` (blend), `rad` (1–3), `anis` (edge tangent elongation), `edge` (variance power / edge selection), `shadow` (RGB ramp tint), `ink` (selective outline alpha) and `scale` (intermediate render resolution). Each change updates the URL for repeatable visual review. The copy control writes that URL when clipboard access is permitted.
+
+This panel loads only with `tune=1`. Mobile opens it collapsed and caps its rendering scale at 0.5. The original `?npr=v2&kuwahara=1` viewer receives no panel and no added browser interaction. A zero painterly-strength setting bypasses the postprocess render target entirely.
+
+Tuning acceptance: cloud Chromium validates seven uniforms/controls, shareable URL and reload persistence. This does not prove the filter is visually ideal or that mobile sustained FPS is sufficient.

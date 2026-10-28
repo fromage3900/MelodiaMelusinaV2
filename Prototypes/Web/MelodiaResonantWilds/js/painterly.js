@@ -22,6 +22,8 @@ uniform sampler2D tScene;
 uniform vec2 uTexel;
 uniform float uStrength;
 uniform float uRadius;
+uniform float uAnisotropy;
+uniform float uEdgeProtect;
 varying vec2 vUv;
 
 vec3 at(vec2 px) {
@@ -42,7 +44,7 @@ void main() {
   // The minor eigenvector follows the edge tangent; enlarge that axis.
   vec2 tangent = vec2(-sin(phi), cos(phi));
   vec2 normal = vec2(-tangent.y, tangent.x);
-  float stretch = mix(1.0, 2.2, coherence);
+  float stretch = mix(1.0, uAnisotropy, coherence);
   vec3 s0 = vec3(0.0), s1 = vec3(0.0), s2 = vec3(0.0), s3 = vec3(0.0);
   vec3 q0 = vec3(0.0), q1 = vec3(0.0), q2 = vec3(0.0), q3 = vec3(0.0);
   float w0 = 0.0, w1 = 0.0, w2 = 0.0, w3 = 0.0;
@@ -67,10 +69,10 @@ void main() {
   vec3 v2 = max(q2/max(w2,0.0001)-m2*m2, vec3(0.0));
   vec3 v3 = max(q3/max(w3,0.0001)-m3*m3, vec3(0.0));
   vec3 lum = vec3(0.2126, 0.7152, 0.0722);
-  float p0 = 1.0/pow(dot(v0,lum)+0.0005, 2.0);
-  float p1 = 1.0/pow(dot(v1,lum)+0.0005, 2.0);
-  float p2 = 1.0/pow(dot(v2,lum)+0.0005, 2.0);
-  float p3 = 1.0/pow(dot(v3,lum)+0.0005, 2.0);
+  float p0 = 1.0/pow(dot(v0,lum)+0.0005, uEdgeProtect);
+  float p1 = 1.0/pow(dot(v1,lum)+0.0005, uEdgeProtect);
+  float p2 = 1.0/pow(dot(v2,lum)+0.0005, uEdgeProtect);
+  float p3 = 1.0/pow(dot(v3,lum)+0.0005, uEdgeProtect);
   vec3 painted = (p0*m0+p1*m1+p2*m2+p3*m3)/max(p0+p1+p2+p3,0.0001);
   gl_FragColor = vec4(mix(original, painted, clamp(uStrength,0.0,1.0)), 1.0);
   #include <colorspace_fragment>
@@ -79,7 +81,15 @@ void main() {
 export class PainterlyFilter {
   constructor() {
     const coarse = matchMedia('(pointer: coarse)').matches;
-    this.scale = coarse ? 0.35 : 0.5;
+    this.coarse = coarse;
+    this.settings = {
+      strength: coarse ? 0.42 : 0.53,
+      radius: 2,
+      anisotropy: 1.85,
+      edgeProtect: 2.8,
+      scale: coarse ? 0.35 : 0.5,
+    };
+    this.scale = this.settings.scale;
     this.target = new THREE.WebGLRenderTarget(1, 1, {
       depthBuffer: true, stencilBuffer: false,
       minFilter: THREE.LinearFilter, magFilter: THREE.LinearFilter,
@@ -89,8 +99,10 @@ export class PainterlyFilter {
       uniforms: {
         tScene: { value: this.target.texture },
         uTexel: { value: new THREE.Vector2(1, 1) },
-        uStrength: { value: coarse ? 0.45 : 0.65 },
-        uRadius: { value: coarse ? 2 : 3 },
+        uStrength: { value: this.settings.strength },
+        uRadius: { value: this.settings.radius },
+        uAnisotropy: { value: this.settings.anisotropy },
+        uEdgeProtect: { value: this.settings.edgeProtect },
       },
       vertexShader: vertex,
       fragmentShader: fragment,
@@ -103,6 +115,26 @@ export class PainterlyFilter {
     this.quad.frustumCulled = false;
     this.scene.add(this.quad);
     this.size = [0, 0];
+  }
+
+  // Tuning stays in the shader uniforms; only resolution changes resize the target.
+  applySettings(changes = {}) {
+    const limits = {
+      strength: [0, 1], radius: [1, 3], anisotropy: [1, 3.2],
+      edgeProtect: [1, 4.5], scale: [0.25, this.coarse ? 0.5 : 0.75],
+    };
+    for (const [key, range] of Object.entries(limits)) {
+      if (!(key in changes)) continue;
+      const n = Number(changes[key]);
+      if (!Number.isFinite(n)) continue;
+      this.settings[key] = Math.min(range[1], Math.max(range[0], key === 'radius' ? Math.round(n) : n));
+    }
+    this.scale = this.settings.scale;
+    for (const [key, uniform] of [
+      ['strength', 'uStrength'], ['radius', 'uRadius'],
+      ['anisotropy', 'uAnisotropy'], ['edgeProtect', 'uEdgeProtect'],
+    ]) this.material.uniforms[uniform].value = this.settings[key];
+    return { ...this.settings };
   }
 
   resize(renderer) {

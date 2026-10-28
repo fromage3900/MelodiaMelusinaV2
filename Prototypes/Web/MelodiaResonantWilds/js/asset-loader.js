@@ -2,8 +2,8 @@
 // Uses the matching Three.js r170 official GLTFLoader; no new rendering framework.
 import * as THREE from 'three';
 import { GLTFLoader } from '../vendor/examples/jsm/loaders/GLTFLoader.js';
-import { celMaterial, legacyRender, nprV2 } from './cel.js';
-const shrineInk = new THREE.MeshBasicMaterial({ color: '#302344', side: THREE.BackSide });
+import { celMaterial, legacyRender, nprV2, registerInkMaterial } from './cel.js';
+const shrineInk = registerInkMaterial(new THREE.MeshBasicMaterial({ color: '#302344', side: THREE.BackSide }));
 function roleOf(node) {
   const label = ((node.name || '') + ' ' + (node.material?.name || '')).toLowerCase();
   if (/gold|rail|halo|orbit|lyre|crown|finial|metal/.test(label)) return 'metal';
