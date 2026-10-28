@@ -84,7 +84,8 @@ try {
         g.camTarget.copy(g.player.pos);
         g.world.warm(x, z);
       });
-      await page.waitForTimeout(800);
+      // The in-game title banner fades after 2.8 seconds; keep the A/B view unobscured.
+      await page.waitForTimeout(3200);
       await page.screenshot({ path: process.env.RW_SCREENSHOT_DIR + '/' + test.name + '.png' });
     }
     assert.deepEqual(failures, [], test.name + ': WebGL/JavaScript console errors');

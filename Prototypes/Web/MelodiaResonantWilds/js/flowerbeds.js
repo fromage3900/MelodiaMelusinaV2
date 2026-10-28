@@ -28,7 +28,7 @@ const HEADS = [
   [0.19, 0.36, 0.18, 0.84],
   [0.15, 0.30, -0.20, 0.69],
 ];
-export function createFlowerbedParts(M, L, white) {
+export function createFlowerbedParts(M, L) {
   const pv = [], pi = [], gv = [], gi = [], cv = [], ci = [];
   for (const [index, [cx, cy, cz, s]] of HEADS.entries()) {
     const origin = [cx, cy, cz];
@@ -68,9 +68,9 @@ export function createFlowerbedParts(M, L, white) {
   const leafMat = L('#65b49a', { side: THREE.DoubleSide });
   const pollenMat = L('#f6da93', { side: THREE.DoubleSide, emissive: '#9e7830', emissiveIntensity: 0.06 });
   return [
-    M(geometry(pv, pi), petalMat),
-    M(geometry(gv, gi), leafMat),
-    M(geometry(cv, ci), pollenMat),
+    M(geometry(pv, pi), petalMat, 0, 1.55, 1.55, 1.55),
+    M(geometry(gv, gi), leafMat, 0, 1.55, 1.55, 1.55),
+    M(geometry(cv, ci), pollenMat, 0, 1.55, 1.55, 1.55),
   ];
 }
 export const FLOWERBED_BLOOMS = HEADS.length;

@@ -311,7 +311,7 @@ export class World {
     };
     // Small authored flower clusters; the original cone flowers remain one URL flag away.
     this.flowerbedsEnabled = new URLSearchParams(window.location.search).get('flowerbeds') !== '0';
-    if (this.flowerbedsEnabled) this.props.flower.parts = createFlowerbedParts(M, L, white);
+    if (this.flowerbedsEnabled) this.props.flower.parts = createFlowerbedParts(M, L);
     // Note sculpture pieces are offset sideways (head / stem / flag).
     const np = this.props.note;
     np.parts.forEach((p, i) => p.m.setPosition(np.offsetX[i], p.m.elements[13], 0));
