@@ -18,13 +18,11 @@ Open a local dev server from the repo root with `python -m http.server 8080`, vi
 - `?chladni=0&caustics=0` — cel baseline only.
 - `?render=legacy` — original Lambert terrain/props and the original character gradient; no Chladni or caustics. The original beat-ripple shader remains operational.
 
-## Cloud preview
+## Publish / preview
 
-This is a public, **temporary** preview of the branch; it isn't a GitHub Pages release. GitHack is an independent GitHub-source proxy, not an OpenAI or GitHub service.
+**Canonical public mirror (owner publish):** `https://fromage3900.github.io/my-site/resonant-wilds/` after syncing this folder into `fromage3900/my-site/resonant-wilds/` and confirming the SW cache (`resonant-wilds-v9-*`) activates.
 
-`https://raw.githack.com/fromage3900/my-site/feat/resonant-wilds-cloud-intake-20261027/resonant-wilds/index.html`
-
-Try `?avatar=chibi&shrine=glb` or `?render=legacy` at the end. A separate GitHub Actions Chromium smoke checks all four combinations. Do not merge before manual desktop and iPhone Safari gameplay QA.
+Temporary raw.githack previews are retired for release claims — use the GH Pages mirror or a local `python -m http.server` from the repo root. Try `?avatar=chibi&shrine=glb` or `?render=legacy` at the end. GitHub Actions Chromium smoke checks structural boot; desktop and iPhone Safari gameplay QA remain required before calling the mirror browser-approved.
 
 In devtools the existing `window.__melodia.world.uniforms` offers live sliders via `uChladni.value` and `uCaustics.value` (nominal range 0–1). Set either to 0 without recompiling a program. Keep the actual rhythm clock as the source of beat events.
 
