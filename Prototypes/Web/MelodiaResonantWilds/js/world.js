@@ -7,6 +7,7 @@ import * as THREE from 'three';
 import { Simplex2, mulberry32, clamp, lerp, smoothstep, angleDiff } from './util.js';
 import { BIOMES, HUB, WORLD_RADIUS, WORLD_SEED, RIFT_STYLE } from './design.js';
 import { environmentMaterial, legacyRender } from './cel.js';
+import { installBellflowers, animateBellflowers } from './bellflower.js';
 
 export const CHUNK = 64;
 const SEG = 28;
@@ -495,12 +496,15 @@ export class World {
     this.fontPos = new THREE.Vector3(0, h, 13);
     add(new THREE.CylinderGeometry(1.6, 1.2, 1, 10), L('#e0e8f0'), 0, h + 0.5, 13);
     add(new THREE.CylinderGeometry(1.35, 1.35, 0.1, 16), L('#8fe0ff', { emissive: '#5fc6ff', emissiveIntensity: 0.6 }), 0, h + 1.02, 13);
-    // Lanterns around the plaza edge.
+    // Four optional bellflower lanterns, preserving original plaza fallback.
+    const bellflowerSites = [];
     for (let i = 0; i < 12; i++) {
-      const a = (i / 12) * Math.PI * 2;
-      add(new THREE.CylinderGeometry(0.08, 0.08, 2.4, 5), L('#6b4a3a'), Math.cos(a) * 31, h + 1.2, Math.sin(a) * 31);
-      add(new THREE.BoxGeometry(0.5, 0.6, 0.5), L('#fff', { emissive: '#ffcf7a', emissiveIntensity: 0.7 }), Math.cos(a) * 31, h + 2.6, Math.sin(a) * 31);
+      const a = (i / 12) * Math.PI * 2, x = Math.cos(a) * 31, z = Math.sin(a) * 31;
+      const stem = add(new THREE.CylinderGeometry(0.08, 0.08, 2.4, 5), L('#6b4a3a'), x, h + 1.2, z);
+      const light = add(new THREE.BoxGeometry(0.5, 0.6, 0.5), L('#fff', { emissive: '#ffcf7a', emissiveIntensity: 0.7 }), x, h + 2.6, z);
+      if (i % 3 === 0) bellflowerSites.push({ index: i, x, z, angle: a, stem, light });
     }
+    this.bellflowerLanterns = installBellflowers(g, bellflowerSites, h);
     this.hubGroup = g;
     this.root.add(g);
   }
@@ -630,6 +634,7 @@ export class World {
     }
     if (this.pendulum) this.pendulum.rotation.z = Math.sin(beatPhase * Math.PI) * 0.45 * (this._pendDir || 1);
     if (this.forgeFire) this.forgeFire.scale.setScalar(0.85 + Math.sin(t * 9) * 0.12);
+    animateBellflowers(this.bellflowerLanterns, beatPhase, crescendo);
     // Landmarks go translucent when Melusina is under them so the camera never loses her.
     for (const lm of this.landmarks) {
       const near = Math.hypot(lm.position.x - player.x, lm.position.z - player.z) < 48;

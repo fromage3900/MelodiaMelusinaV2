@@ -15,6 +15,7 @@ const variants = [
   { name: 'desktop-chibi-shrine', query: '?avatar=chibi&shrine=glb', chibi: true, shrine: true, mobile: false },
   { name: 'mobile-baseline', query: '?chladni=0&caustics=0', chibi: false, shrine: false, mobile: true },
   { name: 'desktop-legacy-render', query: '?render=legacy', chibi: false, shrine: false, mobile: false, legacy: true },
+  { name: 'desktop-bellflower-off', query: '?bellflower=0', chibi: false, shrine: false, mobile: false, bellflower: false },
 ];
 try {
   for (const test of variants) {
@@ -42,8 +43,15 @@ try {
       legacyTerrain: !!window.__melodia.world.terrainMat.isMeshLambertMaterial,
       chladni: window.__melodia.world.uniforms.uChladni.value,
       caustics: window.__melodia.world.uniforms.uCaustics.value,
+      bellflowers: window.__melodia.world.hubGroup.children.filter(o => o.name.startsWith('RW_Bellflower_Plaza_')).length,
+      boxLanterns: window.__melodia.world.hubGroup.children.filter(o => o.isMesh && o.geometry.type === 'BoxGeometry' &&
+        o.geometry.parameters.width === 0.5 && o.geometry.parameters.height === 0.6 &&
+        o.geometry.parameters.depth === 0.5 && o.visible).length,
     }));
     assert.equal(before.chibi, test.chibi, test.name + ': incorrect avatar selection');
+    const expectedFlowers = test.bellflower === false ? 0 : 4;
+    assert.equal(before.bellflowers, expectedFlowers, test.name + ': incorrect bellflower count');
+    assert.equal(before.boxLanterns, 12 - expectedFlowers, test.name + ': original lantern fallback mismatch');
     assert.equal(before.legacyTerrain, !!test.legacy, test.name + ': wrong environment shading');
     if (test.legacy) {
       assert.equal(before.chladni, 0, 'legacy Chladni strength');
