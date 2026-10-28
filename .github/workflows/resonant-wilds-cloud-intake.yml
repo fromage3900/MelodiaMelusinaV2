@@ -25,6 +25,7 @@ jobs:
           node Prototypes/Web/MelodiaResonantWilds/tools/check_cloud_intake.mjs
           node Prototypes/Web/MelodiaResonantWilds/tools/check_bellflower.mjs
           node Prototypes/Web/MelodiaResonantWilds/tools/check_flowerbeds.mjs
+          node Prototypes/Web/MelodiaResonantWilds/tools/check_grove_kit.mjs
       - name: Smoke static asset delivery
         run: |
           python3 -m http.server 8765 --bind 127.0.0.1 >/tmp/resonant-wilds-server.log 2>&1 &
