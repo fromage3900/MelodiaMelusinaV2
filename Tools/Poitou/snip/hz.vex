@@ -1,0 +1,13 @@
+if(chi("../horizon_on")){
+ for(int b=0;b<3;b++){
+  float R=ch(sprintf("../band%d_dist",b)); float spc=ch("../band_spacing")*(1+b*0.5);
+  for(float a=0;a<2*PI;a+=spc/R){
+    float rr=R+40*(noise(set(a*6,b*3.1,1.7))-0.5)*2; float x=500+rr*cos(a), y=500+rr*sin(a);
+    if(noise(set(cos(a)*4,sin(a)*4,b*5.3+ch("../seed")))<ch("../band_gap")) continue;
+    int n=addpoint(0,set(x,skirt_h(x,y),y)); setpointattrib(0,"type",n,"poplar_band"); setpointattrib(0,"band",n,b);
+    setpointattrib(0,"height_m",n,fit01(rand(a*13+b),24,34)); setpointattrib(0,"yaw",n,rand(a*7)*360); setpointattrib(0,"scale",n,{1,1,1});
+  }}
+ for(int k=0;k<chi("../spire_count");k++){ float a=radians(ch("../spire_angle")+k*137.0); float R=ch("../spire_dist")+k*450;
+   float x=500+R*cos(a), y=500+R*sin(a); int n=addpoint(0,set(x,skirt_h(x,y),y)); setpointattrib(0,"type",n,"far_spire");
+   setpointattrib(0,"height_m",n,chf("../spire_height")); setpointattrib(0,"yaw",n,0.0); setpointattrib(0,"scale",n,{1,1,1}); setpointattrib(0,"band",n,2); }
+}

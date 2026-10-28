@@ -1,0 +1,48 @@
+// =====================================================================
+// POITOU FOUNDATIONS - the soubassement under the village houses.
+// ---------------------------------------------------------------------
+// Every house in the village stands on a plinth: a darker, wetter base
+// band of dressed stone, one or two courses high, standing a little proud
+// of the wall above it (a refend).  It is real practice - it seats the
+// building and hides the damp - and it is the thing that makes a clay
+// house read as built rather than dropped onto the ground.
+//
+// Input 0: the layout points (type "building" carries yaw and footprint)
+// Input 1: the terrain
+// =====================================================================
+
+string MAT_PLINTH = chs("../foundation_material");
+string MAT_CORE  = chs("../masonry_core_material");
+
+int np = npoints(0);
+for(int i=0;i<np;i++){
+    string t = point(0, "type", i);
+    if(t != "building") continue;
+    vector P  = point(0, "P", i);
+    float yaw = point(0, "yaw", i);
+    vector sc = point(0, "scale", i);
+    float w = sc.x, dp = sc.z;
+    if(w <= 0.1 || dp <= 0.1) continue;
+    vector along  = set(cos(radians(yaw)), 0, sin(radians(yaw)));
+    vector across = set(-sin(radians(yaw)), 0, cos(radians(yaw)));
+    // the plinth is a little larger than the house above it
+    float hw = w*0.5 + 0.15, hd = dp*0.5 + 0.15;
+    float y0 = volumesample(1, "height", P) - 0.4;
+    float h = 1.2;
+    // four runs around the footprint, each a coursed plinth
+    vector corners[] = array();
+    push(corners, P + along*hw + across*hd);
+    push(corners, P - along*hw + across*hd);
+    push(corners, P - along*hw - across*hd);
+    push(corners, P + along*hw - across*hd);
+    for(int k=0;k<4;k++){
+        vector a = corners[k];
+        vector b = corners[(k+1)%4];
+        vector dir = normalize(b-a);
+        vector nrm = normalize(cross(dir, set(0,1,0)));
+        vector org = a;
+        org.y = y0;
+        kit_wall(org, dir, nrm, length(b-a), y0, y0+h, POITOU_LEAF+POITOU_CORE,
+                 MAT_PLINTH, MAT_CORE, MAT_PLINTH, 0, 1, 0.0, "foundation");
+    }
+}
