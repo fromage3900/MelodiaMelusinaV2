@@ -49,10 +49,12 @@ export const OW_RULES = Object.freeze({
   },
   // Nested dressing (Nikki "details all the time" + Genshin density).
   layers: {
-    near: { maxDist: 40, mul: 1.55 },   // flowers, grass, props at feet
-    mid: { maxDist: 120, mul: 1.1 },    // trees, lanterns, rocks
-    far: { maxDist: 280, mul: 0.55 },   // landmark silhouettes only
+    near: { maxDist: 40, mul: 1.85 },   // Nikki foot-detail denser
+    mid: { maxDist: 120, mul: 1.2 },
+    far: { maxDist: 280, mul: 0.6 },
   },
+  // Landmark silhouette scale so hubs read destinations from the roads.
+  landmarkScale: 1.35,
   // Exploration density budget per biome ring (targets, not hard caps).
   // Inspired by Genshin's POI/puzzle/resource mix — musicalized for Melodia.
   density: {
@@ -67,6 +69,7 @@ export const OW_RULES = Object.freeze({
     musicGatesPerBiome: 2,
     cleansePerBiome: 2,
     ariaGatesPerBiome: 1,
+    destinationsPerBiome: 2,
     minSpacing: {
       camp: 42,
       chest: 22,
@@ -78,6 +81,7 @@ export const OW_RULES = Object.freeze({
       musicgate: 48,
       cleanse: 40,
       ariagate: 55,
+      destination: 70,
     },
   },
   // Mobile perf: keep streamed prop budgets honest on phones.
@@ -129,6 +133,34 @@ export const BIOME_IMPRESSIONS = Object.freeze({
     accent: '#7fc8ff',
     approachProps: [['pine', 1.4], ['icespike', 1.4], ['crystal', 1.1], ['rock', 1.1]],
   },
+});
+
+/**
+ * Nikki-style named micro-destinations (2 per biome).
+ * Pins are { r, da, kit, gate } relative to biome angle — authored places, not RNG scatter.
+ * gate: null | 'float' (Wardrobe shoes/gown) | 'purify' (Harmonize cleanse at mouth).
+ */
+export const BIOME_DESTINATIONS = Object.freeze({
+  sakura_terrace: [
+    { key: 'tea', name: 'Petal Tea Terrace', kit: 'tea', r: 175, da: 0.11, gate: null, line: 'Porcelain cups wait under a waltz of petals.' },
+    { key: 'archive', name: 'Blossom Archive', kit: 'archive', r: 285, da: -0.12, gate: 'float', line: 'A cloister of sheets hangs above the terrace path.' },
+  ],
+  liquid_cathedral: [
+    { key: 'quay', name: 'Canal Quay Choir', kit: 'quay', r: 180, da: -0.1, gate: null, line: 'Pilgrims once sang from this pier into the nave.' },
+    { key: 'nave', name: 'Organ Nave Walk', kit: 'nave', r: 300, da: 0.09, gate: 'purify', line: 'Colonnades hold a dissonant hush until cleansed.' },
+  ],
+  fugue_grotto: [
+    { key: 'amph', name: 'Echo Amphitheater', kit: 'amph', r: 190, da: 0.08, gate: null, line: 'Stone seats answer every footfall twice.' },
+    { key: 'cave', name: 'Subject Cave', kit: 'cave', r: 310, da: -0.11, gate: 'purify', line: 'The subject theme sleeps behind a blot of dissonance.' },
+  ],
+  cadence_crystal_ridge: [
+    { key: 'metro', name: 'Metronome Plaza', kit: 'metro', r: 185, da: -0.07, gate: null, line: 'Stepped plates tick a toccata into the ridge wind.' },
+    { key: 'stair', name: 'Crystal Stair Garden', kit: 'stair', r: 295, da: 0.13, gate: 'float', line: 'Shard steps rise — wardrobe cadence required.' },
+  ],
+  aurora_glacier: [
+    { key: 'shelf', name: 'Aurora Shelf', kit: 'shelf', r: 195, da: 0.1, gate: null, line: 'A glacial ledge opens under the green curtain.' },
+    { key: 'hollow', name: 'Ice Choir Hollow', kit: 'hollow', r: 305, da: -0.09, gate: 'purify', line: 'Ice voices wait for Harmonize to thaw the mouth.' },
+  ],
 });
 
 /** Attach impression + workflow rings onto each biome (called once from design consumers). */
@@ -221,6 +253,16 @@ export function planExploration(b, bi, rng, occupied) {
   pin('cleanse', 260, -0.16, { name: 'Dissonant Blot', workflow: 'companion', cleared: false });
   pin('ariagate', 250, 0.02, { name: 'Aria Veil', workflow: 'traversal', open: false, needAria: true, needSlot: 'shoes' });
 
+  // Nikki named micro-destinations — authored places with Resonance Dew.
+  const dests = BIOME_DESTINATIONS[b.id] || [];
+  dests.forEach((d, di) => {
+    pin('destination', d.r, d.da, {
+      name: d.name, kit: d.kit, gate: d.gate || null, line: d.line,
+      key: d.key, workflow: 'destination', revealed: false, dewTaken: false,
+      needsPurify: d.gate === 'purify', needsFloat: d.gate === 'float', purified: d.gate !== 'purify',
+    });
+  });
+
   // Approach / midland get denser content (Genshin first-impression ring).
   take('overlook', D.overlooksPerBiome, 130, 360, 0.35, D.minSpacing.overlook, { name: `${b.name.split('—')[0].trim()} Overlook`, workflow: 'vista' });
   take('photo', D.photoSpotsPerBiome, 100, 420, 0.4, D.minSpacing.photo, { name: 'Whim Frame', workflow: 'impression', challenge: true });
@@ -237,7 +279,7 @@ export function planExploration(b, bi, rng, occupied) {
   take('sheet', D.sheetsPerBiome, 120, 650, 0.55, D.minSpacing.sheet);
 
   // Stamp shrine/sheet/photo ids + Whim Frame facing prompts after placement.
-  let si = 0, sh = 0, ph = 0, mg = 0, cl = 0, ag = 0;
+  let si = 0, sh = 0, ph = 0, mg = 0, cl = 0, ag = 0, dest = 0;
   for (const p of out) {
     if (p.type === 'shrine') p.id = `shrine_${b.id}_${si++}`;
     if (p.type === 'sheet') p.id = `sheet_${b.id}_${sh++}`;
@@ -251,6 +293,10 @@ export function planExploration(b, bi, rng, occupied) {
     if (p.type === 'musicgate') p.id = `mgate_${b.id}_${mg++}`;
     if (p.type === 'cleanse') p.id = `cleanse_${b.id}_${cl++}`;
     if (p.type === 'ariagate') p.id = `agate_${b.id}_${ag++}`;
+    if (p.type === 'destination') {
+      p.id = `dest_${b.id}_${p.key || dest}`;
+      dest++;
+    }
   }
   return { pois: out, workflow: wf };
 }
@@ -264,7 +310,9 @@ export function propWorkflowMul(b, x, z, type, playerPos = null) {
   if (playerPos) m *= layerMul(Math.hypot(x - playerPos.x, z - playerPos.z));
   // Boost hero / approach props along the corridor.
   const boosted = (wf.approachProps || []).some(([t]) => t === type);
-  if (boosted) m *= 1.25 + approachIdentity(b, x, z) * 0.5;
+  if (boosted) m *= 1.4 + approachIdentity(b, x, z) * 0.55;
+  // Near-field flowers/grass get an extra Nikki "details at feet" bump.
+  if (type === 'flower' || type === 'grass' || type === 'bush') m *= 1.15;
   return m;
 }
 
@@ -287,6 +335,7 @@ export function workflowManifest() {
         reveal: wf.reveal,
         core: wf.core,
         rings: wf.rings,
+        destinations: BIOME_DESTINATIONS[b.id] || [],
         bpm: b.bpm,
         meter: b.meter,
         style: b.style,

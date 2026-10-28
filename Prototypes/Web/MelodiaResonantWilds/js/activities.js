@@ -204,9 +204,159 @@ export class Activities {
       p.spin = arch;
       grp.add(arch, veil);
       grp.rotation.y = Math.atan2(-p.x, -p.z);
+    } else if (p.type === 'destination') {
+      this._buildDestinationKit(p, grp, L);
     } else return;
     p.mesh = grp;
     g.world.root.add(grp);
+  }
+
+  /** Nikki-style named place kits — unique silhouette per destination. */
+  _buildDestinationKit(p, grp, L) {
+    const kit = p.kit || 'tea';
+    const deck = new THREE.Mesh(new THREE.CylinderGeometry(4.2, 4.6, 0.4, 10), L('#efe6d8'));
+    deck.position.y = 0.22;
+    grp.add(deck);
+    // Resonance Dew crystal — Nikki Dew of Inspiration analogue.
+    p.dewMat = L('#ffffff', { emissive: '#9fe6ff', emissiveIntensity: 1.1 });
+    const dew = new THREE.Mesh(new THREE.OctahedronGeometry(0.55, 0), p.dewMat);
+    dew.position.set(0, 2.4, 0);
+    dew.scale.set(0.7, 1.4, 0.7);
+    p.dew = dew;
+    p.spin = dew;
+    grp.add(dew);
+    if (kit === 'tea') {
+      for (const [x, z] of [[-2.2, -1.4], [2.2, -1.4], [0, 2.2]]) {
+        const stool = new THREE.Mesh(new THREE.CylinderGeometry(0.45, 0.5, 0.7, 8), L('#d9bc72'));
+        stool.position.set(x, 0.55, z);
+        grp.add(stool);
+      }
+      const table = new THREE.Mesh(new THREE.CylinderGeometry(1.1, 1.2, 0.15, 10), L('#f7f0ff'));
+      table.position.y = 1.05;
+      grp.add(table);
+      for (let i = 0; i < 5; i++) {
+        const a = (i / 5) * Math.PI * 2;
+        const note = new THREE.Mesh(new THREE.SphereGeometry(0.22, 6, 6), L('#ffd978', { emissive: '#d9a84a', emissiveIntensity: 0.5 }));
+        note.position.set(Math.cos(a) * 2.6, 2.8 + (i % 2) * 0.3, Math.sin(a) * 2.6);
+        grp.add(note);
+      }
+    } else if (kit === 'archive') {
+      for (let i = 0; i < 4; i++) {
+        const a = (i / 4) * Math.PI * 2 + 0.4;
+        const col = new THREE.Mesh(new THREE.BoxGeometry(0.55, 3.2, 0.55), L('#e8dff8'));
+        col.position.set(Math.cos(a) * 3.2, 1.7, Math.sin(a) * 3.2);
+        grp.add(col);
+      }
+      const roof = new THREE.Mesh(new THREE.ConeGeometry(4.4, 1.8, 8), L('#f3b6cf', { emissive: '#f7b8d2', emissiveIntensity: 0.2 }));
+      roof.position.y = 4.0;
+      grp.add(roof);
+      p.floatLedge = true;
+    } else if (kit === 'quay') {
+      const pier = new THREE.Mesh(new THREE.BoxGeometry(8, 0.35, 3.2), L('#c9b48a'));
+      pier.position.set(0, 0.3, 1.5);
+      grp.add(pier);
+      for (const s of [-1, 1]) {
+        const post = new THREE.Mesh(new THREE.CylinderGeometry(0.2, 0.25, 2.8, 6), L('#d8d0e4'));
+        post.position.set(s * 3.2, 1.5, 2.4);
+        grp.add(post);
+      }
+      const lamp = new THREE.Mesh(new THREE.BoxGeometry(0.45, 0.55, 0.45), L('#fff', { emissive: '#5fc6ff', emissiveIntensity: 0.85 }));
+      lamp.position.set(0, 2.6, 2.4);
+      grp.add(lamp);
+    } else if (kit === 'nave') {
+      for (let i = 0; i < 6; i++) {
+        const s = i < 3 ? -1 : 1, k = i % 3;
+        const col = new THREE.Mesh(new THREE.CylinderGeometry(0.35, 0.45, 4.5, 8), L('#eef3f8'));
+        col.position.set(s * 2.4, 2.3, -2 + k * 2);
+        grp.add(col);
+      }
+      const lintel = new THREE.Mesh(new THREE.BoxGeometry(5.6, 0.45, 0.6), L('#e3ebf3', { emissive: '#5fc6ff', emissiveIntensity: 0.25 }));
+      lintel.position.set(0, 4.6, 0);
+      grp.add(lintel);
+      p.mouthBlot = new THREE.Mesh(
+        new THREE.CircleGeometry(2.2, 20),
+        new THREE.MeshBasicMaterial({ color: '#6b3a78', transparent: true, opacity: 0.5, depthWrite: false }),
+      );
+      p.mouthBlot.rotation.x = -Math.PI / 2;
+      p.mouthBlot.position.y = 0.12;
+      grp.add(p.mouthBlot);
+    } else if (kit === 'amph') {
+      for (let ring = 0; ring < 3; ring++) {
+        const rr = 2.2 + ring * 1.1;
+        for (let i = 0; i < 8 + ring * 2; i++) {
+          const a = (i / (8 + ring * 2)) * Math.PI * 2;
+          const seat = new THREE.Mesh(new THREE.BoxGeometry(0.7, 0.35 + ring * 0.15, 0.55), L('#6f6474'));
+          seat.position.set(Math.cos(a) * rr, 0.4 + ring * 0.35, Math.sin(a) * rr);
+          seat.rotation.y = -a;
+          grp.add(seat);
+        }
+      }
+    } else if (kit === 'cave') {
+      for (const s of [-1, 1]) {
+        const lip = new THREE.Mesh(new THREE.ConeGeometry(1.8, 5.5, 6), L('#6f6474'));
+        lip.position.set(s * 2.2, 2.6, -1.2);
+        lip.rotation.z = s * 0.35;
+        grp.add(lip);
+      }
+      p.mouthBlot = new THREE.Mesh(
+        new THREE.CircleGeometry(2.4, 20),
+        new THREE.MeshBasicMaterial({ color: '#4a2a58', transparent: true, opacity: 0.55, depthWrite: false }),
+      );
+      p.mouthBlot.rotation.x = -Math.PI / 2;
+      p.mouthBlot.position.set(0, 0.12, 0.4);
+      grp.add(p.mouthBlot);
+    } else if (kit === 'metro') {
+      for (let i = 0; i < 5; i++) {
+        const step = new THREE.Mesh(new THREE.BoxGeometry(5.5 - i * 0.4, 0.28, 1.4), L('#d8cfe6'));
+        step.position.set(0, 0.2 + i * 0.32, -i * 1.2);
+        grp.add(step);
+      }
+      const tick = new THREE.Mesh(new THREE.BoxGeometry(0.25, 3.2, 0.25), L('#ffd978', { emissive: '#d9a84a', emissiveIntensity: 0.55 }));
+      tick.position.set(0, 2.2, -5.2);
+      p.spin = tick;
+      grp.add(tick);
+    } else if (kit === 'stair') {
+      for (let i = 0; i < 6; i++) {
+        const shard = new THREE.Mesh(new THREE.OctahedronGeometry(0.7, 0), L('#ffffff', { emissive: i % 2 ? '#8a6cff' : '#62c8ff', emissiveIntensity: 0.55 }));
+        shard.position.set((i - 2.5) * 1.1, 0.9 + i * 0.35, -i * 0.9);
+        shard.scale.set(0.6, 1.6, 0.6);
+        grp.add(shard);
+      }
+      p.floatLedge = true;
+    } else if (kit === 'shelf') {
+      const ledge = new THREE.Mesh(new THREE.BoxGeometry(7, 0.4, 4), L('#dff3ff', { emissive: '#7fc8ff', emissiveIntensity: 0.2 }));
+      ledge.position.y = 0.5;
+      grp.add(ledge);
+      const aur = new THREE.Mesh(
+        new THREE.PlaneGeometry(8, 3),
+        new THREE.MeshBasicMaterial({ color: '#8fffd8', transparent: true, opacity: 0.28, side: THREE.DoubleSide, blending: THREE.AdditiveBlending, depthWrite: false }),
+      );
+      aur.position.set(0, 3.5, -2);
+      grp.add(aur);
+    } else if (kit === 'hollow') {
+      for (let i = 0; i < 5; i++) {
+        const spike = new THREE.Mesh(new THREE.ConeGeometry(0.55, 2.8 + i * 0.3, 6), L('#dff3ff', { emissive: '#7fc8ff', emissiveIntensity: 0.3 }));
+        spike.position.set(Math.cos(i) * 2.4, 1.5, Math.sin(i) * 2.4 - 1);
+        grp.add(spike);
+      }
+      p.mouthBlot = new THREE.Mesh(
+        new THREE.CircleGeometry(2.0, 18),
+        new THREE.MeshBasicMaterial({ color: '#3a4a68', transparent: true, opacity: 0.5, depthWrite: false }),
+      );
+      p.mouthBlot.rotation.x = -Math.PI / 2;
+      p.mouthBlot.position.y = 0.12;
+      grp.add(p.mouthBlot);
+    }
+    if (p.dewTaken || (p.id && this.g.profile.dews?.includes(p.id))) {
+      dew.visible = false;
+      p.dewTaken = true;
+    }
+    if (p.needsPurify && !p.purified && p.mouthBlot) p.mouthBlot.visible = true;
+    else if (p.mouthBlot) p.mouthBlot.visible = false;
+    if (p.needsPurify && this.g.profile.dews?.includes(p.id + '_open')) {
+      p.purified = true;
+      if (p.mouthBlot) p.mouthBlot.visible = false;
+    }
   }
 
   // ------------------------------------------------------------ per frame
@@ -216,13 +366,16 @@ export class Activities {
     for (const p of this.pois) {
       if (p.spin && p.type !== 'chime' && p.type !== 'musicgate' && p.type !== 'ariagate') {
         p.spin.rotation.y += dt * 1.5;
-        const baseY = p.type === 'pylon' ? 3 : p.type === 'sheet' ? 1.4 : p.type === 'rift' ? 2.6 : p.type === 'overlook' ? 2.2 : p.type === 'photo' ? 2.1 : p.type === 'cleanse' ? 0.9 : 2;
+        const baseY = p.type === 'pylon' ? 3 : p.type === 'sheet' ? 1.4 : p.type === 'rift' ? 2.6 : p.type === 'overlook' ? 2.2 : p.type === 'photo' ? 2.1 : p.type === 'cleanse' ? 0.9 : p.type === 'destination' ? 2.4 : 2;
         p.spin.position.y = baseY + Math.sin(g.time * 2 + p.x) * 0.15;
       } else if (p.spin && (p.type === 'musicgate' || p.type === 'ariagate') && !p.open) {
         p.spin.rotation.y += dt * 0.8;
       }
       if (p.type === 'cleanse' && !p.cleared && p.blotMat) {
         p.blotMat.opacity = 0.4 + Math.sin(g.time * 3 + p.x) * 0.15;
+      }
+      if (p.type === 'destination' && p.dewMat && !p.dewTaken) {
+        p.dewMat.emissiveIntensity = 0.85 + Math.sin(g.time * 4 + p.x) * 0.35;
       }
     }
     this._acc += dt;
@@ -273,28 +426,105 @@ export class Activities {
         this._pushFromGate(p, P);
       } else if (p.type === 'ariagate' && !p.open && d < 3.2) {
         this._pushFromGate(p, P);
+      } else if (p.type === 'destination' && !P.dead) {
+        if (!p.revealed && d < 12) this.revealDestination(p, true);
+        if (p.needsPurify && !p.purified && d < 4.5) this._pushFromGate(p, P, 3.4);
+        else if (p.needsFloat && !this._hasFloatOutfit() && d < 4.0) this._pushFromGate(p, P, 3.2);
+        else if (!p.dewTaken && p.purified !== false && d < 2.6) this.collectDew(p, true);
       }
     }
     this.updateEvent();
   }
 
-  _pushFromGate(p, P) {
+  _pushFromGate(p, P, minR = null) {
     const dx = P.pos.x - p.x, dz = P.pos.z - p.z, d = Math.hypot(dx, dz) || 1;
-    const min = p.type === 'musicgate' ? 4.2 : 2.6;
+    const min = minR ?? (p.type === 'musicgate' ? 4.2 : 2.6);
     if (d < min) {
       P.pos.x = p.x + (dx / d) * min;
       P.pos.z = p.z + (dz / d) * min;
     }
   }
 
+  _hasFloatOutfit() {
+    const eq = this.g.profile.equipment || {};
+    return !!(eq.shoes || eq.gown);
+  }
+
   nearCleanse(x, z, r) {
-    return this.pois.some((p) => p.type === 'cleanse' && !p.cleared && Math.hypot(p.x - x, p.z - z) < r);
+    return this.pois.some((p) =>
+      (p.type === 'cleanse' && !p.cleared && Math.hypot(p.x - x, p.z - z) < r)
+      || (p.type === 'destination' && p.needsPurify && !p.purified && Math.hypot(p.x - x, p.z - z) < r),
+    );
   }
 
   cleanseNear(x, z, r) {
     for (const p of this.pois) {
       if (p.type === 'cleanse' && !p.cleared && Math.hypot(p.x - x, p.z - z) < r) this.finishCleanse(p);
+      if (p.type === 'destination' && p.needsPurify && !p.purified && Math.hypot(p.x - x, p.z - z) < r) this.purifyDestination(p);
     }
+  }
+
+  revealDestination(p, soft = false) {
+    if (p.revealed && soft) return;
+    const g = this.g;
+    p.revealed = true;
+    g.profile.destinations = g.profile.destinations || [];
+    if (p.id && !g.profile.destinations.includes(p.id)) {
+      g.profile.destinations.push(p.id);
+      g.progress.addXp(20);
+    }
+    g.ui.banner(p.name, p.line || 'A named place opens along the motif.');
+    if (!soft) g.audio.levelUp();
+    g.world.pulse(p.x, p.z, 1.5, true);
+    g.particles.burst(p.x, p.y + 2, p.z, new THREE.Color('#9fe6ff'), 14, { speed: 4, life: 1, kind: 1 });
+    g.save();
+  }
+
+  purifyDestination(p) {
+    if (!p.needsPurify || p.purified) return;
+    const g = this.g;
+    p.purified = true;
+    if (p.mouthBlot) p.mouthBlot.visible = false;
+    g.profile.dews = g.profile.dews || [];
+    const openId = p.id + '_open';
+    if (!g.profile.dews.includes(openId)) g.profile.dews.push(openId);
+    g.ui.toast(`${p.name} mouth opens — Harmonize cleared the blot`, 'aqua');
+    g.world.pulse(p.x, p.z, 1.3, true);
+    g.save();
+  }
+
+  tryFloatDestination(p) {
+    const g = this.g;
+    if (!p.needsFloat) return true;
+    if (this._hasFloatOutfit()) return true;
+    g.ui.toast('Float ledge — equip shoes or a gown in Wardrobe', 'lavender');
+    return false;
+  }
+
+  collectDew(p, soft = false) {
+    if (p.dewTaken) return;
+    const g = this.g;
+    if (p.needsPurify && !p.purified) {
+      if (!soft) g.ui.toast('Ask Sheep to Harmonize the blot first ♪', 'lavender');
+      return;
+    }
+    if (p.needsFloat && !this._hasFloatOutfit()) {
+      if (!soft) this.tryFloatDestination(p);
+      return;
+    }
+    p.dewTaken = true;
+    if (p.dew) p.dew.visible = false;
+    g.profile.dews = g.profile.dews || [];
+    if (p.id && !g.profile.dews.includes(p.id)) {
+      g.profile.dews.push(p.id);
+      g.profile.notes += 2;
+      g.progress.addXp(50);
+      g.ui.toast(`Resonance Dew — ${p.name}`, 'gold');
+    }
+    g.particles.burst(p.x, p.y + 2.2, p.z, new THREE.Color('#9fe6ff'), 22, { speed: 6, life: 0.9, kind: 3 });
+    g.world.pulse(p.x, p.z, 1.4, true);
+    g.audio.levelUp();
+    g.save();
   }
 
   viewOverlook(p, soft = false) {

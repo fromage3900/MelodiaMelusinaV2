@@ -331,11 +331,11 @@ export class Game {
     if (r) return r.exit && Math.hypot(P.pos.x, P.pos.z - 6) < 3.5 ? { label: 'Leave the Rift ◎', fn: () => this.activities.exitRift() } : null;
     let best = null, bd = 4.5;
     for (const p of this.activities.pois) {
-      if (!['forge', 'board', 'font', 'rift', 'boss', 'shrine', 'pylon', 'overlook', 'photo', 'chime', 'musicgate', 'cleanse', 'ariagate'].includes(p.type)) continue;
+      if (!['forge', 'board', 'font', 'rift', 'boss', 'shrine', 'pylon', 'overlook', 'photo', 'chime', 'musicgate', 'cleanse', 'ariagate', 'destination'].includes(p.type)) continue;
       const d = Math.hypot(p.x - P.pos.x, p.z - P.pos.z);
       if (d < bd) { bd = d; best = p; }
     }
-    this._outlineInteract = best && best.mesh && !best.open && !best.cleared && !best.autoDone ? best : null;
+    this._outlineInteract = best && best.mesh && !best.open && !best.cleared && !best.autoDone && !best.dewTaken ? best : null;
     if (!best) return null;
     const p = best;
     switch (p.type) {
@@ -352,6 +352,11 @@ export class Game {
       case 'musicgate': return p.open ? null : { label: 'Answer the bridge 𝄞', fn: () => this.activities.openMusicGate(p) };
       case 'cleanse': return p.cleared ? null : { label: 'Ask Sheep to Harmonize ♪', fn: () => this.activities.cleanseSpot(p) };
       case 'ariagate': return p.open ? null : { label: 'Wardrobe gate ✧', fn: () => this.activities.tryAriaGate(p) };
+      case 'destination': {
+        if (p.needsPurify && !p.purified) return { label: 'Ask Sheep to Harmonize ♪', fn: () => { this.sheep.pos.set(p.x + 1.2, p.y, p.z + 1.2); this.sheep.harmonize(true); } };
+        if (p.dewTaken) return { label: p.name, fn: () => this.activities.revealDestination(p) };
+        return { label: `Collect Resonance Dew ✧`, fn: () => this.activities.collectDew(p) };
+      }
     }
     return null;
   }
@@ -876,11 +881,19 @@ export class Game {
     if (!this.inCombat && !P.dead && P.hp < P.stats.maxHp) P.hp = Math.min(P.stats.maxHp, P.hp + P.stats.maxHp * (this.safeZone ? 0.12 : 0.03) * dt);
     // Palette follows the biome you stand in.
     this.world.palette(P.pos.x, P.pos.z, this.pal);
+    // Soft TOD cycle (~7 min): WuWa-lite mood shift without a weather sim.
+    const tod = (this.time % 420) / 420;
+    const dusk = Math.sin(tod * Math.PI * 2) * 0.5 + 0.5;
+    if (!this._todFog) { this._todFog = new THREE.Color(); this._todLight = new THREE.Color(); this._todDuskFog = new THREE.Color('#c4a8d8'); this._todDuskLight = new THREE.Color('#ffb07a'); }
+    this._todFog.copy(this.pal.fog).lerp(this._todDuskFog, dusk * 0.35);
+    this._todLight.copy(this.pal.light).lerp(this._todDuskLight, dusk * 0.4);
     const k = Math.min(1, dt * 1.5);
-    this.scene.fog.color.lerp(this.pal.fog, k);
-    this.scene.background.lerp(this.pal.fog, k);
+    this.scene.fog.color.lerp(this._todFog, k);
+    this.scene.background.lerp(this._todFog, k);
     this.world.water.material.color.lerp(this.pal.water, k);
-    this.sun.color.lerp(this.pal.light, k);
+    this.sun.color.lerp(this._todLight, k);
+    this.sun.intensity = lerp(1.7, 1.15, dusk);
+    this.hemi.intensity = lerp(1.5, 1.05, dusk);
     if (this.world.inRift) { this.scene.fog.near = 45; this.scene.fog.far = 110; }
     else {
       // Pull fog in a bit during fights so telegraphs and biome color pop.

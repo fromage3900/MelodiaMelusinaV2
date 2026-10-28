@@ -386,6 +386,7 @@ export class UI {
       case 'musicgate': glyph('═', p.open ? '#62c8ff' : '#9fe6ff', 16); break;
       case 'cleanse': glyph('◎', p.cleared ? '#8fd8ff' : '#c690ff', 16); break;
       case 'ariagate': glyph('◈', p.open ? '#ffd978' : '#e8dff8', 16); break;
+      case 'destination': glyph('◇', (pr.dews || []).includes(p.id) ? '#ffd978' : '#9fe6ff', 18); break;
     }
   }
 

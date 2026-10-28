@@ -1,11 +1,12 @@
-// Three.js OutlinePass pipeline (r170 addons, vendored).
-// EffectComposer → RenderPass → OutlinePass → OutputPass → optional FXAA.
-// Selected objects are combat threats / interact targets — presentation only.
+// Three.js post pipeline (r170 addons, vendored).
+// EffectComposer → RenderPass → OutlinePass → UnrealBloomPass → OutputPass → FXAA.
+// Bloom is selective by luminance threshold (emissive sparks / dew / crystals).
 
 import { Vector2 } from 'three';
 import { EffectComposer } from '../vendor/postprocessing/EffectComposer.js';
 import { RenderPass } from '../vendor/postprocessing/RenderPass.js';
 import { OutlinePass } from '../vendor/postprocessing/OutlinePass.js';
+import { UnrealBloomPass } from '../vendor/postprocessing/UnrealBloomPass.js';
 import { OutputPass } from '../vendor/postprocessing/OutputPass.js';
 import { ShaderPass } from '../vendor/postprocessing/ShaderPass.js';
 import { FXAAShader } from '../vendor/shaders/FXAAShader.js';
@@ -27,21 +28,23 @@ export class PostFX {
     this.outline.pulsePeriod = 1.6;
     this.outline.visibleEdgeColor.set('#ff7a9a');
     this.outline.hiddenEdgeColor.set('#ff3a68');
+    // Selective bloom: high threshold so only bright emissives contribute.
+    this.bloom = new UnrealBloomPass(new Vector2(size.x, size.y), 0.55, 0.4, 0.82);
     this.output = new OutputPass();
     this.fxaa = new ShaderPass(FXAAShader);
     this.composer.addPass(this.renderPass);
     this.composer.addPass(this.outline);
+    this.composer.addPass(this.bloom);
     this.composer.addPass(this.output);
     this.composer.addPass(this.fxaa);
     this._selected = [];
-    this._threatColor = { x: 1, y: 0.48, z: 0.6 };
-    this._selectColor = { x: 1, y: 0.85, z: 0.47 };
     this.resize();
   }
 
   setEnabled(on) {
     this._want = !!on;
     this.enabled = this._want && this.g.profile.settings.quality !== 'low';
+    if (this.bloom) this.bloom.enabled = this.enabled;
   }
 
   resize() {

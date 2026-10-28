@@ -591,6 +591,9 @@ export class World {
         aur.position.set(0, y + 30, -30);
         g.add(aur);
       }
+      // Nikki silhouette pass — taller landmarks readable from hub roads.
+      const ls = OW_RULES.landmarkScale || 1.35;
+      g.scale.set(ls, ls, ls);
       g.userData.mats = [];
       g.traverse((o) => { if (o.material && !g.userData.mats.includes(o.material)) g.userData.mats.push(o.material); });
       this.landmarks.push(g);
