@@ -2,6 +2,7 @@
 // (browsers require a gesture), then hand over to the game loop.
 
 import { Game } from './game.js';
+import { workflowManifest } from './openworld.js';
 const tuningMode = new URLSearchParams(location.search).get('tune') === '1';
 
 const state = document.getElementById('loadstate');
@@ -15,6 +16,7 @@ function fail(err) {
 try {
   const game = new Game();
   window.__melodia = game;
+  window.__rwOpenWorld = workflowManifest();
   if (tuningMode) import('./npr-tuner.js').then(({ attachShaderTuner }) => {
     window.__melodiaShaderTuner = attachShaderTuner(game);
   }).catch((err) => console.warn('NPR tuning UI unavailable', err));
