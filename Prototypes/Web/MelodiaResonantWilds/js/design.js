@@ -175,6 +175,46 @@ export const SKILL_KIT = {
   Chart_Umbral_Shadowfall: { kind: 'meteor', radius: 6.8, count: 1, coef: 3.4, delay: 2, cd: 14, tough: 2.0, desc: 'After two beats, the sky falls.' },
 };
 
+/** Web-native skills (not from UE export). Merged into SKILLS below. */
+export const WEB_SKILLS = [
+  {
+    id: 'Web_Cymatic_ChladniBurst', name: 'Chladni Burst', element: 'Arcane', tier: 2, sp: 3, power: 1.35,
+    kind: 'chladni', radius: 5.2, spokes: 8, coef: 1.35, cd: 10, tough: 1.1,
+    unlockLevel: 8, pitches: [60, 64, 67, 72, 67, 64],
+    desc: 'Expand a Chladni figure on the beat — ring + radial spokes.',
+  },
+  {
+    id: 'Web_Echo_PhraseRecall', name: 'Phrase Recall', element: 'Umbral', tier: 2, sp: 4, power: 1.8,
+    kind: 'echo', radius: 5.5, echoes: 1, coef: 1.5, cd: 12, tough: 1.2, consumeEcho: true,
+    unlockLevel: 12, pitches: [57, 60, 63, 67, 70],
+    desc: 'Recall your Echo Phrase for a heavy hit. Consumes active lineage Motifs.',
+  },
+  {
+    id: 'Web_Motif_ResonantWeave', name: 'Resonant Weave', element: 'Tide', tier: 2, sp: 3, power: 1.1,
+    kind: 'orbit', count: 4, coef: 0.55, bars: 3, cd: 11, tough: 0.7, motifScale: true,
+    unlockLevel: 10, pitches: [62, 65, 69, 72, 74],
+    desc: 'Orbiting Motif orbs. Damage scales with Motifs in your bag.',
+  },
+  {
+    id: 'Web_Oshi_DevotionCadence', name: 'Devotion Cadence', element: 'Radiant', tier: 2, sp: 3, power: 1.25,
+    kind: 'pulses', radius: 4.5, count: 3, coef: 1.0, cd: 10, tough: 1.0, oshiScale: true,
+    unlockLevel: 14, pitches: [64, 67, 71, 76, 71],
+    desc: 'Three radiant pulses. Much stronger when your oshi Aria is equipped.',
+  },
+  {
+    id: 'Web_Forte_DownbeatBreak', name: 'Downbeat Break', element: 'Forte', tier: 1, sp: 2, power: 1.5,
+    kind: 'slam', radius: 4.2, coef: 1.5, cd: 8, tough: 2.4, downbeatBreak: true,
+    unlockLevel: 6, pitches: [48, 55, 60, 67],
+    desc: 'Slam that spikes toughness on the downbeat.',
+  },
+  {
+    id: 'Web_Gale_Afterimage', name: 'Afterimage', element: 'Gale', tier: 1, sp: 2, power: 1.1,
+    kind: 'dash', dist: 8, coef: 1.0, cd: 5, tough: 0.9, afterimage: true,
+    unlockLevel: 5, pitches: [72, 76, 79, 84],
+    desc: 'Dash forward; a beat-delayed afterimage strikes behind you.',
+  },
+];
+
 export const STARTING_SKILLS = ['Chart_Forte_CadenceStrike', 'Chart_Gale_Whirlwind', 'Chart_Radiant_LullabyMend', 'Chart_Arcane_Flare'];
 
 export const SKILLS = UE.skills
@@ -196,6 +236,10 @@ export const SKILLS = UE.skills
   }
   for (const s of SKILLS) if (STARTING_SKILLS.includes(s.id)) s.unlockLevel = 1;
 }
+for (const s of WEB_SKILLS) {
+  if (!SKILLS.find((x) => x.id === s.id)) SKILLS.push({ ...s });
+}
+SKILLS.sort((a, b) => (a.tier || 1) - (b.tier || 1) || (a.sp || 0) - (b.sp || 0) || a.name.localeCompare(b.name));
 export const SKILL_BY_ID = Object.fromEntries(SKILLS.map((s) => [s.id, s]));
 
 // ---------------------------------------------------------------------------
@@ -326,6 +370,19 @@ export const ECHO_SUPPORT_ARIA = 0.04;
 export const ECHO_SUPPORT_BLESS = 0.03;
 export const ECHO_TIER_BONUS = 0.03;
 export const ECHO_MOTIF_POOL = ['dmg', 'crit', 'speed', 'perfectms', 'encore', 'magic', 'break', 'hp'];
+export const ECHO_OSHI_BONUS = 0.08;
+
+/** Recital micro-goals (Uma short Career inside a Rift). */
+export const RECITAL_GOALS = [
+  { id: 'perfect_streak', text: 'Land a {n}-hit Perfect streak', n: [6, 10], spice: 'motif' },
+  { id: 'break_guardian', text: 'BREAK the Rift Guardian', n: [1, 1], spice: 'quality' },
+  { id: 'hold_ff', text: 'Hold ff for {n} beats', n: [8, 16], spice: 'pity' },
+  { id: 'element_kills', text: 'Defeat {n} foes matching your Motif element', n: [8, 14], spice: 'motif' },
+  { id: 'perfect_casts', text: 'Cast {n} skills on Perfect', n: [3, 6], spice: 'quality' },
+  { id: 'no_miss', text: 'Survive {n} beats without a Miss', n: [24, 40], spice: 'pity' },
+];
+
+
 
 // Forge honing (Lost Ark style): chance falls with level, failures bank pity.
 export function honeChance(level) {

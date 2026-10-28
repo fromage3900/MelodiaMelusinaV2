@@ -3,16 +3,19 @@
 
 import {
   ECHO_BASE_PASS, ECHO_PITY_STEP, ECHO_SUPPORT_ARIA, ECHO_SUPPORT_BLESS,
-  ECHO_TIER_BONUS, ECHO_MOTIF_POOL, AFFIX_BY_KEY, ELEMENT_STYLE,
+  ECHO_TIER_BONUS, ECHO_OSHI_BONUS, ECHO_MOTIF_POOL, AFFIX_BY_KEY, ELEMENT_STYLE,
+  ARIA_BY_ID, BLESSINGS,
 } from './design.js';
 import { pick } from './util.js';
 
+const BLESSING_BY_ID = Object.fromEntries(BLESSINGS.map((b) => [b.blessing_id, b]));
+
 export function defaultLineage() {
   return {
-    phrase: null,      // last banked phrase { tier, motifs: [{key,v,e?}], quality, at }
-    pity: 0,           // banked pass chance
-    active: null,      // currently applied inheritance for this rift
-    history: 0,        // total phrases banked
+    phrase: null,
+    pity: 0,
+    active: null,
+    history: 0,
   };
 }
 
@@ -25,12 +28,27 @@ export class Echo {
 
   get lineage() { return this.g.profile.echoLineage; }
 
-  /** Score Supports: equipped Arias + owned Blessings bias pass chance. */
+  ownedArias() {
+    const arias = new Set();
+    for (const it of Object.values(this.g.profile.equipment)) if (it?.aria) arias.add(it.aria);
+    return arias;
+  }
+
+  supportList() {
+    const arias = [...this.ownedArias()].map((id) => ARIA_BY_ID[id]?.name || id);
+    const blessings = (this.g.profile.blessings || []).map((id) => BLESSING_BY_ID[id]?.display_name || id);
+    const oshi = this.g.profile.oshiAria;
+    return { arias, blessings, oshi: oshi ? (ARIA_BY_ID[oshi]?.name || oshi) : null };
+  }
+
+  /** Score Supports: equipped Arias + Blessings + oshi pin bias pass chance. */
   supportBonus() {
     const pr = this.g.profile;
-    const arias = new Set();
-    for (const it of Object.values(pr.equipment)) if (it?.aria) arias.add(it.aria);
-    return arias.size * ECHO_SUPPORT_ARIA + (pr.blessings?.length || 0) * ECHO_SUPPORT_BLESS;
+    const arias = this.ownedArias();
+    let b = arias.size * ECHO_SUPPORT_ARIA + (pr.blessings?.length || 0) * ECHO_SUPPORT_BLESS;
+    if (pr.oshiAria && arias.has(pr.oshiAria)) b += ECHO_OSHI_BONUS;
+    else if (pr.oshiAria) b += ECHO_OSHI_BONUS * 0.35; // pinned but not equipped — soft devotion
+    return b;
   }
 
   passChance(tier = 1) {
@@ -40,10 +58,21 @@ export class Echo {
     return Math.min(0.92, base);
   }
 
-  /** Bank a Phrase after rift clear. Motifs scale with tier / in-time clear. */
-  bankFromRift(rift, inTime) {
+  /**
+   * Bank a Phrase after rift clear.
+   * goalsCleared: recital micro-goals completed (spice Motifs / quality / pity).
+   */
+  bankFromRift(rift, inTime, goalsCleared = []) {
     const rng = Math.random;
-    const n = 1 + (rift.tier >= 3 ? 1 : 0) + (inTime ? 1 : 0);
+    let extraMotifs = 0;
+    let qualityBonus = 0;
+    let pityBonus = 0;
+    for (const g of goalsCleared) {
+      if (g.spice === 'motif') extraMotifs++;
+      else if (g.spice === 'quality') qualityBonus += 12;
+      else if (g.spice === 'pity') pityBonus += 0.08;
+    }
+    const n = 1 + (rift.tier >= 3 ? 1 : 0) + (inTime ? 1 : 0) + extraMotifs;
     const motifs = [];
     const keys = ECHO_MOTIF_POOL.slice();
     for (let i = 0; i < n && keys.length; i++) {
@@ -56,24 +85,34 @@ export class Echo {
       if (A.element) m.e = pick(rng, Object.keys(ELEMENT_STYLE));
       motifs.push(m);
     }
+    const supports = this.supportList();
+    const quality = Math.min(100, 40 + rift.tier * 12 + (inTime ? 15 : 0) + qualityBonus);
+    const L = this.lineage;
+    const chanceAtBank = this.passChance(rift.tier + (inTime ? 1 : 0));
     const phrase = {
       tier: rift.tier,
       motifs,
-      quality: Math.min(100, 40 + rift.tier * 12 + (inTime ? 15 : 0)),
+      quality,
       inTime: !!inTime,
       at: Date.now(),
+      goalsCleared: goalsCleared.map((g) => g.id),
+      pedigree: {
+        motifs: motifs.map((m) => ({ ...m })),
+        quality,
+        tier: rift.tier,
+        supportsUsed: supports,
+        passChanceAtBank: chanceAtBank,
+        parentHistory: L.history || 0,
+        goals: goalsCleared.map((g) => g.text || g.id),
+      },
     };
-    const L = this.lineage;
     L.phrase = phrase;
     L.history = (L.history || 0) + 1;
     L.active = null;
+    if (pityBonus) L.pity = (L.pity || 0) + pityBonus;
     return phrase;
   }
 
-  /**
-   * Roll inheritance when entering a rift.
-   * Returns { passed, chance, motifs } — failures bank pity.
-   */
   rollInheritance(tier) {
     const L = this.lineage;
     L.active = null;
@@ -94,7 +133,6 @@ export class Echo {
     return { passed: false, chance, motifs: [], pity: L.pity };
   }
 
-  /** Flat buffs applied while a lineage Motif set is active in a rift. */
   activeBuffs() {
     const act = this.lineage.active;
     if (!act?.motifs?.length) return null;
@@ -105,7 +143,27 @@ export class Echo {
     return out;
   }
 
+  /** Consume active Echo Motifs for Phrase Recall skill. Returns multiplier. */
+  consumeActiveForSkill() {
+    const act = this.lineage.active;
+    if (!act?.motifs?.length) return 1;
+    const n = act.motifs.length;
+    this.lineage.active = null;
+    this.g.player.recalc();
+    return 1.35 + n * 0.2;
+  }
+
   clearActive() {
     this.lineage.active = null;
+  }
+
+  pedigreeHtml() {
+    const ph = this.lineage.phrase;
+    if (!ph?.pedigree) return '';
+    const p = ph.pedigree;
+    const motifs = (p.motifs || []).map((m) => `${m.key}+${m.v}`).join(' · ') || '—';
+    const sup = p.supportsUsed || {};
+    const oshi = sup.oshi ? ` · oshi ${sup.oshi}` : '';
+    return `T${p.tier} Q${p.quality} · ${motifs} · hist ${p.parentHistory}${oshi} · banked @ ${Math.round((p.passChanceAtBank || 0) * 100)}%`;
   }
 }

@@ -338,3 +338,67 @@ h1 { font-family: Georgia, 'Times New Roman', serif; font-size: clamp(40px, 9vw,
   background: rgba(98,200,255,.1); border: 1px solid rgba(98,200,255,.35);
   font-size: 12px; color: #9fe4ff;
 }
+
+
+/* ============================================================ Cooler loops */
+.cymatic .ring.beatpulse { animation: ringBeat 0.28s ease-out; }
+.cymatic .ring.justfilled { animation: ringFill 0.55s ease-out; border-color: var(--gold-hi) !important; }
+@keyframes ringBeat {
+  0% { transform: scale(1); filter: brightness(1); }
+  40% { transform: scale(1.06); filter: brightness(1.35); }
+  100% { transform: scale(1); filter: brightness(1); }
+}
+@keyframes ringFill {
+  0% { box-shadow: 0 0 0 rgba(217,188,114,0); }
+  50% { box-shadow: 0 0 28px rgba(217,188,114,.85); }
+  100% { box-shadow: 0 0 14px rgba(217,188,114,.45); }
+}
+
+#recgoals {
+  position: absolute; left: calc(10px + var(--sal)); top: calc(118px + var(--sat));
+  width: min(42vw, 260px); pointer-events: none;
+  background: rgba(23,18,37,.82); border: 1px solid rgba(98,200,255,.35);
+  border-radius: 10px; padding: 6px 8px; font-size: 11px; line-height: 1.35;
+}
+#recgoals b { display: block; font-size: 9.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--aqua); margin-bottom: 4px; }
+#recgoals .g { opacity: .9; margin: 3px 0; }
+#recgoals .g.done { color: var(--gold-hi); text-decoration: line-through; opacity: .75; }
+#recgoals .g i { display: inline-block; width: 40px; height: 3px; background: rgba(255,255,255,.12); border-radius: 2px; vertical-align: middle; margin-left: 4px; overflow: hidden; }
+#recgoals .g i em { display: block; height: 100%; background: var(--aqua); }
+
+.pedigree {
+  margin-top: 8px; padding: 8px 10px; border-radius: 10px;
+  background: linear-gradient(135deg, rgba(98,200,255,.12), rgba(55,41,77,.85));
+  border: 1px solid rgba(98,200,255,.4); font-size: 11px; line-height: 1.4; text-align: left;
+}
+.pedigree .title { font-weight: 800; color: var(--aqua); letter-spacing: .06em; text-transform: uppercase; font-size: 10px; margin-bottom: 4px; }
+.oshi-pin { cursor: pointer; margin-left: 6px; font-size: 12px; opacity: .55; }
+.oshi-pin.on { opacity: 1; color: var(--gold-hi); filter: drop-shadow(0 0 4px rgba(217,188,114,.7)); }
+
+#motifmorph {
+  position: fixed; inset: 0; z-index: 45; display: grid; place-items: center;
+  background: rgba(10, 6, 20, .55); pointer-events: none;
+}
+#motifmorph.hidden { display: none !important; }
+.morphstage { position: relative; width: 160px; height: 160px; text-align: center; }
+.morphfrom, .morphto { position: absolute; inset: 20px; display: grid; place-items: center; transition: transform .45s ease, opacity .45s ease; }
+.morphfrom img, .morphto img { width: 72px; height: 72px; filter: drop-shadow(0 4px 12px rgba(0,0,0,.5)); }
+.morphfrom.flip { transform: scale(.2) rotate(-25deg); opacity: 0; }
+.morphto { opacity: 0; transform: scale(.4) rotate(20deg); }
+.morphto.show { opacity: 1; transform: scale(1) rotate(0); }
+.morphflash {
+  position: absolute; inset: 30px; border-radius: 50%; opacity: 0;
+  box-shadow: 0 0 40px currentColor; transition: opacity .2s;
+}
+.morphflash.on { opacity: .9; animation: morphBurst .5s ease-out; }
+@keyframes morphBurst {
+  0% { transform: scale(.5); opacity: 1; }
+  100% { transform: scale(1.6); opacity: 0; }
+}
+.morphlabel {
+  position: absolute; left: 50%; bottom: -28px; transform: translateX(-50%);
+  white-space: nowrap; font-size: 12px; font-weight: 700; text-shadow: 0 2px 6px #000;
+  max-width: 80vw; overflow: hidden; text-overflow: ellipsis;
+}
+
+.rewardcard.pedigree-card { width: min(320px, 90%); text-align: left; }

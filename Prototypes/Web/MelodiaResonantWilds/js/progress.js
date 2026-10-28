@@ -13,6 +13,7 @@ export function defaultProfile() {
     v: 2, level: 1, xp: 0, gold: 0, shards: 0, notes: 0,
     inventory: [], equipment: {}, motifs: {},
     echoLineage: { phrase: null, pity: 0, active: null, history: 0 },
+    oshiAria: null,
     loadout: STARTING_SKILLS.slice(), learned: STARTING_SKILLS.slice(),
     blessings: [], pylons: ['pylon_hub'], shrines: [], sheets: [],
     riftTier: 0, bounties: null, bountySet: 0, movement: 0, maestros: [],
@@ -35,6 +36,7 @@ export function loadProfile() {
       stats: { ...base.stats, ...(p.stats || {}) },
       motifs: { ...(p.motifs || {}) },
       echoLineage: { ...base.echoLineage, ...(p.echoLineage || {}) },
+      oshiAria: p.oshiAria ?? null,
       v: 2,
     };
     // One-time migrate: ensure icons on existing items

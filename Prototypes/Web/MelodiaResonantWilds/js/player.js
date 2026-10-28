@@ -136,6 +136,17 @@ export class Player {
 
   swing(step) { this.swingT = 1; this.swingStep = step; }
 
+  /** Melusina cast pose by skill kind — drives instrument / body for ~0.45s. */
+  castAnim(kind) {
+    const map = {
+      slam: 2, chladni: 3, pulses: 3, echo: 3, orbit: 1, dash: 0, strike: 0,
+      whirl: 1, nova: 3, meteor: 2, heal: 1, shield: 1, debuff: 3,
+    };
+    this.swing(map[kind] ?? 3);
+    this.castKind = kind;
+    this.castT = 0.45;
+  }
+
   walkable(x, z) {
     const w = this.g.world;
     if (w.inRift) return Math.hypot(x, z) < RIFT_RADIUS;
@@ -186,6 +197,7 @@ export class Player {
     m.shadow.position.set(this.pos.x, this.pos.y + 0.05, this.pos.z);
     m.group.rotation.y = this.facing + (this.spin ? g.time * 18 : 0);
     this.swingT = Math.max(0, this.swingT - dt * 4);
+    if (this.castT) this.castT = Math.max(0, this.castT - dt);
     this.hurtT = Math.max(0, this.hurtT - dt * 3);
     if (m.pose) {
       // The unreleased chibi has its own arm/leg/hair animation hierarchy.
@@ -207,6 +219,17 @@ export class Player {
       const stretch = this.dash ? 1.15 : 1;
       m.body.scale.set(1 / Math.sqrt(stretch), stretch * (1 + beatK * beatK * 0.03), 1 / Math.sqrt(stretch));
       m.inst.rotation.y = this.swingT * Math.PI * 2 * (this.swingStep % 2 ? -1 : 1);
+      if (this.castT > 0) {
+        const u = this.castT / 0.45;
+        const k = this.castKind;
+        if (k === 'slam' || k === 'chladni') m.inst.rotation.x = -0.9 * u;
+        else if (k === 'pulses' || k === 'echo' || k === 'orbit') m.inst.position.y = 0.35 * u;
+        else if (k === 'dash') m.inst.rotation.z = 0.6 * u;
+        else m.inst.rotation.x = -0.4 * u;
+      } else {
+        m.inst.rotation.x = 0;
+        m.inst.rotation.z = 0;
+      }
       m.inst.position.y = 1.2 + Math.sin(g.time * 2.4) * 0.06;
     }
     m.gownMat.emissive.setRGB(this.hurtT * 0.9, this.hurtT * 0.1, this.hurtT * 0.2);

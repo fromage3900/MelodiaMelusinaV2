@@ -228,7 +228,16 @@ export class Loot {
     v.motifs = motifGain;
     if (!silent) {
       const bits = Object.entries(motifGain).map(([id, n]) => `${MOTIF_BY_ID[id]?.name || id}×${n}`);
-      this.g.ui.toast(`Salvaged ${it.name}: +${v.gold}● +${v.shards}◆ · ${bits.join(', ')}`);
+      if (this.g.ui.motifMorph) {
+        this.g.ui.motifMorph({
+          fromIcon: it.icon || this.iconKey(it),
+          motifIds: Object.keys(motifGain),
+          rarity: it.rarity,
+          label: `Salvaged ${it.name}: +${v.gold}● +${v.shards}◆ · ${bits.join(', ')}`,
+        });
+      } else {
+        this.g.ui.toast(`Salvaged ${it.name}: +${v.gold}● +${v.shards}◆ · ${bits.join(', ')}`);
+      }
     }
     return v;
   }
@@ -350,6 +359,15 @@ export class Loot {
 
     this.g.player.recalc();
     this.g.onGearChanged();
+    if (this.g.ui.motifMorph) {
+      this.g.ui.motifMorph({
+        fromIcon: it.icon || this.iconKey(it),
+        motifIds: Object.keys(need),
+        rarity: it.rarity,
+        label: `Synthesized · Q${it.quality}` + (chosen.length ? ` · ${chosen.map((m) => m.trait).join(', ')}` : ''),
+        kind: 'synth',
+      });
+    }
     return { ok: true, preview, transferred: chosen.map((m) => m.trait) };
   }
 

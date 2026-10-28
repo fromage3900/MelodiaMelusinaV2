@@ -266,6 +266,16 @@ export class UI {
       $('rifttime').style.color = left < 30 ? '#ff8a9a' : '';
       $('riftfill').style.width = rift.progress + '%';
     }
+    const rg = $('recgoals');
+    if (rg) {
+      if (rift?.goals?.length && !rift.done) {
+        rg.classList.remove('hidden');
+        rg.innerHTML = `<b>Recital goals</b>` + rift.goals.map((x) => {
+          const pct = Math.min(100, (x.prog / x.n) * 100);
+          return `<div class="g ${x.done ? 'done' : ''}">${x.done ? '✓ ' : ''}${esc(x.text)} <i><em style="width:${pct}%"></em></i></div>`;
+        }).join('');
+      } else rg.classList.add('hidden');
+    }
     this._t += dt;
     if (this._t > 0.4) {
       this._t = 0;
@@ -436,7 +446,8 @@ export class UI {
     return `<div class="item-name" style="color:${R.color}">${esc(it.name)}${it.up ? ' +' + it.up : ''}</div>
       <div class="item-sub">${R.name} ${SLOT_BY_ID[it.slot].name} · iLvl ${it.ilvl}${equipped ? ' · Equipped' : ''}</div>
       <div class="item-lines">${L.lines(it).map((l) => `<div>${esc(l)}</div>`).join('')}</div>
-      ${it.aria ? `<div class="item-aria">Aria — ${esc(ARIA_BY_ID[it.aria].name)}: ${esc(ARIA_BY_ID[it.aria].desc)}</div>` : ''}
+      ${it.aria ? `<div class="item-aria">Aria — ${esc(ARIA_BY_ID[it.aria].name)}: ${esc(ARIA_BY_ID[it.aria].desc)}
+        <span class="oshi-pin ${g.profile.oshiAria === it.aria ? 'on' : ''}" data-a="oshi" title="Pin as oshi Aria">${g.profile.oshiAria === it.aria ? '★ oshi' : '☆ pin oshi'}</span></div>` : ''}
       ${cmp}
       <div class="btns">
         ${equipped ? '' : '<button class="btn gold" data-a="equip">Equip</button>'}
@@ -471,7 +482,7 @@ export class UI {
             <span>Perfect window</span><span>±${Math.round(W.perfect)}ms</span><span>Damage</span><span>+${Math.round(S.dmg * 100)}%</span>
             <span>Basic attack</span><span>${S.family === 'melee' ? 'Melee' : 'Ranged'} · ${S.basicElement}</span><span>Arias</span><span>${[...S.arias].map((a) => ARIA_BY_ID[a].name).join(', ') || '—'}</span>
           </div>
-          ${echo ? `<div class="echo-banner"><img src="assets/icons/echo_phrase.svg" width="20" height="20" alt="" style="vertical-align:middle;margin-right:6px"/>Echo Phrase T${echo.tier} · Q${echo.quality} · next pass ${Math.round(g.echo.passChance() * 100)}%</div>` : ''}
+          ${echo ? `<div class="pedigree"><div class="title">Echo Pedigree</div>${esc(g.echo.pedigreeHtml())}<div style="margin-top:4px;opacity:.85">Next pass ${Math.round(g.echo.passChance() * 100)}%${pr.oshiAria ? ` · oshi ${esc(ARIA_BY_ID[pr.oshiAria]?.name || pr.oshiAria)}` : ''}</div></div>` : ''}
         </div>
         <div class="card" id="detail" style="margin-top:10px">${this.sel ? this.itemDetail(this.sel) : '<div class="muted">Tap an item to inspect it. ▲ marks an upgrade. Salvage yields Motifs for Harmonic Synthesis. Opus items carry an Aria.</div>'}</div>
       </div>
@@ -507,6 +518,11 @@ export class UI {
         this.toast(`Salvaged ${r.n}: +${r.gold}● +${r.shards}◆` + (bits.length ? ` · ${bits.join(', ')}` : ''));
       }
       else if (a === 'auto') pr.settings.autoSalvage = !pr.settings.autoSalvage;
+      else if (a === 'oshi' && this.sel?.aria) {
+        pr.oshiAria = pr.oshiAria === this.sel.aria ? null : this.sel.aria;
+        this.toast(pr.oshiAria ? `Oshi Aria: ${ARIA_BY_ID[pr.oshiAria].name}` : 'Oshi Aria cleared', 'gold');
+        g.save();
+      }
       this.render();
     }));
   }
@@ -708,6 +724,20 @@ export class UI {
       this.synthSlots = [];
       this.render();
     }));
+    // Beat-sync pulse rings when panel is open
+    const prev = this._prevFills || [];
+    body.querySelectorAll('.cymatic .ring').forEach((el, i) => {
+      if (preview && (preview.fills[i] || 0) >= (preview.loops[i]?.fillNeed || 1) && (prev[i] || 0) < (preview.loops[i]?.fillNeed || 1)) {
+        el.classList.add('justfilled');
+        const mid = this.synthSlots[this.synthSlots.length - 1];
+        const Mel = mid && MOTIF_BY_ID[mid];
+        if (Mel) g.audio.motifChord(Mel.element);
+      }
+      el.classList.add('beatpulse');
+      setTimeout(() => el.classList.remove('beatpulse'), 280);
+    });
+    this._prevFills = preview ? preview.fills.slice() : [];
+
     body.querySelectorAll('[data-mid]').forEach((el) => el.addEventListener('click', () => {
       const id = el.dataset.mid;
       const have = L.motifCount(id);
@@ -715,6 +745,8 @@ export class UI {
       if (used >= have) return;
       if (this.synthSlots.length >= 8) { this.toast('Loop board full'); return; }
       this.synthSlots.push(id);
+      const Mel = MOTIF_BY_ID[id];
+      if (Mel) g.audio.motifChord(Mel.element);
       this.render();
     }));
     const cs = body.querySelector('#clearsynth');
@@ -727,13 +759,13 @@ export class UI {
         return;
       }
       this.synthSlots = [];
+      g.audio.synthResolve(it.quality || 50);
       this.render();
       const res = $('honeres');
       if (res) {
         res.textContent = `✦ Synthesized · Q${it.quality}` + (r.transferred?.length ? ` · ${r.transferred.join(', ')}` : '');
         res.style.color = '#ffd978';
       }
-      g.audio.levelUp();
       g.save();
     });
     const hb = body.querySelector('#hone');
@@ -829,6 +861,41 @@ export class UI {
     let b2 = 0;
   }
 
+  // ================================================================ Motif morph reveal
+  motifMorph({ fromIcon, motifIds = [], rarity = 0, label = '', kind = 'salvage' }) {
+    const box = $('motifmorph');
+    if (!box) { this.toast(label); return; }
+    const colors = ['#ddd7e6', '#7fe69a', '#6fb8ff', '#c690ff', '#ffae45'];
+    const col = colors[Math.min(4, rarity)] || '#ffd978';
+    const from = $('mmFrom');
+    const to = $('mmTo');
+    const flash = $('mmFlash');
+    const lab = $('mmLabel');
+    from.src = this.iconSrc(fromIcon) || 'assets/icons/echo_phrase.svg';
+    from.parentElement.classList.remove('flip');
+    to.classList.remove('show');
+    to.innerHTML = (motifIds.length ? motifIds : ['motif_arcane']).slice(0, 3).map((id) => {
+      const M = MOTIF_BY_ID[id];
+      const el = (M?.element || 'Arcane').toLowerCase();
+      return `<img src="assets/icons/motif_${el}.svg" alt=""/>`;
+    }).join('');
+    flash.style.color = col;
+    flash.classList.remove('on');
+    lab.textContent = label || '';
+    box.classList.remove('hidden');
+    requestAnimationFrame(() => {
+      from.parentElement.classList.add('flip');
+      flash.classList.add('on');
+      setTimeout(() => to.classList.add('show'), 180);
+    });
+    if (kind === 'salvage') this.g.audio.loot(rarity);
+    clearTimeout(this._morphT);
+    this._morphT = setTimeout(() => {
+      box.classList.add('hidden');
+      if (label) this.toast(label, kind === 'synth' ? 'gold' : '');
+    }, 900);
+  }
+
   // ================================================================ rift reward reveal
   showRiftReward(payload) {
     const box = $('riftreward');
@@ -857,6 +924,23 @@ export class UI {
         <div class="slotbox" style="border-color:var(--aqua)"><img class="ico" src="assets/icons/echo_phrase.svg" alt=""/></div>
         <b>Echo Phrase T${phrase.tier}</b>
         <div class="meta">Q${phrase.quality} · ${(phrase.motifs || []).map((m) => m.key).join(', ')}</div>
+      </div>`);
+      const pd = phrase.pedigree;
+      if (pd) {
+        cards.push(`<div class="rewardcard pedigree-card" style="animation-delay:${delay + 0.12}s;border-color:var(--aqua)">
+          <div class="pedigree"><div class="title">Phrase Pedigree</div>
+          ${esc(this.g.echo.pedigreeHtml())}
+          ${(pd.goals || []).length ? `<div style="margin-top:4px">Goals: ${esc(pd.goals.join(' · '))}</div>` : ''}
+          </div>
+        </div>`);
+      }
+    }
+    const goals = payload.goals || [];
+    if (goals.length) {
+      const delay = ((items?.length || 0) + 3) * 0.12;
+      cards.push(`<div class="rewardcard" style="animation-delay:${delay}s;border-color:var(--gold)">
+        <b>Recital Goals</b>
+        <div class="meta">${goals.map((x) => (x.done ? '✓ ' : '· ') + esc(x.text)).join('<br>')}</div>
       </div>`);
     }
     $('rrRow').innerHTML = cards.join('');

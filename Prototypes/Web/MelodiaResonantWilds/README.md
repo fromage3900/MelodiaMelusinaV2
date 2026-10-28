@@ -61,6 +61,15 @@ No build step. three.js r170 is vendored in `vendor/` (MIT, licence alongside).
   - Exploration fog on the map
   - An idle reward from your Choral Sheep when you return
   - Staged **Rift Clear** reward reveal
+
+- **Cooler loops (2026-10-28):**
+  - Beat-synced Harmonic Synthesis (ring pulses + Motif chords)
+  - Echo **Phrase Pedigree** card on clear / wardrobe
+  - Recital **micro-goals** (3 per Rift) that spice the banked Phrase
+  - Motif **morph reveal** on salvage / synthesize
+  - **Oshi Aria** pin (boosts Echo pass chance)
+  - Six web-native skills: Chladni Burst, Phrase Recall, Resonant Weave, Devotion Cadence, Downbeat Break, Afterimage — with Melusina cast poses
+
   - Everything saves to `localStorage` (`melodia_resonant_wilds_v2`, migrates from v1)
 
 ## 🧬 What comes from UE
