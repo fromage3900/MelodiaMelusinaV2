@@ -91,6 +91,15 @@ export class Player {
     }
     if (S.arias.has('StoneCarapace')) S.dmgTaken *= 0.8;
     if (S.arias.has('SwiftTempo')) S.speed += 0.2;
+    // Destination first-visit / Dew Set motif buffs (timed, presentation + light feel).
+    const buffs = pr.destBuffs || {};
+    const now = this.g.time || 0;
+    let motif = false;
+    for (const k of Object.keys(buffs)) {
+      if (buffs[k] > now) motif = true;
+      else delete buffs[k];
+    }
+    if (motif) { S.perfectms += 18; S.speed += 0.12; }
     S.cdr = Math.min(0.4, S.cdr);
     const ratio = this.stats ? this.hp / this.stats.maxHp : 1;
     this.stats = S;
@@ -256,6 +265,51 @@ export class Sheep {
     this.facing = 0;
     this.hopT = 0;
     this.glow = 0;
+    this._encoreTint = new THREE.Color('#8fd8ff');
+    this._lastHarmonizeTap = 0;
+  }
+
+  /** Glow / fluff tint follows the selected Encore (presentation only). */
+  reactEncore(v, color) {
+    if (!v) return;
+    this._encoreTint.set(color || v.color || '#8fd8ff');
+    this.glow = Math.max(this.glow, 0.85);
+    this.hopT = 1;
+    this.g.particles.burst(this.pos.x, this.pos.y + 0.8, this.pos.z, _c.copy(this._encoreTint), 10, {
+      speed: 4, life: 0.45, kind: 3, size: 0.65,
+    });
+  }
+
+  /** Double-tap Harmonize out of combat: hop toward nearest Dew / blot. */
+  seekCuriosity() {
+    const g = this.g;
+    const now = g.time;
+    if (now - this._lastHarmonizeTap < 0.55) {
+      this._lastHarmonizeTap = 0;
+      let best = null, bd = 55;
+      for (const p of g.activities.pois) {
+        if (p.type === 'destination' && !p.dewTaken) {
+          const d = Math.hypot(p.x - this.pos.x, p.z - this.pos.z);
+          if (d < bd) { bd = d; best = p; }
+        } else if (p.type === 'cleanse' && !p.cleared) {
+          const d = Math.hypot(p.x - this.pos.x, p.z - this.pos.z);
+          if (d < bd) { bd = d; best = p; }
+        }
+      }
+      if (best) {
+        this.pos.set(best.x + 1.4, best.y || 0, best.z + 1.4);
+        this.pos.y = g.world.height(this.pos.x, this.pos.z);
+        this.hopT = 1;
+        this.glow = 1;
+        g.ui.toast(best.type === 'destination' ? 'Sheep found a Dew scent ♪' : 'Sheep found a blot ♪', 'aqua');
+        g.audio.chime(2);
+      } else g.ui.toast('Sheep sniffs… nothing nearby', 'soft');
+      return true;
+    }
+    this._lastHarmonizeTap = now;
+    this.hopT = 0.6;
+    g.ui.toast('Double-tap H — Sheep sniffs for Dew / blots', 'soft');
+    return true; // consume the tap so we don't no-op fall through
   }
 
   get every() { return this.g.player.stats.arias.has('ChoralFleece') ? 1 : 2; }
@@ -270,7 +324,10 @@ export class Sheep {
   // Harmonize: the proven UE companion verb — heal, Harmony, cleanse, and a cymatic pulse.
   harmonize(force = false) {
     const g = this.g, P = g.player;
-    if (!force && !g.inCombat && !g.activities.nearCleanse(this.pos.x, this.pos.z, 6)) return;
+    if (!force && !g.inCombat) {
+      if (this.seekCuriosity()) return;
+      if (!g.activities.nearCleanse(this.pos.x, this.pos.z, 6)) return;
+    }
     P.heal(P.stats.maxHp * 0.05);
     P.sp = Math.min(P.stats.spMax, P.sp + 1);
     P.cleanse();
@@ -310,6 +367,11 @@ export class Sheep {
     mm.shadow.position.set(this.pos.x, this.pos.y + 0.05, this.pos.z);
     mm.group.visible = mm.shadow.visible = !P.dead;
     this.glow = Math.max(0, this.glow - dt * 1.5);
-    mm.wool.emissive.setRGB(this.glow * 0.3, this.glow * 0.6, this.glow * 0.9);
+    const tint = this._encoreTint || _c.set('#8fd8ff');
+    mm.wool.emissive.setRGB(
+      tint.r * (0.15 + this.glow * 0.85),
+      tint.g * (0.15 + this.glow * 0.85),
+      tint.b * (0.15 + this.glow * 0.85),
+    );
   }
 }
