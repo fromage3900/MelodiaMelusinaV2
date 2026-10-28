@@ -7,11 +7,13 @@
 #include "MelodiaInputContextSubsystem.h"
 #include "MelodiaQuillPresentationWidgets.generated.h"
 
+class ASmartTypewriter;
 class UButton;
 class UImage;
 class UTextBlock;
 class UVerticalBox;
 class UMelodiaQuillSelectionWidget;
+class USoundBase;
 
 /** Native Quill dialogue adapter. Visual composition remains in its child WBP. */
 UCLASS(Blueprintable)
@@ -20,6 +22,8 @@ class BS_GODFILE_API UMelodiaQuillDialogWidget : public UDialogBox
 	GENERATED_BODY()
 
 public:
+	UMelodiaQuillDialogWidget();
+
 	virtual void Play_Implementation(
 		const FString& Speaker,
 		const FText& Text,
