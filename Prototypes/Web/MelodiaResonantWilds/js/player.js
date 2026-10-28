@@ -53,9 +53,10 @@ export class Player {
       const it = pr.equipment[slot];
       if (!it) continue;
       const up = 1 + 0.06 * (it.up || 0);
-      if (it.attack) S.attack += Math.round(it.attack * up);
-      if (it.hp) S.maxHp += Math.round(it.hp * up);
-      if (it.armor) S.armor += Math.round(it.armor * up);
+      const qMul = 1 + (it.quality || 0) / 200;
+      if (it.attack) S.attack += Math.round(it.attack * up * qMul);
+      if (it.hp) S.maxHp += Math.round(it.hp * up * qMul);
+      if (it.armor) S.armor += Math.round(it.armor * up * qMul);
       if (slot === 'instrument') { S.family = it.family || 'melee'; S.basicElement = it.element || 'Forte'; }
       for (const a of it.affixes) {
         if (a.key === 'elem') S.elem[a.e] = (S.elem[a.e] || 0) + a.v / 100;
@@ -75,6 +76,18 @@ export class Player {
       if (b.effect_type === 'element_unlock') S.elem[b.effect_str] = (S.elem[b.effect_str] || 0) + 0.15;
       if (b.effect_type === 'starting_mana') S.encoreStart = b.effect_value;
       if (b.effect_type === 'combo_persistence') S.comboKeeper = true;
+    }
+    // Echo Lineage Motifs active during a Recital (rift)
+    const echo = this.g.echo?.activeBuffs?.();
+    if (echo) {
+      S.dmg += (echo.dmg || 0) / 100;
+      S.crit += (echo.crit || 0) / 100;
+      S.speed += (echo.speed || 0) / 100;
+      S.perfectms += echo.perfectms || 0;
+      S.encore += (echo.encore || 0) / 100;
+      S.magic += (echo.magic || 0) / 100;
+      S.break += (echo.break || 0) / 100;
+      S.maxHp += echo.hp || 0;
     }
     if (S.arias.has('StoneCarapace')) S.dmgTaken *= 0.8;
     if (S.arias.has('SwiftTempo')) S.speed += 0.2;

@@ -279,6 +279,54 @@ export const ARIA_BY_ID = Object.fromEntries(ARIAS.map((a) => [a.id, a]));
 export const SHARDS = UE.tokens.filter((t) => t.Element).map((t) => ({ id: t.TokenID, name: t.DisplayName, element: t.Element, value: t.Value, rarity: t.Rarity }));
 export const SHARD_BY_ELEMENT = Object.fromEntries(SHARDS.map((s) => [s.element, s]));
 
+
+// ---------------------------------------------------------------------------
+// Motifs (Atelier-style salvage materials) + Harmonic Synthesis + Echo Lineage
+// ---------------------------------------------------------------------------
+export const MOTIFS = [
+  { id: 'motif_forte', name: 'Forte Residue', element: 'Forte', trait: 'dmg', quality: 1, color: '#ff7f6e' },
+  { id: 'motif_stone', name: 'Stone Grain', element: 'Stone', trait: 'armor', quality: 1, color: '#d2ab7c' },
+  { id: 'motif_umbral', name: 'Umbral Ash', element: 'Umbral', trait: 'crit', quality: 1, color: '#9a7bf0' },
+  { id: 'motif_arcane', name: 'Arcane Filament', element: 'Arcane', trait: 'magic', quality: 1, color: '#e38bff' },
+  { id: 'motif_radiant', name: 'Radiant Dust', element: 'Radiant', trait: 'encore', quality: 1, color: '#ffe07a' },
+  { id: 'motif_gale', name: 'Gale Thread', element: 'Gale', trait: 'speed', quality: 1, color: '#8ff0b4' },
+  { id: 'motif_tide', name: 'Tide Pearl', element: 'Tide', trait: 'perfectms', quality: 1, color: '#62c8ff' },
+  { id: 'motif_harmony', name: 'Harmony Motif', element: 'Arcane', trait: 'harmony', quality: 2, color: '#c690ff' },
+  { id: 'motif_crescendo', name: 'Crescendo Motif', element: 'Forte', trait: 'critdmg', quality: 2, color: '#ffae45' },
+  { id: 'motif_break', name: 'Break Motif', element: 'Stone', trait: 'break', quality: 2, color: '#d2ab7c' },
+];
+export const MOTIF_BY_ID = Object.fromEntries(MOTIFS.map((m) => [m.id, m]));
+
+/** Cymatic element loops for Harmonic Synthesis (Atelier material loops). */
+export const SYNTH_LOOPS = [
+  { id: 'core', name: 'Core Ring', elements: null, fillNeed: 2, unlockTraits: 0 },
+  { id: 'element', name: 'Element Ring', elements: 'match', fillNeed: 2, unlockTraits: 1 },
+  { id: 'resonance', name: 'Resonance Ring', elements: null, fillNeed: 2, unlockTraits: 2 },
+  { id: 'aria', name: 'Aria Ring', elements: null, fillNeed: 1, unlockTraits: 3, opusOnly: true },
+];
+
+export function synthQuality(filledCount, motifQualSum) {
+  return Math.min(100, Math.round(18 * filledCount + 8 * motifQualSum));
+}
+
+export function synthTraitSlots(filledLoops) {
+  if (filledLoops >= 4) return 3;
+  if (filledLoops >= 3) return 2;
+  if (filledLoops >= 2) return 1;
+  return 0;
+}
+
+export const SYNTH_SHARD_COST = 3;
+export const SYNTH_GOLD_COST = 40;
+
+/** Uma-style Echo Lineage: residual phrase from cleared rifts. */
+export const ECHO_BASE_PASS = 0.35;
+export const ECHO_PITY_STEP = 0.12;
+export const ECHO_SUPPORT_ARIA = 0.04;
+export const ECHO_SUPPORT_BLESS = 0.03;
+export const ECHO_TIER_BONUS = 0.03;
+export const ECHO_MOTIF_POOL = ['dmg', 'crit', 'speed', 'perfectms', 'encore', 'magic', 'break', 'hp'];
+
 // Forge honing (Lost Ark style): chance falls with level, failures bank pity.
 export function honeChance(level) {
   if (level < 5) return 1;

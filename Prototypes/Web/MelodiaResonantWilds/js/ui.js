@@ -1,6 +1,6 @@
 // HUD, touch controls, keyboard, and menu panels.
 
-import { SLOTS, SLOT_BY_ID, RARITIES, SKILLS, SKILL_BY_ID, ELEMENT_STYLE, ARIA_BY_ID, BIOMES, BLESSINGS, DIFFICULTY, xpToNext, HONE_MAX, honeChance, TUTORIAL, WORLD_RADIUS, RULES } from './design.js';
+import { SLOTS, SLOT_BY_ID, RARITIES, SKILLS, SKILL_BY_ID, ELEMENT_STYLE, ARIA_BY_ID, BIOMES, BLESSINGS, DIFFICULTY, xpToNext, HONE_MAX, honeChance, TUTORIAL, WORLD_RADIUS, RULES, MOTIF_BY_ID, AFFIX_BY_KEY } from './design.js';
 import { fmt, clamp } from './util.js';
 
 const $ = (id) => document.getElementById(id);
@@ -22,6 +22,7 @@ export class UI {
     this.sel = null;
     this.loadSel = 0;
     this.forgeSel = null;
+    this.synthSlots = [];
     this._t = 0;
     this._mm = 0;
     this.metroN = 0;
@@ -392,7 +393,7 @@ export class UI {
   render() {
     const base = ['wardrobe', 'skills', 'map', 'bounties', 'settings'];
     const ctx = ['forge', 'blessings', 'rift'].includes(this.panel) ? [this.panel] : [];
-    const names = { wardrobe: '👗 Wardrobe', skills: '♫ Skills', map: '🗺 Map', bounties: '📜 Bounties', settings: '⚙ Settings', forge: '⚒ Forge', blessings: '✧ Blessings', rift: '◎ Rift' };
+    const names = { wardrobe: '👗 Wardrobe', skills: '♫ Skills', map: '🗺 Map', bounties: '📜 Bounties', settings: '⚙ Settings', forge: '⟡ Synthesis', blessings: '✧ Blessings', rift: '◎ Rift' };
     $('tabs').innerHTML = [...ctx, ...base].map((t) => `<button data-t="${t}" class="${t === this.panel ? 'on' : ''}">${names[t]}</button>`).join('');
     $('tabs').querySelectorAll('button').forEach((b) => b.addEventListener('click', () => { this.panel = b.dataset.t; this.render(); }));
     const body = $('panelbody');
@@ -400,12 +401,25 @@ export class UI {
     this['render_' + this.panel](body);
   }
 
+  iconSrc(key) {
+    if (!key) return null;
+    return `assets/icons/${key}.svg`;
+  }
+
+  itemIconHtml(it) {
+    const key = it.icon || this.g.loot.iconKey(it);
+    const src = this.iconSrc(key);
+    const fb = SLOT_BY_ID[it.slot]?.icon || '♪';
+    if (!src) return `<span class="ico-fallback">${fb}</span>`;
+    return `<img class="ico" src="${src}" alt="" onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'ico-fallback',textContent:'${fb}'}))" />`;
+  }
+
   itemBox(it, attrs = '') {
     const R = RARITIES[it.rarity];
     const eq = this.g.profile.equipment[it.slot];
     const better = !Object.values(this.g.profile.equipment).includes(it) && this.g.loot.score(it) > this.g.loot.score(eq);
     return `<div class="slotbox ${this.sel === it ? 'sel' : ''}" style="border-color:${R.color};box-shadow:inset 0 0 12px ${R.color}33" ${attrs}>
-      ${SLOT_BY_ID[it.slot].icon}<span class="lv">${it.ilvl}</span>${it.up ? `<span class="up">+${it.up}</span>` : ''}
+      ${this.itemIconHtml(it)}<span class="lv">${it.ilvl}</span>${it.up ? `<span class="up">+${it.up}</span>` : ''}${it.quality ? `<span class="up" style="left:4px;right:auto;color:#9fe4ff">Q${it.quality}</span>` : ''}
       ${better ? '<span class="better">▲</span>' : ''}${it.isNew ? '<span class="newb"></span>' : ''}${it.locked ? '<span class="lock">🔒</span>' : ''}</div>`;
   }
 
@@ -426,19 +440,28 @@ export class UI {
       ${cmp}
       <div class="btns">
         ${equipped ? '' : '<button class="btn gold" data-a="equip">Equip</button>'}
-        ${equipped ? '' : `<button class="btn" data-a="salvage" ${it.locked ? 'disabled' : ''}>Salvage (+${sv.gold}● +${sv.shards}◆)</button>`}
+        ${equipped ? '' : `<button class="btn" data-a="salvage" ${it.locked ? 'disabled' : ''}>Salvage → Motifs (+${sv.gold}● +${sv.shards}◆)</button>`}
         <button class="btn" data-a="lock">${it.locked ? 'Unlock' : 'Lock'}</button>
       </div>`;
+  }
+
+  motifChip(m, opts = {}) {
+    const src = this.iconSrc(`motif_${m.element.toLowerCase()}`);
+    const cls = ['motifchip', opts.on ? 'on' : '', opts.dim ? 'dim' : ''].filter(Boolean).join(' ');
+    const attrs = opts.attrs || '';
+    return `<span class="${cls}" ${attrs}><img src="${src}" alt=""/>${esc(m.name)} ×${m.n}</span>`;
   }
 
   render_wardrobe(body) {
     const g = this.g, pr = g.profile, S = g.player.stats, L = g.loot;
     const eqHtml = SLOTS.map((s) => {
       const it = pr.equipment[s.id];
-      return it ? this.itemBox(it, `data-eq="${s.id}"`) : `<div class="slotbox empty">${s.icon}</div>`;
+      return it ? this.itemBox(it, `data-eq="${s.id}"`) : `<div class="slotbox empty"><img class="ico" src="assets/icons/slot_${s.id}.svg" alt="" onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'ico-fallback',textContent:'${s.icon}'}))"/></div>`;
     }).join('');
     const W = g.rhythm.windows();
     const inv = pr.inventory.slice().sort((a, b) => b.rarity - a.rarity || b.ilvl - a.ilvl);
+    const motifs = L.motifInventory();
+    const echo = pr.echoLineage?.phrase;
     body.innerHTML = `<div class="cols">
       <div>
         <div class="card"><h3>Wardrobe · GS ${L.gearScore()}</h3><div class="equip">${eqHtml}</div>
@@ -448,17 +471,24 @@ export class UI {
             <span>Perfect window</span><span>±${Math.round(W.perfect)}ms</span><span>Damage</span><span>+${Math.round(S.dmg * 100)}%</span>
             <span>Basic attack</span><span>${S.family === 'melee' ? 'Melee' : 'Ranged'} · ${S.basicElement}</span><span>Arias</span><span>${[...S.arias].map((a) => ARIA_BY_ID[a].name).join(', ') || '—'}</span>
           </div>
+          ${echo ? `<div class="echo-banner"><img src="assets/icons/echo_phrase.svg" width="20" height="20" alt="" style="vertical-align:middle;margin-right:6px"/>Echo Phrase T${echo.tier} · Q${echo.quality} · next pass ${Math.round(g.echo.passChance() * 100)}%</div>` : ''}
         </div>
-        <div class="card" id="detail" style="margin-top:10px">${this.sel ? this.itemDetail(this.sel) : '<div class="muted">Tap an item to inspect it. ▲ marks an upgrade. Opus items carry an Aria — a unique power from the Melodia artifact and skill tables.</div>'}</div>
+        <div class="card" id="detail" style="margin-top:10px">${this.sel ? this.itemDetail(this.sel) : '<div class="muted">Tap an item to inspect it. ▲ marks an upgrade. Salvage yields Motifs for Harmonic Synthesis. Opus items carry an Aria.</div>'}</div>
       </div>
-      <div class="card"><h3>Bag ${pr.inventory.length}/${L.INV_MAX}</h3>
-        <div class="btns" style="margin:0 0 8px">
-          <button class="btn gold" data-a="best">Equip best</button>
-          <button class="btn" data-a="s0">Salvage Common</button>
-          <button class="btn" data-a="s1">Salvage ≤ Tuned</button>
-          <button class="btn" data-a="auto">Auto-salvage: ${pr.settings.autoSalvage ? 'On' : 'Off'}</button>
+      <div>
+        <div class="card"><h3>Bag ${pr.inventory.length}/${L.INV_MAX}</h3>
+          <div class="btns" style="margin:0 0 8px">
+            <button class="btn gold" data-a="best">Equip best</button>
+            <button class="btn" data-a="s0">Salvage Common → Motifs</button>
+            <button class="btn" data-a="s1">Salvage ≤ Tuned</button>
+            <button class="btn" data-a="auto">Auto-salvage: ${pr.settings.autoSalvage ? 'On' : 'Off'}</button>
+          </div>
+          <div class="grid">${inv.map((it) => this.itemBox(it, `data-uid="${it.uid}"`)).join('') || '<div class="muted">Empty. Defeat slimes, open chests and clear rifts.</div>'}</div>
         </div>
-        <div class="grid">${inv.map((it) => this.itemBox(it, `data-uid="${it.uid}"`)).join('') || '<div class="muted">Empty. Defeat slimes, open chests and clear rifts.</div>'}</div>
+        <div class="card" style="margin-top:10px"><h3>Motifs</h3>
+          <div class="muted">Atelier-style materials from salvage. Spend them at the Forge (Harmonic Synthesis).</div>
+          <div class="motifbag">${motifs.map((m) => this.motifChip(m)).join('') || '<div class="muted">No Motifs yet — salvage spare gear.</div>'}</div>
+        </div>
       </div></div>`;
     body.querySelectorAll('[data-uid]').forEach((el) => el.addEventListener('click', () => {
       const it = pr.inventory.find((i) => i.uid === +el.dataset.uid);
@@ -471,7 +501,11 @@ export class UI {
       else if (a === 'salvage' && this.sel) { L.salvage(this.sel); this.sel = null; }
       else if (a === 'lock' && this.sel) this.sel.locked = !this.sel.locked;
       else if (a === 'best') { const n = L.equipBest(); this.toast(n ? `Equipped ${n} upgrade${n > 1 ? 's' : ''}` : 'Already wearing your best'); }
-      else if (a === 's0' || a === 's1') { const r = L.salvageWhere((it) => it.rarity <= (a === 's0' ? 0 : 1) && L.score(it) <= L.score(pr.equipment[it.slot])); this.toast(`Salvaged ${r.n}: +${r.gold} gold, +${r.shards} shards`); }
+      else if (a === 's0' || a === 's1') {
+        const r = L.salvageWhere((it) => it.rarity <= (a === 's0' ? 0 : 1) && L.score(it) <= L.score(pr.equipment[it.slot]));
+        const bits = Object.entries(r.motifs || {}).map(([id, n]) => `${MOTIF_BY_ID[id]?.name || id}×${n}`);
+        this.toast(`Salvaged ${r.n}: +${r.gold}● +${r.shards}◆` + (bits.length ? ` · ${bits.join(', ')}` : ''));
+      }
       else if (a === 'auto') pr.settings.autoSalvage = !pr.settings.autoSalvage;
       this.render();
     }));
@@ -593,31 +627,122 @@ export class UI {
   render_forge(body) {
     const g = this.g, pr = g.profile, L = g.loot;
     const list = [...SLOTS.map((s) => pr.equipment[s.id]).filter(Boolean), ...pr.inventory.slice().sort((a, b) => L.score(b) - L.score(a)).slice(0, 12)];
-    if (!this.forgeSel || !list.includes(this.forgeSel)) this.forgeSel = list[0] || null;
+    if (!this.forgeSel || !list.includes(this.forgeSel)) {
+      this.forgeSel = list[0] || null;
+      this.synthSlots = [];
+    }
     const it = this.forgeSel;
-    let detail = '<div class="muted">Nothing to hone yet.</div>';
+    const motifs = L.motifInventory();
+    if (!Array.isArray(this.synthSlots)) this.synthSlots = [];
+
+    const preview = it ? L.synthPreview(it, this.synthSlots) : null;
+    const ringClass = (i) => {
+      if (!preview) return '';
+      const need = preview.loops[i]?.fillNeed || 1;
+      const f = preview.fills[i] || 0;
+      if (f >= need) return 'filled';
+      if (f > 0) return 'partial';
+      return '';
+    };
+
+    let rings = '';
+    if (it) {
+      rings = `<div class="cymatic">
+        <div class="ring r0 ${ringClass(0)}"></div>
+        <div class="ring r1 ${ringClass(1)}"></div>
+        <div class="ring r2 ${ringClass(2)}"></div>
+        <div class="ring r3 ${ringClass(3)}"></div>
+        <div class="hub"></div>
+      </div>
+      <div class="loop-row">${(preview?.loops || []).map((lp, i) => {
+        const f = preview.fills[i] || 0;
+        const dots = '●'.repeat(Math.min(f, lp.fillNeed)) + '○'.repeat(Math.max(0, lp.fillNeed - f));
+        return `<span class="motifchip">${esc(lp.name)} ${dots}</span>`;
+      }).join('')}</div>
+      <div class="muted" style="text-align:center;margin-top:6px">Quality ${preview.quality} · Trait slots ${preview.traitSlots}/3 · Rebuilds ${it.synthCount || 0}/5</div>`;
+    }
+
+    const assigned = this.synthSlots.filter(Boolean);
+    let detail = '<div class="muted">Select gear, tap Motifs to fill cymatic loops, then Synthesize. Temper (hone) after for +levels.</div>';
     if (it) {
       const c = L.honeCost(it);
       const chance = Math.min(1, honeChance(it.up || 0) + (it.pity || 0));
       const maxed = (it.up || 0) >= HONE_MAX;
-      detail = `${this.itemDetail(it).replace(/<div class="btns">[\s\S]*<\/div>$/, '')}
-        <div class="stats" style="margin-top:8px"><span>Hone</span><span>+${it.up || 0} → +${Math.min(HONE_MAX, (it.up || 0) + 1)}</span>
-        <span>Success chance</span><span>${Math.round(chance * 100)}%${it.pity ? ` (pity +${Math.round(it.pity * 100)}%)` : ''}</span>
-        <span>Cost</span><span>${fmt(c.gold)}● ${c.shards}◆</span><span>You have</span><span>${fmt(pr.gold)}● ${pr.shards}◆</span></div>
-        <div class="btns"><button class="btn gold" id="hone" ${maxed || pr.gold < c.gold || pr.shards < c.shards ? 'disabled' : ''}>${maxed ? 'Max +' + HONE_MAX : 'Hone ⚒'}</button></div>
-        <div class="forgeresult" id="honeres"></div>`;
+      const canSynth = preview.filledLoops >= 1 && pr.gold >= preview.cost.gold && pr.shards >= preview.cost.shards && (it.synthCount || 0) < 5;
+      detail = `<div class="item-name" style="color:${RARITIES[it.rarity].color}">${esc(it.name)}${it.up ? ' +' + it.up : ''}</div>
+        <div class="item-sub">${RARITIES[it.rarity].name} · iLvl ${it.ilvl}${it.quality ? ` · Q${it.quality}` : ''}</div>
+        <div class="item-lines">${L.lines(it).map((l) => `<div>${esc(l)}</div>`).join('')}</div>
+        ${it.aria ? `<div class="item-aria">Aria — ${esc(ARIA_BY_ID[it.aria].name)}</div>` : ''}
+        <div class="stats" style="margin-top:8px">
+          <span>Synth cost</span><span>${fmt(preview.cost.gold)}● ${preview.cost.shards}◆ + Motifs</span>
+          <span>You have</span><span>${fmt(pr.gold)}● ${pr.shards}◆</span>
+          <span>Temper</span><span>+${it.up || 0} → +${Math.min(HONE_MAX, (it.up || 0) + 1)} · ${Math.round(chance * 100)}%</span>
+          <span>Temper cost</span><span>${fmt(c.gold)}● ${c.shards}◆</span>
+        </div>
+        <div class="btns">
+          <button class="btn gold" id="synthesize" ${canSynth ? '' : 'disabled'}>Harmonic Synthesis</button>
+          <button class="btn" id="hone" ${maxed || pr.gold < c.gold || pr.shards < c.shards ? 'disabled' : ''}>${maxed ? 'Max +' + HONE_MAX : 'Temper ⚒'}</button>
+          <button class="btn" id="clearsynth" ${assigned.length ? '' : 'disabled'}>Clear Motifs</button>
+        </div>
+        <div class="forgeresult" id="honeres"></div>
+        <div class="muted" style="margin-top:6px">Fill 2+ rings to transfer Motifs as traits. Opus Aria ring = Super Trait.</div>`;
     }
-    body.innerHTML = `<div class="cols"><div class="card"><h3>Choose gear</h3><div class="grid">${list.map((x) => this.itemBox(x, `data-fu="${x.uid}"`).replace('slotbox', 'slotbox' + (x === it ? ' sel' : ''))).join('')}</div>
-      <div class="muted" style="margin-top:8px">Each + adds 6% to base stats. Failures bank +10% pity toward the next attempt.</div></div>
-      <div class="card">${detail}</div></div>`;
-    body.querySelectorAll('[data-fu]').forEach((el) => el.addEventListener('click', () => { this.forgeSel = list.find((x) => x.uid === +el.dataset.fu); this.render(); }));
-    const hb = $('hone');
+
+    body.innerHTML = `<div class="synth-wrap">
+      <div class="card"><h3>Choose gear</h3>
+        <div class="grid">${list.map((x) => this.itemBox(x, `data-fu="${x.uid}"`).replace('slotbox', 'slotbox' + (x === it ? ' sel' : ''))).join('') || '<div class="muted">No gear yet.</div>'}</div>
+      </div>
+      <div class="card"><h3>Cymatic loops</h3>${rings || '<div class="muted">Select a piece of gear.</div>'}
+        <h3 style="margin-top:12px">Motif bag</h3>
+        <div class="motifbag">${motifs.map((m) => {
+          const used = this.synthSlots.filter((id) => id === m.id).length;
+          const left = m.n - used;
+          return this.motifChip({ ...m, n: left }, { on: used > 0, dim: left <= 0, attrs: `data-mid="${m.id}"` });
+        }).join('') || '<div class="muted">Salvage gear in the Wardrobe to earn Motifs.</div>'}</div>
+      </div>
+      <div class="card"><h3>Synthesize</h3>${detail}</div>
+    </div>`;
+
+    body.querySelectorAll('[data-fu]').forEach((el) => el.addEventListener('click', () => {
+      this.forgeSel = list.find((x) => x.uid === +el.dataset.fu);
+      this.synthSlots = [];
+      this.render();
+    }));
+    body.querySelectorAll('[data-mid]').forEach((el) => el.addEventListener('click', () => {
+      const id = el.dataset.mid;
+      const have = L.motifCount(id);
+      const used = this.synthSlots.filter((x) => x === id).length;
+      if (used >= have) return;
+      if (this.synthSlots.length >= 8) { this.toast('Loop board full'); return; }
+      this.synthSlots.push(id);
+      this.render();
+    }));
+    const cs = body.querySelector('#clearsynth');
+    if (cs) cs.addEventListener('click', () => { this.synthSlots = []; this.render(); });
+    const syn = body.querySelector('#synthesize');
+    if (syn) syn.addEventListener('click', () => {
+      const r = L.synthesize(it, this.synthSlots.slice());
+      if (!r.ok) {
+        this.toast(r.reason === 'cost' ? 'Not enough gold/shards' : r.reason === 'motifs' ? 'Missing Motifs' : r.reason === 'rebuild_max' ? 'Rebuild limit reached' : 'Fill at least one loop');
+        return;
+      }
+      this.synthSlots = [];
+      this.render();
+      const res = $('honeres');
+      if (res) {
+        res.textContent = `✦ Synthesized · Q${it.quality}` + (r.transferred?.length ? ` · ${r.transferred.join(', ')}` : '');
+        res.style.color = '#ffd978';
+      }
+      g.audio.levelUp();
+      g.save();
+    });
+    const hb = body.querySelector('#hone');
     if (hb) hb.addEventListener('click', () => {
       const r = L.hone(it);
       if (!r.ok) return;
       this.render();
       const res = $('honeres');
-      if (r.success) { res.textContent = `✦ Success! +${it.up}`; res.style.color = '#ffd978'; g.audio.levelUp(); }
+      if (r.success) { res.textContent = `✦ Tempered! +${it.up}`; res.style.color = '#ffd978'; g.audio.levelUp(); }
       else { res.textContent = 'The metal rings false… (pity banked)'; res.style.color = '#ff8a9a'; g.audio.fail(); }
       g.save();
     });
@@ -650,12 +775,21 @@ export class UI {
     const max = pr.riftTier + 1;
     if (!this.riftTier || this.riftTier > max) this.riftTier = max;
     const T = this.riftTier;
+    const chance = g.echo.passChance(T);
+    const phrase = pr.echoLineage?.phrase;
+    const pity = pr.echoLineage?.pity || 0;
     body.innerHTML = `<div class="card" style="text-align:center"><h3>Resonance Rift</h3>
       <div class="muted">Silence waves of dissonance to fill the bar, then defeat the Rift Guardian. Clear within 4:00 to unlock the next tier. Tier 3+ adds a Burden from DT_Burdens for extra rarity.</div>
       <div class="tiers"><button id="tminus">−</button><span>Tier ${T}</span><button id="tplus">+</button></div>
       <div class="stats" style="max-width:320px;margin:0 auto"><span>Enemy level</span><span>${pr.level + Math.max(0, T - 1) * 2}</span><span>Tempo</span><span>${124 + Math.min(24, T * 2)} BPM</span>
       <span>Rewards</span><span>${3 + Math.floor(T / 3)} items (Resonant+) · ${10 + T * 2}♪</span><span>Best cleared</span><span>${pr.riftTier}</span></div>
-      <button class="primary" id="enterrift">Enter the Rift ◎</button></div>`;
+      <div class="echo-banner" style="max-width:420px;margin:12px auto 0">
+        <img src="assets/icons/echo_phrase.svg" width="20" height="20" alt="" style="vertical-align:middle;margin-right:6px"/>
+        ${phrase
+          ? `Echo Lineage pass <b>${Math.round(chance * 100)}%</b>${pity ? ` · pity +${Math.round(pity * 100)}%` : ''} · Phrase T${phrase.tier} Q${phrase.quality}`
+          : 'No Echo Phrase yet — clear a Rift to bank one (Uma-style inheritance).'}
+      </div>
+      <button class="primary" id="enterrift" style="margin-top:14px">Enter the Recital ◎</button></div>`;
     $('tminus').addEventListener('click', () => { this.riftTier = Math.max(1, T - 1); this.render(); });
     $('tplus').addEventListener('click', () => { this.riftTier = Math.min(max, T + 1); this.render(); });
     $('enterrift').addEventListener('click', () => { const p = this.riftPortal; this.close(); g.activities.enterRift(T, p); });
@@ -693,6 +827,47 @@ export class UI {
       g.wipe();
     });
     let b2 = 0;
+  }
+
+  // ================================================================ rift reward reveal
+  showRiftReward(payload) {
+    const box = $('riftreward');
+    if (!box) return;
+    const { tier, inTime, notes, gold, items, phrase, passChance, pity } = payload;
+    $('rrKicker').textContent = inTime ? `RIFT TIER ${tier} CLEARED` : `RIFT TIER ${tier} CLEARED (OVER TIME)`;
+    $('rrTitle').textContent = 'Resonance Remains';
+    $('rrSub').textContent = 'Staged rewards · Echo Lineage banks for the next Recital';
+    const cards = [];
+    (items || []).forEach((it, i) => {
+      const R = RARITIES[it.rarity];
+      cards.push(`<div class="rewardcard" style="animation-delay:${i * 0.12}s;border-color:${R.color}">
+        ${this.itemBox(it)}
+        <b style="color:${R.color}">${esc(it.name)}</b>
+        <div class="meta">${R.name} · iLvl ${it.ilvl}</div>
+      </div>`);
+    });
+    cards.push(`<div class="rewardcard" style="animation-delay:${(items?.length || 0) * 0.12}s;border-color:var(--rose)">
+      <div class="slotbox" style="border-color:var(--rose)">♪</div>
+      <b>+${notes} Golden Notes</b>
+      <div class="meta">+${gold} gold on the ground</div>
+    </div>`);
+    if (phrase) {
+      const delay = ((items?.length || 0) + 1) * 0.12;
+      cards.push(`<div class="rewardcard" style="animation-delay:${delay}s;border-color:var(--aqua)">
+        <div class="slotbox" style="border-color:var(--aqua)"><img class="ico" src="assets/icons/echo_phrase.svg" alt=""/></div>
+        <b>Echo Phrase T${phrase.tier}</b>
+        <div class="meta">Q${phrase.quality} · ${(phrase.motifs || []).map((m) => m.key).join(', ')}</div>
+      </div>`);
+    }
+    $('rrRow').innerHTML = cards.join('');
+    $('rrLineage').innerHTML = `<img src="assets/icons/echo_phrase.svg" alt=""/>Echo Lineage next pass ${Math.round((passChance || 0) * 100)}%${pity ? ` · pity +${Math.round(pity * 100)}%` : ''}`;
+    box.classList.remove('hidden');
+    const btn = $('rrContinue');
+    const done = () => {
+      box.classList.add('hidden');
+      this.toast('Echo Phrase banked — enter another Rift to inherit', 'gold');
+    };
+    btn.onclick = done;
   }
 
   // ================================================================ shrine

@@ -4,13 +4,15 @@ import { BOUNTY_TEMPLATES, ELEMENTS, STARTING_SKILLS, SKILLS, xpToNext, MAX_LEVE
 import { pick, randInt } from './util.js';
 import { WORLD_RADIUS } from './design.js';
 
-export const SAVE_KEY = 'melodia_resonant_wilds_v1';
+export const SAVE_KEY = 'melodia_resonant_wilds_v2';
+export const SAVE_KEY_LEGACY = 'melodia_resonant_wilds_v1';
 const GRID = 72;
 
 export function defaultProfile() {
   return {
-    v: 1, level: 1, xp: 0, gold: 0, shards: 0, notes: 0,
-    inventory: [], equipment: {},
+    v: 2, level: 1, xp: 0, gold: 0, shards: 0, notes: 0,
+    inventory: [], equipment: {}, motifs: {},
+    echoLineage: { phrase: null, pity: 0, active: null, history: 0 },
     loadout: STARTING_SKILLS.slice(), learned: STARTING_SKILLS.slice(),
     blessings: [], pylons: ['pylon_hub'], shrines: [], sheets: [],
     riftTier: 0, bounties: null, bountySet: 0, movement: 0, maestros: [],
@@ -23,10 +25,25 @@ export function defaultProfile() {
 export function loadProfile() {
   const base = defaultProfile();
   try {
-    const raw = localStorage.getItem(SAVE_KEY);
+    let raw = localStorage.getItem(SAVE_KEY);
+    if (!raw) raw = localStorage.getItem(SAVE_KEY_LEGACY);
     if (!raw) return base;
     const p = JSON.parse(raw);
-    return { ...base, ...p, settings: { ...base.settings, ...(p.settings || {}) }, stats: { ...base.stats, ...(p.stats || {}) } };
+    const merged = {
+      ...base, ...p,
+      settings: { ...base.settings, ...(p.settings || {}) },
+      stats: { ...base.stats, ...(p.stats || {}) },
+      motifs: { ...(p.motifs || {}) },
+      echoLineage: { ...base.echoLineage, ...(p.echoLineage || {}) },
+      v: 2,
+    };
+    // One-time migrate: ensure icons on existing items
+    for (const it of [...(merged.inventory || []), ...Object.values(merged.equipment || {})]) {
+      if (it && !it.icon && it.slot && it.base) {
+        it.icon = `${it.slot}_${String(it.base).toLowerCase().replace(/\s+/g, '_')}`;
+      }
+    }
+    return merged;
   } catch {
     return base;
   }
@@ -43,7 +60,10 @@ export function saveProfile(p) {
 }
 
 export function wipeProfile() {
-  try { localStorage.removeItem(SAVE_KEY); } catch { /* storage unavailable */ }
+  try {
+    localStorage.removeItem(SAVE_KEY);
+    localStorage.removeItem(SAVE_KEY_LEGACY);
+  } catch { /* storage unavailable */ }
 }
 
 export class Progress {
