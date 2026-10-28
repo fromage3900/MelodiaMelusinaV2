@@ -1,0 +1,61 @@
+{
+  "version": 1,
+  "size": 64,
+  "slots": {
+    "instrument": {
+      "Baton": "instrument_baton",
+      "Violin Bow": "instrument_violin_bow",
+      "Chime Staff": "instrument_chime_staff",
+      "Flute": "instrument_flute",
+      "Harp": "instrument_harp",
+      "Lyre": "instrument_lyre"
+    },
+    "head": {
+      "Tiara": "head_tiara",
+      "Ribbon": "head_ribbon",
+      "Circlet": "head_circlet",
+      "Veil": "head_veil",
+      "Sun Hat": "head_sun_hat"
+    },
+    "gown": {
+      "Gown": "gown_gown",
+      "Coat": "gown_coat",
+      "Robe": "gown_robe",
+      "Dress": "gown_dress",
+      "Kimono": "gown_kimono"
+    },
+    "gloves": {
+      "Gloves": "gloves_gloves",
+      "Mitts": "gloves_mitts",
+      "Gauntlets": "gloves_gauntlets"
+    },
+    "shoes": {
+      "Slippers": "shoes_slippers",
+      "Boots": "shoes_boots",
+      "Heels": "shoes_heels"
+    },
+    "charm": {
+      "Shell Charm": "charm_shell_charm",
+      "Clef Pendant": "charm_clef_pendant",
+      "Brooch": "charm_brooch",
+      "Music Box": "charm_music_box"
+    }
+  },
+  "motifs": {
+    "Forte": "motif_forte",
+    "Stone": "motif_stone",
+    "Umbral": "motif_umbral",
+    "Arcane": "motif_arcane",
+    "Radiant": "motif_radiant",
+    "Gale": "motif_gale",
+    "Tide": "motif_tide"
+  },
+  "echo": "echo_phrase",
+  "rarities": {
+    "common": "rarity_common",
+    "tuned": "rarity_tuned",
+    "resonant": "rarity_resonant",
+    "virtuoso": "rarity_virtuoso",
+    "opus": "rarity_opus"
+  }
+}

@@ -49,16 +49,19 @@ No build step. three.js r170 is vendored in `vendor/` (MIT, licence alongside).
   - Pylons for fast travel
   - Music-key shrines: call and response, where you answer the shrine's phrase on the next bar
   - Biome **Maestros** (world bosses) with toughness **BREAK**
-  - **Resonance Rifts**: tiered, infinite and timed, with DT_Burdens at tier 3+
+  - **Resonance Rifts** (Recitals): tiered, infinite and timed, with DT_Burdens at tier 3+
   - The **Movement** chain: one per biome, which gives new players a direction
-- **Gear.** Items fill the Wardrobe slots (instrument, headpiece, gown, gloves, shoes, charm). There are five rarities, Common → Opus. Opus items carry an **Aria** from DT_Artifacts and the authored rhythm-skill DataAssets. The **Forge** hones gear +1…+15 with falling odds and banked pity. Salvage turns spare gear into gold and shards, and gear score gates what you can take on.
+- **Gear.** Items fill the Wardrobe slots (instrument, headpiece, gown, gloves, shoes, charm) with SVG icons. Five rarities, Common → Opus. Opus items carry an **Aria** from DT_Artifacts and the authored rhythm-skill DataAssets. Gear score gates what you can take on.
+- **Harmonic Synthesis (Atelier / cymatics).** Salvage always yields **Motifs** (element materials) plus gold/shards. At the Forge, spend Motifs into Chladni **cymatic loops** to raise Synthesis Quality and transfer Motifs as traits. **Temper** (hone +1…+15 with pity) is the follow-up step. Opus Aria = Super Trait slot.
+- **Echo Lineage (Uma inheritance).** Clearing a Rift banks a residual Phrase. The next Recital shows pass chance (Arias + Blessings as Score Supports, plus pity). Inherited Motifs buff that run only — re-clear to breed a stronger Echo.
 - **Retention hooks:**
   - Bounties (3 claimed = Chorus Cache)
   - Blessings bought with Golden Notes (DT_Blessings)
   - Shrine attunement: +1% damage each
   - Exploration fog on the map
   - An idle reward from your Choral Sheep when you return
-  - Everything saves to `localStorage`
+  - Staged **Rift Clear** reward reveal
+  - Everything saves to `localStorage` (`melodia_resonant_wilds_v2`, migrates from v1)
 
 ## 🧬 What comes from UE
 
@@ -81,6 +84,8 @@ python Prototypes/Web/MelodiaResonantWilds/tools/export_ue_data.py
 
 ## 🗂 Files
 
-`js/audio.js` beat clock and procedural score · `js/rhythm.js` judging, combo, Crescendo, Encore · `js/world.js` streamed terrain, biomes, props, landmarks, water, rift arena · `js/entities.js` Melusina, sheep, slimes, boss phrases · `js/combat.js` damage, skills, projectiles · `js/loot.js` items, forge · `js/activities.js` camps, shrines, bosses, events, rifts · `js/progress.js` save, XP, bounties, exploration · `js/ui.js` HUD, touch controls, panels · `js/game.js` loop.
+`js/audio.js` beat clock and procedural score · `js/rhythm.js` judging, combo, Crescendo, Encore · `js/world.js` streamed terrain, biomes, props, landmarks, water, rift arena · `js/entities.js` Melusina, sheep, slimes, boss phrases · `js/combat.js` damage, skills, projectiles · `js/loot.js` items, Motifs, Harmonic Synthesis, temper · `js/echo.js` Echo Lineage · `js/activities.js` camps, shrines, bosses, events, rifts · `js/progress.js` save, XP, bounties, exploration · `js/ui.js` HUD, touch controls, panels, rift reward reveal · `js/game.js` loop · `assets/icons/` SVG icon pack + `manifest.json`.
+
+UI frames live in Figma: [Resonant Wilds Web UI](https://www.figma.com/design/Vin9X81mAyJ4GQIjGBmzcI).
 
 Terrain follows the idea in [OpenWorldJS](https://github.com/obecerra3/OpenWorldJS): tiles centred on the player and streamed from a noise heightmap with biomes. Here the tiles are small CPU chunks with analytic normals, so they are cheap on phones. Beat ripples and the Crescendo glow are injected into the terrain and water shaders.
