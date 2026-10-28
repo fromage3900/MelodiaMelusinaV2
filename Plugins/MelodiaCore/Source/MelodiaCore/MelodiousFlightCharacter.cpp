@@ -84,10 +84,16 @@ void AMelodiousFlightCharacter::CreateInputMappingContext()
 	AscendAction->ValueType = EInputActionValueType::Axis1D;
 	FlightMappingContext->MapKey(AscendAction, EKeys::SpaceBar);
 	FlightMappingContext->MapKey(AscendAction, EKeys::E);
+	FlightMappingContext->MapKey(AscendAction, EKeys::Gamepad_RightTrigger);
 	FEnhancedActionKeyMapping& DescendMappingC = FlightMappingContext->MapKey(AscendAction, EKeys::C);
 	DescendMappingC.Modifiers.Add(NewObject<UInputModifierNegate>(FlightMappingContext));
 	FEnhancedActionKeyMapping& DescendMappingQ = FlightMappingContext->MapKey(AscendAction, EKeys::Q);
 	DescendMappingQ.Modifiers.Add(NewObject<UInputModifierNegate>(FlightMappingContext));
+	// Left Alt + gamepad Left Trigger descend the same way as C/Q (negate Ascend).
+	FEnhancedActionKeyMapping& DescendMappingAlt = FlightMappingContext->MapKey(AscendAction, EKeys::LeftAlt);
+	DescendMappingAlt.Modifiers.Add(NewObject<UInputModifierNegate>(FlightMappingContext));
+	FEnhancedActionKeyMapping& DescendMappingLT = FlightMappingContext->MapKey(AscendAction, EKeys::Gamepad_LeftTrigger);
+	DescendMappingLT.Modifiers.Add(NewObject<UInputModifierNegate>(FlightMappingContext));
 
 	BoostAction = NewObject<UInputAction>(this, TEXT("IA_Flight_Boost"));
 	BoostAction->ValueType = EInputActionValueType::Boolean;
@@ -133,10 +139,9 @@ void AMelodiousFlightCharacter::SetupPlayerInputComponent(UInputComponent* Playe
 
 void AMelodiousFlightCharacter::UnPossessed()
 {
-	if (bIsBoosting)
-	{
-		OnBoostCompleted();
-	}
+	// Completed can be lost when party switching removes the mapping context
+	// while Shift is held. Never carry boost into a later possession.
+	OnBoostCompleted();
 	RemoveMappingContextOnUnpossess(FlightMappingContext);
 	Super::UnPossessed();
 }
