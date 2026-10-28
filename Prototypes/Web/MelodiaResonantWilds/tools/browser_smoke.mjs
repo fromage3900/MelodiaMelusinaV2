@@ -59,7 +59,7 @@ try {
     await page.waitForFunction(() => !!window.__melodia &&
       !document.querySelector('#play').disabled, null, { timeout: 90000 });
     const before = await page.evaluate(() => ({
-      chibi: typeof window.__melodia.player.m.pose === 'function',
+      chibi: typeof window.__melodia.player.m.pose === 'function' && !window.__melodia.player.m.mixamo,
       shrineCount: window.__melodia.activities.pois.filter(p => p.type === 'shrine').length,
       uniforms: Object.keys(window.__melodia.world.uniforms),
       legacyTerrain: !!window.__melodia.world.terrainMat.isMeshLambertMaterial,
@@ -103,7 +103,7 @@ try {
     assert.equal(before.retiredPostFX, false, test.name + ': retired Kuwahara runtime still present');
     assert.equal(before.postfx, !!test.postfx, test.name + ': unexpected postprocessing state');
     assert.equal(before.worldexp, !!test.worldexp, test.name + ': world expansion flag mismatch');
-    if (test.worldexp) assert.ok(before.destinations >= 10, test.name + ': destination POIs not generated');
+    if (test.worldexp) assert.ok(before.destinations >= 16, test.name + ': destination POIs not generated');
     else assert.equal(before.destinations, 0, test.name + ': default map received opt-in destinations');
     if (test.npr) {
       assert.equal(before.paletteSize, 12, test.name + ': missing RGB NPR gradient');
