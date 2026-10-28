@@ -71,3 +71,10 @@ Three-flower blossom clusters reuse the existing `flower` placement positions, r
 - Existing `?bellflower=0`, `?render=legacy`, `?shrine=glb`, `?avatar=chibi` continue independently.
 - Cloud QA captures `desktop-petal-cantata.png` and `desktop-original-flowers.png` as CI artifacts for human visual review; browser simulation does not substitute for actual iPhone Safari.
 - The flower family is authored directly in code; **no Higgsfield credits or new binary GLBs**.
+
+## Harmonic Grove 37 — recovered source asset (not runtime integrated)
+
+The exact `harmonic-grove-37.glb` from the owner's website branch `rw-harmonic-grove-glb` was preserved under canonical `assets/models/`. Git object SHA `f0a4840ae181922ff727e51622bfe95bfd5aba35` matches **byte-for-byte** across repositories. GLB 2.0 validated at **891,420 bytes** with **37 unique `ASSET_` roots, 533 meshes, 12 materials**. The 37 props include bellflower variants, ferns, grasses, reeds, fungi, rocks, crystals, path stones, columns, chimes and seedpods.
+
+This is a **source-only asset intake**, NOT a live foliage replacement, not an import of that old branch's incompatible `vendor/loaders` module, and not a deployment to the website. Existing `js/flowerbeds.js` and `js/bellflower.js` remain authoritative visual defaults. The new `tools/check_grove_kit.mjs` validates file integrity offline; activation will need selective Three.js r170 GLTFLoader compatibility, per-type geometry/material extraction, deterministic InstancedMesh placement, preserved collision/POI/chime rules, mobile frame QA, shader parity and visual comparison. Never merge the stale website branch wholesale.
+
