@@ -16,6 +16,7 @@ export const ENCORE_VARIANTS = Object.freeze([
     name: 'Crescendo Cascade',
     color: '#ffae45',
     tag: 'Combat',
+    biome: 'sakura_terrace',
     blurb: 'Radial hits every beat for a bar; Perfects extend the cascade.',
   },
   {
@@ -24,6 +25,7 @@ export const ENCORE_VARIANTS = Object.freeze([
     name: 'Subject & Answer',
     color: '#9a7bf0',
     tag: 'Combat',
+    biome: 'fugue_grotto',
     blurb: 'Mark three foes, then mirror your phrase onto all of them.',
   },
   {
@@ -32,6 +34,7 @@ export const ENCORE_VARIANTS = Object.freeze([
     name: 'Break Cadenza',
     color: '#ff5470',
     tag: 'Combat',
+    biome: 'cadence_crystal_ridge',
     blurb: 'Shatter toughness; Perfects guarantee BREAK for a short window.',
   },
   {
@@ -40,6 +43,7 @@ export const ENCORE_VARIANTS = Object.freeze([
     name: 'Encore Reprise',
     color: '#ffd978',
     tag: 'Combat',
+    biome: null,
     blurb: 'Replay your last four Perfect hits as ghost notes.',
   },
   {
@@ -48,6 +52,7 @@ export const ENCORE_VARIANTS = Object.freeze([
     name: 'Choral Duet',
     color: '#62c8ff',
     tag: 'Companion',
+    biome: 'liquid_cathedral',
     blurb: 'You and Sheep Harmonize as one — heal, cleanse, Tide pulse.',
   },
   {
@@ -56,6 +61,7 @@ export const ENCORE_VARIANTS = Object.freeze([
     name: 'Aria Veil Step',
     color: '#e8dff8',
     tag: 'Wardrobe',
+    biome: null,
     blurb: 'Float on the beat, then land as a shockwave.',
   },
   {
@@ -64,6 +70,7 @@ export const ENCORE_VARIANTS = Object.freeze([
     name: 'Wardrobe Overture',
     color: '#f3b6cf',
     tag: 'Wardrobe',
+    biome: null,
     blurb: 'Concert set: all Opus Aria passives live for eight beats.',
   },
   {
@@ -72,6 +79,7 @@ export const ENCORE_VARIANTS = Object.freeze([
     name: 'Key Modulation',
     color: '#8ff0b4',
     tag: 'World',
+    biome: null,
     blurb: 'Local key flips to yours — bridges soften, blots shrink.',
   },
   {
@@ -80,6 +88,7 @@ export const ENCORE_VARIANTS = Object.freeze([
     name: 'Resonance Dew Bloom',
     color: '#9fe6ff',
     tag: 'World',
+    biome: 'aurora_glacier',
     blurb: 'Spent Dew detonates as a cymatic damage field.',
   },
   {
@@ -88,11 +97,20 @@ export const ENCORE_VARIANTS = Object.freeze([
     name: 'Rift Recital',
     color: '#c690ff',
     tag: 'Rift',
+    biome: null,
     blurb: 'Inside a Rift: bank a mid-run Echo Phrase buff.',
   },
 ]);
 
 export const ENCORE_BY_ID = Object.fromEntries(ENCORE_VARIANTS.map((v) => [v.id, v]));
+
+/** Fashion-only Encore presentation skins (zero power). */
+export const ENCORE_FASHION = Object.freeze({
+  petal: { id: 'petal', name: 'Petal Trail', match: /dress|kimono|robe|petal/i, color: '#f7b8d2', particle: 1 },
+  ice: { id: 'ice', name: 'Ice Veil', match: /coat|glacier|ice|veil/i, color: '#dff3ff', particle: 3 },
+  gold: { id: 'gold', name: 'Concert Gold', match: /gown|tiara|opus|virtuoso/i, color: '#ffd978', particle: 2 },
+  tide: { id: 'tide', name: 'Tide Ribbon', match: /slippers|heels|boots|shell/i, color: '#62c8ff', particle: 0 },
+});
 
 export class EncoreSystem {
   constructor(game) {
@@ -101,13 +119,43 @@ export class EncoreSystem {
     this.selected = ENCORE_BY_ID[id] ? id : 'cascade';
     this.active = null;
     this.lastPerfects = [];
+    this.lastCast = null;
     this._savedArias = null;
     this._modScore = null;
     this._bloomBoost = 0;
     this._veilY = 0;
+    this._previewUntil = 0;
+    this._afterimages = [];
+    this._stats = { breaks: 0, hits: 0, heals: 0 };
   }
 
   get variant() { return ENCORE_BY_ID[this.selected] || ENCORE_VARIANTS[0]; }
+
+  /** Presentation color: fashion skin overrides variant accent when dressed. */
+  accentColor(v = this.variant) {
+    const skin = this.fashionSkin();
+    return skin?.color || v.color;
+  }
+
+  fashionSkin() {
+    const eq = this.g.profile.equipment || {};
+    const gown = eq.gown?.base || eq.gown?.name || '';
+    const shoes = eq.shoes?.base || eq.shoes?.name || '';
+    const head = eq.head?.base || eq.head?.name || '';
+    const blob = `${gown} ${shoes} ${head} ${eq.gown?.rarity || ''}`.toLowerCase();
+    for (const skin of Object.values(ENCORE_FASHION)) {
+      if (skin.match.test(blob)) return skin;
+    }
+    // Opus gown always reads concert gold.
+    if (eq.gown?.rarity >= 4) return ENCORE_FASHION.gold;
+    return null;
+  }
+
+  biomeFavored(v = this.variant) {
+    if (!v.biome || this.g.world?.inRift) return false;
+    const d = this.g.world.dominantBiome(this.g.player.pos.x, this.g.player.pos.z);
+    return d?.biome?.id === v.biome && d.weight > 0.45;
+  }
 
   cycle(dir = 1) {
     const i = ENCORE_VARIANTS.findIndex((v) => v.id === this.selected);
@@ -115,10 +163,40 @@ export class EncoreSystem {
     this.selected = ENCORE_VARIANTS[n].id;
     this.g.profile.settings.encoreVariant = this.selected;
     const v = this.variant;
-    this.g.ui.toast(`${v.name} · ${v.blurb}`, 'gold');
+    const fav = this.biomeFavored(v);
+    const skin = this.fashionSkin();
+    const bits = [v.name];
+    if (fav) bits.push('biome favor');
+    if (skin) bits.push(skin.name);
+    this.g.ui.toast(`${bits.join(' · ')} — ${v.blurb}`, 'gold');
     this.g.audio.ui();
     this.g.audio.encoreSelect(v.id);
+    this.preview(v);
+    this.g.sheep?.reactEncore?.(v, this.accentColor(v));
     return v;
+  }
+
+  /** One-beat ghost of the selected Encore — toy feel while cycling. */
+  preview(v = this.variant) {
+    const g = this.g, P = g.player;
+    const col = this.accentColor(v);
+    this._previewUntil = g.time + (g.audio.spb || 0.45);
+    g.decals.spawn('ring', P.pos.x, P.pos.z, { r: 3.2, inner: 2.4, flash: true, dur: 0.35, color: col });
+    const kind = this.fashionSkin()?.particle ?? 3;
+    g.particles.burst(P.pos.x, P.pos.y + 1.1, P.pos.z, _c.set(col), 18, { speed: 6, life: 0.4, kind, size: 0.7 });
+    if (v.id === 'veil' || v.id === 'cascade') {
+      for (let i = 0; i < 6; i++) {
+        const a = (i / 6) * Math.PI * 2;
+        g.particles.emit(P.pos.x, P.pos.y + 1.4, P.pos.z, _c.set(col), {
+          dir: { x: Math.cos(a), y: 0.2, z: Math.sin(a) }, speed: 4, life: 0.45, kind, size: 0.6, gravity: 0,
+        });
+      }
+    }
+    if (g.postfx?.bloom) {
+      g.postfx.bloom.strength = 0.75;
+      this._bloomBoost = 0.45;
+    }
+    g.overlay.text(P.pos.x, P.pos.y + 2.6, P.pos.z, v.short, col, 14, { life: 0.55 });
   }
 
   /** Record Perfect hits for Encore Reprise. */
@@ -164,9 +242,19 @@ export class EncoreSystem {
       g.ui.toast('Cascade sings louder at ff…', 'soft');
     }
 
+    const favored = this.biomeFavored(v);
+    const skin = this.fashionSkin();
+    this._stats = { breaks: 0, hits: 0, heals: 0, favored, skin: skin?.id || null };
+    this.dmgMul = favored ? 1.12 : 1;
+    this.color = this.accentColor(v);
+
     R.encore = 0;
-    const bars = v.id === 'overture' || v.id === 'modulation' ? 2 : v.id === 'veil' ? 1 : 2;
-    R.encoreUntil = g.beatIndex + g.audio.meter * bars;
+    let bars = v.id === 'overture' || v.id === 'modulation' ? 2 : v.id === 'veil' ? 1 : 2;
+    if (favored) bars += 0; // favor is damage/feel, not duration creep
+    // Dew set bonus 10: free extra beat of Perfect window.
+    if ((g.profile.dewBonusTier || 0) >= 3) bars = Math.max(bars, bars);
+    const extraBeats = (g.profile.dewBonusTier || 0) >= 3 ? 1 : 0;
+    R.encoreUntil = g.beatIndex + g.audio.meter * bars + extraBeats;
     g.player.invulnUntil = Math.max(g.player.invulnUntil, g.time + 0.55);
     this._bloomBoost = 1;
     if (g.postfx?.bloom) {
@@ -176,6 +264,9 @@ export class EncoreSystem {
     g.audio.setIntensity(2);
     g.shake(0.55);
     g.audio.encoreVariant(v.id);
+    g.sheep?.reactEncore?.(v, this.color);
+    if (favored) g.ui.toast(`${v.short} resonates with this biome (+12% power)`, 'gold');
+    if (skin) g.ui.toast(`Fashion Encore — ${skin.name}`, 'lavender');
 
     switch (v.id) {
       case 'cascade': this._startCascade(v); break;
@@ -250,6 +341,16 @@ export class EncoreSystem {
       this._veilY = Math.sin((1 - k) * Math.PI) * 2.4;
       P.pos.y += this._veilY * 0.02; // soft lift bias; height snap still owns ground
       if (P.m?.group) P.m.group.position.y += this._veilY;
+      // Gown afterimage ribbon — fashion-only trail along the float path.
+      this._afterimageTimer = (this._afterimageTimer || 0) - dt;
+      if (this._afterimageTimer <= 0) {
+        this._afterimageTimer = 0.08;
+        const col = this.color || this.active.color;
+        this.g.particles.emit(P.pos.x, P.pos.y + 1.2 + this._veilY, P.pos.z, _c.set(col), {
+          dir: { x: -Math.sin(P.facing), y: 0.15, z: -Math.cos(P.facing) },
+          speed: 1.2, life: 0.55, kind: this.fashionSkin()?.particle ?? 1, size: 0.85, gravity: 0,
+        });
+      }
     }
     if (this.active?.id === 'modulation') {
       // Shrink nearby dissonant blot meshes for the key window.
@@ -263,35 +364,43 @@ export class EncoreSystem {
 
   // ------------------------------------------------------------------ starts
   _banner(v, sub) {
+    const col = this.color || v.color;
     this.g.ui.banner(v.name.toUpperCase(), sub || v.blurb);
-    this.g.overlay.text(this.g.player.pos.x, this.g.player.pos.y + 3.2, this.g.player.pos.z, v.short, v.color, 22, { life: 1.1 });
+    this.g.overlay.text(this.g.player.pos.x, this.g.player.pos.y + 3.2, this.g.player.pos.z, v.short, col, 22, { life: 1.1 });
   }
 
   _burst(color, n = 48, speed = 12) {
     const P = this.g.player;
-    this.g.particles.burst(P.pos.x, P.pos.y + 1.1, P.pos.z, _c.set(color), n, { speed, life: 0.9, kind: 2, size: 1.15 });
+    const col = color || this.color || '#ffd978';
+    const kind = this.fashionSkin()?.particle ?? 2;
+    this.g.particles.burst(P.pos.x, P.pos.y + 1.1, P.pos.z, _c.set(col), n, { speed, life: 0.9, kind, size: 1.15 });
     this.g.world.pulse(P.pos.x, P.pos.z, 2.2, true);
   }
 
   _pulseRing(color, r = 8, alpha = 0.5) {
     const P = this.g.player;
-    this.g.decals.spawn('ring', P.pos.x, P.pos.z, { r, inner: r * 0.72, flash: true, dur: 0.45, color, alpha });
+    this.g.decals.spawn('ring', P.pos.x, P.pos.z, { r, inner: r * 0.72, flash: true, dur: 0.45, color: color || this.color, alpha });
   }
 
   _spark(color, n = 16, size = 0.7) {
     const P = this.g.player;
-    this.g.particles.burst(P.pos.x, P.pos.y + 1.4, P.pos.z, _c.set(color), n, { speed: 7, life: 0.5, kind: 3, size });
+    const kind = this.fashionSkin()?.particle ?? 3;
+    this.g.particles.burst(P.pos.x, P.pos.y + 1.4, P.pos.z, _c.set(color || this.color), n, { speed: 7, life: 0.5, kind, size });
+  }
+
+  _coef(base) {
+    return base * (this.dmgMul || 1);
   }
 
   _startCascade(v) {
     const g = this.g;
+    const col = this.color || v.color;
     const until = g.beatIndex + g.audio.meter;
-    this.active = { id: 'cascade', until, color: v.color, hits: 0 };
+    this.active = { id: 'cascade', until, color: col, hits: 0 };
     g.rhythm.encoreUntil = until;
     this._banner(v, 'Every beat is a Perfect wave — extend with Perfects');
-    this._burst(v.color, 56, 14);
-    this._pulseRing(v.color, 9);
-    // Opening hit.
+    this._burst(col, 56, 14);
+    this._pulseRing(col, 9);
     this._cascadeHit(1.35);
   }
 
@@ -321,24 +430,27 @@ export class EncoreSystem {
 
   _startCadenza(v) {
     const g = this.g, P = g.player;
+    const col = this.color || v.color;
     const list = g.combat.enemiesIn('circle', { x: P.pos.x, z: P.pos.z, r: 11 });
-    g.combat.hitAll(list, RULES.ultimate.damage_mult * 0.85, {
+    const n = g.combat.hitAll(list, this._coef(RULES.ultimate.damage_mult * 0.85), {
       mult: RULES.rhythm.max_combat_multiplier, element: P.stats.basicElement, tough: 14, perfect: true,
     });
+    this._stats.hits += n;
     for (const e of list) {
       if (e.maxTough && !e.broken) {
         e.tough = 0;
         g.combat.breakEnemy(e);
-      }
+        this._stats.breaks++;
+      } else if (e.broken) this._stats.breaks++;
     }
     this.active = {
       id: 'cadenza',
       until: g.beatIndex + g.audio.meter * 2,
-      color: v.color,
+      color: col,
       perfectBreak: true,
     };
     this._banner(v, 'Perfects guarantee BREAK');
-    this._burst(v.color, 64, 16);
+    this._burst(col, 64, 16);
     this._pulseRing('#ffffff', 10);
     g.shake(0.85);
   }
@@ -365,23 +477,24 @@ export class EncoreSystem {
 
   _startDuet(v) {
     const g = this.g, P = g.player;
-    this.active = { id: 'duet', until: g.beatIndex + g.audio.meter, color: v.color };
+    const col = this.color || v.color;
+    this.active = { id: 'duet', until: g.beatIndex + g.audio.meter, color: col };
+    const before = P.hp;
     P.heal(P.stats.maxHp * 0.12);
+    this._stats.heals += Math.max(0, P.hp - before);
     P.sp = Math.min(P.stats.spMax, P.sp + 2);
     P.cleanse();
     g.sheep.harmonize(true);
-    // Extra Tide pulse tinted by first equipped Aria element fantasy.
     const p = { x: P.pos.x, z: P.pos.z, r: 8 };
-    g.combat.hitAll(g.combat.enemiesIn('circle', p), 2.4, {
+    this._stats.hits += g.combat.hitAll(g.combat.enemiesIn('circle', p), this._coef(2.4), {
       mult: RULES.rhythm.max_combat_multiplier, element: 'Tide', tough: 3, perfect: true,
     });
-    g.combat.flash('circle', p.x, p.z, p, v.color);
+    g.combat.flash('circle', p.x, p.z, p, col);
     g.activities.cleanseNear(P.pos.x, P.pos.z, 10);
     this._banner(v, 'Harmonize duet');
-    this._burst(v.color, 52, 12);
-    // Sheep + Melusina twin rings.
-    g.decals.spawn('ring', g.sheep.pos.x, g.sheep.pos.z, { r: 4.5, inner: 3.6, flash: true, dur: 0.7, color: '#8fd8ff' });
-    this._pulseRing(v.color, 8);
+    this._burst(col, 52, 12);
+    g.decals.spawn('ring', g.sheep.pos.x, g.sheep.pos.z, { r: 4.5, inner: 3.6, flash: true, dur: 0.7, color: col });
+    this._pulseRing(col, 8);
   }
 
   _startVeil(v) {
@@ -510,13 +623,15 @@ export class EncoreSystem {
   // ------------------------------------------------------------------ beats
   _cascadeHit(coef) {
     const g = this.g, P = g.player;
+    const col = this.color || '#ffae45';
     const p = { x: P.pos.x, z: P.pos.z, r: 8.5 };
-    g.combat.hitAll(g.combat.enemiesIn('circle', p), coef, {
+    const n = g.combat.hitAll(g.combat.enemiesIn('circle', p), this._coef(coef), {
       mult: RULES.rhythm.max_combat_multiplier, element: P.stats.basicElement, tough: 2, perfect: true,
     });
-    g.combat.flash('ring', p.x, p.z, { r: p.r, inner: p.r * 0.78 }, '#ffae45');
-    this._spark('#ffae45', 14, 0.75);
+    g.combat.flash('ring', p.x, p.z, { r: p.r, inner: p.r * 0.78 }, col);
+    this._spark(col, 14, 0.75);
     if (this.active) this.active.hits++;
+    this._stats.hits += n;
   }
 
   _beatCascade(beat, a) {
@@ -580,7 +695,7 @@ export class EncoreSystem {
       a.landed = true;
       const g = this.g, P = g.player;
       const p = { x: P.pos.x, z: P.pos.z, r: 9 };
-      g.combat.hitAll(g.combat.enemiesIn('circle', p), 3.2, {
+      this._stats.hits += g.combat.hitAll(g.combat.enemiesIn('circle', p), this._coef(3.2), {
         mult: RULES.rhythm.max_combat_multiplier, element: P.stats.basicElement, tough: 4, perfect: true, knock: 4,
       });
       g.combat.flash('circle', p.x, p.z, p, a.color);
@@ -599,6 +714,7 @@ export class EncoreSystem {
     const g = this.g;
     const a = this.active;
     if (!a) return;
+    const v = ENCORE_BY_ID[a.id];
     if (a.id === 'overture' && this._savedArias) {
       g.player.stats.arias = this._savedArias;
       this._savedArias = null;
@@ -613,8 +729,26 @@ export class EncoreSystem {
     if (a.id === 'subject') {
       for (const e of a.marks || []) if (e) e._fugueMark = false;
     }
+    // Last-cast replay — makes the ultimate feel memorable.
+    const s = this._stats || {};
+    const parts = [];
+    if (s.breaks) parts.push(`${s.breaks} BREAK${s.breaks > 1 ? 's' : ''}`);
+    if (s.hits) parts.push(`${s.hits} hit${s.hits > 1 ? 's' : ''}`);
+    if (s.heals) parts.push(`+${Math.round(s.heals)} HP`);
+    if (a.hits) parts.push(`${a.hits} waves`);
+    if (a.spent) parts.push(`${a.spent} Dew`);
+    if (s.favored) parts.push('biome favor');
+    if (s.skin) parts.push(ENCORE_FASHION[s.skin]?.name || s.skin);
+    const line = parts.length ? parts.join(' · ') : 'phrase complete';
+    this.lastCast = { id: a.id, name: v?.name || a.id, line, at: g.time };
+    g.ui.toast(`${v?.short || 'ENCORE'} · ${line}`, 'gold');
     this.active = null;
     this._veilY = 0;
+    this.dmgMul = 1;
+  }
+
+  noteBreak() {
+    if (this.active) this._stats.breaks = (this._stats.breaks || 0) + 1;
   }
 }
 

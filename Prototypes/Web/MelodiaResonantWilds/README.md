@@ -63,7 +63,8 @@ Inspect the live recipe in the browser console: `window.__rwOpenWorld`.
   8. **Key Modulation** — local key flips; Phrase Bridges accept Good
   9. **Resonance Dew Bloom** — spend Dew for a cymatic blast + map ping
   10. **Rift Recital** — mid-Rift Echo Phrase bank + buff
-  Each cast has a tuned SFX stinger, bloom pulse (when `?postfx=1`), and ring/particle juice.
+  Each cast has a tuned SFX stinger, bloom pulse (when `?postfx=1`), and ring/particle juice. Cycle shows a **one-beat preview**; biome-favored Encores get +12% power; fashion skins (gown/shoes) recolor trails only; end-of-cast toast replays the highlight.
+- **Dew sets & destinations:** first visit grants a 90s motif buff; Dew milestones at 3 / 6 / 10 (Encore charge → Harmony+buff → full Encore + extra Perfect beat); float destinations reveal a **secret ledge** after Dew. Double-tap **H** (Sheep Harmonize) out of combat sniffs toward Dew/blots; Whim Frames can sheep-photobomb.
 - **Open world.** Eight biomes sit around Shorewake Village on a **2×** map (radius 1400). Each has its own tempo, meter, key, ethereal score style, and a continuous **region ambience** bed:
   - Petal Cantata: soft waltz, 3/4
   - Liquid Cathedral: choral nave, 4/4
