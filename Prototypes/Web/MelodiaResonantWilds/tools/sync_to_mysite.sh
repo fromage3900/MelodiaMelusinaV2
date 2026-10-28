@@ -22,4 +22,4 @@ rsync -a --delete \
 echo "Mirrored $ROOT -> $DEST"
 echo "Next: cd $(dirname "$DEST") && git status && commit + push my-site main,"
 echo "then hard-refresh https://fromage3900.github.io/my-site/resonant-wilds/"
-echo "Confirm SW cache name resonant-wilds-v9-* in Application → Cache Storage."
+echo "Confirm SW cache name resonant-wilds-v11-* in Application → Cache Storage."

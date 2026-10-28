@@ -20,6 +20,11 @@ assert.match(cel, /MeshLambertMaterial/);
 assert.match(cel, /NPR_PALETTES/);
 assert.match(cel, /paletteGradient/);
 assert.match(cel, /RGBAFormat/);
+assert.match(cel, /RGB_BANDS_GLSL/);
+assert.match(cel, /uBandHardness/);
+assert.match(cel, /setNPRBands/);
+assert.match(world, /previousShaderHook/);
+
 assert.match(world, /if \(legacyRender\)/);
 assert.match(world, /rwChladni\(/);
 assert.match(world, /rwCaustic\(/);

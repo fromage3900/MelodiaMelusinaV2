@@ -2,7 +2,6 @@
 // skills and the world pulse; the player's taps are judged against it.
 
 import * as THREE from 'three';
-import { painterlyEnabled, PainterlyFilter } from './painterly.js';
 import { AudioEngine } from './audio.js';
 import { World, WATER } from './world.js';
 import { Particles, Decals, Overlay, makeBeam } from './fx.js';
@@ -28,8 +27,6 @@ export class Game {
     this.profile = loadProfile();
     this.canvas = document.getElementById('game');
     this.renderer = new THREE.WebGLRenderer({ canvas: this.canvas, antialias: !isTouch, powerPreference: 'high-performance' });
-    // Opt-in painterly postprocess. Quality adaptation still controls render resolution.
-    this.painterly = painterlyEnabled ? new PainterlyFilter() : null;
     this.scene = new THREE.Scene();
     this.scene.background = new THREE.Color('#f3e6dc');
     this.scene.fog = new THREE.Fog('#f3e6dc', 90, 280);
@@ -106,11 +103,12 @@ export class Game {
   async warm(progress) {
     progress('Raising the eight biomes…');
     await new Promise((r) => setTimeout(r, 20));
-    if (new URLSearchParams(location.search).get('grove') === 'glb') {
+    const groveMode = new URLSearchParams(location.search).get('grove');
+    if (groveMode === 'glb' || groveMode === 'full') {
       progress('Cultivating Harmonic Grove…');
       try {
         const { installGroveProps } = await import('./grove.js');
-        await installGroveProps(this.world);
+        await installGroveProps(this.world, { full: groveMode === 'full' });
       } catch (e) {
         this.world.groveStatus = 'fallback';
         console.warn('Harmonic Grove unavailable; procedural vegetation retained', e);
@@ -834,8 +832,7 @@ export class Game {
     this.overlay.draw(dt, bars, labels);
     this.ui.update(dt);
     // Compositors are alternative opt-in render paths; never double-render.
-    if (this.painterly && this.painterly.settings.strength > 0) this.painterly.render(this.renderer, this.scene, this.camera);
-    else if (this.postfx) this.postfx.render();
+    if (this.postfx) this.postfx.render();
     else this.renderer.render(this.scene, this.camera);
   }
 
