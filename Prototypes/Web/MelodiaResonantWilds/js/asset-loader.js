@@ -2,7 +2,7 @@
 // Uses the matching Three.js r170 official GLTFLoader; no new rendering framework.
 import * as THREE from 'three';
 import { GLTFLoader } from '../vendor/examples/jsm/loaders/GLTFLoader.js';
-import { celMaterial } from './cel.js';
+import { celMaterial, legacyRender } from './cel.js';
 
 let shrinePromise;
 function shrineTemplate() {
@@ -15,7 +15,7 @@ function shrineTemplate() {
         const m = node.material;
         // Preserve author-assigned colour, alpha and emission. Reintroduce lighting
         // in Three.js, not as Blender-baked PBR/preview studio illumination.
-        if (m) {
+        if (m && !legacyRender) {
           node.material = celMaterial(m.color?.clone() || new THREE.Color('#ffffff'), {
             map: m.map ?? null,
             transparent: m.transparent,

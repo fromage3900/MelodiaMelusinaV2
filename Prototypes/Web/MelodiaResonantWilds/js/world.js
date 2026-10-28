@@ -6,7 +6,7 @@
 import * as THREE from 'three';
 import { Simplex2, mulberry32, clamp, lerp, smoothstep, angleDiff } from './util.js';
 import { BIOMES, HUB, WORLD_RADIUS, WORLD_SEED, RIFT_STYLE } from './design.js';
-import { celMaterial } from './cel.js';
+import { environmentMaterial, legacyRender } from './cel.js';
 
 export const CHUNK = 64;
 const SEG = 28;
@@ -59,7 +59,8 @@ export class World {
     const shaderFlags = new URLSearchParams(window.location.search);
     if (shaderFlags.get('chladni') === '0') this.uniforms.uChladni.value = 0;
     if (shaderFlags.get('caustics') === '0') this.uniforms.uCaustics.value = 0;
-    this.terrainMat = celMaterial('#ffffff', { vertexColors: true });
+    if (legacyRender) { this.uniforms.uChladni.value = 0; this.uniforms.uCaustics.value = 0; }
+    this.terrainMat = environmentMaterial('#ffffff', { vertexColors: true });
     this._resonate(this.terrainMat);
     this._buildIndex();
     this._buildPropLibrary();
@@ -285,7 +286,7 @@ export class World {
 
   // ------------------------------------------------------------------ props
   _buildPropLibrary() {
-    const L = (hex, o = {}) => celMaterial(hex, { flatShading: true, ...o });
+    const L = (hex, o = {}) => environmentMaterial(hex, { flatShading: true, ...o });
     const M = (geo, mat, y = 0, sx = 1, sy = 1, sz = 1) => ({ geo, mat, m: new THREE.Matrix4().compose(new THREE.Vector3(0, y, 0), new THREE.Quaternion(), new THREE.Vector3(sx, sy, sz)) });
     const white = L('#ffffff');
     const glow = (hex) => L('#ffffff', { emissive: hex, emissiveIntensity: 0.55 });
@@ -459,7 +460,7 @@ export class World {
   // ------------------------------------------------------------------ hub + landmarks
   _buildHub() {
     const g = new THREE.Group();
-    const L = (hex, o = {}) => celMaterial(hex, { flatShading: true, ...o });
+    const L = (hex, o = {}) => environmentMaterial(hex, { flatShading: true, ...o });
     const add = (geo, mat, x, y, z, ry = 0) => { const m = new THREE.Mesh(geo, mat); m.position.set(x, y, z); m.rotation.y = ry; g.add(m); return m; };
     const h = 2.2;
     // Metronome obelisk: its pendulum swings on the beat (see update()).
@@ -505,7 +506,7 @@ export class World {
   }
 
   _buildLandmarks() {
-    const L = (hex, o = {}) => celMaterial(hex, { flatShading: true, ...o });
+    const L = (hex, o = {}) => environmentMaterial(hex, { flatShading: true, ...o });
     this.landmarks = [];
     for (const b of BIOMES) {
       const g = new THREE.Group();
@@ -563,7 +564,7 @@ export class World {
   // ------------------------------------------------------------------ rift arena
   _buildRift() {
     const g = new THREE.Group();
-    const floorMat = celMaterial('#3b2a55');
+    const floorMat = environmentMaterial('#3b2a55');
     this._resonate(floorMat);
     const floor = new THREE.Mesh(new THREE.CircleGeometry(RIFT_RADIUS + 4, 64), floorMat);
     floor.rotation.x = -Math.PI / 2;
@@ -574,8 +575,8 @@ export class World {
       ring.rotation.x = -Math.PI / 2; ring.position.y = 0.02;
       g.add(ring);
     }
-    const pm = celMaterial('#2a2140', { flatShading: true });
-    const cm = celMaterial('#ffffff', { emissive: '#8f6bff', emissiveIntensity: 0.6, flatShading: true });
+    const pm = environmentMaterial('#2a2140', { flatShading: true });
+    const cm = environmentMaterial('#ffffff', { emissive: '#8f6bff', emissiveIntensity: 0.6, flatShading: true });
     for (let i = 0; i < 12; i++) {
       const a = (i / 12) * Math.PI * 2;
       const p = new THREE.Mesh(new THREE.CylinderGeometry(1, 1.3, 10, 6), pm);

@@ -2,10 +2,12 @@
 // Keep the tonal bands identical across characters, terrain, landmarks and props.
 import * as THREE from 'three';
 
+// The original browser look remains available for side-by-side comparison.
+export const legacyRender = new URLSearchParams(window.location.search).get('render') === 'legacy';
 let gradient;
 export function toonGradient() {
   if (gradient) return gradient;
-  const bands = new Uint8Array([80, 167, 255]);
+  const bands = new Uint8Array(legacyRender ? [90, 170, 255] : [80, 167, 255]);
   gradient = new THREE.DataTexture(bands, 3, 1, THREE.RedFormat);
   gradient.minFilter = THREE.NearestFilter;
   gradient.magFilter = THREE.NearestFilter;
@@ -21,4 +23,10 @@ export function celMaterial(color, options = {}) {
     gradientMap: toonGradient(),
     ...options,
   });
+}
+
+export function environmentMaterial(color, options = {}) {
+  return legacyRender
+    ? new THREE.MeshLambertMaterial({ color, ...options })
+    : celMaterial(color, options);
 }

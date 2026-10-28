@@ -14,6 +14,7 @@ const variants = [
   { name: 'desktop-default', query: '', chibi: false, shrine: false, mobile: false },
   { name: 'desktop-chibi-shrine', query: '?avatar=chibi&shrine=glb', chibi: true, shrine: true, mobile: false },
   { name: 'mobile-baseline', query: '?chladni=0&caustics=0', chibi: false, shrine: false, mobile: true },
+  { name: 'desktop-legacy-render', query: '?render=legacy', chibi: false, shrine: false, mobile: false, legacy: true },
 ];
 try {
   for (const test of variants) {
@@ -38,8 +39,16 @@ try {
       chibi: typeof window.__melodia.player.m.pose === 'function',
       shrineCount: window.__melodia.activities.pois.filter(p => p.type === 'shrine').length,
       uniforms: Object.keys(window.__melodia.world.uniforms),
+      legacyTerrain: !!window.__melodia.world.terrainMat.isMeshLambertMaterial,
+      chladni: window.__melodia.world.uniforms.uChladni.value,
+      caustics: window.__melodia.world.uniforms.uCaustics.value,
     }));
     assert.equal(before.chibi, test.chibi, test.name + ': incorrect avatar selection');
+    assert.equal(before.legacyTerrain, !!test.legacy, test.name + ': wrong environment shading');
+    if (test.legacy) {
+      assert.equal(before.chladni, 0, 'legacy Chladni strength');
+      assert.equal(before.caustics, 0, 'legacy caustics strength');
+    }
     assert.ok(before.shrineCount > 0, test.name + ': no shrines to validate');
     assert.ok(before.uniforms.includes('uChladni') && before.uniforms.includes('uCaustics'),
       test.name + ': shader uniforms missing');
