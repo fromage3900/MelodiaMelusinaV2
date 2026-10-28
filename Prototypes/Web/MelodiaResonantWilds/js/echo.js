@@ -113,13 +113,14 @@ export class Echo {
     return phrase;
   }
 
-  rollInheritance(tier) {
+  rollInheritance(tier, blessing = null) {
     const L = this.lineage;
     L.active = null;
     if (!L.phrase || !L.phrase.motifs?.length) {
       return { passed: false, chance: 0, motifs: [], reason: 'none' };
     }
-    const chance = this.passChance(tier);
+    let chance = this.passChance(tier);
+    if (blessing?.kind === 'echo_chance') chance = Math.min(0.95, chance + (blessing.mult || 0));
     if (Math.random() < chance) {
       L.active = {
         motifs: L.phrase.motifs.map((m) => ({ ...m })),

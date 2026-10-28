@@ -193,6 +193,19 @@ export class UI {
     this._bn = setTimeout(() => b.classList.remove('show'), 2800);
   }
 
+  /** Full-screen Recital ceremony flash: goal | bank | inherit | miss */
+  ceremonyFlash(kind = 'goal') {
+    const el = $('ceremonyflash');
+    if (!el) return;
+    el.className = `on ${kind}`;
+    el.classList.remove('hidden');
+    clearTimeout(this._cf);
+    this._cf = setTimeout(() => {
+      el.classList.add('hidden');
+      el.className = 'hidden';
+    }, 520);
+  }
+
   hint(text) {
     const h = $('hint');
     if (!text) { h.classList.add('hidden'); return; }
@@ -270,7 +283,13 @@ export class UI {
     if (rg) {
       if (rift?.goals?.length && !rift.done) {
         rg.classList.remove('hidden');
-        rg.innerHTML = `<b>Recital goals</b>` + rift.goals.map((x) => {
+        const bless = rift.blessing
+          ? `<div class="bless">✦ ${esc(rift.blessing.name)} · ${esc(rift.blessing.desc)}</div>`
+          : '';
+        const echo = rift.inherit?.passed
+          ? `<div class="echo-on">Echo Motifs active</div>`
+          : '';
+        rg.innerHTML = `<b>Recital goals</b>${bless}${echo}` + rift.goals.map((x) => {
           const pct = Math.min(100, (x.prog / x.n) * 100);
           return `<div class="g ${x.done ? 'done' : ''}">${x.done ? '✓ ' : ''}${esc(x.text)} <i><em style="width:${pct}%"></em></i></div>`;
         }).join('');
@@ -900,10 +919,12 @@ export class UI {
   showRiftReward(payload) {
     const box = $('riftreward');
     if (!box) return;
-    const { tier, inTime, notes, gold, items, phrase, passChance, pity } = payload;
+    const { tier, inTime, notes, gold, items, phrase, passChance, pity, blessing, motifPack } = payload;
     $('rrKicker').textContent = inTime ? `RIFT TIER ${tier} CLEARED` : `RIFT TIER ${tier} CLEARED (OVER TIME)`;
     $('rrTitle').textContent = 'Resonance Remains';
-    $('rrSub').textContent = 'Staged rewards · Echo Lineage banks for the next Recital';
+    $('rrSub').textContent = blessing
+      ? `Blessing: ${blessing.name} · Echo Lineage banks for the next Recital`
+      : 'Staged rewards · Echo Lineage banks for the next Recital';
     const cards = [];
     (items || []).forEach((it, i) => {
       const R = RARITIES[it.rarity];
@@ -918,6 +939,15 @@ export class UI {
       <b>+${notes} Golden Notes</b>
       <div class="meta">+${gold} gold on the ground</div>
     </div>`);
+    if (motifPack) {
+      const delay = ((items?.length || 0) + 0.5) * 0.12;
+      const bits = Object.entries(motifPack.motifs || {}).map(([id, n]) => `${MOTIF_BY_ID[id]?.name || id}×${n}`).join(', ');
+      cards.push(`<div class="rewardcard" style="animation-delay:${delay}s;border-color:var(--lavender)">
+        <div class="slotbox" style="border-color:var(--lavender)">✦</div>
+        <b>Motif Pack ×${motifPack.n}</b>
+        <div class="meta">${esc(bits)}</div>
+      </div>`);
+    }
     if (phrase) {
       const delay = ((items?.length || 0) + 1) * 0.12;
       cards.push(`<div class="rewardcard" style="animation-delay:${delay}s;border-color:var(--aqua)">
@@ -946,6 +976,7 @@ export class UI {
     $('rrRow').innerHTML = cards.join('');
     $('rrLineage').innerHTML = `<img src="assets/icons/echo_phrase.svg" alt=""/>Echo Lineage next pass ${Math.round((passChance || 0) * 100)}%${pity ? ` · pity +${Math.round(pity * 100)}%` : ''}`;
     box.classList.remove('hidden');
+    this.ceremonyFlash('bank');
     const btn = $('rrContinue');
     const done = () => {
       box.classList.add('hidden');

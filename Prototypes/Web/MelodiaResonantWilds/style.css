@@ -356,24 +356,59 @@ h1 { font-family: Georgia, 'Times New Roman', serif; font-size: clamp(40px, 9vw,
 
 #recgoals {
   position: absolute; left: calc(10px + var(--sal)); top: calc(118px + var(--sat));
-  width: min(42vw, 260px); pointer-events: none;
-  background: rgba(23,18,37,.82); border: 1px solid rgba(98,200,255,.35);
-  border-radius: 10px; padding: 6px 8px; font-size: 11px; line-height: 1.35;
+  width: min(44vw, 280px); pointer-events: none;
+  background: linear-gradient(160deg, rgba(28,22,48,.92), rgba(18,14,32,.88));
+  border: 1px solid rgba(98,200,255,.42);
+  box-shadow: 0 8px 24px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.06);
+  border-radius: 12px; padding: 8px 10px; font-size: 11px; line-height: 1.35;
 }
-#recgoals b { display: block; font-size: 9.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--aqua); margin-bottom: 4px; }
-#recgoals .g { opacity: .9; margin: 3px 0; }
-#recgoals .g.done { color: var(--gold-hi); text-decoration: line-through; opacity: .75; }
-#recgoals .g i { display: inline-block; width: 40px; height: 3px; background: rgba(255,255,255,.12); border-radius: 2px; vertical-align: middle; margin-left: 4px; overflow: hidden; }
-#recgoals .g i em { display: block; height: 100%; background: var(--aqua); }
+#recgoals b { display: block; font-size: 9.5px; letter-spacing: .12em; text-transform: uppercase; color: var(--aqua); margin-bottom: 5px; }
+#recgoals .bless {
+  font-size: 10px; color: var(--gold-hi); margin: 0 0 5px; padding: 4px 6px;
+  border-radius: 8px; background: rgba(217,188,114,.12); border: 1px solid rgba(217,188,114,.28);
+}
+#recgoals .echo-on {
+  font-size: 10px; color: #c690ff; margin: 0 0 5px; letter-spacing: .04em;
+}
+#recgoals .g { opacity: .92; margin: 4px 0; display: flex; align-items: center; gap: 4px; flex-wrap: wrap; }
+#recgoals .g.done { color: var(--gold-hi); text-decoration: line-through; opacity: .72; }
+#recgoals .g i { display: inline-block; width: 44px; height: 3px; background: rgba(255,255,255,.12); border-radius: 2px; vertical-align: middle; overflow: hidden; flex: 0 0 44px; }
+#recgoals .g i em { display: block; height: 100%; background: linear-gradient(90deg, var(--aqua), #b89cff); }
 
 .pedigree {
-  margin-top: 8px; padding: 8px 10px; border-radius: 10px;
-  background: linear-gradient(135deg, rgba(98,200,255,.12), rgba(55,41,77,.85));
-  border: 1px solid rgba(98,200,255,.4); font-size: 11px; line-height: 1.4; text-align: left;
+  margin-top: 8px; padding: 10px 12px; border-radius: 12px;
+  background: linear-gradient(135deg, rgba(98,200,255,.16), rgba(55,41,77,.9));
+  border: 1px solid rgba(98,200,255,.48); font-size: 11px; line-height: 1.45; text-align: left;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.08);
 }
-.pedigree .title { font-weight: 800; color: var(--aqua); letter-spacing: .06em; text-transform: uppercase; font-size: 10px; margin-bottom: 4px; }
-.oshi-pin { cursor: pointer; margin-left: 6px; font-size: 12px; opacity: .55; }
-.oshi-pin.on { opacity: 1; color: var(--gold-hi); filter: drop-shadow(0 0 4px rgba(217,188,114,.7)); }
+.pedigree .title { font-weight: 800; color: var(--aqua); letter-spacing: .08em; text-transform: uppercase; font-size: 10px; margin-bottom: 5px; }
+.oshi-pin {
+  cursor: pointer; margin-left: 6px; font-size: 12px; opacity: .55;
+  padding: 2px 8px; border-radius: 999px; border: 1px solid transparent;
+  transition: opacity .15s, border-color .15s, background .15s;
+}
+.oshi-pin:hover { opacity: .9; border-color: rgba(217,188,114,.35); }
+.oshi-pin.on {
+  opacity: 1; color: var(--gold-hi);
+  background: rgba(217,188,114,.14); border-color: rgba(217,188,114,.55);
+  filter: drop-shadow(0 0 4px rgba(217,188,114,.7));
+}
+
+#ceremonyflash {
+  position: fixed; inset: 0; z-index: 35; pointer-events: none;
+  opacity: 0; mix-blend-mode: screen;
+}
+#ceremonyflash.hidden { display: none !important; }
+#ceremonyflash.on { animation: ceremonyBurst .5s ease-out forwards; }
+#ceremonyflash.goal { background: radial-gradient(ellipse at 50% 45%, rgba(130,227,236,.55), transparent 55%); }
+#ceremonyflash.bank { background: radial-gradient(ellipse at 50% 40%, rgba(255,217,120,.65), rgba(198,144,255,.25) 45%, transparent 62%); }
+#ceremonyflash.inherit { background: radial-gradient(ellipse at 50% 42%, rgba(198,144,255,.7), rgba(98,200,255,.3) 40%, transparent 60%); }
+#ceremonyflash.miss { background: radial-gradient(ellipse at 50% 50%, rgba(141,134,152,.45), transparent 50%); }
+@keyframes ceremonyBurst {
+  0% { opacity: 0; }
+  18% { opacity: 1; }
+  100% { opacity: 0; }
+}
 
 #motifmorph {
   position: fixed; inset: 0; z-index: 45; display: grid; place-items: center;

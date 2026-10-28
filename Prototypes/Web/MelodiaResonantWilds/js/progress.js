@@ -1,6 +1,6 @@
 // Save profile, XP/levels, bounties and exploration.
 
-import { BOUNTY_TEMPLATES, ELEMENTS, STARTING_SKILLS, SKILLS, xpToNext, MAX_LEVEL, RULES } from './design.js';
+import { BOUNTY_TEMPLATES, ELEMENTS, STARTING_SKILLS, SKILLS, WEB_SKILLS, MOTIF_BY_ID, xpToNext, MAX_LEVEL, RULES } from './design.js';
 import { pick, randInt } from './util.js';
 import { WORLD_RADIUS } from './design.js';
 
@@ -147,8 +147,24 @@ export class Progress {
       const cache = g.loot.make(pr.level + 2, { min: 3, bonus: 0.6 });
       g.loot.add(cache);
       pr.notes += 25;
-      g.ui.toast(`Chorus Cache! ${cache.name} · +25 Golden Notes`, 'gold');
+      const packTier = ['tuned', 'tuned', 'resonant'];
+      const pack = g.loot.grantMotifPack(pick(Math.random, packTier));
+      const packLabel = Object.entries(pack.motifs)
+        .map(([id, n]) => `${MOTIF_BY_ID[id]?.name || id}×${n}`)
+        .join(', ');
+      g.ui.toast(`Chorus Cache! ${cache.name} · +25♪ · Motif pack (${pack.n}): ${packLabel}`, 'gold');
+      g.ui.ceremonyFlash?.('bank');
+      g.audio.fanfare('bank');
       g.audio.loot(cache.rarity);
+      if (g.ui.motifMorph) {
+        g.ui.motifMorph({
+          fromIcon: cache.icon || g.loot.iconKey(cache),
+          motifIds: Object.keys(pack.motifs),
+          rarity: cache.rarity,
+          label: `Chorus Cache Motif pack · ${packLabel}`,
+          kind: 'synth',
+        });
+      }
     }
     g.save();
   }
@@ -180,8 +196,19 @@ export class Progress {
     pr.notes += 20;
     const it = g.loot.make(b.levels[1] + 2, { min: 3, bonus: 0.6 });
     g.loot.add(it);
-    g.ui.banner(`Movement ${roman} complete`, `${label} answers you · +20 Golden Notes · ${it.name}`);
-    g.audio.levelUp();
+    // Movement clearance teaches the next web chart (Sheet Music path).
+    const webNext = WEB_SKILLS
+      .filter((s) => !pr.learned.includes(s.id))
+      .sort((a, b) => a.unlockLevel - b.unlockLevel)[0];
+    let skillBit = '';
+    if (webNext) {
+      pr.learned.push(webNext.id);
+      skillBit = ` · chart ${webNext.name}`;
+      g.ui.toast(`Movement Sheet: learned ${webNext.name}`, 'gold');
+    }
+    g.ui.banner(`Movement ${roman} complete`, `${label} answers you · +20 Golden Notes · ${it.name}${skillBit}`);
+    g.audio.fanfare('bank');
+    g.ui.ceremonyFlash?.('bank');
     g.save();
     return this.objective();
   }

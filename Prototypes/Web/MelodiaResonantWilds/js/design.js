@@ -382,6 +382,25 @@ export const RECITAL_GOALS = [
   { id: 'no_miss', text: 'Survive {n} beats without a Miss', n: [24, 40], spice: 'pity' },
 ];
 
+/**
+ * Recital Blessings — positive modifiers rolled on every Rift enter (Uma race condition).
+ * Distinct from tier-3+ Burdens; stacked via activities.blessingScale().
+ */
+export const RECITAL_BLESSINGS = [
+  { id: 'haste_cadence', name: 'Haste Cadence', desc: '+12% move speed in the Recital', kind: 'speed', mult: 1.12 },
+  { id: 'resonant_focus', name: 'Resonant Focus', desc: '+18% Encore gain', kind: 'encore', mult: 1.18 },
+  { id: 'guard_hymn', name: 'Guard Hymn', desc: 'Take 15% less damage', kind: 'damage', mult: 0.85 },
+  { id: 'wide_window', name: 'Wide Window', desc: '+10% rhythm timing window', kind: 'window', mult: 1.1 },
+  { id: 'motif_rain', name: 'Motif Rain', desc: '+1 Motif pack on clear', kind: 'motif_bonus', mult: 1 },
+  { id: 'phrase_favor', name: 'Phrase Favor', desc: '+8% Echo pass chance this Recital', kind: 'echo_chance', mult: 0.08 },
+];
+
+/** Chorus Cache Motif packs: size by quality tier. */
+export const MOTIF_PACK = { common: [2, 3], tuned: [3, 4], resonant: [4, 5] };
+
+/** Web skill ids preferred by Lost Sheet Music / Movement unlocks. */
+export const WEB_SKILL_IDS = WEB_SKILLS.map((s) => s.id);
+
 
 
 // Forge honing (Lost Ark style): chance falls with level, failures bank pity.

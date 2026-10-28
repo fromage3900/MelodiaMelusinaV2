@@ -2,7 +2,10 @@
 // biome Maestros (world bosses), Elite Chorus events and Resonance Rifts.
 
 import * as THREE from 'three';
-import { BIOMES, HUB, WORLD_SEED, RIFT_POOL, BURDENS, ELITE_AFFIXES, RIFT_STYLE, ELEMENT_STYLE, RECITAL_GOALS } from './design.js';
+import {
+  BIOMES, HUB, WORLD_SEED, RIFT_POOL, BURDENS, ELITE_AFFIXES, RIFT_STYLE, ELEMENT_STYLE,
+  RECITAL_GOALS, RECITAL_BLESSINGS, WEB_SKILLS, WEB_SKILL_IDS,
+} from './design.js';
 import { Enemy } from './entities.js';
 import { mulberry32, pick, clamp } from './util.js';
 import { makeBeam } from './fx.js';
@@ -231,19 +234,37 @@ export class Activities {
     g.particles.burst(p.x, p.y + 1, p.z, new THREE.Color('#ffd978'), 30, { speed: 8, life: 0.9, kind: 3 });
   }
 
+  /** Prefer web-native charts from Lost Sheet Music, then lowest UE lock. */
+  unlockFromSheet() {
+    const g = this.g, pr = g.profile;
+    const pickWeb = WEB_SKILLS
+      .filter((s) => !pr.learned.includes(s.id))
+      .sort((a, b) => a.unlockLevel - b.unlockLevel)[0];
+    if (pickWeb) {
+      pr.learned.push(pickWeb.id);
+      return pickWeb;
+    }
+    const locked = g.progress.lockedSkills().sort((a, b) => a.unlockLevel - b.unlockLevel);
+    if (locked.length) {
+      pr.learned.push(locked[0].id);
+      return locked[0];
+    }
+    return null;
+  }
+
   collectSheet(p) {
     const g = this.g;
     g.profile.sheets.push(p.id);
-    const locked = g.progress.lockedSkills();
-    if (locked.length) {
-      const s = locked.sort((a, b) => a.unlockLevel - b.unlockLevel)[0];
-      g.profile.learned.push(s.id);
-      g.ui.toast(`Lost Sheet Music! Learned ${s.name} (${s.element})`, 'gold');
+    const s = this.unlockFromSheet();
+    if (s) {
+      const web = WEB_SKILL_IDS.includes(s.id);
+      g.ui.toast(`Lost Sheet Music! Learned ${s.name}${web ? ' · web chart' : ''} (${s.element})`, 'gold');
+      g.ui.ceremonyFlash?.(web ? 'inherit' : 'goal');
     } else {
       g.profile.notes += 10;
       g.ui.toast('Lost Sheet Music! +10 Golden Notes', 'gold');
     }
-    g.audio.levelUp();
+    g.audio.fanfare('goal');
     g.particles.burst(p.x, p.y + 1.4, p.z, new THREE.Color('#fff2c8'), 30, { speed: 6, life: 1, kind: 1, size: 1 });
     g.save();
   }
@@ -436,7 +457,14 @@ export class Activities {
           g.prog += amount; hit = true;
         }
       }
-      if (hit && g.prog >= g.n) { g.done = true; g.prog = g.n; this.g.ui.toast(`Recital goal: ${g.text}`, 'gold'); this.g.audio.chime(3); }
+      if (hit && g.prog >= g.n) {
+        g.done = true; g.prog = g.n;
+        this.g.ui.toast(`Recital goal: ${g.text}`, 'gold');
+        this.g.audio.fanfare('goal');
+        this.g.ui.ceremonyFlash('goal');
+        this.g.particles?.burst?.(this.g.player.pos.x, this.g.player.pos.y + 1.2, this.g.player.pos.z,
+          new THREE.Color('#82e3ec'), 22, { speed: 7, life: 0.7, kind: 1, size: 1 });
+      }
     }
   }
 
@@ -450,12 +478,13 @@ export class Activities {
     g.combat.reset();
     g.decals.clear();
     const burden = tier >= 3 ? pick(Math.random, BURDENS) : null;
+    const blessing = pick(Math.random, RECITAL_BLESSINGS);
     // Uma-style Echo Lineage: roll inheritance before the Recital starts.
-    const inherit = g.echo.rollInheritance(tier);
+    const inherit = g.echo.rollInheritance(tier, blessing);
     P.recalc();
     const goals = this.rollRecitalGoals();
     this.rift = {
-      tier, burden, progress: 0, time: 0, limit: 240, guardian: null, done: false, spawnT: 0, exit: null,
+      tier, burden, blessing, progress: 0, time: 0, limit: 240, guardian: null, done: false, spawnT: 0, exit: null,
       level: g.profile.level + Math.max(0, tier - 1) * 2, hpMul: 1 + (tier - 1) * 0.15,
       returnPos: portal ? new THREE.Vector3(portal.x + 3, 0, portal.z + 3) : P.pos.clone(),
       inherit, goals, _perfStreak: 0, _noMissBeats: 0, _ffBeats: 0,
@@ -465,24 +494,42 @@ export class Activities {
     g.sheep.pos.set(2, 0, 2);
     g.audio.setScore(this.riftDef(tier));
     g.rhythm.encore = Math.max(g.rhythm.encore, P.stats.encoreStart);
-    let sub = burden ? `Burden: ${burden.display_name} — ${burden.description} (+rarity)` : 'Silence the dissonance. Fill the bar.';
-    if (inherit.passed) sub = `Echo Lineage passed (${Math.round(inherit.chance * 100)}%) · ${inherit.motifs.map((m) => m.key).join(', ')} · ` + sub;
-    else if (inherit.chance > 0) sub = `Echo missed (${Math.round(inherit.chance * 100)}%, pity banked) · ` + sub;
+    let sub = `Blessing: ${blessing.name} — ${blessing.desc}`;
+    if (burden) sub += ` · Burden: ${burden.display_name} (+rarity)`;
+    if (inherit.passed) {
+      sub = `Echo Lineage passed (${Math.round(inherit.chance * 100)}%) · ${inherit.motifs.map((m) => m.key).join(', ')} · ` + sub;
+      g.audio.fanfare('inherit');
+      g.ui.ceremonyFlash('inherit');
+      g.audio.motifChord(pick(Math.random, Object.keys(ELEMENT_STYLE)));
+      g.particles.burst(0, 1.4, 0, new THREE.Color('#c690ff'), 40, { speed: 9, life: 1.1, kind: 3, size: 1 });
+    } else if (inherit.chance > 0) {
+      sub = `Echo missed (${Math.round(inherit.chance * 100)}%, pity banked) · ` + sub;
+      g.audio.fanfare('miss');
+      g.ui.ceremonyFlash('miss');
+    } else {
+      g.audio.fanfare('goal');
+      g.ui.ceremonyFlash('goal');
+    }
     g.ui.banner(`Resonance Rift · Tier ${tier}`, sub);
     g.ui.toast(`Recital goals: ${goals.map((x) => x.text).join(' · ')}`, 'soft');
+    g.ui.toast(`Recital Blessing · ${blessing.name}`, 'aqua');
     g.shake(0.4);
   }
 
   burdenScale(kind) {
     const b = this.rift?.burden;
-    if (!b) return 1;
-    const m = b.magnitude / 100;
-    if (kind === 'window' && b.rule_type === 'rhythm_timing_window') return 1 - m;
-    if (kind === 'encore' && (b.rule_type === 'ultimate_gauge_recharge' || b.rule_type === 'ultimate_gauge')) return 1 - Math.min(0.5, m);
-    if (kind === 'damage' && (b.rule_type === 'damage_taken' || b.rule_type === 'hp' || b.rule_type === 'toughness_damage_taken')) return 1 + Math.min(0.5, m);
-    if (kind === 'speed' && b.rule_type === 'movement_speed') return 1 - Math.min(0.3, m / 2);
-    if (kind === 'tough' && b.rule_type === 'toughness_damage') return 1 + m;
-    return 1;
+    let scale = 1;
+    if (b) {
+      const m = b.magnitude / 100;
+      if (kind === 'window' && b.rule_type === 'rhythm_timing_window') scale *= 1 - m;
+      else if (kind === 'encore' && (b.rule_type === 'ultimate_gauge_recharge' || b.rule_type === 'ultimate_gauge')) scale *= 1 - Math.min(0.5, m);
+      else if (kind === 'damage' && (b.rule_type === 'damage_taken' || b.rule_type === 'hp' || b.rule_type === 'toughness_damage_taken')) scale *= 1 + Math.min(0.5, m);
+      else if (kind === 'speed' && b.rule_type === 'movement_speed') scale *= 1 - Math.min(0.3, m / 2);
+      else if (kind === 'tough' && b.rule_type === 'toughness_damage') scale *= 1 + m;
+    }
+    const bl = this.rift?.blessing;
+    if (bl && bl.kind === kind) scale *= bl.mult;
+    return scale;
   }
 
   updateRift(dt) {
@@ -550,10 +597,16 @@ export class Activities {
     const phrase = g.echo.bankFromRift(r, inTime, cleared);
     g.echo.clearActive();
     g.player.recalc();
+    let motifPack = null;
+    if (r.blessing?.kind === 'motif_bonus') {
+      motifPack = g.loot.grantMotifPack('tuned');
+    }
     g.ui.banner(inTime ? `Rift Tier ${r.tier} cleared!` : 'Rift cleared (over time)', `+${notes} Golden Notes${inTime ? ` · Tier ${r.tier + 1} unlocked` : ''}`);
-    g.audio.levelUp();
+    g.audio.fanfare('bank');
+    g.ui.ceremonyFlash('bank');
+    g.particles.burst(0, 1.6, 0, new THREE.Color('#ffd978'), 48, { speed: 10, life: 1.2, kind: 3, size: 1 });
     g.ui.showRiftReward({
-      tier: r.tier, inTime, notes, gold, items, phrase,
+      tier: r.tier, inTime, notes, gold, items, phrase, blessing: r.blessing, motifPack,
       passChance: g.echo.passChance(r.tier + (inTime ? 1 : 0)),
       pity: g.profile.echoLineage.pity || 0,
       goals: r.goals || [],

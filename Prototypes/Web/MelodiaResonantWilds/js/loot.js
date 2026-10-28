@@ -4,9 +4,9 @@
 import {
   RARITIES, SLOTS, SLOT_BY_ID, AFFIXES, AFFIX_BY_KEY, ARIAS, ARIA_BY_ID, ELEMENTS,
   HONE_MAX, honeChance, MOTIFS, MOTIF_BY_ID, SYNTH_LOOPS, SYNTH_SHARD_COST, SYNTH_GOLD_COST,
-  synthQuality, synthTraitSlots,
+  synthQuality, synthTraitSlots, MOTIF_PACK,
 } from './design.js';
-import { pick, randRange, weightedPick } from './util.js';
+import { pick, randRange, weightedPick, randInt } from './util.js';
 
 const PREFIX = [[''], ['Tuned', 'Bright', 'Lilting'], ['Resonant', 'Chiming', 'Lucid'], ['Virtuoso', 'Celestial', 'Aria-bound'], ['']];
 const SLOT_HP = { instrument: 0, head: 0.8, gown: 1.4, gloves: 0.7, shoes: 0.8, charm: 0.6 };
@@ -183,6 +183,22 @@ export class Loot {
       .filter(([, n]) => n > 0)
       .map(([id, n]) => ({ ...MOTIF_BY_ID[id], id, n }))
       .filter((m) => m.name);
+  }
+
+  /** Chorus Cache / Recital Motif pack — Atelier-style material bundle. */
+  grantMotifPack(tier = 'tuned') {
+    const rng = this.rng;
+    const range = MOTIF_PACK[tier] || MOTIF_PACK.tuned;
+    const n = randInt(rng, range[0], range[1]);
+    const gain = {};
+    const q2 = MOTIFS.filter((m) => m.quality >= 2);
+    for (let i = 0; i < n; i++) {
+      const rare = rng() < (tier === 'resonant' ? 0.45 : tier === 'tuned' ? 0.25 : 0.1);
+      const id = pick(rng, rare && q2.length ? q2 : MOTIFS).id;
+      this.addMotif(id, 1);
+      gain[id] = (gain[id] || 0) + 1;
+    }
+    return { tier, n, motifs: gain };
   }
 
   /** Roll Motifs yielded by salvaging an item. Always at least one. */
