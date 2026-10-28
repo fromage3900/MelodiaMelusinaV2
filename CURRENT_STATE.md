@@ -634,6 +634,19 @@ Bound by FluidNinja's own parameters (`SimSpeed`, `Painter.BrushStrength/BrushSi
 - **Animation:** the rune master was already time-animated in-shader (ring rotation `RingRotationSpeed`, breathing `PulseSpeed`). New: **`M_VFX_SDF_MagicRune` now reads `BeatPulse` from `MPC_Melodia_Palette`** (read-only; the audio-reactive subsystem stays the sole writer; one MPC, inside the 2-MPC limit) and multiplies it into `EmissiveIntensity` through a new `BeatGain` parameter (default 0.6): `Emissive * (1 + BeatGain * BeatPulse)`. Wired in place with no deletions; log shows no compile failure. The effect only shows when the palette's `BeatPulse` is written (PIE with music), so it is **NOT seen yet**. The portal master is not beat-linked yet.
 - **Direction (owner):** Niagara systems have not worked reliably in this project, so the VFX stack is SDF material stacks on meshes/cards rather than NS systems; extend it that way (glitter and runes on cards, portals on door leaves). Further animation options, cheapest first: more MPC reads in the masters (`BassIntensity`, `MagicalTransform`, `PlayerProximity` to open a door as she nears), a Sequencer MPC track for keyframed reveals, MID driven from the story-door component.
 
+#### 5j.12 — 4 new SDF presets added (2026-10-28)
+- **4 new SDF presets** added to the universal master (presets 9-12):
+  - **Preset 9: Flame** — animated flame with noise turbulence, color gradient (blue→orange→white), flicker. FlameHeight, FlameWidth, Turbulence, FlameSpeed, FlickerSpeed, FlickerDepth, FlameColor, FlameCore.
+  - **Preset 10: Crystal/Ice** — faceted crystal with refraction, internal glow, sparkle. CrystalFacets, CrystalSize, RefractionStrength, InternalGlow, SparkleIntensity3, CrystalTint.
+  - **Preset 11: Shield/Barrier** — hexagonal grid with energy pulse, crack lines, impact ripples. HexSize, HexGlow, PulseSpeed_Shield, CrackIntensity, ImpactRadius, ShieldColor.
+  - **Preset 12: Melusina Signature** — flowing curves, iridescence, beat-synced. CurveCount, CurveFlow, Iridescence, TrailLength_Mel, MelusinaColor, HarmonicFrequency.
+- **25 new params** added (20 scalar + 5 vector). All wired to the custom HLSL node.
+- **BeatPulse** param added for audio-reactive presets.
+- **HLSL fix:** `alpha` variable declared at top (was causing "undeclared identifier" compile errors when presets referenced it before declaration).
+- **Total SDF presets:** 12 (cosmic portal, glitter, rune, musical notation, orrery, harmonic iris, cymatic wave, starburst gem, flame, crystal, shield, Melusina signature).
+- **Total params:** 155 (130 base + 25 new).
+- **Compile verified:** 0 errors, 539 PS instructions (up from 439). All 108 inputs connected. Saved.
+
 #### 5j.11 — Timing/easing applied to all remaining spark/mote systems (2026-10-24)
 - **Pattern:** ScaleSpriteSize (1.2×) + SpawnBurst_Instantaneous (15 @ t=0) + shorter lifetime + lower spawn rate + ScaleColor fade. Applied to 18 additional systems (24 total).
 - **Systems updated (this pass):** StarPop, Dust, EntropyDust, ChaosDrift, CursorTrail, Arc, Glint, ProviderSigil, Sigil, Superposition (StateA + StateB), ImpactBurst, Gouache_PortalSwirl, PollenMote, WindFront, WindRibbon (Gust + PetalBurst), PetalDrift, PollenSparkle.
