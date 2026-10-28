@@ -21,12 +21,12 @@ export class PostFX {
     this.composer = new EffectComposer(r);
     this.renderPass = new RenderPass(game.scene, game.camera);
     this.outline = new OutlinePass(new Vector2(size.x, size.y), game.scene, game.camera);
-    this.outline.edgeStrength = 2.6;
-    this.outline.edgeGlow = 0.55;
-    this.outline.edgeThickness = 1.4;
+    this.outline.edgeStrength = 4.5;
+    this.outline.edgeGlow = 0.85;
+    this.outline.edgeThickness = 2.2;
     this.outline.pulsePeriod = 1.6;
     this.outline.visibleEdgeColor.set('#ff7a9a');
-    this.outline.hiddenEdgeColor.set('#5a2038');
+    this.outline.hiddenEdgeColor.set('#ff3a68');
     this.output = new OutputPass();
     this.fxaa = new ShaderPass(FXAAShader);
     this.composer.addPass(this.renderPass);
@@ -71,17 +71,20 @@ export class PostFX {
     if (it?.mesh) list.push(it.mesh);
     this.outline.selectedObjects = list;
     if (threat) {
-      this.outline.visibleEdgeColor.setRGB(1, 0.42, 0.55);
-      this.outline.pulsePeriod = 0.85;
-      this.outline.edgeStrength = 3.2;
+      this.outline.visibleEdgeColor.setRGB(1, 0.35, 0.5);
+      this.outline.pulsePeriod = 0.7;
+      this.outline.edgeStrength = 5.5;
+      this.outline.edgeThickness = 2.6;
     } else if (it) {
-      this.outline.visibleEdgeColor.setRGB(1, 0.85, 0.47);
-      this.outline.pulsePeriod = 2.2;
-      this.outline.edgeStrength = 2.4;
+      this.outline.visibleEdgeColor.setRGB(1, 0.85, 0.4);
+      this.outline.pulsePeriod = 2.0;
+      this.outline.edgeStrength = 4.0;
+      this.outline.edgeThickness = 2.0;
     } else {
-      this.outline.visibleEdgeColor.setRGB(1, 0.55, 0.72);
-      this.outline.pulsePeriod = 1.6;
-      this.outline.edgeStrength = 2.6;
+      this.outline.visibleEdgeColor.setRGB(1, 0.5, 0.68);
+      this.outline.pulsePeriod = 1.4;
+      this.outline.edgeStrength = 4.5;
+      this.outline.edgeThickness = 2.2;
     }
   }
 
