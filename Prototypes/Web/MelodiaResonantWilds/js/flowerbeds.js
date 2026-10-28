@@ -64,8 +64,7 @@ export function createFlowerbedParts(M, L, white) {
         [cx,cy+.075*s,cz]);
     }
   }
-  const petalMat = white;
-  petalMat.side = THREE.DoubleSide;
+  const petalMat = L('#ffffff', { side: THREE.DoubleSide });
   const leafMat = L('#65b49a', { side: THREE.DoubleSide });
   const pollenMat = L('#f6da93', { side: THREE.DoubleSide, emissive: '#9e7830', emissiveIntensity: 0.06 });
   return [
