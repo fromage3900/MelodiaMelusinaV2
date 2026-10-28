@@ -11,6 +11,7 @@ import { mulberry32, pick, clamp } from './util.js';
 import { makeBeam } from './fx.js';
 import { planExploration, biomeWorkflow, OW_RULES } from './openworld.js';
 import { environmentMaterial } from './cel.js';
+import { createDeterministicTimeline } from './heritage-timeline.js';
 
 const L = (hex, o = {}) => environmentMaterial(hex, { flatShading: true, ...o });
 
@@ -24,6 +25,14 @@ export class Activities {
     this.event = null;
     this._acc = 0;
     this.worldExpansionEnabled = new URLSearchParams(window.location.search).get('worldexp') === '1';
+    this.shrineReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    this.shrineTimeline = createDeterministicTimeline({
+      duration: 8,
+      channels: {
+        yaw: [{ start: 0, end: 4, from: -0.07, to: 0.07 }, { start: 4, end: 8, from: 0.07, to: -0.07 }],
+        rise: [{ start: 0, end: 4, from: -0.06, to: 0.06 }, { start: 4, end: 8, from: 0.06, to: -0.06 }],
+      },
+    });
     this.generate();
   }
 
@@ -379,6 +388,13 @@ export class Activities {
     const g = this.g, P = g.player;
     if (this.rift) return this.updateRift(dt);
     for (const p of this.pois) {
+      // Existing website utility samples the imported shrine inside this
+      // Three.js scene; procedural fallback and POI collision stay unchanged.
+      if (p.type === 'shrine' && p.assetVisual && !this.shrineReducedMotion) {
+        const frame = this.shrineTimeline.sample(this.shrineTimeline.wrap(g.time + Math.abs(p.x) * 0.03)).values;
+        p.assetVisual.rotation.y = frame.yaw;
+        p.assetVisual.position.y = frame.rise;
+      }
       if (p.spin && p.type !== 'chime' && p.type !== 'musicgate' && p.type !== 'ariagate') {
         p.spin.rotation.y += dt * 1.5;
         const baseY = p.type === 'pylon' ? 3 : p.type === 'sheet' ? 1.4 : p.type === 'rift' ? 2.6 : p.type === 'overlook' ? 2.2 : p.type === 'photo' ? 2.1 : p.type === 'cleanse' ? 0.9 : p.type === 'destination' ? 2.4 : 2;
