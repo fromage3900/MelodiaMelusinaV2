@@ -15,6 +15,7 @@ import { Progress, saveProfile, loadProfile, wipeProfile } from './progress.js';
 import { Activities } from './activities.js';
 import { Echo } from './echo.js';
 import { UI } from './ui.js';
+import { PostFX } from './postfx.js';
 import { BIOMES, HUB, DIFFICULTY, RARITIES, SKILL_BY_ID, SHARD_BY_ELEMENT, ELEMENT_STYLE, MODIFIERS, RULES, xpToNext } from './design.js';
 import { clamp, lerp } from './util.js';
 
@@ -78,6 +79,10 @@ export class Game {
     this.activities = new Activities(this);
     this.echo = new Echo(this);
     this.ui = new UI(this);
+    // Heavy postprocessing is opt-in until measured on iPhone Safari.
+    this.postfx = new URLSearchParams(location.search).get('postfx') === '1' ? new PostFX(this) : null;
+    this.daycycleEnabled = new URLSearchParams(location.search).get('daycycle') === '1';
+    this._outlineInteract = null;
 
     this.firstRunGear();
     const sp = this.profile.spawn;
@@ -221,6 +226,8 @@ export class Game {
     }
     this.autoAttackBeat = gr.beat ? gr.beat.index : this.beatIndex;
     this.rhythm.register(gr, hits);
+    if (gr.grade === 'Miss') this.combat.missPressure();
+    else if (gr.grade === 'Perfect' && hits) this.combat.perfectJuice(gr);
   }
 
   // Holding attack auto-fires on each beat at a flat ×1.0 — tapping on the
@@ -248,6 +255,8 @@ export class Game {
     this.cooldowns[i] = this.time + total;
     const hits = this.combat.cast(sk, gr);
     this.rhythm.register(gr, hits);
+    if (gr.grade === 'Miss') this.combat.missPressure();
+    else if (gr.grade === 'Perfect' && hits) this.combat.perfectJuice(gr);
   }
 
   dodge(perfMs) {
@@ -258,13 +267,22 @@ export class Game {
     const mv = this.ui.move();
     const ang = mv.x || mv.z ? Math.atan2(mv.x, mv.z) : P.facing;
     P.dodgeFrom = { x: P.pos.x, z: P.pos.z };
-    P.startDash(ang, 5.5, 0.22, gr.grade !== 'Miss');
+    const perfectish = gr.grade === 'Perfect' || gr.grade === 'Great';
+    P.startDash(ang, perfectish ? 6.4 : 5.5, perfectish ? 0.26 : 0.22, gr.grade !== 'Miss');
     P.lastDodgeTime = this.time;
     P.lastDodgeGrade = gr.grade;
     this.dodgeReadyAt = this.time + (gr.grade === 'Perfect' && P.stats.arias.has('SwiftTempo') ? 0.25 : this.dodgeCd);
     this.audio.dodge();
     this.ui.gradeFlash(gr.grade, gr.err);
-    for (let k = 0; k < 8; k++) this.particles.emit(P.pos.x, P.pos.y + 0.8, P.pos.z, _c.set('#ffffff'), { speed: 2, life: 0.4, size: 0.7 });
+    const spark = perfectish ? 16 : 8;
+    const col = gr.grade === 'Perfect' ? '#ffd978' : gr.grade === 'Great' ? '#c9b6ef' : '#ffffff';
+    for (let k = 0; k < spark; k++) {
+      this.particles.emit(P.pos.x, P.pos.y + 0.8, P.pos.z, _c.set(col), {
+        dir: { x: Math.sin(ang + Math.PI), y: 0.15, z: Math.cos(ang + Math.PI) },
+        speed: perfectish ? 5 + Math.random() * 4 : 2, life: 0.4, size: perfectish ? 0.9 : 0.7, kind: perfectish ? 3 : 0,
+      });
+    }
+    if (perfectish) this.decals.spawn('ring', P.pos.x, P.pos.z, { r: 1.6, inner: 1.2, flash: true, dur: 0.28, color: col });
   }
 
   perfectDodge(src) {
@@ -273,14 +291,17 @@ export class Game {
     P.lastDodgeGrade = null;
     const great = g === 'Perfect' || g === 'Great';
     this.overlay.text(P.pos.x, P.pos.y + 3, P.pos.z, great ? 'PERFECT DODGE' : 'DODGE', great ? '#ffd978' : '#c9b6ef', great ? 22 : 16, { life: 0.9 });
-    P.invulnUntil = Math.max(P.invulnUntil, this.time + 0.3);
+    P.invulnUntil = Math.max(P.invulnUntil, this.time + (great ? 0.55 : 0.3));
     if (!great) return;
     P.nextCrit = true;
+    P.heal(P.stats.maxHp * 0.04, true);
     R.encore = Math.min(R.encoreMax, R.encore + RULES.ultimate.gain_perfect);
     R.crescendo = Math.min(RULES.crescendo.max, R.crescendo + RULES.crescendo.gain.perfect);
     if (src && !src.dead) src.slowUntil = this.time + this.audio.spb * 2;
     if (P.stats.arias.has('TempoShift')) for (let i = 0; i < 4; i++) this.cooldowns[i] -= 4 * this.audio.spb;
     this.world.pulse(P.pos.x, P.pos.z, 1.5, true);
+    this.particles.burst(P.pos.x, P.pos.y + 1.2, P.pos.z, _c.set('#ffd978'), 28, { speed: 9, life: 0.55, kind: 3, size: 0.9 });
+    this.shake(0.22);
     this.audio.grade('Perfect');
   }
 
@@ -318,12 +339,13 @@ export class Game {
     const P = this.player;
     const r = this.activities.rift;
     if (r) return r.exit && Math.hypot(P.pos.x, P.pos.z - 6) < 3.5 ? { label: 'Leave the Rift ◎', fn: () => this.activities.exitRift() } : null;
-    let best = null, bd = 4;
+    let best = null, bd = 4.5;
     for (const p of this.activities.pois) {
-      if (!['forge', 'board', 'font', 'rift', 'boss', 'shrine', 'pylon'].includes(p.type)) continue;
+      if (!['forge', 'board', 'font', 'rift', 'boss', 'shrine', 'pylon', 'overlook', 'photo', 'chime', 'musicgate', 'cleanse', 'ariagate', 'destination'].includes(p.type)) continue;
       const d = Math.hypot(p.x - P.pos.x, p.z - P.pos.z);
       if (d < bd) { bd = d; best = p; }
     }
+    this._outlineInteract = best && best.mesh && !best.open && !best.cleared && !best.autoDone && !best.dewTaken ? best : null;
     if (!best) return null;
     const p = best;
     switch (p.type) {
@@ -334,6 +356,17 @@ export class Game {
       case 'boss': return p.alive && !p.alive.dead ? null : { label: `Summon ${p.name} ♛`, fn: () => this.activities.summonBoss(p) };
       case 'shrine': return this.activities.shrine ? null : { label: 'Play the shrine 𝄞', fn: () => this.activities.startShrine(p) };
       case 'pylon': return this.profile.pylons.includes(p.id) ? { label: 'Fast travel ◆', fn: () => this.ui.open('map') } : null;
+      case 'overlook': return { label: 'Take in the vista ♪', fn: () => this.activities.viewOverlook(p) };
+      case 'photo': return { label: p.challenge && !p.autoDone ? 'Frame the whim ✧' : 'Whim Frame ✧', fn: () => this.activities.snapPhoto(p) };
+      case 'chime': return { label: 'Ring the chimes ♪', fn: () => this.activities.ringChimes(p) };
+      case 'musicgate': return p.open ? null : { label: 'Answer the bridge 𝄞', fn: () => this.activities.openMusicGate(p) };
+      case 'cleanse': return p.cleared ? null : { label: 'Ask Sheep to Harmonize ♪', fn: () => this.activities.cleanseSpot(p) };
+      case 'ariagate': return p.open ? null : { label: 'Wardrobe gate ✧', fn: () => this.activities.tryAriaGate(p) };
+      case 'destination': {
+        if (p.needsPurify && !p.purified) return { label: 'Ask Sheep to Harmonize ♪', fn: () => { this.sheep.pos.set(p.x + 1.2, p.y, p.z + 1.2); this.sheep.harmonize(true); } };
+        if (p.dewTaken) return { label: p.name, fn: () => this.activities.revealDestination(p) };
+        return { label: `Collect Resonance Dew ✧`, fn: () => this.activities.collectDew(p) };
+      }
     }
     return null;
   }
@@ -374,7 +407,8 @@ export class Game {
     if (e.elite || e.boss) return true;
     let n = 0;
     for (const o of this.enemies) if (!o.dead && !o.elite && !o.boss && o.strikes.length) n++;
-    return n < (this.activities.rift ? 4 : 3);
+    // Allow denser pressure so packs feel like they fight back, while keeping telegraphs readable.
+    return n < (this.activities.rift ? 5 : 4);
   }
 
   spawnAdds(boss, n) {
@@ -679,6 +713,10 @@ export class Game {
     this.baseRatio = q === 'low' ? 1 : q === 'high' ? Math.min(dpr, 2) : Math.min(dpr, isTouch ? 1.5 : 2);
     this._fps.scale = 1;
     this.renderer.setPixelRatio(this.baseRatio);
+    if (this.postfx) {
+      this.postfx.setEnabled(q !== 'low');
+      this.postfx.resize();
+    }
   }
 
   resize() {
@@ -689,6 +727,7 @@ export class Game {
     this.camera.updateProjectionMatrix();
     this.overlay.resize();
     this.particles.mat.uniforms.uScale.value = (h * this.renderer.getPixelRatio()) / (2 * Math.tan((this.camera.fov * Math.PI) / 360));
+    if (this.postfx) this.postfx.resize();
   }
 
   adaptQuality(dt) {
@@ -702,6 +741,7 @@ export class Game {
     else if (fps > 57 && f.scale < 1) f.scale = Math.min(1, f.scale + 0.1);
     else return;
     this.renderer.setPixelRatio(Math.max(0.75, this.baseRatio * f.scale));
+    if (this.postfx) this.postfx.setEnabled(f.scale > 0.7);
     this.resize();
   }
 
@@ -758,13 +798,22 @@ export class Game {
     const bars = [];
     for (const e of this.enemies) {
       if (e.dead || e.boss) continue;
-      if (e.hp < e.maxHp || e.elite) {
-        bars.push({ x: e.pos.x, y: e.pos.y + 1.9 * e.scale + 0.3, z: e.pos.z, w: e.elite ? 64 : 38, h: e.elite ? 6 : 4, frac: e.hp / e.maxHp, color: e.elite ? '#ff9a4a' : '#ff6b81', tough: e.maxTough ? e.tough / e.maxTough : undefined, broken: e.broken, name: e.elite ? e.name : null, nameColor: '#ffb27a' });
+      if (e.hp < e.maxHp || e.elite || e.aggro || e.strikes.length) {
+        bars.push({
+          x: e.pos.x, y: e.pos.y + 1.9 * e.scale + 0.3, z: e.pos.z,
+          w: e.elite ? 64 : 42, h: e.elite ? 6 : 5, frac: e.hp / e.maxHp,
+          color: e.elite ? '#ff9a4a' : e.strikes.length ? '#ff5470' : '#ff6b81',
+          tough: e.maxTough ? e.tough / e.maxTough : undefined, broken: e.broken,
+          name: e.elite ? e.name : (e.strikes.length ? '♪' : null),
+          nameColor: e.elite ? '#ffb27a' : '#ffb3c1',
+        });
       }
     }
     this.overlay.draw(dt, bars, labels);
     this.ui.update(dt);
+    // Compositors are alternative opt-in render paths; never double-render.
     if (this.painterly && this.painterly.settings.strength > 0) this.painterly.render(this.renderer, this.scene, this.camera);
+    else if (this.postfx) this.postfx.render();
     else this.renderer.render(this.scene, this.camera);
   }
 
@@ -842,12 +891,31 @@ export class Game {
     if (!this.inCombat && !P.dead && P.hp < P.stats.maxHp) P.hp = Math.min(P.stats.maxHp, P.hp + P.stats.maxHp * (this.safeZone ? 0.12 : 0.03) * dt);
     // Palette follows the biome you stand in.
     this.world.palette(P.pos.x, P.pos.z, this.pal);
+    let targetFog = this.pal.fog, targetLight = this.pal.light;
+    if (this.daycycleEnabled) {
+      const tod = (this.time % 420) / 420;
+      const dusk = Math.sin(tod * Math.PI * 2) * 0.5 + 0.5;
+      if (!this._todFog) {
+        this._todFog = new THREE.Color(); this._todLight = new THREE.Color();
+        this._todDuskFog = new THREE.Color('#c4a8d8'); this._todDuskLight = new THREE.Color('#ffb07a');
+      }
+      this._todFog.copy(this.pal.fog).lerp(this._todDuskFog, dusk * 0.35);
+      this._todLight.copy(this.pal.light).lerp(this._todDuskLight, dusk * 0.4);
+      targetFog = this._todFog; targetLight = this._todLight;
+      this.sun.intensity = lerp(1.7, 1.15, dusk);
+      this.hemi.intensity = lerp(1.5, 1.05, dusk);
+    }
     const k = Math.min(1, dt * 1.5);
-    this.scene.fog.color.lerp(this.pal.fog, k);
-    this.scene.background.lerp(this.pal.fog, k);
+    this.scene.fog.color.lerp(targetFog, k);
+    this.scene.background.lerp(targetFog, k);
     this.world.water.material.color.lerp(this.pal.water, k);
-    this.sun.color.lerp(this.pal.light, k);
-    if (this.world.inRift) { this.scene.fog.near = 45; this.scene.fog.far = 110; } else { this.scene.fog.near = 90; this.scene.fog.far = 280; }
+    this.sun.color.lerp(targetLight, k);
+    if (this.world.inRift) { this.scene.fog.near = 45; this.scene.fog.far = 110; }
+    else if (this.daycycleEnabled) {
+      const fighting = this.inCombat ? 1 : 0;
+      this.scene.fog.near = lerp(70, 55, fighting);
+      this.scene.fog.far = lerp(190, 145, fighting);
+    } else { this.scene.fog.near = 90; this.scene.fog.far = 280; }
     this.ui.tutorialTick(dt);
     this.profile.stats.playSeconds += dt;
     this._save += dt;
