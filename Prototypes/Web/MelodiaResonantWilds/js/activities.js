@@ -6,6 +6,7 @@ import { BIOMES, HUB, WORLD_SEED, RIFT_POOL, BURDENS, ELITE_AFFIXES, RIFT_STYLE,
 import { Enemy } from './entities.js';
 import { mulberry32, pick, clamp } from './util.js';
 import { makeBeam } from './fx.js';
+import { planExploration, biomeWorkflow, OW_RULES } from './openworld.js';
 import { environmentMaterial } from './cel.js';
 
 const L = (hex, o = {}) => environmentMaterial(hex, { flatShading: true, ...o });
@@ -19,6 +20,7 @@ export class Activities {
     this.eventAt = 110;
     this.event = null;
     this._acc = 0;
+    this.worldExpansionEnabled = new URLSearchParams(window.location.search).get('worldexp') === '1';
     this.generate();
   }
 
@@ -47,17 +49,36 @@ export class Activities {
     BIOMES.forEach((b, bi) => {
       const ax = Math.cos(b.angle), az = Math.sin(b.angle);
       add({ type: 'boss', id: 'boss_' + b.id, biome: bi, x: b.cx - ax * 30, z: b.cz - az * 30, bx: b.cx - ax * 17, bz: b.cz - az * 17, name: b.bossName, cdUntil: 0 });
+      if (this.worldExpansionEnabled) {
+        const wf = biomeWorkflow(b);
+        for (const [r, da, k] of [[72, 0, 0], [88, 0.07, 1], [105, -0.08, 2]]) {
+          const a = b.angle + da;
+          add({ type: 'camp', id: `camp_gate_${b.id}_${k}`, biome: bi,
+            x: Math.cos(a) * r, z: Math.sin(a) * r,
+            active: false, clearedAt: -999, enemies: [], starter: true });
+        }
+        add({ type: 'overlook', id: `vista_${b.id}`, biome: bi,
+          x: wf.reveal.x, z: wf.reveal.z,
+          name: `${b.name.split('—')[0].trim()} Reveal`,
+          vistaLine: wf.vistaLine, gateFeeling: wf.gateFeeling, workflow: 'vista' });
+      }
       [[480, -0.18], [1040, 0.2]].forEach(([r, da], k) => {
         const s = spot(b.angle + da, 0.12, r - 40, r + 40, 40);
         if (s) add({ type: 'pylon', id: `pylon_${b.id}_${k}`, biome: bi, ...s, name: `${b.name.split('—')[0].trim()} Pylon ${k + 1}` });
       });
       const rs = spot(b.angle + 0.32, 0.1, 600, 760);
       if (rs) add({ type: 'rift', id: 'rift_' + b.id, biome: bi, ...rs, name: 'Rift Gate' });
-      for (let i = 0; i < 22; i++) { const s = spot(b.angle, 0.55, 200, 1280, 56); if (s) add({ type: 'camp', biome: bi, ...s, active: false, clearedAt: -999, enemies: [] }); }
-      for (let i = 0; i < 10; i++) { const s = spot(b.angle, 0.55, 180, 1300, 36); if (s) add({ type: 'chest', biome: bi, ...s, openedAt: -999 }); }
-      for (let i = 0; i < 3; i++) { const s = spot(b.angle, 0.5, 260, 1200, 50); if (s) add({ type: 'shrine', id: `shrine_${b.id}_${i}`, biome: bi, ...s, name: 'Music-Key Shrine', cdUntil: 0 }); }
-      for (let i = 0; i < 6; i++) { const s = spot(b.angle, 0.55, 220, 1280, 40); if (s) add({ type: 'sheet', id: `sheet_${b.id}_${i}`, biome: bi, ...s }); }
+      if (this.worldExpansionEnabled) {
+        const planned = planExploration(b, bi, rng, this.pois.slice());
+        for (const p of planned.pois) add(p);
+      } else {
+        for (let i = 0; i < 22; i++) { const s = spot(b.angle, 0.55, 200, 1280, 56); if (s) add({ type: 'camp', biome: bi, ...s, active: false, clearedAt: -999, enemies: [] }); }
+        for (let i = 0; i < 10; i++) { const s = spot(b.angle, 0.55, 180, 1300, 36); if (s) add({ type: 'chest', biome: bi, ...s, openedAt: -999 }); }
+        for (let i = 0; i < 3; i++) { const s = spot(b.angle, 0.5, 260, 1200, 50); if (s) add({ type: 'shrine', id: `shrine_${b.id}_${i}`, biome: bi, ...s, name: 'Music-Key Shrine', cdUntil: 0 }); }
+        for (let i = 0; i < 6; i++) { const s = spot(b.angle, 0.55, 220, 1280, 40); if (s) add({ type: 'sheet', id: `sheet_${b.id}_${i}`, biome: bi, ...s }); }
+      }
     });
+    this.workflowRules = OW_RULES;
     for (const p of this.pois) {
       p.y = W.sample(p.x, p.z);
       p.level = p.biome >= 0 ? W.zoneLevel(p.x, p.z) : 1;
@@ -120,6 +141,76 @@ export class Activities {
       orb.position.y = 1.8;
       p.spin = orb;
       grp.add(altar, orb);
+    } else if (p.type === 'overlook') {
+      // Vista platform — Genshin-style reveal perch with a framed view toward the landmark.
+      const deck = new THREE.Mesh(new THREE.CylinderGeometry(3.2, 3.6, 0.45, 10), L('#efe6d8'));
+      deck.position.y = 0.25;
+      const rail = new THREE.Mesh(new THREE.TorusGeometry(3.1, 0.08, 6, 24), L('#d9bc72', { emissive: '#d9a84a', emissiveIntensity: 0.25 }));
+      rail.rotation.x = Math.PI / 2; rail.position.y = 1.1;
+      p.clefMat = L('#ffffff', { emissive: '#ffd978', emissiveIntensity: 0.7 });
+      const lens = new THREE.Mesh(new THREE.TorusGeometry(0.7, 0.12, 8, 20), p.clefMat);
+      lens.position.y = 2.2;
+      p.spin = lens;
+      grp.add(deck, rail, lens);
+    } else if (p.type === 'photo') {
+      // Nikki-style "whim frame" — a floating picture frame that pulses on the beat.
+      const frame = new THREE.Mesh(new THREE.BoxGeometry(2.4, 1.7, 0.12), L('#f7f0ff', { emissive: '#c8b6ef', emissiveIntensity: 0.35 }));
+      frame.position.y = 2.1;
+      const pane = new THREE.Mesh(new THREE.PlaneGeometry(1.9, 1.2), new THREE.MeshBasicMaterial({ color: '#9fe6ff', transparent: true, opacity: 0.35, side: THREE.DoubleSide }));
+      pane.position.y = 2.1; pane.position.z = 0.08;
+      p.spin = frame;
+      grp.add(frame, pane);
+    } else if (p.type === 'chime') {
+      for (let k = 0; k < 3; k++) {
+        const a = (k / 3) * Math.PI * 2;
+        const pole = new THREE.Mesh(new THREE.CylinderGeometry(0.06, 0.06, 2.2 + k * 0.3, 5), L('#5f8f5a'));
+        pole.position.set(Math.cos(a) * 1.1, 1.1 + k * 0.1, Math.sin(a) * 1.1);
+        const bell = new THREE.Mesh(new THREE.ConeGeometry(0.32, 0.5, 8, 1, true), L('#9fe6ff', { emissive: '#62c8ff', emissiveIntensity: 0.55, side: THREE.DoubleSide }));
+        bell.position.set(Math.cos(a) * 1.1, 2.3 + k * 0.15, Math.sin(a) * 1.1);
+        grp.add(pole, bell);
+      }
+      p.spin = grp.children[grp.children.length - 1];
+    } else if (p.type === 'musicgate') {
+      // Phrase Bridge — two posts + a sealed ribbon until answered on the beat.
+      const plank = new THREE.Mesh(new THREE.BoxGeometry(7.2, 0.28, 2.4), L('#c9b48a'));
+      plank.position.y = 0.2;
+      p.plank = plank;
+      for (const s of [-1, 1]) {
+        const post = new THREE.Mesh(new THREE.CylinderGeometry(0.28, 0.35, 3.2, 8), L('#d8d0e4'));
+        post.position.set(s * 3.4, 1.6, 0);
+        grp.add(post);
+      }
+      p.clefMat = L('#ffffff', { emissive: '#62c8ff', emissiveIntensity: 0.7, transparent: true, opacity: 0.95 });
+      const ribbon = new THREE.Mesh(new THREE.BoxGeometry(6.4, 1.6, 0.12), p.clefMat);
+      ribbon.position.y = 1.6;
+      p.barrier = ribbon;
+      p.spin = ribbon;
+      grp.add(plank, ribbon);
+      grp.rotation.y = Math.atan2(-p.x, -p.z) + Math.PI / 2;
+    } else if (p.type === 'cleanse') {
+      // Dissonant blot — sheep Harmonize clears it.
+      p.blotMat = new THREE.MeshBasicMaterial({ color: '#6b3a78', transparent: true, opacity: 0.55, depthWrite: false });
+      const blot = new THREE.Mesh(new THREE.CircleGeometry(2.8, 24), p.blotMat);
+      blot.rotation.x = -Math.PI / 2;
+      blot.position.y = 0.08;
+      const thorn = new THREE.Mesh(new THREE.IcosahedronGeometry(0.7, 0), L('#8a4a9a', { emissive: '#ff5470', emissiveIntensity: 0.45 }));
+      thorn.position.y = 0.9;
+      p.spin = thorn;
+      p.blot = blot;
+      grp.add(blot, thorn);
+    } else if (p.type === 'ariagate') {
+      // Wardrobe / Aria veil — needs an equipped Opus aria (or shoes slot gear).
+      const arch = new THREE.Mesh(new THREE.TorusGeometry(2.4, 0.22, 8, 28, Math.PI), L('#e8dff8', { emissive: '#c8b6ef', emissiveIntensity: 0.4 }));
+      arch.rotation.z = Math.PI; arch.position.y = 0.2;
+      p.veilMat = new THREE.MeshBasicMaterial({ color: '#b89cff', transparent: true, opacity: 0.45, side: THREE.DoubleSide });
+      const veil = new THREE.Mesh(new THREE.PlaneGeometry(4.2, 3.4), p.veilMat);
+      veil.position.y = 1.8;
+      p.barrier = veil;
+      p.spin = arch;
+      grp.add(arch, veil);
+      grp.rotation.y = Math.atan2(-p.x, -p.z);
+    } else if (p.type === 'destination') {
+      this._buildDestinationKit(p, grp, L);
     } else return;
     p.mesh = grp;
     g.world.root.add(grp);
@@ -132,14 +223,171 @@ export class Activities {
     }
   }
 
+  /** Nikki-style named place kits — unique silhouette per destination. */
+  _buildDestinationKit(p, grp, L) {
+    const kit = p.kit || 'tea';
+    const deck = new THREE.Mesh(new THREE.CylinderGeometry(4.2, 4.6, 0.4, 10), L('#efe6d8'));
+    deck.position.y = 0.22;
+    grp.add(deck);
+    // Resonance Dew crystal — Nikki Dew of Inspiration analogue.
+    p.dewMat = L('#ffffff', { emissive: '#9fe6ff', emissiveIntensity: 1.1 });
+    const dew = new THREE.Mesh(new THREE.OctahedronGeometry(0.55, 0), p.dewMat);
+    dew.position.set(0, 2.4, 0);
+    dew.scale.set(0.7, 1.4, 0.7);
+    p.dew = dew;
+    p.spin = dew;
+    grp.add(dew);
+    if (kit === 'tea') {
+      for (const [x, z] of [[-2.2, -1.4], [2.2, -1.4], [0, 2.2]]) {
+        const stool = new THREE.Mesh(new THREE.CylinderGeometry(0.45, 0.5, 0.7, 8), L('#d9bc72'));
+        stool.position.set(x, 0.55, z);
+        grp.add(stool);
+      }
+      const table = new THREE.Mesh(new THREE.CylinderGeometry(1.1, 1.2, 0.15, 10), L('#f7f0ff'));
+      table.position.y = 1.05;
+      grp.add(table);
+      for (let i = 0; i < 5; i++) {
+        const a = (i / 5) * Math.PI * 2;
+        const note = new THREE.Mesh(new THREE.SphereGeometry(0.22, 6, 6), L('#ffd978', { emissive: '#d9a84a', emissiveIntensity: 0.5 }));
+        note.position.set(Math.cos(a) * 2.6, 2.8 + (i % 2) * 0.3, Math.sin(a) * 2.6);
+        grp.add(note);
+      }
+    } else if (kit === 'archive') {
+      for (let i = 0; i < 4; i++) {
+        const a = (i / 4) * Math.PI * 2 + 0.4;
+        const col = new THREE.Mesh(new THREE.BoxGeometry(0.55, 3.2, 0.55), L('#e8dff8'));
+        col.position.set(Math.cos(a) * 3.2, 1.7, Math.sin(a) * 3.2);
+        grp.add(col);
+      }
+      const roof = new THREE.Mesh(new THREE.ConeGeometry(4.4, 1.8, 8), L('#f3b6cf', { emissive: '#f7b8d2', emissiveIntensity: 0.2 }));
+      roof.position.y = 4.0;
+      grp.add(roof);
+      p.floatLedge = true;
+    } else if (kit === 'quay') {
+      const pier = new THREE.Mesh(new THREE.BoxGeometry(8, 0.35, 3.2), L('#c9b48a'));
+      pier.position.set(0, 0.3, 1.5);
+      grp.add(pier);
+      for (const s of [-1, 1]) {
+        const post = new THREE.Mesh(new THREE.CylinderGeometry(0.2, 0.25, 2.8, 6), L('#d8d0e4'));
+        post.position.set(s * 3.2, 1.5, 2.4);
+        grp.add(post);
+      }
+      const lamp = new THREE.Mesh(new THREE.BoxGeometry(0.45, 0.55, 0.45), L('#fff', { emissive: '#5fc6ff', emissiveIntensity: 0.85 }));
+      lamp.position.set(0, 2.6, 2.4);
+      grp.add(lamp);
+    } else if (kit === 'nave') {
+      for (let i = 0; i < 6; i++) {
+        const s = i < 3 ? -1 : 1, k = i % 3;
+        const col = new THREE.Mesh(new THREE.CylinderGeometry(0.35, 0.45, 4.5, 8), L('#eef3f8'));
+        col.position.set(s * 2.4, 2.3, -2 + k * 2);
+        grp.add(col);
+      }
+      const lintel = new THREE.Mesh(new THREE.BoxGeometry(5.6, 0.45, 0.6), L('#e3ebf3', { emissive: '#5fc6ff', emissiveIntensity: 0.25 }));
+      lintel.position.set(0, 4.6, 0);
+      grp.add(lintel);
+      p.mouthBlot = new THREE.Mesh(
+        new THREE.CircleGeometry(2.2, 20),
+        new THREE.MeshBasicMaterial({ color: '#6b3a78', transparent: true, opacity: 0.5, depthWrite: false }),
+      );
+      p.mouthBlot.rotation.x = -Math.PI / 2;
+      p.mouthBlot.position.y = 0.12;
+      grp.add(p.mouthBlot);
+    } else if (kit === 'amph') {
+      for (let ring = 0; ring < 3; ring++) {
+        const rr = 2.2 + ring * 1.1;
+        for (let i = 0; i < 8 + ring * 2; i++) {
+          const a = (i / (8 + ring * 2)) * Math.PI * 2;
+          const seat = new THREE.Mesh(new THREE.BoxGeometry(0.7, 0.35 + ring * 0.15, 0.55), L('#6f6474'));
+          seat.position.set(Math.cos(a) * rr, 0.4 + ring * 0.35, Math.sin(a) * rr);
+          seat.rotation.y = -a;
+          grp.add(seat);
+        }
+      }
+    } else if (kit === 'cave') {
+      for (const s of [-1, 1]) {
+        const lip = new THREE.Mesh(new THREE.ConeGeometry(1.8, 5.5, 6), L('#6f6474'));
+        lip.position.set(s * 2.2, 2.6, -1.2);
+        lip.rotation.z = s * 0.35;
+        grp.add(lip);
+      }
+      p.mouthBlot = new THREE.Mesh(
+        new THREE.CircleGeometry(2.4, 20),
+        new THREE.MeshBasicMaterial({ color: '#4a2a58', transparent: true, opacity: 0.55, depthWrite: false }),
+      );
+      p.mouthBlot.rotation.x = -Math.PI / 2;
+      p.mouthBlot.position.set(0, 0.12, 0.4);
+      grp.add(p.mouthBlot);
+    } else if (kit === 'metro') {
+      for (let i = 0; i < 5; i++) {
+        const step = new THREE.Mesh(new THREE.BoxGeometry(5.5 - i * 0.4, 0.28, 1.4), L('#d8cfe6'));
+        step.position.set(0, 0.2 + i * 0.32, -i * 1.2);
+        grp.add(step);
+      }
+      const tick = new THREE.Mesh(new THREE.BoxGeometry(0.25, 3.2, 0.25), L('#ffd978', { emissive: '#d9a84a', emissiveIntensity: 0.55 }));
+      tick.position.set(0, 2.2, -5.2);
+      p.spin = tick;
+      grp.add(tick);
+    } else if (kit === 'stair') {
+      for (let i = 0; i < 6; i++) {
+        const shard = new THREE.Mesh(new THREE.OctahedronGeometry(0.7, 0), L('#ffffff', { emissive: i % 2 ? '#8a6cff' : '#62c8ff', emissiveIntensity: 0.55 }));
+        shard.position.set((i - 2.5) * 1.1, 0.9 + i * 0.35, -i * 0.9);
+        shard.scale.set(0.6, 1.6, 0.6);
+        grp.add(shard);
+      }
+      p.floatLedge = true;
+    } else if (kit === 'shelf') {
+      const ledge = new THREE.Mesh(new THREE.BoxGeometry(7, 0.4, 4), L('#dff3ff', { emissive: '#7fc8ff', emissiveIntensity: 0.2 }));
+      ledge.position.y = 0.5;
+      grp.add(ledge);
+      const aur = new THREE.Mesh(
+        new THREE.PlaneGeometry(8, 3),
+        new THREE.MeshBasicMaterial({ color: '#8fffd8', transparent: true, opacity: 0.28, side: THREE.DoubleSide, blending: THREE.AdditiveBlending, depthWrite: false }),
+      );
+      aur.position.set(0, 3.5, -2);
+      grp.add(aur);
+    } else if (kit === 'hollow') {
+      for (let i = 0; i < 5; i++) {
+        const spike = new THREE.Mesh(new THREE.ConeGeometry(0.55, 2.8 + i * 0.3, 6), L('#dff3ff', { emissive: '#7fc8ff', emissiveIntensity: 0.3 }));
+        spike.position.set(Math.cos(i) * 2.4, 1.5, Math.sin(i) * 2.4 - 1);
+        grp.add(spike);
+      }
+      p.mouthBlot = new THREE.Mesh(
+        new THREE.CircleGeometry(2.0, 18),
+        new THREE.MeshBasicMaterial({ color: '#3a4a68', transparent: true, opacity: 0.5, depthWrite: false }),
+      );
+      p.mouthBlot.rotation.x = -Math.PI / 2;
+      p.mouthBlot.position.y = 0.12;
+      grp.add(p.mouthBlot);
+    }
+    if (p.dewTaken || (p.id && this.g.profile.dews?.includes(p.id))) {
+      dew.visible = false;
+      p.dewTaken = true;
+    }
+    if (p.needsPurify && !p.purified && p.mouthBlot) p.mouthBlot.visible = true;
+    else if (p.mouthBlot) p.mouthBlot.visible = false;
+    if (p.needsPurify && this.g.profile.dews?.includes(p.id + '_open')) {
+      p.purified = true;
+      if (p.mouthBlot) p.mouthBlot.visible = false;
+    }
+  }
+
   // ------------------------------------------------------------ per frame
   update(dt) {
     const g = this.g, P = g.player;
     if (this.rift) return this.updateRift(dt);
     for (const p of this.pois) {
-      if (p.spin) {
+      if (p.spin && p.type !== 'chime' && p.type !== 'musicgate' && p.type !== 'ariagate') {
         p.spin.rotation.y += dt * 1.5;
-        p.spin.position.y = (p.type === 'pylon' ? 3 : p.type === 'sheet' ? 1.4 : p.type === 'rift' ? 2.6 : 2) + Math.sin(g.time * 2 + p.x) * 0.15;
+        const baseY = p.type === 'pylon' ? 3 : p.type === 'sheet' ? 1.4 : p.type === 'rift' ? 2.6 : p.type === 'overlook' ? 2.2 : p.type === 'photo' ? 2.1 : p.type === 'cleanse' ? 0.9 : p.type === 'destination' ? 2.4 : 2;
+        p.spin.position.y = baseY + Math.sin(g.time * 2 + p.x) * 0.15;
+      } else if (p.spin && (p.type === 'musicgate' || p.type === 'ariagate') && !p.open) {
+        p.spin.rotation.y += dt * 0.8;
+      }
+      if (p.type === 'cleanse' && !p.cleared && p.blotMat) {
+        p.blotMat.opacity = 0.4 + Math.sin(g.time * 3 + p.x) * 0.15;
+      }
+      if (p.type === 'destination' && p.dewMat && !p.dewTaken) {
+        p.dewMat.emissiveIntensity = 0.85 + Math.sin(g.time * 4 + p.x) * 0.35;
       }
     }
     this._acc += dt;
@@ -148,9 +396,11 @@ export class Activities {
     for (const p of this.pois) {
       const d = Math.hypot(p.x - P.pos.x, p.z - P.pos.z);
       if (p.type === 'camp') {
-        const ready = g.time - p.clearedAt > 150;
-        if (!p.active && ready && d < 60 && !P.dead) this.spawnCamp(p);
-        else if (p.active && d > 115) this.despawnCamp(p);
+        const ready = g.time - p.clearedAt > (p.starter ? 70 : 150);
+        const spawnR = p.starter ? 78 : 60;
+        const despawnR = p.starter ? 140 : 115;
+        if (!p.active && ready && d < spawnR && !P.dead) this.spawnCamp(p);
+        else if (p.active && d > despawnR) this.despawnCamp(p);
         else if (p.active && p.enemies.every((e) => e.dead)) this.clearCamp(p);
       } else if (p.type === 'chest') {
         const closed = g.time - p.openedAt > 600;
@@ -176,9 +426,257 @@ export class Activities {
         p.clefMat.emissive.set(done ? '#ffd978' : '#62c8ff');
       } else if (p.type === 'boss') {
         p.orbMat.emissiveIntensity = p.alive && !p.alive.dead ? 1.5 : g.time > p.cdUntil ? 0.7 : 0.1;
+      } else if (p.type === 'overlook' && !p.revealed && d < 10 && !P.dead) {
+        // Auto-reveal on approach — Genshin "veil falls away" moment.
+        this.viewOverlook(p, true);
+      } else if (p.type === 'photo' && d < 3.2 && !P.dead && !p.autoDone && !p.challenge) {
+        this.snapPhoto(p, true);
+      } else if (p.type === 'chime' && d < 3.2 && !P.dead && !p.autoDone) {
+        this.ringChimes(p, true);
+      } else if (p.type === 'musicgate' && !p.open && d < 5.5) {
+        // Soft block: push Melusina back while the ribbon is sealed.
+        this._pushFromGate(p, P);
+      } else if (p.type === 'ariagate' && !p.open && d < 3.2) {
+        this._pushFromGate(p, P);
+      } else if (p.type === 'destination' && !P.dead) {
+        if (!p.revealed && d < 12) this.revealDestination(p, true);
+        if (p.needsPurify && !p.purified && d < 4.5) this._pushFromGate(p, P, 3.4);
+        else if (p.needsFloat && !this._hasFloatOutfit() && d < 4.0) this._pushFromGate(p, P, 3.2);
+        else if (!p.dewTaken && p.purified !== false && d < 2.6) this.collectDew(p, true);
       }
     }
     this.updateEvent();
+  }
+
+  _pushFromGate(p, P, minR = null) {
+    const dx = P.pos.x - p.x, dz = P.pos.z - p.z, d = Math.hypot(dx, dz) || 1;
+    const min = minR ?? (p.type === 'musicgate' ? 4.2 : 2.6);
+    if (d < min) {
+      P.pos.x = p.x + (dx / d) * min;
+      P.pos.z = p.z + (dz / d) * min;
+    }
+  }
+
+  _hasFloatOutfit() {
+    const eq = this.g.profile.equipment || {};
+    return !!(eq.shoes || eq.gown);
+  }
+
+  nearCleanse(x, z, r) {
+    return this.pois.some((p) =>
+      (p.type === 'cleanse' && !p.cleared && Math.hypot(p.x - x, p.z - z) < r)
+      || (p.type === 'destination' && p.needsPurify && !p.purified && Math.hypot(p.x - x, p.z - z) < r),
+    );
+  }
+
+  cleanseNear(x, z, r) {
+    for (const p of this.pois) {
+      if (p.type === 'cleanse' && !p.cleared && Math.hypot(p.x - x, p.z - z) < r) this.finishCleanse(p);
+      if (p.type === 'destination' && p.needsPurify && !p.purified && Math.hypot(p.x - x, p.z - z) < r) this.purifyDestination(p);
+    }
+  }
+
+  revealDestination(p, soft = false) {
+    if (p.revealed && soft) return;
+    const g = this.g;
+    p.revealed = true;
+    g.profile.destinations = g.profile.destinations || [];
+    if (p.id && !g.profile.destinations.includes(p.id)) {
+      g.profile.destinations.push(p.id);
+      g.progress.addXp(20);
+    }
+    g.ui.banner(p.name, p.line || 'A named place opens along the motif.');
+    if (!soft) g.audio.levelUp();
+    g.world.pulse(p.x, p.z, 1.5, true);
+    g.particles.burst(p.x, p.y + 2, p.z, new THREE.Color('#9fe6ff'), 14, { speed: 4, life: 1, kind: 1 });
+    g.save();
+  }
+
+  purifyDestination(p) {
+    if (!p.needsPurify || p.purified) return;
+    const g = this.g;
+    p.purified = true;
+    if (p.mouthBlot) p.mouthBlot.visible = false;
+    g.profile.dews = g.profile.dews || [];
+    const openId = p.id + '_open';
+    if (!g.profile.dews.includes(openId)) g.profile.dews.push(openId);
+    g.ui.toast(`${p.name} mouth opens — Harmonize cleared the blot`, 'aqua');
+    g.world.pulse(p.x, p.z, 1.3, true);
+    g.save();
+  }
+
+  tryFloatDestination(p) {
+    const g = this.g;
+    if (!p.needsFloat) return true;
+    if (this._hasFloatOutfit()) return true;
+    g.ui.toast('Float ledge — equip shoes or a gown in Wardrobe', 'lavender');
+    return false;
+  }
+
+  collectDew(p, soft = false) {
+    if (p.dewTaken) return;
+    const g = this.g;
+    if (p.needsPurify && !p.purified) {
+      if (!soft) g.ui.toast('Ask Sheep to Harmonize the blot first ♪', 'lavender');
+      return;
+    }
+    if (p.needsFloat && !this._hasFloatOutfit()) {
+      if (!soft) this.tryFloatDestination(p);
+      return;
+    }
+    p.dewTaken = true;
+    if (p.dew) p.dew.visible = false;
+    g.profile.dews = g.profile.dews || [];
+    if (p.id && !g.profile.dews.includes(p.id)) {
+      g.profile.dews.push(p.id);
+      g.profile.notes += 2;
+      g.progress.addXp(50);
+      g.ui.toast(`Resonance Dew — ${p.name}`, 'gold');
+    }
+    g.particles.burst(p.x, p.y + 2.2, p.z, new THREE.Color('#9fe6ff'), 22, { speed: 6, life: 0.9, kind: 3 });
+    g.world.pulse(p.x, p.z, 1.4, true);
+    g.audio.levelUp();
+    g.save();
+  }
+
+  viewOverlook(p, soft = false) {
+    if (p.revealed && soft) return;
+    const g = this.g;
+    p.revealed = true;
+    g.profile.vistas = g.profile.vistas || [];
+    if (p.id && !g.profile.vistas.includes(p.id)) {
+      g.profile.vistas.push(p.id);
+      g.profile.notes += 2;
+      g.progress.addXp(40);
+    }
+    const title = p.name || 'Overlook';
+    const sub = p.vistaLine || p.gateFeeling || 'A new motif opens across the wilds.';
+    g.ui.banner(title, sub);
+    if (!soft) g.audio.levelUp();
+    g.world.pulse(p.x, p.z, 1.8, true);
+    g.particles.burst(p.x, p.y + 2, p.z, new THREE.Color('#ffd978'), 18, { speed: 5, life: 1.1, kind: 1, gravity: -1 });
+    g.save();
+  }
+
+  snapPhoto(p, soft = false) {
+    if (p.autoDone && soft) return;
+    const g = this.g, P = g.player;
+    // Challenge frames need Melusina facing the prompt angle (Nikki whim pose).
+    if (p.challenge && !soft && typeof p.aimAngle === 'number') {
+      const err = Math.abs(((P.facing - p.aimAngle + Math.PI * 3) % (Math.PI * 2)) - Math.PI);
+      if (err > 0.55) {
+        g.ui.toast(`${p.aimLabel || 'Face the prompt'} — turn toward the ◇`, 'lavender');
+        g.overlay.text(p.x, p.y + 2.6, p.z, '◇', '#c8b6ef', 28, { life: 0.9, rise: 0.2 });
+        return;
+      }
+    }
+    p.autoDone = true;
+    g.profile.photos = g.profile.photos || [];
+    const id = p.id || `photo_${p.biome}_${Math.round(p.x)}_${Math.round(p.z)}`;
+    if (!g.profile.photos.includes(id)) {
+      g.profile.photos.push(id);
+      const bonus = p.challenge ? 2 : 1;
+      g.profile.notes += bonus;
+      g.ui.toast(p.challenge ? `Whim challenge framed — Golden Notes +${bonus}` : 'Whim Frame captured — Golden Note +1', 'aqua');
+      g.progress.addXp(p.challenge ? 40 : 25);
+    } else if (!soft) g.ui.toast('Already framed this whim', 'lavender');
+    g.world.pulse(p.x, p.z, 1.1, true);
+    g.particles.burst(p.x, p.y + 2, p.z, new THREE.Color('#c8b6ef'), 16, { speed: 4, life: 0.8, kind: 1 });
+    g.audio.ui();
+    g.save();
+  }
+
+  openMusicGate(p) {
+    const g = this.g;
+    if (p.open) return;
+    if (g.enemies.some((e) => !e.dead && e.aggro)) { g.ui.toast('Clear the dissonance before the bridge will listen'); return; }
+    const gr = g.rhythm.judge(performance.now());
+    if (gr.grade === 'Miss' || gr.grade === 'Good') {
+      g.ui.toast('Answer on the beat — Great or Perfect opens the Phrase Bridge', 'soft');
+      g.audio.fail();
+      g.ui.gradeFlash(gr.grade, gr.err);
+      return;
+    }
+    p.open = true;
+    if (p.barrier) {
+      p.barrier.visible = false;
+    }
+    g.profile.gates = g.profile.gates || [];
+    if (p.id && !g.profile.gates.includes(p.id)) {
+      g.profile.gates.push(p.id);
+      g.profile.notes += 2;
+      g.progress.addXp(35);
+    }
+    g.ui.banner('Phrase Bridge opens', 'The ribbon dissolves on your answer');
+    g.world.pulse(p.x, p.z, 1.6, true);
+    g.particles.burst(p.x, p.y + 1.6, p.z, new THREE.Color('#62c8ff'), 22, { speed: 6, life: 0.9, kind: 1 });
+    g.audio.levelUp();
+    g.save();
+  }
+
+  cleanseSpot(p) {
+    if (p.cleared) return;
+    const g = this.g;
+    // Pull sheep in and force a Harmonize pulse.
+    g.sheep.pos.set(p.x + 1.2, p.y, p.z + 1.2);
+    g.sheep.harmonize(true);
+  }
+
+  finishCleanse(p) {
+    if (p.cleared) return;
+    const g = this.g;
+    p.cleared = true;
+    if (p.blot) p.blot.visible = false;
+    if (p.spin) p.spin.visible = false;
+    g.profile.cleanses = g.profile.cleanses || [];
+    if (p.id && !g.profile.cleanses.includes(p.id)) {
+      g.profile.cleanses.push(p.id);
+      g.profile.notes += 1;
+      g.progress.addXp(30);
+      g.player.sp = Math.min(g.player.stats.spMax, g.player.sp + 2);
+    }
+    g.ui.toast('Dissonance cleansed — Sheep Harmonize ♪', 'aqua');
+    g.world.pulse(p.x, p.z, 1.4, true);
+    g.save();
+  }
+
+  tryAriaGate(p) {
+    const g = this.g, P = g.player, pr = g.profile;
+    if (p.open) return;
+    const hasAria = P.stats.arias && P.stats.arias.size > 0;
+    const outfit = ['shoes', 'gown', 'gloves', 'head'].find((s) => pr.equipment?.[s]);
+    if (!hasAria && !outfit) {
+      g.ui.toast('Wardrobe gate — equip an outfit piece or Opus Aria to part the veil', 'lavender');
+      return;
+    }
+    p.open = true;
+    if (p.barrier) p.barrier.visible = false;
+    if (p.veilMat) p.veilMat.opacity = 0.08;
+    g.profile.gates = g.profile.gates || [];
+    if (p.id && !g.profile.gates.includes(p.id)) {
+      g.profile.gates.push(p.id);
+      g.profile.notes += 3;
+      g.progress.addXp(45);
+    }
+    const why = hasAria ? 'Your Aria parts the veil' : `Your ${outfit} carries the cadence through`;
+    g.ui.banner('Aria Veil opens', why);
+    g.world.pulse(p.x, p.z, 1.5, true);
+    g.particles.burst(p.x, p.y + 1.8, p.z, new THREE.Color('#ffd978'), 20, { speed: 5, life: 1, kind: 3 });
+    g.audio.levelUp();
+    g.save();
+  }
+
+  ringChimes(p, soft = false) {
+    if (p.autoDone && soft) return;
+    const g = this.g;
+    p.autoDone = true;
+    g.audio.chime(Math.floor(Math.random() * 8));
+    g.particles.burst(p.x, p.y + 2.2, p.z, new THREE.Color('#9fe6ff'), 12, { speed: 3, life: 0.9, kind: 1, gravity: -2 });
+    if (!soft) {
+      g.player.sp = Math.min(g.player.stats.spMax, g.player.sp + 1);
+      g.ui.toast('Chimes restore 1 Harmony ◆', 'aqua');
+    }
+    g.world.pulse(p.x, p.z, 0.9);
   }
 
   // ------------------------------------------------------------ camps
@@ -191,16 +689,24 @@ export class Activities {
     const rng = Math.random;
     p.active = true;
     p.enemies = [];
-    const lvl = this.enemyLevel(p);
-    const elite = rng() < 0.16 + p.biome * 0.02;
-    const n = 3 + Math.floor(rng() * 3) + (p.biome >= 2 ? 1 : 0);
+    const lvl = p.starter ? Math.max(1, Math.min(this.enemyLevel(p), 3 + p.biome)) : this.enemyLevel(p);
+    const elite = !p.starter && rng() < 0.18 + p.biome * 0.02;
+    const n = p.starter ? 3 + Math.floor(rng() * 2) : 3 + Math.floor(rng() * 3) + (p.biome >= 2 ? 1 : 0);
     for (let i = 0; i < n; i++) {
       const a = (i / n) * Math.PI * 2 + rng(), r = 2 + rng() * 4;
       const isElite = elite && i === 0;
       const def = isElite ? pick(rng, b.elites) : pick(rng, b.trash);
       const affixes = isElite ? [pick(rng, ELITE_AFFIXES).id] : [];
       if (isElite && lvl >= 15 && rng() < 0.5) affixes.push(pick(rng, ELITE_AFFIXES.filter((x) => !affixes.includes(x.id))).id);
-      p.enemies.push(g.spawnEnemy(def.id, lvl, { x: p.x + Math.cos(a) * r, z: p.z + Math.sin(a) * r, elite: isElite, affixes, camp: p }));
+      // Starter packs wake hungry: aggro as soon as the player leaves the gate.
+      p.enemies.push(g.spawnEnemy(def.id, lvl, {
+        x: p.x + Math.cos(a) * r, z: p.z + Math.sin(a) * r,
+        elite: isElite, affixes, camp: p, aggro: !!p.starter && i === 0,
+      }));
+    }
+    if (p.starter && !this._starterToast) {
+      this._starterToast = true;
+      g.ui.toast('Melody slimes ahead — dodge the red rings on the beat', 'rose');
     }
   }
 
