@@ -209,6 +209,13 @@ export class Activities {
     } else return;
     p.mesh = grp;
     g.world.root.add(grp);
+    // Asset replacement is opt-in; the procedural shrine remains a complete fallback.
+    // The renderer, save data, spawn locations, and shrine interaction remain unchanged.
+    if (p.type === 'shrine' && new URLSearchParams(window.location.search).get('shrine') === 'glb') {
+      import('./asset-loader.js')
+        .then(({ attachShrineVisual }) => attachShrineVisual(grp, p))
+        .catch((err) => console.warn('Resonant Wilds: procedural shrine retained', err));
+    }
   }
 
   /** Nikki-style named place kits — unique silhouette per destination. */
@@ -892,17 +899,24 @@ export class Activities {
     g.combat.reset();
     g.decals.clear();
     const burden = tier >= 3 ? pick(Math.random, BURDENS) : null;
+    // Uma-style Echo Lineage: roll inheritance before the Recital starts.
+    const inherit = g.echo.rollInheritance(tier);
+    P.recalc();
     this.rift = {
       tier, burden, progress: 0, time: 0, limit: 240, guardian: null, done: false, spawnT: 0, exit: null,
       level: g.profile.level + Math.max(0, tier - 1) * 2, hpMul: 1 + (tier - 1) * 0.15,
       returnPos: portal ? new THREE.Vector3(portal.x + 3, 0, portal.z + 3) : P.pos.clone(),
+      inherit,
     };
     g.world.setRift(true);
     P.pos.set(0, 0, 0);
     g.sheep.pos.set(2, 0, 2);
     g.audio.setScore(this.riftDef(tier));
     g.rhythm.encore = Math.max(g.rhythm.encore, P.stats.encoreStart);
-    g.ui.banner(`Resonance Rift · Tier ${tier}`, burden ? `Burden: ${burden.display_name} — ${burden.description} (+rarity)` : 'Silence the dissonance. Fill the bar.');
+    let sub = burden ? `Burden: ${burden.display_name} — ${burden.description} (+rarity)` : 'Silence the dissonance. Fill the bar.';
+    if (inherit.passed) sub = `Echo Lineage passed (${Math.round(inherit.chance * 100)}%) · ${inherit.motifs.map((m) => m.key).join(', ')} · ` + sub;
+    else if (inherit.chance > 0) sub = `Echo missed (${Math.round(inherit.chance * 100)}%, pity banked) · ` + sub;
+    g.ui.banner(`Resonance Rift · Tier ${tier}`, sub);
     g.shake(0.4);
   }
 
@@ -955,16 +969,31 @@ export class Activities {
     r.done = true;
     const inTime = r.time <= r.limit;
     const n = 3 + Math.floor(r.tier / 3);
-    for (let i = 0; i < n; i++) g.dropItem(Math.cos(i) * 3, Math.sin(i) * 3, g.loot.make(r.level + 1, { min: 2, bonus: 0.4 + r.tier * 0.05 + (r.burden ? 0.25 : 0) }));
-    g.dropGold(0, 0, 40 + r.level * 12, 12);
+    const items = [];
+    for (let i = 0; i < n; i++) {
+      const it = g.loot.make(r.level + 1, { min: 2, bonus: 0.4 + r.tier * 0.05 + (r.burden ? 0.25 : 0) });
+      items.push(it);
+      g.dropItem(Math.cos(i) * 3, Math.sin(i) * 3, it);
+    }
+    const gold = 40 + r.level * 12;
+    g.dropGold(0, 0, gold, 12);
     g.dropShards(0, 0, 6 + r.tier, 'Arcane');
     const notes = 10 + r.tier * 2;
     g.profile.notes += notes;
     g.profile.stats.rifts++;
     if (inTime && r.tier > g.profile.riftTier) g.profile.riftTier = r.tier;
     g.bountyEvent('rift', 1);
+    // Bank Echo Lineage Phrase (Uma inheritance) for the next Recital.
+    const phrase = g.echo.bankFromRift(r, inTime);
+    g.echo.clearActive();
+    g.player.recalc();
     g.ui.banner(inTime ? `Rift Tier ${r.tier} cleared!` : 'Rift cleared (over time)', `+${notes} Golden Notes${inTime ? ` · Tier ${r.tier + 1} unlocked` : ''}`);
     g.audio.levelUp();
+    g.ui.showRiftReward({
+      tier: r.tier, inTime, notes, gold, items, phrase,
+      passChance: g.echo.passChance(r.tier + (inTime ? 1 : 0)),
+      pity: g.profile.echoLineage.pity || 0,
+    });
     const exit = new THREE.Group();
     const ring = new THREE.Mesh(new THREE.TorusGeometry(2.2, 0.28, 8, 28), L('#fff', { emissive: '#62c8ff', emissiveIntensity: 0.8 }));
     ring.position.y = 2.6;
@@ -984,6 +1013,8 @@ export class Activities {
     g.combat.reset();
     g.decals.clear();
     g.collectAllDrops();
+    g.echo.clearActive();
+    g.player.recalc();
     this.rift = null;
     g.world.setRift(false);
     g.player.pos.copy(r.returnPos);

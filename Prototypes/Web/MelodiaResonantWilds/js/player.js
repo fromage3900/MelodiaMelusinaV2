@@ -2,6 +2,7 @@
 
 import * as THREE from 'three';
 import { buildMelusina, buildSheep } from './entities.js';
+import { buildChibi } from './chibi.js';
 import { RULES, MODIFIERS, RARITIES, BLESSINGS } from './design.js';
 import { clamp, lerp, angleDiff } from './util.js';
 import { WORLD_RADIUS } from './design.js';
@@ -13,7 +14,9 @@ const _c = new THREE.Color();
 export class Player {
   constructor(game) {
     this.g = game;
-    this.m = buildMelusina();
+    // Opt-in visual-only comparison; do not migrate saves or alter combat values.
+    this.m = new URLSearchParams(window.location.search).get('avatar') === 'chibi'
+      ? buildChibi() : buildMelusina();
     game.scene.add(this.m.group, this.m.shadow);
     this.pos = new THREE.Vector3(0, 2.2, 8);
     this.vel = new THREE.Vector3();
@@ -50,9 +53,10 @@ export class Player {
       const it = pr.equipment[slot];
       if (!it) continue;
       const up = 1 + 0.06 * (it.up || 0);
-      if (it.attack) S.attack += Math.round(it.attack * up);
-      if (it.hp) S.maxHp += Math.round(it.hp * up);
-      if (it.armor) S.armor += Math.round(it.armor * up);
+      const qMul = 1 + (it.quality || 0) / 200;
+      if (it.attack) S.attack += Math.round(it.attack * up * qMul);
+      if (it.hp) S.maxHp += Math.round(it.hp * up * qMul);
+      if (it.armor) S.armor += Math.round(it.armor * up * qMul);
       if (slot === 'instrument') { S.family = it.family || 'melee'; S.basicElement = it.element || 'Forte'; }
       for (const a of it.affixes) {
         if (a.key === 'elem') S.elem[a.e] = (S.elem[a.e] || 0) + a.v / 100;
@@ -73,6 +77,18 @@ export class Player {
       if (b.effect_type === 'starting_mana') S.encoreStart = b.effect_value;
       if (b.effect_type === 'combo_persistence') S.comboKeeper = true;
     }
+    // Echo Lineage Motifs active during a Recital (rift)
+    const echo = this.g.echo?.activeBuffs?.();
+    if (echo) {
+      S.dmg += (echo.dmg || 0) / 100;
+      S.crit += (echo.crit || 0) / 100;
+      S.speed += (echo.speed || 0) / 100;
+      S.perfectms += echo.perfectms || 0;
+      S.encore += (echo.encore || 0) / 100;
+      S.magic += (echo.magic || 0) / 100;
+      S.break += (echo.break || 0) / 100;
+      S.maxHp += echo.hp || 0;
+    }
     if (S.arias.has('StoneCarapace')) S.dmgTaken *= 0.8;
     if (S.arias.has('SwiftTempo')) S.speed += 0.2;
     S.cdr = Math.min(0.4, S.cdr);
@@ -87,7 +103,8 @@ export class Player {
   dress() {
     const eq = this.g.profile.equipment;
     const gown = eq.gown;
-    this.m.gownMat.color.set(gown ? RARITIES[gown.rarity].color : '#bda8df').lerp(_c.set('#bda8df'), 0.35);
+    const baseGown = this.m.pose ? '#f9b4d2' : '#bda8df';
+    this.m.gownMat.color.set(gown ? RARITIES[gown.rarity].color : baseGown).lerp(_c.set(baseGown), 0.35);
     this.m.crown.visible = !!eq.head;
     if (eq.head) this.m.crown.material.color.set(RARITIES[eq.head.rarity].color);
     this.m.shoes.visible = !!eq.shoes;
@@ -168,19 +185,37 @@ export class Player {
     m.group.position.set(this.pos.x, this.pos.y + bob + arcY, this.pos.z);
     m.shadow.position.set(this.pos.x, this.pos.y + 0.05, this.pos.z);
     m.group.rotation.y = this.facing + (this.spin ? g.time * 18 : 0);
-    const lean = moving ? 0.12 : 0;
-    m.body.rotation.x = lerp(m.body.rotation.x, lean, Math.min(1, dt * 8));
-    const stretch = this.dash ? 1.15 : 1;
-    m.body.scale.set(1 / Math.sqrt(stretch), stretch * (1 + beatK * beatK * 0.03), 1 / Math.sqrt(stretch));
-    // Nikki fabric feel: gown sway on move + soft beat breathe.
-    const sway = moving ? Math.sin(g.time * 9) * 0.08 : Math.sin(g.time * 2.2) * 0.03;
-    m.body.rotation.z = lerp(m.body.rotation.z || 0, sway, Math.min(1, dt * 10));
-    if (m.gownMat) m.gownMat.emissiveIntensity = 0.05 + beatK * beatK * 0.12;
     this.swingT = Math.max(0, this.swingT - dt * 4);
-    m.inst.rotation.y = this.swingT * Math.PI * 2 * (this.swingStep % 2 ? -1 : 1);
-    m.inst.position.y = 1.2 + Math.sin(g.time * 2.4) * 0.06;
     this.hurtT = Math.max(0, this.hurtT - dt * 3);
-    m.gownMat.emissive.setRGB(this.hurtT * 0.9, this.hurtT * 0.1, this.hurtT * 0.2);
+    if (m.pose) {
+      // The unreleased chibi has its own arm/leg/hair animation hierarchy.
+      // Treat this as a presentation layer, not a new player controller.
+      const speed = clamp(Math.hypot(this.vel.x, this.vel.z) / S.moveSpeed, 0, 1);
+      m.pose(dt, g.time, {
+        speed,
+        beatPhase: g.beatPhase,
+        swing: this.swingT > 0 ? 1 - this.swingT : -1,
+        swingStep: this.swingStep ?? 0,
+        cast: 0,
+        dodge: this.dash ? 1 : 0,
+        hurt: this.hurtT,
+        stretch: this.dash ? 1.15 : 1,
+      });
+    } else {
+      const lean = moving ? 0.12 : 0;
+      m.body.rotation.x = lerp(m.body.rotation.x, lean, Math.min(1, dt * 8));
+      const stretch = this.dash ? 1.15 : 1;
+      m.body.scale.set(1 / Math.sqrt(stretch), stretch * (1 + beatK * beatK * 0.03), 1 / Math.sqrt(stretch));
+      // Nikki fabric feel: gown sway on move + soft beat breathe (legacy procedural body).
+      const sway = moving ? Math.sin(g.time * 9) * 0.08 : Math.sin(g.time * 2.2) * 0.03;
+      m.body.rotation.z = lerp(m.body.rotation.z || 0, sway, Math.min(1, dt * 10));
+      m.inst.rotation.y = this.swingT * Math.PI * 2 * (this.swingStep % 2 ? -1 : 1);
+      m.inst.position.y = 1.2 + Math.sin(g.time * 2.4) * 0.06;
+    }
+    if (m.gownMat) {
+      m.gownMat.emissiveIntensity = 0.05 + beatK * beatK * 0.12;
+      m.gownMat.emissive.setRGB(this.hurtT * 0.9, this.hurtT * 0.1, this.hurtT * 0.2);
+    }
     if (this.invulnUntil > g.time && Math.random() < 0.6) g.particles.emit(this.pos.x, this.pos.y + 1, this.pos.z, _c.set('#ffffff'), { speed: 1, life: 0.35, size: 0.5, kind: 3 });
   }
 }

@@ -258,3 +258,83 @@ h1 { font-family: Georgia, 'Times New Roman', serif; font-size: clamp(40px, 9vw,
   #tc { top: calc(214px + var(--sat)); max-width: 90vw; }
   #riftbar, #bossbar { top: calc(150px + var(--sat)); width: 80vw; }
 }
+
+
+/* ============================================================ Resonant Wilds loop UI (Figma slice) */
+.slotbox .ico { width: 70%; height: 70%; object-fit: contain; pointer-events: none; filter: drop-shadow(0 1px 2px rgba(0,0,0,.45)); }
+.slotbox .ico-fallback { font-size: 22px; line-height: 1; }
+.motifchip {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 5px 10px; border-radius: 999px; font-size: 11px; font-weight: 700;
+  background: rgba(98, 200, 255, .15); border: 1px solid rgba(98, 200, 255, .55); color: #9fe4ff;
+}
+.motifchip img { width: 18px; height: 18px; }
+.motifbag { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
+.motifbag .motifchip { cursor: pointer; }
+.motifbag .motifchip.on { outline: 2px solid #fff; background: rgba(217,188,114,.22); border-color: var(--gold); color: var(--gold-hi); }
+.motifbag .motifchip.dim { opacity: .45; }
+
+.synth-wrap { display: grid; grid-template-columns: minmax(0,.9fr) minmax(0,1.2fr) minmax(0,1fr); gap: 10px; }
+@media (max-width: 800px) { .synth-wrap { grid-template-columns: 1fr; } }
+.cymatic {
+  position: relative; width: min(220px, 100%); aspect-ratio: 1; margin: 8px auto;
+}
+.cymatic .ring {
+  position: absolute; inset: 0; margin: auto; border-radius: 50%;
+  border: 3px solid rgba(246,240,248,.18); transition: border-color .2s, box-shadow .2s;
+}
+.cymatic .ring.r0 { width: 92%; height: 92%; }
+.cymatic .ring.r1 { width: 70%; height: 70%; }
+.cymatic .ring.r2 { width: 48%; height: 48%; }
+.cymatic .ring.r3 { width: 26%; height: 26%; }
+.cymatic .ring.filled { border-color: var(--gold-hi); box-shadow: 0 0 14px rgba(217,188,114,.45); }
+.cymatic .ring.partial { border-color: var(--aqua); }
+.cymatic .hub {
+  position: absolute; left: 50%; top: 50%; width: 28px; height: 28px; margin: -14px 0 0 -14px;
+  border-radius: 50%; background: radial-gradient(circle at 35% 30%, #fff, var(--gold-hi) 55%, var(--gold));
+  box-shadow: 0 0 12px rgba(255,217,120,.6);
+}
+.loop-row { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; margin-top: 6px; }
+
+#riftreward {
+  position: fixed; inset: 0; z-index: 40; display: grid; place-items: center;
+  background: rgba(12, 8, 22, .88); pointer-events: auto; padding: 16px;
+}
+#riftreward.hidden { display: none !important; }
+.rewardbox {
+  width: min(860px, 96vw); max-height: 92dvh; overflow: auto;
+  background: linear-gradient(160deg, rgba(55,41,77,.95), rgba(23,18,37,.98));
+  border: 1px solid var(--line); border-radius: 18px; padding: 22px 20px 18px;
+  text-align: center; box-shadow: 0 20px 60px rgba(0,0,0,.55);
+}
+.rewardkicker { font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--lavender); }
+.rewardtitle {
+  font-family: Georgia, 'Times New Roman', serif; font-style: italic; font-weight: 700;
+  font-size: clamp(24px, 4vw, 34px); color: var(--gold-hi); margin: 6px 0 4px;
+  text-shadow: 0 0 18px rgba(217,188,114,.35);
+}
+.rewardsub { font-size: 13px; opacity: .8; margin-bottom: 14px; }
+.rewardrow { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin: 10px 0 16px; }
+.rewardcard {
+  width: 140px; padding: 12px 10px; border-radius: 14px; background: rgba(10,6,20,.65);
+  border: 2px solid var(--soft); opacity: 0; transform: translateY(12px) scale(.96);
+  animation: rewardIn .45s ease forwards;
+}
+.rewardcard .slotbox { width: 64px; height: 64px; margin: 0 auto 8px; }
+.rewardcard b { display: block; font-size: 12px; line-height: 1.3; }
+.rewardcard .meta { font-size: 10px; opacity: .7; margin-top: 4px; }
+.rewardlineage {
+  display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px; border-radius: 999px;
+  background: rgba(55,41,77,.9); border: 1px solid rgba(98,200,255,.45); color: #9fe4ff;
+  font-size: 12px; font-weight: 700; margin-bottom: 14px;
+}
+.rewardlineage img { width: 22px; height: 22px; }
+@keyframes rewardIn {
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.echo-banner {
+  margin-top: 8px; padding: 8px 10px; border-radius: 10px;
+  background: rgba(98,200,255,.1); border: 1px solid rgba(98,200,255,.35);
+  font-size: 12px; color: #9fe4ff;
+}

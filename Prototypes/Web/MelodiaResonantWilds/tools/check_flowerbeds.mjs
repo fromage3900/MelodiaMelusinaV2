@@ -1,0 +1,21 @@
+// Dependency-free source contract. Browser, mobile and visual QA run in Actions.
+import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
+import { dirname, join } from 'node:path';
+import { fileURLToPath } from 'node:url';
+const root = dirname(dirname(fileURLToPath(import.meta.url)));
+const read = p => readFileSync(join(root, p), 'utf8');
+const world = read('js/world.js'), flowers = read('js/flowerbeds.js');
+const sw = read('sw.js'), browser = read('tools/browser_smoke.mjs');
+assert.match(flowers, /export function createFlowerbedParts/);
+assert.match(flowers, /FLOWERBED_BLOOMS = HEADS.length/);
+assert.match(flowers, /M\(geometry\(pv, pi\), petalMat, 0, 1\.55, 1\.55, 1\.55\)/);
+assert.match(flowers, /M\(geometry\(gv, gi\), leafMat, 0, 1\.55, 1\.55, 1\.55\)/);
+assert.match(flowers, /M\(geometry\(cv, ci\), pollenMat, 0, 1\.55, 1\.55, 1\.55\)/);
+assert.match(world, /get\('flowerbeds'\) !== '0'/);
+assert.match(world, /createFlowerbedParts\(M, L\)/);
+assert.match(world, /RW_Flowerbed_/);
+assert.match(sw, /\.\/js\/flowerbeds\.js/);
+assert.match(browser, /desktop-petal-cantata/);
+assert.match(browser, /desktop-original-flowers/);
+console.log('Petal Cantata shared-mesh flowerbed contracts: PASS');

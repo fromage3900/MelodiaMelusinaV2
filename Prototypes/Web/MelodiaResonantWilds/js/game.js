@@ -12,6 +12,7 @@ import { Loot } from './loot.js';
 import { Rhythm } from './rhythm.js';
 import { Progress, saveProfile, loadProfile, wipeProfile } from './progress.js';
 import { Activities } from './activities.js';
+import { Echo } from './echo.js';
 import { UI } from './ui.js';
 import { PostFX } from './postfx.js';
 import { BIOMES, HUB, DIFFICULTY, RARITIES, SKILL_BY_ID, SHARD_BY_ELEMENT, ELEMENT_STYLE, MODIFIERS, RULES, xpToNext } from './design.js';
@@ -73,6 +74,7 @@ export class Game {
     this.combat = new Combat(this);
     this.sheep = new Sheep(this);
     this.activities = new Activities(this);
+    this.echo = new Echo(this);
     this.ui = new UI(this);
     this.postfx = new PostFX(this);
     this._outlineInteract = null;
@@ -339,7 +341,7 @@ export class Game {
     if (!best) return null;
     const p = best;
     switch (p.type) {
-      case 'forge': return { label: 'Forge ⚒', fn: () => this.ui.open('forge') };
+      case 'forge': return { label: 'Synthesis ⟡', fn: () => this.ui.open('forge') };
       case 'board': return { label: 'Bounties 📜', fn: () => this.ui.open('bounties') };
       case 'font': return { label: 'Blessing Font ✧', fn: () => this.ui.open('blessings') };
       case 'rift': return { label: 'Enter Rift ◎', fn: () => { this.ui.riftPortal = p; this.ui.open('rift'); } };

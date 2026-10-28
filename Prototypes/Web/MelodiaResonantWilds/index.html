@@ -9,6 +9,7 @@
   <meta name="description" content="Melodia — Resonant Wilds: a mobile open-world rhythm ARPG built on Melodia Melusina's UE rules, skills and enemy data." />
   <title>Melodia — Resonant Wilds</title>
   <link rel="stylesheet" href="style.css" />
+  <link rel="manifest" href="manifest.json" />
   <script type="importmap">{
     "imports": {
       "three": "./vendor/three.module.min.js",
@@ -93,6 +94,18 @@
     </div>
   </div>
 
+
+  <div id="riftreward" class="hidden">
+    <div class="rewardbox">
+      <div class="rewardkicker" id="rrKicker">RIFT CLEARED</div>
+      <div class="rewardtitle" id="rrTitle">Resonance Remains</div>
+      <div class="rewardsub" id="rrSub"></div>
+      <div class="rewardrow" id="rrRow"></div>
+      <div class="rewardlineage" id="rrLineage"></div>
+      <button class="primary" id="rrContinue">Inherit into next Recital →</button>
+    </div>
+  </div>
+
   <div id="panel" class="hidden">
     <div id="panelhead"><div id="tabs"></div><button id="closepanel" aria-label="Close">✕</button></div>
     <div id="panelbody"></div>
@@ -110,5 +123,12 @@
   </div>
 
   <script type="module" src="js/main.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js').catch(() => {});
+      });
+    }
+  </script>
 </body>
 </html>
