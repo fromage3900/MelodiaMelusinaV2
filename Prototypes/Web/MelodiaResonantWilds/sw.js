@@ -1,6 +1,6 @@
 // Resonant Wilds PWA cache. Keep shader, character, icon and GLB updates fresh.
 // The browser game remains playable online even if optional preview assets fail.
-const CACHE = 'resonant-wilds-v9-20261028-publish-grove-heritage';
+const CACHE = 'resonant-wilds-v10-20261028-chladni-modes';
 const ASSETS = [
   './', './index.html', './style.css', './manifest.json',
   './icon-192.png', './icon-512.png',
