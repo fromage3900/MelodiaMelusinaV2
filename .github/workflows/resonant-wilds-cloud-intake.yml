@@ -29,6 +29,7 @@ jobs:
           node Prototypes/Web/MelodiaResonantWilds/tools/check_grove_kit.mjs
           node Prototypes/Web/MelodiaResonantWilds/tools/check_ethereal_expansion.mjs
           node Prototypes/Web/MelodiaResonantWilds/tools/check_world_stack.mjs
+          node Prototypes/Web/MelodiaResonantWilds/tools/check_grove_integration.mjs
       - name: Smoke static asset delivery
         run: |
           python3 -m http.server 8765 --bind 127.0.0.1 >/tmp/resonant-wilds-server.log 2>&1 &
@@ -38,6 +39,8 @@ jobs:
           curl --fail --silent --show-error -I http://127.0.0.1:8765/Prototypes/Web/MelodiaResonantWilds/index.html
           curl --fail --silent --show-error -I http://127.0.0.1:8765/Prototypes/Web/MelodiaResonantWilds/assets/models/resonance-shrine.glb
           curl --fail --silent --show-error -I http://127.0.0.1:8765/Prototypes/Web/MelodiaResonantWilds/js/asset-loader.js
+          curl --fail --silent --show-error -I http://127.0.0.1:8765/Prototypes/Web/MelodiaResonantWilds/js/grove.js
+          curl --fail --silent --show-error -I http://127.0.0.1:8765/Prototypes/Web/MelodiaResonantWilds/assets/models/harmonic-grove-37.glb
           curl --fail --silent --show-error -I http://127.0.0.1:8765/Prototypes/Web/MelodiaResonantWilds/sw.js
   headless-webgl:
     needs: zero-dependency-smoke
@@ -52,7 +55,7 @@ jobs:
         run: |
           npm install --no-save --no-package-lock playwright@1.56.1
           npx playwright install --with-deps chromium
-      - name: Start site and test thirteen WebGL states
+      - name: Start site and test seventeen WebGL states
         env:
           GAME_URL: http://127.0.0.1:8765/Prototypes/Web/MelodiaResonantWilds/
           RW_SCREENSHOT_DIR: /tmp/rw-flowerbed-review
@@ -63,7 +66,7 @@ jobs:
           sleep 2
           mkdir -p /tmp/rw-flowerbed-review
           node Prototypes/Web/MelodiaResonantWilds/tools/browser_smoke.mjs
-      - name: Upload Petal Cantata A/B captures
+      - name: Upload Petal Cantata, Grove and NPR comparison captures
         if: always()
         uses: actions/upload-artifact@v4
         with:

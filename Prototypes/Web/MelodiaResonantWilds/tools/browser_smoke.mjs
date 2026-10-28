@@ -24,6 +24,10 @@ const variants = [
   { name: 'desktop-live-tuner', query: '?npr=v2&kuwahara=1&avatar=chibi&shrine=glb&tune=1&look=soft', chibi: true, shrine: true, mobile: false, npr: true, painterly: true, tune: true },
   { name: 'desktop-worldexp', query: '?worldexp=1', chibi: false, shrine: false, mobile: false, worldexp: true },
   { name: 'desktop-worldexp-postfx', query: '?worldexp=1&postfx=1&dressing=dense&nikkilook=1&daycycle=1', chibi: false, shrine: false, mobile: false, worldexp: true, postfx: true },
+  { name: 'desktop-npr-colour-review', query: '?npr=v2', chibi: false, shrine: false, mobile: false, npr: true },
+  { name: 'desktop-grove-glb', query: '?grove=glb', chibi: false, shrine: false, mobile: false, grove: 'glb' },
+  { name: 'mobile-grove-dense', query: '?grove=glb&worldexp=1&dressing=dense', chibi: false, shrine: false, mobile: true, worldexp: true, grove: 'glb' },
+  { name: 'desktop-grove-fallback', query: '?grove=glb', chibi: false, shrine: false, mobile: false, grove: 'fallback' },
 ];
 try {
   for (const test of variants) {
@@ -35,6 +39,7 @@ try {
       serviceWorkers: 'block',
     });
     const page = await context.newPage();
+    if (test.grove === 'fallback') await page.route('**/harmonic-grove-37.glb', route => route.abort());
     const failures = [];
     page.on('pageerror', (e) => failures.push(e.message));
     page.on('console', (msg) => {
@@ -58,6 +63,8 @@ try {
       paletteSize: window.__melodia.world.terrainMat.gradientMap?.image?.data?.length || 0,
       bellflowers: window.__melodia.world.hubGroup.children.filter(o => o.name.startsWith('RW_Bellflower_Plaza_')).length,
       flowerParts: window.__melodia.world.props.flower.parts.length,
+      groveStatus: window.__melodia.world.groveStatus,
+      groveCounts: window.__melodia.world.groveCounts,
       flowerbedEnabled: window.__melodia.world.flowerbedsEnabled,
       boxLanterns: window.__melodia.world.hubGroup.children.filter(o => o.isMesh && o.geometry.type === 'BoxGeometry' &&
         o.geometry.parameters.width === 0.5 && o.geometry.parameters.height === 0.6 &&
@@ -65,7 +72,13 @@ try {
     }));
     assert.equal(before.chibi, test.chibi, test.name + ': incorrect avatar selection');
     assert.equal(before.flowerbedEnabled, test.flowerbed !== false, test.name + ': flowerbed flag not respected');
-    assert.equal(before.flowerParts, test.flowerbed === false ? 1 : 3, test.name + ': incorrect shared instancing mesh count');
+    assert.equal(before.flowerParts, test.grove === 'glb' ? 5 : test.flowerbed === false ? 1 : 3,
+      test.name + ': incorrect shared flower geometry batches');
+    assert.equal(before.groveStatus, test.grove || 'off', test.name + ': wrong Grove status');
+    if (test.grove === 'glb') {
+      assert.deepEqual(before.groveCounts, { flower: 5, bush: 3, grass: 2 },
+        test.name + ': improper merged material groups');
+    }
     const expectedFlowers = test.bellflower === false ? 0 : 4;
     assert.equal(before.bellflowers, expectedFlowers, test.name + ': incorrect bellflower count');
     assert.equal(before.boxLanterns, 12 - expectedFlowers, test.name + ': original lantern fallback mismatch');
@@ -129,7 +142,9 @@ try {
     // Capture one comparable Petal Cantata shot in both modes for art review.
     // This is a browser beauty reference, not a claim of human aesthetic approval.
     if (process.env.RW_SCREENSHOT_DIR &&
-        (test.name === 'desktop-petal-cantata' || test.name === 'desktop-original-flowers')) {
+        (test.name === 'desktop-petal-cantata' || test.name === 'desktop-original-flowers' ||
+         test.name === 'desktop-grove-glb' || test.name === 'desktop-npr-colour-review' ||
+         test.name === 'desktop-default')) {
       await page.evaluate(() => {
         const g = window.__melodia, x = 0, z = -210;
         g.player.pos.set(x, g.world.height(x, z), z);
