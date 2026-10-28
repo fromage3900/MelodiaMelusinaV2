@@ -568,6 +568,73 @@ export class AudioEngine {
     this._pad(t, [this.degree(0, 1), this.degree(2, 1), this.degree(4, 1)], 3, 'ice');
   }
 
+  /** Cycle-select blip — short motif fingerprint per Encore id. */
+  encoreSelect(id) {
+    if (!this.running || !this._budget()) return;
+    const t = this.now;
+    const finger = {
+      cascade: [0, 2, 4, 7], subject: [0, 7, 4, 7], cadenza: [0, 3, 6, 11],
+      reprise: [4, 2, 0, 2], duet: [0, 4, 7, 12], veil: [7, 9, 12],
+      overture: [0, 2, 4, 5, 7], modulation: [0, 5, 7, 11], dew: [4, 7, 11, 14],
+      recital: [0, 3, 7, 10],
+    }[id] || [0, 4, 7];
+    finger.forEach((d, i) => this._voice('bell', t + i * 0.045, this.degree(d % 8, Math.floor(d / 8)), 0.35, 0.07, this.sfxBus, true));
+  }
+
+  /** Cast stingers — each ultimate gets a distinct opening colour. */
+  encoreVariant(id) {
+    if (!this.running) return;
+    const t = this.now;
+    this.encore();
+    if (id === 'cascade') {
+      for (let i = 0; i < 6; i++) this._voice('saw', t + 0.15 + i * 0.07, this.degree(i % 5, 1), 0.35, 0.1, this.sfxBus, true);
+      this._pad(t, [this.degree(0, 1), this.degree(4, 1), this.degree(7 % 8, 1)], 2.4, 'organ');
+    } else if (id === 'subject') {
+      [0, 7, 4].forEach((d, i) => this._voice('pluck', t + i * 0.12, this.degree(d % 8, 0), 0.55, 0.12, this.sfxBus, true));
+      this._pad(t + 0.1, [this.degree(0, 0), this.degree(2, 0), this.degree(4, 0)], 2.2, 'dark');
+    } else if (id === 'cadenza') {
+      this._kick(t, 0.9, this.sfxBus);
+      this._noiseHit(t, 0.28, this.sfxBus, 'lowpass', 900, 0.2);
+      for (let i = 0; i < 5; i++) this._voice('organlead', t + 0.08 + i * 0.05, this.degree(i, 0) - 12, 0.4, 0.14, this.sfxBus, true);
+    } else if (id === 'reprise') {
+      [4, 2, 0, 2, 4, 7].forEach((d, i) => this._voice('box', t + i * 0.06, this.degree(d % 8, 1), 0.3, 0.08, this.sfxBus));
+    } else if (id === 'duet') {
+      this._voice('bell', t, this.degree(0, 1), 1.0, 0.12, this.sfxBus, true);
+      this._voice('bell', t + 0.08, this.degree(4, 1), 1.0, 0.12, this.sfxBus, true);
+      this._pad(t, [this.degree(0, 1), this.degree(2, 1), this.degree(4, 1)], 2.8, 'ice');
+    } else if (id === 'veil') {
+      this._noiseHit(t, 0.18, this.sfxBus, 'bandpass', 1400, 0.22, 0.5);
+      [7, 9, 12, 16].forEach((d, i) => this._voice('bell', t + 0.05 + i * 0.09, this.degree(d % 8, Math.floor(d / 8)), 0.7, 0.1, this.sfxBus, true));
+    } else if (id === 'overture') {
+      [0, 2, 4, 5, 7, 9, 11, 12].forEach((d, i) => this._voice('bell', t + i * 0.055, this.degree(d % 8, Math.floor(d / 8)), 0.55, 0.09, this.sfxBus, true));
+      this._pad(t, [this.degree(0, 1), this.degree(2, 1), this.degree(4, 1), this.degree(5, 1)], 3.2, 'soft');
+    } else if (id === 'modulation') {
+      this._pad(t, [this.degree(0, 1), this.degree(5, 1), this.degree(7 % 8, 1)], 3.0, 'organ');
+      [0, 5, 7, 11].forEach((d, i) => this._voice('organlead', t + 0.1 + i * 0.08, this.degree(d % 8, 1), 0.45, 0.12, this.sfxBus, true));
+    } else if (id === 'dew') {
+      for (let i = 0; i < 10; i++) this._voice('bell', t + i * 0.04, this.degree((i * 3) % 8, 1), 0.5, 0.07, this.sfxBus, true);
+      this._pad(t, [this.degree(4, 1), this.degree(7 % 8, 1), this.degree(2, 2)], 2.5, 'ice');
+    } else if (id === 'recital') {
+      this._kick(t, 0.7, this.sfxBus);
+      [0, 3, 7, 10, 14].forEach((d, i) => this._voice('pluck', t + 0.06 + i * 0.07, this.degree(d % 8, Math.floor(d / 8)), 0.5, 0.11, this.sfxBus, true));
+      this._pad(t, [this.degree(0, 0), this.degree(3, 0), this.degree(7 % 8, 0)], 2.8, 'dark');
+    }
+  }
+
+  /** Per-beat spice while an Encore verb is live. */
+  encoreTick(id, step = 0) {
+    if (!this.running || !this._budget()) return;
+    const t = this.now;
+    if (id === 'cascade') this._voice('saw', t, this.degree(step % 5, 1), 0.22, 0.06, this.sfxBus, true);
+    else if (id === 'subject') this._voice('pluck', t, this.degree((step * 2) % 7, 1), 0.28, 0.07, this.sfxBus);
+    else if (id === 'cadenza') this._rim(t, 0.3, this.sfxBus, 2200);
+    else if (id === 'reprise') this._voice('box', t, this.degree(4 - (step % 5), 1), 0.25, 0.06, this.sfxBus);
+    else if (id === 'veil') {
+      if (step) { this._kick(t, 0.55, this.sfxBus); this._noiseHit(t, 0.16, this.sfxBus, 'lowpass', 700, 0.14); }
+      else this._noiseHit(t, 0.1, this.sfxBus, 'bandpass', 1600, 0.12, 0.4);
+    }
+  }
+
   hurt() {
     if (!this.running || !this._budget()) return;
     const t = this.now;

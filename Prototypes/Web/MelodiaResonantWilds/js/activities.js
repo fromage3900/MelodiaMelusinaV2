@@ -591,7 +591,8 @@ export class Activities {
     if (p.open) return;
     if (g.enemies.some((e) => !e.dead && e.aggro)) { g.ui.toast('Clear the dissonance before the bridge will listen'); return; }
     const gr = g.rhythm.judge(performance.now());
-    if (gr.grade === 'Miss' || gr.grade === 'Good') {
+    const keyOpen = g._keyModulation && gr.grade !== 'Miss';
+    if (!keyOpen && (gr.grade === 'Miss' || gr.grade === 'Good')) {
       g.ui.toast('Answer on the beat — Great or Perfect opens the Phrase Bridge', 'soft');
       g.audio.fail();
       g.ui.gradeFlash(gr.grade, gr.err);

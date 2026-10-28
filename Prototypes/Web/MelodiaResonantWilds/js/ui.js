@@ -76,7 +76,24 @@ export class UI {
     press($('btnAttack'), (t) => g.attack(t), 'attackHeld');
     document.querySelectorAll('.skill').forEach((b) => press(b, (t) => g.skill(+b.dataset.i, t)));
     press($('btnDodge'), (t) => g.dodge(t));
-    press($('btnEncore'), () => g.encore());
+    {
+      const enc = $('btnEncore');
+      let holdTimer = null, cycled = false;
+      const clearHold = () => { if (holdTimer) { clearTimeout(holdTimer); holdTimer = null; } };
+      enc.addEventListener('pointerdown', (e) => {
+        e.preventDefault();
+        cycled = false;
+        clearHold();
+        holdTimer = setTimeout(() => { cycled = true; g.encore(true); }, 380);
+      });
+      enc.addEventListener('pointerup', (e) => {
+        e.preventDefault();
+        clearHold();
+        if (!cycled) g.encore(false);
+      });
+      enc.addEventListener('pointercancel', clearHold);
+      enc.addEventListener('pointerleave', clearHold);
+    }
     press($('shrinetap'), (t) => g.activities.shrineTap(t));
     $('btnInteract').addEventListener('pointerdown', (e) => { e.preventDefault(); g.interact(); });
     document.querySelectorAll('#menu button').forEach((b) => b.addEventListener('click', () => this.open(b.dataset.panel)));
@@ -110,7 +127,12 @@ export class UI {
       if (c === 'Space' || c === 'KeyJ') { e.preventDefault(); this.attackHeld = true; if (g.activities.shrine) g.activities.shrineTap(t); else g.attack(t); }
       else if (c in skillKeys) g.skill(skillKeys[c], t);
       else if (c === 'ShiftLeft' || c === 'ShiftRight' || c === 'KeyL') g.dodge(t);
-      else if (c === 'KeyT' || c === 'KeyC') g.encore();
+      else if (c === 'KeyT' || c === 'KeyC') {
+        if (e.altKey || e.shiftKey) g.encore(true);
+        else g.encore(false);
+      }
+      else if (c === 'BracketLeft') g.encore(true);
+      else if (c === 'BracketRight') { g.encoreSys.cycle(-1); }
       else if (c === 'KeyX' || c === 'Enter') g.interact();
       else if (c === 'KeyI') this.open('wardrobe');
       else if (c === 'KeyK') this.open('skills');
@@ -226,7 +248,8 @@ export class UI {
     // Combo + dynamics
     $('dynmark').textContent = R.dyn.mark;
     $('cresfill').style.width = R.crescendo + '%';
-    $('combo').innerHTML = R.combo >= 3 ? `${R.combo}<small>${R.encoreActive ? 'ENCORE' : 'COMBO ×' + R.multiplier('Good').toFixed(2)}</small>` : '';
+    const encLive = g.encoreSys?.active ? (g.encoreSys.variant?.short || 'ENCORE') : R.encoreActive ? 'ENCORE' : null;
+    $('combo').innerHTML = R.combo >= 3 ? `${R.combo}<small>${encLive || ('COMBO ×' + R.multiplier('Good').toFixed(2))}</small>` : '';
     // Approach ring: closes exactly as the next beat becomes audible.
     const spb = g.audio.spb;
     const toNext = clamp(1 - g.beatPhase, 0, 1);
@@ -256,7 +279,19 @@ export class UI {
     const dl = Math.max(0, g.dodgeReadyAt - g.time);
     $('btnDodge').querySelector('.cd').style.setProperty('--cd', dl > 0 ? (dl / g.dodgeCd).toFixed(3) : 0);
     $('encfill').style.height = (R.encore / R.encoreMax) * 100 + '%';
-    $('btnEncore').classList.toggle('ready', R.encore >= R.encoreMax);
+    const encBtn = $('btnEncore');
+    encBtn.classList.toggle('ready', R.encore >= R.encoreMax);
+    const ev = g.encoreSys?.variant;
+    if (ev) {
+      const label = encBtn.querySelector('span');
+      if (label && label.dataset.id !== ev.id) {
+        label.dataset.id = ev.id;
+        label.textContent = ev.short;
+        label.title = `${ev.name} — ${ev.blurb} (hold / Alt+T to cycle)`;
+        encBtn.style.borderColor = ev.color;
+      }
+      if (g.encoreSys.active) encBtn.classList.add('ready');
+    }
     // Interact
     const it = g.nearestInteract();
     const ib = $('btnInteract');
