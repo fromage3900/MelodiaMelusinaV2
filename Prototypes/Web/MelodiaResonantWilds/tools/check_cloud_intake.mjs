@@ -7,7 +7,7 @@ const root = dirname(dirname(fileURLToPath(import.meta.url)));
 const file = (p) => readFileSync(join(root, p), 'utf8');
 const exists = (p) => existsSync(join(root, p));
 const js = ['js/player.js', 'js/chibi.js', 'js/activities.js',
-  'js/cel.js', 'js/asset-loader.js', 'js/world.js',
+  'js/cel.js', 'js/asset-loader.js', 'js/world.js', 'js/heritage-timeline.js',
   'vendor/examples/jsm/loaders/GLTFLoader.js',
   'vendor/examples/jsm/utils/BufferGeometryUtils.js'];
 for (const p of js) assert.ok(exists(p), 'missing: ' + p);
@@ -16,6 +16,15 @@ assert.match(file('js/player.js'), /if \(m\.pose\)/);
 assert.match(file('js/activities.js'), /get\('shrine'\) === 'glb'/);
 assert.match(file('js/asset-loader.js'), /GLTFLoader/);
 assert.match(file('js/asset-loader.js'), /procedural/);
+const ornaments = ['chromatic-orbit', 'note-medallion', 'filigree-frame', 'resonance-core'];
+for (const id of ornaments) {
+  const svg = file('assets/heritage/' + id + '.svg');
+  assert.match(svg, /<svg\s/);
+  assert.match(svg, /viewBox=/);
+}
+assert.match(file('index.html'), /title-sigil-orbit/);
+assert.match(file('index.html'), /shrine-crest/);
+assert.match(file('js/activities.js'), /createDeterministicTimeline/);
 assert.match(file('js/cel.js'), /MeshToonMaterial/);
 assert.match(file('js/cel.js'), /nprV2/);
 const tuner = file('js/npr-tuner.js');
@@ -34,7 +43,7 @@ assert.ok(model.byteLength < 1024 * 1024, 'P0 GLB must fit 1 MiB');
 const manifest = JSON.parse(file('manifest.json'));
 for (const icon of manifest.icons) assert.ok(exists(icon.src), 'missing PWA icon ' + icon.src);
 const sw = file('sw.js');
-assert.match(sw, /resonant-wilds-v7/);
+assert.match(sw, /resonant-wilds-v8/);
 assert.ok(!exists('js/painterly.js'), 'retired Kuwahara shader must be deleted');
 assert.doesNotMatch(file('js/game.js'), /painterly|PainterlyFilter|WebGLRenderTarget/);
 assert.doesNotMatch(tuner, /game\.painterly|PainterlyFilter|uAnisotropy|uEdgeProtect|key: 'strength'|key: 'radius'|key: 'anisotropy'|key: 'scale'/);

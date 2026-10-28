@@ -258,3 +258,16 @@ h1 { font-family: Georgia, 'Times New Roman', serif; font-size: clamp(40px, 9vw,
   #tc { top: calc(214px + var(--sat)); max-width: 90vw; }
   #riftbar, #bossbar { top: calc(150px + var(--sat)); width: 80vw; }
 }
+
+/* Site heritage: original Resonance SVG set, sourced from fromage-webgl-kit.
+   UI ornaments are deliberately DOM/SVG, not another Three renderer. */
+.title-sigil { position: relative; width: clamp(68px, 15vmin, 126px); height: clamp(68px, 15vmin, 126px); margin: 0 auto 6px; pointer-events: none; }
+.title-sigil img { position: absolute; inset: 0; display: block; width: 100%; height: 100%; object-fit: contain; }
+.title-sigil-orbit { animation: rw-heritage-orbit 28s linear infinite; }
+.title-sigil-note { transform: scale(.61); filter: drop-shadow(0 0 12px rgba(217,188,114,.36)); }
+.shrine-crest { position: relative; width: 60px; height: 60px; margin: 0 auto 3px; pointer-events: none; }
+.shrine-crest img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
+.shrine-crest img:last-child { transform: scale(.75); }
+@keyframes rw-heritage-orbit { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .title-sigil-orbit { animation: none; } }
+@media (max-height: 440px) { .title-sigil { width: 55px; height: 55px; margin-bottom: 1px; } .shrine-crest { width: 38px; height: 38px; margin-bottom: 0; } }

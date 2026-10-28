@@ -1,11 +1,11 @@
 // Resonant Wilds PWA cache v2. Keep shader, character and GLB updates fresh.
 // The browser game remains playable online even if optional preview assets fail.
-const CACHE = 'resonant-wilds-v7-20261028-cel-only';
+const CACHE = 'resonant-wilds-v8-20261028-heritage';
 const ASSETS = [
   './', './index.html', './style.css', './manifest.json',
   './icon-192.png', './icon-512.png',
   './js/main.js', './js/game.js', './js/audio.js', './js/rhythm.js',
-  './js/world.js', './js/entities.js', './js/cel.js', './js/npr-tuner.js', './js/chibi.js',
+  './js/world.js', './js/entities.js', './js/cel.js', './js/npr-tuner.js', './js/chibi.js', './js/heritage-timeline.js',
   './js/asset-loader.js', './js/combat.js', './js/loot.js',
   './js/activities.js', './js/progress.js', './js/ui.js',
   './js/player.js', './js/design.js', './js/fx.js', './js/util.js',
@@ -14,6 +14,8 @@ const ASSETS = [
   './vendor/examples/jsm/loaders/GLTFLoader.js',
   './vendor/examples/jsm/utils/BufferGeometryUtils.js',
   './assets/models/resonance-shrine.glb',
+  './assets/heritage/chromatic-orbit.svg', './assets/heritage/note-medallion.svg',
+  './assets/heritage/filigree-frame.svg', './assets/heritage/resonance-core.svg',
 ];
 
 self.addEventListener('install', (event) => {

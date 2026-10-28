@@ -38,6 +38,14 @@ try {
     });
     const response = await page.goto(base + test.query, { waitUntil: 'domcontentloaded', timeout: 60000 });
     assert.ok(response?.ok(), test.name + ': page returned HTTP error');
+    const heritage = await page.locator('.title-sigil img, .shrine-crest img').count();
+    assert.equal(heritage, 4, test.name + ': four reused site SVG ornaments absent');
+    const loadedHeritage = await page.evaluate(async () => {
+      const images = [...document.querySelectorAll('.title-sigil img, .shrine-crest img')];
+      await Promise.all(images.map((img) => img.decode()));
+      return images.every((img) => img.naturalWidth > 0);
+    });
+    assert.ok(loadedHeritage, test.name + ': a reused site SVG failed to load');
     await page.waitForFunction(() => !!window.__melodia &&
       !document.querySelector('#play').disabled, null, { timeout: 90000 });
     const before = await page.evaluate(() => ({
@@ -47,6 +55,7 @@ try {
       legacyTerrain: !!window.__melodia.world.terrainMat.isMeshLambertMaterial,
       chladni: window.__melodia.world.uniforms.uChladni.value,
       caustics: window.__melodia.world.uniforms.uCaustics.value,
+      heritageTimeline: window.__melodia.activities.shrineTimeline.sample(2).values,
       retiredPostFX: 'painterly' in window.__melodia,
       paletteSize: window.__melodia.world.terrainMat.gradientMap?.image?.data?.length || 0,
     }));
@@ -78,6 +87,8 @@ try {
       assert.equal(before.caustics, 0, 'legacy caustics strength');
     }
     assert.ok(before.shrineCount > 0, test.name + ': no shrines to validate');
+    assert.ok(Math.abs(before.heritageTimeline.yaw) < 0.001, test.name + ': site timeline yaw wrong');
+    assert.ok(Math.abs(before.heritageTimeline.rise) < 0.001, test.name + ': site timeline rise wrong');
     assert.ok(before.uniforms.includes('uChladni') && before.uniforms.includes('uCaustics'),
       test.name + ': shader uniforms missing');
     if (test.shrine) {
