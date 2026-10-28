@@ -1,0 +1,15 @@
+// canal-bank tree rows: set back from water, +-1 m jitter, 6-7 m spacing, gaps, yaw/scale variation
+vector t = normalize(v@tangentu); vector side = normalize(cross(t,{0,1,0}));
+float w = prim(0,"width",@primnum)*0.5;
+foreach(float sgn; {-1.0,1.0}){
+  if(rand(@ptnum*1.7+sgn)<chf("../row_gap")) continue;
+  vector p = @P + side*sgn*(w+5.0+rand(@ptnum+sgn)*1.5) + t*(rand(@ptnum*3.3+sgn)-0.5)*2.0 + side*(rand(@ptnum*5.1+sgn)-0.5)*2.0;
+  float tr = volumesample(1,"tree_rows_poplar_ash",p); float wat=volumesample(1,"cd",p);
+  if(tr>0.05 && wat>w+4.0){
+    int pop = rand(@ptnum*3+sgn)<0.75;
+    int n=addpoint(0,p); setpointattrib(0,"type",n,pop?"poplar":"ash_tetard");
+    setpointattrib(0,"yaw",n,rand(@ptnum*9+sgn)*360); setpointattrib(0,"scale",n,set(1,fit01(rand(@ptnum+9),0.85,1.2),1)*fit01(rand(@ptnum+19+sgn),0.85,1.15));
+    setpointattrib(0,"height_m",n, pop ? fit01(rand(@ptnum+11),25,35) : fit01(rand(@ptnum+12),8,12));
+    setpointattrib(0,"pollard_head_m",n, pop ? 0.0 : fit01(rand(@ptnum+13),1.0,2.0)); }
+}
+removepoint(0,@ptnum);
