@@ -15,6 +15,9 @@ const variants = [
   { name: 'desktop-chibi-shrine', query: '?avatar=chibi&shrine=glb', chibi: true, shrine: true, mobile: false },
   { name: 'mobile-baseline', query: '?chladni=0&caustics=0', chibi: false, shrine: false, mobile: true },
   { name: 'desktop-legacy-render', query: '?render=legacy', chibi: false, shrine: false, mobile: false, legacy: true },
+  { name: 'desktop-npr-v2', query: '?npr=v2&avatar=chibi&shrine=glb', chibi: true, shrine: true, mobile: false, npr: true },
+  { name: 'desktop-painterly', query: '?npr=v2&kuwahara=1&avatar=chibi&shrine=glb', chibi: true, shrine: true, mobile: false, npr: true, painterly: true },
+  { name: 'mobile-npr-v2', query: '?npr=v2&kuwahara=0', chibi: false, shrine: false, mobile: true, npr: true },
 ];
 try {
   for (const test of variants) {
@@ -42,9 +45,14 @@ try {
       legacyTerrain: !!window.__melodia.world.terrainMat.isMeshLambertMaterial,
       chladni: window.__melodia.world.uniforms.uChladni.value,
       caustics: window.__melodia.world.uniforms.uCaustics.value,
+      painterly: !!window.__melodia.painterly,
+      paletteSize: window.__melodia.world.terrainMat.gradientMap?.image?.data?.length || 0,
     }));
     assert.equal(before.chibi, test.chibi, test.name + ': incorrect avatar selection');
     assert.equal(before.legacyTerrain, !!test.legacy, test.name + ': wrong environment shading');
+    assert.equal(before.painterly, !!test.painterly, test.name + ': wrong painterly state');
+    if (test.npr) assert.equal(before.paletteSize, 12, test.name + ': missing RGB NPR gradient');
+    else if (!test.legacy) assert.equal(before.paletteSize, 3, test.name + ': v1 gradient regression');
     if (test.legacy) {
       assert.equal(before.chladni, 0, 'legacy Chladni strength');
       assert.equal(before.caustics, 0, 'legacy caustics strength');
@@ -61,6 +69,9 @@ try {
     await page.waitForFunction(() => window.__melodia.started &&
       window.__melodia.renderer.info.render.calls > 0, null, { timeout: 30000 });
     assert.deepEqual(failures, [], test.name + ': WebGL/JavaScript console errors');
+    if (process.env.GAME_SCREENSHOTS === '1') {
+      await page.screenshot({ path: '/tmp/resonant-wilds-' + test.name + '.png' });
+    }
     console.log('PASS', test.name, JSON.stringify({
       shrubs: before.shrineCount, avatar: test.chibi ? 'chibi' : 'procedural',
       shrine: test.shrine ? 'GLB loaded' : 'procedural',

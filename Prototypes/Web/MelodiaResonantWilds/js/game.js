@@ -2,6 +2,7 @@
 // skills and the world pulse; the player's taps are judged against it.
 
 import * as THREE from 'three';
+import { painterlyEnabled, PainterlyFilter } from './painterly.js';
 import { AudioEngine } from './audio.js';
 import { World, WATER } from './world.js';
 import { Particles, Decals, Overlay, makeBeam } from './fx.js';
@@ -24,6 +25,8 @@ export class Game {
     this.profile = loadProfile();
     this.canvas = document.getElementById('game');
     this.renderer = new THREE.WebGLRenderer({ canvas: this.canvas, antialias: !isTouch, powerPreference: 'high-performance' });
+    // Opt-in painterly postprocess. Quality adaptation still controls render resolution.
+    this.painterly = painterlyEnabled ? new PainterlyFilter() : null;
     this.scene = new THREE.Scene();
     this.scene.background = new THREE.Color('#f3e6dc');
     this.scene.fog = new THREE.Fog('#f3e6dc', 75, 175);
@@ -756,7 +759,8 @@ export class Game {
     }
     this.overlay.draw(dt, bars, labels);
     this.ui.update(dt);
-    this.renderer.render(this.scene, this.camera);
+    if (this.painterly) this.painterly.render(this.renderer, this.scene, this.camera);
+    else this.renderer.render(this.scene, this.camera);
   }
 
   simulate(dt) {

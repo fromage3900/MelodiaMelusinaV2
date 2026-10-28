@@ -1,11 +1,11 @@
 // Resonant Wilds PWA cache v2. Keep shader, character and GLB updates fresh.
 // The browser game remains playable online even if optional preview assets fail.
-const CACHE = 'resonant-wilds-v3-20261027';
+const CACHE = 'resonant-wilds-v4-20261027-npr';
 const ASSETS = [
   './', './index.html', './style.css', './manifest.json',
   './icon-192.png', './icon-512.png',
   './js/main.js', './js/game.js', './js/audio.js', './js/rhythm.js',
-  './js/world.js', './js/entities.js', './js/cel.js', './js/chibi.js',
+  './js/world.js', './js/entities.js', './js/cel.js', './js/painterly.js', './js/chibi.js',
   './js/asset-loader.js', './js/combat.js', './js/loot.js',
   './js/activities.js', './js/progress.js', './js/ui.js',
   './js/player.js', './js/design.js', './js/fx.js', './js/util.js',

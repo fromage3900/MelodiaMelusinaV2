@@ -6,9 +6,10 @@
 
 import * as THREE from 'three';
 import { toon, blob } from './entities.js';
+import { nprV2 } from './cel.js';
 import { clamp, lerp } from './util.js';
 
-const INK = new THREE.MeshBasicMaterial({ color: '#2a1f3a', side: THREE.BackSide });
+const INK = new THREE.MeshBasicMaterial({ color: nprV2 ? '#302344' : '#2a1f3a', side: THREE.BackSide });
 const PAL = {
   skin: '#a6705a', blush: '#e5707f', eyeWhite: '#ffffff', iris: '#8e6ce0', pupil: '#2c1d4a',
   hair: '#b8a4f0', hairLight: '#ddd4ff', hairDeep: '#8a74d6', clip: '#7c5fd6',
@@ -29,7 +30,12 @@ function inked(mesh, s = 1.05) {
 }
 
 function part(geo, color, x = 0, y = 0, z = 0, opts = {}) {
-  const m = new THREE.Mesh(geo, toon(color, opts));
+  const role = color === PAL.skin ? 'skin'
+    : color === PAL.gold || color === PAL.flowerCore ? 'metal'
+    : color === PAL.hair || color === PAL.hairLight || color === PAL.hairDeep ? 'crystal'
+    : color === PAL.glove || color === PAL.vest || color === PAL.skirt ? 'fabric'
+    : undefined;
+  const m = new THREE.Mesh(geo, toon(color, { nprRole: role, ...opts }));
   m.position.set(x, y, z);
   return m;
 }

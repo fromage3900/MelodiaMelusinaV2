@@ -6,8 +6,9 @@ import { BIOMES, HUB, WORLD_SEED, RIFT_POOL, BURDENS, ELITE_AFFIXES, RIFT_STYLE,
 import { Enemy } from './entities.js';
 import { mulberry32, pick, clamp } from './util.js';
 import { makeBeam } from './fx.js';
+import { environmentMaterial } from './cel.js';
 
-const L = (hex, o = {}) => new THREE.MeshLambertMaterial({ color: hex, flatShading: true, ...o });
+const L = (hex, o = {}) => environmentMaterial(hex, { flatShading: true, ...o });
 
 export class Activities {
   constructor(game) {
