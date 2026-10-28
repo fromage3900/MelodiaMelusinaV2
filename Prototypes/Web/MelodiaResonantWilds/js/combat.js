@@ -80,9 +80,10 @@ export class Combat {
   /** Perfect-on-hit juice: highway pulse + sparkles (readability, not a new system). */
   perfectJuice(gr) {
     const g = this.g, P = g.player;
+    const col = g.encoreSys?.accentColor?.() || '#ffd978';
     g.world.pulse(P.pos.x, P.pos.z, 1.15 + Math.min(0.8, g.rhythm.combo * 0.02), true);
-    g.particles.burst(P.pos.x, P.pos.y + 1.1, P.pos.z, _col.set('#ffd978'), 14, { speed: 7, life: 0.4, kind: 3, size: 0.7, gravity: -1 });
-    g.ui.beatSpark?.();
+    g.particles.burst(P.pos.x, P.pos.y + 1.1, P.pos.z, _col.set(col), 14, { speed: 7, life: 0.4, kind: 3, size: 0.7, gravity: -1 });
+    g.ui.beatSpark?.(col);
     P.heal(P.stats.maxHp * 0.02, true);
   }
 
@@ -124,6 +125,7 @@ export class Combat {
       let td = (o.tough ?? 1) * 6 * (o.mult ?? 1) * (1 + S.break);
       if (em > 1) td *= 1.5;
       if (o.downbeat && S.arias.has('DownbeatBreak')) td *= 3;
+      if (o.perfect && g.encoreSys?.perfectBreakActive()) td = Math.max(td, e.tough + 1);
       e.tough -= td;
       if (e.tough <= 0) this.breakEnemy(e);
     }
@@ -161,6 +163,7 @@ export class Combat {
     g.world.pulse(e.pos.x, e.pos.z, 1.6, true);
     g.shake(0.5);
     g.audio.kill(true);
+    g.encoreSys?.noteBreak?.();
   }
 
   hitAll(list, coef, o) {

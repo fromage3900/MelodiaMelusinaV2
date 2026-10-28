@@ -15,8 +15,9 @@ export function defaultProfile() {
     echoLineage: { phrase: null, pity: 0, active: null, history: 0 },
     loadout: STARTING_SKILLS.slice(), learned: STARTING_SKILLS.slice(),
     blessings: [], pylons: ['pylon_hub'], shrines: [], sheets: [], vistas: [], photos: [], gates: [], cleanses: [], destinations: [], dews: [],
+    dewBonusTier: 0, destBuffs: {},
     riftTier: 0, bounties: null, bountySet: 0, movement: 0, maestros: [],
-    settings: { music: 0.75, sfx: 0.9, offsetMs: 0, difficulty: 'standard', quality: 'auto', autoSalvage: false, shake: true },
+    settings: { music: 0.75, sfx: 0.9, offsetMs: 0, difficulty: 'standard', quality: 'auto', autoSalvage: false, shake: true, encoreVariant: 'cascade' },
     stats: { kills: 0, perfects: 0, bestCombo: 0, bosses: 0, rifts: 0, playSeconds: 0 },
     explored: '', tutorial: 0, lastSeen: 0, spawn: null,
   };
