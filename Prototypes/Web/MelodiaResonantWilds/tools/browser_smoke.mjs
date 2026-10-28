@@ -11,7 +11,8 @@ const browser = await chromium.launch({
     '--use-angle=swiftshader', '--enable-unsafe-swiftshader'],
 });
 const variants = [
-  { name: 'desktop-default', query: '', chibi: false, shrine: false, mobile: false },
+  { name: 'desktop-default', query: '', chibi: false, shrine: false, mobile: false, npr: true },
+  { name: 'desktop-v1-cel', query: '?npr=v1', chibi: false, shrine: false, mobile: false, v1: true },
   { name: 'desktop-chibi-shrine', query: '?avatar=chibi&shrine=glb', chibi: true, shrine: true, mobile: false },
   { name: 'desktop-mixamo', query: '?avatar=mixamo', chibi: false, shrine: false, mobile: false, mixamo: true },
   { name: 'mobile-baseline', query: '?chladni=0&caustics=0', chibi: false, shrine: false, mobile: true },
@@ -105,11 +106,12 @@ try {
     assert.equal(before.worldexp, !!test.worldexp, test.name + ': world expansion flag mismatch');
     if (test.worldexp) assert.ok(before.destinations >= 16, test.name + ': destination POIs not generated');
     else assert.equal(before.destinations, 0, test.name + ': default map received opt-in destinations');
-    if (test.npr) {
+    if (!test.legacy && !test.v1) {
       assert.equal(before.paletteSize, 12, test.name + ': missing RGB NPR gradient');
       assert.ok(before.rgbBands, test.name + ': RGB toon band GLSL did not compile');
+    } else if (test.v1) {
+      assert.equal(before.paletteSize, 3, test.name + ': explicit V1 fallback gradient regression');
     }
-    else if (!test.legacy) assert.equal(before.paletteSize, 3, test.name + ': v1 gradient regression');
     if (test.legacy) {
       assert.equal(before.chladni, 0, 'legacy Chladni strength');
       assert.equal(before.caustics, 0, 'legacy caustics strength');
