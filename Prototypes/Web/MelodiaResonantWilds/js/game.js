@@ -234,8 +234,11 @@ export class Game {
     if (gr.grade === 'Perfect') {
       this.player.sp = Math.min(this.player.stats.spMax, this.player.sp + 1);
       this.player.addBuff('Crescendo_Minor', this.audio.meter * MODIFIERS.Crescendo_Minor.duration_turns);
+      this.activities.goalEvent('perfect', 1);
     } else if (gr.grade === 'Great' && Math.random() < this.player.stats.harmony) {
       this.player.sp = Math.min(this.player.stats.spMax, this.player.sp + 1);
+    } else if (gr.grade === 'Miss') {
+      this.activities.goalEvent('miss', 1);
     }
     this.autoAttackBeat = gr.beat ? gr.beat.index : this.beatIndex;
     this.rhythm.register(gr, hits);
@@ -275,6 +278,9 @@ export class Game {
     if (gr.grade === 'Perfect') {
       this.encoreSys.notePerfect(hits, sk.coef || 1.4, sk.element);
       this.encoreSys.onPerfect();
+      this.activities.goalEvent('perfect', 1, { skill: true });
+    } else if (gr.grade === 'Miss') {
+      this.activities.goalEvent('miss', 1);
     }
     if (gr.grade === 'Miss') this.combat.missPressure();
     else if (gr.grade === 'Perfect' && hits) this.combat.perfectJuice(gr);

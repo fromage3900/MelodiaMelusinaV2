@@ -164,6 +164,7 @@ export class Combat {
     g.shake(0.5);
     g.audio.kill(true);
     g.encoreSys?.noteBreak?.();
+    if (this.g.activities.rift?.guardian === e) this.g.activities.goalEvent('break', 1, { guardian: true });
   }
 
   hitAll(list, coef, o) {
@@ -219,12 +220,24 @@ export class Combat {
     const t = this.autoTarget(skill.kind === 'projectile' || skill.kind === 'meteor' || skill.kind === 'bolts' ? 18 : 11);
     if (t && skill.kind !== 'heal' && skill.kind !== 'shield') P.faceTo(t.pos.x, t.pos.z);
     const o = { mult: gr.mult, element: skill.element, skill: true, perfect: gr.grade === 'Perfect', downbeat: gr.downbeat, tough: skill.tough ?? 1 };
-    const c = skill.power;
     const color = ELEMENT_STYLE[skill.element].color;
     const fwdX = Math.sin(P.facing), fwdZ = Math.cos(P.facing);
     const aimX = t ? t.pos.x : P.pos.x + fwdX * 6, aimZ = t ? t.pos.z : P.pos.z + fwdZ * 6;
     g.audio.skill(skill);
-    P.swing(3);
+    if (P.castAnim) P.castAnim(skill.kind); else P.swing(3);
+    let coefMul = 1;
+    if (skill.consumeEcho) coefMul *= this.g.echo.consumeActiveForSkill();
+    if (skill.motifScale) {
+      const n = Object.values(this.g.profile.motifs || {}).reduce((a, b) => a + b, 0);
+      coefMul *= 1 + Math.min(1.2, n * 0.06);
+    }
+    if (skill.oshiScale) {
+      const oshi = this.g.profile.oshiAria;
+      const has = oshi && [...(P.stats.arias || [])].includes(oshi);
+      coefMul *= has ? 1.55 : 0.7;
+    }
+    if (skill.downbeatBreak && gr.downbeat) o.tough = (o.tough || 1) * 2.2;
+    let c = skill.power * coefMul;
     let hits = 0;
     switch (skill.kind) {
       case 'strike': {
@@ -269,6 +282,25 @@ export class Combat {
         hits = this.hitAll(this.enemiesIn('circle', p), c * skill.coef, o);
         this.flash('ring', p.x, p.z, { r, inner: r - 1.4 }, color);
         g.world.pulse(p.x, p.z, 1.8, true);
+        break;
+      }
+      case 'chladni': {
+        const r = this.area(skill.radius);
+        const p = { x: P.pos.x, z: P.pos.z, r };
+        hits = this.hitAll(this.enemiesIn('circle', p), c * skill.coef, o);
+        this.flash('ring', p.x, p.z, { r, inner: r * 0.35 }, color);
+        this.flash('circle', p.x, p.z, { r: r * 0.45 }, color);
+        const spokes = skill.spokes || 8;
+        for (let k = 0; k < spokes; k++) {
+          const ang = (k / spokes) * Math.PI * 2;
+          for (let s = 1; s <= 5; s++) {
+            const x = P.pos.x + Math.sin(ang) * (r * s / 5);
+            const z = P.pos.z + Math.cos(ang) * (r * s / 5);
+            g.particles.emit(x, P.pos.y + 0.5, z, _col.set(color), { speed: 2, life: 0.55, size: 0.4, kind: 1, size: 0.7 });
+          }
+        }
+        g.world.pulse(p.x, p.z, 1.6, true);
+        g.shake(0.25);
         break;
       }
       case 'nova': {
@@ -353,6 +385,18 @@ export class Combat {
         P.startDash(P.facing, skill.dist, 0.2, true);
         if (skill.buff) P.addBuff(skill.buff, g.audio.meter * 2 * MODIFIERS[skill.buff].duration_turns);
         this.flash('rect', p.x, p.z, p, color);
+        if (skill.afterimage) {
+          const ax = P.pos.x, az = P.pos.z, af = P.facing;
+          this.queue.push({
+            beat: g.beatIndex + 1,
+            fn: () => {
+              const p2 = { x: ax, z: az, len: 5, width: this.area(2.2), angle: af };
+              this.hitAll(this.enemiesIn('rect', p2), c * skill.coef * 0.85, o);
+              this.flash('rect', ax, az, p2, color);
+              g.particles.burst(ax, g.world.height(ax, az) + 1, az, _col.set(color), 14, { speed: 7, life: 0.5 });
+            },
+          });
+        }
         break;
       }
       case 'heal': {
