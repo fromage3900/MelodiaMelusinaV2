@@ -75,9 +75,9 @@ export const OW_RULES = Object.freeze({
       overlook: 55,
       chime: 28,
       photo: 40,
-      musicgate: 70,
-      cleanse: 55,
-      ariagate: 90,
+      musicgate: 48,
+      cleanse: 40,
+      ariagate: 55,
     },
   },
   // Mobile perf: keep streamed prop budgets honest on phones.
@@ -206,16 +206,25 @@ export function planExploration(b, bi, rng, occupied) {
     }
   };
 
+  // Distinct verbs first along the approach corridor so density packing cannot crowd them out.
+  // Deterministic corridor pins guarantee at least one of each verb per biome.
+  const pin = (type, r, da, extra) => {
+    const a = b.angle + da, x = Math.cos(a) * r, z = Math.sin(a) * r;
+    if (Math.hypot(x, z) < HUB.radius + 8) return;
+    const p = { type, biome: bi, x, z, ...extra };
+    occupied.push({ x, z, type });
+    out.push(p);
+  };
+  pin('musicgate', 168, 0.05, { name: 'Phrase Bridge', workflow: 'puzzle', open: false });
+  pin('musicgate', 230, -0.08, { name: 'Phrase Bridge', workflow: 'puzzle', open: false });
+  pin('cleanse', 145, 0.14, { name: 'Dissonant Blot', workflow: 'companion', cleared: false });
+  pin('cleanse', 260, -0.16, { name: 'Dissonant Blot', workflow: 'companion', cleared: false });
+  pin('ariagate', 250, 0.02, { name: 'Aria Veil', workflow: 'traversal', open: false, needAria: true, needSlot: 'shoes' });
+
   // Approach / midland get denser content (Genshin first-impression ring).
   take('overlook', D.overlooksPerBiome, 130, 360, 0.35, D.minSpacing.overlook, { name: `${b.name.split('—')[0].trim()} Overlook`, workflow: 'vista' });
   take('photo', D.photoSpotsPerBiome, 100, 420, 0.4, D.minSpacing.photo, { name: 'Whim Frame', workflow: 'impression', challenge: true });
   take('chime', D.chimeClustersPerBiome, 90, 480, 0.5, D.minSpacing.chime, { name: 'Resonance Chimes', workflow: 'detail' });
-  // Distinct verbs (not more camps): music bridge, sheep cleanse blot, Wardrobe aria gate.
-  take('musicgate', D.musicGatesPerBiome, 150, 380, 0.35, D.minSpacing.musicgate, { name: 'Phrase Bridge', workflow: 'puzzle', open: false });
-  take('cleanse', D.cleansePerBiome, 120, 450, 0.4, D.minSpacing.cleanse, { name: 'Dissonant Blot', workflow: 'companion', cleared: false });
-  take('ariagate', D.ariaGatesPerBiome, 200, 480, 0.3, D.minSpacing.ariagate, {
-    name: 'Aria Veil', workflow: 'traversal', open: false, needAria: true, needSlot: 'shoes',
-  });
 
   // Core combat / reward density — counts tuned by ring weights.
   const campN = Math.round(D.campsPerBiome);
