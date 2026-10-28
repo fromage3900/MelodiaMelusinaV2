@@ -106,6 +106,16 @@ export class Game {
   async warm(progress) {
     progress('Raising the eight biomes…');
     await new Promise((r) => setTimeout(r, 20));
+    if (new URLSearchParams(location.search).get('grove') === 'glb') {
+      progress('Cultivating Harmonic Grove…');
+      try {
+        const { installGroveProps } = await import('./grove.js');
+        await installGroveProps(this.world);
+      } catch (e) {
+        this.world.groveStatus = 'fallback';
+        console.warn('Harmonic Grove unavailable; procedural vegetation retained', e);
+      }
+    }
     this.world.warm(this.player.pos.x, this.player.pos.z);
     progress('Drawing the map…');
     await new Promise((r) => setTimeout(r, 20));
