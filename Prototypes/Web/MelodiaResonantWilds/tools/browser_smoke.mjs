@@ -18,6 +18,10 @@ const variants = [
   { name: 'desktop-bellflower-off', query: '?bellflower=0', chibi: false, shrine: false, mobile: false, bellflower: false },
   { name: 'desktop-petal-cantata', query: '?flowerbeds=1', chibi: false, shrine: false, mobile: false, flowerbed: true },
   { name: 'desktop-original-flowers', query: '?flowerbeds=0', chibi: false, shrine: false, mobile: false, flowerbed: false },
+  { name: 'desktop-npr-v2', query: '?npr=v2&avatar=chibi&shrine=glb', chibi: true, shrine: true, mobile: false, npr: true },
+  { name: 'desktop-painterly', query: '?npr=v2&kuwahara=1&avatar=chibi&shrine=glb', chibi: true, shrine: true, mobile: false, npr: true, painterly: true },
+  { name: 'mobile-npr-v2', query: '?npr=v2&kuwahara=0', chibi: false, shrine: false, mobile: true, npr: true },
+  { name: 'desktop-live-tuner', query: '?npr=v2&kuwahara=1&avatar=chibi&shrine=glb&tune=1&look=soft', chibi: true, shrine: true, mobile: false, npr: true, painterly: true, tune: true },
 ];
 try {
   for (const test of variants) {
@@ -45,6 +49,8 @@ try {
       legacyTerrain: !!window.__melodia.world.terrainMat.isMeshLambertMaterial,
       chladni: window.__melodia.world.uniforms.uChladni.value,
       caustics: window.__melodia.world.uniforms.uCaustics.value,
+      painterly: !!window.__melodia.painterly,
+      paletteSize: window.__melodia.world.terrainMat.gradientMap?.image?.data?.length || 0,
       bellflowers: window.__melodia.world.hubGroup.children.filter(o => o.name.startsWith('RW_Bellflower_Plaza_')).length,
       flowerParts: window.__melodia.world.props.flower.parts.length,
       flowerbedEnabled: window.__melodia.world.flowerbedsEnabled,
@@ -59,6 +65,9 @@ try {
     assert.equal(before.bellflowers, expectedFlowers, test.name + ': incorrect bellflower count');
     assert.equal(before.boxLanterns, 12 - expectedFlowers, test.name + ': original lantern fallback mismatch');
     assert.equal(before.legacyTerrain, !!test.legacy, test.name + ': wrong environment shading');
+    assert.equal(before.painterly, !!test.painterly, test.name + ': wrong painterly state');
+    if (test.npr) assert.equal(before.paletteSize, 12, test.name + ': missing RGB NPR gradient');
+    else if (!test.legacy) assert.equal(before.paletteSize, 3, test.name + ': v1 gradient regression');
     if (test.legacy) {
       assert.equal(before.chladni, 0, 'legacy Chladni strength');
       assert.equal(before.caustics, 0, 'legacy caustics strength');
@@ -70,6 +79,40 @@ try {
       await page.waitForFunction(() => window.__melodia.activities.pois.some(
         p => p.type === 'shrine' && !!p.assetVisual
       ), null, { timeout: 45000 });
+    }
+    if (test.tune) {
+      await page.waitForFunction(() => window.__melodiaShaderTuner?.enabled === true, null, { timeout: 10000 });
+      const tuning = await page.evaluate(() => {
+        const lab = window.__melodiaShaderTuner;
+        lab.apply({
+          strength: 0.41, radius: 3, anisotropy: 2.6,
+          edgeProtect: 3.5, shadow: 0.62, ink: 0.73, scale: 0.45,
+        }, 'custom');
+        const u = window.__melodia.painterly.material.uniforms;
+        return {
+          strength: u.uStrength.value, radius: u.uRadius.value,
+          anisotropy: u.uAnisotropy.value, edge: u.uEdgeProtect.value,
+          scale: window.__melodia.painterly.scale,
+          tint: lab.state().shadow, ink: lab.state().ink,
+          url: location.search,
+          sliders: lab.panel.shadowRoot.querySelectorAll('input[type=range]').length,
+        };
+      });
+      assert.equal(tuning.strength, 0.41);
+      assert.equal(tuning.radius, 3);
+      assert.equal(tuning.anisotropy, 2.6);
+      assert.equal(tuning.edge, 3.5);
+      assert.equal(tuning.scale, 0.45);
+      assert.equal(tuning.tint, 0.62);
+      assert.equal(tuning.ink, 0.73);
+      assert.equal(tuning.sliders, 7);
+      assert.match(tuning.url, /paint=0.41/);
+      assert.match(tuning.url, /ink=0.73/);
+      await page.reload({ waitUntil: 'domcontentloaded' });
+      await page.waitForFunction(() => !!window.__melodiaShaderTuner?.enabled && !document.querySelector('#play').disabled, null, { timeout: 90000 });
+      const persisted = await page.evaluate(() => window.__melodiaShaderTuner.state());
+      assert.equal(persisted.strength, 0.41, 'reload retained strength');
+      assert.equal(persisted.ink, 0.73, 'reload retained ink');
     }
     await page.locator('#play').click();
     await page.waitForFunction(() => window.__melodia.started &&
@@ -89,6 +132,9 @@ try {
       await page.screenshot({ path: process.env.RW_SCREENSHOT_DIR + '/' + test.name + '.png' });
     }
     assert.deepEqual(failures, [], test.name + ': WebGL/JavaScript console errors');
+    if (process.env.GAME_SCREENSHOTS === '1') {
+      await page.screenshot({ path: '/tmp/resonant-wilds-' + test.name + '.png' });
+    }
     console.log('PASS', test.name, JSON.stringify({
       shrubs: before.shrineCount, avatar: test.chibi ? 'chibi' : 'procedural',
       shrine: test.shrine ? 'GLB loaded' : 'procedural',
