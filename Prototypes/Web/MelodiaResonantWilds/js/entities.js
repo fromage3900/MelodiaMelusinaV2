@@ -5,11 +5,11 @@
 import * as THREE from 'three';
 import { ELEMENT_STYLE, ENEMY_BY_ID, ELITE_AFFIXES, RULES } from './design.js';
 import { clamp, lerp, angleDiff } from './util.js';
-import { celMaterial } from './cel.js';
+import { celMaterial, registerInkMaterial } from './cel.js';
 
 export { toonGradient } from './cel.js';
 export const toon = (color, o = {}) => celMaterial(color, o);
-const outlineMat = new THREE.MeshBasicMaterial({ color: '#2a1f3a', side: THREE.BackSide });
+const outlineMat = registerInkMaterial(new THREE.MeshBasicMaterial({ color: '#2a1f3a', side: THREE.BackSide }));
 
 function withOutline(mesh, s = 1.07) {
   const o = new THREE.Mesh(mesh.geometry, outlineMat);
