@@ -8,6 +8,7 @@ import { Simplex2, mulberry32, clamp, lerp, smoothstep, angleDiff } from './util
 import { BIOMES, HUB, WORLD_RADIUS, WORLD_SEED, RIFT_STYLE } from './design.js';
 import { environmentMaterial, legacyRender } from './cel.js';
 import { installBellflowers, animateBellflowers } from './bellflower.js';
+import { createFlowerbedParts } from './flowerbeds.js';
 
 export const CHUNK = 64;
 const SEG = 28;
@@ -308,6 +309,9 @@ export class World {
       pine: { parts: [M(new THREE.CylinderGeometry(0.15, 0.2, 1.2, 5), L('#6b5044'), 0.6), M(new THREE.ConeGeometry(1.5, 4.2, 7), L('#4f7f78'), 3.0), M(new THREE.ConeGeometry(0.7, 1.4, 7), L('#ffffff'), 4.6)] },
       icespike: { parts: [M(new THREE.ConeGeometry(0.6, 3.6, 5), L('#bfe9ff', { emissive: '#4aa8d8', emissiveIntensity: 0.25 }), 1.8)] },
     };
+    // Small authored flower clusters; the original cone flowers remain one URL flag away.
+    this.flowerbedsEnabled = new URLSearchParams(window.location.search).get('flowerbeds') !== '0';
+    if (this.flowerbedsEnabled) this.props.flower.parts = createFlowerbedParts(M, L);
     // Note sculpture pieces are offset sideways (head / stem / flag).
     const np = this.props.note;
     np.parts.forEach((p, i) => p.m.setPosition(np.offsetX[i], p.m.elements[13], 0));
@@ -363,6 +367,7 @@ export class World {
       const def = this.props[type];
       def.parts.forEach((part, pi) => {
         const im = new THREE.InstancedMesh(part.geo, part.mat, list.length);
+        if (type === 'flower') im.name = this.flowerbedsEnabled ? `RW_Flowerbed_${pi}` : `RW_FlowerOriginal_${pi}`;
         list.forEach((it, k) => {
           pm.multiplyMatrices(it.m, part.m);
           im.setMatrixAt(k, pm);

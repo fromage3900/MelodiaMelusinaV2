@@ -16,6 +16,8 @@ const variants = [
   { name: 'mobile-baseline', query: '?chladni=0&caustics=0', chibi: false, shrine: false, mobile: true },
   { name: 'desktop-legacy-render', query: '?render=legacy', chibi: false, shrine: false, mobile: false, legacy: true },
   { name: 'desktop-bellflower-off', query: '?bellflower=0', chibi: false, shrine: false, mobile: false, bellflower: false },
+  { name: 'desktop-petal-cantata', query: '?flowerbeds=1', chibi: false, shrine: false, mobile: false, flowerbed: true },
+  { name: 'desktop-original-flowers', query: '?flowerbeds=0', chibi: false, shrine: false, mobile: false, flowerbed: false },
 ];
 try {
   for (const test of variants) {
@@ -44,11 +46,15 @@ try {
       chladni: window.__melodia.world.uniforms.uChladni.value,
       caustics: window.__melodia.world.uniforms.uCaustics.value,
       bellflowers: window.__melodia.world.hubGroup.children.filter(o => o.name.startsWith('RW_Bellflower_Plaza_')).length,
+      flowerParts: window.__melodia.world.props.flower.parts.length,
+      flowerbedEnabled: window.__melodia.world.flowerbedsEnabled,
       boxLanterns: window.__melodia.world.hubGroup.children.filter(o => o.isMesh && o.geometry.type === 'BoxGeometry' &&
         o.geometry.parameters.width === 0.5 && o.geometry.parameters.height === 0.6 &&
         o.geometry.parameters.depth === 0.5 && o.visible).length,
     }));
     assert.equal(before.chibi, test.chibi, test.name + ': incorrect avatar selection');
+    assert.equal(before.flowerbedEnabled, test.flowerbed !== false, test.name + ': flowerbed flag not respected');
+    assert.equal(before.flowerParts, test.flowerbed === false ? 1 : 3, test.name + ': incorrect shared instancing mesh count');
     const expectedFlowers = test.bellflower === false ? 0 : 4;
     assert.equal(before.bellflowers, expectedFlowers, test.name + ': incorrect bellflower count');
     assert.equal(before.boxLanterns, 12 - expectedFlowers, test.name + ': original lantern fallback mismatch');
@@ -68,6 +74,20 @@ try {
     await page.locator('#play').click();
     await page.waitForFunction(() => window.__melodia.started &&
       window.__melodia.renderer.info.render.calls > 0, null, { timeout: 30000 });
+    // Capture one comparable Petal Cantata shot in both modes for art review.
+    // This is a browser beauty reference, not a claim of human aesthetic approval.
+    if (process.env.RW_SCREENSHOT_DIR &&
+        (test.name === 'desktop-petal-cantata' || test.name === 'desktop-original-flowers')) {
+      await page.evaluate(() => {
+        const g = window.__melodia, x = 0, z = -210;
+        g.player.pos.set(x, g.world.height(x, z), z);
+        g.camTarget.copy(g.player.pos);
+        g.world.warm(x, z);
+      });
+      // The in-game title banner fades after 2.8 seconds; keep the A/B view unobscured.
+      await page.waitForTimeout(3200);
+      await page.screenshot({ path: process.env.RW_SCREENSHOT_DIR + '/' + test.name + '.png' });
+    }
     assert.deepEqual(failures, [], test.name + ': WebGL/JavaScript console errors');
     console.log('PASS', test.name, JSON.stringify({
       shrubs: before.shrineCount, avatar: test.chibi ? 'chibi' : 'procedural',

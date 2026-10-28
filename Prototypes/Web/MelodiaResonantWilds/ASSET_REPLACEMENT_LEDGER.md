@@ -61,3 +61,13 @@ Four existing plaza lantern pairs are preserved and hidden only after the visual
 5. Check offline PWA: install, first visit, update from cache v1, and page reload with query parameters; icons and dynamic imports resolve.
 6. Confirm the published site's GH Pages deploy and service-worker update **only after merge**. Never assume CI replaces browser QA.
 7. Review the old Daily Rift, leaderboard and UE music-export branch separately; backend server is not suitable for static GH Pages without a maintained host.
+
+## Petal Cantata flowerbeds (visual P0)
+
+Three-flower blossom clusters reuse the existing `flower` placement positions, random seed, slope check, exclusion logic, colour palette and `InstancedMesh` batching. Three shared geometries per chunk replace the former single cone: tinted blush/lilac petals, jade foliage, and champagne pollen centers. No gameplay or audio changes.
+
+- Default: three-blossom flowerbeds in the original flower slots (mostly the `sakura_terrace` / Petal Cantata biome).
+- `?flowerbeds=0`: original single-cone flower meshes at identical scatter positions.
+- Existing `?bellflower=0`, `?render=legacy`, `?shrine=glb`, `?avatar=chibi` continue independently.
+- Cloud QA captures `desktop-petal-cantata.png` and `desktop-original-flowers.png` as CI artifacts for human visual review; browser simulation does not substitute for actual iPhone Safari.
+- The flower family is authored directly in code; **no Higgsfield credits or new binary GLBs**.
