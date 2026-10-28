@@ -17,7 +17,7 @@
 | `js/world.js:_buildPropLibrary` | `flower` | flower/grass tufts, shared mesh | not created |
 | `js/world.js:_buildPropLibrary` | `rock` | bevelled stone variants | not created |
 | `js/world.js:_buildPropLibrary` | `lantern` | enamel-and-gold lantern | not created |
-| `js/world.js:_buildPropLibrary` | `bell` | animated musical bellflowers | not created |
+| `js/world.js:_buildHub` | four Shorewake plaza lanterns | Higgsfield 3D Jutsu Rev 2 Bellflower Lantern | **game prototype landed as source-geometry parity module `js/bellflower.js`; four visuals replace originals by default, `?bellflower=0` restores originals; standalone GLB export NOT in Git** |
 | `js/world.js:_buildPropLibrary` | `note` | luminous musical sculpture | not created |
 | `js/world.js:_buildPropLibrary` | `pillar` | cathedral column variants | not created |
 | `js/world.js:_buildPropLibrary` | `reed` | water reed clump | not created |
@@ -33,6 +33,12 @@
 
 Terrain chunks and water are **shader/geometry systems**, not first-order GLB replacement candidates.
 The 15 `world.props` families use `InstancedMesh`. Future imported foliage should be baked into compatible shared geometry/material components and instanced per chunk, not loaded or duplicated per plant.
+
+## Bellflower Lantern canary (3D Jutsu revision 2)
+
+The 3D Jutsu project `Resonant Wilds — Resonance Shrine GLB P0` contains a separate `ASSET_RW_BellflowerLantern` editable root. The game code rebuilds the authored silhouette (champagne-gold curved stem, five blush petals, jade leaves, pearl footing and cyan resonant heart) with shared Three.js meshes/materials. The exact binary GLB export is **not** checked into this branch: the cloud download handoff was not available for an authenticated Git upload. Do not label this prototype as the imported GLB. A future exact GLB should replace visuals only after archive, shader, size and mobile QA.
+
+Four existing plaza lantern pairs are preserved and hidden only after the visual replacement has been created. `?bellflower=0` restores all twelve original box lanterns for A/B. There are no new collisions, interactions, saves, gameplay audio writes, or beat-clock changes. The lantern core's emissive intensity is driven by the existing beat-phase argument. Desktop and iOS visual performance checks remain unverified.
 
 ## Model intake P0
 

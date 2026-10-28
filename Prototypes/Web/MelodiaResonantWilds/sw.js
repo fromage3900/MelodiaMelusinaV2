@@ -1,12 +1,12 @@
 // Resonant Wilds PWA cache v2. Keep shader, character and GLB updates fresh.
 // The browser game remains playable online even if optional preview assets fail.
-const CACHE = 'resonant-wilds-v3-20261027';
+const CACHE = 'resonant-wilds-v3-20261027-bellflower-p0';
 const ASSETS = [
   './', './index.html', './style.css', './manifest.json',
   './icon-192.png', './icon-512.png',
   './js/main.js', './js/game.js', './js/audio.js', './js/rhythm.js',
   './js/world.js', './js/entities.js', './js/cel.js', './js/chibi.js',
-  './js/asset-loader.js', './js/combat.js', './js/loot.js',
+  './js/asset-loader.js', './js/bellflower.js', './js/combat.js', './js/loot.js',
   './js/activities.js', './js/progress.js', './js/ui.js',
   './js/player.js', './js/design.js', './js/fx.js', './js/util.js',
   './js/generated/ue_data.js',

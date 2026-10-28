@@ -1,0 +1,20 @@
+// Offline source contract only; browser, shader and iOS visual QA still required.
+import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
+import { dirname, join } from 'node:path';
+import { fileURLToPath } from 'node:url';
+const root = dirname(dirname(fileURLToPath(import.meta.url)));
+const read = (p) => readFileSync(join(root, p), 'utf8');
+const src = read('js/bellflower.js');
+const world = read('js/world.js');
+const sw = read('sw.js');
+assert.match(src, /export function installBellflowers/);
+assert.match(src, /export function animateBellflowers/);
+assert.match(src, /get\('bellflower'\)/);
+assert.match(src, /if \(flag === '0'\) return null/);
+assert.match(src, /Math\.min\(1, crescendo\)/);
+assert.match(world, /i % 3 === 0/);
+assert.match(world, /installBellflowers\(g, bellflowerSites, h\)/);
+assert.match(world, /animateBellflowers\(this\.bellflowerLanterns, beatPhase, crescendo\)/);
+assert.match(sw, /\.\/js\/bellflower\.js/);
+console.log('Bellflower 3D Jutsu geometry-parity canary: static PASS');
