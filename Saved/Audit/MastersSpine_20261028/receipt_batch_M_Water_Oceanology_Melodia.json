@@ -1,0 +1,20 @@
+{
+ "schema": "melodia.masters_spine_batch_receipt.v1",
+ "when": "2026-10-28",
+ "master": "M_Water_Oceanology_Melodia",
+ "asset_path": "/Game/EnvSandbox/Materials/Masters/M_Water_Oceanology_Melodia",
+ "backup_path": "/Game/EnvSandbox/Materials/Masters/_Backup/M_Water_Oceanology_Melodia_PreSpinePolish_20261028",
+ "expr_count_before": 35,
+ "expr_count_after": 35,
+ "renamed_params": 0,
+ "allocated_params": 19,
+ "skipped_ungrouped_after": [],
+ "ungrouped_after": [],
+ "groups_after": {
+  "01 | Biolum": 13,
+  "02 | Toon Bands": 2,
+  "03 | Nikki Sparkle": 4
+ },
+ "comment_headers": [],
+ "ok": true
+}

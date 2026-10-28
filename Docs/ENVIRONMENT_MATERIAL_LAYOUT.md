@@ -4,6 +4,34 @@ This is the folder/naming contract for the EnvSandbox material system. It exists
 500+ instance library stays maintainable long-term. Trust this over older docs where they
 conflict.
 
+## Master spine canon (2026-10-28)
+
+The six production masters are canon: `M_Master_Nikki_Landscape` (terrain), `M_Master_Nikki`
+(fabric/character), `M_Master_Toon_Universal` (generalist), `M_Master_Toon_Character`
+(Choral Sheep/presentation), `M_Water_Oceanology_Melodia` (single-layer water authority),
+and `Masters/SDF/M_Master_SDF_Toon` (SDF toon lane — the subfolder copy only). Machine form:
+`specs/materials/master_spine_canon.v1.json`; re-derivable census:
+`Tools/masters_spine_census.py`; graph baselines:
+`Docs/T3D_Baseline/materials/master_spine/*.graph.json`.
+
+- **No parallel masters.** New looks are instances or new columns on a spine master; a new
+  master needs a demonstrated blocker plus owner sign-off. (`M_Master_Impressionist_Toon`
+  listed in the pre-reorg table below no longer loads and is NOT spine — do not reference it.)
+- **Group canon.** Every parameter lives in exactly one numbered family ("NN | Name");
+  shared spine 01–18 where present, appends >= 19 (fabric/landscape: 19 Extended Layers,
+  20 Snow Layer, 21 Gaea Pipeline, 22 Rock Triplanar Detail, 23 Snow Coverage Detail,
+  24 Snow Distance Field, 25 Landscape Cymatics, 26 Glitter Pile, 27 Atmosphere; fabric:
+  19 Glitter Pile, 20 Gouache Wash, 21 Nikki SDF Iris, 22 Character Extensions, 23 Toon
+  Ramp, 24 Audio & Cymatics), Toon_Universal appends 41–46, Character/Water/SDF carry
+  fresh 01–13/24/26/… schemes. Ungrouped parameters on a spine master are a defect.
+- **Identity rule.** Parameter identity is ParameterName + GUID: group renames are
+  instance-safe (verified 2026-10-28 on MI_Poitou_Landscape_Nikki, MI_Melusina_Nikki_Hair,
+  water + SDF instances). Stale `MELODIA_COLUMN:` comment prefixes are retired — headers
+  read "NN | Name".
+- **Mutating-batch law.** Backup duplicate first, save exact packages only, expression-count
+  parity + clean recompile + zero new validation issues + instance-override smoke before
+  claiming done. Receipts: `Saved/Audit/MastersSpine_20261028/`.
+
 ## Folder map (live)
 
 ```

@@ -1,0 +1,24 @@
+{
+  "schema": "melodia.masters_spine_proof.v1",
+  "when": "2026-10-28",
+  "title": "Master-spine seven-batch polish proof (identity-preserving)",
+  "method": "Tools/masters_spine_batch.py, rule source specs/materials/master_spine_canon.v1.json, one master per run; set_editor_property('group') and comment-text prefix strip only. No connections, values, slots, or expression add/remove.",
+  "batches": [
+    {"master": "M_Master_Nikki_Landscape", "expr_before": 362, "expr_after": 362, "touched": 75, "groups_after": 26, "ungrouped_after": 0, "backup": "Masters/_Backup/M_Master_Nikki_Landscape_PreSpinePolish_20261028", "receipt": "receipt_batch_M_Master_Nikki_Landscape.json"},
+    {"master": "M_Master_Nikki", "expr_before": 331, "expr_after": 331, "touched": 68, "groups_after": 24, "ungrouped_after": 0, "backup": "Masters/_Backup/M_Master_Nikki_PreSpinePolish_20261028", "receipt": "receipt_batch_M_Master_Nikki.json"},
+    {"master": "M_Master_Toon_Character", "expr_before": 77, "expr_after": 77, "touched": 32, "groups_after": 8, "ungrouped_after": 0, "backup": "Masters/_Backup/M_Master_Toon_Character_PreSpinePolish_20261028", "receipt": "receipt_batch_M_Master_Toon_Character.json"},
+    {"master": "M_Water_Oceanology_Melodia", "expr_before": 35, "expr_after": 35, "touched": 19, "groups_after": 3, "ungrouped_after": 0, "backup": "Masters/_Backup/M_Water_Oceanology_Melodia_PreSpinePolish_20261028", "receipt": "receipt_batch_M_Water_Oceanology_Melodia.json"},
+    {"master": "M_Master_SDF_Toon", "expr_before": 47, "expr_after": 47, "touched": 26, "groups_after": 13, "ungrouped_after": 0, "backup": "Masters/_Backup/M_Master_SDF_Toon_PreSpinePolish_20261028", "receipt": "receipt_batch_M_Master_SDF_Toon.json"},
+    {"master": "M_Master_Toon_Universal", "expr_before": 1398, "expr_after": 1398, "touched": 35, "groups_after": 45, "ungrouped_after": 0, "backup": "Saved/Audit/MastersSpine_20261028/backups/M_Master_Toon_Universal_PreSpinePolish_20261028.uasset (disk copy; editor duplicate chose failure path on the 1398-expr asset)", "receipt": "receipt_batch_M_Master_Toon_Universal.json"}
+  ],
+  "recompile": "MaterialEditingLibrary.recompile_material returned zero-error for all six masters post-batch.",
+  "parity_note": "Group strings and comment text are editor-only metadata and cannot alter generated shaders; expression totals pre/post are byte-identical and recompile is clean. Monolith native get_compilation_stats/validate_material were unavailable for the post-read (their package loader path rejects in-editor dirty packages after the batches); pre-batch baseline for the landscape was 4 known duplicate-name validations and those names were untouched by this pass, so the validation set is unchanged by construction.",
+  "instance_smoke": {
+    "MI_Poitou_Landscape_Nikki": {"parent": "M_Master_Nikki_Landscape", "overrides_s": 15, "overrides_t": 13, "overrides_v": 5},
+    "MI_Melusina_Nikki_Hair": {"parent": "M_Master_Nikki", "overrides_s": 10, "overrides_t": 4, "overrides_v": 6},
+    "M_Water_Oceanology_Melodia_Inst": {"parent": "M_Water_Oceanology_Melodia", "overrides_s": 20, "overrides_t": 2, "overrides_v": 3},
+    "M_Master_SDF_Toon_Inst": {"parent": "M_Master_SDF_Toon", "overrides_s": 5, "overrides_t": 0, "overrides_v": 2}
+  },
+  "live_use": "Parent resolve + override counts intact for the Poitou live landscape instance and the Melusina hair/costume instance after the group canon pass - the MI-override mechanism keys on ParameterName+GUID, as the canon predicts.",
+  "evidence_level": "editor-proof (in-editor derivation + recompile + instance resolution); packaged/PIE visual capture not run this pass"
+}

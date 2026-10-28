@@ -1,0 +1,267 @@
+{
+  "schema": "melodia.master_spine_canon.v1",
+  "as_of": "2026-10-28",
+  "title": "Melodia master material spine canon",
+  "purpose": "Locks the six production master materials, their group canon, layout doctrine, runtime integration map, and archive policy so agents do not reinvent them. Engine-level truth is always re-derived from the live assets via Tools/masters_spine_census.py; this spec never overrides the assets.",
+  "evidence": {
+    "census": "Saved/Audit/MastersSpine_20261028/master_census.json",
+    "allocation_source": "Saved/Audit/MastersSpine_20261028/group_allocation_source.json",
+    "graph_baselines": "Docs/T3D_Baseline/materials/master_spine/",
+    "census_tool": "Tools/masters_spine_census.py",
+    "batch_tool": "Tools/masters_spine_batch.py",
+    "pre_commit_guard": "Tools/guard_protected_assets.py"
+  },
+  "spine": [
+    {
+      "asset": "/Game/EnvSandbox/Materials/Masters/M_Master_Nikki_Landscape",
+      "role": "terrain and world-surface master",
+      "children": 11,
+      "notes": "Gaea-driven layer system (Ground/Grass/Rock base + Snow/Water/Mud/Path extended), Rock triplanar detail, Snow SDF distance band, Nikki families 07-18, Landscape Cymatics. Live use: MI_Poitou_Landscape_Nikki on the Poitou landscape."
+    },
+    {
+      "asset": "/Game/EnvSandbox/Materials/Masters/M_Master_Nikki",
+      "role": "fabric/character/costume master (Nikki doctrine)",
+      "children": 97,
+      "notes": "Layered texture layout, parallax, TriplanarPro normal+ORM branches (2026-10-28), Nikki SDF iris, gouache wash, glitter, character extensions."
+    },
+    {
+      "asset": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
+      "role": "big generalist toon master (A-Layer + Nikki + convergence columns)",
+      "children": 202,
+      "notes": "Closeout-standard column canvas (X>=10000). Zero-comment enumeration anomaly documented 2026-10-28; treat layout via exported graph baseline."
+    },
+    {
+      "asset": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Character",
+      "role": "Choral Sheep / character presentation master",
+      "children": 37,
+      "notes": "Character / Surface-Maps-Role-Face-Sheen-Wind lanes + Chladni Fleece."
+    },
+    {
+      "asset": "/Game/EnvSandbox/Materials/Masters/M_Water_Oceanology_Melodia",
+      "role": "single-layer water authority (biolum/toon-band/sparkle)",
+      "children": 3,
+      "notes": "Water integration authority; do not fork a second water master."
+    },
+    {
+      "asset": "/Game/EnvSandbox/Materials/Masters/SDF/M_Master_SDF_Toon",
+      "role": "SDF toon lane master (relief bands, gilding, ink, ornament)",
+      "children": 1,
+      "notes": "This SDF subfolder copy is canon; any Masters/-root duplicate of an SDF master is not spine and must not be re-created."
+    }
+  ],
+  "rules": [
+    "No parallel master: new looks are instances or new columns/parameters on a spine master. A demonstrated blocker against a spine master is the only path to a new master, with owner sign-off.",
+    "Parameter identity is ParameterName + ExpressionGUID; Group renames are MI-safe because instance overrides key on identity, never on group strings.",
+    "Layout batches are identity-preserving: no connections, no default values, no slot material changes, no parameter renames in the same batch as layout.",
+    "Every mutating batch requires: backup duplicate first, save only the touched package, pre/post get_compilation_stats parity, and a validate_material re-read whose new-issue delta is zero.",
+    "Texture placeholder defaults (gradient-pack/T_Neutral) are fallback-only: live MIs must override real PBR textures; never treat the placeholder as content.",
+    "Shared fan-out parameters (same name, multiple nodes, e.g. bGaeaWholeLandscapeColor x5) are deliberate; validate_material duplicate-name warnings for them are documented, not defects to fix by renaming.",
+    "Do not touch MF_MeshBlend_* or anything under Content/TurnBasedJRPGTemplate/Blueprints/Skills/ (fatal Python-glue landmine).",
+    "One Unreal editor, one mutating surface (Monolith / MaterialEditingLibrary). Never bulk save; save exact packages only."
+  ],
+  "layout_standard": {
+    "headers": "Every column carries a comment header titled 'NN | Family Name'. Legacy 'MELODIA_COLUMN:NN | ...' prefixes are retired by the batch pass (prefix stripped).",
+    "columns": "Family number is unique per master and non-colliding: shared spine 01-18 where present, appends take fresh numbers >= 19 (fabric/landscape), >= 41 (Toon_Universal), or 01-08 (freshly numbered masters).",
+    "groups": "Group names are the canonical identity for the MI editor: 'NN | Family'. Ungrouped parameters on a spine master are a defect: every parameter must belong to exactly one numbered family.",
+    "canvas": "Comment shells must envelop their member cluster; per-master absolute grid alignment is optional and not required for canon."
+  },
+  "polish_doctrine": {
+    "case_study": "Infinity Nikki (Infold/Papergames, UE5). Primary sources: Apple Developer feature 2026-04 ('re-engineered fabric algorithm ... four-layer UV blending textures ... minimal parameter adjustments ... diverse sparkle responses'); Unreal Engine developer interview 2024-08 ('versatile master material ... easy for artists to use'); Silicon Studio Enlighten GI 2025-02.",
+    "derived_rules": [
+      "Master+instance doctrine: one versatile master per domain, parameter-driven variety (cotton/linen vs silk/satin = roughness/sheen parameter states, not new masters).",
+      "Layered texture blending with a small parameter surface per layer (our Texture Layer A/B/C and landscape layer lanes).",
+      "Custom reflections and sparkle response are first-class parameter families (Nikki Sparkle, Glitter Halo, Glitter Pile).",
+      "PBR clamps in the master: RoughnessMin/Max and MetallicScale live in 01 | Base Surface (present on Nikki masters).",
+      "World-aligned projection (TriplanarPro) is the default detail lane for terrain and fabric; per-MI surprises are not canon."
+    ],
+    "open_expansion_asks": [
+      "Shared PBR-clamp + Toksvig MF (clamped roughness, specular discipline) consumable by all spine masters - schedule as graph-surgery batches with full parity, one master at a time.",
+      "Proving preset MIs for every column on Character / Water / Toon_Universal (landscape and SDF lanes already have preset families).",
+      "ORM packed input lane on the landscape master (Gaea currently exports masks, not ORM)."
+    ]
+  },
+  "runtime_integration": {
+    "cymatics": "Beat/impact/reactivity enter materials as Material Parameter Collection readers (MelPile:MPC_*). Landscape: 25 | Landscape Cymatics. Universal: 90 | Cymatics + 41 | Audio React. Fabric: 24 | Audio & Cymatics. Character: 07 | Cymatics. SDF: 12 | Audio.",
+    "chladni": "Chladni presentation rides 08 | Chladni Fleece on M_Master_Toon_Character and ChladniMask/Color inside Universal 90 | Cymatics; per-actor MID reads OnResonanceChanged/GetResonanceNormalized (presentation reads, never writes gameplay).",
+    "toon_banding": "Toon-ramp family: bToonRampEnabled/ToonRampStrength/bToonRampActive -> fabric 23 | Toon Ramp, Universal 42 | Toon Ramp, SDF 13 | Toon Ramp; band structure stays in each master's 09 | Color Ramp / toon profile lanes.",
+    "water": "M_Water_Oceanology_Melodia owns single-layer-water; biolum/toon-band/sparkle columns are its canon families."
+  },
+  "archive_policy": {
+    "moves": "Only zero-referencer assets move. Orphaned masters -> Masters/_Retired/<date>/; orphaned instances -> Instances/_Legacy/. Redirectors are never deleted casually; _Archive and _PROJECT legacy libraries are policy no-delete.",
+    "current_candidates": "audit_orphan_materials 2026-10-28 page 1: MI_Water_Underwater_Post_Default (v9-era), MI_Melusina_WaterHair, four Couture_20261026 MIs (another lane's 2026-10-26 batch - do not move without that lane's sign-off). Full list in Saved/Audit/MastersSpine_20261028/.",
+    "backups": "Pre-polish backups live in Masters/_Backup/ as <Name>_PreSpinePolish_20261028 and are local-only evidence; they are re-verifiable by census re-run."
+  },
+  "group_allocation": {
+    "M_Master_Nikki_Landscape": {
+      "renames": {
+        "03 | Atmosphere": "27 | Atmosphere",
+        "03 | Gaea Masks": "21 | Gaea Pipeline",
+        "03 | Rock Triplanar Detail": "22 | Rock Triplanar Detail",
+        "04 | Snow Coverage Detail": "23 | Snow Coverage Detail",
+        "04 | Snow Distance Field": "24 | Snow Distance Field",
+        "05 | Landscape Cymatics": "25 | Landscape Cymatics",
+        "07 | Glitter Pile": "26 | Glitter Pile"
+      },
+      "by_param": [
+        {"p": "BeatPhase", "g": "25 | Landscape Cymatics", "c": "CollectionParameter"},
+        {"p": "BeatPulse", "g": "25 | Landscape Cymatics", "c": "CollectionParameter"},
+        {"p": "Mid", "g": "25 | Landscape Cymatics", "c": "CollectionParameter"},
+        {"p": "GlobalReactivity", "g": "25 | Landscape Cymatics", "c": "CollectionParameter"},
+        {"p": "Cymatic_BeatPulse", "g": "25 | Landscape Cymatics", "c": "CollectionParameter"},
+        {"p": "CymaticsLandscapeAmount", "g": "25 | Landscape Cymatics"},
+        {"p": "SnowStrength", "g": "20 | Snow Layer"},
+        {"p": "SnowUpBias", "g": "20 | Snow Layer"},
+        {"p": "SnowTint", "g": "20 | Snow Layer"},
+        {"p": "SnowEdgeDistanceTexture", "g": "20 | Snow Layer"},
+        {"p": "Snow_Albedo", "g": "20 | Snow Layer"},
+        {"p": "Snow_NormalMap", "g": "20 | Snow Layer"},
+        {"p": "Wetness", "g": "19 | Extended Layers"},
+        {"p": "WetRoughness", "g": "19 | Extended Layers"},
+        {"p": "MudTint", "g": "19 | Extended Layers"},
+        {"p": "PathTint", "g": "19 | Extended Layers"},
+        {"p": "WaterAlignTint", "g": "19 | Extended Layers"},
+        {"p": "Water_Roughness", "g": "19 | Extended Layers"},
+        {"p": "Mud_Roughness", "g": "19 | Extended Layers"},
+        {"p": "Path_Roughness", "g": "19 | Extended Layers"},
+        {"p": "Water_Albedo", "g": "19 | Extended Layers"},
+        {"p": "Water_NormalMap", "g": "19 | Extended Layers"},
+        {"p": "Mud_Albedo", "g": "19 | Extended Layers"},
+        {"p": "Mud_NormalMap", "g": "19 | Extended Layers"},
+        {"p": "Path_Albedo", "g": "19 | Extended Layers"},
+        {"p": "Path_NormalMap", "g": "19 | Extended Layers"},
+        {"p": "bUseExtendedLayers", "g": "19 | Extended Layers"},
+        {"p": "bUseGaeaMasks", "g": "21 | Gaea Pipeline"},
+        {"p": "GaeaLandscapeMin", "g": "21 | Gaea Pipeline"},
+        {"p": "GaeaLandscapeSize", "g": "21 | Gaea Pipeline"},
+        {"p": "bGaeaWholeLandscapeColor", "g": "21 | Gaea Pipeline"},
+        {"p": "Gaea_WaterMask", "g": "21 | Gaea Pipeline"},
+        {"p": "Gaea_FlowMask", "g": "21 | Gaea Pipeline"},
+        {"p": "Gaea_WaterWeight", "g": "21 | Gaea Pipeline"},
+        {"p": "Gaea_FlowWeight", "g": "21 | Gaea Pipeline"},
+        {"p": "Rock_NormalMap", "g": "22 | Rock Triplanar Detail", "c": "TextureObjectParameter"},
+        {"p": "Rock_DetailAlbedo", "g": "22 | Rock Triplanar Detail"}
+      ],
+      "expected_zero_ungrouped_after": true,
+      "expr_count_before": 362
+    },
+    "M_Master_Nikki": {
+      "renames": {
+        "07 | Glitter Pile": "19 | Glitter Pile",
+        "07 | Gouache Wash": "20 | Gouache Wash",
+        "NikkiSDFIris": "21 | Nikki SDF Iris",
+        "Character Extensions": "22 | Character Extensions"
+      },
+      "by_param": [
+        {"p": "BeatPhase", "g": "24 | Audio & Cymatics", "c": "CollectionParameter"},
+        {"p": "BeatPulse", "g": "24 | Audio & Cymatics", "c": "CollectionParameter"},
+        {"p": "Mid", "g": "24 | Audio & Cymatics", "c": "CollectionParameter"},
+        {"p": "GlobalReactivity", "g": "24 | Audio & Cymatics", "c": "CollectionParameter"},
+        {"p": "Cymatic_BeatPulse", "g": "24 | Audio & Cymatics", "c": "CollectionParameter"},
+        {"p": "CymaticsLandscapeAmount", "g": "24 | Audio & Cymatics"},
+        {"p": "CymaticsTint", "g": "24 | Audio & Cymatics"},
+        {"p": "bToonRampEnabled", "g": "23 | Toon Ramp"},
+        {"p": "ToonRampStrength", "g": "23 | Toon Ramp"},
+        {"p": "TriplanarScale", "g": "05 | Triplanar"},
+        {"p": "TriplanarBlendSharpness", "g": "05 | Triplanar"},
+        {"p": "TriplanarNormalStrength", "g": "05 | Triplanar"},
+        {"p": "bTriplanarPro_Active", "g": "05 | Triplanar"},
+        {"p": "NormalMap", "g": "05 | Triplanar", "c": "TextureObjectParameter"},
+        {"p": "ORM", "g": "05 | Triplanar", "c": "TextureObjectParameter"}
+      ],
+      "expected_zero_ungrouped_after": true,
+      "expr_count_before": 331
+    },
+    "M_Master_Toon_Character": {
+      "renames": {
+        "Character / Surface": "01 | Character Surface",
+        "Character / Maps": "02 | Character Maps",
+        "Character / Role": "03 | Character Role",
+        "Character / Face": "04 | Character Face SDF",
+        "Character / Sheen": "05 | Character Sheen",
+        "Character / Wind": "06 | Character Wind",
+        "Chladni Fleece": "08 | Chladni Fleece"
+      },
+      "by_param": [
+        {"p": "CymaticsLandscapeAmount", "g": "07 | Cymatics"},
+        {"p": "Cymatic_BeatPulse", "g": "07 | Cymatics", "c": "CollectionParameter"},
+        {"p": "CymaticsTint", "g": "07 | Cymatics"}
+      ],
+      "expected_zero_ungrouped_after": true,
+      "expr_count_before": 77
+    },
+    "M_Water_Oceanology_Melodia": {
+      "renames": {},
+      "by_param": [
+        {"p": "Biolum_ShearProxy", "g": "01 | Biolum"},
+        {"p": "Biolum_RippleMask", "g": "01 | Biolum"},
+        {"p": "Biolum_CrestCompression", "g": "01 | Biolum"},
+        {"p": "Biolum_DepthMask", "g": "01 | Biolum"},
+        {"p": "Biolum_BlueGreenTint", "g": "01 | Biolum"},
+        {"p": "Biolum_CyanTint", "g": "01 | Biolum"},
+        {"p": "Biolum_GreenTint", "g": "01 | Biolum"},
+        {"p": "Biolum_Intensity", "g": "01 | Biolum"},
+        {"p": "Biolum_Density", "g": "01 | Biolum"},
+        {"p": "Biolum_FlashRate", "g": "01 | Biolum"},
+        {"p": "Biolum_FlashThreshold", "g": "01 | Biolum"},
+        {"p": "Biolum_FlashDecay", "g": "01 | Biolum"},
+        {"p": "Biolum_Weight", "g": "01 | Biolum"},
+        {"p": "Toon_Bands", "g": "02 | Toon Bands"},
+        {"p": "Toon_Weight", "g": "02 | Toon Bands"},
+        {"p": "Nikki_SparkleIntensity", "g": "03 | Nikki Sparkle"},
+        {"p": "Nikki_SparkleThreshold", "g": "03 | Nikki Sparkle"},
+        {"p": "Nikki_SparkleColor", "g": "03 | Nikki Sparkle"},
+        {"p": "Nikki_SparkleMask", "g": "03 | Nikki Sparkle"}
+      ],
+      "expected_zero_ungrouped_after": true,
+      "expr_count_before": 35
+    },
+    "M_Master_SDF_Toon": {
+      "renames": {
+        "Palette": "01 | Palette",
+        "UV": "02 | UV",
+        "Maps": "03 | Maps",
+        "Parallax": "04 | Parallax",
+        "Surface": "05 | Surface",
+        "SDF": "06 | SDF",
+        "Gilding": "07 | Gilding",
+        "OilPaint": "08 | Oil Paint",
+        "Temporal": "09 | Temporal",
+        "Ink": "10 | Ink",
+        "Ornament": "11 | Ornament",
+        "Audio": "12 | Audio"
+      },
+      "by_param": [
+        {"p": "bToonRampEnabled", "g": "13 | Toon Ramp"},
+        {"p": "ToonRampStrength", "g": "13 | Toon Ramp"}
+      ],
+      "expected_zero_ungrouped_after": true,
+      "expr_count_before": 47
+    },
+    "M_Master_Toon_Universal": {
+      "renames": {
+        "Opacity": "43 | Opacity",
+        "Cloth": "44 | Cloth Wind",
+        "NoteScroll": "45 | Note Scroll",
+        "MagicalTransform": "46 | Magical Transform"
+      },
+      "by_param": [
+        {"p": "AudioReactAmount", "g": "41 | Audio React"},
+        {"p": "AudioBeatGain", "g": "41 | Audio React"},
+        {"p": "AudioBassGain", "g": "41 | Audio React"},
+        {"p": "AudioMidGain", "g": "41 | Audio React"},
+        {"p": "AudioTrebleGain", "g": "41 | Audio React"},
+        {"p": "BeatPulse", "g": "41 | Audio React", "c": "CollectionParameter"},
+        {"p": "Bass", "g": "41 | Audio React", "c": "CollectionParameter"},
+        {"p": "Mid", "g": "41 | Audio React", "c": "CollectionParameter"},
+        {"p": "Treble", "g": "41 | Audio React", "c": "CollectionParameter"},
+        {"p": "BassIntensity", "g": "41 | Audio React", "c": "CollectionParameter"},
+        {"p": "MidIntensity", "g": "41 | Audio React", "c": "CollectionParameter"},
+        {"p": "bToonRampEnabled", "g": "42 | Toon Ramp"},
+        {"p": "ToonRampStrength", "g": "42 | Toon Ramp"},
+        {"p": "bToonRampActive", "g": "42 | Toon Ramp"}
+      ],
+      "expected_zero_ungrouped_after": true,
+      "expr_count_before": 1398
+    }
+  }
+}

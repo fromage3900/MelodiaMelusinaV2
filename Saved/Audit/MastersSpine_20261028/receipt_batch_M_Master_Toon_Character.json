@@ -1,0 +1,25 @@
+{
+ "schema": "melodia.masters_spine_batch_receipt.v1",
+ "when": "2026-10-28",
+ "master": "M_Master_Toon_Character",
+ "asset_path": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Character",
+ "backup_path": "/Game/EnvSandbox/Materials/Masters/_Backup/M_Master_Toon_Character_PreSpinePolish_20261028",
+ "expr_count_before": 77,
+ "expr_count_after": 77,
+ "renamed_params": 29,
+ "allocated_params": 3,
+ "skipped_ungrouped_after": [],
+ "ungrouped_after": [],
+ "groups_after": {
+  "02 | Character Maps": 4,
+  "01 | Character Surface": 3,
+  "03 | Character Role": 3,
+  "04 | Character Face SDF": 4,
+  "05 | Character Sheen": 4,
+  "06 | Character Wind": 2,
+  "07 | Cymatics": 3,
+  "08 | Chladni Fleece": 9
+ },
+ "comment_headers": [],
+ "ok": true
+}

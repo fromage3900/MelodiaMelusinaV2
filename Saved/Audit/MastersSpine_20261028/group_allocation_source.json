@@ -1,0 +1,2413 @@
+{
+ "M_Master_Nikki_Landscape": {
+  "ungrouped": [
+   {
+    "p": "BeatPhase",
+    "g": "None",
+    "c": "CollectionParameter",
+    "d": "MelPile:MPC_BeatPhase",
+    "tx": null
+   },
+   {
+    "p": "BeatPulse",
+    "g": "None",
+    "c": "CollectionParameter",
+    "d": "MelPile:MPC_BeatPulse",
+    "tx": null
+   },
+   {
+    "p": "Mid",
+    "g": "None",
+    "c": "CollectionParameter",
+    "d": "MelPile:MPC_Impact",
+    "tx": null
+   },
+   {
+    "p": "GlobalReactivity",
+    "g": "None",
+    "c": "CollectionParameter",
+    "d": "MelPile:MPC_Reactivity",
+    "tx": null
+   },
+   {
+    "p": "Snow_Albedo",
+    "g": "None",
+    "c": "TextureSampleParameter2D",
+    "d": "GAEA COLOR | Snow export",
+    "tx": "/Game/Textures/sbs_-_gradient_texture_pack_-_512x512/512x512/Basic/Horizontal_1_-_512x512.Horizontal_1_-_512x512"
+   },
+   {
+    "p": "Snow_NormalMap",
+    "g": "None",
+    "c": "TextureSampleParameter2D",
+    "d": "",
+    "tx": "/Game/EnvSandbox/Textures/Utility/T_Neutral_Normal.T_Neutral_Normal"
+   },
+   {
+    "p": "Water_Albedo",
+    "g": "None",
+    "c": "TextureSampleParameter2D",
+    "d": "GAEA COLOR | Water export",
+    "tx": "/Game/Textures/sbs_-_gradient_texture_pack_-_512x512/512x512/Basic/Horizontal_1_-_512x512.Horizontal_1_-_512x512"
+   },
+   {
+    "p": "Water_NormalMap",
+    "g": "None",
+    "c": "TextureSampleParameter2D",
+    "d": "",
+    "tx": "/Game/EnvSandbox/Textures/Utility/T_Neutral_Normal.T_Neutral_Normal"
+   },
+   {
+    "p": "Mud_Albedo",
+    "g": "None",
+    "c": "TextureSampleParameter2D",
+    "d": "",
+    "tx": "/Game/Textures/sbs_-_gradient_texture_pack_-_512x512/512x512/Basic/Horizontal_1_-_512x512.Horizontal_1_-_512x512"
+   },
+   {
+    "p": "Mud_NormalMap",
+    "g": "None",
+    "c": "TextureSampleParameter2D",
+    "d": "",
+    "tx": "/Game/EnvSandbox/Textures/Utility/T_Neutral_Normal.T_Neutral_Normal"
+   },
+   {
+    "p": "Path_Albedo",
+    "g": "None",
+    "c": "TextureSampleParameter2D",
+    "d": "",
+    "tx": "/Game/Textures/sbs_-_gradient_texture_pack_-_512x512/512x512/Basic/Horizontal_1_-_512x512.Horizontal_1_-_512x512"
+   },
+   {
+    "p": "Path_NormalMap",
+    "g": "None",
+    "c": "TextureSampleParameter2D",
+    "d": "",
+    "tx": "/Game/EnvSandbox/Textures/Utility/T_Neutral_Normal.T_Neutral_Normal"
+   },
+   {
+    "p": "Gaea_WaterMask",
+    "g": "None",
+    "c": "TextureSampleParameter2D",
+    "d": "GAEA MASK | Water export",
+    "tx": "/Game/Textures/sbs_-_gradient_texture_pack_-_512x512/512x512/Basic/Horizontal_1_-_512x512.Horizontal_1_-_512x512"
+   },
+   {
+    "p": "Gaea_FlowMask",
+    "g": "None",
+    "c": "TextureSampleParameter2D",
+    "d": "GAEA MASK | Flow export (reserved)",
+    "tx": "/Game/Textures/sbs_-_gradient_texture_pack_-_512x512/512x512/Basic/Horizontal_1_-_512x512.Horizontal_1_-_512x512"
+   },
+   {
+    "p": "SnowStrength",
+    "g": "None",
+    "c": "ScalarParameter",
+    "d": "",
+    "tx": null
+   },
+   {
+    "p": "SnowUpBias",
+    "g": "None",
+    "c": "ScalarParameter",
+    "d": "",
+    "tx": null
+   },
+   {
+    "p": "Wetness",
+    "g": "None",
+    "c": "ScalarParameter",
+    "d": "",
+    "tx": null
+   },
+   {
+    "p": "WetRoughness",
+    "g": "None",
+    "c": "ScalarParameter",
+    "d": "",
+    "tx": null
+   },
+   {
+    "p": "CymaticsLandscapeAmount",
+    "g": "None",
+    "c": "ScalarParameter",
+    "d": "",
+    "tx": null
+   },
+   {
+    "p": "Gaea_WaterWeight",
+    "g": "None",
+    "c": "ScalarParameter",
+    "d": "GAEA MASK | Water weight",
+    "tx": null
+   },
+   {
+    "p": "Gaea_FlowWeight",
+    "g": "None",
+    "c": "ScalarParameter",
+    "d": "GAEA MASK | Flow weight (reserved)",
+    "tx": null
+   },
+   {
+    "p": "SnowTint",
+    "g": "None",
+    "c": "VectorParameter",
+    "d": "",
+    "tx": null
+   },
+   {
+    "p": "MudTint",
+    "g": "None",
+    "c": "VectorParameter",
+    "d": "",
+    "tx": null
+   },
+   {
+    "p": "PathTint",
+    "g": "None",
+    "c": "VectorParameter",
+    "d": "",
+    "tx": null
+   },
+   {
+    "p": "WaterAlignTint",
+    "g": "None",
+    "c": "VectorParameter",
+    "d": "",
+    "tx": null
+   },
+   {
+    "p": "Snow",
+    "g": null,
+    "c": "LandscapeLayerSample",
+    "d": "GAEA MASK | Snow painted layer",
+    "tx": null
+   },
+   {
+    "p": "Water",
+    "g": null,
+    "c": "LandscapeLayerSample",
+    "d": "GAEA MASK | Water painted layer",
+    "tx": null
+   },
+   {
+    "p": "Mud",
+    "g": null,
+    "c": "LandscapeLayerSample",
+    "d": "GAEA MASK | Mud painted layer",
+    "tx": null
+   },
+   {
+    "p": "Path",
+    "g": null,
+    "c": "LandscapeLayerSample",
+    "d": "GAEA MASK | Path painted layer",
+    "tx": null
+   },
+   {
+    "p": "Cymatic_BeatPulse",
+    "g": "None",
+    "c": "CollectionParameter",
+    "d": "",
+    "tx": null
+   },
+   {
+    "p": "bUseExtendedLayers",
+    "g": "None",
+    "c": "StaticSwitchParameter",
+    "d": "",
+    "tx": null
+   },
+   {
+    "p": "bUseExtendedLayers",
+    "g": "None",
+    "c": "StaticSwitchParameter",
+    "d": "",
+    "tx": null
+   },
+   {
+    "p": "bUseGaeaMasks",
+    "g": "None",
+    "c": "StaticSwitchParameter",
+    "d": "",
+    "tx": null
+   },
+   {
+    "p": "GaeaLandscapeMin",
+    "g": "None",
+    "c": "VectorParameter",
+    "d": "GAEA PIPELINE | Landscape min (cm)",
+    "tx": null
+   },
+   {
+    "p": "GaeaLandscapeSize",
+    "g": "None",
+    "c": "VectorParameter",
+    "d": "GAEA PIPELINE | Landscape size (cm)",
+    "tx": null
+   },
+   {
+    "p": "bGaeaWholeLandscapeColor",
+    "g": "None",
+    "c": "StaticSwitchParameter",
+    "d": "GAEA COLOR | Ground | whole-map UV gate",
+    "tx": null
+   },
+   {
+    "p": "bGaeaWholeLandscapeColor",
+    "g": "None",
+    "c": "StaticSwitchParameter",
+    "d": "GAEA COLOR | Grass | whole-map UV gate",
+    "tx": null
+   },
+   {
+    "p": "bGaeaWholeLandscapeColor",
+    "g": "None",
+    "c": "StaticSwitchParameter",
+    "d": "GAEA COLOR | Rock | whole-map UV gate",
+    "tx": null
+   },
+   {
+    "p": "bGaeaWholeLandscapeColor",
+    "g": "None",
+    "c": "StaticSwitchParameter",
+    "d": "GAEA COLOR | Snow | whole-map UV gate",
+    "tx": null
+   },
+   {
+    "p": "bGaeaWholeLandscapeColor",
+    "g": "None",
+    "c": "StaticSwitchParameter",
+    "d": "GAEA COLOR | Water | whole-map UV gate",
+    "tx": null
+   },
+   {
+    "p": "Rock_NormalMap",
+    "g": "None",
+    "c": "TextureObjectParameter",
+    "d": "RockTri:NormalTexture",
+    "tx": "/Game/EnvSandbox/Textures/Utility/T_Neutral_Normal.T_Neutral_Normal"
+   },
+   {
+    "p": "Rock_DetailAlbedo",
+    "g": "None",
+    "c": "TextureObjectParameter",
+    "d": "RockColour:Texture",
+    "tx": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Textures/T_SeaAbove_WetRock_Albedo.T_SeaAbove_WetRock_Albedo"
+   },
+   {
+    "p": "SnowEdgeDistanceTexture",
+    "g": "None",
+    "c": "TextureSampleParameter2D",
+    "d": "SnowSDF:Texture",
+    "tx": "/Game/Gaea/Glacier/Textures/T_Glacier_SnowEdge_SDF16.T_Glacier_SnowEdge_SDF16"
+   },
+   {
+    "p": "Rock",
+    "g": null,
+    "c": "LandscapeLayerSample",
+    "d": "GAEA MASK | Rock painted layer",
+    "tx": null
+   },
+   {
+    "p": "Water_Roughness",
+    "g": "None",
+    "c": "ScalarParameter",
+    "d": "",
+    "tx": null
+   },
+   {
+    "p": "Mud_Roughness",
+    "g": "None",
+    "c": "ScalarParameter",
+    "d": "",
+    "tx": null
+   },
+   {
+    "p": "Path_Roughness",
+    "g": "None",
+    "c": "ScalarParameter",
+    "d": "",
+    "tx": null
+   }
+  ],
+  "non_numbered_groups": [
+   {
+    "p": "BeatPhase",
+    "g": "None"
+   },
+   {
+    "p": "BeatPulse",
+    "g": "None"
+   },
+   {
+    "p": "Mid",
+    "g": "None"
+   },
+   {
+    "p": "GlobalReactivity",
+    "g": "None"
+   },
+   {
+    "p": "Snow_Albedo",
+    "g": "None"
+   },
+   {
+    "p": "Snow_NormalMap",
+    "g": "None"
+   },
+   {
+    "p": "Water_Albedo",
+    "g": "None"
+   },
+   {
+    "p": "Water_NormalMap",
+    "g": "None"
+   },
+   {
+    "p": "Mud_Albedo",
+    "g": "None"
+   },
+   {
+    "p": "Mud_NormalMap",
+    "g": "None"
+   },
+   {
+    "p": "Path_Albedo",
+    "g": "None"
+   },
+   {
+    "p": "Path_NormalMap",
+    "g": "None"
+   },
+   {
+    "p": "Gaea_WaterMask",
+    "g": "None"
+   },
+   {
+    "p": "Gaea_FlowMask",
+    "g": "None"
+   },
+   {
+    "p": "SnowStrength",
+    "g": "None"
+   },
+   {
+    "p": "SnowUpBias",
+    "g": "None"
+   },
+   {
+    "p": "Wetness",
+    "g": "None"
+   },
+   {
+    "p": "WetRoughness",
+    "g": "None"
+   },
+   {
+    "p": "CymaticsLandscapeAmount",
+    "g": "None"
+   },
+   {
+    "p": "Gaea_WaterWeight",
+    "g": "None"
+   },
+   {
+    "p": "Gaea_FlowWeight",
+    "g": "None"
+   },
+   {
+    "p": "SnowTint",
+    "g": "None"
+   },
+   {
+    "p": "MudTint",
+    "g": "None"
+   },
+   {
+    "p": "PathTint",
+    "g": "None"
+   },
+   {
+    "p": "WaterAlignTint",
+    "g": "None"
+   },
+   {
+    "p": "Cymatic_BeatPulse",
+    "g": "None"
+   },
+   {
+    "p": "bUseExtendedLayers",
+    "g": "None"
+   },
+   {
+    "p": "bUseExtendedLayers",
+    "g": "None"
+   },
+   {
+    "p": "bUseGaeaMasks",
+    "g": "None"
+   },
+   {
+    "p": "GaeaLandscapeMin",
+    "g": "None"
+   },
+   {
+    "p": "GaeaLandscapeSize",
+    "g": "None"
+   },
+   {
+    "p": "bGaeaWholeLandscapeColor",
+    "g": "None"
+   },
+   {
+    "p": "bGaeaWholeLandscapeColor",
+    "g": "None"
+   },
+   {
+    "p": "bGaeaWholeLandscapeColor",
+    "g": "None"
+   },
+   {
+    "p": "bGaeaWholeLandscapeColor",
+    "g": "None"
+   },
+   {
+    "p": "bGaeaWholeLandscapeColor",
+    "g": "None"
+   },
+   {
+    "p": "Rock_NormalMap",
+    "g": "None"
+   },
+   {
+    "p": "Rock_DetailAlbedo",
+    "g": "None"
+   },
+   {
+    "p": "SnowEdgeDistanceTexture",
+    "g": "None"
+   },
+   {
+    "p": "Water_Roughness",
+    "g": "None"
+   },
+   {
+    "p": "Mud_Roughness",
+    "g": "None"
+   },
+   {
+    "p": "Path_Roughness",
+    "g": "None"
+   }
+  ],
+  "numbered_groups": {
+   "03 | Layer Surface": [
+    "Ground_UVScale",
+    "Ground_Roughness",
+    "Grass_UVScale",
+    "Grass_Roughness",
+    "Rock_UVScale",
+    "Rock_Roughness"
+   ],
+   "02 | Layer Textures": [
+    "Ground_Albedo",
+    "Ground_NormalMap",
+    "Grass_Albedo",
+    "Grass_NormalMap",
+    "Rock_Albedo",
+    "Rock_NormalMap",
+    "Albedo"
+   ],
+   "01 | Base Surface": [
+    "BaseTint",
+    "RampLow",
+    "RampMid",
+    "RampHigh",
+    "RampPosMid",
+    "RampContrast",
+    "RampStrength",
+    "RoughnessMin",
+    "RoughnessMax",
+    "MetallicScale"
+   ],
+   "07 | Nikki Iridescence & Sheen": [
+    "IridescenceRoughnessAtten"
+   ],
+   "03 | Atmosphere": [
+    "AtmosphericStart",
+    "AtmosphericEnd",
+    "AtmosphericStrength",
+    "AtmosphericColor"
+   ],
+   "04 | Emissive": [
+    "NikkiEmissiveStrength",
+    "EmissiveFloor"
+   ],
+   "05 | Triplanar": [
+    "bTriplanarPro_Active",
+    "TriplanarPro_Scale",
+    "TriplanarPro_Sharpness",
+    "TriplanarPro_BlendStrength",
+    "TriplanarPro_BreakupStrength",
+    "TriplanarPro_BreakupScale",
+    "TriplanarPro_BreakupContrast",
+    "TriplanarPro_ProjectionOffset",
+    "TriplanarPro_ProjectionRotation",
+    "TriplanarPro_AxisWeights"
+   ],
+   "08 | Nikki Sticker Shade": [
+    "bNikkiStickerShade_Active",
+    "NikkiStickerBandCount",
+    "NikkiStickerBandSoftness",
+    "NikkiStickerStrength",
+    "NikkiStickerShadeColor"
+   ],
+   "09 | Nikki Twinkle Iris": [
+    "bNikkiTwinkleIris_Active",
+    "NikkiFabricSheen",
+    "NikkiIridescence",
+    "NikkiTwinkleScale",
+    "NikkiTwinkleAmount",
+    "NikkiIrisTint"
+   ],
+   "10 | Nikki Pastel Grade": [
+    "bNikkiPastelGrade_Active",
+    "NikkiPastelStrength",
+    "NikkiPastelLift",
+    "NikkiPastelPosMid",
+    "NikkiPastelBloom",
+    "NikkiPastelRampLow",
+    "NikkiPastelRampMid",
+    "NikkiPastelRampHigh"
+   ],
+   "11 | Shadow Dream": [
+    "bShadowDream_Active",
+    "ShadowDreamStrength",
+    "ShadowSoftness",
+    "ShadowDreamTint"
+   ],
+   "13 | Nikki SDF Ribbon": [
+    "bNikkiSDFRibbon_Active",
+    "NikkiSDFRibbon_Scale",
+    "NikkiSDFRibbon_Sharpness",
+    "NikkiSDFRibbon_Strength",
+    "NikkiSDFRibbon_EdgeFalloff",
+    "NikkiSDFRibbon_EdgeStrength",
+    "NikkiSDFRibbon_Color"
+   ],
+   "14 | Nikki Pearl Sheen": [
+    "bNikkiPearlSheen_Active",
+    "NikkiPearl_Frequency",
+    "NikkiPearl_SecondFrequency",
+    "NikkiPearl_Strength",
+    "NikkiPearl_Tint"
+   ],
+   "15 | Nikki Dream Watercolor": [
+    "bNikkiDreamWatercolor_Active",
+    "NikkiWatercolor_Bleed",
+    "NikkiWatercolor_Jitter",
+    "NikkiWatercolor_Strength",
+    "NikkiWatercolor_BleedColor"
+   ],
+   "16 | Nikki Sticker Edge": [
+    "bNikkiStickerEdge_Active",
+    "NikkiStickerEdge_Width",
+    "NikkiStickerEdge_Bands",
+    "NikkiStickerEdge_Softness",
+    "NikkiStickerEdge_Strength",
+    "NikkiStickerEdge_Color"
+   ],
+   "17 | Nikki Glitter Halo": [
+    "bNikkiGlitterHalo_Active",
+    "NikkiGlitterHalo_Scale",
+    "NikkiGlitterHalo_Amount",
+    "NikkiGlitterHalo_Intensity",
+    "NikkiGlitterHalo_HaloStrength",
+    "NikkiGlitterHalo_HaloPower",
+    "NikkiGlitterHalo_TwinkleSpeed",
+    "NikkiGlitterHalo_Color"
+   ],
+   "18 | Nikki Petal Shadow": [
+    "bNikkiPetalShadow_Active",
+    "NikkiPetal_Scale",
+    "NikkiPetal_Radius",
+    "NikkiPetal_Softness",
+    "NikkiPetal_Strength",
+    "NikkiPetal_BloomSpeed",
+    "NikkiPetal_Tint"
+   ],
+   "12 | Kawaii Squish": [
+    "NikkiSquish_Amount",
+    "NikkiSquish_Speed",
+    "NikkiSquish_Direction",
+    "bNikkiSquishWPO_Active"
+   ],
+   "07 | Glitter Pile": [
+    "GlitterPile_Scale",
+    "GlitterPile_Density",
+    "GlitterPile_FacetSharpness",
+    "GlitterPile_Brightness",
+    "GlitterPile_Iridescence",
+    "GlitterPile_HaloStrength",
+    "GlitterPile_HaloPower",
+    "GlitterPile_Color",
+    "GlitterPile_Gate"
+   ],
+   "03 | Gaea Masks": [
+    "Gaea_SnowMask",
+    "Gaea_SnowWeight",
+    "Gaea_RockMask",
+    "Gaea_RockWeight"
+   ],
+   "03 | Rock Triplanar Detail": [
+    "Rock_TriplanarNormalStrength",
+    "Rock_DetailWorldSizeCM",
+    "Rock_TriplanarBlend",
+    "bRockTriplanarNormals",
+    "Rock_DetailAlbedoReference",
+    "Rock_DetailAlbedoStrength",
+    "bRockDetailAlbedo"
+   ],
+   "04 | Snow Coverage Detail": [
+    "Snow_BreakupWorldSizeCM",
+    "Snow_BreakupStrength",
+    "bSnowCoverageBreakup"
+   ],
+   "05 | Landscape Cymatics": [
+    "CymaticsLandscapeMaxEmission"
+   ],
+   "04 | Snow Distance Field": [
+    "SnowEdgeDistanceRangeCM",
+    "SnowFrostBandWidthCM",
+    "SnowFrostBandStrength",
+    "SnowFrostRoughness",
+    "bSnowFrostDistanceBand"
+   ]
+  }
+ },
+ "M_Master_Nikki": {
+  "ungrouped": [
+   {
+    "p": "BeatPhase",
+    "g": "None",
+    "c": "CollectionParameter",
+    "d": "MelPile:MPC_BeatPhase",
+    "tx": null
+   },
+   {
+    "p": "BeatPulse",
+    "g": "None",
+    "c": "CollectionParameter",
+    "d": "MelPile:MPC_BeatPulse",
+    "tx": null
+   },
+   {
+    "p": "Mid",
+    "g": "None",
+    "c": "CollectionParameter",
+    "d": "MelPile:MPC_Impact",
+    "tx": null
+   },
+   {
+    "p": "GlobalReactivity",
+    "g": "None",
+    "c": "CollectionParameter",
+    "d": "MelPile:MPC_Reactivity",
+    "tx": null
+   },
+   {
+    "p": "CymaticsLandscapeAmount",
+    "g": "None",
+    "c": "ScalarParameter",
+    "d": "",
+    "tx": null
+   },
+   {
+    "p": "Cymatic_BeatPulse",
+    "g": "None",
+    "c": "CollectionParameter",
+    "d": "",
+    "tx": null
+   },
+   {
+    "p": "CymaticsTint",
+    "g": "None",
+    "c": "VectorParameter",
+    "d": "",
+    "tx": null
+   },
+   {
+    "p": "bToonRampEnabled",
+    "g": "None",
+    "c": "StaticSwitchParameter",
+    "d": "",
+    "tx": null
+   },
+   {
+    "p": "ToonRampStrength",
+    "g": "None",
+    "c": "ScalarParameter",
+    "d": "",
+    "tx": null
+   },
+   {
+    "p": "NormalMap",
+    "g": "None",
+    "c": "TextureObjectParameter",
+    "d": "NikkiTriNormal:Texture",
+    "tx": "/Engine/EngineMaterials/DefaultNormal.DefaultNormal"
+   },
+   {
+    "p": "TriplanarNormalStrength",
+    "g": "None",
+    "c": "ScalarParameter",
+    "d": "NikkiTriNormal:Strength",
+    "tx": null
+   },
+   {
+    "p": "bTriplanarPro_Active",
+    "g": "None",
+    "c": "StaticSwitchParameter",
+    "d": "NikkiTriNormal:Enabled",
+    "tx": null
+   },
+   {
+    "p": "ORM",
+    "g": "None",
+    "c": "TextureObjectParameter",
+    "d": "NikkiTriORM:Texture",
+    "tx": "/Game/EnvSandbox/Textures/Utility/T_Neutral_ORM.T_Neutral_ORM"
+   },
+   {
+    "p": "bTriplanarPro_Active",
+    "g": "None",
+    "c": "StaticSwitchParameter",
+    "d": "NikkiTriORM:Enabled",
+    "tx": null
+   }
+  ],
+  "non_numbered_groups": [
+   {
+    "p": "TriplanarScale",
+    "g": "04 Texture Layout"
+   },
+   {
+    "p": "TriplanarBlendSharpness",
+    "g": "04 Texture Layout"
+   },
+   {
+    "p": "BeatPhase",
+    "g": "None"
+   },
+   {
+    "p": "BeatPulse",
+    "g": "None"
+   },
+   {
+    "p": "Mid",
+    "g": "None"
+   },
+   {
+    "p": "GlobalReactivity",
+    "g": "None"
+   },
+   {
+    "p": "CymaticsLandscapeAmount",
+    "g": "None"
+   },
+   {
+    "p": "Cymatic_BeatPulse",
+    "g": "None"
+   },
+   {
+    "p": "CymaticsTint",
+    "g": "None"
+   },
+   {
+    "p": "bNikkiSDFIris_Active",
+    "g": "NikkiSDFIris"
+   },
+   {
+    "p": "NikkiSDFIris_Center",
+    "g": "NikkiSDFIris"
+   },
+   {
+    "p": "NikkiSDFIris_Radius",
+    "g": "NikkiSDFIris"
+   },
+   {
+    "p": "NikkiSDFIris_PupilSize",
+    "g": "NikkiSDFIris"
+   },
+   {
+    "p": "NikkiSDFIris_InnerColor",
+    "g": "NikkiSDFIris"
+   },
+   {
+    "p": "NikkiSDFIris_OuterColor",
+    "g": "NikkiSDFIris"
+   },
+   {
+    "p": "NikkiSDFIris_PupilColor",
+    "g": "NikkiSDFIris"
+   },
+   {
+    "p": "NikkiSDFIris_CatchlightColor",
+    "g": "NikkiSDFIris"
+   },
+   {
+    "p": "NikkiSDFIris_SparkleCount",
+    "g": "NikkiSDFIris"
+   },
+   {
+    "p": "NikkiSDFIris_SparkleSpeed",
+    "g": "NikkiSDFIris"
+   },
+   {
+    "p": "NikkiSDFIris_CymaticFreq",
+    "g": "NikkiSDFIris"
+   },
+   {
+    "p": "NikkiSDFIris_CymaticStrength",
+    "g": "NikkiSDFIris"
+   },
+   {
+    "p": "NikkiSDFIris_Blend",
+    "g": "NikkiSDFIris"
+   },
+   {
+    "p": "NikkiSDFIris_Mask",
+    "g": "NikkiSDFIris"
+   },
+   {
+    "p": "OpacityMap",
+    "g": "Character Extensions"
+   },
+   {
+    "p": "OpacityStrength",
+    "g": "Character Extensions"
+   },
+   {
+    "p": "bUseOpacityMap",
+    "g": "Character Extensions"
+   },
+   {
+    "p": "RoughnessMap",
+    "g": "Character Extensions"
+   },
+   {
+    "p": "MetallicMap",
+    "g": "Character Extensions"
+   },
+   {
+    "p": "bUseSeparateRM",
+    "g": "Character Extensions"
+   },
+   {
+    "p": "bUseSeparateRM",
+    "g": "Character Extensions"
+   },
+   {
+    "p": "EmissiveMap",
+    "g": "Character Extensions"
+   },
+   {
+    "p": "EmissiveMapTint",
+    "g": "Character Extensions"
+   },
+   {
+    "p": "EmissiveMapIntensity",
+    "g": "Character Extensions"
+   },
+   {
+    "p": "bUseEmissiveMap",
+    "g": "Character Extensions"
+   },
+   {
+    "p": "bToonRampEnabled",
+    "g": "None"
+   },
+   {
+    "p": "ToonRampStrength",
+    "g": "None"
+   },
+   {
+    "p": "NormalMap",
+    "g": "None"
+   },
+   {
+    "p": "TriplanarNormalStrength",
+    "g": "None"
+   },
+   {
+    "p": "bTriplanarPro_Active",
+    "g": "None"
+   },
+   {
+    "p": "ORM",
+    "g": "None"
+   },
+   {
+    "p": "bTriplanarPro_Active",
+    "g": "None"
+   }
+  ],
+  "numbered_groups": {
+   "06 | Parallax": [
+    "UVScale",
+    "UVScale",
+    "UVScale",
+    "ParallaxStrength"
+   ],
+   "02 | Textures": [
+    "NormalMap",
+    "HeightMap",
+    "NormalMap",
+    "HeightMap",
+    "Albedo",
+    "NormalMap",
+    "ORM",
+    "Albedo"
+   ],
+   "01 | Base Surface": [
+    "RampHigh",
+    "RoughnessMax",
+    "MetallicScale",
+    "BaseTint",
+    "RampLow",
+    "RampHigh",
+    "RampContrast",
+    "RoughnessMax",
+    "MetallicScale",
+    "BaseTint",
+    "RampLow",
+    "RampMid",
+    "RampHigh",
+    "RampPosMid",
+    "RampContrast",
+    "RampStrength",
+    "RoughnessMin",
+    "RoughnessMax",
+    "MetallicScale"
+   ],
+   "03 | Atmosphere": [
+    "AtmosphericEnd",
+    "AtmosphericEnd",
+    "AtmosphericColor",
+    "AtmosphericStart",
+    "AtmosphericEnd",
+    "AtmosphericStrength",
+    "AtmosphericColor"
+   ],
+   "07 | Nikki Iridescence & Sheen": [
+    "IridescenceRoughnessAtten"
+   ],
+   "04 | Emissive": [
+    "NikkiEmissiveStrength",
+    "EmissiveFloor"
+   ],
+   "05 | Triplanar": [
+    "bTriplanarPro_Active",
+    "TriplanarPro_Scale",
+    "TriplanarPro_Sharpness",
+    "TriplanarPro_BlendStrength",
+    "TriplanarPro_BreakupStrength",
+    "TriplanarPro_BreakupScale",
+    "TriplanarPro_BreakupContrast",
+    "TriplanarPro_ProjectionOffset",
+    "TriplanarPro_ProjectionRotation",
+    "TriplanarPro_AxisWeights"
+   ],
+   "08 | Nikki Sticker Shade": [
+    "bNikkiStickerShade_Active",
+    "NikkiStickerBandCount",
+    "NikkiStickerBandSoftness",
+    "NikkiStickerStrength",
+    "NikkiStickerShadeColor"
+   ],
+   "09 | Nikki Twinkle Iris": [
+    "bNikkiTwinkleIris_Active",
+    "NikkiFabricSheen",
+    "NikkiIridescence",
+    "NikkiTwinkleScale",
+    "NikkiTwinkleAmount",
+    "NikkiIrisTint"
+   ],
+   "10 | Nikki Pastel Grade": [
+    "bNikkiPastelGrade_Active",
+    "NikkiPastelStrength",
+    "NikkiPastelLift",
+    "NikkiPastelPosMid",
+    "NikkiPastelBloom",
+    "NikkiPastelRampLow",
+    "NikkiPastelRampMid",
+    "NikkiPastelRampHigh"
+   ],
+   "11 | Shadow Dream": [
+    "bShadowDream_Active",
+    "ShadowDreamStrength",
+    "ShadowSoftness",
+    "ShadowDreamTint"
+   ],
+   "12 | Kawaii Squish": [
+    "bKawaiiSquish_Active",
+    "SquishAmount",
+    "NikkiSquish_Amount",
+    "NikkiSquish_Speed",
+    "NikkiSquish_Direction",
+    "bNikkiSquishWPO_Active"
+   ],
+   "13 | Nikki SDF Ribbon": [
+    "bNikkiSDFRibbon_Active",
+    "NikkiSDFRibbon_Scale",
+    "NikkiSDFRibbon_Sharpness",
+    "NikkiSDFRibbon_Strength",
+    "NikkiSDFRibbon_EdgeFalloff",
+    "NikkiSDFRibbon_EdgeStrength",
+    "NikkiSDFRibbon_Color"
+   ],
+   "14 | Nikki Pearl Sheen": [
+    "bNikkiPearlSheen_Active",
+    "NikkiPearl_Frequency",
+    "NikkiPearl_SecondFrequency",
+    "NikkiPearl_Strength",
+    "NikkiPearl_Tint"
+   ],
+   "15 | Nikki Dream Watercolor": [
+    "bNikkiDreamWatercolor_Active",
+    "NikkiWatercolor_Bleed",
+    "NikkiWatercolor_Jitter",
+    "NikkiWatercolor_Strength",
+    "NikkiWatercolor_BleedColor"
+   ],
+   "16 | Nikki Sticker Edge": [
+    "bNikkiStickerEdge_Active",
+    "NikkiStickerEdge_Width",
+    "NikkiStickerEdge_Bands",
+    "NikkiStickerEdge_Softness",
+    "NikkiStickerEdge_Strength",
+    "NikkiStickerEdge_Color"
+   ],
+   "17 | Nikki Glitter Halo": [
+    "bNikkiGlitterHalo_Active",
+    "NikkiGlitterHalo_Scale",
+    "NikkiGlitterHalo_Amount",
+    "NikkiGlitterHalo_Intensity",
+    "NikkiGlitterHalo_HaloStrength",
+    "NikkiGlitterHalo_HaloPower",
+    "NikkiGlitterHalo_TwinkleSpeed",
+    "NikkiGlitterHalo_Color"
+   ],
+   "18 | Nikki Petal Shadow": [
+    "bNikkiPetalShadow_Active",
+    "NikkiPetal_Scale",
+    "NikkiPetal_Radius",
+    "NikkiPetal_Softness",
+    "NikkiPetal_Strength",
+    "NikkiPetal_BloomSpeed",
+    "NikkiPetal_Tint"
+   ],
+   "07 | Glitter Pile": [
+    "GlitterPile_Scale",
+    "GlitterPile_Density",
+    "GlitterPile_FacetSharpness",
+    "GlitterPile_Brightness",
+    "GlitterPile_Iridescence",
+    "GlitterPile_HaloStrength",
+    "GlitterPile_HaloPower",
+    "GlitterPile_Color",
+    "GlitterPile_Gate"
+   ],
+   "07 | Gouache Wash": [
+    "bMeluGouacheWash_Active",
+    "MeluGouache_BandShadow",
+    "MeluGouache_BandLight",
+    "MeluGouache_BandSoftness",
+    "MeluGouache_ShadowMix",
+    "MeluGouache_Granulation",
+    "MeluGouache_GranDarken",
+    "MeluGouache_BlotchStrength",
+    "MeluGouache_EdgeWidth",
+    "MeluGouache_EdgeReference",
+    "MeluGouache_EdgeStrength",
+    "MeluGouache_Strength",
+    "MeluGouache_InkColor",
+    "MeluGouache_HighlightTint",
+    "MeluGouache_KeyLightDir",
+    "MeluGouache_GranulationTex",
+    "MeluGouache_BlotchTex",
+    "MeluGouache_UVTiling"
+   ]
+  }
+ },
+ "M_Master_Toon_Universal": {
+  "ungrouped": [
+   {
+    "p": "AudioReactAmount",
+    "g": "None",
+    "c": "ScalarParameter",
+    "d": "",
+    "tx": null
+   },
+   {
+    "p": "AudioBeatGain",
+    "g": "None",
+    "c": "ScalarParameter",
+    "d": "",
+    "tx": null
+   },
+   {
+    "p": "AudioBassGain",
+    "g": "None",
+    "c": "ScalarParameter",
+    "d": "",
+    "tx": null
+   },
+   {
+    "p": "AudioMidGain",
+    "g": "None",
+    "c": "ScalarParameter",
+    "d": "",
+    "tx": null
+   },
+   {
+    "p": "AudioTrebleGain",
+    "g": "None",
+    "c": "ScalarParameter",
+    "d": "",
+    "tx": null
+   },
+   {
+    "p": "BeatPulse",
+    "g": "None",
+    "c": "CollectionParameter",
+    "d": "",
+    "tx": null
+   },
+   {
+    "p": "Bass",
+    "g": "None",
+    "c": "CollectionParameter",
+    "d": "",
+    "tx": null
+   },
+   {
+    "p": "Mid",
+    "g": "None",
+    "c": "CollectionParameter",
+    "d": "",
+    "tx": null
+   },
+   {
+    "p": "Treble",
+    "g": "None",
+    "c": "CollectionParameter",
+    "d": "",
+    "tx": null
+   },
+   {
+    "p": "BassIntensity",
+    "g": "None",
+    "c": "CollectionParameter",
+    "d": "",
+    "tx": null
+   },
+   {
+    "p": "MidIntensity",
+    "g": "None",
+    "c": "CollectionParameter",
+    "d": "",
+    "tx": null
+   },
+   {
+    "p": "bToonRampEnabled",
+    "g": "None",
+    "c": "StaticSwitchParameter",
+    "d": "",
+    "tx": null
+   },
+   {
+    "p": "ToonRampStrength",
+    "g": "None",
+    "c": "ScalarParameter",
+    "d": "",
+    "tx": null
+   },
+   {
+    "p": "bToonRampEnabled",
+    "g": "None",
+    "c": "StaticSwitchParameter",
+    "d": "",
+    "tx": null
+   },
+   {
+    "p": "ToonRampStrength",
+    "g": "None",
+    "c": "ScalarParameter",
+    "d": "",
+    "tx": null
+   },
+   {
+    "p": "bToonRampActive",
+    "g": "None",
+    "c": "StaticSwitchParameter",
+    "d": "",
+    "tx": null
+   }
+  ],
+  "non_numbered_groups": [
+   {
+    "p": "bUseMagicalTransform",
+    "g": "MagicalTransform"
+   },
+   {
+    "p": "bUseOpacityMap",
+    "g": "Opacity"
+   },
+   {
+    "p": "bClothWind_Active",
+    "g": "Cloth"
+   },
+   {
+    "p": "AudioReactAmount",
+    "g": "None"
+   },
+   {
+    "p": "AudioBeatGain",
+    "g": "None"
+   },
+   {
+    "p": "AudioBassGain",
+    "g": "None"
+   },
+   {
+    "p": "AudioMidGain",
+    "g": "None"
+   },
+   {
+    "p": "AudioTrebleGain",
+    "g": "None"
+   },
+   {
+    "p": "BeatPulse",
+    "g": "None"
+   },
+   {
+    "p": "Bass",
+    "g": "None"
+   },
+   {
+    "p": "Mid",
+    "g": "None"
+   },
+   {
+    "p": "Treble",
+    "g": "None"
+   },
+   {
+    "p": "BassIntensity",
+    "g": "None"
+   },
+   {
+    "p": "MidIntensity",
+    "g": "None"
+   },
+   {
+    "p": "OpacityMap",
+    "g": "Opacity"
+   },
+   {
+    "p": "OpacityStrength",
+    "g": "Opacity"
+   },
+   {
+    "p": "Cloth_WindStrength",
+    "g": "Cloth"
+   },
+   {
+    "p": "Cloth_WindSpeed",
+    "g": "Cloth"
+   },
+   {
+    "p": "Cloth_FoldingAmount",
+    "g": "Cloth"
+   },
+   {
+    "p": "Cloth_DrapeScale",
+    "g": "Cloth"
+   },
+   {
+    "p": "Cloth_WindDirection",
+    "g": "Cloth"
+   },
+   {
+    "p": "bToonRampEnabled",
+    "g": "None"
+   },
+   {
+    "p": "ToonRampStrength",
+    "g": "None"
+   },
+   {
+    "p": "bToonRampEnabled",
+    "g": "None"
+   },
+   {
+    "p": "ToonRampStrength",
+    "g": "None"
+   },
+   {
+    "p": "bToonRampActive",
+    "g": "None"
+   },
+   {
+    "p": "NoteScrollSpeed",
+    "g": "NoteScroll"
+   },
+   {
+    "p": "NoteScrollAmp",
+    "g": "NoteScroll"
+   },
+   {
+    "p": "MagicalTransformProgress",
+    "g": "MagicalTransform"
+   },
+   {
+    "p": "MagicalTransformDissolve",
+    "g": "MagicalTransform"
+   },
+   {
+    "p": "MagicalTransformBloom",
+    "g": "MagicalTransform"
+   },
+   {
+    "p": "MagicalTransformSparkle",
+    "g": "MagicalTransform"
+   },
+   {
+    "p": "MagicalTransformBeat",
+    "g": "MagicalTransform"
+   },
+   {
+    "p": "Opacity",
+    "g": "MagicalTransform"
+   },
+   {
+    "p": "MagicalTransformTint",
+    "g": "MagicalTransform"
+   }
+  ],
+  "numbered_groups": {
+   "01 | Base Surface": [
+    "BaseTint",
+    "PaletteRampLow",
+    "PaletteRampMid",
+    "PaletteRampHigh",
+    "PaletteRampStrength",
+    "PaletteRampDriver",
+    "TextureWeight",
+    "UVScale",
+    "Roughness",
+    "Metallic",
+    "RoughnessScale",
+    "RoughnessBias",
+    "MetallicScale",
+    "MetallicBias",
+    "UVRotation",
+    "UVOffsetU",
+    "UVOffsetV"
+   ],
+   "03 | Texture Layer A": [
+    "bUseSeparateRoughnessMap",
+    "bUseSeparateMetallicMap",
+    "bUseHeightToNormal",
+    "Albedo",
+    "NormalMap",
+    "ORM",
+    "HeightMap",
+    "RoughnessMap",
+    "MetallicMap",
+    "LayerA_TextureWeight",
+    "LayerA_ParallaxScale",
+    "LayerA_NormalStrength",
+    "bLayerA_Active",
+    "EmissiveMap",
+    "EmissiveMapTint",
+    "EmissiveMapIntensity",
+    "EmissiveMapUVScale",
+    "bUseEmissiveMap"
+   ],
+   "04 | Texture Layer B": [
+    "LayerB_Albedo",
+    "LayerB_NormalMap",
+    "LayerB_ORM",
+    "LayerB_HeightMap",
+    "LayerB_RoughnessMap",
+    "LayerB_MetallicMap",
+    "LayerB_TextureWeight",
+    "LayerB_ParallaxScale",
+    "LayerB_NormalStrength",
+    "LayerBlend",
+    "LayerBlendMode",
+    "LayerHeightBias",
+    "LayerHeightSharpness",
+    "LayerBlendSoftness",
+    "LayerNormalBlend",
+    "LayerRoughnessBlend",
+    "LayerManualMix",
+    "LayerBaseHeightScale",
+    "LayerOverlayHeightScale",
+    "LayerHeightInvert",
+    "LayerAlphaBias",
+    "LayerAlphaContrast",
+    "LayerColorBlend",
+    "LayerAOBlend",
+    "LayerHeightBlend",
+    "LayerMetallicBlend",
+    "bLayerB_Active"
+   ],
+   "05 | Texture Layer C": [
+    "LayerC_Albedo",
+    "LayerC_NormalMap",
+    "LayerC_ORM",
+    "LayerC_HeightMap",
+    "LayerC_RoughnessMap",
+    "LayerC_MetallicMap",
+    "LayerC_TextureWeight",
+    "LayerC_ParallaxScale",
+    "LayerC_NormalStrength",
+    "LayerCBlend",
+    "LayerCBlendMode",
+    "LayerCHeightBias",
+    "LayerCHeightSharpness",
+    "LayerCBlendSoftness",
+    "LayerCNormalBlend",
+    "LayerCRoughnessBlend",
+    "LayerCManualMix",
+    "LayerCBaseHeightScale",
+    "LayerCOverlayHeightScale",
+    "LayerCHeightInvert",
+    "LayerCAlphaBias",
+    "LayerCAlphaContrast",
+    "LayerCColorBlend",
+    "LayerCAOBlend",
+    "LayerCHeightBlend",
+    "LayerCMetallicBlend",
+    "bLayerC_Active"
+   ],
+   "06 | Parallax": [
+    "ParallaxScale",
+    "ParallaxStrength",
+    "ParallaxHeight",
+    "NormalStrength",
+    "HeightToNormalStrength",
+    "NormalPower"
+   ],
+   "08 | Temporal / Ink": [
+    "TemporalStrength",
+    "WindSpeed",
+    "NoiseScale",
+    "SmearStrength",
+    "BoilIntensity"
+   ],
+   "10 | Nikki Rim & Glow": [
+    "RimColor",
+    "RimPower",
+    "RimIntensity",
+    "RimWidth",
+    "RimBias",
+    "RimClamp",
+    "GlowColor",
+    "GlowIntensity",
+    "InnerGlowIntensity",
+    "InnerGlowWidth",
+    "InnerGlowColor",
+    "BloomBoost",
+    "bNikkiHero",
+    "DreamRimPower",
+    "DreamRimCycles",
+    "DreamRimStrength",
+    "DreamRimColor",
+    "bDreamRim_Active",
+    "DreamBloomThreshold",
+    "DreamBloomStrength",
+    "DreamBloomColor",
+    "EmissiveSoftCeiling"
+   ],
+   "11 | Nikki Dream Grade": [
+    "DreamTint",
+    "PastelLift",
+    "DreamSaturation",
+    "DreamContrast",
+    "DreamShadowLift",
+    "DreamHighlightSoft",
+    "DreamFlowStrength",
+    "DreamFlowSpeed",
+    "DreamFlowScale",
+    "DreamFlowCycles",
+    "DreamPulseAmp",
+    "DreamPulseSpeed",
+    "NikkiHeroGradeStrength",
+    "DreamIntensity",
+    "DreamComposition",
+    "DreamThreshold",
+    "DreamWarmth",
+    "DreamCompositeBlend",
+    "DreamCompositeBlend"
+   ],
+   "13 | Nikki Iridescence & Sheen": [
+    "Iridescence",
+    "IridescenceTint",
+    "IridescencePower",
+    "IridescenceBias",
+    "IridescenceRoughnessAtten",
+    "FabricSheen",
+    "SheenTint",
+    "SheenPower",
+    "SheenWidth",
+    "SheenBias",
+    "bSheenUsesNormal",
+    "IridescenceCycles",
+    "ToonAnisotropy",
+    "FabricType",
+    "FabricAnisoLevel",
+    "FabricWeaveScale",
+    "FabricWeaveStrength",
+    "FabricNormalBlend"
+   ],
+   "12 | Nikki Sparkle": [
+    "SparkleMask",
+    "SparkleScale",
+    "SparkleIntensity",
+    "SparkleColor",
+    "SparkleThreshold",
+    "SparkleContrast",
+    "SparkleDriftSpeed",
+    "SparkleTwinkleSpeed",
+    "SparkleColorLow",
+    "SparkleColorHigh",
+    "SparkleColorLerp",
+    "bSparkleAdvanced",
+    "GlintIntensity"
+   ],
+   "17 | Celestial (Nebula)": [
+    "ConstellationRampLow",
+    "ConstellationRampMid",
+    "ConstellationRampHigh",
+    "ConstellationStrength",
+    "ConstellationScale",
+    "CelestialStarIntensity",
+    "CelestialNebulaStrength",
+    "CelestialNebulaScale",
+    "CelestialGalaxyStrength",
+    "CelestialGalaxyScale",
+    "StarMap",
+    "CelestialToonSteps",
+    "bCelestial_Active",
+    "bCelestialUsesDreamPalette",
+    "bCelestialUsesDreamPalette",
+    "bCelestialUsesDreamPalette"
+   ],
+   "14 | Gilding": [
+    "GildingStrength",
+    "GoldTint",
+    "GoldRoughness",
+    "GoldEmissive",
+    "CurvatureSensitivity"
+   ],
+   "16 | Shadow Dream": [
+    "ShadowDreamTint",
+    "ShadowDreamStrength",
+    "ShadowSoftness"
+   ],
+   "15 | Shadow Garden (Flowers)": [
+    "ShadowFlowerStrength",
+    "ShadowFlowerScale",
+    "ShadowFlowerColor"
+   ],
+   "18 | Fairy Dust": [
+    "FairyMotifStyle",
+    "FairyDustIntensity",
+    "FairyDustScale",
+    "FairyDustColor",
+    "FairyHighlightThreshold",
+    "FairyGlyphMask",
+    "bFairyDust_Active"
+   ],
+   "07 | Macro & Detail": [
+    "MacroVariationStrength",
+    "MacroScale",
+    "DetailNormal",
+    "DetailTiling",
+    "DetailStrength"
+   ],
+   "19 | Magical (Henshin)": [
+    "MagicalTransform",
+    "MotifMask",
+    "MotifScale",
+    "MotifColor",
+    "TransformGlow",
+    "WipeSoftness",
+    "MagicalPalette"
+   ],
+   "27 | Elemental": [
+    "ElementType",
+    "ElementStrength",
+    "ElementEmissiveBoost",
+    "bElemental_Active"
+   ],
+   "29 | Time of Day": [
+    "TimeOfDayWarmth",
+    "UseUDSTimeOfDay",
+    "TimeOfDayMPCStrength",
+    "TimeOfDayWarmth"
+   ],
+   "28 | World / Weather": [
+    "WetnessStrength",
+    "WetnessRoughness",
+    "WetnessDarken",
+    "WetnessNormalFlatten",
+    "SnowDustStrength",
+    "SnowDustColor",
+    "SnowUpBias",
+    "MossConcavityStrength",
+    "MossColor",
+    "MossCurvatureSens",
+    "bWeather_Active",
+    "bWeather_Active",
+    "bWeather_Active"
+   ],
+   "30 | Cinematic": [
+    "ContactRimStrength",
+    "ContactRimPower",
+    "ContactRimColor",
+    "DistanceFadeStrength",
+    "DistanceFadeStart",
+    "DistanceFadeEnd",
+    "AtmosphericFadeColor",
+    "DitherDissolveStrength",
+    "DitherEdgeGlow"
+   ],
+   "20 | VeinGlow (Madoka)": [
+    "MadokaBlendAmount"
+   ],
+   "21 | InkWear (Itto)": [
+    "IttoBlendAmount"
+   ],
+   "33 | Mesh Blend": [
+    "bMeshBlendActivator_Active"
+   ],
+   "09 | Color Ramp": [
+    "RampLow",
+    "RampMid",
+    "RampHigh",
+    "RampPosMid",
+    "RampContrast",
+    "RampStrength",
+    "ShadowRampLow",
+    "ShadowRampMid",
+    "ShadowRampHigh",
+    "ShadowRampPosMid",
+    "bShadowRamp_Active",
+    "ShadowRampSunFollow",
+    "bRampFromTerminator"
+   ],
+   "98 | Global": [
+    "GlobalSparkleIntensity",
+    "GlobalEmissiveBoost",
+    "Melusina_Lavender",
+    "Melusina_RoseGold",
+    "Melusina_SoftWhite"
+   ],
+   "22 | Impasto": [
+    "ImpastoCoverage",
+    "ImpastoRoughness",
+    "bImpasto_Active"
+   ],
+   "23 | Sigil": [
+    "SigilStrength",
+    "SigilSides",
+    "SigilRings",
+    "SigilSpeed",
+    "SigilSharp",
+    "SigilCycles"
+   ],
+   "24 | Dawn & Mist": [
+    "DawnStrength",
+    "DawnHeightScale",
+    "DawnBias",
+    "DawnLowColor",
+    "DawnHighColor",
+    "MistStrength",
+    "MistScale",
+    "MistSpeed",
+    "MistSharp",
+    "MistColor"
+   ],
+   "25 | Glint & Halo": [
+    "GlintStrength",
+    "GlintScale",
+    "GlintSize",
+    "GlintSharp",
+    "GlintSpeed",
+    "GlintColor",
+    "HaloStrength",
+    "HaloPower",
+    "HaloColor"
+   ],
+   "02 | Triplanar": [
+    "TriplanarWorldScale",
+    "TriplanarSharpness",
+    "bTriplanar_Active",
+    "TriplanarDetailMap",
+    "bTriplanar_Active",
+    "TriplanarSlopeStart",
+    "TriplanarSlopeEnd",
+    "TriplanarBlend_Albedo",
+    "TriplanarBlend_Normal",
+    "TriplanarBlend_Roughness"
+   ],
+   "31 | DF Contact Blend": [
+    "DFContactBlendDistance",
+    "DFContactBlendSharpness",
+    "DFContactBlendStrength",
+    "DFContactNoiseBreakup",
+    "DFContactNoiseScale",
+    "DFContactWorldPositionOffset",
+    "DFContactGroundHeight",
+    "DFContactHeightFalloff",
+    "DFContactTint",
+    "DFContactRoughness",
+    "bDFContactBlend_Active",
+    "bDFContactBlend_Active",
+    "bDFContactBlend_Active",
+    "SDF_SeamBlendDistance",
+    "SDF_SeamBlendSharpness",
+    "SDF_SeamBlendNoiseScale",
+    "SDF_SeamBlendNoiseBreakup",
+    "SDF_SeamBlendStrength"
+   ],
+   "99 | Legacy / Diagnostic": [
+    "DIAG_TestBool",
+    "bGemstone_Active_LEGACY",
+    "bStackLayer2_Active_LEGACY",
+    "Param",
+    "Param_1"
+   ],
+   "32 | Gemstone & Stack": [
+    "IOR",
+    "Dispersion",
+    "GemstoneRoughness",
+    "ChromaticStrength",
+    "GemstoneTint",
+    "Stack2_Albedo",
+    "Stack2_Normal",
+    "Stack2_ORM",
+    "Stack2_Tiling",
+    "Stack2_Blend",
+    "Stack2_Metallic",
+    "Stack2_Roughness",
+    "bStackLayer3_Active",
+    "Stack3_Albedo",
+    "Stack3_Normal",
+    "Stack3_Tiling",
+    "Stack3_Metallic",
+    "Stack3_Roughness",
+    "bGemstone_Active"
+   ],
+   "26 | Character & SDF": [
+    "FaceSDF_Texture",
+    "FaceSDF_Strength",
+    "FaceSDF_Tiling",
+    "bFaceSDF_UV1",
+    "SkinSSS_Strength",
+    "SkinSSS_Color",
+    "SkinSSS_Radius"
+   ],
+   "90 | Cymatics": [
+    "Cymatic_ModeN",
+    "Cymatic_ModeM",
+    "Cymatic_BeatPulse",
+    "Cymatic_BassIntensity",
+    "Cymatic_MidIntensity",
+    "Cymatic_EmissiveScale",
+    "Cymatic_IridescenceShift",
+    "Cymatic_UVDistortion",
+    "CymaticAmplitude",
+    "ChladniMask",
+    "ChladniScale",
+    "ChladniColor"
+   ],
+   "91 | Optical LOD": [
+    "POM_StepCount",
+    "Toksvig_AntiAliasing_Weight",
+    "WPO_Resonance_Scale",
+    "Grazing_Rim_Boost",
+    "LOD_Tier_Index"
+   ],
+   "40 | Convergence": [
+    "InkDensity",
+    "OilPaintMix",
+    "ShadowDepth",
+    "GildingAmount",
+    "AudioReactivity",
+    "InkPanSpeed",
+    "LOD_Distance_Min",
+    "LOD_Distance_Max",
+    "Dither_Crossfade_Window",
+    "InkColor",
+    "Grazing_Rim_Tint",
+    "LOD_Distance_Bounds"
+   ],
+   "08 | Gouache": [
+    "bGouache_Active",
+    "bGouache_Active",
+    "Gouache_Strength",
+    "Gouache_UVTiling",
+    "Gouache_PaperMean",
+    "Gouache_PaperGrain",
+    "Gouache_ChalkLift",
+    "Gouache_NormalStrength",
+    "Gouache_TexelSize",
+    "Gouache_PaperTex",
+    "bGouache_Active",
+    "bGouache_Active",
+    "bGouache_Active",
+    "Gouache_Strength",
+    "Gouache_UVTiling",
+    "Gouache_DetileScale",
+    "Gouache_FlipFPS",
+    "Gouache_FlipAmount",
+    "Gouache_FlipTiling",
+    "Gouache_SwirlSpeed",
+    "Gouache_SwirlDrift",
+    "Gouache_PaperMean",
+    "Gouache_PaperGrain",
+    "Gouache_Band1",
+    "Gouache_Band2",
+    "Gouache_BandSoft",
+    "Gouache_BleedJitter",
+    "Gouache_ShadowMix",
+    "Gouache_ShadowSat",
+    "Gouache_ChalkLift",
+    "Gouache_GranAmount",
+    "Gouache_EdgePool",
+    "Gouache_EdgeHalo",
+    "Gouache_PoolAmount",
+    "Gouache_PoolPower",
+    "Gouache_BloomThresh",
+    "Gouache_BloomSoft",
+    "Gouache_BloomEdge",
+    "Gouache_BloomLift",
+    "Gouache_BoilFPS",
+    "Gouache_BoilAmount",
+    "Gouache_NormalStrength",
+    "Gouache_TexelSize",
+    "Gouache_ChalkRoughness",
+    "Gouache_ShadowTint",
+    "Gouache_KeyLightDir",
+    "Gouache_PigmentTex",
+    "Gouache_FlipTex",
+    "Gouache_SunFollow"
+   ]
+  }
+ },
+ "M_Master_Toon_Character": {
+  "ungrouped": [
+   {
+    "p": "CymaticsLandscapeAmount",
+    "g": "None",
+    "c": "ScalarParameter",
+    "d": "",
+    "tx": null
+   },
+   {
+    "p": "Cymatic_BeatPulse",
+    "g": "None",
+    "c": "CollectionParameter",
+    "d": "",
+    "tx": null
+   },
+   {
+    "p": "CymaticsTint",
+    "g": "None",
+    "c": "VectorParameter",
+    "d": "",
+    "tx": null
+   }
+  ],
+  "non_numbered_groups": [
+   {
+    "p": "CharacterUVTiling",
+    "g": "Character / Maps"
+   },
+   {
+    "p": "CharacterAlbedo",
+    "g": "Character / Maps"
+   },
+   {
+    "p": "CharacterNormal",
+    "g": "Character / Maps"
+   },
+   {
+    "p": "CharacterRoughnessMap",
+    "g": "Character / Maps"
+   },
+   {
+    "p": "CharacterBaseTint",
+    "g": "Character / Surface"
+   },
+   {
+    "p": "CharacterMaterialID",
+    "g": "Character / Role"
+   },
+   {
+    "p": "CharacterRoleBlend",
+    "g": "Character / Role"
+   },
+   {
+    "p": "CharacterRoleTint",
+    "g": "Character / Role"
+   },
+   {
+    "p": "CharacterFaceSDFTiling",
+    "g": "Character / Face"
+   },
+   {
+    "p": "CharacterFaceSDF",
+    "g": "Character / Face"
+   },
+   {
+    "p": "CharacterFaceSDFStrength",
+    "g": "Character / Face"
+   },
+   {
+    "p": "CharacterFaceTint",
+    "g": "Character / Face"
+   },
+   {
+    "p": "CharacterRoughness",
+    "g": "Character / Surface"
+   },
+   {
+    "p": "CharacterRoughnessBlend",
+    "g": "Character / Surface"
+   },
+   {
+    "p": "CharacterHeroSheenPower",
+    "g": "Character / Sheen"
+   },
+   {
+    "p": "CharacterHeroSheenStrength",
+    "g": "Character / Sheen"
+   },
+   {
+    "p": "CharacterHeroSheenColor",
+    "g": "Character / Sheen"
+   },
+   {
+    "p": "CharacterEmissiveBase",
+    "g": "Character / Sheen"
+   },
+   {
+    "p": "CharacterWindSpeed",
+    "g": "Character / Wind"
+   },
+   {
+    "p": "CharacterWindAmplitude",
+    "g": "Character / Wind"
+   },
+   {
+    "p": "CymaticsLandscapeAmount",
+    "g": "None"
+   },
+   {
+    "p": "Cymatic_BeatPulse",
+    "g": "None"
+   },
+   {
+    "p": "CymaticsTint",
+    "g": "None"
+   },
+   {
+    "p": "ChladniPatternTexture",
+    "g": "Chladni Fleece"
+   },
+   {
+    "p": "ChladniUVTiling",
+    "g": "Chladni Fleece"
+   },
+   {
+    "p": "ChladniIntensity",
+    "g": "Chladni Fleece"
+   },
+   {
+    "p": "HarmonizeActive",
+    "g": "Chladni Fleece"
+   },
+   {
+    "p": "BeatAccent",
+    "g": "Chladni Fleece"
+   },
+   {
+    "p": "ChladniPearlSilkColor",
+    "g": "Chladni Fleece"
+   },
+   {
+    "p": "ChladniLilacHaloColor",
+    "g": "Chladni Fleece"
+   },
+   {
+    "p": "ChladniEmissiveStrength",
+    "g": "Chladni Fleece"
+   },
+   {
+    "p": "ChladniSheenStrength",
+    "g": "Chladni Fleece"
+   }
+  ],
+  "numbered_groups": {}
+ },
+ "M_Water_Oceanology_Melodia": {
+  "ungrouped": [
+   {
+    "p": "Biolum_ShearProxy",
+    "g": "None",
+    "c": "ScalarParameter",
+    "d": "",
+    "tx": null
+   },
+   {
+    "p": "Biolum_RippleMask",
+    "g": "None",
+    "c": "ScalarParameter",
+    "d": "",
+    "tx": null
+   },
+   {
+    "p": "Biolum_CrestCompression",
+    "g": "None",
+    "c": "ScalarParameter",
+    "d": "",
+    "tx": null
+   },
+   {
+    "p": "Biolum_DepthMask",
+    "g": "None",
+    "c": "ScalarParameter",
+    "d": "",
+    "tx": null
+   },
+   {
+    "p": "Biolum_BlueGreenTint",
+    "g": "None",
+    "c": "VectorParameter",
+    "d": "",
+    "tx": null
+   },
+   {
+    "p": "Biolum_CyanTint",
+    "g": "None",
+    "c": "VectorParameter",
+    "d": "",
+    "tx": null
+   },
+   {
+    "p": "Biolum_GreenTint",
+    "g": "None",
+    "c": "VectorParameter",
+    "d": "",
+    "tx": null
+   },
+   {
+    "p": "Biolum_Intensity",
+    "g": "None",
+    "c": "ScalarParameter",
+    "d": "",
+    "tx": null
+   },
+   {
+    "p": "Biolum_Density",
+    "g": "None",
+    "c": "ScalarParameter",
+    "d": "",
+    "tx": null
+   },
+   {
+    "p": "Biolum_FlashRate",
+    "g": "None",
+    "c": "ScalarParameter",
+    "d": "",
+    "tx": null
+   },
+   {
+    "p": "Biolum_FlashThreshold",
+    "g": "None",
+    "c": "ScalarParameter",
+    "d": "",
+    "tx": null
+   },
+   {
+    "p": "Biolum_FlashDecay",
+    "g": "None",
+    "c": "ScalarParameter",
+    "d": "",
+    "tx": null
+   },
+   {
+    "p": "Biolum_Weight",
+    "g": "None",
+    "c": "ScalarParameter",
+    "d": "",
+    "tx": null
+   },
+   {
+    "p": "Toon_Bands",
+    "g": "None",
+    "c": "ScalarParameter",
+    "d": "",
+    "tx": null
+   },
+   {
+    "p": "Toon_Weight",
+    "g": "None",
+    "c": "ScalarParameter",
+    "d": "",
+    "tx": null
+   },
+   {
+    "p": "Nikki_SparkleIntensity",
+    "g": "None",
+    "c": "ScalarParameter",
+    "d": "",
+    "tx": null
+   },
+   {
+    "p": "Nikki_SparkleThreshold",
+    "g": "None",
+    "c": "ScalarParameter",
+    "d": "",
+    "tx": null
+   },
+   {
+    "p": "Nikki_SparkleColor",
+    "g": "None",
+    "c": "VectorParameter",
+    "d": "",
+    "tx": null
+   },
+   {
+    "p": "Nikki_SparkleMask",
+    "g": "None",
+    "c": "TextureObjectParameter",
+    "d": "",
+    "tx": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Textures/T_Jelly_Biolum_LUT.T_Jelly_Biolum_LUT"
+   }
+  ],
+  "non_numbered_groups": [
+   {
+    "p": "Biolum_ShearProxy",
+    "g": "None"
+   },
+   {
+    "p": "Biolum_RippleMask",
+    "g": "None"
+   },
+   {
+    "p": "Biolum_CrestCompression",
+    "g": "None"
+   },
+   {
+    "p": "Biolum_DepthMask",
+    "g": "None"
+   },
+   {
+    "p": "Biolum_BlueGreenTint",
+    "g": "None"
+   },
+   {
+    "p": "Biolum_CyanTint",
+    "g": "None"
+   },
+   {
+    "p": "Biolum_GreenTint",
+    "g": "None"
+   },
+   {
+    "p": "Biolum_Intensity",
+    "g": "None"
+   },
+   {
+    "p": "Biolum_Density",
+    "g": "None"
+   },
+   {
+    "p": "Biolum_FlashRate",
+    "g": "None"
+   },
+   {
+    "p": "Biolum_FlashThreshold",
+    "g": "None"
+   },
+   {
+    "p": "Biolum_FlashDecay",
+    "g": "None"
+   },
+   {
+    "p": "Biolum_Weight",
+    "g": "None"
+   },
+   {
+    "p": "Toon_Bands",
+    "g": "None"
+   },
+   {
+    "p": "Toon_Weight",
+    "g": "None"
+   },
+   {
+    "p": "Nikki_SparkleIntensity",
+    "g": "None"
+   },
+   {
+    "p": "Nikki_SparkleThreshold",
+    "g": "None"
+   },
+   {
+    "p": "Nikki_SparkleColor",
+    "g": "None"
+   },
+   {
+    "p": "Nikki_SparkleMask",
+    "g": "None"
+   }
+  ],
+  "numbered_groups": {}
+ },
+ "M_Master_SDF_Toon": {
+  "ungrouped": [
+   {
+    "p": "bToonRampEnabled",
+    "g": "None",
+    "c": "StaticSwitchParameter",
+    "d": "",
+    "tx": null
+   },
+   {
+    "p": "ToonRampStrength",
+    "g": "None",
+    "c": "ScalarParameter",
+    "d": "",
+    "tx": null
+   }
+  ],
+  "non_numbered_groups": [
+   {
+    "p": "BaseTint",
+    "g": "Palette"
+   },
+   {
+    "p": "AccentTint",
+    "g": "Palette"
+   },
+   {
+    "p": "UVScale",
+    "g": "UV"
+   },
+   {
+    "p": "UVRotation",
+    "g": "UV"
+   },
+   {
+    "p": "NormalMap",
+    "g": "Maps"
+   },
+   {
+    "p": "RoughnessMap",
+    "g": "Maps"
+   },
+   {
+    "p": "HeightMap",
+    "g": "Maps"
+   },
+   {
+    "p": "ParallaxScale",
+    "g": "Parallax"
+   },
+   {
+    "p": "ParallaxSteps",
+    "g": "Parallax"
+   },
+   {
+    "p": "ReliefDepth",
+    "g": "SDF"
+   },
+   {
+    "p": "GildingStrength",
+    "g": "Gilding"
+   },
+   {
+    "p": "GoldTint",
+    "g": "Gilding"
+   },
+   {
+    "p": "OilPaintStrength",
+    "g": "OilPaint"
+   },
+   {
+    "p": "TemporalStrength",
+    "g": "Temporal"
+   },
+   {
+    "p": "InkIntensity",
+    "g": "Ink"
+   },
+   {
+    "p": "InkColor",
+    "g": "Ink"
+   },
+   {
+    "p": "OrnamentStyle",
+    "g": "Ornament"
+   },
+   {
+    "p": "OrnamentScale",
+    "g": "Ornament"
+   },
+   {
+    "p": "CurvatureSensitivity",
+    "g": "Ornament"
+   },
+   {
+    "p": "AudioReactivity",
+    "g": "Audio"
+   },
+   {
+    "p": "DryRoughness",
+    "g": "Surface"
+   },
+   {
+    "p": "BandScale",
+    "g": "SDF"
+   },
+   {
+    "p": "BandStrength",
+    "g": "SDF"
+   },
+   {
+    "p": "ParallaxHeight",
+    "g": "Parallax"
+   },
+   {
+    "p": "bToonRampEnabled",
+    "g": "None"
+   },
+   {
+    "p": "ToonRampStrength",
+    "g": "None"
+   }
+  ],
+  "numbered_groups": {}
+ }
+}

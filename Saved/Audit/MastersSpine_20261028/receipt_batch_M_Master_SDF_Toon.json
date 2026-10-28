@@ -1,0 +1,30 @@
+{
+ "schema": "melodia.masters_spine_batch_receipt.v1",
+ "when": "2026-10-28",
+ "master": "M_Master_SDF_Toon",
+ "asset_path": "/Game/EnvSandbox/Materials/Masters/SDF/M_Master_SDF_Toon",
+ "backup_path": "/Game/EnvSandbox/Materials/Masters/_Backup/M_Master_SDF_Toon_PreSpinePolish_20261028",
+ "expr_count_before": 47,
+ "expr_count_after": 47,
+ "renamed_params": 24,
+ "allocated_params": 2,
+ "skipped_ungrouped_after": [],
+ "ungrouped_after": [],
+ "groups_after": {
+  "01 | Palette": 2,
+  "02 | UV": 2,
+  "03 | Maps": 3,
+  "04 | Parallax": 3,
+  "06 | SDF": 3,
+  "07 | Gilding": 2,
+  "08 | Oil Paint": 1,
+  "09 | Temporal": 1,
+  "10 | Ink": 2,
+  "11 | Ornament": 3,
+  "12 | Audio": 1,
+  "05 | Surface": 1,
+  "13 | Toon Ramp": 2
+ },
+ "comment_headers": [],
+ "ok": true
+}

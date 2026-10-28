@@ -1,0 +1,12 @@
+{
+  "schema": "melodia.masters_spine_orphan_candidates.v1",
+  "when": "2026-10-28",
+  "source": "Monolith material_query audit_orphan_materials, page 1 (project-wide, 977 materials considered; pagination continues)",
+  "policy": "Archive policy in specs/materials/master_spine_canon.v1.json: only zero-referencer assets move; masters -> Masters/_Retired/<date>/, instances -> Instances/_Legacy/. _Archive and _PROJECT legacy are policy no-delete.",
+  "candidates_of_interest": [
+    {"asset": "/Game/EnvSandbox/Materials/Instances/Melusina/MI_Melusina_WaterHair", "class": "MaterialInstanceConstant", "note": "v9-era water-hair instance; superseded by Melusina hair lane"},
+    {"asset": "/Game/Melodia/_PROJECT/... Couture_20261026 batch MIs (4 instances)", "class": "MaterialInstanceConstant", "note": "belongs to another lane's 2026-10-26 batch - do not move without that lane's sign-off"},
+    {"asset": "/Game/... engine plugin debug materials (AppleARKit, HairStrands, ControlRig)", "class": "Material/MaterialInstanceConstant", "note": "plugin-owned; ignore, never archive"}
+  ],
+  "note": "Full orphan enumeration intentionally not persisted this pass; re-run audit_orphan_materials when an owner-triage archival batch is scheduled. Nothing was moved or deleted on 2026-10-28."
+}

@@ -1,0 +1,1103 @@
+{
+ "M_Master_Nikki_Landscape": {
+  "expr_count": 362,
+  "class_counts": {
+   "LandscapeLayerBlend": 3,
+   "LandscapeLayerCoords": 3,
+   "ScalarParameter": 97,
+   "Multiply": 35,
+   "TextureSampleParameter2D": 19,
+   "VectorParameter": 28,
+   "Constant3Vector": 6,
+   "DotProduct": 6,
+   "MaterialFunctionCall": 15,
+   "LinearInterpolate": 19,
+   "Fresnel": 1,
+   "Constant": 7,
+   "Subtract": 5,
+   "PixelDepth": 1,
+   "Divide": 6,
+   "Saturate": 12,
+   "Add": 14,
+   "OneMinus": 2,
+   "SubstrateToonBSDF": 1,
+   "StaticSwitchParameter": 24,
+   "TextureObjectParameter": 3,
+   "WorldPosition": 5,
+   "VertexNormalWS": 3,
+   "LightVector": 1,
+   "Power": 1,
+   "Time": 2,
+   "Comment": 18,
+   "CameraVectorWS": 1,
+   "CollectionParameter": 5,
+   "LandscapeLayerSample": 5,
+   "PixelNormalWS": 1,
+   "ComponentMask": 1,
+   "TextureCoordinate": 2,
+   "Max": 3,
+   "Transform": 1,
+   "Normalize": 2,
+   "Custom": 4
+  },
+  "param_exprs": 181,
+  "groups": {
+   "03 | Layer Surface": 6,
+   "02 | Layer Textures": 7,
+   "01 | Base Surface": 10,
+   "07 | Nikki Iridescence & Sheen": 1,
+   "03 | Atmosphere": 4,
+   "04 | Emissive": 2,
+   "05 | Triplanar": 10,
+   "08 | Nikki Sticker Shade": 5,
+   "09 | Nikki Twinkle Iris": 6,
+   "10 | Nikki Pastel Grade": 8,
+   "11 | Shadow Dream": 4,
+   "13 | Nikki SDF Ribbon": 7,
+   "14 | Nikki Pearl Sheen": 5,
+   "15 | Nikki Dream Watercolor": 5,
+   "16 | Nikki Sticker Edge": 6,
+   "17 | Nikki Glitter Halo": 8,
+   "18 | Nikki Petal Shadow": 7,
+   "12 | Kawaii Squish": 4,
+   "07 | Glitter Pile": 9,
+   "None": 42,
+   "03 | Gaea Masks": 4,
+   "(none)": 5,
+   "03 | Rock Triplanar Detail": 7,
+   "04 | Snow Coverage Detail": 3,
+   "05 | Landscape Cymatics": 1,
+   "04 | Snow Distance Field": 5
+  },
+  "comments": [
+   {
+    "t": "MELODIA_COLUMN:02 | Layer Textures",
+    "x": -2490,
+    "y": -1100
+   },
+   {
+    "t": "MELODIA_COLUMN:03 | Atmosphere",
+    "x": -820,
+    "y": -1020
+   },
+   {
+    "t": "MELODIA_COLUMN:03 | Layer Surface",
+    "x": -2440,
+    "y": -910
+   },
+   {
+    "t": "MELODIA_COLUMN:05 | Triplanar",
+    "x": -2490,
+    "y": -840
+   },
+   {
+    "t": "MELODIA_COLUMN:01 | Base Surface",
+    "x": -1690,
+    "y": -760
+   },
+   {
+    "t": "MELODIA_COLUMN:04 | Emissive",
+    "x": -620,
+    "y": -260
+   },
+   {
+    "t": "MELODIA_COLUMN:08 | Nikki Sticker Shade",
+    "x": -1740,
+    "y": 60
+   },
+   {
+    "t": "MELODIA_COLUMN:09 | Nikki Twinkle Iris",
+    "x": -1490,
+    "y": 60
+   },
+   {
+    "t": "MELODIA_COLUMN:10 | Nikki Pastel Grade",
+    "x": -1240,
+    "y": 60
+   },
+   {
+    "t": "MELODIA_COLUMN:11 | Shadow Dream",
+    "x": -990,
+    "y": 60
+   },
+   {
+    "t": "MELODIA_COLUMN:12 | Kawaii Squish",
+    "x": -840,
+    "y": 60
+   },
+   {
+    "t": "MELODIA_COLUMN:13 | Nikki SDF Ribbon",
+    "x": -740,
+    "y": 60
+   },
+   {
+    "t": "MELODIA_COLUMN:14 | Nikki Pearl Sheen",
+    "x": -490,
+    "y": 60
+   },
+   {
+    "t": "MELODIA_COLUMN:15 | Nikki Dream Watercolor",
+    "x": -240,
+    "y": 60
+   },
+   {
+    "t": "MELODIA_COLUMN:16 | Nikki Sticker Edge",
+    "x": 10,
+    "y": 60
+   },
+   {
+    "t": "MELODIA_COLUMN:17 | Nikki Glitter Halo",
+    "x": 260,
+    "y": 60
+   },
+   {
+    "t": "MELODIA_COLUMN:18 | Nikki Petal Shadow",
+    "x": 510,
+    "y": 60
+   },
+   {
+    "t": "MELODIA_COLUMN:07 | Nikki Iridescence & Shee",
+    "x": -1240,
+    "y": 240
+   }
+  ],
+  "x_extent": [
+   -5200,
+   2800
+  ],
+  "param_x_extent": [
+   -5200,
+   900
+  ],
+  "texture_defaults": [
+   {
+    "p": "Ground_Albedo",
+    "tx": "/Game/_PROJECT/04_Materials/Textures/Textures/SOIL_materialized_diffuseOriginal.SOIL_materialized_diffuseOriginal",
+    "g": "02 | Layer Textures"
+   },
+   {
+    "p": "Ground_NormalMap",
+    "tx": "/Game/EnvSandbox/Textures/Utility/T_Neutral_Normal.T_Neutral_Normal",
+    "g": "02 | Layer Textures"
+   },
+   {
+    "p": "Grass_Albedo",
+    "tx": "/Game/_PROJECT/04_Materials/Textures/Textures/SOIL_materialized_diffuseOriginal.SOIL_materialized_diffuseOriginal",
+    "g": "02 | Layer Textures"
+   },
+   {
+    "p": "Grass_NormalMap",
+    "tx": "/Game/EnvSandbox/Textures/Utility/T_Neutral_Normal.T_Neutral_Normal",
+    "g": "02 | Layer Textures"
+   },
+   {
+    "p": "Rock_Albedo",
+    "tx": "/Game/EnvSandbox/Materials/SDF/Textures/Marble/T_Marble_7_-_512x512.T_Marble_7_-_512x512",
+    "g": "02 | Layer Textures"
+   },
+   {
+    "p": "Rock_NormalMap",
+    "tx": "/Game/EnvSandbox/Textures/Utility/T_Neutral_Normal.T_Neutral_Normal",
+    "g": "02 | Layer Textures"
+   },
+   {
+    "p": "Albedo",
+    "tx": "/Game/EnvSandbox/Materials/SDF/Textures/Marble/T_Marble_7_-_512x512.T_Marble_7_-_512x512",
+    "g": "02 | Layer Textures"
+   },
+   {
+    "p": "Snow_Albedo",
+    "tx": "/Game/Textures/sbs_-_gradient_texture_pack_-_512x512/512x512/Basic/Horizontal_1_-_512x512.Horizontal_1_-_512x512",
+    "g": "None"
+   },
+   {
+    "p": "Snow_NormalMap",
+    "tx": "/Game/EnvSandbox/Textures/Utility/T_Neutral_Normal.T_Neutral_Normal",
+    "g": "None"
+   },
+   {
+    "p": "Water_Albedo",
+    "tx": "/Game/Textures/sbs_-_gradient_texture_pack_-_512x512/512x512/Basic/Horizontal_1_-_512x512.Horizontal_1_-_512x512",
+    "g": "None"
+   },
+   {
+    "p": "Water_NormalMap",
+    "tx": "/Game/EnvSandbox/Textures/Utility/T_Neutral_Normal.T_Neutral_Normal",
+    "g": "None"
+   },
+   {
+    "p": "Mud_Albedo",
+    "tx": "/Game/Textures/sbs_-_gradient_texture_pack_-_512x512/512x512/Basic/Horizontal_1_-_512x512.Horizontal_1_-_512x512",
+    "g": "None"
+   },
+   {
+    "p": "Mud_NormalMap",
+    "tx": "/Game/EnvSandbox/Textures/Utility/T_Neutral_Normal.T_Neutral_Normal",
+    "g": "None"
+   },
+   {
+    "p": "Path_Albedo",
+    "tx": "/Game/Textures/sbs_-_gradient_texture_pack_-_512x512/512x512/Basic/Horizontal_1_-_512x512.Horizontal_1_-_512x512",
+    "g": "None"
+   },
+   {
+    "p": "Path_NormalMap",
+    "tx": "/Game/EnvSandbox/Textures/Utility/T_Neutral_Normal.T_Neutral_Normal",
+    "g": "None"
+   },
+   {
+    "p": "Gaea_SnowMask",
+    "tx": "/Game/Textures/sbs_-_gradient_texture_pack_-_512x512/512x512/Basic/Horizontal_1_-_512x512.Horizontal_1_-_512x512",
+    "g": "03 | Gaea Masks"
+   },
+   {
+    "p": "Gaea_WaterMask",
+    "tx": "/Game/Textures/sbs_-_gradient_texture_pack_-_512x512/512x512/Basic/Horizontal_1_-_512x512.Horizontal_1_-_512x512",
+    "g": "None"
+   },
+   {
+    "p": "Gaea_FlowMask",
+    "tx": "/Game/Textures/sbs_-_gradient_texture_pack_-_512x512/512x512/Basic/Horizontal_1_-_512x512.Horizontal_1_-_512x512",
+    "g": "None"
+   },
+   {
+    "p": "Rock_NormalMap",
+    "tx": "/Game/EnvSandbox/Textures/Utility/T_Neutral_Normal.T_Neutral_Normal",
+    "g": "None"
+   },
+   {
+    "p": "Rock_DetailAlbedo",
+    "tx": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Textures/T_SeaAbove_WetRock_Albedo.T_SeaAbove_WetRock_Albedo",
+    "g": "None"
+   },
+   {
+    "p": "SnowEdgeDistanceTexture",
+    "tx": "/Game/Gaea/Glacier/Textures/T_Glacier_SnowEdge_SDF16.T_Glacier_SnowEdge_SDF16",
+    "g": "None"
+   },
+   {
+    "p": "Gaea_RockMask",
+    "tx": "/Game/Textures/sbs_-_gradient_texture_pack_-_512x512/512x512/Basic/Horizontal_1_-_512x512.Horizontal_1_-_512x512",
+    "g": "03 | Gaea Masks"
+   }
+  ],
+  "collections": [
+   {
+    "p": "BeatPhase",
+    "col": "/Game/Melodia/_PROJECT/04_Materials/MPC_Melodia_Palette.MPC_Melodia_Palette"
+   },
+   {
+    "p": "BeatPulse",
+    "col": "/Game/Melodia/_PROJECT/04_Materials/MPC_Melodia_Palette.MPC_Melodia_Palette"
+   },
+   {
+    "p": "Mid",
+    "col": "/Game/Melodia/_PROJECT/04_Materials/MPC_Melodia_Palette.MPC_Melodia_Palette"
+   },
+   {
+    "p": "GlobalReactivity",
+    "col": "/Game/Melodia/_PROJECT/04_Materials/MPC_Melodia_Palette.MPC_Melodia_Palette"
+   },
+   {
+    "p": "Cymatic_BeatPulse",
+    "col": "/Game/Melodia/Cymatics/MPC_Cymatics_Driver.MPC_Cymatics_Driver"
+   }
+  ]
+ },
+ "M_Master_Nikki": {
+  "expr_count": 331,
+  "class_counts": {
+   "Multiply": 28,
+   "MaterialFunctionCall": 21,
+   "ScalarParameter": 105,
+   "TextureSampleParameter2D": 14,
+   "Constant3Vector": 10,
+   "VectorParameter": 37,
+   "Subtract": 6,
+   "LinearInterpolate": 11,
+   "BumpOffset": 2,
+   "Fresnel": 2,
+   "PixelDepth": 2,
+   "Saturate": 4,
+   "OneMinus": 3,
+   "TextureCoordinate": 2,
+   "Constant": 3,
+   "DotProduct": 8,
+   "Divide": 1,
+   "Add": 2,
+   "SubstrateToonBSDF": 1,
+   "StaticSwitchParameter": 22,
+   "TextureObjectParameter": 3,
+   "WorldPosition": 3,
+   "VertexNormalWS": 4,
+   "LightVector": 1,
+   "Power": 1,
+   "Sine": 1,
+   "Time": 3,
+   "Comment": 18,
+   "CameraVectorWS": 1,
+   "CollectionParameter": 5,
+   "Custom": 2,
+   "LocalPosition": 1,
+   "Transform": 1,
+   "Normalize": 1,
+   "ComponentMask": 2
+  },
+  "param_exprs": 186,
+  "groups": {
+   "06 | Parallax": 4,
+   "02 | Textures": 8,
+   "01 | Base Surface": 19,
+   "03 | Atmosphere": 7,
+   "07 | Nikki Iridescence & Sheen": 1,
+   "04 | Emissive": 2,
+   "05 | Triplanar": 10,
+   "08 | Nikki Sticker Shade": 5,
+   "09 | Nikki Twinkle Iris": 6,
+   "10 | Nikki Pastel Grade": 8,
+   "11 | Shadow Dream": 4,
+   "12 | Kawaii Squish": 6,
+   "13 | Nikki SDF Ribbon": 7,
+   "14 | Nikki Pearl Sheen": 5,
+   "15 | Nikki Dream Watercolor": 5,
+   "16 | Nikki Sticker Edge": 6,
+   "17 | Nikki Glitter Halo": 8,
+   "18 | Nikki Petal Shadow": 7,
+   "04 Texture Layout": 2,
+   "07 | Glitter Pile": 9,
+   "None": 14,
+   "NikkiSDFIris": 14,
+   "Character Extensions": 11,
+   "07 | Gouache Wash": 18
+  },
+  "comments": [
+   {
+    "t": "MELODIA_COLUMN:03 | Atmosphere",
+    "x": -820,
+    "y": -1020
+   },
+   {
+    "t": "MELODIA_COLUMN:02 | Textures",
+    "x": -2490,
+    "y": -960
+   },
+   {
+    "t": "MELODIA_COLUMN:05 | Triplanar",
+    "x": -2490,
+    "y": -840
+   },
+   {
+    "t": "MELODIA_COLUMN:01 | Base Surface",
+    "x": -1690,
+    "y": -760
+   },
+   {
+    "t": "MELODIA_COLUMN:04 | Emissive",
+    "x": -620,
+    "y": -260
+   },
+   {
+    "t": "MELODIA_COLUMN:06 | Parallax",
+    "x": -2440,
+    "y": 0
+   },
+   {
+    "t": "MELODIA_COLUMN:08 | Nikki Sticker Shade",
+    "x": -1740,
+    "y": 60
+   },
+   {
+    "t": "MELODIA_COLUMN:09 | Nikki Twinkle Iris",
+    "x": -1490,
+    "y": 60
+   },
+   {
+    "t": "MELODIA_COLUMN:10 | Nikki Pastel Grade",
+    "x": -1240,
+    "y": 60
+   },
+   {
+    "t": "MELODIA_COLUMN:11 | Shadow Dream",
+    "x": -990,
+    "y": 60
+   },
+   {
+    "t": "MELODIA_COLUMN:12 | Kawaii Squish",
+    "x": -840,
+    "y": 60
+   },
+   {
+    "t": "MELODIA_COLUMN:13 | Nikki SDF Ribbon",
+    "x": -740,
+    "y": 60
+   },
+   {
+    "t": "MELODIA_COLUMN:14 | Nikki Pearl Sheen",
+    "x": -490,
+    "y": 60
+   },
+   {
+    "t": "MELODIA_COLUMN:15 | Nikki Dream Watercolor",
+    "x": -240,
+    "y": 60
+   },
+   {
+    "t": "MELODIA_COLUMN:16 | Nikki Sticker Edge",
+    "x": 10,
+    "y": 60
+   },
+   {
+    "t": "MELODIA_COLUMN:17 | Nikki Glitter Halo",
+    "x": 260,
+    "y": 60
+   },
+   {
+    "t": "MELODIA_COLUMN:18 | Nikki Petal Shadow",
+    "x": 510,
+    "y": 60
+   },
+   {
+    "t": "MELODIA_COLUMN:07 | Nikki Iridescence & Shee",
+    "x": -1240,
+    "y": 240
+   }
+  ],
+  "x_extent": [
+   -6200,
+   1300
+  ],
+  "param_x_extent": [
+   -6200,
+   900
+  ],
+  "texture_defaults": [
+   {
+    "p": "NormalMap",
+    "tx": "/Game/EnvSandbox/Textures/Utility/T_Neutral_Normal.T_Neutral_Normal",
+    "g": "02 | Textures"
+   },
+   {
+    "p": "HeightMap",
+    "tx": "/Game/Textures/sbs_-_noise_texture_pack_-_512x512/512x512/Perlin/Perlin_1_-_512x512.Perlin_1_-_512x512",
+    "g": "02 | Textures"
+   },
+   {
+    "p": "NormalMap",
+    "tx": "/Game/EnvSandbox/Textures/Utility/T_Neutral_Normal.T_Neutral_Normal",
+    "g": "02 | Textures"
+   },
+   {
+    "p": "HeightMap",
+    "tx": "/Game/Textures/sbs_-_noise_texture_pack_-_512x512/512x512/Perlin/Perlin_1_-_512x512.Perlin_1_-_512x512",
+    "g": "02 | Textures"
+   },
+   {
+    "p": "Albedo",
+    "tx": "/Game/Melodia/Cymatics/FarawayAlabasterDrape/T_Cymatic_FarawayAlabasterDrape_BaseColor.T_Cymatic_FarawayAlabasterDrape_BaseColor",
+    "g": "02 | Textures"
+   },
+   {
+    "p": "NormalMap",
+    "tx": "/Game/EnvSandbox/Textures/Utility/T_Neutral_Normal.T_Neutral_Normal",
+    "g": "02 | Textures"
+   },
+   {
+    "p": "ORM",
+    "tx": "/Game/EnvSandbox/Textures/Utility/T_Neutral_ORM.T_Neutral_ORM",
+    "g": "02 | Textures"
+   },
+   {
+    "p": "Albedo",
+    "tx": "/Game/EnvSandbox/Materials/SDF/Textures/Marble/T_Marble_7_-_512x512.T_Marble_7_-_512x512",
+    "g": "02 | Textures"
+   },
+   {
+    "p": "NikkiSDFIris_Mask",
+    "tx": "/Engine/EngineResources/WhiteSquareTexture.WhiteSquareTexture",
+    "g": "NikkiSDFIris"
+   },
+   {
+    "p": "OpacityMap",
+    "tx": "/Engine/EngineResources/WhiteSquareTexture.WhiteSquareTexture",
+    "g": "Character Extensions"
+   },
+   {
+    "p": "RoughnessMap",
+    "tx": "/Game/EnvSandbox/Textures/Utility/T_Neutral_ORM.T_Neutral_ORM",
+    "g": "Character Extensions"
+   },
+   {
+    "p": "MetallicMap",
+    "tx": "/Game/EnvSandbox/Textures/Utility/T_Neutral_ORM.T_Neutral_ORM",
+    "g": "Character Extensions"
+   },
+   {
+    "p": "EmissiveMap",
+    "tx": "/Engine/EngineResources/Black.Black",
+    "g": "Character Extensions"
+   },
+   {
+    "p": "MeluGouache_GranulationTex",
+    "tx": "/Game/EnvSandbox/Materials/Textures/Gouache/T_Gouache_Rebelle_Granulation.T_Gouache_Rebelle_Granulation",
+    "g": "07 | Gouache Wash"
+   },
+   {
+    "p": "MeluGouache_BlotchTex",
+    "tx": "/Game/EnvSandbox/Materials/Textures/Gouache/T_Gouache_Rebelle_Blotch.T_Gouache_Rebelle_Blotch",
+    "g": "07 | Gouache Wash"
+   },
+   {
+    "p": "NormalMap",
+    "tx": "/Engine/EngineMaterials/DefaultNormal.DefaultNormal",
+    "g": "None"
+   },
+   {
+    "p": "ORM",
+    "tx": "/Game/EnvSandbox/Textures/Utility/T_Neutral_ORM.T_Neutral_ORM",
+    "g": "None"
+   }
+  ],
+  "collections": [
+   {
+    "p": "BeatPhase",
+    "col": "/Game/Melodia/_PROJECT/04_Materials/MPC_Melodia_Palette.MPC_Melodia_Palette"
+   },
+   {
+    "p": "BeatPulse",
+    "col": "/Game/Melodia/_PROJECT/04_Materials/MPC_Melodia_Palette.MPC_Melodia_Palette"
+   },
+   {
+    "p": "Mid",
+    "col": "/Game/Melodia/_PROJECT/04_Materials/MPC_Melodia_Palette.MPC_Melodia_Palette"
+   },
+   {
+    "p": "GlobalReactivity",
+    "col": "/Game/Melodia/_PROJECT/04_Materials/MPC_Melodia_Palette.MPC_Melodia_Palette"
+   },
+   {
+    "p": "Cymatic_BeatPulse",
+    "col": "/Game/Melodia/Cymatics/MPC_Cymatics_Driver.MPC_Cymatics_Driver"
+   }
+  ]
+ },
+ "M_Master_Toon_Universal": {
+  "expr_count": 1398,
+  "class_counts": {
+   "StaticSwitchParameter": 42,
+   "Add": 92,
+   "MaterialFunctionCall": 16,
+   "SubstrateToonBSDF": 1,
+   "VectorParameter": 53,
+   "ScalarParameter": 321,
+   "TextureObjectParameter": 33,
+   "TextureCoordinate": 15,
+   "Multiply": 252,
+   "Time": 10,
+   "ComponentMask": 44,
+   "Sine": 12,
+   "Constant": 98,
+   "LinearInterpolate": 92,
+   "TextureSample": 34,
+   "Subtract": 40,
+   "CameraVectorWS": 6,
+   "AppendVector": 9,
+   "OneMinus": 27,
+   "Saturate": 31,
+   "Abs": 23,
+   "DotProduct": 9,
+   "Constant3Vector": 24,
+   "DDX": 2,
+   "DDY": 2,
+   "Normalize": 4,
+   "TextureSampleParameter2D": 3,
+   "PixelNormalWS": 3,
+   "Power": 7,
+   "WorldPosition": 8,
+   "Frac": 2,
+   "Fresnel": 4,
+   "Min": 1,
+   "Distance": 2,
+   "Constant2Vector": 4,
+   "Noise": 2,
+   "Divide": 5,
+   "Max": 3,
+   "CameraPositionWS": 1,
+   "Length": 1,
+   "PixelDepth": 1,
+   "Custom": 36,
+   "CollectionParameter": 12,
+   "VertexNormalWS": 2,
+   "StaticBoolParameter": 5,
+   "VertexColor": 1,
+   "Cosine": 1,
+   "Transform": 1,
+   "SkyAtmosphereLightDirection": 1
+  },
+  "param_exprs": 469,
+  "groups": {
+   "MagicalTransform": 8,
+   "Opacity": 3,
+   "Cloth": 6,
+   "01 | Base Surface": 17,
+   "03 | Texture Layer A": 18,
+   "04 | Texture Layer B": 27,
+   "05 | Texture Layer C": 27,
+   "06 | Parallax": 6,
+   "08 | Temporal / Ink": 5,
+   "10 | Nikki Rim & Glow": 22,
+   "11 | Nikki Dream Grade": 19,
+   "13 | Nikki Iridescence & Sheen": 18,
+   "12 | Nikki Sparkle": 13,
+   "17 | Celestial (Nebula)": 16,
+   "14 | Gilding": 5,
+   "16 | Shadow Dream": 3,
+   "15 | Shadow Garden (Flowers)": 3,
+   "18 | Fairy Dust": 7,
+   "07 | Macro & Detail": 5,
+   "19 | Magical (Henshin)": 7,
+   "27 | Elemental": 4,
+   "29 | Time of Day": 4,
+   "28 | World / Weather": 13,
+   "30 | Cinematic": 9,
+   "20 | VeinGlow (Madoka)": 1,
+   "21 | InkWear (Itto)": 1,
+   "33 | Mesh Blend": 1,
+   "09 | Color Ramp": 13,
+   "98 | Global": 5,
+   "22 | Impasto": 3,
+   "23 | Sigil": 6,
+   "24 | Dawn & Mist": 10,
+   "25 | Glint & Halo": 9,
+   "02 | Triplanar": 10,
+   "31 | DF Contact Blend": 18,
+   "99 | Legacy / Diagnostic": 5,
+   "32 | Gemstone & Stack": 19,
+   "26 | Character & SDF": 7,
+   "None": 16,
+   "90 | Cymatics": 12,
+   "91 | Optical LOD": 5,
+   "40 | Convergence": 12,
+   "NoteScroll": 2,
+   "08 | Gouache": 49
+  },
+  "comments": [],
+  "x_extent": [
+   -24700,
+   12620
+  ],
+  "param_x_extent": [
+   -13800,
+   12620
+  ],
+  "texture_defaults": [
+   {
+    "p": "Albedo",
+    "tx": "/Game/Melodia/Cymatics/FarawayAlabasterDrape/T_Cymatic_FarawayAlabasterDrape_BaseColor.T_Cymatic_FarawayAlabasterDrape_BaseColor",
+    "g": "03 | Texture Layer A"
+   },
+   {
+    "p": "NormalMap",
+    "tx": "/Game/EnvSandbox/Textures/Utility/T_Neutral_Normal.T_Neutral_Normal",
+    "g": "03 | Texture Layer A"
+   },
+   {
+    "p": "ORM",
+    "tx": "/Game/EnvSandbox/Textures/Utility/T_Neutral_ORM.T_Neutral_ORM",
+    "g": "03 | Texture Layer A"
+   },
+   {
+    "p": "HeightMap",
+    "tx": "/Game/Textures/sbs_-_noise_texture_pack_-_512x512/512x512/Perlin/Perlin_1_-_512x512.Perlin_1_-_512x512",
+    "g": "03 | Texture Layer A"
+   },
+   {
+    "p": "RoughnessMap",
+    "tx": "/Game/EnvSandbox/Textures/Utility/T_Neutral_Roughness.T_Neutral_Roughness",
+    "g": "03 | Texture Layer A"
+   },
+   {
+    "p": "MetallicMap",
+    "tx": "/Game/EnvSandbox/Textures/Utility/T_Neutral_Metallic.T_Neutral_Metallic",
+    "g": "03 | Texture Layer A"
+   },
+   {
+    "p": "LayerB_Albedo",
+    "tx": "/Game/Textures/sbs_-_noise_texture_pack_-_512x512/512x512/Cracks/Cracks_3_-_512x512.Cracks_3_-_512x512",
+    "g": "04 | Texture Layer B"
+   },
+   {
+    "p": "LayerB_NormalMap",
+    "tx": "/Game/EnvSandbox/Textures/Utility/T_Neutral_Normal.T_Neutral_Normal",
+    "g": "04 | Texture Layer B"
+   },
+   {
+    "p": "LayerB_ORM",
+    "tx": "/Game/EnvSandbox/Textures/Utility/T_Neutral_ORM.T_Neutral_ORM",
+    "g": "04 | Texture Layer B"
+   },
+   {
+    "p": "LayerB_HeightMap",
+    "tx": "/Game/Textures/sbs_-_noise_texture_pack_-_512x512/512x512/Cracks/Cracks_10_-_512x512.Cracks_10_-_512x512",
+    "g": "04 | Texture Layer B"
+   },
+   {
+    "p": "LayerB_RoughnessMap",
+    "tx": "/Game/EnvSandbox/Textures/Utility/T_Neutral_Roughness.T_Neutral_Roughness",
+    "g": "04 | Texture Layer B"
+   },
+   {
+    "p": "LayerB_MetallicMap",
+    "tx": "/Game/EnvSandbox/Textures/Utility/T_Neutral_Metallic.T_Neutral_Metallic",
+    "g": "04 | Texture Layer B"
+   },
+   {
+    "p": "LayerC_Albedo",
+    "tx": "/Game/Melodia/Cymatics/FarawayAlabasterDrape/T_Cymatic_FarawayAlabasterDrape_BaseColor.T_Cymatic_FarawayAlabasterDrape_BaseColor",
+    "g": "05 | Texture Layer C"
+   },
+   {
+    "p": "LayerC_NormalMap",
+    "tx": "/Game/EnvSandbox/Textures/Utility/T_Neutral_Normal.T_Neutral_Normal",
+    "g": "05 | Texture Layer C"
+   },
+   {
+    "p": "LayerC_ORM",
+    "tx": "/Game/EnvSandbox/Textures/Utility/T_Neutral_ORM.T_Neutral_ORM",
+    "g": "05 | Texture Layer C"
+   },
+   {
+    "p": "LayerC_HeightMap",
+    "tx": "/Game/Textures/sbs_-_noise_texture_pack_-_512x512/512x512/Perlin/Perlin_1_-_512x512.Perlin_1_-_512x512",
+    "g": "05 | Texture Layer C"
+   },
+   {
+    "p": "LayerC_RoughnessMap",
+    "tx": "/Game/EnvSandbox/Textures/Utility/T_Neutral_Roughness.T_Neutral_Roughness",
+    "g": "05 | Texture Layer C"
+   },
+   {
+    "p": "LayerC_MetallicMap",
+    "tx": "/Game/EnvSandbox/Textures/Utility/T_Neutral_Metallic.T_Neutral_Metallic",
+    "g": "05 | Texture Layer C"
+   },
+   {
+    "p": "SparkleMask",
+    "tx": "/Game/Alphas_Sparkles/T_Spark_Twinkle8.T_Spark_Twinkle8",
+    "g": "12 | Nikki Sparkle"
+   },
+   {
+    "p": "StarMap",
+    "tx": "/Game/Alphas_Sparkles/T_Spark_Twinkle8.T_Spark_Twinkle8",
+    "g": "17 | Celestial (Nebula)"
+   },
+   {
+    "p": "FairyGlyphMask",
+    "tx": "/Game/Textures/70_Japanese_Ornament_Alphas_vfxMed/70_Japanese_Ornament_Alphas/JRO_JP/JRO_JP_Ornament01_out_Mask.JRO_JP_Ornament01_out_Mask",
+    "g": "18 | Fairy Dust"
+   },
+   {
+    "p": "DetailNormal",
+    "tx": "/Game/EnvSandbox/Textures/Utility/T_Neutral_Normal.T_Neutral_Normal",
+    "g": "07 | Macro & Detail"
+   },
+   {
+    "p": "MotifMask",
+    "tx": "/Game/Textures/70_Japanese_Ornament_Alphas_vfxMed/70_Japanese_Ornament_Alphas/JRO_JP/JRO_JP_Ornament12_out_Mask.JRO_JP_Ornament12_out_Mask",
+    "g": "19 | Magical (Henshin)"
+   },
+   {
+    "p": "TriplanarDetailMap",
+    "tx": "/Game/Textures/sbs_-_noise_texture_pack_-_512x512/512x512/Perlin/Perlin_1_-_512x512.Perlin_1_-_512x512",
+    "g": "02 | Triplanar"
+   },
+   {
+    "p": "EmissiveMap",
+    "tx": "/Game/EnvSandbox/Textures/Utility/T_Neutral_Metallic.T_Neutral_Metallic",
+    "g": "03 | Texture Layer A"
+   },
+   {
+    "p": "Stack2_Albedo",
+    "tx": "/Game/Melodia/Cymatics/FarawayAlabasterDrape/T_Cymatic_FarawayAlabasterDrape_BaseColor.T_Cymatic_FarawayAlabasterDrape_BaseColor",
+    "g": "32 | Gemstone & Stack"
+   },
+   {
+    "p": "Stack2_Normal",
+    "tx": "/Game/EnvSandbox/Textures/Utility/T_Neutral_Normal.T_Neutral_Normal",
+    "g": "32 | Gemstone & Stack"
+   },
+   {
+    "p": "Stack2_ORM",
+    "tx": "/Game/EnvSandbox/Textures/Utility/T_Neutral_ORM.T_Neutral_ORM",
+    "g": "32 | Gemstone & Stack"
+   },
+   {
+    "p": "Stack3_Albedo",
+    "tx": "/Game/Melodia/Cymatics/FarawayAlabasterDrape/T_Cymatic_FarawayAlabasterDrape_BaseColor.T_Cymatic_FarawayAlabasterDrape_BaseColor",
+    "g": "32 | Gemstone & Stack"
+   },
+   {
+    "p": "Stack3_Normal",
+    "tx": "/Game/EnvSandbox/Textures/Utility/T_Neutral_Normal.T_Neutral_Normal",
+    "g": "32 | Gemstone & Stack"
+   },
+   {
+    "p": "FaceSDF_Texture",
+    "tx": "/Game/EnvSandbox/Textures/Utility/T_Neutral_Height.T_Neutral_Height",
+    "g": "26 | Character & SDF"
+   },
+   {
+    "p": "OpacityMap",
+    "tx": "/Engine/EngineResources/DefaultTexture.DefaultTexture",
+    "g": "Opacity"
+   },
+   {
+    "p": "ChladniMask",
+    "tx": "/Game/Melodia/Companions/ChoralSheep/Textures/Chladni/T_Chladni_PC_C.T_Chladni_PC_C",
+    "g": "90 | Cymatics"
+   },
+   {
+    "p": "Gouache_PaperTex",
+    "tx": "/Game/EnvSandbox/Materials/Textures/Gouache/T_Gouache_Paper_Aquarelle.T_Gouache_Paper_Aquarelle",
+    "g": "08 | Gouache"
+   },
+   {
+    "p": "Gouache_PigmentTex",
+    "tx": "/Game/EnvSandbox/Materials/Textures/Gouache/T_Gouache_Pigment_RGBA.T_Gouache_Pigment_RGBA",
+    "g": "08 | Gouache"
+   },
+   {
+    "p": "Gouache_FlipTex",
+    "tx": "/Game/EnvSandbox/Materials/Textures/Gouache/T_Gouache_PoolFlipbook.T_Gouache_PoolFlipbook",
+    "g": "08 | Gouache"
+   }
+  ],
+  "collections": [
+   {
+    "p": "TimeOfDayWarmth",
+    "col": "/Game/Melodia/_PROJECT/04_Materials/MPC_Melodia_Palette.MPC_Melodia_Palette"
+   },
+   {
+    "p": "GlobalSparkleIntensity",
+    "col": "/Game/Melodia/_PROJECT/04_Materials/MPC_Melodia_Palette.MPC_Melodia_Palette"
+   },
+   {
+    "p": "GlobalEmissiveBoost",
+    "col": "/Game/Melodia/_PROJECT/04_Materials/MPC_Melodia_Palette.MPC_Melodia_Palette"
+   },
+   {
+    "p": "Melusina_Lavender",
+    "col": "/Game/Melodia/_PROJECT/04_Materials/MPC_Melodia_Palette.MPC_Melodia_Palette"
+   },
+   {
+    "p": "Melusina_RoseGold",
+    "col": "/Game/Melodia/_PROJECT/04_Materials/MPC_Melodia_Palette.MPC_Melodia_Palette"
+   },
+   {
+    "p": "Melusina_SoftWhite",
+    "col": "/Game/Melodia/_PROJECT/04_Materials/MPC_Melodia_Palette.MPC_Melodia_Palette"
+   },
+   {
+    "p": "BeatPulse",
+    "col": "/Game/Melodia/_PROJECT/04_Materials/MPC_Melodia_Palette.MPC_Melodia_Palette"
+   },
+   {
+    "p": "Bass",
+    "col": "/Game/Melodia/_PROJECT/04_Materials/MPC_Melodia_Palette.MPC_Melodia_Palette"
+   },
+   {
+    "p": "Mid",
+    "col": "/Game/Melodia/_PROJECT/04_Materials/MPC_Melodia_Palette.MPC_Melodia_Palette"
+   },
+   {
+    "p": "Treble",
+    "col": "/Game/Melodia/_PROJECT/04_Materials/MPC_Melodia_Palette.MPC_Melodia_Palette"
+   },
+   {
+    "p": "BassIntensity",
+    "col": "/Game/Melodia/_PROJECT/04_Materials/MPC_Melodia_Palette.MPC_Melodia_Palette"
+   },
+   {
+    "p": "MidIntensity",
+    "col": "/Game/Melodia/_PROJECT/04_Materials/MPC_Melodia_Palette.MPC_Melodia_Palette"
+   }
+  ]
+ },
+ "M_Master_Toon_Character": {
+  "expr_count": 77,
+  "class_counts": {
+   "TextureCoordinate": 2,
+   "ScalarParameter": 18,
+   "Multiply": 24,
+   "TextureSampleParameter2D": 5,
+   "VectorParameter": 8,
+   "LinearInterpolate": 6,
+   "ComponentMask": 2,
+   "Saturate": 2,
+   "Fresnel": 1,
+   "Add": 4,
+   "Time": 1,
+   "Sine": 1,
+   "VertexNormalWS": 1,
+   "SubstrateToonBSDF": 1,
+   "CollectionParameter": 1
+  },
+  "param_exprs": 32,
+  "groups": {
+   "Character / Maps": 4,
+   "Character / Surface": 3,
+   "Character / Role": 3,
+   "Character / Face": 4,
+   "Character / Sheen": 4,
+   "Character / Wind": 2,
+   "None": 3,
+   "Chladni Fleece": 9
+  },
+  "comments": [],
+  "x_extent": [
+   -3200,
+   2450
+  ],
+  "param_x_extent": [
+   -3200,
+   1600
+  ],
+  "texture_defaults": [
+   {
+    "p": "CharacterAlbedo",
+    "tx": "/Engine/EngineResources/DefaultTexture.DefaultTexture",
+    "g": "Character / Maps"
+   },
+   {
+    "p": "CharacterNormal",
+    "tx": "/Engine/EngineResources/DefaultTexture.DefaultTexture",
+    "g": "Character / Maps"
+   },
+   {
+    "p": "CharacterRoughnessMap",
+    "tx": "/Engine/EngineResources/DefaultTexture.DefaultTexture",
+    "g": "Character / Maps"
+   },
+   {
+    "p": "CharacterFaceSDF",
+    "tx": "/Engine/EngineResources/DefaultTexture.DefaultTexture",
+    "g": "Character / Face"
+   },
+   {
+    "p": "ChladniPatternTexture",
+    "tx": "/Game/Melodia/Companions/ChoralSheep/Textures/T_Chladni_C_ROOT.T_Chladni_C_ROOT",
+    "g": "Chladni Fleece"
+   }
+  ],
+  "collections": [
+   {
+    "p": "Cymatic_BeatPulse",
+    "col": "/Game/Melodia/Cymatics/MPC_Cymatics_Driver.MPC_Cymatics_Driver"
+   }
+  ]
+ },
+ "M_Water_Oceanology_Melodia": {
+  "expr_count": 35,
+  "class_counts": {
+   "SetMaterialAttributes": 2,
+   "MaterialFunctionCall": 3,
+   "SingleLayerWaterMaterialOutput": 1,
+   "TextureCoordinate": 1,
+   "Time": 1,
+   "ScalarParameter": 14,
+   "VectorParameter": 4,
+   "Multiply": 2,
+   "GetMaterialAttributes": 2,
+   "Add": 1,
+   "Floor": 1,
+   "Divide": 1,
+   "LinearInterpolate": 1,
+   "TextureObjectParameter": 1
+  },
+  "param_exprs": 19,
+  "groups": {
+   "None": 19
+  },
+  "comments": [],
+  "x_extent": [
+   0,
+   7872
+  ],
+  "param_x_extent": [
+   0,
+   6900
+  ],
+  "texture_defaults": [
+   {
+    "p": "Nikki_SparkleMask",
+    "tx": "/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Textures/T_Jelly_Biolum_LUT.T_Jelly_Biolum_LUT",
+    "g": "None"
+   }
+  ],
+  "collections": []
+ },
+ "M_Master_SDF_Toon": {
+  "expr_count": 47,
+  "class_counts": {
+   "VectorParameter": 4,
+   "ScalarParameter": 18,
+   "TextureSampleParameter2D": 3,
+   "WorldPosition": 1,
+   "ComponentMask": 1,
+   "Multiply": 6,
+   "Sine": 1,
+   "Abs": 2,
+   "PixelNormalWS": 1,
+   "DDX": 1,
+   "DDY": 1,
+   "Add": 2,
+   "LinearInterpolate": 2,
+   "VertexNormalWS": 1,
+   "SubstrateToonBSDF": 1,
+   "StaticSwitchParameter": 1,
+   "MaterialFunctionCall": 1
+  },
+  "param_exprs": 26,
+  "groups": {
+   "Palette": 2,
+   "UV": 2,
+   "Maps": 3,
+   "Parallax": 3,
+   "SDF": 3,
+   "Gilding": 2,
+   "OilPaint": 1,
+   "Temporal": 1,
+   "Ink": 2,
+   "Ornament": 3,
+   "Audio": 1,
+   "Surface": 1,
+   "None": 2
+  },
+  "comments": [],
+  "x_extent": [
+   -1500,
+   520
+  ],
+  "param_x_extent": [
+   -1500,
+   0
+  ],
+  "texture_defaults": [
+   {
+    "p": "NormalMap",
+    "tx": "/Engine/EngineResources/DefaultTexture.DefaultTexture",
+    "g": "Maps"
+   },
+   {
+    "p": "RoughnessMap",
+    "tx": "/Engine/EngineResources/DefaultTexture.DefaultTexture",
+    "g": "Maps"
+   },
+   {
+    "p": "HeightMap",
+    "tx": "/Engine/EngineResources/DefaultTexture.DefaultTexture",
+    "g": "Maps"
+   }
+  ],
+  "collections": []
+ }
+}

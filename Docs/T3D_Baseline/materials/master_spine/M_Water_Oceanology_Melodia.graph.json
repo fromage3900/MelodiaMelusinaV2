@@ -1,0 +1,481 @@
+{
+ "asset_path": "/Game/EnvSandbox/Materials/Masters/M_Water_Oceanology_Melodia",
+ "nodes": [
+  {
+   "id": "MaterialExpressionSetMaterialAttributes_0",
+   "class": "SetMaterialAttributes",
+   "pos": [
+    6448,
+    -384
+   ]
+  },
+  {
+   "id": "MaterialExpressionMaterialFunctionCall_2",
+   "class": "MaterialFunctionCall",
+   "pos": [
+    6416,
+    -768
+   ]
+  },
+  {
+   "id": "MaterialExpressionSingleLayerWaterMaterialOutput_2",
+   "class": "SingleLayerWaterMaterialOutput",
+   "pos": [
+    7872,
+    -768
+   ]
+  },
+  {
+   "id": "MaterialExpressionMaterialFunctionCall_0",
+   "class": "MaterialFunctionCall",
+   "pos": [
+    6432,
+    400
+   ]
+  },
+  {
+   "id": "MaterialExpressionTextureCoordinate_0",
+   "class": "TextureCoordinate",
+   "pos": [
+    5700,
+    200
+   ]
+  },
+  {
+   "id": "MaterialExpressionTime_0",
+   "class": "Time",
+   "pos": [
+    5700,
+    300
+   ]
+  },
+  {
+   "id": "MaterialExpressionScalarParameter_0",
+   "class": "ScalarParameter",
+   "pos": [
+    5700,
+    400
+   ]
+  },
+  {
+   "id": "MaterialExpressionScalarParameter_1",
+   "class": "ScalarParameter",
+   "pos": [
+    5700,
+    480
+   ]
+  },
+  {
+   "id": "MaterialExpressionScalarParameter_2",
+   "class": "ScalarParameter",
+   "pos": [
+    5700,
+    560
+   ]
+  },
+  {
+   "id": "MaterialExpressionScalarParameter_3",
+   "class": "ScalarParameter",
+   "pos": [
+    5700,
+    640
+   ]
+  },
+  {
+   "id": "MaterialExpressionVectorParameter_0",
+   "class": "VectorParameter",
+   "pos": [
+    5700,
+    720
+   ]
+  },
+  {
+   "id": "MaterialExpressionVectorParameter_1",
+   "class": "VectorParameter",
+   "pos": [
+    5700,
+    820
+   ]
+  },
+  {
+   "id": "MaterialExpressionVectorParameter_2",
+   "class": "VectorParameter",
+   "pos": [
+    5700,
+    920
+   ]
+  },
+  {
+   "id": "MaterialExpressionScalarParameter_4",
+   "class": "ScalarParameter",
+   "pos": [
+    5700,
+    1020
+   ]
+  },
+  {
+   "id": "MaterialExpressionScalarParameter_5",
+   "class": "ScalarParameter",
+   "pos": [
+    5700,
+    1100
+   ]
+  },
+  {
+   "id": "MaterialExpressionScalarParameter_6",
+   "class": "ScalarParameter",
+   "pos": [
+    5700,
+    1180
+   ]
+  },
+  {
+   "id": "MaterialExpressionScalarParameter_7",
+   "class": "ScalarParameter",
+   "pos": [
+    5700,
+    1260
+   ]
+  },
+  {
+   "id": "MaterialExpressionScalarParameter_8",
+   "class": "ScalarParameter",
+   "pos": [
+    5700,
+    1340
+   ]
+  },
+  {
+   "id": "MaterialExpressionScalarParameter_9",
+   "class": "ScalarParameter",
+   "pos": [
+    6900,
+    560
+   ]
+  },
+  {
+   "id": "MaterialExpressionMultiply_0",
+   "class": "Multiply",
+   "pos": [
+    7150,
+    420
+   ]
+  },
+  {
+   "id": "MaterialExpressionGetMaterialAttributes_0",
+   "class": "GetMaterialAttributes",
+   "pos": [
+    6832,
+    -512
+   ]
+  },
+  {
+   "id": "MaterialExpressionAdd_0",
+   "class": "Add",
+   "pos": [
+    7300,
+    -330
+   ]
+  },
+  {
+   "id": "MaterialExpressionGetMaterialAttributes_1",
+   "class": "GetMaterialAttributes",
+   "pos": [
+    6832,
+    -1250
+   ]
+  },
+  {
+   "id": "MaterialExpressionSetMaterialAttributes_1",
+   "class": "SetMaterialAttributes",
+   "pos": [
+    7328,
+    -544
+   ]
+  },
+  {
+   "id": "MaterialExpressionScalarParameter_10",
+   "class": "ScalarParameter",
+   "pos": [
+    6400,
+    -1050
+   ]
+  },
+  {
+   "id": "MaterialExpressionScalarParameter_11",
+   "class": "ScalarParameter",
+   "pos": [
+    6400,
+    -970
+   ]
+  },
+  {
+   "id": "MaterialExpressionMultiply_1",
+   "class": "Multiply",
+   "pos": [
+    7150,
+    -1300
+   ]
+  },
+  {
+   "id": "MaterialExpressionFloor_0",
+   "class": "Floor",
+   "pos": [
+    7290,
+    -1300
+   ]
+  },
+  {
+   "id": "MaterialExpressionDivide_0",
+   "class": "Divide",
+   "pos": [
+    7420,
+    -1300
+   ]
+  },
+  {
+   "id": "MaterialExpressionLinearInterpolate_0",
+   "class": "LinearInterpolate",
+   "pos": [
+    7560,
+    -1180
+   ]
+  },
+  {
+   "id": "MaterialExpressionMaterialFunctionCall_1",
+   "class": "MaterialFunctionCall",
+   "pos": [
+    0,
+    0
+   ]
+  },
+  {
+   "id": "MaterialExpressionScalarParameter_12",
+   "class": "ScalarParameter",
+   "pos": [
+    0,
+    0
+   ]
+  },
+  {
+   "id": "MaterialExpressionScalarParameter_13",
+   "class": "ScalarParameter",
+   "pos": [
+    0,
+    0
+   ]
+  },
+  {
+   "id": "MaterialExpressionVectorParameter_3",
+   "class": "VectorParameter",
+   "pos": [
+    0,
+    0
+   ]
+  },
+  {
+   "id": "MaterialExpressionTextureObjectParameter_0",
+   "class": "TextureObjectParameter",
+   "pos": [
+    0,
+    0
+   ]
+  }
+ ],
+ "custom_hlsl_nodes": [],
+ "connections": [
+  {
+   "from": "MaterialExpressionMaterialFunctionCall_2",
+   "from_pin": "Oceanology",
+   "to": "MaterialExpressionSetMaterialAttributes_0",
+   "to_pin": "MaterialAttributes"
+  },
+  {
+   "from": "MaterialExpressionAdd_0",
+   "from_pin": "None",
+   "to": "MaterialExpressionSetMaterialAttributes_0",
+   "to_pin": "Emissive Color"
+  },
+  {
+   "from": "MaterialExpressionMaterialFunctionCall_2",
+   "from_pin": "Scattering",
+   "to": "MaterialExpressionSingleLayerWaterMaterialOutput_2",
+   "to_pin": "ScatteringCoefficients"
+  },
+  {
+   "from": "MaterialExpressionMaterialFunctionCall_2",
+   "from_pin": "Absorption",
+   "to": "MaterialExpressionSingleLayerWaterMaterialOutput_2",
+   "to_pin": "AbsorptionCoefficients"
+  },
+  {
+   "from": "MaterialExpressionMaterialFunctionCall_2",
+   "from_pin": "PhaseG",
+   "to": "MaterialExpressionSingleLayerWaterMaterialOutput_2",
+   "to_pin": "PhaseG"
+  },
+  {
+   "from": "MaterialExpressionMaterialFunctionCall_2",
+   "from_pin": "ColorScaleBehindWater",
+   "to": "MaterialExpressionSingleLayerWaterMaterialOutput_2",
+   "to_pin": "ColorScaleBehindWater"
+  },
+  {
+   "from": "MaterialExpressionTextureCoordinate_0",
+   "from_pin": "None",
+   "to": "MaterialExpressionMaterialFunctionCall_0",
+   "to_pin": "UV (V2)"
+  },
+  {
+   "from": "MaterialExpressionTime_0",
+   "from_pin": "None",
+   "to": "MaterialExpressionMaterialFunctionCall_0",
+   "to_pin": "Time (S)"
+  },
+  {
+   "from": "MaterialExpressionScalarParameter_0",
+   "from_pin": "None",
+   "to": "MaterialExpressionMaterialFunctionCall_0",
+   "to_pin": "ShearProxy (S)"
+  },
+  {
+   "from": "MaterialExpressionScalarParameter_1",
+   "from_pin": "None",
+   "to": "MaterialExpressionMaterialFunctionCall_0",
+   "to_pin": "RippleMask (S)"
+  },
+  {
+   "from": "MaterialExpressionScalarParameter_2",
+   "from_pin": "None",
+   "to": "MaterialExpressionMaterialFunctionCall_0",
+   "to_pin": "CrestCompression (S)"
+  },
+  {
+   "from": "MaterialExpressionScalarParameter_3",
+   "from_pin": "None",
+   "to": "MaterialExpressionMaterialFunctionCall_0",
+   "to_pin": "DepthMask (S)"
+  },
+  {
+   "from": "MaterialExpressionVectorParameter_0",
+   "from_pin": "RGB",
+   "to": "MaterialExpressionMaterialFunctionCall_0",
+   "to_pin": "BlueGreenTint (V3)"
+  },
+  {
+   "from": "MaterialExpressionVectorParameter_1",
+   "from_pin": "RGB",
+   "to": "MaterialExpressionMaterialFunctionCall_0",
+   "to_pin": "CyanTint (V3)"
+  },
+  {
+   "from": "MaterialExpressionVectorParameter_2",
+   "from_pin": "RGB",
+   "to": "MaterialExpressionMaterialFunctionCall_0",
+   "to_pin": "GreenTint (V3)"
+  },
+  {
+   "from": "MaterialExpressionScalarParameter_4",
+   "from_pin": "None",
+   "to": "MaterialExpressionMaterialFunctionCall_0",
+   "to_pin": "Intensity (S)"
+  },
+  {
+   "from": "MaterialExpressionScalarParameter_5",
+   "from_pin": "None",
+   "to": "MaterialExpressionMaterialFunctionCall_0",
+   "to_pin": "Density (S)"
+  },
+  {
+   "from": "MaterialExpressionScalarParameter_6",
+   "from_pin": "None",
+   "to": "MaterialExpressionMaterialFunctionCall_0",
+   "to_pin": "FlashRate (S)"
+  },
+  {
+   "from": "MaterialExpressionScalarParameter_7",
+   "from_pin": "None",
+   "to": "MaterialExpressionMaterialFunctionCall_0",
+   "to_pin": "FlashThreshold (S)"
+  },
+  {
+   "from": "MaterialExpressionScalarParameter_8",
+   "from_pin": "None",
+   "to": "MaterialExpressionMaterialFunctionCall_0",
+   "to_pin": "FlashDecay (S)"
+  },
+  {
+   "from": "MaterialExpressionScalarParameter_9",
+   "from_pin": "None",
+   "to": "MaterialExpressionMultiply_0",
+   "to_pin": "B"
+  },
+  {
+   "from": "MaterialExpressionMaterialFunctionCall_2",
+   "from_pin": "Oceanology",
+   "to": "MaterialExpressionGetMaterialAttributes_0",
+   "to_pin": "None"
+  },
+  {
+   "from": "MaterialExpressionGetMaterialAttributes_0",
+   "from_pin": "Emissive Color",
+   "to": "MaterialExpressionAdd_0",
+   "to_pin": "A"
+  },
+  {
+   "from": "MaterialExpressionMultiply_0",
+   "from_pin": "None",
+   "to": "MaterialExpressionAdd_0",
+   "to_pin": "B"
+  },
+  {
+   "from": "MaterialExpressionGetMaterialAttributes_0",
+   "from_pin": "MaterialAttributes",
+   "to": "MaterialExpressionGetMaterialAttributes_1",
+   "to_pin": "None"
+  },
+  {
+   "from": "MaterialExpressionGetMaterialAttributes_0",
+   "from_pin": "MaterialAttributes",
+   "to": "MaterialExpressionSetMaterialAttributes_1",
+   "to_pin": "MaterialAttributes"
+  },
+  {
+   "from": "MaterialExpressionLinearInterpolate_0",
+   "from_pin": "None",
+   "to": "MaterialExpressionSetMaterialAttributes_1",
+   "to_pin": "Base Color"
+  },
+  {
+   "from": "MaterialExpressionGetMaterialAttributes_1",
+   "from_pin": "Base Color",
+   "to": "MaterialExpressionMultiply_1",
+   "to_pin": "A"
+  },
+  {
+   "from": "MaterialExpressionMultiply_1",
+   "from_pin": "None",
+   "to": "MaterialExpressionFloor_0",
+   "to_pin": "Input"
+  },
+  {
+   "from": "MaterialExpressionFloor_0",
+   "from_pin": "None",
+   "to": "MaterialExpressionDivide_0",
+   "to_pin": "A"
+  },
+  {
+   "from": "MaterialExpressionDivide_0",
+   "from_pin": "None",
+   "to": "MaterialExpressionLinearInterpolate_0",
+   "to_pin": "A"
+  }
+ ],
+ "outputs": [
+  {
+   "from": "MaterialExpressionSetMaterialAttributes_1",
+   "from_pin": "None",
+   "to_property": ""
+  }
+ ]
+}

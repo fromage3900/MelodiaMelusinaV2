@@ -1,0 +1,5625 @@
+{
+ "asset_path": "/Game/EnvSandbox/Materials/Masters/M_Master_Nikki_Landscape",
+ "nodes": [
+  {
+   "id": "MaterialExpressionLandscapeLayerBlend_5",
+   "class": "LandscapeLayerBlend",
+   "pos": [
+    -1550,
+    140
+   ]
+  },
+  {
+   "id": "MaterialExpressionLandscapeLayerBlend_4",
+   "class": "LandscapeLayerBlend",
+   "pos": [
+    -1550,
+    420
+   ]
+  },
+  {
+   "id": "MaterialExpressionLandscapeLayerBlend_6",
+   "class": "LandscapeLayerBlend",
+   "pos": [
+    -1550,
+    140
+   ]
+  },
+  {
+   "id": "MaterialExpressionLandscapeLayerCoords_2",
+   "class": "LandscapeLayerCoords",
+   "pos": [
+    -2300,
+    -900
+   ]
+  },
+  {
+   "id": "MaterialExpressionScalarParameter_15",
+   "class": "ScalarParameter",
+   "pos": [
+    -2300,
+    -770
+   ]
+  },
+  {
+   "id": "MaterialExpressionMultiply_10",
+   "class": "Multiply",
+   "pos": [
+    -2100,
+    -860
+   ]
+  },
+  {
+   "id": "MaterialExpressionTextureSampleParameter2D_6",
+   "class": "TextureSampleParameter2D",
+   "pos": [
+    -2800,
+    4000
+   ]
+  },
+  {
+   "id": "MaterialExpressionTextureSampleParameter2D_7",
+   "class": "TextureSampleParameter2D",
+   "pos": [
+    -1900,
+    -660
+   ]
+  },
+  {
+   "id": "MaterialExpressionScalarParameter_19",
+   "class": "ScalarParameter",
+   "pos": [
+    -1900,
+    -730
+   ]
+  },
+  {
+   "id": "MaterialExpressionLandscapeLayerCoords_4",
+   "class": "LandscapeLayerCoords",
+   "pos": [
+    -2300,
+    -280
+   ]
+  },
+  {
+   "id": "MaterialExpressionScalarParameter_20",
+   "class": "ScalarParameter",
+   "pos": [
+    -2300,
+    -150
+   ]
+  },
+  {
+   "id": "MaterialExpressionMultiply_11",
+   "class": "Multiply",
+   "pos": [
+    -2100,
+    -240
+   ]
+  },
+  {
+   "id": "MaterialExpressionTextureSampleParameter2D_8",
+   "class": "TextureSampleParameter2D",
+   "pos": [
+    -2800,
+    4200
+   ]
+  },
+  {
+   "id": "MaterialExpressionTextureSampleParameter2D_9",
+   "class": "TextureSampleParameter2D",
+   "pos": [
+    -1900,
+    -40
+   ]
+  },
+  {
+   "id": "MaterialExpressionScalarParameter_21",
+   "class": "ScalarParameter",
+   "pos": [
+    -1900,
+    -110
+   ]
+  },
+  {
+   "id": "MaterialExpressionLandscapeLayerCoords_5",
+   "class": "LandscapeLayerCoords",
+   "pos": [
+    -2300,
+    340
+   ]
+  },
+  {
+   "id": "MaterialExpressionScalarParameter_22",
+   "class": "ScalarParameter",
+   "pos": [
+    -2300,
+    470
+   ]
+  },
+  {
+   "id": "MaterialExpressionMultiply_12",
+   "class": "Multiply",
+   "pos": [
+    -2100,
+    380
+   ]
+  },
+  {
+   "id": "MaterialExpressionTextureSampleParameter2D_11",
+   "class": "TextureSampleParameter2D",
+   "pos": [
+    -2800,
+    4400
+   ]
+  },
+  {
+   "id": "MaterialExpressionTextureSampleParameter2D_12",
+   "class": "TextureSampleParameter2D",
+   "pos": [
+    -1900,
+    580
+   ]
+  },
+  {
+   "id": "MaterialExpressionScalarParameter_23",
+   "class": "ScalarParameter",
+   "pos": [
+    -1900,
+    510
+   ]
+  },
+  {
+   "id": "MaterialExpressionVectorParameter_5",
+   "class": "VectorParameter",
+   "pos": [
+    -1550,
+    -420
+   ]
+  },
+  {
+   "id": "MaterialExpressionMultiply_13",
+   "class": "Multiply",
+   "pos": [
+    -1300,
+    -300
+   ]
+  },
+  {
+   "id": "MaterialExpressionConstant3Vector_1",
+   "class": "Constant3Vector",
+   "pos": [
+    -1300,
+    -140
+   ]
+  },
+  {
+   "id": "MaterialExpressionDotProduct_1",
+   "class": "DotProduct",
+   "pos": [
+    -1120,
+    -180
+   ]
+  },
+  {
+   "id": "MaterialExpressionVectorParameter_6",
+   "class": "VectorParameter",
+   "pos": [
+    -1120,
+    -620
+   ]
+  },
+  {
+   "id": "MaterialExpressionVectorParameter_7",
+   "class": "VectorParameter",
+   "pos": [
+    -1120,
+    -480
+   ]
+  },
+  {
+   "id": "MaterialExpressionVectorParameter_8",
+   "class": "VectorParameter",
+   "pos": [
+    -1120,
+    -340
+   ]
+  },
+  {
+   "id": "MaterialExpressionScalarParameter_24",
+   "class": "ScalarParameter",
+   "pos": [
+    -1120,
+    -60
+   ]
+  },
+  {
+   "id": "MaterialExpressionScalarParameter_25",
+   "class": "ScalarParameter",
+   "pos": [
+    -1120,
+    0
+   ]
+  },
+  {
+   "id": "MaterialExpressionScalarParameter_27",
+   "class": "ScalarParameter",
+   "pos": [
+    -1120,
+    60
+   ]
+  },
+  {
+   "id": "MaterialExpressionMaterialFunctionCall_3",
+   "class": "MaterialFunctionCall",
+   "pos": [
+    -880,
+    -400
+   ]
+  },
+  {
+   "id": "MaterialExpressionLinearInterpolate_3",
+   "class": "LinearInterpolate",
+   "pos": [
+    -680,
+    -300
+   ]
+  },
+  {
+   "id": "MaterialExpressionMaterialFunctionCall_4",
+   "class": "MaterialFunctionCall",
+   "pos": [
+    -480,
+    -300
+   ]
+  },
+  {
+   "id": "MaterialExpressionScalarParameter_28",
+   "class": "ScalarParameter",
+   "pos": [
+    -1300,
+    100
+   ]
+  },
+  {
+   "id": "MaterialExpressionScalarParameter_29",
+   "class": "ScalarParameter",
+   "pos": [
+    -1300,
+    160
+   ]
+  },
+  {
+   "id": "MaterialExpressionLinearInterpolate_4",
+   "class": "LinearInterpolate",
+   "pos": [
+    -1100,
+    160
+   ]
+  },
+  {
+   "id": "MaterialExpressionFresnel_1",
+   "class": "Fresnel",
+   "pos": [
+    -1100,
+    260
+   ]
+  },
+  {
+   "id": "MaterialExpressionScalarParameter_30",
+   "class": "ScalarParameter",
+   "pos": [
+    -1100,
+    380
+   ]
+  },
+  {
+   "id": "MaterialExpressionMultiply_14",
+   "class": "Multiply",
+   "pos": [
+    -920,
+    300
+   ]
+  },
+  {
+   "id": "MaterialExpressionConstant_1",
+   "class": "Constant",
+   "pos": [
+    -920,
+    420
+   ]
+  },
+  {
+   "id": "MaterialExpressionSubtract_3",
+   "class": "Subtract",
+   "pos": [
+    -780,
+    340
+   ]
+  },
+  {
+   "id": "MaterialExpressionMultiply_15",
+   "class": "Multiply",
+   "pos": [
+    -650,
+    200
+   ]
+  },
+  {
+   "id": "MaterialExpressionScalarParameter_31",
+   "class": "ScalarParameter",
+   "pos": [
+    -1300,
+    520
+   ]
+  },
+  {
+   "id": "MaterialExpressionPixelDepth_1",
+   "class": "PixelDepth",
+   "pos": [
+    -680,
+    -700
+   ]
+  },
+  {
+   "id": "MaterialExpressionScalarParameter_32",
+   "class": "ScalarParameter",
+   "pos": [
+    -680,
+    -580
+   ]
+  },
+  {
+   "id": "MaterialExpressionScalarParameter_33",
+   "class": "ScalarParameter",
+   "pos": [
+    -680,
+    -520
+   ]
+  },
+  {
+   "id": "MaterialExpressionScalarParameter_34",
+   "class": "ScalarParameter",
+   "pos": [
+    -680,
+    -460
+   ]
+  },
+  {
+   "id": "MaterialExpressionVectorParameter_9",
+   "class": "VectorParameter",
+   "pos": [
+    -680,
+    -880
+   ]
+  },
+  {
+   "id": "MaterialExpressionSubtract_4",
+   "class": "Subtract",
+   "pos": [
+    -500,
+    -650
+   ]
+  },
+  {
+   "id": "MaterialExpressionSubtract_6",
+   "class": "Subtract",
+   "pos": [
+    -500,
+    -540
+   ]
+  },
+  {
+   "id": "MaterialExpressionDivide_1",
+   "class": "Divide",
+   "pos": [
+    -360,
+    -600
+   ]
+  },
+  {
+   "id": "MaterialExpressionSaturate_1",
+   "class": "Saturate",
+   "pos": [
+    -240,
+    -600
+   ]
+  },
+  {
+   "id": "MaterialExpressionMultiply_16",
+   "class": "Multiply",
+   "pos": [
+    -120,
+    -560
+   ]
+  },
+  {
+   "id": "MaterialExpressionLinearInterpolate_5",
+   "class": "LinearInterpolate",
+   "pos": [
+    -80,
+    -300
+   ]
+  },
+  {
+   "id": "MaterialExpressionScalarParameter_35",
+   "class": "ScalarParameter",
+   "pos": [
+    -480,
+    -120
+   ]
+  },
+  {
+   "id": "MaterialExpressionMultiply_17",
+   "class": "Multiply",
+   "pos": [
+    -300,
+    -140
+   ]
+  },
+  {
+   "id": "MaterialExpressionScalarParameter_36",
+   "class": "ScalarParameter",
+   "pos": [
+    -480,
+    -40
+   ]
+  },
+  {
+   "id": "MaterialExpressionMultiply_18",
+   "class": "Multiply",
+   "pos": [
+    -300,
+    -40
+   ]
+  },
+  {
+   "id": "MaterialExpressionAdd_1",
+   "class": "Add",
+   "pos": [
+    -180,
+    -100
+   ]
+  },
+  {
+   "id": "MaterialExpressionOneMinus_1",
+   "class": "OneMinus",
+   "pos": [
+    -120,
+    -20
+   ]
+  },
+  {
+   "id": "MaterialExpressionMultiply_20",
+   "class": "Multiply",
+   "pos": [
+    20,
+    -120
+   ]
+  },
+  {
+   "id": "MaterialExpressionSubstrateToonBSDF_1",
+   "class": "SubstrateToonBSDF",
+   "pos": [
+    260,
+    -100
+   ]
+  },
+  {
+   "id": "MaterialExpressionStaticSwitchParameter_13",
+   "class": "StaticSwitchParameter",
+   "pos": [
+    -2350,
+    -700
+   ]
+  },
+  {
+   "id": "MaterialExpressionScalarParameter_81",
+   "class": "ScalarParameter",
+   "pos": [
+    -2350,
+    -560
+   ]
+  },
+  {
+   "id": "MaterialExpressionScalarParameter_82",
+   "class": "ScalarParameter",
+   "pos": [
+    -2350,
+    -500
+   ]
+  },
+  {
+   "id": "MaterialExpressionScalarParameter_83",
+   "class": "ScalarParameter",
+   "pos": [
+    -2350,
+    -440
+   ]
+  },
+  {
+   "id": "MaterialExpressionScalarParameter_84",
+   "class": "ScalarParameter",
+   "pos": [
+    -2350,
+    -220
+   ]
+  },
+  {
+   "id": "MaterialExpressionScalarParameter_85",
+   "class": "ScalarParameter",
+   "pos": [
+    -2350,
+    -160
+   ]
+  },
+  {
+   "id": "MaterialExpressionScalarParameter_86",
+   "class": "ScalarParameter",
+   "pos": [
+    -2350,
+    -100
+   ]
+  },
+  {
+   "id": "MaterialExpressionVectorParameter_15",
+   "class": "VectorParameter",
+   "pos": [
+    -2350,
+    -40
+   ]
+  },
+  {
+   "id": "MaterialExpressionVectorParameter_16",
+   "class": "VectorParameter",
+   "pos": [
+    -2350,
+    20
+   ]
+  },
+  {
+   "id": "MaterialExpressionVectorParameter_27",
+   "class": "VectorParameter",
+   "pos": [
+    -2350,
+    80
+   ]
+  },
+  {
+   "id": "MaterialExpressionMaterialFunctionCall_15",
+   "class": "MaterialFunctionCall",
+   "pos": [
+    -2100,
+    -600
+   ]
+  },
+  {
+   "id": "MaterialExpressionTextureObjectParameter_0",
+   "class": "TextureObjectParameter",
+   "pos": [
+    -2350,
+    -820
+   ]
+  },
+  {
+   "id": "MaterialExpressionWorldPosition_2",
+   "class": "WorldPosition",
+   "pos": [
+    -2350,
+    200
+   ]
+  },
+  {
+   "id": "MaterialExpressionVertexNormalWS_2",
+   "class": "VertexNormalWS",
+   "pos": [
+    -2350,
+    280
+   ]
+  },
+  {
+   "id": "MaterialExpressionLinearInterpolate_0",
+   "class": "LinearInterpolate",
+   "pos": [
+    -1900,
+    -600
+   ]
+  },
+  {
+   "id": "MaterialExpressionStaticSwitchParameter_14",
+   "class": "StaticSwitchParameter",
+   "pos": [
+    -1600,
+    200
+   ]
+  },
+  {
+   "id": "MaterialExpressionScalarParameter_87",
+   "class": "ScalarParameter",
+   "pos": [
+    -1600,
+    340
+   ]
+  },
+  {
+   "id": "MaterialExpressionScalarParameter_88",
+   "class": "ScalarParameter",
+   "pos": [
+    -1600,
+    400
+   ]
+  },
+  {
+   "id": "MaterialExpressionScalarParameter_89",
+   "class": "ScalarParameter",
+   "pos": [
+    -1600,
+    460
+   ]
+  },
+  {
+   "id": "MaterialExpressionVectorParameter_28",
+   "class": "VectorParameter",
+   "pos": [
+    -1600,
+    280
+   ]
+  },
+  {
+   "id": "MaterialExpressionMaterialFunctionCall_16",
+   "class": "MaterialFunctionCall",
+   "pos": [
+    -1750,
+    240
+   ]
+  },
+  {
+   "id": "MaterialExpressionConstant3Vector_4",
+   "class": "Constant3Vector",
+   "pos": [
+    -1950,
+    520
+   ]
+  },
+  {
+   "id": "MaterialExpressionDotProduct_2",
+   "class": "DotProduct",
+   "pos": [
+    -1950,
+    580
+   ]
+  },
+  {
+   "id": "MaterialExpressionStaticSwitchParameter_15",
+   "class": "StaticSwitchParameter",
+   "pos": [
+    -1350,
+    200
+   ]
+  },
+  {
+   "id": "MaterialExpressionScalarParameter_90",
+   "class": "ScalarParameter",
+   "pos": [
+    -1350,
+    360
+   ]
+  },
+  {
+   "id": "MaterialExpressionScalarParameter_91",
+   "class": "ScalarParameter",
+   "pos": [
+    -1350,
+    420
+   ]
+  },
+  {
+   "id": "MaterialExpressionScalarParameter_92",
+   "class": "ScalarParameter",
+   "pos": [
+    -1350,
+    480
+   ]
+  },
+  {
+   "id": "MaterialExpressionScalarParameter_93",
+   "class": "ScalarParameter",
+   "pos": [
+    -1350,
+    540
+   ]
+  },
+  {
+   "id": "MaterialExpressionVectorParameter_29",
+   "class": "VectorParameter",
+   "pos": [
+    -1350,
+    300
+   ]
+  },
+  {
+   "id": "MaterialExpressionMaterialFunctionCall_17",
+   "class": "MaterialFunctionCall",
+   "pos": [
+    -1500,
+    240
+   ]
+  },
+  {
+   "id": "MaterialExpressionStaticSwitchParameter_16",
+   "class": "StaticSwitchParameter",
+   "pos": [
+    -1100,
+    200
+   ]
+  },
+  {
+   "id": "MaterialExpressionScalarParameter_94",
+   "class": "ScalarParameter",
+   "pos": [
+    -1100,
+    400
+   ]
+  },
+  {
+   "id": "MaterialExpressionScalarParameter_95",
+   "class": "ScalarParameter",
+   "pos": [
+    -1100,
+    460
+   ]
+  },
+  {
+   "id": "MaterialExpressionScalarParameter_96",
+   "class": "ScalarParameter",
+   "pos": [
+    -1100,
+    520
+   ]
+  },
+  {
+   "id": "MaterialExpressionScalarParameter_97",
+   "class": "ScalarParameter",
+   "pos": [
+    -1100,
+    580
+   ]
+  },
+  {
+   "id": "MaterialExpressionVectorParameter_30",
+   "class": "VectorParameter",
+   "pos": [
+    -1100,
+    300
+   ]
+  },
+  {
+   "id": "MaterialExpressionVectorParameter_31",
+   "class": "VectorParameter",
+   "pos": [
+    -1100,
+    340
+   ]
+  },
+  {
+   "id": "MaterialExpressionVectorParameter_32",
+   "class": "VectorParameter",
+   "pos": [
+    -1100,
+    380
+   ]
+  },
+  {
+   "id": "MaterialExpressionMaterialFunctionCall_18",
+   "class": "MaterialFunctionCall",
+   "pos": [
+    -1250,
+    240
+   ]
+  },
+  {
+   "id": "MaterialExpressionStaticSwitchParameter_17",
+   "class": "StaticSwitchParameter",
+   "pos": [
+    -850,
+    200
+   ]
+  },
+  {
+   "id": "MaterialExpressionScalarParameter_98",
+   "class": "ScalarParameter",
+   "pos": [
+    -850,
+    340
+   ]
+  },
+  {
+   "id": "MaterialExpressionScalarParameter_99",
+   "class": "ScalarParameter",
+   "pos": [
+    -850,
+    400
+   ]
+  },
+  {
+   "id": "MaterialExpressionVectorParameter_33",
+   "class": "VectorParameter",
+   "pos": [
+    -850,
+    280
+   ]
+  },
+  {
+   "id": "MaterialExpressionLightVector_0",
+   "class": "LightVector",
+   "pos": [
+    -1050,
+    500
+   ]
+  },
+  {
+   "id": "MaterialExpressionDotProduct_3",
+   "class": "DotProduct",
+   "pos": [
+    -1050,
+    560
+   ]
+  },
+  {
+   "id": "MaterialExpressionOneMinus_0",
+   "class": "OneMinus",
+   "pos": [
+    -1050,
+    620
+   ]
+  },
+  {
+   "id": "MaterialExpressionPower_0",
+   "class": "Power",
+   "pos": [
+    -1050,
+    680
+   ]
+  },
+  {
+   "id": "MaterialExpressionMultiply_3",
+   "class": "Multiply",
+   "pos": [
+    -1050,
+    740
+   ]
+  },
+  {
+   "id": "MaterialExpressionMultiply_5",
+   "class": "Multiply",
+   "pos": [
+    -1050,
+    800
+   ]
+  },
+  {
+   "id": "MaterialExpressionLinearInterpolate_1",
+   "class": "LinearInterpolate",
+   "pos": [
+    -850,
+    260
+   ]
+  },
+  {
+   "id": "MaterialExpressionStaticSwitchParameter_19",
+   "class": "StaticSwitchParameter",
+   "pos": [
+    -600,
+    200
+   ]
+  },
+  {
+   "id": "MaterialExpressionScalarParameter_101",
+   "class": "ScalarParameter",
+   "pos": [
+    -600,
+    340
+   ]
+  },
+  {
+   "id": "MaterialExpressionScalarParameter_102",
+   "class": "ScalarParameter",
+   "pos": [
+    -600,
+    400
+   ]
+  },
+  {
+   "id": "MaterialExpressionScalarParameter_103",
+   "class": "ScalarParameter",
+   "pos": [
+    -600,
+    460
+   ]
+  },
+  {
+   "id": "MaterialExpressionScalarParameter_104",
+   "class": "ScalarParameter",
+   "pos": [
+    -600,
+    520
+   ]
+  },
+  {
+   "id": "MaterialExpressionScalarParameter_105",
+   "class": "ScalarParameter",
+   "pos": [
+    -600,
+    580
+   ]
+  },
+  {
+   "id": "MaterialExpressionVectorParameter_34",
+   "class": "VectorParameter",
+   "pos": [
+    -600,
+    280
+   ]
+  },
+  {
+   "id": "MaterialExpressionMaterialFunctionCall_19",
+   "class": "MaterialFunctionCall",
+   "pos": [
+    -800,
+    240
+   ]
+  },
+  {
+   "id": "MaterialExpressionDotProduct_8",
+   "class": "DotProduct",
+   "pos": [
+    -1000,
+    560
+   ]
+  },
+  {
+   "id": "MaterialExpressionConstant3Vector_10",
+   "class": "Constant3Vector",
+   "pos": [
+    -1200,
+    600
+   ]
+  },
+  {
+   "id": "MaterialExpressionStaticSwitchParameter_20",
+   "class": "StaticSwitchParameter",
+   "pos": [
+    -350,
+    200
+   ]
+  },
+  {
+   "id": "MaterialExpressionScalarParameter_106",
+   "class": "ScalarParameter",
+   "pos": [
+    -350,
+    360
+   ]
+  },
+  {
+   "id": "MaterialExpressionScalarParameter_107",
+   "class": "ScalarParameter",
+   "pos": [
+    -350,
+    420
+   ]
+  },
+  {
+   "id": "MaterialExpressionScalarParameter_108",
+   "class": "ScalarParameter",
+   "pos": [
+    -350,
+    480
+   ]
+  },
+  {
+   "id": "MaterialExpressionVectorParameter_35",
+   "class": "VectorParameter",
+   "pos": [
+    -350,
+    300
+   ]
+  },
+  {
+   "id": "MaterialExpressionMaterialFunctionCall_20",
+   "class": "MaterialFunctionCall",
+   "pos": [
+    -550,
+    240
+   ]
+  },
+  {
+   "id": "MaterialExpressionVertexNormalWS_3",
+   "class": "VertexNormalWS",
+   "pos": [
+    -750,
+    420
+   ]
+  },
+  {
+   "id": "MaterialExpressionStaticSwitchParameter_21",
+   "class": "StaticSwitchParameter",
+   "pos": [
+    -100,
+    200
+   ]
+  },
+  {
+   "id": "MaterialExpressionScalarParameter_109",
+   "class": "ScalarParameter",
+   "pos": [
+    -100,
+    360
+   ]
+  },
+  {
+   "id": "MaterialExpressionScalarParameter_110",
+   "class": "ScalarParameter",
+   "pos": [
+    -100,
+    420
+   ]
+  },
+  {
+   "id": "MaterialExpressionScalarParameter_111",
+   "class": "ScalarParameter",
+   "pos": [
+    -100,
+    480
+   ]
+  },
+  {
+   "id": "MaterialExpressionVectorParameter_36",
+   "class": "VectorParameter",
+   "pos": [
+    -100,
+    300
+   ]
+  },
+  {
+   "id": "MaterialExpressionMaterialFunctionCall_21",
+   "class": "MaterialFunctionCall",
+   "pos": [
+    -300,
+    240
+   ]
+  },
+  {
+   "id": "MaterialExpressionWorldPosition_3",
+   "class": "WorldPosition",
+   "pos": [
+    -500,
+    500
+   ]
+  },
+  {
+   "id": "MaterialExpressionStaticSwitchParameter_22",
+   "class": "StaticSwitchParameter",
+   "pos": [
+    150,
+    200
+   ]
+  },
+  {
+   "id": "MaterialExpressionScalarParameter_112",
+   "class": "ScalarParameter",
+   "pos": [
+    150,
+    360
+   ]
+  },
+  {
+   "id": "MaterialExpressionScalarParameter_113",
+   "class": "ScalarParameter",
+   "pos": [
+    150,
+    420
+   ]
+  },
+  {
+   "id": "MaterialExpressionScalarParameter_114",
+   "class": "ScalarParameter",
+   "pos": [
+    150,
+    480
+   ]
+  },
+  {
+   "id": "MaterialExpressionScalarParameter_115",
+   "class": "ScalarParameter",
+   "pos": [
+    150,
+    540
+   ]
+  },
+  {
+   "id": "MaterialExpressionVectorParameter_37",
+   "class": "VectorParameter",
+   "pos": [
+    150,
+    300
+   ]
+  },
+  {
+   "id": "MaterialExpressionMaterialFunctionCall_22",
+   "class": "MaterialFunctionCall",
+   "pos": [
+    -50,
+    240
+   ]
+  },
+  {
+   "id": "MaterialExpressionStaticSwitchParameter_23",
+   "class": "StaticSwitchParameter",
+   "pos": [
+    400,
+    200
+   ]
+  },
+  {
+   "id": "MaterialExpressionScalarParameter_116",
+   "class": "ScalarParameter",
+   "pos": [
+    400,
+    360
+   ]
+  },
+  {
+   "id": "MaterialExpressionScalarParameter_117",
+   "class": "ScalarParameter",
+   "pos": [
+    400,
+    420
+   ]
+  },
+  {
+   "id": "MaterialExpressionScalarParameter_118",
+   "class": "ScalarParameter",
+   "pos": [
+    400,
+    480
+   ]
+  },
+  {
+   "id": "MaterialExpressionScalarParameter_119",
+   "class": "ScalarParameter",
+   "pos": [
+    400,
+    540
+   ]
+  },
+  {
+   "id": "MaterialExpressionScalarParameter_120",
+   "class": "ScalarParameter",
+   "pos": [
+    400,
+    600
+   ]
+  },
+  {
+   "id": "MaterialExpressionScalarParameter_121",
+   "class": "ScalarParameter",
+   "pos": [
+    400,
+    660
+   ]
+  },
+  {
+   "id": "MaterialExpressionVectorParameter_38",
+   "class": "VectorParameter",
+   "pos": [
+    400,
+    300
+   ]
+  },
+  {
+   "id": "MaterialExpressionMaterialFunctionCall_23",
+   "class": "MaterialFunctionCall",
+   "pos": [
+    200,
+    240
+   ]
+  },
+  {
+   "id": "MaterialExpressionTime_1",
+   "class": "Time",
+   "pos": [
+    0,
+    700
+   ]
+  },
+  {
+   "id": "MaterialExpressionStaticSwitchParameter_24",
+   "class": "StaticSwitchParameter",
+   "pos": [
+    650,
+    200
+   ]
+  },
+  {
+   "id": "MaterialExpressionScalarParameter_122",
+   "class": "ScalarParameter",
+   "pos": [
+    650,
+    380
+   ]
+  },
+  {
+   "id": "MaterialExpressionScalarParameter_123",
+   "class": "ScalarParameter",
+   "pos": [
+    650,
+    440
+   ]
+  },
+  {
+   "id": "MaterialExpressionScalarParameter_124",
+   "class": "ScalarParameter",
+   "pos": [
+    650,
+    500
+   ]
+  },
+  {
+   "id": "MaterialExpressionScalarParameter_125",
+   "class": "ScalarParameter",
+   "pos": [
+    650,
+    560
+   ]
+  },
+  {
+   "id": "MaterialExpressionScalarParameter_126",
+   "class": "ScalarParameter",
+   "pos": [
+    650,
+    620
+   ]
+  },
+  {
+   "id": "MaterialExpressionVectorParameter_39",
+   "class": "VectorParameter",
+   "pos": [
+    650,
+    320
+   ]
+  },
+  {
+   "id": "MaterialExpressionMaterialFunctionCall_24",
+   "class": "MaterialFunctionCall",
+   "pos": [
+    450,
+    240
+   ]
+  },
+  {
+   "id": "MaterialExpressionMaterialFunctionCall_25",
+   "class": "MaterialFunctionCall",
+   "pos": [
+    -700,
+    900
+   ]
+  },
+  {
+   "id": "MaterialExpressionScalarParameter_127",
+   "class": "ScalarParameter",
+   "pos": [
+    -700,
+    1080
+   ]
+  },
+  {
+   "id": "MaterialExpressionScalarParameter_128",
+   "class": "ScalarParameter",
+   "pos": [
+    -700,
+    1140
+   ]
+  },
+  {
+   "id": "MaterialExpressionVectorParameter_40",
+   "class": "VectorParameter",
+   "pos": [
+    -700,
+    1020
+   ]
+  },
+  {
+   "id": "MaterialExpressionStaticSwitchParameter_25",
+   "class": "StaticSwitchParameter",
+   "pos": [
+    -500,
+    900
+   ]
+  },
+  {
+   "id": "MaterialExpressionConstant3Vector_11",
+   "class": "Constant3Vector",
+   "pos": [
+    -500,
+    1040
+   ]
+  },
+  {
+   "id": "MaterialExpressionComment_2",
+   "class": "Comment",
+   "pos": [
+    -1690,
+    -760
+   ]
+  },
+  {
+   "id": "MaterialExpressionComment_3",
+   "class": "Comment",
+   "pos": [
+    -820,
+    -1020
+   ]
+  },
+  {
+   "id": "MaterialExpressionComment_4",
+   "class": "Comment",
+   "pos": [
+    -620,
+    -260
+   ]
+  },
+  {
+   "id": "MaterialExpressionComment_5",
+   "class": "Comment",
+   "pos": [
+    -2490,
+    -840
+   ]
+  },
+  {
+   "id": "MaterialExpressionComment_6",
+   "class": "Comment",
+   "pos": [
+    -1240,
+    240
+   ]
+  },
+  {
+   "id": "MaterialExpressionComment_7",
+   "class": "Comment",
+   "pos": [
+    -1740,
+    60
+   ]
+  },
+  {
+   "id": "MaterialExpressionComment_8",
+   "class": "Comment",
+   "pos": [
+    -1490,
+    60
+   ]
+  },
+  {
+   "id": "MaterialExpressionComment_9",
+   "class": "Comment",
+   "pos": [
+    -1240,
+    60
+   ]
+  },
+  {
+   "id": "MaterialExpressionComment_10",
+   "class": "Comment",
+   "pos": [
+    -990,
+    60
+   ]
+  },
+  {
+   "id": "MaterialExpressionComment_11",
+   "class": "Comment",
+   "pos": [
+    -840,
+    60
+   ]
+  },
+  {
+   "id": "MaterialExpressionComment_12",
+   "class": "Comment",
+   "pos": [
+    -740,
+    60
+   ]
+  },
+  {
+   "id": "MaterialExpressionComment_13",
+   "class": "Comment",
+   "pos": [
+    -490,
+    60
+   ]
+  },
+  {
+   "id": "MaterialExpressionComment_14",
+   "class": "Comment",
+   "pos": [
+    -240,
+    60
+   ]
+  },
+  {
+   "id": "MaterialExpressionComment_15",
+   "class": "Comment",
+   "pos": [
+    10,
+    60
+   ]
+  },
+  {
+   "id": "MaterialExpressionComment_16",
+   "class": "Comment",
+   "pos": [
+    260,
+    60
+   ]
+  },
+  {
+   "id": "MaterialExpressionComment_17",
+   "class": "Comment",
+   "pos": [
+    510,
+    60
+   ]
+  },
+  {
+   "id": "MaterialExpressionComment_18",
+   "class": "Comment",
+   "pos": [
+    -2490,
+    -1100
+   ]
+  },
+  {
+   "id": "MaterialExpressionComment_19",
+   "class": "Comment",
+   "pos": [
+    -2440,
+    -910
+   ]
+  },
+  {
+   "id": "MaterialExpressionScalarParameter_0",
+   "class": "ScalarParameter",
+   "pos": [
+    900,
+    380
+   ]
+  },
+  {
+   "id": "MaterialExpressionScalarParameter_1",
+   "class": "ScalarParameter",
+   "pos": [
+    900,
+    440
+   ]
+  },
+  {
+   "id": "MaterialExpressionScalarParameter_2",
+   "class": "ScalarParameter",
+   "pos": [
+    900,
+    500
+   ]
+  },
+  {
+   "id": "MaterialExpressionScalarParameter_3",
+   "class": "ScalarParameter",
+   "pos": [
+    900,
+    560
+   ]
+  },
+  {
+   "id": "MaterialExpressionScalarParameter_4",
+   "class": "ScalarParameter",
+   "pos": [
+    900,
+    620
+   ]
+  },
+  {
+   "id": "MaterialExpressionScalarParameter_5",
+   "class": "ScalarParameter",
+   "pos": [
+    900,
+    680
+   ]
+  },
+  {
+   "id": "MaterialExpressionScalarParameter_6",
+   "class": "ScalarParameter",
+   "pos": [
+    900,
+    740
+   ]
+  },
+  {
+   "id": "MaterialExpressionVectorParameter_2",
+   "class": "VectorParameter",
+   "pos": [
+    900,
+    300
+   ]
+  },
+  {
+   "id": "MaterialExpressionScalarParameter_8",
+   "class": "ScalarParameter",
+   "pos": [
+    900,
+    800
+   ]
+  },
+  {
+   "id": "MaterialExpressionMaterialFunctionCall_0",
+   "class": "MaterialFunctionCall",
+   "pos": [
+    1100,
+    240
+   ]
+  },
+  {
+   "id": "MaterialExpressionVertexNormalWS_0",
+   "class": "VertexNormalWS",
+   "pos": [
+    700,
+    900
+   ]
+  },
+  {
+   "id": "MaterialExpressionWorldPosition_0",
+   "class": "WorldPosition",
+   "pos": [
+    700,
+    1000
+   ]
+  },
+  {
+   "id": "MaterialExpressionCameraVectorWS_0",
+   "class": "CameraVectorWS",
+   "pos": [
+    700,
+    1100
+   ]
+  },
+  {
+   "id": "MaterialExpressionTime_0",
+   "class": "Time",
+   "pos": [
+    700,
+    1200
+   ]
+  },
+  {
+   "id": "MaterialExpressionDotProduct_0",
+   "class": "DotProduct",
+   "pos": [
+    700,
+    1300
+   ]
+  },
+  {
+   "id": "MaterialExpressionConstant3Vector_2",
+   "class": "Constant3Vector",
+   "pos": [
+    500,
+    1360
+   ]
+  },
+  {
+   "id": "MaterialExpressionCollectionParameter_0",
+   "class": "CollectionParameter",
+   "pos": [
+    400,
+    1500
+   ]
+  },
+  {
+   "id": "MaterialExpressionCollectionParameter_1",
+   "class": "CollectionParameter",
+   "pos": [
+    400,
+    1660
+   ]
+  },
+  {
+   "id": "MaterialExpressionCollectionParameter_2",
+   "class": "CollectionParameter",
+   "pos": [
+    400,
+    1820
+   ]
+  },
+  {
+   "id": "MaterialExpressionCollectionParameter_3",
+   "class": "CollectionParameter",
+   "pos": [
+    400,
+    1980
+   ]
+  },
+  {
+   "id": "MaterialExpressionLinearInterpolate_2",
+   "class": "LinearInterpolate",
+   "pos": [
+    1300,
+    240
+   ]
+  },
+  {
+   "id": "MaterialExpressionTextureSampleParameter2D_0",
+   "class": "TextureSampleParameter2D",
+   "pos": [
+    -2800,
+    3400
+   ]
+  },
+  {
+   "id": "MaterialExpressionTextureSampleParameter2D_2",
+   "class": "TextureSampleParameter2D",
+   "pos": [
+    -3200,
+    -1400
+   ]
+  },
+  {
+   "id": "MaterialExpressionTextureSampleParameter2D_4",
+   "class": "TextureSampleParameter2D",
+   "pos": [
+    -2800,
+    3600
+   ]
+  },
+  {
+   "id": "MaterialExpressionTextureSampleParameter2D_10",
+   "class": "TextureSampleParameter2D",
+   "pos": [
+    -3200,
+    -1200
+   ]
+  },
+  {
+   "id": "MaterialExpressionTextureSampleParameter2D_13",
+   "class": "TextureSampleParameter2D",
+   "pos": [
+    -3200,
+    -1100
+   ]
+  },
+  {
+   "id": "MaterialExpressionTextureSampleParameter2D_14",
+   "class": "TextureSampleParameter2D",
+   "pos": [
+    -3200,
+    -1000
+   ]
+  },
+  {
+   "id": "MaterialExpressionTextureSampleParameter2D_15",
+   "class": "TextureSampleParameter2D",
+   "pos": [
+    -3200,
+    -900
+   ]
+  },
+  {
+   "id": "MaterialExpressionTextureSampleParameter2D_16",
+   "class": "TextureSampleParameter2D",
+   "pos": [
+    -3200,
+    -800
+   ]
+  },
+  {
+   "id": "MaterialExpressionTextureSampleParameter2D_19",
+   "class": "TextureSampleParameter2D",
+   "pos": [
+    -2800,
+    5000
+   ]
+  },
+  {
+   "id": "MaterialExpressionTextureSampleParameter2D_20",
+   "class": "TextureSampleParameter2D",
+   "pos": [
+    -2800,
+    5200
+   ]
+  },
+  {
+   "id": "MaterialExpressionTextureSampleParameter2D_21",
+   "class": "TextureSampleParameter2D",
+   "pos": [
+    -2800,
+    5400
+   ]
+  },
+  {
+   "id": "MaterialExpressionScalarParameter_9",
+   "class": "ScalarParameter",
+   "pos": [
+    -3200,
+    -380
+   ]
+  },
+  {
+   "id": "MaterialExpressionScalarParameter_11",
+   "class": "ScalarParameter",
+   "pos": [
+    -3200,
+    -310
+   ]
+  },
+  {
+   "id": "MaterialExpressionScalarParameter_14",
+   "class": "ScalarParameter",
+   "pos": [
+    -3200,
+    -240
+   ]
+  },
+  {
+   "id": "MaterialExpressionScalarParameter_37",
+   "class": "ScalarParameter",
+   "pos": [
+    -3200,
+    -170
+   ]
+  },
+  {
+   "id": "MaterialExpressionScalarParameter_38",
+   "class": "ScalarParameter",
+   "pos": [
+    -3200,
+    -100
+   ]
+  },
+  {
+   "id": "MaterialExpressionScalarParameter_39",
+   "class": "ScalarParameter",
+   "pos": [
+    -3200,
+    5000
+   ]
+  },
+  {
+   "id": "MaterialExpressionScalarParameter_40",
+   "class": "ScalarParameter",
+   "pos": [
+    -3200,
+    5200
+   ]
+  },
+  {
+   "id": "MaterialExpressionScalarParameter_41",
+   "class": "ScalarParameter",
+   "pos": [
+    -3200,
+    5400
+   ]
+  },
+  {
+   "id": "MaterialExpressionVectorParameter_4",
+   "class": "VectorParameter",
+   "pos": [
+    -3200,
+    180
+   ]
+  },
+  {
+   "id": "MaterialExpressionVectorParameter_10",
+   "class": "VectorParameter",
+   "pos": [
+    -3200,
+    280
+   ]
+  },
+  {
+   "id": "MaterialExpressionVectorParameter_11",
+   "class": "VectorParameter",
+   "pos": [
+    -3200,
+    380
+   ]
+  },
+  {
+   "id": "MaterialExpressionVectorParameter_12",
+   "class": "VectorParameter",
+   "pos": [
+    -3200,
+    480
+   ]
+  },
+  {
+   "id": "MaterialExpressionLandscapeLayerSample_0",
+   "class": "LandscapeLayerSample",
+   "pos": [
+    -2400,
+    5000
+   ]
+  },
+  {
+   "id": "MaterialExpressionLandscapeLayerSample_1",
+   "class": "LandscapeLayerSample",
+   "pos": [
+    -2400,
+    5200
+   ]
+  },
+  {
+   "id": "MaterialExpressionLandscapeLayerSample_2",
+   "class": "LandscapeLayerSample",
+   "pos": [
+    -2400,
+    5800
+   ]
+  },
+  {
+   "id": "MaterialExpressionLandscapeLayerSample_3",
+   "class": "LandscapeLayerSample",
+   "pos": [
+    -2400,
+    6000
+   ]
+  },
+  {
+   "id": "MaterialExpressionPixelNormalWS_0",
+   "class": "PixelNormalWS",
+   "pos": [
+    -3100,
+    -1600
+   ]
+  },
+  {
+   "id": "MaterialExpressionConstant3Vector_3",
+   "class": "Constant3Vector",
+   "pos": [
+    -3100,
+    -1500
+   ]
+  },
+  {
+   "id": "MaterialExpressionDotProduct_4",
+   "class": "DotProduct",
+   "pos": [
+    -2950,
+    -1550
+   ]
+  },
+  {
+   "id": "MaterialExpressionSubtract_2",
+   "class": "Subtract",
+   "pos": [
+    -2800,
+    -1550
+   ]
+  },
+  {
+   "id": "MaterialExpressionConstant_0",
+   "class": "Constant",
+   "pos": [
+    -2800,
+    -1470
+   ]
+  },
+  {
+   "id": "MaterialExpressionMultiply_19",
+   "class": "Multiply",
+   "pos": [
+    -2650,
+    -1550
+   ]
+  },
+  {
+   "id": "MaterialExpressionSaturate_0",
+   "class": "Saturate",
+   "pos": [
+    -2500,
+    -1550
+   ]
+  },
+  {
+   "id": "MaterialExpressionMultiply_21",
+   "class": "Multiply",
+   "pos": [
+    -2350,
+    -1550
+   ]
+  },
+  {
+   "id": "MaterialExpressionConstant_2",
+   "class": "Constant",
+   "pos": [
+    -2200,
+    -1310
+   ]
+  },
+  {
+   "id": "MaterialExpressionLinearInterpolate_6",
+   "class": "LinearInterpolate",
+   "pos": [
+    -2000,
+    5000
+   ]
+  },
+  {
+   "id": "MaterialExpressionMultiply_22",
+   "class": "Multiply",
+   "pos": [
+    -1600,
+    5000
+   ]
+  },
+  {
+   "id": "MaterialExpressionAdd_2",
+   "class": "Add",
+   "pos": [
+    -1200,
+    5000
+   ]
+  },
+  {
+   "id": "MaterialExpressionConstant_3",
+   "class": "Constant",
+   "pos": [
+    -2200,
+    -1010
+   ]
+  },
+  {
+   "id": "MaterialExpressionLinearInterpolate_7",
+   "class": "LinearInterpolate",
+   "pos": [
+    -2000,
+    5200
+   ]
+  },
+  {
+   "id": "MaterialExpressionMultiply_23",
+   "class": "Multiply",
+   "pos": [
+    -1600,
+    5200
+   ]
+  },
+  {
+   "id": "MaterialExpressionAdd_3",
+   "class": "Add",
+   "pos": [
+    -1200,
+    5200
+   ]
+  },
+  {
+   "id": "MaterialExpressionAdd_4",
+   "class": "Add",
+   "pos": [
+    -1200,
+    5800
+   ]
+  },
+  {
+   "id": "MaterialExpressionAdd_5",
+   "class": "Add",
+   "pos": [
+    -400,
+    5200
+   ]
+  },
+  {
+   "id": "MaterialExpressionSaturate_2",
+   "class": "Saturate",
+   "pos": [
+    0,
+    5200
+   ]
+  },
+  {
+   "id": "MaterialExpressionMultiply_24",
+   "class": "Multiply",
+   "pos": [
+    -1500,
+    -1500
+   ]
+  },
+  {
+   "id": "MaterialExpressionMultiply_25",
+   "class": "Multiply",
+   "pos": [
+    -1350,
+    -1500
+   ]
+  },
+  {
+   "id": "MaterialExpressionMultiply_26",
+   "class": "Multiply",
+   "pos": [
+    -1500,
+    -1430
+   ]
+  },
+  {
+   "id": "MaterialExpressionMultiply_27",
+   "class": "Multiply",
+   "pos": [
+    -1350,
+    -1430
+   ]
+  },
+  {
+   "id": "MaterialExpressionMultiply_28",
+   "class": "Multiply",
+   "pos": [
+    -1500,
+    -1360
+   ]
+  },
+  {
+   "id": "MaterialExpressionMultiply_29",
+   "class": "Multiply",
+   "pos": [
+    -1350,
+    -1360
+   ]
+  },
+  {
+   "id": "MaterialExpressionMultiply_31",
+   "class": "Multiply",
+   "pos": [
+    -1500,
+    -1290
+   ]
+  },
+  {
+   "id": "MaterialExpressionMultiply_33",
+   "class": "Multiply",
+   "pos": [
+    -1350,
+    -1290
+   ]
+  },
+  {
+   "id": "MaterialExpressionAdd_6",
+   "class": "Add",
+   "pos": [
+    -1200,
+    -1420
+   ]
+  },
+  {
+   "id": "MaterialExpressionAdd_7",
+   "class": "Add",
+   "pos": [
+    -1200,
+    -1420
+   ]
+  },
+  {
+   "id": "MaterialExpressionAdd_8",
+   "class": "Add",
+   "pos": [
+    -1200,
+    -1420
+   ]
+  },
+  {
+   "id": "MaterialExpressionMultiply_34",
+   "class": "Multiply",
+   "pos": [
+    -1500,
+    -1150
+   ]
+  },
+  {
+   "id": "MaterialExpressionMultiply_36",
+   "class": "Multiply",
+   "pos": [
+    -1500,
+    -1080
+   ]
+  },
+  {
+   "id": "MaterialExpressionMultiply_37",
+   "class": "Multiply",
+   "pos": [
+    -1500,
+    -1010
+   ]
+  },
+  {
+   "id": "MaterialExpressionMultiply_38",
+   "class": "Multiply",
+   "pos": [
+    -1500,
+    -940
+   ]
+  },
+  {
+   "id": "MaterialExpressionAdd_9",
+   "class": "Add",
+   "pos": [
+    -1200,
+    -1080
+   ]
+  },
+  {
+   "id": "MaterialExpressionAdd_10",
+   "class": "Add",
+   "pos": [
+    -1200,
+    -1080
+   ]
+  },
+  {
+   "id": "MaterialExpressionAdd_11",
+   "class": "Add",
+   "pos": [
+    -1200,
+    -1080
+   ]
+  },
+  {
+   "id": "MaterialExpressionCollectionParameter_4",
+   "class": "CollectionParameter",
+   "pos": [
+    -1600,
+    -550
+   ]
+  },
+  {
+   "id": "MaterialExpressionStaticSwitchParameter_2",
+   "class": "StaticSwitchParameter",
+   "pos": [
+    60,
+    -260
+   ]
+  },
+  {
+   "id": "MaterialExpressionLinearInterpolate_8",
+   "class": "LinearInterpolate",
+   "pos": [
+    200,
+    -160
+   ]
+  },
+  {
+   "id": "MaterialExpressionStaticSwitchParameter_3",
+   "class": "StaticSwitchParameter",
+   "pos": [
+    60,
+    40
+   ]
+  },
+  {
+   "id": "MaterialExpressionLinearInterpolate_9",
+   "class": "LinearInterpolate",
+   "pos": [
+    200,
+    60
+   ]
+  },
+  {
+   "id": "MaterialExpressionConstant_4",
+   "class": "Constant",
+   "pos": [
+    -1750,
+    -780
+   ]
+  },
+  {
+   "id": "MaterialExpressionConstant_5",
+   "class": "Constant",
+   "pos": [
+    -1600,
+    -610
+   ]
+  },
+  {
+   "id": "MaterialExpressionLinearInterpolate_10",
+   "class": "LinearInterpolate",
+   "pos": [
+    -1450,
+    -700
+   ]
+  },
+  {
+   "id": "MaterialExpressionMultiply_39",
+   "class": "Multiply",
+   "pos": [
+    -1300,
+    -700
+   ]
+  },
+  {
+   "id": "MaterialExpressionMultiply_40",
+   "class": "Multiply",
+   "pos": [
+    -1250,
+    -700
+   ]
+  },
+  {
+   "id": "MaterialExpressionStaticSwitchParameter_4",
+   "class": "StaticSwitchParameter",
+   "pos": [
+    -1100,
+    -700
+   ]
+  },
+  {
+   "id": "MaterialExpressionMultiply_41",
+   "class": "Multiply",
+   "pos": [
+    -1500,
+    -560
+   ]
+  },
+  {
+   "id": "MaterialExpressionSaturate_3",
+   "class": "Saturate",
+   "pos": [
+    -1350,
+    -560
+   ]
+  },
+  {
+   "id": "MaterialExpressionLinearInterpolate_12",
+   "class": "LinearInterpolate",
+   "pos": [
+    -1200,
+    -560
+   ]
+  },
+  {
+   "id": "MaterialExpressionLinearInterpolate_13",
+   "class": "LinearInterpolate",
+   "pos": [
+    200,
+    140
+   ]
+  },
+  {
+   "id": "MaterialExpressionWorldPosition_1",
+   "class": "WorldPosition",
+   "pos": [
+    -5200,
+    4200
+   ]
+  },
+  {
+   "id": "MaterialExpressionVectorParameter_13",
+   "class": "VectorParameter",
+   "pos": [
+    -5200,
+    4400
+   ]
+  },
+  {
+   "id": "MaterialExpressionVectorParameter_14",
+   "class": "VectorParameter",
+   "pos": [
+    -5200,
+    4600
+   ]
+  },
+  {
+   "id": "MaterialExpressionSubtract_5",
+   "class": "Subtract",
+   "pos": [
+    -4800,
+    4200
+   ]
+  },
+  {
+   "id": "MaterialExpressionDivide_3",
+   "class": "Divide",
+   "pos": [
+    -4400,
+    4200
+   ]
+  },
+  {
+   "id": "MaterialExpressionComponentMask_0",
+   "class": "ComponentMask",
+   "pos": [
+    -4000,
+    4200
+   ]
+  },
+  {
+   "id": "MaterialExpressionStaticSwitchParameter_7",
+   "class": "StaticSwitchParameter",
+   "pos": [
+    -3200,
+    4000
+   ]
+  },
+  {
+   "id": "MaterialExpressionStaticSwitchParameter_8",
+   "class": "StaticSwitchParameter",
+   "pos": [
+    -3200,
+    4200
+   ]
+  },
+  {
+   "id": "MaterialExpressionStaticSwitchParameter_9",
+   "class": "StaticSwitchParameter",
+   "pos": [
+    -3200,
+    4400
+   ]
+  },
+  {
+   "id": "MaterialExpressionTextureCoordinate_2",
+   "class": "TextureCoordinate",
+   "pos": [
+    -3100,
+    -1100
+   ]
+  },
+  {
+   "id": "MaterialExpressionStaticSwitchParameter_10",
+   "class": "StaticSwitchParameter",
+   "pos": [
+    -3200,
+    3400
+   ]
+  },
+  {
+   "id": "MaterialExpressionTextureCoordinate_3",
+   "class": "TextureCoordinate",
+   "pos": [
+    -3100,
+    -1100
+   ]
+  },
+  {
+   "id": "MaterialExpressionStaticSwitchParameter_11",
+   "class": "StaticSwitchParameter",
+   "pos": [
+    -3200,
+    3600
+   ]
+  },
+  {
+   "id": "MaterialExpressionMaterialFunctionCall_5",
+   "class": "MaterialFunctionCall",
+   "pos": [
+    -2000,
+    1800
+   ]
+  },
+  {
+   "id": "MaterialExpressionTextureObjectParameter_1",
+   "class": "TextureObjectParameter",
+   "pos": [
+    -2600,
+    1800
+   ]
+  },
+  {
+   "id": "MaterialExpressionScalarParameter_42",
+   "class": "ScalarParameter",
+   "pos": [
+    -2600,
+    2000
+   ]
+  },
+  {
+   "id": "MaterialExpressionScalarParameter_43",
+   "class": "ScalarParameter",
+   "pos": [
+    -3000,
+    2200
+   ]
+  },
+  {
+   "id": "MaterialExpressionDivide_4",
+   "class": "Divide",
+   "pos": [
+    -2600,
+    2200
+   ]
+  },
+  {
+   "id": "MaterialExpressionMax_0",
+   "class": "Max",
+   "pos": [
+    -2800,
+    2200
+   ]
+  },
+  {
+   "id": "MaterialExpressionTransform_0",
+   "class": "Transform",
+   "pos": [
+    -1700,
+    1800
+   ]
+  },
+  {
+   "id": "MaterialExpressionLinearInterpolate_15",
+   "class": "LinearInterpolate",
+   "pos": [
+    -1400,
+    1800
+   ]
+  },
+  {
+   "id": "MaterialExpressionScalarParameter_45",
+   "class": "ScalarParameter",
+   "pos": [
+    -1700,
+    2100
+   ]
+  },
+  {
+   "id": "MaterialExpressionSaturate_5",
+   "class": "Saturate",
+   "pos": [
+    -1500,
+    2100
+   ]
+  },
+  {
+   "id": "MaterialExpressionNormalize_0",
+   "class": "Normalize",
+   "pos": [
+    -1200,
+    1800
+   ]
+  },
+  {
+   "id": "MaterialExpressionStaticSwitchParameter_12",
+   "class": "StaticSwitchParameter",
+   "pos": [
+    -1000,
+    1800
+   ]
+  },
+  {
+   "id": "MaterialExpressionTextureObjectParameter_2",
+   "class": "TextureObjectParameter",
+   "pos": [
+    -2600,
+    2700
+   ]
+  },
+  {
+   "id": "MaterialExpressionLinearInterpolate_16",
+   "class": "LinearInterpolate",
+   "pos": [
+    -1700,
+    2700
+   ]
+  },
+  {
+   "id": "MaterialExpressionScalarParameter_46",
+   "class": "ScalarParameter",
+   "pos": [
+    -2000,
+    3000
+   ]
+  },
+  {
+   "id": "MaterialExpressionMax_1",
+   "class": "Max",
+   "pos": [
+    -1800,
+    3000
+   ]
+  },
+  {
+   "id": "MaterialExpressionDivide_5",
+   "class": "Divide",
+   "pos": [
+    -1500,
+    2700
+   ]
+  },
+  {
+   "id": "MaterialExpressionScalarParameter_47",
+   "class": "ScalarParameter",
+   "pos": [
+    -1700,
+    3200
+   ]
+  },
+  {
+   "id": "MaterialExpressionSaturate_6",
+   "class": "Saturate",
+   "pos": [
+    -1500,
+    3200
+   ]
+  },
+  {
+   "id": "MaterialExpressionLinearInterpolate_17",
+   "class": "LinearInterpolate",
+   "pos": [
+    -1300,
+    2700
+   ]
+  },
+  {
+   "id": "MaterialExpressionMultiply_44",
+   "class": "Multiply",
+   "pos": [
+    -1100,
+    2700
+   ]
+  },
+  {
+   "id": "MaterialExpressionStaticSwitchParameter_26",
+   "class": "StaticSwitchParameter",
+   "pos": [
+    -900,
+    2700
+   ]
+  },
+  {
+   "id": "MaterialExpressionMax_2",
+   "class": "Max",
+   "pos": [
+    -600,
+    -1900
+   ]
+  },
+  {
+   "id": "MaterialExpressionDivide_6",
+   "class": "Divide",
+   "pos": [
+    -350,
+    -1750
+   ]
+  },
+  {
+   "id": "MaterialExpressionDivide_7",
+   "class": "Divide",
+   "pos": [
+    -350,
+    -1550
+   ]
+  },
+  {
+   "id": "MaterialExpressionNormalize_1",
+   "class": "Normalize",
+   "pos": [
+    100,
+    300
+   ]
+  },
+  {
+   "id": "MaterialExpressionWorldPosition_4",
+   "class": "WorldPosition",
+   "pos": [
+    -2400,
+    -2500
+   ]
+  },
+  {
+   "id": "MaterialExpressionScalarParameter_48",
+   "class": "ScalarParameter",
+   "pos": [
+    -2400,
+    -2700
+   ]
+  },
+  {
+   "id": "MaterialExpressionScalarParameter_49",
+   "class": "ScalarParameter",
+   "pos": [
+    -2400,
+    -2900
+   ]
+  },
+  {
+   "id": "MaterialExpressionStaticSwitchParameter_27",
+   "class": "StaticSwitchParameter",
+   "pos": [
+    -1500,
+    -2400
+   ]
+  },
+  {
+   "id": "MaterialExpressionScalarParameter_50",
+   "class": "ScalarParameter",
+   "pos": [
+    0,
+    -800
+   ]
+  },
+  {
+   "id": "MaterialExpressionTextureSampleParameter2D_23",
+   "class": "TextureSampleParameter2D",
+   "pos": [
+    -1200,
+    -3200
+   ]
+  },
+  {
+   "id": "MaterialExpressionScalarParameter_51",
+   "class": "ScalarParameter",
+   "pos": [
+    -1400,
+    -3450
+   ]
+  },
+  {
+   "id": "MaterialExpressionScalarParameter_52",
+   "class": "ScalarParameter",
+   "pos": [
+    -1200,
+    -3450
+   ]
+  },
+  {
+   "id": "MaterialExpressionScalarParameter_55",
+   "class": "ScalarParameter",
+   "pos": [
+    -1000,
+    -3450
+   ]
+  },
+  {
+   "id": "MaterialExpressionLinearInterpolate_18",
+   "class": "LinearInterpolate",
+   "pos": [
+    -500,
+    -3200
+   ]
+  },
+  {
+   "id": "MaterialExpressionSaturate_7",
+   "class": "Saturate",
+   "pos": [
+    -650,
+    -3450
+   ]
+  },
+  {
+   "id": "MaterialExpressionScalarParameter_56",
+   "class": "ScalarParameter",
+   "pos": [
+    -850,
+    -3650
+   ]
+  },
+  {
+   "id": "MaterialExpressionStaticSwitchParameter_28",
+   "class": "StaticSwitchParameter",
+   "pos": [
+    -200,
+    -3200
+   ]
+  },
+  {
+   "id": "MaterialExpressionSaturate_8",
+   "class": "Saturate",
+   "pos": [
+    -3600,
+    4200
+   ]
+  },
+  {
+   "id": "MaterialExpressionTextureSampleParameter2D_24",
+   "class": "TextureSampleParameter2D",
+   "pos": [
+    -2800,
+    5600
+   ]
+  },
+  {
+   "id": "MaterialExpressionScalarParameter_57",
+   "class": "ScalarParameter",
+   "pos": [
+    -3200,
+    5600
+   ]
+  },
+  {
+   "id": "MaterialExpressionLandscapeLayerSample_4",
+   "class": "LandscapeLayerSample",
+   "pos": [
+    -2400,
+    5600
+   ]
+  },
+  {
+   "id": "MaterialExpressionLinearInterpolate_19",
+   "class": "LinearInterpolate",
+   "pos": [
+    -2000,
+    5600
+   ]
+  },
+  {
+   "id": "MaterialExpressionMultiply_45",
+   "class": "Multiply",
+   "pos": [
+    -1600,
+    5600
+   ]
+  },
+  {
+   "id": "MaterialExpressionAdd_12",
+   "class": "Add",
+   "pos": [
+    -800,
+    5600
+   ]
+  },
+  {
+   "id": "MaterialExpressionSaturate_9",
+   "class": "Saturate",
+   "pos": [
+    -2400,
+    4800
+   ]
+  },
+  {
+   "id": "MaterialExpressionSaturate_10",
+   "class": "Saturate",
+   "pos": [
+    -2400,
+    5100
+   ]
+  },
+  {
+   "id": "MaterialExpressionSaturate_11",
+   "class": "Saturate",
+   "pos": [
+    -2400,
+    5500
+   ]
+  },
+  {
+   "id": "MaterialExpressionSaturate_12",
+   "class": "Saturate",
+   "pos": [
+    -2400,
+    5300
+   ]
+  },
+  {
+   "id": "MaterialExpressionScalarParameter_7",
+   "class": "ScalarParameter",
+   "pos": [
+    -1980,
+    140
+   ]
+  },
+  {
+   "id": "MaterialExpressionScalarParameter_10",
+   "class": "ScalarParameter",
+   "pos": [
+    -1980,
+    220
+   ]
+  },
+  {
+   "id": "MaterialExpressionScalarParameter_12",
+   "class": "ScalarParameter",
+   "pos": [
+    -1980,
+    300
+   ]
+  },
+  {
+   "id": "MaterialExpressionMultiply_0",
+   "class": "Multiply",
+   "pos": [
+    2400,
+    -1400
+   ]
+  },
+  {
+   "id": "MaterialExpressionAdd_0",
+   "class": "Add",
+   "pos": [
+    2600,
+    -1400
+   ]
+  },
+  {
+   "id": "MaterialExpressionMultiply_1",
+   "class": "Multiply",
+   "pos": [
+    2400,
+    -1200
+   ]
+  },
+  {
+   "id": "MaterialExpressionAdd_13",
+   "class": "Add",
+   "pos": [
+    2600,
+    -1200
+   ]
+  },
+  {
+   "id": "MaterialExpressionConstant_6",
+   "class": "Constant",
+   "pos": [
+    2200,
+    -900
+   ]
+  },
+  {
+   "id": "MaterialExpressionLinearInterpolate_11",
+   "class": "LinearInterpolate",
+   "pos": [
+    2800,
+    -1000
+   ]
+  }
+ ],
+ "custom_hlsl_nodes": [
+  {
+   "id": "MaterialExpressionCustom_0",
+   "pos": [
+    -2000,
+    2700
+   ],
+   "code": "\nfloat3 sr,cr;\nsincos(ProjectionRotation*(3.14159265359/180.0),sr,cr);\nfloat3x3 R=float3x3(\ncr.y*cr.z,sr.x*sr.y*cr.z-cr.x*sr.z,cr.x*sr.y*cr.z+sr.x*sr.z,\ncr.y*sr.z,sr.x*sr.y*sr.z+cr.x*cr.z,cr.x*sr.y*sr.z-sr.x*cr.z,\n-sr.y,sr.x*cr.y,cr.x*cr.y);\nfloat2 uv=(mul(R,WorldPosition+ProjectionOffset)*max(abs(ProjectionScale),0.00001)).xy;\nreturn Texture2DSampleGrad(Tex,TexSampler,uv,ddx(uv),ddy(uv)).rgb;\n",
+   "description": "Custom",
+   "output_type": "Float3",
+   "inputs": [
+    {
+     "name": "Tex"
+    },
+    {
+     "name": "WorldPosition"
+    },
+    {
+     "name": "ProjectionOffset"
+    },
+    {
+     "name": "ProjectionRotation"
+    },
+    {
+     "name": "ProjectionScale"
+    }
+   ],
+   "additional_outputs": []
+  },
+  {
+   "id": "MaterialExpressionCustom_1",
+   "pos": [
+    -1800,
+    -2400
+   ],
+   "code": "// Supplemental meso detail only: never changes source Gaea UVs.\n// Quintic-interpolated value noise, two octaves, world units in centimeters.\n// This is a coverage refinement, not a signed distance field or snow simulation.\nstruct SnowNoise\n{\n    float hash(float2 p)\n    {\n        float3 q=frac(float3(p.xyx)*0.1031);\n        q+=dot(q,q.yzx+33.33);\n        return frac((q.x+q.y)*q.z);\n    }\n    float value(float2 p)\n    {\n        float2 i=floor(p), f=frac(p);\n        float2 u=f*f*f*(f*(f*6.0-15.0)+10.0);\n        return lerp(lerp(hash(i),hash(i+float2(1,0)),u.x),\n                    lerp(hash(i+float2(0,1)),hash(i+float2(1,1)),u.x),u.y)*2.0-1.0;\n    }\n};\nSnowNoise noise;\nfloat2 p=WorldPosition.xy/max(WorldSizeCM,1.0);\nfloat footprint=max(length(ddx(p)),length(ddy(p)));\nfloat a=1.0-smoothstep(0.25,0.75,footprint);\nfloat b=1.0-smoothstep(0.25,0.75,footprint*2.03);\nfloat F=(noise.value(p)*a+0.5*noise.value(p*2.03+float2(17.3,-9.1))*b)/1.5;\nfloat C=saturate(Coverage);\nfloat edge=4.0*C*(1.0-C);\n// Preserve original zero-strength values, including legacy additive coverage.\nreturn Coverage + (saturate(C+edge*saturate(Strength)*F)-C);\n",
+   "description": "Custom",
+   "output_type": "Float1",
+   "inputs": [
+    {
+     "name": "Coverage"
+    },
+    {
+     "name": "WorldPosition"
+    },
+    {
+     "name": "WorldSizeCM"
+    },
+    {
+     "name": "Strength"
+    }
+   ],
+   "additional_outputs": []
+  },
+  {
+   "id": "MaterialExpressionCustom_2",
+   "pos": [
+    300,
+    -550
+   ],
+   "code": "return Baseline + saturate(SurfaceColor)*saturate(Beat)*saturate(Amount)*clamp(MaxEmission,0.0,10.0);",
+   "description": "Custom",
+   "output_type": "Float3",
+   "inputs": [
+    {
+     "name": "Baseline"
+    },
+    {
+     "name": "SurfaceColor"
+    },
+    {
+     "name": "Beat"
+    },
+    {
+     "name": "Amount"
+    },
+    {
+     "name": "MaxEmission"
+    }
+   ],
+   "additional_outputs": []
+  },
+  {
+   "id": "MaterialExpressionCustom_3",
+   "pos": [
+    -900,
+    -3200
+   ],
+   "code": "float d=(Encoded*2.0-1.0)*max(RangeCM,1.0); float w=max(WidthCM,1.0); float aa=max(fwidth(d),1.0); return (1.0-smoothstep(max(w-aa,0.0),w+aa,abs(d)))*saturate(Strength);",
+   "description": "Custom",
+   "output_type": "Float1",
+   "inputs": [
+    {
+     "name": "Encoded"
+    },
+    {
+     "name": "RangeCM"
+    },
+    {
+     "name": "WidthCM"
+    },
+    {
+     "name": "Strength"
+    }
+   ],
+   "additional_outputs": []
+  }
+ ],
+ "connections": [
+  {
+   "from": "MaterialExpressionTextureSampleParameter2D_6",
+   "from_pin": "RGB",
+   "to": "MaterialExpressionLandscapeLayerBlend_5",
+   "to_pin": "Layer Ground"
+  },
+  {
+   "from": "MaterialExpressionTextureSampleParameter2D_8",
+   "from_pin": "RGB",
+   "to": "MaterialExpressionLandscapeLayerBlend_5",
+   "to_pin": "Layer Grass"
+  },
+  {
+   "from": "MaterialExpressionStaticSwitchParameter_26",
+   "from_pin": "None",
+   "to": "MaterialExpressionLandscapeLayerBlend_5",
+   "to_pin": "Layer Rock"
+  },
+  {
+   "from": "MaterialExpressionTextureSampleParameter2D_6",
+   "from_pin": "RGB",
+   "to": "MaterialExpressionLandscapeLayerBlend_5",
+   "to_pin": "Layer Base"
+  },
+  {
+   "from": "MaterialExpressionTextureSampleParameter2D_7",
+   "from_pin": "RGB",
+   "to": "MaterialExpressionLandscapeLayerBlend_4",
+   "to_pin": "Layer Ground"
+  },
+  {
+   "from": "MaterialExpressionTextureSampleParameter2D_9",
+   "from_pin": "RGB",
+   "to": "MaterialExpressionLandscapeLayerBlend_4",
+   "to_pin": "Layer Grass"
+  },
+  {
+   "from": "MaterialExpressionStaticSwitchParameter_12",
+   "from_pin": "None",
+   "to": "MaterialExpressionLandscapeLayerBlend_4",
+   "to_pin": "Layer Rock"
+  },
+  {
+   "from": "MaterialExpressionTextureSampleParameter2D_7",
+   "from_pin": "RGB",
+   "to": "MaterialExpressionLandscapeLayerBlend_4",
+   "to_pin": "Layer Base"
+  },
+  {
+   "from": "MaterialExpressionScalarParameter_19",
+   "from_pin": "None",
+   "to": "MaterialExpressionLandscapeLayerBlend_6",
+   "to_pin": "Layer Ground"
+  },
+  {
+   "from": "MaterialExpressionScalarParameter_21",
+   "from_pin": "None",
+   "to": "MaterialExpressionLandscapeLayerBlend_6",
+   "to_pin": "Layer Grass"
+  },
+  {
+   "from": "MaterialExpressionScalarParameter_23",
+   "from_pin": "None",
+   "to": "MaterialExpressionLandscapeLayerBlend_6",
+   "to_pin": "Layer Rock"
+  },
+  {
+   "from": "MaterialExpressionScalarParameter_19",
+   "from_pin": "None",
+   "to": "MaterialExpressionLandscapeLayerBlend_6",
+   "to_pin": "Layer Base"
+  },
+  {
+   "from": "MaterialExpressionScalarParameter_7",
+   "from_pin": "None",
+   "to": "MaterialExpressionLandscapeLayerBlend_6",
+   "to_pin": "Layer Water"
+  },
+  {
+   "from": "MaterialExpressionScalarParameter_10",
+   "from_pin": "None",
+   "to": "MaterialExpressionLandscapeLayerBlend_6",
+   "to_pin": "Layer Mud"
+  },
+  {
+   "from": "MaterialExpressionScalarParameter_12",
+   "from_pin": "None",
+   "to": "MaterialExpressionLandscapeLayerBlend_6",
+   "to_pin": "Layer Path"
+  },
+  {
+   "from": "MaterialExpressionLandscapeLayerCoords_2",
+   "from_pin": "None",
+   "to": "MaterialExpressionMultiply_10",
+   "to_pin": "A"
+  },
+  {
+   "from": "MaterialExpressionScalarParameter_15",
+   "from_pin": "None",
+   "to": "MaterialExpressionMultiply_10",
+   "to_pin": "B"
+  },
+  {
+   "from": "MaterialExpressionStaticSwitchParameter_7",
+   "from_pin": "None",
+   "to": "MaterialExpressionTextureSampleParameter2D_6",
+   "to_pin": "Coordinates"
+  },
+  {
+   "from": "MaterialExpressionMultiply_10",
+   "from_pin": "None",
+   "to": "MaterialExpressionTextureSampleParameter2D_7",
+   "to_pin": "Coordinates"
+  },
+  {
+   "from": "MaterialExpressionLandscapeLayerCoords_4",
+   "from_pin": "None",
+   "to": "MaterialExpressionMultiply_11",
+   "to_pin": "A"
+  },
+  {
+   "from": "MaterialExpressionScalarParameter_20",
+   "from_pin": "None",
+   "to": "MaterialExpressionMultiply_11",
+   "to_pin": "B"
+  },
+  {
+   "from": "MaterialExpressionStaticSwitchParameter_8",
+   "from_pin": "None",
+   "to": "MaterialExpressionTextureSampleParameter2D_8",
+   "to_pin": "Coordinates"
+  },
+  {
+   "from": "MaterialExpressionMultiply_11",
+   "from_pin": "None",
+   "to": "MaterialExpressionTextureSampleParameter2D_9",
+   "to_pin": "Coordinates"
+  },
+  {
+   "from": "MaterialExpressionLandscapeLayerCoords_5",
+   "from_pin": "None",
+   "to": "MaterialExpressionMultiply_12",
+   "to_pin": "A"
+  },
+  {
+   "from": "MaterialExpressionScalarParameter_22",
+   "from_pin": "None",
+   "to": "MaterialExpressionMultiply_12",
+   "to_pin": "B"
+  },
+  {
+   "from": "MaterialExpressionStaticSwitchParameter_9",
+   "from_pin": "None",
+   "to": "MaterialExpressionTextureSampleParameter2D_11",
+   "to_pin": "Coordinates"
+  },
+  {
+   "from": "MaterialExpressionMultiply_12",
+   "from_pin": "None",
+   "to": "MaterialExpressionTextureSampleParameter2D_12",
+   "to_pin": "Coordinates"
+  },
+  {
+   "from": "MaterialExpressionStaticSwitchParameter_13",
+   "from_pin": "None",
+   "to": "MaterialExpressionMultiply_13",
+   "to_pin": "A"
+  },
+  {
+   "from": "MaterialExpressionVectorParameter_5",
+   "from_pin": "RGB",
+   "to": "MaterialExpressionMultiply_13",
+   "to_pin": "B"
+  },
+  {
+   "from": "MaterialExpressionMultiply_13",
+   "from_pin": "None",
+   "to": "MaterialExpressionDotProduct_1",
+   "to_pin": "A"
+  },
+  {
+   "from": "MaterialExpressionConstant3Vector_1",
+   "from_pin": "None",
+   "to": "MaterialExpressionDotProduct_1",
+   "to_pin": "B"
+  },
+  {
+   "from": "MaterialExpressionVectorParameter_6",
+   "from_pin": "RGB",
+   "to": "MaterialExpressionMaterialFunctionCall_3",
+   "to_pin": "RampLow (V3)"
+  },
+  {
+   "from": "MaterialExpressionVectorParameter_7",
+   "from_pin": "RGB",
+   "to": "MaterialExpressionMaterialFunctionCall_3",
+   "to_pin": "RampMid (V3)"
+  },
+  {
+   "from": "MaterialExpressionVectorParameter_8",
+   "from_pin": "RGB",
+   "to": "MaterialExpressionMaterialFunctionCall_3",
+   "to_pin": "RampHigh (V3)"
+  },
+  {
+   "from": "MaterialExpressionScalarParameter_24",
+   "from_pin": "None",
+   "to": "MaterialExpressionMaterialFunctionCall_3",
+   "to_pin": "RampPosMid (V3)"
+  },
+  {
+   "from": "MaterialExpressionDotProduct_1",
+   "from_pin": "None",
+   "to": "MaterialExpressionMaterialFunctionCall_3",
+   "to_pin": "Mask (V3)"
+  },
+  {
+   "from": "MaterialExpressionScalarParameter_25",
+   "from_pin": "None",
+   "to": "MaterialExpressionMaterialFunctionCall_3",
+   "to_pin": "RampContrast (V3)"
+  },
+  {
+   "from": "MaterialExpressionLinearInterpolate_11",
+   "from_pin": "None",
+   "to": "MaterialExpressionLinearInterpolate_3",
+   "to_pin": "A"
+  },
+  {
+   "from": "MaterialExpressionMaterialFunctionCall_3",
+   "from_pin": "Color",
+   "to": "MaterialExpressionLinearInterpolate_3",
+   "to_pin": "B"
+  },
+  {
+   "from": "MaterialExpressionScalarParameter_27",
+   "from_pin": "None",
+   "to": "MaterialExpressionLinearInterpolate_3",
+   "to_pin": "Alpha"
+  },
+  {
+   "from": "MaterialExpressionLinearInterpolate_3",
+   "from_pin": "None",
+   "to": "MaterialExpressionMaterialFunctionCall_4",
+   "to_pin": "BaseColorIn (V3)"
+  },
+  {
+   "from": "MaterialExpressionScalarParameter_28",
+   "from_pin": "None",
+   "to": "MaterialExpressionLinearInterpolate_4",
+   "to_pin": "A"
+  },
+  {
+   "from": "MaterialExpressionScalarParameter_29",
+   "from_pin": "None",
+   "to": "MaterialExpressionLinearInterpolate_4",
+   "to_pin": "B"
+  },
+  {
+   "from": "MaterialExpressionLandscapeLayerBlend_6",
+   "from_pin": "None",
+   "to": "MaterialExpressionLinearInterpolate_4",
+   "to_pin": "Alpha"
+  },
+  {
+   "from": "MaterialExpressionFresnel_1",
+   "from_pin": "None",
+   "to": "MaterialExpressionMultiply_14",
+   "to_pin": "A"
+  },
+  {
+   "from": "MaterialExpressionScalarParameter_30",
+   "from_pin": "None",
+   "to": "MaterialExpressionMultiply_14",
+   "to_pin": "B"
+  },
+  {
+   "from": "MaterialExpressionConstant_1",
+   "from_pin": "None",
+   "to": "MaterialExpressionSubtract_3",
+   "to_pin": "A"
+  },
+  {
+   "from": "MaterialExpressionMultiply_14",
+   "from_pin": "None",
+   "to": "MaterialExpressionSubtract_3",
+   "to_pin": "B"
+  },
+  {
+   "from": "MaterialExpressionLinearInterpolate_4",
+   "from_pin": "None",
+   "to": "MaterialExpressionMultiply_15",
+   "to_pin": "A"
+  },
+  {
+   "from": "MaterialExpressionSubtract_3",
+   "from_pin": "None",
+   "to": "MaterialExpressionMultiply_15",
+   "to_pin": "B"
+  },
+  {
+   "from": "MaterialExpressionPixelDepth_1",
+   "from_pin": "None",
+   "to": "MaterialExpressionSubtract_4",
+   "to_pin": "A"
+  },
+  {
+   "from": "MaterialExpressionScalarParameter_32",
+   "from_pin": "None",
+   "to": "MaterialExpressionSubtract_4",
+   "to_pin": "B"
+  },
+  {
+   "from": "MaterialExpressionScalarParameter_33",
+   "from_pin": "None",
+   "to": "MaterialExpressionSubtract_6",
+   "to_pin": "A"
+  },
+  {
+   "from": "MaterialExpressionScalarParameter_32",
+   "from_pin": "None",
+   "to": "MaterialExpressionSubtract_6",
+   "to_pin": "B"
+  },
+  {
+   "from": "MaterialExpressionSubtract_4",
+   "from_pin": "None",
+   "to": "MaterialExpressionDivide_1",
+   "to_pin": "A"
+  },
+  {
+   "from": "MaterialExpressionSubtract_6",
+   "from_pin": "None",
+   "to": "MaterialExpressionDivide_1",
+   "to_pin": "B"
+  },
+  {
+   "from": "MaterialExpressionDivide_1",
+   "from_pin": "None",
+   "to": "MaterialExpressionSaturate_1",
+   "to_pin": "Input"
+  },
+  {
+   "from": "MaterialExpressionSaturate_1",
+   "from_pin": "None",
+   "to": "MaterialExpressionMultiply_16",
+   "to_pin": "A"
+  },
+  {
+   "from": "MaterialExpressionScalarParameter_34",
+   "from_pin": "None",
+   "to": "MaterialExpressionMultiply_16",
+   "to_pin": "B"
+  },
+  {
+   "from": "MaterialExpressionStaticSwitchParameter_17",
+   "from_pin": "None",
+   "to": "MaterialExpressionLinearInterpolate_5",
+   "to_pin": "A"
+  },
+  {
+   "from": "MaterialExpressionVectorParameter_9",
+   "from_pin": "RGB",
+   "to": "MaterialExpressionLinearInterpolate_5",
+   "to_pin": "B"
+  },
+  {
+   "from": "MaterialExpressionMultiply_16",
+   "from_pin": "None",
+   "to": "MaterialExpressionLinearInterpolate_5",
+   "to_pin": "Alpha"
+  },
+  {
+   "from": "MaterialExpressionMaterialFunctionCall_4",
+   "from_pin": "EmissiveOut",
+   "to": "MaterialExpressionMultiply_17",
+   "to_pin": "A"
+  },
+  {
+   "from": "MaterialExpressionScalarParameter_35",
+   "from_pin": "None",
+   "to": "MaterialExpressionMultiply_17",
+   "to_pin": "B"
+  },
+  {
+   "from": "MaterialExpressionLinearInterpolate_3",
+   "from_pin": "None",
+   "to": "MaterialExpressionMultiply_18",
+   "to_pin": "A"
+  },
+  {
+   "from": "MaterialExpressionScalarParameter_36",
+   "from_pin": "None",
+   "to": "MaterialExpressionMultiply_18",
+   "to_pin": "B"
+  },
+  {
+   "from": "MaterialExpressionMultiply_17",
+   "from_pin": "None",
+   "to": "MaterialExpressionAdd_1",
+   "to_pin": "A"
+  },
+  {
+   "from": "MaterialExpressionMultiply_18",
+   "from_pin": "None",
+   "to": "MaterialExpressionAdd_1",
+   "to_pin": "B"
+  },
+  {
+   "from": "MaterialExpressionMultiply_16",
+   "from_pin": "None",
+   "to": "MaterialExpressionOneMinus_1",
+   "to_pin": "Input"
+  },
+  {
+   "from": "MaterialExpressionAdd_1",
+   "from_pin": "None",
+   "to": "MaterialExpressionMultiply_20",
+   "to_pin": "A"
+  },
+  {
+   "from": "MaterialExpressionOneMinus_1",
+   "from_pin": "None",
+   "to": "MaterialExpressionMultiply_20",
+   "to_pin": "B"
+  },
+  {
+   "from": "MaterialExpressionLinearInterpolate_8",
+   "from_pin": "None",
+   "to": "MaterialExpressionSubstrateToonBSDF_1",
+   "to_pin": "BaseColor"
+  },
+  {
+   "from": "MaterialExpressionScalarParameter_31",
+   "from_pin": "None",
+   "to": "MaterialExpressionSubstrateToonBSDF_1",
+   "to_pin": "Metallic"
+  },
+  {
+   "from": "MaterialExpressionStaticSwitchParameter_28",
+   "from_pin": "None",
+   "to": "MaterialExpressionSubstrateToonBSDF_1",
+   "to_pin": "Roughness"
+  },
+  {
+   "from": "MaterialExpressionNormalize_1",
+   "from_pin": "None",
+   "to": "MaterialExpressionSubstrateToonBSDF_1",
+   "to_pin": "Normal"
+  },
+  {
+   "from": "MaterialExpressionCustom_2",
+   "from_pin": "None",
+   "to": "MaterialExpressionSubstrateToonBSDF_1",
+   "to_pin": "EmissiveColor"
+  },
+  {
+   "from": "MaterialExpressionLinearInterpolate_0",
+   "from_pin": "None",
+   "to": "MaterialExpressionStaticSwitchParameter_13",
+   "to_pin": "True"
+  },
+  {
+   "from": "MaterialExpressionLandscapeLayerBlend_5",
+   "from_pin": "None",
+   "to": "MaterialExpressionStaticSwitchParameter_13",
+   "to_pin": "False"
+  },
+  {
+   "from": "MaterialExpressionTextureObjectParameter_0",
+   "from_pin": "None",
+   "to": "MaterialExpressionMaterialFunctionCall_15",
+   "to_pin": "Tex (T2d)"
+  },
+  {
+   "from": "MaterialExpressionWorldPosition_2",
+   "from_pin": "XYZ",
+   "to": "MaterialExpressionMaterialFunctionCall_15",
+   "to_pin": "WorldPosition (V3)"
+  },
+  {
+   "from": "MaterialExpressionVertexNormalWS_2",
+   "from_pin": "None",
+   "to": "MaterialExpressionMaterialFunctionCall_15",
+   "to_pin": "WorldNormal (V3)"
+  },
+  {
+   "from": "MaterialExpressionScalarParameter_81",
+   "from_pin": "None",
+   "to": "MaterialExpressionMaterialFunctionCall_15",
+   "to_pin": "ProjectionScale (S)"
+  },
+  {
+   "from": "MaterialExpressionScalarParameter_82",
+   "from_pin": "None",
+   "to": "MaterialExpressionMaterialFunctionCall_15",
+   "to_pin": "BlendSharpness (S)"
+  },
+  {
+   "from": "MaterialExpressionVectorParameter_15",
+   "from_pin": "RGB",
+   "to": "MaterialExpressionMaterialFunctionCall_15",
+   "to_pin": "ProjectionOffset (V3)"
+  },
+  {
+   "from": "MaterialExpressionVectorParameter_16",
+   "from_pin": "RGB",
+   "to": "MaterialExpressionMaterialFunctionCall_15",
+   "to_pin": "ProjectionRotation (V3)"
+  },
+  {
+   "from": "MaterialExpressionVectorParameter_27",
+   "from_pin": "RGB",
+   "to": "MaterialExpressionMaterialFunctionCall_15",
+   "to_pin": "AxisWeights (V3)"
+  },
+  {
+   "from": "MaterialExpressionScalarParameter_85",
+   "from_pin": "None",
+   "to": "MaterialExpressionMaterialFunctionCall_15",
+   "to_pin": "BreakupScale (S)"
+  },
+  {
+   "from": "MaterialExpressionScalarParameter_84",
+   "from_pin": "None",
+   "to": "MaterialExpressionMaterialFunctionCall_15",
+   "to_pin": "BreakupStrength (S)"
+  },
+  {
+   "from": "MaterialExpressionScalarParameter_86",
+   "from_pin": "None",
+   "to": "MaterialExpressionMaterialFunctionCall_15",
+   "to_pin": "BreakupContrast (S)"
+  },
+  {
+   "from": "MaterialExpressionLandscapeLayerBlend_5",
+   "from_pin": "None",
+   "to": "MaterialExpressionLinearInterpolate_0",
+   "to_pin": "A"
+  },
+  {
+   "from": "MaterialExpressionMaterialFunctionCall_15",
+   "from_pin": "Color",
+   "to": "MaterialExpressionLinearInterpolate_0",
+   "to_pin": "B"
+  },
+  {
+   "from": "MaterialExpressionScalarParameter_83",
+   "from_pin": "None",
+   "to": "MaterialExpressionLinearInterpolate_0",
+   "to_pin": "Alpha"
+  },
+  {
+   "from": "MaterialExpressionMaterialFunctionCall_16",
+   "from_pin": "Color",
+   "to": "MaterialExpressionStaticSwitchParameter_14",
+   "to_pin": "True"
+  },
+  {
+   "from": "MaterialExpressionMaterialFunctionCall_4",
+   "from_pin": "ColorOut",
+   "to": "MaterialExpressionStaticSwitchParameter_14",
+   "to_pin": "False"
+  },
+  {
+   "from": "MaterialExpressionMaterialFunctionCall_4",
+   "from_pin": "ColorOut",
+   "to": "MaterialExpressionMaterialFunctionCall_16",
+   "to_pin": "BaseColor (V3)"
+  },
+  {
+   "from": "MaterialExpressionDotProduct_2",
+   "from_pin": "None",
+   "to": "MaterialExpressionMaterialFunctionCall_16",
+   "to_pin": "Mask (S)"
+  },
+  {
+   "from": "MaterialExpressionScalarParameter_87",
+   "from_pin": "None",
+   "to": "MaterialExpressionMaterialFunctionCall_16",
+   "to_pin": "BandCount (S)"
+  },
+  {
+   "from": "MaterialExpressionScalarParameter_88",
+   "from_pin": "None",
+   "to": "MaterialExpressionMaterialFunctionCall_16",
+   "to_pin": "BandSoftness (S)"
+  },
+  {
+   "from": "MaterialExpressionVectorParameter_28",
+   "from_pin": "RGB",
+   "to": "MaterialExpressionMaterialFunctionCall_16",
+   "to_pin": "ShadeColor (V3)"
+  },
+  {
+   "from": "MaterialExpressionScalarParameter_89",
+   "from_pin": "None",
+   "to": "MaterialExpressionMaterialFunctionCall_16",
+   "to_pin": "Strength (S)"
+  },
+  {
+   "from": "MaterialExpressionMaterialFunctionCall_4",
+   "from_pin": "ColorOut",
+   "to": "MaterialExpressionDotProduct_2",
+   "to_pin": "A"
+  },
+  {
+   "from": "MaterialExpressionConstant3Vector_4",
+   "from_pin": "None",
+   "to": "MaterialExpressionDotProduct_2",
+   "to_pin": "B"
+  },
+  {
+   "from": "MaterialExpressionMaterialFunctionCall_17",
+   "from_pin": "Color",
+   "to": "MaterialExpressionStaticSwitchParameter_15",
+   "to_pin": "True"
+  },
+  {
+   "from": "MaterialExpressionStaticSwitchParameter_14",
+   "from_pin": "None",
+   "to": "MaterialExpressionStaticSwitchParameter_15",
+   "to_pin": "False"
+  },
+  {
+   "from": "MaterialExpressionStaticSwitchParameter_14",
+   "from_pin": "None",
+   "to": "MaterialExpressionMaterialFunctionCall_17",
+   "to_pin": "BaseColor (V3)"
+  },
+  {
+   "from": "MaterialExpressionVertexNormalWS_2",
+   "from_pin": "None",
+   "to": "MaterialExpressionMaterialFunctionCall_17",
+   "to_pin": "Normal (V3)"
+  },
+  {
+   "from": "MaterialExpressionWorldPosition_2",
+   "from_pin": "XYZ",
+   "to": "MaterialExpressionMaterialFunctionCall_17",
+   "to_pin": "WorldPosition (V3)"
+  },
+  {
+   "from": "MaterialExpressionScalarParameter_90",
+   "from_pin": "None",
+   "to": "MaterialExpressionMaterialFunctionCall_17",
+   "to_pin": "Sheen (S)"
+  },
+  {
+   "from": "MaterialExpressionScalarParameter_91",
+   "from_pin": "None",
+   "to": "MaterialExpressionMaterialFunctionCall_17",
+   "to_pin": "Iridescence (S)"
+  },
+  {
+   "from": "MaterialExpressionScalarParameter_92",
+   "from_pin": "None",
+   "to": "MaterialExpressionMaterialFunctionCall_17",
+   "to_pin": "TwinkleScale (S)"
+  },
+  {
+   "from": "MaterialExpressionScalarParameter_93",
+   "from_pin": "None",
+   "to": "MaterialExpressionMaterialFunctionCall_17",
+   "to_pin": "TwinkleAmount (S)"
+  },
+  {
+   "from": "MaterialExpressionVectorParameter_29",
+   "from_pin": "RGB",
+   "to": "MaterialExpressionMaterialFunctionCall_17",
+   "to_pin": "Tint (V3)"
+  },
+  {
+   "from": "MaterialExpressionMaterialFunctionCall_18",
+   "from_pin": "Color",
+   "to": "MaterialExpressionStaticSwitchParameter_16",
+   "to_pin": "True"
+  },
+  {
+   "from": "MaterialExpressionStaticSwitchParameter_15",
+   "from_pin": "None",
+   "to": "MaterialExpressionStaticSwitchParameter_16",
+   "to_pin": "False"
+  },
+  {
+   "from": "MaterialExpressionStaticSwitchParameter_15",
+   "from_pin": "None",
+   "to": "MaterialExpressionMaterialFunctionCall_18",
+   "to_pin": "BaseColor (V3)"
+  },
+  {
+   "from": "MaterialExpressionDotProduct_2",
+   "from_pin": "None",
+   "to": "MaterialExpressionMaterialFunctionCall_18",
+   "to_pin": "Mask (S)"
+  },
+  {
+   "from": "MaterialExpressionVectorParameter_30",
+   "from_pin": "RGB",
+   "to": "MaterialExpressionMaterialFunctionCall_18",
+   "to_pin": "RampLow (V3)"
+  },
+  {
+   "from": "MaterialExpressionVectorParameter_31",
+   "from_pin": "RGB",
+   "to": "MaterialExpressionMaterialFunctionCall_18",
+   "to_pin": "RampMid (V3)"
+  },
+  {
+   "from": "MaterialExpressionVectorParameter_32",
+   "from_pin": "RGB",
+   "to": "MaterialExpressionMaterialFunctionCall_18",
+   "to_pin": "RampHigh (V3)"
+  },
+  {
+   "from": "MaterialExpressionScalarParameter_96",
+   "from_pin": "None",
+   "to": "MaterialExpressionMaterialFunctionCall_18",
+   "to_pin": "RampPosMid (S)"
+  },
+  {
+   "from": "MaterialExpressionScalarParameter_94",
+   "from_pin": "None",
+   "to": "MaterialExpressionMaterialFunctionCall_18",
+   "to_pin": "Strength (S)"
+  },
+  {
+   "from": "MaterialExpressionScalarParameter_95",
+   "from_pin": "None",
+   "to": "MaterialExpressionMaterialFunctionCall_18",
+   "to_pin": "PastelLift (S)"
+  },
+  {
+   "from": "MaterialExpressionScalarParameter_97",
+   "from_pin": "None",
+   "to": "MaterialExpressionMaterialFunctionCall_18",
+   "to_pin": "Bloom (S)"
+  },
+  {
+   "from": "MaterialExpressionLinearInterpolate_1",
+   "from_pin": "None",
+   "to": "MaterialExpressionStaticSwitchParameter_17",
+   "to_pin": "True"
+  },
+  {
+   "from": "MaterialExpressionStaticSwitchParameter_16",
+   "from_pin": "None",
+   "to": "MaterialExpressionStaticSwitchParameter_17",
+   "to_pin": "False"
+  },
+  {
+   "from": "MaterialExpressionVertexNormalWS_2",
+   "from_pin": "None",
+   "to": "MaterialExpressionDotProduct_3",
+   "to_pin": "A"
+  },
+  {
+   "from": "MaterialExpressionLightVector_0",
+   "from_pin": "None",
+   "to": "MaterialExpressionDotProduct_3",
+   "to_pin": "B"
+  },
+  {
+   "from": "MaterialExpressionDotProduct_3",
+   "from_pin": "None",
+   "to": "MaterialExpressionOneMinus_0",
+   "to_pin": "Input"
+  },
+  {
+   "from": "MaterialExpressionOneMinus_0",
+   "from_pin": "None",
+   "to": "MaterialExpressionPower_0",
+   "to_pin": "Base"
+  },
+  {
+   "from": "MaterialExpressionScalarParameter_99",
+   "from_pin": "None",
+   "to": "MaterialExpressionPower_0",
+   "to_pin": "Exponent"
+  },
+  {
+   "from": "MaterialExpressionPower_0",
+   "from_pin": "None",
+   "to": "MaterialExpressionMultiply_3",
+   "to_pin": "A"
+  },
+  {
+   "from": "MaterialExpressionScalarParameter_98",
+   "from_pin": "None",
+   "to": "MaterialExpressionMultiply_3",
+   "to_pin": "B"
+  },
+  {
+   "from": "MaterialExpressionStaticSwitchParameter_16",
+   "from_pin": "None",
+   "to": "MaterialExpressionMultiply_5",
+   "to_pin": "A"
+  },
+  {
+   "from": "MaterialExpressionVectorParameter_33",
+   "from_pin": "RGB",
+   "to": "MaterialExpressionMultiply_5",
+   "to_pin": "B"
+  },
+  {
+   "from": "MaterialExpressionLinearInterpolate_2",
+   "from_pin": "None",
+   "to": "MaterialExpressionLinearInterpolate_1",
+   "to_pin": "A"
+  },
+  {
+   "from": "MaterialExpressionMultiply_5",
+   "from_pin": "None",
+   "to": "MaterialExpressionLinearInterpolate_1",
+   "to_pin": "B"
+  },
+  {
+   "from": "MaterialExpressionMultiply_3",
+   "from_pin": "None",
+   "to": "MaterialExpressionLinearInterpolate_1",
+   "to_pin": "Alpha"
+  },
+  {
+   "from": "MaterialExpressionMaterialFunctionCall_19",
+   "from_pin": "Color",
+   "to": "MaterialExpressionStaticSwitchParameter_19",
+   "to_pin": "True"
+  },
+  {
+   "from": "MaterialExpressionStaticSwitchParameter_16",
+   "from_pin": "None",
+   "to": "MaterialExpressionStaticSwitchParameter_19",
+   "to_pin": "False"
+  },
+  {
+   "from": "MaterialExpressionStaticSwitchParameter_16",
+   "from_pin": "None",
+   "to": "MaterialExpressionMaterialFunctionCall_19",
+   "to_pin": "BaseColor (V3)"
+  },
+  {
+   "from": "MaterialExpressionDotProduct_8",
+   "from_pin": "None",
+   "to": "MaterialExpressionMaterialFunctionCall_19",
+   "to_pin": "Mask (S)"
+  },
+  {
+   "from": "MaterialExpressionScalarParameter_101",
+   "from_pin": "None",
+   "to": "MaterialExpressionMaterialFunctionCall_19",
+   "to_pin": "BandScale (S)"
+  },
+  {
+   "from": "MaterialExpressionScalarParameter_102",
+   "from_pin": "None",
+   "to": "MaterialExpressionMaterialFunctionCall_19",
+   "to_pin": "Sharpness (S)"
+  },
+  {
+   "from": "MaterialExpressionScalarParameter_103",
+   "from_pin": "None",
+   "to": "MaterialExpressionMaterialFunctionCall_19",
+   "to_pin": "Strength (S)"
+  },
+  {
+   "from": "MaterialExpressionVectorParameter_34",
+   "from_pin": "RGB",
+   "to": "MaterialExpressionMaterialFunctionCall_19",
+   "to_pin": "RibbonColor (V3)"
+  },
+  {
+   "from": "MaterialExpressionScalarParameter_104",
+   "from_pin": "None",
+   "to": "MaterialExpressionMaterialFunctionCall_19",
+   "to_pin": "EdgeFalloff (S)"
+  },
+  {
+   "from": "MaterialExpressionScalarParameter_105",
+   "from_pin": "None",
+   "to": "MaterialExpressionMaterialFunctionCall_19",
+   "to_pin": "EdgeStrength (S)"
+  },
+  {
+   "from": "MaterialExpressionStaticSwitchParameter_16",
+   "from_pin": "None",
+   "to": "MaterialExpressionDotProduct_8",
+   "to_pin": "A"
+  },
+  {
+   "from": "MaterialExpressionConstant3Vector_10",
+   "from_pin": "None",
+   "to": "MaterialExpressionDotProduct_8",
+   "to_pin": "B"
+  },
+  {
+   "from": "MaterialExpressionMaterialFunctionCall_20",
+   "from_pin": "Color",
+   "to": "MaterialExpressionStaticSwitchParameter_20",
+   "to_pin": "True"
+  },
+  {
+   "from": "MaterialExpressionStaticSwitchParameter_19",
+   "from_pin": "None",
+   "to": "MaterialExpressionStaticSwitchParameter_20",
+   "to_pin": "False"
+  },
+  {
+   "from": "MaterialExpressionStaticSwitchParameter_19",
+   "from_pin": "None",
+   "to": "MaterialExpressionMaterialFunctionCall_20",
+   "to_pin": "BaseColor (V3)"
+  },
+  {
+   "from": "MaterialExpressionVertexNormalWS_3",
+   "from_pin": "None",
+   "to": "MaterialExpressionMaterialFunctionCall_20",
+   "to_pin": "Normal (V3)"
+  },
+  {
+   "from": "MaterialExpressionDotProduct_8",
+   "from_pin": "None",
+   "to": "MaterialExpressionMaterialFunctionCall_20",
+   "to_pin": "Mask (S)"
+  },
+  {
+   "from": "MaterialExpressionScalarParameter_106",
+   "from_pin": "None",
+   "to": "MaterialExpressionMaterialFunctionCall_20",
+   "to_pin": "Frequency (S)"
+  },
+  {
+   "from": "MaterialExpressionScalarParameter_107",
+   "from_pin": "None",
+   "to": "MaterialExpressionMaterialFunctionCall_20",
+   "to_pin": "SecondFrequency (S)"
+  },
+  {
+   "from": "MaterialExpressionScalarParameter_108",
+   "from_pin": "None",
+   "to": "MaterialExpressionMaterialFunctionCall_20",
+   "to_pin": "Strength (S)"
+  },
+  {
+   "from": "MaterialExpressionVectorParameter_35",
+   "from_pin": "RGB",
+   "to": "MaterialExpressionMaterialFunctionCall_20",
+   "to_pin": "PearlTint (V3)"
+  },
+  {
+   "from": "MaterialExpressionMaterialFunctionCall_21",
+   "from_pin": "Color",
+   "to": "MaterialExpressionStaticSwitchParameter_21",
+   "to_pin": "True"
+  },
+  {
+   "from": "MaterialExpressionStaticSwitchParameter_20",
+   "from_pin": "None",
+   "to": "MaterialExpressionStaticSwitchParameter_21",
+   "to_pin": "False"
+  },
+  {
+   "from": "MaterialExpressionStaticSwitchParameter_20",
+   "from_pin": "None",
+   "to": "MaterialExpressionMaterialFunctionCall_21",
+   "to_pin": "BaseColor (V3)"
+  },
+  {
+   "from": "MaterialExpressionWorldPosition_3",
+   "from_pin": "XYZ",
+   "to": "MaterialExpressionMaterialFunctionCall_21",
+   "to_pin": "WorldPosition (V3)"
+  },
+  {
+   "from": "MaterialExpressionDotProduct_8",
+   "from_pin": "None",
+   "to": "MaterialExpressionMaterialFunctionCall_21",
+   "to_pin": "Mask (S)"
+  },
+  {
+   "from": "MaterialExpressionScalarParameter_109",
+   "from_pin": "None",
+   "to": "MaterialExpressionMaterialFunctionCall_21",
+   "to_pin": "Bleed (S)"
+  },
+  {
+   "from": "MaterialExpressionScalarParameter_110",
+   "from_pin": "None",
+   "to": "MaterialExpressionMaterialFunctionCall_21",
+   "to_pin": "BleedJitter (S)"
+  },
+  {
+   "from": "MaterialExpressionScalarParameter_111",
+   "from_pin": "None",
+   "to": "MaterialExpressionMaterialFunctionCall_21",
+   "to_pin": "Strength (S)"
+  },
+  {
+   "from": "MaterialExpressionVectorParameter_36",
+   "from_pin": "RGB",
+   "to": "MaterialExpressionMaterialFunctionCall_21",
+   "to_pin": "BleedColor (V3)"
+  },
+  {
+   "from": "MaterialExpressionMaterialFunctionCall_22",
+   "from_pin": "Color",
+   "to": "MaterialExpressionStaticSwitchParameter_22",
+   "to_pin": "True"
+  },
+  {
+   "from": "MaterialExpressionStaticSwitchParameter_21",
+   "from_pin": "None",
+   "to": "MaterialExpressionStaticSwitchParameter_22",
+   "to_pin": "False"
+  },
+  {
+   "from": "MaterialExpressionStaticSwitchParameter_21",
+   "from_pin": "None",
+   "to": "MaterialExpressionMaterialFunctionCall_22",
+   "to_pin": "BaseColor (V3)"
+  },
+  {
+   "from": "MaterialExpressionDotProduct_8",
+   "from_pin": "None",
+   "to": "MaterialExpressionMaterialFunctionCall_22",
+   "to_pin": "Mask (S)"
+  },
+  {
+   "from": "MaterialExpressionScalarParameter_112",
+   "from_pin": "None",
+   "to": "MaterialExpressionMaterialFunctionCall_22",
+   "to_pin": "EdgeWidth (S)"
+  },
+  {
+   "from": "MaterialExpressionScalarParameter_113",
+   "from_pin": "None",
+   "to": "MaterialExpressionMaterialFunctionCall_22",
+   "to_pin": "Bands (S)"
+  },
+  {
+   "from": "MaterialExpressionScalarParameter_114",
+   "from_pin": "None",
+   "to": "MaterialExpressionMaterialFunctionCall_22",
+   "to_pin": "BandSoftness (S)"
+  },
+  {
+   "from": "MaterialExpressionScalarParameter_115",
+   "from_pin": "None",
+   "to": "MaterialExpressionMaterialFunctionCall_22",
+   "to_pin": "Strength (S)"
+  },
+  {
+   "from": "MaterialExpressionVectorParameter_37",
+   "from_pin": "RGB",
+   "to": "MaterialExpressionMaterialFunctionCall_22",
+   "to_pin": "EdgeColor (V3)"
+  },
+  {
+   "from": "MaterialExpressionMaterialFunctionCall_23",
+   "from_pin": "Color",
+   "to": "MaterialExpressionStaticSwitchParameter_23",
+   "to_pin": "True"
+  },
+  {
+   "from": "MaterialExpressionStaticSwitchParameter_22",
+   "from_pin": "None",
+   "to": "MaterialExpressionStaticSwitchParameter_23",
+   "to_pin": "False"
+  },
+  {
+   "from": "MaterialExpressionStaticSwitchParameter_22",
+   "from_pin": "None",
+   "to": "MaterialExpressionMaterialFunctionCall_23",
+   "to_pin": "BaseColor (V3)"
+  },
+  {
+   "from": "MaterialExpressionVertexNormalWS_3",
+   "from_pin": "None",
+   "to": "MaterialExpressionMaterialFunctionCall_23",
+   "to_pin": "Normal (V3)"
+  },
+  {
+   "from": "MaterialExpressionWorldPosition_3",
+   "from_pin": "XYZ",
+   "to": "MaterialExpressionMaterialFunctionCall_23",
+   "to_pin": "WorldPosition (V3)"
+  },
+  {
+   "from": "MaterialExpressionDotProduct_8",
+   "from_pin": "None",
+   "to": "MaterialExpressionMaterialFunctionCall_23",
+   "to_pin": "Mask (S)"
+  },
+  {
+   "from": "MaterialExpressionScalarParameter_116",
+   "from_pin": "None",
+   "to": "MaterialExpressionMaterialFunctionCall_23",
+   "to_pin": "Scale (S)"
+  },
+  {
+   "from": "MaterialExpressionScalarParameter_117",
+   "from_pin": "None",
+   "to": "MaterialExpressionMaterialFunctionCall_23",
+   "to_pin": "Amount (S)"
+  },
+  {
+   "from": "MaterialExpressionScalarParameter_118",
+   "from_pin": "None",
+   "to": "MaterialExpressionMaterialFunctionCall_23",
+   "to_pin": "Intensity (S)"
+  },
+  {
+   "from": "MaterialExpressionVectorParameter_38",
+   "from_pin": "RGB",
+   "to": "MaterialExpressionMaterialFunctionCall_23",
+   "to_pin": "GlitterColor (V3)"
+  },
+  {
+   "from": "MaterialExpressionScalarParameter_119",
+   "from_pin": "None",
+   "to": "MaterialExpressionMaterialFunctionCall_23",
+   "to_pin": "HaloStrength (S)"
+  },
+  {
+   "from": "MaterialExpressionScalarParameter_120",
+   "from_pin": "None",
+   "to": "MaterialExpressionMaterialFunctionCall_23",
+   "to_pin": "HaloPower (S)"
+  },
+  {
+   "from": "MaterialExpressionScalarParameter_121",
+   "from_pin": "None",
+   "to": "MaterialExpressionMaterialFunctionCall_23",
+   "to_pin": "TwinkleSpeed (S)"
+  },
+  {
+   "from": "MaterialExpressionTime_1",
+   "from_pin": "None",
+   "to": "MaterialExpressionMaterialFunctionCall_23",
+   "to_pin": "Time (S)"
+  },
+  {
+   "from": "MaterialExpressionMaterialFunctionCall_24",
+   "from_pin": "Color",
+   "to": "MaterialExpressionStaticSwitchParameter_24",
+   "to_pin": "True"
+  },
+  {
+   "from": "MaterialExpressionStaticSwitchParameter_23",
+   "from_pin": "None",
+   "to": "MaterialExpressionStaticSwitchParameter_24",
+   "to_pin": "False"
+  },
+  {
+   "from": "MaterialExpressionStaticSwitchParameter_23",
+   "from_pin": "None",
+   "to": "MaterialExpressionMaterialFunctionCall_24",
+   "to_pin": "BaseColor (V3)"
+  },
+  {
+   "from": "MaterialExpressionWorldPosition_3",
+   "from_pin": "XYZ",
+   "to": "MaterialExpressionMaterialFunctionCall_24",
+   "to_pin": "WorldPosition (V3)"
+  },
+  {
+   "from": "MaterialExpressionScalarParameter_122",
+   "from_pin": "None",
+   "to": "MaterialExpressionMaterialFunctionCall_24",
+   "to_pin": "PetalScale (S)"
+  },
+  {
+   "from": "MaterialExpressionScalarParameter_123",
+   "from_pin": "None",
+   "to": "MaterialExpressionMaterialFunctionCall_24",
+   "to_pin": "PetalRadius (S)"
+  },
+  {
+   "from": "MaterialExpressionScalarParameter_124",
+   "from_pin": "None",
+   "to": "MaterialExpressionMaterialFunctionCall_24",
+   "to_pin": "Softness (S)"
+  },
+  {
+   "from": "MaterialExpressionScalarParameter_125",
+   "from_pin": "None",
+   "to": "MaterialExpressionMaterialFunctionCall_24",
+   "to_pin": "Strength (S)"
+  },
+  {
+   "from": "MaterialExpressionScalarParameter_126",
+   "from_pin": "None",
+   "to": "MaterialExpressionMaterialFunctionCall_24",
+   "to_pin": "BloomSpeed (S)"
+  },
+  {
+   "from": "MaterialExpressionTime_1",
+   "from_pin": "None",
+   "to": "MaterialExpressionMaterialFunctionCall_24",
+   "to_pin": "Time (S)"
+  },
+  {
+   "from": "MaterialExpressionVectorParameter_39",
+   "from_pin": "RGB",
+   "to": "MaterialExpressionMaterialFunctionCall_24",
+   "to_pin": "PetalTint (V3)"
+  },
+  {
+   "from": "MaterialExpressionVertexNormalWS_3",
+   "from_pin": "None",
+   "to": "MaterialExpressionMaterialFunctionCall_25",
+   "to_pin": "Normal (V3)"
+  },
+  {
+   "from": "MaterialExpressionWorldPosition_3",
+   "from_pin": "XYZ",
+   "to": "MaterialExpressionMaterialFunctionCall_25",
+   "to_pin": "WorldPosition (V3)"
+  },
+  {
+   "from": "MaterialExpressionDotProduct_8",
+   "from_pin": "None",
+   "to": "MaterialExpressionMaterialFunctionCall_25",
+   "to_pin": "Mask (S)"
+  },
+  {
+   "from": "MaterialExpressionVectorParameter_40",
+   "from_pin": "RGB",
+   "to": "MaterialExpressionMaterialFunctionCall_25",
+   "to_pin": "Direction (V3)"
+  },
+  {
+   "from": "MaterialExpressionScalarParameter_127",
+   "from_pin": "None",
+   "to": "MaterialExpressionMaterialFunctionCall_25",
+   "to_pin": "Amount (S)"
+  },
+  {
+   "from": "MaterialExpressionScalarParameter_128",
+   "from_pin": "None",
+   "to": "MaterialExpressionMaterialFunctionCall_25",
+   "to_pin": "Speed (S)"
+  },
+  {
+   "from": "MaterialExpressionTime_1",
+   "from_pin": "None",
+   "to": "MaterialExpressionMaterialFunctionCall_25",
+   "to_pin": "Time (S)"
+  },
+  {
+   "from": "MaterialExpressionMaterialFunctionCall_25",
+   "from_pin": "Color",
+   "to": "MaterialExpressionStaticSwitchParameter_25",
+   "to_pin": "True"
+  },
+  {
+   "from": "MaterialExpressionConstant3Vector_11",
+   "from_pin": "None",
+   "to": "MaterialExpressionStaticSwitchParameter_25",
+   "to_pin": "False"
+  },
+  {
+   "from": "MaterialExpressionStaticSwitchParameter_24",
+   "from_pin": "None",
+   "to": "MaterialExpressionMaterialFunctionCall_0",
+   "to_pin": "BaseColor (V3)"
+  },
+  {
+   "from": "MaterialExpressionVertexNormalWS_0",
+   "from_pin": "None",
+   "to": "MaterialExpressionMaterialFunctionCall_0",
+   "to_pin": "Normal (V3)"
+  },
+  {
+   "from": "MaterialExpressionWorldPosition_0",
+   "from_pin": "XYZ",
+   "to": "MaterialExpressionMaterialFunctionCall_0",
+   "to_pin": "WorldPosition (V3)"
+  },
+  {
+   "from": "MaterialExpressionCameraVectorWS_0",
+   "from_pin": "None",
+   "to": "MaterialExpressionMaterialFunctionCall_0",
+   "to_pin": "CameraVector (V3)"
+  },
+  {
+   "from": "MaterialExpressionDotProduct_0",
+   "from_pin": "None",
+   "to": "MaterialExpressionMaterialFunctionCall_0",
+   "to_pin": "Mask (S)"
+  },
+  {
+   "from": "MaterialExpressionScalarParameter_0",
+   "from_pin": "None",
+   "to": "MaterialExpressionMaterialFunctionCall_0",
+   "to_pin": "Scale (S)"
+  },
+  {
+   "from": "MaterialExpressionScalarParameter_1",
+   "from_pin": "None",
+   "to": "MaterialExpressionMaterialFunctionCall_0",
+   "to_pin": "Density (S)"
+  },
+  {
+   "from": "MaterialExpressionScalarParameter_2",
+   "from_pin": "None",
+   "to": "MaterialExpressionMaterialFunctionCall_0",
+   "to_pin": "FacetSharpness (S)"
+  },
+  {
+   "from": "MaterialExpressionScalarParameter_3",
+   "from_pin": "None",
+   "to": "MaterialExpressionMaterialFunctionCall_0",
+   "to_pin": "FlakeBrightness (S)"
+  },
+  {
+   "from": "MaterialExpressionVectorParameter_2",
+   "from_pin": "RGB",
+   "to": "MaterialExpressionMaterialFunctionCall_0",
+   "to_pin": "GlitterColor (V3)"
+  },
+  {
+   "from": "MaterialExpressionScalarParameter_4",
+   "from_pin": "None",
+   "to": "MaterialExpressionMaterialFunctionCall_0",
+   "to_pin": "Iridescence (S)"
+  },
+  {
+   "from": "MaterialExpressionScalarParameter_5",
+   "from_pin": "None",
+   "to": "MaterialExpressionMaterialFunctionCall_0",
+   "to_pin": "HaloStrength (S)"
+  },
+  {
+   "from": "MaterialExpressionScalarParameter_6",
+   "from_pin": "None",
+   "to": "MaterialExpressionMaterialFunctionCall_0",
+   "to_pin": "HaloPower (S)"
+  },
+  {
+   "from": "MaterialExpressionCollectionParameter_0",
+   "from_pin": "None",
+   "to": "MaterialExpressionMaterialFunctionCall_0",
+   "to_pin": "BeatPhase (S)"
+  },
+  {
+   "from": "MaterialExpressionCollectionParameter_1",
+   "from_pin": "None",
+   "to": "MaterialExpressionMaterialFunctionCall_0",
+   "to_pin": "BeatPulse (S)"
+  },
+  {
+   "from": "MaterialExpressionCollectionParameter_2",
+   "from_pin": "None",
+   "to": "MaterialExpressionMaterialFunctionCall_0",
+   "to_pin": "Impact (S)"
+  },
+  {
+   "from": "MaterialExpressionCollectionParameter_3",
+   "from_pin": "None",
+   "to": "MaterialExpressionMaterialFunctionCall_0",
+   "to_pin": "Reactivity (S)"
+  },
+  {
+   "from": "MaterialExpressionTime_0",
+   "from_pin": "None",
+   "to": "MaterialExpressionMaterialFunctionCall_0",
+   "to_pin": "Time (S)"
+  },
+  {
+   "from": "MaterialExpressionStaticSwitchParameter_24",
+   "from_pin": "None",
+   "to": "MaterialExpressionDotProduct_0",
+   "to_pin": "A"
+  },
+  {
+   "from": "MaterialExpressionConstant3Vector_2",
+   "from_pin": "None",
+   "to": "MaterialExpressionDotProduct_0",
+   "to_pin": "B"
+  },
+  {
+   "from": "MaterialExpressionStaticSwitchParameter_24",
+   "from_pin": "None",
+   "to": "MaterialExpressionLinearInterpolate_2",
+   "to_pin": "A"
+  },
+  {
+   "from": "MaterialExpressionMaterialFunctionCall_0",
+   "from_pin": "Color",
+   "to": "MaterialExpressionLinearInterpolate_2",
+   "to_pin": "B"
+  },
+  {
+   "from": "MaterialExpressionScalarParameter_8",
+   "from_pin": "None",
+   "to": "MaterialExpressionLinearInterpolate_2",
+   "to_pin": "Alpha"
+  },
+  {
+   "from": "MaterialExpressionStaticSwitchParameter_10",
+   "from_pin": "None",
+   "to": "MaterialExpressionTextureSampleParameter2D_0",
+   "to_pin": "Coordinates"
+  },
+  {
+   "from": "MaterialExpressionStaticSwitchParameter_11",
+   "from_pin": "None",
+   "to": "MaterialExpressionTextureSampleParameter2D_4",
+   "to_pin": "Coordinates"
+  },
+  {
+   "from": "MaterialExpressionSaturate_8",
+   "from_pin": "None",
+   "to": "MaterialExpressionTextureSampleParameter2D_19",
+   "to_pin": "Coordinates"
+  },
+  {
+   "from": "MaterialExpressionSaturate_8",
+   "from_pin": "None",
+   "to": "MaterialExpressionTextureSampleParameter2D_20",
+   "to_pin": "Coordinates"
+  },
+  {
+   "from": "MaterialExpressionSaturate_8",
+   "from_pin": "None",
+   "to": "MaterialExpressionTextureSampleParameter2D_21",
+   "to_pin": "Coordinates"
+  },
+  {
+   "from": "MaterialExpressionPixelNormalWS_0",
+   "from_pin": "None",
+   "to": "MaterialExpressionDotProduct_4",
+   "to_pin": "A"
+  },
+  {
+   "from": "MaterialExpressionConstant3Vector_3",
+   "from_pin": "None",
+   "to": "MaterialExpressionDotProduct_4",
+   "to_pin": "B"
+  },
+  {
+   "from": "MaterialExpressionDotProduct_4",
+   "from_pin": "None",
+   "to": "MaterialExpressionSubtract_2",
+   "to_pin": "A"
+  },
+  {
+   "from": "MaterialExpressionConstant_0",
+   "from_pin": "None",
+   "to": "MaterialExpressionSubtract_2",
+   "to_pin": "B"
+  },
+  {
+   "from": "MaterialExpressionSubtract_2",
+   "from_pin": "None",
+   "to": "MaterialExpressionMultiply_19",
+   "to_pin": "A"
+  },
+  {
+   "from": "MaterialExpressionScalarParameter_11",
+   "from_pin": "None",
+   "to": "MaterialExpressionMultiply_19",
+   "to_pin": "B"
+  },
+  {
+   "from": "MaterialExpressionMultiply_19",
+   "from_pin": "None",
+   "to": "MaterialExpressionSaturate_0",
+   "to_pin": "Input"
+  },
+  {
+   "from": "MaterialExpressionSaturate_0",
+   "from_pin": "None",
+   "to": "MaterialExpressionMultiply_21",
+   "to_pin": "A"
+  },
+  {
+   "from": "MaterialExpressionScalarParameter_9",
+   "from_pin": "None",
+   "to": "MaterialExpressionMultiply_21",
+   "to_pin": "B"
+  },
+  {
+   "from": "MaterialExpressionConstant_2",
+   "from_pin": "None",
+   "to": "MaterialExpressionLinearInterpolate_6",
+   "to_pin": "A"
+  },
+  {
+   "from": "MaterialExpressionTextureSampleParameter2D_19",
+   "from_pin": "RGB",
+   "to": "MaterialExpressionLinearInterpolate_6",
+   "to_pin": "B"
+  },
+  {
+   "from": "MaterialExpressionSaturate_9",
+   "from_pin": "None",
+   "to": "MaterialExpressionLinearInterpolate_6",
+   "to_pin": "Alpha"
+  },
+  {
+   "from": "MaterialExpressionLandscapeLayerSample_0",
+   "from_pin": "None",
+   "to": "MaterialExpressionMultiply_22",
+   "to_pin": "A"
+  },
+  {
+   "from": "MaterialExpressionLinearInterpolate_6",
+   "from_pin": "None",
+   "to": "MaterialExpressionMultiply_22",
+   "to_pin": "B"
+  },
+  {
+   "from": "MaterialExpressionMultiply_22",
+   "from_pin": "None",
+   "to": "MaterialExpressionAdd_2",
+   "to_pin": "A"
+  },
+  {
+   "from": "MaterialExpressionMultiply_21",
+   "from_pin": "None",
+   "to": "MaterialExpressionAdd_2",
+   "to_pin": "B"
+  },
+  {
+   "from": "MaterialExpressionConstant_3",
+   "from_pin": "None",
+   "to": "MaterialExpressionLinearInterpolate_7",
+   "to_pin": "A"
+  },
+  {
+   "from": "MaterialExpressionTextureSampleParameter2D_20",
+   "from_pin": "RGB",
+   "to": "MaterialExpressionLinearInterpolate_7",
+   "to_pin": "B"
+  },
+  {
+   "from": "MaterialExpressionSaturate_10",
+   "from_pin": "None",
+   "to": "MaterialExpressionLinearInterpolate_7",
+   "to_pin": "Alpha"
+  },
+  {
+   "from": "MaterialExpressionLandscapeLayerSample_1",
+   "from_pin": "None",
+   "to": "MaterialExpressionMultiply_23",
+   "to_pin": "A"
+  },
+  {
+   "from": "MaterialExpressionLinearInterpolate_7",
+   "from_pin": "None",
+   "to": "MaterialExpressionMultiply_23",
+   "to_pin": "B"
+  },
+  {
+   "from": "MaterialExpressionStaticSwitchParameter_27",
+   "from_pin": "None",
+   "to": "MaterialExpressionAdd_3",
+   "to_pin": "A"
+  },
+  {
+   "from": "MaterialExpressionMultiply_23",
+   "from_pin": "None",
+   "to": "MaterialExpressionAdd_3",
+   "to_pin": "B"
+  },
+  {
+   "from": "MaterialExpressionLandscapeLayerSample_2",
+   "from_pin": "None",
+   "to": "MaterialExpressionAdd_4",
+   "to_pin": "A"
+  },
+  {
+   "from": "MaterialExpressionLandscapeLayerSample_3",
+   "from_pin": "None",
+   "to": "MaterialExpressionAdd_4",
+   "to_pin": "B"
+  },
+  {
+   "from": "MaterialExpressionAdd_3",
+   "from_pin": "None",
+   "to": "MaterialExpressionAdd_5",
+   "to_pin": "A"
+  },
+  {
+   "from": "MaterialExpressionAdd_12",
+   "from_pin": "None",
+   "to": "MaterialExpressionAdd_5",
+   "to_pin": "B"
+  },
+  {
+   "from": "MaterialExpressionAdd_5",
+   "from_pin": "None",
+   "to": "MaterialExpressionSaturate_2",
+   "to_pin": "Input"
+  },
+  {
+   "from": "MaterialExpressionTextureSampleParameter2D_0",
+   "from_pin": "RGB",
+   "to": "MaterialExpressionMultiply_24",
+   "to_pin": "A"
+  },
+  {
+   "from": "MaterialExpressionVectorParameter_4",
+   "from_pin": "RGB",
+   "to": "MaterialExpressionMultiply_24",
+   "to_pin": "B"
+  },
+  {
+   "from": "MaterialExpressionMultiply_24",
+   "from_pin": "None",
+   "to": "MaterialExpressionMultiply_25",
+   "to_pin": "A"
+  },
+  {
+   "from": "MaterialExpressionStaticSwitchParameter_27",
+   "from_pin": "None",
+   "to": "MaterialExpressionMultiply_25",
+   "to_pin": "B"
+  },
+  {
+   "from": "MaterialExpressionTextureSampleParameter2D_4",
+   "from_pin": "RGB",
+   "to": "MaterialExpressionMultiply_26",
+   "to_pin": "A"
+  },
+  {
+   "from": "MaterialExpressionVectorParameter_12",
+   "from_pin": "RGB",
+   "to": "MaterialExpressionMultiply_26",
+   "to_pin": "B"
+  },
+  {
+   "from": "MaterialExpressionMultiply_26",
+   "from_pin": "None",
+   "to": "MaterialExpressionMultiply_27",
+   "to_pin": "A"
+  },
+  {
+   "from": "MaterialExpressionMultiply_23",
+   "from_pin": "None",
+   "to": "MaterialExpressionMultiply_27",
+   "to_pin": "B"
+  },
+  {
+   "from": "MaterialExpressionTextureSampleParameter2D_13",
+   "from_pin": "RGB",
+   "to": "MaterialExpressionMultiply_28",
+   "to_pin": "A"
+  },
+  {
+   "from": "MaterialExpressionVectorParameter_10",
+   "from_pin": "RGB",
+   "to": "MaterialExpressionMultiply_28",
+   "to_pin": "B"
+  },
+  {
+   "from": "MaterialExpressionMultiply_28",
+   "from_pin": "None",
+   "to": "MaterialExpressionMultiply_29",
+   "to_pin": "A"
+  },
+  {
+   "from": "MaterialExpressionLandscapeLayerSample_2",
+   "from_pin": "None",
+   "to": "MaterialExpressionMultiply_29",
+   "to_pin": "B"
+  },
+  {
+   "from": "MaterialExpressionTextureSampleParameter2D_15",
+   "from_pin": "RGB",
+   "to": "MaterialExpressionMultiply_31",
+   "to_pin": "A"
+  },
+  {
+   "from": "MaterialExpressionVectorParameter_11",
+   "from_pin": "RGB",
+   "to": "MaterialExpressionMultiply_31",
+   "to_pin": "B"
+  },
+  {
+   "from": "MaterialExpressionMultiply_31",
+   "from_pin": "None",
+   "to": "MaterialExpressionMultiply_33",
+   "to_pin": "A"
+  },
+  {
+   "from": "MaterialExpressionLandscapeLayerSample_3",
+   "from_pin": "None",
+   "to": "MaterialExpressionMultiply_33",
+   "to_pin": "B"
+  },
+  {
+   "from": "MaterialExpressionMultiply_25",
+   "from_pin": "None",
+   "to": "MaterialExpressionAdd_6",
+   "to_pin": "A"
+  },
+  {
+   "from": "MaterialExpressionMultiply_27",
+   "from_pin": "None",
+   "to": "MaterialExpressionAdd_6",
+   "to_pin": "B"
+  },
+  {
+   "from": "MaterialExpressionAdd_6",
+   "from_pin": "None",
+   "to": "MaterialExpressionAdd_7",
+   "to_pin": "A"
+  },
+  {
+   "from": "MaterialExpressionMultiply_29",
+   "from_pin": "None",
+   "to": "MaterialExpressionAdd_7",
+   "to_pin": "B"
+  },
+  {
+   "from": "MaterialExpressionAdd_7",
+   "from_pin": "None",
+   "to": "MaterialExpressionAdd_8",
+   "to_pin": "A"
+  },
+  {
+   "from": "MaterialExpressionMultiply_33",
+   "from_pin": "None",
+   "to": "MaterialExpressionAdd_8",
+   "to_pin": "B"
+  },
+  {
+   "from": "MaterialExpressionTextureSampleParameter2D_2",
+   "from_pin": "RGB",
+   "to": "MaterialExpressionMultiply_34",
+   "to_pin": "A"
+  },
+  {
+   "from": "MaterialExpressionStaticSwitchParameter_27",
+   "from_pin": "None",
+   "to": "MaterialExpressionMultiply_34",
+   "to_pin": "B"
+  },
+  {
+   "from": "MaterialExpressionTextureSampleParameter2D_10",
+   "from_pin": "RGB",
+   "to": "MaterialExpressionMultiply_36",
+   "to_pin": "A"
+  },
+  {
+   "from": "MaterialExpressionMultiply_23",
+   "from_pin": "None",
+   "to": "MaterialExpressionMultiply_36",
+   "to_pin": "B"
+  },
+  {
+   "from": "MaterialExpressionTextureSampleParameter2D_14",
+   "from_pin": "RGB",
+   "to": "MaterialExpressionMultiply_37",
+   "to_pin": "A"
+  },
+  {
+   "from": "MaterialExpressionLandscapeLayerSample_2",
+   "from_pin": "None",
+   "to": "MaterialExpressionMultiply_37",
+   "to_pin": "B"
+  },
+  {
+   "from": "MaterialExpressionTextureSampleParameter2D_16",
+   "from_pin": "RGB",
+   "to": "MaterialExpressionMultiply_38",
+   "to_pin": "A"
+  },
+  {
+   "from": "MaterialExpressionLandscapeLayerSample_3",
+   "from_pin": "None",
+   "to": "MaterialExpressionMultiply_38",
+   "to_pin": "B"
+  },
+  {
+   "from": "MaterialExpressionMultiply_34",
+   "from_pin": "None",
+   "to": "MaterialExpressionAdd_9",
+   "to_pin": "A"
+  },
+  {
+   "from": "MaterialExpressionMultiply_36",
+   "from_pin": "None",
+   "to": "MaterialExpressionAdd_9",
+   "to_pin": "B"
+  },
+  {
+   "from": "MaterialExpressionAdd_9",
+   "from_pin": "None",
+   "to": "MaterialExpressionAdd_10",
+   "to_pin": "A"
+  },
+  {
+   "from": "MaterialExpressionMultiply_37",
+   "from_pin": "None",
+   "to": "MaterialExpressionAdd_10",
+   "to_pin": "B"
+  },
+  {
+   "from": "MaterialExpressionAdd_10",
+   "from_pin": "None",
+   "to": "MaterialExpressionAdd_11",
+   "to_pin": "A"
+  },
+  {
+   "from": "MaterialExpressionMultiply_38",
+   "from_pin": "None",
+   "to": "MaterialExpressionAdd_11",
+   "to_pin": "B"
+  },
+  {
+   "from": "MaterialExpressionDivide_6",
+   "from_pin": "None",
+   "to": "MaterialExpressionStaticSwitchParameter_2",
+   "to_pin": "True"
+  },
+  {
+   "from": "MaterialExpressionLinearInterpolate_5",
+   "from_pin": "None",
+   "to": "MaterialExpressionStaticSwitchParameter_2",
+   "to_pin": "False"
+  },
+  {
+   "from": "MaterialExpressionLinearInterpolate_5",
+   "from_pin": "None",
+   "to": "MaterialExpressionLinearInterpolate_8",
+   "to_pin": "A"
+  },
+  {
+   "from": "MaterialExpressionStaticSwitchParameter_2",
+   "from_pin": "None",
+   "to": "MaterialExpressionLinearInterpolate_8",
+   "to_pin": "B"
+  },
+  {
+   "from": "MaterialExpressionSaturate_2",
+   "from_pin": "None",
+   "to": "MaterialExpressionLinearInterpolate_8",
+   "to_pin": "Alpha"
+  },
+  {
+   "from": "MaterialExpressionDivide_7",
+   "from_pin": "None",
+   "to": "MaterialExpressionStaticSwitchParameter_3",
+   "to_pin": "True"
+  },
+  {
+   "from": "MaterialExpressionLandscapeLayerBlend_4",
+   "from_pin": "None",
+   "to": "MaterialExpressionStaticSwitchParameter_3",
+   "to_pin": "False"
+  },
+  {
+   "from": "MaterialExpressionLandscapeLayerBlend_4",
+   "from_pin": "None",
+   "to": "MaterialExpressionLinearInterpolate_9",
+   "to_pin": "A"
+  },
+  {
+   "from": "MaterialExpressionStaticSwitchParameter_3",
+   "from_pin": "None",
+   "to": "MaterialExpressionLinearInterpolate_9",
+   "to_pin": "B"
+  },
+  {
+   "from": "MaterialExpressionSaturate_2",
+   "from_pin": "None",
+   "to": "MaterialExpressionLinearInterpolate_9",
+   "to_pin": "Alpha"
+  },
+  {
+   "from": "MaterialExpressionConstant_5",
+   "from_pin": "None",
+   "to": "MaterialExpressionLinearInterpolate_10",
+   "to_pin": "A"
+  },
+  {
+   "from": "MaterialExpressionTextureSampleParameter2D_21",
+   "from_pin": "RGB",
+   "to": "MaterialExpressionLinearInterpolate_10",
+   "to_pin": "B"
+  },
+  {
+   "from": "MaterialExpressionSaturate_12",
+   "from_pin": "None",
+   "to": "MaterialExpressionLinearInterpolate_10",
+   "to_pin": "Alpha"
+  },
+  {
+   "from": "MaterialExpressionConstant_4",
+   "from_pin": "None",
+   "to": "MaterialExpressionMultiply_39",
+   "to_pin": "A"
+  },
+  {
+   "from": "MaterialExpressionLinearInterpolate_10",
+   "from_pin": "None",
+   "to": "MaterialExpressionMultiply_39",
+   "to_pin": "B"
+  },
+  {
+   "from": "MaterialExpressionMultiply_15",
+   "from_pin": "None",
+   "to": "MaterialExpressionMultiply_40",
+   "to_pin": "A"
+  },
+  {
+   "from": "MaterialExpressionMultiply_39",
+   "from_pin": "None",
+   "to": "MaterialExpressionMultiply_40",
+   "to_pin": "B"
+  },
+  {
+   "from": "MaterialExpressionMultiply_40",
+   "from_pin": "None",
+   "to": "MaterialExpressionStaticSwitchParameter_4",
+   "to_pin": "True"
+  },
+  {
+   "from": "MaterialExpressionMultiply_15",
+   "from_pin": "None",
+   "to": "MaterialExpressionStaticSwitchParameter_4",
+   "to_pin": "False"
+  },
+  {
+   "from": "MaterialExpressionMultiply_23",
+   "from_pin": "None",
+   "to": "MaterialExpressionMultiply_41",
+   "to_pin": "A"
+  },
+  {
+   "from": "MaterialExpressionScalarParameter_14",
+   "from_pin": "None",
+   "to": "MaterialExpressionMultiply_41",
+   "to_pin": "B"
+  },
+  {
+   "from": "MaterialExpressionMultiply_41",
+   "from_pin": "None",
+   "to": "MaterialExpressionSaturate_3",
+   "to_pin": "Input"
+  },
+  {
+   "from": "MaterialExpressionMultiply_15",
+   "from_pin": "None",
+   "to": "MaterialExpressionLinearInterpolate_12",
+   "to_pin": "A"
+  },
+  {
+   "from": "MaterialExpressionScalarParameter_37",
+   "from_pin": "None",
+   "to": "MaterialExpressionLinearInterpolate_12",
+   "to_pin": "B"
+  },
+  {
+   "from": "MaterialExpressionSaturate_3",
+   "from_pin": "None",
+   "to": "MaterialExpressionLinearInterpolate_12",
+   "to_pin": "Alpha"
+  },
+  {
+   "from": "MaterialExpressionStaticSwitchParameter_4",
+   "from_pin": "None",
+   "to": "MaterialExpressionLinearInterpolate_13",
+   "to_pin": "A"
+  },
+  {
+   "from": "MaterialExpressionLinearInterpolate_12",
+   "from_pin": "None",
+   "to": "MaterialExpressionLinearInterpolate_13",
+   "to_pin": "B"
+  },
+  {
+   "from": "MaterialExpressionSaturate_2",
+   "from_pin": "None",
+   "to": "MaterialExpressionLinearInterpolate_13",
+   "to_pin": "Alpha"
+  },
+  {
+   "from": "MaterialExpressionWorldPosition_1",
+   "from_pin": "XYZ",
+   "to": "MaterialExpressionSubtract_5",
+   "to_pin": "A"
+  },
+  {
+   "from": "MaterialExpressionVectorParameter_13",
+   "from_pin": "RGB",
+   "to": "MaterialExpressionSubtract_5",
+   "to_pin": "B"
+  },
+  {
+   "from": "MaterialExpressionSubtract_5",
+   "from_pin": "None",
+   "to": "MaterialExpressionDivide_3",
+   "to_pin": "A"
+  },
+  {
+   "from": "MaterialExpressionVectorParameter_14",
+   "from_pin": "RGB",
+   "to": "MaterialExpressionDivide_3",
+   "to_pin": "B"
+  },
+  {
+   "from": "MaterialExpressionDivide_3",
+   "from_pin": "None",
+   "to": "MaterialExpressionComponentMask_0",
+   "to_pin": "Input"
+  },
+  {
+   "from": "MaterialExpressionSaturate_8",
+   "from_pin": "None",
+   "to": "MaterialExpressionStaticSwitchParameter_7",
+   "to_pin": "True"
+  },
+  {
+   "from": "MaterialExpressionMultiply_10",
+   "from_pin": "None",
+   "to": "MaterialExpressionStaticSwitchParameter_7",
+   "to_pin": "False"
+  },
+  {
+   "from": "MaterialExpressionSaturate_8",
+   "from_pin": "None",
+   "to": "MaterialExpressionStaticSwitchParameter_8",
+   "to_pin": "True"
+  },
+  {
+   "from": "MaterialExpressionMultiply_11",
+   "from_pin": "None",
+   "to": "MaterialExpressionStaticSwitchParameter_8",
+   "to_pin": "False"
+  },
+  {
+   "from": "MaterialExpressionSaturate_8",
+   "from_pin": "None",
+   "to": "MaterialExpressionStaticSwitchParameter_9",
+   "to_pin": "True"
+  },
+  {
+   "from": "MaterialExpressionMultiply_12",
+   "from_pin": "None",
+   "to": "MaterialExpressionStaticSwitchParameter_9",
+   "to_pin": "False"
+  },
+  {
+   "from": "MaterialExpressionSaturate_8",
+   "from_pin": "None",
+   "to": "MaterialExpressionStaticSwitchParameter_10",
+   "to_pin": "True"
+  },
+  {
+   "from": "MaterialExpressionTextureCoordinate_2",
+   "from_pin": "None",
+   "to": "MaterialExpressionStaticSwitchParameter_10",
+   "to_pin": "False"
+  },
+  {
+   "from": "MaterialExpressionSaturate_8",
+   "from_pin": "None",
+   "to": "MaterialExpressionStaticSwitchParameter_11",
+   "to_pin": "True"
+  },
+  {
+   "from": "MaterialExpressionTextureCoordinate_3",
+   "from_pin": "None",
+   "to": "MaterialExpressionStaticSwitchParameter_11",
+   "to_pin": "False"
+  },
+  {
+   "from": "MaterialExpressionTextureObjectParameter_2",
+   "from_pin": "None",
+   "to": "MaterialExpressionMaterialFunctionCall_5",
+   "to_pin": "Tex (T2d)"
+  },
+  {
+   "from": "MaterialExpressionWorldPosition_2",
+   "from_pin": "XYZ",
+   "to": "MaterialExpressionMaterialFunctionCall_5",
+   "to_pin": "WorldPosition (V3)"
+  },
+  {
+   "from": "MaterialExpressionVertexNormalWS_2",
+   "from_pin": "None",
+   "to": "MaterialExpressionMaterialFunctionCall_5",
+   "to_pin": "WorldNormal (V3)"
+  },
+  {
+   "from": "MaterialExpressionDivide_4",
+   "from_pin": "None",
+   "to": "MaterialExpressionMaterialFunctionCall_5",
+   "to_pin": "ProjectionScale (S)"
+  },
+  {
+   "from": "MaterialExpressionScalarParameter_82",
+   "from_pin": "None",
+   "to": "MaterialExpressionMaterialFunctionCall_5",
+   "to_pin": "BlendSharpness (S)"
+  },
+  {
+   "from": "MaterialExpressionVectorParameter_15",
+   "from_pin": "RGB",
+   "to": "MaterialExpressionMaterialFunctionCall_5",
+   "to_pin": "ProjectionOffset (V3)"
+  },
+  {
+   "from": "MaterialExpressionVectorParameter_16",
+   "from_pin": "RGB",
+   "to": "MaterialExpressionMaterialFunctionCall_5",
+   "to_pin": "ProjectionRotation (V3)"
+  },
+  {
+   "from": "MaterialExpressionVectorParameter_27",
+   "from_pin": "RGB",
+   "to": "MaterialExpressionMaterialFunctionCall_5",
+   "to_pin": "AxisWeights (V3)"
+  },
+  {
+   "from": "MaterialExpressionScalarParameter_85",
+   "from_pin": "None",
+   "to": "MaterialExpressionMaterialFunctionCall_5",
+   "to_pin": "BreakupScale (S)"
+  },
+  {
+   "from": "MaterialExpressionScalarParameter_84",
+   "from_pin": "None",
+   "to": "MaterialExpressionMaterialFunctionCall_5",
+   "to_pin": "BreakupStrength (S)"
+  },
+  {
+   "from": "MaterialExpressionScalarParameter_86",
+   "from_pin": "None",
+   "to": "MaterialExpressionMaterialFunctionCall_5",
+   "to_pin": "BreakupContrast (S)"
+  },
+  {
+   "from": "MaterialExpressionTextureObjectParameter_1",
+   "from_pin": "None",
+   "to": "MaterialExpressionMaterialFunctionCall_5",
+   "to_pin": "NormalTex (T2d)"
+  },
+  {
+   "from": "MaterialExpressionScalarParameter_42",
+   "from_pin": "None",
+   "to": "MaterialExpressionMaterialFunctionCall_5",
+   "to_pin": "NormalStrength (S)"
+  },
+  {
+   "from": "MaterialExpressionMax_0",
+   "from_pin": "None",
+   "to": "MaterialExpressionDivide_4",
+   "to_pin": "B"
+  },
+  {
+   "from": "MaterialExpressionScalarParameter_43",
+   "from_pin": "None",
+   "to": "MaterialExpressionMax_0",
+   "to_pin": "A"
+  },
+  {
+   "from": "MaterialExpressionMaterialFunctionCall_5",
+   "from_pin": "NormalWS",
+   "to": "MaterialExpressionTransform_0",
+   "to_pin": "Input"
+  },
+  {
+   "from": "MaterialExpressionTextureSampleParameter2D_12",
+   "from_pin": "RGB",
+   "to": "MaterialExpressionLinearInterpolate_15",
+   "to_pin": "A"
+  },
+  {
+   "from": "MaterialExpressionTransform_0",
+   "from_pin": "None",
+   "to": "MaterialExpressionLinearInterpolate_15",
+   "to_pin": "B"
+  },
+  {
+   "from": "MaterialExpressionSaturate_5",
+   "from_pin": "None",
+   "to": "MaterialExpressionLinearInterpolate_15",
+   "to_pin": "Alpha"
+  },
+  {
+   "from": "MaterialExpressionScalarParameter_45",
+   "from_pin": "None",
+   "to": "MaterialExpressionSaturate_5",
+   "to_pin": "Input"
+  },
+  {
+   "from": "MaterialExpressionLinearInterpolate_15",
+   "from_pin": "None",
+   "to": "MaterialExpressionNormalize_0",
+   "to_pin": "VectorInput"
+  },
+  {
+   "from": "MaterialExpressionNormalize_0",
+   "from_pin": "None",
+   "to": "MaterialExpressionStaticSwitchParameter_12",
+   "to_pin": "True"
+  },
+  {
+   "from": "MaterialExpressionTextureSampleParameter2D_12",
+   "from_pin": "RGB",
+   "to": "MaterialExpressionStaticSwitchParameter_12",
+   "to_pin": "False"
+  },
+  {
+   "from": "MaterialExpressionTextureObjectParameter_2",
+   "from_pin": "None",
+   "to": "MaterialExpressionCustom_0",
+   "to_pin": "Tex"
+  },
+  {
+   "from": "MaterialExpressionWorldPosition_2",
+   "from_pin": "XYZ",
+   "to": "MaterialExpressionCustom_0",
+   "to_pin": "WorldPosition"
+  },
+  {
+   "from": "MaterialExpressionVectorParameter_15",
+   "from_pin": "RGB",
+   "to": "MaterialExpressionCustom_0",
+   "to_pin": "ProjectionOffset"
+  },
+  {
+   "from": "MaterialExpressionVectorParameter_16",
+   "from_pin": "RGB",
+   "to": "MaterialExpressionCustom_0",
+   "to_pin": "ProjectionRotation"
+  },
+  {
+   "from": "MaterialExpressionDivide_4",
+   "from_pin": "None",
+   "to": "MaterialExpressionCustom_0",
+   "to_pin": "ProjectionScale"
+  },
+  {
+   "from": "MaterialExpressionCustom_0",
+   "from_pin": "None",
+   "to": "MaterialExpressionLinearInterpolate_16",
+   "to_pin": "A"
+  },
+  {
+   "from": "MaterialExpressionMaterialFunctionCall_5",
+   "from_pin": "Color",
+   "to": "MaterialExpressionLinearInterpolate_16",
+   "to_pin": "B"
+  },
+  {
+   "from": "MaterialExpressionSaturate_5",
+   "from_pin": "None",
+   "to": "MaterialExpressionLinearInterpolate_16",
+   "to_pin": "Alpha"
+  },
+  {
+   "from": "MaterialExpressionScalarParameter_46",
+   "from_pin": "None",
+   "to": "MaterialExpressionMax_1",
+   "to_pin": "A"
+  },
+  {
+   "from": "MaterialExpressionLinearInterpolate_16",
+   "from_pin": "None",
+   "to": "MaterialExpressionDivide_5",
+   "to_pin": "A"
+  },
+  {
+   "from": "MaterialExpressionMax_1",
+   "from_pin": "None",
+   "to": "MaterialExpressionDivide_5",
+   "to_pin": "B"
+  },
+  {
+   "from": "MaterialExpressionScalarParameter_47",
+   "from_pin": "None",
+   "to": "MaterialExpressionSaturate_6",
+   "to_pin": "Input"
+  },
+  {
+   "from": "MaterialExpressionDivide_5",
+   "from_pin": "None",
+   "to": "MaterialExpressionLinearInterpolate_17",
+   "to_pin": "B"
+  },
+  {
+   "from": "MaterialExpressionSaturate_6",
+   "from_pin": "None",
+   "to": "MaterialExpressionLinearInterpolate_17",
+   "to_pin": "Alpha"
+  },
+  {
+   "from": "MaterialExpressionTextureSampleParameter2D_11",
+   "from_pin": "RGB",
+   "to": "MaterialExpressionMultiply_44",
+   "to_pin": "A"
+  },
+  {
+   "from": "MaterialExpressionLinearInterpolate_17",
+   "from_pin": "None",
+   "to": "MaterialExpressionMultiply_44",
+   "to_pin": "B"
+  },
+  {
+   "from": "MaterialExpressionMultiply_44",
+   "from_pin": "None",
+   "to": "MaterialExpressionStaticSwitchParameter_26",
+   "to_pin": "True"
+  },
+  {
+   "from": "MaterialExpressionTextureSampleParameter2D_11",
+   "from_pin": "RGB",
+   "to": "MaterialExpressionStaticSwitchParameter_26",
+   "to_pin": "False"
+  },
+  {
+   "from": "MaterialExpressionAdd_5",
+   "from_pin": "None",
+   "to": "MaterialExpressionMax_2",
+   "to_pin": "A"
+  },
+  {
+   "from": "MaterialExpressionConstant_6",
+   "from_pin": "None",
+   "to": "MaterialExpressionMax_2",
+   "to_pin": "B"
+  },
+  {
+   "from": "MaterialExpressionAdd_0",
+   "from_pin": "None",
+   "to": "MaterialExpressionDivide_6",
+   "to_pin": "A"
+  },
+  {
+   "from": "MaterialExpressionMax_2",
+   "from_pin": "None",
+   "to": "MaterialExpressionDivide_6",
+   "to_pin": "B"
+  },
+  {
+   "from": "MaterialExpressionAdd_13",
+   "from_pin": "None",
+   "to": "MaterialExpressionDivide_7",
+   "to_pin": "A"
+  },
+  {
+   "from": "MaterialExpressionMax_2",
+   "from_pin": "None",
+   "to": "MaterialExpressionDivide_7",
+   "to_pin": "B"
+  },
+  {
+   "from": "MaterialExpressionLinearInterpolate_9",
+   "from_pin": "None",
+   "to": "MaterialExpressionNormalize_1",
+   "to_pin": "VectorInput"
+  },
+  {
+   "from": "MaterialExpressionAdd_2",
+   "from_pin": "None",
+   "to": "MaterialExpressionCustom_1",
+   "to_pin": "Coverage"
+  },
+  {
+   "from": "MaterialExpressionWorldPosition_4",
+   "from_pin": "XYZ",
+   "to": "MaterialExpressionCustom_1",
+   "to_pin": "WorldPosition"
+  },
+  {
+   "from": "MaterialExpressionScalarParameter_48",
+   "from_pin": "None",
+   "to": "MaterialExpressionCustom_1",
+   "to_pin": "WorldSizeCM"
+  },
+  {
+   "from": "MaterialExpressionScalarParameter_49",
+   "from_pin": "None",
+   "to": "MaterialExpressionCustom_1",
+   "to_pin": "Strength"
+  },
+  {
+   "from": "MaterialExpressionCustom_1",
+   "from_pin": "None",
+   "to": "MaterialExpressionStaticSwitchParameter_27",
+   "to_pin": "True"
+  },
+  {
+   "from": "MaterialExpressionAdd_2",
+   "from_pin": "None",
+   "to": "MaterialExpressionStaticSwitchParameter_27",
+   "to_pin": "False"
+  },
+  {
+   "from": "MaterialExpressionMultiply_20",
+   "from_pin": "None",
+   "to": "MaterialExpressionCustom_2",
+   "to_pin": "Baseline"
+  },
+  {
+   "from": "MaterialExpressionLinearInterpolate_8",
+   "from_pin": "None",
+   "to": "MaterialExpressionCustom_2",
+   "to_pin": "SurfaceColor"
+  },
+  {
+   "from": "MaterialExpressionCollectionParameter_4",
+   "from_pin": "None",
+   "to": "MaterialExpressionCustom_2",
+   "to_pin": "Beat"
+  },
+  {
+   "from": "MaterialExpressionScalarParameter_38",
+   "from_pin": "None",
+   "to": "MaterialExpressionCustom_2",
+   "to_pin": "Amount"
+  },
+  {
+   "from": "MaterialExpressionScalarParameter_50",
+   "from_pin": "None",
+   "to": "MaterialExpressionCustom_2",
+   "to_pin": "MaxEmission"
+  },
+  {
+   "from": "MaterialExpressionSaturate_8",
+   "from_pin": "None",
+   "to": "MaterialExpressionTextureSampleParameter2D_23",
+   "to_pin": "Coordinates"
+  },
+  {
+   "from": "MaterialExpressionTextureSampleParameter2D_23",
+   "from_pin": "R",
+   "to": "MaterialExpressionCustom_3",
+   "to_pin": "Encoded"
+  },
+  {
+   "from": "MaterialExpressionScalarParameter_51",
+   "from_pin": "None",
+   "to": "MaterialExpressionCustom_3",
+   "to_pin": "RangeCM"
+  },
+  {
+   "from": "MaterialExpressionScalarParameter_52",
+   "from_pin": "None",
+   "to": "MaterialExpressionCustom_3",
+   "to_pin": "WidthCM"
+  },
+  {
+   "from": "MaterialExpressionScalarParameter_55",
+   "from_pin": "None",
+   "to": "MaterialExpressionCustom_3",
+   "to_pin": "Strength"
+  },
+  {
+   "from": "MaterialExpressionLinearInterpolate_13",
+   "from_pin": "None",
+   "to": "MaterialExpressionLinearInterpolate_18",
+   "to_pin": "A"
+  },
+  {
+   "from": "MaterialExpressionSaturate_7",
+   "from_pin": "None",
+   "to": "MaterialExpressionLinearInterpolate_18",
+   "to_pin": "B"
+  },
+  {
+   "from": "MaterialExpressionCustom_3",
+   "from_pin": "None",
+   "to": "MaterialExpressionLinearInterpolate_18",
+   "to_pin": "Alpha"
+  },
+  {
+   "from": "MaterialExpressionScalarParameter_56",
+   "from_pin": "None",
+   "to": "MaterialExpressionSaturate_7",
+   "to_pin": "Input"
+  },
+  {
+   "from": "MaterialExpressionLinearInterpolate_18",
+   "from_pin": "None",
+   "to": "MaterialExpressionStaticSwitchParameter_28",
+   "to_pin": "True"
+  },
+  {
+   "from": "MaterialExpressionLinearInterpolate_13",
+   "from_pin": "None",
+   "to": "MaterialExpressionStaticSwitchParameter_28",
+   "to_pin": "False"
+  },
+  {
+   "from": "MaterialExpressionComponentMask_0",
+   "from_pin": "None",
+   "to": "MaterialExpressionSaturate_8",
+   "to_pin": "Input"
+  },
+  {
+   "from": "MaterialExpressionSaturate_8",
+   "from_pin": "None",
+   "to": "MaterialExpressionTextureSampleParameter2D_24",
+   "to_pin": "Coordinates"
+  },
+  {
+   "from": "MaterialExpressionConstant_2",
+   "from_pin": "None",
+   "to": "MaterialExpressionLinearInterpolate_19",
+   "to_pin": "A"
+  },
+  {
+   "from": "MaterialExpressionTextureSampleParameter2D_24",
+   "from_pin": "RGB",
+   "to": "MaterialExpressionLinearInterpolate_19",
+   "to_pin": "B"
+  },
+  {
+   "from": "MaterialExpressionSaturate_11",
+   "from_pin": "None",
+   "to": "MaterialExpressionLinearInterpolate_19",
+   "to_pin": "Alpha"
+  },
+  {
+   "from": "MaterialExpressionLandscapeLayerSample_4",
+   "from_pin": "None",
+   "to": "MaterialExpressionMultiply_45",
+   "to_pin": "A"
+  },
+  {
+   "from": "MaterialExpressionLinearInterpolate_19",
+   "from_pin": "None",
+   "to": "MaterialExpressionMultiply_45",
+   "to_pin": "B"
+  },
+  {
+   "from": "MaterialExpressionAdd_4",
+   "from_pin": "None",
+   "to": "MaterialExpressionAdd_12",
+   "to_pin": "A"
+  },
+  {
+   "from": "MaterialExpressionMultiply_45",
+   "from_pin": "None",
+   "to": "MaterialExpressionAdd_12",
+   "to_pin": "B"
+  },
+  {
+   "from": "MaterialExpressionScalarParameter_39",
+   "from_pin": "None",
+   "to": "MaterialExpressionSaturate_9",
+   "to_pin": "Input"
+  },
+  {
+   "from": "MaterialExpressionScalarParameter_40",
+   "from_pin": "None",
+   "to": "MaterialExpressionSaturate_10",
+   "to_pin": "Input"
+  },
+  {
+   "from": "MaterialExpressionScalarParameter_57",
+   "from_pin": "None",
+   "to": "MaterialExpressionSaturate_11",
+   "to_pin": "Input"
+  },
+  {
+   "from": "MaterialExpressionScalarParameter_41",
+   "from_pin": "None",
+   "to": "MaterialExpressionSaturate_12",
+   "to_pin": "Input"
+  },
+  {
+   "from": "MaterialExpressionTextureSampleParameter2D_11",
+   "from_pin": "RGB",
+   "to": "MaterialExpressionMultiply_0",
+   "to_pin": "A"
+  },
+  {
+   "from": "MaterialExpressionLandscapeLayerSample_4",
+   "from_pin": "None",
+   "to": "MaterialExpressionMultiply_0",
+   "to_pin": "B"
+  },
+  {
+   "from": "MaterialExpressionAdd_8",
+   "from_pin": "None",
+   "to": "MaterialExpressionAdd_0",
+   "to_pin": "A"
+  },
+  {
+   "from": "MaterialExpressionMultiply_0",
+   "from_pin": "None",
+   "to": "MaterialExpressionAdd_0",
+   "to_pin": "B"
+  },
+  {
+   "from": "MaterialExpressionTextureSampleParameter2D_12",
+   "from_pin": "RGB",
+   "to": "MaterialExpressionMultiply_1",
+   "to_pin": "A"
+  },
+  {
+   "from": "MaterialExpressionLandscapeLayerSample_4",
+   "from_pin": "None",
+   "to": "MaterialExpressionMultiply_1",
+   "to_pin": "B"
+  },
+  {
+   "from": "MaterialExpressionAdd_11",
+   "from_pin": "None",
+   "to": "MaterialExpressionAdd_13",
+   "to_pin": "A"
+  },
+  {
+   "from": "MaterialExpressionMultiply_1",
+   "from_pin": "None",
+   "to": "MaterialExpressionAdd_13",
+   "to_pin": "B"
+  },
+  {
+   "from": "MaterialExpressionMultiply_13",
+   "from_pin": "None",
+   "to": "MaterialExpressionLinearInterpolate_11",
+   "to_pin": "A"
+  },
+  {
+   "from": "MaterialExpressionDivide_6",
+   "from_pin": "None",
+   "to": "MaterialExpressionLinearInterpolate_11",
+   "to_pin": "B"
+  },
+  {
+   "from": "MaterialExpressionSaturate_2",
+   "from_pin": "None",
+   "to": "MaterialExpressionLinearInterpolate_11",
+   "to_pin": "Alpha"
+  }
+ ],
+ "outputs": [
+  {
+   "from": "MaterialExpressionStaticSwitchParameter_25",
+   "from_pin": "None",
+   "to_property": "WorldPositionOffset"
+  },
+  {
+   "from": "MaterialExpressionSubstrateToonBSDF_1",
+   "from_pin": "None",
+   "to_property": ""
+  }
+ ]
+}
