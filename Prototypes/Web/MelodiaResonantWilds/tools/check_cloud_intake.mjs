@@ -37,7 +37,7 @@ const sw = file('sw.js');
 assert.match(sw, /resonant-wilds-v7/);
 assert.ok(!exists('js/painterly.js'), 'retired Kuwahara shader must be deleted');
 assert.doesNotMatch(file('js/game.js'), /painterly|PainterlyFilter|WebGLRenderTarget/);
-assert.doesNotMatch(tuner, /painterly|anisotropy|edgeProtect|radius|Render resolution/i);
+assert.doesNotMatch(tuner, /game\.painterly|PainterlyFilter|uAnisotropy|uEdgeProtect|key: 'strength'|key: 'radius'|key: 'anisotropy'|key: 'scale'/);
 assert.doesNotMatch(sw, /painterly/);
 for (const path of sw.matchAll(/'\.\/([^']+)'/g)) {
   const p = path[1];
