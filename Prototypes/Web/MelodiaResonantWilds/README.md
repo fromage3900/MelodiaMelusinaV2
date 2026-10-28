@@ -42,7 +42,7 @@ No build step. three.js r170 is vendored in `vendor/` (MIT, licence alongside).
 | Genshin gate → reveal → landmark | Hub gate arches → Reveal overlooks (~140 m) → biome core landmark |
 | Genshin exploration density | Budgeted camps / chests / shrines / sheets / chimes / whim frames per biome |
 | Nikki outfit → puzzle → space | Phrase Bridges, Aria Veils (Wardrobe), sheep Harmonize cleanses, Whim Frame angle challenges |
-| Nikki named subareas (Florawish-style) | 16 authored micro-destinations + Resonance Dew; fashion photo frames in Mist/Glass/Starlit |
+| Nikki named subareas (Florawish-style) | 16 authored micro-destinations (2 per biome) + Resonance Dew; fashion photo frames in Mist/Glass/Starlit; float/purify gates |
 | Nikki “details all the time” look | Denser near dressing, taller landmarks, selective UnrealBloomPass, soft TOD tint, gown sway |
 | ZZZ signature hub district | Shorewake keeps forge / board / font / rift within a short walk |
 | WuWa TOD / atmosphere maintainability | Soft sun/fog TOD cycle + biome palette swaps; workflow keeps prop budgets phone-safe |
@@ -92,7 +92,7 @@ Inspect the live recipe in the browser console: `window.__rwOpenWorld`.
   - Music-key shrines: call and response, where you answer the shrine's phrase on the next bar
   - **Vista overlooks** (auto-reveal banners) and **Whim Frames** / **chime clusters** from the OW density budget
   - **Phrase Bridges** (answer Great/Perfect on the beat), **Dissonant Blots** (Sheep Harmonize cleanse), **Aria Veils** (equip shoes or an Opus Aria)
-  - **Named destinations** (Petal Tea Terrace, Canal Quay Choir, Echo Amphitheater, …) with **Resonance Dew** collectibles; float ledges need Wardrobe, purify caves need Harmonize
+  - **Named destinations** (16 across all 8 biomes — Petal Tea Terrace, Mist Choir Jetty, Prism Picnic Grove, Nightbell Overlook, …) with **Resonance Dew** collectibles; float ledges need Wardrobe, purify caves need Harmonize
   - Whim Frame **angle challenges** — face the landmark prompt before framing
   - Biome **Maestros** (world bosses) with toughness **BREAK**
   - **Resonance Rifts** (Recitals): tiered, infinite and timed, with DT_Burdens at tier 3+

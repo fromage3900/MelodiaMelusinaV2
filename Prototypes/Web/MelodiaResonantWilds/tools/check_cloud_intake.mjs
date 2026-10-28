@@ -6,12 +6,14 @@ import { fileURLToPath } from 'node:url';
 const root = dirname(dirname(fileURLToPath(import.meta.url)));
 const file = (p) => readFileSync(join(root, p), 'utf8');
 const exists = (p) => existsSync(join(root, p));
-const js = ['js/player.js', 'js/chibi.js', 'js/activities.js',
+const js = ['js/player.js', 'js/chibi.js', 'js/mixamo.js', 'js/activities.js',
   'js/cel.js', 'js/asset-loader.js', 'js/world.js', 'js/heritage-timeline.js',
   'vendor/examples/jsm/loaders/GLTFLoader.js',
   'vendor/examples/jsm/utils/BufferGeometryUtils.js'];
 for (const p of js) assert.ok(exists(p), 'missing: ' + p);
-assert.match(file('js/player.js'), /get\('avatar'\) === 'chibi'/);
+assert.match(file('js/player.js'), /get\('avatar'\)/);
+assert.match(file('js/player.js'), /avatar === 'chibi'/);
+assert.match(file('js/player.js'), /mixamoOptIn/);
 assert.match(file('js/player.js'), /if \(m\.pose\)/);
 assert.match(file('js/activities.js'), /get\('shrine'\) === 'glb'/);
 assert.match(file('js/asset-loader.js'), /GLTFLoader/);
@@ -48,10 +50,12 @@ assert.ok(model.byteLength < 1024 * 1024, 'P0 GLB must fit 1 MiB');
 const manifest = JSON.parse(file('manifest.json'));
 for (const icon of manifest.icons) assert.ok(exists(icon.src), 'missing PWA icon ' + icon.src);
 const sw = file('sw.js');
-assert.match(sw, /resonant-wilds-v9/);
+assert.match(sw, /resonant-wilds-v10-20261028-nikki-dest/);
 assert.match(sw, /js\/echo\.js/);
 assert.match(sw, /assets\/icons\/echo_phrase\.svg/);
 assert.match(sw, /js\/grove\.js/);
+assert.match(sw, /js\/mixamo\.js/);
+assert.match(sw, /mixamo-hero\.glb/);
 for (const name of ['chromatic-orbit', 'note-medallion', 'filigree-frame', 'resonance-core']) {
   assert.ok(sw.includes('assets/heritage/' + name + '.svg'), 'missing cached heritage SVG ' + name);
 }
