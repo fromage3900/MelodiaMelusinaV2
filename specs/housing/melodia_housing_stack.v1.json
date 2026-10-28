@@ -1,0 +1,230 @@
+{
+  "contract_id": "melodia.housing.stack.v1",
+  "kind": "housing_hda_stack_pin",
+  "schema_version": "1.0",
+  "status": "assembler-green-packager-next",
+  "updated": "2026-10-28",
+  "authority": {
+    "status_doc": "CURRENT_STATE.md",
+    "entry": "Housing HDA stack convergence + Salon proof - 2026-10-28",
+    "live_level": "/Game/Melodia/Levels/Opening/L_MelusinaHouse_P0",
+    "rule": "The house is arranged by hand; the level is the level of truth. No script moves or deletes a placed actor. This pin stages candidates only; live actors are untouched."
+  },
+  "meter": {
+    "module_m": 0.6,
+    "bay_m": 2.4,
+    "portal_standard_m": [
+      2.4,
+      3.2
+    ],
+    "note": "2.4 m = 1 bar of 4/4 at 128 BPM. Portal height 3.2 m is 5.33 beats (off-grid, musical fourth 3:4); recorded, not rewritten."
+  },
+  "stack": {
+    "shell_owner": "melodia::room_shell family (single interior-geometry owner; no second owner)",
+    "members": [
+      {
+        "role": "rect_rooms_converged_candidate",
+        "type": "melodia::room_shell_contact::1.0",
+        "path": "hda/MelodiaRoomShell_ContactFloor_1.0.hda",
+        "sha256": "078775C054951813981387E50511BD1479562D074E32102F5FF56BBD215FECBD",
+        "bytes": 61517,
+        "adds_over_shipped": [
+          "openings_json",
+          "simple_floor_collision slab (collision_geo_simple_box_main_geo)",
+          "material_map_json",
+          "unreal_material prim attr",
+          "surfaces_json global attr",
+          "7 prim groups"
+        ],
+        "gate": "20/20 rect (Saved/Audit/PoitouInteriorsSurfaces_20261025/room_shell_explicit_verify.json)",
+        "live": false
+      },
+      {
+        "role": "rounded_salon_converged_candidate",
+        "type": "melodia::room_shell_rounded::1.0",
+        "path": "hda/MelodiaRoomShell_Rounded_1.0.hda",
+        "sha256": "05A1071BA02FFAE3228A5E888E7805C6509148952F4700D442E63320547DD15D",
+        "bytes": 59733,
+        "notes": "ellipse/superellipse/polygon plan, theta-or-bay portals cut as plan vertices, tiers_json setback massing (wall band only). No windows, no collision slab yet; sockets diagnostic-only.",
+        "gate": "29/29 rounded (Saved/Audit/PoitouInteriorsSurfaces_20261025/round_shell_verify.json)",
+        "live": false
+      },
+      {
+        "role": "live_shipped_shell",
+        "type": "melodia::room_shell",
+        "path": "Content/HDA/MelodiaRoomShell_1.0.hda",
+        "sha256": "96958AB67CF436D9C61EE2AF8B000ADD0C0F84D079C877D4101FD4BB6F46261D",
+        "bytes": 47247,
+        "notes": "KNOWN DRIFT: embedded PythonModule predates openings_json + simple_floor_collision + material contract. All 5 live interior actors (Bedroom, Salon, Corridor, Gallery, Porch) cook through this definition. Promotion (in-place vs sibling) is an owner decision.",
+        "live": true
+      }
+    ]
+  },
+  "salon_proof": {
+    "selection": "salon_bay",
+    "why": "bay-aligned (16.8 x 12.0 x 7.2 m = 28/20/12 beats), joins the house kit; measured 15.84 variant stays the documented off-grid exception. Stepped tiers [1.0, 0.92, 0.84] give the canal-read ziggurat massing without moving interior volume.",
+    "type": "melodia::room_shell_poitou_salon_bay::1.0",
+    "path": "Saved/Staging/PoitouInteriors_20261025/MelodiaRoomShell_Poitou_salon_bay_1.0.hda",
+    "sha256_disk_20261028": "D7915DCA71035F6401F2B7A46A393D3F69BE03C42B4C6466CB2274418A2BCE78",
+    "manifest_pin_stale": "interior_manifest.json pins DEA90940... for this variant; ALL six staged variant hashes differ from manifest (files rebuilt by the material-contract pass without a manifest update). Re-verify variants before admission.",
+    "declared_prims_points": [
+      21450,
+      85256
+    ],
+    "portals": [
+      {
+        "id": "salon_entry",
+        "theta": 0.25,
+        "width_m": 2.4,
+        "height_m": 3.2
+      },
+      {
+        "id": "salon_front",
+        "theta": 0.75,
+        "width_m": 2.4,
+        "height_m": 3.2
+      }
+    ],
+    "live": false
+  },
+  "companion_systems": [
+    {
+      "role": "stained_glass_oculus_arch",
+      "type": "melodia::stained_glass_window",
+      "path": "Content/HDA/MelodiaStainedGlassWindow_1.0.hda",
+      "sha256": "D3B86A186D0880DD3F0A3E989853AD1C56ED3B1D6D62B07DA98D6DE2F79F8980",
+      "gate": "Gate 2 GREEN 2026-10-22",
+      "live": false,
+      "note": "No stained-glass actor exists in House P0. First placement belongs to the Salon proof."
+    },
+    {
+      "role": "exterior_kit_authority_candidate",
+      "path": "Saved/Staging/HouseExterior_20261023/MelodiaHouseExteriorKit_1.0.hda",
+      "sha256": "70A38CB2EF52141393A6AB5C51E8C5BFB8B43968340666033B6187F1C5D8D7E2",
+      "material_roles": [
+        "MI_HouseExt_PearlPlaster",
+        "MI_HouseExt_LavenderScaleRoof",
+        "MI_HouseExt_BlueScaleRoof",
+        "MI_HouseExt_GiltTrim",
+        "MI_HouseExt_LanternGlow"
+      ],
+      "live_stage_actor": "STAGE_HouseExteriorKit_v1 at (120,0,100), 5 sections resolved",
+      "live": false
+    },
+    {
+      "role": "terrain_caves_candidates",
+      "paths": [
+        "Saved/Staging/HouseTerrain_20261023/MelodiaHouseTerrain_2.0.hda",
+        "Saved/Staging/HouseTerrain_20261023/MelodiaHouseCaves_1.0.hda"
+      ],
+      "sha256": [
+        "27B8EBF61979FB6C647121E4148FB8BE0D46A2B052BAC064C58CB9E5E747038C",
+        "50882540EFA9C25EF09F8EACA5B5CF73AEBC90309ADD7D7F71FD3C98D817999D"
+      ],
+      "live": false,
+      "note": "Registry status missing; live HDA_MelusinaHouse_Landscape emits zero components. Promotion path open, not taken."
+    }
+  ],
+  "material_contract": {
+    "roles": [
+      "floor_stone",
+      "wall_plaster",
+      "stone",
+      "trim_gold",
+      "gold",
+      "crystal_glass",
+      "pearl_shell",
+      "panel",
+      "ribbon_silk"
+    ],
+    "mi_family": "/Game/Melodia/HoudiniFoundry/RoomShell/ (6 MIs verified present)",
+    "borrows": {
+      "panel": "wall_plaster (carved plaster, deliberate)",
+      "gold": "trim_gold (same instance, deliberate)",
+      "pearl_shell": "MI_Nikki_Show_PearlSheen PROVISIONAL - 61% of bedroom faces, owner confirmation owed"
+    },
+    "live_gap": "HDA_House_Salon + HDA_House_Bedroom resolve houdini_default_material with 1 section; live cooks predate unreal_material. Corridor/Porch/Roof carry single Poitou MIs, not the role family."
+  },
+  "dressing_surfaces": [
+    "surface_floor",
+    "surface_wall (interior-only)",
+    "surface_ceiling",
+    "surface_sill",
+    "surface_ledge"
+  ],
+  "missing_not_converged_live": [
+    "M1 stained glass never placed",
+    "M2 live material binding (grey Salon/Bedroom, single-section outputs)",
+    "M3 collision slab not in shipped HDA",
+    "M4 rounded salon not live (live Salon is rect 13.58x18.35x5.63)",
+    "M5 real Houdini mesh_socketX outputs (sockets diagnostic JSON only)",
+    "M6 Roof/Trim/Porch/Stair/Gallery/Corridor source-HDA provenance unidentified (no matching .hda in hda/ or Content/HDA)",
+    "M7 terrain/caves promotion not taken; live landscape actor emits nothing",
+    "M8 pearl_shell hero MI (provisional borrow on 35-61% of faces)",
+    "M9 floral sigil import (6 families, 45 PNGs, not in UE)",
+    "M10 PCG fill volumes (designed in fill contract, never built)"
+  ],
+  "evidence_levels": {
+    "live_audit_20261028": "editor-query readback (243 actors, mats, transforms). Not PIE, not traversal.",
+    "hashes_20261028": "disk SHA256 verification in this change set.",
+    "hython_gates": "20/20 rect + 29/29 rounded receipts 2026-10-25; variant re-verify owed (manifest pins stale).",
+    "not_claimed": [
+      "PIE traversal",
+      "possessed walk",
+      "packaged proof",
+      "visual acceptance",
+      "promotion"
+    ]
+  },
+  "assembler": {
+    "module": "Tools/Houdini/room_shell/house.py",
+    "type": "melodia::house (pending packager)",
+    "plan": "SALON_FIRST",
+    "gate": "all_pass pure-python 2026-10-28",
+    "prims": 23117,
+    "points": 91844,
+    "roles_mapped": true,
+    "surfaces": true,
+    "sockets": 4,
+    "groups": [
+      "room_salon",
+      "room_landing",
+      "joint_salon_landing_run",
+      "stair_porch_steps",
+      "roof_salon",
+      "roof_landing",
+      "pad"
+    ]
+  },
+  "artist_path_2_0": {
+    "lane": "collab/laptop/longterm + lane-salon-convergence-20261022 worktree (preserved, never merge)",
+    "hda": "hda/MelodiaRoomShell_Rounded_2.0.hda",
+    "builder": "Tools/Houdini/room_shell/build_rounded_artist_hda.py",
+    "commits": [
+      "f1b1a2c9e",
+      "535016bdf"
+    ],
+    "pattern": "footprint/plan-shape/portal-row/setback-row folders, dual profile-vs-artist authoring, labeled menus with help+ranges",
+    "status": "promotion is integrator/owner decision; packager mirrors its vocabulary"
+  },
+  "jev_audit": {
+    "source": "jev-live",
+    "model": "reflection/beam-1.0-501b-a23b:free",
+    "runs": 2,
+    "run1": {
+      "order": "ASSEMBLER_GREEN",
+      "order_p": 0.75,
+      "riskiest": "SOCKET_TRANSFORM",
+      "p": 0.5,
+      "readiness": 1
+    },
+    "run2": {
+      "order": "PACKAGER",
+      "order_p": 0.78,
+      "riskiest": "UE_COOK_SCALE",
+      "p": 0.52,
+      "readiness": 2
+    },
+    "agreement": "order follows state; risk shifts socket-math to cook-scale after green"
+  }
+}

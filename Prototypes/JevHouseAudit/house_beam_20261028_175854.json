@@ -1,0 +1,65 @@
+{
+  "decision": {
+    "source": "jev-live",
+    "model": "reflection/beam-1.0-501b-a23b:free",
+    "state": {
+      "assembler_smoke": "red (link run length 0 on coincident portals; joint mode designed, rerun pending)",
+      "variants_refresh": "7/7 admit with zero unmapped roles (SalonLive receipt 2026-10-28)",
+      "editor": "blocked after modal episode; staging script and surveyed spot ready",
+      "packager": "pending (subnet design fixed: arch + PCG Partition/Scatter + artist folders)",
+      "ue_stage": "blocked on editor idle"
+    },
+    "order": "ASSEMBLER_GREEN",
+    "order_probs": {
+      "ASSEMBLER_GREEN": 0.75,
+      "PACKAGER": 0.1,
+      "UE_STAGE": 0.1,
+      "COMMIT_DOCS": 0.05
+    },
+    "riskiest": "SOCKET_TRANSFORM",
+    "riskiest_probs": {
+      "JOINT_GEOMETRY": 0.25,
+      "SOCKET_TRANSFORM": 0.5,
+      "UE_COOK_SCALE": 0.15,
+      "ROOF_PITCH": 0.1
+    },
+    "needs_human": false,
+    "needs_human_prob": 0.0,
+    "readiness": 1,
+    "confidence": 0.8,
+    "authored_only": true
+  },
+  "raw": {
+    "order": {
+      "choice": "ASSEMBLER_GREEN",
+      "confidence": 0.8,
+      "probabilities": {
+        "ASSEMBLER_GREEN": 0.75,
+        "PACKAGER": 0.1,
+        "UE_STAGE": 0.1,
+        "COMMIT_DOCS": 0.05
+      }
+    },
+    "riskiest": {
+      "choice": "SOCKET_TRANSFORM",
+      "confidence": 0.6,
+      "probabilities": {
+        "JOINT_GEOMETRY": 0.25,
+        "SOCKET_TRANSFORM": 0.5,
+        "UE_COOK_SCALE": 0.15,
+        "ROOF_PITCH": 0.1
+      }
+    },
+    "human": 0.0,
+    "readiness": {
+      "score": 1,
+      "probabilities": [
+        0.1,
+        0.55,
+        0.25,
+        0.08,
+        0.02
+      ]
+    }
+  }
+}

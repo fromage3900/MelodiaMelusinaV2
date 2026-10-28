@@ -1,0 +1,40 @@
+{
+  "schema": "melodia.jev_house_plan_audit.v1",
+  "date": "2026-10-28T17:48:16",
+  "state": {
+    "assembler_smoke": "red",
+    "variants_refresh": "7/7 admit",
+    "editor": "blocked",
+    "packager": "pending",
+    "ue_stage": "blocked"
+  },
+  "decision": {
+    "order": "ASSEMBLER_GREEN",
+    "order_probs": {
+      "ASSEMBLER_GREEN": 0.7,
+      "PACKAGER": 0.1,
+      "UE_STAGE": 0.1,
+      "COMMIT_DOCS": 0.1
+    },
+    "riskiest": "UE_COOK_SCALE",
+    "riskiest_probs": {
+      "JOINT_GEOMETRY": 0.15,
+      "SOCKET_TRANSFORM": 0.15,
+      "UE_COOK_SCALE": 0.55,
+      "ROOF_PITCH": 0.15
+    },
+    "needs_human": true,
+    "needs_human_prob": 0.8,
+    "readiness": 2,
+    "readiness_probs": [
+      0.05,
+      0.15,
+      0.6,
+      0.15,
+      0.05
+    ],
+    "source": "classical-fallback",
+    "reason": "jev-live failed (TypeSafeBadRequestError), classical fallback",
+    "confidence": 0.7
+  }
+}
