@@ -7,7 +7,7 @@ const root = dirname(dirname(fileURLToPath(import.meta.url)));
 const file = (p) => readFileSync(join(root, p), 'utf8');
 const exists = (p) => existsSync(join(root, p));
 const js = ['js/player.js', 'js/chibi.js', 'js/activities.js',
-  'js/cel.js', 'js/asset-loader.js', 'js/world.js',
+  'js/cel.js', 'js/asset-loader.js', 'js/world.js', 'js/heritage-timeline.js',
   'vendor/examples/jsm/loaders/GLTFLoader.js',
   'vendor/examples/jsm/utils/BufferGeometryUtils.js'];
 for (const p of js) assert.ok(exists(p), 'missing: ' + p);
@@ -16,6 +16,14 @@ assert.match(file('js/player.js'), /if \(m\.pose\)/);
 assert.match(file('js/activities.js'), /get\('shrine'\) === 'glb'/);
 assert.match(file('js/asset-loader.js'), /GLTFLoader/);
 assert.match(file('js/asset-loader.js'), /procedural/);
+for (const name of ['chromatic-orbit', 'note-medallion', 'filigree-frame', 'resonance-core']) {
+  const svg = file('assets/heritage/' + name + '.svg');
+  assert.match(svg, /<svg\s/);
+  assert.match(svg, /viewBox=/);
+}
+assert.match(file('index.html'), /title-sigil-orbit/);
+assert.match(file('index.html'), /shrine-crest/);
+assert.match(file('js/activities.js'), /createDeterministicTimeline/);
 assert.match(file('js/cel.js'), /MeshToonMaterial/);
 assert.match(file('js/cel.js'), /nprV2/);
 const painterly = file('js/painterly.js');
@@ -44,6 +52,10 @@ assert.match(sw, /resonant-wilds-v9/);
 assert.match(sw, /js\/echo\.js/);
 assert.match(sw, /assets\/icons\/echo_phrase\.svg/);
 assert.match(sw, /js\/grove\.js/);
+for (const name of ['chromatic-orbit', 'note-medallion', 'filigree-frame', 'resonance-core']) {
+  assert.ok(sw.includes('assets/heritage/' + name + '.svg'), 'missing cached heritage SVG ' + name);
+}
+assert.match(sw, /js\/heritage-timeline\.js/);
 assert.match(sw, /harmonic-grove-37\.glb/);
 for (const path of sw.matchAll(/'\.\/([^']+)'/g)) {
   const p = path[1];
