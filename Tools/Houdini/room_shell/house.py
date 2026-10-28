@@ -27,6 +27,12 @@ ROLE_MATERIALS = _RNS['DEFAULT_ROLE_MATERIALS']
 BAY_M = 2.4
 RISE, RUN, STAIR_W = 0.17, 0.28, 1.20  # build_switchback_stairs walkability law
 
+# Surface code order. Shared with the packager PCG branch: integer surf_id
+# crosses the hou->VEX boundary (hou-written STRINGS read back empty in VEX),
+# so the wrangle maps these codes back to names. Keep both lists identical.
+SURF_ORDER = ['surface_floor', 'surface_wall', 'surface_ceiling',
+              'surface_ledge', 'surface_sill', 'structure']
+
 
 # ------------------------------------------------------------------ mesh ops
 def _new():
@@ -139,7 +145,10 @@ def room_rect(spec):
               windows_long=spec.get('windows_long', 0),
               windows_short=spec.get('windows_short', 0),
               explicit_openings=spec.get('portals', []),
-              simple_floor_collision=1)
+              simple_floor_collision=1,
+              floor_medallion=spec.get('floor_medallion', True),
+              skirting=spec.get('skirting', True),
+              chair_rail=spec.get('chair_rail', True))
     M, rep = _RNS['build'](**kw)
     if not _RNS['gate'](M, rep).get('all_pass'):
         raise ValueError('rect room failed its own gate: %s' % spec.get('id'))
@@ -150,6 +159,9 @@ def room_rect(spec):
 def room_rounded(spec):
     """Rounded salon from plan spec. Returns (M, sockets, surfaces, rep)."""
     kw = dict(W=spec['W'], D=spec['D'], H=spec['H'], wall_t=0.24,
+              floor_medallion=spec.get('floor_medallion', True),
+              skirting=spec.get('skirting', True),
+              chair_rail=spec.get('chair_rail', True),
               shape=spec.get('plan_shape', 'ellipse'),
               sides=spec.get('plan_sides', 16),
               exponent=spec.get('plan_exponent', 2.6),
@@ -164,6 +176,37 @@ def room_rounded(spec):
         raise ValueError('rounded room failed its own gate: %s' % spec.get('id'))
     sockets = [dict(s, room=spec.get('id')) for s in rep.get('sockets', [])]
     return M, sockets, rep
+
+
+def add_frill_polygons(mesh, parts, socket, offset=0.25, clearance=None):
+    """Convert existing frill solids to a vertical portal frame, in metres."""
+    cx, cy, cz = socket['center_world_m']
+    ix, iy, _ = socket['inward_world']
+    length = math.hypot(ix, iy)
+    if length < 1e-8:
+        raise ValueError('portal inward direction is zero')
+    ix, iy = ix / length, iy / length
+    tx, ty = -iy, ix
+    if clearance is not None:
+        width, height = clearance
+        if width <= 0 or height <= 0:
+            raise ValueError('clearance must be positive')
+        for solids in parts.values():
+            for faces in solids:
+                for face in faces:
+                    xs = [v[0] for v in face]
+                    zs = [v[1] for v in face]
+                    if min(xs) < width / 2 and max(xs) > -width / 2 and min(zs) < height and max(zs) > 0:
+                        raise ValueError('frill face intersects clearance envelope')
+    start = len(mesh.F)
+    for part, solids in parts.items():
+        role = 'ribbon_silk' if part == 'frill' else 'trim_gold'
+        for faces in solids:
+            for face in faces:
+                mesh.poly([(cx + tx*x - ix*(depth+offset),
+                            cy + ty*x - iy*(depth+offset), cz + height)
+                           for x, height, depth in face], role)
+    return len(mesh.F) - start
 
 
 def place_room(M, sockets, spec):
@@ -398,12 +441,14 @@ def _poly_box(M, a, b, role):
 SALON_FIRST = dict(
     rooms=[
         dict(id='salon', kind='rounded', W=16.8, D=12.0, H=7.2,
+             floor_medallion=True, skirting=True, chair_rail=True,
              plan_shape='ellipse', plan_sides=16, plan_exponent=2.6,
              plan_segments=96, tiers=[1.0, 0.92, 0.84],
              portals=[dict(id='salon_entry', theta=0.25, width=2.4, height=3.2),
                       dict(id='salon_front', theta=0.75, width=2.4, height=3.2)],
              pos=[0.0, 0.0], yaw_deg=0.0, roof_rise=1.6),
         dict(id='landing', kind='rect', W=9.6, D=4.8, H=4.2,
+             floor_medallion=True, skirting=True, chair_rail=True,
              decor='paris_haussmann', windows_long=1, windows_short=0,
              portals=[dict(id='landing_in', wall='W', s=2.4, width=2.4, height=3.2),
                       dict(id='landing_out', wall='E', s=2.4, width=2.4, height=3.2)],
@@ -435,6 +480,7 @@ def assemble(plan):
     H.G = {}
     sockets_all = []
     rooms_built = []
+    windows_all = []
     segs = []
 
     def grp(name, start):
@@ -461,6 +507,22 @@ def assemble(plan):
                  fa['inward_world'][0], fa['inward_world'][1]),
                 (c[0], c[1], ib[0], ib[1]))
             spec = dict(spec, yaw_deg=yaw, pos=[dx, dy])
+        if kind == 'rect':
+            for window in rep.get('windows', []):
+                wall = window['wall']
+                midpoint = (window['s0'] + window['s1']) / 2.0
+                zmid = (window['z0'] + window['z1']) / 2.0
+                point = {'S': (midpoint, 0.0, zmid), 'N': (midpoint, spec['D'], zmid),
+                         'W': (0.0, midpoint, zmid), 'E': (spec['W'], midpoint, zmid)}[wall]
+                pos = spec.get('pos', [0.0, 0.0])
+                world = _frame_pointoroset(point, spec.get('yaw_deg', 0.0), pos[0], pos[1], spec.get('dz', 0.0))
+                nx, ny = {'S': (0.0, -1.0), 'N': (0.0, 1.0),
+                          'W': (-1.0, 0.0), 'E': (1.0, 0.0)}[wall]
+                angle = math.radians(spec.get('yaw_deg', 0.0))
+                outward = (nx * math.cos(angle) - ny * math.sin(angle),
+                           nx * math.sin(angle) + ny * math.cos(angle), 0.0)
+                windows_all.append(dict(window, room=spec['id'], center_world_m=world,
+                                        outward_world=outward, yaw_deg=spec.get('yaw_deg', 0.0)))
         sockets_w = place_room(M, sockets, spec)
         start = len(H.F)
         merge(H, M, group='room_' + spec['id'])
@@ -548,6 +610,25 @@ def assemble(plan):
     segs.append(('classify', start, len(H.F), 1.0, (pcx, pcy), 'pad'))
     grp('pad', start)
 
+    if plan.get('portal_frill'):
+        spec = plan['portal_frill']
+        socket = next(s for s in sockets_all if s['room'] == spec['room'] and s['id'] == spec['portal'])
+        try:
+            generator = _FrillNS['generate_frill']
+        except NameError:
+            from frill_arch_geometry import generate_frill as generator
+        width = float(socket.get('clear_width_m', 2.4))
+        params = dict(span=width+0.6, pier_height=1.2, lancet=1.0,
+                      core_width=0.15, frill_layers=int(spec.get('layers', 3)),
+                      frill_width=0.25, scallops=10, scallop_amp=0.02,
+                      layer_dz=0.05, flower_petals=8, flower_radius=0.25,
+                      arc_segments=48, seed=11)
+        parts, _ = generator(params)
+        start = len(H.F)
+        add_frill_polygons(H, parts, socket, clearance=(1.2, 2.1))
+        segs.append(('force', start, len(H.F), ('structure', 'portal_frill')))
+        grp('portal_frill', start)
+
     H.meta = []
     for seg in segs:
         if seg[0] == 'classify':
@@ -569,7 +650,7 @@ def assemble(plan):
         roles[r] = roles.get(r, 0) + 1
     rep = dict(rooms=rooms_built, links=plan.get('links', []),
                stairs=plan.get('stairs', []), pad=pad,
-               sockets=sockets_all, surfaces=surfaces_total,
+               sockets=sockets_all, windows=windows_all, surfaces=surfaces_total,
                roles=roles, prims=len(H.F), points=len(H.P))
     return H, rep
 
@@ -595,11 +676,78 @@ def gate(H, rep, plan):
     return out
 
 
+def plan_from_parms(h):
+    """Artist parm surface -> house plan. No JSON required for the Salon run.
+
+    Folder/parm vocabulary mirrors the Rounded 2.0 lane: footprint, plan
+    shape, portal rows, setback rows, dressing toggles, engine output.
+    house_plan_json remains as an advanced full-plan override.
+    """
+    def E(name):
+        return h.evalParm(name)
+
+    def S(name):
+        return h.parm(name).evalAsString()
+
+    plan = dict(
+        rooms=[
+            dict(id='salon', kind='rounded',
+                 W=E('salon_w'), D=E('salon_d'), H=E('salon_h'),
+                 floor_medallion=bool(E('dressing_medallion')),
+                 skirting=bool(E('dressing_skirting')),
+                 chair_rail=bool(E('dressing_rail')),
+                 plan_shape=('ellipse', 'superellipse',
+                             'polygon')[int(E('salon_shape'))],
+                 plan_sides=int(E('salon_sides')),
+                 plan_exponent=E('salon_exponent'),
+                 plan_segments=int(E('plan_segments')),
+                 tiers=[float(E('tier_0')), float(E('tier_1')),
+                        float(E('tier_2'))],
+                 portals=[dict(id='salon_entry', theta=0.25,
+                               width=float(E('portal_w')),
+                               height=float(E('portal_h'))),
+                          dict(id='salon_front', theta=0.75,
+                               width=float(E('portal_w')),
+                               height=float(E('portal_h')))],
+                 pos=[0.0, 0.0], yaw_deg=0.0,
+                 roof_rise=float(E('salon_roof_rise'))),
+            dict(id='landing', kind='rect',
+                 W=E('landing_w'), D=E('landing_d'), H=E('landing_h'),
+                 floor_medallion=bool(E('dressing_medallion')),
+                 skirting=bool(E('dressing_skirting')),
+                 chair_rail=bool(E('dressing_rail')),
+                 decor='paris_haussmann',
+                 windows_long=int(E('landing_windows')), windows_short=0,
+                 portals=[dict(id='landing_in', wall='W', s=2.4,
+                               width=float(E('portal_w')),
+                               height=float(E('portal_h'))),
+                          dict(id='landing_out', wall='E', s=2.4,
+                               width=float(E('portal_w')),
+                               height=float(E('portal_h')))],
+                 link_from=('salon', 'salon_front'),
+                 link_portal='landing_out',
+                 roof_rise=float(E('landing_roof_rise'))),
+        ],
+        links=[dict(id='salon_landing_run',
+                    pa=('salon', 'salon_front'),
+                    pb=('landing', 'landing_out'),
+                    width=float(E('portal_w')), height=float(E('portal_h')))],
+        stairs=[dict(id='porch_steps', room='landing', portal='landing_in',
+                     drop_m=float(E('stair_drop')), width=float(E('stair_w')))],
+        pad=dict(margin=float(E('pad_margin'))),
+    )
+    if h.parm('portal_frill') and h.evalParm('portal_frill'):
+        plan['portal_frill'] = dict(room='landing', portal='landing_in', layers=int(h.evalParm('frill_layers')))
+    return plan
+
+
 def cook(node):
     """HDA entry point (single arch output). hou only lives here."""
     import hou
     h = node.parent()
-    plan = json.loads(h.evalParm('house_plan_json') or '{}') or dict(SALON_FIRST)
+    override = (h.evalParm('house_plan_json')
+                if h.parm('house_plan_json') else '')
+    plan = json.loads(override) if override.strip() else plan_from_parms(h)
     H, rep = assemble(plan)
     gt = gate(H, rep, plan)
     if not gt['all_pass']:
@@ -616,6 +764,13 @@ def cook(node):
     g.addAttrib(hou.attribType.Prim, 'unreal_material', '')
     g.addAttrib(hou.attribType.Prim, 'surface', '')
     g.addAttrib(hou.attribType.Prim, 'room', '')
+    g.addAttrib(hou.attribType.Prim, 'surf_id', 0)
+    g.addAttrib(hou.attribType.Prim, 'room_id', 0)
+    room_index, rooms_seen = {}, []
+    for _surface, _room in H.meta:
+        if _room not in room_index:
+            room_index[_room] = len(rooms_seen)
+            rooms_seen.append(_room)
     g.addAttrib(hou.attribType.Vertex, 'uv', (0., 0., 0.))
     for name in ('gate_json', 'sockets_json', 'surfaces_json', 'house_json'):
         g.addAttrib(hou.attribType.Global, name, '')
@@ -630,6 +785,8 @@ def cook(node):
         hou_groups[name] = g.createPrimGroup(name)
         idx_sets[name] = set(idxs)
     for pi, (face, role, (surface, room)) in enumerate(zip(H.F, H.R, H.meta)):
+        sid = SURF_ORDER.index(surface)
+        rid = room_index[room]
         f = list(reversed(face)) if flip else face
         poly = g.createPolygon()
         for index in f:
@@ -639,6 +796,8 @@ def cook(node):
         poly.setAttribValue('unreal_material', mats[role])
         poly.setAttribValue('surface', surface)
         poly.setAttribValue('room', room)
+        poly.setAttribValue('surf_id', sid)
+        poly.setAttribValue('room_id', rid)
         for v, u in zip(poly.vertices(), _boxuv(P, f)):
             if not all(math.isfinite(c) for c in u):
                 raise ValueError('non-finite UV on role %s' % role)
@@ -647,8 +806,17 @@ def cook(node):
         for name, sset in idx_sets.items():
             if pi in sset:
                 hou_groups[name].add(poly)
-    g.setAttribValue('gate_json', json.dumps(gt))
-    g.setAttribValue('sockets_json', json.dumps(dict(sockets=[
+    if h.parm('walk_collision') and h.evalParm('walk_collision'):
+        collision = g.createPrimGroup('collision_geo_walk')
+        for face, (surface, room) in zip(H.F, H.meta):
+            if surface != 'surface_floor' and not room.startswith('stair_'):
+                continue
+            poly = g.createPolygon()
+            for index in (list(reversed(face)) if flip else face):
+                poly.addVertex(pts[index])
+            collision.add(poly)
+    g.setGlobalAttribValue('gate_json', json.dumps(gt))
+    g.setGlobalAttribValue('sockets_json', json.dumps(dict(sockets=[
         dict(id=s['id'], room=s.get('room'), wall=s.get('wall', 'CURVE'),
              centre_local_m=list(s['center_world_m']),
              inward=list(s['inward_world']), up=[0., 0., 1.],
@@ -656,9 +824,9 @@ def cook(node):
              clear_height_m=s.get('clear_height_m', 3.2),
              floor_z_m=0.0, kind=s.get('kind', 'door'),
              native_cut=s.get('native_cut', True)) for s in rep['sockets']])))
-    g.setAttribValue('surfaces_json', json.dumps(rep['surfaces']))
-    g.setAttribValue('house_json', json.dumps(dict(
+    g.setGlobalAttribValue('surfaces_json', json.dumps(rep['surfaces']))
+    g.setGlobalAttribValue('house_json', json.dumps(dict(
         rooms=[dict(id=r['id'], kind=r['kind'], bbox=r['bbox'], roof=r.get('roof'))
                for r in rep['rooms']],
-        links=rep['links'], pad=rep['pad'], roles=rep['roles'],
+        links=rep['links'], windows=rep['windows'], pad=rep['pad'], roles=rep['roles'],
         prims=rep['prims'], points=rep['points'])))

@@ -162,3 +162,17 @@ enforced, receipts in `Prototypes/JevHouseAudit/`): run 1 (red state) ordered
 ASSEMBLER_GREEN (0.75), riskiest socket math (0.5); run 2 (green state) ordered
 PACKAGER (0.78), riskiest UE cook scale (0.52). Agreement across the state
 change; needs_human false both runs; readiness 1 -> 2. Next: packager subnet.
+
+## 9. House HDA green (2026-10-28 batch B)
+
+melodia::house packs the assembler as a subnet HDA: arch output (23,117 prims,
+all roles mapped, surface/room/surf_id/room_id per prim, 7 named groups) plus a
+live PCG branch (AttribPromote prim->point, wrangle surface groups from the
+integer surf_id bridge, Blast isolate, Scatter per surface with ch() density
+parms). Verify: 1,310 PCG points at exactly the requested densities, zero
+errors/warnings. Artist surface mirrors the 2.0 lane vocabulary. Two hard
+Houdini findings banked: (1) the .hda round-trip escapes quote characters, so
+embedded sources ship base64; (2) hou-written STRING prim attribs read back
+empty in VEX, so the UE contract rides strings while the PCG branch rides
+integer codes. Receipt: Saved/Staging/SalonLive_20261028/house/house_verify.json
+(gitignored scratch; promote via integrator).

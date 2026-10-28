@@ -2,7 +2,7 @@
   "contract_id": "melodia.housing.stack.v1",
   "kind": "housing_hda_stack_pin",
   "schema_version": "1.0",
-  "status": "assembler-green-packager-next",
+  "status": "house-hda-green-ue-stage-next",
   "updated": "2026-10-28",
   "authority": {
     "status_doc": "CURRENT_STATE.md",
@@ -226,5 +226,27 @@
       "readiness": 2
     },
     "agreement": "order follows state; risk shifts socket-math to cook-scale after green"
+  },
+  "house_hda": {
+    "path": "Saved/Staging/SalonLive_20261028/house/MelodiaHouse_1.0.hda",
+    "type": "melodia::house",
+    "sha256": "436163ad8628556ff5cf9102fdcd8ef4f8e0717090da8d1127c2c25b83cb894f",
+    "bytes": 77509,
+    "arch": {
+      "points": 91844,
+      "prims": 23117,
+      "groups": 7
+    },
+    "pcg": {
+      "total": 1310,
+      "per_surface": {
+        "surface_floor": 400,
+        "surface_wall": 600,
+        "surface_ceiling": 150,
+        "surface_ledge": 120,
+        "surface_sill": 40
+      }
+    },
+    "verify": "house_verify.json all asserts pass, zero errors/warnings"
   }
 }
