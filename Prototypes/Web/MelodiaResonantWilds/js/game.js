@@ -15,6 +15,7 @@ import { Activities } from './activities.js';
 import { Echo } from './echo.js';
 import { UI } from './ui.js';
 import { PostFX } from './postfx.js';
+import { EncoreSystem } from './encore.js';
 import { BIOMES, HUB, DIFFICULTY, RARITIES, SKILL_BY_ID, SHARD_BY_ELEMENT, ELEMENT_STYLE, MODIFIERS, RULES, xpToNext } from './design.js';
 import { clamp, lerp } from './util.js';
 
@@ -77,7 +78,9 @@ export class Game {
     this.echo = new Echo(this);
     this.ui = new UI(this);
     this.postfx = new PostFX(this);
+    this.encoreSys = new EncoreSystem(this);
     this._outlineInteract = null;
+    this._keyModulation = false;
 
     this.firstRunGear();
     const sp = this.profile.spawn;
@@ -218,6 +221,10 @@ export class Game {
     }
     this.autoAttackBeat = gr.beat ? gr.beat.index : this.beatIndex;
     this.rhythm.register(gr, hits);
+    if (gr.grade === 'Perfect') {
+      this.encoreSys.notePerfect(hits, 1.0, this.player.stats.basicElement);
+      this.encoreSys.onPerfect();
+    }
     if (gr.grade === 'Miss') this.combat.missPressure();
     else if (gr.grade === 'Perfect' && hits) this.combat.perfectJuice(gr);
   }
@@ -247,6 +254,10 @@ export class Game {
     this.cooldowns[i] = this.time + total;
     const hits = this.combat.cast(sk, gr);
     this.rhythm.register(gr, hits);
+    if (gr.grade === 'Perfect') {
+      this.encoreSys.notePerfect(hits, sk.coef || 1.4, sk.element);
+      this.encoreSys.onPerfect();
+    }
     if (gr.grade === 'Miss') this.combat.missPressure();
     else if (gr.grade === 'Perfect' && hits) this.combat.perfectJuice(gr);
   }
@@ -297,22 +308,15 @@ export class Game {
     this.audio.grade('Perfect');
   }
 
-  encore() {
+  /** Cast the selected Encore variant (cycle with Alt+T / long-press when empty). */
+  encore(cycleOnly = false) {
     if (!this.started || this.paused || this.player.dead) return;
-    const R = this.rhythm, P = this.player;
-    if (R.encore < R.encoreMax || R.encoreActive) return;
-    R.encore = 0;
-    R.encoreUntil = this.beatIndex + this.audio.meter * 2;
-    P.invulnUntil = this.time + 0.6;
-    const p = { x: P.pos.x, z: P.pos.z, r: 9 };
-    this.combat.hitAll(this.combat.enemiesIn('circle', p), RULES.ultimate.damage_mult * 1.2, { mult: RULES.rhythm.max_combat_multiplier, element: P.stats.basicElement, tough: 3 });
-    this.combat.flash('circle', p.x, p.z, p, '#ffd978');
-    this.world.pulse(P.pos.x, P.pos.z, 2.5, true);
-    this.particles.burst(P.pos.x, P.pos.y + 1, P.pos.z, _c.set('#ffd978'), 60, { speed: 14, life: 1, kind: 2, size: 1.2 });
-    this.shake(0.7);
-    this.audio.encore();
-    this.audio.setIntensity(2);
-    this.ui.banner('ENCORE!', 'Every action is Perfect for two bars');
+    if (cycleOnly || (this.rhythm.encore < this.rhythm.encoreMax && !this.encoreSys.active)) {
+      this.encoreSys.cycle(1);
+      return;
+    }
+    if (this.encoreSys.active || this.rhythm.encoreActive) return;
+    this.encoreSys.cast();
   }
 
   skyboundStrike() {
@@ -755,10 +759,12 @@ export class Game {
       if (!P.dead && Math.hypot(P.pos.x - h.x, P.pos.z - h.z) < h.r) this.hurtPlayer(h.dmg, null);
       this.hazards.splice(i, 1);
     }
+    if (!P.dead) this.encoreSys.onBeat(beat);
     if (beat.inBar === 0) {
       this.rhythm.onBar(beat);
       if (beat.bar % 2 === 0 && !P.dead) P.sp = Math.min(P.stats.spMax, P.sp + 1);
-      if (this.rhythm.encoreActive && !P.dead) {
+      // Legacy gold ring only when no specialised Encore verb is driving beats.
+      if (this.rhythm.encoreActive && !this.encoreSys.active && !P.dead) {
         const p = { x: P.pos.x, z: P.pos.z, r: 7 };
         this.combat.hitAll(this.combat.enemiesIn('circle', p), 1.2, { mult: RULES.rhythm.max_combat_multiplier, element: P.stats.basicElement, tough: 2 });
         this.combat.flash('ring', p.x, p.z, { r: 7, inner: 5.8 }, '#ffd978');
@@ -816,6 +822,7 @@ export class Game {
     const speedBurden = this.activities.burdenScale('speed');
     P.update(dt, mv.x * speedBurden, mv.z * speedBurden);
     this.sheep.update(dt);
+    this.encoreSys.update(dt);
     // Enemies + separation.
     const E = this.enemies;
     for (let i = E.length - 1; i >= 0; i--) {

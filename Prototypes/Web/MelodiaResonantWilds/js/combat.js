@@ -124,6 +124,7 @@ export class Combat {
       let td = (o.tough ?? 1) * 6 * (o.mult ?? 1) * (1 + S.break);
       if (em > 1) td *= 1.5;
       if (o.downbeat && S.arias.has('DownbeatBreak')) td *= 3;
+      if (o.perfect && g.encoreSys?.perfectBreakActive()) td = Math.max(td, e.tough + 1);
       e.tough -= td;
       if (e.tough <= 0) this.breakEnemy(e);
     }

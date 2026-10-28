@@ -52,6 +52,18 @@ Inspect the live recipe in the browser console: `window.__rwOpenWorld`.
 ## 🔁 The loop
 
 - **Rhythm language.** Taps are graded against the beat you actually hear, using Web Audio output latency plus a calibration offset. Grades are PERFECT / GREAT / GOOD / MISS. On-beat hits build a combo and a **Crescendo** meter shown as dynamics (pp → p → mf → f → ff), which raises crit and move speed. They also fill **Encore** and refund **Harmony**. Slimes hop on the beat. Their attacks are telegraphs that land on a counted beat (elites and bosses count "3, 2, 1" aloud).
+- **Encore variants** (one gauge, ten ultimates — cycle with hold / Alt+T / `[` `]`):
+  1. **Crescendo Cascade** — beat-locked radial waves; Perfects extend
+  2. **Subject & Answer** — mark 3 foes, then mirror your phrase
+  3. **Break Cadenza** — shatter toughness; Perfects guarantee BREAK
+  4. **Encore Reprise** — replay the last four Perfect hits as ghost notes
+  5. **Choral Duet** — Melusina + Sheep Harmonize (heal / cleanse / Tide)
+  6. **Aria Veil Step** — float on the beat, land as a shockwave
+  7. **Wardrobe Overture** — all Aria passives for eight beats
+  8. **Key Modulation** — local key flips; Phrase Bridges accept Good
+  9. **Resonance Dew Bloom** — spend Dew for a cymatic blast + map ping
+  10. **Rift Recital** — mid-Rift Echo Phrase bank + buff
+  Each cast has a tuned SFX stinger, bloom spike, and ring/particle juice.
 - **Open world.** Five biomes from the Gaea world-gen setups sit around Shorewake Village, each with its own tempo, meter, key and style:
   - Petal Cantata: waltz, 3/4
   - Liquid Cathedral: organ, 4/4
@@ -107,7 +119,7 @@ python Prototypes/Web/MelodiaResonantWilds/tools/export_ue_data.py
 
 ## 🗂 Files
 
-`js/openworld.js` anime OW workflow recipe (gates, vistas, density, dressing layers, destinations) · `js/audio.js` beat clock and procedural score · `js/rhythm.js` judging, combo, Crescendo, Encore · `js/world.js` streamed terrain, biomes, props, landmarks, water, rift arena · `js/entities.js` Melusina, sheep, slimes, boss phrases · `js/combat.js` damage, skills, projectiles · `js/loot.js` items, Motifs, Harmonic Synthesis, temper · `js/echo.js` Echo Lineage · `js/activities.js` camps, shrines, bosses, events, rifts, overlooks, destinations · `js/progress.js` save, XP, bounties, exploration · `js/ui.js` HUD, touch controls, panels, rift reward reveal · `js/postfx.js` OutlinePass + selective bloom · `js/game.js` loop · `assets/icons/` SVG icon pack + `manifest.json`.
+`js/openworld.js` anime OW workflow recipe (gates, vistas, density, dressing layers, destinations) · `js/encore.js` ten Encore ultimate variants · `js/audio.js` beat clock, procedural score, Encore stingers · `js/rhythm.js` judging, combo, Crescendo, Encore · `js/world.js` streamed terrain, biomes, props, landmarks, water, rift arena · `js/entities.js` Melusina, sheep, slimes, boss phrases · `js/combat.js` damage, skills, projectiles · `js/loot.js` items, Motifs, Harmonic Synthesis, temper · `js/echo.js` Echo Lineage · `js/activities.js` camps, shrines, bosses, events, rifts, overlooks, destinations · `js/progress.js` save, XP, bounties, exploration · `js/ui.js` HUD, touch controls, panels, rift reward reveal · `js/postfx.js` OutlinePass + selective bloom · `js/game.js` loop · `assets/icons/` SVG icon pack + `manifest.json`.
 
 UI frames live in Figma: [Resonant Wilds Web UI](https://www.figma.com/design/Vin9X81mAyJ4GQIjGBmzcI).
 
