@@ -11,6 +11,31 @@ const ramps = new Map();
 const inkMaterials = new Set();
 let shadowTint = 0.82;
 let inkOpacity = 0.85;
+const bandControls = {
+  hardness: 0.98, threshold: 0.49, depth: 0.39,
+};
+const bandUniforms = {
+  uBandHardness: { value: bandControls.hardness },
+  uBandThreshold: { value: bandControls.threshold },
+  uBandShadowDepth: { value: bandControls.depth },
+};
+// Exposed for the look tuner; shared uniforms update every compiled toon shader.
+export function setNPRBands(changes = {}) {
+  const limits = {
+    hardness: [0, 1], threshold: [0.28, 0.70], depth: [0.15, 1],
+  };
+  for (const [key, bounds] of Object.entries(limits)) {
+    if (!(key in changes)) continue;
+    const num = Number(changes[key]);
+    if (!Number.isFinite(num)) continue;
+    bandControls[key] = Math.max(bounds[0], Math.min(bounds[1], num));
+  }
+  bandUniforms.uBandHardness.value = bandControls.hardness;
+  bandUniforms.uBandThreshold.value = bandControls.threshold;
+  bandUniforms.uBandShadowDepth.value = bandControls.depth;
+  return { ...bandControls };
+}
+export function getNPRBands() { return { ...bandControls }; }
 const V1_BANDS = [80, 167, 255];
 
 // Recolour *existing* ramp textures in place so no mesh or shader rebuild is needed.
@@ -108,13 +133,67 @@ function guessPalette(color) {
   return 'stone';
 }
 
+// Three.js r170's stock getGradientIrradiance samples gradientMap.r only.
+// Replace the chunk on NPR V2 to preserve the actual RGB lighting ramps and
+// make band transition width independent of the three-sample palette texture.
+// This is the source of the previously mushy/pale shadow thresholds.
+const RGB_BANDS_GLSL = `
+#ifdef USE_GRADIENTMAP
+uniform sampler2D gradientMap;
+#endif
+uniform float uBandHardness;
+uniform float uBandThreshold;
+uniform float uBandShadowDepth;
+vec3 getGradientIrradiance( vec3 normal, vec3 lightDirection ) {
+  float ndl = dot( normal, lightDirection ) * 0.5 + 0.5;
+  // 0.98 is nearly a hard step; low values allow gentle transitions.
+  float feather = mix(0.115, 0.0015, uBandHardness);
+  float shadeMid = smoothstep(uBandThreshold-feather, uBandThreshold+feather, ndl);
+  float midLitCut = min(0.97, uBandThreshold + 0.31);
+  float midLit = smoothstep(midLitCut-feather, midLitCut+feather, ndl);
+  #ifdef USE_GRADIENTMAP
+    vec3 shadowRGB = texture2D( gradientMap, vec2(1.0/6.0, 0.5) ).rgb * uBandShadowDepth;
+    vec3 middleRGB = texture2D( gradientMap, vec2(3.0/6.0, 0.5) ).rgb;
+    vec3 lightRGB = texture2D( gradientMap, vec2(5.0/6.0, 0.5) ).rgb;
+    return mix(mix(shadowRGB, middleRGB, shadeMid), lightRGB, midLit);
+  #else
+    return vec3(mix(mix(uBandShadowDepth, 0.70, shadeMid), 1.0, midLit));
+  #endif
+}
+`;
+
+function installRGBBandShader(material) {
+  if (!nprV2) return material;
+  const upstream = material.onBeforeCompile;
+  material.onBeforeCompile = (shader, renderer) => {
+    upstream.call(material, shader, renderer);
+    Object.assign(shader.uniforms, bandUniforms);
+    const chunk = '#include <gradientmap_pars_fragment>';
+    if (!shader.fragmentShader.includes(chunk)) {
+      throw new Error('Melodia RGB toon shader: Three.js gradient chunk missing');
+    }
+    shader.fragmentShader = shader.fragmentShader.replace(chunk, RGB_BANDS_GLSL);
+    // The broad hemispheric fill was washing out the three direct-light bands.
+    // Retain a little fill so shadowed skin, hair and fabric remain legible.
+    // A strong hemispheric fill washes out dark bands. Tone it down after
+    // lighting accumulation; emission and the world's beat effects stay intact.
+    shader.fragmentShader = shader.fragmentShader.replace(
+      'vec3 outgoingLight = reflectedLight.directDiffuse + reflectedLight.indirectDiffuse + totalEmissiveRadiance;',
+      'vec3 outgoingLight = reflectedLight.directDiffuse + reflectedLight.indirectDiffuse * 0.22 + totalEmissiveRadiance;'
+    );
+    material.userData.melodiaNPRShader = shader;
+  };
+  material.customProgramCacheKey = () => 'melodia-rgb-three-band-r2';
+  return material;
+}
+
 export function celMaterial(color, options = {}) {
   const { nprRole, ...parameters } = options;
-  return new THREE.MeshToonMaterial({
+  return installRGBBandShader(new THREE.MeshToonMaterial({
     color,
     gradientMap: nprV2 ? paletteGradient(nprRole || guessPalette(color)) : toonGradient(),
     ...parameters,
-  });
+  }));
 }
 
 export function environmentMaterial(color, options = {}) {

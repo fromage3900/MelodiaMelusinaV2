@@ -380,7 +380,11 @@ export class World {
   // Beat ripples and a Crescendo glow painted into any Lambert/Phong material.
   _resonate(mat) {
     const U = this.uniforms;
+    // Compose with the RGB-band toon shader rather than overwriting it.
+    // Without this chain, terrain and Rift materials silently lose NPR V2 bands.
+    const previousShaderHook = mat.onBeforeCompile;
     mat.onBeforeCompile = (sh) => {
+      previousShaderHook.call(mat, sh);
       Object.assign(sh.uniforms, U);
       sh.vertexShader = sh.vertexShader
         .replace('#include <common>', '#include <common>\nvarying vec3 vWP;')
