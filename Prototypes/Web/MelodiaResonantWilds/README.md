@@ -87,6 +87,14 @@ Inspect the live recipe in the browser console: `window.__rwOpenWorld`.
   - Exploration fog on the map
   - An idle reward from your Choral Sheep when you return
   - Staged **Rift Clear** reward reveal
+- **Cooler loops + Recital polish:**
+  - Beat-synced Harmonic Synthesis (ring pulses + Motif chords)
+  - Echo **Phrase Pedigree** card on clear / wardrobe
+  - Recital **micro-goals** (3 per Rift) + **Blessings** that spice the banked Phrase
+  - Motif **morph reveal** on salvage / synthesize / Chorus Cache packs
+  - **Oshi Aria** pin (boosts Echo pass chance + Devotion Cadence)
+  - Six web-native skills: Chladni Burst, Phrase Recall, Resonant Weave, Devotion Cadence, Downbeat Break, Afterimage — with Melusina cast poses
+  - Ceremony flash + fanfare on goal / bank / inherit / miss
   - Everything saves to `localStorage` (`melodia_resonant_wilds_v2`, migrates from v1)
 
 ## 🧬 What comes from UE
