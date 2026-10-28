@@ -1,11 +1,23 @@
 [CmdletBinding()]
 param(
     [string]$Source = 'C:/EnvironmentPortfolio/BS_GodFile',
-    [string]$Destination = 'G:/BS_GodFile_Mirror/20260913',
-    [string]$LogDirectory = "$env:TEMP/melodia-mirror-20260913",
+    [string]$Destination = '',
+    [string]$LogDirectory = '',
+    # Keep the dry-run and apply paths paired. Pass the same SnapshotId to both
+    # invocations when an explicit snapshot name is preferred.
+    [string]$SnapshotId = (Get-Date -Format 'yyyyMMdd'),
     [switch]$Apply
 )
 $ErrorActionPreference = 'Stop'
+if ([string]::IsNullOrWhiteSpace($SnapshotId) -or $SnapshotId -notmatch '^[A-Za-z0-9][A-Za-z0-9._-]*$') {
+    throw 'SnapshotId must contain only letters, numbers, dots, underscores, or hyphens.'
+}
+if ([string]::IsNullOrWhiteSpace($Destination)) {
+    $Destination = "G:/BS_GodFile_Mirror/$SnapshotId"
+}
+if ([string]::IsNullOrWhiteSpace($LogDirectory)) {
+    $LogDirectory = Join-Path ([IO.Path]::GetTempPath()) "melodia-mirror-$SnapshotId"
+}
 $sourceRoot = (Resolve-Path -LiteralPath $Source).Path.TrimEnd('\', '/')
 $targetRoot = [IO.Path]::GetFullPath($Destination).TrimEnd('\', '/')
 $approvedRoot = [IO.Path]::GetFullPath('G:/BS_GodFile_Mirror').TrimEnd('\', '/')
@@ -45,14 +57,17 @@ if ($Apply) {
     if ($receipt.source -ne $sourceRoot -or $receipt.destination -ne $targetRoot) {
         throw 'Dry run paths do not match this apply.'
     }
+    if (-not $receipt.snapshot_id -or $receipt.snapshot_id -ne $SnapshotId) {
+        throw 'Dry run snapshot id does not match this apply.'
+    }
     if (Get-Process UnrealEditor -ErrorAction SilentlyContinue) { throw 'Save and close the editor before mirroring.' }
 }
 $rows = @()
+$prefix = if ($Apply) { 'apply' } else { 'dry' }
 foreach ($relative in $folders) {
     $from = [IO.Path]::GetFullPath("$sourceRoot/$relative")
     $to = [IO.Path]::GetFullPath("$targetRoot/$relative")
     if (-not $to.StartsWith($targetRoot + '\', [StringComparison]::OrdinalIgnoreCase)) { throw 'Unsafe subtree' }
-    $prefix = if ($Apply) { 'apply' } else { 'dry' }
     $log = Join-Path $LogDirectory "$prefix-$($relative.Replace('/', '-')).log"
     $arguments = @($from, $to, '/MIR', '/XJ', '/R:0', '/W:0', '/BYTES', '/FP', '/NP', '/NDL',
                    '/XD', 'Intermediate', 'DerivedDataCache', 'Binaries', '__pycache__', 'autosave', 'autosaves',
@@ -72,7 +87,8 @@ $rootArgs = @($sourceRoot, $targetRoot, '*.uproject', '/R:0', '/W:0', '/BYTES', 
 if (-not $Apply) { $rootArgs += '/L' }
 & robocopy @rootArgs | Out-Null
 if ($LASTEXITCODE -ge 8) { throw "Root descriptor copy failed: $rootLog" }
-$output = [ordered]@{ source = $sourceRoot; destination = $targetRoot; apply = [bool]$Apply;
-    time = (Get-Date).ToUniversalTime().ToString('o'); rows = $rows; descriptor_log = $rootLog }
+$output = [ordered]@{ source = $sourceRoot; destination = $targetRoot; snapshot_id = $SnapshotId;
+    apply = [bool]$Apply; time = (Get-Date).ToUniversalTime().ToString('o'); rows = $rows;
+    descriptor_log = $rootLog }
 $output | ConvertTo-Json -Depth 6 | Set-Content -LiteralPath (Join-Path $LogDirectory "$prefix-run.json")
 Write-Output "Summary: $LogDirectory/$prefix-run.json"
