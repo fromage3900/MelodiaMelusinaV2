@@ -1,0 +1,23 @@
+name: Resonant Wilds Audio Routing
+on:
+  pull_request:
+    paths:
+      - 'Prototypes/Web/MelodiaResonantWilds/js/audio.js'
+      - 'Prototypes/Web/MelodiaResonantWilds/tools/test_audio_routing.mjs'
+      - '.github/workflows/resonant-wilds-audio.yml'
+  workflow_dispatch:
+jobs:
+  sfx-contract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check syntax
+        run: |
+          node --check Prototypes/Web/MelodiaResonantWilds/js/audio.js
+          node --check Prototypes/Web/MelodiaResonantWilds/tools/test_audio_routing.mjs
+      - name: Verify independent SFX and music buses
+        run: node Prototypes/Web/MelodiaResonantWilds/tools/test_audio_routing.mjs
