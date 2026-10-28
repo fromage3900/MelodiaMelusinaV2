@@ -1,0 +1,90 @@
+// =====================================================================
+// POITOU CROSSINGS - where a lane crosses the canal.
+// ---------------------------------------------------------------------
+// The 2026-10-20 receipt recorded `crossings: []` - none of the lanes
+// met the criteria for a bridge, so the village had no crossings at all.
+// That was the rule being stricter than the world.  A lane that meets the
+// canal gets a crossing: a deck slab spanning the water, carried on two
+// piers, with a parapet on each side in the same masonry as the revetment.
+//
+// The canal must be RESAMPLED before this can work: the layout curves
+// carry a handful of control points, and a lane segment can easily pass
+// 20 m from every control point while still crossing the water.
+//
+// Input 0: the RESAMPLED canal curves (with their width attribute)
+// Input 1: the terrain
+// Input 2: the layout points
+// =====================================================================
+
+string MAT_DECK  = chs("../lane_material");
+string MAT_PIER  = chs("../foundation_material");
+
+int   LANES   = chi("../radial_lanes");
+float SPACING = chf("../lane_spacing");
+float LEN     = chf("../lane_length");
+float CHURCH_X = 520.0, CHURCH_Z = 580.0;
+float DECK_W  = 2.4;
+float DECK_T  = 0.35;
+float PARAPET = 1.05;
+float REACH   = 6.0;      // how close a lane must come to the canal
+
+// the canal centrelines: for every prim, its width and its points
+int npr = nprimitives(0);
+vector cpos[];
+float cwid[];
+for(int pi=0; pi<npr; pi++){
+    float w = prim(0, "width", pi);
+    if(w <= 0.0) w = 6.0;
+    int pts[] = primpoints(0, pi);
+    for(int k=0;k<len(pts);k++){
+        vector cp = point(0, "P", pts[k]);
+        float cw = w;
+        push(cpos, cp);
+        push(cwid, cw);
+    }
+}
+int ncp = len(cpos);
+
+for(int L=0; L<LANES; L++){
+    float a = radians(float(L)*360.0/float(LANES) + 25.0);
+    int segs = int(LEN/SPACING);
+    for(int s=0;s<segs;s++){
+        float d0 = float(s)*SPACING, d1 = float(s+1)*SPACING;
+        float w0 = 0.35*sin(d0/35.0 + L);
+        float w1 = 0.35*sin(d1/35.0 + L);
+        vector p0 = set(CHURCH_X + d0*cos(a+w0), 0, CHURCH_Z + d0*sin(a+w0));
+        vector p1 = set(CHURCH_X + d1*cos(a+w1), 0, CHURCH_Z + d1*sin(a+w1));
+        // the nearest point on the canal
+        float best = 1e9; vector bp; float bw = 6.0;
+        for(int i=0;i<ncp;i++){
+            float dd = distance(set(cpos[i].x,0,cpos[i].z), set(p0.x,0,p0.z));
+            if(dd < best){ best = dd; bp = cpos[i]; bw = cwid[i]; }
+        }
+        if(best > bw*0.5 + REACH) continue;   // this lane does not meet the canal
+        // the deck spans the canal, along the lane
+        vector dir = normalize(set(p1.x-p0.x, 0, p1.z-p0.z));
+        vector nrm = normalize(cross(dir, set(0,1,0)));
+        vector mid = bp; mid.y = 0;
+        float span = bw + 3.0;
+        float decky = volumesample(1, "height", bp);
+        // the deck
+        vector dc = mid + set(0, decky + 0.5, 0);
+        kit_box(dc, dir, set(0,1,0), nrm, set(span, DECK_T, DECK_W),
+                MAT_DECK, 0.35, 0.25, 0.3, 0.0, "crossing_deck");
+        // the parapets
+        for(int k=0;k<2;k++){
+            float sgn = (k==0) ? -1.0 : 1.0;
+            vector pc = dc + nrm*(sgn*(DECK_W*0.5 + 0.15)) + set(0, PARAPET*0.5, 0);
+            kit_box(pc, dir, set(0,1,0), nrm, set(span, PARAPET, 0.30),
+                    MAT_PIER, 1.0, 0.3, 0.5, 0.0, "crossing_parapet");
+        }
+        // the piers, in the canal bed
+        for(int k=0;k<2;k++){
+            float sgn = (k==0) ? -1.0 : 1.0;
+            vector pp = mid + dir*(sgn*bw*0.4);
+            pp.y = decky - 0.6;
+            kit_box(pp, dir, set(0,1,0), nrm, set(0.9, 1.4, DECK_W*0.9),
+                    MAT_PIER, 0.4, 1.0, 0.35, 0.0, "crossing_pier");
+        }
+    }
+}
