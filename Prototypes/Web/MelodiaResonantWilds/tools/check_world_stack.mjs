@@ -15,7 +15,7 @@ assert.match(a, /get\('worldexp'\) === '1'/);
 assert.match(design, /get\('dressing'\) === 'dense'/);
 assert.match(a, /planExploration\(b, bi, rng, this\.pois\.slice\(\)\)/);
 assert.match(smoke, /desktop-worldexp-postfx/);
-assert.match(sw, /resonant-wilds-v8/);
+assert.match(sw, /resonant-wilds-v9/);
 for (const p of ['js/openworld.js','js/postfx.js','vendor/postprocessing/OutlinePass.js',
  'vendor/postprocessing/UnrealBloomPass.js','vendor/shaders/FXAAShader.js']) {
  assert.ok(existsSync(join(root,p)), p+' missing');
