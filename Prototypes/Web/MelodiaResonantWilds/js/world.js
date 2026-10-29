@@ -11,6 +11,7 @@ import { environmentMaterial, legacyRender } from './cel.js';
 import { flagWorldexp, flagNikkiLook } from './flags.js';
 import { installBellflowers, animateBellflowers } from './bellflower.js';
 import { createFlowerbedParts } from './flowerbeds.js';
+import { flowerLandscapeEnabled, installFlowerLandscapeChunk } from './flower-landscape.js';
 
 export const CHUNK = 64;
 const SEG = 28;
@@ -81,6 +82,8 @@ export class World {
     this._resonate(this.terrainMat);
     this._buildIndex();
     this._buildPropLibrary();
+    this.botanyEnabled = flowerLandscapeEnabled(window.location.search);
+    this.botanyDense = new URLSearchParams(window.location.search).get('botany') === 'dense';
     this._buildWater();
     this._buildHub();
     this._buildLandmarks();
@@ -292,6 +295,8 @@ export class World {
     group.add(mesh);
     const chimes = [];
     this._buildProps(cx, cz, group, chimes);
+    // Artist-only floral landscape uses the same chunk lifecycle as canonical Grove.
+    if (this.botanyEnabled) installFlowerLandscapeChunk(this, cx, cz, group, CHUNK, this.botanyDense);
     this.root.add(group);
     return { cx, cz, group, geo, chimes };
   }
@@ -364,6 +369,9 @@ export class World {
     this.worldExpansionEnabled = flagWorldexp;
     this.groveStatus = 'off';
     this.groveCounts = {};
+    this.groveVariants = null;
+    this.groveCatalogSize = 0;
+    this.groveActiveVariants = 0;
     if (this.flowerbedsEnabled) this.props.flower.parts = createFlowerbedParts(M, L);
     // Note sculpture pieces are offset sideways (head / stem / flag).
     const np = this.props.note;
@@ -424,15 +432,23 @@ export class World {
           let colorHex = null;
           if (def.palette) colorHex = def.palette[Math.floor(rng() * def.palette.length)];
           if (def.rockTint) colorHex = '#' + b.pal.rock.clone().multiplyScalar(0.9 + rng() * 0.25).getHexString();
-          if (!buckets.has(type)) buckets.set(type, []);
-          buckets.get(type).push({ m: tmpM.clone(), c: colorHex });
+          // Stable placement and RNG: vary only the *appearance* of each
+          // already-approved prop, never its location or biome keepout.
+          const options = this.groveVariants?.[type];
+          const hash = (Math.imul(Math.floor(x * 11), 73856093) ^
+            Math.imul(Math.floor(z * 11), 19349663) ^ Math.imul(bi + 1, 83492791)) >>> 0;
+          const variantIndex = options?.length ? hash % options.length : -1;
+          const bucketKey = variantIndex >= 0 ? type + ':' + variantIndex : type;
+          if (!buckets.has(bucketKey)) buckets.set(bucketKey, {
+            type, def: variantIndex >= 0 ? options[variantIndex] : def, items: [],
+          });
+          buckets.get(bucketKey).items.push({ m: tmpM.clone(), c: colorHex });
           if (def.chime) chimes.push({ x, z, y: y + 1.25, i: Math.floor(rng() * 8), last: 0 });
         }
       }
     }
     const pm = new THREE.Matrix4(), cc = new THREE.Color();
-    for (const [type, list] of buckets) {
-      const def = this.props[type];
+    for (const { type, def, items: list } of buckets.values()) {
       def.parts.forEach((part, pi) => {
         const im = new THREE.InstancedMesh(part.geo, part.mat, list.length);
         if (type === 'flower') im.name = this.flowerbedsEnabled ? `RW_Flowerbed_${pi}` : `RW_FlowerOriginal_${pi}`;
@@ -454,7 +470,10 @@ export class World {
   // Beat ripples and a Crescendo glow painted into any Lambert/Phong material.
   _resonate(mat) {
     const U = this.uniforms;
-    mat.onBeforeCompile = (sh) => {
+    const previousShaderHook = mat.onBeforeCompile;
+    mat.onBeforeCompile = (sh, renderer) => {
+      // Compose the material RGB-band shader with existing Chladni.
+      previousShaderHook.call(mat, sh, renderer);
       Object.assign(sh.uniforms, U);
       sh.vertexShader = sh.vertexShader
         .replace('#include <common>', '#include <common>\nvarying vec3 vWP;')
@@ -497,7 +516,8 @@ export class World {
           totalEmissiveRadiance += vec3(0.28, 0.70, 0.90) * causticLight * 0.3;
           totalEmissiveRadiance += uRingColor * scoreLines * uCeremony * 0.22;`);
     };
-    mat.customProgramCacheKey = () => 'resonate-cel-v2-modes';
+    // Preserve hard-cel compose key from #571, bump for plate-mode uniforms.
+    mat.customProgramCacheKey = () => 'resonate-cel-hard-v2-modes';
   }
 
   pulse(x, z, strength = 1, big = false) {

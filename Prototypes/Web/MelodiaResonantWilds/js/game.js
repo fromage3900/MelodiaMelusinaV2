@@ -2,7 +2,6 @@
 // skills and the world pulse; the player's taps are judged against it.
 
 import * as THREE from 'three';
-import { painterlyEnabled, PainterlyFilter } from './painterly.js';
 import { AudioEngine } from './audio.js';
 import { World, WATER } from './world.js';
 import { Particles, Decals, Overlay, makeBeam } from './fx.js';
@@ -18,6 +17,7 @@ import { UI } from './ui.js';
 import { PostFX } from './postfx.js';
 import { EncoreSystem } from './encore.js';
 import { toysEnabled, ChladniSand, MegaGown } from './playground.js';
+import { FloraisonPOV } from './floraison-pov.js';
 import { BIOMES, HUB, DIFFICULTY, RARITIES, SKILL_BY_ID, SHARD_BY_ELEMENT, ELEMENT_STYLE, MODIFIERS, RULES, xpToNext } from './design.js';
 import { clamp, lerp } from './util.js';
 import { flagDaycycle, flagPostfx } from './flags.js';
@@ -30,8 +30,6 @@ export class Game {
     this.profile = loadProfile();
     this.canvas = document.getElementById('game');
     this.renderer = new THREE.WebGLRenderer({ canvas: this.canvas, antialias: !isTouch, powerPreference: 'high-performance' });
-    // Opt-in painterly postprocess. Quality adaptation still controls render resolution.
-    this.painterly = painterlyEnabled ? new PainterlyFilter() : null;
     this.scene = new THREE.Scene();
     this.scene.background = new THREE.Color('#f3e6dc');
     this.scene.fog = new THREE.Fog('#f3e6dc', 90, 280);
@@ -74,6 +72,7 @@ export class Game {
     this.loot = new Loot(this);
     this.player = new Player(this);
     this.player.recalc();
+    this.floraisonPOV = new FloraisonPOV(this);
     this.biomes = BIOMES;
     this.progress = new Progress(this);
     this.rhythm = new Rhythm(this);
@@ -112,11 +111,12 @@ export class Game {
   async warm(progress) {
     progress('Raising the eight biomes…');
     await new Promise((r) => setTimeout(r, 20));
-    if (new URLSearchParams(location.search).get('grove') === 'glb') {
+    const groveMode = new URLSearchParams(location.search).get('grove');
+    if (groveMode === 'glb' || groveMode === 'full') {
       progress('Cultivating Harmonic Grove…');
       try {
         const { installGroveProps } = await import('./grove.js');
-        await installGroveProps(this.world);
+        await installGroveProps(this.world, { full: groveMode === 'full' });
       } catch (e) {
         this.world.groveStatus = 'fallback';
         console.warn('Harmonic Grove unavailable; procedural vegetation retained', e);
@@ -760,7 +760,8 @@ export class Game {
     const w = innerWidth, h = innerHeight;
     this.renderer.setSize(w, h, false);
     this.camera.aspect = w / h;
-    this.camera.fov = w < h ? 62 : 40;
+    this.camera.fov = this.floraisonPOV?.enabled ? (w < h ? 76 : 68) : (w < h ? 62 : 40);
+    this.camera.near = this.floraisonPOV?.enabled ? 0.12 : 0.5;
     this.camera.updateProjectionMatrix();
     this.overlay.resize();
     this.particles.mat.uniforms.uScale.value = (h * this.renderer.getPixelRatio()) / (2 * Math.tan((this.camera.fov * Math.PI) / 360));
@@ -851,8 +852,7 @@ export class Game {
     this.overlay.draw(dt, bars, labels);
     this.ui.update(dt);
     // Compositors are alternative opt-in render paths; never double-render.
-    if (this.painterly && this.painterly.settings.strength > 0) this.painterly.render(this.renderer, this.scene, this.camera);
-    else if (this.postfx) this.postfx.render();
+    if (this.postfx) this.postfx.render();
     else this.renderer.render(this.scene, this.camera);
   }
 
@@ -965,6 +965,7 @@ export class Game {
   }
 
   updateCamera(dt) {
+    if (this.floraisonPOV?.update(dt)) return;
     const P = this.player;
     const portrait = innerWidth < innerHeight;
     const lead = 0.35;

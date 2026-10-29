@@ -298,11 +298,11 @@ export class Combat {
         this.flash('ring', p.x, p.z, { r, inner: r * 0.35 }, color);
         this.flash('circle', p.x, p.z, { r: r * 0.45 }, color);
         for (const s of samples.nodal) {
-          g.particles.emit(s.x, P.pos.y + 0.45, s.z, _col.set(color), { speed: 1.6, life: 0.6, spread: 0.35, kind: 1, size: 0.65 });
+          g.particles.emit(s.x, P.pos.y + 0.45, s.z, _col.set(color), { speed: 1.6, life: 0.6, gravity: 0.35, kind: 1, size: 0.65 });
         }
         if (o.perfect) {
           for (const s of samples.antinode) {
-            g.particles.emit(s.x, P.pos.y + 0.7, s.z, _col.set('#ffe7a8'), { speed: 3.2, life: 0.5, spread: 0.5, kind: 3, size: 0.85 });
+            g.particles.emit(s.x, P.pos.y + 0.7, s.z, _col.set('#ffe7a8'), { speed: 3.2, life: 0.5, gravity: 0.5, kind: 3, size: 0.85 });
           }
         }
         // Light radial scaffolding keyed to max(n,m) so spokes still read as a figure.
@@ -312,7 +312,7 @@ export class Combat {
           for (let s = 1; s <= 4; s++) {
             const x = P.pos.x + Math.sin(ang) * (r * s / 4);
             const z = P.pos.z + Math.cos(ang) * (r * s / 4);
-            g.particles.emit(x, P.pos.y + 0.5, z, _col.set(color), { speed: 2, life: 0.45, spread: 0.35, kind: 1, size: 0.55 });
+            g.particles.emit(x, P.pos.y + 0.5, z, _col.set(color), { speed: 2, life: 0.45, gravity: 0.35, kind: 1, size: 0.55 });
           }
         }
         g.world.pulse(p.x, p.z, o.perfect ? 2.0 : 1.6, true);

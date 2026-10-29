@@ -28,8 +28,8 @@ export class PostFX {
     this.outline.pulsePeriod = 1.6;
     this.outline.visibleEdgeColor.set('#ff7a9a');
     this.outline.hiddenEdgeColor.set('#ff3a68');
-    // Selective bloom: high threshold so only bright emissives contribute.
-    this.bloom = new UnrealBloomPass(new Vector2(size.x, size.y), 0.55, 0.4, 0.82);
+    // Soft selective bloom: high threshold so only bright emissives / Encore trails contribute.
+    this.bloom = new UnrealBloomPass(new Vector2(size.x, size.y), 0.35, 0.35, 0.88);
     this.output = new OutputPass();
     this.fxaa = new ShaderPass(FXAAShader);
     this.composer.addPass(this.renderPass);
@@ -73,16 +73,26 @@ export class PostFX {
     const it = g._outlineInteract;
     if (it?.mesh) list.push(it.mesh);
     this.outline.selectedObjects = list;
+    // Beat-breathe the outline with the score meter.
+    const meter = Math.max(1, g.audio?.meter || 4);
+    const beatPulse = 1.2 + (g.beatPhase || 0) * 0.6;
+    // Encore / biome accent tints selection edges (presentation only).
+    const accent = g.encoreSys?.accentColor?.();
     if (threat) {
       this.outline.visibleEdgeColor.setRGB(1, 0.35, 0.5);
-      this.outline.pulsePeriod = 0.7;
+      this.outline.pulsePeriod = Math.max(0.45, beatPulse * 0.55);
       this.outline.edgeStrength = 5.5;
       this.outline.edgeThickness = 2.6;
     } else if (it) {
       this.outline.visibleEdgeColor.setRGB(1, 0.85, 0.4);
-      this.outline.pulsePeriod = 2.0;
+      this.outline.pulsePeriod = Math.max(1.2, beatPulse);
       this.outline.edgeStrength = 4.0;
       this.outline.edgeThickness = 2.0;
+    } else if (accent) {
+      this.outline.visibleEdgeColor.set(accent);
+      this.outline.pulsePeriod = meter * 0.35;
+      this.outline.edgeStrength = 4.2;
+      this.outline.edgeThickness = 2.1;
     } else {
       this.outline.visibleEdgeColor.setRGB(1, 0.5, 0.68);
       this.outline.pulsePeriod = 1.4;
