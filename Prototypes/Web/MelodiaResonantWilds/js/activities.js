@@ -11,12 +11,13 @@ import { ENCORE_BY_ID } from './encore.js';
 import { Enemy } from './entities.js';
 import { mulberry32, pick, clamp } from './util.js';
 import { makeBeam } from './fx.js';
-import { planExploration, biomeWorkflow, OW_RULES } from './openworld.js';
+import { planExploration, biomeWorkflow, OW_RULES, ABILITY_OUTFITS } from './openworld.js';
 import { environmentMaterial } from './cel.js';
 import { createDeterministicTimeline } from './heritage-timeline.js';
 import { flagWorldexp } from './flags.js';
 
 const L = (hex, o = {}) => environmentMaterial(hex, { flatShading: true, ...o });
+const SLOT_LABEL = { shoes: 'Shoes', gown: 'Gown', gloves: 'Gloves', head: 'Headpiece' };
 
 export class Activities {
   constructor(game) {
@@ -460,10 +461,14 @@ export class Activities {
         this._pushFromGate(p, P);
       } else if (p.type === 'ariagate' && !p.open && d < 3.2) {
         this._pushFromGate(p, P);
+        if (d < 3.0) this._hintAbilityLocked(p, true);
       } else if (p.type === 'destination' && !P.dead) {
         if (!p.revealed && d < 12) this.revealDestination(p, true);
         if (p.needsPurify && !p.purified && d < 4.5) this._pushFromGate(p, P, 3.4);
-        else if (p.needsFloat && !this._hasFloatOutfit() && d < 4.0) this._pushFromGate(p, P, 3.2);
+        else if (p.needsFloat && !this._wearsAbilityFor(p) && d < 4.0) {
+          this._pushFromGate(p, P, 3.2);
+          if (d < 3.6) this._hintAbilityLocked(p, true);
+        }
         else if (!p.dewTaken && p.purified !== false && d < 2.6) this.collectDew(p, true);
       }
     }
@@ -479,9 +484,77 @@ export class Activities {
     }
   }
 
+  /** Resolve Ability Outfit authoring on a POI (ethereal float / veil beats). */
+  _abilityFor(p) {
+    const id = p?.abilityOutfit;
+    return id ? ABILITY_OUTFITS[id] || null : null;
+  }
+
+  /** Generic float gear (non-ethereal destinations still accept shoes or gown). */
   _hasFloatOutfit() {
     const eq = this.g.profile.equipment || {};
     return !!(eq.shoes || eq.gown);
+  }
+
+  /** True when Melusina wears the Ability Outfit (or float gear) this POI asks for. */
+  _wearsAbilityFor(p) {
+    const ab = this._abilityFor(p);
+    const eq = this.g.profile.equipment || {};
+    if (ab) return !!eq[ab.slot];
+    return this._hasFloatOutfit();
+  }
+
+  /** Soft approach hint — rate-limited so Ability Outfit identity reads clearly. */
+  _hintAbilityLocked(p, soft = false) {
+    const g = this.g;
+    const now = g.time || 0;
+    if (soft && this._abilityHintAt && now - this._abilityHintAt < 2.4) return;
+    this._abilityHintAt = now;
+    const ab = this._abilityFor(p);
+    if (ab) {
+      g.ui.toast(ab.lockedLine, 'lavender');
+      g.overlay.text(p.x, (p.y || 0) + 2.8, p.z, '👗', ab.color, 22, { life: 0.85, rise: 0.15 });
+      return;
+    }
+    g.ui.toast('Float ledge — equip shoes or a gown in Wardrobe', 'lavender');
+  }
+
+  /**
+   * First successful equip→space open for an Ability Outfit — Nikki unlock ceremony.
+   * Returns true when this was the first unlock of that outfit.
+   */
+  _unlockAbilityOutfit(ab, placeName) {
+    if (!ab) return false;
+    const g = this.g, pr = g.profile;
+    pr.abilityOutfits = pr.abilityOutfits || [];
+    const first = !pr.abilityOutfits.includes(ab.id);
+    if (first) {
+      pr.abilityOutfits.push(ab.id);
+      g.progress.addXp(60);
+      pr.notes = (pr.notes || 0) + 2;
+      g.ui.banner(ab.openTitle, ab.openSub);
+      g.overlay.text(g.player.pos.x, g.player.pos.y + 2.6, g.player.pos.z, '✦', ab.color, 28, { life: 1.4, rise: 0.35 });
+      g.particles.burst(g.player.pos.x, g.player.pos.y + 1.6, g.player.pos.z, new THREE.Color(ab.color), 28, { speed: 6, life: 1.2, kind: 3 });
+      g.audio.encoreSelect('dew');
+    } else {
+      g.ui.toast(`${ab.name} opens ${placeName || 'the way'}`, 'aqua');
+    }
+    return first;
+  }
+
+  /** After Wardrobe equip — tell the player which ethereal space their outfit unlocks. */
+  onAbilityOutfitEquipped(slot) {
+    const g = this.g;
+    const matched = Object.values(ABILITY_OUTFITS).filter((ab) => ab.slot === slot);
+    if (!matched.length) return;
+    const near = this.pois.find((p) =>
+      ((p.type === 'destination' && p.needsFloat && !p.dewTaken) || (p.type === 'ariagate' && !p.open))
+      && matched.some((ab) => ab.id === p.abilityOutfit)
+      && Math.hypot(p.x - g.player.pos.x, p.z - g.player.pos.z) < 80,
+    );
+    const ab = matched[0];
+    if (near) g.ui.toast(`${ab.readyLine} · return to ${near.name}`, 'gold');
+    else g.ui.toast(ab.readyLine, 'aqua');
   }
 
   nearCleanse(x, z, r) {
@@ -535,10 +608,9 @@ export class Activities {
   }
 
   tryFloatDestination(p) {
-    const g = this.g;
     if (!p.needsFloat) return true;
-    if (this._hasFloatOutfit()) return true;
-    g.ui.toast('Float ledge — equip shoes or a gown in Wardrobe', 'lavender');
+    if (this._wearsAbilityFor(p)) return true;
+    this._hintAbilityLocked(p, false);
     return false;
   }
 
@@ -549,7 +621,7 @@ export class Activities {
       if (!soft) g.ui.toast('Ask Sheep to Harmonize the blot first ♪', 'lavender');
       return;
     }
-    if (p.needsFloat && !this._hasFloatOutfit()) {
+    if (p.needsFloat && !this._wearsAbilityFor(p)) {
       if (!soft) this.tryFloatDestination(p);
       return;
     }
@@ -560,6 +632,8 @@ export class Activities {
       g.profile.dews.push(p.id);
       g.profile.notes += 2;
       g.progress.addXp(50);
+      const ab = this._abilityFor(p);
+      if (ab) this._unlockAbilityOutfit(ab, p.name);
       g.ui.toast(`Resonance Dew — ${p.name}`, 'gold');
       this._applyDewSetBonus();
       this._spawnSecretLedge(p);
@@ -763,9 +837,17 @@ export class Activities {
   tryAriaGate(p) {
     const g = this.g, P = g.player, pr = g.profile;
     if (p.open) return;
+    const ab = this._abilityFor(p);
     const hasAria = P.stats.arias && P.stats.arias.size > 0;
+    const wearsAbility = ab ? this._wearsAbilityFor(p) : false;
     const outfit = ['shoes', 'gown', 'gloves', 'head'].find((s) => pr.equipment?.[s]);
-    if (!hasAria && !outfit) {
+    // Ethereal Ability Outfit veils: require the named slot (or Opus Aria as universal key).
+    if (ab) {
+      if (!wearsAbility && !hasAria) {
+        this._hintAbilityLocked(p, false);
+        return;
+      }
+    } else if (!hasAria && !outfit) {
       g.ui.toast('Wardrobe gate — equip an outfit piece or Opus Aria to part the veil', 'lavender');
       return;
     }
@@ -778,10 +860,17 @@ export class Activities {
       g.profile.notes += 3;
       g.progress.addXp(45);
     }
-    const why = hasAria ? 'Your Aria parts the veil' : `Your ${outfit} carries the cadence through`;
-    g.ui.banner('Aria Veil opens', why);
+    if (ab && (wearsAbility || hasAria)) {
+      const first = this._unlockAbilityOutfit(ab, p.name);
+      if (!first && hasAria && !wearsAbility) {
+        g.ui.banner(ab.openTitle, 'Your Aria parts the Ability Outfit veil');
+      }
+    } else {
+      const why = hasAria ? 'Your Aria parts the veil' : `Your ${SLOT_LABEL[outfit] || outfit} carries the cadence through`;
+      g.ui.banner('Aria Veil opens', why);
+    }
     g.world.pulse(p.x, p.z, 1.5, true);
-    g.particles.burst(p.x, p.y + 1.8, p.z, new THREE.Color('#ffd978'), 20, { speed: 5, life: 1, kind: 3 });
+    g.particles.burst(p.x, p.y + 1.8, p.z, new THREE.Color(ab?.color || '#ffd978'), 24, { speed: 5.5, life: 1.1, kind: 3 });
     g.audio.levelUp();
     g.save();
   }

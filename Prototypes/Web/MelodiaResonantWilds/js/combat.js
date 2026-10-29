@@ -238,6 +238,10 @@ export class Combat {
     }
     if (skill.downbeatBreak && gr.downbeat) o.tough = (o.tough || 1) * 2.2;
     let c = skill.power * coefMul;
+    // Playground: Perfect (and Chladni Burst) detonates settled Chladni sand.
+    if (g.sand && (o.perfect || skill.kind === 'chladni')) {
+      g.sand.explode(skill.kind === 'chladni' ? (o.perfect ? 1.6 : 1.1) : 1);
+    }
     let hits = 0;
     switch (skill.kind) {
       case 'strike': {

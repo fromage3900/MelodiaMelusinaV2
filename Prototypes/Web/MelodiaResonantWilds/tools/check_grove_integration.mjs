@@ -12,7 +12,7 @@ for (const token of ['ASSET_FLR_bellflower_dwarf','ASSET_FLR_moonfern_young',
  'tint: -1','!world.flowerbedsEnabled']) assert.ok(module.includes(token), token);
 assert.ok(game.includes('await installGroveProps(this.world)'));
 assert.ok(game.includes("this.world.groveStatus = 'fallback'"));
-assert.ok(sw.includes('resonant-wilds-v12-20261029-nikki-default'));
+assert.ok(sw.includes('resonant-wilds-v14-20261029-nikki-default'));
 assert.ok(sw.includes('./js/grove.js'));
 assert.ok(sw.includes('./assets/models/harmonic-grove-37.glb'));
 for (const state of ['desktop-grove-glb','mobile-grove-dense',

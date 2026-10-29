@@ -2,6 +2,7 @@
 
 import * as THREE from 'three';
 import { SLOTS, SLOT_BY_ID, RARITIES, SKILLS, SKILL_BY_ID, ELEMENT_STYLE, ARIA_BY_ID, BIOMES, BLESSINGS, DIFFICULTY, xpToNext, HONE_MAX, honeChance, TUTORIAL, WORLD_RADIUS, RULES, MOTIF_BY_ID, AFFIX_BY_KEY } from './design.js';
+import { ABILITY_OUTFITS } from './openworld.js';
 import { fmt, clamp } from './util.js';
 
 const $ = (id) => document.getElementById(id);
@@ -138,6 +139,12 @@ export class UI {
         g.sheep.setConcertHold(true);
         g.sheep.harmonize(false);
       }
+      else if (c === 'KeyV') {
+        // Playground sheep weapon: V = charge; Shift+V toggles mode.
+        if (e.shiftKey) g.sheep.toggleWeapon();
+        else g.sheep.startCharge();
+      }
+      else if (c === 'KeyG' && g.megaGown) g.megaGown.toggle();
       else if (c === 'KeyX' || c === 'Enter') g.interact();
       else if (c === 'KeyI') this.open('wardrobe');
       else if (c === 'KeyK') this.open('skills');
@@ -565,6 +572,20 @@ export class UI {
     const inv = pr.inventory.slice().sort((a, b) => b.rarity - a.rarity || b.ilvl - a.ilvl);
     const motifs = L.motifInventory();
     const echo = pr.echoLineage?.phrase;
+    // Nikki Ability Outfit catalogue — ethereal biome traversal identities.
+    const unlocked = new Set(pr.abilityOutfits || []);
+    const outfits = Object.values(ABILITY_OUTFITS);
+    const abilityHtml = `<div class="pedigree" style="margin-top:8px"><div class="title">Ability Outfits</div>
+      ${outfits.map((ab) => {
+        const on = unlocked.has(ab.id);
+        const wearing = !!pr.equipment?.[ab.slot];
+        const state = on ? (wearing ? 'ready' : 'unlocked') : 'locked';
+        const tip = on
+          ? (wearing ? `${ab.name} equipped — space opens` : `Unlocked · equip ${ab.slotLabel} to use`)
+          : `Locked · ${ab.slotLabel} opens ${ab.name}`;
+        return `<div style="opacity:${on ? 1 : 0.55};margin:4px 0"><span style="color:${ab.color}">✦</span> ${esc(ab.name)} · ${esc(ab.slotLabel)} <span class="muted">(${state})</span><div class="muted" style="font-size:12px">${esc(tip)}</div></div>`;
+      }).join('')}
+    </div>`;
     body.innerHTML = `<div class="cols">
       <div>
         <div class="card"><h3>Wardrobe · GS ${L.gearScore()}</h3><div class="equip">${eqHtml}</div>
@@ -574,6 +595,7 @@ export class UI {
             <span>Perfect window</span><span>±${Math.round(W.perfect)}ms</span><span>Damage</span><span>+${Math.round(S.dmg * 100)}%</span>
             <span>Basic attack</span><span>${S.family === 'melee' ? 'Melee' : 'Ranged'} · ${S.basicElement}</span><span>Arias</span><span>${[...S.arias].map((a) => ARIA_BY_ID[a].name).join(', ') || '—'}</span>
           </div>
+          ${abilityHtml}
           ${echo ? `<div class="pedigree"><div class="title">Echo Pedigree</div>${esc(g.echo.pedigreeHtml())}<div style="margin-top:4px;opacity:.85">Next pass ${Math.round(g.echo.passChance() * 100)}%${pr.oshiAria ? ` · oshi ${esc(ARIA_BY_ID[pr.oshiAria]?.name || pr.oshiAria)}` : ''}</div></div>` : ''}
         </div>
         <div class="card" id="detail" style="margin-top:10px">${this.sel ? this.itemDetail(this.sel) : '<div class="muted">Tap an item to inspect it. ▲ marks an upgrade. Salvage yields Motifs for Harmonic Synthesis. Opus items carry an Aria.</div>'}</div>

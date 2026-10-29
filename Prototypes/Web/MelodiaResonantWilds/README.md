@@ -18,7 +18,7 @@ Open `http://127.0.0.1:8080/Prototypes/Web/MelodiaResonantWilds/` on a phone (sa
 
 **Nikki by default:** bare URL turns on world expansion, dense dressing, landmark scale, daycycle, and OutlinePass/bloom. Low-end escape: `?lite=1` (or `?worldexp=0`, `?postfx=0`, `?dressing=sparse`). Map shows per-biome region % (Dew + fashion frames + Reveal overlook) with a **Ping nearest Dew** compass lock.
 
-Live GH Pages (after owner `tools/sync_to_mysite.sh`): `https://fromage3900.github.io/my-site/resonant-wilds/` — confirm SW `resonant-wilds-v12-*-nikki-default`. Safari 10-step itinerary + PASS gate live in `CURRENT_STATE.md`.
+Live GH Pages (after owner `tools/sync_to_mysite.sh`): `https://fromage3900.github.io/my-site/resonant-wilds/` — confirm SW `resonant-wilds-v14-*-nikki-default`. Safari 10-step itinerary + PASS gate live in `CURRENT_STATE.md`.
 
 No build step. three.js r170 is vendored in `vendor/` (MIT, licence alongside).
 
@@ -46,6 +46,7 @@ No build step. three.js r170 is vendored in `vendor/` (MIT, licence alongside).
 | Genshin gate → reveal → landmark | Hub gate arches → Reveal overlooks (~140 m) → biome core landmark |
 | Genshin exploration density | Budgeted camps / chests / shrines / sheets / chimes / whim frames per biome |
 | Nikki outfit → puzzle → space | Phrase Bridges, Aria Veils (Wardrobe), sheep Harmonize cleanses, Whim Frame angle challenges |
+| Nikki Ability Outfit → space | Mist Float (Shoes) / Prism Veil (Gown) / Nightbell Glide (Shoes) — one unlock ceremony per ethereal biome |
 | Nikki named subareas (Florawish-style) | 16 authored micro-destinations (2 per biome) + Resonance Dew; fashion photo frames in Mist/Glass/Starlit; float/purify gates |
 | Nikki “details all the time” look | Denser near dressing, taller landmarks, selective UnrealBloomPass, soft TOD tint, gown sway |
 | ZZZ signature hub district | Shorewake keeps forge / board / font / rift within a short walk |
@@ -73,6 +74,10 @@ Inspect the live recipe in the browser console: `window.__rwOpenWorld`.
 - **Maestro Encore exams:** each biome Maestro telegraphs a counter Encore; cast it during the fight to unlock that Encore's **concert trail** (fashion-only).
 - **Phrasebook:** answer a shrine at ≥70% to ink that biome — Phrase Bridges there then accept Good+.
 - **Sheep concert mode:** hold **H** (~0.35s) to toggle a beat-ring metronome that auto-Harmonizes nearby blots. Double-tap H still sniffs for Dew/blots.
+- **Playground toys** (default on; `?toys=0` off):
+  1. **Chladni sand** — grains settle on floor nodal lines; **Perfect** (or Chladni Burst) detonates them
+  2. **Sheep weapon** — **V** charge+bounce, **Shift+V** toggle; downbeat fires a choir-beam
+  3. **Mega gown** — **G** toggles a ~40 m couture skirt with wind + soft enemy shove (pairs well with `?avatar=mixamo`)
 - **Fashion photo setpieces** (Mist Choir / Glass Orchard / Starlit Moor destinations): Whim Frames that need the matching Encore selected for a gold photo.
 - **Mixamo hero (opt-in):** `?avatar=mixamo` loads `assets/models/mixamo-hero.glb` (Three.js Mixamo Soldier) with Idle/Walk/Run mixer; procedural Melusina stays the default fallback. Also `?avatar=chibi`.
 - **Dew sets & destinations:** first visit grants a 90s motif buff; Dew milestones at 3 / 6 / 10 (Encore charge → Harmony+buff → full Encore + extra Perfect beat); float destinations reveal a **secret ledge** after Dew. Double-tap **H** (Sheep Harmonize) out of combat sniffs toward Dew/blots; Whim Frames can sheep-photobomb.
@@ -96,7 +101,8 @@ Inspect the live recipe in the browser console: `window.__rwOpenWorld`.
   - Music-key shrines: call and response, where you answer the shrine's phrase on the next bar
   - **Vista overlooks** (auto-reveal banners) and **Whim Frames** / **chime clusters** from the OW density budget
   - **Phrase Bridges** (answer Great/Perfect on the beat), **Dissonant Blots** (Sheep Harmonize cleanse), **Aria Veils** (equip shoes or an Opus Aria)
-  - **Named destinations** (16 across all 8 biomes — Petal Tea Terrace, Mist Choir Jetty, Prism Picnic Grove, Nightbell Overlook, …) with **Resonance Dew** collectibles; float ledges need Wardrobe, purify caves need Harmonize
+  - **Ability Outfits** (Nikki equip→space): Mist Float / Prism Veil / Nightbell Glide — first open banners an unlock; Wardrobe lists locked/ready state
+  - **Named destinations** (16 across all 8 biomes — Petal Tea Terrace, Mist Choir Reedwalk, Prism Picnic Glade, Starlit Moongate, …) with **Resonance Dew** collectibles; float ledges need Ability Outfit / Wardrobe, purify caves need Harmonize
   - Whim Frame **angle challenges** — face the landmark prompt before framing
   - Biome **Maestros** (world bosses) with toughness **BREAK**
   - **Resonance Rifts** (Recitals): tiered, infinite and timed, with DT_Burdens at tier 3+

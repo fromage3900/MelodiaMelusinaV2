@@ -17,6 +17,7 @@ import { Echo } from './echo.js';
 import { UI } from './ui.js';
 import { PostFX } from './postfx.js';
 import { EncoreSystem } from './encore.js';
+import { toysEnabled, ChladniSand, MegaGown } from './playground.js';
 import { BIOMES, HUB, DIFFICULTY, RARITIES, SKILL_BY_ID, SHARD_BY_ELEMENT, ELEMENT_STYLE, MODIFIERS, RULES, xpToNext } from './design.js';
 import { clamp, lerp } from './util.js';
 import { flagDaycycle, flagPostfx } from './flags.js';
@@ -87,6 +88,10 @@ export class Game {
     this.encoreSys = new EncoreSystem(this);
     this._outlineInteract = null;
     this._keyModulation = false;
+    // Playground toys (sand / mega gown). Sheep weapon lives on Sheep itself.
+    this.toys = toysEnabled();
+    this.sand = this.toys ? new ChladniSand(this) : null;
+    this.megaGown = this.toys ? new MegaGown(this) : null;
 
     this.firstRunGear();
     const sp = this.profile.spawn;
@@ -134,6 +139,9 @@ export class Game {
     this.zoneId = null;
     this.clock = performance.now();
     this.ui.banner('Resonant Wilds', `${this.zoneName()} · every action lands on the beat`);
+    if (this.toys) {
+      setTimeout(() => this.ui.toast('Toys on — V sheep charge · G mega gown · Perfect detonates sand', 'lavender'), 900);
+    }
     requestAnimationFrame(() => this.frame());
   }
 
@@ -382,10 +390,18 @@ export class Game {
       case 'chime': return { label: 'Ring the chimes ♪', fn: () => this.activities.ringChimes(p) };
       case 'musicgate': return p.open ? null : { label: 'Answer the bridge 𝄞', fn: () => this.activities.openMusicGate(p) };
       case 'cleanse': return p.cleared ? null : { label: 'Ask Sheep to Harmonize ♪', fn: () => this.activities.cleanseSpot(p) };
-      case 'ariagate': return p.open ? null : { label: 'Wardrobe gate ✧', fn: () => this.activities.tryAriaGate(p) };
+      case 'ariagate': {
+        if (p.open) return null;
+        const abName = p.abilityOutfit && this.activities._abilityFor(p)?.name;
+        return { label: abName ? `Ability Outfit · ${abName} ✧` : 'Wardrobe gate ✧', fn: () => this.activities.tryAriaGate(p) };
+      }
       case 'destination': {
         if (p.needsPurify && !p.purified) return { label: 'Ask Sheep to Harmonize ♪', fn: () => { this.sheep.pos.set(p.x + 1.2, p.y, p.z + 1.2); this.sheep.harmonize(true); } };
         if (p.dewTaken) return { label: p.name, fn: () => this.activities.revealDestination(p) };
+        if (p.needsFloat && !this.activities._wearsAbilityFor(p)) {
+          const ab = this.activities._abilityFor(p);
+          return { label: ab ? `Ability Outfit · ${ab.name}` : 'Equip float outfit ✧', fn: () => this.activities.tryFloatDestination(p) };
+        }
         return { label: `Collect Resonance Dew ✧`, fn: () => this.activities.collectDew(p) };
       }
     }
@@ -848,6 +864,8 @@ export class Game {
     P.update(dt, mv.x * speedBurden, mv.z * speedBurden);
     this.sheep.update(dt);
     this.encoreSys.update(dt);
+    this.sand?.update(dt);
+    this.megaGown?.update(dt);
     // Enemies + separation.
     const E = this.enemies;
     for (let i = E.length - 1; i >= 0; i--) {

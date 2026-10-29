@@ -91,5 +91,5 @@ done
 
 echo "Next: cd $(dirname "$DEST") && git status && commit + push my-site main,"
 echo "then hard-refresh https://fromage3900.github.io/my-site/resonant-wilds/"
-echo "Confirm SW cache name resonant-wilds-v12-*-nikki-default in Application → Cache Storage."
+echo "Confirm SW cache name resonant-wilds-v14-*-nikki-default in Application → Cache Storage."
 echo "Live URL is Nikki-by-default (no query). Low-end escape: ?lite=1"

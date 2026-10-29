@@ -136,9 +136,47 @@ export const BIOME_IMPRESSIONS = Object.freeze({
 });
 
 /**
+ * Nikki Ability Outfit analogues — wardrobe slot → traversal identity.
+ * Ethereal biomes each get one authored outfit beat (equip → space opens).
+ */
+export const ABILITY_OUTFITS = Object.freeze({
+  mist_float: {
+    id: 'mist_float', name: 'Mist Float', slot: 'shoes', slotLabel: 'Shoes',
+    biome: 'choir_marsh', color: '#9fe6ff',
+    lockedLine: 'Ability Outfit · Mist Float — equip Shoes in Wardrobe',
+    readyLine: 'Mist Float ready — the fog will lift under your step',
+    openTitle: 'Ability Outfit · Mist Float',
+    openSub: 'Your shoes part the marsh fog',
+  },
+  prism_veil: {
+    id: 'prism_veil', name: 'Prism Veil', slot: 'gown', slotLabel: 'Gown',
+    biome: 'glass_orchard', color: '#c8b6ef',
+    lockedLine: 'Ability Outfit · Prism Veil — equip a Gown in Wardrobe',
+    readyLine: 'Prism Veil ready — glass stairs will answer your dress',
+    openTitle: 'Ability Outfit · Prism Veil',
+    openSub: 'Your gown refracts the orchard light',
+  },
+  nightbell_glide: {
+    id: 'nightbell_glide', name: 'Nightbell Glide', slot: 'shoes', slotLabel: 'Shoes',
+    biome: 'starlit_moor', color: '#ffd978',
+    lockedLine: 'Ability Outfit · Nightbell Glide — equip Shoes in Wardrobe',
+    readyLine: 'Nightbell Glide ready — the high shelf will hold your step',
+    openTitle: 'Ability Outfit · Nightbell Glide',
+    openSub: 'Your step rings the moor bells open',
+  },
+});
+
+/** Ethereal biome → Ability Outfit id for that region's veil / float beat. */
+export const ETHEREAL_ABILITY_BY_BIOME = Object.freeze({
+  choir_marsh: 'mist_float',
+  glass_orchard: 'prism_veil',
+  starlit_moor: 'nightbell_glide',
+});
+
+/**
  * Nikki-style named micro-destinations (2 per biome).
  * Pins are { r, da, kit, gate } relative to biome angle — authored places, not RNG scatter.
- * gate: null | 'float' (Wardrobe shoes/gown) | 'purify' (Harmonize cleanse at mouth).
+ * gate: null | 'float' (Wardrobe shoes/gown / Ability Outfit) | 'purify' (Harmonize cleanse at mouth).
  */
 export const BIOME_DESTINATIONS = Object.freeze({
   sakura_terrace: [
@@ -151,7 +189,7 @@ export const BIOME_DESTINATIONS = Object.freeze({
   ],
   choir_marsh: [
     { key: 'reed', name: 'Mist Choir Reedwalk', kit: 'quay', r: 178, da: 0.09, gate: null, line: 'Reeds hum a soft choir under the fog veil.', fashionPhoto: 'modulation' },
-    { key: 'lantern', name: 'Lantern Marsh Atelier', kit: 'archive', r: 292, da: -0.1, gate: 'float', line: 'Float lanterns frame a mist-colour photo set.', fashionPhoto: 'modulation' },
+    { key: 'lantern', name: 'Lantern Marsh Atelier', kit: 'archive', r: 292, da: -0.1, gate: 'float', abilityOutfit: 'mist_float', line: 'Mist Float shoes lift you to the lantern atelier.', fashionPhoto: 'modulation' },
   ],
   fugue_grotto: [
     { key: 'amph', name: 'Echo Amphitheater', kit: 'amph', r: 190, da: 0.08, gate: null, line: 'Stone seats answer every footfall twice.' },
@@ -159,7 +197,7 @@ export const BIOME_DESTINATIONS = Object.freeze({
   ],
   glass_orchard: [
     { key: 'prism', name: 'Prism Picnic Glade', kit: 'tea', r: 182, da: -0.08, gate: null, line: 'Glass leaves cast a fashion-ready light pool.', fashionPhoto: 'veil' },
-    { key: 'mirror', name: 'Mirror Orchard Balcony', kit: 'stair', r: 298, da: 0.11, gate: 'float', line: 'Wardrobe Veil colour unlocks the gold frame.', fashionPhoto: 'veil' },
+    { key: 'mirror', name: 'Mirror Orchard Balcony', kit: 'stair', r: 298, da: 0.11, gate: 'float', abilityOutfit: 'prism_veil', line: 'Prism Veil gown unlocks the mirror balcony.', fashionPhoto: 'veil' },
   ],
   cadence_crystal_ridge: [
     { key: 'metro', name: 'Metronome Plaza', kit: 'metro', r: 185, da: -0.07, gate: null, line: 'Stepped plates tick a toccata into the ridge wind.' },
@@ -167,7 +205,7 @@ export const BIOME_DESTINATIONS = Object.freeze({
   ],
   starlit_moor: [
     { key: 'moongate', name: 'Starlit Moongate', kit: 'amph', r: 188, da: 0.07, gate: null, line: 'A moor ring waits for a gold Reprise photo.', fashionPhoto: 'reprise' },
-    { key: 'bells', name: 'Bellflower Night Shelf', kit: 'shelf', r: 302, da: -0.12, gate: 'float', line: 'High bells want the matching fashion Encore tint.', fashionPhoto: 'reprise' },
+    { key: 'bells', name: 'Bellflower Night Shelf', kit: 'shelf', r: 302, da: -0.12, gate: 'float', abilityOutfit: 'nightbell_glide', line: 'Nightbell Glide shoes reach the high shelf.', fashionPhoto: 'reprise' },
   ],
   aurora_glacier: [
     { key: 'shelf', name: 'Aurora Shelf', kit: 'shelf', r: 195, da: 0.1, gate: null, line: 'A glacial ledge opens under the green curtain.' },
@@ -263,7 +301,14 @@ export function planExploration(b, bi, rng, occupied) {
   pin('musicgate', 230, -0.08, { name: 'Phrase Bridge', workflow: 'puzzle', open: false });
   pin('cleanse', 145, 0.14, { name: 'Dissonant Blot', workflow: 'companion', cleared: false });
   pin('cleanse', 260, -0.16, { name: 'Dissonant Blot', workflow: 'companion', cleared: false });
-  pin('ariagate', 250, 0.02, { name: 'Aria Veil', workflow: 'traversal', open: false, needAria: true, needSlot: 'shoes' });
+  const etherealAbility = ETHEREAL_ABILITY_BY_BIOME[b.id] || null;
+  const ab = etherealAbility ? ABILITY_OUTFITS[etherealAbility] : null;
+  pin('ariagate', 250, 0.02, {
+    name: ab ? `${ab.name} Veil` : 'Aria Veil',
+    workflow: 'traversal', open: false, needAria: true,
+    needSlot: ab?.slot || 'shoes',
+    abilityOutfit: etherealAbility,
+  });
 
   // Nikki named micro-destinations — authored places with Resonance Dew.
   const dests = BIOME_DESTINATIONS[b.id] || [];
@@ -273,6 +318,7 @@ export function planExploration(b, bi, rng, occupied) {
       key: d.key, workflow: 'destination', revealed: false, dewTaken: false,
       needsPurify: d.gate === 'purify', needsFloat: d.gate === 'float', purified: d.gate !== 'purify',
       fashionPhoto: d.fashionPhoto || null,
+      abilityOutfit: d.abilityOutfit || (d.gate === 'float' ? etherealAbility : null),
     });
     // Outfit → space → photo setpiece: a Whim Frame pinned at the destination that wants a fashion Encore tint.
     if (d.fashionPhoto) {
