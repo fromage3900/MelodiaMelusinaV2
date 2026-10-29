@@ -1,17 +1,20 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "UObject/SoftObjectPtr.h"
 #include "Widgets/BackgroundBox.h"
 #include "Widgets/DialogBox.h"
 #include "Widgets/SelectionBox.h"
 #include "MelodiaInputContextSubsystem.h"
 #include "MelodiaQuillPresentationWidgets.generated.h"
 
+class ASmartTypewriter;
 class UButton;
 class UImage;
 class UTextBlock;
 class UVerticalBox;
 class UMelodiaQuillSelectionWidget;
+class USoundBase;
 
 /** Native Quill dialogue adapter. Visual composition remains in its child WBP. */
 UCLASS(Blueprintable)
@@ -20,6 +23,8 @@ class BS_GODFILE_API UMelodiaQuillDialogWidget : public UDialogBox
 	GENERATED_BODY()
 
 public:
+	UMelodiaQuillDialogWidget();
+
 	virtual void Play_Implementation(
 		const FString& Speaker,
 		const FText& Text,
@@ -43,6 +48,37 @@ protected:
 	UPROPERTY(BlueprintReadOnly, Category = "Melodia|Quill")
 	TArray<FString> ActiveTags;
 
+	/** Soft per-glyph voice cue. Falls back to VoiceBlipFallbackSound when unset. */
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Melodia|Quill|Voice")
+	TSoftObjectPtr<USoundBase> VoiceBlipSound;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Melodia|Quill|Voice")
+	TSoftObjectPtr<USoundBase> VoiceBlipFallbackSound;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Melodia|Quill|Voice", meta = (ClampMin = "0.0", ClampMax = "1.0"))
+	float VoiceBlipVolume = 0.35f;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Melodia|Quill|Voice", meta = (ClampMin = "0.01"))
+	float TypewriterInterval = 0.025f;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Melodia|Quill|Voice", meta = (ClampMin = "0.0"))
+	float VoiceBlipMinInterval = 0.03f;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Melodia|Quill|Voice", meta = (ClampMin = "0.0", ClampMax = "12.0"))
+	float VoiceBlipPitchJitterSemitones = 2.0f;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Melodia|Quill|Voice")
+	bool bTypewriterEnabled = true;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Melodia|Quill|Voice")
+	bool bVoiceBlipsEnabled = true;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Melodia|Quill|Voice")
+	bool bClickCompletesLine = true;
+
+	UPROPERTY(BlueprintReadOnly, Transient, Category = "Melodia|Quill|Voice")
+	int32 VoiceBlipsPlayed = 0;
+
 private:
 	UFUNCTION()
 	void HandleAdvanceClicked();
@@ -50,6 +86,31 @@ private:
 	void TryAdvance();
 	void EnsureDialogueContext();
 	void ReleaseDialogueContext();
+
+	UFUNCTION()
+	void HandleTypewriterPrinted(const FText& PrintedText, const FString& Character, const int32& Index);
+
+	UFUNCTION()
+	void HandleTypewriterCompleted();
+
+	void StartTypewriter(const FString& Speaker, const FText& Text);
+	void StopTypewriter();
+	void FinishTypewriter();
+	void PlayVoiceBlip(const FString& Speaker, const FString& Character, int32 Index);
+	float ResolveSpeakerPitch(const FString& Speaker) const;
+	void EnsureVoiceBlipLoaded();
+
+	UPROPERTY(Transient)
+	TObjectPtr<ASmartTypewriter> Typewriter;
+
+	UPROPERTY(Transient)
+	TObjectPtr<USoundBase> LoadedVoiceBlip;
+
+	FText TypewriterFullText;
+	FString ActiveSpeaker;
+	double LastVoiceBlipTime = 0.0;
+	bool bTypewriterLineComplete = true;
+	bool bLoggedVoiceBlip = false;
 	bool bAdvanceConsumed = false;
 	FMelodiaInputContextHandle DialogueContextHandle;
 };

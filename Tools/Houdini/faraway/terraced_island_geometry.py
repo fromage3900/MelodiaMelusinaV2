@@ -298,8 +298,8 @@ def _waterfalls(prof, nwf, preview):
 MATERIALS = {
     "underside": "/Game/EnvSandbox/Materials/Instances/FarawayMother/P2/MI_Mother_Mantle",
     "cliff": "/Game/EnvSandbox/Materials/Instances/FarawayMother/P2/MI_Mother_Mantle",
-    "tread": "/Game/EnvSandbox/Materials/Instances/FarawayMother/P2/MI_Mother_Gown",
-    "plateau": "/Game/EnvSandbox/Materials/Instances/FarawayMother/P2/MI_Mother_Gown",
+    "tread": "/Game/EnvSandbox/Materials/Instances/FarawayMother/P2/MI_Faraway_SilkMountain_Lilac",
+    "plateau": "/Game/EnvSandbox/Materials/Instances/FarawayMother/P2/MI_Faraway_SilkMountain_Lilac",
     "waterfall": "/Game/EnvSandbox/Materials/Instances/Copernicus/MI_Copernicus_SilkWaterfall",
 }
 

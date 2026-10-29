@@ -5,13 +5,26 @@
 #include "Components/Image.h"
 #include "Components/TextBlock.h"
 #include "Components/VerticalBox.h"
+#include "Engine/World.h"
 #include "Input/Reply.h"
 #include "InputCoreTypes.h"
+#include "Kismet/GameplayStatics.h"
+#include "Sound/SoundBase.h"
+#include "Text/SmartTypewriter.h"
+#include "UObject/UObjectGlobals.h"
 
 namespace MelodiaFeedbackIds
 {
 	const FName DialogueAdvance(TEXT("UI.Feedback.DialogueAdvance"));
 	const FName ChoiceSelected(TEXT("UI.Feedback.ChoiceSelected"));
+}
+
+UMelodiaQuillDialogWidget::UMelodiaQuillDialogWidget()
+{
+	VoiceBlipSound = TSoftObjectPtr<USoundBase>(
+		FSoftObjectPath(TEXT("/Game/Melodia/Audio/SFX/UI/SW_MelodiaDialogueBlip.SW_MelodiaDialogueBlip")));
+	VoiceBlipFallbackSound = TSoftObjectPtr<USoundBase>(
+		FSoftObjectPath(TEXT("/Game/Audio/tick_001.tick_001")));
 }
 
 void UMelodiaQuillDialogWidget::NativeConstruct()
@@ -32,6 +45,7 @@ void UMelodiaQuillDialogWidget::NativeConstruct()
 
 void UMelodiaQuillDialogWidget::NativeDestruct()
 {
+	StopTypewriter();
 	ReleaseDialogueContext();
 	Super::NativeDestruct();
 }
@@ -43,6 +57,7 @@ void UMelodiaQuillDialogWidget::Play_Implementation(
 {
 	EnsureDialogueContext();
 	bAdvanceConsumed = false;
+	VoiceBlipsPlayed = 0;
 	ActiveTags = Tags;
 
 	if (SpeakerText)
@@ -53,8 +68,10 @@ void UMelodiaQuillDialogWidget::Play_Implementation(
 
 	if (BodyText)
 	{
-		BodyText->SetText(Text);
+		BodyText->SetText(FText::GetEmpty());
 	}
+
+	StartTypewriter(Speaker, Text);
 
 	if (!IsInViewport() && !GetParent())
 	{
@@ -105,17 +122,261 @@ void UMelodiaQuillDialogWidget::HandleAdvanceClicked()
 
 void UMelodiaQuillDialogWidget::TryAdvance()
 {
+	if (Typewriter && !bTypewriterLineComplete)
+	{
+		if (bClickCompletesLine)
+		{
+			FinishTypewriter();
+			return;
+		}
+
+		StopTypewriter();
+		if (BodyText)
+		{
+			BodyText->SetText(TypewriterFullText);
+		}
+	}
+
 	if (bAdvanceConsumed)
 	{
 		return;
 	}
 
 	bAdvanceConsumed = true;
-	UMelodiaUIFeedbackSubsystem::RequestFeedback(
-		this,
-		MelodiaFeedbackIds::DialogueAdvance,
-		FVector2D(-1.0, -1.0));
+	// The per-glyph voice cue replaces the long UI bubble on dialogue advance;
+	// keep the bubble as the fallback when blips are disabled or unavailable.
+	if (!bVoiceBlipsEnabled || !LoadedVoiceBlip)
+	{
+		UMelodiaUIFeedbackSubsystem::RequestFeedback(
+			this,
+			MelodiaFeedbackIds::DialogueAdvance,
+			FVector2D(-1.0, -1.0));
+	}
 	OnAdvance.Broadcast();
+}
+
+void UMelodiaQuillDialogWidget::StartTypewriter(const FString& Speaker, const FText& Text)
+{
+	TypewriterFullText = Text;
+	ActiveSpeaker = Speaker;
+	LastVoiceBlipTime = 0.0;
+	bLoggedVoiceBlip = false;
+	bTypewriterLineComplete = true;
+
+	EnsureVoiceBlipLoaded();
+
+	UWorld* World = GetWorld();
+	if (!bTypewriterEnabled || !World)
+	{
+		if (BodyText)
+		{
+			BodyText->SetText(Text);
+		}
+		return;
+	}
+
+	if (!Typewriter)
+	{
+		Typewriter = World->SpawnActor<ASmartTypewriter>();
+	}
+
+	if (!Typewriter)
+	{
+		if (BodyText)
+		{
+			BodyText->SetText(Text);
+		}
+		return;
+	}
+
+	FTextPrintedDelegate Printed;
+	Printed.BindDynamic(this, &ThisClass::HandleTypewriterPrinted);
+	FTextCompletedDelegate Completed;
+	Completed.BindDynamic(this, &ThisClass::HandleTypewriterCompleted);
+
+	bTypewriterLineComplete = false;
+	Typewriter->Initialize(
+		Text,
+		Printed,
+		Completed,
+		FMath::Max(0.01f, TypewriterInterval),
+		nullptr,
+		false,
+		false);
+}
+
+void UMelodiaQuillDialogWidget::StopTypewriter()
+{
+	if (IsValid(Typewriter.Get()))
+	{
+		Typewriter->ClearTimer();
+		Typewriter->Destroy();
+	}
+	Typewriter = nullptr;
+	bTypewriterLineComplete = true;
+}
+
+void UMelodiaQuillDialogWidget::FinishTypewriter()
+{
+	if (BodyText)
+	{
+		BodyText->SetText(TypewriterFullText);
+	}
+	if (Typewriter)
+	{
+		Typewriter->Finish();
+	}
+	bTypewriterLineComplete = true;
+}
+
+void UMelodiaQuillDialogWidget::HandleTypewriterPrinted(
+	const FText& PrintedText,
+	const FString& Character,
+	const int32& Index)
+{
+	if (BodyText)
+	{
+		BodyText->SetText(PrintedText);
+	}
+
+	PlayVoiceBlip(ActiveSpeaker, Character, Index);
+
+	if (Typewriter && !Character.IsEmpty())
+	{
+		const TCHAR Glyph = Character[0];
+		if (Glyph == '.' || Glyph == '!' || Glyph == '?')
+		{
+			Typewriter->Pause(0.12f);
+		}
+		else if (Glyph == ',' || Glyph == ';' || Glyph == ':')
+		{
+			Typewriter->Pause(0.06f);
+		}
+		else if (Glyph == '\n')
+		{
+			Typewriter->Pause(0.15f);
+		}
+	}
+}
+
+void UMelodiaQuillDialogWidget::HandleTypewriterCompleted()
+{
+	bTypewriterLineComplete = true;
+	if (BodyText)
+	{
+		BodyText->SetText(TypewriterFullText);
+	}
+}
+
+void UMelodiaQuillDialogWidget::EnsureVoiceBlipLoaded()
+{
+	if (LoadedVoiceBlip)
+	{
+		return;
+	}
+
+	if (!VoiceBlipSound.IsNull())
+	{
+		LoadedVoiceBlip = VoiceBlipSound.LoadSynchronous();
+	}
+
+	if (!LoadedVoiceBlip && !VoiceBlipFallbackSound.IsNull())
+	{
+		LoadedVoiceBlip = VoiceBlipFallbackSound.LoadSynchronous();
+	}
+
+	if (!LoadedVoiceBlip)
+	{
+		LoadedVoiceBlip = LoadObject<USoundBase>(nullptr, TEXT("/Game/Audio/tick_001.tick_001"));
+	}
+
+	if (LoadedVoiceBlip)
+	{
+		UE_LOG(LogTemp, Log, TEXT("MELODIA_DIALOGUE_VOICE loaded=%s"), *GetNameSafe(LoadedVoiceBlip));
+	}
+}
+
+void UMelodiaQuillDialogWidget::PlayVoiceBlip(
+	const FString& Speaker,
+	const FString& Character,
+	const int32 Index)
+{
+	if (!bVoiceBlipsEnabled || !LoadedVoiceBlip || Character.IsEmpty())
+	{
+		return;
+	}
+
+	const TCHAR Glyph = Character[0];
+	if (FChar::IsWhitespace(Glyph) || Glyph == '<' || Glyph == '>' || Glyph == '/' || Glyph == '\\')
+	{
+		return;
+	}
+
+	UWorld* World = GetWorld();
+	if (!World)
+	{
+		return;
+	}
+
+	const double Now = World->GetTimeSeconds();
+	if (LastVoiceBlipTime > 0.0 && Now - LastVoiceBlipTime < VoiceBlipMinInterval)
+	{
+		return;
+	}
+	LastVoiceBlipTime = Now;
+
+	float Pitch = ResolveSpeakerPitch(Speaker);
+	const uint32 Hash = HashCombine(GetTypeHash(Character), static_cast<uint32>(Index));
+	const float Jitter = (static_cast<float>(Hash % 1001) / 500.0f) - 1.0f;
+	Pitch *= FMath::Pow(2.0f, Jitter * VoiceBlipPitchJitterSemitones / 12.0f);
+
+	if (Glyph == '.' || Glyph == ',' || Glyph == ';' || Glyph == ':')
+	{
+		Pitch *= 0.94f;
+	}
+	else if (Glyph == '!' || Glyph == '?')
+	{
+		Pitch *= 1.06f;
+	}
+
+	Pitch = FMath::Clamp(Pitch, 0.35f, 2.5f);
+	UGameplayStatics::PlaySound2D(this, LoadedVoiceBlip, VoiceBlipVolume, Pitch);
+	++VoiceBlipsPlayed;
+
+	if (!bLoggedVoiceBlip)
+	{
+		bLoggedVoiceBlip = true;
+		UE_LOG(LogTemp, Log,
+			TEXT("MELODIA_DIALOGUE_VOICE blip asset=%s speaker=%s pitch=%.3f index=%d"),
+			*GetNameSafe(LoadedVoiceBlip),
+			*Speaker,
+			Pitch,
+			Index);
+	}
+}
+
+float UMelodiaQuillDialogWidget::ResolveSpeakerPitch(const FString& Speaker) const
+{
+	if (Speaker.IsEmpty() || Speaker == TEXT("."))
+	{
+		return 0.92f;
+	}
+	if (Speaker.Equals(TEXT("Melusina"), ESearchCase::IgnoreCase))
+	{
+		return 1.0f;
+	}
+	if (Speaker.Contains(TEXT("Sir Melodious"), ESearchCase::IgnoreCase))
+	{
+		return 0.82f;
+	}
+	if (Speaker.Contains(TEXT("Sheep"), ESearchCase::IgnoreCase))
+	{
+		return 1.25f;
+	}
+
+	const uint32 Hash = GetTypeHash(Speaker);
+	const int32 Semitones = static_cast<int32>(Hash % 9) - 4;
+	return FMath::Pow(2.0f, static_cast<float>(Semitones) / 12.0f);
 }
 
 void UMelodiaQuillDialogWidget::EnsureDialogueContext()

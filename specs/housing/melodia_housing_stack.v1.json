@@ -248,5 +248,35 @@
       }
     },
     "verify": "house_verify.json all asserts pass, zero errors/warnings"
+  },
+  "dressing_binding": {
+    "catalogue_families": {
+      "Room_bedroom": 36,
+      "Room_landing": 8,
+      "Room_salon": 47
+    },
+    "house_groups": {
+      "room_salon": "Room_salon",
+      "room_landing": "Room_landing",
+      "joint_salon_landing_run": "Room_salon",
+      "stair_porch_steps": "Room_landing",
+      "pad": "Room_Any",
+      "roof_salon": "structure",
+      "roof_landing": "structure"
+    },
+    "note": "House groups are lowercase; catalogue artist tags are Capitalized. Match is by explicit table, never by case-folding.",
+    "division": {
+      "catalogue": "WHICH hero props per room family (91 authored placements)",
+      "fill_contract": "WHERE and HOW MANY scatter goes",
+      "house_pcg": "surface point supply with artist densities (1310 pts, 5 surfaces)",
+      "physics": "PhysicsCore settling is the final placement"
+    },
+    "missing_to_activate": [
+      "DA_MelodiaDressingCatalog asset (author from melusina_dressing_catalog.v1.json)",
+      "C++ build (catalog/tags/subsystem classes are new)",
+      "BP_MelodiaRoomShell kit Blueprint (absent)",
+      "one validation dressing pass (nothing visually accepted yet)"
+    ],
+    "provenance": "Codex house-dressing lane (worktree lane-house-dressing-ecv-20261022b, NOT in main; no wholesale merge - binding only)"
   }
 }

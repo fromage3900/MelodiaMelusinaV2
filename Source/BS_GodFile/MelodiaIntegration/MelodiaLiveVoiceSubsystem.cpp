@@ -7,7 +7,6 @@
 #include "Engine/World.h"
 #include "TimerManager.h"
 #include "Dom/JsonObject.h"
-#include "Graph/ADSGraphNode.h"
 #include "GenericPlatform/GenericPlatformHttp.h"
 #include "HAL/IConsoleManager.h"
 #include "HAL/PlatformMisc.h"
@@ -50,8 +49,9 @@ void UMelodiaLiveVoiceSubsystem::OnWorldBeginPlay(UWorld& InWorld)
 	VoiceClass = LoadObject<USoundClass>(nullptr,
 		TEXT("/Game/Melodia/Audio/Mix/SoundClasses/SCL_Voice.SCL_Voice"));
 
-	// ADS hook: authored SoundToPlay always wins; this fires only for silent nodes.
-	UADSGraphNode::OnUnvoicedLine.AddUObject(this, &ThisClass::HandleUnvoicedADSLine);
+	// The current Ascent plugin no longer exposes a node-level unvoiced-line delegate.
+	// Live voice remains available through Melodia.Speak and the Blueprint SpeakLine API;
+	// re-add automatic ADS speech through a dialogue-level adapter if it becomes production.
 
 	// Debug trigger v1: `Melodia.Speak <line...>` in the game console.
 	SpeakCommand = IConsoleManager::Get().RegisterConsoleCommand(
@@ -81,15 +81,9 @@ void UMelodiaLiveVoiceSubsystem::Deinitialize()
 		IConsoleManager::Get().UnregisterConsoleObject(SpeakCommand);
 		SpeakCommand = nullptr;
 	}
-	UADSGraphNode::OnUnvoicedLine.RemoveAll(this);
 	StopSpeaking();
 	Queue.Empty();
 	Super::Deinitialize();
-}
-
-void UMelodiaLiveVoiceSubsystem::HandleUnvoicedADSLine(const FString& Text, const FString& /*ParticipantTag*/, AActor* Speaker)
-{
-	SpeakLineAtActor(Text, Speaker);
 }
 
 void UMelodiaLiveVoiceSubsystem::SpeakLine(const FString& Text, const FString& VoiceIdOverride)

@@ -86,7 +86,6 @@ private:
 	UFUNCTION()
 	void OnUtteranceFinished();
 
-	void HandleUnvoicedADSLine(const FString& Text, const FString& ParticipantTag, AActor* Speaker);
 	void ConsoleSpeak(const TArray<FString>& Args);
 	class IConsoleObject* SpeakCommand = nullptr;
 	void EnqueueLine(const FString& Text, const FString& VoiceId, AActor* Speaker);
