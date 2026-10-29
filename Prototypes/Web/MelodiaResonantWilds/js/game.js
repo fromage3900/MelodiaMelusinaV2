@@ -15,6 +15,7 @@ import { Activities } from './activities.js';
 import { Echo } from './echo.js';
 import { UI } from './ui.js';
 import { PostFX } from './postfx.js';
+import { PainterlyFilter, painterlyEnabled } from './painterly.js';
 import { EncoreSystem } from './encore.js';
 import { toysEnabled, ChladniSand, MegaGown } from './playground.js';
 import { FloraisonPOV } from './floraison-pov.js';
@@ -81,8 +82,12 @@ export class Game {
     this.activities = new Activities(this);
     this.echo = new Echo(this);
     this.ui = new UI(this);
-    // Nikki-by-default OutlinePass/bloom; ?lite=1 or ?postfx=0 for low-end.
-    this.postfx = flagPostfx ? new PostFX(this) : null;
+    // Painterly is independently opt-in; ?postfx=0 still allows a paint-only
+    // compositor without bloom/OutlinePass. Hard-cel materials remain owned
+    // by the existing canonical NPR shader.
+    this.painterly = painterlyEnabled ? new PainterlyFilter() : null;
+    this.postfx = (flagPostfx || painterlyEnabled)
+      ? new PostFX(this, { worldEffects: flagPostfx }) : null;
     this.daycycleEnabled = flagDaycycle;
     this.encoreSys = new EncoreSystem(this);
     this._outlineInteract = null;
