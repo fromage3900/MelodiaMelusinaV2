@@ -164,6 +164,13 @@ def cmd_preflight(args):
                 foreign = [p["package"] for p in pkgs if not any(p["package"].startswith(x) for x in ALLOW_DIRTY_PREFIXES)]
                 if foreign:
                     result["warn"].append("non-lane dirty packages (do NOT save them): %s" % foreign)
+                # CLOSING the editor for a build destroys foreign unsaved work. Builds are only
+                # legal when every dirty package is transient Houdini temp or lane-owned.
+                hard_foreign = [p for p in foreign if not p.startswith("/Game/HoudiniEngine/Temp/")]
+                result["context"]["close_safe"] = not hard_foreign
+                if hard_foreign and led.get("next_action") == "build":
+                    result["status"] = "WAIT"
+                    result["reasons"].append("close-unsafe: foreign unsaved packages %s" % hard_foreign)
             except Exception as exc:  # noqa: BLE001
                 result["warn"].append("dirty readback failed: %s" % exc)
     elif editors == 0:

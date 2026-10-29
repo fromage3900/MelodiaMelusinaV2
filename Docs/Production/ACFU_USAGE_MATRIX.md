@@ -65,6 +65,8 @@ Overnight loop order is strictly 1→2→3→…; a step that cannot complete cl
 **blocked** with the reason and skipped to the next **mechanical** step (2 and 5 are safe to enter
 mid-stream; anything needing creative judgment stops at the ledger note instead of guessing).
 
+**Step-1 status 2026-10-29 (replaces the "Remaining" sketch above):** the design changed during implementation and is now final: **no DA asset and no pawn-asset edit are needed** — stock GAS `K2_GiveAbility` carries no spec tags in 5.8 (verified against engine headers), so the WaveHarp component itself attaches the ASC + the two inert ARS gate-companions at runtime (the exact pattern `MelodiaTraversalComponent.cpp:131` uses for it; the canonical pawn asset stays untouched — it even sits in another lane's pending CL) and grants the dodge through ACFU's own `GrantACFAbility` via name-driven reflection (`/Script/ActionsSystem.ActionAbilityConfig` built from CDO + native `Actions.Melodia.Dodge` tag). Content authored + verified: `BP_MelodiaDodgeAction` (parent `ACFActionAbility`), `animMontage=AM_Melusina_Roll`, `ERootMotionScaled`, scale 1.0, `CoolDownTime=0.55`, auto-cooldown on, compile 0/0, saved (16,642 bytes, sha `42C5709E…`), staged at pending p4 **CL 318**. Remaining: closed-editor rebuild with the runtime-attach C++ (DLL predates it — must happen in a close-safe window per §5), then automation + function-injection PIE counter proof on `First Resonance`.
+
 ## 4. Reflection law (why nothing links ActionsSystem)
 
 `BS_GodFile` deliberately has **no compile-time dependency** on `ActionsSystem/CollisionsManager/…`
