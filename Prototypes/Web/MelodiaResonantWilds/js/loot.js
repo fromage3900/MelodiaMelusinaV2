@@ -141,6 +141,10 @@ export class Loot {
     if (old) pr.inventory.push(old);
     this.g.player.recalc();
     this.g.onGearChanged();
+    // Nikki Ability Outfit beat — shoes/gown equip can open ethereal float spaces.
+    if (it.slot === 'shoes' || it.slot === 'gown') {
+      this.g.activities?.onAbilityOutfitEquipped?.(it.slot);
+    }
   }
 
   equipBest() {

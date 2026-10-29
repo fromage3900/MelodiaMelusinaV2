@@ -20,6 +20,7 @@ export function defaultProfile() {
     oshiAria: null,
     loadout: STARTING_SKILLS.slice(), learned: STARTING_SKILLS.slice(),
     blessings: [], pylons: ['pylon_hub'], shrines: [], sheets: [], vistas: [], photos: [], gates: [], cleanses: [], destinations: [], dews: [],
+    abilityOutfits: [],
     dewBonusTier: 0, destBuffs: {},
     phrasebook: {}, concertSkins: [], fashionGold: [],
     daily: null,
@@ -47,6 +48,7 @@ export function loadProfile() {
       phrasebook: { ...(p.phrasebook || {}) },
       concertSkins: Array.isArray(p.concertSkins) ? p.concertSkins : [],
       fashionGold: Array.isArray(p.fashionGold) ? p.fashionGold : [],
+      abilityOutfits: Array.isArray(p.abilityOutfits) ? p.abilityOutfits : [],
       maestroExams: Array.isArray(p.maestroExams) ? p.maestroExams : [],
       v: 2,
     };
