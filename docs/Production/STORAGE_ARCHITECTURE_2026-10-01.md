@@ -109,7 +109,7 @@ Jev (free beam model, receipt `Saved/Audit/SourceControl_20261028/jev_ask_receip
 
 - One worktree per active lane; the main checkout is not a shared workspace.
 - Worktree audit (`Saved/Audit/SourceControl_20261028/worktree_audit_20261028.json`): 16 worktrees; dead metadata pruned; five clean stale candidates identified for removal (lane-docs-archive, lane-house-dressing-ecv, lane-magicians-audit, lane-morning-live-vista, _wt_final1015) with HEAD SHAs recorded; eight dirty worktrees left untouched.
-- Removal of the five candidates requires one explicit owner yes; refs/agents (40 pins) keep their commits reachable.
+- **Removal is unsafe without a Content check**: the five candidates held 0.04-8.89 GB of ignored Content each (git status does not show ignored files). Archive by copy only (D:\MelodiaArchive\worktrees_20261029), verify the copy, and never delete a worktree whose Content is not reconciled against p4/main. The 2026-10-29 attempt was interrupted mid-move; the moved files were restored from the archive copy and the worktrees were left in place.
 - Pending Perforce CL inventory: 307 = 745 files (458 HoudiniEngine temp cooks, 217 EnvSandbox, 35 Melodia, 25 Staging, 6 Textures, 2 HDA, 1 Tools, 1 _PROJECT), 303 = 543 (interiors lane), 298 = 1, 235 = 1. Per-file triage only; never bulk-revert another lane's opens.
 - Offsite push: succeeded - origin `feature/vfx-universal-material-convergence` = `8d05d92e4` (16 commits, LFS 90 objects / 19 MB) as of 2026-10-28 23:4x.
 ## 2026-10-28 source-control incident addendum
