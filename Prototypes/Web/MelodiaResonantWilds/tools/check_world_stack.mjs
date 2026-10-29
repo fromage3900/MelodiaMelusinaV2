@@ -9,7 +9,7 @@ const g = read('js/game.js'), world = read('js/world.js'), a = read('js/activiti
 const design = read('js/design.js'), flags = read('js/flags.js'), sw = read('sw.js'), smoke = read('tools/browser_smoke.mjs');
 const progress = read('js/progress.js'), ui = read('js/ui.js');
 assert.match(g, /new PostFX\(this\)/);
-assert.match(g, /this\.painterly\.render/);
+assert.doesNotMatch(g, /this\.painterly/);
 assert.match(g, /this\.postfx\.render\(\)/);
 assert.match(flags, /liteMode/);
 assert.match(flags, /flagWorldexp/);
@@ -32,6 +32,10 @@ assert.match(smoke, /desktop-lite/);
 assert.match(smoke, /destinations >= 16/);
 assert.match(sw, /resonant-wilds-v13-20261029-nikki-ability/);
 assert.match(sw, /js\/playground\.js/);
+assert.match(sw, /js\/grove-catalog\.js/);
+assert.match(smoke, /desktop-grove-full/);
+assert.match(smoke, /desktop-chladni-mode/);
+assert.match(smoke, /desktop-v1-cel/);
 const ow = read('js/openworld.js');
 for (const id of ['choir_marsh', 'glass_orchard', 'starlit_moor']) {
   assert.match(ow, new RegExp(id + '\\s*:'));

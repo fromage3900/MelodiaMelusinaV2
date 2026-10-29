@@ -260,7 +260,7 @@ export class UI {
       const col = kind === 'miss' ? '#6a5a88' : kind === 'inherit' ? '#c690ff' : kind === 'bank' ? '#7fd0e4' : '#ffe7a8';
       const c = new THREE.Color(col);
       for (const s of samples.nodal.slice(0, 28)) {
-        this.g.particles.emit(s.x, (pos?.y ?? 0) + 0.5, s.z, c, { speed: 2.4, life: 0.7, spread: 0.45, kind: 3, size: 0.75 });
+        this.g.particles.emit(s.x, (pos?.y ?? 0) + 0.5, s.z, c, { speed: 2.4, life: 0.7, gravity: 0.45, kind: 3, size: 0.75 });
       }
     }
   }
