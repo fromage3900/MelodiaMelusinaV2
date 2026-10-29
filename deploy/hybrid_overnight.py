@@ -247,12 +247,15 @@ def cmd_commit(args):
     if r.returncode != 0:
         return r.returncode
     if args.push:
-        p = subprocess.run(["git", "push", "origin", "HEAD:main"], cwd=ROOT,
+        # Offsite mirror push ONLY - never HEAD:main (pre-existing 188/135 divergence; landing
+        # main is an owner/integrator decision, and a 3am agent must never be nudged toward it).
+        MIRROR = "refs/heads/feature/hybrid-dodge-lane-20261029"
+        p = subprocess.run(["git", "push", "origin", "HEAD:" + MIRROR], cwd=ROOT,
                            capture_output=True, text=True)
         print((p.stdout or p.stderr or "").strip().splitlines()[-1] if (p.stdout or p.stderr) else "push silent")
         if p.returncode != 0:
-            print("PUSH FAILED (remote moved?): fetch + rebase this lane's commit manually; "
-                  "never force-push.", file=sys.stderr)
+            print("mirror lagging (work is safe on local main; NEVER force-push, NEVER rebase here)",
+                  file=sys.stderr)
             return p.returncode
     return 0
 
