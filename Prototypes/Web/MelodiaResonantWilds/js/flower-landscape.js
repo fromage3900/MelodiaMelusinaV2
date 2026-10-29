@@ -150,7 +150,7 @@ export function flowerLandscapeEnabled(search) {
 }
 function pathClear(x, z, radius) {
   const r = Math.hypot(x,z);
-  if (r < HUB.radius - 7) return false;
+  if (r < 39) return false; // preserve paved plaza, huts and lantern ring
   if (r < 125) {
     const angle = Math.atan2(z,x);
     for (const biome of BIOMES) {
