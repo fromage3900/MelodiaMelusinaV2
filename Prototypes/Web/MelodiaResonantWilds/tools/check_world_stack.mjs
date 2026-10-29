@@ -16,7 +16,7 @@ assert.match(design, /get\('dressing'\) === 'dense'/);
 assert.match(a, /planExploration\(b, bi, rng, this\.pois\.slice\(\)\)/);
 assert.match(smoke, /desktop-worldexp-postfx/);
 assert.match(smoke, /destinations >= 16/);
-assert.match(sw, /resonant-wilds-v10-20261028-nikki-dest/);
+assert.match(sw, /resonant-wilds-v12-20261029-nikki-ability/);
 const ow = read('js/openworld.js');
 for (const id of ['choir_marsh', 'glass_orchard', 'starlit_moor']) {
   assert.match(ow, new RegExp(id + '\\s*:'));
@@ -25,6 +25,13 @@ assert.match(ow, /Mist Choir Reedwalk/);
 assert.match(ow, /Prism Picnic Glade/);
 assert.match(ow, /Starlit Moongate/);
 assert.match(ow, /fashionPhoto/);
+assert.match(ow, /ABILITY_OUTFITS/);
+assert.match(ow, /mist_float/);
+assert.match(ow, /prism_veil/);
+assert.match(ow, /nightbell_glide/);
+assert.match(a, /_unlockAbilityOutfit/);
+assert.match(a, /onAbilityOutfitEquipped/);
+assert.match(g, /Ability Outfit/);
 for (const p of ['js/openworld.js','js/postfx.js','vendor/postprocessing/OutlinePass.js',
  'vendor/postprocessing/UnrealBloomPass.js','vendor/shaders/FXAAShader.js']) {
  assert.ok(existsSync(join(root,p)), p+' missing');

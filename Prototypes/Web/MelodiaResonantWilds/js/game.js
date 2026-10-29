@@ -381,10 +381,18 @@ export class Game {
       case 'chime': return { label: 'Ring the chimes ♪', fn: () => this.activities.ringChimes(p) };
       case 'musicgate': return p.open ? null : { label: 'Answer the bridge 𝄞', fn: () => this.activities.openMusicGate(p) };
       case 'cleanse': return p.cleared ? null : { label: 'Ask Sheep to Harmonize ♪', fn: () => this.activities.cleanseSpot(p) };
-      case 'ariagate': return p.open ? null : { label: 'Wardrobe gate ✧', fn: () => this.activities.tryAriaGate(p) };
+      case 'ariagate': {
+        if (p.open) return null;
+        const abName = p.abilityOutfit && this.activities._abilityFor(p)?.name;
+        return { label: abName ? `Ability Outfit · ${abName} ✧` : 'Wardrobe gate ✧', fn: () => this.activities.tryAriaGate(p) };
+      }
       case 'destination': {
         if (p.needsPurify && !p.purified) return { label: 'Ask Sheep to Harmonize ♪', fn: () => { this.sheep.pos.set(p.x + 1.2, p.y, p.z + 1.2); this.sheep.harmonize(true); } };
         if (p.dewTaken) return { label: p.name, fn: () => this.activities.revealDestination(p) };
+        if (p.needsFloat && !this.activities._wearsAbilityFor(p)) {
+          const ab = this.activities._abilityFor(p);
+          return { label: ab ? `Ability Outfit · ${ab.name}` : 'Equip float outfit ✧', fn: () => this.activities.tryFloatDestination(p) };
+        }
         return { label: `Collect Resonance Dew ✧`, fn: () => this.activities.collectDew(p) };
       }
     }
