@@ -1,5 +1,6 @@
 // Three.js post pipeline (r170 addons, vendored).
-// EffectComposer → RenderPass → OutlinePass → UnrealBloomPass → OutputPass → FXAA.
+// EffectComposer → RenderPass → OutlinePass → Bloom → OutputPass → optional full-res crisp Kuwahara → FXAA.
+// The paint pass samples the ALREADY cel-shaded output, preserving the canonical hard RGB lighting.
 // Bloom is selective by luminance threshold (emissive sparks / dew / crystals).
 
 import { Vector2 } from 'three';
@@ -12,10 +13,12 @@ import { ShaderPass } from '../vendor/postprocessing/ShaderPass.js';
 import { FXAAShader } from '../vendor/shaders/FXAAShader.js';
 
 export class PostFX {
-  constructor(game) {
+  constructor(game, { worldEffects = true } = {}) {
     this.g = game;
-    this.enabled = true;
-    this._want = true;
+    this.worldEffects = !!worldEffects;
+    this.enabled = !!worldEffects;
+    this._want = !!worldEffects;
+    this.painterly = game.painterly || null;
     const r = game.renderer;
     const size = new Vector2();
     r.getSize(size);
@@ -36,15 +39,23 @@ export class PostFX {
     this.composer.addPass(this.outline);
     this.composer.addPass(this.bloom);
     this.composer.addPass(this.output);
+    // Final-image paint: outline and bloom stay crisp underneath; no half-res
+    // scene capture and no second independent renderer/composer.
+    if (this.painterly) this.composer.addPass(this.painterly.pass);
     this.composer.addPass(this.fxaa);
     this._selected = [];
+    this.setEnabled(this.worldEffects);
     this.resize();
   }
 
   setEnabled(on) {
     this._want = !!on;
-    this.enabled = this._want && this.g.profile.settings.quality !== 'low';
-    if (this.bloom) this.bloom.enabled = this.enabled;
+    this.enabled = this.worldEffects && this._want && this.g.profile.settings.quality !== 'low';
+    this.outline.enabled = this.enabled;
+    this.bloom.enabled = this.enabled;
+    // FXAA is intentionally disabled with paint to prevent a second softening
+    // pass; the game already renders its source at the quality DPR.
+    this.fxaa.enabled = this.enabled && !this.painterly?.pass.enabled;
   }
 
   resize() {
@@ -55,6 +66,7 @@ export class PostFX {
     this.composer.setPixelRatio(pr);
     this.composer.setSize(w, h);
     this.fxaa.material.uniforms.resolution.value.set(1 / (w * pr), 1 / (h * pr));
+    this.painterly?.resize(w * pr, h * pr);
   }
 
   /** Refresh which meshes get the glow outline this frame. */
@@ -102,11 +114,13 @@ export class PostFX {
   }
 
   render() {
-    if (!this.enabled) {
+    const paintOn = !!this.painterly?.pass.enabled;
+    if (!this.enabled && !paintOn) {
       this.g.renderer.render(this.g.scene, this.g.camera);
       return;
     }
-    this.syncSelection();
+    this.fxaa.enabled = this.enabled && !paintOn;
+    if (this.enabled) this.syncSelection();
     this.composer.render();
   }
 }
