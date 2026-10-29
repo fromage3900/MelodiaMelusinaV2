@@ -89,6 +89,38 @@ COLS = {
             }},
         ],
     },
+    "M_Water_Oceanology_Melodia": {
+        "master": "/Game/EnvSandbox/Materials/Masters/M_Water_Oceanology_Melodia",
+        "out_dir": "/Game/EnvSandbox/Materials/Instances/Proving",
+        "tag": "Water",
+        "columns": [
+            {"n": 1, "slug": "Biolum", "ov": {
+                "Biolum_ShearProxy": {"s": 0.72},
+                "Biolum_RippleMask": {"s": 0.85},
+                "Biolum_CrestCompression": {"s": 0.35},
+                "Biolum_DepthMask": {"s": 0.70},
+                "Biolum_BlueGreenTint": {"v": [0.05, 0.62, 0.58, 1.0]},
+                "Biolum_CyanTint": {"v": [0.30, 0.95, 1.00, 1.0]},
+                "Biolum_GreenTint": {"v": [0.15, 0.85, 0.40, 1.0]},
+                "Biolum_Intensity": {"s": 1.35},
+                "Biolum_Density": {"s": 0.45},
+                "Biolum_FlashRate": {"s": 2.2},
+                "Biolum_FlashThreshold": {"s": 0.28},
+                "Biolum_FlashDecay": {"s": 2.4},
+                "Biolum_Weight": {"s": 0.90},
+            }},
+            {"n": 2, "slug": "ToonBands", "ov": {
+                "Toon_Bands": {"s": 5.0},
+                "Toon_Weight": {"s": 0.80},
+            }},
+            {"n": 3, "slug": "Sparkle", "ov": {
+                "Nikki_SparkleIntensity": {"s": 1.60},
+                "Nikki_SparkleThreshold": {"s": 0.45},
+                "Nikki_SparkleColor": {"v": [0.95, 0.85, 0.55, 1.0]},
+                "Nikki_SparkleMask": {"t": "/Game/EnvSandbox/Materials/Textures/T_Noise_White"},
+            }},
+        ],
+    },
 }
 
 
@@ -106,6 +138,7 @@ def param_sets_from_master(master):
             sets["V"].add(name)
         elif cls.startswith("MaterialExpressionTextureSampleParameter") or cls in (
             "MaterialExpressionTextureParameter", "MaterialExpressionTextureSampleParameterCube",
+            "MaterialExpressionTextureObjectParameter",
         ):
             sets["T"].add(name)
         elif cls == "MaterialExpressionCollectionParameter":

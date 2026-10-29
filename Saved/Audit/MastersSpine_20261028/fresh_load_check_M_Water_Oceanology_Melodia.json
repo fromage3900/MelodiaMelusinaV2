@@ -1,0 +1,68 @@
+{
+ "schema": "melodia.proving_fresh_load_check.v1",
+ "when": "2026-10-28",
+ "master": "M_Water_Oceanology_Melodia",
+ "master_path": "/Game/EnvSandbox/Materials/Masters/M_Water_Oceanology_Melodia",
+ "checks": [
+  {
+   "name": "MI_Prove_Water_01_Biolum",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Water_01_Biolum",
+   "unload_note": "type object 'EditorAssetLibrary' has no attribute 'unload_asset'",
+   "class": "MaterialInstanceConstant",
+   "parent": "<Object '/Game/EnvSandbox/Materials/Masters/M_Water_Oceanology_Melodia.M_Water_Oceanology_Melodia' (0x0000018D1E71D200) Class 'Material'>",
+   "parent_ok": true,
+   "expected_counts": {
+    "scalar": 10,
+    "vector": 3,
+    "texture": 0
+   },
+   "got_counts": {
+    "scalar": 10,
+    "vector": 3,
+    "texture": 0
+   },
+   "census_ok": true,
+   "status": "ok"
+  },
+  {
+   "name": "MI_Prove_Water_02_ToonBands",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Water_02_ToonBands",
+   "unload_note": "type object 'EditorAssetLibrary' has no attribute 'unload_asset'",
+   "class": "MaterialInstanceConstant",
+   "parent": "<Object '/Game/EnvSandbox/Materials/Masters/M_Water_Oceanology_Melodia.M_Water_Oceanology_Melodia' (0x0000018D1E71D200) Class 'Material'>",
+   "parent_ok": true,
+   "expected_counts": {
+    "scalar": 2,
+    "vector": 0,
+    "texture": 0
+   },
+   "got_counts": {
+    "scalar": 2,
+    "vector": 0,
+    "texture": 0
+   },
+   "census_ok": true,
+   "status": "ok"
+  },
+  {
+   "name": "MI_Prove_Water_03_Sparkle",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Water_03_Sparkle",
+   "unload_note": "type object 'EditorAssetLibrary' has no attribute 'unload_asset'",
+   "class": "MaterialInstanceConstant",
+   "parent": "<Object '/Game/EnvSandbox/Materials/Masters/M_Water_Oceanology_Melodia.M_Water_Oceanology_Melodia' (0x0000018D1E71D200) Class 'Material'>",
+   "parent_ok": true,
+   "expected_counts": {
+    "scalar": 2,
+    "vector": 1,
+    "texture": 1
+   },
+   "got_counts": {
+    "scalar": 2,
+    "vector": 1,
+    "texture": 1
+   },
+   "census_ok": true,
+   "status": "ok"
+  }
+ ]
+}

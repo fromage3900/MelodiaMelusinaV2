@@ -1,0 +1,193 @@
+{
+ "schema": "melodia.proving_presets_receipt.v1",
+ "when": "2026-10-28",
+ "master": "M_Water_Oceanology_Melodia",
+ "master_path": "/Game/EnvSandbox/Materials/Masters/M_Water_Oceanology_Melodia",
+ "out_dir": "/Game/EnvSandbox/Materials/Instances/Proving",
+ "presets": [
+  {
+   "name": "MI_Prove_Water_01_Biolum",
+   "status": "repaired_authored",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Water_01_Biolum",
+   "overrides": {
+    "Biolum_ShearProxy": {
+     "kind": "scalar",
+     "value": 0.72,
+     "readback": 0.72,
+     "ok": true
+    },
+    "Biolum_RippleMask": {
+     "kind": "scalar",
+     "value": 0.85,
+     "readback": 0.85,
+     "ok": true
+    },
+    "Biolum_CrestCompression": {
+     "kind": "scalar",
+     "value": 0.35,
+     "readback": 0.35,
+     "ok": true
+    },
+    "Biolum_DepthMask": {
+     "kind": "scalar",
+     "value": 0.7,
+     "readback": 0.7,
+     "ok": true
+    },
+    "Biolum_BlueGreenTint": {
+     "kind": "vector",
+     "value": [
+      0.05,
+      0.62,
+      0.58,
+      1.0
+     ],
+     "readback": [
+      0.05,
+      0.62,
+      0.58,
+      1.0
+     ],
+     "ok": true
+    },
+    "Biolum_CyanTint": {
+     "kind": "vector",
+     "value": [
+      0.3,
+      0.95,
+      1.0,
+      1.0
+     ],
+     "readback": [
+      0.3,
+      0.95,
+      1.0,
+      1.0
+     ],
+     "ok": true
+    },
+    "Biolum_GreenTint": {
+     "kind": "vector",
+     "value": [
+      0.15,
+      0.85,
+      0.4,
+      1.0
+     ],
+     "readback": [
+      0.15,
+      0.85,
+      0.4,
+      1.0
+     ],
+     "ok": true
+    },
+    "Biolum_Intensity": {
+     "kind": "scalar",
+     "value": 1.35,
+     "readback": 1.35,
+     "ok": true
+    },
+    "Biolum_Density": {
+     "kind": "scalar",
+     "value": 0.45,
+     "readback": 0.45,
+     "ok": true
+    },
+    "Biolum_FlashRate": {
+     "kind": "scalar",
+     "value": 2.2,
+     "readback": 2.2,
+     "ok": true
+    },
+    "Biolum_FlashThreshold": {
+     "kind": "scalar",
+     "value": 0.28,
+     "readback": 0.28,
+     "ok": true
+    },
+    "Biolum_FlashDecay": {
+     "kind": "scalar",
+     "value": 2.4,
+     "readback": 2.4,
+     "ok": true
+    },
+    "Biolum_Weight": {
+     "kind": "scalar",
+     "value": 0.9,
+     "readback": 0.9,
+     "ok": true
+    }
+   },
+   "saved_return": true
+  },
+  {
+   "name": "MI_Prove_Water_02_ToonBands",
+   "status": "repaired_authored",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Water_02_ToonBands",
+   "overrides": {
+    "Toon_Bands": {
+     "kind": "scalar",
+     "value": 5.0,
+     "readback": 5.0,
+     "ok": true
+    },
+    "Toon_Weight": {
+     "kind": "scalar",
+     "value": 0.8,
+     "readback": 0.8,
+     "ok": true
+    }
+   },
+   "saved_return": true
+  },
+  {
+   "name": "MI_Prove_Water_03_Sparkle",
+   "status": "repaired_authored",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Water_03_Sparkle",
+   "overrides": {
+    "Nikki_SparkleIntensity": {
+     "kind": "scalar",
+     "value": 1.6,
+     "readback": 1.6,
+     "ok": true
+    },
+    "Nikki_SparkleThreshold": {
+     "kind": "scalar",
+     "value": 0.45,
+     "readback": 0.45,
+     "ok": true
+    },
+    "Nikki_SparkleColor": {
+     "kind": "vector",
+     "value": [
+      0.95,
+      0.85,
+      0.55,
+      1.0
+     ],
+     "readback": [
+      0.95,
+      0.85,
+      0.55,
+      1.0
+     ],
+     "ok": true
+    },
+    "Nikki_SparkleMask": {
+     "kind": "texture",
+     "value": "/Game/EnvSandbox/Materials/Textures/T_Noise_White",
+     "readback": "<Object '/Game/EnvSandbox/Materials/Textures/T_Noise_White.T_Noise_White' (0x0000018D3F952400) Class 'Texture2D'>",
+     "ok": true
+    }
+   },
+   "saved_return": true
+  }
+ ],
+ "non_mi_collection_params": [],
+ "param_set_sizes": {
+  "scalar": 14,
+  "vector": 4,
+  "texture": 1
+ }
+}

@@ -1,0 +1,368 @@
+{
+ "probe": "masters_spine_proving_probe.v1",
+ "master": "M_Water_Oceanology_Melodia",
+ "master_rows": {
+  "path": "/Game/EnvSandbox/Materials/Masters/M_Water_Oceanology_Melodia",
+  "expr_count": 35,
+  "params": [
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "Biolum_ShearProxy",
+    "group": "01 | Biolum",
+    "sort_priority": "32",
+    "default_value": 0.5,
+    "slider_min": 0.0,
+    "slider_max": 0.0
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "Biolum_RippleMask",
+    "group": "01 | Biolum",
+    "sort_priority": "32",
+    "default_value": 1.0,
+    "slider_min": 0.0,
+    "slider_max": 0.0
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "Biolum_CrestCompression",
+    "group": "01 | Biolum",
+    "sort_priority": "32",
+    "default_value": 0.5,
+    "slider_min": 0.0,
+    "slider_max": 0.0
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "Biolum_DepthMask",
+    "group": "01 | Biolum",
+    "sort_priority": "32",
+    "default_value": 1.0,
+    "slider_min": 0.0,
+    "slider_max": 0.0
+   },
+   {
+    "c": "VectorParameter",
+    "parameter_name": "Biolum_BlueGreenTint",
+    "group": "01 | Biolum",
+    "sort_priority": "32",
+    "rgb": [
+     0.1,
+     0.85,
+     0.75,
+     1.0
+    ]
+   },
+   {
+    "c": "VectorParameter",
+    "parameter_name": "Biolum_CyanTint",
+    "group": "01 | Biolum",
+    "sort_priority": "32",
+    "rgb": [
+     0.2,
+     0.9,
+     1.0,
+     1.0
+    ]
+   },
+   {
+    "c": "VectorParameter",
+    "parameter_name": "Biolum_GreenTint",
+    "group": "01 | Biolum",
+    "sort_priority": "32",
+    "rgb": [
+     0.35,
+     1.0,
+     0.55,
+     1.0
+    ]
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "Biolum_Intensity",
+    "group": "01 | Biolum",
+    "sort_priority": "32",
+    "default_value": 1.0,
+    "slider_min": 0.0,
+    "slider_max": 0.0
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "Biolum_Density",
+    "group": "01 | Biolum",
+    "sort_priority": "32",
+    "default_value": 0.6,
+    "slider_min": 0.0,
+    "slider_max": 0.0
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "Biolum_FlashRate",
+    "group": "01 | Biolum",
+    "sort_priority": "32",
+    "default_value": 1.5,
+    "slider_min": 0.0,
+    "slider_max": 0.0
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "Biolum_FlashThreshold",
+    "group": "01 | Biolum",
+    "sort_priority": "32",
+    "default_value": 0.35,
+    "slider_min": 0.0,
+    "slider_max": 0.0
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "Biolum_FlashDecay",
+    "group": "01 | Biolum",
+    "sort_priority": "32",
+    "default_value": 3.0,
+    "slider_min": 0.0,
+    "slider_max": 0.0
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "Biolum_Weight",
+    "group": "01 | Biolum",
+    "sort_priority": "32",
+    "default_value": 1.0,
+    "slider_min": 0.0,
+    "slider_max": 0.0
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "Toon_Bands",
+    "group": "02 | Toon Bands",
+    "sort_priority": "32",
+    "default_value": 4.0,
+    "slider_min": 0.0,
+    "slider_max": 0.0
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "Toon_Weight",
+    "group": "02 | Toon Bands",
+    "sort_priority": "32",
+    "default_value": 0.65,
+    "slider_min": 0.0,
+    "slider_max": 0.0
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "Nikki_SparkleIntensity",
+    "group": "03 | Nikki Sparkle",
+    "sort_priority": "32",
+    "default_value": 1.0,
+    "slider_min": 0.0,
+    "slider_max": 0.0
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "Nikki_SparkleThreshold",
+    "group": "03 | Nikki Sparkle",
+    "sort_priority": "32",
+    "default_value": 0.6,
+    "slider_min": 0.0,
+    "slider_max": 0.0
+   },
+   {
+    "c": "VectorParameter",
+    "parameter_name": "Nikki_SparkleColor",
+    "group": "03 | Nikki Sparkle",
+    "sort_priority": "32",
+    "rgb": [
+     0.2,
+     0.9,
+     1.0,
+     1.0
+    ]
+   },
+   {
+    "c": "TextureObjectParameter",
+    "parameter_name": "Nikki_SparkleMask",
+    "group": "03 | Nikki Sparkle",
+    "sort_priority": "32",
+    "tex": "<Object '/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Textures/T_Jelly_Biolum_LUT.T_Jelly_Biolum_LUT' (0x0000018CC6519C00) Class 'Texture2D'>"
+   }
+  ]
+ },
+ "toon_profiles": [
+  {
+   "name": "TP_Character",
+   "class": "ToonProfile",
+   "path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Character"
+  },
+  {
+   "name": "TP_Cool",
+   "class": "ToonProfile",
+   "path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Cool"
+  },
+  {
+   "name": "TP_Cosmic",
+   "class": "ObjectRedirector",
+   "path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Cosmic"
+  },
+  {
+   "name": "TP_Default",
+   "class": "ObjectRedirector",
+   "path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Default"
+  },
+  {
+   "name": "TP_Environment",
+   "class": "ToonProfile",
+   "path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Environment"
+  },
+  {
+   "name": "TP_Foliage",
+   "class": "ObjectRedirector",
+   "path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Foliage"
+  },
+  {
+   "name": "TP_Glass",
+   "class": "ObjectRedirector",
+   "path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Glass"
+  },
+  {
+   "name": "TP_Gold",
+   "class": "ObjectRedirector",
+   "path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Gold"
+  },
+  {
+   "name": "TP_Hatched",
+   "class": "ToonProfile",
+   "path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Hatched"
+  },
+  {
+   "name": "TP_Hero",
+   "class": "ObjectRedirector",
+   "path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Hero"
+  },
+  {
+   "name": "TP_Impressionist_Dry",
+   "class": "ObjectRedirector",
+   "path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Impressionist_Dry"
+  },
+  {
+   "name": "TP_Impressionist_Impasto",
+   "class": "ObjectRedirector",
+   "path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Impressionist_Impasto"
+  },
+  {
+   "name": "TP_Impressionist_Wet",
+   "class": "ObjectRedirector",
+   "path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Impressionist_Wet"
+  },
+  {
+   "name": "TP_Iridescent_Flow",
+   "class": "ToonProfile",
+   "path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Iridescent_Flow"
+  },
+  {
+   "name": "TP_Iridescent_Foam",
+   "class": "ToonProfile",
+   "path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Iridescent_Foam"
+  },
+  {
+   "name": "TP_Iridescent_Scales",
+   "class": "ToonProfile",
+   "path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Iridescent_Scales"
+  },
+  {
+   "name": "TP_Melusina",
+   "class": "ObjectRedirector",
+   "path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Melusina"
+  },
+  {
+   "name": "TP_NikkiDream",
+   "class": "ObjectRedirector",
+   "path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_NikkiDream"
+  },
+  {
+   "name": "TP_Ornamental",
+   "class": "ObjectRedirector",
+   "path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Ornamental"
+  },
+  {
+   "name": "TP_Simple_Cool",
+   "class": "ToonProfile",
+   "path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Simple_Cool"
+  },
+  {
+   "name": "TP_Simple_HighContrast",
+   "class": "ToonProfile",
+   "path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Simple_HighContrast"
+  },
+  {
+   "name": "TP_Simple_LowContrast",
+   "class": "ToonProfile",
+   "path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Simple_LowContrast"
+  },
+  {
+   "name": "TP_Simple_Metallic",
+   "class": "ToonProfile",
+   "path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Simple_Metallic"
+  },
+  {
+   "name": "TP_Simple_Soft",
+   "class": "ToonProfile",
+   "path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Simple_Soft"
+  },
+  {
+   "name": "TP_Simple_ThreeTone",
+   "class": "ToonProfile",
+   "path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Simple_ThreeTone"
+  },
+  {
+   "name": "TP_Simple_TwoTone",
+   "class": "ToonProfile",
+   "path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Simple_TwoTone"
+  },
+  {
+   "name": "TP_Simple_Warm",
+   "class": "ToonProfile",
+   "path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Simple_Warm"
+  },
+  {
+   "name": "TP_SoftPainterly",
+   "class": "ToonProfile",
+   "path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_SoftPainterly"
+  },
+  {
+   "name": "TP_Stone",
+   "class": "ToonProfile",
+   "path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Stone"
+  },
+  {
+   "name": "TP_Stucco",
+   "class": "ObjectRedirector",
+   "path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Stucco"
+  },
+  {
+   "name": "TP_Test",
+   "class": "ToonProfile",
+   "path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Test"
+  },
+  {
+   "name": "TP_TwoTone",
+   "class": "ToonProfile",
+   "path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_TwoTone"
+  },
+  {
+   "name": "TP_Warm",
+   "class": "ToonProfile",
+   "path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Warm"
+  },
+  {
+   "name": "TP_Water",
+   "class": "ObjectRedirector",
+   "path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Water"
+  },
+  {
+   "name": "TP_Wood",
+   "class": "ObjectRedirector",
+   "path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Wood"
+  }
+ ]
+}
