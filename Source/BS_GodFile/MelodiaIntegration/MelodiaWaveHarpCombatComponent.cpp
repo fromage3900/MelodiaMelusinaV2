@@ -102,7 +102,8 @@
   static void InitGASAvatar(UObject* AbilityComponent, AActor* OwnerActor)
   {
    UClass* Library = FindObject<UClass>(nullptr, TEXT("/Script/GameplayAbilities.AbilitySystemBlueprintLibrary"));
-   UFunction* Fn = Library ? Library->FindFunction(FName("InitializeAbilitySystem")) : nullptr;
+   // UClass::FindFunction is PRIVATE in UE 5.8 (C2248, 2026-10-29 build) - public name lookup instead.
+   UFunction* Fn = Library ? Library->FindFunctionByName(TEXT("InitializeAbilitySystem")) : nullptr;
    if (!Fn) return;
    TArray<uint8> Buffer;
    Buffer.SetNumZeroed(FMath::Max(Fn->GetStructureSize(), 1));
