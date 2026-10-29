@@ -1,0 +1,20 @@
+{
+ "schema": "melodia.faraway_grid_repair.v1",
+ "when": "2026-10-29",
+ "level": "/Game/EnvSandbox/Monoliths/FarawayMother/Blockout/L_FarawayMother_Blockout",
+ "symptom": "104 StaticMeshComponent material slots were None/WorldGridMaterial across Houdini HDA output actors (CoutureRoute, Cathedral_V2, Village_Foundations, SilkPeak, AlmostGate, HeroSilk, Houses). HDA outputs carried no material assignment.",
+ "action": {
+  "material_assigned": "/Game/EnvSandbox/Materials/Instances/FarawayMother/P2/MI_Mother_Mantle (parent M_Master_Nikki)",
+  "candidate_absent": "/Game/EnvSandbox/Monoliths/FarawayMother/Blockout/HeroComposition_20261027/Materials/MI_Faraway_CelestialFabric_PBR_Candidate does not exist",
+  "slots_fixed": 104,
+  "slots_failed": 0,
+  "bad_slots_after": 0,
+  "level_saved": true,
+  "umap": {"path": "Content/EnvSandbox/Monoliths/FarawayMother/Blockout/L_FarawayMother_Blockout.umap", "mtime": "2026-10-29 14:08:53", "bytes": 13561037, "hash16": "56ADF5AABB08"}
+ },
+ "evidence_note": "The umap binary still contains the string WorldGridMaterial (UE stores it as a default material reference); the authoritative check is the live actor rescan, which reports 0 None/WorldGrid slots.",
+ "open": {
+  "hda_material_contract": "HDA outputs have no unreal_material assignment, so a recook can reset slots. Durable fix needs the HDA material contract (or per-asset StaticMesh default materials).",
+  "per_asset_intent": "One fabric material (MI_Mother_Mantle) is applied to all HDA outputs; which Mother MI belongs on each HDA output is an owner/art decision."
+ }
+}
