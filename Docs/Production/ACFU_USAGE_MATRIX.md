@@ -95,6 +95,11 @@ an owner-noted amendment to this file.
   `.gitignore`, or a second UI/HUD/palette writer.
 * Loop self-retires when steps 1–7 are done-or-blocked (it pauses its own job id) leaving step 8 + a
   CURRENT_STATE line for the owner.
+* **Vendor recovery (2026-10-29):** WormholePortal + TouchEngine were restored from the intact G: copy;
+  WP is staged in pending p4 CL 316 (do NOT submit — owner gate; do NOT touch `Plugins/Marketplace/**`
+  or `Plugins/TouchEngine/**` from this lane). WP is EnabledByDefault and **re-enters the next
+  closed-editor build**; if the WP module fails to compile, mark the step blocked with the UBT error
+  excerpt and leave the plugin alone — deletion is an owner decision, never a build convenience.
 
 ## 6. What the loop must NOT do
 
