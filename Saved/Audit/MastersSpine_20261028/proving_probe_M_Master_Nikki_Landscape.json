@@ -1,0 +1,1748 @@
+{
+ "probe": "masters_spine_proving_probe.v1",
+ "master": "M_Master_Nikki_Landscape",
+ "master_rows": {
+  "path": "/Game/EnvSandbox/Materials/Masters/M_Master_Nikki_Landscape",
+  "expr_count": 362,
+  "params": [
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "Ground_UVScale",
+    "group": "03 | Layer Surface",
+    "sort_priority": "1702",
+    "default_value": 1.0,
+    "slider_min": 0.05,
+    "slider_max": 10.0
+   },
+   {
+    "c": "TextureSampleParameter2D",
+    "parameter_name": "Ground_Albedo",
+    "group": "02 | Layer Textures",
+    "sort_priority": "1603",
+    "tex": "<Object '/Game/_PROJECT/04_Materials/Textures/Textures/SOIL_materialized_diffuseOriginal.SOIL_materialized_diffuseOriginal' (0x000002A8CC969C00) Class 'Texture2D'>"
+   },
+   {
+    "c": "TextureSampleParameter2D",
+    "parameter_name": "Ground_NormalMap",
+    "group": "02 | Layer Textures",
+    "sort_priority": "1604",
+    "tex": "<Object '/Game/EnvSandbox/Textures/Utility/T_Neutral_Normal.T_Neutral_Normal' (0x000002A74D70EA00) Class 'Texture2D'>"
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "Ground_Roughness",
+    "group": "03 | Layer Surface",
+    "sort_priority": "1703",
+    "default_value": 0.8,
+    "slider_min": 0.0,
+    "slider_max": 1.0
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "Grass_UVScale",
+    "group": "03 | Layer Surface",
+    "sort_priority": "1704",
+    "default_value": 1.0,
+    "slider_min": 0.05,
+    "slider_max": 10.0
+   },
+   {
+    "c": "TextureSampleParameter2D",
+    "parameter_name": "Grass_Albedo",
+    "group": "02 | Layer Textures",
+    "sort_priority": "1605",
+    "tex": "<Object '/Game/_PROJECT/04_Materials/Textures/Textures/SOIL_materialized_diffuseOriginal.SOIL_materialized_diffuseOriginal' (0x000002A8CC969C00) Class 'Texture2D'>"
+   },
+   {
+    "c": "TextureSampleParameter2D",
+    "parameter_name": "Grass_NormalMap",
+    "group": "02 | Layer Textures",
+    "sort_priority": "1606",
+    "tex": "<Object '/Game/EnvSandbox/Textures/Utility/T_Neutral_Normal.T_Neutral_Normal' (0x000002A74D70EA00) Class 'Texture2D'>"
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "Grass_Roughness",
+    "group": "03 | Layer Surface",
+    "sort_priority": "1705",
+    "default_value": 0.8,
+    "slider_min": 0.0,
+    "slider_max": 1.0
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "Rock_UVScale",
+    "group": "03 | Layer Surface",
+    "sort_priority": "1700",
+    "default_value": 1.0,
+    "slider_min": 0.05,
+    "slider_max": 10.0
+   },
+   {
+    "c": "TextureSampleParameter2D",
+    "parameter_name": "Rock_Albedo",
+    "group": "02 | Layer Textures",
+    "sort_priority": "1601",
+    "tex": "<Object '/Game/EnvSandbox/Materials/SDF/Textures/Marble/T_Marble_7_-_512x512.T_Marble_7_-_512x512' (0x000002A7A358F000) Class 'Texture2D'>"
+   },
+   {
+    "c": "TextureSampleParameter2D",
+    "parameter_name": "Rock_NormalMap",
+    "group": "02 | Layer Textures",
+    "sort_priority": "1602",
+    "tex": "<Object '/Game/EnvSandbox/Textures/Utility/T_Neutral_Normal.T_Neutral_Normal' (0x000002A74D70EA00) Class 'Texture2D'>"
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "Rock_Roughness",
+    "group": "03 | Layer Surface",
+    "sort_priority": "1701",
+    "default_value": 0.8,
+    "slider_min": 0.0,
+    "slider_max": 1.0
+   },
+   {
+    "c": "VectorParameter",
+    "parameter_name": "BaseTint",
+    "group": "01 | Base Surface",
+    "sort_priority": "0",
+    "rgb": [
+     1.0,
+     1.0,
+     1.0,
+     1.0
+    ]
+   },
+   {
+    "c": "VectorParameter",
+    "parameter_name": "RampLow",
+    "group": "01 | Base Surface",
+    "sort_priority": "4",
+    "rgb": [
+     0.2,
+     0.15,
+     0.3,
+     1.0
+    ]
+   },
+   {
+    "c": "VectorParameter",
+    "parameter_name": "RampMid",
+    "group": "01 | Base Surface",
+    "sort_priority": "5",
+    "rgb": [
+     0.85,
+     0.6,
+     0.75,
+     1.0
+    ]
+   },
+   {
+    "c": "VectorParameter",
+    "parameter_name": "RampHigh",
+    "group": "01 | Base Surface",
+    "sort_priority": "6",
+    "rgb": [
+     1.0,
+     0.95,
+     0.9,
+     1.0
+    ]
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "RampPosMid",
+    "group": "01 | Base Surface",
+    "sort_priority": "7",
+    "default_value": 0.5,
+    "slider_min": 0.05,
+    "slider_max": 0.95
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "RampContrast",
+    "group": "01 | Base Surface",
+    "sort_priority": "8",
+    "default_value": 1.0,
+    "slider_min": 0.1,
+    "slider_max": 4.0
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "RampStrength",
+    "group": "01 | Base Surface",
+    "sort_priority": "9",
+    "default_value": 0.0,
+    "slider_min": 0.0,
+    "slider_max": 1.0
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "RoughnessMin",
+    "group": "01 | Base Surface",
+    "sort_priority": "1",
+    "default_value": 0.0,
+    "slider_min": 0.0,
+    "slider_max": 1.0
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "RoughnessMax",
+    "group": "01 | Base Surface",
+    "sort_priority": "2",
+    "default_value": 1.0,
+    "slider_min": 0.0,
+    "slider_max": 1.5
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "IridescenceRoughnessAtten",
+    "group": "07 | Nikki Iridescence & Sheen",
+    "sort_priority": "404",
+    "default_value": 0.0,
+    "slider_min": 0.0,
+    "slider_max": 1.0
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "MetallicScale",
+    "group": "01 | Base Surface",
+    "sort_priority": "3",
+    "default_value": 0.0,
+    "slider_min": 0.0,
+    "slider_max": 1.0
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "AtmosphericStart",
+    "group": "27 | Atmosphere",
+    "sort_priority": "100",
+    "default_value": 5000.0,
+    "slider_min": 0.0,
+    "slider_max": 100000.0
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "AtmosphericEnd",
+    "group": "27 | Atmosphere",
+    "sort_priority": "101",
+    "default_value": 50000.0,
+    "slider_min": 1000.0,
+    "slider_max": 500000.0
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "AtmosphericStrength",
+    "group": "27 | Atmosphere",
+    "sort_priority": "102",
+    "default_value": 0.0,
+    "slider_min": 0.0,
+    "slider_max": 1.0
+   },
+   {
+    "c": "VectorParameter",
+    "parameter_name": "AtmosphericColor",
+    "group": "27 | Atmosphere",
+    "sort_priority": "103",
+    "rgb": [
+     0.62,
+     0.72,
+     0.82,
+     1.0
+    ]
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "NikkiEmissiveStrength",
+    "group": "04 | Emissive",
+    "sort_priority": "200",
+    "default_value": 1.0,
+    "slider_min": 0.0,
+    "slider_max": 4.0
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "EmissiveFloor",
+    "group": "04 | Emissive",
+    "sort_priority": "201",
+    "default_value": 0.12,
+    "slider_min": 0.0,
+    "slider_max": 1.0
+   },
+   {
+    "c": "StaticSwitchParameter",
+    "parameter_name": "bTriplanarPro_Active",
+    "group": "05 | Triplanar",
+    "sort_priority": "300",
+    "default_value": 0.0
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "TriplanarPro_Scale",
+    "group": "05 | Triplanar",
+    "sort_priority": "301",
+    "default_value": 0.01,
+    "slider_min": 0.0,
+    "slider_max": 1.0
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "TriplanarPro_Sharpness",
+    "group": "05 | Triplanar",
+    "sort_priority": "302",
+    "default_value": 4.0,
+    "slider_min": 0.01,
+    "slider_max": 32.0
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "TriplanarPro_BlendStrength",
+    "group": "05 | Triplanar",
+    "sort_priority": "303",
+    "default_value": 0.0,
+    "slider_min": 0.0,
+    "slider_max": 1.0
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "TriplanarPro_BreakupStrength",
+    "group": "05 | Triplanar",
+    "sort_priority": "304",
+    "default_value": 0.0,
+    "slider_min": 0.0,
+    "slider_max": 1.0
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "TriplanarPro_BreakupScale",
+    "group": "05 | Triplanar",
+    "sort_priority": "305",
+    "default_value": 1.0,
+    "slider_min": 0.001,
+    "slider_max": 32.0
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "TriplanarPro_BreakupContrast",
+    "group": "05 | Triplanar",
+    "sort_priority": "306",
+    "default_value": 1.0,
+    "slider_min": 0.01,
+    "slider_max": 8.0
+   },
+   {
+    "c": "VectorParameter",
+    "parameter_name": "TriplanarPro_ProjectionOffset",
+    "group": "05 | Triplanar",
+    "sort_priority": "307",
+    "rgb": [
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ]
+   },
+   {
+    "c": "VectorParameter",
+    "parameter_name": "TriplanarPro_ProjectionRotation",
+    "group": "05 | Triplanar",
+    "sort_priority": "308",
+    "rgb": [
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ]
+   },
+   {
+    "c": "VectorParameter",
+    "parameter_name": "TriplanarPro_AxisWeights",
+    "group": "05 | Triplanar",
+    "sort_priority": "309",
+    "rgb": [
+     1.0,
+     1.0,
+     1.0,
+     0.0
+    ]
+   },
+   {
+    "c": "TextureObjectParameter",
+    "parameter_name": "Albedo",
+    "group": "02 | Layer Textures",
+    "sort_priority": "1600",
+    "tex": "<Object '/Game/EnvSandbox/Materials/SDF/Textures/Marble/T_Marble_7_-_512x512.T_Marble_7_-_512x512' (0x000002A7A358F000) Class 'Texture2D'>"
+   },
+   {
+    "c": "StaticSwitchParameter",
+    "parameter_name": "bNikkiStickerShade_Active",
+    "group": "08 | Nikki Sticker Shade",
+    "sort_priority": "500",
+    "default_value": 0.0
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "NikkiStickerBandCount",
+    "group": "08 | Nikki Sticker Shade",
+    "sort_priority": "502",
+    "default_value": 4.0,
+    "slider_min": 1.0,
+    "slider_max": 8.0
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "NikkiStickerBandSoftness",
+    "group": "08 | Nikki Sticker Shade",
+    "sort_priority": "503",
+    "default_value": 0.85,
+    "slider_min": 0.0,
+    "slider_max": 1.0
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "NikkiStickerStrength",
+    "group": "08 | Nikki Sticker Shade",
+    "sort_priority": "504",
+    "default_value": 0.5,
+    "slider_min": 0.0,
+    "slider_max": 1.0
+   },
+   {
+    "c": "VectorParameter",
+    "parameter_name": "NikkiStickerShadeColor",
+    "group": "08 | Nikki Sticker Shade",
+    "sort_priority": "501",
+    "rgb": [
+     0.72,
+     0.55,
+     0.68,
+     1.0
+    ]
+   },
+   {
+    "c": "StaticSwitchParameter",
+    "parameter_name": "bNikkiTwinkleIris_Active",
+    "group": "09 | Nikki Twinkle Iris",
+    "sort_priority": "600",
+    "default_value": 1.0
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "NikkiFabricSheen",
+    "group": "09 | Nikki Twinkle Iris",
+    "sort_priority": "602",
+    "default_value": 0.5,
+    "slider_min": 0.0,
+    "slider_max": 1.0
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "NikkiIridescence",
+    "group": "09 | Nikki Twinkle Iris",
+    "sort_priority": "603",
+    "default_value": 2.0,
+    "slider_min": 0.0,
+    "slider_max": 8.0
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "NikkiTwinkleScale",
+    "group": "09 | Nikki Twinkle Iris",
+    "sort_priority": "604",
+    "default_value": 0.5,
+    "slider_min": 0.01,
+    "slider_max": 8.0
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "NikkiTwinkleAmount",
+    "group": "09 | Nikki Twinkle Iris",
+    "sort_priority": "605",
+    "default_value": 0.12,
+    "slider_min": 0.0,
+    "slider_max": 1.0
+   },
+   {
+    "c": "VectorParameter",
+    "parameter_name": "NikkiIrisTint",
+    "group": "09 | Nikki Twinkle Iris",
+    "sort_priority": "601",
+    "rgb": [
+     1.0,
+     0.8,
+     0.95,
+     1.0
+    ]
+   },
+   {
+    "c": "StaticSwitchParameter",
+    "parameter_name": "bNikkiPastelGrade_Active",
+    "group": "10 | Nikki Pastel Grade",
+    "sort_priority": "700",
+    "default_value": 1.0
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "NikkiPastelStrength",
+    "group": "10 | Nikki Pastel Grade",
+    "sort_priority": "704",
+    "default_value": 0.6,
+    "slider_min": 0.0,
+    "slider_max": 1.0
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "NikkiPastelLift",
+    "group": "10 | Nikki Pastel Grade",
+    "sort_priority": "705",
+    "default_value": 0.12,
+    "slider_min": 0.0,
+    "slider_max": 0.5
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "NikkiPastelPosMid",
+    "group": "10 | Nikki Pastel Grade",
+    "sort_priority": "706",
+    "default_value": 0.45,
+    "slider_min": 0.05,
+    "slider_max": 0.95
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "NikkiPastelBloom",
+    "group": "10 | Nikki Pastel Grade",
+    "sort_priority": "707",
+    "default_value": 0.25,
+    "slider_min": 0.0,
+    "slider_max": 1.0
+   },
+   {
+    "c": "VectorParameter",
+    "parameter_name": "NikkiPastelRampLow",
+    "group": "10 | Nikki Pastel Grade",
+    "sort_priority": "701",
+    "rgb": [
+     0.95,
+     0.85,
+     0.92,
+     1.0
+    ]
+   },
+   {
+    "c": "VectorParameter",
+    "parameter_name": "NikkiPastelRampMid",
+    "group": "10 | Nikki Pastel Grade",
+    "sort_priority": "702",
+    "rgb": [
+     0.99,
+     0.93,
+     0.9,
+     1.0
+    ]
+   },
+   {
+    "c": "VectorParameter",
+    "parameter_name": "NikkiPastelRampHigh",
+    "group": "10 | Nikki Pastel Grade",
+    "sort_priority": "703",
+    "rgb": [
+     1.0,
+     0.98,
+     0.96,
+     1.0
+    ]
+   },
+   {
+    "c": "StaticSwitchParameter",
+    "parameter_name": "bShadowDream_Active",
+    "group": "11 | Shadow Dream",
+    "sort_priority": "800",
+    "default_value": 0.0
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "ShadowDreamStrength",
+    "group": "11 | Shadow Dream",
+    "sort_priority": "802",
+    "default_value": 0.15,
+    "slider_min": 0.0,
+    "slider_max": 1.5
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "ShadowSoftness",
+    "group": "11 | Shadow Dream",
+    "sort_priority": "803",
+    "default_value": 1.0,
+    "slider_min": 0.1,
+    "slider_max": 8.0
+   },
+   {
+    "c": "VectorParameter",
+    "parameter_name": "ShadowDreamTint",
+    "group": "11 | Shadow Dream",
+    "sort_priority": "801",
+    "rgb": [
+     0.48,
+     0.42,
+     0.62,
+     1.0
+    ]
+   },
+   {
+    "c": "StaticSwitchParameter",
+    "parameter_name": "bNikkiSDFRibbon_Active",
+    "group": "13 | Nikki SDF Ribbon",
+    "sort_priority": "1000",
+    "default_value": 0.0
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "NikkiSDFRibbon_Scale",
+    "group": "13 | Nikki SDF Ribbon",
+    "sort_priority": "1002",
+    "default_value": 3.0,
+    "slider_min": 0.1,
+    "slider_max": 32.0
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "NikkiSDFRibbon_Sharpness",
+    "group": "13 | Nikki SDF Ribbon",
+    "sort_priority": "1003",
+    "default_value": 4.0,
+    "slider_min": 0.1,
+    "slider_max": 16.0
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "NikkiSDFRibbon_Strength",
+    "group": "13 | Nikki SDF Ribbon",
+    "sort_priority": "1004",
+    "default_value": 0.35,
+    "slider_min": 0.0,
+    "slider_max": 1.0
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "NikkiSDFRibbon_EdgeFalloff",
+    "group": "13 | Nikki SDF Ribbon",
+    "sort_priority": "1005",
+    "default_value": 3.0,
+    "slider_min": 0.1,
+    "slider_max": 16.0
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "NikkiSDFRibbon_EdgeStrength",
+    "group": "13 | Nikki SDF Ribbon",
+    "sort_priority": "1006",
+    "default_value": 0.4,
+    "slider_min": 0.0,
+    "slider_max": 1.0
+   },
+   {
+    "c": "VectorParameter",
+    "parameter_name": "NikkiSDFRibbon_Color",
+    "group": "13 | Nikki SDF Ribbon",
+    "sort_priority": "1001",
+    "rgb": [
+     0.95,
+     0.8,
+     0.9,
+     1.0
+    ]
+   },
+   {
+    "c": "StaticSwitchParameter",
+    "parameter_name": "bNikkiPearlSheen_Active",
+    "group": "14 | Nikki Pearl Sheen",
+    "sort_priority": "1100",
+    "default_value": 0.0
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "NikkiPearl_Frequency",
+    "group": "14 | Nikki Pearl Sheen",
+    "sort_priority": "1102",
+    "default_value": 2.0,
+    "slider_min": 0.1,
+    "slider_max": 16.0
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "NikkiPearl_SecondFrequency",
+    "group": "14 | Nikki Pearl Sheen",
+    "sort_priority": "1103",
+    "default_value": 1.4,
+    "slider_min": 0.1,
+    "slider_max": 16.0
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "NikkiPearl_Strength",
+    "group": "14 | Nikki Pearl Sheen",
+    "sort_priority": "1104",
+    "default_value": 0.5,
+    "slider_min": 0.0,
+    "slider_max": 1.0
+   },
+   {
+    "c": "VectorParameter",
+    "parameter_name": "NikkiPearl_Tint",
+    "group": "14 | Nikki Pearl Sheen",
+    "sort_priority": "1101",
+    "rgb": [
+     0.98,
+     0.9,
+     0.95,
+     1.0
+    ]
+   },
+   {
+    "c": "StaticSwitchParameter",
+    "parameter_name": "bNikkiDreamWatercolor_Active",
+    "group": "15 | Nikki Dream Watercolor",
+    "sort_priority": "1200",
+    "default_value": 0.0
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "NikkiWatercolor_Bleed",
+    "group": "15 | Nikki Dream Watercolor",
+    "sort_priority": "1202",
+    "default_value": 0.6,
+    "slider_min": 0.0,
+    "slider_max": 1.0
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "NikkiWatercolor_Jitter",
+    "group": "15 | Nikki Dream Watercolor",
+    "sort_priority": "1203",
+    "default_value": 0.15,
+    "slider_min": 0.0,
+    "slider_max": 0.5
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "NikkiWatercolor_Strength",
+    "group": "15 | Nikki Dream Watercolor",
+    "sort_priority": "1204",
+    "default_value": 0.4,
+    "slider_min": 0.0,
+    "slider_max": 1.0
+   },
+   {
+    "c": "VectorParameter",
+    "parameter_name": "NikkiWatercolor_BleedColor",
+    "group": "15 | Nikki Dream Watercolor",
+    "sort_priority": "1201",
+    "rgb": [
+     0.75,
+     0.55,
+     0.85,
+     1.0
+    ]
+   },
+   {
+    "c": "StaticSwitchParameter",
+    "parameter_name": "bNikkiStickerEdge_Active",
+    "group": "16 | Nikki Sticker Edge",
+    "sort_priority": "1300",
+    "default_value": 0.0
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "NikkiStickerEdge_Width",
+    "group": "16 | Nikki Sticker Edge",
+    "sort_priority": "1302",
+    "default_value": 0.6,
+    "slider_min": 0.0,
+    "slider_max": 2.0
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "NikkiStickerEdge_Bands",
+    "group": "16 | Nikki Sticker Edge",
+    "sort_priority": "1303",
+    "default_value": 3.0,
+    "slider_min": 1.0,
+    "slider_max": 8.0
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "NikkiStickerEdge_Softness",
+    "group": "16 | Nikki Sticker Edge",
+    "sort_priority": "1304",
+    "default_value": 0.7,
+    "slider_min": 0.0,
+    "slider_max": 1.0
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "NikkiStickerEdge_Strength",
+    "group": "16 | Nikki Sticker Edge",
+    "sort_priority": "1305",
+    "default_value": 0.6,
+    "slider_min": 0.0,
+    "slider_max": 1.0
+   },
+   {
+    "c": "VectorParameter",
+    "parameter_name": "NikkiStickerEdge_Color",
+    "group": "16 | Nikki Sticker Edge",
+    "sort_priority": "1301",
+    "rgb": [
+     0.98,
+     0.88,
+     0.94,
+     1.0
+    ]
+   },
+   {
+    "c": "StaticSwitchParameter",
+    "parameter_name": "bNikkiGlitterHalo_Active",
+    "group": "17 | Nikki Glitter Halo",
+    "sort_priority": "1400",
+    "default_value": 0.0
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "NikkiGlitterHalo_Scale",
+    "group": "17 | Nikki Glitter Halo",
+    "sort_priority": "1402",
+    "default_value": 24.0,
+    "slider_min": 1.0,
+    "slider_max": 128.0
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "NikkiGlitterHalo_Amount",
+    "group": "17 | Nikki Glitter Halo",
+    "sort_priority": "1403",
+    "default_value": 0.12,
+    "slider_min": 0.0,
+    "slider_max": 1.0
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "NikkiGlitterHalo_Intensity",
+    "group": "17 | Nikki Glitter Halo",
+    "sort_priority": "1404",
+    "default_value": 0.5,
+    "slider_min": 0.0,
+    "slider_max": 2.0
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "NikkiGlitterHalo_HaloStrength",
+    "group": "17 | Nikki Glitter Halo",
+    "sort_priority": "1405",
+    "default_value": 0.3,
+    "slider_min": 0.0,
+    "slider_max": 1.0
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "NikkiGlitterHalo_HaloPower",
+    "group": "17 | Nikki Glitter Halo",
+    "sort_priority": "1406",
+    "default_value": 4.0,
+    "slider_min": 0.5,
+    "slider_max": 16.0
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "NikkiGlitterHalo_TwinkleSpeed",
+    "group": "17 | Nikki Glitter Halo",
+    "sort_priority": "1407",
+    "default_value": 1.0,
+    "slider_min": 0.0,
+    "slider_max": 8.0
+   },
+   {
+    "c": "VectorParameter",
+    "parameter_name": "NikkiGlitterHalo_Color",
+    "group": "17 | Nikki Glitter Halo",
+    "sort_priority": "1401",
+    "rgb": [
+     1.0,
+     0.95,
+     0.85,
+     1.0
+    ]
+   },
+   {
+    "c": "StaticSwitchParameter",
+    "parameter_name": "bNikkiPetalShadow_Active",
+    "group": "18 | Nikki Petal Shadow",
+    "sort_priority": "1500",
+    "default_value": 0.0
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "NikkiPetal_Scale",
+    "group": "18 | Nikki Petal Shadow",
+    "sort_priority": "1502",
+    "default_value": 6.0,
+    "slider_min": 0.1,
+    "slider_max": 64.0
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "NikkiPetal_Radius",
+    "group": "18 | Nikki Petal Shadow",
+    "sort_priority": "1503",
+    "default_value": 0.18,
+    "slider_min": 0.01,
+    "slider_max": 0.5
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "NikkiPetal_Softness",
+    "group": "18 | Nikki Petal Shadow",
+    "sort_priority": "1504",
+    "default_value": 6.0,
+    "slider_min": 0.1,
+    "slider_max": 32.0
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "NikkiPetal_Strength",
+    "group": "18 | Nikki Petal Shadow",
+    "sort_priority": "1505",
+    "default_value": 0.4,
+    "slider_min": 0.0,
+    "slider_max": 1.0
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "NikkiPetal_BloomSpeed",
+    "group": "18 | Nikki Petal Shadow",
+    "sort_priority": "1506",
+    "default_value": 1.5,
+    "slider_min": 0.0,
+    "slider_max": 8.0
+   },
+   {
+    "c": "VectorParameter",
+    "parameter_name": "NikkiPetal_Tint",
+    "group": "18 | Nikki Petal Shadow",
+    "sort_priority": "1501",
+    "rgb": [
+     0.98,
+     0.85,
+     0.9,
+     1.0
+    ]
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "NikkiSquish_Amount",
+    "group": "12 | Kawaii Squish",
+    "sort_priority": "903",
+    "default_value": 0.35,
+    "slider_min": 0.0,
+    "slider_max": 2.0
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "NikkiSquish_Speed",
+    "group": "12 | Kawaii Squish",
+    "sort_priority": "904",
+    "default_value": 1.2,
+    "slider_min": 0.0,
+    "slider_max": 8.0
+   },
+   {
+    "c": "VectorParameter",
+    "parameter_name": "NikkiSquish_Direction",
+    "group": "12 | Kawaii Squish",
+    "sort_priority": "905",
+    "rgb": [
+     1.3,
+     2.1,
+     0.7,
+     0.0
+    ]
+   },
+   {
+    "c": "StaticSwitchParameter",
+    "parameter_name": "bNikkiSquishWPO_Active",
+    "group": "12 | Kawaii Squish",
+    "sort_priority": "901",
+    "default_value": 0.0
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "GlitterPile_Scale",
+    "group": "26 | Glitter Pile",
+    "sort_priority": "32",
+    "default_value": 90.0,
+    "slider_min": 8.0,
+    "slider_max": 512.0
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "GlitterPile_Density",
+    "group": "26 | Glitter Pile",
+    "sort_priority": "32",
+    "default_value": 0.55,
+    "slider_min": 0.0,
+    "slider_max": 1.0
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "GlitterPile_FacetSharpness",
+    "group": "26 | Glitter Pile",
+    "sort_priority": "32",
+    "default_value": 48.0,
+    "slider_min": 2.0,
+    "slider_max": 256.0
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "GlitterPile_Brightness",
+    "group": "26 | Glitter Pile",
+    "sort_priority": "32",
+    "default_value": 2.2,
+    "slider_min": 0.0,
+    "slider_max": 8.0
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "GlitterPile_Iridescence",
+    "group": "26 | Glitter Pile",
+    "sort_priority": "32",
+    "default_value": 1.2,
+    "slider_min": 0.0,
+    "slider_max": 4.0
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "GlitterPile_HaloStrength",
+    "group": "26 | Glitter Pile",
+    "sort_priority": "32",
+    "default_value": 0.25,
+    "slider_min": 0.0,
+    "slider_max": 1.0
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "GlitterPile_HaloPower",
+    "group": "26 | Glitter Pile",
+    "sort_priority": "32",
+    "default_value": 4.0,
+    "slider_min": 0.5,
+    "slider_max": 16.0
+   },
+   {
+    "c": "VectorParameter",
+    "parameter_name": "GlitterPile_Color",
+    "group": "26 | Glitter Pile",
+    "sort_priority": "32",
+    "rgb": [
+     1.0,
+     0.96,
+     0.9,
+     1.0
+    ]
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "GlitterPile_Gate",
+    "group": "26 | Glitter Pile",
+    "sort_priority": "32",
+    "default_value": 0.0,
+    "slider_min": 0.0,
+    "slider_max": 1.0
+   },
+   {
+    "c": "CollectionParameter",
+    "parameter_name": "BeatPhase",
+    "group": "25 | Landscape Cymatics",
+    "sort_priority": "32"
+   },
+   {
+    "c": "CollectionParameter",
+    "parameter_name": "BeatPulse",
+    "group": "25 | Landscape Cymatics",
+    "sort_priority": "32"
+   },
+   {
+    "c": "CollectionParameter",
+    "parameter_name": "Mid",
+    "group": "25 | Landscape Cymatics",
+    "sort_priority": "32"
+   },
+   {
+    "c": "CollectionParameter",
+    "parameter_name": "GlobalReactivity",
+    "group": "25 | Landscape Cymatics",
+    "sort_priority": "32"
+   },
+   {
+    "c": "TextureSampleParameter2D",
+    "parameter_name": "Snow_Albedo",
+    "group": "20 | Snow Layer",
+    "sort_priority": "32",
+    "tex": "<Object '/Game/Textures/sbs_-_gradient_texture_pack_-_512x512/512x512/Basic/Horizontal_1_-_512x512.Horizontal_1_-_512x512' (0x000002A8CC96F600) Class 'Texture2D'>"
+   },
+   {
+    "c": "TextureSampleParameter2D",
+    "parameter_name": "Snow_NormalMap",
+    "group": "20 | Snow Layer",
+    "sort_priority": "32",
+    "tex": "<Object '/Game/EnvSandbox/Textures/Utility/T_Neutral_Normal.T_Neutral_Normal' (0x000002A74D70EA00) Class 'Texture2D'>"
+   },
+   {
+    "c": "TextureSampleParameter2D",
+    "parameter_name": "Water_Albedo",
+    "group": "19 | Extended Layers",
+    "sort_priority": "32",
+    "tex": "<Object '/Game/Textures/sbs_-_gradient_texture_pack_-_512x512/512x512/Basic/Horizontal_1_-_512x512.Horizontal_1_-_512x512' (0x000002A8CC96F600) Class 'Texture2D'>"
+   },
+   {
+    "c": "TextureSampleParameter2D",
+    "parameter_name": "Water_NormalMap",
+    "group": "19 | Extended Layers",
+    "sort_priority": "32",
+    "tex": "<Object '/Game/EnvSandbox/Textures/Utility/T_Neutral_Normal.T_Neutral_Normal' (0x000002A74D70EA00) Class 'Texture2D'>"
+   },
+   {
+    "c": "TextureSampleParameter2D",
+    "parameter_name": "Mud_Albedo",
+    "group": "19 | Extended Layers",
+    "sort_priority": "32",
+    "tex": "<Object '/Game/Textures/sbs_-_gradient_texture_pack_-_512x512/512x512/Basic/Horizontal_1_-_512x512.Horizontal_1_-_512x512' (0x000002A8CC96F600) Class 'Texture2D'>"
+   },
+   {
+    "c": "TextureSampleParameter2D",
+    "parameter_name": "Mud_NormalMap",
+    "group": "19 | Extended Layers",
+    "sort_priority": "32",
+    "tex": "<Object '/Game/EnvSandbox/Textures/Utility/T_Neutral_Normal.T_Neutral_Normal' (0x000002A74D70EA00) Class 'Texture2D'>"
+   },
+   {
+    "c": "TextureSampleParameter2D",
+    "parameter_name": "Path_Albedo",
+    "group": "19 | Extended Layers",
+    "sort_priority": "32",
+    "tex": "<Object '/Game/Textures/sbs_-_gradient_texture_pack_-_512x512/512x512/Basic/Horizontal_1_-_512x512.Horizontal_1_-_512x512' (0x000002A8CC96F600) Class 'Texture2D'>"
+   },
+   {
+    "c": "TextureSampleParameter2D",
+    "parameter_name": "Path_NormalMap",
+    "group": "19 | Extended Layers",
+    "sort_priority": "32",
+    "tex": "<Object '/Game/EnvSandbox/Textures/Utility/T_Neutral_Normal.T_Neutral_Normal' (0x000002A74D70EA00) Class 'Texture2D'>"
+   },
+   {
+    "c": "TextureSampleParameter2D",
+    "parameter_name": "Gaea_SnowMask",
+    "group": "21 | Gaea Pipeline",
+    "sort_priority": "32",
+    "tex": "<Object '/Game/Textures/sbs_-_gradient_texture_pack_-_512x512/512x512/Basic/Horizontal_1_-_512x512.Horizontal_1_-_512x512' (0x000002A8CC96F600) Class 'Texture2D'>"
+   },
+   {
+    "c": "TextureSampleParameter2D",
+    "parameter_name": "Gaea_WaterMask",
+    "group": "21 | Gaea Pipeline",
+    "sort_priority": "32",
+    "tex": "<Object '/Game/Textures/sbs_-_gradient_texture_pack_-_512x512/512x512/Basic/Horizontal_1_-_512x512.Horizontal_1_-_512x512' (0x000002A8CC96F600) Class 'Texture2D'>"
+   },
+   {
+    "c": "TextureSampleParameter2D",
+    "parameter_name": "Gaea_FlowMask",
+    "group": "21 | Gaea Pipeline",
+    "sort_priority": "32",
+    "tex": "<Object '/Game/Textures/sbs_-_gradient_texture_pack_-_512x512/512x512/Basic/Horizontal_1_-_512x512.Horizontal_1_-_512x512' (0x000002A8CC96F600) Class 'Texture2D'>"
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "SnowStrength",
+    "group": "20 | Snow Layer",
+    "sort_priority": "32",
+    "default_value": 0.0,
+    "slider_min": 0.0,
+    "slider_max": 0.0
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "SnowUpBias",
+    "group": "20 | Snow Layer",
+    "sort_priority": "32",
+    "default_value": 2.2,
+    "slider_min": 0.0,
+    "slider_max": 0.0
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "Wetness",
+    "group": "19 | Extended Layers",
+    "sort_priority": "32",
+    "default_value": 0.1,
+    "slider_min": 0.0,
+    "slider_max": 0.0
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "WetRoughness",
+    "group": "19 | Extended Layers",
+    "sort_priority": "32",
+    "default_value": 0.45,
+    "slider_min": 0.0,
+    "slider_max": 0.0
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "CymaticsLandscapeAmount",
+    "group": "25 | Landscape Cymatics",
+    "sort_priority": "32",
+    "default_value": 0.15,
+    "slider_min": 0.0,
+    "slider_max": 0.0
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "Gaea_SnowWeight",
+    "group": "21 | Gaea Pipeline",
+    "sort_priority": "32",
+    "default_value": 1.0,
+    "slider_min": 0.0,
+    "slider_max": 0.0
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "Gaea_WaterWeight",
+    "group": "21 | Gaea Pipeline",
+    "sort_priority": "32",
+    "default_value": 0.0,
+    "slider_min": 0.0,
+    "slider_max": 0.0
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "Gaea_FlowWeight",
+    "group": "21 | Gaea Pipeline",
+    "sort_priority": "32",
+    "default_value": 0.0,
+    "slider_min": 0.0,
+    "slider_max": 0.0
+   },
+   {
+    "c": "VectorParameter",
+    "parameter_name": "SnowTint",
+    "group": "20 | Snow Layer",
+    "sort_priority": "32",
+    "rgb": [
+     0.92,
+     0.95,
+     0.98,
+     1.0
+    ]
+   },
+   {
+    "c": "VectorParameter",
+    "parameter_name": "MudTint",
+    "group": "19 | Extended Layers",
+    "sort_priority": "32",
+    "rgb": [
+     0.28,
+     0.22,
+     0.16,
+     1.0
+    ]
+   },
+   {
+    "c": "VectorParameter",
+    "parameter_name": "PathTint",
+    "group": "19 | Extended Layers",
+    "sort_priority": "32",
+    "rgb": [
+     0.58,
+     0.54,
+     0.48,
+     1.0
+    ]
+   },
+   {
+    "c": "VectorParameter",
+    "parameter_name": "WaterAlignTint",
+    "group": "19 | Extended Layers",
+    "sort_priority": "32",
+    "rgb": [
+     0.55,
+     0.72,
+     0.78,
+     1.0
+    ]
+   },
+   {
+    "c": "CollectionParameter",
+    "parameter_name": "Cymatic_BeatPulse",
+    "group": "25 | Landscape Cymatics",
+    "sort_priority": "32"
+   },
+   {
+    "c": "StaticSwitchParameter",
+    "parameter_name": "bUseExtendedLayers",
+    "group": "19 | Extended Layers",
+    "sort_priority": "32",
+    "default_value": 1.0
+   },
+   {
+    "c": "StaticSwitchParameter",
+    "parameter_name": "bUseExtendedLayers",
+    "group": "19 | Extended Layers",
+    "sort_priority": "32",
+    "default_value": 1.0
+   },
+   {
+    "c": "StaticSwitchParameter",
+    "parameter_name": "bUseGaeaMasks",
+    "group": "21 | Gaea Pipeline",
+    "sort_priority": "32",
+    "default_value": 0.0
+   },
+   {
+    "c": "VectorParameter",
+    "parameter_name": "GaeaLandscapeMin",
+    "group": "21 | Gaea Pipeline",
+    "sort_priority": "32",
+    "rgb": [
+     -249752.2188,
+     -249752.2188,
+     0.0,
+     0.0
+    ]
+   },
+   {
+    "c": "VectorParameter",
+    "parameter_name": "GaeaLandscapeSize",
+    "group": "21 | Gaea Pipeline",
+    "sort_priority": "32",
+    "rgb": [
+     499504.4375,
+     499504.4375,
+     1.0,
+     0.0
+    ]
+   },
+   {
+    "c": "StaticSwitchParameter",
+    "parameter_name": "bGaeaWholeLandscapeColor",
+    "group": "21 | Gaea Pipeline",
+    "sort_priority": "32",
+    "default_value": 0.0
+   },
+   {
+    "c": "StaticSwitchParameter",
+    "parameter_name": "bGaeaWholeLandscapeColor",
+    "group": "21 | Gaea Pipeline",
+    "sort_priority": "32",
+    "default_value": 0.0
+   },
+   {
+    "c": "StaticSwitchParameter",
+    "parameter_name": "bGaeaWholeLandscapeColor",
+    "group": "21 | Gaea Pipeline",
+    "sort_priority": "32",
+    "default_value": 0.0
+   },
+   {
+    "c": "StaticSwitchParameter",
+    "parameter_name": "bGaeaWholeLandscapeColor",
+    "group": "21 | Gaea Pipeline",
+    "sort_priority": "32",
+    "default_value": 0.0
+   },
+   {
+    "c": "StaticSwitchParameter",
+    "parameter_name": "bGaeaWholeLandscapeColor",
+    "group": "21 | Gaea Pipeline",
+    "sort_priority": "32",
+    "default_value": 0.0
+   },
+   {
+    "c": "TextureObjectParameter",
+    "parameter_name": "Rock_NormalMap",
+    "group": "22 | Rock Triplanar Detail",
+    "sort_priority": "32",
+    "tex": "<Object '/Game/EnvSandbox/Textures/Utility/T_Neutral_Normal.T_Neutral_Normal' (0x000002A74D70EA00) Class 'Texture2D'>"
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "Rock_TriplanarNormalStrength",
+    "group": "22 | Rock Triplanar Detail",
+    "sort_priority": "32",
+    "default_value": 1.0,
+    "slider_min": 0.0,
+    "slider_max": 0.0
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "Rock_DetailWorldSizeCM",
+    "group": "22 | Rock Triplanar Detail",
+    "sort_priority": "32",
+    "default_value": 400.0,
+    "slider_min": 0.0,
+    "slider_max": 0.0
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "Rock_TriplanarBlend",
+    "group": "22 | Rock Triplanar Detail",
+    "sort_priority": "32",
+    "default_value": 1.0,
+    "slider_min": 0.0,
+    "slider_max": 0.0
+   },
+   {
+    "c": "StaticSwitchParameter",
+    "parameter_name": "bRockTriplanarNormals",
+    "group": "22 | Rock Triplanar Detail",
+    "sort_priority": "32",
+    "default_value": 0.0
+   },
+   {
+    "c": "TextureObjectParameter",
+    "parameter_name": "Rock_DetailAlbedo",
+    "group": "22 | Rock Triplanar Detail",
+    "sort_priority": "32",
+    "tex": "<Object '/Game/EnvSandbox/Monoliths/SeaAbove/Prototype/Reef/Textures/T_SeaAbove_WetRock_Albedo.T_SeaAbove_WetRock_Albedo' (0x000002A8CC96C000) Class 'Texture2D'>"
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "Rock_DetailAlbedoReference",
+    "group": "22 | Rock Triplanar Detail",
+    "sort_priority": "32",
+    "default_value": 0.18,
+    "slider_min": 0.0,
+    "slider_max": 0.0
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "Rock_DetailAlbedoStrength",
+    "group": "22 | Rock Triplanar Detail",
+    "sort_priority": "32",
+    "default_value": 0.0,
+    "slider_min": 0.0,
+    "slider_max": 0.0
+   },
+   {
+    "c": "StaticSwitchParameter",
+    "parameter_name": "bRockDetailAlbedo",
+    "group": "22 | Rock Triplanar Detail",
+    "sort_priority": "32",
+    "default_value": 0.0
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "Snow_BreakupWorldSizeCM",
+    "group": "23 | Snow Coverage Detail",
+    "sort_priority": "32",
+    "default_value": 600.0,
+    "slider_min": 0.0,
+    "slider_max": 0.0
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "Snow_BreakupStrength",
+    "group": "23 | Snow Coverage Detail",
+    "sort_priority": "32",
+    "default_value": 0.15,
+    "slider_min": 0.0,
+    "slider_max": 0.0
+   },
+   {
+    "c": "StaticSwitchParameter",
+    "parameter_name": "bSnowCoverageBreakup",
+    "group": "23 | Snow Coverage Detail",
+    "sort_priority": "32",
+    "default_value": 0.0
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "CymaticsLandscapeMaxEmission",
+    "group": "25 | Landscape Cymatics",
+    "sort_priority": "32",
+    "default_value": 1.0,
+    "slider_min": 0.0,
+    "slider_max": 10.0
+   },
+   {
+    "c": "TextureSampleParameter2D",
+    "parameter_name": "SnowEdgeDistanceTexture",
+    "group": "20 | Snow Layer",
+    "sort_priority": "32",
+    "tex": "<Object '/Game/Gaea/Glacier/Textures/T_Glacier_SnowEdge_SDF16.T_Glacier_SnowEdge_SDF16' (0x000002A8CC96BA00) Class 'Texture2D'>"
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "SnowEdgeDistanceRangeCM",
+    "group": "24 | Snow Distance Field",
+    "sort_priority": "32",
+    "default_value": 25000.0,
+    "slider_min": 0.0,
+    "slider_max": 0.0
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "SnowFrostBandWidthCM",
+    "group": "24 | Snow Distance Field",
+    "sort_priority": "32",
+    "default_value": 1000.0,
+    "slider_min": 0.0,
+    "slider_max": 0.0
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "SnowFrostBandStrength",
+    "group": "24 | Snow Distance Field",
+    "sort_priority": "32",
+    "default_value": 0.2,
+    "slider_min": 0.0,
+    "slider_max": 0.0
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "SnowFrostRoughness",
+    "group": "24 | Snow Distance Field",
+    "sort_priority": "32",
+    "default_value": 0.7,
+    "slider_min": 0.0,
+    "slider_max": 0.0
+   },
+   {
+    "c": "StaticSwitchParameter",
+    "parameter_name": "bSnowFrostDistanceBand",
+    "group": "24 | Snow Distance Field",
+    "sort_priority": "32",
+    "default_value": 0.0
+   },
+   {
+    "c": "TextureSampleParameter2D",
+    "parameter_name": "Gaea_RockMask",
+    "group": "21 | Gaea Pipeline",
+    "sort_priority": "42",
+    "tex": "<Object '/Game/Textures/sbs_-_gradient_texture_pack_-_512x512/512x512/Basic/Horizontal_1_-_512x512.Horizontal_1_-_512x512' (0x000002A8CC96F600) Class 'Texture2D'>"
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "Gaea_RockWeight",
+    "group": "21 | Gaea Pipeline",
+    "sort_priority": "43",
+    "default_value": 1.0,
+    "slider_min": 0.0,
+    "slider_max": 0.0
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "Water_Roughness",
+    "group": "19 | Extended Layers",
+    "sort_priority": "32",
+    "default_value": 0.15,
+    "slider_min": 0.0,
+    "slider_max": 0.0
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "Mud_Roughness",
+    "group": "19 | Extended Layers",
+    "sort_priority": "32",
+    "default_value": 0.6,
+    "slider_min": 0.0,
+    "slider_max": 0.0
+   },
+   {
+    "c": "ScalarParameter",
+    "parameter_name": "Path_Roughness",
+    "group": "19 | Extended Layers",
+    "sort_priority": "32",
+    "default_value": 0.75,
+    "slider_min": 0.0,
+    "slider_max": 0.0
+   }
+  ]
+ },
+ "toon_profiles": [
+  {
+   "name": "TP_Character",
+   "class": "ToonProfile",
+   "path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Character"
+  },
+  {
+   "name": "TP_Cool",
+   "class": "ToonProfile",
+   "path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Cool"
+  },
+  {
+   "name": "TP_Cosmic",
+   "class": "ObjectRedirector",
+   "path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Cosmic"
+  },
+  {
+   "name": "TP_Default",
+   "class": "ObjectRedirector",
+   "path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Default"
+  },
+  {
+   "name": "TP_Environment",
+   "class": "ToonProfile",
+   "path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Environment"
+  },
+  {
+   "name": "TP_Foliage",
+   "class": "ObjectRedirector",
+   "path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Foliage"
+  },
+  {
+   "name": "TP_Glass",
+   "class": "ObjectRedirector",
+   "path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Glass"
+  },
+  {
+   "name": "TP_Gold",
+   "class": "ObjectRedirector",
+   "path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Gold"
+  },
+  {
+   "name": "TP_Hatched",
+   "class": "ToonProfile",
+   "path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Hatched"
+  },
+  {
+   "name": "TP_Hero",
+   "class": "ObjectRedirector",
+   "path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Hero"
+  },
+  {
+   "name": "TP_Impressionist_Dry",
+   "class": "ObjectRedirector",
+   "path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Impressionist_Dry"
+  },
+  {
+   "name": "TP_Impressionist_Impasto",
+   "class": "ObjectRedirector",
+   "path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Impressionist_Impasto"
+  },
+  {
+   "name": "TP_Impressionist_Wet",
+   "class": "ObjectRedirector",
+   "path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Impressionist_Wet"
+  },
+  {
+   "name": "TP_Iridescent_Flow",
+   "class": "ToonProfile",
+   "path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Iridescent_Flow"
+  },
+  {
+   "name": "TP_Iridescent_Foam",
+   "class": "ToonProfile",
+   "path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Iridescent_Foam"
+  },
+  {
+   "name": "TP_Iridescent_Scales",
+   "class": "ToonProfile",
+   "path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Iridescent_Scales"
+  },
+  {
+   "name": "TP_Melusina",
+   "class": "ObjectRedirector",
+   "path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Melusina"
+  },
+  {
+   "name": "TP_NikkiDream",
+   "class": "ObjectRedirector",
+   "path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_NikkiDream"
+  },
+  {
+   "name": "TP_Ornamental",
+   "class": "ObjectRedirector",
+   "path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Ornamental"
+  },
+  {
+   "name": "TP_Simple_Cool",
+   "class": "ToonProfile",
+   "path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Simple_Cool"
+  },
+  {
+   "name": "TP_Simple_HighContrast",
+   "class": "ToonProfile",
+   "path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Simple_HighContrast"
+  },
+  {
+   "name": "TP_Simple_LowContrast",
+   "class": "ToonProfile",
+   "path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Simple_LowContrast"
+  },
+  {
+   "name": "TP_Simple_Metallic",
+   "class": "ToonProfile",
+   "path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Simple_Metallic"
+  },
+  {
+   "name": "TP_Simple_Soft",
+   "class": "ToonProfile",
+   "path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Simple_Soft"
+  },
+  {
+   "name": "TP_Simple_ThreeTone",
+   "class": "ToonProfile",
+   "path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Simple_ThreeTone"
+  },
+  {
+   "name": "TP_Simple_TwoTone",
+   "class": "ToonProfile",
+   "path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Simple_TwoTone"
+  },
+  {
+   "name": "TP_Simple_Warm",
+   "class": "ToonProfile",
+   "path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Simple_Warm"
+  },
+  {
+   "name": "TP_SoftPainterly",
+   "class": "ToonProfile",
+   "path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_SoftPainterly"
+  },
+  {
+   "name": "TP_Stone",
+   "class": "ToonProfile",
+   "path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Stone"
+  },
+  {
+   "name": "TP_Stucco",
+   "class": "ObjectRedirector",
+   "path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Stucco"
+  },
+  {
+   "name": "TP_Test",
+   "class": "ToonProfile",
+   "path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Test"
+  },
+  {
+   "name": "TP_TwoTone",
+   "class": "ToonProfile",
+   "path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_TwoTone"
+  },
+  {
+   "name": "TP_Warm",
+   "class": "ToonProfile",
+   "path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Warm"
+  },
+  {
+   "name": "TP_Water",
+   "class": "ObjectRedirector",
+   "path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Water"
+  },
+  {
+   "name": "TP_Wood",
+   "class": "ObjectRedirector",
+   "path": "/Game/EnvSandbox/Materials/ToonProfiles/TP_Wood"
+  }
+ ]
+}

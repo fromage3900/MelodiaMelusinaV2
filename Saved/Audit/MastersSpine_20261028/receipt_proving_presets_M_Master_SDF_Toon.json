@@ -1,0 +1,309 @@
+{
+ "schema": "melodia.proving_presets_receipt.v1",
+ "when": "2026-10-28",
+ "master": "M_Master_SDF_Toon",
+ "master_path": "/Game/EnvSandbox/Materials/Masters/SDF/M_Master_SDF_Toon",
+ "out_dir": "/Game/EnvSandbox/Materials/Instances/Proving",
+ "presets": [
+  {
+   "name": "MI_Prove_SDF_01_Palette",
+   "status": "authored",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_SDF_01_Palette",
+   "overrides": {
+    "AccentTint": {
+     "kind": "vector",
+     "value": [
+      0.8,
+      0.57,
+      0.56,
+      1.0
+     ],
+     "readback": [
+      0.8,
+      0.57,
+      0.56,
+      1.0
+     ],
+     "ok": true
+    },
+    "BaseTint": {
+     "kind": "vector",
+     "value": [
+      0.63,
+      0.43,
+      0.46,
+      1.0
+     ],
+     "readback": [
+      0.63,
+      0.43,
+      0.46,
+      1.0
+     ],
+     "ok": true
+    }
+   },
+   "saved_return": true
+  },
+  {
+   "name": "MI_Prove_SDF_02_UV",
+   "status": "authored",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_SDF_02_UV",
+   "overrides": {
+    "UVRotation": {
+     "kind": "scalar",
+     "value": 0.05,
+     "readback": 0.05,
+     "ok": true
+    },
+    "UVScale": {
+     "kind": "scalar",
+     "value": 1.0,
+     "readback": 1.0,
+     "ok": true
+    }
+   },
+   "saved_return": true
+  },
+  {
+   "name": "MI_Prove_SDF_03_Maps",
+   "status": "authored",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_SDF_03_Maps",
+   "overrides": {
+    "HeightMap": {
+     "kind": "texture",
+     "value": "/Game/EnvSandbox/Materials/Textures/T_Noise_White",
+     "readback": "<Object '/Game/EnvSandbox/Materials/Textures/T_Noise_White.T_Noise_White' (0x000002A8E2301200) Class 'Texture2D'>",
+     "ok": true
+    },
+    "NormalMap": {
+     "kind": "texture",
+     "value": "/Game/EnvSandbox/Materials/Textures/T_Noise_White",
+     "readback": "<Object '/Game/EnvSandbox/Materials/Textures/T_Noise_White.T_Noise_White' (0x000002A8E2301200) Class 'Texture2D'>",
+     "ok": true
+    },
+    "RoughnessMap": {
+     "kind": "texture",
+     "value": "/Game/EnvSandbox/Materials/Textures/T_Noise_White",
+     "readback": "<Object '/Game/EnvSandbox/Materials/Textures/T_Noise_White.T_Noise_White' (0x000002A8E2301200) Class 'Texture2D'>",
+     "ok": true
+    }
+   },
+   "saved_return": true
+  },
+  {
+   "name": "MI_Prove_SDF_04_Parallax",
+   "status": "authored",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_SDF_04_Parallax",
+   "overrides": {
+    "ParallaxHeight": {
+     "kind": "scalar",
+     "value": 0.125,
+     "readback": 0.125,
+     "ok": true
+    },
+    "ParallaxScale": {
+     "kind": "scalar",
+     "value": 0.125,
+     "readback": 0.125,
+     "ok": true
+    },
+    "ParallaxSteps": {
+     "kind": "scalar",
+     "value": 14.4,
+     "readback": 14.4,
+     "ok": true
+    }
+   },
+   "saved_return": true
+  },
+  {
+   "name": "MI_Prove_SDF_05_Surface",
+   "status": "authored",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_SDF_05_Surface",
+   "overrides": {
+    "DryRoughness": {
+     "kind": "scalar",
+     "value": 0.9875,
+     "readback": 0.9875,
+     "ok": true
+    }
+   },
+   "saved_return": true
+  },
+  {
+   "name": "MI_Prove_SDF_06_SDF",
+   "status": "authored",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_SDF_06_SDF",
+   "overrides": {
+    "BandScale": {
+     "kind": "scalar",
+     "value": 0.0938,
+     "readback": 0.0938,
+     "ok": true
+    },
+    "BandStrength": {
+     "kind": "scalar",
+     "value": 0.325,
+     "readback": 0.325,
+     "ok": true
+    },
+    "ReliefDepth": {
+     "kind": "scalar",
+     "value": 0.4875,
+     "readback": 0.4875,
+     "ok": true
+    }
+   },
+   "saved_return": true
+  },
+  {
+   "name": "MI_Prove_SDF_07_Gilding",
+   "status": "authored",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_SDF_07_Gilding",
+   "overrides": {
+    "GildingStrength": {
+     "kind": "scalar",
+     "value": 0.05,
+     "readback": 0.05,
+     "ok": true
+    },
+    "GoldTint": {
+     "kind": "vector",
+     "value": [
+      0.93,
+      0.6,
+      0.29,
+      1.0
+     ],
+     "readback": [
+      0.93,
+      0.6,
+      0.29,
+      1.0
+     ],
+     "ok": true
+    }
+   },
+   "saved_return": true
+  },
+  {
+   "name": "MI_Prove_SDF_08_OilPaint",
+   "status": "authored",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_SDF_08_OilPaint",
+   "overrides": {
+    "OilPaintStrength": {
+     "kind": "scalar",
+     "value": 0.05,
+     "readback": 0.05,
+     "ok": true
+    }
+   },
+   "saved_return": true
+  },
+  {
+   "name": "MI_Prove_SDF_09_Temporal",
+   "status": "authored",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_SDF_09_Temporal",
+   "overrides": {
+    "TemporalStrength": {
+     "kind": "scalar",
+     "value": 0.05,
+     "readback": 0.05,
+     "ok": true
+    }
+   },
+   "saved_return": true
+  },
+  {
+   "name": "MI_Prove_SDF_10_Ink",
+   "status": "authored",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_SDF_10_Ink",
+   "overrides": {
+    "InkColor": {
+     "kind": "vector",
+     "value": [
+      0.13,
+      0.03,
+      0.19,
+      1.0
+     ],
+     "readback": [
+      0.13,
+      0.03,
+      0.19,
+      1.0
+     ],
+     "ok": true
+    },
+    "InkIntensity": {
+     "kind": "scalar",
+     "value": 0.05,
+     "readback": 0.05,
+     "ok": true
+    }
+   },
+   "saved_return": true
+  },
+  {
+   "name": "MI_Prove_SDF_11_Ornament",
+   "status": "authored",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_SDF_11_Ornament",
+   "overrides": {
+    "CurvatureSensitivity": {
+     "kind": "scalar",
+     "value": 2.4,
+     "readback": 2.4,
+     "ok": true
+    },
+    "OrnamentScale": {
+     "kind": "scalar",
+     "value": 1.0,
+     "readback": 1.0,
+     "ok": true
+    },
+    "OrnamentStyle": {
+     "kind": "scalar",
+     "value": 0.05,
+     "readback": 0.05,
+     "ok": true
+    }
+   },
+   "saved_return": true
+  },
+  {
+   "name": "MI_Prove_SDF_12_Audio",
+   "status": "authored",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_SDF_12_Audio",
+   "overrides": {
+    "AudioReactivity": {
+     "kind": "scalar",
+     "value": 0.05,
+     "readback": 0.05,
+     "ok": true
+    }
+   },
+   "saved_return": true
+  },
+  {
+   "name": "MI_Prove_SDF_13_ToonRamp",
+   "status": "authored",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_SDF_13_ToonRamp",
+   "overrides": {
+    "ToonRampStrength": {
+     "kind": "scalar",
+     "value": 0.425,
+     "readback": 0.425,
+     "ok": true
+    }
+   },
+   "saved_return": true
+  }
+ ],
+ "non_mi_collection_params": [],
+ "param_set_sizes": {
+  "scalar": 18,
+  "vector": 4,
+  "texture": 3
+ }
+}

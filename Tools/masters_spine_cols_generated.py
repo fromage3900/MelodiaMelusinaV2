@@ -701,6 +701,858 @@ GENERATED_COLS = {
   "out_dir": "/Game/EnvSandbox/Materials/Instances/Proving",
   "tag": "Nikki"
  },
+ "M_Master_Nikki_Landscape": {
+  "columns": [
+   {
+    "n": 1,
+    "ov": {
+     "BaseTint": {
+      "v": [
+       1.0,
+       0.95,
+       1.0,
+       1.0
+      ]
+     },
+     "MetallicScale": {
+      "s": 0.3
+     },
+     "RampContrast": {
+      "s": 1.27
+     },
+     "RampHigh": {
+      "v": [
+       1.0,
+       0.9,
+       0.94,
+       1.0
+      ]
+     },
+     "RampLow": {
+      "v": [
+       0.28,
+       0.1,
+       0.34,
+       1.0
+      ]
+     },
+     "RampMid": {
+      "v": [
+       0.93,
+       0.55,
+       0.79,
+       1.0
+      ]
+     },
+     "RampPosMid": {
+      "s": 0.32
+     },
+     "RampStrength": {
+      "s": 0.3
+     },
+     "RoughnessMax": {
+      "s": 0.45
+     },
+     "RoughnessMin": {
+      "s": 0.3
+     }
+    },
+    "slug": "BaseSurface"
+   },
+   {
+    "n": 3,
+    "ov": {
+     "Grass_Roughness": {
+      "s": 0.3
+     },
+     "Grass_UVScale": {
+      "s": 3.035
+     },
+     "Ground_Roughness": {
+      "s": 0.3
+     },
+     "Ground_UVScale": {
+      "s": 3.035
+     },
+     "Rock_Roughness": {
+      "s": 0.3
+     },
+     "Rock_UVScale": {
+      "s": 3.035
+     }
+    },
+    "slug": "LayerSurface"
+   },
+   {
+    "n": 4,
+    "ov": {
+     "EmissiveFloor": {
+      "s": 0.3
+     },
+     "NikkiEmissiveStrength": {
+      "s": 1.2
+     }
+    },
+    "slug": "Emissive"
+   },
+   {
+    "n": 5,
+    "ov": {
+     "TriplanarPro_AxisWeights": {
+      "v": [
+       1.0,
+       0.95,
+       1.0,
+       1.0
+      ]
+     },
+     "TriplanarPro_BlendStrength": {
+      "s": 0.3
+     },
+     "TriplanarPro_BreakupContrast": {
+      "s": 2.407
+     },
+     "TriplanarPro_BreakupScale": {
+      "s": 9.6007
+     },
+     "TriplanarPro_BreakupStrength": {
+      "s": 0.3
+     },
+     "TriplanarPro_ProjectionOffset": {
+      "v": [
+       0.08,
+       0.0,
+       0.04,
+       1.0
+      ]
+     },
+     "TriplanarPro_ProjectionRotation": {
+      "v": [
+       0.08,
+       0.0,
+       0.04,
+       1.0
+      ]
+     },
+     "TriplanarPro_Scale": {
+      "s": 0.3
+     },
+     "TriplanarPro_Sharpness": {
+      "s": 9.607
+     }
+    },
+    "slug": "Triplanar"
+   },
+   {
+    "n": 7,
+    "ov": {
+     "IridescenceRoughnessAtten": {
+      "s": 0.3
+     }
+    },
+    "slug": "NikkiIridescenceSheen"
+   },
+   {
+    "n": 8,
+    "ov": {
+     "NikkiStickerBandCount": {
+      "s": 3.1
+     },
+     "NikkiStickerBandSoftness": {
+      "s": 0.3
+     },
+     "NikkiStickerShadeColor": {
+      "v": [
+       0.8,
+       0.5,
+       0.72,
+       1.0
+      ]
+     },
+     "NikkiStickerStrength": {
+      "s": 0.3
+     }
+    },
+    "slug": "NikkiStickerShade"
+   },
+   {
+    "n": 9,
+    "ov": {
+     "NikkiFabricSheen": {
+      "s": 0.3
+     },
+     "NikkiIridescence": {
+      "s": 2.4
+     },
+     "NikkiIrisTint": {
+      "v": [
+       1.0,
+       0.75,
+       0.99,
+       1.0
+      ]
+     },
+     "NikkiTwinkleAmount": {
+      "s": 0.3
+     },
+     "NikkiTwinkleScale": {
+      "s": 2.407
+     }
+    },
+    "slug": "NikkiTwinkleIris"
+   },
+   {
+    "n": 10,
+    "ov": {
+     "NikkiPastelBloom": {
+      "s": 0.3
+     },
+     "NikkiPastelLift": {
+      "s": 0.15
+     },
+     "NikkiPastelPosMid": {
+      "s": 0.32
+     },
+     "NikkiPastelRampHigh": {
+      "v": [
+       1.0,
+       0.93,
+       1.0,
+       1.0
+      ]
+     },
+     "NikkiPastelRampLow": {
+      "v": [
+       1.0,
+       0.8,
+       0.96,
+       1.0
+      ]
+     },
+     "NikkiPastelRampMid": {
+      "v": [
+       1.0,
+       0.88,
+       0.94,
+       1.0
+      ]
+     },
+     "NikkiPastelStrength": {
+      "s": 0.3
+     }
+    },
+    "slug": "NikkiPastelGrade"
+   },
+   {
+    "n": 11,
+    "ov": {
+     "ShadowDreamStrength": {
+      "s": 0.45
+     },
+     "ShadowDreamTint": {
+      "v": [
+       0.56,
+       0.37,
+       0.66,
+       1.0
+      ]
+     },
+     "ShadowSoftness": {
+      "s": 2.47
+     }
+    },
+    "slug": "ShadowDream"
+   },
+   {
+    "n": 12,
+    "ov": {
+     "NikkiSquish_Amount": {
+      "s": 0.6
+     },
+     "NikkiSquish_Direction": {
+      "v": [
+       1.0,
+       1.0,
+       0.74,
+       1.0
+      ]
+     },
+     "NikkiSquish_Speed": {
+      "s": 2.4
+     }
+    },
+    "slug": "KawaiiSquish"
+   },
+   {
+    "n": 13,
+    "ov": {
+     "NikkiSDFRibbon_Color": {
+      "v": [
+       1.0,
+       0.75,
+       0.94,
+       1.0
+      ]
+     },
+     "NikkiSDFRibbon_EdgeFalloff": {
+      "s": 4.87
+     },
+     "NikkiSDFRibbon_EdgeStrength": {
+      "s": 0.3
+     },
+     "NikkiSDFRibbon_Scale": {
+      "s": 9.67
+     },
+     "NikkiSDFRibbon_Sharpness": {
+      "s": 4.87
+     },
+     "NikkiSDFRibbon_Strength": {
+      "s": 0.3
+     }
+    },
+    "slug": "NikkiSDFRibbon"
+   },
+   {
+    "n": 14,
+    "ov": {
+     "NikkiPearl_Frequency": {
+      "s": 4.87
+     },
+     "NikkiPearl_SecondFrequency": {
+      "s": 4.87
+     },
+     "NikkiPearl_Strength": {
+      "s": 0.3
+     },
+     "NikkiPearl_Tint": {
+      "v": [
+       1.0,
+       0.85,
+       0.99,
+       1.0
+      ]
+     }
+    },
+    "slug": "NikkiPearlSheen"
+   },
+   {
+    "n": 15,
+    "ov": {
+     "NikkiWatercolor_Bleed": {
+      "s": 0.3
+     },
+     "NikkiWatercolor_BleedColor": {
+      "v": [
+       0.83,
+       0.5,
+       0.89,
+       1.0
+      ]
+     },
+     "NikkiWatercolor_Jitter": {
+      "s": 0.15
+     },
+     "NikkiWatercolor_Strength": {
+      "s": 0.3
+     }
+    },
+    "slug": "NikkiDreamWatercolor"
+   },
+   {
+    "n": 16,
+    "ov": {
+     "NikkiStickerEdge_Bands": {
+      "s": 3.1
+     },
+     "NikkiStickerEdge_Color": {
+      "v": [
+       1.0,
+       0.83,
+       0.98,
+       1.0
+      ]
+     },
+     "NikkiStickerEdge_Softness": {
+      "s": 0.3
+     },
+     "NikkiStickerEdge_Strength": {
+      "s": 0.3
+     },
+     "NikkiStickerEdge_Width": {
+      "s": 0.6
+     }
+    },
+    "slug": "NikkiStickerEdge"
+   },
+   {
+    "n": 17,
+    "ov": {
+     "NikkiGlitterHalo_Amount": {
+      "s": 0.3
+     },
+     "NikkiGlitterHalo_Color": {
+      "v": [
+       1.0,
+       0.9,
+       0.89,
+       1.0
+      ]
+     },
+     "NikkiGlitterHalo_HaloPower": {
+      "s": 5.15
+     },
+     "NikkiGlitterHalo_HaloStrength": {
+      "s": 0.3
+     },
+     "NikkiGlitterHalo_Intensity": {
+      "s": 0.6
+     },
+     "NikkiGlitterHalo_Scale": {
+      "s": 39.1
+     },
+     "NikkiGlitterHalo_TwinkleSpeed": {
+      "s": 2.4
+     }
+    },
+    "slug": "NikkiGlitterHalo"
+   },
+   {
+    "n": 18,
+    "ov": {
+     "NikkiPetal_BloomSpeed": {
+      "s": 2.4
+     },
+     "NikkiPetal_Radius": {
+      "s": 0.157
+     },
+     "NikkiPetal_Scale": {
+      "s": 19.27
+     },
+     "NikkiPetal_Softness": {
+      "s": 9.67
+     },
+     "NikkiPetal_Strength": {
+      "s": 0.3
+     },
+     "NikkiPetal_Tint": {
+      "v": [
+       1.0,
+       0.8,
+       0.94,
+       1.0
+      ]
+     }
+    },
+    "slug": "NikkiPetalShadow"
+   },
+   {
+    "n": 19,
+    "ov": {
+     "MudTint": {
+      "v": [
+       0.36,
+       0.17,
+       0.2,
+       1.0
+      ]
+     },
+     "Mud_Roughness": {
+      "s": 0.8
+     },
+     "PathTint": {
+      "v": [
+       0.66,
+       0.49,
+       0.52,
+       1.0
+      ]
+     },
+     "Path_Roughness": {
+      "s": 0.9875
+     },
+     "WaterAlignTint": {
+      "v": [
+       0.63,
+       0.67,
+       0.82,
+       1.0
+      ]
+     },
+     "Water_Roughness": {
+      "s": 0.2375
+     },
+     "WetRoughness": {
+      "s": 0.6125
+     },
+     "Wetness": {
+      "s": 0.175
+     }
+    },
+    "slug": "ExtendedLayers"
+   },
+   {
+    "n": 20,
+    "ov": {
+     "SnowStrength": {
+      "s": 0.05
+     },
+     "SnowTint": {
+      "v": [
+       1.0,
+       0.9,
+       1.0,
+       1.0
+      ]
+     },
+     "SnowUpBias": {
+      "s": 2.64
+     }
+    },
+    "slug": "SnowLayer"
+   },
+   {
+    "n": 21,
+    "ov": {
+     "GaeaLandscapeMin": {
+      "v": [
+       0.0,
+       0.0,
+       0.04,
+       1.0
+      ]
+     },
+     "GaeaLandscapeSize": {
+      "v": [
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ]
+     },
+     "Gaea_FlowWeight": {
+      "s": 0.05
+     },
+     "Gaea_RockWeight": {
+      "s": 1.0
+     },
+     "Gaea_SnowWeight": {
+      "s": 1.0
+     },
+     "Gaea_WaterWeight": {
+      "s": 0.05
+     }
+    },
+    "slug": "GaeaPipeline"
+   },
+   {
+    "n": 22,
+    "ov": {
+     "Rock_DetailAlbedoReference": {
+      "s": 0.275
+     },
+     "Rock_DetailAlbedoStrength": {
+      "s": 0.05
+     },
+     "Rock_DetailWorldSizeCM": {
+      "s": 480.0
+     },
+     "Rock_TriplanarBlend": {
+      "s": 1.0
+     },
+     "Rock_TriplanarNormalStrength": {
+      "s": 1.0
+     }
+    },
+    "slug": "RockTriplanarDetail"
+   },
+   {
+    "n": 23,
+    "ov": {
+     "Snow_BreakupStrength": {
+      "s": 0.2375
+     },
+     "Snow_BreakupWorldSizeCM": {
+      "s": 720.0
+     }
+    },
+    "slug": "SnowCoverageDetail"
+   },
+   {
+    "n": 24,
+    "ov": {
+     "SnowEdgeDistanceRangeCM": {
+      "s": 30000.0
+     },
+     "SnowFrostBandStrength": {
+      "s": 0.3
+     },
+     "SnowFrostBandWidthCM": {
+      "s": 1200.0
+     },
+     "SnowFrostRoughness": {
+      "s": 0.925
+     }
+    },
+    "slug": "SnowDistanceField"
+   },
+   {
+    "n": 25,
+    "ov": {
+     "CymaticsLandscapeAmount": {
+      "s": 0.2375
+     },
+     "CymaticsLandscapeMaxEmission": {
+      "s": 3.0
+     }
+    },
+    "slug": "LandscapeCymatics"
+   },
+   {
+    "n": 26,
+    "ov": {
+     "GlitterPile_Brightness": {
+      "s": 2.4
+     },
+     "GlitterPile_Color": {
+      "v": [
+       1.0,
+       0.91,
+       0.94,
+       1.0
+      ]
+     },
+     "GlitterPile_Density": {
+      "s": 0.3
+     },
+     "GlitterPile_FacetSharpness": {
+      "s": 78.2
+     },
+     "GlitterPile_Gate": {
+      "s": 0.3
+     },
+     "GlitterPile_HaloPower": {
+      "s": 5.15
+     },
+     "GlitterPile_HaloStrength": {
+      "s": 0.3
+     },
+     "GlitterPile_Iridescence": {
+      "s": 1.2
+     },
+     "GlitterPile_Scale": {
+      "s": 159.2
+     }
+    },
+    "slug": "GlitterPile"
+   },
+   {
+    "n": 27,
+    "ov": {
+     "AtmosphericColor": {
+      "v": [
+       0.7,
+       0.67,
+       0.86,
+       1.0
+      ]
+     },
+     "AtmosphericEnd": {
+      "s": 150700.0
+     },
+     "AtmosphericStart": {
+      "s": 30000.0
+     },
+     "AtmosphericStrength": {
+      "s": 0.3
+     }
+    },
+    "slug": "Atmosphere"
+   }
+  ],
+  "master": "/Game/EnvSandbox/Materials/Masters/M_Master_Nikki_Landscape",
+  "out_dir": "/Game/EnvSandbox/Materials/Instances/Proving",
+  "tag": "Landscape"
+ },
+ "M_Master_SDF_Toon": {
+  "columns": [
+   {
+    "n": 1,
+    "ov": {
+     "AccentTint": {
+      "v": [
+       0.8,
+       0.57,
+       0.56,
+       1.0
+      ]
+     },
+     "BaseTint": {
+      "v": [
+       0.63,
+       0.43,
+       0.46,
+       1.0
+      ]
+     }
+    },
+    "slug": "Palette"
+   },
+   {
+    "n": 2,
+    "ov": {
+     "UVRotation": {
+      "s": 0.05
+     },
+     "UVScale": {
+      "s": 1.0
+     }
+    },
+    "slug": "UV"
+   },
+   {
+    "n": 3,
+    "ov": {
+     "HeightMap": {
+      "t": "/Game/EnvSandbox/Materials/Textures/T_Noise_White"
+     },
+     "NormalMap": {
+      "t": "/Game/EnvSandbox/Materials/Textures/T_Noise_White"
+     },
+     "RoughnessMap": {
+      "t": "/Game/EnvSandbox/Materials/Textures/T_Noise_White"
+     }
+    },
+    "slug": "Maps"
+   },
+   {
+    "n": 4,
+    "ov": {
+     "ParallaxHeight": {
+      "s": 0.125
+     },
+     "ParallaxScale": {
+      "s": 0.125
+     },
+     "ParallaxSteps": {
+      "s": 14.4
+     }
+    },
+    "slug": "Parallax"
+   },
+   {
+    "n": 5,
+    "ov": {
+     "DryRoughness": {
+      "s": 0.9875
+     }
+    },
+    "slug": "Surface"
+   },
+   {
+    "n": 6,
+    "ov": {
+     "BandScale": {
+      "s": 0.0938
+     },
+     "BandStrength": {
+      "s": 0.325
+     },
+     "ReliefDepth": {
+      "s": 0.4875
+     }
+    },
+    "slug": "SDF"
+   },
+   {
+    "n": 7,
+    "ov": {
+     "GildingStrength": {
+      "s": 0.05
+     },
+     "GoldTint": {
+      "v": [
+       0.93,
+       0.6,
+       0.29,
+       1.0
+      ]
+     }
+    },
+    "slug": "Gilding"
+   },
+   {
+    "n": 8,
+    "ov": {
+     "OilPaintStrength": {
+      "s": 0.05
+     }
+    },
+    "slug": "OilPaint"
+   },
+   {
+    "n": 9,
+    "ov": {
+     "TemporalStrength": {
+      "s": 0.05
+     }
+    },
+    "slug": "Temporal"
+   },
+   {
+    "n": 10,
+    "ov": {
+     "InkColor": {
+      "v": [
+       0.13,
+       0.03,
+       0.19,
+       1.0
+      ]
+     },
+     "InkIntensity": {
+      "s": 0.05
+     }
+    },
+    "slug": "Ink"
+   },
+   {
+    "n": 11,
+    "ov": {
+     "CurvatureSensitivity": {
+      "s": 2.4
+     },
+     "OrnamentScale": {
+      "s": 1.0
+     },
+     "OrnamentStyle": {
+      "s": 0.05
+     }
+    },
+    "slug": "Ornament"
+   },
+   {
+    "n": 12,
+    "ov": {
+     "AudioReactivity": {
+      "s": 0.05
+     }
+    },
+    "slug": "Audio"
+   },
+   {
+    "n": 13,
+    "ov": {
+     "ToonRampStrength": {
+      "s": 0.425
+     }
+    },
+    "slug": "ToonRamp"
+   }
+  ],
+  "master": "/Game/EnvSandbox/Materials/Masters/SDF/M_Master_SDF_Toon",
+  "out_dir": "/Game/EnvSandbox/Materials/Instances/Proving",
+  "tag": "SDF"
+ },
  "M_Master_Toon_Universal": {
   "columns": [
    {

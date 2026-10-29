@@ -1,0 +1,281 @@
+{
+ "schema": "melodia.proving_fresh_load_check.v1",
+ "when": "2026-10-28",
+ "master": "M_Master_SDF_Toon",
+ "master_path": "/Game/EnvSandbox/Materials/Masters/SDF/M_Master_SDF_Toon",
+ "checks": [
+  {
+   "name": "MI_Prove_SDF_01_Palette",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_SDF_01_Palette",
+   "fresh_reload": false,
+   "reload_note": "reload_packages() takes at most 2 arguments (3 given)",
+   "class": "MaterialInstanceConstant",
+   "parent": "<Object '/Game/EnvSandbox/Materials/Masters/SDF/M_Master_SDF_Toon.M_Master_SDF_Toon' (0x000002AAB5B9B600) Class 'Material'>",
+   "parent_ok": true,
+   "expected_counts": {
+    "scalar": 0,
+    "vector": 2,
+    "texture": 0
+   },
+   "got_counts": {
+    "scalar": 0,
+    "vector": 2,
+    "texture": 0
+   },
+   "census_ok": true,
+   "status": "ok"
+  },
+  {
+   "name": "MI_Prove_SDF_02_UV",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_SDF_02_UV",
+   "fresh_reload": false,
+   "reload_note": "reload_packages() takes at most 2 arguments (3 given)",
+   "class": "MaterialInstanceConstant",
+   "parent": "<Object '/Game/EnvSandbox/Materials/Masters/SDF/M_Master_SDF_Toon.M_Master_SDF_Toon' (0x000002AAB5B9B600) Class 'Material'>",
+   "parent_ok": true,
+   "expected_counts": {
+    "scalar": 2,
+    "vector": 0,
+    "texture": 0
+   },
+   "got_counts": {
+    "scalar": 2,
+    "vector": 0,
+    "texture": 0
+   },
+   "census_ok": true,
+   "status": "ok"
+  },
+  {
+   "name": "MI_Prove_SDF_03_Maps",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_SDF_03_Maps",
+   "fresh_reload": false,
+   "reload_note": "reload_packages() takes at most 2 arguments (3 given)",
+   "class": "MaterialInstanceConstant",
+   "parent": "<Object '/Game/EnvSandbox/Materials/Masters/SDF/M_Master_SDF_Toon.M_Master_SDF_Toon' (0x000002AAB5B9B600) Class 'Material'>",
+   "parent_ok": true,
+   "expected_counts": {
+    "scalar": 0,
+    "vector": 0,
+    "texture": 3
+   },
+   "got_counts": {
+    "scalar": 0,
+    "vector": 0,
+    "texture": 3
+   },
+   "census_ok": true,
+   "status": "ok"
+  },
+  {
+   "name": "MI_Prove_SDF_04_Parallax",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_SDF_04_Parallax",
+   "fresh_reload": false,
+   "reload_note": "reload_packages() takes at most 2 arguments (3 given)",
+   "class": "MaterialInstanceConstant",
+   "parent": "<Object '/Game/EnvSandbox/Materials/Masters/SDF/M_Master_SDF_Toon.M_Master_SDF_Toon' (0x000002AAB5B9B600) Class 'Material'>",
+   "parent_ok": true,
+   "expected_counts": {
+    "scalar": 3,
+    "vector": 0,
+    "texture": 0
+   },
+   "got_counts": {
+    "scalar": 3,
+    "vector": 0,
+    "texture": 0
+   },
+   "census_ok": true,
+   "status": "ok"
+  },
+  {
+   "name": "MI_Prove_SDF_05_Surface",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_SDF_05_Surface",
+   "fresh_reload": false,
+   "reload_note": "reload_packages() takes at most 2 arguments (3 given)",
+   "class": "MaterialInstanceConstant",
+   "parent": "<Object '/Game/EnvSandbox/Materials/Masters/SDF/M_Master_SDF_Toon.M_Master_SDF_Toon' (0x000002AAB5B9B600) Class 'Material'>",
+   "parent_ok": true,
+   "expected_counts": {
+    "scalar": 1,
+    "vector": 0,
+    "texture": 0
+   },
+   "got_counts": {
+    "scalar": 1,
+    "vector": 0,
+    "texture": 0
+   },
+   "census_ok": true,
+   "status": "ok"
+  },
+  {
+   "name": "MI_Prove_SDF_06_SDF",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_SDF_06_SDF",
+   "fresh_reload": false,
+   "reload_note": "reload_packages() takes at most 2 arguments (3 given)",
+   "class": "MaterialInstanceConstant",
+   "parent": "<Object '/Game/EnvSandbox/Materials/Masters/SDF/M_Master_SDF_Toon.M_Master_SDF_Toon' (0x000002AAB5B9B600) Class 'Material'>",
+   "parent_ok": true,
+   "expected_counts": {
+    "scalar": 3,
+    "vector": 0,
+    "texture": 0
+   },
+   "got_counts": {
+    "scalar": 3,
+    "vector": 0,
+    "texture": 0
+   },
+   "census_ok": true,
+   "status": "ok"
+  },
+  {
+   "name": "MI_Prove_SDF_07_Gilding",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_SDF_07_Gilding",
+   "fresh_reload": false,
+   "reload_note": "reload_packages() takes at most 2 arguments (3 given)",
+   "class": "MaterialInstanceConstant",
+   "parent": "<Object '/Game/EnvSandbox/Materials/Masters/SDF/M_Master_SDF_Toon.M_Master_SDF_Toon' (0x000002AAB5B9B600) Class 'Material'>",
+   "parent_ok": true,
+   "expected_counts": {
+    "scalar": 1,
+    "vector": 1,
+    "texture": 0
+   },
+   "got_counts": {
+    "scalar": 1,
+    "vector": 1,
+    "texture": 0
+   },
+   "census_ok": true,
+   "status": "ok"
+  },
+  {
+   "name": "MI_Prove_SDF_08_OilPaint",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_SDF_08_OilPaint",
+   "fresh_reload": false,
+   "reload_note": "reload_packages() takes at most 2 arguments (3 given)",
+   "class": "MaterialInstanceConstant",
+   "parent": "<Object '/Game/EnvSandbox/Materials/Masters/SDF/M_Master_SDF_Toon.M_Master_SDF_Toon' (0x000002AAB5B9B600) Class 'Material'>",
+   "parent_ok": true,
+   "expected_counts": {
+    "scalar": 1,
+    "vector": 0,
+    "texture": 0
+   },
+   "got_counts": {
+    "scalar": 1,
+    "vector": 0,
+    "texture": 0
+   },
+   "census_ok": true,
+   "status": "ok"
+  },
+  {
+   "name": "MI_Prove_SDF_09_Temporal",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_SDF_09_Temporal",
+   "fresh_reload": false,
+   "reload_note": "reload_packages() takes at most 2 arguments (3 given)",
+   "class": "MaterialInstanceConstant",
+   "parent": "<Object '/Game/EnvSandbox/Materials/Masters/SDF/M_Master_SDF_Toon.M_Master_SDF_Toon' (0x000002AAB5B9B600) Class 'Material'>",
+   "parent_ok": true,
+   "expected_counts": {
+    "scalar": 1,
+    "vector": 0,
+    "texture": 0
+   },
+   "got_counts": {
+    "scalar": 1,
+    "vector": 0,
+    "texture": 0
+   },
+   "census_ok": true,
+   "status": "ok"
+  },
+  {
+   "name": "MI_Prove_SDF_10_Ink",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_SDF_10_Ink",
+   "fresh_reload": false,
+   "reload_note": "reload_packages() takes at most 2 arguments (3 given)",
+   "class": "MaterialInstanceConstant",
+   "parent": "<Object '/Game/EnvSandbox/Materials/Masters/SDF/M_Master_SDF_Toon.M_Master_SDF_Toon' (0x000002AAB5B9B600) Class 'Material'>",
+   "parent_ok": true,
+   "expected_counts": {
+    "scalar": 1,
+    "vector": 1,
+    "texture": 0
+   },
+   "got_counts": {
+    "scalar": 1,
+    "vector": 1,
+    "texture": 0
+   },
+   "census_ok": true,
+   "status": "ok"
+  },
+  {
+   "name": "MI_Prove_SDF_11_Ornament",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_SDF_11_Ornament",
+   "fresh_reload": false,
+   "reload_note": "reload_packages() takes at most 2 arguments (3 given)",
+   "class": "MaterialInstanceConstant",
+   "parent": "<Object '/Game/EnvSandbox/Materials/Masters/SDF/M_Master_SDF_Toon.M_Master_SDF_Toon' (0x000002AAB5B9B600) Class 'Material'>",
+   "parent_ok": true,
+   "expected_counts": {
+    "scalar": 3,
+    "vector": 0,
+    "texture": 0
+   },
+   "got_counts": {
+    "scalar": 3,
+    "vector": 0,
+    "texture": 0
+   },
+   "census_ok": true,
+   "status": "ok"
+  },
+  {
+   "name": "MI_Prove_SDF_12_Audio",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_SDF_12_Audio",
+   "fresh_reload": false,
+   "reload_note": "reload_packages() takes at most 2 arguments (3 given)",
+   "class": "MaterialInstanceConstant",
+   "parent": "<Object '/Game/EnvSandbox/Materials/Masters/SDF/M_Master_SDF_Toon.M_Master_SDF_Toon' (0x000002AAB5B9B600) Class 'Material'>",
+   "parent_ok": true,
+   "expected_counts": {
+    "scalar": 1,
+    "vector": 0,
+    "texture": 0
+   },
+   "got_counts": {
+    "scalar": 1,
+    "vector": 0,
+    "texture": 0
+   },
+   "census_ok": true,
+   "status": "ok"
+  },
+  {
+   "name": "MI_Prove_SDF_13_ToonRamp",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_SDF_13_ToonRamp",
+   "fresh_reload": false,
+   "reload_note": "reload_packages() takes at most 2 arguments (3 given)",
+   "class": "MaterialInstanceConstant",
+   "parent": "<Object '/Game/EnvSandbox/Materials/Masters/SDF/M_Master_SDF_Toon.M_Master_SDF_Toon' (0x000002AAB5B9B600) Class 'Material'>",
+   "parent_ok": true,
+   "expected_counts": {
+    "scalar": 1,
+    "vector": 0,
+    "texture": 0
+   },
+   "got_counts": {
+    "scalar": 1,
+    "vector": 0,
+    "texture": 0
+   },
+   "census_ok": true,
+   "status": "ok"
+  }
+ ]
+}

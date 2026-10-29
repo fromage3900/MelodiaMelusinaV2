@@ -1,0 +1,533 @@
+{
+ "schema": "melodia.proving_fresh_load_check.v1",
+ "when": "2026-10-28",
+ "master": "M_Master_Nikki_Landscape",
+ "master_path": "/Game/EnvSandbox/Materials/Masters/M_Master_Nikki_Landscape",
+ "checks": [
+  {
+   "name": "MI_Prove_Landscape_01_BaseSurface",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Landscape_01_BaseSurface",
+   "fresh_reload": false,
+   "reload_note": "reload_packages() takes at most 2 arguments (3 given)",
+   "class": "MaterialInstanceConstant",
+   "parent": "<Object '/Game/EnvSandbox/Materials/Masters/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape' (0x000002A8E20D0000) Class 'Material'>",
+   "parent_ok": true,
+   "expected_counts": {
+    "scalar": 6,
+    "vector": 4,
+    "texture": 0
+   },
+   "got_counts": {
+    "scalar": 6,
+    "vector": 4,
+    "texture": 0
+   },
+   "census_ok": true,
+   "status": "ok"
+  },
+  {
+   "name": "MI_Prove_Landscape_03_LayerSurface",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Landscape_03_LayerSurface",
+   "fresh_reload": false,
+   "reload_note": "reload_packages() takes at most 2 arguments (3 given)",
+   "class": "MaterialInstanceConstant",
+   "parent": "<Object '/Game/EnvSandbox/Materials/Masters/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape' (0x000002A8E20D0000) Class 'Material'>",
+   "parent_ok": true,
+   "expected_counts": {
+    "scalar": 6,
+    "vector": 0,
+    "texture": 0
+   },
+   "got_counts": {
+    "scalar": 6,
+    "vector": 0,
+    "texture": 0
+   },
+   "census_ok": true,
+   "status": "ok"
+  },
+  {
+   "name": "MI_Prove_Landscape_04_Emissive",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Landscape_04_Emissive",
+   "fresh_reload": false,
+   "reload_note": "reload_packages() takes at most 2 arguments (3 given)",
+   "class": "MaterialInstanceConstant",
+   "parent": "<Object '/Game/EnvSandbox/Materials/Masters/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape' (0x000002A8E20D0000) Class 'Material'>",
+   "parent_ok": true,
+   "expected_counts": {
+    "scalar": 2,
+    "vector": 0,
+    "texture": 0
+   },
+   "got_counts": {
+    "scalar": 2,
+    "vector": 0,
+    "texture": 0
+   },
+   "census_ok": true,
+   "status": "ok"
+  },
+  {
+   "name": "MI_Prove_Landscape_05_Triplanar",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Landscape_05_Triplanar",
+   "fresh_reload": false,
+   "reload_note": "reload_packages() takes at most 2 arguments (3 given)",
+   "class": "MaterialInstanceConstant",
+   "parent": "<Object '/Game/EnvSandbox/Materials/Masters/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape' (0x000002A8E20D0000) Class 'Material'>",
+   "parent_ok": true,
+   "expected_counts": {
+    "scalar": 6,
+    "vector": 3,
+    "texture": 0
+   },
+   "got_counts": {
+    "scalar": 6,
+    "vector": 3,
+    "texture": 0
+   },
+   "census_ok": true,
+   "status": "ok"
+  },
+  {
+   "name": "MI_Prove_Landscape_07_NikkiIridescenceSheen",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Landscape_07_NikkiIridescenceSheen",
+   "fresh_reload": false,
+   "reload_note": "reload_packages() takes at most 2 arguments (3 given)",
+   "class": "MaterialInstanceConstant",
+   "parent": "<Object '/Game/EnvSandbox/Materials/Masters/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape' (0x000002A8E20D0000) Class 'Material'>",
+   "parent_ok": true,
+   "expected_counts": {
+    "scalar": 1,
+    "vector": 0,
+    "texture": 0
+   },
+   "got_counts": {
+    "scalar": 1,
+    "vector": 0,
+    "texture": 0
+   },
+   "census_ok": true,
+   "status": "ok"
+  },
+  {
+   "name": "MI_Prove_Landscape_08_NikkiStickerShade",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Landscape_08_NikkiStickerShade",
+   "fresh_reload": false,
+   "reload_note": "reload_packages() takes at most 2 arguments (3 given)",
+   "class": "MaterialInstanceConstant",
+   "parent": "<Object '/Game/EnvSandbox/Materials/Masters/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape' (0x000002A8E20D0000) Class 'Material'>",
+   "parent_ok": true,
+   "expected_counts": {
+    "scalar": 3,
+    "vector": 1,
+    "texture": 0
+   },
+   "got_counts": {
+    "scalar": 3,
+    "vector": 1,
+    "texture": 0
+   },
+   "census_ok": true,
+   "status": "ok"
+  },
+  {
+   "name": "MI_Prove_Landscape_09_NikkiTwinkleIris",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Landscape_09_NikkiTwinkleIris",
+   "fresh_reload": false,
+   "reload_note": "reload_packages() takes at most 2 arguments (3 given)",
+   "class": "MaterialInstanceConstant",
+   "parent": "<Object '/Game/EnvSandbox/Materials/Masters/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape' (0x000002A8E20D0000) Class 'Material'>",
+   "parent_ok": true,
+   "expected_counts": {
+    "scalar": 4,
+    "vector": 1,
+    "texture": 0
+   },
+   "got_counts": {
+    "scalar": 4,
+    "vector": 1,
+    "texture": 0
+   },
+   "census_ok": true,
+   "status": "ok"
+  },
+  {
+   "name": "MI_Prove_Landscape_10_NikkiPastelGrade",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Landscape_10_NikkiPastelGrade",
+   "fresh_reload": false,
+   "reload_note": "reload_packages() takes at most 2 arguments (3 given)",
+   "class": "MaterialInstanceConstant",
+   "parent": "<Object '/Game/EnvSandbox/Materials/Masters/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape' (0x000002A8E20D0000) Class 'Material'>",
+   "parent_ok": true,
+   "expected_counts": {
+    "scalar": 4,
+    "vector": 3,
+    "texture": 0
+   },
+   "got_counts": {
+    "scalar": 4,
+    "vector": 3,
+    "texture": 0
+   },
+   "census_ok": true,
+   "status": "ok"
+  },
+  {
+   "name": "MI_Prove_Landscape_11_ShadowDream",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Landscape_11_ShadowDream",
+   "fresh_reload": false,
+   "reload_note": "reload_packages() takes at most 2 arguments (3 given)",
+   "class": "MaterialInstanceConstant",
+   "parent": "<Object '/Game/EnvSandbox/Materials/Masters/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape' (0x000002A8E20D0000) Class 'Material'>",
+   "parent_ok": true,
+   "expected_counts": {
+    "scalar": 2,
+    "vector": 1,
+    "texture": 0
+   },
+   "got_counts": {
+    "scalar": 2,
+    "vector": 1,
+    "texture": 0
+   },
+   "census_ok": true,
+   "status": "ok"
+  },
+  {
+   "name": "MI_Prove_Landscape_12_KawaiiSquish",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Landscape_12_KawaiiSquish",
+   "fresh_reload": false,
+   "reload_note": "reload_packages() takes at most 2 arguments (3 given)",
+   "class": "MaterialInstanceConstant",
+   "parent": "<Object '/Game/EnvSandbox/Materials/Masters/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape' (0x000002A8E20D0000) Class 'Material'>",
+   "parent_ok": true,
+   "expected_counts": {
+    "scalar": 2,
+    "vector": 1,
+    "texture": 0
+   },
+   "got_counts": {
+    "scalar": 2,
+    "vector": 1,
+    "texture": 0
+   },
+   "census_ok": true,
+   "status": "ok"
+  },
+  {
+   "name": "MI_Prove_Landscape_13_NikkiSDFRibbon",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Landscape_13_NikkiSDFRibbon",
+   "fresh_reload": false,
+   "reload_note": "reload_packages() takes at most 2 arguments (3 given)",
+   "class": "MaterialInstanceConstant",
+   "parent": "<Object '/Game/EnvSandbox/Materials/Masters/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape' (0x000002A8E20D0000) Class 'Material'>",
+   "parent_ok": true,
+   "expected_counts": {
+    "scalar": 5,
+    "vector": 1,
+    "texture": 0
+   },
+   "got_counts": {
+    "scalar": 5,
+    "vector": 1,
+    "texture": 0
+   },
+   "census_ok": true,
+   "status": "ok"
+  },
+  {
+   "name": "MI_Prove_Landscape_14_NikkiPearlSheen",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Landscape_14_NikkiPearlSheen",
+   "fresh_reload": false,
+   "reload_note": "reload_packages() takes at most 2 arguments (3 given)",
+   "class": "MaterialInstanceConstant",
+   "parent": "<Object '/Game/EnvSandbox/Materials/Masters/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape' (0x000002A8E20D0000) Class 'Material'>",
+   "parent_ok": true,
+   "expected_counts": {
+    "scalar": 3,
+    "vector": 1,
+    "texture": 0
+   },
+   "got_counts": {
+    "scalar": 3,
+    "vector": 1,
+    "texture": 0
+   },
+   "census_ok": true,
+   "status": "ok"
+  },
+  {
+   "name": "MI_Prove_Landscape_15_NikkiDreamWatercolor",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Landscape_15_NikkiDreamWatercolor",
+   "fresh_reload": false,
+   "reload_note": "reload_packages() takes at most 2 arguments (3 given)",
+   "class": "MaterialInstanceConstant",
+   "parent": "<Object '/Game/EnvSandbox/Materials/Masters/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape' (0x000002A8E20D0000) Class 'Material'>",
+   "parent_ok": true,
+   "expected_counts": {
+    "scalar": 3,
+    "vector": 1,
+    "texture": 0
+   },
+   "got_counts": {
+    "scalar": 3,
+    "vector": 1,
+    "texture": 0
+   },
+   "census_ok": true,
+   "status": "ok"
+  },
+  {
+   "name": "MI_Prove_Landscape_16_NikkiStickerEdge",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Landscape_16_NikkiStickerEdge",
+   "fresh_reload": false,
+   "reload_note": "reload_packages() takes at most 2 arguments (3 given)",
+   "class": "MaterialInstanceConstant",
+   "parent": "<Object '/Game/EnvSandbox/Materials/Masters/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape' (0x000002A8E20D0000) Class 'Material'>",
+   "parent_ok": true,
+   "expected_counts": {
+    "scalar": 4,
+    "vector": 1,
+    "texture": 0
+   },
+   "got_counts": {
+    "scalar": 4,
+    "vector": 1,
+    "texture": 0
+   },
+   "census_ok": true,
+   "status": "ok"
+  },
+  {
+   "name": "MI_Prove_Landscape_17_NikkiGlitterHalo",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Landscape_17_NikkiGlitterHalo",
+   "fresh_reload": false,
+   "reload_note": "reload_packages() takes at most 2 arguments (3 given)",
+   "class": "MaterialInstanceConstant",
+   "parent": "<Object '/Game/EnvSandbox/Materials/Masters/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape' (0x000002A8E20D0000) Class 'Material'>",
+   "parent_ok": true,
+   "expected_counts": {
+    "scalar": 6,
+    "vector": 1,
+    "texture": 0
+   },
+   "got_counts": {
+    "scalar": 6,
+    "vector": 1,
+    "texture": 0
+   },
+   "census_ok": true,
+   "status": "ok"
+  },
+  {
+   "name": "MI_Prove_Landscape_18_NikkiPetalShadow",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Landscape_18_NikkiPetalShadow",
+   "fresh_reload": false,
+   "reload_note": "reload_packages() takes at most 2 arguments (3 given)",
+   "class": "MaterialInstanceConstant",
+   "parent": "<Object '/Game/EnvSandbox/Materials/Masters/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape' (0x000002A8E20D0000) Class 'Material'>",
+   "parent_ok": true,
+   "expected_counts": {
+    "scalar": 5,
+    "vector": 1,
+    "texture": 0
+   },
+   "got_counts": {
+    "scalar": 5,
+    "vector": 1,
+    "texture": 0
+   },
+   "census_ok": true,
+   "status": "ok"
+  },
+  {
+   "name": "MI_Prove_Landscape_19_ExtendedLayers",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Landscape_19_ExtendedLayers",
+   "fresh_reload": false,
+   "reload_note": "reload_packages() takes at most 2 arguments (3 given)",
+   "class": "MaterialInstanceConstant",
+   "parent": "<Object '/Game/EnvSandbox/Materials/Masters/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape' (0x000002A8E20D0000) Class 'Material'>",
+   "parent_ok": true,
+   "expected_counts": {
+    "scalar": 5,
+    "vector": 3,
+    "texture": 0
+   },
+   "got_counts": {
+    "scalar": 5,
+    "vector": 3,
+    "texture": 0
+   },
+   "census_ok": true,
+   "status": "ok"
+  },
+  {
+   "name": "MI_Prove_Landscape_20_SnowLayer",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Landscape_20_SnowLayer",
+   "fresh_reload": false,
+   "reload_note": "reload_packages() takes at most 2 arguments (3 given)",
+   "class": "MaterialInstanceConstant",
+   "parent": "<Object '/Game/EnvSandbox/Materials/Masters/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape' (0x000002A8E20D0000) Class 'Material'>",
+   "parent_ok": true,
+   "expected_counts": {
+    "scalar": 2,
+    "vector": 1,
+    "texture": 0
+   },
+   "got_counts": {
+    "scalar": 2,
+    "vector": 1,
+    "texture": 0
+   },
+   "census_ok": true,
+   "status": "ok"
+  },
+  {
+   "name": "MI_Prove_Landscape_21_GaeaPipeline",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Landscape_21_GaeaPipeline",
+   "fresh_reload": false,
+   "reload_note": "reload_packages() takes at most 2 arguments (3 given)",
+   "class": "MaterialInstanceConstant",
+   "parent": "<Object '/Game/EnvSandbox/Materials/Masters/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape' (0x000002A8E20D0000) Class 'Material'>",
+   "parent_ok": true,
+   "expected_counts": {
+    "scalar": 4,
+    "vector": 2,
+    "texture": 0
+   },
+   "got_counts": {
+    "scalar": 4,
+    "vector": 2,
+    "texture": 0
+   },
+   "census_ok": true,
+   "status": "ok"
+  },
+  {
+   "name": "MI_Prove_Landscape_22_RockTriplanarDetail",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Landscape_22_RockTriplanarDetail",
+   "fresh_reload": false,
+   "reload_note": "reload_packages() takes at most 2 arguments (3 given)",
+   "class": "MaterialInstanceConstant",
+   "parent": "<Object '/Game/EnvSandbox/Materials/Masters/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape' (0x000002A8E20D0000) Class 'Material'>",
+   "parent_ok": true,
+   "expected_counts": {
+    "scalar": 5,
+    "vector": 0,
+    "texture": 0
+   },
+   "got_counts": {
+    "scalar": 5,
+    "vector": 0,
+    "texture": 0
+   },
+   "census_ok": true,
+   "status": "ok"
+  },
+  {
+   "name": "MI_Prove_Landscape_23_SnowCoverageDetail",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Landscape_23_SnowCoverageDetail",
+   "fresh_reload": false,
+   "reload_note": "reload_packages() takes at most 2 arguments (3 given)",
+   "class": "MaterialInstanceConstant",
+   "parent": "<Object '/Game/EnvSandbox/Materials/Masters/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape' (0x000002A8E20D0000) Class 'Material'>",
+   "parent_ok": true,
+   "expected_counts": {
+    "scalar": 2,
+    "vector": 0,
+    "texture": 0
+   },
+   "got_counts": {
+    "scalar": 2,
+    "vector": 0,
+    "texture": 0
+   },
+   "census_ok": true,
+   "status": "ok"
+  },
+  {
+   "name": "MI_Prove_Landscape_24_SnowDistanceField",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Landscape_24_SnowDistanceField",
+   "fresh_reload": false,
+   "reload_note": "reload_packages() takes at most 2 arguments (3 given)",
+   "class": "MaterialInstanceConstant",
+   "parent": "<Object '/Game/EnvSandbox/Materials/Masters/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape' (0x000002A8E20D0000) Class 'Material'>",
+   "parent_ok": true,
+   "expected_counts": {
+    "scalar": 4,
+    "vector": 0,
+    "texture": 0
+   },
+   "got_counts": {
+    "scalar": 4,
+    "vector": 0,
+    "texture": 0
+   },
+   "census_ok": true,
+   "status": "ok"
+  },
+  {
+   "name": "MI_Prove_Landscape_25_LandscapeCymatics",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Landscape_25_LandscapeCymatics",
+   "fresh_reload": false,
+   "reload_note": "reload_packages() takes at most 2 arguments (3 given)",
+   "class": "MaterialInstanceConstant",
+   "parent": "<Object '/Game/EnvSandbox/Materials/Masters/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape' (0x000002A8E20D0000) Class 'Material'>",
+   "parent_ok": true,
+   "expected_counts": {
+    "scalar": 2,
+    "vector": 0,
+    "texture": 0
+   },
+   "got_counts": {
+    "scalar": 2,
+    "vector": 0,
+    "texture": 0
+   },
+   "census_ok": true,
+   "status": "ok"
+  },
+  {
+   "name": "MI_Prove_Landscape_26_GlitterPile",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Landscape_26_GlitterPile",
+   "fresh_reload": false,
+   "reload_note": "reload_packages() takes at most 2 arguments (3 given)",
+   "class": "MaterialInstanceConstant",
+   "parent": "<Object '/Game/EnvSandbox/Materials/Masters/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape' (0x000002A8E20D0000) Class 'Material'>",
+   "parent_ok": true,
+   "expected_counts": {
+    "scalar": 8,
+    "vector": 1,
+    "texture": 0
+   },
+   "got_counts": {
+    "scalar": 8,
+    "vector": 1,
+    "texture": 0
+   },
+   "census_ok": true,
+   "status": "ok"
+  },
+  {
+   "name": "MI_Prove_Landscape_27_Atmosphere",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Landscape_27_Atmosphere",
+   "fresh_reload": false,
+   "reload_note": "reload_packages() takes at most 2 arguments (3 given)",
+   "class": "MaterialInstanceConstant",
+   "parent": "<Object '/Game/EnvSandbox/Materials/Masters/M_Master_Nikki_Landscape.M_Master_Nikki_Landscape' (0x000002A8E20D0000) Class 'Material'>",
+   "parent_ok": true,
+   "expected_counts": {
+    "scalar": 3,
+    "vector": 1,
+    "texture": 0
+   },
+   "got_counts": {
+    "scalar": 3,
+    "vector": 1,
+    "texture": 0
+   },
+   "census_ok": true,
+   "status": "ok"
+  }
+ ]
+}
