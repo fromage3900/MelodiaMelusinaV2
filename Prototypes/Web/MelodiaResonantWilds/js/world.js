@@ -10,6 +10,7 @@ import { propWorkflowMul, approachIdentity, OW_RULES } from './openworld.js';
 import { environmentMaterial, legacyRender } from './cel.js';
 import { installBellflowers, animateBellflowers } from './bellflower.js';
 import { createFlowerbedParts } from './flowerbeds.js';
+import { flowerLandscapeEnabled, installFlowerLandscapeChunk } from './flower-landscape.js';
 
 export const CHUNK = 64;
 const SEG = 28;
@@ -80,6 +81,8 @@ export class World {
     this._resonate(this.terrainMat);
     this._buildIndex();
     this._buildPropLibrary();
+    this.botanyEnabled = flowerLandscapeEnabled(window.location.search);
+    this.botanyDense = new URLSearchParams(window.location.search).get('botany') === 'dense';
     this._buildWater();
     this._buildHub();
     this._buildLandmarks();
@@ -291,6 +294,8 @@ export class World {
     group.add(mesh);
     const chimes = [];
     this._buildProps(cx, cz, group, chimes);
+    // Opt-in floraison meadow overlay; chunk unload already disposes instance buffers.
+    if (this.botanyEnabled) installFlowerLandscapeChunk(this, cx, cz, group, CHUNK, this.botanyDense);
     this.root.add(group);
     return { cx, cz, group, geo, chimes };
   }
