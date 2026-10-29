@@ -1,0 +1,35 @@
+{
+ "schema": "melodia.nikki_fabric_migration.v2",
+ "when": "2026-10-29",
+ "canon": "CURRENT_STATE owner-ratified: M_Master_Nikki is the ONLY fabric master. M_Universal_Enhanced_Fabric must stay deleted.",
+ "root_cause": "The 2026-10-28 migration (Saved/Audit/FarawayProductionHardening_20261028/nikki_fabric_migration.json) was local-only. M_Universal_Enhanced_Fabric remained revision #1 in Perforce and tracked in git, so p4 sync / git checkout / stash-restore resurrected it and the Mother MIs regressed to it (world-grid rendering).",
+ "action": {
+  "perforce_change": 317,
+  "reparented_to": "/Game/EnvSandbox/Materials/Masters/M_Master_Nikki",
+  "reparented": [
+   "/Game/EnvSandbox/Materials/Instances/FarawayMother/P2/MI_Mother_Corset",
+   "/Game/EnvSandbox/Materials/Instances/FarawayMother/P2/MI_Mother_Cradle",
+   "/Game/EnvSandbox/Materials/Instances/FarawayMother/P2/MI_Mother_Gown",
+   "/Game/EnvSandbox/Materials/Instances/FarawayMother/P2/MI_Mother_Mantle",
+   "/Game/EnvSandbox/Materials/Instances/FarawayMother/P2/MI_Mother_Ornament",
+   "/Game/EnvSandbox/Materials/Instances/FarawayMother/P2/MI_Mother_Veil",
+   "/Game/Melodia/Characters/Melusina/Materials/MI_Melusina_Shorewake_Cymatic_Bodice",
+   "/Game/Melodia/Characters/Melusina/Materials/MI_Melusina_Shorewake_Cymatic_Collar",
+   "/Game/Melodia/Characters/Melusina/Materials/MI_Melusina_Shorewake_Cymatic_Skirt",
+   "/Game/EnvSandbox/Materials/Instances/Melusina/MI_Melusina_SorrowSeam"
+  ],
+  "deleted_master": "/Game/EnvSandbox/Materials/Masters/M_Universal_Enhanced_Fabric",
+  "archive_copy": "D:\\MelodiaArchive\\deleted\\M_Universal_Enhanced_Fabric_20261029.uasset",
+  "git_removal": "git rm --cached (staged deletion in the same change set)"
+ },
+ "verification": {
+  "mi_depot_revision": "#2 edit change 317",
+  "master_depot_head": "#2 delete change 317",
+  "depot_parent_scan_MI_Mother_Mantle": {"nikki": true, "wrong_master": false},
+  "local_parent_readback_before_save": "10/10 ok (saved=True)"
+ },
+ "open": {
+  "level_worldgrid": "L_FarawayMother_Blockout contains WorldGridMaterial references; actors whose material slots were cleared while the master was missing need reassignment in-editor. Do not load the level over unsaved work.",
+  "semantic_compatibility": "Override arrays retained (Metallic/Roughness/AudioReactivity/BaseColor are not Nikki params); Nikki re-authoring of the fabric look is still owed."
+ }
+}
