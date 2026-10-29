@@ -1,0 +1,88 @@
+{
+ "schema": "melodia.hair_drip_wiring.v1",
+ "when": "2026-10-28",
+ "master": "/Game/EnvSandbox/Materials/Masters/M_Water_Master_Grand_v10_Upgrade",
+ "mi": "/Game/EnvSandbox/Materials/Instances/Melusina/MI_Melusina_WaterHair",
+ "params": {
+  "HairDripIntensity": {
+   "created": false,
+   "default": 0.0
+  },
+  "DripSpeed": {
+   "created": false,
+   "default": 1.0
+  },
+  "DripLength": {
+   "created": false,
+   "default": 0.35
+  },
+  "SplashForce": {
+   "created": false,
+   "default": 1.0
+  },
+  "WaterOpacity": {
+   "created": false,
+   "default": 1.0
+  },
+  "WaterRoughness": {
+   "created": false,
+   "default": 1.0
+  }
+ },
+ "wiring": {
+  "chain_connects": [
+   true,
+   true,
+   true,
+   true,
+   true,
+   true,
+   true,
+   true,
+   true,
+   true,
+   true,
+   true,
+   true,
+   true,
+   true
+  ],
+  "wpo_property_connected": true
+ },
+ "notes": [],
+ "recompile": "[]",
+ "master_saved": true,
+ "mi_overrides": {
+  "HairDripIntensity": {
+   "set": 0.8,
+   "readback": 0.8,
+   "ok": true
+  },
+  "DripSpeed": {
+   "set": 1.4,
+   "readback": 1.4,
+   "ok": true
+  },
+  "DripLength": {
+   "set": 0.4,
+   "readback": 0.4,
+   "ok": true
+  },
+  "SplashForce": {
+   "set": 1.0,
+   "readback": 1.0,
+   "ok": true
+  },
+  "WaterOpacity": {
+   "set": 1.0,
+   "readback": 1.0,
+   "ok": true
+  },
+  "WaterRoughness": {
+   "set": 1.0,
+   "readback": 1.0,
+   "ok": true
+  }
+ },
+ "mi_saved": true
+}
