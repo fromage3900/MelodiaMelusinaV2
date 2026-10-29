@@ -70,6 +70,10 @@ Inspect the live recipe in the browser console: `window.__rwOpenWorld`.
 - **Maestro Encore exams:** each biome Maestro telegraphs a counter Encore; cast it during the fight to unlock that Encore's **concert trail** (fashion-only).
 - **Phrasebook:** answer a shrine at ≥70% to ink that biome — Phrase Bridges there then accept Good+.
 - **Sheep concert mode:** hold **H** (~0.35s) to toggle a beat-ring metronome that auto-Harmonizes nearby blots. Double-tap H still sniffs for Dew/blots.
+- **Playground toys** (default on; `?toys=0` off):
+  1. **Chladni sand** — grains settle on floor nodal lines; **Perfect** (or Chladni Burst) detonates them
+  2. **Sheep weapon** — **V** charge+bounce, **Shift+V** toggle; downbeat fires a choir-beam
+  3. **Mega gown** — **G** toggles a ~40 m couture skirt with wind + soft enemy shove (pairs well with `?avatar=mixamo`)
 - **Fashion photo setpieces** (Mist Choir / Glass Orchard / Starlit Moor destinations): Whim Frames that need the matching Encore selected for a gold photo.
 - **Mixamo hero (opt-in):** `?avatar=mixamo` loads `assets/models/mixamo-hero.glb` (Three.js Mixamo Soldier) with Idle/Walk/Run mixer; procedural Melusina stays the default fallback. Also `?avatar=chibi`.
 - **Dew sets & destinations:** first visit grants a 90s motif buff; Dew milestones at 3 / 6 / 10 (Encore charge → Harmony+buff → full Encore + extra Perfect beat); float destinations reveal a **secret ledge** after Dew. Double-tap **H** (Sheep Harmonize) out of combat sniffs toward Dew/blots; Whim Frames can sheep-photobomb.

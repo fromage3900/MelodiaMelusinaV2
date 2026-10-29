@@ -139,6 +139,12 @@ export class UI {
         g.sheep.setConcertHold(true);
         g.sheep.harmonize(false);
       }
+      else if (c === 'KeyV') {
+        // Playground sheep weapon: V = charge; Shift+V toggles mode.
+        if (e.shiftKey) g.sheep.toggleWeapon();
+        else g.sheep.startCharge();
+      }
+      else if (c === 'KeyG' && g.megaGown) g.megaGown.toggle();
       else if (c === 'KeyX' || c === 'Enter') g.interact();
       else if (c === 'KeyI') this.open('wardrobe');
       else if (c === 'KeyK') this.open('skills');
