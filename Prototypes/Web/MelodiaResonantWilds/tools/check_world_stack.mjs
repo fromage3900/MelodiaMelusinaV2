@@ -30,9 +30,11 @@ assert.match(ui, /Ping nearest Dew/);
 assert.match(smoke, /desktop-worldexp-postfx/);
 assert.match(smoke, /desktop-lite/);
 assert.match(smoke, /destinations >= 16/);
-assert.match(sw, /resonant-wilds-v13-20261029-nikki-ability/);
+assert.match(sw, /resonant-wilds-v15-20261029-canonical/);
+assert.match(sw, /js\/flags\.js/);
 assert.match(sw, /js\/playground\.js/);
 assert.match(sw, /js\/grove-catalog\.js/);
+assert.doesNotMatch(sw, /painterly\.js/);
 assert.match(smoke, /desktop-grove-full/);
 assert.match(smoke, /desktop-chladni-mode/);
 assert.match(smoke, /desktop-v1-cel/);
@@ -51,7 +53,7 @@ assert.match(ow, /nightbell_glide/);
 assert.match(a, /_unlockAbilityOutfit/);
 assert.match(a, /onAbilityOutfitEquipped/);
 assert.match(g, /Ability Outfit/);
-for (const p of ['js/openworld.js','js/postfx.js','js/flags.js','vendor/postprocessing/OutlinePass.js',
+for (const p of ['js/openworld.js','js/postfx.js','js/flags.js','js/playground.js','js/grove-catalog.js','vendor/postprocessing/OutlinePass.js',
  'vendor/postprocessing/UnrealBloomPass.js','vendor/shaders/FXAAShader.js']) {
  assert.ok(existsSync(join(root,p)), p+' missing');
 }

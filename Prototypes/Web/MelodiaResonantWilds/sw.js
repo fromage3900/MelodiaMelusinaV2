@@ -1,6 +1,6 @@
 // Resonant Wilds PWA cache. Keep shader, character, icon and GLB updates fresh.
 // The browser game remains playable online even if optional preview assets fail.
-const CACHE = 'resonant-wilds-v13-20261029-nikki-ability';
+const CACHE = 'resonant-wilds-v15-20261029-canonical';
 const ASSETS = [
   './', './index.html', './style.css', './manifest.json',
   './icon-192.png', './icon-512.png',
