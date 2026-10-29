@@ -111,4 +111,18 @@ Jev (free beam model, receipt `Saved/Audit/SourceControl_20261028/jev_ask_receip
 - Worktree audit (`Saved/Audit/SourceControl_20261028/worktree_audit_20261028.json`): 16 worktrees; dead metadata pruned; five clean stale candidates identified for removal (lane-docs-archive, lane-house-dressing-ecv, lane-magicians-audit, lane-morning-live-vista, _wt_final1015) with HEAD SHAs recorded; eight dirty worktrees left untouched.
 - Removal of the five candidates requires one explicit owner yes; refs/agents (40 pins) keep their commits reachable.
 - Pending Perforce CL inventory: 307 = 745 files (458 HoudiniEngine temp cooks, 217 EnvSandbox, 35 Melodia, 25 Staging, 6 Textures, 2 HDA, 1 Tools, 1 _PROJECT), 303 = 543 (interiors lane), 298 = 1, 235 = 1. Per-file triage only; never bulk-revert another lane's opens.
-- Offsite push: first attempt uploaded LFS objects (90/90, 19 MB) but the commit pack aborted (curl 56); retry with a larger post buffer over HTTP/1.1 was started 2026-10-28 23:2x.
+- Offsite push: succeeded - origin `feature/vfx-universal-material-convergence` = `8d05d92e4` (16 commits, LFS 90 objects / 19 MB) as of 2026-10-28 23:4x.
+## 2026-10-28 source-control incident addendum
+
+Context: one shared checkout, 16 worktrees, multiple agents merging/committing concurrently. The working tree was clobbered twice (uncommitted CURRENT_STATE edits lost, recovered), a foreign staged case-rename (`docs/` -> `Docs/`) was swept into a materials commit (amended back out), and the default Perforce changelist held ~745 foreign opens one `p4 submit` away from landing under a materials message. The same staged-index hazard recurred at 23:3x: a plain `git commit` swept 103 foreign staged files into a docs commit; it was reverted with `git reset --soft HEAD~1` and re-committed with an explicit pathspec, leaving the foreign staged entries untouched (0 deletions).
+
+Rules adopted (binding):
+1. **Commit exact paths with a pathspec.** Never `git add .` and never plain `git commit` in the shared checkout - the corridor can stage a hundred foreign files between your check and your commit. Use `git commit -m "..." -- <exact paths>`; verify `git show --name-status HEAD` afterward.
+2. **Never commit with `MERGE_HEAD` or unmerged rows.** Wait for the corridor to finish.
+3. **Case discipline:** never case-move `docs/` vs `Docs/`; the tracked path here is lowercase `docs/`, and a case-only rename in the index is a real change.
+4. **Perforce: never submit the default changelist.** Recipe: `p4 add/edit` exact files -> create an empty CL (`p4 change -i` with `Change: new`) -> `p4 reopen -c <cl>` -> verify `p4 opened -c <cl>` lists exactly the lane's files -> `p4 submit -c <cl>`.
+5. **p4d persistence:** `%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\MelodiaP4d.cmd` starts p4d at logon (no admin); `schtasks` needs elevation.
+6. **Checkpoints:** `p4 admin checkpoint -Z` writes `D:\perforce\root\checkpoint.<n>.gz` (+md5); `D:\perforce\checkpoints` is unused. `checkpoint.48` exists (2026-10-28 23:19:55, 15.1 MB). No automated schedule yet - owner action.
+7. **Offsite:** GitHub is the only offsite copy; push cadence must be verified, not assumed.
+8. **Pending CLs are state, not trash:** 307 (745 files, PARK), 303 (543), 298 (1), 235 (1). Per-file triage only; never bulk-revert another lane's opens.
+9. **Receipts:** every source-control action writes a receipt under `Saved/Audit/SourceControl_YYYYMMDD/` (JSON only - the pre-commit hook rejects other extensions there).
