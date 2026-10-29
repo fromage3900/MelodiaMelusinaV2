@@ -78,12 +78,16 @@ def build_entry(key, tag):
             elif cls == "VectorParameter" and p.get("rgb"):
                 rgb = list(p["rgb"])[:4] + [1.0] * (4 - len(p.get("rgb", [])))
                 r, g, b = rgb[0], rgb[1], rgb[2]
-                overrides[name] = {"v": [
-                    round(min(1.0, max(0.0, r + 0.08)), 4),
-                    round(min(1.0, max(0.0, g - 0.05)), 4),
-                    round(min(1.0, max(0.0, b + 0.04)), 4),
-                    1.0,
-                ]}
+                if "--neutral-vectors" in sys.argv:
+                    # Keep the authored default colour; proving coverage comes from scalars.
+                    overrides[name] = {"v": [round(r, 4), round(g, 4), round(b, 4), 1.0]}
+                else:
+                    overrides[name] = {"v": [
+                        round(min(1.0, max(0.0, r + 0.08)), 4),
+                        round(min(1.0, max(0.0, g - 0.05)), 4),
+                        round(min(1.0, max(0.0, b + 0.04)), 4),
+                        1.0,
+                    ]}
             elif "Texture" in cls and p.get("tex") and "/Engine/" in str(p.get("tex")):
                 overrides[name] = {"t": PROJECT_TEX}
         if overrides:

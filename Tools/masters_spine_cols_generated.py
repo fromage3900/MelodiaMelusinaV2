@@ -8,7 +8,7 @@ GENERATED_COLS = {
      "BaseTint": {
       "v": [
        1.0,
-       0.95,
+       1.0,
        1.0,
        1.0
       ]
@@ -22,24 +22,24 @@ GENERATED_COLS = {
      "RampHigh": {
       "v": [
        1.0,
+       0.95,
        0.9,
-       0.94,
        1.0
       ]
      },
      "RampLow": {
       "v": [
-       0.28,
-       0.1,
-       0.34,
+       0.2,
+       0.15,
+       0.3,
        1.0
       ]
      },
      "RampMid": {
       "v": [
-       0.93,
-       0.55,
-       0.79,
+       0.85,
+       0.6,
+       0.75,
        1.0
       ]
      },
@@ -63,9 +63,9 @@ GENERATED_COLS = {
     "ov": {
      "AtmosphericColor": {
       "v": [
-       0.7,
-       0.67,
-       0.86,
+       0.62,
+       0.72,
+       0.82,
        1.0
       ]
      },
@@ -108,7 +108,7 @@ GENERATED_COLS = {
      "TriplanarPro_AxisWeights": {
       "v": [
        1.0,
-       0.95,
+       1.0,
        1.0,
        1.0
       ]
@@ -127,17 +127,17 @@ GENERATED_COLS = {
      },
      "TriplanarPro_ProjectionOffset": {
       "v": [
-       0.08,
        0.0,
-       0.04,
+       0.0,
+       0.0,
        1.0
       ]
      },
      "TriplanarPro_ProjectionRotation": {
       "v": [
-       0.08,
        0.0,
-       0.04,
+       0.0,
+       0.0,
        1.0
       ]
      },
@@ -185,9 +185,9 @@ GENERATED_COLS = {
      },
      "NikkiStickerShadeColor": {
       "v": [
-       0.8,
-       0.5,
        0.72,
+       0.55,
+       0.68,
        1.0
       ]
      },
@@ -209,8 +209,8 @@ GENERATED_COLS = {
      "NikkiIrisTint": {
       "v": [
        1.0,
-       0.75,
-       0.99,
+       0.8,
+       0.95,
        1.0
       ]
      },
@@ -238,24 +238,24 @@ GENERATED_COLS = {
      "NikkiPastelRampHigh": {
       "v": [
        1.0,
-       0.93,
-       1.0,
+       0.98,
+       0.96,
        1.0
       ]
      },
      "NikkiPastelRampLow": {
       "v": [
-       1.0,
-       0.8,
-       0.96,
+       0.95,
+       0.85,
+       0.92,
        1.0
       ]
      },
      "NikkiPastelRampMid": {
       "v": [
-       1.0,
-       0.88,
-       0.94,
+       0.99,
+       0.93,
+       0.9,
        1.0
       ]
      },
@@ -273,9 +273,9 @@ GENERATED_COLS = {
      },
      "ShadowDreamTint": {
       "v": [
-       0.56,
-       0.37,
-       0.66,
+       0.48,
+       0.42,
+       0.62,
        1.0
       ]
      },
@@ -293,9 +293,9 @@ GENERATED_COLS = {
      },
      "NikkiSquish_Direction": {
       "v": [
-       1.0,
-       1.0,
-       0.74,
+       1.3,
+       2.1,
+       0.7,
        1.0
       ]
      },
@@ -313,9 +313,9 @@ GENERATED_COLS = {
     "ov": {
      "NikkiSDFRibbon_Color": {
       "v": [
-       1.0,
-       0.75,
-       0.94,
+       0.95,
+       0.8,
+       0.9,
        1.0
       ]
      },
@@ -351,9 +351,9 @@ GENERATED_COLS = {
      },
      "NikkiPearl_Tint": {
       "v": [
-       1.0,
-       0.85,
-       0.99,
+       0.98,
+       0.9,
+       0.95,
        1.0
       ]
      }
@@ -368,9 +368,9 @@ GENERATED_COLS = {
      },
      "NikkiWatercolor_BleedColor": {
       "v": [
-       0.83,
-       0.5,
-       0.89,
+       0.75,
+       0.55,
+       0.85,
        1.0
       ]
      },
@@ -391,9 +391,9 @@ GENERATED_COLS = {
      },
      "NikkiStickerEdge_Color": {
       "v": [
-       1.0,
-       0.83,
        0.98,
+       0.88,
+       0.94,
        1.0
       ]
      },
@@ -418,8 +418,8 @@ GENERATED_COLS = {
      "NikkiGlitterHalo_Color": {
       "v": [
        1.0,
-       0.9,
-       0.89,
+       0.95,
+       0.85,
        1.0
       ]
      },
@@ -461,9 +461,9 @@ GENERATED_COLS = {
      },
      "NikkiPetal_Tint": {
       "v": [
-       1.0,
-       0.8,
-       0.94,
+       0.98,
+       0.85,
+       0.9,
        1.0
       ]
      }
@@ -479,8 +479,8 @@ GENERATED_COLS = {
      "GlitterPile_Color": {
       "v": [
        1.0,
-       0.91,
-       0.94,
+       0.96,
+       0.9,
        1.0
       ]
      },
@@ -540,23 +540,23 @@ GENERATED_COLS = {
      },
      "MeluGouache_HighlightTint": {
       "v": [
-       0.96,
-       0.79,
-       0.8,
+       0.88,
+       0.84,
+       0.76,
        1.0
       ]
      },
      "MeluGouache_InkColor": {
       "v": [
-       0.13,
-       0.02,
-       0.16,
+       0.05,
+       0.07,
+       0.12,
        1.0
       ]
      },
      "MeluGouache_KeyLightDir": {
       "v": [
-       0.08,
+       0.0,
        0.0,
        1.0,
        1.0
@@ -583,16 +583,16 @@ GENERATED_COLS = {
      "NikkiSDFIris_CatchlightColor": {
       "v": [
        1.0,
-       0.95,
+       1.0,
        1.0,
        1.0
       ]
      },
      "NikkiSDFIris_Center": {
       "v": [
-       0.7,
+       0.62,
        0.0,
-       1.0,
+       15.56,
        1.0
       ]
      },
@@ -604,8 +604,8 @@ GENERATED_COLS = {
      },
      "NikkiSDFIris_InnerColor": {
       "v": [
-       0.63,
-       0.8,
+       0.55,
+       0.85,
        1.0,
        1.0
       ]
@@ -615,17 +615,17 @@ GENERATED_COLS = {
      },
      "NikkiSDFIris_OuterColor": {
       "v": [
-       0.38,
-       0.23,
-       0.84,
+       0.3,
+       0.28,
+       0.8,
        1.0
       ]
      },
      "NikkiSDFIris_PupilColor": {
       "v": [
-       0.15,
-       0.0,
-       0.2,
+       0.07,
+       0.04,
+       0.16,
        1.0
       ]
      },
@@ -656,7 +656,7 @@ GENERATED_COLS = {
      "EmissiveMapTint": {
       "v": [
        1.0,
-       0.95,
+       1.0,
        1.0,
        1.0
       ]
@@ -688,8 +688,8 @@ GENERATED_COLS = {
      "CymaticsTint": {
       "v": [
        1.0,
-       0.85,
-       0.94,
+       0.9,
+       0.9,
        1.0
       ]
      }

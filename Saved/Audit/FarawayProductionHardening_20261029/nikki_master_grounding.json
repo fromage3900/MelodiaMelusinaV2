@@ -1,0 +1,123 @@
+{
+ "schema": "melodia.nikki_master_grounding.v1",
+ "when": "2026-10-29",
+ "master": "/Game/EnvSandbox/Materials/Masters/M_Master_Nikki",
+ "textures": {
+  "NormalMap": [
+   {
+    "node": "MaterialExpressionTextureSampleParameter2D_15",
+    "target": "T_Neutral_Normal",
+    "readback_ok": true
+   },
+   {
+    "node": "MaterialExpressionTextureSampleParameter2D_2",
+    "target": "T_Neutral_Normal",
+    "readback_ok": true
+   },
+   {
+    "node": "MaterialExpressionTextureSampleParameter2D_6",
+    "target": "T_Neutral_Normal",
+    "readback_ok": true
+   },
+   {
+    "node": "MaterialExpressionTextureObjectParameter_1",
+    "target": "T_Neutral_Normal",
+    "readback_ok": true
+   }
+  ],
+  "Albedo": [
+   {
+    "node": "MaterialExpressionTextureSampleParameter2D_5",
+    "target": "T_Cymatic_FarawayAlabasterDrape_BaseColor",
+    "readback_ok": true
+   },
+   {
+    "node": "MaterialExpressionTextureObjectParameter_0",
+    "target": "T_Cymatic_FarawayAlabasterDrape_BaseColor",
+    "readback_ok": true
+   }
+  ],
+  "NikkiSDFIris_Mask": [
+   {
+    "node": "MaterialExpressionTextureSampleParameter2D_1",
+    "target": "T_RadialMask_01",
+    "readback_ok": true
+   }
+  ]
+ },
+ "vectors": {
+  "BaseTint": [
+   {
+    "node": "MaterialExpressionVectorParameter_0",
+    "set": [
+     0.98,
+     0.93,
+     0.96,
+     1.0
+    ],
+    "readback": [
+     0.98,
+     0.93,
+     0.96,
+     1.0
+    ],
+    "ok": true
+   },
+   {
+    "node": "MaterialExpressionVectorParameter_5",
+    "set": [
+     0.98,
+     0.93,
+     0.96,
+     1.0
+    ],
+    "readback": [
+     0.98,
+     0.93,
+     0.96,
+     1.0
+    ],
+    "ok": true
+   }
+  ],
+  "NikkiSquish_Direction": [
+   {
+    "node": "MaterialExpressionVectorParameter_32",
+    "set": [
+     0.6,
+     0.8,
+     0.0,
+     0.0
+    ],
+    "readback": [
+     0.6,
+     0.8,
+     0.0,
+     0.0
+    ],
+    "ok": true
+   }
+  ],
+  "NikkiSDFIris_Center": [
+   {
+    "node": "MaterialExpressionVectorParameter_11",
+    "set": [
+     0.5,
+     0.5,
+     0.0,
+     1.0
+    ],
+    "readback": [
+     0.5,
+     0.5,
+     0.0,
+     1.0
+    ],
+    "ok": true
+   }
+  ]
+ },
+ "skipped": [],
+ "recompile": "[]",
+ "saved": true
+}

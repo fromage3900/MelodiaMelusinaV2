@@ -7,20 +7,20 @@
  "presets": [
   {
    "name": "MI_Prove_Nikki_01_BaseSurface",
-   "status": "authored",
+   "status": "repaired_authored",
    "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Nikki_01_BaseSurface",
    "overrides": {
     "BaseTint": {
      "kind": "vector",
      "value": [
       1.0,
-      0.95,
+      1.0,
       1.0,
       1.0
      ],
      "readback": [
       1.0,
-      0.95,
+      1.0,
       1.0,
       1.0
      ],
@@ -42,14 +42,14 @@
      "kind": "vector",
      "value": [
       1.0,
+      0.95,
       0.9,
-      0.94,
       1.0
      ],
      "readback": [
       1.0,
+      0.95,
       0.9,
-      0.94,
       1.0
      ],
      "ok": true
@@ -57,15 +57,15 @@
     "RampLow": {
      "kind": "vector",
      "value": [
-      0.28,
-      0.1,
-      0.34,
+      0.2,
+      0.15,
+      0.3,
       1.0
      ],
      "readback": [
-      0.28,
-      0.1,
-      0.34,
+      0.2,
+      0.15,
+      0.3,
       1.0
      ],
      "ok": true
@@ -73,15 +73,15 @@
     "RampMid": {
      "kind": "vector",
      "value": [
-      0.93,
-      0.55,
-      0.79,
+      0.85,
+      0.6,
+      0.75,
       1.0
      ],
      "readback": [
-      0.93,
-      0.55,
-      0.79,
+      0.85,
+      0.6,
+      0.75,
       1.0
      ],
      "ok": true
@@ -115,21 +115,21 @@
   },
   {
    "name": "MI_Prove_Nikki_03_Atmosphere",
-   "status": "authored",
+   "status": "repaired_authored",
    "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Nikki_03_Atmosphere",
    "overrides": {
     "AtmosphericColor": {
      "kind": "vector",
      "value": [
-      0.7,
-      0.67,
-      0.86,
+      0.62,
+      0.72,
+      0.82,
       1.0
      ],
      "readback": [
-      0.7,
-      0.67,
-      0.86,
+      0.62,
+      0.72,
+      0.82,
       1.0
      ],
      "ok": true
@@ -157,7 +157,7 @@
   },
   {
    "name": "MI_Prove_Nikki_04_Emissive",
-   "status": "authored",
+   "status": "repaired_authored",
    "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Nikki_04_Emissive",
    "overrides": {
     "EmissiveFloor": {
@@ -177,13 +177,13 @@
   },
   {
    "name": "MI_Prove_Nikki_05_Triplanar",
-   "status": "authored",
+   "status": "repaired_authored",
    "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Nikki_05_Triplanar",
    "overrides": {
     "NormalMap": {
      "kind": "texture",
      "value": "/Game/EnvSandbox/Materials/Textures/T_Noise_White",
-     "readback": "<Object '/Game/EnvSandbox/Materials/Textures/T_Noise_White.T_Noise_White' (0x000002A8E2301200) Class 'Texture2D'>",
+     "readback": "<Object '/Game/EnvSandbox/Materials/Textures/T_Noise_White.T_Noise_White' (0x0000022899200000) Class 'Texture2D'>",
      "ok": true
     },
     "TriplanarBlendSharpness": {
@@ -202,13 +202,13 @@
      "kind": "vector",
      "value": [
       1.0,
-      0.95,
+      1.0,
       1.0,
       1.0
      ],
      "readback": [
       1.0,
-      0.95,
+      1.0,
       1.0,
       1.0
      ],
@@ -241,15 +241,15 @@
     "TriplanarPro_ProjectionOffset": {
      "kind": "vector",
      "value": [
-      0.08,
       0.0,
-      0.04,
+      0.0,
+      0.0,
       1.0
      ],
      "readback": [
-      0.08,
       0.0,
-      0.04,
+      0.0,
+      0.0,
       1.0
      ],
      "ok": true
@@ -257,15 +257,15 @@
     "TriplanarPro_ProjectionRotation": {
      "kind": "vector",
      "value": [
-      0.08,
       0.0,
-      0.04,
+      0.0,
+      0.0,
       1.0
      ],
      "readback": [
-      0.08,
       0.0,
-      0.04,
+      0.0,
+      0.0,
       1.0
      ],
      "ok": true
@@ -293,7 +293,7 @@
   },
   {
    "name": "MI_Prove_Nikki_06_Parallax",
-   "status": "authored",
+   "status": "repaired_authored",
    "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Nikki_06_Parallax",
    "overrides": {
     "ParallaxStrength": {
@@ -313,7 +313,7 @@
   },
   {
    "name": "MI_Prove_Nikki_07_NikkiIridescenceSheen",
-   "status": "authored",
+   "status": "repaired_authored",
    "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Nikki_07_NikkiIridescenceSheen",
    "overrides": {
     "IridescenceRoughnessAtten": {
@@ -327,7 +327,7 @@
   },
   {
    "name": "MI_Prove_Nikki_08_NikkiStickerShade",
-   "status": "authored",
+   "status": "repaired_authored",
    "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Nikki_08_NikkiStickerShade",
    "overrides": {
     "NikkiStickerBandCount": {
@@ -345,15 +345,15 @@
     "NikkiStickerShadeColor": {
      "kind": "vector",
      "value": [
-      0.8,
-      0.5,
       0.72,
+      0.55,
+      0.68,
       1.0
      ],
      "readback": [
-      0.8,
-      0.5,
       0.72,
+      0.55,
+      0.68,
       1.0
      ],
      "ok": true
@@ -369,7 +369,7 @@
   },
   {
    "name": "MI_Prove_Nikki_09_NikkiTwinkleIris",
-   "status": "authored",
+   "status": "repaired_authored",
    "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Nikki_09_NikkiTwinkleIris",
    "overrides": {
     "NikkiFabricSheen": {
@@ -388,14 +388,14 @@
      "kind": "vector",
      "value": [
       1.0,
-      0.75,
-      0.99,
+      0.8,
+      0.95,
       1.0
      ],
      "readback": [
       1.0,
-      0.75,
-      0.99,
+      0.8,
+      0.95,
       1.0
      ],
      "ok": true
@@ -417,7 +417,7 @@
   },
   {
    "name": "MI_Prove_Nikki_10_NikkiPastelGrade",
-   "status": "authored",
+   "status": "repaired_authored",
    "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Nikki_10_NikkiPastelGrade",
    "overrides": {
     "NikkiPastelBloom": {
@@ -442,14 +442,14 @@
      "kind": "vector",
      "value": [
       1.0,
-      0.93,
-      1.0,
+      0.98,
+      0.96,
       1.0
      ],
      "readback": [
       1.0,
-      0.93,
-      1.0,
+      0.98,
+      0.96,
       1.0
      ],
      "ok": true
@@ -457,15 +457,15 @@
     "NikkiPastelRampLow": {
      "kind": "vector",
      "value": [
-      1.0,
-      0.8,
-      0.96,
+      0.95,
+      0.85,
+      0.92,
       1.0
      ],
      "readback": [
-      1.0,
-      0.8,
-      0.96,
+      0.95,
+      0.85,
+      0.92,
       1.0
      ],
      "ok": true
@@ -473,15 +473,15 @@
     "NikkiPastelRampMid": {
      "kind": "vector",
      "value": [
-      1.0,
-      0.88,
-      0.94,
+      0.99,
+      0.93,
+      0.9,
       1.0
      ],
      "readback": [
-      1.0,
-      0.88,
-      0.94,
+      0.99,
+      0.93,
+      0.9,
       1.0
      ],
      "ok": true
@@ -497,7 +497,7 @@
   },
   {
    "name": "MI_Prove_Nikki_11_ShadowDream",
-   "status": "authored",
+   "status": "repaired_authored",
    "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Nikki_11_ShadowDream",
    "overrides": {
     "ShadowDreamStrength": {
@@ -509,15 +509,15 @@
     "ShadowDreamTint": {
      "kind": "vector",
      "value": [
-      0.56,
-      0.37,
-      0.66,
+      0.48,
+      0.42,
+      0.62,
       1.0
      ],
      "readback": [
-      0.56,
-      0.37,
-      0.66,
+      0.48,
+      0.42,
+      0.62,
       1.0
      ],
      "ok": true
@@ -533,7 +533,7 @@
   },
   {
    "name": "MI_Prove_Nikki_12_KawaiiSquish",
-   "status": "authored",
+   "status": "repaired_authored",
    "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Nikki_12_KawaiiSquish",
    "overrides": {
     "NikkiSquish_Amount": {
@@ -545,15 +545,15 @@
     "NikkiSquish_Direction": {
      "kind": "vector",
      "value": [
-      1.0,
-      1.0,
-      0.74,
+      1.3,
+      2.1,
+      0.7,
       1.0
      ],
      "readback": [
-      1.0,
-      1.0,
-      0.74,
+      1.3,
+      2.1,
+      0.7,
       1.0
      ],
      "ok": true
@@ -575,21 +575,21 @@
   },
   {
    "name": "MI_Prove_Nikki_13_NikkiSDFRibbon",
-   "status": "authored",
+   "status": "repaired_authored",
    "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Nikki_13_NikkiSDFRibbon",
    "overrides": {
     "NikkiSDFRibbon_Color": {
      "kind": "vector",
      "value": [
-      1.0,
-      0.75,
-      0.94,
+      0.95,
+      0.8,
+      0.9,
       1.0
      ],
      "readback": [
-      1.0,
-      0.75,
-      0.94,
+      0.95,
+      0.8,
+      0.9,
       1.0
      ],
      "ok": true
@@ -629,7 +629,7 @@
   },
   {
    "name": "MI_Prove_Nikki_14_NikkiPearlSheen",
-   "status": "authored",
+   "status": "repaired_authored",
    "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Nikki_14_NikkiPearlSheen",
    "overrides": {
     "NikkiPearl_Frequency": {
@@ -653,15 +653,15 @@
     "NikkiPearl_Tint": {
      "kind": "vector",
      "value": [
-      1.0,
-      0.85,
-      0.99,
+      0.98,
+      0.9,
+      0.95,
       1.0
      ],
      "readback": [
-      1.0,
-      0.85,
-      0.99,
+      0.98,
+      0.9,
+      0.95,
       1.0
      ],
      "ok": true
@@ -671,7 +671,7 @@
   },
   {
    "name": "MI_Prove_Nikki_15_NikkiDreamWatercolor",
-   "status": "authored",
+   "status": "repaired_authored",
    "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Nikki_15_NikkiDreamWatercolor",
    "overrides": {
     "NikkiWatercolor_Bleed": {
@@ -683,15 +683,15 @@
     "NikkiWatercolor_BleedColor": {
      "kind": "vector",
      "value": [
-      0.83,
-      0.5,
-      0.89,
+      0.75,
+      0.55,
+      0.85,
       1.0
      ],
      "readback": [
-      0.83,
-      0.5,
-      0.89,
+      0.75,
+      0.55,
+      0.85,
       1.0
      ],
      "ok": true
@@ -713,7 +713,7 @@
   },
   {
    "name": "MI_Prove_Nikki_16_NikkiStickerEdge",
-   "status": "authored",
+   "status": "repaired_authored",
    "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Nikki_16_NikkiStickerEdge",
    "overrides": {
     "NikkiStickerEdge_Bands": {
@@ -725,15 +725,15 @@
     "NikkiStickerEdge_Color": {
      "kind": "vector",
      "value": [
-      1.0,
-      0.83,
       0.98,
+      0.88,
+      0.94,
       1.0
      ],
      "readback": [
-      1.0,
-      0.83,
       0.98,
+      0.88,
+      0.94,
       1.0
      ],
      "ok": true
@@ -761,7 +761,7 @@
   },
   {
    "name": "MI_Prove_Nikki_17_NikkiGlitterHalo",
-   "status": "authored",
+   "status": "repaired_authored",
    "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Nikki_17_NikkiGlitterHalo",
    "overrides": {
     "NikkiGlitterHalo_Amount": {
@@ -774,14 +774,14 @@
      "kind": "vector",
      "value": [
       1.0,
-      0.9,
-      0.89,
+      0.95,
+      0.85,
       1.0
      ],
      "readback": [
       1.0,
-      0.9,
-      0.89,
+      0.95,
+      0.85,
       1.0
      ],
      "ok": true
@@ -821,7 +821,7 @@
   },
   {
    "name": "MI_Prove_Nikki_18_NikkiPetalShadow",
-   "status": "authored",
+   "status": "repaired_authored",
    "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Nikki_18_NikkiPetalShadow",
    "overrides": {
     "NikkiPetal_BloomSpeed": {
@@ -857,15 +857,15 @@
     "NikkiPetal_Tint": {
      "kind": "vector",
      "value": [
-      1.0,
-      0.8,
-      0.94,
+      0.98,
+      0.85,
+      0.9,
       1.0
      ],
      "readback": [
-      1.0,
-      0.8,
-      0.94,
+      0.98,
+      0.85,
+      0.9,
       1.0
      ],
      "ok": true
@@ -875,7 +875,7 @@
   },
   {
    "name": "MI_Prove_Nikki_19_GlitterPile",
-   "status": "authored",
+   "status": "repaired_authored",
    "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Nikki_19_GlitterPile",
    "overrides": {
     "GlitterPile_Brightness": {
@@ -888,14 +888,14 @@
      "kind": "vector",
      "value": [
       1.0,
-      0.91,
-      0.94,
+      0.96,
+      0.9,
       1.0
      ],
      "readback": [
       1.0,
-      0.91,
-      0.94,
+      0.96,
+      0.9,
       1.0
      ],
      "ok": true
@@ -947,7 +947,7 @@
   },
   {
    "name": "MI_Prove_Nikki_20_GouacheWash",
-   "status": "authored",
+   "status": "repaired_authored",
    "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Nikki_20_GouacheWash",
    "overrides": {
     "MeluGouache_BandLight": {
@@ -1007,15 +1007,15 @@
     "MeluGouache_HighlightTint": {
      "kind": "vector",
      "value": [
-      0.96,
-      0.79,
-      0.8,
+      0.88,
+      0.84,
+      0.76,
       1.0
      ],
      "readback": [
-      0.96,
-      0.79,
-      0.8,
+      0.88,
+      0.84,
+      0.76,
       1.0
      ],
      "ok": true
@@ -1023,15 +1023,15 @@
     "MeluGouache_InkColor": {
      "kind": "vector",
      "value": [
-      0.13,
-      0.02,
-      0.16,
+      0.05,
+      0.07,
+      0.12,
       1.0
      ],
      "readback": [
-      0.13,
-      0.02,
-      0.16,
+      0.05,
+      0.07,
+      0.12,
       1.0
      ],
      "ok": true
@@ -1039,13 +1039,13 @@
     "MeluGouache_KeyLightDir": {
      "kind": "vector",
      "value": [
-      0.08,
+      0.0,
       0.0,
       1.0,
       1.0
      ],
      "readback": [
-      0.08,
+      0.0,
       0.0,
       1.0,
       1.0
@@ -1075,7 +1075,7 @@
   },
   {
    "name": "MI_Prove_Nikki_21_NikkiSDFIris",
-   "status": "authored",
+   "status": "repaired_authored",
    "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Nikki_21_NikkiSDFIris",
    "overrides": {
     "NikkiSDFIris_Blend": {
@@ -1088,13 +1088,13 @@
      "kind": "vector",
      "value": [
       1.0,
-      0.95,
+      1.0,
       1.0,
       1.0
      ],
      "readback": [
       1.0,
-      0.95,
+      1.0,
       1.0,
       1.0
      ],
@@ -1103,15 +1103,15 @@
     "NikkiSDFIris_Center": {
      "kind": "vector",
      "value": [
-      0.7,
+      0.62,
       0.0,
-      1.0,
+      15.56,
       1.0
      ],
      "readback": [
-      0.7,
+      0.62,
       0.0,
-      1.0,
+      15.56,
       1.0
      ],
      "ok": true
@@ -1131,14 +1131,14 @@
     "NikkiSDFIris_InnerColor": {
      "kind": "vector",
      "value": [
-      0.63,
-      0.8,
+      0.55,
+      0.85,
       1.0,
       1.0
      ],
      "readback": [
-      0.63,
-      0.8,
+      0.55,
+      0.85,
       1.0,
       1.0
      ],
@@ -1147,21 +1147,21 @@
     "NikkiSDFIris_Mask": {
      "kind": "texture",
      "value": "/Game/EnvSandbox/Materials/Textures/T_Noise_White",
-     "readback": "<Object '/Game/EnvSandbox/Materials/Textures/T_Noise_White.T_Noise_White' (0x000002A8E2301200) Class 'Texture2D'>",
+     "readback": "<Object '/Game/EnvSandbox/Materials/Textures/T_Noise_White.T_Noise_White' (0x0000022899200000) Class 'Texture2D'>",
      "ok": true
     },
     "NikkiSDFIris_OuterColor": {
      "kind": "vector",
      "value": [
-      0.38,
-      0.23,
-      0.84,
+      0.3,
+      0.28,
+      0.8,
       1.0
      ],
      "readback": [
-      0.38,
-      0.23,
-      0.84,
+      0.3,
+      0.28,
+      0.8,
       1.0
      ],
      "ok": true
@@ -1169,15 +1169,15 @@
     "NikkiSDFIris_PupilColor": {
      "kind": "vector",
      "value": [
-      0.15,
-      0.0,
-      0.2,
+      0.07,
+      0.04,
+      0.16,
       1.0
      ],
      "readback": [
-      0.15,
-      0.0,
-      0.2,
+      0.07,
+      0.04,
+      0.16,
       1.0
      ],
      "ok": true
@@ -1211,13 +1211,13 @@
   },
   {
    "name": "MI_Prove_Nikki_22_CharacterExtensions",
-   "status": "authored",
+   "status": "repaired_authored",
    "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Nikki_22_CharacterExtensions",
    "overrides": {
     "EmissiveMap": {
      "kind": "texture",
      "value": "/Game/EnvSandbox/Materials/Textures/T_Noise_White",
-     "readback": "<Object '/Game/EnvSandbox/Materials/Textures/T_Noise_White.T_Noise_White' (0x000002A8E2301200) Class 'Texture2D'>",
+     "readback": "<Object '/Game/EnvSandbox/Materials/Textures/T_Noise_White.T_Noise_White' (0x0000022899200000) Class 'Texture2D'>",
      "ok": true
     },
     "EmissiveMapIntensity": {
@@ -1230,13 +1230,13 @@
      "kind": "vector",
      "value": [
       1.0,
-      0.95,
+      1.0,
       1.0,
       1.0
      ],
      "readback": [
       1.0,
-      0.95,
+      1.0,
       1.0,
       1.0
      ],
@@ -1245,7 +1245,7 @@
     "OpacityMap": {
      "kind": "texture",
      "value": "/Game/EnvSandbox/Materials/Textures/T_Noise_White",
-     "readback": "<Object '/Game/EnvSandbox/Materials/Textures/T_Noise_White.T_Noise_White' (0x000002A8E2301200) Class 'Texture2D'>",
+     "readback": "<Object '/Game/EnvSandbox/Materials/Textures/T_Noise_White.T_Noise_White' (0x0000022899200000) Class 'Texture2D'>",
      "ok": true
     },
     "OpacityStrength": {
@@ -1259,7 +1259,7 @@
   },
   {
    "name": "MI_Prove_Nikki_23_ToonRamp",
-   "status": "authored",
+   "status": "repaired_authored",
    "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Nikki_23_ToonRamp",
    "overrides": {
     "ToonRampStrength": {
@@ -1273,7 +1273,7 @@
   },
   {
    "name": "MI_Prove_Nikki_24_AudioCymatics",
-   "status": "authored",
+   "status": "repaired_authored",
    "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Nikki_24_AudioCymatics",
    "overrides": {
     "CymaticsLandscapeAmount": {
@@ -1286,14 +1286,14 @@
      "kind": "vector",
      "value": [
       1.0,
-      0.85,
-      0.94,
+      0.9,
+      0.9,
       1.0
      ],
      "readback": [
       1.0,
-      0.85,
-      0.94,
+      0.9,
+      0.9,
       1.0
      ],
      "ok": true
