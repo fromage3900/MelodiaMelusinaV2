@@ -31,12 +31,29 @@ fi
 
 mkdir -p "$DEST"
 
+# MelodiaMelusinaV2 often stores PWA icons as Git LFS pointers (≈129 B). Never copy those
+# over real PNGs already on my-site. Also exclude them from rsync when the source is a stub.
+is_lfs_pointer() {
+  local f="$1"
+  [[ -f "$f" ]] || return 1
+  head -c 20 "$f" 2>/dev/null | grep -q 'git-lfs'
+}
+
+ICON_EXCLUDES=()
+for icon in icon-192.png icon-512.png; do
+  if is_lfs_pointer "$ROOT/$icon"; then
+    ICON_EXCLUDES+=(--exclude "$icon")
+    echo "Skip source $icon (Git LFS pointer) — keeping destination PNG if present."
+  fi
+done
+
 EXCLUDES=(
   --exclude 'node_modules/'
   --exclude 'package.json'
   --exclude 'package-lock.json'
   --exclude '.DS_Store'
   --exclude 'tools/sync_to_mysite.sh'
+  "${ICON_EXCLUDES[@]}"
 )
 
 if command -v rsync >/dev/null 2>&1; then
@@ -55,6 +72,18 @@ src, dst, delete = sys.argv[1], sys.argv[2], sys.argv[3] == '1'
 exclude_dirs = {'node_modules'}
 exclude_files = {'package.json', 'package-lock.json', '.DS_Store'}
 exclude_paths = {'tools/sync_to_mysite.sh'}
+
+def is_lfs_pointer(path):
+  try:
+    with open(path, 'rb') as fh:
+      return fh.read(20).startswith(b'version https://git-lfs')
+  except OSError:
+    return False
+
+# Never copy Melodia LFS pointer icons over real my-site PNGs.
+for icon in ('icon-192.png', 'icon-512.png'):
+  if is_lfs_pointer(os.path.join(src, icon)):
+    exclude_files.add(icon)
 if delete:
   for child in list(os.listdir(dst)):
     if child == '.git':
@@ -65,6 +94,7 @@ if delete:
     else:
       os.unlink(p)
 copied = 0
+skipped_lfs = 0
 for root, dirs, files in os.walk(src):
   rel = os.path.relpath(root, src)
   dirs[:] = [d for d in dirs if d not in exclude_dirs]
@@ -76,15 +106,22 @@ for root, dirs, files in os.walk(src):
     rel_f = f if rel == '.' else os.path.join(rel, f).replace('\\', '/')
     if rel_f in exclude_paths:
       continue
-    shutil.copy2(os.path.join(root, f), os.path.join(out, f))
+    src_f = os.path.join(root, f)
+    if is_lfs_pointer(src_f):
+      skipped_lfs += 1
+      continue
+    shutil.copy2(src_f, os.path.join(out, f))
     copied += 1
-print(('Full mirror' if delete else 'Overlay') + f' via python ({copied} files) {src} -> {dst}')
+msg = ('Full mirror' if delete else 'Overlay') + f' via python ({copied} files) {src} -> {dst}'
+if skipped_lfs:
+  msg += f' (skipped {skipped_lfs} LFS pointer file(s))'
+print(msg)
 PY
 fi
 
-# Do not overwrite my-site PNG icons with MelodiaMelusinaV2 LFS pointer stubs.
+# Final guard: if dest icons somehow became LFS stubs, scream before the owner commits.
 for icon in icon-192.png icon-512.png; do
-  if head -c 20 "$DEST/$icon" 2>/dev/null | grep -q 'git-lfs'; then
+  if is_lfs_pointer "$DEST/$icon"; then
     echo "WARN: $DEST/$icon looks like a Git LFS pointer — restore the real PNG from my-site HEAD before commit." >&2
   fi
 done
