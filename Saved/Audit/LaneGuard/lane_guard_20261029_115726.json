@@ -1,0 +1,45 @@
+﻿{
+    "schema":  "melodia.lane_guard.v1",
+    "when":  "2026-10-29T11:56:36.8611064-04:00",
+    "repo":  "C:\\EnvironmentPortfolio\\BS_GodFile",
+    "manifest":  {
+                     "new_csv":  "D:\\MelodiaArchive\\manifests\\content_manifest_20261029_115637.csv",
+                     "previous_csv":  "D:\\MelodiaArchive\\manifests\\content_manifest_20261028_235043.csv",
+                     "files":  41538,
+                     "missing":  [
+
+                                 ],
+                     "added_count":  33,
+                     "resized":  [
+                                     "Content\\HDA\\HDA_Faraway_SilkRibbon_1.0.hda",
+                                     "Content\\HDA\\HDA_Faraway_ListeningOrchardTree_1.0.hda",
+                                     "Content\\HDA\\HDA_Faraway_HeartGate_1.0.hda",
+                                     "Content\\HDA\\HDA_Faraway_TerracedIsland_1.0.hda"
+                                 ]
+                 },
+    "git":  {
+                "branch":  "feature/vfx-universal-material-convergence",
+                "head":  "8fb29f328",
+                "dirty":  58,
+                "staged":  4,
+                "unpushed":  3,
+                "origin_branch":  true,
+                "merge_in_progress":  false,
+                "unmerged_rows":  0,
+                "stash_commits":  16,
+                "recovery_refs":  93
+            },
+    "perforce":  {
+                     "up":  true,
+                     "opened":  1302,
+                     "pending":  [
+                                     "Change 307 on 2026/10/28 by froma@Melodia_ws *pending* \u0027PARK: mixed pending opens from \u0027",
+                                     "Change 303 on 2026/10/21 by froma@Melodia_ws *pending* \u0027Melodia: Enchanted Interiors - \u0027",
+                                     "Change 298 on 2026/10/21 by froma@Melodia_ws *pending* \u0027Melodia: Houdini Engine bake sc\u0027",
+                                     "Change 235 on 2026/09/26 by froma@Melodia_ws *pending* \u00272026-09-26 single-copy protecti\u0027"
+                                 ],
+                     "checkpoint_age_hours":  12.6
+                 },
+    "disk_free_gb":  38.66,
+    "exit_code":  1
+}
