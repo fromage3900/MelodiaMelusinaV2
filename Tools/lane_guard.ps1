@@ -114,6 +114,45 @@ if ($unpushed -gt 0) { Warn ("{0} unpushed commit(s) - push to origin (offsite c
 if ($staged -gt 0) { Warn ("{0} staged entr(y/ies) - commit with an explicit pathspec only" -f $staged) }
 if ($stash -gt 0) { Warn ("{0} git stash entr(y/ies) - stash is local-only; pin under refs/recovery or drop" -f $stash) }
 
+# ---------------------------------------------------------------- fabric canon (editor-free byte scan)
+$canonMIs = @(
+    'Content\EnvSandbox\Materials\Instances\FarawayMother\P2\MI_Mother_Corset.uasset',
+    'Content\EnvSandbox\Materials\Instances\FarawayMother\P2\MI_Mother_Cradle.uasset',
+    'Content\EnvSandbox\Materials\Instances\FarawayMother\P2\MI_Mother_Gown.uasset',
+    'Content\EnvSandbox\Materials\Instances\FarawayMother\P2\MI_Mother_Mantle.uasset',
+    'Content\EnvSandbox\Materials\Instances\FarawayMother\P2\MI_Mother_Ornament.uasset',
+    'Content\EnvSandbox\Materials\Instances\FarawayMother\P2\MI_Mother_Veil.uasset',
+    'Content\Melodia\Characters\Melusina\Materials\MI_Melusina_Shorewake_Cymatic_Bodice.uasset',
+    'Content\Melodia\Characters\Melusina\Materials\MI_Melusina_Shorewake_Cymatic_Collar.uasset',
+    'Content\Melodia\Characters\Melusina\Materials\MI_Melusina_Shorewake_Cymatic_Skirt.uasset',
+    'Content\EnvSandbox\Materials\Instances\Melusina\MI_Melusina_SorrowSeam.uasset'
+)
+$canonBad = @()
+foreach ($rel in $canonMIs) {
+    $p = Join-Path $root $rel
+    if (-not (Test-Path $p)) { $canonBad += "missing:$rel"; continue }
+    try {
+        $fs = [System.IO.File]::Open($p, [System.IO.FileMode]::Open, [System.IO.FileAccess]::Read, [System.IO.FileShare]::ReadWrite)
+        $len = $fs.Length; $bytes = New-Object byte[] $len
+        $fs.Read($bytes, 0, [int]$len) | Out-Null; $fs.Close()
+        $latin = [System.Text.Encoding]::GetEncoding(28591).GetString($bytes)
+        $utf16 = [System.Text.Encoding]::Unicode.GetString($bytes)
+        $hasNikki = ($latin.Contains('M_Master_Nikki') -or $utf16.Contains('M_Master_Nikki'))
+        $hasWrong = ($latin.Contains('M_Universal_Enhanced_Fabric') -or $utf16.Contains('M_Universal_Enhanced_Fabric'))
+        if (-not $hasNikki -or $hasWrong) { $canonBad += $rel }
+    }
+    catch { $canonBad += "unreadable:$rel" }
+}
+$wrongMasterPath = Join-Path $root 'Content\EnvSandbox\Materials\Masters\M_Universal_Enhanced_Fabric.uasset'
+if (Test-Path $wrongMasterPath) { $canonBad += 'wrong master M_Universal_Enhanced_Fabric resurrected on disk' }
+$report['canon'] = [ordered]@{ fabric_mis = $canonMIs.Count; violations = $canonBad }
+if ($canonBad.Count -gt 0) {
+    Warn ("CANON VIOLATION: " + (($canonBad | Select-Object -First 6) -join ', '))
+}
+else {
+    Ok 'canon: 10 fabric MIs parented to M_Master_Nikki; wrong master absent'
+}
+
 # ---------------------------------------------------------------- perforce
 $p4Up = $false
 try { $p4Up = ((Get-NetTCPConnection -LocalPort 1666 -State Listen -ErrorAction SilentlyContinue | Measure-Object).Count -gt 0) } catch { $p4Up = $false }
