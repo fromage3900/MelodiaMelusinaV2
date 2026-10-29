@@ -1,0 +1,50 @@
+{
+ "schema": "melodia.waterhair_reparent_receipt.v1",
+ "when": "2026-10-28",
+ "owner_directive": "MI_Melusina_WaterHair likely needs to go onto M_Water_Master_Grand_v10_Upgrade (owner, 2026-10-28)",
+ "asset": "/Game/EnvSandbox/Materials/Instances/Melusina/MI_Melusina_WaterHair",
+ "from_parent": "/Game/EnvSandbox/Materials/Masters/M_Water_Master_Grand_v7",
+ "to_parent": "/Game/EnvSandbox/Materials/Masters/M_Water_Master_Grand_v10_Upgrade",
+ "master_sizes": {
+  "v7": {"exprs": 112, "params": 55, "s": 44, "v": 11},
+  "v10_Upgrade": {"exprs": 176, "params": 103, "s": 83, "v": 20}
+ },
+ "value_carry": {
+  "scalars_checked": 11,
+  "vectors_checked": 3,
+  "pre_values": {
+   "WaveSpeed": 0.664, "ShorelineWidth": 0.0, "CausticIntensity": 0.08,
+   "MagicalIntensity": 0.15, "SparkleScale": 28.0, "BaseTiling": 1.52264,
+   "MidTiling": 2.251906, "Layer2Tiling": 3.676766, "HighlightTiling": 1.186302,
+   "RoughnessMin": 0.02767, "RoughnessMax": 0.165095,
+   "CausticTint": [0.72, 0.95, 1.0, 1.0],
+   "SparkleColor": [0.82, 0.96, 1.0, 1.0],
+   "RampMidColor": [0.946884, 0.840768, 0.789646, 1.0]
+  },
+  "drift_after_reparent": []
+ },
+ "orphan_cleanup": {
+  "removed": ["HairDripIntensity", "SplashForce", "WaterOpacity", "WaterRoughness", "DripSpeed", "DripLength"],
+  "reason": "None of the six exist on v7 or v9/v10_Substrate/v10_Upgrade (v6 carried HairDripIntensity only), so their values were already dead on the current parent; removing them cleans the instance without behavior loss.",
+  "counts": {"scalar_before": 17, "scalar_after": 11, "vector": 3}
+ },
+ "disk": {
+  "pre_hash16": "810668C9A684B9AA",
+  "post_hash16": "5E08A165C329DF09",
+  "post_mtime": "2026-10-28 20:59:23",
+  "bytes": 18695
+ },
+ "byte_scan": {
+  "method": "ISO-8859-1 + UTF-16LE raw byte scan of the uasset on disk (read-share)",
+  "live_names_present": true,
+  "dead_names_absent": true,
+  "parent_string_present": true
+ },
+ "fresh_reload_api": {
+  "EditorLoadingAndSavingUtils.reload_packages_returned": false,
+  "EditorAssetLibrary_unload_asset": "absent in UE 5.8 python (AttributeError)",
+  "note": "Reload refuses for referenced assets. Evidence level is disk byte scan + in-editor readback, not a true package reload. Tools/masters_spine_fresh_load_check.py now uses reload_packages and records fresh_reload per check so this limitation is visible in receipts."
+ },
+ "backup": "Saved/Audit/MastersSpine_20261028/backups/MI_Melusina_WaterHair_pre_v10_20261028_205843.uasset",
+ "open_question": "v10_Upgrade exposes no drip/splash/hair params; the hair-drip controls are absent from the entire Grand line. If hair drip animation is still wanted, it needs a v10-side parameter (e.g. TopMaterialOpacity / WetEdgeStrength mapping) or a dedicated hair branch — owner creative call."
+}

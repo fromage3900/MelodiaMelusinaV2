@@ -47,10 +47,16 @@ def main():
             row["status"] = "NO_PACKAGE_IN_RECEIPT"
             out["checks"].append(row)
             continue
+        row["fresh_reload"] = False
         try:
-            unreal.EditorAssetLibrary.unload_asset(path)
+            els = unreal.EditorLoadingAndSavingUtils
+            if hasattr(els, "reload_packages"):
+                row["fresh_reload"] = bool(els.reload_packages([path], False, False))
+            else:
+                els.unload_packages([path], False, False)
+                row["fresh_reload"] = "unload_only"
         except Exception as exc:
-            row["unload_note"] = str(exc)[:120]
+            row["reload_note"] = str(exc)[:120]
         mi = unreal.load_asset(path)
         if mi is None:
             row["status"] = "RELOAD_FAILED"
