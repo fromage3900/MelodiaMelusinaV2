@@ -288,6 +288,77 @@ export class Sheep {
     this.concert = false;
     this._concertHold = 0;
     this._beatRing = null;
+    // Playground: sheep-as-weapon (Key V).
+    this.weapon = false;
+    this.charge = null; // { dirX, dirZ, until, bounce, hit }
+  }
+
+  /** Toggle weaponized companion — charge / bounce / downbeat choir-beam. */
+  setWeapon(on) {
+    this.weapon = !!on;
+    if (this.weapon) {
+      this.glow = 1;
+      this.g.ui.toast('SHEEP WEAPON — V charge · downbeat choir-beam ♪', 'aqua');
+      this.g.audio.chime?.(7);
+    } else {
+      this.charge = null;
+      this.g.ui.toast('Sheep weapon holstered', 'soft');
+    }
+  }
+
+  toggleWeapon() { this.setWeapon(!this.weapon); }
+
+  /** Ram toward facing / nearest foe; bounce to the next on impact. */
+  startCharge() {
+    if (!this.weapon) { this.setWeapon(true); }
+    const g = this.g;
+    const t = g.combat.autoTarget(16);
+    let dirX, dirZ;
+    if (t) {
+      dirX = t.pos.x - this.pos.x; dirZ = t.pos.z - this.pos.z;
+    } else {
+      dirX = Math.sin(g.player.facing); dirZ = Math.cos(g.player.facing);
+    }
+    const len = Math.hypot(dirX, dirZ) || 1;
+    this.charge = {
+      dirX: dirX / len, dirZ: dirZ / len,
+      until: g.time + 0.55, bounce: 3, hit: new Set(),
+    };
+    this.hopT = 1;
+    this.glow = 1;
+    g.audio.chime?.(3);
+    g.overlay.text(this.pos.x, this.pos.y + 1.6, this.pos.z, 'BAHHH!', '#ffffff', 16, { life: 0.55 });
+  }
+
+  /** Downbeat laser of Tide damage along sheep facing. */
+  choirBeam() {
+    const g = this.g;
+    const ang = this.facing;
+    const len = 14, half = 0.55;
+    g.decals.spawn('cone', this.pos.x, this.pos.z, {
+      r: len, halfAngle: half, angle: ang, flash: true, dur: 0.45, color: '#b8f0ff',
+    });
+    const hits = g.combat.enemiesIn('cone', {
+      x: this.pos.x, z: this.pos.z, r: len, halfAngle: half, angle: ang,
+    });
+    for (const e of hits) {
+      g.combat.damage(e, 1.35, { element: 'Tide', tough: 1.4, skill: true, knock: 2.5 });
+    }
+    for (let k = 0; k < 18; k++) {
+      const d = (k / 18) * len;
+      g.particles.emit(
+        this.pos.x + Math.sin(ang) * d,
+        this.pos.y + 0.7 + Math.sin(k) * 0.2,
+        this.pos.z + Math.cos(ang) * d,
+        _c.set('#8fd8ff'),
+        { speed: 2, life: 0.5, kind: 1, size: 0.85, gravity: 0 },
+      );
+    }
+    g.world.pulse(this.pos.x, this.pos.z, 1.8, true);
+    g.shake(0.28);
+    g.audio.chime?.(8);
+    this.glow = 1;
+    g.overlay.text(this.pos.x, this.pos.y + 2, this.pos.z, 'Choir Beam ♫', '#8fd8ff', 15, { life: 0.7 });
   }
 
   /** Hold H: concert mode — visible metronome ring + auto-Harmonize blots in a lane. */
@@ -363,6 +434,12 @@ export class Sheep {
     const g = this.g, P = g.player;
     this.hopT = 1;
     if (P.dead || g.paused) return;
+    if (this.weapon && beat.inBar === 0) {
+      this.choirBeam();
+      // Still heal a little — weaponized sheep remains a friend.
+      P.heal(P.stats.maxHp * 0.02, true);
+      return;
+    }
     if (this.concert) {
       // Mobile metronome ring + lane Harmonize (blots within ~10m of sheep).
       if (this._beatRing) g.decals.release(this._beatRing);
@@ -403,29 +480,67 @@ export class Sheep {
 
   update(dt) {
     const g = this.g, P = g.player;
-    const back = P.facing + Math.PI * 0.8;
-    const tx = P.pos.x + Math.sin(back) * 2.4, tz = P.pos.z + Math.cos(back) * 2.4;
-    const dx = tx - this.pos.x, dz = tz - this.pos.z, d = Math.hypot(dx, dz);
-    if (d > 25) { this.pos.x = tx; this.pos.z = tz; }
-    else if (d > 0.4) {
-      const sp = Math.min(d * 4, 14);
-      this.pos.x += (dx / d) * sp * dt; this.pos.z += (dz / d) * sp * dt;
-      this.facing += angleDiff(Math.atan2(dx, dz), this.facing) * Math.min(1, dt * 8);
+    if (this.charge && g.time < this.charge.until) {
+      const c = this.charge;
+      const sp = 28;
+      this.pos.x += c.dirX * sp * dt;
+      this.pos.z += c.dirZ * sp * dt;
+      this.facing = Math.atan2(c.dirX, c.dirZ);
+      this.hopT = 1;
+      // Impact + bounce chain.
+      for (const e of g.enemies) {
+        if (e.dead || c.hit.has(e.id)) continue;
+        if (Math.hypot(e.pos.x - this.pos.x, e.pos.z - this.pos.z) > e.radius + 1.1) continue;
+        c.hit.add(e.id);
+        g.combat.damage(e, 1.1, { element: 'Tide', tough: 1.2, skill: true, knock: 3 });
+        g.particles.burst(e.pos.x, e.pos.y + 0.8, e.pos.z, _c.set('#ffffff'), 14, { speed: 8, life: 0.4, kind: 3, size: 0.7 });
+        g.shake(0.22);
+        if (c.bounce > 0) {
+          c.bounce--;
+          let next = null, bd = 14;
+          for (const o of g.enemies) {
+            if (o.dead || c.hit.has(o.id)) continue;
+            const d = Math.hypot(o.pos.x - this.pos.x, o.pos.z - this.pos.z);
+            if (d < bd) { bd = d; next = o; }
+          }
+          if (next) {
+            const dx = next.pos.x - this.pos.x, dz = next.pos.z - this.pos.z;
+            const L = Math.hypot(dx, dz) || 1;
+            c.dirX = dx / L; c.dirZ = dz / L;
+            c.until = g.time + 0.35;
+            g.overlay.text(this.pos.x, this.pos.y + 1.5, this.pos.z, 'bounce!', '#ffe7a8', 13, { life: 0.4 });
+          } else c.until = 0;
+        } else c.until = 0;
+        break;
+      }
+      g.particles.emit(this.pos.x, this.pos.y + 0.5, this.pos.z, _c.set('#f7f3ff'), { speed: 3, life: 0.3, kind: 0, size: 0.55, gravity: 2 });
+    } else {
+      this.charge = null;
+      const back = P.facing + Math.PI * 0.8;
+      const tx = P.pos.x + Math.sin(back) * 2.4, tz = P.pos.z + Math.cos(back) * 2.4;
+      const dx = tx - this.pos.x, dz = tz - this.pos.z, d = Math.hypot(dx, dz);
+      if (d > 25) { this.pos.x = tx; this.pos.z = tz; }
+      else if (d > 0.4) {
+        const sp = Math.min(d * 4, this.weapon ? 16 : 14);
+        this.pos.x += (dx / d) * sp * dt; this.pos.z += (dz / d) * sp * dt;
+        this.facing += angleDiff(Math.atan2(dx, dz), this.facing) * Math.min(1, dt * 8);
+      }
     }
     const gy = g.world.height(this.pos.x, this.pos.z);
     this.pos.y = g.world.inRift ? 0 : Math.max(gy, -0.4);
     this.hopT = Math.max(0, this.hopT - dt * 3.5);
-    const hop = Math.sin(this.hopT * Math.PI) * 0.35;
+    const hop = Math.sin(this.hopT * Math.PI) * (this.charge ? 0.7 : 0.35);
     const mm = this.m;
     // Beat fluff bob — companion presence without a full mixer.
     const fluff = Math.sin(g.beatPhase * Math.PI * 2) * 0.04 + Math.sin(g.time * 3.1) * 0.02;
     mm.group.position.set(this.pos.x, this.pos.y + hop + fluff, this.pos.z);
     mm.group.rotation.y = this.facing;
-    mm.group.scale.setScalar(1 + fluff * 0.8 + this.glow * 0.06);
+    const weaponPulse = this.weapon ? 0.12 + Math.sin(g.time * 14) * 0.04 : 0;
+    mm.group.scale.setScalar(1 + fluff * 0.8 + this.glow * 0.06 + weaponPulse);
     mm.shadow.position.set(this.pos.x, this.pos.y + 0.05, this.pos.z);
     mm.group.visible = mm.shadow.visible = !P.dead;
     this.glow = Math.max(0, this.glow - dt * 1.5);
-    const tint = this._encoreTint || _c.set('#8fd8ff');
+    const tint = this.weapon ? _c.set('#ff9ad5') : (this._encoreTint || _c.set('#8fd8ff'));
     mm.wool.emissive.setRGB(
       tint.r * (0.15 + this.glow * 0.85),
       tint.g * (0.15 + this.glow * 0.85),
