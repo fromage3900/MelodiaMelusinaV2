@@ -33,6 +33,7 @@ jobs:
           node Prototypes/Web/MelodiaResonantWilds/tools/check_resonant_botany.mjs
           node Prototypes/Web/MelodiaResonantWilds/tools/check_flower_landscape.mjs
           node Prototypes/Web/MelodiaResonantWilds/tools/check_floraison_pov.mjs
+          node Prototypes/Web/MelodiaResonantWilds/tools/check_release_staging.mjs
       - name: Smoke static asset delivery
         run: |
           python3 -m http.server 8765 --bind 127.0.0.1 >/tmp/resonant-wilds-server.log 2>&1 &
