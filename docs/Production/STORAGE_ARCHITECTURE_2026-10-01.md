@@ -126,3 +126,16 @@ Rules adopted (binding):
 7. **Offsite:** GitHub is the only offsite copy; push cadence must be verified, not assumed.
 8. **Pending CLs are state, not trash:** 307 (745 files, PARK), 303 (543), 298 (1), 235 (1). Per-file triage only; never bulk-revert another lane's opens.
 9. **Receipts:** every source-control action writes a receipt under `Saved/Audit/SourceControl_YYYYMMDD/` (JSON only - the pre-commit hook rejects other extensions there).
+### 2026-10-28 loss-verification baseline (the anti-regression rule)
+
+The project had no way to detect loss: Content is 41,505 files / 86.44 GB outside git, lanes leave ~1,294 files pending in Perforce, and `git stash` commits are unreachable until pinned. Baseline created 2026-10-28 23:50:
+
+- **Content manifest**: `D:\MelodiaArchive\manifests\content_manifest_20261028_235043.csv` (path, size, mtime for every file) + summary `Saved/Audit/SourceControl_20261028/content_manifest_summary_20261028.json`. Compare tomorrow: a missing or resized file is detectable instead of assumed.
+- **Git recovery inventory**: 93 unreachable commits (all stash/WIP/index commits from 2026-09-13..10-28) pinned under `refs/recovery/20261028/` - `git fsck --unreachable` can no longer let gc delete them. Receipt: `Saved/Audit/SourceControl_20261028/git_recovery_inventory_20261028.json`.
+- **p4 pending snapshot**: 1,294 opens recorded at `Saved/Audit/SourceControl_20261028/p4_opened_snapshot_20261028.txt`.
+
+**No-WIP-overnight policy (binding):**
+1. Content WIP must be `p4 shelve`d (server-side, survives client loss) or submitted before ending a session. A pending CL is not protection.
+2. Code/docs WIP must be committed and pushed the same day; the lane branch is the offsite copy.
+3. `git stash` is not durable: stash commits are unreachable until pinned. Prefer `refs/recovery/<date>/` pins (this baseline) or a commit.
+4. Run the daily manifest before the first edit of the day and diff against the previous day's CSV.

@@ -1,0 +1,111 @@
+﻿{
+    "schema":  "melodia.git_recovery_inventory.v1",
+    "when":  "2026-10-28T23:55:14.5086436-04:00",
+    "unreachable_objects":  2638,
+    "unreachable_commits":  93,
+    "recent_commits_45d":  93,
+    "pinned_ref_prefix":  "refs/recovery/20261028/",
+    "pinned":  93,
+    "samples":  [
+                    {
+                        "sha":  "249997702d80c23e9b8f6a5ca35793784a694ce7",
+                        "date":  "2026-10-28 23:38",
+                        "subject":  "index on feature/vfx-universal-material-convergence: 8d05d92e4 docs(storage): Jev C verdict (one worktree per lane) + worktree audit + pending CL inventory"
+                    },
+                    {
+                        "sha":  "cfff0054a17366a27e022119a17beb9bb96ef5fd",
+                        "date":  "2026-10-28 23:38",
+                        "subject":  "On feature/vfx-universal-material-convergence: pre-cherrypick-cleanup"
+                    },
+                    {
+                        "sha":  "747640ad692e287fbe6109f33bccb57c6717f03c",
+                        "date":  "2026-10-28 23:22",
+                        "subject":  "WIP on feature/vfx-universal-material-convergence: 6a0379b7b docs(materials): STEP4 audio-reactivity wiring proof + honest runtime-capture status (receipt, loop stopped)"
+                    },
+                    {
+                        "sha":  "91a5e9789f70f9690abc2ee4edf5df2a3fb44d20",
+                        "date":  "2026-10-28 23:22",
+                        "subject":  "index on feature/vfx-universal-material-convergence: 6a0379b7b docs(materials): STEP4 audio-reactivity wiring proof + honest runtime-capture status (receipt, loop stopped)"
+                    },
+                    {
+                        "sha":  "104137e8a8f7a008cc51a21f6f949d94568b7924",
+                        "date":  "2026-10-28 23:18",
+                        "subject":  "WIP on feature/vfx-universal-material-convergence: 6a0379b7b docs(materials): STEP4 audio-reactivity wiring proof + honest runtime-capture status (receipt, loop stopped)"
+                    },
+                    {
+                        "sha":  "1950472b724b1650c089e51ff6da004b200c8d51",
+                        "date":  "2026-10-28 23:18",
+                        "subject":  "index on feature/vfx-universal-material-convergence: 6a0379b7b docs(materials): STEP4 audio-reactivity wiring proof + honest runtime-capture status (receipt, loop stopped)"
+                    },
+                    {
+                        "sha":  "ed652b99ae0f8b977617ef4bf186e9fe42126ef9",
+                        "date":  "2026-10-28 23:18",
+                        "subject":  "untracked files on feature/vfx-universal-material-convergence: 6a0379b7b docs(materials): STEP4 audio-reactivity wiring proof + honest runtime-capture status (receipt, loop stopped)"
+                    },
+                    {
+                        "sha":  "60be13e22b7374526577ff8d115ba9f90b08a8fb",
+                        "date":  "2026-10-28 23:18",
+                        "subject":  "index on feature/vfx-universal-material-convergence: 6a0379b7b docs(materials): STEP4 audio-reactivity wiring proof + honest runtime-capture status (receipt, loop stopped)"
+                    },
+                    {
+                        "sha":  "d746e6e6d5f658b40ecfd3247d5753165a3fd0d7",
+                        "date":  "2026-10-28 23:18",
+                        "subject":  "On feature/vfx-universal-material-convergence: temp-pre-merge"
+                    },
+                    {
+                        "sha":  "ed35153e55836bdb6aec4a795af68539bbd4277b",
+                        "date":  "2026-10-28 21:09",
+                        "subject":  "index on recovery/stash-restore-2026-10-28: 7e4c96090 feat(materials): proving-preset MI family for M_Master_Toon_Character (thread A, Jev-ranked top step)"
+                    },
+                    {
+                        "sha":  "09dbb2c94b0b444b2d727f9a3b0407398215d226",
+                        "date":  "2026-10-28 21:09",
+                        "subject":  "index on recovery/stash-restore-2026-10-28: a937eccb3 Merge branch \u0027codex/snapshot-prep-20260914\u0027 into recovery/stash-restore-2026-10-28"
+                    },
+                    {
+                        "sha":  "bac14ddbba20a436b99afaa5b1b1ca114d7988b5",
+                        "date":  "2026-10-28 21:09",
+                        "subject":  "WIP on recovery/stash-restore-2026-10-28: 7e4c96090 feat(materials): proving-preset MI family for M_Master_Toon_Character (thread A, Jev-ranked top step)"
+                    },
+                    {
+                        "sha":  "e3e92697805fb68798dcff1d8a4af65332984c3a",
+                        "date":  "2026-10-28 21:09",
+                        "subject":  "On recovery/stash-restore-2026-10-28: pre-switch-cleanup"
+                    },
+                    {
+                        "sha":  "850f418373823604dbc7fb0fe602b51f55f5b4bf",
+                        "date":  "2026-10-28 18:09",
+                        "subject":  "index on feature/vfx-universal-material-convergence: 99bdd940a Merge branch \u0027fix/ui-overworld-orrery-fixes\u0027 into feature/vfx-universal-material-convergence"
+                    },
+                    {
+                        "sha":  "302d8760f34ce0b4c21d83dd60b8fcc22f1f839b",
+                        "date":  "2026-10-28 18:09",
+                        "subject":  "index on feature/vfx-universal-material-convergence: 99bdd940a Merge branch \u0027fix/ui-overworld-orrery-fixes\u0027 into feature/vfx-universal-material-convergence"
+                    },
+                    {
+                        "sha":  "43a7fcdb0754c9a4bc3555299d4cdf6fccae40cb",
+                        "date":  "2026-10-28 18:09",
+                        "subject":  "WIP on feature/vfx-universal-material-convergence: 99bdd940a Merge branch \u0027fix/ui-overworld-orrery-fixes\u0027 into feature/vfx-universal-material-convergence"
+                    },
+                    {
+                        "sha":  "3fcea5e40c7ce418a132b583cec51060cafe4866",
+                        "date":  "2026-10-28 18:09",
+                        "subject":  "WIP on feature/vfx-universal-material-convergence: 99bdd940a Merge branch \u0027fix/ui-overworld-orrery-fixes\u0027 into feature/vfx-universal-material-convergence"
+                    },
+                    {
+                        "sha":  "edbeed5d380d671c50d7727761e7b11d537c80bf",
+                        "date":  "2026-10-28 18:08",
+                        "subject":  "index on feature/vfx-universal-material-convergence: 99bdd940a Merge branch \u0027fix/ui-overworld-orrery-fixes\u0027 into feature/vfx-universal-material-convergence"
+                    },
+                    {
+                        "sha":  "201310235ae6da939c6ff014ede0aeb6ef76d9d9",
+                        "date":  "2026-10-28 18:08",
+                        "subject":  "WIP on feature/vfx-universal-material-convergence: 99bdd940a Merge branch \u0027fix/ui-overworld-orrery-fixes\u0027 into feature/vfx-universal-material-convergence"
+                    },
+                    {
+                        "sha":  "1a3b2a5d0e570a2cd7f33a9feb2548ae92706e61",
+                        "date":  "2026-10-28 18:08",
+                        "subject":  "index on feature/vfx-universal-material-convergence: 99bdd940a Merge branch \u0027fix/ui-overworld-orrery-fixes\u0027 into feature/vfx-universal-material-convergence"
+                    }
+                ]
+}
