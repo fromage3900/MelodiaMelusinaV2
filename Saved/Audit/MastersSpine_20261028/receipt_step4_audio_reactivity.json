@@ -1,0 +1,23 @@
+{
+ "schema": "melodia.step4_audio_reactivity_receipt.v1",
+ "when": "2026-10-28",
+ "verdict": "wiring_proven_runtime_pixel_proof_not_completed",
+ "wiring": {
+  "master": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
+  "collection_nodes": 12,
+  "collection": "/Game/Melodia/_PROJECT/04_Materials/MPC_Melodia_Palette",
+  "collection_params": ["TimeOfDayWarmth", "GlobalSparkleIntensity", "GlobalEmissiveBoost", "Melusina_Lavender", "Melusina_RoseGold", "Melusina_SoftWhite", "BeatPulse", "Bass", "Mid", "Treble", "BassIntensity", "MidIntensity"],
+  "mpc_scalar_count": 58,
+  "subsystem": "UMelodiaAudioReactivePresentationSubsystem",
+  "driver": "TickPresentation writes BeatPulse/Bass/Mid/Treble to MPC_Melodia_Palette every tick; PulseImpact(Strength) raises ImpactPulse which feeds DrivenPulse",
+  "ocean_drive": "DriveOceanBeatValues writes Oceanology MID params (Biolum_Intensity, Toon_Weight, PhaseGLow, HighlightBoost, ScatterBoost)",
+  "proving_mi": "MI_Prove_Uni_41_AudioReact (AudioReactAmount 0.05, AudioBeatGain 1.8)"
+ },
+ "runtime_attempt": {
+  "api_found": "unreal.MaterialLibrary.set_scalar_parameter_value(world_context_object, collection, parameter_name, value)",
+  "attempt": "capture_scene_preview on MI_Prove_Uni_41_AudioReact with BeatPulse/Bass 0.0 vs 1.0 (AudioReactAmount boosted in-memory to 1.0 for visibility)",
+  "result": "transport dropped during the preview capture; editor process restarted (pid changed); no two-state capture pair was produced",
+  "next_step": "stable-session proof: spawn a plane at the editor camera with MI_Prove_Uni_41_AudioReact, set MPC via MaterialLibrary, take two viewport screenshots, compare hashes; or drive PulseImpact in PIE once the subsystem accessor is available"
+ },
+ "evidence_level": "wiring proven at asset + source level; runtime pixel proof blocked by editor session instability (not by missing audio-lane artifacts)"
+}
