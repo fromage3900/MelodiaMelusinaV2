@@ -704,6 +704,7 @@ export class UI {
         <span>Sheet music</span><span>${pr.sheets.length}/25</span><span>Explored</span><span>${g.progress.percent()}%</span>
         <span>Phrasebook biomes</span><span>${phraseN}/8</span><span>Concert trails</span><span>${concertN}</span>
         <span>Fashion gold frames</span><span>${(pr.fashionGold || []).length}</span><span>Encore exams</span><span>${(pr.maestroExams || []).length}</span>
+        <span>Regions 100%</span><span>${(pr.regionsDone || []).length}/8</span><span>Resonance Dew</span><span>${(pr.dews || []).filter((id) => !String(id).endsWith('_open')).length}/16</span>
       </div></div>`;
     body.querySelectorAll('[data-c]').forEach((el) => el.addEventListener('click', () => { g.progress.claim(+el.dataset.c); this.render(); }));
     body.querySelectorAll('[data-daily]').forEach((el) => el.addEventListener('click', () => { g.progress.claimDaily(); this.render(); }));
@@ -711,9 +712,24 @@ export class UI {
 
   render_map(body) {
     const g = this.g;
+    const regions = g.progress.regionBoard?.() || [];
+    const regionRow = regions.length
+      ? `<div class="card" style="margin-top:8px"><h3>Region completion</h3>
+          <div class="muted">Dew + fashion frames + Reveal overlook per biome. No new world authority.</div>
+          <div class="stats" style="margin-top:6px">${regions.map((r) => `<span>${esc(r.label)}</span><span>${r.complete ? '✓ 100%' : `${r.pct}% · Dew ${r.dew}/${r.dewTotal}`}</span>`).join('')}</div>
+          <button class="btn gold" data-ping-dew="1" style="margin-top:8px">✧ Ping nearest Dew</button></div>`
+      : '';
     body.innerHTML = `<canvas id="bigmap" width="720" height="720"></canvas>
-      <div class="legend"><span>◆ Pylon (tap to travel)</span><span>𝄞 Shrine</span><span>♛ Maestro</span><span>◎ Rift</span><span>▣ Chest</span><span>★ Elite Chorus</span><span>Explored ${g.progress.percent()}%</span></div>
+      <div class="legend"><span>◆ Pylon (tap to travel)</span><span>◇ Dew</span><span>𝄞 Shrine</span><span>♛ Maestro</span><span>◎ Rift</span><span>Explored ${g.progress.percent()}%</span></div>
+      ${regionRow}
       <div class="muted" style="text-align:center">${BIOMES.map((b) => `${b.name.split('—')[0].trim()} Lv ${b.levels[0]}–${b.levels[1]} · ${b.bpm} BPM ${b.meter}/4`).join(' · ')}</div>`;
+    body.querySelectorAll('[data-ping-dew]').forEach((el) => el.addEventListener('click', () => {
+      const ping = g.progress.pingRegion();
+      if (!ping) { this.toast('All regions complete — no Dew left'); return; }
+      this.toast(`Ping · ${ping.target.name || 'Resonance Dew'}`);
+      g.audio.ui();
+      this.close();
+    }));
     const cv = $('bigmap');
     this.drawBigMap(cv);
     cv.addEventListener('click', (e) => {
@@ -765,6 +781,24 @@ export class UI {
       if (p.type !== 'pylon' && !g.progress.explored(clamp(i, 0, N - 1), clamp(j, 0, N - 1))) continue;
       if (p.type === 'camp' || p.type === 'sheet') continue;
       this.poiIcon(c, p, x, y, 1.1);
+      // Momo-style pulse on remaining Resonance Dew.
+      if (p.type === 'destination' && p.id && !(g.profile.dews || []).includes(p.id)) {
+        const pulse = 10 + Math.sin(performance.now() / 280) * 3;
+        c.strokeStyle = 'rgba(159,230,255,.85)';
+        c.lineWidth = 2;
+        c.beginPath(); c.arc(x, y, pulse, 0, Math.PI * 2); c.stroke();
+      }
+    }
+    for (const b of BIOMES) {
+      const bi = BIOMES.indexOf(b);
+      const st = g.progress.regionStatus?.(bi);
+      if (!st) continue;
+      const [x, y] = to(b.cx * 1.05, b.cz * 1.05);
+      c.font = 'bold 14px sans-serif';
+      c.fillStyle = st.complete ? '#ffd978' : '#9fe6ff';
+      c.strokeStyle = 'rgba(23,18,37,.85)'; c.lineWidth = 3;
+      const tag = st.complete ? '100%' : `${st.pct}%`;
+      c.strokeText(tag, x, y - 8); c.fillText(tag, x, y - 8);
     }
     const [px, py] = to(g.player.pos.x, g.player.pos.z);
     c.fillStyle = '#fff'; c.strokeStyle = '#171225'; c.lineWidth = 3;

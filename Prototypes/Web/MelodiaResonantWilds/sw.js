@@ -8,6 +8,7 @@ const ASSETS = [
   './js/world.js', './js/entities.js', './js/cel.js', './js/painterly.js', './js/npr-tuner.js', './js/chibi.js', './js/mixamo.js', './js/heritage-timeline.js',
   './js/asset-loader.js', './js/bellflower.js', './js/flowerbeds.js', './js/openworld.js', './js/postfx.js', './js/grove.js',
   './js/playground.js',
+  './js/flags.js',
   './js/combat.js', './js/loot.js', './js/echo.js', './js/encore.js',
   './js/activities.js', './js/progress.js', './js/ui.js',
   './js/player.js', './js/design.js', './js/fx.js', './js/util.js',

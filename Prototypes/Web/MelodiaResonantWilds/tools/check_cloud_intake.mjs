@@ -52,6 +52,7 @@ for (const icon of manifest.icons) assert.ok(exists(icon.src), 'missing PWA icon
 const sw = file('sw.js');
 assert.match(sw, /resonant-wilds-v13-20261029-nikki-ability/);
 assert.match(sw, /js\/playground\.js/);
+assert.match(sw, /js\/flags\.js/);
 assert.match(sw, /js\/echo\.js/);
 assert.match(sw, /assets\/icons\/echo_phrase\.svg/);
 assert.match(sw, /js\/grove\.js/);

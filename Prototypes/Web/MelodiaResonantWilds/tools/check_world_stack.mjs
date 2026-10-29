@@ -6,15 +6,29 @@ import { fileURLToPath } from 'node:url';
 const root = dirname(dirname(fileURLToPath(import.meta.url)));
 const read = p => readFileSync(join(root, p), 'utf8');
 const g = read('js/game.js'), world = read('js/world.js'), a = read('js/activities.js');
-const design = read('js/design.js'), sw = read('sw.js'), smoke = read('tools/browser_smoke.mjs');
+const design = read('js/design.js'), flags = read('js/flags.js'), sw = read('sw.js'), smoke = read('tools/browser_smoke.mjs');
+const progress = read('js/progress.js'), ui = read('js/ui.js');
 assert.match(g, /new PostFX\(this\)/);
 assert.match(g, /this\.painterly\.render/);
 assert.match(g, /this\.postfx\.render\(\)/);
-assert.match(world, /get\('worldexp'\) === '1'/);
-assert.match(a, /get\('worldexp'\) === '1'/);
-assert.match(design, /get\('dressing'\) === 'dense'/);
+assert.match(flags, /liteMode/);
+assert.match(flags, /flagWorldexp/);
+assert.match(flags, /flagDressingDense/);
+assert.match(flags, /flagNikkiLook/);
+assert.match(flags, /flagDaycycle/);
+assert.match(flags, /flagPostfx/);
+assert.match(world, /flagWorldexp/);
+assert.match(a, /flagWorldexp/);
+assert.match(design, /flagDressingDense/);
+assert.match(g, /flagPostfx/);
+assert.match(g, /flagDaycycle/);
 assert.match(a, /planExploration\(b, bi, rng, this\.pois\.slice\(\)\)/);
+assert.match(progress, /regionStatus\(/);
+assert.match(progress, /regionPing\(/);
+assert.match(progress, /checkRegionComplete\(/);
+assert.match(ui, /Ping nearest Dew/);
 assert.match(smoke, /desktop-worldexp-postfx/);
+assert.match(smoke, /desktop-lite/);
 assert.match(smoke, /destinations >= 16/);
 assert.match(sw, /resonant-wilds-v13-20261029-nikki-ability/);
 assert.match(sw, /js\/playground\.js/);
@@ -33,7 +47,7 @@ assert.match(ow, /nightbell_glide/);
 assert.match(a, /_unlockAbilityOutfit/);
 assert.match(a, /onAbilityOutfitEquipped/);
 assert.match(g, /Ability Outfit/);
-for (const p of ['js/openworld.js','js/postfx.js','vendor/postprocessing/OutlinePass.js',
+for (const p of ['js/openworld.js','js/postfx.js','js/flags.js','vendor/postprocessing/OutlinePass.js',
  'vendor/postprocessing/UnrealBloomPass.js','vendor/shaders/FXAAShader.js']) {
  assert.ok(existsSync(join(root,p)), p+' missing');
 }

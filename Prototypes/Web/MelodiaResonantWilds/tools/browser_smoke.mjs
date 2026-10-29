@@ -11,24 +11,27 @@ const browser = await chromium.launch({
     '--use-angle=swiftshader', '--enable-unsafe-swiftshader'],
 });
 const variants = [
-  { name: 'desktop-default', query: '', chibi: false, shrine: false, mobile: false },
-  { name: 'desktop-chibi-shrine', query: '?avatar=chibi&shrine=glb', chibi: true, shrine: true, mobile: false },
-  { name: 'desktop-mixamo', query: '?avatar=mixamo', chibi: false, shrine: false, mobile: false, mixamo: true },
-  { name: 'mobile-baseline', query: '?chladni=0&caustics=0', chibi: false, shrine: false, mobile: true },
-  { name: 'desktop-legacy-render', query: '?render=legacy', chibi: false, shrine: false, mobile: false, legacy: true },
-  { name: 'desktop-bellflower-off', query: '?bellflower=0', chibi: false, shrine: false, mobile: false, bellflower: false },
-  { name: 'desktop-petal-cantata', query: '?flowerbeds=1', chibi: false, shrine: false, mobile: false, flowerbed: true },
-  { name: 'desktop-original-flowers', query: '?flowerbeds=0', chibi: false, shrine: false, mobile: false, flowerbed: false },
-  { name: 'desktop-npr-v2', query: '?npr=v2&avatar=chibi&shrine=glb', chibi: true, shrine: true, mobile: false, npr: true },
-  { name: 'desktop-painterly', query: '?npr=v2&kuwahara=1&avatar=chibi&shrine=glb', chibi: true, shrine: true, mobile: false, npr: true, painterly: true },
-  { name: 'mobile-npr-v2', query: '?npr=v2&kuwahara=0', chibi: false, shrine: false, mobile: true, npr: true },
-  { name: 'desktop-live-tuner', query: '?npr=v2&kuwahara=1&avatar=chibi&shrine=glb&tune=1&look=soft', chibi: true, shrine: true, mobile: false, npr: true, painterly: true, tune: true },
-  { name: 'desktop-worldexp', query: '?worldexp=1', chibi: false, shrine: false, mobile: false, worldexp: true },
+  // Nikki-by-default: empty query enables worldexp / dense / daycycle / postfx.
+  { name: 'desktop-default', query: '', chibi: false, shrine: false, mobile: false, worldexp: true, postfx: true },
+  { name: 'desktop-lite', query: '?lite=1', chibi: false, shrine: false, mobile: false, worldexp: false, postfx: false },
+  { name: 'desktop-chibi-shrine', query: '?avatar=chibi&shrine=glb', chibi: true, shrine: true, mobile: false, worldexp: true, postfx: true },
+  { name: 'desktop-mixamo', query: '?avatar=mixamo', chibi: false, shrine: false, mobile: false, mixamo: true, worldexp: true, postfx: true },
+  { name: 'mobile-baseline', query: '?chladni=0&caustics=0', chibi: false, shrine: false, mobile: true, worldexp: true, postfx: true },
+  { name: 'mobile-lite', query: '?lite=1&chladni=0&caustics=0', chibi: false, shrine: false, mobile: true, worldexp: false, postfx: false },
+  { name: 'desktop-legacy-render', query: '?render=legacy', chibi: false, shrine: false, mobile: false, legacy: true, worldexp: true, postfx: true },
+  { name: 'desktop-bellflower-off', query: '?bellflower=0', chibi: false, shrine: false, mobile: false, bellflower: false, worldexp: true, postfx: true },
+  { name: 'desktop-petal-cantata', query: '?flowerbeds=1', chibi: false, shrine: false, mobile: false, flowerbed: true, worldexp: true, postfx: true },
+  { name: 'desktop-original-flowers', query: '?flowerbeds=0', chibi: false, shrine: false, mobile: false, flowerbed: false, worldexp: true, postfx: true },
+  { name: 'desktop-npr-v2', query: '?npr=v2&avatar=chibi&shrine=glb', chibi: true, shrine: true, mobile: false, npr: true, worldexp: true, postfx: true },
+  { name: 'desktop-painterly', query: '?npr=v2&kuwahara=1&avatar=chibi&shrine=glb', chibi: true, shrine: true, mobile: false, npr: true, painterly: true, worldexp: true, postfx: true },
+  { name: 'mobile-npr-v2', query: '?npr=v2&kuwahara=0', chibi: false, shrine: false, mobile: true, npr: true, worldexp: true, postfx: true },
+  { name: 'desktop-live-tuner', query: '?npr=v2&kuwahara=1&avatar=chibi&shrine=glb&tune=1&look=soft', chibi: true, shrine: true, mobile: false, npr: true, painterly: true, tune: true, worldexp: true, postfx: true },
+  { name: 'desktop-worldexp', query: '?worldexp=1', chibi: false, shrine: false, mobile: false, worldexp: true, postfx: true },
   { name: 'desktop-worldexp-postfx', query: '?worldexp=1&postfx=1&dressing=dense&nikkilook=1&daycycle=1', chibi: false, shrine: false, mobile: false, worldexp: true, postfx: true },
-  { name: 'desktop-npr-colour-review', query: '?npr=v2', chibi: false, shrine: false, mobile: false, npr: true },
-  { name: 'desktop-grove-glb', query: '?grove=glb', chibi: false, shrine: false, mobile: false, grove: 'glb' },
-  { name: 'mobile-grove-dense', query: '?grove=glb&worldexp=1&dressing=dense', chibi: false, shrine: false, mobile: true, worldexp: true, grove: 'glb' },
-  { name: 'desktop-grove-fallback', query: '?grove=glb', chibi: false, shrine: false, mobile: false, grove: 'fallback' },
+  { name: 'desktop-npr-colour-review', query: '?npr=v2', chibi: false, shrine: false, mobile: false, npr: true, worldexp: true, postfx: true },
+  { name: 'desktop-grove-glb', query: '?grove=glb', chibi: false, shrine: false, mobile: false, grove: 'glb', worldexp: true, postfx: true },
+  { name: 'mobile-grove-dense', query: '?grove=glb&worldexp=1&dressing=dense', chibi: false, shrine: false, mobile: true, worldexp: true, grove: 'glb', postfx: true },
+  { name: 'desktop-grove-fallback', query: '?grove=glb', chibi: false, shrine: false, mobile: false, grove: 'fallback', worldexp: true, postfx: true },
 ];
 try {
   for (const test of variants) {
@@ -95,8 +98,10 @@ try {
     assert.equal(before.painterly, !!test.painterly, test.name + ': wrong painterly state');
     assert.equal(before.postfx, !!test.postfx, test.name + ': unexpected postprocessing state');
     assert.equal(before.worldexp, !!test.worldexp, test.name + ': world expansion flag mismatch');
-    if (test.worldexp) assert.ok(before.destinations >= 16, test.name + ': destination POIs not generated');
-    else assert.equal(before.destinations, 0, test.name + ': default map received opt-in destinations');
+    if (test.worldexp) {
+      assert.ok(before.destinations >= 16, test.name + ': destination POIs not generated');
+      assert.ok(before.uniforms, test.name + ': missing uniforms');
+    } else assert.equal(before.destinations, 0, test.name + ': lite/sparse map must not spawn Nikki destinations');
     if (test.npr) assert.equal(before.paletteSize, 12, test.name + ': missing RGB NPR gradient');
     else if (!test.legacy) assert.equal(before.paletteSize, 3, test.name + ': v1 gradient regression');
     if (test.legacy) {
