@@ -1,0 +1,14 @@
+import assert from 'node:assert/strict';
+import { plateField, sampleBotanicalPlate, nineBotanicalStudies } from '../js/resonant-botany.js';
+assert.equal(plateField(0, 0.4, 3, 5), 0);
+assert.equal(plateField(0.3, 0.7, 3, 5), -plateField(0.7, 0.3, 3, 5));
+const a = sampleBotanicalPlate(), b = sampleBotanicalPlate();
+assert.deepEqual(a, b, 'deterministic placements');
+assert.ok(a.length > 0 && a.length <= 240);
+assert.ok(a.every(p => Math.abs(p.x) <= 6.1 && Math.abs(p.z) <= 6.1));
+assert.equal(nineBotanicalStudies().length, 9);
+const fullPlate = sampleBotanicalPlate({ family: 'rosette', mode: [3, 5], extent: 34, cells: 52, maxInstances: 170 });
+assert.ok(Math.min(...fullPlate.map(p => p.z)) < -14 && Math.max(...fullPlate.map(p => p.z)) > 14, 'mobile budget must not truncate the figure');
+assert.throws(() => sampleBotanicalPlate({ mode: [3, 3] }));
+assert.throws(() => sampleBotanicalPlate({ cells: 1000 }));
+console.log('Resonant botany P0: PASS (9 studies, deterministic, budgeted)');

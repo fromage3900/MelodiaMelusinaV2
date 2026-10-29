@@ -28,7 +28,7 @@ Open a local dev server from the repo root with `python -m http.server 8080`, vi
 
 ## Publish / preview
 
-**Canonical public mirror (owner publish):** `https://fromage3900.github.io/my-site/resonant-wilds/` after syncing this folder into `fromage3900/my-site/resonant-wilds/` and confirming the SW cache (`resonant-wilds-v15-*-canonical`) activates.
+**Canonical public mirror (owner publish):** `https://fromage3900.github.io/my-site/resonant-wilds/` after syncing this folder into `fromage3900/my-site/resonant-wilds/` and confirming the SW cache (`resonant-wilds-v15-*-floraison-release`) activates.
 
 Temporary raw.githack previews are retired for release claims — use the GH Pages mirror or a local `python -m http.server` from the repo root. Try `?avatar=chibi&shrine=glb` or `?render=legacy` at the end. GitHub Actions Chromium smoke checks structural boot; desktop and iPhone Safari gameplay QA remain required before calling the mirror browser-approved.
 

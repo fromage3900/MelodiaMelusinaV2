@@ -48,7 +48,6 @@ export function loadProfile() {
       phrasebook: { ...(p.phrasebook || {}) },
       concertSkins: Array.isArray(p.concertSkins) ? p.concertSkins : [],
       fashionGold: Array.isArray(p.fashionGold) ? p.fashionGold : [],
-      regionsDone: Array.isArray(p.regionsDone) ? p.regionsDone : [],
       abilityOutfits: Array.isArray(p.abilityOutfits) ? p.abilityOutfits : [],
       regionsDone: Array.isArray(p.regionsDone) ? p.regionsDone : [],
       maestroExams: Array.isArray(p.maestroExams) ? p.maestroExams : [],

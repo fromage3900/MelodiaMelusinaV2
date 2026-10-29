@@ -36,6 +36,10 @@ const variants = [
   { name: 'mobile-grove-dense', query: '?grove=glb&worldexp=1&dressing=dense', chibi: false, shrine: false, mobile: true, worldexp: true, grove: 'glb', postfx: true },
   { name: 'desktop-grove-fallback', query: '?grove=glb', chibi: false, shrine: false, mobile: false, grove: 'fallback', worldexp: true, postfx: true },
   { name: 'desktop-chladni-mode', query: '?mode=5,7', chibi: false, shrine: false, mobile: false, npr: true, worldexp: true, postfx: true, mode: [5, 7] },
+  // Release P0: run real WebGL for combined Grove full + Floraison POV on
+  // desktop and mobile-lite (phone perf still requires owner Safari).
+  { name: 'desktop-floraison-pov', query: '?grove=full&botany=1&pov=1&npr=v2', chibi: false, shrine: false, mobile: false, npr: true, grove: 'full', worldexp: true, postfx: true, botany: true, pov: true },
+  { name: 'mobile-floraison-pov', query: '?botany=1&pov=1&lite=1', chibi: false, shrine: false, mobile: true, npr: true, worldexp: false, postfx: false, botany: true, pov: true },
 ];
 try {
   for (const test of variants) {
@@ -87,11 +91,18 @@ try {
       groveActiveVariants: window.__melodia.world.groveActiveVariants,
       rgbBands: !!window.__melodia.world.terrainMat.userData.melodiaNPRShader?.fragmentShader.includes('uBandHardness'),
       flowerbedEnabled: window.__melodia.world.flowerbedsEnabled,
+      botanyEnabled: !!window.__melodia.world.botanyEnabled,
+      povEnabled: !!window.__melodia.floraisonPOV?.enabled,
+      povButtonVisible: !!document.querySelector('#btnFloraisonPOV') &&
+        !document.querySelector('#btnFloraisonPOV').classList.contains('hidden'),
       boxLanterns: window.__melodia.world.hubGroup.children.filter(o => o.isMesh && o.geometry.type === 'BoxGeometry' &&
         o.geometry.parameters.width === 0.5 && o.geometry.parameters.height === 0.6 &&
         o.geometry.parameters.depth === 0.5 && o.visible).length,
     }));
     assert.equal(before.chibi, test.chibi, test.name + ': incorrect avatar selection');
+    assert.equal(before.botanyEnabled, !!test.botany, test.name + ': Floraison flag changed');
+    assert.equal(before.povEnabled, !!test.pov, test.name + ': first-person flag changed');
+    assert.equal(before.povButtonVisible, !!test.botany, test.name + ': flower POV toggle not gated');
     assert.equal(before.flowerbedEnabled, test.flowerbed !== false, test.name + ': flowerbed flag not respected');
     assert.equal(before.flowerParts, ['glb','full'].includes(test.grove) ? 5 : test.flowerbed === false ? 1 : 3,
       test.name + ': incorrect shared flower geometry batches');
@@ -178,13 +189,44 @@ try {
     await page.locator('#play').click();
     await page.waitForFunction(() => window.__melodia.started &&
       window.__melodia.renderer.info.render.calls > 0, null, { timeout: 30000 });
+    if (test.pov) {
+      // Exercise the actual render path (not just source contracts), then switch
+      // third person -> POV without moving gameplay/save ownership.
+      const initial = await page.evaluate(() => {
+        const g = window.__melodia;
+        g.player.pos.set(4, g.world.height(4, -108), -108);
+        g.camTarget.copy(g.player.pos);
+        g.world.warm(4, -108);
+        g.floraisonPOV.yaw = Math.PI;
+        g.floraisonPOV.pitch = -0.07;
+        return g.world.chunks.size;
+      });
+      assert.ok(initial > 0, test.name + ': no streamed garden chunks');
+      await page.waitForFunction(() => {
+        const g = window.__melodia;
+        return g.camera.near < 0.2 && !g.player.m.group.visible &&
+          [...g.world.chunks.values()].some(ch => ch.group.children.some(o => o.name.startsWith('RW_Floraison_')));
+      }, null, { timeout: 15000 });
+      await page.locator('#btnFloraisonPOV').click();
+      await page.waitForFunction(() => {
+        const g = window.__melodia;
+        return !g.floraisonPOV.enabled && g.camera.near >= 0.5 && g.player.m.group.visible;
+      }, null, { timeout: 5000 });
+      await page.locator('#btnFloraisonPOV').click();
+      await page.waitForFunction(() => {
+        const g = window.__melodia;
+        return g.floraisonPOV.enabled && g.camera.near < 0.2 && !g.player.m.group.visible;
+      }, null, { timeout: 5000 });
+      // Screenshot optional; do not silently call this a Safari or beauty pass.
+    }
     // Capture one comparable Petal Cantata shot in both modes for art review.
     // This is a browser beauty reference, not a claim of human aesthetic approval.
     if (process.env.RW_SCREENSHOT_DIR &&
         (test.name === 'desktop-petal-cantata' || test.name === 'desktop-original-flowers' ||
          test.name === 'desktop-grove-glb' || test.name === 'desktop-npr-colour-review' ||
-         test.name === 'desktop-default')) {
-      await page.evaluate(() => {
+         test.name === 'desktop-default' || test.name === 'desktop-floraison-pov' ||
+         test.name === 'mobile-floraison-pov')) {
+      if (!test.pov) await page.evaluate(() => {
         const g = window.__melodia, x = 0, z = -210;
         g.player.pos.set(x, g.world.height(x, z), z);
         g.camTarget.copy(g.player.pos);
