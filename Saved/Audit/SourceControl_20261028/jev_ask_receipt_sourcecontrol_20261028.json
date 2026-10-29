@@ -1,0 +1,33 @@
+{
+ "schema": "melodia.jev_ask_receipt.v2",
+ "when": "2026-10-28",
+ "topic": "source-control structural fix",
+ "route": {
+  "provider": "nous",
+  "model": "reflection/beam-1.0-501b-a23b:free",
+  "source": "jev-live"
+ },
+ "ask": {
+  "question": "A UE5.8 project runs one shared checkout with 16 git worktrees and multiple agents; the working tree was clobbered twice today, a foreign staged case-rename was swept into a commit, and Perforce holds 1,294 pending opens (CL 307: 745 mixed files incl. 458 HoudiniEngine temp cooks; CL 303: 543 files from the interiors lane; 2 single-file CLs). Tonight we created p4 checkpoint.48, p4d logon persistence, pruned LFS, and pushed the lane branch. Which single source-control structural fix has the highest value next? Answer with the option letter only.",
+  "options": [
+   "A",
+   "B",
+   "C",
+   "D",
+   "E",
+   "F",
+   "G",
+   "HOLD"
+  ]
+ },
+ "result": {
+  "provider": "nous",
+  "endpoint": "https://inference-api.nousresearch.com/v1",
+  "model": "reflection/beam-1.0-501b-a23b:free",
+  "source": "jev-live",
+  "status": "ok",
+  "choice": "C",
+  "confidence": 0.86,
+  "reason": "Retiring stale worktrees and enforcing one worktree per lane removes the shared-checkout collision surface behind repeated clobbering, while one-off backlog cleanup does not prevent recurrence."
+ }
+}

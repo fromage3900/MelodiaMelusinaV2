@@ -102,3 +102,13 @@ p4 files //Melodia/main/<path>/...                            # perforce
 ```
 
 Both zero means the file exists on exactly one disk, in one place, on this machine.
+
+### 2026-10-28 Jev direction - worktree policy
+
+Jev (free beam model, receipt `Saved/Audit/SourceControl_20261028/jev_ask_receipt_sourcecontrol_20261028.json`) ranked the next structural fix **C: retire stale worktrees and enforce one worktree per lane** (0.86) - the shared checkout is the collision surface behind the repeated clobbering; one-off backlog cleanup does not prevent recurrence.
+
+- One worktree per active lane; the main checkout is not a shared workspace.
+- Worktree audit (`Saved/Audit/SourceControl_20261028/worktree_audit_20261028.json`): 16 worktrees; dead metadata pruned; five clean stale candidates identified for removal (lane-docs-archive, lane-house-dressing-ecv, lane-magicians-audit, lane-morning-live-vista, _wt_final1015) with HEAD SHAs recorded; eight dirty worktrees left untouched.
+- Removal of the five candidates requires one explicit owner yes; refs/agents (40 pins) keep their commits reachable.
+- Pending Perforce CL inventory: 307 = 745 files (458 HoudiniEngine temp cooks, 217 EnvSandbox, 35 Melodia, 25 Staging, 6 Textures, 2 HDA, 1 Tools, 1 _PROJECT), 303 = 543 (interiors lane), 298 = 1, 235 = 1. Per-file triage only; never bulk-revert another lane's opens.
+- Offsite push: first attempt uploaded LFS objects (90/90, 19 MB) but the commit pack aborted (curl 56); retry with a larger post buffer over HTTP/1.1 was started 2026-10-28 23:2x.

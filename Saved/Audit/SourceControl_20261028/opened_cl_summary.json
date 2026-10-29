@@ -1,0 +1,22 @@
+﻿[
+    {
+        "cl":  307,
+        "files":  745,
+        "groups":  "Content/HoudiniEngine:458; Content/EnvSandbox:217; Content/Melodia:35; Content/Staging:25; Content/Textures:6; Content/HDA:2; Tools/Poitou:1; Content/_PROJECT:1"
+    },
+    {
+        "cl":  303,
+        "files":  543,
+        "groups":  "Content/__ExternalActors__:311; Content/__ExternalObjects__:112; Content/KitBash_EnchantedVehicles:72; Content/Melodia:24; Content/EnvSandbox:14; Content/MelodiaIntegration:3; Content/_PROJECT:3; Config/DefaultGameplayTags.ini#1:1; BS_GodFile.uproject#2:1; Content/HoudiniEngine:1; Content/Experiments:1"
+    },
+    {
+        "cl":  298,
+        "files":  1,
+        "groups":  "other:1"
+    },
+    {
+        "cl":  235,
+        "files":  1,
+        "groups":  "other:1"
+    }
+]

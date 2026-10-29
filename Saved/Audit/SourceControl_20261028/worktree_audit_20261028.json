@@ -1,0 +1,26 @@
+{
+ "schema": "melodia.worktree_audit.v1",
+ "when": "2026-10-28",
+ "jev_verdict": {"choice": "C", "confidence": 0.86, "reason": "Retiring stale worktrees and enforcing one worktree per lane removes the shared-checkout collision surface behind repeated clobbering, while one-off backlog cleanup does not prevent recurrence."},
+ "policy": "One worktree per active lane; the main checkout is not a shared workspace. Commit exact paths immediately; never commit with foreign staged entries.",
+ "pruned": ["dead worktree metadata for the missing .claude/worktrees/eyewear-editorial-0912 path"],
+ "candidates_clean_removal": [
+  {"path": "C:/EnvironmentPortfolio/_worktrees/lane-docs-archive-20261021", "head": "5d41430ae", "last_commit": "2026-10-22", "entries": 0},
+  {"path": "C:/EnvironmentPortfolio/_worktrees/lane-house-dressing-ecv-20261022b", "head": "570d98752", "last_commit": "2026-10-22", "entries": 0},
+  {"path": "C:/EnvironmentPortfolio/_worktrees/lane-magicians-audit-20261021", "head": "d6928a60a", "last_commit": "2026-10-22", "entries": 0},
+  {"path": "C:/EnvironmentPortfolio/_worktrees/lane-morning-live-vista-20261021", "head": "13f9508a7", "last_commit": "2026-10-21", "entries": 0},
+  {"path": "C:/EnvironmentPortfolio/_wt_final1015", "head": "1f2e7ab3b", "last_commit": "2026-10-15", "entries": 0}
+ ],
+ "leave_alone": [
+  {"path": "C:/EnvironmentPortfolio/_worktrees/poitou-hda-closeout-20261022", "entries_tracked": 24638, "note": "dirty - owner/lane work"},
+  {"path": "C:/EnvironmentPortfolio/_worktrees/recovery-premerge-20261028", "entries_tracked": 837, "note": "recovery lane"},
+  {"path": "C:/Users/froma/Worktrees/ph", "entries_tracked": 18435, "note": "dirty - owner work"},
+  {"path": "C:/EnvironmentPortfolio/_worktrees/seraph-concept-20261023", "entries": 2, "note": "2 entries incl untracked"},
+  {"path": "C:/EnvironmentPortfolio/_worktrees/lane-salon-convergence-20261022", "entries": 6, "note": "6 entries incl untracked"},
+  {"path": "C:/Users/froma/Documents/Codex/worktrees/melusina-airi-bridge-p0", "entries_tracked": 3},
+  {"path": "C:/tmp/pr493-wt", "entries_tracked": 1},
+  {"path": "C:/EnvironmentPortfolio/_wt_hf", "entries_tracked": 3}
+ ],
+ "agent_refs": 40,
+ "removal_note": "Removal of the five clean candidates needs one explicit owner yes; their HEAD SHAs are recorded above and refs/agents pins keep the commits reachable."
+}
