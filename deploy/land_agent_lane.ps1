@@ -27,6 +27,9 @@ param(
     [switch]$All,
     [switch]$DryRun,
     [switch]$KeepRemoteBranch,
+    [switch]$OwnerReviewedLocalState,
+    [switch]$OwnerApprovedBranchDeletion,
+    [switch]$OwnerApprovedPrimarySync,
     [int]$MaxWaitSeconds = 120
 )
 
@@ -72,7 +75,7 @@ function Get-Lanes {
 }
 
 function Sync-Primary {
-    Invoke-Native git @('-C', $Root, 'fetch', '--prune', 'origin') -AllowFail | Out-Null
+    Invoke-Native git @('-C', $Root, 'fetch', 'origin') | Out-Null
     $branch = (Invoke-Native git @('-C', $Root, 'branch', '--show-current')).Lines[0].Trim()
     if ($branch -ne "main") {
         Write-Host "    NOTE: primary is on '$branch', not main; not fast-forwarding." -ForegroundColor Yellow
@@ -83,6 +86,43 @@ function Sync-Primary {
     if ($merge.Code -ne 0) {
         Write-Host "    WARN: primary could not fast-forward; resolve by hand." -ForegroundColor Yellow
     }
+}
+
+# This is a local-only safety check. GitHub CI cannot see C:, G:, Perforce or unsaved editor state.
+function Assert-LocalAuthority([string]$LaneWorktree) {
+    if (-not $OwnerReviewedLocalState) {
+        throw "SAFE STOP: owner must review live C:/G: workspaces, native Unreal/Houdini files, Perforce and unsaved editor state first. Re-run with -OwnerReviewedLocalState only after real review."
+    }
+    if (-not (Test-Path (Join-Path $Root 'BS_GodFile.uproject'))) {
+        throw "SAFE STOP: no local Unreal project at $Root. Git-only integration cannot certify production state."
+    }
+    if (Get-Process -Name 'UnrealEditor' -ErrorAction SilentlyContinue) {
+        throw "SAFE STOP: Unreal Editor is running and may have unsaved changes. Preserve them before landing."
+    }
+    $primary = Invoke-Native git @('-C', $Root, 'status', '--porcelain', '--untracked-files=all')
+    if (@($primary.Lines | Where-Object { $_.Trim() }).Count -gt 0) {
+        throw "SAFE STOP: primary worktree has local changes. Preserve/reconcile before landing."
+    }
+    $lane = Invoke-Native git @('-C', $LaneWorktree, 'status', '--porcelain', '--untracked-files=all')
+    if (@($lane.Lines | Where-Object { $_.Trim() }).Count -gt 0) {
+        throw "SAFE STOP: lane worktree has uncommitted/untracked files. Preserve before landing."
+    }
+    if (-not (Get-Command 'p4' -ErrorAction SilentlyContinue)) {
+        throw "SAFE STOP: Perforce client unavailable; binary production state unknown."
+    }
+    $info = Invoke-Native p4 @('info') -AllowFail
+    if ($info.Code -ne 0 -or @($info.Lines | Where-Object { $_ -match 'Server address:' }).Count -eq 0) {
+        throw "SAFE STOP: Perforce server inaccessible; cannot assume Git contains the full project."
+    }
+    $opened = Invoke-Native p4 @('opened', '-m', '1') -AllowFail
+    $openedText = $opened.Lines -join [Environment]::NewLine
+    if ($opened.Code -eq 0 -and $openedText.Trim()) {
+        throw "SAFE STOP: Perforce has pending opened files. Inspect and preserve native assets first."
+    }
+    if ($opened.Code -ne 0 -and $openedText -notmatch 'File\(s\) not opened') {
+        throw "SAFE STOP: Perforce opened check failed: $openedText"
+    }
+    Write-Host "    local gate passed: owner attestation + bounded probes (NOT proof of C:/G: backup)" -ForegroundColor Green
 }
 
 function Invoke-LandOne([object]$LaneObj) {
@@ -103,7 +143,7 @@ function Invoke-LandOne([object]$LaneObj) {
         return $false
     }
 
-    Invoke-Native git @('-C', $wt, 'fetch', '--prune', 'origin') -AllowFail | Out-Null
+    Invoke-Native git @('-C', $wt, 'fetch', 'origin') | Out-Null
     $count = (Invoke-Native git @('-C', $wt, 'rev-list', '--count', "origin/main..$ref")).Lines[0].Trim()
     if ([int]$count -eq 0) {
         Write-Host "    nothing to land (lane delta is empty)" -ForegroundColor DarkGray
@@ -119,6 +159,8 @@ function Invoke-LandOne([object]$LaneObj) {
         Write-Host "    DRY RUN: would push $ref ($($sha.Substring(0,8))) -> refs/heads/$temp, PR, merge, delete." -ForegroundColor Yellow
         return $false
     }
+
+    Assert-LocalAuthority -LaneWorktree $wt
 
     # Push the lane REF as a temporary branch. No local branch is created at any point.
     $push = Invoke-Native git @('-C', $wt, 'push', 'origin', "$ref`:refs/heads/$temp")
@@ -142,12 +184,18 @@ function Invoke-LandOne([object]$LaneObj) {
         return $false
     }
 
-    if (-not $KeepRemoteBranch) {
+    if ($OwnerApprovedBranchDeletion -and -not $KeepRemoteBranch) {
         $del = Invoke-Native git @('-C', $wt, 'push', 'origin', '--delete', $temp) -AllowFail
         $del.Lines | ForEach-Object { Write-Host "    $_" }
+    } else {
+        Write-Host "    preserving remote landing branch $temp for recovery/provenance" -ForegroundColor Yellow
     }
 
-    Sync-Primary
+    if ($OwnerApprovedPrimarySync) {
+        Sync-Primary
+    } else {
+        Write-Host "    primary checkout not auto-synced; review C:/G:/P4 before syncing" -ForegroundColor Yellow
+    }
     Write-Host "    landed $($sha.Substring(0,8)) on main" -ForegroundColor Green
     return $true
 }
