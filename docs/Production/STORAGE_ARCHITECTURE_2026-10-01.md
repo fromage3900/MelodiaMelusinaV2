@@ -139,3 +139,12 @@ The project had no way to detect loss: Content is 41,505 files / 86.44 GB outsid
 2. Code/docs WIP must be committed and pushed the same day; the lane branch is the offsite copy.
 3. `git stash` is not durable: stash commits are unreachable until pinned. Prefer `refs/recovery/<date>/` pins (this baseline) or a commit.
 4. Run the daily manifest before the first edit of the day and diff against the previous day's CSV.
+### 2026-10-29 owner ruling - C: is the source of truth
+
+**`C:\EnvironmentPortfolio\BS_GodFile` is authoritative.** Git and Perforce are backup/transport, not truth. Operational consequences:
+
+- No agent may run `p4 sync`, `p4 revert`, `p4 sync -f`, `git checkout`, `git reset`, `git stash`, or `git clean` over this checkout without explicit owner approval. Agents work in lane worktrees and copy in only reviewed artifacts.
+- **Loss vault** (`Tools/loss_vault.ps1`, Startup `MelodiaLossVault.cmd`): every 5 minutes it copies Content files modified in the last 20 minutes to `D:\MelodiaVault\YYYYMMDD\HHMMSS\`, with a manifest and git/p4 state. Retention 7 days. Worst case is now the snapshot interval, not months.
+- **Pending-CL archive**: the full set of p4-opened files on this client (1,328 existing files / 0.89 GB) is archived at `D:\MelodiaVault\p4_opened_20261029\` - pending changelists are local-only and are the largest remaining exposure.
+- **Recovery pins**: 93 unreachable commits + 16 stash commits + 5 worktree HEADs are pinned under `refs/recovery/` (114 refs). Stash commits are local-only; pinning prevents gc from deleting them.
+- **Daily guard** (`Tools/lane_guard.ps1`, Startup `MelodiaLaneGuard.cmd`): Content manifest diff (missing/added/resized), git unpushed/staged/stash, p4 opened/checkpoint age, and the fabric canon check (10 MIs -> `M_Master_Nikki`; wrong master must stay deleted).

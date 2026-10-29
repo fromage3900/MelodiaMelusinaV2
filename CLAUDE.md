@@ -329,3 +329,6 @@ PIE-proven on the `First Resonance` fixture (`CURRENT_STATE.md` → "First Reson
 4. **Zero-Alpha Text Inspection**:
    - When text blocks are reported invisible, always verify `ColorAndOpacity.SpecifiedColor.A > 0.0`. Do not allow uninitialized or black zero-alpha `(0, 0, 0, 0)` colors to hide text.
 
+
+
+**2026-10-29 owner ruling:** `C:\EnvironmentPortfolio\BS_GodFile` is the source of truth (AGENTS.md ruling). Git/Perforce are backup; never sync/checkout/reset/stash over this checkout without owner approval. Recovery: `Tools/loss_vault.ps1` (5-min Content snapshots to `D:\MelodiaVault`) and `Tools/lane_guard.ps1`.
