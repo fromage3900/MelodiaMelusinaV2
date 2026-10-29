@@ -1,0 +1,491 @@
+{
+ "schema": "melodia.proving_fresh_load_check.v1",
+ "when": "2026-10-28",
+ "master": "M_Master_Nikki",
+ "master_path": "/Game/EnvSandbox/Materials/Masters/M_Master_Nikki",
+ "checks": [
+  {
+   "name": "MI_Prove_Nikki_01_BaseSurface",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Nikki_01_BaseSurface",
+   "fresh_reload": false,
+   "reload_note": "reload_packages() takes at most 2 arguments (3 given)",
+   "class": "MaterialInstanceConstant",
+   "parent": "<Object '/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki' (0x000002A7C4C97000) Class 'Material'>",
+   "parent_ok": true,
+   "expected_counts": {
+    "scalar": 6,
+    "vector": 4,
+    "texture": 0
+   },
+   "got_counts": {
+    "scalar": 6,
+    "vector": 4,
+    "texture": 0
+   },
+   "census_ok": true,
+   "status": "ok"
+  },
+  {
+   "name": "MI_Prove_Nikki_03_Atmosphere",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Nikki_03_Atmosphere",
+   "fresh_reload": false,
+   "reload_note": "reload_packages() takes at most 2 arguments (3 given)",
+   "class": "MaterialInstanceConstant",
+   "parent": "<Object '/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki' (0x000002A7C4C97000) Class 'Material'>",
+   "parent_ok": true,
+   "expected_counts": {
+    "scalar": 3,
+    "vector": 1,
+    "texture": 0
+   },
+   "got_counts": {
+    "scalar": 3,
+    "vector": 1,
+    "texture": 0
+   },
+   "census_ok": true,
+   "status": "ok"
+  },
+  {
+   "name": "MI_Prove_Nikki_04_Emissive",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Nikki_04_Emissive",
+   "fresh_reload": false,
+   "reload_note": "reload_packages() takes at most 2 arguments (3 given)",
+   "class": "MaterialInstanceConstant",
+   "parent": "<Object '/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki' (0x000002A7C4C97000) Class 'Material'>",
+   "parent_ok": true,
+   "expected_counts": {
+    "scalar": 2,
+    "vector": 0,
+    "texture": 0
+   },
+   "got_counts": {
+    "scalar": 2,
+    "vector": 0,
+    "texture": 0
+   },
+   "census_ok": true,
+   "status": "ok"
+  },
+  {
+   "name": "MI_Prove_Nikki_05_Triplanar",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Nikki_05_Triplanar",
+   "fresh_reload": false,
+   "reload_note": "reload_packages() takes at most 2 arguments (3 given)",
+   "class": "MaterialInstanceConstant",
+   "parent": "<Object '/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki' (0x000002A7C4C97000) Class 'Material'>",
+   "parent_ok": true,
+   "expected_counts": {
+    "scalar": 9,
+    "vector": 3,
+    "texture": 1
+   },
+   "got_counts": {
+    "scalar": 9,
+    "vector": 3,
+    "texture": 1
+   },
+   "census_ok": true,
+   "status": "ok"
+  },
+  {
+   "name": "MI_Prove_Nikki_06_Parallax",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Nikki_06_Parallax",
+   "fresh_reload": false,
+   "reload_note": "reload_packages() takes at most 2 arguments (3 given)",
+   "class": "MaterialInstanceConstant",
+   "parent": "<Object '/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki' (0x000002A7C4C97000) Class 'Material'>",
+   "parent_ok": true,
+   "expected_counts": {
+    "scalar": 2,
+    "vector": 0,
+    "texture": 0
+   },
+   "got_counts": {
+    "scalar": 2,
+    "vector": 0,
+    "texture": 0
+   },
+   "census_ok": true,
+   "status": "ok"
+  },
+  {
+   "name": "MI_Prove_Nikki_07_NikkiIridescenceSheen",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Nikki_07_NikkiIridescenceSheen",
+   "fresh_reload": false,
+   "reload_note": "reload_packages() takes at most 2 arguments (3 given)",
+   "class": "MaterialInstanceConstant",
+   "parent": "<Object '/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki' (0x000002A7C4C97000) Class 'Material'>",
+   "parent_ok": true,
+   "expected_counts": {
+    "scalar": 1,
+    "vector": 0,
+    "texture": 0
+   },
+   "got_counts": {
+    "scalar": 1,
+    "vector": 0,
+    "texture": 0
+   },
+   "census_ok": true,
+   "status": "ok"
+  },
+  {
+   "name": "MI_Prove_Nikki_08_NikkiStickerShade",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Nikki_08_NikkiStickerShade",
+   "fresh_reload": false,
+   "reload_note": "reload_packages() takes at most 2 arguments (3 given)",
+   "class": "MaterialInstanceConstant",
+   "parent": "<Object '/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki' (0x000002A7C4C97000) Class 'Material'>",
+   "parent_ok": true,
+   "expected_counts": {
+    "scalar": 3,
+    "vector": 1,
+    "texture": 0
+   },
+   "got_counts": {
+    "scalar": 3,
+    "vector": 1,
+    "texture": 0
+   },
+   "census_ok": true,
+   "status": "ok"
+  },
+  {
+   "name": "MI_Prove_Nikki_09_NikkiTwinkleIris",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Nikki_09_NikkiTwinkleIris",
+   "fresh_reload": false,
+   "reload_note": "reload_packages() takes at most 2 arguments (3 given)",
+   "class": "MaterialInstanceConstant",
+   "parent": "<Object '/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki' (0x000002A7C4C97000) Class 'Material'>",
+   "parent_ok": true,
+   "expected_counts": {
+    "scalar": 4,
+    "vector": 1,
+    "texture": 0
+   },
+   "got_counts": {
+    "scalar": 4,
+    "vector": 1,
+    "texture": 0
+   },
+   "census_ok": true,
+   "status": "ok"
+  },
+  {
+   "name": "MI_Prove_Nikki_10_NikkiPastelGrade",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Nikki_10_NikkiPastelGrade",
+   "fresh_reload": false,
+   "reload_note": "reload_packages() takes at most 2 arguments (3 given)",
+   "class": "MaterialInstanceConstant",
+   "parent": "<Object '/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki' (0x000002A7C4C97000) Class 'Material'>",
+   "parent_ok": true,
+   "expected_counts": {
+    "scalar": 4,
+    "vector": 3,
+    "texture": 0
+   },
+   "got_counts": {
+    "scalar": 4,
+    "vector": 3,
+    "texture": 0
+   },
+   "census_ok": true,
+   "status": "ok"
+  },
+  {
+   "name": "MI_Prove_Nikki_11_ShadowDream",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Nikki_11_ShadowDream",
+   "fresh_reload": false,
+   "reload_note": "reload_packages() takes at most 2 arguments (3 given)",
+   "class": "MaterialInstanceConstant",
+   "parent": "<Object '/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki' (0x000002A7C4C97000) Class 'Material'>",
+   "parent_ok": true,
+   "expected_counts": {
+    "scalar": 2,
+    "vector": 1,
+    "texture": 0
+   },
+   "got_counts": {
+    "scalar": 2,
+    "vector": 1,
+    "texture": 0
+   },
+   "census_ok": true,
+   "status": "ok"
+  },
+  {
+   "name": "MI_Prove_Nikki_12_KawaiiSquish",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Nikki_12_KawaiiSquish",
+   "fresh_reload": false,
+   "reload_note": "reload_packages() takes at most 2 arguments (3 given)",
+   "class": "MaterialInstanceConstant",
+   "parent": "<Object '/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki' (0x000002A7C4C97000) Class 'Material'>",
+   "parent_ok": true,
+   "expected_counts": {
+    "scalar": 3,
+    "vector": 1,
+    "texture": 0
+   },
+   "got_counts": {
+    "scalar": 3,
+    "vector": 1,
+    "texture": 0
+   },
+   "census_ok": true,
+   "status": "ok"
+  },
+  {
+   "name": "MI_Prove_Nikki_13_NikkiSDFRibbon",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Nikki_13_NikkiSDFRibbon",
+   "fresh_reload": false,
+   "reload_note": "reload_packages() takes at most 2 arguments (3 given)",
+   "class": "MaterialInstanceConstant",
+   "parent": "<Object '/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki' (0x000002A7C4C97000) Class 'Material'>",
+   "parent_ok": true,
+   "expected_counts": {
+    "scalar": 5,
+    "vector": 1,
+    "texture": 0
+   },
+   "got_counts": {
+    "scalar": 5,
+    "vector": 1,
+    "texture": 0
+   },
+   "census_ok": true,
+   "status": "ok"
+  },
+  {
+   "name": "MI_Prove_Nikki_14_NikkiPearlSheen",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Nikki_14_NikkiPearlSheen",
+   "fresh_reload": false,
+   "reload_note": "reload_packages() takes at most 2 arguments (3 given)",
+   "class": "MaterialInstanceConstant",
+   "parent": "<Object '/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki' (0x000002A7C4C97000) Class 'Material'>",
+   "parent_ok": true,
+   "expected_counts": {
+    "scalar": 3,
+    "vector": 1,
+    "texture": 0
+   },
+   "got_counts": {
+    "scalar": 3,
+    "vector": 1,
+    "texture": 0
+   },
+   "census_ok": true,
+   "status": "ok"
+  },
+  {
+   "name": "MI_Prove_Nikki_15_NikkiDreamWatercolor",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Nikki_15_NikkiDreamWatercolor",
+   "fresh_reload": false,
+   "reload_note": "reload_packages() takes at most 2 arguments (3 given)",
+   "class": "MaterialInstanceConstant",
+   "parent": "<Object '/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki' (0x000002A7C4C97000) Class 'Material'>",
+   "parent_ok": true,
+   "expected_counts": {
+    "scalar": 3,
+    "vector": 1,
+    "texture": 0
+   },
+   "got_counts": {
+    "scalar": 3,
+    "vector": 1,
+    "texture": 0
+   },
+   "census_ok": true,
+   "status": "ok"
+  },
+  {
+   "name": "MI_Prove_Nikki_16_NikkiStickerEdge",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Nikki_16_NikkiStickerEdge",
+   "fresh_reload": false,
+   "reload_note": "reload_packages() takes at most 2 arguments (3 given)",
+   "class": "MaterialInstanceConstant",
+   "parent": "<Object '/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki' (0x000002A7C4C97000) Class 'Material'>",
+   "parent_ok": true,
+   "expected_counts": {
+    "scalar": 4,
+    "vector": 1,
+    "texture": 0
+   },
+   "got_counts": {
+    "scalar": 4,
+    "vector": 1,
+    "texture": 0
+   },
+   "census_ok": true,
+   "status": "ok"
+  },
+  {
+   "name": "MI_Prove_Nikki_17_NikkiGlitterHalo",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Nikki_17_NikkiGlitterHalo",
+   "fresh_reload": false,
+   "reload_note": "reload_packages() takes at most 2 arguments (3 given)",
+   "class": "MaterialInstanceConstant",
+   "parent": "<Object '/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki' (0x000002A7C4C97000) Class 'Material'>",
+   "parent_ok": true,
+   "expected_counts": {
+    "scalar": 6,
+    "vector": 1,
+    "texture": 0
+   },
+   "got_counts": {
+    "scalar": 6,
+    "vector": 1,
+    "texture": 0
+   },
+   "census_ok": true,
+   "status": "ok"
+  },
+  {
+   "name": "MI_Prove_Nikki_18_NikkiPetalShadow",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Nikki_18_NikkiPetalShadow",
+   "fresh_reload": false,
+   "reload_note": "reload_packages() takes at most 2 arguments (3 given)",
+   "class": "MaterialInstanceConstant",
+   "parent": "<Object '/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki' (0x000002A7C4C97000) Class 'Material'>",
+   "parent_ok": true,
+   "expected_counts": {
+    "scalar": 5,
+    "vector": 1,
+    "texture": 0
+   },
+   "got_counts": {
+    "scalar": 5,
+    "vector": 1,
+    "texture": 0
+   },
+   "census_ok": true,
+   "status": "ok"
+  },
+  {
+   "name": "MI_Prove_Nikki_19_GlitterPile",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Nikki_19_GlitterPile",
+   "fresh_reload": false,
+   "reload_note": "reload_packages() takes at most 2 arguments (3 given)",
+   "class": "MaterialInstanceConstant",
+   "parent": "<Object '/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki' (0x000002A7C4C97000) Class 'Material'>",
+   "parent_ok": true,
+   "expected_counts": {
+    "scalar": 8,
+    "vector": 1,
+    "texture": 0
+   },
+   "got_counts": {
+    "scalar": 8,
+    "vector": 1,
+    "texture": 0
+   },
+   "census_ok": true,
+   "status": "ok"
+  },
+  {
+   "name": "MI_Prove_Nikki_20_GouacheWash",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Nikki_20_GouacheWash",
+   "fresh_reload": false,
+   "reload_note": "reload_packages() takes at most 2 arguments (3 given)",
+   "class": "MaterialInstanceConstant",
+   "parent": "<Object '/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki' (0x000002A7C4C97000) Class 'Material'>",
+   "parent_ok": true,
+   "expected_counts": {
+    "scalar": 12,
+    "vector": 3,
+    "texture": 0
+   },
+   "got_counts": {
+    "scalar": 12,
+    "vector": 3,
+    "texture": 0
+   },
+   "census_ok": true,
+   "status": "ok"
+  },
+  {
+   "name": "MI_Prove_Nikki_21_NikkiSDFIris",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Nikki_21_NikkiSDFIris",
+   "fresh_reload": false,
+   "reload_note": "reload_packages() takes at most 2 arguments (3 given)",
+   "class": "MaterialInstanceConstant",
+   "parent": "<Object '/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki' (0x000002A7C4C97000) Class 'Material'>",
+   "parent_ok": true,
+   "expected_counts": {
+    "scalar": 7,
+    "vector": 5,
+    "texture": 1
+   },
+   "got_counts": {
+    "scalar": 7,
+    "vector": 5,
+    "texture": 1
+   },
+   "census_ok": true,
+   "status": "ok"
+  },
+  {
+   "name": "MI_Prove_Nikki_22_CharacterExtensions",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Nikki_22_CharacterExtensions",
+   "fresh_reload": false,
+   "reload_note": "reload_packages() takes at most 2 arguments (3 given)",
+   "class": "MaterialInstanceConstant",
+   "parent": "<Object '/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki' (0x000002A7C4C97000) Class 'Material'>",
+   "parent_ok": true,
+   "expected_counts": {
+    "scalar": 2,
+    "vector": 1,
+    "texture": 2
+   },
+   "got_counts": {
+    "scalar": 2,
+    "vector": 1,
+    "texture": 2
+   },
+   "census_ok": true,
+   "status": "ok"
+  },
+  {
+   "name": "MI_Prove_Nikki_23_ToonRamp",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Nikki_23_ToonRamp",
+   "fresh_reload": false,
+   "reload_note": "reload_packages() takes at most 2 arguments (3 given)",
+   "class": "MaterialInstanceConstant",
+   "parent": "<Object '/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki' (0x000002A7C4C97000) Class 'Material'>",
+   "parent_ok": true,
+   "expected_counts": {
+    "scalar": 1,
+    "vector": 0,
+    "texture": 0
+   },
+   "got_counts": {
+    "scalar": 1,
+    "vector": 0,
+    "texture": 0
+   },
+   "census_ok": true,
+   "status": "ok"
+  },
+  {
+   "name": "MI_Prove_Nikki_24_AudioCymatics",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Nikki_24_AudioCymatics",
+   "fresh_reload": false,
+   "reload_note": "reload_packages() takes at most 2 arguments (3 given)",
+   "class": "MaterialInstanceConstant",
+   "parent": "<Object '/Game/EnvSandbox/Materials/Masters/M_Master_Nikki.M_Master_Nikki' (0x000002A7C4C97000) Class 'Material'>",
+   "parent_ok": true,
+   "expected_counts": {
+    "scalar": 1,
+    "vector": 1,
+    "texture": 0
+   },
+   "got_counts": {
+    "scalar": 1,
+    "vector": 1,
+    "texture": 0
+   },
+   "census_ok": true,
+   "status": "ok"
+  }
+ ]
+}

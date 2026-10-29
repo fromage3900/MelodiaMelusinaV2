@@ -124,13 +124,17 @@ COLS = {
 }
 
 # Generated tables (Tools/masters_spine_generate_cols.py) extend COLS without
-# hand-editing this file; a missing module is not an error.
+# hand-editing this file. Read from JSON (not import) so the editor's cached
+# Python modules can never serve a stale table. A missing file is not an error.
 try:
-    sys.path.insert(0, HERE)
-    from masters_spine_cols_generated import GENERATED_COLS
-
-    for _gen_key, _gen_val in GENERATED_COLS.items():
-        COLS.setdefault(_gen_key, _gen_val)
+    _gen_json = os.path.join(HERE, "masters_spine_cols_generated.json")
+    if os.path.isfile(_gen_json):
+        with open(_gen_json) as _gen_fh:
+            for _gen_key, _gen_val in json.load(_gen_fh).items():
+                COLS.setdefault(_gen_key, _gen_val)
+        print("GENERATED_COLS_LOADED", len(COLS))
+    else:
+        print("NO_GENERATED_COLS_JSON")
 except Exception as _gen_exc:
     print("NO_GENERATED_COLS", _gen_exc)
 

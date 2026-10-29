@@ -1,0 +1,1317 @@
+{
+ "schema": "melodia.proving_presets_receipt.v1",
+ "when": "2026-10-28",
+ "master": "M_Master_Nikki",
+ "master_path": "/Game/EnvSandbox/Materials/Masters/M_Master_Nikki",
+ "out_dir": "/Game/EnvSandbox/Materials/Instances/Proving",
+ "presets": [
+  {
+   "name": "MI_Prove_Nikki_01_BaseSurface",
+   "status": "authored",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Nikki_01_BaseSurface",
+   "overrides": {
+    "BaseTint": {
+     "kind": "vector",
+     "value": [
+      1.0,
+      0.95,
+      1.0,
+      1.0
+     ],
+     "readback": [
+      1.0,
+      0.95,
+      1.0,
+      1.0
+     ],
+     "ok": true
+    },
+    "MetallicScale": {
+     "kind": "scalar",
+     "value": 0.3,
+     "readback": 0.3,
+     "ok": true
+    },
+    "RampContrast": {
+     "kind": "scalar",
+     "value": 1.27,
+     "readback": 1.27,
+     "ok": true
+    },
+    "RampHigh": {
+     "kind": "vector",
+     "value": [
+      1.0,
+      0.9,
+      0.94,
+      1.0
+     ],
+     "readback": [
+      1.0,
+      0.9,
+      0.94,
+      1.0
+     ],
+     "ok": true
+    },
+    "RampLow": {
+     "kind": "vector",
+     "value": [
+      0.28,
+      0.1,
+      0.34,
+      1.0
+     ],
+     "readback": [
+      0.28,
+      0.1,
+      0.34,
+      1.0
+     ],
+     "ok": true
+    },
+    "RampMid": {
+     "kind": "vector",
+     "value": [
+      0.93,
+      0.55,
+      0.79,
+      1.0
+     ],
+     "readback": [
+      0.93,
+      0.55,
+      0.79,
+      1.0
+     ],
+     "ok": true
+    },
+    "RampPosMid": {
+     "kind": "scalar",
+     "value": 0.32,
+     "readback": 0.32,
+     "ok": true
+    },
+    "RampStrength": {
+     "kind": "scalar",
+     "value": 0.3,
+     "readback": 0.3,
+     "ok": true
+    },
+    "RoughnessMax": {
+     "kind": "scalar",
+     "value": 0.45,
+     "readback": 0.45,
+     "ok": true
+    },
+    "RoughnessMin": {
+     "kind": "scalar",
+     "value": 0.3,
+     "readback": 0.3,
+     "ok": true
+    }
+   },
+   "saved_return": true
+  },
+  {
+   "name": "MI_Prove_Nikki_03_Atmosphere",
+   "status": "authored",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Nikki_03_Atmosphere",
+   "overrides": {
+    "AtmosphericColor": {
+     "kind": "vector",
+     "value": [
+      0.7,
+      0.67,
+      0.86,
+      1.0
+     ],
+     "readback": [
+      0.7,
+      0.67,
+      0.86,
+      1.0
+     ],
+     "ok": true
+    },
+    "AtmosphericEnd": {
+     "kind": "scalar",
+     "value": 150700.0,
+     "readback": 150700.0,
+     "ok": true
+    },
+    "AtmosphericStart": {
+     "kind": "scalar",
+     "value": 30000.0,
+     "readback": 30000.0,
+     "ok": true
+    },
+    "AtmosphericStrength": {
+     "kind": "scalar",
+     "value": 0.3,
+     "readback": 0.3,
+     "ok": true
+    }
+   },
+   "saved_return": true
+  },
+  {
+   "name": "MI_Prove_Nikki_04_Emissive",
+   "status": "authored",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Nikki_04_Emissive",
+   "overrides": {
+    "EmissiveFloor": {
+     "kind": "scalar",
+     "value": 0.3,
+     "readback": 0.3,
+     "ok": true
+    },
+    "NikkiEmissiveStrength": {
+     "kind": "scalar",
+     "value": 1.2,
+     "readback": 1.2,
+     "ok": true
+    }
+   },
+   "saved_return": true
+  },
+  {
+   "name": "MI_Prove_Nikki_05_Triplanar",
+   "status": "authored",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Nikki_05_Triplanar",
+   "overrides": {
+    "NormalMap": {
+     "kind": "texture",
+     "value": "/Game/EnvSandbox/Materials/Textures/T_Noise_White",
+     "readback": "<Object '/Game/EnvSandbox/Materials/Textures/T_Noise_White.T_Noise_White' (0x000002A8E2301200) Class 'Texture2D'>",
+     "ok": true
+    },
+    "TriplanarBlendSharpness": {
+     "kind": "scalar",
+     "value": 1.0,
+     "readback": 1.0,
+     "ok": true
+    },
+    "TriplanarNormalStrength": {
+     "kind": "scalar",
+     "value": 1.0,
+     "readback": 1.0,
+     "ok": true
+    },
+    "TriplanarPro_AxisWeights": {
+     "kind": "vector",
+     "value": [
+      1.0,
+      0.95,
+      1.0,
+      1.0
+     ],
+     "readback": [
+      1.0,
+      0.95,
+      1.0,
+      1.0
+     ],
+     "ok": true
+    },
+    "TriplanarPro_BlendStrength": {
+     "kind": "scalar",
+     "value": 0.3,
+     "readback": 0.3,
+     "ok": true
+    },
+    "TriplanarPro_BreakupContrast": {
+     "kind": "scalar",
+     "value": 2.407,
+     "readback": 2.407,
+     "ok": true
+    },
+    "TriplanarPro_BreakupScale": {
+     "kind": "scalar",
+     "value": 9.6007,
+     "readback": 9.6007,
+     "ok": true
+    },
+    "TriplanarPro_BreakupStrength": {
+     "kind": "scalar",
+     "value": 0.3,
+     "readback": 0.3,
+     "ok": true
+    },
+    "TriplanarPro_ProjectionOffset": {
+     "kind": "vector",
+     "value": [
+      0.08,
+      0.0,
+      0.04,
+      1.0
+     ],
+     "readback": [
+      0.08,
+      0.0,
+      0.04,
+      1.0
+     ],
+     "ok": true
+    },
+    "TriplanarPro_ProjectionRotation": {
+     "kind": "vector",
+     "value": [
+      0.08,
+      0.0,
+      0.04,
+      1.0
+     ],
+     "readback": [
+      0.08,
+      0.0,
+      0.04,
+      1.0
+     ],
+     "ok": true
+    },
+    "TriplanarPro_Scale": {
+     "kind": "scalar",
+     "value": 0.3,
+     "readback": 0.3,
+     "ok": true
+    },
+    "TriplanarPro_Sharpness": {
+     "kind": "scalar",
+     "value": 9.607,
+     "readback": 9.607,
+     "ok": true
+    },
+    "TriplanarScale": {
+     "kind": "scalar",
+     "value": 1.0,
+     "readback": 1.0,
+     "ok": true
+    }
+   },
+   "saved_return": true
+  },
+  {
+   "name": "MI_Prove_Nikki_06_Parallax",
+   "status": "authored",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Nikki_06_Parallax",
+   "overrides": {
+    "ParallaxStrength": {
+     "kind": "scalar",
+     "value": 0.3,
+     "readback": 0.3,
+     "ok": true
+    },
+    "UVScale": {
+     "kind": "scalar",
+     "value": 3.035,
+     "readback": 3.035,
+     "ok": true
+    }
+   },
+   "saved_return": true
+  },
+  {
+   "name": "MI_Prove_Nikki_07_NikkiIridescenceSheen",
+   "status": "authored",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Nikki_07_NikkiIridescenceSheen",
+   "overrides": {
+    "IridescenceRoughnessAtten": {
+     "kind": "scalar",
+     "value": 0.3,
+     "readback": 0.3,
+     "ok": true
+    }
+   },
+   "saved_return": true
+  },
+  {
+   "name": "MI_Prove_Nikki_08_NikkiStickerShade",
+   "status": "authored",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Nikki_08_NikkiStickerShade",
+   "overrides": {
+    "NikkiStickerBandCount": {
+     "kind": "scalar",
+     "value": 3.1,
+     "readback": 3.1,
+     "ok": true
+    },
+    "NikkiStickerBandSoftness": {
+     "kind": "scalar",
+     "value": 0.3,
+     "readback": 0.3,
+     "ok": true
+    },
+    "NikkiStickerShadeColor": {
+     "kind": "vector",
+     "value": [
+      0.8,
+      0.5,
+      0.72,
+      1.0
+     ],
+     "readback": [
+      0.8,
+      0.5,
+      0.72,
+      1.0
+     ],
+     "ok": true
+    },
+    "NikkiStickerStrength": {
+     "kind": "scalar",
+     "value": 0.3,
+     "readback": 0.3,
+     "ok": true
+    }
+   },
+   "saved_return": true
+  },
+  {
+   "name": "MI_Prove_Nikki_09_NikkiTwinkleIris",
+   "status": "authored",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Nikki_09_NikkiTwinkleIris",
+   "overrides": {
+    "NikkiFabricSheen": {
+     "kind": "scalar",
+     "value": 0.3,
+     "readback": 0.3,
+     "ok": true
+    },
+    "NikkiIridescence": {
+     "kind": "scalar",
+     "value": 2.4,
+     "readback": 2.4,
+     "ok": true
+    },
+    "NikkiIrisTint": {
+     "kind": "vector",
+     "value": [
+      1.0,
+      0.75,
+      0.99,
+      1.0
+     ],
+     "readback": [
+      1.0,
+      0.75,
+      0.99,
+      1.0
+     ],
+     "ok": true
+    },
+    "NikkiTwinkleAmount": {
+     "kind": "scalar",
+     "value": 0.3,
+     "readback": 0.3,
+     "ok": true
+    },
+    "NikkiTwinkleScale": {
+     "kind": "scalar",
+     "value": 2.407,
+     "readback": 2.407,
+     "ok": true
+    }
+   },
+   "saved_return": true
+  },
+  {
+   "name": "MI_Prove_Nikki_10_NikkiPastelGrade",
+   "status": "authored",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Nikki_10_NikkiPastelGrade",
+   "overrides": {
+    "NikkiPastelBloom": {
+     "kind": "scalar",
+     "value": 0.3,
+     "readback": 0.3,
+     "ok": true
+    },
+    "NikkiPastelLift": {
+     "kind": "scalar",
+     "value": 0.15,
+     "readback": 0.15,
+     "ok": true
+    },
+    "NikkiPastelPosMid": {
+     "kind": "scalar",
+     "value": 0.32,
+     "readback": 0.32,
+     "ok": true
+    },
+    "NikkiPastelRampHigh": {
+     "kind": "vector",
+     "value": [
+      1.0,
+      0.93,
+      1.0,
+      1.0
+     ],
+     "readback": [
+      1.0,
+      0.93,
+      1.0,
+      1.0
+     ],
+     "ok": true
+    },
+    "NikkiPastelRampLow": {
+     "kind": "vector",
+     "value": [
+      1.0,
+      0.8,
+      0.96,
+      1.0
+     ],
+     "readback": [
+      1.0,
+      0.8,
+      0.96,
+      1.0
+     ],
+     "ok": true
+    },
+    "NikkiPastelRampMid": {
+     "kind": "vector",
+     "value": [
+      1.0,
+      0.88,
+      0.94,
+      1.0
+     ],
+     "readback": [
+      1.0,
+      0.88,
+      0.94,
+      1.0
+     ],
+     "ok": true
+    },
+    "NikkiPastelStrength": {
+     "kind": "scalar",
+     "value": 0.3,
+     "readback": 0.3,
+     "ok": true
+    }
+   },
+   "saved_return": true
+  },
+  {
+   "name": "MI_Prove_Nikki_11_ShadowDream",
+   "status": "authored",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Nikki_11_ShadowDream",
+   "overrides": {
+    "ShadowDreamStrength": {
+     "kind": "scalar",
+     "value": 0.45,
+     "readback": 0.45,
+     "ok": true
+    },
+    "ShadowDreamTint": {
+     "kind": "vector",
+     "value": [
+      0.56,
+      0.37,
+      0.66,
+      1.0
+     ],
+     "readback": [
+      0.56,
+      0.37,
+      0.66,
+      1.0
+     ],
+     "ok": true
+    },
+    "ShadowSoftness": {
+     "kind": "scalar",
+     "value": 2.47,
+     "readback": 2.47,
+     "ok": true
+    }
+   },
+   "saved_return": true
+  },
+  {
+   "name": "MI_Prove_Nikki_12_KawaiiSquish",
+   "status": "authored",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Nikki_12_KawaiiSquish",
+   "overrides": {
+    "NikkiSquish_Amount": {
+     "kind": "scalar",
+     "value": 0.6,
+     "readback": 0.6,
+     "ok": true
+    },
+    "NikkiSquish_Direction": {
+     "kind": "vector",
+     "value": [
+      1.0,
+      1.0,
+      0.74,
+      1.0
+     ],
+     "readback": [
+      1.0,
+      1.0,
+      0.74,
+      1.0
+     ],
+     "ok": true
+    },
+    "NikkiSquish_Speed": {
+     "kind": "scalar",
+     "value": 2.4,
+     "readback": 2.4,
+     "ok": true
+    },
+    "SquishAmount": {
+     "kind": "scalar",
+     "value": 1.2,
+     "readback": 1.2,
+     "ok": true
+    }
+   },
+   "saved_return": true
+  },
+  {
+   "name": "MI_Prove_Nikki_13_NikkiSDFRibbon",
+   "status": "authored",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Nikki_13_NikkiSDFRibbon",
+   "overrides": {
+    "NikkiSDFRibbon_Color": {
+     "kind": "vector",
+     "value": [
+      1.0,
+      0.75,
+      0.94,
+      1.0
+     ],
+     "readback": [
+      1.0,
+      0.75,
+      0.94,
+      1.0
+     ],
+     "ok": true
+    },
+    "NikkiSDFRibbon_EdgeFalloff": {
+     "kind": "scalar",
+     "value": 4.87,
+     "readback": 4.87,
+     "ok": true
+    },
+    "NikkiSDFRibbon_EdgeStrength": {
+     "kind": "scalar",
+     "value": 0.3,
+     "readback": 0.3,
+     "ok": true
+    },
+    "NikkiSDFRibbon_Scale": {
+     "kind": "scalar",
+     "value": 9.67,
+     "readback": 9.67,
+     "ok": true
+    },
+    "NikkiSDFRibbon_Sharpness": {
+     "kind": "scalar",
+     "value": 4.87,
+     "readback": 4.87,
+     "ok": true
+    },
+    "NikkiSDFRibbon_Strength": {
+     "kind": "scalar",
+     "value": 0.3,
+     "readback": 0.3,
+     "ok": true
+    }
+   },
+   "saved_return": true
+  },
+  {
+   "name": "MI_Prove_Nikki_14_NikkiPearlSheen",
+   "status": "authored",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Nikki_14_NikkiPearlSheen",
+   "overrides": {
+    "NikkiPearl_Frequency": {
+     "kind": "scalar",
+     "value": 4.87,
+     "readback": 4.87,
+     "ok": true
+    },
+    "NikkiPearl_SecondFrequency": {
+     "kind": "scalar",
+     "value": 4.87,
+     "readback": 4.87,
+     "ok": true
+    },
+    "NikkiPearl_Strength": {
+     "kind": "scalar",
+     "value": 0.3,
+     "readback": 0.3,
+     "ok": true
+    },
+    "NikkiPearl_Tint": {
+     "kind": "vector",
+     "value": [
+      1.0,
+      0.85,
+      0.99,
+      1.0
+     ],
+     "readback": [
+      1.0,
+      0.85,
+      0.99,
+      1.0
+     ],
+     "ok": true
+    }
+   },
+   "saved_return": true
+  },
+  {
+   "name": "MI_Prove_Nikki_15_NikkiDreamWatercolor",
+   "status": "authored",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Nikki_15_NikkiDreamWatercolor",
+   "overrides": {
+    "NikkiWatercolor_Bleed": {
+     "kind": "scalar",
+     "value": 0.3,
+     "readback": 0.3,
+     "ok": true
+    },
+    "NikkiWatercolor_BleedColor": {
+     "kind": "vector",
+     "value": [
+      0.83,
+      0.5,
+      0.89,
+      1.0
+     ],
+     "readback": [
+      0.83,
+      0.5,
+      0.89,
+      1.0
+     ],
+     "ok": true
+    },
+    "NikkiWatercolor_Jitter": {
+     "kind": "scalar",
+     "value": 0.15,
+     "readback": 0.15,
+     "ok": true
+    },
+    "NikkiWatercolor_Strength": {
+     "kind": "scalar",
+     "value": 0.3,
+     "readback": 0.3,
+     "ok": true
+    }
+   },
+   "saved_return": true
+  },
+  {
+   "name": "MI_Prove_Nikki_16_NikkiStickerEdge",
+   "status": "authored",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Nikki_16_NikkiStickerEdge",
+   "overrides": {
+    "NikkiStickerEdge_Bands": {
+     "kind": "scalar",
+     "value": 3.1,
+     "readback": 3.1,
+     "ok": true
+    },
+    "NikkiStickerEdge_Color": {
+     "kind": "vector",
+     "value": [
+      1.0,
+      0.83,
+      0.98,
+      1.0
+     ],
+     "readback": [
+      1.0,
+      0.83,
+      0.98,
+      1.0
+     ],
+     "ok": true
+    },
+    "NikkiStickerEdge_Softness": {
+     "kind": "scalar",
+     "value": 0.3,
+     "readback": 0.3,
+     "ok": true
+    },
+    "NikkiStickerEdge_Strength": {
+     "kind": "scalar",
+     "value": 0.3,
+     "readback": 0.3,
+     "ok": true
+    },
+    "NikkiStickerEdge_Width": {
+     "kind": "scalar",
+     "value": 0.6,
+     "readback": 0.6,
+     "ok": true
+    }
+   },
+   "saved_return": true
+  },
+  {
+   "name": "MI_Prove_Nikki_17_NikkiGlitterHalo",
+   "status": "authored",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Nikki_17_NikkiGlitterHalo",
+   "overrides": {
+    "NikkiGlitterHalo_Amount": {
+     "kind": "scalar",
+     "value": 0.3,
+     "readback": 0.3,
+     "ok": true
+    },
+    "NikkiGlitterHalo_Color": {
+     "kind": "vector",
+     "value": [
+      1.0,
+      0.9,
+      0.89,
+      1.0
+     ],
+     "readback": [
+      1.0,
+      0.9,
+      0.89,
+      1.0
+     ],
+     "ok": true
+    },
+    "NikkiGlitterHalo_HaloPower": {
+     "kind": "scalar",
+     "value": 5.15,
+     "readback": 5.15,
+     "ok": true
+    },
+    "NikkiGlitterHalo_HaloStrength": {
+     "kind": "scalar",
+     "value": 0.3,
+     "readback": 0.3,
+     "ok": true
+    },
+    "NikkiGlitterHalo_Intensity": {
+     "kind": "scalar",
+     "value": 0.6,
+     "readback": 0.6,
+     "ok": true
+    },
+    "NikkiGlitterHalo_Scale": {
+     "kind": "scalar",
+     "value": 39.1,
+     "readback": 39.099998,
+     "ok": true
+    },
+    "NikkiGlitterHalo_TwinkleSpeed": {
+     "kind": "scalar",
+     "value": 2.4,
+     "readback": 2.4,
+     "ok": true
+    }
+   },
+   "saved_return": true
+  },
+  {
+   "name": "MI_Prove_Nikki_18_NikkiPetalShadow",
+   "status": "authored",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Nikki_18_NikkiPetalShadow",
+   "overrides": {
+    "NikkiPetal_BloomSpeed": {
+     "kind": "scalar",
+     "value": 2.4,
+     "readback": 2.4,
+     "ok": true
+    },
+    "NikkiPetal_Radius": {
+     "kind": "scalar",
+     "value": 0.157,
+     "readback": 0.157,
+     "ok": true
+    },
+    "NikkiPetal_Scale": {
+     "kind": "scalar",
+     "value": 19.27,
+     "readback": 19.27,
+     "ok": true
+    },
+    "NikkiPetal_Softness": {
+     "kind": "scalar",
+     "value": 9.67,
+     "readback": 9.67,
+     "ok": true
+    },
+    "NikkiPetal_Strength": {
+     "kind": "scalar",
+     "value": 0.3,
+     "readback": 0.3,
+     "ok": true
+    },
+    "NikkiPetal_Tint": {
+     "kind": "vector",
+     "value": [
+      1.0,
+      0.8,
+      0.94,
+      1.0
+     ],
+     "readback": [
+      1.0,
+      0.8,
+      0.94,
+      1.0
+     ],
+     "ok": true
+    }
+   },
+   "saved_return": true
+  },
+  {
+   "name": "MI_Prove_Nikki_19_GlitterPile",
+   "status": "authored",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Nikki_19_GlitterPile",
+   "overrides": {
+    "GlitterPile_Brightness": {
+     "kind": "scalar",
+     "value": 2.4,
+     "readback": 2.4,
+     "ok": true
+    },
+    "GlitterPile_Color": {
+     "kind": "vector",
+     "value": [
+      1.0,
+      0.91,
+      0.94,
+      1.0
+     ],
+     "readback": [
+      1.0,
+      0.91,
+      0.94,
+      1.0
+     ],
+     "ok": true
+    },
+    "GlitterPile_Density": {
+     "kind": "scalar",
+     "value": 0.3,
+     "readback": 0.3,
+     "ok": true
+    },
+    "GlitterPile_FacetSharpness": {
+     "kind": "scalar",
+     "value": 78.2,
+     "readback": 78.199997,
+     "ok": true
+    },
+    "GlitterPile_Gate": {
+     "kind": "scalar",
+     "value": 0.3,
+     "readback": 0.3,
+     "ok": true
+    },
+    "GlitterPile_HaloPower": {
+     "kind": "scalar",
+     "value": 5.15,
+     "readback": 5.15,
+     "ok": true
+    },
+    "GlitterPile_HaloStrength": {
+     "kind": "scalar",
+     "value": 0.3,
+     "readback": 0.3,
+     "ok": true
+    },
+    "GlitterPile_Iridescence": {
+     "kind": "scalar",
+     "value": 1.2,
+     "readback": 1.2,
+     "ok": true
+    },
+    "GlitterPile_Scale": {
+     "kind": "scalar",
+     "value": 159.2,
+     "readback": 159.199997,
+     "ok": true
+    }
+   },
+   "saved_return": true
+  },
+  {
+   "name": "MI_Prove_Nikki_20_GouacheWash",
+   "status": "authored",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Nikki_20_GouacheWash",
+   "overrides": {
+    "MeluGouache_BandLight": {
+     "kind": "scalar",
+     "value": 0.335,
+     "readback": 0.335,
+     "ok": true
+    },
+    "MeluGouache_BandShadow": {
+     "kind": "scalar",
+     "value": 0.335,
+     "readback": 0.335,
+     "ok": true
+    },
+    "MeluGouache_BandSoftness": {
+     "kind": "scalar",
+     "value": 0.075,
+     "readback": 0.075,
+     "ok": true
+    },
+    "MeluGouache_BlotchStrength": {
+     "kind": "scalar",
+     "value": 0.3,
+     "readback": 0.3,
+     "ok": true
+    },
+    "MeluGouache_EdgeReference": {
+     "kind": "scalar",
+     "value": 0.1507,
+     "readback": 0.1507,
+     "ok": true
+    },
+    "MeluGouache_EdgeStrength": {
+     "kind": "scalar",
+     "value": 0.6,
+     "readback": 0.6,
+     "ok": true
+    },
+    "MeluGouache_EdgeWidth": {
+     "kind": "scalar",
+     "value": 1.207,
+     "readback": 1.207,
+     "ok": true
+    },
+    "MeluGouache_GranDarken": {
+     "kind": "scalar",
+     "value": 0.3,
+     "readback": 0.3,
+     "ok": true
+    },
+    "MeluGouache_Granulation": {
+     "kind": "scalar",
+     "value": 0.3,
+     "readback": 0.3,
+     "ok": true
+    },
+    "MeluGouache_HighlightTint": {
+     "kind": "vector",
+     "value": [
+      0.96,
+      0.79,
+      0.8,
+      1.0
+     ],
+     "readback": [
+      0.96,
+      0.79,
+      0.8,
+      1.0
+     ],
+     "ok": true
+    },
+    "MeluGouache_InkColor": {
+     "kind": "vector",
+     "value": [
+      0.13,
+      0.02,
+      0.16,
+      1.0
+     ],
+     "readback": [
+      0.13,
+      0.02,
+      0.16,
+      1.0
+     ],
+     "ok": true
+    },
+    "MeluGouache_KeyLightDir": {
+     "kind": "vector",
+     "value": [
+      0.08,
+      0.0,
+      1.0,
+      1.0
+     ],
+     "readback": [
+      0.08,
+      0.0,
+      1.0,
+      1.0
+     ],
+     "ok": true
+    },
+    "MeluGouache_ShadowMix": {
+     "kind": "scalar",
+     "value": 0.3,
+     "readback": 0.3,
+     "ok": true
+    },
+    "MeluGouache_Strength": {
+     "kind": "scalar",
+     "value": 0.45,
+     "readback": 0.45,
+     "ok": true
+    },
+    "MeluGouache_UVTiling": {
+     "kind": "scalar",
+     "value": 19.27,
+     "readback": 19.27,
+     "ok": true
+    }
+   },
+   "saved_return": true
+  },
+  {
+   "name": "MI_Prove_Nikki_21_NikkiSDFIris",
+   "status": "authored",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Nikki_21_NikkiSDFIris",
+   "overrides": {
+    "NikkiSDFIris_Blend": {
+     "kind": "scalar",
+     "value": 1.0,
+     "readback": 1.0,
+     "ok": true
+    },
+    "NikkiSDFIris_CatchlightColor": {
+     "kind": "vector",
+     "value": [
+      1.0,
+      0.95,
+      1.0,
+      1.0
+     ],
+     "readback": [
+      1.0,
+      0.95,
+      1.0,
+      1.0
+     ],
+     "ok": true
+    },
+    "NikkiSDFIris_Center": {
+     "kind": "vector",
+     "value": [
+      0.7,
+      0.0,
+      1.0,
+      1.0
+     ],
+     "readback": [
+      0.7,
+      0.0,
+      1.0,
+      1.0
+     ],
+     "ok": true
+    },
+    "NikkiSDFIris_CymaticFreq": {
+     "kind": "scalar",
+     "value": 7.2,
+     "readback": 7.2,
+     "ok": true
+    },
+    "NikkiSDFIris_CymaticStrength": {
+     "kind": "scalar",
+     "value": 0.4875,
+     "readback": 0.4875,
+     "ok": true
+    },
+    "NikkiSDFIris_InnerColor": {
+     "kind": "vector",
+     "value": [
+      0.63,
+      0.8,
+      1.0,
+      1.0
+     ],
+     "readback": [
+      0.63,
+      0.8,
+      1.0,
+      1.0
+     ],
+     "ok": true
+    },
+    "NikkiSDFIris_Mask": {
+     "kind": "texture",
+     "value": "/Game/EnvSandbox/Materials/Textures/T_Noise_White",
+     "readback": "<Object '/Game/EnvSandbox/Materials/Textures/T_Noise_White.T_Noise_White' (0x000002A8E2301200) Class 'Texture2D'>",
+     "ok": true
+    },
+    "NikkiSDFIris_OuterColor": {
+     "kind": "vector",
+     "value": [
+      0.38,
+      0.23,
+      0.84,
+      1.0
+     ],
+     "readback": [
+      0.38,
+      0.23,
+      0.84,
+      1.0
+     ],
+     "ok": true
+    },
+    "NikkiSDFIris_PupilColor": {
+     "kind": "vector",
+     "value": [
+      0.15,
+      0.0,
+      0.2,
+      1.0
+     ],
+     "readback": [
+      0.15,
+      0.0,
+      0.2,
+      1.0
+     ],
+     "ok": true
+    },
+    "NikkiSDFIris_PupilSize": {
+     "kind": "scalar",
+     "value": 0.425,
+     "readback": 0.425,
+     "ok": true
+    },
+    "NikkiSDFIris_Radius": {
+     "kind": "scalar",
+     "value": 0.3312,
+     "readback": 0.3312,
+     "ok": true
+    },
+    "NikkiSDFIris_SparkleCount": {
+     "kind": "scalar",
+     "value": 9.6,
+     "readback": 9.6,
+     "ok": true
+    },
+    "NikkiSDFIris_SparkleSpeed": {
+     "kind": "scalar",
+     "value": 3.0,
+     "readback": 3.0,
+     "ok": true
+    }
+   },
+   "saved_return": true
+  },
+  {
+   "name": "MI_Prove_Nikki_22_CharacterExtensions",
+   "status": "authored",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Nikki_22_CharacterExtensions",
+   "overrides": {
+    "EmissiveMap": {
+     "kind": "texture",
+     "value": "/Game/EnvSandbox/Materials/Textures/T_Noise_White",
+     "readback": "<Object '/Game/EnvSandbox/Materials/Textures/T_Noise_White.T_Noise_White' (0x000002A8E2301200) Class 'Texture2D'>",
+     "ok": true
+    },
+    "EmissiveMapIntensity": {
+     "kind": "scalar",
+     "value": 1.0,
+     "readback": 1.0,
+     "ok": true
+    },
+    "EmissiveMapTint": {
+     "kind": "vector",
+     "value": [
+      1.0,
+      0.95,
+      1.0,
+      1.0
+     ],
+     "readback": [
+      1.0,
+      0.95,
+      1.0,
+      1.0
+     ],
+     "ok": true
+    },
+    "OpacityMap": {
+     "kind": "texture",
+     "value": "/Game/EnvSandbox/Materials/Textures/T_Noise_White",
+     "readback": "<Object '/Game/EnvSandbox/Materials/Textures/T_Noise_White.T_Noise_White' (0x000002A8E2301200) Class 'Texture2D'>",
+     "ok": true
+    },
+    "OpacityStrength": {
+     "kind": "scalar",
+     "value": 1.0,
+     "readback": 1.0,
+     "ok": true
+    }
+   },
+   "saved_return": true
+  },
+  {
+   "name": "MI_Prove_Nikki_23_ToonRamp",
+   "status": "authored",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Nikki_23_ToonRamp",
+   "overrides": {
+    "ToonRampStrength": {
+     "kind": "scalar",
+     "value": 0.425,
+     "readback": 0.425,
+     "ok": true
+    }
+   },
+   "saved_return": true
+  },
+  {
+   "name": "MI_Prove_Nikki_24_AudioCymatics",
+   "status": "authored",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Nikki_24_AudioCymatics",
+   "overrides": {
+    "CymaticsLandscapeAmount": {
+     "kind": "scalar",
+     "value": 0.05,
+     "readback": 0.05,
+     "ok": true
+    },
+    "CymaticsTint": {
+     "kind": "vector",
+     "value": [
+      1.0,
+      0.85,
+      0.94,
+      1.0
+     ],
+     "readback": [
+      1.0,
+      0.85,
+      0.94,
+      1.0
+     ],
+     "ok": true
+    }
+   },
+   "saved_return": true
+  }
+ ],
+ "non_mi_collection_params": [
+  "BeatPhase",
+  "BeatPulse",
+  "Mid",
+  "GlobalReactivity",
+  "Cymatic_BeatPulse"
+ ],
+ "param_set_sizes": {
+  "scalar": 96,
+  "vector": 32,
+  "texture": 11
+ }
+}
