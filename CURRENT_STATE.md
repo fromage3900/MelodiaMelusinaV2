@@ -12,6 +12,10 @@
 
 **Done (Hython-proven).** `MelodiaStainedGlassWindow_1.0.hda` (`melodia::stained_glass_window`) PythonModule updated to emit `unreal_material` prim attr (role → SDF MI path: `glass_pane` → `MI_SDF_StainedGlass_Kaleidoscope`, tracery/lead_came → `MI_SDF_GildedFiligree`), plus `material_map_json` and `sdf_texture_path` global attrs. Cook verified clean; backup at `Content/HDA/MelodiaStainedGlassWindow_1.0_PreSDF_1.0.hda`. New builder `Tools/Houdini/chladni_sdf_vfx.py` generates Chladni SDF textures for mode pairs (2,3)/(3,5)/(4,7)/(1,4)/(2,5)/(3,4)/(5,7)/(1,3) at 256² — all cook clean in Houdini 22. Pairing doc: `Docs/Production/STAINED_GLASS_SDF_PAIRING_2026-10-28.md`. **UE import + PIE verification still owed.**
 
+### Faraway landmark artist-friendly rebuild (2026-10-28)
+
+**Done (Hython-proven).** All 8 Faraway landmark HDAs rebuilt via `Tools/Houdini/faraway_landmarks_artist_friendly.py` with artist-friendly params and SDF material mapping. Each has `landmark_info.json` with SDF role→MI mapping. Builders: frill_arch, heart_gate, lace_bridge, listening_orchard_tree, motherfold_basin, silk_peak, silk_ribbon, terraced_island. All cook clean. Output: `Saved/Staging/FarawayLandmarksArtistFriendly/`. **Note:** builders use Python SOPs (not native SOPs) — conversion to native VEX/VOP is future work. **UE import + PIE verification still owed.**
+
 ### Chladni SDF flipbook baker (2026-10-28)
 
 **Done (Hython-proven).** New builder `Tools/Houdini/chladni_flipbook_bake.py` packs 16 Chladni SDF frames into a 4×4 flipbook (1024×1024, grayscale, linear, sRGB off) matching the `T_Alpha_*_flipbook` contract. Default frame sequence cycles through 8 mode pairs (3,5)/(2,3)/(4,7)/(1,4)/(2,5)/(3,4)/(5,7)/(1,3) twice. Verified: 1024×1024, 16 frames, manifest saved. Output: `Saved/Staging/ChladniSDF/chladni_flipbook_4x4.png` + `_manifest.json`. **UE import + Niagara binding + PIE verification still owed.**

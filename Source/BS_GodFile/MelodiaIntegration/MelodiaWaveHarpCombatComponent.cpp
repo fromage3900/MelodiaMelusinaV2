@@ -31,10 +31,100 @@
 #include "GameFramework/CharacterMovementComponent.h"
 #include "GameFramework/PlayerController.h"
 #include "GameFramework/SpringArmComponent.h"
+#include "GameplayTagContainer.h"
 #include "Kismet/GameplayStatics.h"
 #include "NiagaraFunctionLibrary.h"
 #include "NiagaraSystem.h"
 #include "Sound/SoundBase.h"
+
+ // ---------------------------------------------------------------------------
+ // FLOW DODGE. The dodge is a real ACFU action ability, not a second custom move:
+ // it runs inside UACFAbilitySystemComponent (GAS ASC: montage lifecycle, priority,
+ // ability buffering, cooldown). Same law as the scythe swing - BS_GodFile does NOT
+ // link ActionsSystem, the ACFU surface is located by class path and driven through
+ // ProcessEvent. Damage never lives here: the counter resolves through the one
+ // ResolveWorldFlowAttack authority, and the rhythm is judged at the PRESS.
+ namespace MelodiaFlowDodge
+ {
+  UE_DEFINE_GAMEPLAY_TAG_STATIC(DodgeAbilityTag, "Actions.Melodia.Dodge");
+  // Mirrors ACFU's EActionPriority: ENone 0 / ELow 1 / EMedium 2 / EHigh 3 / EHighest 4.
+  constexpr uint8 EvasionPriority = 3;
+ }
+
+ namespace MelodiaACFReflect
+ {
+  /** Set one UFunction parameter by reflection name into an allocated params buffer.
+   *  Name/offset driven, never a hand-copied layout, so ACFU class drift fails loudly. */
+  static bool SetParam(UFunction* Fn, void* Params, const TCHAR* Name, const void* Value)
+  {
+   for (FFieldIterator It(Fn); It; ++It)
+   {
+    if (FProperty* Prop = CastField<FProperty>(*It))
+    {
+     if (Prop->GetFName() == FName(Name))
+     {
+      // Engine API takes non-const source; the copy itself is read-only on it.
+      Prop->CopyCompleteValue(Prop->ContainerPtrToValuePtr<void>(Params), const_cast<void*>(Value));
+      return true;
+     }
+    }
+   }
+   return false;
+  }
+
+  static bool GetBoolParam(UFunction* Fn, void* Params, const TCHAR* Name)
+  {
+   for (FFieldIterator It(Fn); It; ++It)
+   {
+    if (FBoolProperty* B = CastField<FBoolProperty>(*It))
+     if (B->GetFName() == FName(Name))
+      return B->GetPropertyValue(B->ContainerPtrToValuePtr<void>(Params));
+   }
+   return false;
+  }
+
+  /** GAS's InitializeAbilitySystem is static and positional-safe (ASC, Owner, Avatar):
+   *  fill the object parameters in declaration order without assuming names. */
+  static void FillObjectParamsInOrder(UFunction* Fn, void* Params, UObject* A, UObject* B, UObject* C)
+  {
+   int32 Slot = 0;
+   for (FFieldIterator It(Fn); It; ++It)
+   {
+    FObjectProperty* Op = CastField<FObjectProperty>(*It);
+    if (!Op || Op->GetFName() == FName("ReturnValue")) continue;
+    UObject* Val = Slot == 0 ? A : (Slot == 1 ? B : C);
+    Op->CopyCompleteValue(Op->ContainerPtrToValuePtr<void>(Params), &Val);
+    ++Slot;
+   }
+  }
+
+  static void InitGASAvatar(UObject* AbilityComponent, AActor* OwnerActor)
+  {
+   UClass* Library = FindObject<UClass>(nullptr, TEXT("/Script/GameplayAbilities.AbilitySystemBlueprintLibrary"));
+   UFunction* Fn = Library ? Library->FindFunction(FName("InitializeAbilitySystem")) : nullptr;
+   if (!Fn) return;
+   TArray<uint8> Buffer;
+   Buffer.SetNumZeroed(FMath::Max(Fn->GetStructureSize(), 1));
+   void* Params = Buffer.GetData();
+   FillObjectParamsInOrder(Fn, Params, AbilityComponent, OwnerActor, OwnerActor);
+   Library->GetDefaultObject()->ProcessEvent(Fn, Params);
+  }
+
+  static bool CallTriggerAction(UObject* AbilityComponent, const FGameplayTag& AbilityTag, uint8 Priority, bool bCanBeStored)
+  {
+   UFunction* Fn = AbilityComponent ? AbilityComponent->FindFunction(FName("TriggerAction")) : nullptr;
+   if (!Fn) return false;
+   TArray<uint8> Buffer;
+   Buffer.SetNumZeroed(FMath::Max(Fn->GetStructureSize(), 1));
+   void* Params = Buffer.GetData();
+   // Names verified from ActionsSystem/Public/Components/ACFAbilitySystemComponent.h line 48.
+   SetParam(Fn, Params, TEXT("abilityTag"), &AbilityTag);
+   SetParam(Fn, Params, TEXT("Priority"), &Priority);
+   SetParam(Fn, Params, TEXT("bCanBeStored"), &bCanBeStored);
+   AbilityComponent->ProcessEvent(Fn, Params);
+   return GetBoolParam(Fn, Params, TEXT("ReturnValue"));
+  }
+ }
 
 UMelodiaWaveHarpCombatComponent::UMelodiaWaveHarpCombatComponent()
 {
@@ -255,6 +345,7 @@ void UMelodiaWaveHarpCombatComponent::BindInput()
  Input->BindKey(EKeys::Tab, IE_Pressed, this, &ThisClass::ToggleSequence);
  Input->BindKey(EKeys::X, IE_Pressed, this, &ThisClass::CancelPhrase);
  Input->BindKey(EKeys::F, IE_Pressed, this, &ThisClass::TriggerScytheMelee);
+ Input->BindKey(EKeys::G, IE_Pressed, this, &ThisClass::TriggerDodge);
  // R cycles the form. It is a deliberate press: the ring advances one step and the
  // flourish takes over from there.
  Input->BindKey(EKeys::R, IE_Pressed, this, &ThisClass::CycleForm);
@@ -556,6 +647,93 @@ void UMelodiaWaveHarpCombatComponent::TriggerScytheMelee()
  }
  StatusText = FString::Printf(TEXT("CHIME-SCYTHE  /  Step %d of 3."), ScytheStep);
 }
+
+// ---------------------------------------------------------------------------
+// FLOW DODGE - the action is ACFU's; the judgement and the counter are Melodia's.
+// ---------------------------------------------------------------------------
+bool UMelodiaWaveHarpCombatComponent::IsWithinDodgeCounterWindow(const double Now, const double DodgeStartedAt, const float WindowSeconds)
+{
+ // World-free so the committed harness can gate it: the counter lives strictly inside
+ // the dodge's own span. A never-taken dodge (-100 sentinel) can never answer an attack.
+ if (DodgeStartedAt <= -50.) return false;
+ return Now >= DodgeStartedAt && Now - DodgeStartedAt <= FMath::Max(WindowSeconds, 0.f);
+}
+
+UObject* UMelodiaWaveHarpCombatComponent::ResolveACFAbilityComponent()
+{
+ if (ACFAbilityComponent.IsValid()) return ACFAbilityComponent.Get();
+ AActor* Owner = GetOwner();
+ if (!Owner) return nullptr;
+ // Reflection law (same as the ACM swipe): the class is located by path, never linked.
+ UClass* AbilityClass = FindObject<UClass>(nullptr, TEXT("/Script/ActionsSystem.ACFAbilitySystemComponent"));
+ UActorComponent* Comp = AbilityClass ? Owner->FindComponentByClass(AbilityClass) : nullptr;
+ if (!Comp) return nullptr;
+ if (!bACFGASAvatarInitAttempted)
+ {
+  // The canonical pawn is not an ACF character by owner canon - it wears components.
+  // GAS still needs its avatar bound before any ability can activate; the BlueprintCallable
+  // library does exactly that, once, without a GameplayAbilities link here.
+  bACFGASAvatarInitAttempted = true;
+  MelodiaACFReflect::InitGASAvatar(Comp, Owner);
+ }
+ ACFAbilityComponent = Comp;
+ return Comp;
+}
+
+void UMelodiaWaveHarpCombatComponent::TriggerDodge()
+{
+ if (!CanAct() || !GetWorld()) return; // FLOW only: CanAct already refuses Sequence and remote.
+ UObject* AbilityComponent = ResolveACFAbilityComponent();
+ if (!AbilityComponent)
+ {
+  UE_LOG(LogTemp, Display, TEXT("MELODIA_HYBRID_DODGE acf=missing pawn=%s"), *GetNameSafe(GetOwner()));
+  StatusText = TEXT("FLOW  /  ACFU ability component not on the pawn.");
+  return;
+ }
+ // The rhythm is judged at the ACTION - the dodge press - the same law as the arrow's
+ // release and the swing's start. Never at landing, never at recovery.
+ DodgeActionBeatPhase = SampleBeatPhase();
+ LastDodgeStart = GetWorld()->GetTimeSeconds();
+ // bCanBeStored=true: ACFU's own action buffering, so a dodge pressed mid-montage is
+ // not eaten - it fires the moment the lane clears. This is the plugin's input-buffer,
+ // not a second one of ours.
+ const bool bTriggered = MelodiaACFReflect::CallTriggerAction(AbilityComponent,
+  MelodiaFlowDodge::DodgeAbilityTag.GetTag(), MelodiaFlowDodge::EvasionPriority, true);
+ UE_LOG(LogTemp, Display, TEXT("MELODIA_HYBRID_DODGE phase=%.3f window=%.2f triggered=%d"),
+  DodgeActionBeatPhase, DodgeCounterWindow, bTriggered ? 1 : 0);
+ if (!bTriggered)
+  StatusText = TEXT("DODGE  /  Action refused (cooldown or locked state).");
+}
+
+bool UMelodiaWaveHarpCombatComponent::NotifyDodgedAttack(AActor* Attacker)
+{
+ // The FLOW reward for a correct dodge: the attacker's hit was intercepted inside the
+ // dodge's window, so the answer is ONE counter through the single FLOW damage
+ // authority - exactly like an arrow release or a swing start. No new damage math.
+ if (!GetWorld() || !IsValid(Attacker)) return false;
+ if (!IsWithinDodgeCounterWindow(GetWorld()->GetTimeSeconds(), LastDodgeStart, DodgeCounterWindow))
+  return false;
+ auto* Encounter = Attacker->FindComponentByClass<UMelodiaHybridEncounterComponent>();
+ if (!Encounter) return false;
+ auto* Bridge = UMelodiaExternalJRPGBridgeSubsystem::GetGameInstanceSubsystem(GetWorld()->GetGameInstance());
+ const bool bResolved = Bridge && Bridge->ResolveWorldFlowAttack(Encounter, DodgeActionBeatPhase);
+ UE_LOG(LogTemp, Display, TEXT("MELODIA_HYBRID_DODGE_COUNTER attacker=%s phase=%.3f resolved=%d"),
+  *GetNameSafe(Attacker), DodgeActionBeatPhase, bResolved ? 1 : 0);
+ if (bResolved)
+ {
+  // The window is spent: one dodge answers at most one attack, and it cannot be
+  // farmed by repeated calls (idempotency law, Issue #51).
+  LastDodgeStart = -100.;
+  DodgeActionBeatPhase = -1.f;
+  UMelodiaCymaticFieldComponent::BroadcastHit(GetWorld(), Attacker->GetActorLocation(), 1.f);
+  if (auto* Audio = GetWorld()->GetGameInstance()->GetSubsystem<UMelodiaAudioReactivePresentationSubsystem>())
+   Audio->PulseImpact(1.f);
+  StatusText = FString::Printf(TEXT("DODGE COUNTER  /  Resonance %d%%"),
+   FMath::RoundToInt(Encounter->GetResonanceNormalized() * 100.f));
+ }
+ return bResolved;
+}
+
 void UMelodiaWaveHarpCombatComponent::ToggleSequence()
 {
  if (IsInSequence())

@@ -287,6 +287,17 @@ public:
  UFUNCTION(BlueprintCallable, Category="Melodia|WaveHarp") void ToggleSequence();
  UFUNCTION(BlueprintCallable, Category="Melodia|WaveHarp") void CancelPhrase();
  UFUNCTION(BlueprintCallable, Category="Melodia|WaveHarp") void TriggerScytheMelee();
+ /** The FLOW dodge, executed as a real ACFU action ability (ACFAbilitySystemComponent::TriggerAction,
+  *  reflection-routed like the ACM swipe, no new module dependency). The beat phase is judged at the
+  *  PRESS - the action - never at recovery. CanAct() already refuses it outside FLOW. */
+ UFUNCTION(BlueprintCallable, Category="Melodia|WaveHarp") void TriggerDodge();
+ /** The dodge reward: an enemy attack intercepted during the player's dodge window answers with one
+  *  counter through the single FLOW damage authority (ResolveWorldFlowAttack). Spent once per dodge.
+  *  Called by the attacker when its hit is dodged (the ACF melee AI wires this in gate item 2). */
+ UFUNCTION(BlueprintCallable, Category="Melodia|WaveHarp") bool NotifyDodgedAttack(AActor* Attacker);
+ UFUNCTION(BlueprintPure, Category="Melodia|WaveHarp") float GetDodgeActionBeatPhase() const { return DodgeActionBeatPhase; }
+ /** Pure window judgement, world-free and testable: the counter is only live inside the dodge's own span. */
+ static bool IsWithinDodgeCounterWindow(double Now, double DodgeStartedAt, float WindowSeconds);
  UFUNCTION(BlueprintCallable, Category="Melodia|WaveHarp") void ToggleLock();
  UFUNCTION(BlueprintCallable, Category="Melodia|WaveHarp") void RegisterLaneHit(int32 Index);
  UFUNCTION(BlueprintPure, Category="Melodia|WaveHarp") bool IsCombatLocked() const { return bCombatLocked; }
@@ -477,6 +488,9 @@ private:
  void UnbindInput();
  void FindAimTarget();
  bool CanAct() const;
+ /** Locate the pawn's ACFU ability system component by class path (no hard plugin link),
+  *  and initialize the GAS avatar exactly once through the BlueprintCallable library. */
+ UObject* ResolveACFAbilityComponent();
  void Lane0(); void Lane1(); void Lane2(); void Lane3();
  void Lane(int32 Index);
  void UpdateInputOwnership();
@@ -588,6 +602,14 @@ private:
  bool bHaveSavedFormCameraArm = false;
  /** The beat phase sampled at the ACTION (the start of the swing), never at impact. */
  float ScytheActionBeatPhase = -1.f;
+ /** The beat phase sampled at the DODGE press, held for the counter's ResolveWorldFlowAttack. */
+ float DodgeActionBeatPhase = -1.f;
+ double LastDodgeStart = -100.;
+ /** How long after the press the dodge window can still answer an attack (seconds). */
+ UPROPERTY(EditAnywhere, Category="Melodia|WaveHarp|Dodge") float DodgeCounterWindow = .45f;
+ /** The pawn's ACFU ability system component, resolved once by class path (no hard plugin link). */
+ TWeakObjectPtr<UActorComponent> ACFAbilityComponent;
+ bool bACFGASAvatarInitAttempted = false;
  /** One solved hold per form: the heads sit at different points on the shaft. */
  UPROPERTY(Transient) TMap<EMelodiaWaveHarpForm, FTransform> FormGrips;
  UPROPERTY(Transient) TObjectPtr<USoundBase> ShotNote;

@@ -258,4 +258,38 @@ bool FWaveHarpWaterBudgetTest::RunTest(const FString& Parameters)
  return true;
 }
 
+// ---------------------------------------------------------------------------
+// The FLOW dodge counter: world-free, exactly like every other gate here. The
+// ability itself is ACFU's (proven live in PIE); WHAT this harness owns is the
+// judgement law - the counter lives only inside the dodge's own span, spent at
+// most once, and a never-taken dodge can answer nothing.
+// ---------------------------------------------------------------------------
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(FWaveHarpDodgeCounterWindowTest,
+ "Melodia.WaveHarp.Dodge.CounterWindowIsTheDodgeSpan",
+ EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
+bool FWaveHarpDodgeCounterWindowTest::RunTest(const FString& Parameters)
+{
+ // A dodge never taken (-100 sentinel) can answer no attack, at no time.
+ TestFalse(TEXT("a dodge never taken cannot counter"),
+  UMelodiaWaveHarpCombatComponent::IsWithinDodgeCounterWindow(100.0, -100.0, .5f));
+ // Inside the span: the counter is live. Exact binary halves keep the boundary honest.
+ TestTrue(TEXT("an attack inside the dodge span is counterable"),
+  UMelodiaWaveHarpCombatComponent::IsWithinDodgeCounterWindow(100.25, 100.0, .5f));
+ // The closing boundary itself is live (inclusive window).
+ TestTrue(TEXT("the window edge is still the dodge"),
+  UMelodiaWaveHarpCombatComponent::IsWithinDodgeCounterWindow(100.5, 100.0, .5f));
+ // Past the span: the dodge is over; the counter is not a permanent buff.
+ TestFalse(TEXT("an attack after the span gets no counter"),
+  UMelodiaWaveHarpCombatComponent::IsWithinDodgeCounterWindow(100.75, 100.0, .5f));
+ // Before the press (a stale or reordered call): nothing to reward.
+ TestFalse(TEXT("a call before the dodge is refused"),
+  UMelodiaWaveHarpCombatComponent::IsWithinDodgeCounterWindow(99.5, 100.0, .5f));
+ // A zero window is the press frame only - never a negative window that admits the future.
+ TestTrue(TEXT("a zero window admits the same instant only"),
+  UMelodiaWaveHarpCombatComponent::IsWithinDodgeCounterWindow(100.0, 100.0, 0.f));
+ TestFalse(TEXT("a zero window admits nothing later"),
+  UMelodiaWaveHarpCombatComponent::IsWithinDodgeCounterWindow(100.1, 100.0, 0.f));
+ return true;
+}
+
 #endif // WITH_DEV_AUTOMATION_TESTS

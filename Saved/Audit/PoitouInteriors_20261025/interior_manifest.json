@@ -13,12 +13,12 @@
   },
   "sources": {
     "rect": {
-      "path": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Staging\\SalonConvergence_20261022\\MelodiaRoomShell_ContactFloor_1.0.hda",
-      "sha256": "16aca6101ebd3328a4711183d0135f8b72476e3cc09a26f70a2ae7fa13e94626"
+      "path": "hda\\MelodiaRoomShell_ContactFloor_1.0.hda",
+      "sha256": "078775c054951813981387e50511bd1479562d074e32102f5ff56bbd215fecbd"
     },
     "rounded": {
-      "path": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Staging\\PoitouInteriors_20261025\\MelodiaRoomShell_Rounded_1.0.hda",
-      "sha256": "d1c2b1cc43d63aff8d05016d762b34d91c526a723dc34f9e99c131d6bc5c2ad5"
+      "path": "hda\\MelodiaRoomShell_Rounded_1.0.hda",
+      "sha256": "05a1071ba02ffae3228a5e888e7805c6509148952f4700d442e63320547dd15d"
     }
   },
   "variants": [
@@ -26,8 +26,8 @@
       "id": "bedroom",
       "family": "rect",
       "type_name": "melodia::room_shell_poitou_bedroom::1.0",
-      "hda": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Staging\\PoitouInteriors_20261025\\MelodiaRoomShell_Poitou_bedroom_1.0.hda",
-      "hda_sha256": "6a68ed7a03718105859cb5d20a932975556537b3db09b77ef36d8054f4394257",
+      "hda": "Saved\\Staging\\PoitouInteriors_20261025\\MelodiaRoomShell_Poitou_bedroom_1.0.hda",
+      "hda_sha256": "eae830d7b863985791a3b49898655a19fd2e17364db85b13a7097a0a5a1940f5",
       "label": "Melodia Poitou Interior - Bedroom",
       "story_tag": "the scholar's own clutter breaking the clean system",
       "declared": {
@@ -73,6 +73,19 @@
           "native_cut": true
         }
       ],
+      "grid": {
+        "module_m": 0.6,
+        "bay_m": 2.4,
+        "beats": {
+          "room_w": 12.0,
+          "room_d": 16.0,
+          "room_h": 7.0
+        },
+        "off_grid": [],
+        "note": "",
+        "portal_width_beats": 4.0,
+        "portal_height_beats": 5.333333
+      },
       "prims": 19913,
       "points": 73444,
       "bbox": [
@@ -92,8 +105,8 @@
       "id": "bedroom_small",
       "family": "rect",
       "type_name": "melodia::room_shell_poitou_bedroom_small::1.0",
-      "hda": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Staging\\PoitouInteriors_20261025\\MelodiaRoomShell_Poitou_bedroom_small_1.0.hda",
-      "hda_sha256": "486a35b1623bbc76784ce3b50313d3be14f64632ea658c7e4c1f3d886ccf365f",
+      "hda": "Saved\\Staging\\PoitouInteriors_20261025\\MelodiaRoomShell_Poitou_bedroom_small_1.0.hda",
+      "hda_sha256": "dfe344563ef7627dd04e19c674cee6b702aae803418d878249b516c9f06024f6",
       "label": "Melodia Poitou Interior - Small Bedroom",
       "story_tag": "a narrower bedchamber of the same house, same system",
       "declared": {
@@ -139,6 +152,19 @@
           "native_cut": true
         }
       ],
+      "grid": {
+        "module_m": 0.6,
+        "bay_m": 2.4,
+        "beats": {
+          "room_w": 8.0,
+          "room_d": 12.0,
+          "room_h": 7.0
+        },
+        "off_grid": [],
+        "note": "",
+        "portal_width_beats": 4.0,
+        "portal_height_beats": 5.333333
+      },
       "prims": 5393,
       "points": 21444,
       "bbox": [
@@ -158,8 +184,8 @@
       "id": "landing",
       "family": "rect",
       "type_name": "melodia::room_shell_poitou_landing::1.0",
-      "hda": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Staging\\PoitouInteriors_20261025\\MelodiaRoomShell_Poitou_landing_1.0.hda",
-      "hda_sha256": "32c846ab3e40f68ba77ac5d833d6da48760304e52aedcffe046da448fbcbb48a",
+      "hda": "Saved\\Staging\\PoitouInteriors_20261025\\MelodiaRoomShell_Poitou_landing_1.0.hda",
+      "hda_sha256": "ea50fa93e5a8f88f0da45f60439673937dc9562555d471a8c560f8967b992ce2",
       "label": "Melodia Poitou Interior - Landing",
       "story_tag": "a threshold, barely lived in",
       "declared": {
@@ -229,6 +255,19 @@
           "native_cut": true
         }
       ],
+      "grid": {
+        "module_m": 0.6,
+        "bay_m": 2.4,
+        "beats": {
+          "room_w": 8.0,
+          "room_d": 8.0,
+          "room_h": 7.0
+        },
+        "off_grid": [],
+        "note": "",
+        "portal_width_beats": 4.0,
+        "portal_height_beats": 5.333333
+      },
       "prims": 1018,
       "points": 4072,
       "bbox": [
@@ -248,8 +287,8 @@
       "id": "landing_wide",
       "family": "rect",
       "type_name": "melodia::room_shell_poitou_landing_wide::1.0",
-      "hda": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Staging\\PoitouInteriors_20261025\\MelodiaRoomShell_Poitou_landing_wide_1.0.hda",
-      "hda_sha256": "8039d4121e4a62884cd2a65bbe2cd046afb80d5940005adb08abe12f3b1580bf",
+      "hda": "Saved\\Staging\\PoitouInteriors_20261025\\MelodiaRoomShell_Poitou_landing_wide_1.0.hda",
+      "hda_sha256": "57b6110c9cf022bba40f8d2a38e4c15bffe11087ea33a8f3c10d05eef492ebc9",
       "label": "Melodia Poitou Interior - Long Landing",
       "story_tag": "the stair hall: the house's circulation held in one long room",
       "declared": {
@@ -319,6 +358,19 @@
           "native_cut": true
         }
       ],
+      "grid": {
+        "module_m": 0.6,
+        "bay_m": 2.4,
+        "beats": {
+          "room_w": 16.0,
+          "room_d": 8.0,
+          "room_h": 7.0
+        },
+        "off_grid": [],
+        "note": "",
+        "portal_width_beats": 4.0,
+        "portal_height_beats": 5.333333
+      },
       "prims": 4319,
       "points": 17212,
       "bbox": [
@@ -338,8 +390,8 @@
       "id": "salon_measured",
       "family": "rounded",
       "type_name": "melodia::room_shell_poitou_salon_measured::1.0",
-      "hda": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Staging\\PoitouInteriors_20261025\\MelodiaRoomShell_Poitou_salon_measured_1.0.hda",
-      "hda_sha256": "e8a777ed4eb24ce1a18b59a20b437332d04c9ecd5ebcf5324f3d88bfae82215e",
+      "hda": "Saved\\Staging\\PoitouInteriors_20261025\\MelodiaRoomShell_Poitou_salon_measured_1.0.hda",
+      "hda_sha256": "6336f57a5b6ac2a779b7998a0fdd047cbe217e77eea49d7b36d91754b02a7347",
       "label": "Melodia Poitou Interior - Salon (measured)",
       "story_tag": "the library reaching into the salon - the house's scholarship on display",
       "declared": {
@@ -411,6 +463,23 @@
           "native_cut": true
         }
       ],
+      "grid": {
+        "module_m": 0.6,
+        "bay_m": 2.4,
+        "beats": {
+          "room_w": 26.4,
+          "room_d": 20.1,
+          "room_h": 12.666667
+        },
+        "off_grid": [
+          "room_d",
+          "room_h",
+          "room_w"
+        ],
+        "note": "measured artist salon from L_MelusinaHouse_P0; 15.84/2.4 = 6.6 bays",
+        "portal_width_beats": 4.0,
+        "portal_height_beats": 5.333333
+      },
       "prims": 18240,
       "points": 72416,
       "bbox": [
@@ -430,8 +499,8 @@
       "id": "salon_bay",
       "family": "rounded",
       "type_name": "melodia::room_shell_poitou_salon_bay::1.0",
-      "hda": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Staging\\PoitouInteriors_20261025\\MelodiaRoomShell_Poitou_salon_bay_1.0.hda",
-      "hda_sha256": "dea9094036de100fcb76ba51b03003068c8cedf31d8e2a30dd3564281da55d8d",
+      "hda": "Saved\\Staging\\PoitouInteriors_20261025\\MelodiaRoomShell_Poitou_salon_bay_1.0.hda",
+      "hda_sha256": "d1a548f9294af24fc845b15f6b9a5db69fd6db60f5441e1432fd32f8b93293f5",
       "label": "Melodia Poitou Interior - Salon (bay aligned)",
       "story_tag": "the same salon snapped to the 2.4 m bay grid so it joins the house kit",
       "declared": {
@@ -503,6 +572,19 @@
           "native_cut": true
         }
       ],
+      "grid": {
+        "module_m": 0.6,
+        "bay_m": 2.4,
+        "beats": {
+          "room_w": 28.0,
+          "room_d": 20.0,
+          "room_h": 12.0
+        },
+        "off_grid": [],
+        "note": "",
+        "portal_width_beats": 4.0,
+        "portal_height_beats": 5.333333
+      },
       "prims": 21450,
       "points": 85256,
       "bbox": [
@@ -522,8 +604,8 @@
       "id": "salon_bay_stepped",
       "family": "rounded",
       "type_name": "melodia::room_shell_poitou_salon_bay_stepped::1.0",
-      "hda": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Staging\\PoitouInteriors_20261025\\MelodiaRoomShell_Poitou_salon_bay_stepped_1.0.hda",
-      "hda_sha256": "dc21aa146d7a39af85d701cc775651c2a37258ff4cdd0590df2c746cfe725182",
+      "hda": "Saved\\Staging\\PoitouInteriors_20261025\\MelodiaRoomShell_Poitou_salon_bay_stepped_1.0.hda",
+      "hda_sha256": "e5bfeac66a562c510feff31665b8ffd192280b769a87b42213b439cf94a0c1cc",
       "label": "Melodia Poitou Interior - Salon (bay, stepped massing)",
       "story_tag": "the salon seen from the canal: the ziggurat that tells you it is the big room",
       "declared": {
@@ -595,6 +677,19 @@
           "native_cut": true
         }
       ],
+      "grid": {
+        "module_m": 0.6,
+        "bay_m": 2.4,
+        "beats": {
+          "room_w": 28.0,
+          "room_d": 20.0,
+          "room_h": 12.0
+        },
+        "off_grid": [],
+        "note": "",
+        "portal_width_beats": 4.0,
+        "portal_height_beats": 5.333333
+      },
       "prims": 21450,
       "points": 85256,
       "bbox": [
