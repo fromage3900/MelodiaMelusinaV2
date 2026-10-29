@@ -13,10 +13,10 @@
 #   2. push that ref straight to a temporary remote branch name
 #      (git push origin refs/agents/<lane>:refs/heads/docs/land-<lane>-<stamp>)
 #      -- no local branch is ever created
-#   3. open a PR, rebase-merge it, delete the temporary branch
-#   4. fast-forward the primary checkout to origin/main
+#   3. open a PR, rebase-merge it, PRESERVE temporary branch by default
+#   4. do not fast-forward primary unless owner explicitly opts in
 #
-# The temporary branch lives for seconds and is deleted in the same run. Step 2 works
+# The temporary branch is retained by default for recovery/provenance. Step 2 works
 # from the lane worktree, so the primary checkout is never used as a staging area.
 #
 # `main` is protected by .githooks/pre-push, so a direct push is impossible from here
@@ -116,11 +116,12 @@ function Assert-LocalAuthority([string]$LaneWorktree) {
     }
     $opened = Invoke-Native p4 @('opened', '-m', '1') -AllowFail
     $openedText = $opened.Lines -join [Environment]::NewLine
-    if ($opened.Code -eq 0 -and $openedText.Trim()) {
-        throw "SAFE STOP: Perforce has pending opened files. Inspect and preserve native assets first."
-    }
-    if ($opened.Code -ne 0 -and $openedText -notmatch 'File\(s\) not opened') {
+    if ($openedText -match 'File\(s\) not opened') {
+        # Perforce may report an empty client with exit code 0 or nonzero.
+    } elseif ($opened.Code -ne 0) {
         throw "SAFE STOP: Perforce opened check failed: $openedText"
+    } elseif ($openedText.Trim()) {
+        throw "SAFE STOP: Perforce has pending opened files. Inspect and preserve native assets first."
     }
     Write-Host "    local gate passed: owner attestation + bounded probes (NOT proof of C:/G: backup)" -ForegroundColor Green
 }
