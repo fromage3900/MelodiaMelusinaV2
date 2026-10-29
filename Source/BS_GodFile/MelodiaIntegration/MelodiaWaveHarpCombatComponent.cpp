@@ -17,6 +17,7 @@
 #include "Animation/AnimNotifies/AnimNotifyState.h" // complete type for NewObject<UAnimNotifyState> below (latent: exposed by 2026-10-17 rebuild)
 #include "Animation/AnimSequence.h"
 #include "UObject/UnrealType.h"
+#include "UObject/FieldIterator.h" // FFieldIterator is NOT transitive via UnrealType.h (2026-10-29 build)
 #include "Engine/SkeletalMesh.h"
 #include "Misc/PackageName.h"
 #include "Net/UnrealNetwork.h"
@@ -57,16 +58,16 @@
    *  Name/offset driven, never a hand-copied layout, so ACFU class drift fails loudly. */
   static bool SetParam(UFunction* Fn, void* Params, const TCHAR* Name, const void* Value)
   {
-   for (FFieldIterator It(Fn); It; ++It)
+   // TFieldIterator<FProperty> is the declared engine API (UnrealType.h ~7193); the
+   // FFieldIterator alias does not exist in this engine build (2026-10-29 compile evidence).
+   for (TFieldIterator<FProperty> It(Fn); It; ++It)
    {
-    if (FProperty* Prop = CastField<FProperty>(*It))
+    FProperty* Prop = *It;
+    if (Prop->GetFName() == FName(Name))
     {
-     if (Prop->GetFName() == FName(Name))
-     {
-      // Engine API takes non-const source; the copy itself is read-only on it.
-      Prop->CopyCompleteValue(Prop->ContainerPtrToValuePtr<void>(Params), const_cast<void*>(Value));
-      return true;
-     }
+     // Engine API takes non-const source; the copy itself is read-only on it.
+     Prop->CopyCompleteValue(Prop->ContainerPtrToValuePtr<void>(Params), const_cast<void*>(Value));
+     return true;
     }
    }
    return false;
@@ -74,7 +75,7 @@
 
   static bool GetBoolParam(UFunction* Fn, void* Params, const TCHAR* Name)
   {
-   for (FFieldIterator It(Fn); It; ++It)
+   for (TFieldIterator<FProperty> It(Fn); It; ++It)
    {
     if (FBoolProperty* B = CastField<FBoolProperty>(*It))
      if (B->GetFName() == FName(Name))
@@ -88,7 +89,7 @@
   static void FillObjectParamsInOrder(UFunction* Fn, void* Params, UObject* A, UObject* B, UObject* C)
   {
    int32 Slot = 0;
-   for (FFieldIterator It(Fn); It; ++It)
+   for (TFieldIterator<FProperty> It(Fn); It; ++It)
    {
     FObjectProperty* Op = CastField<FObjectProperty>(*It);
     if (!Op || Op->GetFName() == FName("ReturnValue")) continue;
