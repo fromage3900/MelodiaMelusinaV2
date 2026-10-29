@@ -36,7 +36,8 @@ mkdir -p "$DEST"
 is_lfs_pointer() {
   local f="$1"
   [[ -f "$f" ]] || return 1
-  head -c 20 "$f" 2>/dev/null | grep -q 'git-lfs'
+  # Pointers begin `version https://git-lfs.github.com/spec/...` — need >20 bytes.
+  head -c 64 "$f" 2>/dev/null | grep -q 'git-lfs'
 }
 
 ICON_EXCLUDES=()
@@ -76,7 +77,7 @@ exclude_paths = {'tools/sync_to_mysite.sh'}
 def is_lfs_pointer(path):
   try:
     with open(path, 'rb') as fh:
-      return fh.read(20).startswith(b'version https://git-lfs')
+      return b'git-lfs' in fh.read(64)
   except OSError:
     return False
 
