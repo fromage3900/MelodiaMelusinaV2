@@ -58,7 +58,13 @@ export function attachShaderTuner(game) {
   let look = chosen;
   const host = document.createElement('aside');
   host.id = 'npr-tuner';
-  host.style.cssText = 'position:fixed;right:12px;top:12px;z-index:9999;width:min(304px,calc(100vw - 24px));font-family:system-ui,-apple-system,sans-serif;';
+  // In Floraison the Flower POV toggle lives below the right-hand minimap.
+  // Keep the full look-lab reachable without covering that camera switch.
+  const dock = game.world?.botanyEnabled
+    ? 'left:calc(12px + env(safe-area-inset-left,0px));top:calc(106px + env(safe-area-inset-top,0px));'
+    : 'right:12px;top:12px;';
+  host.style.cssText = 'position:fixed;' + dock +
+    'z-index:9999;width:min(304px,calc(100vw - 24px));font-family:system-ui,-apple-system,sans-serif;';
   const root = host.attachShadow({ mode: 'open' });
   const css = document.createElement('style');
   css.textContent = [
