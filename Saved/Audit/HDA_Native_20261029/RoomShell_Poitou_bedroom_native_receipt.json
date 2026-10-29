@@ -1,0 +1,19 @@
+{
+ "source": "C:\\EnvironmentPortfolio\\_worktrees\\hda-native-20261028\\HDA_Work\\Sources\\MelodiaRoomShell_Poitou_bedroom_1.0.hda",
+ "source_type": "melodia::room_shell_poitou_bedroom::1.0",
+ "output": "C:\\EnvironmentPortfolio\\_worktrees\\hda-native-20261028\\HDA_Work\\Native\\RoomShell_Poitou_bedroom_native.hda",
+ "new_type": "melodia::room_shell_poitou_bedroom_native",
+ "source_points": 73444,
+ "source_prims": 19913,
+ "new_points": 73444,
+ "new_prims": 19913,
+ "sections": [
+  "Contents.gz",
+  "CreateScript",
+  "DialogScript",
+  "InternalFileOptions",
+  "Version"
+ ],
+ "has_python_module": false,
+ "ok": true
+}

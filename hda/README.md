@@ -72,3 +72,26 @@ Everything below this line is 2026-09-02 provenance (dates, blockers), not curre
 - Do not create `ALandscape` — P0 is MeshTerrain-only. HDA must output meshes/HISM.
 
 Next: verify UE5.8 compiles `HoudiniEngine` modules on next editor launch, then cook first HDA.
+
+## Native runtime HDA pipeline — 2026-10-29
+
+`hda/` is the **parametric/authoring source**. Finished runtime assets that carried
+an embedded `PythonModule` are baked to native `stash`/`null` HDAs (no
+`PythonModule`) and promoted. Do not leave a finished HDA only in `Saved/Staging`.
+
+- `hda/Native/` — native runtime archive (8 finals)
+- `Content/HDA/Native/` — UE import copies
+- `Saved/Audit/HDA_Native_20261029/` — per-asset receipts
+- `specs/housing/hda_native_registry.v1.json` — source → native → UE mapping
+- `Saved/Staging/` — **transient only**; cleanup must not delete `Saved/Staging/*.hda`
+  unless the matching source/native/UE copy exists
+- `Saved/Staging/HDA_PROTECTED.md` — the staging protection rule
+
+**Runtime native set:** bedroom, bedroom_small, landing, landing_wide, salon_bay,
+salon_bay_stepped, salon_measured, stained glass.
+
+**Do not bake:** `ContactFloor` / `Rounded` (parametric bases), `MelodiaHouse`
+(already has no `PythonModule`), and the tracked Faraway / Arpeggio / Crystal /
+Abbey authoring HDAs. The native bake is fixed geometry and loses the source
+parameters/PCG; use it for runtime finals, not as an authoring replacement.
+

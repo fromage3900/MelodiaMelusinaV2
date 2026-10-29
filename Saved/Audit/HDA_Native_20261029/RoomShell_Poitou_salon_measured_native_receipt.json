@@ -1,0 +1,71 @@
+{
+ "source": "C:\\EnvironmentPortfolio\\BS_GodFile\\Saved\\Staging\\PoitouInteriors_20261025\\MelodiaRoomShell_Poitou_salon_measured_1.0.hda",
+ "source_type": "melodia::room_shell_poitou_salon_measured::1.0",
+ "source_category": "Sop",
+ "source_points": 72416,
+ "source_prims": 18240,
+ "source_bbox_min": [
+  -0.24,
+  -0.12,
+  -12.3
+ ],
+ "source_bbox_max": [
+  16.08,
+  7.78,
+  0.24
+ ],
+ "source_errors": [],
+ "stash_points": 72416,
+ "stash_prims": 18240,
+ "stash_bbox_size": [
+  16.32,
+  7.9,
+  12.54
+ ],
+ "out_points": 72416,
+ "out_prims": 18240,
+ "output": "C:\\EnvironmentPortfolio\\_worktrees\\hda-native-20261028\\HDA_Work\\Native_SOP\\RoomShell_Poitou_salon_measured_native.hda",
+ "new_type": "melodia::room_shell_poitou_salon_measured_native",
+ "new_category": "Sop",
+ "sections": [
+  "Contents.gz",
+  "CreateScript",
+  "DialogScript",
+  "InternalFileOptions",
+  "Version"
+ ],
+ "has_python_module": false,
+ "native_points": 72416,
+ "native_prims": 18240,
+ "native_bbox_min": [
+  -0.24,
+  -0.12,
+  -12.3
+ ],
+ "native_bbox_max": [
+  16.08,
+  7.78,
+  0.24
+ ],
+ "native_bbox_size": [
+  16.32,
+  7.9,
+  12.54
+ ],
+ "native_material_role_counts": {
+  "wall_plaster": 2280,
+  "panel": 3848,
+  "floor_stone": 408,
+  "trim_gold": 5296,
+  "pearl_shell": 6408
+ },
+ "native_unreal_material_counts": {
+  "/Game/Melodia/HoudiniFoundry/RoomShell/MI_RoomShell_wall_plaster": 6128,
+  "/Game/Melodia/HoudiniFoundry/RoomShell/MI_RoomShell_floor_stone": 408,
+  "/Game/Melodia/HoudiniFoundry/RoomShell/MI_RoomShell_trim_gold": 5296,
+  "/Game/EnvSandbox/Materials/Instances/NikkiHero/MI_Nikki_Show_PearlSheen": 6408
+ },
+ "probe_errors": [],
+ "display": "OUT",
+ "ok": true
+}

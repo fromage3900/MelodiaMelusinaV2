@@ -49,6 +49,12 @@
 - `Content/HDA/` — 45 HDAs (Perforce-tracked)
 - All builders verified working (24/27 OK)
 
+### Native room-shell HDA recovery — 2026-10-29
+
+**Houdini-proven; UE height open.** The seven Poitou room-shell variants were lost from `Saved/Staging`; regenerated from `Tools/Houdini/room_shell/stage_interiors.py` (all seven pass; `Saved/Audit/PoitouInteriors_20261025/interior_stage_gate.json`). Native bake pipeline `Tools/Houdini/hda_native/bake_native_hda_sop.py` now makes **SOP-level** HDAs (no PythonModule) with the stash geometry and material attrs preserved. Eight runtime finals are promoted to `hda/Native/` + `Content/HDA/Native/` + receipts `Saved/Audit/HDA_Native_20261029/`; mapping `specs/housing/hda_native_registry.v1.json`; breakdown `Docs/Production/MELUSINA_HDA_NATIVE_PIPELINE_2026-10-29.md`; staging protection `hda/README.md` + `Saved/Staging/HDA_PROTECTED.md`.
+
+**Salon UE result — open.** The latest scene-context readback has the live `HDA_House_Salon` (old `HDA_HouseCorridor` output) at `(50,0,0)`, bounds `15.84 × 12.06 × 7.60 m`; the 2026-10-28 audit recorded `(360,-330,0)` — that transform drift must be resolved before placement. The `salon_measured` native cooks in Houdini at `16.32 × 7.90 × 12.54 m` (72,416 pts / 18,240 prims; four actual material slots: wall_plaster, floor_stone, trim_gold, pearl_sheen; no default material; collision). Both UE SOP variants over-height: `engine_y_up=1` → `16.32 × 12.54 × 14.97 m`; `engine_y_up=0` → `16.32 × 7.90 × 17.29 m`. The source Python HDA control did not cook in the headless editor (placeholder default box). The remaining cause is the **UE Houdini Engine import/cook path**, not the stash geometry or the SOP container. Other seven SOP rebakes and P0 placement are pending. No level save, no P4 submit; `Content/HDA/Native` remains the P4 workspace and `hda/Native` is the Git archive.
+
 **Key technical findings:**
 - Houdini grid is XZ plane (Y=0) — VEX must use `@P.z` not `@P.y`
 - Wrangle `class`: detail=0, primitive=1, point=2, vertex=3 (point is 2, not 0)

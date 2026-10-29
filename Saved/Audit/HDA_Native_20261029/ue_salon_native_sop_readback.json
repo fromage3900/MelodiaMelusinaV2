@@ -1,0 +1,57 @@
+{
+ "world": "L_MelodiaMainMenu",
+ "actor_label": "HDA_House_Salon_Native_SOP_LIVE",
+ "asset": "/Game/HDA/Native/RoomShell_Poitou_salon_measured_native",
+ "actor_count": 1,
+ "actor_name": "HoudiniAssetActor_2",
+ "actor_location_cm": [
+  50.0,
+  0.0,
+  0.0
+ ],
+ "actor_rotation": [
+  0.0,
+  0.0,
+  -0.0
+ ],
+ "actor_scale": [
+  1.0,
+  1.0,
+  1.0
+ ],
+ "bounds_origin_cm": [
+  842.0,
+  -603.0,
+  736.6374601676065
+ ],
+ "bounds_extent_cm": [
+  816.0,
+  627.0,
+  748.6374601676065
+ ],
+ "bounds_size_cm": [
+  1632.0,
+  1254.0,
+  1497.274920335213
+ ],
+ "bounds_size_m": [
+  16.32,
+  12.54,
+  14.9727
+ ],
+ "components": [
+  {
+   "name": "HoudiniStaticMeshComponent_0",
+   "class": "HoudiniStaticMeshComponent",
+   "material_count": 4,
+   "materials": [
+    "/Game/Melodia/HoudiniFoundry/RoomShell/MI_RoomShell_wall_plaster.MI_RoomShell_wall_plaster",
+    "/Game/Melodia/HoudiniFoundry/RoomShell/MI_RoomShell_floor_stone.MI_RoomShell_floor_stone",
+    "/Game/Melodia/HoudiniFoundry/RoomShell/MI_RoomShell_trim_gold.MI_RoomShell_trim_gold",
+    "/Game/EnvSandbox/Materials/Instances/NikkiHero/MI_Nikki_Show_PearlSheen.MI_Nikki_Show_PearlSheen"
+   ],
+   "collision": "<CollisionEnabled.QUERY_AND_PHYSICS: 3>"
+  }
+ ],
+ "hda_class": "HoudiniAsset"
+}

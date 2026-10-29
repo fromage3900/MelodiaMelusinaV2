@@ -1,0 +1,19 @@
+{
+ "source": "C:\\EnvironmentPortfolio\\_worktrees\\hda-native-20261028\\HDA_Work\\Sources\\MelodiaRoomShell_ContactFloor_1.0.hda",
+ "source_type": "melodia::room_shell_contact::1.0",
+ "output": "C:\\EnvironmentPortfolio\\_worktrees\\hda-native-20261028\\HDA_Work\\Native\\RoomShell_ContactFloor_native.hda",
+ "new_type": "melodia::room_shell_contact_native",
+ "source_points": 74564,
+ "source_prims": 20041,
+ "new_points": 74564,
+ "new_prims": 20041,
+ "sections": [
+  "Contents.gz",
+  "CreateScript",
+  "DialogScript",
+  "InternalFileOptions",
+  "Version"
+ ],
+ "has_python_module": false,
+ "ok": true
+}

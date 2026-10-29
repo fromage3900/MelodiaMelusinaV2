@@ -1,0 +1,19 @@
+{
+ "source": "C:\\EnvironmentPortfolio\\_worktrees\\hda-native-20261028\\HDA_Work\\Sources\\MelodiaStainedGlassWindow_1.0.hda",
+ "source_type": "melodia::stained_glass_window",
+ "output": "C:\\EnvironmentPortfolio\\_worktrees\\hda-native-20261028\\HDA_Work\\Native\\StainedGlass_native.hda",
+ "new_type": "melodia::stained_glass_window_native",
+ "source_points": 232,
+ "source_prims": 348,
+ "new_points": 232,
+ "new_prims": 348,
+ "sections": [
+  "Contents.gz",
+  "CreateScript",
+  "DialogScript",
+  "InternalFileOptions",
+  "Version"
+ ],
+ "has_python_module": false,
+ "ok": true
+}
