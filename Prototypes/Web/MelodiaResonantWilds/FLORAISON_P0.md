@@ -9,6 +9,9 @@ Serve `Prototypes/Web/MelodiaResonantWilds/` through the game's normal HTTP serv
 - `?botany=1`: layered meadows + three Chladni figure gardens.
 - `?botany=dense`: fuller meadows; higher phone/GPU cost.
 - `?botany=0` or bare URL: current production scenery unchanged.
+- `?botany=1&pov=1&npr=v2`: **first-person Flower POV shot** with the painterly hard-banded foliage look. This enters POV at the current save/spawn point; walk from Shorewake out along the Sakura Terrace road to see the dense meadow and (2,3) garden. No teleport or save change.
+- With `?botany=1` or `?botany=dense`, press **P** or tap **✿ Flower POV** by the map to switch between first-person and the regular third-person camera. While in POV, drag on the uncovered game canvas to look around; **WASD / mobile joystick** move relative to view. Press P or tap **Exit POV** to restore the usual lens.
+- POV uses a **1.48 m eye-height lens**, slightly downward framing, a close near-plane and gentle walking sway. The player mesh/shadow are hidden only in POV; the companion, gameplay, saves and combat state are unchanged. On entering the Rift or player death, it exits automatically. Attack taps on the canvas become look gestures in POV; action buttons and keyboard combat remain available.
 - Combine `?botany=1&flowerbeds=1&npr=v2` for pastel flowerbeds and the hard-banded NPR look.
 - `?botany=1&grove=glb` keeps authored Harmonic Grove GLBs for existing props while adding the floral overlay.
 
