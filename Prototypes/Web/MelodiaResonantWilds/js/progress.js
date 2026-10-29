@@ -1,8 +1,8 @@
 // Save profile, XP/levels, bounties and exploration.
 
-import { BOUNTY_TEMPLATES, DAILY_RECITAL_TEMPLATES, ELEMENTS, STARTING_SKILLS, SKILLS, WEB_SKILLS, MOTIF_BY_ID, xpToNext, MAX_LEVEL, RULES } from './design.js';
+import { BOUNTY_TEMPLATES, DAILY_RECITAL_TEMPLATES, ELEMENTS, STARTING_SKILLS, SKILLS, WEB_SKILLS, MOTIF_BY_ID, xpToNext, MAX_LEVEL, RULES, BIOMES, WORLD_RADIUS } from './design.js';
 import { pick, randInt } from './util.js';
-import { WORLD_RADIUS } from './design.js';
+import { flagWorldexp } from './flags.js';
 
 export const SAVE_KEY = 'melodia_resonant_wilds_v2';
 export const SAVE_KEY_LEGACY = 'melodia_resonant_wilds_v1';
@@ -21,7 +21,7 @@ export function defaultProfile() {
     loadout: STARTING_SKILLS.slice(), learned: STARTING_SKILLS.slice(),
     blessings: [], pylons: ['pylon_hub'], shrines: [], sheets: [], vistas: [], photos: [], gates: [], cleanses: [], destinations: [], dews: [],
     dewBonusTier: 0, destBuffs: {},
-    phrasebook: {}, concertSkins: [], fashionGold: [],
+    phrasebook: {}, concertSkins: [], fashionGold: [], regionsDone: [],
     daily: null,
     riftTier: 0, bounties: null, bountySet: 0, movement: 0, maestros: [], maestroExams: [],
     settings: { music: 0.75, sfx: 0.9, offsetMs: 0, difficulty: 'standard', quality: 'auto', autoSalvage: false, shake: true, encoreVariant: 'cascade' },
@@ -47,6 +47,7 @@ export function loadProfile() {
       phrasebook: { ...(p.phrasebook || {}) },
       concertSkins: Array.isArray(p.concertSkins) ? p.concertSkins : [],
       fashionGold: Array.isArray(p.fashionGold) ? p.fashionGold : [],
+      regionsDone: Array.isArray(p.regionsDone) ? p.regionsDone : [],
       maestroExams: Array.isArray(p.maestroExams) ? p.maestroExams : [],
       v: 2,
     };
@@ -83,6 +84,7 @@ export class Progress {
   constructor(game) {
     this.g = game;
     this.grid = new Uint8Array(GRID * GRID);
+    this.pingTarget = null; // Momo-style sticky Dew / frame / vista ping
     this._decodeExplored(game.profile.explored);
     if (!game.profile.bounties) game.profile.bounties = [this.newBounty(), this.newBounty(), this.newBounty()];
     this.ensureDaily();
@@ -245,13 +247,157 @@ export class Progress {
     g.save();
   }
 
+  // ------------------------------------------------------------ Nikki region loop (existing POI owners)
+  // Per biome: all Resonance Dew + fashion frames (when authored) + the Reveal overlook.
+  // Presentation/progress only — Activities / World remain the placement authority.
+  regionStatus(bi) {
+    const g = this.g, pr = g.profile;
+    const b = BIOMES[bi];
+    if (!b || !flagWorldexp) {
+      return { bi, id: b?.id, label: b?.name?.split('—')[0]?.trim() || '?', dew: 0, dewTotal: 0, fashion: 0, fashionTotal: 0, overlook: false, pct: 0, complete: false, next: null };
+    }
+    const dews = pr.dews || [];
+    const gold = pr.fashionGold || [];
+    const photos = pr.photos || [];
+    const vistas = pr.vistas || [];
+    const dests = [];
+    const frames = [];
+    let overlook = null;
+    for (const p of g.activities.pois) {
+      if (p.biome !== bi) continue;
+      if (p.type === 'destination') dests.push(p);
+      if (p.type === 'photo' && p.fashionEncore) frames.push(p);
+      if (p.type === 'overlook' && p.id === `vista_${b.id}`) overlook = p;
+    }
+    if (!overlook) {
+      for (const p of g.activities.pois) {
+        if (p.biome === bi && p.type === 'overlook') { overlook = p; break; }
+      }
+    }
+    const dewDone = dests.filter((p) => p.id && dews.includes(p.id)).length;
+    const fashionDone = frames.filter((p) => p.id && (gold.includes(p.id) || photos.includes(p.id))).length;
+    const overlookDone = !!(overlook?.id && vistas.includes(overlook.id));
+    const parts = dests.length + frames.length + (overlook ? 1 : 0);
+    const done = dewDone + fashionDone + (overlookDone ? 1 : 0);
+    const pct = parts ? Math.round((done / parts) * 100) : 0;
+    let next = null;
+    for (const p of dests) {
+      if (p.id && !dews.includes(p.id)) { next = p; break; }
+    }
+    if (!next) {
+      for (const p of frames) {
+        if (p.id && !gold.includes(p.id) && !photos.includes(p.id)) { next = p; break; }
+      }
+    }
+    if (!next && overlook && !overlookDone) next = overlook;
+    const complete = parts > 0 && done >= parts;
+    return {
+      bi, id: b.id, label: b.name.split('—')[0].trim(),
+      dew: dewDone, dewTotal: dests.length,
+      fashion: fashionDone, fashionTotal: frames.length,
+      overlook: overlookDone, pct, complete, next,
+    };
+  }
+
+  regionBoard() {
+    return BIOMES.map((_, bi) => this.regionStatus(bi));
+  }
+
+  _pingStillOpen(p) {
+    if (!p) return false;
+    const pr = this.g.profile;
+    if (p.type === 'destination') return !!(p.id && !(pr.dews || []).includes(p.id));
+    if (p.type === 'photo' && p.fashionEncore) {
+      return !!(p.id && !(pr.fashionGold || []).includes(p.id) && !(pr.photos || []).includes(p.id));
+    }
+    if (p.type === 'overlook') return !!(p.id && !(pr.vistas || []).includes(p.id));
+    return false;
+  }
+
+  /** Sticky or nearest incomplete Dew / fashion frame / overlook (no new authority). */
+  regionPing() {
+    if (!flagWorldexp) return null;
+    const g = this.g, P = g.player.pos;
+    if (this.pingTarget && this._pingStillOpen(this.pingTarget)) {
+      const p = this.pingTarget;
+      const st = typeof p.biome === 'number' ? this.regionStatus(p.biome) : null;
+      const kind = p.type === 'destination' ? 'Resonance Dew' : p.type === 'photo' ? 'Fashion Frame' : 'Overlook';
+      return {
+        title: st ? `Region · ${st.label} ${st.pct}%` : 'Dew ping',
+        text: `${kind} · ${p.name || kind}`,
+        target: p,
+        region: st,
+      };
+    }
+    this.pingTarget = null;
+    const here = g.currentBiome?.();
+    const order = [];
+    if (here) {
+      const bi = BIOMES.indexOf(here);
+      if (bi >= 0) order.push(bi);
+    }
+    for (let bi = 0; bi < BIOMES.length; bi++) if (!order.includes(bi)) order.push(bi);
+    let nearest = null, nd = Infinity, nearestSt = null;
+    for (const bi of order) {
+      const st = this.regionStatus(bi);
+      if (st.complete || !st.next) continue;
+      const d = Math.hypot(st.next.x - P.x, st.next.z - P.z);
+      if (d < nd) { nd = d; nearest = st.next; nearestSt = st; }
+    }
+    if (!nearest) return null;
+    const kind = nearest.type === 'destination' ? 'Resonance Dew' : nearest.type === 'photo' ? 'Fashion Frame' : 'Overlook';
+    return {
+      title: `Region · ${nearestSt.label} ${nearestSt.pct}%`,
+      text: `${kind} remaining · Dew ${nearestSt.dew}/${nearestSt.dewTotal}`
+        + (nearestSt.fashionTotal ? ` · Frames ${nearestSt.fashion}/${nearestSt.fashionTotal}` : '')
+        + (nearestSt.overlook ? ' · Vista ✓' : ' · Vista'),
+      target: nearest,
+      region: nearestSt,
+    };
+  }
+
+  /** Map / Sheep: focus compass on a remaining collectible. */
+  pingRegion(p = null) {
+    if (!flagWorldexp) return null;
+    if (p && this._pingStillOpen(p)) {
+      this.pingTarget = p;
+      return this.regionPing();
+    }
+    const auto = this.regionPing();
+    if (auto?.target) this.pingTarget = auto.target;
+    return auto;
+  }
+
+  /** Call after Dew / fashion / vista collect — awards once per biome. */
+  checkRegionComplete(bi) {
+    if (!flagWorldexp || bi == null || bi < 0) return false;
+    const g = this.g, pr = g.profile;
+    const st = this.regionStatus(bi);
+    if (!st.complete) return false;
+    pr.regionsDone = pr.regionsDone || [];
+    if (pr.regionsDone.includes(st.id)) return false;
+    pr.regionsDone.push(st.id);
+    pr.notes += 8;
+    this.addXp(90);
+    g.ui.banner(`${st.label} 100%`, `Dew ${st.dew}/${st.dewTotal}`
+      + (st.fashionTotal ? ` · Fashion ${st.fashion}/${st.fashionTotal}` : '')
+      + ' · Overlook · +8 Golden Notes');
+    g.audio.fanfare('inherit');
+    g.ui.ceremonyFlash?.('inherit');
+    g.save();
+    return true;
+  }
+
   // ------------------------------------------------------------ Movements (main path)
   // One Movement per biome, in level order: attune a pylon, answer a shrine,
   // defeat the Maestro. Returns the current step with a world target.
+  // Sticky Dew ping (map / Sheep) outranks Movement; else Movement; else auto region ping.
   objective() {
+    const sticky = this.pingTarget && this._pingStillOpen(this.pingTarget) ? this.regionPing() : null;
+    if (sticky) return sticky;
     const g = this.g, pr = g.profile;
     const BI = g.biomes;
-    if (pr.movement >= BI.length) return null;
+    if (pr.movement >= BI.length) return this.regionPing();
     const b = BI[pr.movement];
     const label = b.name.split('—')[0].trim();
     const P = g.player.pos;

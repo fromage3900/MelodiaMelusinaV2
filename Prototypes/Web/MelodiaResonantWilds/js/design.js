@@ -3,6 +3,7 @@
 // come from the generated module; this file only adds what the ARPG needs on top.
 
 import { UE } from './generated/ue_data.js';
+import { flagDressingDense } from './flags.js';
 
 export const RULES = UE.rules;
 export const WORLD_SEED = UE.biomes[0]?.seed ?? 3900;
@@ -61,7 +62,7 @@ export const MODIFIERS = Object.fromEntries(RULES.modifiers.map((m) => [m.id, m]
 // angle = position around Shorewake (radians, XZ plane). Levels rise with order.
 // Eight wedges: five original Gaea biomes + three ethereal inventions.
 // ---------------------------------------------------------------------------
-const DENSE_DRESSING = typeof location !== 'undefined' && new URLSearchParams(location.search).get('dressing') === 'dense';
+const DENSE_DRESSING = flagDressingDense;
 const BIOME_PLAY = {
   sakura_terrace: {
     order: 0, levels: [1, 9], bpm: 88, meter: 3, key: 62, mode: 'major', style: 'waltz',

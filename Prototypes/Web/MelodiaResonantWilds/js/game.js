@@ -19,6 +19,7 @@ import { PostFX } from './postfx.js';
 import { EncoreSystem } from './encore.js';
 import { BIOMES, HUB, DIFFICULTY, RARITIES, SKILL_BY_ID, SHARD_BY_ELEMENT, ELEMENT_STYLE, MODIFIERS, RULES, xpToNext } from './design.js';
 import { clamp, lerp } from './util.js';
+import { flagDaycycle, flagPostfx } from './flags.js';
 
 const _c = new THREE.Color();
 const isTouch = matchMedia('(pointer: coarse)').matches;
@@ -80,9 +81,9 @@ export class Game {
     this.activities = new Activities(this);
     this.echo = new Echo(this);
     this.ui = new UI(this);
-    // Heavy postprocessing is opt-in until measured on iPhone Safari.
-    this.postfx = new URLSearchParams(location.search).get('postfx') === '1' ? new PostFX(this) : null;
-    this.daycycleEnabled = new URLSearchParams(location.search).get('daycycle') === '1';
+    // Nikki-by-default OutlinePass/bloom; ?lite=1 or ?postfx=0 for low-end.
+    this.postfx = flagPostfx ? new PostFX(this) : null;
+    this.daycycleEnabled = flagDaycycle;
     this.encoreSys = new EncoreSystem(this);
     this._outlineInteract = null;
     this._keyModulation = false;
