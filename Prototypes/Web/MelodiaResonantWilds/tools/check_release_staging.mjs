@@ -28,13 +28,14 @@ for (const item of manifest.optionalModels) {
   assert.notEqual(model.subarray(0, 32).toString('utf8').includes('git-lfs.github.com'), true,
     item.filename + ': LFS pointer instead of GLB');
 }
-assert.match(sw, /resonant-wilds-v15-20261029-floraison-release/);
+assert.match(sw, /resonant-wilds-v16-20261029-crisp-kuwahara/);
 for (const module of ['js/flags.js', 'js/playground.js', 'js/grove-catalog.js',
   'js/floraison-pov.js', 'js/flower-landscape.js', 'js/resonant-botany.js']) {
   assert.ok(sw.includes("'./" + module + "'"), module + ' missing offline cache');
 }
-assert.doesNotMatch(sw, /painterly\.js/);
-assert.equal(existsSync(join(dir, 'js/painterly.js')), false, 'Kuwahara remains retired');
+assert.match(sw, /painterly\\.js/);
+assert.equal(existsSync(join(dir, 'js/painterly.js')), true,
+  'Crisp Kuwahara must remain opt-in and bundled');
 assert.match(game, /flagPostfx/);
 assert.match(game, /groveMode === 'full'/);
 assert.match(game, /new FloraisonPOV\(this\)/);
@@ -50,4 +51,4 @@ assert.match(ui, /povMoveVector/);
 assert.match(ui, /Regions 100%/);
 assert.ok(read('tools/sync_to_mysite.sh').includes('Git LFS pointer'),
   'publisher must preserve real my-site icons');
-console.log('RELEASE STAGE PASS: 100 GLBs (63 byte+hash verified), Nikki, Grove, hard cel, Floraison, SW v15');
+console.log('RELEASE STAGE PASS: 100 GLBs (63 SHA verified), Nikki, hard cel, Floraison, crisp painterly SW v16');
