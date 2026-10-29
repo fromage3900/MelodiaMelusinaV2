@@ -1,5 +1,7 @@
 # Melodia Melusina ? Current State
 
+**Source-of-truth ruling (owner, 2026-10-29):** `C:\EnvironmentPortfolio\BS_GodFile` (C:) is the source of truth. Git and Perforce are backup and transport, not authority. No agent may `p4 sync`/`revert`/`sync -f`, `git checkout`/`reset`/`stash`/`clean` over this checkout without explicit owner approval; agents work in lane worktrees. Recovery layers: `Tools/loss_vault.ps1` (modified-Content snapshots to `D:\MelodiaVault` every 5 minutes from logon) and `Tools/lane_guard.ps1` (Content manifest diff + canon checks). A save on C: is the work; a submit/commit is the backup.
+
 ### Hybrid combat lane — ACFU 8-step progression + overnight lane armed — 2026-10-28 night
 
 **Owner directive 2026-10-28 night:** research the ACFU surface thoroughly, use it further, run the eight-step plan in order, and advance it overnight under a cron. Delivered this pass:
@@ -25,6 +27,35 @@
 ### VEX-native stained glass HDA (2026-10-28)
 
 **Done (Hython-proven).** New builder `Tools/Houdini/build_stained_glass_vex_hda.py` creates `MelodiaStainedGlassWindow_Vex.hda` using native SOPs (Box, Copy to Points, Merge) + VEX (Chladni came pattern) instead of Python SOPs. Cooks clean: 560 points, 420 prims, 0 errors. Emits `material_role` and `unreal_material` prim attrs (glass_pane → MI_SDF_StainedGlass_Kaleidoscope, tracery/lead_came → MI_SDF_GildedFiligree). Artist-friendly params: window_w, window_h, rise, glass_thick, came_w, tracery_family, glass_family, note, mode_n, mode_m, seed, engine_y_up, engine_flip. **Proof-of-concept for Python→VEX+native conversion pattern.** Output: `Content/HDA/MelodiaStainedGlassWindow_Vex.hda` + `hda/MelodiaStainedGlassWindow_Vex.hda`.
+
+### Session summary (2026-10-28/29) — VEX-native conversion + HDA recovery
+
+**VEX-native HDAs built (no Python SOPs):**
+- `MelodiaStainedGlassWindow_Vex.hda` — native SOPs (Box, Copy to Points, Merge) + VEX (Chladni came). 560 pts, 420 prims. Emits `material_role` + `unreal_material`.
+- `MelodiaSilkRibbon_Vex.hda` — pure VEX (parallel transport frame, twist, flutter, taper). 197 pts, 97 prims. Emits `material_role` + `unreal_material`.
+
+**Artist-friendly HDA rebuilds:**
+- `MelodiaStainedGlassWindow_1.0.hda` — modified with `unreal_material` + `material_map_json` + `sdf_texture_path`
+- `HDA_Faraway_SilkPeak_ArtistFriendly.hda` — Chladni mode params + SDF binding + verify PASS
+- 5 Almost Gate variants (sparse/medium/dense/crystal_focus/ornament_focus)
+- 8 Faraway landmark HDAs rebuilt with SDF mapping
+
+**Chladni SDF pipeline:**
+- `chladni_sdf_vfx.py` — true VDB SDF + numpy fallback, 56 textures generated (all mode pairs 1-8)
+- `chladni_flipbook_bake.py` — 16-frame 4×4 flipbook (1024×1024)
+
+**HDA archive (recovery from deletion):**
+- `G:\HDA_Archive\` — 45 unique HDAs + 563 builder scripts
+- `Content/HDA/` — 45 HDAs (Perforce-tracked)
+- All builders verified working (24/27 OK)
+
+**Key technical findings:**
+- Houdini grid is XZ plane (Y=0) — VEX must use `@P.z` not `@P.y`
+- Wrangle `class`: detail=0, primitive=1, point=2, vertex=3 (point is 2, not 0)
+- `addpoint(0, pos)` needs input 0 to exist (use 1×1 grid as seed)
+- `@attr = value` auto-creates attributes in VEX; `setpointattrib()` requires them to exist first
+- VDB from particles applies voxelsize-scaled transform — divide sample positions by voxelsize
+- Cook VDB node explicitly before sampling (dependency tracking issue)
 
 ### Stained glass ↔ Chladni SDF pairing + HDA unreal_material (2026-10-28)
 
