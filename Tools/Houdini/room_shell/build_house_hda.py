@@ -258,17 +258,25 @@ def verify(hda_path, out_dir):
     pcg_geo = merge.geometry()
     roles = {}
     for prim in arch_geo.prims():
+        if not prim.attribValue("material_role"):
+            continue
         roles[prim.attribValue("material_role")] = \
             roles.get(prim.attribValue("material_role"), 0) + 1
+    cgrp = arch_geo.findPrimGroup("collision_geo_house")
+    collision_prims = len(cgrp.prims()) if cgrp is not None else 0
     surfaces = {}
     for prim in arch_geo.prims():
+        if not prim.attribValue("surface"):
+            continue
         s = prim.attribValue("surface")
         surfaces[s] = surfaces.get(s, 0) + 1
     rooms = set()
     for prim in arch_geo.prims():
-        rooms.add(prim.attribValue("room"))
+        if prim.attribValue("room"):
+            rooms.add(prim.attribValue("room"))
     report = dict(points=len(arch_geo.points()), prims=len(arch_geo.prims()),
                   roles=roles, surface_prims=surfaces, rooms=sorted(rooms),
+                  collision_prims=collision_prims,
                   pcg_points=len(pcg_geo.points()) if pcg_geo else 0,
                   pcg_per_surface={},
                   errors=[str(e) for e in node.errors()],
@@ -285,6 +293,7 @@ def verify(hda_path, out_dir):
     assert report["pcg_points"] > 0, "PCG branch emitted nothing"
     assert all(v > 0 for v in report["pcg_per_surface"].values()), \
         "empty PCG surface: %s" % report["pcg_per_surface"]
+    assert report["collision_prims"] > 0, "collision_geo_house is empty"
     return report
 
 

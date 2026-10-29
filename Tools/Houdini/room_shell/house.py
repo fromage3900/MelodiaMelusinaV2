@@ -806,15 +806,21 @@ def cook(node):
         for name, sset in idx_sets.items():
             if pi in sset:
                 hou_groups[name].add(poly)
-    if h.parm('walk_collision') and h.evalParm('walk_collision'):
-        collision = g.createPrimGroup('collision_geo_walk')
-        for face, (surface, room) in zip(H.F, H.meta):
-            if surface != 'surface_floor' and not room.startswith('stair_'):
-                continue
-            poly = g.createPolygon()
-            for index in (list(reversed(face)) if flip else face):
-                poly.addVertex(pts[index])
-            collision.add(poly)
+    ncol = 0
+    collision = g.createPrimGroup('collision_geo_house')
+    for face, (surface, room) in zip(H.F, H.meta):
+        if surface != 'surface_floor' and not room.startswith('stair_'):
+            continue
+        poly = g.createPolygon()
+        for index in (list(reversed(face)) if flip else face):
+            point = g.createPoint()
+            point.setPosition(P[index])
+            poly.addVertex(point)
+        collision.add(poly)
+        ncol += 1
+    if ncol == 0:
+        raise ValueError('house emitted zero walkable collision faces')
+    rep['collision_prims'] = ncol
     g.setGlobalAttribValue('gate_json', json.dumps(gt))
     g.setGlobalAttribValue('sockets_json', json.dumps(dict(sockets=[
         dict(id=s['id'], room=s.get('room'), wall=s.get('wall', 'CURVE'),

@@ -2,7 +2,7 @@
   "contract_id": "melodia.housing.stack.v1",
   "kind": "housing_hda_stack_pin",
   "schema_version": "1.0",
-  "status": "batch-C-commit-ready-ue-stage-blocked",
+  "status": "collision-green-drive-pending",
   "updated": "2026-10-28",
   "authority": {
     "status_doc": "CURRENT_STATE.md",
@@ -230,7 +230,7 @@
   "house_hda": {
     "path": "Saved/Staging/SalonLive_20261028/house/MelodiaHouse_1.0.hda",
     "type": "melodia::house",
-    "sha256": "436163ad8628556ff5cf9102fdcd8ef4f8e0717090da8d1127c2c25b83cb894f",
+    "sha256": "efbe51b5faac716db7ccc444e4da479879177f85b8d3af69a3cd7edba7f786ec",
     "bytes": 77509,
     "arch": {
       "points": 91844,
@@ -247,7 +247,8 @@
         "surface_sill": 40
       }
     },
-    "verify": "house_verify.json all asserts pass, zero errors/warnings"
+    "verify": "arch + 1,310 PCG pts + 192 collision prims, all asserts pass, zero errors/warnings",
+    "collision_geo_house_prims": 192
   },
   "dressing_binding": {
     "catalogue_families": {
