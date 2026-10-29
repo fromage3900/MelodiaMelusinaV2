@@ -1,0 +1,37 @@
+{
+ "schema": "melodia.saved_staging_recovery.v1",
+ "when": "2026-10-29",
+ "cause": "Saved/Staging/* cleared during the 2026-10-28/29 space cleanup without listing contents first.",
+ "rebuilt": {
+  "blender": {
+   "method": "Tools/rebuild_hedges_blend.py + melodia_gn addon source (hedge_clutter.py SHA256 BFC3214587A1D32C)",
+   "blend": "D:\\MelodiaVault\\recovery_20261029\\MelodiaHedges_Rebuilt_20261029.blend",
+   "bytes": 244959,
+   "groups": {"MEL_hedge": 220, "MEL_hedge_wild": 260, "MEL_topiary_ball": 94, "MEL_topiary_cone": 94, "MEL_topiary_spline": 267, "MEL_foliage_clutter": 86}
+  },
+  "houdini": {
+   "village_foundation": {"hda": "Saved/Staging/HoudiniForge/FarawayVillage_Recovered_20261029/FarawayVillage_Foundation.hda", "bytes": 78559, "hip": 261851, "gate": "PASS"},
+   "hero_terrain": {"hda": "Saved/Staging/HoudiniForge/FarawayVillage_Terra_Recovered_20261029/FarawayHeroTerrain.hda", "bytes": 22274, "hip": 44532, "sha256": "7e3758e2654f098949a8f261c3419a087b2fe64f26c3d293692bccb790b88fd6", "points": 263169, "quads": 262144, "bounds_m": [[-4000.0, -20.300674438476562, -4000.0], [4000.0, 441.9333801269531, 4000.0]], "gate": "PASS_NATIVE_CONTINUOUS_HERO_TERRAIN"},
+   "village_geometry": {"terrain": 3952, "roads": 7800, "sidewalks": 7356, "courts": 18, "foundations": 10876, "chiffon": 680, "plot_guides": 648, "collision": 20274},
+   "stained_glass": {"hda": "Content/HDA/MelodiaStainedGlassWindow_Vex.hda", "mirror": "hda/MelodiaStainedGlassWindow_Vex.hda", "bytes": 10209}
+  },
+  "perforce_restored": ["Saved/Staging/HUD_Figma_20260925", "Saved/Staging/HUD_Figma_20260925_bleed", "Saved/Staging/MelusinaExport_20260925", "Saved/Staging/MelusinaFaceSDF"],
+  "perforce_restored_files": 382
+ },
+ "blocked": {
+  "faraway_cathedral_v2": "needs Saved/Staging/GrokPrep/houdini_forge/cathedral_v4_watercourt_route_spike_v3/AeolianSilkBridge_Route_1.2_CAD.hda (deleted; no builder found)",
+  "grokprep_spike": "same missing watercourt_route_spike_v3 dependency",
+  "housing_ultimate": "MelodiaHousingUltimate_0_6.hda / _collision.hda / StainedGlass_bound.hda - no builder found (stained-glass VEX HDA rebuilt, but the Ultimate variants are not)"
+ },
+ "survives": {
+  "content_hda": "126 HDA files incl. AlmostGate v03 + ArtistFriendly set, HeartGate, FrillArch, LaceBridge, ListeningOrchardTree, MotherfoldBasin, SilkPeak, SilkRibbon, TerracedIsland, CrystalCathedralV2/V3, MelodiaSilkRibbon_Vex",
+  "blender_addon": "melodia_gn ~180 modules incl. hedge_clutter.py, blooms.py, presets.py, trees.py",
+  "git_tree_inventory": "Saved/Staging/MelusinaBlooms: ITERATION_QUEUE.md, stem_preview/*.png, textures/* (leaf, petals, stem, roughness), uv/*.json"
+ },
+ "undelete": {
+  "usn_journal": "fsutil usn readjournal C: -> Access denied (requires elevated admin)",
+  "tools": "winfr / Recuva / testdisk not installed",
+  "recommended_command": "winfr C: D: /regular /n *MelodiaHedges*   (elevated; stop C: writes first)",
+  "note": "The exact MelodiaHedges_Demo.blend is not in git, p4, the vault, worktrees, or Blender autosaves; undelete is the only remaining route for that file."
+ }
+}
