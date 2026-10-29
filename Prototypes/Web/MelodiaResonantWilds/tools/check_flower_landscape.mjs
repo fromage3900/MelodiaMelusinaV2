@@ -18,6 +18,7 @@ assert.match(world,/this\.botanyEnabled = flowerLandscapeEnabled/);
 for(const [n,m] of [[2,3],[3,5],[4,7]]){
   const points=sampleBotanicalPlate({family:'rosette',mode:[n,m],extent:34,cells:52,threshold:.115,maxInstances:170,seed:23});
   assert.ok(points.length>20 && points.length<=170, 'garden density within cap');
+  assert.ok(Math.min(...points.map(p=>p.z)) < -14 && Math.max(...points.map(p=>p.z)) > 14, 'full plate coverage');
   assert.deepEqual(points,sampleBotanicalPlate({family:'rosette',mode:[n,m],extent:34,cells:52,threshold:.115,maxInstances:170,seed:23}));
   assert.ok(points.every(p=>Math.abs(plateField(p.x/34+.5,p.z/34+.5,n,m)) < .3), 'nodal positioning');
 }
