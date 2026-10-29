@@ -1,0 +1,3078 @@
+{
+ "schema": "melodia.proving_presets_receipt.v1",
+ "when": "2026-10-28",
+ "master": "M_Master_Toon_Universal",
+ "master_path": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
+ "out_dir": "/Game/EnvSandbox/Materials/Instances/Proving",
+ "presets": [
+  {
+   "name": "MI_Prove_Uni_01_BaseSurface",
+   "status": "authored",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Uni_01_BaseSurface",
+   "overrides": {
+    "BaseTint": {
+     "kind": "vector",
+     "value": [
+      0.58,
+      0.45,
+      0.54,
+      1.0
+     ],
+     "readback": [
+      0.58,
+      0.45,
+      0.54,
+      1.0
+     ],
+     "ok": true
+    },
+    "Metallic": {
+     "kind": "scalar",
+     "value": 0.3,
+     "readback": 0.3,
+     "ok": true
+    },
+    "MetallicBias": {
+     "kind": "scalar",
+     "value": -0.8,
+     "readback": -0.8,
+     "ok": true
+    },
+    "MetallicScale": {
+     "kind": "scalar",
+     "value": 19.2,
+     "readback": 19.200001,
+     "ok": true
+    },
+    "PaletteRampDriver": {
+     "kind": "scalar",
+     "value": -0.8,
+     "readback": -0.8,
+     "ok": true
+    },
+    "PaletteRampHigh": {
+     "kind": "vector",
+     "value": [
+      0.86,
+      0.67,
+      0.72,
+      1.0
+     ],
+     "readback": [
+      0.86,
+      0.67,
+      0.72,
+      1.0
+     ],
+     "ok": true
+    },
+    "PaletteRampLow": {
+     "kind": "vector",
+     "value": [
+      0.43,
+      0.25,
+      0.32,
+      1.0
+     ],
+     "readback": [
+      0.43,
+      0.25,
+      0.32,
+      1.0
+     ],
+     "ok": true
+    },
+    "PaletteRampMid": {
+     "kind": "vector",
+     "value": [
+      0.63,
+      0.45,
+      0.49,
+      1.0
+     ],
+     "readback": [
+      0.63,
+      0.45,
+      0.49,
+      1.0
+     ],
+     "ok": true
+    },
+    "PaletteRampStrength": {
+     "kind": "scalar",
+     "value": 0.6,
+     "readback": 0.6,
+     "ok": true
+    },
+    "Roughness": {
+     "kind": "scalar",
+     "value": 0.45,
+     "readback": 0.45,
+     "ok": true
+    },
+    "RoughnessBias": {
+     "kind": "scalar",
+     "value": -0.8,
+     "readback": -0.8,
+     "ok": true
+    },
+    "RoughnessScale": {
+     "kind": "scalar",
+     "value": 19.2,
+     "readback": 19.200001,
+     "ok": true
+    },
+    "TextureWeight": {
+     "kind": "scalar",
+     "value": -0.1,
+     "readback": -0.1,
+     "ok": true
+    },
+    "UVOffsetU": {
+     "kind": "scalar",
+     "value": 0.6,
+     "readback": 0.6,
+     "ok": true
+    },
+    "UVOffsetV": {
+     "kind": "scalar",
+     "value": 0.6,
+     "readback": 0.6,
+     "ok": true
+    },
+    "UVRotation": {
+     "kind": "scalar",
+     "value": 0.6,
+     "readback": 0.6,
+     "ok": true
+    },
+    "UVScale": {
+     "kind": "scalar",
+     "value": 3.035,
+     "readback": 3.035,
+     "ok": true
+    }
+   },
+   "saved_return": true
+  },
+  {
+   "name": "MI_Prove_Uni_02_Triplanar",
+   "status": "authored",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Uni_02_Triplanar",
+   "overrides": {
+    "TriplanarBlend_Albedo": {
+     "kind": "scalar",
+     "value": 0.3,
+     "readback": 0.3,
+     "ok": true
+    },
+    "TriplanarBlend_Normal": {
+     "kind": "scalar",
+     "value": 0.3,
+     "readback": 0.3,
+     "ok": true
+    },
+    "TriplanarBlend_Roughness": {
+     "kind": "scalar",
+     "value": 0.3,
+     "readback": 0.3,
+     "ok": true
+    },
+    "TriplanarSharpness": {
+     "kind": "scalar",
+     "value": 5.5,
+     "readback": 5.5,
+     "ok": true
+    },
+    "TriplanarSlopeEnd": {
+     "kind": "scalar",
+     "value": 0.3,
+     "readback": 0.3,
+     "ok": true
+    },
+    "TriplanarSlopeStart": {
+     "kind": "scalar",
+     "value": 0.3,
+     "readback": 0.3,
+     "ok": true
+    },
+    "TriplanarWorldScale": {
+     "kind": "scalar",
+     "value": 0.0607,
+     "readback": 0.0607,
+     "ok": true
+    }
+   },
+   "saved_return": true
+  },
+  {
+   "name": "MI_Prove_Uni_03_TextureLayerA",
+   "status": "authored",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Uni_03_TextureLayerA",
+   "overrides": {
+    "EmissiveMapIntensity": {
+     "kind": "scalar",
+     "value": 1.0,
+     "readback": 1.0,
+     "ok": true
+    },
+    "EmissiveMapTint": {
+     "kind": "vector",
+     "value": [
+      1.0,
+      0.95,
+      1.0,
+      1.0
+     ],
+     "readback": [
+      1.0,
+      0.95,
+      1.0,
+      1.0
+     ],
+     "ok": true
+    },
+    "EmissiveMapUVScale": {
+     "kind": "scalar",
+     "value": 3.6,
+     "readback": 3.6,
+     "ok": true
+    },
+    "LayerA_NormalStrength": {
+     "kind": "scalar",
+     "value": 0.6,
+     "readback": 0.6,
+     "ok": true
+    },
+    "LayerA_ParallaxScale": {
+     "kind": "scalar",
+     "value": 19.2,
+     "readback": 19.200001,
+     "ok": true
+    },
+    "LayerA_TextureWeight": {
+     "kind": "scalar",
+     "value": -0.1,
+     "readback": -0.1,
+     "ok": true
+    }
+   },
+   "saved_return": true
+  },
+  {
+   "name": "MI_Prove_Uni_04_TextureLayerB",
+   "status": "authored",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Uni_04_TextureLayerB",
+   "overrides": {
+    "LayerAOBlend": {
+     "kind": "scalar",
+     "value": 0.3,
+     "readback": 0.3,
+     "ok": true
+    },
+    "LayerAlphaBias": {
+     "kind": "scalar",
+     "value": -0.8,
+     "readback": -0.8,
+     "ok": true
+    },
+    "LayerAlphaContrast": {
+     "kind": "scalar",
+     "value": 1.2,
+     "readback": 1.2,
+     "ok": true
+    },
+    "LayerB_NormalStrength": {
+     "kind": "scalar",
+     "value": 0.6,
+     "readback": 0.6,
+     "ok": true
+    },
+    "LayerB_ParallaxScale": {
+     "kind": "scalar",
+     "value": 19.2,
+     "readback": 19.200001,
+     "ok": true
+    },
+    "LayerB_TextureWeight": {
+     "kind": "scalar",
+     "value": -0.1,
+     "readback": -0.1,
+     "ok": true
+    },
+    "LayerBaseHeightScale": {
+     "kind": "scalar",
+     "value": 19.2,
+     "readback": 19.200001,
+     "ok": true
+    },
+    "LayerBlend": {
+     "kind": "scalar",
+     "value": 0.3,
+     "readback": 0.3,
+     "ok": true
+    },
+    "LayerBlendMode": {
+     "kind": "scalar",
+     "value": 0.3,
+     "readback": 0.3,
+     "ok": true
+    },
+    "LayerBlendSoftness": {
+     "kind": "scalar",
+     "value": 0.6,
+     "readback": 0.6,
+     "ok": true
+    },
+    "LayerColorBlend": {
+     "kind": "scalar",
+     "value": 0.3,
+     "readback": 0.3,
+     "ok": true
+    },
+    "LayerHeightBias": {
+     "kind": "scalar",
+     "value": -0.8,
+     "readback": -0.8,
+     "ok": true
+    },
+    "LayerHeightBlend": {
+     "kind": "scalar",
+     "value": 0.3,
+     "readback": 0.3,
+     "ok": true
+    },
+    "LayerHeightInvert": {
+     "kind": "scalar",
+     "value": 0.6,
+     "readback": 0.6,
+     "ok": true
+    },
+    "LayerHeightSharpness": {
+     "kind": "scalar",
+     "value": 2.4,
+     "readback": 2.4,
+     "ok": true
+    },
+    "LayerManualMix": {
+     "kind": "scalar",
+     "value": 0.3,
+     "readback": 0.3,
+     "ok": true
+    },
+    "LayerMetallicBlend": {
+     "kind": "scalar",
+     "value": 0.3,
+     "readback": 0.3,
+     "ok": true
+    },
+    "LayerNormalBlend": {
+     "kind": "scalar",
+     "value": 0.3,
+     "readback": 0.3,
+     "ok": true
+    },
+    "LayerOverlayHeightScale": {
+     "kind": "scalar",
+     "value": 19.2,
+     "readback": 19.200001,
+     "ok": true
+    },
+    "LayerRoughnessBlend": {
+     "kind": "scalar",
+     "value": 0.3,
+     "readback": 0.3,
+     "ok": true
+    }
+   },
+   "saved_return": true
+  },
+  {
+   "name": "MI_Prove_Uni_05_TextureLayerC",
+   "status": "authored",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Uni_05_TextureLayerC",
+   "overrides": {
+    "LayerCAOBlend": {
+     "kind": "scalar",
+     "value": 0.3,
+     "readback": 0.3,
+     "ok": true
+    },
+    "LayerCAlphaBias": {
+     "kind": "scalar",
+     "value": -0.8,
+     "readback": -0.8,
+     "ok": true
+    },
+    "LayerCAlphaContrast": {
+     "kind": "scalar",
+     "value": 1.2,
+     "readback": 1.2,
+     "ok": true
+    },
+    "LayerCBaseHeightScale": {
+     "kind": "scalar",
+     "value": 19.2,
+     "readback": 19.200001,
+     "ok": true
+    },
+    "LayerCBlend": {
+     "kind": "scalar",
+     "value": 0.3,
+     "readback": 0.3,
+     "ok": true
+    },
+    "LayerCBlendMode": {
+     "kind": "scalar",
+     "value": 0.3,
+     "readback": 0.3,
+     "ok": true
+    },
+    "LayerCBlendSoftness": {
+     "kind": "scalar",
+     "value": 0.6,
+     "readback": 0.6,
+     "ok": true
+    },
+    "LayerCColorBlend": {
+     "kind": "scalar",
+     "value": 0.3,
+     "readback": 0.3,
+     "ok": true
+    },
+    "LayerCHeightBias": {
+     "kind": "scalar",
+     "value": -0.8,
+     "readback": -0.8,
+     "ok": true
+    },
+    "LayerCHeightBlend": {
+     "kind": "scalar",
+     "value": 0.3,
+     "readback": 0.3,
+     "ok": true
+    },
+    "LayerCHeightInvert": {
+     "kind": "scalar",
+     "value": 0.6,
+     "readback": 0.6,
+     "ok": true
+    },
+    "LayerCHeightSharpness": {
+     "kind": "scalar",
+     "value": 2.4,
+     "readback": 2.4,
+     "ok": true
+    },
+    "LayerCManualMix": {
+     "kind": "scalar",
+     "value": 0.3,
+     "readback": 0.3,
+     "ok": true
+    },
+    "LayerCMetallicBlend": {
+     "kind": "scalar",
+     "value": 0.3,
+     "readback": 0.3,
+     "ok": true
+    },
+    "LayerCNormalBlend": {
+     "kind": "scalar",
+     "value": 0.3,
+     "readback": 0.3,
+     "ok": true
+    },
+    "LayerCOverlayHeightScale": {
+     "kind": "scalar",
+     "value": 19.2,
+     "readback": 19.200001,
+     "ok": true
+    },
+    "LayerCRoughnessBlend": {
+     "kind": "scalar",
+     "value": 0.3,
+     "readback": 0.3,
+     "ok": true
+    },
+    "LayerC_NormalStrength": {
+     "kind": "scalar",
+     "value": 0.6,
+     "readback": 0.6,
+     "ok": true
+    },
+    "LayerC_ParallaxScale": {
+     "kind": "scalar",
+     "value": 19.2,
+     "readback": 19.200001,
+     "ok": true
+    },
+    "LayerC_TextureWeight": {
+     "kind": "scalar",
+     "value": -0.1,
+     "readback": -0.1,
+     "ok": true
+    }
+   },
+   "saved_return": true
+  },
+  {
+   "name": "MI_Prove_Uni_06_Parallax",
+   "status": "authored",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Uni_06_Parallax",
+   "overrides": {
+    "HeightToNormalStrength": {
+     "kind": "scalar",
+     "value": 0.6,
+     "readback": 0.6,
+     "ok": true
+    },
+    "NormalPower": {
+     "kind": "scalar",
+     "value": 4.8,
+     "readback": 4.8,
+     "ok": true
+    },
+    "NormalStrength": {
+     "kind": "scalar",
+     "value": 0.6,
+     "readback": 0.6,
+     "ok": true
+    },
+    "ParallaxHeight": {
+     "kind": "scalar",
+     "value": 0.6,
+     "readback": 0.6,
+     "ok": true
+    },
+    "ParallaxScale": {
+     "kind": "scalar",
+     "value": 19.2,
+     "readback": 19.200001,
+     "ok": true
+    },
+    "ParallaxStrength": {
+     "kind": "scalar",
+     "value": 0.6,
+     "readback": 0.6,
+     "ok": true
+    }
+   },
+   "saved_return": true
+  },
+  {
+   "name": "MI_Prove_Uni_07_MacroDetail",
+   "status": "authored",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Uni_07_MacroDetail",
+   "overrides": {
+    "DetailStrength": {
+     "kind": "scalar",
+     "value": 0.6,
+     "readback": 0.6,
+     "ok": true
+    },
+    "DetailTiling": {
+     "kind": "scalar",
+     "value": 19.27,
+     "readback": 19.27,
+     "ok": true
+    },
+    "MacroScale": {
+     "kind": "scalar",
+     "value": 154.3,
+     "readback": 154.300003,
+     "ok": true
+    },
+    "MacroVariationStrength": {
+     "kind": "scalar",
+     "value": 0.6,
+     "readback": 0.6,
+     "ok": true
+    }
+   },
+   "saved_return": true
+  },
+  {
+   "name": "MI_Prove_Uni_08_Gouache",
+   "status": "authored",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Uni_08_Gouache",
+   "overrides": {
+    "Gouache_Band1": {
+     "kind": "scalar",
+     "value": 0.3,
+     "readback": 0.3,
+     "ok": true
+    },
+    "Gouache_Band2": {
+     "kind": "scalar",
+     "value": 0.3,
+     "readback": 0.3,
+     "ok": true
+    },
+    "Gouache_BandSoft": {
+     "kind": "scalar",
+     "value": 0.09,
+     "readback": 0.09,
+     "ok": true
+    },
+    "Gouache_BleedJitter": {
+     "kind": "scalar",
+     "value": 0.24,
+     "readback": 0.24,
+     "ok": true
+    },
+    "Gouache_BloomEdge": {
+     "kind": "scalar",
+     "value": 0.3,
+     "readback": 0.3,
+     "ok": true
+    },
+    "Gouache_BloomLift": {
+     "kind": "scalar",
+     "value": 0.3,
+     "readback": 0.3,
+     "ok": true
+    },
+    "Gouache_BloomSoft": {
+     "kind": "scalar",
+     "value": 0.09,
+     "readback": 0.09,
+     "ok": true
+    },
+    "Gouache_BloomThresh": {
+     "kind": "scalar",
+     "value": 0.3,
+     "readback": 0.3,
+     "ok": true
+    },
+    "Gouache_BoilAmount": {
+     "kind": "scalar",
+     "value": 0.06,
+     "readback": 0.06,
+     "ok": true
+    },
+    "Gouache_BoilFPS": {
+     "kind": "scalar",
+     "value": 7.2,
+     "readback": 7.2,
+     "ok": true
+    },
+    "Gouache_ChalkLift": {
+     "kind": "scalar",
+     "value": 0.12,
+     "readback": 0.12,
+     "ok": true
+    },
+    "Gouache_ChalkRoughness": {
+     "kind": "scalar",
+     "value": 0.3,
+     "readback": 0.3,
+     "ok": true
+    },
+    "Gouache_DetileScale": {
+     "kind": "scalar",
+     "value": 0.67,
+     "readback": 0.67,
+     "ok": true
+    },
+    "Gouache_EdgeHalo": {
+     "kind": "scalar",
+     "value": 0.3,
+     "readback": 0.3,
+     "ok": true
+    },
+    "Gouache_EdgePool": {
+     "kind": "scalar",
+     "value": 0.3,
+     "readback": 0.3,
+     "ok": true
+    },
+    "Gouache_FlipAmount": {
+     "kind": "scalar",
+     "value": 0.3,
+     "readback": 0.3,
+     "ok": true
+    },
+    "Gouache_FlipFPS": {
+     "kind": "scalar",
+     "value": 7.2,
+     "readback": 7.2,
+     "ok": true
+    },
+    "Gouache_FlipTiling": {
+     "kind": "scalar",
+     "value": 4.975,
+     "readback": 4.975,
+     "ok": true
+    },
+    "Gouache_GranAmount": {
+     "kind": "scalar",
+     "value": 0.3,
+     "readback": 0.3,
+     "ok": true
+    },
+    "Gouache_KeyLightDir": {
+     "kind": "vector",
+     "value": [
+      0.48,
+      0.0,
+      0.89,
+      1.0
+     ],
+     "readback": [
+      0.48,
+      0.0,
+      0.89,
+      1.0
+     ],
+     "ok": true
+    },
+    "Gouache_NormalStrength": {
+     "kind": "scalar",
+     "value": 1.2,
+     "readback": 1.2,
+     "ok": true
+    },
+    "Gouache_PaperGrain": {
+     "kind": "scalar",
+     "value": 0.15,
+     "readback": 0.15,
+     "ok": true
+    },
+    "Gouache_PaperMean": {
+     "kind": "scalar",
+     "value": 0.3,
+     "readback": 0.3,
+     "ok": true
+    },
+    "Gouache_PoolAmount": {
+     "kind": "scalar",
+     "value": 0.3,
+     "readback": 0.3,
+     "ok": true
+    },
+    "Gouache_PoolPower": {
+     "kind": "scalar",
+     "value": 2.75,
+     "readback": 2.75,
+     "ok": true
+    },
+    "Gouache_ShadowMix": {
+     "kind": "scalar",
+     "value": 0.3,
+     "readback": 0.3,
+     "ok": true
+    },
+    "Gouache_ShadowSat": {
+     "kind": "scalar",
+     "value": 0.45,
+     "readback": 0.45,
+     "ok": true
+    },
+    "Gouache_ShadowTint": {
+     "kind": "vector",
+     "value": [
+      0.7,
+      0.5,
+      1.0,
+      1.0
+     ],
+     "readback": [
+      0.7,
+      0.5,
+      1.0,
+      1.0
+     ],
+     "ok": true
+    },
+    "Gouache_Strength": {
+     "kind": "scalar",
+     "value": 0.45,
+     "readback": 0.45,
+     "ok": true
+    },
+    "Gouache_SunFollow": {
+     "kind": "scalar",
+     "value": 0.3,
+     "readback": 0.3,
+     "ok": true
+    },
+    "Gouache_SwirlDrift": {
+     "kind": "scalar",
+     "value": 0.03,
+     "readback": 0.03,
+     "ok": true
+    },
+    "Gouache_SwirlSpeed": {
+     "kind": "scalar",
+     "value": 0.6,
+     "readback": 0.6,
+     "ok": true
+    },
+    "Gouache_TexelSize": {
+     "kind": "scalar",
+     "value": 0.0151,
+     "readback": 0.0151,
+     "ok": true
+    },
+    "Gouache_UVTiling": {
+     "kind": "scalar",
+     "value": 19.55,
+     "readback": 19.549999,
+     "ok": true
+    }
+   },
+   "saved_return": true
+  },
+  {
+   "name": "MI_Prove_Uni_08_TemporalInk",
+   "status": "authored",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Uni_08_TemporalInk",
+   "overrides": {
+    "BoilIntensity": {
+     "kind": "scalar",
+     "value": 1.2,
+     "readback": 1.2,
+     "ok": true
+    },
+    "NoiseScale": {
+     "kind": "scalar",
+     "value": 19.2,
+     "readback": 19.200001,
+     "ok": true
+    },
+    "SmearStrength": {
+     "kind": "scalar",
+     "value": 0.6,
+     "readback": 0.6,
+     "ok": true
+    },
+    "TemporalStrength": {
+     "kind": "scalar",
+     "value": 0.6,
+     "readback": 0.6,
+     "ok": true
+    },
+    "WindSpeed": {
+     "kind": "scalar",
+     "value": 2.4,
+     "readback": 2.4,
+     "ok": true
+    }
+   },
+   "saved_return": true
+  },
+  {
+   "name": "MI_Prove_Uni_09_ColorRamp",
+   "status": "authored",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Uni_09_ColorRamp",
+   "overrides": {
+    "RampContrast": {
+     "kind": "scalar",
+     "value": 1.27,
+     "readback": 1.27,
+     "ok": true
+    },
+    "RampHigh": {
+     "kind": "vector",
+     "value": [
+      0.68,
+      0.73,
+      0.99,
+      1.0
+     ],
+     "readback": [
+      0.68,
+      0.73,
+      0.99,
+      1.0
+     ],
+     "ok": true
+    },
+    "RampLow": {
+     "kind": "vector",
+     "value": [
+      0.93,
+      0.35,
+      0.66,
+      1.0
+     ],
+     "readback": [
+      0.93,
+      0.35,
+      0.66,
+      1.0
+     ],
+     "ok": true
+    },
+    "RampMid": {
+     "kind": "vector",
+     "value": [
+      0.86,
+      0.5,
+      0.86,
+      1.0
+     ],
+     "readback": [
+      0.86,
+      0.5,
+      0.86,
+      1.0
+     ],
+     "ok": true
+    },
+    "RampPosMid": {
+     "kind": "scalar",
+     "value": 0.32,
+     "readback": 0.32,
+     "ok": true
+    },
+    "RampStrength": {
+     "kind": "scalar",
+     "value": 0.3,
+     "readback": 0.3,
+     "ok": true
+    },
+    "ShadowRampHigh": {
+     "kind": "vector",
+     "value": [
+      0.68,
+      0.73,
+      0.99,
+      1.0
+     ],
+     "readback": [
+      0.68,
+      0.73,
+      0.99,
+      1.0
+     ],
+     "ok": true
+    },
+    "ShadowRampLow": {
+     "kind": "vector",
+     "value": [
+      0.93,
+      0.35,
+      0.66,
+      1.0
+     ],
+     "readback": [
+      0.93,
+      0.35,
+      0.66,
+      1.0
+     ],
+     "ok": true
+    },
+    "ShadowRampMid": {
+     "kind": "vector",
+     "value": [
+      0.86,
+      0.5,
+      0.86,
+      1.0
+     ],
+     "readback": [
+      0.86,
+      0.5,
+      0.86,
+      1.0
+     ],
+     "ok": true
+    },
+    "ShadowRampPosMid": {
+     "kind": "scalar",
+     "value": 0.32,
+     "readback": 0.32,
+     "ok": true
+    },
+    "ShadowRampSunFollow": {
+     "kind": "scalar",
+     "value": 1.0,
+     "readback": 1.0,
+     "ok": true
+    }
+   },
+   "saved_return": true
+  },
+  {
+   "name": "MI_Prove_Uni_10_NikkiRimGlow",
+   "status": "authored",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Uni_10_NikkiRimGlow",
+   "overrides": {
+    "BloomBoost": {
+     "kind": "scalar",
+     "value": 1.2,
+     "readback": 1.2,
+     "ok": true
+    },
+    "DreamBloomColor": {
+     "kind": "vector",
+     "value": [
+      1.0,
+      0.9,
+      1.0,
+      1.0
+     ],
+     "readback": [
+      1.0,
+      0.9,
+      1.0,
+      1.0
+     ],
+     "ok": true
+    },
+    "DreamBloomStrength": {
+     "kind": "scalar",
+     "value": 1.2,
+     "readback": 1.2,
+     "ok": true
+    },
+    "DreamBloomThreshold": {
+     "kind": "scalar",
+     "value": 0.3,
+     "readback": 0.3,
+     "ok": true
+    },
+    "DreamRimColor": {
+     "kind": "vector",
+     "value": [
+      1.0,
+      0.85,
+      1.0,
+      1.0
+     ],
+     "readback": [
+      1.0,
+      0.85,
+      1.0,
+      1.0
+     ],
+     "ok": true
+    },
+    "DreamRimCycles": {
+     "kind": "scalar",
+     "value": 2.15,
+     "readback": 2.15,
+     "ok": true
+    },
+    "DreamRimPower": {
+     "kind": "scalar",
+     "value": 5.15,
+     "readback": 5.15,
+     "ok": true
+    },
+    "DreamRimStrength": {
+     "kind": "scalar",
+     "value": 1.8,
+     "readback": 1.8,
+     "ok": true
+    },
+    "EmissiveSoftCeiling": {
+     "kind": "scalar",
+     "value": 3.6,
+     "readback": 3.6,
+     "ok": true
+    },
+    "GlowColor": {
+     "kind": "vector",
+     "value": [
+      1.0,
+      0.85,
+      0.99,
+      1.0
+     ],
+     "readback": [
+      1.0,
+      0.85,
+      0.99,
+      1.0
+     ],
+     "ok": true
+    },
+    "GlowIntensity": {
+     "kind": "scalar",
+     "value": 1.2,
+     "readback": 1.2,
+     "ok": true
+    },
+    "InnerGlowColor": {
+     "kind": "vector",
+     "value": [
+      1.0,
+      0.87,
+      1.0,
+      1.0
+     ],
+     "readback": [
+      1.0,
+      0.87,
+      1.0,
+      1.0
+     ],
+     "ok": true
+    },
+    "InnerGlowIntensity": {
+     "kind": "scalar",
+     "value": 1.2,
+     "readback": 1.2,
+     "ok": true
+    },
+    "InnerGlowWidth": {
+     "kind": "scalar",
+     "value": 1.2,
+     "readback": 1.2,
+     "ok": true
+    },
+    "RimBias": {
+     "kind": "scalar",
+     "value": -0.8,
+     "readback": -0.8,
+     "ok": true
+    },
+    "RimClamp": {
+     "kind": "scalar",
+     "value": 2.4,
+     "readback": 2.4,
+     "ok": true
+    },
+    "RimColor": {
+     "kind": "vector",
+     "value": [
+      0.78,
+      0.8,
+      1.0,
+      1.0
+     ],
+     "readback": [
+      0.78,
+      0.8,
+      1.0,
+      1.0
+     ],
+     "ok": true
+    },
+    "RimIntensity": {
+     "kind": "scalar",
+     "value": 1.2,
+     "readback": 1.2,
+     "ok": true
+    },
+    "RimPower": {
+     "kind": "scalar",
+     "value": 4.8,
+     "readback": 4.8,
+     "ok": true
+    },
+    "RimWidth": {
+     "kind": "scalar",
+     "value": 1.2,
+     "readback": 1.2,
+     "ok": true
+    }
+   },
+   "saved_return": true
+  },
+  {
+   "name": "MI_Prove_Uni_11_NikkiDreamGrade",
+   "status": "authored",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Uni_11_NikkiDreamGrade",
+   "overrides": {
+    "DreamCompositeBlend": {
+     "kind": "scalar",
+     "value": 0.3,
+     "readback": 0.3,
+     "ok": true
+    },
+    "DreamComposition": {
+     "kind": "scalar",
+     "value": 0.6,
+     "readback": 0.6,
+     "ok": true
+    },
+    "DreamContrast": {
+     "kind": "scalar",
+     "value": 1.2,
+     "readback": 1.2,
+     "ok": true
+    },
+    "DreamFlowCycles": {
+     "kind": "scalar",
+     "value": 2.15,
+     "readback": 2.15,
+     "ok": true
+    },
+    "DreamFlowScale": {
+     "kind": "scalar",
+     "value": 2.435,
+     "readback": 2.435,
+     "ok": true
+    },
+    "DreamFlowSpeed": {
+     "kind": "scalar",
+     "value": 0.3,
+     "readback": 0.3,
+     "ok": true
+    },
+    "DreamFlowStrength": {
+     "kind": "scalar",
+     "value": 0.9,
+     "readback": 0.9,
+     "ok": true
+    },
+    "DreamHighlightSoft": {
+     "kind": "scalar",
+     "value": 0.6,
+     "readback": 0.6,
+     "ok": true
+    },
+    "DreamIntensity": {
+     "kind": "scalar",
+     "value": 0.6,
+     "readback": 0.6,
+     "ok": true
+    },
+    "DreamPulseAmp": {
+     "kind": "scalar",
+     "value": 0.3,
+     "readback": 0.3,
+     "ok": true
+    },
+    "DreamPulseSpeed": {
+     "kind": "scalar",
+     "value": 2.4,
+     "readback": 2.4,
+     "ok": true
+    },
+    "DreamSaturation": {
+     "kind": "scalar",
+     "value": 0.6,
+     "readback": 0.6,
+     "ok": true
+    },
+    "DreamShadowLift": {
+     "kind": "scalar",
+     "value": -0.4,
+     "readback": -0.4,
+     "ok": true
+    },
+    "DreamThreshold": {
+     "kind": "scalar",
+     "value": 0.3,
+     "readback": 0.3,
+     "ok": true
+    },
+    "DreamTint": {
+     "kind": "vector",
+     "value": [
+      1.0,
+      0.8,
+      0.96,
+      1.0
+     ],
+     "readback": [
+      1.0,
+      0.8,
+      0.96,
+      1.0
+     ],
+     "ok": true
+    },
+    "DreamWarmth": {
+     "kind": "vector",
+     "value": [
+      1.0,
+      0.8,
+      0.74,
+      1.0
+     ],
+     "readback": [
+      1.0,
+      0.8,
+      0.74,
+      1.0
+     ],
+     "ok": true
+    },
+    "NikkiHeroGradeStrength": {
+     "kind": "scalar",
+     "value": 0.3,
+     "readback": 0.3,
+     "ok": true
+    },
+    "PastelLift": {
+     "kind": "scalar",
+     "value": -0.4,
+     "readback": -0.4,
+     "ok": true
+    }
+   },
+   "saved_return": true
+  },
+  {
+   "name": "MI_Prove_Uni_12_NikkiSparkle",
+   "status": "authored",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Uni_12_NikkiSparkle",
+   "overrides": {
+    "GlintIntensity": {
+     "kind": "scalar",
+     "value": 0.6,
+     "readback": 0.6,
+     "ok": true
+    },
+    "SparkleColor": {
+     "kind": "vector",
+     "value": [
+      1.0,
+      0.9,
+      0.84,
+      1.0
+     ],
+     "readback": [
+      1.0,
+      0.9,
+      0.84,
+      1.0
+     ],
+     "ok": true
+    },
+    "SparkleColorHigh": {
+     "kind": "vector",
+     "value": [
+      1.0,
+      0.95,
+      1.0,
+      1.0
+     ],
+     "readback": [
+      1.0,
+      0.95,
+      1.0,
+      1.0
+     ],
+     "ok": true
+    },
+    "SparkleColorLerp": {
+     "kind": "scalar",
+     "value": 0.6,
+     "readback": 0.6,
+     "ok": true
+    },
+    "SparkleColorLow": {
+     "kind": "vector",
+     "value": [
+      1.0,
+      0.95,
+      1.0,
+      1.0
+     ],
+     "readback": [
+      1.0,
+      0.95,
+      1.0,
+      1.0
+     ],
+     "ok": true
+    },
+    "SparkleContrast": {
+     "kind": "scalar",
+     "value": 1.2,
+     "readback": 1.2,
+     "ok": true
+    },
+    "SparkleDriftSpeed": {
+     "kind": "scalar",
+     "value": 2.4,
+     "readback": 2.4,
+     "ok": true
+    },
+    "SparkleIntensity": {
+     "kind": "scalar",
+     "value": 1.2,
+     "readback": 1.2,
+     "ok": true
+    },
+    "SparkleScale": {
+     "kind": "scalar",
+     "value": 307.9,
+     "readback": 307.899994,
+     "ok": true
+    },
+    "SparkleThreshold": {
+     "kind": "scalar",
+     "value": 1.2,
+     "readback": 1.2,
+     "ok": true
+    },
+    "SparkleTwinkleSpeed": {
+     "kind": "scalar",
+     "value": 2.4,
+     "readback": 2.4,
+     "ok": true
+    }
+   },
+   "saved_return": true
+  },
+  {
+   "name": "MI_Prove_Uni_13_NikkiIridescenceSheen",
+   "status": "authored",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Uni_13_NikkiIridescenceSheen",
+   "overrides": {
+    "FabricAnisoLevel": {
+     "kind": "scalar",
+     "value": -0.4,
+     "readback": -0.4,
+     "ok": true
+    },
+    "FabricNormalBlend": {
+     "kind": "scalar",
+     "value": 0.3,
+     "readback": 0.3,
+     "ok": true
+    },
+    "FabricSheen": {
+     "kind": "scalar",
+     "value": -0.1,
+     "readback": -0.1,
+     "ok": true
+    },
+    "FabricType": {
+     "kind": "scalar",
+     "value": 2.1,
+     "readback": 2.1,
+     "ok": true
+    },
+    "FabricWeaveScale": {
+     "kind": "scalar",
+     "value": 39.1,
+     "readback": 39.099998,
+     "ok": true
+    },
+    "FabricWeaveStrength": {
+     "kind": "scalar",
+     "value": 0.6,
+     "readback": 0.6,
+     "ok": true
+    },
+    "Iridescence": {
+     "kind": "scalar",
+     "value": 0.3,
+     "readback": 0.3,
+     "ok": true
+    },
+    "IridescenceBias": {
+     "kind": "scalar",
+     "value": -0.8,
+     "readback": -0.8,
+     "ok": true
+    },
+    "IridescenceCycles": {
+     "kind": "scalar",
+     "value": 2.15,
+     "readback": 2.15,
+     "ok": true
+    },
+    "IridescencePower": {
+     "kind": "scalar",
+     "value": 4.8,
+     "readback": 4.8,
+     "ok": true
+    },
+    "IridescenceRoughnessAtten": {
+     "kind": "scalar",
+     "value": 4.8,
+     "readback": 4.8,
+     "ok": true
+    },
+    "IridescenceTint": {
+     "kind": "vector",
+     "value": [
+      0.88,
+      0.55,
+      1.0,
+      1.0
+     ],
+     "readback": [
+      0.88,
+      0.55,
+      1.0,
+      1.0
+     ],
+     "ok": true
+    },
+    "SheenBias": {
+     "kind": "scalar",
+     "value": -0.8,
+     "readback": -0.8,
+     "ok": true
+    },
+    "SheenPower": {
+     "kind": "scalar",
+     "value": 4.8,
+     "readback": 4.8,
+     "ok": true
+    },
+    "SheenTint": {
+     "kind": "vector",
+     "value": [
+      1.0,
+      0.95,
+      1.0,
+      1.0
+     ],
+     "readback": [
+      1.0,
+      0.95,
+      1.0,
+      1.0
+     ],
+     "ok": true
+    },
+    "SheenWidth": {
+     "kind": "scalar",
+     "value": 1.2,
+     "readback": 1.2,
+     "ok": true
+    },
+    "ToonAnisotropy": {
+     "kind": "scalar",
+     "value": -0.4,
+     "readback": -0.4,
+     "ok": true
+    }
+   },
+   "saved_return": true
+  },
+  {
+   "name": "MI_Prove_Uni_14_Gilding",
+   "status": "authored",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Uni_14_Gilding",
+   "overrides": {
+    "CurvatureSensitivity": {
+     "kind": "scalar",
+     "value": 4.8,
+     "readback": 4.8,
+     "ok": true
+    },
+    "GildingStrength": {
+     "kind": "scalar",
+     "value": 0.6,
+     "readback": 0.6,
+     "ok": true
+    },
+    "GoldEmissive": {
+     "kind": "vector",
+     "value": [
+      0.43,
+      0.2,
+      0.09,
+      1.0
+     ],
+     "readback": [
+      0.43,
+      0.2,
+      0.09,
+      1.0
+     ],
+     "ok": true
+    },
+    "GoldRoughness": {
+     "kind": "scalar",
+     "value": 0.45,
+     "readback": 0.45,
+     "ok": true
+    },
+    "GoldTint": {
+     "kind": "vector",
+     "value": [
+      1.0,
+      0.67,
+      0.32,
+      1.0
+     ],
+     "readback": [
+      1.0,
+      0.67,
+      0.32,
+      1.0
+     ],
+     "ok": true
+    }
+   },
+   "saved_return": true
+  },
+  {
+   "name": "MI_Prove_Uni_15_ShadowGardenFlowers",
+   "status": "authored",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Uni_15_ShadowGardenFlowers",
+   "overrides": {
+    "ShadowFlowerColor": {
+     "kind": "vector",
+     "value": [
+      1.0,
+      0.4,
+      0.76,
+      1.0
+     ],
+     "readback": [
+      1.0,
+      0.4,
+      0.76,
+      1.0
+     ],
+     "ok": true
+    },
+    "ShadowFlowerScale": {
+     "kind": "scalar",
+     "value": 19.2,
+     "readback": 19.200001,
+     "ok": true
+    },
+    "ShadowFlowerStrength": {
+     "kind": "scalar",
+     "value": 0.6,
+     "readback": 0.6,
+     "ok": true
+    }
+   },
+   "saved_return": true
+  },
+  {
+   "name": "MI_Prove_Uni_16_ShadowDream",
+   "status": "authored",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Uni_16_ShadowDream",
+   "overrides": {
+    "ShadowDreamStrength": {
+     "kind": "scalar",
+     "value": 0.6,
+     "readback": 0.6,
+     "ok": true
+    },
+    "ShadowDreamTint": {
+     "kind": "vector",
+     "value": [
+      0.1605,
+      0.0,
+      0.2535,
+      1.0
+     ],
+     "readback": [
+      0.1605,
+      0.0,
+      0.2535,
+      1.0
+     ],
+     "ok": true
+    },
+    "ShadowSoftness": {
+     "kind": "scalar",
+     "value": 0.6,
+     "readback": 0.6,
+     "ok": true
+    }
+   },
+   "saved_return": true
+  },
+  {
+   "name": "MI_Prove_Uni_17_CelestialNebula",
+   "status": "authored",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Uni_17_CelestialNebula",
+   "overrides": {
+    "CelestialGalaxyScale": {
+     "kind": "scalar",
+     "value": 19.2,
+     "readback": 19.200001,
+     "ok": true
+    },
+    "CelestialGalaxyStrength": {
+     "kind": "scalar",
+     "value": 0.6,
+     "readback": 0.6,
+     "ok": true
+    },
+    "CelestialNebulaScale": {
+     "kind": "scalar",
+     "value": 19.2,
+     "readback": 19.200001,
+     "ok": true
+    },
+    "CelestialNebulaStrength": {
+     "kind": "scalar",
+     "value": 0.6,
+     "readback": 0.6,
+     "ok": true
+    },
+    "CelestialStarIntensity": {
+     "kind": "scalar",
+     "value": 1.2,
+     "readback": 1.2,
+     "ok": true
+    },
+    "CelestialToonSteps": {
+     "kind": "scalar",
+     "value": 10.3,
+     "readback": 10.3,
+     "ok": true
+    },
+    "ConstellationRampHigh": {
+     "kind": "vector",
+     "value": [
+      0.93,
+      0.67,
+      1.0,
+      1.0
+     ],
+     "readback": [
+      0.93,
+      0.67,
+      1.0,
+      1.0
+     ],
+     "ok": true
+    },
+    "ConstellationRampLow": {
+     "kind": "vector",
+     "value": [
+      0.1,
+      0.0,
+      0.14,
+      1.0
+     ],
+     "readback": [
+      0.1,
+      0.0,
+      0.14,
+      1.0
+     ],
+     "ok": true
+    },
+    "ConstellationRampMid": {
+     "kind": "vector",
+     "value": [
+      0.53,
+      0.17,
+      0.59,
+      1.0
+     ],
+     "readback": [
+      0.53,
+      0.17,
+      0.59,
+      1.0
+     ],
+     "ok": true
+    },
+    "ConstellationScale": {
+     "kind": "scalar",
+     "value": 19.2,
+     "readback": 19.200001,
+     "ok": true
+    },
+    "ConstellationStrength": {
+     "kind": "scalar",
+     "value": 0.6,
+     "readback": 0.6,
+     "ok": true
+    }
+   },
+   "saved_return": true
+  },
+  {
+   "name": "MI_Prove_Uni_18_FairyDust",
+   "status": "authored",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Uni_18_FairyDust",
+   "overrides": {
+    "FairyDustColor": {
+     "kind": "vector",
+     "value": [
+      1.0,
+      0.87,
+      1.0,
+      1.0
+     ],
+     "readback": [
+      1.0,
+      0.87,
+      1.0,
+      1.0
+     ],
+     "ok": true
+    },
+    "FairyDustIntensity": {
+     "kind": "scalar",
+     "value": 1.2,
+     "readback": 1.2,
+     "ok": true
+    },
+    "FairyDustScale": {
+     "kind": "scalar",
+     "value": 19.2,
+     "readback": 19.200001,
+     "ok": true
+    },
+    "FairyHighlightThreshold": {
+     "kind": "scalar",
+     "value": 1.2,
+     "readback": 1.2,
+     "ok": true
+    },
+    "FairyMotifStyle": {
+     "kind": "scalar",
+     "value": 0.6,
+     "readback": 0.6,
+     "ok": true
+    }
+   },
+   "saved_return": true
+  },
+  {
+   "name": "MI_Prove_Uni_19_MagicalHenshin",
+   "status": "authored",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Uni_19_MagicalHenshin",
+   "overrides": {
+    "MagicalPalette": {
+     "kind": "vector",
+     "value": [
+      1.0,
+      0.67,
+      0.9,
+      1.0
+     ],
+     "readback": [
+      1.0,
+      0.67,
+      0.9,
+      1.0
+     ],
+     "ok": true
+    },
+    "MagicalTransform": {
+     "kind": "scalar",
+     "value": 0.6,
+     "readback": 0.6,
+     "ok": true
+    },
+    "MotifColor": {
+     "kind": "vector",
+     "value": [
+      1.0,
+      0.4,
+      0.76,
+      1.0
+     ],
+     "readback": [
+      1.0,
+      0.4,
+      0.76,
+      1.0
+     ],
+     "ok": true
+    },
+    "MotifScale": {
+     "kind": "scalar",
+     "value": 19.2,
+     "readback": 19.200001,
+     "ok": true
+    },
+    "TransformGlow": {
+     "kind": "scalar",
+     "value": 1.2,
+     "readback": 1.2,
+     "ok": true
+    },
+    "WipeSoftness": {
+     "kind": "scalar",
+     "value": 0.6,
+     "readback": 0.6,
+     "ok": true
+    }
+   },
+   "saved_return": true
+  },
+  {
+   "name": "MI_Prove_Uni_20_VeinGlowMadoka",
+   "status": "authored",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Uni_20_VeinGlowMadoka",
+   "overrides": {
+    "MadokaBlendAmount": {
+     "kind": "scalar",
+     "value": 0.3,
+     "readback": 0.3,
+     "ok": true
+    }
+   },
+   "saved_return": true
+  },
+  {
+   "name": "MI_Prove_Uni_21_InkWearItto",
+   "status": "authored",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Uni_21_InkWearItto",
+   "overrides": {
+    "IttoBlendAmount": {
+     "kind": "scalar",
+     "value": 0.3,
+     "readback": 0.3,
+     "ok": true
+    }
+   },
+   "saved_return": true
+  },
+  {
+   "name": "MI_Prove_Uni_22_Impasto",
+   "status": "authored",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Uni_22_Impasto",
+   "overrides": {
+    "ImpastoCoverage": {
+     "kind": "scalar",
+     "value": 0.3,
+     "readback": 0.3,
+     "ok": true
+    },
+    "ImpastoRoughness": {
+     "kind": "scalar",
+     "value": 0.3,
+     "readback": 0.3,
+     "ok": true
+    }
+   },
+   "saved_return": true
+  },
+  {
+   "name": "MI_Prove_Uni_23_Sigil",
+   "status": "authored",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Uni_23_Sigil",
+   "overrides": {
+    "SigilCycles": {
+     "kind": "scalar",
+     "value": 2.75,
+     "readback": 2.75,
+     "ok": true
+    },
+    "SigilRings": {
+     "kind": "scalar",
+     "value": 6.7,
+     "readback": 6.7,
+     "ok": true
+    },
+    "SigilSharp": {
+     "kind": "scalar",
+     "value": 2.75,
+     "readback": 2.75,
+     "ok": true
+    },
+    "SigilSides": {
+     "kind": "scalar",
+     "value": 6.9,
+     "readback": 6.9,
+     "ok": true
+    },
+    "SigilSpeed": {
+     "kind": "scalar",
+     "value": 0.9,
+     "readback": 0.9,
+     "ok": true
+    },
+    "SigilStrength": {
+     "kind": "scalar",
+     "value": 1.2,
+     "readback": 1.2,
+     "ok": true
+    }
+   },
+   "saved_return": true
+  },
+  {
+   "name": "MI_Prove_Uni_24_DawnMist",
+   "status": "authored",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Uni_24_DawnMist",
+   "overrides": {
+    "DawnBias": {
+     "kind": "scalar",
+     "value": -0.8,
+     "readback": -0.8,
+     "ok": true
+    },
+    "DawnHeightScale": {
+     "kind": "scalar",
+     "value": 0.003,
+     "readback": 0.003,
+     "ok": true
+    },
+    "DawnHighColor": {
+     "kind": "vector",
+     "value": [
+      1.0,
+      0.8,
+      0.74,
+      1.0
+     ],
+     "readback": [
+      1.0,
+      0.8,
+      0.74,
+      1.0
+     ],
+     "ok": true
+    },
+    "DawnLowColor": {
+     "kind": "vector",
+     "value": [
+      0.58,
+      0.3,
+      0.59,
+      1.0
+     ],
+     "readback": [
+      0.58,
+      0.3,
+      0.59,
+      1.0
+     ],
+     "ok": true
+    },
+    "DawnStrength": {
+     "kind": "scalar",
+     "value": 0.9,
+     "readback": 0.9,
+     "ok": true
+    },
+    "MistColor": {
+     "kind": "vector",
+     "value": [
+      0.78,
+      0.75,
+      1.0,
+      1.0
+     ],
+     "readback": [
+      0.78,
+      0.75,
+      1.0,
+      1.0
+     ],
+     "ok": true
+    },
+    "MistScale": {
+     "kind": "scalar",
+     "value": 4.94,
+     "readback": 4.94,
+     "ok": true
+    },
+    "MistSharp": {
+     "kind": "scalar",
+     "value": 2.75,
+     "readback": 2.75,
+     "ok": true
+    },
+    "MistSpeed": {
+     "kind": "scalar",
+     "value": 0.9,
+     "readback": 0.9,
+     "ok": true
+    },
+    "MistStrength": {
+     "kind": "scalar",
+     "value": 0.9,
+     "readback": 0.9,
+     "ok": true
+    }
+   },
+   "saved_return": true
+  },
+  {
+   "name": "MI_Prove_Uni_25_GlintHalo",
+   "status": "authored",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Uni_25_GlintHalo",
+   "overrides": {
+    "GlintColor": {
+     "kind": "vector",
+     "value": [
+      1.0,
+      0.95,
+      0.99,
+      1.0
+     ],
+     "readback": [
+      1.0,
+      0.95,
+      0.99,
+      1.0
+     ],
+     "ok": true
+    },
+    "GlintScale": {
+     "kind": "scalar",
+     "value": 19.9,
+     "readback": 19.9,
+     "ok": true
+    },
+    "GlintSharp": {
+     "kind": "scalar",
+     "value": 3.95,
+     "readback": 3.95,
+     "ok": true
+    },
+    "GlintSize": {
+     "kind": "scalar",
+     "value": 6.7,
+     "readback": 6.7,
+     "ok": true
+    },
+    "GlintSpeed": {
+     "kind": "scalar",
+     "value": 3.6,
+     "readback": 3.6,
+     "ok": true
+    },
+    "GlintStrength": {
+     "kind": "scalar",
+     "value": 1.2,
+     "readback": 1.2,
+     "ok": true
+    },
+    "HaloColor": {
+     "kind": "vector",
+     "value": [
+      1.0,
+      0.85,
+      0.84,
+      1.0
+     ],
+     "readback": [
+      1.0,
+      0.85,
+      0.84,
+      1.0
+     ],
+     "ok": true
+    },
+    "HaloPower": {
+     "kind": "scalar",
+     "value": 5.15,
+     "readback": 5.15,
+     "ok": true
+    },
+    "HaloStrength": {
+     "kind": "scalar",
+     "value": 1.2,
+     "readback": 1.2,
+     "ok": true
+    }
+   },
+   "saved_return": true
+  },
+  {
+   "name": "MI_Prove_Uni_26_CharacterSDF",
+   "status": "authored",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Uni_26_CharacterSDF",
+   "overrides": {
+    "FaceSDF_Strength": {
+     "kind": "scalar",
+     "value": 0.3,
+     "readback": 0.3,
+     "ok": true
+    },
+    "FaceSDF_Tiling": {
+     "kind": "scalar",
+     "value": 3.07,
+     "readback": 3.07,
+     "ok": true
+    },
+    "SkinSSS_Color": {
+     "kind": "vector",
+     "value": [
+      1.0,
+      0.3,
+      0.29,
+      1.0
+     ],
+     "readback": [
+      1.0,
+      0.3,
+      0.29,
+      1.0
+     ],
+     "ok": true
+    },
+    "SkinSSS_Radius": {
+     "kind": "scalar",
+     "value": 0.3,
+     "readback": 0.3,
+     "ok": true
+    },
+    "SkinSSS_Strength": {
+     "kind": "scalar",
+     "value": 0.3,
+     "readback": 0.3,
+     "ok": true
+    }
+   },
+   "saved_return": true
+  },
+  {
+   "name": "MI_Prove_Uni_27_Elemental",
+   "status": "authored",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Uni_27_Elemental",
+   "overrides": {
+    "ElementEmissiveBoost": {
+     "kind": "scalar",
+     "value": 1.2,
+     "readback": 1.2,
+     "ok": true
+    },
+    "ElementStrength": {
+     "kind": "scalar",
+     "value": 0.6,
+     "readback": 0.6,
+     "ok": true
+    },
+    "ElementType": {
+     "kind": "scalar",
+     "value": 0.6,
+     "readback": 0.6,
+     "ok": true
+    }
+   },
+   "saved_return": true
+  },
+  {
+   "name": "MI_Prove_Uni_28_WorldWeather",
+   "status": "authored",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Uni_28_WorldWeather",
+   "overrides": {
+    "MossColor": {
+     "kind": "vector",
+     "value": [
+      0.36,
+      0.37,
+      0.26,
+      1.0
+     ],
+     "readback": [
+      0.36,
+      0.37,
+      0.26,
+      1.0
+     ],
+     "ok": true
+    },
+    "MossConcavityStrength": {
+     "kind": "scalar",
+     "value": 0.6,
+     "readback": 0.6,
+     "ok": true
+    },
+    "MossCurvatureSens": {
+     "kind": "scalar",
+     "value": 4.8,
+     "readback": 4.8,
+     "ok": true
+    },
+    "SnowDustColor": {
+     "kind": "vector",
+     "value": [
+      1.0,
+      0.9,
+      1.0,
+      1.0
+     ],
+     "readback": [
+      1.0,
+      0.9,
+      1.0,
+      1.0
+     ],
+     "ok": true
+    },
+    "SnowDustStrength": {
+     "kind": "scalar",
+     "value": 0.6,
+     "readback": 0.6,
+     "ok": true
+    },
+    "SnowUpBias": {
+     "kind": "scalar",
+     "value": -0.8,
+     "readback": -0.8,
+     "ok": true
+    },
+    "WetnessDarken": {
+     "kind": "scalar",
+     "value": 0.6,
+     "readback": 0.6,
+     "ok": true
+    },
+    "WetnessNormalFlatten": {
+     "kind": "scalar",
+     "value": 0.6,
+     "readback": 0.6,
+     "ok": true
+    },
+    "WetnessRoughness": {
+     "kind": "scalar",
+     "value": 0.45,
+     "readback": 0.45,
+     "ok": true
+    },
+    "WetnessStrength": {
+     "kind": "scalar",
+     "value": 0.6,
+     "readback": 0.6,
+     "ok": true
+    }
+   },
+   "saved_return": true
+  },
+  {
+   "name": "MI_Prove_Uni_29_TimeOfDay",
+   "status": "authored",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Uni_29_TimeOfDay",
+   "overrides": {
+    "TimeOfDayMPCStrength": {
+     "kind": "scalar",
+     "value": 0.6,
+     "readback": 0.6,
+     "ok": true
+    },
+    "TimeOfDayWarmth": {
+     "kind": "scalar",
+     "value": 0.6,
+     "readback": 0.6,
+     "ok": true
+    }
+   },
+   "saved_return": true
+  },
+  {
+   "name": "MI_Prove_Uni_30_Cinematic",
+   "status": "authored",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Uni_30_Cinematic",
+   "overrides": {
+    "AtmosphericFadeColor": {
+     "kind": "vector",
+     "value": [
+      0.7,
+      0.67,
+      0.86,
+      1.0
+     ],
+     "readback": [
+      0.7,
+      0.67,
+      0.86,
+      1.0
+     ],
+     "ok": true
+    },
+    "ContactRimColor": {
+     "kind": "vector",
+     "value": [
+      1.0,
+      0.9,
+      0.92,
+      1.0
+     ],
+     "readback": [
+      1.0,
+      0.9,
+      0.92,
+      1.0
+     ],
+     "ok": true
+    },
+    "ContactRimPower": {
+     "kind": "scalar",
+     "value": 4.8,
+     "readback": 4.8,
+     "ok": true
+    },
+    "ContactRimStrength": {
+     "kind": "scalar",
+     "value": 0.6,
+     "readback": 0.6,
+     "ok": true
+    },
+    "DistanceFadeEnd": {
+     "kind": "scalar",
+     "value": 150070.0,
+     "readback": 150070.0,
+     "ok": true
+    },
+    "DistanceFadeStart": {
+     "kind": "scalar",
+     "value": 30000.0,
+     "readback": 30000.0,
+     "ok": true
+    },
+    "DistanceFadeStrength": {
+     "kind": "scalar",
+     "value": 0.6,
+     "readback": 0.6,
+     "ok": true
+    },
+    "DitherDissolveStrength": {
+     "kind": "scalar",
+     "value": 0.6,
+     "readback": 0.6,
+     "ok": true
+    },
+    "DitherEdgeGlow": {
+     "kind": "scalar",
+     "value": 1.2,
+     "readback": 1.2,
+     "ok": true
+    }
+   },
+   "saved_return": true
+  },
+  {
+   "name": "MI_Prove_Uni_31_DFContactBlend",
+   "status": "authored",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Uni_31_DFContactBlend",
+   "overrides": {
+    "DFContactBlendDistance": {
+     "kind": "scalar",
+     "value": 21.6,
+     "readback": 21.6,
+     "ok": true
+    },
+    "DFContactBlendSharpness": {
+     "kind": "scalar",
+     "value": 3.6,
+     "readback": 3.6,
+     "ok": true
+    },
+    "DFContactBlendStrength": {
+     "kind": "scalar",
+     "value": 0.05,
+     "readback": 0.05,
+     "ok": true
+    },
+    "DFContactGroundHeight": {
+     "kind": "scalar",
+     "value": 0.05,
+     "readback": 0.05,
+     "ok": true
+    },
+    "DFContactHeightFalloff": {
+     "kind": "scalar",
+     "value": 33.6,
+     "readback": 33.599998,
+     "ok": true
+    },
+    "DFContactNoiseBreakup": {
+     "kind": "scalar",
+     "value": 0.05,
+     "readback": 0.05,
+     "ok": true
+    },
+    "DFContactNoiseScale": {
+     "kind": "scalar",
+     "value": 0.0688,
+     "readback": 0.0688,
+     "ok": true
+    },
+    "DFContactRoughness": {
+     "kind": "scalar",
+     "value": 1.0,
+     "readback": 1.0,
+     "ok": true
+    },
+    "DFContactTint": {
+     "kind": "vector",
+     "value": [
+      0.32,
+      0.25,
+      0.38,
+      1.0
+     ],
+     "readback": [
+      0.32,
+      0.25,
+      0.38,
+      1.0
+     ],
+     "ok": true
+    },
+    "DFContactWorldPositionOffset": {
+     "kind": "scalar",
+     "value": 14.4,
+     "readback": 14.4,
+     "ok": true
+    },
+    "SDF_SeamBlendDistance": {
+     "kind": "scalar",
+     "value": 30.0,
+     "readback": 30.0,
+     "ok": true
+    },
+    "SDF_SeamBlendNoiseBreakup": {
+     "kind": "scalar",
+     "value": 0.3625,
+     "readback": 0.3625,
+     "ok": true
+    },
+    "SDF_SeamBlendNoiseScale": {
+     "kind": "scalar",
+     "value": 0.075,
+     "readback": 0.075,
+     "ok": true
+    },
+    "SDF_SeamBlendSharpness": {
+     "kind": "scalar",
+     "value": 2.4,
+     "readback": 2.4,
+     "ok": true
+    },
+    "SDF_SeamBlendStrength": {
+     "kind": "scalar",
+     "value": 0.05,
+     "readback": 0.05,
+     "ok": true
+    }
+   },
+   "saved_return": true
+  },
+  {
+   "name": "MI_Prove_Uni_32_GemstoneStack",
+   "status": "authored",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Uni_32_GemstoneStack",
+   "overrides": {
+    "ChromaticStrength": {
+     "kind": "scalar",
+     "value": 0.3,
+     "readback": 0.3,
+     "ok": true
+    },
+    "Dispersion": {
+     "kind": "scalar",
+     "value": 0.036,
+     "readback": 0.036,
+     "ok": true
+    },
+    "GemstoneRoughness": {
+     "kind": "scalar",
+     "value": 0.3,
+     "readback": 0.3,
+     "ok": true
+    },
+    "GemstoneTint": {
+     "kind": "vector",
+     "value": [
+      1.0,
+      0.95,
+      1.0,
+      1.0
+     ],
+     "readback": [
+      1.0,
+      0.95,
+      1.0,
+      1.0
+     ],
+     "ok": true
+    },
+    "IOR": {
+     "kind": "scalar",
+     "value": 1.6,
+     "readback": 1.6,
+     "ok": true
+    },
+    "Stack2_Blend": {
+     "kind": "scalar",
+     "value": 0.675,
+     "readback": 0.675,
+     "ok": true
+    },
+    "Stack2_Metallic": {
+     "kind": "scalar",
+     "value": 0.05,
+     "readback": 0.05,
+     "ok": true
+    },
+    "Stack2_Roughness": {
+     "kind": "scalar",
+     "value": 0.675,
+     "readback": 0.675,
+     "ok": true
+    },
+    "Stack2_Tiling": {
+     "kind": "scalar",
+     "value": 1.0,
+     "readback": 1.0,
+     "ok": true
+    },
+    "Stack3_Metallic": {
+     "kind": "scalar",
+     "value": 1.0,
+     "readback": 1.0,
+     "ok": true
+    },
+    "Stack3_Roughness": {
+     "kind": "scalar",
+     "value": 0.175,
+     "readback": 0.175,
+     "ok": true
+    },
+    "Stack3_Tiling": {
+     "kind": "scalar",
+     "value": 1.0,
+     "readback": 1.0,
+     "ok": true
+    }
+   },
+   "saved_return": true
+  },
+  {
+   "name": "MI_Prove_Uni_40_Convergence",
+   "status": "authored",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Uni_40_Convergence",
+   "overrides": {
+    "AudioReactivity": {
+     "kind": "scalar",
+     "value": 0.05,
+     "readback": 0.05,
+     "ok": true
+    },
+    "Dither_Crossfade_Window": {
+     "kind": "scalar",
+     "value": 0.05,
+     "readback": 0.05,
+     "ok": true
+    },
+    "GildingAmount": {
+     "kind": "scalar",
+     "value": 0.05,
+     "readback": 0.05,
+     "ok": true
+    },
+    "Grazing_Rim_Tint": {
+     "kind": "vector",
+     "value": [
+      1.0,
+      0.95,
+      1.0,
+      1.0
+     ],
+     "readback": [
+      1.0,
+      0.95,
+      1.0,
+      1.0
+     ],
+     "ok": true
+    },
+    "InkColor": {
+     "kind": "vector",
+     "value": [
+      1.0,
+      0.95,
+      1.0,
+      1.0
+     ],
+     "readback": [
+      1.0,
+      0.95,
+      1.0,
+      1.0
+     ],
+     "ok": true
+    },
+    "InkDensity": {
+     "kind": "scalar",
+     "value": 0.05,
+     "readback": 0.05,
+     "ok": true
+    },
+    "InkPanSpeed": {
+     "kind": "scalar",
+     "value": 0.05,
+     "readback": 0.05,
+     "ok": true
+    },
+    "LOD_Distance_Bounds": {
+     "kind": "vector",
+     "value": [
+      1.0,
+      0.95,
+      1.0,
+      1.0
+     ],
+     "readback": [
+      1.0,
+      0.95,
+      1.0,
+      1.0
+     ],
+     "ok": true
+    },
+    "LOD_Distance_Max": {
+     "kind": "scalar",
+     "value": 0.05,
+     "readback": 0.05,
+     "ok": true
+    },
+    "LOD_Distance_Min": {
+     "kind": "scalar",
+     "value": 0.05,
+     "readback": 0.05,
+     "ok": true
+    },
+    "OilPaintMix": {
+     "kind": "scalar",
+     "value": 0.05,
+     "readback": 0.05,
+     "ok": true
+    },
+    "ShadowDepth": {
+     "kind": "scalar",
+     "value": 0.05,
+     "readback": 0.05,
+     "ok": true
+    }
+   },
+   "saved_return": true
+  },
+  {
+   "name": "MI_Prove_Uni_41_AudioReact",
+   "status": "authored",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Uni_41_AudioReact",
+   "overrides": {
+    "AudioBassGain": {
+     "kind": "scalar",
+     "value": 1.0,
+     "readback": 1.0,
+     "ok": true
+    },
+    "AudioBeatGain": {
+     "kind": "scalar",
+     "value": 1.8,
+     "readback": 1.8,
+     "ok": true
+    },
+    "AudioMidGain": {
+     "kind": "scalar",
+     "value": 1.0,
+     "readback": 1.0,
+     "ok": true
+    },
+    "AudioReactAmount": {
+     "kind": "scalar",
+     "value": 0.05,
+     "readback": 0.05,
+     "ok": true
+    },
+    "AudioTrebleGain": {
+     "kind": "scalar",
+     "value": 1.0,
+     "readback": 1.0,
+     "ok": true
+    }
+   },
+   "saved_return": true
+  },
+  {
+   "name": "MI_Prove_Uni_42_ToonRamp",
+   "status": "authored",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Uni_42_ToonRamp",
+   "overrides": {
+    "ToonRampStrength": {
+     "kind": "scalar",
+     "value": 0.425,
+     "readback": 0.425,
+     "ok": true
+    }
+   },
+   "saved_return": true
+  },
+  {
+   "name": "MI_Prove_Uni_43_Opacity",
+   "status": "authored",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Uni_43_Opacity",
+   "overrides": {
+    "OpacityMap": {
+     "kind": "texture",
+     "value": "/Game/EnvSandbox/Materials/Textures/T_Noise_White",
+     "readback": "<Object '/Game/EnvSandbox/Materials/Textures/T_Noise_White.T_Noise_White' (0x000002A8E2301200) Class 'Texture2D'>",
+     "ok": true
+    },
+    "OpacityStrength": {
+     "kind": "scalar",
+     "value": 1.0,
+     "readback": 1.0,
+     "ok": true
+    }
+   },
+   "saved_return": true
+  },
+  {
+   "name": "MI_Prove_Uni_44_ClothWind",
+   "status": "authored",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Uni_44_ClothWind",
+   "overrides": {
+    "Cloth_DrapeScale": {
+     "kind": "scalar",
+     "value": 1.0,
+     "readback": 1.0,
+     "ok": true
+    },
+    "Cloth_FoldingAmount": {
+     "kind": "scalar",
+     "value": 0.05,
+     "readback": 0.05,
+     "ok": true
+    },
+    "Cloth_WindDirection": {
+     "kind": "vector",
+     "value": [
+      1.0,
+      0.0,
+      0.04,
+      1.0
+     ],
+     "readback": [
+      1.0,
+      0.0,
+      0.04,
+      1.0
+     ],
+     "ok": true
+    },
+    "Cloth_WindSpeed": {
+     "kind": "scalar",
+     "value": 0.4875,
+     "readback": 0.4875,
+     "ok": true
+    },
+    "Cloth_WindStrength": {
+     "kind": "scalar",
+     "value": 0.05,
+     "readback": 0.05,
+     "ok": true
+    }
+   },
+   "saved_return": true
+  },
+  {
+   "name": "MI_Prove_Uni_45_NoteScroll",
+   "status": "authored",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Uni_45_NoteScroll",
+   "overrides": {
+    "NoteScrollAmp": {
+     "kind": "scalar",
+     "value": 0.05,
+     "readback": 0.05,
+     "ok": true
+    },
+    "NoteScrollSpeed": {
+     "kind": "scalar",
+     "value": 1.0,
+     "readback": 1.0,
+     "ok": true
+    }
+   },
+   "saved_return": true
+  },
+  {
+   "name": "MI_Prove_Uni_46_MagicalTransform",
+   "status": "authored",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Uni_46_MagicalTransform",
+   "overrides": {
+    "MagicalTransformBeat": {
+     "kind": "scalar",
+     "value": 0.05,
+     "readback": 0.05,
+     "ok": true
+    },
+    "MagicalTransformBloom": {
+     "kind": "scalar",
+     "value": 0.05,
+     "readback": 0.05,
+     "ok": true
+    },
+    "MagicalTransformDissolve": {
+     "kind": "scalar",
+     "value": 0.05,
+     "readback": 0.05,
+     "ok": true
+    },
+    "MagicalTransformProgress": {
+     "kind": "scalar",
+     "value": 1.0,
+     "readback": 1.0,
+     "ok": true
+    },
+    "MagicalTransformSparkle": {
+     "kind": "scalar",
+     "value": 0.05,
+     "readback": 0.05,
+     "ok": true
+    },
+    "MagicalTransformTint": {
+     "kind": "vector",
+     "value": [
+      1.0,
+      0.81,
+      0.66,
+      1.0
+     ],
+     "readback": [
+      1.0,
+      0.81,
+      0.66,
+      1.0
+     ],
+     "ok": true
+    },
+    "Opacity": {
+     "kind": "scalar",
+     "value": 1.0,
+     "readback": 1.0,
+     "ok": true
+    }
+   },
+   "saved_return": true
+  },
+  {
+   "name": "MI_Prove_Uni_90_Cymatics",
+   "status": "authored",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Uni_90_Cymatics",
+   "overrides": {
+    "ChladniColor": {
+     "kind": "vector",
+     "value": [
+      0.63,
+      0.9,
+      1.0,
+      1.0
+     ],
+     "readback": [
+      0.63,
+      0.9,
+      1.0,
+      1.0
+     ],
+     "ok": true
+    },
+    "ChladniScale": {
+     "kind": "scalar",
+     "value": 1.0,
+     "readback": 1.0,
+     "ok": true
+    },
+    "CymaticAmplitude": {
+     "kind": "scalar",
+     "value": 0.6,
+     "readback": 0.6,
+     "ok": true
+    },
+    "Cymatic_BassIntensity": {
+     "kind": "scalar",
+     "value": 0.3,
+     "readback": 0.3,
+     "ok": true
+    },
+    "Cymatic_BeatPulse": {
+     "kind": "scalar",
+     "value": 0.3,
+     "readback": 0.3,
+     "ok": true
+    },
+    "Cymatic_EmissiveScale": {
+     "kind": "scalar",
+     "value": 1.2,
+     "readback": 1.2,
+     "ok": true
+    },
+    "Cymatic_IridescenceShift": {
+     "kind": "scalar",
+     "value": 0.3,
+     "readback": 0.3,
+     "ok": true
+    },
+    "Cymatic_MidIntensity": {
+     "kind": "scalar",
+     "value": 0.3,
+     "readback": 0.3,
+     "ok": true
+    },
+    "Cymatic_ModeM": {
+     "kind": "scalar",
+     "value": 9.6,
+     "readback": 9.6,
+     "ok": true
+    },
+    "Cymatic_ModeN": {
+     "kind": "scalar",
+     "value": 9.6,
+     "readback": 9.6,
+     "ok": true
+    },
+    "Cymatic_UVDistortion": {
+     "kind": "scalar",
+     "value": 0.3,
+     "readback": 0.3,
+     "ok": true
+    }
+   },
+   "saved_return": true
+  },
+  {
+   "name": "MI_Prove_Uni_91_OpticalLOD",
+   "status": "authored",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Uni_91_OpticalLOD",
+   "overrides": {
+    "Grazing_Rim_Boost": {
+     "kind": "scalar",
+     "value": 1.2,
+     "readback": 1.2,
+     "ok": true
+    },
+    "LOD_Tier_Index": {
+     "kind": "scalar",
+     "value": 0.9,
+     "readback": 0.9,
+     "ok": true
+    },
+    "POM_StepCount": {
+     "kind": "scalar",
+     "value": 19.2,
+     "readback": 19.200001,
+     "ok": true
+    },
+    "Toksvig_AntiAliasing_Weight": {
+     "kind": "scalar",
+     "value": 0.3,
+     "readback": 0.3,
+     "ok": true
+    },
+    "WPO_Resonance_Scale": {
+     "kind": "scalar",
+     "value": 1.2,
+     "readback": 1.2,
+     "ok": true
+    }
+   },
+   "saved_return": true
+  }
+ ],
+ "non_mi_collection_params": [
+  "TimeOfDayWarmth",
+  "GlobalSparkleIntensity",
+  "GlobalEmissiveBoost",
+  "Melusina_Lavender",
+  "Melusina_RoseGold",
+  "Melusina_SoftWhite",
+  "BeatPulse",
+  "Bass",
+  "Mid",
+  "Treble",
+  "BassIntensity",
+  "MidIntensity"
+ ],
+ "param_set_sizes": {
+  "scalar": 312,
+  "vector": 53,
+  "texture": 36
+ }
+}

@@ -1,0 +1,890 @@
+{
+ "schema": "melodia.proving_fresh_load_check.v1",
+ "when": "2026-10-28",
+ "master": "M_Master_Toon_Universal",
+ "master_path": "/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal",
+ "checks": [
+  {
+   "name": "MI_Prove_Uni_01_BaseSurface",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Uni_01_BaseSurface",
+   "fresh_reload": false,
+   "reload_note": "reload_packages() takes at most 2 arguments (3 given)",
+   "class": "MaterialInstanceConstant",
+   "parent": "<Object '/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal' (0x000002A7A3769A00) Class 'Material'>",
+   "parent_ok": true,
+   "expected_counts": {
+    "scalar": 13,
+    "vector": 4,
+    "texture": 0
+   },
+   "got_counts": {
+    "scalar": 13,
+    "vector": 4,
+    "texture": 0
+   },
+   "census_ok": true,
+   "status": "ok"
+  },
+  {
+   "name": "MI_Prove_Uni_02_Triplanar",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Uni_02_Triplanar",
+   "fresh_reload": false,
+   "reload_note": "reload_packages() takes at most 2 arguments (3 given)",
+   "class": "MaterialInstanceConstant",
+   "parent": "<Object '/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal' (0x000002A7A3769A00) Class 'Material'>",
+   "parent_ok": true,
+   "expected_counts": {
+    "scalar": 7,
+    "vector": 0,
+    "texture": 0
+   },
+   "got_counts": {
+    "scalar": 7,
+    "vector": 0,
+    "texture": 0
+   },
+   "census_ok": true,
+   "status": "ok"
+  },
+  {
+   "name": "MI_Prove_Uni_03_TextureLayerA",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Uni_03_TextureLayerA",
+   "fresh_reload": false,
+   "reload_note": "reload_packages() takes at most 2 arguments (3 given)",
+   "class": "MaterialInstanceConstant",
+   "parent": "<Object '/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal' (0x000002A7A3769A00) Class 'Material'>",
+   "parent_ok": true,
+   "expected_counts": {
+    "scalar": 5,
+    "vector": 1,
+    "texture": 0
+   },
+   "got_counts": {
+    "scalar": 5,
+    "vector": 1,
+    "texture": 0
+   },
+   "census_ok": true,
+   "status": "ok"
+  },
+  {
+   "name": "MI_Prove_Uni_04_TextureLayerB",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Uni_04_TextureLayerB",
+   "fresh_reload": false,
+   "reload_note": "reload_packages() takes at most 2 arguments (3 given)",
+   "class": "MaterialInstanceConstant",
+   "parent": "<Object '/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal' (0x000002A7A3769A00) Class 'Material'>",
+   "parent_ok": true,
+   "expected_counts": {
+    "scalar": 20,
+    "vector": 0,
+    "texture": 0
+   },
+   "got_counts": {
+    "scalar": 20,
+    "vector": 0,
+    "texture": 0
+   },
+   "census_ok": true,
+   "status": "ok"
+  },
+  {
+   "name": "MI_Prove_Uni_05_TextureLayerC",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Uni_05_TextureLayerC",
+   "fresh_reload": false,
+   "reload_note": "reload_packages() takes at most 2 arguments (3 given)",
+   "class": "MaterialInstanceConstant",
+   "parent": "<Object '/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal' (0x000002A7A3769A00) Class 'Material'>",
+   "parent_ok": true,
+   "expected_counts": {
+    "scalar": 20,
+    "vector": 0,
+    "texture": 0
+   },
+   "got_counts": {
+    "scalar": 20,
+    "vector": 0,
+    "texture": 0
+   },
+   "census_ok": true,
+   "status": "ok"
+  },
+  {
+   "name": "MI_Prove_Uni_06_Parallax",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Uni_06_Parallax",
+   "fresh_reload": false,
+   "reload_note": "reload_packages() takes at most 2 arguments (3 given)",
+   "class": "MaterialInstanceConstant",
+   "parent": "<Object '/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal' (0x000002A7A3769A00) Class 'Material'>",
+   "parent_ok": true,
+   "expected_counts": {
+    "scalar": 6,
+    "vector": 0,
+    "texture": 0
+   },
+   "got_counts": {
+    "scalar": 6,
+    "vector": 0,
+    "texture": 0
+   },
+   "census_ok": true,
+   "status": "ok"
+  },
+  {
+   "name": "MI_Prove_Uni_07_MacroDetail",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Uni_07_MacroDetail",
+   "fresh_reload": false,
+   "reload_note": "reload_packages() takes at most 2 arguments (3 given)",
+   "class": "MaterialInstanceConstant",
+   "parent": "<Object '/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal' (0x000002A7A3769A00) Class 'Material'>",
+   "parent_ok": true,
+   "expected_counts": {
+    "scalar": 4,
+    "vector": 0,
+    "texture": 0
+   },
+   "got_counts": {
+    "scalar": 4,
+    "vector": 0,
+    "texture": 0
+   },
+   "census_ok": true,
+   "status": "ok"
+  },
+  {
+   "name": "MI_Prove_Uni_08_Gouache",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Uni_08_Gouache",
+   "fresh_reload": false,
+   "reload_note": "reload_packages() takes at most 2 arguments (3 given)",
+   "class": "MaterialInstanceConstant",
+   "parent": "<Object '/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal' (0x000002A7A3769A00) Class 'Material'>",
+   "parent_ok": true,
+   "expected_counts": {
+    "scalar": 32,
+    "vector": 2,
+    "texture": 0
+   },
+   "got_counts": {
+    "scalar": 32,
+    "vector": 2,
+    "texture": 0
+   },
+   "census_ok": true,
+   "status": "ok"
+  },
+  {
+   "name": "MI_Prove_Uni_08_TemporalInk",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Uni_08_TemporalInk",
+   "fresh_reload": false,
+   "reload_note": "reload_packages() takes at most 2 arguments (3 given)",
+   "class": "MaterialInstanceConstant",
+   "parent": "<Object '/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal' (0x000002A7A3769A00) Class 'Material'>",
+   "parent_ok": true,
+   "expected_counts": {
+    "scalar": 5,
+    "vector": 0,
+    "texture": 0
+   },
+   "got_counts": {
+    "scalar": 5,
+    "vector": 0,
+    "texture": 0
+   },
+   "census_ok": true,
+   "status": "ok"
+  },
+  {
+   "name": "MI_Prove_Uni_09_ColorRamp",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Uni_09_ColorRamp",
+   "fresh_reload": false,
+   "reload_note": "reload_packages() takes at most 2 arguments (3 given)",
+   "class": "MaterialInstanceConstant",
+   "parent": "<Object '/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal' (0x000002A7A3769A00) Class 'Material'>",
+   "parent_ok": true,
+   "expected_counts": {
+    "scalar": 5,
+    "vector": 6,
+    "texture": 0
+   },
+   "got_counts": {
+    "scalar": 5,
+    "vector": 6,
+    "texture": 0
+   },
+   "census_ok": true,
+   "status": "ok"
+  },
+  {
+   "name": "MI_Prove_Uni_10_NikkiRimGlow",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Uni_10_NikkiRimGlow",
+   "fresh_reload": false,
+   "reload_note": "reload_packages() takes at most 2 arguments (3 given)",
+   "class": "MaterialInstanceConstant",
+   "parent": "<Object '/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal' (0x000002A7A3769A00) Class 'Material'>",
+   "parent_ok": true,
+   "expected_counts": {
+    "scalar": 15,
+    "vector": 5,
+    "texture": 0
+   },
+   "got_counts": {
+    "scalar": 15,
+    "vector": 5,
+    "texture": 0
+   },
+   "census_ok": true,
+   "status": "ok"
+  },
+  {
+   "name": "MI_Prove_Uni_11_NikkiDreamGrade",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Uni_11_NikkiDreamGrade",
+   "fresh_reload": false,
+   "reload_note": "reload_packages() takes at most 2 arguments (3 given)",
+   "class": "MaterialInstanceConstant",
+   "parent": "<Object '/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal' (0x000002A7A3769A00) Class 'Material'>",
+   "parent_ok": true,
+   "expected_counts": {
+    "scalar": 16,
+    "vector": 2,
+    "texture": 0
+   },
+   "got_counts": {
+    "scalar": 16,
+    "vector": 2,
+    "texture": 0
+   },
+   "census_ok": true,
+   "status": "ok"
+  },
+  {
+   "name": "MI_Prove_Uni_12_NikkiSparkle",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Uni_12_NikkiSparkle",
+   "fresh_reload": false,
+   "reload_note": "reload_packages() takes at most 2 arguments (3 given)",
+   "class": "MaterialInstanceConstant",
+   "parent": "<Object '/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal' (0x000002A7A3769A00) Class 'Material'>",
+   "parent_ok": true,
+   "expected_counts": {
+    "scalar": 8,
+    "vector": 3,
+    "texture": 0
+   },
+   "got_counts": {
+    "scalar": 8,
+    "vector": 3,
+    "texture": 0
+   },
+   "census_ok": true,
+   "status": "ok"
+  },
+  {
+   "name": "MI_Prove_Uni_13_NikkiIridescenceSheen",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Uni_13_NikkiIridescenceSheen",
+   "fresh_reload": false,
+   "reload_note": "reload_packages() takes at most 2 arguments (3 given)",
+   "class": "MaterialInstanceConstant",
+   "parent": "<Object '/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal' (0x000002A7A3769A00) Class 'Material'>",
+   "parent_ok": true,
+   "expected_counts": {
+    "scalar": 15,
+    "vector": 2,
+    "texture": 0
+   },
+   "got_counts": {
+    "scalar": 15,
+    "vector": 2,
+    "texture": 0
+   },
+   "census_ok": true,
+   "status": "ok"
+  },
+  {
+   "name": "MI_Prove_Uni_14_Gilding",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Uni_14_Gilding",
+   "fresh_reload": false,
+   "reload_note": "reload_packages() takes at most 2 arguments (3 given)",
+   "class": "MaterialInstanceConstant",
+   "parent": "<Object '/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal' (0x000002A7A3769A00) Class 'Material'>",
+   "parent_ok": true,
+   "expected_counts": {
+    "scalar": 3,
+    "vector": 2,
+    "texture": 0
+   },
+   "got_counts": {
+    "scalar": 3,
+    "vector": 2,
+    "texture": 0
+   },
+   "census_ok": true,
+   "status": "ok"
+  },
+  {
+   "name": "MI_Prove_Uni_15_ShadowGardenFlowers",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Uni_15_ShadowGardenFlowers",
+   "fresh_reload": false,
+   "reload_note": "reload_packages() takes at most 2 arguments (3 given)",
+   "class": "MaterialInstanceConstant",
+   "parent": "<Object '/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal' (0x000002A7A3769A00) Class 'Material'>",
+   "parent_ok": true,
+   "expected_counts": {
+    "scalar": 2,
+    "vector": 1,
+    "texture": 0
+   },
+   "got_counts": {
+    "scalar": 2,
+    "vector": 1,
+    "texture": 0
+   },
+   "census_ok": true,
+   "status": "ok"
+  },
+  {
+   "name": "MI_Prove_Uni_16_ShadowDream",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Uni_16_ShadowDream",
+   "fresh_reload": false,
+   "reload_note": "reload_packages() takes at most 2 arguments (3 given)",
+   "class": "MaterialInstanceConstant",
+   "parent": "<Object '/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal' (0x000002A7A3769A00) Class 'Material'>",
+   "parent_ok": true,
+   "expected_counts": {
+    "scalar": 2,
+    "vector": 1,
+    "texture": 0
+   },
+   "got_counts": {
+    "scalar": 2,
+    "vector": 1,
+    "texture": 0
+   },
+   "census_ok": true,
+   "status": "ok"
+  },
+  {
+   "name": "MI_Prove_Uni_17_CelestialNebula",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Uni_17_CelestialNebula",
+   "fresh_reload": false,
+   "reload_note": "reload_packages() takes at most 2 arguments (3 given)",
+   "class": "MaterialInstanceConstant",
+   "parent": "<Object '/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal' (0x000002A7A3769A00) Class 'Material'>",
+   "parent_ok": true,
+   "expected_counts": {
+    "scalar": 8,
+    "vector": 3,
+    "texture": 0
+   },
+   "got_counts": {
+    "scalar": 8,
+    "vector": 3,
+    "texture": 0
+   },
+   "census_ok": true,
+   "status": "ok"
+  },
+  {
+   "name": "MI_Prove_Uni_18_FairyDust",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Uni_18_FairyDust",
+   "fresh_reload": false,
+   "reload_note": "reload_packages() takes at most 2 arguments (3 given)",
+   "class": "MaterialInstanceConstant",
+   "parent": "<Object '/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal' (0x000002A7A3769A00) Class 'Material'>",
+   "parent_ok": true,
+   "expected_counts": {
+    "scalar": 4,
+    "vector": 1,
+    "texture": 0
+   },
+   "got_counts": {
+    "scalar": 4,
+    "vector": 1,
+    "texture": 0
+   },
+   "census_ok": true,
+   "status": "ok"
+  },
+  {
+   "name": "MI_Prove_Uni_19_MagicalHenshin",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Uni_19_MagicalHenshin",
+   "fresh_reload": false,
+   "reload_note": "reload_packages() takes at most 2 arguments (3 given)",
+   "class": "MaterialInstanceConstant",
+   "parent": "<Object '/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal' (0x000002A7A3769A00) Class 'Material'>",
+   "parent_ok": true,
+   "expected_counts": {
+    "scalar": 4,
+    "vector": 2,
+    "texture": 0
+   },
+   "got_counts": {
+    "scalar": 4,
+    "vector": 2,
+    "texture": 0
+   },
+   "census_ok": true,
+   "status": "ok"
+  },
+  {
+   "name": "MI_Prove_Uni_20_VeinGlowMadoka",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Uni_20_VeinGlowMadoka",
+   "fresh_reload": false,
+   "reload_note": "reload_packages() takes at most 2 arguments (3 given)",
+   "class": "MaterialInstanceConstant",
+   "parent": "<Object '/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal' (0x000002A7A3769A00) Class 'Material'>",
+   "parent_ok": true,
+   "expected_counts": {
+    "scalar": 1,
+    "vector": 0,
+    "texture": 0
+   },
+   "got_counts": {
+    "scalar": 1,
+    "vector": 0,
+    "texture": 0
+   },
+   "census_ok": true,
+   "status": "ok"
+  },
+  {
+   "name": "MI_Prove_Uni_21_InkWearItto",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Uni_21_InkWearItto",
+   "fresh_reload": false,
+   "reload_note": "reload_packages() takes at most 2 arguments (3 given)",
+   "class": "MaterialInstanceConstant",
+   "parent": "<Object '/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal' (0x000002A7A3769A00) Class 'Material'>",
+   "parent_ok": true,
+   "expected_counts": {
+    "scalar": 1,
+    "vector": 0,
+    "texture": 0
+   },
+   "got_counts": {
+    "scalar": 1,
+    "vector": 0,
+    "texture": 0
+   },
+   "census_ok": true,
+   "status": "ok"
+  },
+  {
+   "name": "MI_Prove_Uni_22_Impasto",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Uni_22_Impasto",
+   "fresh_reload": false,
+   "reload_note": "reload_packages() takes at most 2 arguments (3 given)",
+   "class": "MaterialInstanceConstant",
+   "parent": "<Object '/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal' (0x000002A7A3769A00) Class 'Material'>",
+   "parent_ok": true,
+   "expected_counts": {
+    "scalar": 2,
+    "vector": 0,
+    "texture": 0
+   },
+   "got_counts": {
+    "scalar": 2,
+    "vector": 0,
+    "texture": 0
+   },
+   "census_ok": true,
+   "status": "ok"
+  },
+  {
+   "name": "MI_Prove_Uni_23_Sigil",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Uni_23_Sigil",
+   "fresh_reload": false,
+   "reload_note": "reload_packages() takes at most 2 arguments (3 given)",
+   "class": "MaterialInstanceConstant",
+   "parent": "<Object '/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal' (0x000002A7A3769A00) Class 'Material'>",
+   "parent_ok": true,
+   "expected_counts": {
+    "scalar": 6,
+    "vector": 0,
+    "texture": 0
+   },
+   "got_counts": {
+    "scalar": 6,
+    "vector": 0,
+    "texture": 0
+   },
+   "census_ok": true,
+   "status": "ok"
+  },
+  {
+   "name": "MI_Prove_Uni_24_DawnMist",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Uni_24_DawnMist",
+   "fresh_reload": false,
+   "reload_note": "reload_packages() takes at most 2 arguments (3 given)",
+   "class": "MaterialInstanceConstant",
+   "parent": "<Object '/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal' (0x000002A7A3769A00) Class 'Material'>",
+   "parent_ok": true,
+   "expected_counts": {
+    "scalar": 7,
+    "vector": 3,
+    "texture": 0
+   },
+   "got_counts": {
+    "scalar": 7,
+    "vector": 3,
+    "texture": 0
+   },
+   "census_ok": true,
+   "status": "ok"
+  },
+  {
+   "name": "MI_Prove_Uni_25_GlintHalo",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Uni_25_GlintHalo",
+   "fresh_reload": false,
+   "reload_note": "reload_packages() takes at most 2 arguments (3 given)",
+   "class": "MaterialInstanceConstant",
+   "parent": "<Object '/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal' (0x000002A7A3769A00) Class 'Material'>",
+   "parent_ok": true,
+   "expected_counts": {
+    "scalar": 7,
+    "vector": 2,
+    "texture": 0
+   },
+   "got_counts": {
+    "scalar": 7,
+    "vector": 2,
+    "texture": 0
+   },
+   "census_ok": true,
+   "status": "ok"
+  },
+  {
+   "name": "MI_Prove_Uni_26_CharacterSDF",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Uni_26_CharacterSDF",
+   "fresh_reload": false,
+   "reload_note": "reload_packages() takes at most 2 arguments (3 given)",
+   "class": "MaterialInstanceConstant",
+   "parent": "<Object '/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal' (0x000002A7A3769A00) Class 'Material'>",
+   "parent_ok": true,
+   "expected_counts": {
+    "scalar": 4,
+    "vector": 1,
+    "texture": 0
+   },
+   "got_counts": {
+    "scalar": 4,
+    "vector": 1,
+    "texture": 0
+   },
+   "census_ok": true,
+   "status": "ok"
+  },
+  {
+   "name": "MI_Prove_Uni_27_Elemental",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Uni_27_Elemental",
+   "fresh_reload": false,
+   "reload_note": "reload_packages() takes at most 2 arguments (3 given)",
+   "class": "MaterialInstanceConstant",
+   "parent": "<Object '/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal' (0x000002A7A3769A00) Class 'Material'>",
+   "parent_ok": true,
+   "expected_counts": {
+    "scalar": 3,
+    "vector": 0,
+    "texture": 0
+   },
+   "got_counts": {
+    "scalar": 3,
+    "vector": 0,
+    "texture": 0
+   },
+   "census_ok": true,
+   "status": "ok"
+  },
+  {
+   "name": "MI_Prove_Uni_28_WorldWeather",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Uni_28_WorldWeather",
+   "fresh_reload": false,
+   "reload_note": "reload_packages() takes at most 2 arguments (3 given)",
+   "class": "MaterialInstanceConstant",
+   "parent": "<Object '/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal' (0x000002A7A3769A00) Class 'Material'>",
+   "parent_ok": true,
+   "expected_counts": {
+    "scalar": 8,
+    "vector": 2,
+    "texture": 0
+   },
+   "got_counts": {
+    "scalar": 8,
+    "vector": 2,
+    "texture": 0
+   },
+   "census_ok": true,
+   "status": "ok"
+  },
+  {
+   "name": "MI_Prove_Uni_29_TimeOfDay",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Uni_29_TimeOfDay",
+   "fresh_reload": false,
+   "reload_note": "reload_packages() takes at most 2 arguments (3 given)",
+   "class": "MaterialInstanceConstant",
+   "parent": "<Object '/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal' (0x000002A7A3769A00) Class 'Material'>",
+   "parent_ok": true,
+   "expected_counts": {
+    "scalar": 2,
+    "vector": 0,
+    "texture": 0
+   },
+   "got_counts": {
+    "scalar": 2,
+    "vector": 0,
+    "texture": 0
+   },
+   "census_ok": true,
+   "status": "ok"
+  },
+  {
+   "name": "MI_Prove_Uni_30_Cinematic",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Uni_30_Cinematic",
+   "fresh_reload": false,
+   "reload_note": "reload_packages() takes at most 2 arguments (3 given)",
+   "class": "MaterialInstanceConstant",
+   "parent": "<Object '/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal' (0x000002A7A3769A00) Class 'Material'>",
+   "parent_ok": true,
+   "expected_counts": {
+    "scalar": 7,
+    "vector": 2,
+    "texture": 0
+   },
+   "got_counts": {
+    "scalar": 7,
+    "vector": 2,
+    "texture": 0
+   },
+   "census_ok": true,
+   "status": "ok"
+  },
+  {
+   "name": "MI_Prove_Uni_31_DFContactBlend",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Uni_31_DFContactBlend",
+   "fresh_reload": false,
+   "reload_note": "reload_packages() takes at most 2 arguments (3 given)",
+   "class": "MaterialInstanceConstant",
+   "parent": "<Object '/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal' (0x000002A7A3769A00) Class 'Material'>",
+   "parent_ok": true,
+   "expected_counts": {
+    "scalar": 14,
+    "vector": 1,
+    "texture": 0
+   },
+   "got_counts": {
+    "scalar": 14,
+    "vector": 1,
+    "texture": 0
+   },
+   "census_ok": true,
+   "status": "ok"
+  },
+  {
+   "name": "MI_Prove_Uni_32_GemstoneStack",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Uni_32_GemstoneStack",
+   "fresh_reload": false,
+   "reload_note": "reload_packages() takes at most 2 arguments (3 given)",
+   "class": "MaterialInstanceConstant",
+   "parent": "<Object '/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal' (0x000002A7A3769A00) Class 'Material'>",
+   "parent_ok": true,
+   "expected_counts": {
+    "scalar": 11,
+    "vector": 1,
+    "texture": 0
+   },
+   "got_counts": {
+    "scalar": 11,
+    "vector": 1,
+    "texture": 0
+   },
+   "census_ok": true,
+   "status": "ok"
+  },
+  {
+   "name": "MI_Prove_Uni_40_Convergence",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Uni_40_Convergence",
+   "fresh_reload": false,
+   "reload_note": "reload_packages() takes at most 2 arguments (3 given)",
+   "class": "MaterialInstanceConstant",
+   "parent": "<Object '/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal' (0x000002A7A3769A00) Class 'Material'>",
+   "parent_ok": true,
+   "expected_counts": {
+    "scalar": 9,
+    "vector": 3,
+    "texture": 0
+   },
+   "got_counts": {
+    "scalar": 9,
+    "vector": 3,
+    "texture": 0
+   },
+   "census_ok": true,
+   "status": "ok"
+  },
+  {
+   "name": "MI_Prove_Uni_41_AudioReact",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Uni_41_AudioReact",
+   "fresh_reload": false,
+   "reload_note": "reload_packages() takes at most 2 arguments (3 given)",
+   "class": "MaterialInstanceConstant",
+   "parent": "<Object '/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal' (0x000002A7A3769A00) Class 'Material'>",
+   "parent_ok": true,
+   "expected_counts": {
+    "scalar": 5,
+    "vector": 0,
+    "texture": 0
+   },
+   "got_counts": {
+    "scalar": 5,
+    "vector": 0,
+    "texture": 0
+   },
+   "census_ok": true,
+   "status": "ok"
+  },
+  {
+   "name": "MI_Prove_Uni_42_ToonRamp",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Uni_42_ToonRamp",
+   "fresh_reload": false,
+   "reload_note": "reload_packages() takes at most 2 arguments (3 given)",
+   "class": "MaterialInstanceConstant",
+   "parent": "<Object '/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal' (0x000002A7A3769A00) Class 'Material'>",
+   "parent_ok": true,
+   "expected_counts": {
+    "scalar": 1,
+    "vector": 0,
+    "texture": 0
+   },
+   "got_counts": {
+    "scalar": 1,
+    "vector": 0,
+    "texture": 0
+   },
+   "census_ok": true,
+   "status": "ok"
+  },
+  {
+   "name": "MI_Prove_Uni_43_Opacity",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Uni_43_Opacity",
+   "fresh_reload": false,
+   "reload_note": "reload_packages() takes at most 2 arguments (3 given)",
+   "class": "MaterialInstanceConstant",
+   "parent": "<Object '/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal' (0x000002A7A3769A00) Class 'Material'>",
+   "parent_ok": true,
+   "expected_counts": {
+    "scalar": 1,
+    "vector": 0,
+    "texture": 1
+   },
+   "got_counts": {
+    "scalar": 1,
+    "vector": 0,
+    "texture": 1
+   },
+   "census_ok": true,
+   "status": "ok"
+  },
+  {
+   "name": "MI_Prove_Uni_44_ClothWind",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Uni_44_ClothWind",
+   "fresh_reload": false,
+   "reload_note": "reload_packages() takes at most 2 arguments (3 given)",
+   "class": "MaterialInstanceConstant",
+   "parent": "<Object '/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal' (0x000002A7A3769A00) Class 'Material'>",
+   "parent_ok": true,
+   "expected_counts": {
+    "scalar": 4,
+    "vector": 1,
+    "texture": 0
+   },
+   "got_counts": {
+    "scalar": 4,
+    "vector": 1,
+    "texture": 0
+   },
+   "census_ok": true,
+   "status": "ok"
+  },
+  {
+   "name": "MI_Prove_Uni_45_NoteScroll",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Uni_45_NoteScroll",
+   "fresh_reload": false,
+   "reload_note": "reload_packages() takes at most 2 arguments (3 given)",
+   "class": "MaterialInstanceConstant",
+   "parent": "<Object '/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal' (0x000002A7A3769A00) Class 'Material'>",
+   "parent_ok": true,
+   "expected_counts": {
+    "scalar": 2,
+    "vector": 0,
+    "texture": 0
+   },
+   "got_counts": {
+    "scalar": 2,
+    "vector": 0,
+    "texture": 0
+   },
+   "census_ok": true,
+   "status": "ok"
+  },
+  {
+   "name": "MI_Prove_Uni_46_MagicalTransform",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Uni_46_MagicalTransform",
+   "fresh_reload": false,
+   "reload_note": "reload_packages() takes at most 2 arguments (3 given)",
+   "class": "MaterialInstanceConstant",
+   "parent": "<Object '/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal' (0x000002A7A3769A00) Class 'Material'>",
+   "parent_ok": true,
+   "expected_counts": {
+    "scalar": 6,
+    "vector": 1,
+    "texture": 0
+   },
+   "got_counts": {
+    "scalar": 6,
+    "vector": 1,
+    "texture": 0
+   },
+   "census_ok": true,
+   "status": "ok"
+  },
+  {
+   "name": "MI_Prove_Uni_90_Cymatics",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Uni_90_Cymatics",
+   "fresh_reload": false,
+   "reload_note": "reload_packages() takes at most 2 arguments (3 given)",
+   "class": "MaterialInstanceConstant",
+   "parent": "<Object '/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal' (0x000002A7A3769A00) Class 'Material'>",
+   "parent_ok": true,
+   "expected_counts": {
+    "scalar": 10,
+    "vector": 1,
+    "texture": 0
+   },
+   "got_counts": {
+    "scalar": 10,
+    "vector": 1,
+    "texture": 0
+   },
+   "census_ok": true,
+   "status": "ok"
+  },
+  {
+   "name": "MI_Prove_Uni_91_OpticalLOD",
+   "package": "/Game/EnvSandbox/Materials/Instances/Proving/MI_Prove_Uni_91_OpticalLOD",
+   "fresh_reload": false,
+   "reload_note": "reload_packages() takes at most 2 arguments (3 given)",
+   "class": "MaterialInstanceConstant",
+   "parent": "<Object '/Game/EnvSandbox/Materials/Masters/M_Master_Toon_Universal.M_Master_Toon_Universal' (0x000002A7A3769A00) Class 'Material'>",
+   "parent_ok": true,
+   "expected_counts": {
+    "scalar": 5,
+    "vector": 0,
+    "texture": 0
+   },
+   "got_counts": {
+    "scalar": 5,
+    "vector": 0,
+    "texture": 0
+   },
+   "census_ok": true,
+   "status": "ok"
+  }
+ ]
+}

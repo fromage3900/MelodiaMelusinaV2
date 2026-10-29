@@ -123,6 +123,17 @@ COLS = {
     },
 }
 
+# Generated tables (Tools/masters_spine_generate_cols.py) extend COLS without
+# hand-editing this file; a missing module is not an error.
+try:
+    sys.path.insert(0, HERE)
+    from masters_spine_cols_generated import GENERATED_COLS
+
+    for _gen_key, _gen_val in GENERATED_COLS.items():
+        COLS.setdefault(_gen_key, _gen_val)
+except Exception as _gen_exc:
+    print("NO_GENERATED_COLS", _gen_exc)
+
 
 def param_sets_from_master(master):
     sets = {"S": set(), "V": set(), "T": set(), "MPC": []}
