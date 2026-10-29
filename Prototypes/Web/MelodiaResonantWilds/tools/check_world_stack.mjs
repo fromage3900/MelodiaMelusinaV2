@@ -9,7 +9,7 @@ const g = read('js/game.js'), world = read('js/world.js'), a = read('js/activiti
 const design = read('js/design.js'), flags = read('js/flags.js'), sw = read('sw.js'), smoke = read('tools/browser_smoke.mjs');
 const progress = read('js/progress.js'), ui = read('js/ui.js');
 assert.match(g, /new PostFX\(this\)/);
-assert.doesNotMatch(g, /this\.painterly/);
+assert.match(g, /painterlyEnabled \? new PainterlyFilter/);
 assert.match(g, /this\.postfx\.render\(\)/);
 assert.match(flags, /liteMode/);
 assert.match(flags, /flagWorldexp/);
@@ -30,7 +30,7 @@ assert.match(ui, /Ping nearest Dew/);
 assert.match(smoke, /desktop-worldexp-postfx/);
 assert.match(smoke, /desktop-lite/);
 assert.match(smoke, /destinations >= 16/);
-assert.match(sw, /resonant-wilds-v15-20261029-floraison-release/);
+assert.match(sw, /resonant-wilds-v16-20261029-crisp-kuwahara/);
 assert.match(sw, /js\/flags\.js/);
 assert.match(sw, /js\/playground\.js/);
 assert.match(sw, /js\/grove-catalog\.js/);
