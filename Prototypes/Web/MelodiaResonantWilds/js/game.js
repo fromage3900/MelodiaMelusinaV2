@@ -2,6 +2,7 @@
 // skills and the world pulse; the player's taps are judged against it.
 
 import * as THREE from 'three';
+import { painterlyEnabled, PainterlyFilter } from './painterly.js';
 import { AudioEngine } from './audio.js';
 import { World, WATER } from './world.js';
 import { Particles, Decals, Overlay, makeBeam } from './fx.js';
@@ -29,6 +30,8 @@ export class Game {
     this.profile = loadProfile();
     this.canvas = document.getElementById('game');
     this.renderer = new THREE.WebGLRenderer({ canvas: this.canvas, antialias: !isTouch, powerPreference: 'high-performance' });
+    // Opt-in Kuwahara wash (`?kuwahara=1`) sits on top of hard RGB cel materials.
+    this.painterly = painterlyEnabled ? new PainterlyFilter() : null;
     this.scene = new THREE.Scene();
     this.scene.background = new THREE.Color('#f3e6dc');
     this.scene.fog = new THREE.Fog('#f3e6dc', 90, 280);
@@ -80,7 +83,8 @@ export class Game {
     this.echo = new Echo(this);
     this.ui = new UI(this);
     // Nikki-by-default OutlinePass/bloom; ?lite=1 or ?postfx=0 for low-end.
-    this.postfx = flagPostfx ? new PostFX(this) : null;
+    // Painterly wash replaces the OutlinePass path when ?kuwahara=1 (no double compositor).
+    this.postfx = (!this.painterly && flagPostfx) ? new PostFX(this) : null;
     this.daycycleEnabled = flagDaycycle;
     this.encoreSys = new EncoreSystem(this);
     this._outlineInteract = null;
@@ -848,8 +852,10 @@ export class Game {
     }
     this.overlay.draw(dt, bars, labels);
     this.ui.update(dt);
-    // Compositors are alternative opt-in render paths; never double-render.
-    if (this.postfx) this.postfx.render();
+    // Hard cel is material-side. Painterly (opt-in) or OutlinePass/bloom are alternate
+    // compositors — never stack two full-frame passes.
+    if (this.painterly && this.painterly.settings.strength > 0) this.painterly.render(this.renderer, this.scene, this.camera);
+    else if (this.postfx) this.postfx.render();
     else this.renderer.render(this.scene, this.camera);
   }
 
