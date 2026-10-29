@@ -18,6 +18,7 @@ import { UI } from './ui.js';
 import { PostFX } from './postfx.js';
 import { EncoreSystem } from './encore.js';
 import { toysEnabled, ChladniSand, MegaGown } from './playground.js';
+import { FloraisonPOV } from './floraison-pov.js';
 import { BIOMES, HUB, DIFFICULTY, RARITIES, SKILL_BY_ID, SHARD_BY_ELEMENT, ELEMENT_STYLE, MODIFIERS, RULES, xpToNext } from './design.js';
 import { clamp, lerp } from './util.js';
 import { flagDaycycle, flagPostfx } from './flags.js';
@@ -74,6 +75,7 @@ export class Game {
     this.loot = new Loot(this);
     this.player = new Player(this);
     this.player.recalc();
+    this.floraisonPOV = new FloraisonPOV(this);
     this.biomes = BIOMES;
     this.progress = new Progress(this);
     this.rhythm = new Rhythm(this);
@@ -760,7 +762,9 @@ export class Game {
     const w = innerWidth, h = innerHeight;
     this.renderer.setSize(w, h, false);
     this.camera.aspect = w / h;
-    this.camera.fov = w < h ? 62 : 40;
+    // Floraison uses a walkable, flower-height photographic lens; default unchanged.
+    this.camera.fov = this.floraisonPOV?.enabled ? (w < h ? 76 : 68) : (w < h ? 62 : 40);
+    this.camera.near = this.floraisonPOV?.enabled ? 0.12 : 0.5;
     this.camera.updateProjectionMatrix();
     this.overlay.resize();
     this.particles.mat.uniforms.uScale.value = (h * this.renderer.getPixelRatio()) / (2 * Math.tan((this.camera.fov * Math.PI) / 360));
@@ -965,6 +969,7 @@ export class Game {
   }
 
   updateCamera(dt) {
+    if (this.floraisonPOV?.update(dt)) return;
     const P = this.player;
     const portrait = innerWidth < innerHeight;
     const lead = 0.35;

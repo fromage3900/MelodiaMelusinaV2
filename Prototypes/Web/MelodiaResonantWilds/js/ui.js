@@ -4,6 +4,7 @@ import * as THREE from 'three';
 import { SLOTS, SLOT_BY_ID, RARITIES, SKILLS, SKILL_BY_ID, ELEMENT_STYLE, ARIA_BY_ID, BIOMES, BLESSINGS, DIFFICULTY, xpToNext, HONE_MAX, honeChance, TUTORIAL, WORLD_RADIUS, RULES, MOTIF_BY_ID, AFFIX_BY_KEY } from './design.js';
 import { ABILITY_OUTFITS } from './openworld.js';
 import { fmt, clamp } from './util.js';
+import { povMoveVector } from './floraison-pov.js';
 
 const $ = (id) => document.getElementById(id);
 const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
@@ -102,16 +103,48 @@ export class UI {
     $('mapwrap').addEventListener('click', () => this.open('map'));
     $('closepanel').addEventListener('click', () => this.close());
     $('respawn').addEventListener('click', () => g.respawn());
+    const povButton = $('btnFloraisonPOV');
+    if (povButton && g.world.botanyEnabled) {
+      povButton.classList.remove('hidden');
+      povButton.addEventListener('click', () => { if (g.started) g.floraisonPOV.toggle(); });
+      this.syncFloraisonPOV();
+    }
 
     const canvas = $('game');
     canvas.addEventListener('pointerdown', (e) => {
+      // In POV the free canvas is a look surface, not an attack trigger.
+      // HUD joystick and action buttons retain their own pointer owners.
+      if (g.floraisonPOV?.enabled) {
+        if (g.paused || (e.pointerType === 'mouse' && e.button !== 0)) return;
+        this.povDrag = { id: e.pointerId, x: e.clientX, y: e.clientY };
+        canvas.setPointerCapture(e.pointerId);
+        e.preventDefault();
+        return;
+      }
       if (e.pointerType !== 'mouse' || g.paused) return;
       g.aimAt(e.clientX, e.clientY);
       if (e.button === 0) { this.attackHeld = true; g.attack(stamp(e)); }
       else if (e.button === 2) g.dodge(stamp(e));
     });
-    canvas.addEventListener('pointerup', (e) => { if (e.pointerType === 'mouse' && e.button === 0) this.attackHeld = false; });
-    canvas.addEventListener('pointermove', (e) => { if (e.pointerType === 'mouse' && this.attackHeld) g.aimAt(e.clientX, e.clientY); });
+    canvas.addEventListener('pointerup', (e) => {
+      if (this.povDrag?.id === e.pointerId) this.povDrag = null;
+      if (e.pointerType === 'mouse' && e.button === 0) this.attackHeld = false;
+    });
+    canvas.addEventListener('pointercancel', (e) => {
+      if (this.povDrag?.id === e.pointerId) this.povDrag = null;
+    });
+    canvas.addEventListener('pointermove', (e) => {
+      if (g.floraisonPOV?.enabled) {
+        const drag = this.povDrag;
+        if (drag && drag.id === e.pointerId) {
+          g.floraisonPOV.look(e.clientX - drag.x, e.clientY - drag.y);
+          drag.x = e.clientX; drag.y = e.clientY;
+          e.preventDefault();
+        }
+        return;
+      }
+      if (e.pointerType === 'mouse' && this.attackHeld) g.aimAt(e.clientX, e.clientY);
+    });
     window.addEventListener('contextmenu', (e) => e.preventDefault());
   }
 
@@ -145,6 +178,7 @@ export class UI {
         else g.sheep.startCharge();
       }
       else if (c === 'KeyG' && g.megaGown) g.megaGown.toggle();
+      else if (c === 'KeyP' && g.world.botanyEnabled && g.started) g.floraisonPOV.toggle();
       else if (c === 'KeyX' || c === 'Enter') g.interact();
       else if (c === 'KeyI') this.open('wardrobe');
       else if (c === 'KeyK') this.open('skills');
@@ -170,10 +204,20 @@ export class UI {
     const d = Math.hypot(x, z);
     if (d > 1) { x /= d; z /= d; }
     if (d < 0.15) return { x: 0, z: 0 };
-    return { x, z };
+    // First-person camera controls are relative to the user's viewing yaw.
+    return this.g.floraisonPOV?.enabled ? povMoveVector(x, z, this.g.floraisonPOV.yaw) : { x, z };
   }
 
   // ================================================================ HUD
+  syncFloraisonPOV() {
+    const button = $('btnFloraisonPOV');
+    if (!button) return;
+    const active = !!this.g.floraisonPOV?.enabled;
+    button.textContent = active ? '✿ Exit POV (P)' : '✿ Flower POV (P)';
+    button.setAttribute('aria-pressed', String(active));
+    button.title = active ? 'Return to the regular camera' : 'Walk through the flowers at eye level';
+  }
+
   show() { $('hud').classList.remove('hidden'); }
 
   buildMetro(meter) {
