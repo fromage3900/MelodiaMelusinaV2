@@ -488,9 +488,12 @@ private:
  void UnbindInput();
  void FindAimTarget();
  bool CanAct() const;
- /** Locate the pawn's ACFU ability system component by class path (no hard plugin link),
-  *  and initialize the GAS avatar exactly once through the BlueprintCallable library. */
- UObject* ResolveACFAbilityComponent();
+ /** Ensure the pawn carries ACFU's ability system component - attached at RUNTIME exactly
+  *  like the traversal component attaches the WaveHarp adapter (the canonical pawn asset must
+  *  not be edited for combat: it lives in another lane's pending CL today, 2026-10-29). Also
+  *  initializes the GAS avatar once and grants the dodge action (GiveAbilityByClass with the
+  *  dodge tag as InputTag - ACF's TriggerAction resolves granted specs by DynamicTags). */
+ UObject* EnsureACFAbilityComponent();
  void Lane0(); void Lane1(); void Lane2(); void Lane3();
  void Lane(int32 Index);
  void UpdateInputOwnership();
@@ -607,9 +610,13 @@ private:
  double LastDodgeStart = -100.;
  /** How long after the press the dodge window can still answer an attack (seconds). */
  UPROPERTY(EditAnywhere, Category="Melodia|WaveHarp|Dodge") float DodgeCounterWindow = .45f;
- /** The pawn's ACFU ability system component, resolved once by class path (no hard plugin link). */
+ /** The ACFU action ability that IS the dodge (montage, reproduction, cooldown live on its CDO). */
+ UPROPERTY(EditDefaultsOnly, Category="Melodia|WaveHarp|Dodge") FSoftClassPath DodgeAbilityClassPath =
+  FSoftClassPath(TEXT("/Game/MelodiaIntegration/Hybrid/BP_MelodiaDodgeAction.BP_MelodiaDodgeAction_C"));
+ /** The pawn's ACFU ability system component, attached at runtime if absent (no hard plugin link). */
  TWeakObjectPtr<UActorComponent> ACFAbilityComponent;
  bool bACFGASAvatarInitAttempted = false;
+ bool bACFDodgeGranted = false;
  /** One solved hold per form: the heads sit at different points on the shaft. */
  UPROPERTY(Transient) TMap<EMelodiaWaveHarpForm, FTransform> FormGrips;
  UPROPERTY(Transient) TObjectPtr<USoundBase> ShotNote;

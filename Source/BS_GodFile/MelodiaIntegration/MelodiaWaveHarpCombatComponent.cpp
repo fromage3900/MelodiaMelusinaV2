@@ -126,6 +126,42 @@
    AbilityComponent->ProcessEvent(Fn, Params);
    return GetBoolParam(Fn, Params, TEXT("ReturnValue"));
   }
+
+  /** Grant the dodge through ACFU's OWN registration path so the spec carries the dynamic
+   *  TriggeringTag that GetAbilityHandle scans (stock K2_GiveAbility takes only an int InputID
+   *  and tags nothing - verified against 5.8 GAS headers 2026-10-29). The config struct is
+   *  assembled by generic reflection (UScriptStruct + named property writes), so the module
+   *  stays link-free against ActionsSystem. Action = the dodge BP's CDO: GrantACFAbility
+   *  instantiates from Action->GetClass(), so all class defaults (montage, reproduction,
+   *  cooldown) apply. */
+  static bool GrantACFDodge(UObject* AbilityComponent, UClass* DodgeAbilityClass, const FGameplayTag& AbilityTag)
+  {
+   UFunction* Fn = AbilityComponent ? AbilityComponent->FindFunction(FName("GrantACFAbility")) : nullptr;
+   UScriptStruct* Cfg = FindObject<UScriptStruct>(nullptr, TEXT("/Script/ActionsSystem.ActionAbilityConfig"));
+   if (!Fn || !Cfg || !DodgeAbilityClass) return false;
+   void* CfgInstance = FMemory::Malloc(Cfg->GetStructureSize());
+   FMemory::Memzero(CfgInstance, Cfg->GetStructureSize());
+   UObject* ActionTemplate = DodgeAbilityClass->GetDefaultObject();
+   int32 Level = 1;
+   bool bSetTag = false, bSetAction = false, bSetLevel = false;
+   for (FField* Child = Cfg->ChildProperties; Child; Child = Child->Next)
+   {
+    FProperty* Prop = CastField<FProperty>(Child);
+    if (!Prop) continue;
+    const FName Name = Prop->GetFName();
+    if (Name == FName("TriggeringTag")) { Prop->CopyCompleteValue(Prop->ContainerPtrToValuePtr<void>(CfgInstance), &AbilityTag); bSetTag = true; }
+    else if (Name == FName("Action"))    { Prop->CopyCompleteValue(Prop->ContainerPtrToValuePtr<void>(CfgInstance), &ActionTemplate); bSetAction = true; }
+    else if (Name == FName("AbilityLevel")) { Prop->CopyCompleteValue(Prop->ContainerPtrToValuePtr<void>(CfgInstance), &Level); bSetLevel = true; }
+   }
+   if (!(bSetTag && bSetAction && bSetLevel)) { FMemory::Free(CfgInstance); return false; }
+   TArray<uint8> Buffer;
+   Buffer.SetNumZeroed(FMath::Max(Fn->GetStructureSize(), 1));
+   void* Params = Buffer.GetData();
+   SetParam(Fn, Params, TEXT("ability"), CfgInstance);
+   AbilityComponent->ProcessEvent(Fn, Params);
+   FMemory::Free(CfgInstance);
+   return true;
+  }
  }
 
 UMelodiaWaveHarpCombatComponent::UMelodiaWaveHarpCombatComponent()
@@ -661,15 +697,40 @@ bool UMelodiaWaveHarpCombatComponent::IsWithinDodgeCounterWindow(const double No
  return Now >= DodgeStartedAt && Now - DodgeStartedAt <= FMath::Max(WindowSeconds, 0.f);
 }
 
-UObject* UMelodiaWaveHarpCombatComponent::ResolveACFAbilityComponent()
+UObject* UMelodiaWaveHarpCombatComponent::EnsureACFAbilityComponent()
 {
  if (ACFAbilityComponent.IsValid()) return ACFAbilityComponent.Get();
  AActor* Owner = GetOwner();
  if (!Owner) return nullptr;
- // Reflection law (same as the ACM swipe): the class is located by path, never linked.
+ // Reflection law (same as the ACM swipe): every ACFU class is located by path, never linked.
  UClass* AbilityClass = FindObject<UClass>(nullptr, TEXT("/Script/ActionsSystem.ACFAbilitySystemComponent"));
- UActorComponent* Comp = AbilityClass ? Owner->FindComponentByClass(AbilityClass) : nullptr;
- if (!Comp) return nullptr;
+ if (!AbilityClass) return nullptr;
+ UActorComponent* Comp = Owner->FindComponentByClass(AbilityClass);
+ if (!Comp)
+ {
+  // Runtime attach: the canonical pawn ASSET is never edited for combat (today it even sits
+  // in another lane's pending CL). This mirrors how UMelodiaTraversalComponent attaches THIS
+  // component at BeginPlay (MelodiaTraversalComponent.cpp:131) - one attach pattern, one owner.
+  Comp = NewObject<UActorComponent>(Owner, AbilityClass);
+  Owner->AddInstanceComponent(Comp);
+  Comp->RegisterComponent();
+  UE_LOG(LogTemp, Display, TEXT("MELODIA_HYBRID_DODGE attach acf_asc on %s"), *GetNameSafe(Owner));
+ }
+ // ACFU's CheckCost/level gates REQUIRE both ARS components to exist on the avatar
+ // (ActionsSystem/Private/ACFGameplayAbility.cpp:309-326). The ARS cost surface itself is a
+ // stub (CheckCosts returns true, ConsumeStatistics empty-list no-ops), so these are inert
+ // gate-companions: no second HP, no stamina authority, Phoenix untouched.
+ for (const TCHAR* GateClass : { TEXT("/Script/AdvancedRPGSystem.ARSStatisticsComponent"),
+  TEXT("/Script/AdvancedRPGSystem.ARSLevelingComponent") })
+ {
+  if (UClass* Gate = FindObject<UClass>(nullptr, GateClass))
+   if (Gate && !Owner->FindComponentByClass(Gate))
+   {
+    UActorComponent* G = NewObject<UActorComponent>(Owner, Gate);
+    Owner->AddInstanceComponent(G);
+    G->RegisterComponent();
+   }
+ }
  if (!bACFGASAvatarInitAttempted)
  {
   // The canonical pawn is not an ACF character by owner canon - it wears components.
@@ -678,6 +739,14 @@ UObject* UMelodiaWaveHarpCombatComponent::ResolveACFAbilityComponent()
   bACFGASAvatarInitAttempted = true;
   MelodiaACFReflect::InitGASAvatar(Comp, Owner);
  }
+ if (!bACFDodgeGranted && !DodgeAbilityClassPath.IsNull())
+ {
+  if (UClass* DodgeClass = DodgeAbilityClassPath.TryLoadClass<UObject>())
+   bACFDodgeGranted = MelodiaACFReflect::GrantACFDodge(Comp, DodgeClass,
+    MelodiaFlowDodge::DodgeAbilityTag.GetTag());
+  UE_LOG(LogTemp, Display, TEXT("MELODIA_HYBRID_DODGE grant=%d class=%s"),
+   bACFDodgeGranted ? 1 : 0, *DodgeAbilityClassPath.ToString());
+ }
  ACFAbilityComponent = Comp;
  return Comp;
 }
@@ -685,7 +754,7 @@ UObject* UMelodiaWaveHarpCombatComponent::ResolveACFAbilityComponent()
 void UMelodiaWaveHarpCombatComponent::TriggerDodge()
 {
  if (!CanAct() || !GetWorld()) return; // FLOW only: CanAct already refuses Sequence and remote.
- UObject* AbilityComponent = ResolveACFAbilityComponent();
+ UObject* AbilityComponent = EnsureACFAbilityComponent();
  if (!AbilityComponent)
  {
   UE_LOG(LogTemp, Display, TEXT("MELODIA_HYBRID_DODGE acf=missing pawn=%s"), *GetNameSafe(GetOwner()));
