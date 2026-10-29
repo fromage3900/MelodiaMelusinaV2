@@ -25,9 +25,10 @@ const variants = [
   { name: 'desktop-petal-cantata', query: '?flowerbeds=1', chibi: false, shrine: false, mobile: false, flowerbed: true, worldexp: true, postfx: true },
   { name: 'desktop-original-flowers', query: '?flowerbeds=0', chibi: false, shrine: false, mobile: false, flowerbed: false, worldexp: true, postfx: true },
   { name: 'desktop-npr-v2', query: '?npr=v2&avatar=chibi&shrine=glb', chibi: true, shrine: true, mobile: false, npr: true, worldexp: true, postfx: true },
-  { name: 'retired-kuwahara-flag', query: '?npr=v2&kuwahara=1&avatar=chibi&shrine=glb', chibi: true, shrine: true, mobile: false, npr: true, worldexp: true, postfx: true },
+  { name: 'desktop-painterly', query: '?npr=v2&kuwahara=1&avatar=chibi&shrine=glb', chibi: true, shrine: true, mobile: false, npr: true, painterly: true, worldexp: true, postfx: false },
   { name: 'mobile-npr-v2', query: '?npr=v2', chibi: false, shrine: false, mobile: true, npr: true, worldexp: true, postfx: true },
   { name: 'desktop-live-tuner', query: '?npr=v2&avatar=chibi&shrine=glb&tune=1&look=soft', chibi: true, shrine: true, mobile: false, npr: true, tune: true, worldexp: true, postfx: true },
+  { name: 'desktop-live-tuner-paint', query: '?npr=v2&kuwahara=1&avatar=chibi&shrine=glb&tune=1&look=soft', chibi: true, shrine: true, mobile: false, npr: true, painterly: true, tune: true, tunePaint: true, worldexp: true, postfx: false },
   { name: 'desktop-worldexp', query: '?worldexp=1', chibi: false, shrine: false, mobile: false, worldexp: true, postfx: true },
   { name: 'desktop-worldexp-postfx', query: '?worldexp=1&postfx=1&dressing=dense&nikkilook=1&daycycle=1', chibi: false, shrine: false, mobile: false, worldexp: true, postfx: true },
   { name: 'desktop-npr-colour-review', query: '?npr=v2', chibi: false, shrine: false, mobile: false, npr: true, worldexp: true, postfx: true },
@@ -74,7 +75,7 @@ try {
       modeN: window.__melodia.world.uniforms.uModeN.value,
       modeM: window.__melodia.world.uniforms.uModeM.value,
       heritageTimeline: window.__melodia.activities.shrineTimeline.sample(2).values,
-      retiredPostFX: 'painterly' in window.__melodia,
+      painterly: !!window.__melodia.painterly,
       postfx: !!window.__melodia.postfx,
       worldexp: !!window.__melodia.world.worldExpansionEnabled,
       destinations: window.__melodia.activities.pois.filter(p => p.type === 'destination').length,
@@ -108,7 +109,7 @@ try {
     assert.equal(before.bellflowers, expectedFlowers, test.name + ': incorrect bellflower count');
     assert.equal(before.boxLanterns, 12 - expectedFlowers, test.name + ': original lantern fallback mismatch');
     assert.equal(before.legacyTerrain, !!test.legacy, test.name + ': wrong environment shading');
-    assert.equal(before.retiredPostFX, false, test.name + ': retired Kuwahara runtime still present');
+    assert.equal(before.painterly, !!test.painterly, test.name + ': wrong painterly/Kuwahara state');
     assert.equal(before.postfx, !!test.postfx, test.name + ': unexpected postprocessing state');
     assert.equal(before.worldexp, !!test.worldexp, test.name + ': world expansion flag mismatch');
     if (test.worldexp) {
@@ -149,31 +150,42 @@ try {
     }
     if (test.tune) {
       await page.waitForFunction(() => window.__melodiaShaderTuner?.enabled === true, null, { timeout: 10000 });
-      const tuning = await page.evaluate(() => {
+      const paintTune = !!test.tunePaint;
+      const tuning = await page.evaluate((withPaint) => {
         const lab = window.__melodiaShaderTuner;
-        lab.apply({ shadow: 0.62, ink: 0.73, hardness: 0.99, threshold: 0.53, depth: 0.31 }, 'custom');
+        const patch = { shadow: 0.62, ink: 0.73, hardness: 0.99, threshold: 0.53, depth: 0.31 };
+        if (withPaint) Object.assign(patch, { strength: 0.44, radius: 2, anisotropy: 1.7, edgeProtect: 3.1, scale: 0.5 });
+        lab.apply(patch, 'custom');
         const sh = window.__melodia.world.terrainMat.userData.melodiaNPRShader;
         return {
-          shadow: lab.state().shadow, ink: lab.state().ink,
+          shadow: lab.state().shadow, ink: lab.state().ink, strength: lab.state().strength,
           url: location.search,
           sliders: lab.panel.shadowRoot.querySelectorAll('input[type=range]').length,
           band: { hardness: sh.uniforms.uBandHardness.value,
             threshold: sh.uniforms.uBandThreshold.value, depth: sh.uniforms.uBandShadowDepth.value },
+          paintUniform: window.__melodia.painterly?.material.uniforms.uStrength.value,
         };
-      });
+      }, paintTune);
       assert.equal(tuning.shadow, 0.62);
       assert.equal(tuning.ink, 0.73);
-      assert.equal(tuning.sliders, 5);
+      assert.equal(tuning.sliders, paintTune ? 10 : 5);
       assert.equal(tuning.band.hardness, 0.99);
       assert.equal(tuning.band.threshold, 0.53);
       assert.equal(tuning.band.depth, 0.31);
       assert.match(tuning.url, /hard=0.99/);
       assert.match(tuning.url, /dark=0.31/);
+      if (paintTune) {
+        assert.equal(tuning.strength, 0.44);
+        assert.equal(tuning.paintUniform, 0.44);
+        assert.match(tuning.url, /paint=0.44/);
+        assert.match(tuning.url, /kuwahara=1/);
+      }
       await page.reload({ waitUntil: 'domcontentloaded' });
       await page.waitForFunction(() => !!window.__melodiaShaderTuner?.enabled && !document.querySelector('#play').disabled, null, { timeout: 90000 });
       const persisted = await page.evaluate(() => window.__melodiaShaderTuner.state());
       assert.equal(persisted.hardness, 0.99, 'reload retained hard-band strength');
       assert.equal(persisted.ink, 0.73, 'reload retained ink');
+      if (paintTune) assert.equal(persisted.strength, 0.44, 'reload retained painterly strength');
     }
     await page.locator('#play').click();
     await page.waitForFunction(() => window.__melodia.started &&
