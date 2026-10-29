@@ -1,11 +1,11 @@
 // Resonant Wilds PWA cache. Keep shader, character, icon and GLB updates fresh.
 // The browser game remains playable online even if optional preview assets fail.
-const CACHE = 'resonant-wilds-v15-20261029-floraison-release';
+const CACHE = 'resonant-wilds-v16-20261029-crisp-kuwahara';
 const ASSETS = [
   './', './index.html', './style.css', './manifest.json',
   './icon-192.png', './icon-512.png',
   './js/main.js', './js/game.js', './js/audio.js', './js/rhythm.js',
-  './js/world.js', './js/entities.js', './js/cel.js', './js/npr-tuner.js', './js/chibi.js', './js/mixamo.js', './js/heritage-timeline.js',
+  './js/world.js', './js/entities.js', './js/cel.js', './js/painterly.js', './js/npr-tuner.js', './js/chibi.js', './js/mixamo.js', './js/heritage-timeline.js',
   './js/asset-loader.js', './js/bellflower.js', './js/flowerbeds.js', './js/openworld.js', './js/postfx.js', './js/grove.js', './js/grove-catalog.js',
   './js/floraison-pov.js', './js/flower-landscape.js', './js/resonant-botany.js',
   './js/playground.js',
