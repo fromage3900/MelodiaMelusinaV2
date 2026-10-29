@@ -1,0 +1,12 @@
+import assert from 'node:assert/strict';
+import { plateField, sampleBotanicalPlate, nineBotanicalStudies } from '../js/resonant-botany.js';
+assert.equal(plateField(0, 0.4, 3, 5), 0);
+assert.equal(plateField(0.3, 0.7, 3, 5), -plateField(0.7, 0.3, 3, 5));
+const a = sampleBotanicalPlate(), b = sampleBotanicalPlate();
+assert.deepEqual(a, b, 'deterministic placements');
+assert.ok(a.length > 0 && a.length <= 240);
+assert.ok(a.every(p => Math.abs(p.x) <= 6.1 && Math.abs(p.z) <= 6.1));
+assert.equal(nineBotanicalStudies().length, 9);
+assert.throws(() => sampleBotanicalPlate({ mode: [3, 3] }));
+assert.throws(() => sampleBotanicalPlate({ cells: 1000 }));
+console.log('Resonant botany P0: PASS (9 studies, deterministic, budgeted)');
