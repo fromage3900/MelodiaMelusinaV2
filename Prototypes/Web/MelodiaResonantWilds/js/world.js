@@ -8,6 +8,7 @@ import { Simplex2, mulberry32, clamp, lerp, smoothstep, angleDiff } from './util
 import { BIOMES, HUB, WORLD_RADIUS, WORLD_SEED, RIFT_STYLE } from './design.js';
 import { propWorkflowMul, approachIdentity, OW_RULES } from './openworld.js';
 import { environmentMaterial, legacyRender } from './cel.js';
+import { flagWorldexp, flagNikkiLook } from './flags.js';
 import { installBellflowers, animateBellflowers } from './bellflower.js';
 import { createFlowerbedParts } from './flowerbeds.js';
 
@@ -360,7 +361,7 @@ export class World {
     };
     // Small authored flower clusters; the original cone flowers remain one URL flag away.
     this.flowerbedsEnabled = new URLSearchParams(window.location.search).get('flowerbeds') !== '0';
-    this.worldExpansionEnabled = new URLSearchParams(window.location.search).get('worldexp') === '1';
+    this.worldExpansionEnabled = flagWorldexp;
     this.groveStatus = 'off';
     this.groveCounts = {};
     if (this.flowerbedsEnabled) this.props.flower.parts = createFlowerbedParts(M, L);
@@ -796,7 +797,7 @@ export class World {
         g.add(aur);
       }
       // Nikki silhouette pass — taller landmarks readable from hub roads.
-      const ls = new URLSearchParams(window.location.search).get('nikkilook') === '1' ? (OW_RULES.landmarkScale || 1.35) : 1;
+      const ls = flagNikkiLook ? (OW_RULES.landmarkScale || 1.35) : 1;
       g.scale.set(ls, ls, ls);
       g.userData.mats = [];
       g.traverse((o) => { if (o.material && !g.userData.mats.includes(o.material)) g.userData.mats.push(o.material); });

@@ -16,6 +16,10 @@ python -m http.server 8080
 
 Open `http://127.0.0.1:8080/Prototypes/Web/MelodiaResonantWilds/` on a phone (same Wi-Fi, use the PC's IP) or a desktop browser. Landscape is best on phones. Headphones help. If taps feel late, use **Settings → Calibrate**. Bluetooth audio usually needs +150–250 ms.
 
+**Nikki by default:** bare URL turns on world expansion, dense dressing, landmark scale, daycycle, and OutlinePass/bloom. Low-end escape: `?lite=1` (or `?worldexp=0`, `?postfx=0`, `?dressing=sparse`). Map shows per-biome region % (Dew + fashion frames + Reveal overlook) with a **Ping nearest Dew** compass lock.
+
+Live GH Pages (after owner `tools/sync_to_mysite.sh`): `https://fromage3900.github.io/my-site/resonant-wilds/` — confirm SW `resonant-wilds-v14-*-nikki-default`. Safari 10-step itinerary + PASS gate live in `CURRENT_STATE.md`.
+
 No build step. three.js r170 is vendored in `vendor/` (MIT, licence alongside).
 
 ## 🎮 Controls

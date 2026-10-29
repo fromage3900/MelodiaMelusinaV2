@@ -14,6 +14,7 @@ import { makeBeam } from './fx.js';
 import { planExploration, biomeWorkflow, OW_RULES, ABILITY_OUTFITS } from './openworld.js';
 import { environmentMaterial } from './cel.js';
 import { createDeterministicTimeline } from './heritage-timeline.js';
+import { flagWorldexp } from './flags.js';
 
 const L = (hex, o = {}) => environmentMaterial(hex, { flatShading: true, ...o });
 const SLOT_LABEL = { shoes: 'Shoes', gown: 'Gown', gloves: 'Gloves', head: 'Headpiece' };
@@ -27,7 +28,7 @@ export class Activities {
     this.eventAt = 110;
     this.event = null;
     this._acc = 0;
-    this.worldExpansionEnabled = new URLSearchParams(window.location.search).get('worldexp') === '1';
+    this.worldExpansionEnabled = flagWorldexp;
     this.shrineReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     this.shrineTimeline = createDeterministicTimeline({
       duration: 8,
@@ -636,6 +637,8 @@ export class Activities {
       g.ui.toast(`Resonance Dew — ${p.name}`, 'gold');
       this._applyDewSetBonus();
       this._spawnSecretLedge(p);
+      if (g.progress.pingTarget === p) g.progress.pingTarget = null;
+      g.progress.checkRegionComplete(p.biome);
     }
     g.particles.burst(p.x, p.y + 2.2, p.z, new THREE.Color('#9fe6ff'), 22, { speed: 6, life: 0.9, kind: 3 });
     g.world.pulse(p.x, p.z, 1.4, true);
@@ -700,6 +703,8 @@ export class Activities {
       g.profile.vistas.push(p.id);
       g.profile.notes += 2;
       g.progress.addXp(40);
+      if (g.progress.pingTarget === p) g.progress.pingTarget = null;
+      g.progress.checkRegionComplete(p.biome);
     }
     const title = p.name || 'Overlook';
     const sub = p.vistaLine || p.gateFeeling || 'A new motif opens across the wilds.';
@@ -749,6 +754,8 @@ export class Activities {
       g.profile.notes += bonus;
       g.progress.addXp(p.fashionEncore ? 55 : p.challenge ? 40 : 25);
       g.progress.dailyEvent('photo', 1);
+      if (g.progress.pingTarget === p) g.progress.pingTarget = null;
+      if (p.fashionEncore) g.progress.checkRegionComplete(p.biome);
     } else if (!soft) g.ui.toast('Already framed this whim', 'lavender');
     // Sheep photobomb — hops into frame for the snap (Nikki companion delight).
     if (!soft && Math.random() < 0.55) {

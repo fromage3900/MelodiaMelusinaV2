@@ -417,6 +417,7 @@ export class Sheep {
         this.pos.y = g.world.height(this.pos.x, this.pos.z);
         this.hopT = 1;
         this.glow = 1;
+        if (best.type === 'destination') g.progress.pingRegion(best);
         g.ui.toast(best.type === 'destination' ? 'Sheep found a Dew scent ♪' : 'Sheep found a blot ♪', 'aqua');
         g.audio.chime(2);
       } else g.ui.toast('Sheep sniffs… nothing nearby', 'soft');
