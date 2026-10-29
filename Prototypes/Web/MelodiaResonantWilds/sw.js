@@ -1,13 +1,14 @@
 // Resonant Wilds PWA cache. Keep shader, character, icon and GLB updates fresh.
 // The browser game remains playable online even if optional preview assets fail.
-const CACHE = 'resonant-wilds-v14-20261029-nikki-default';
+const CACHE = 'resonant-wilds-v15-20261029-canonical';
 const ASSETS = [
   './', './index.html', './style.css', './manifest.json',
   './icon-192.png', './icon-512.png',
   './js/main.js', './js/game.js', './js/audio.js', './js/rhythm.js',
-  './js/world.js', './js/entities.js', './js/cel.js', './js/painterly.js', './js/npr-tuner.js', './js/chibi.js', './js/mixamo.js', './js/heritage-timeline.js',
-  './js/asset-loader.js', './js/bellflower.js', './js/flowerbeds.js', './js/openworld.js', './js/postfx.js', './js/grove.js',
-  './js/flags.js', './js/playground.js',
+  './js/world.js', './js/entities.js', './js/cel.js', './js/npr-tuner.js', './js/chibi.js', './js/mixamo.js', './js/heritage-timeline.js',
+  './js/asset-loader.js', './js/bellflower.js', './js/flowerbeds.js', './js/openworld.js', './js/postfx.js', './js/grove.js', './js/grove-catalog.js',
+  './js/playground.js',
+  './js/flags.js',
   './js/combat.js', './js/loot.js', './js/echo.js', './js/encore.js',
   './js/activities.js', './js/progress.js', './js/ui.js',
   './js/player.js', './js/design.js', './js/fx.js', './js/util.js',

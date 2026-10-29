@@ -23,19 +23,19 @@
 
 ### Resonant Wilds ethereal expansion — 2026-10-28
 
-Web prototype `Prototypes/Web/MelodiaResonantWilds/`: map radius **700 → 1400** (biome ring 390 → 780); **8 biomes** (added Mist Choir / Choir Marsh, Glass Orchard, Starlit Moor via new `Docs/WorldGen/GAEA_SETUP_*` stubs + `BIOME_PLAY`); all procedural scores soft-rewritten toward an ethereal identity (pad-led explore mix, longer reverb, quieter drums) with **per-region ambience** beds in `js/audio.js`. Content placement radii scaled with the map. Regenerated `js/generated/ue_data.js` (8 biomes). Cooler-loops + Recital polish (WEB_SKILLS, oshi/pedigree, ceremony flash/fanfare, Motif packs) reconverged onto this ethereal main (#564); obsolete conflict tips #552/#557/#479/#494/#504 retired. #567 landed Daily Recital / Mixamo / fashion frames and the ethereal **16 Nikki micro-destinations** (Mist Choir Reedwalk / Lantern Marsh Atelier, Prism Picnic Glade / Mirror Orchard Balcony, Starlit Moongate / Bellflower Night Shelf + fashionPhoto setpieces). #570 Chladni plate modes; #574 playground toys; #575 **Nikki Ability Outfits** (equip→space): Mist Float (Shoes) / Prism Veil (Gown) / Nightbell Glide (Shoes) — one authored unlock ceremony per ethereal biome; Wardrobe lists locked/unlocked/ready. **Nikki-by-default** (`js/flags.js`): empty URL enables `worldexp` + dense dressing + `nikkilook` + `daycycle` + postfx; low-end escape `?lite=1` (or any flag `=0` / `dressing=sparse`). **Region 100% loop** (existing Activities/POI owners): per biome Dew + fashion frames (when authored) + Reveal overlook; map % + Momo-style “Ping nearest Dew” / Sheep sniff sticky compass — no new world authority. Tip SW: `resonant-wilds-v14-20261029-nikki-default` (flags + playground + Ability Outfits). Desktop Chromium stand-in itinerary `tools/nikki_live_itinerary.mjs` **PASS** (16 destinations · 3 Ability Outfits · Mist Float unlock ceremony · wardrobe catalogue · ethereal veils) — not a Safari claim.
+Web prototype `Prototypes/Web/MelodiaResonantWilds/`: map radius **700 → 1400** (biome ring 390 → 780); **8 biomes** (added Mist Choir / Choir Marsh, Glass Orchard, Starlit Moor via new `Docs/WorldGen/GAEA_SETUP_*` stubs + `BIOME_PLAY`); all procedural scores soft-rewritten toward an ethereal identity (pad-led explore mix, longer reverb, quieter drums) with **per-region ambience** beds in `js/audio.js`. Content placement radii scaled with the map. Regenerated `js/generated/ue_data.js` (8 biomes). Cooler-loops + Recital polish (WEB_SKILLS, oshi/pedigree, ceremony flash/fanfare, Motif packs) reconverged onto this ethereal main (#564); obsolete conflict tips #552/#557/#479/#494/#504 retired. #567 landed Daily Recital / Mixamo / fashion frames and the ethereal **16 Nikki micro-destinations** (Mist Choir Reedwalk / Lantern Marsh Atelier, Prism Picnic Glade / Mirror Orchard Balcony, Starlit Moongate / Bellflower Night Shelf + fashionPhoto setpieces). #570 Chladni plate modes + #574 playground toys (reactive sand / Sheep weapon / mega gown) on `main`. **Nikki Ability Outfits** (#575): Mist Float (Shoes) / Prism Veil (Gown) / Nightbell Glide (Shoes) — one authored unlock ceremony per ethereal biome; Wardrobe lists locked/unlocked/ready. **Nikki-by-default** (`js/flags.js`, #577 on `main`): empty URL enables `worldexp` + dense dressing + `nikkilook` + `daycycle` + postfx; low-end escape `?lite=1` (or any flag `=0` / `dressing=sparse`). **Region 100% loop** (existing Activities/POI owners): per biome Dew + fashion frames (when authored) + Reveal overlook; map % + Momo-style “Ping nearest Dew” / Sheep sniff sticky compass — no new world authority. **Canonical release reconvergence (#571 / #579):** 100-GLB Grove catalog + hard RGB cel bands (Kuwahara/`painterly.js` retired) + Chladni plate modes on top of the Nikki stack. SW cache `resonant-wilds-v15-20261029-canonical` (supersedes tip v13-nikki-ability and main’s interim v14-nikki-default; includes playground + flags + grove-catalog). Desktop Chromium stand-in itinerary `tools/nikki_live_itinerary.mjs` **PASS** (16 destinations · 3 Ability Outfits · Mist Float unlock ceremony · wardrobe catalogue · ethereal veils) — not a Safari claim.
 
-**Live publish + Safari gate (browser-approved) — OPEN.** Cloud agents cannot push `fromage3900/my-site` (403; restore icons from my-site HEAD — Melodia LFS stubs are 129 B pointers). Owner one-liner after this lands on `main`:
+**Live publish + Safari gate (browser-approved) — OPEN.** Cloud agents cannot push `fromage3900/my-site` (403; restore icons from my-site HEAD — Melodia LFS stubs are 129 B pointers; `sync_to_mysite.sh` now skips LFS pointer icons). Owner one-liner after this lands on `main`:
 ```bash
 cd /path/to/my-site
 bash /path/to/MelodiaMelusinaV2/Prototypes/Web/MelodiaResonantWilds/tools/sync_to_mysite.sh "$PWD/resonant-wilds"
 # commit + push my-site; then hard-refresh Pages
 ```
-Confirm Application → Cache Storage shows `resonant-wilds-v14-*-nikki-default`. Live URL (no query): `https://fromage3900.github.io/my-site/resonant-wilds/` · low-end: `...?lite=1`.
+Confirm Application → Cache Storage shows `resonant-wilds-v15-*-canonical`. Live URL (no query): `https://fromage3900.github.io/my-site/resonant-wilds/` · low-end: `...?lite=1`.
 
 **Safari 10-step Nikki itinerary (phone, landscape) — record PASS here only after real device run:**
-1. Cold load bare URL — first-tap Web Audio unlock; SW activates v14; title/heritage SVGs visible.
-2. Move with touch stick; no shader compile errors; cel + postfx readable (or `?lite=1` if thermal).
+1. Cold load bare URL — first-tap Web Audio unlock; SW activates v15; title/heritage SVGs visible.
+2. Move with touch stick; no shader compile errors; hard/default cel + postfx readable (or `?lite=1` if thermal).
 3. Leave Shorewake — named destinations (≥16) and dense dressing present without query flags.
 4. Collect one Resonance Dew; map shows biome %; Dew pulse on big map.
 5. Map → **Ping nearest Dew** — compass/objective locks; walk to it.
@@ -45,7 +45,7 @@ Confirm Application → Cache Storage shows `resonant-wilds-v14-*-nikki-default`
 9. Hit one biome **100%** banner (Dew + frames if any + overlook); one Ability Outfit beat (equip Shoes/Gown → open Mist/Prism/Nightbell space).
 10. Background 30s / resume — save intact; music unlock still good; FPS acceptable vs `?lite=1`.
 
-**Safari/offline QA still OPEN** — not browser-approved until that PASS lands in this section. Until then, more web features stay unproven on the live mirror.
+**Safari/offline QA still OPEN** — not browser-approved until that PASS lands in this section. Until then, treat the live Pages game as an older release regardless of canonical CI.
 
 ### Almost Gate v03 final HDA + UE instantiation — 2026-10-27 evening
 

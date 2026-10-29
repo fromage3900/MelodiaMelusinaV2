@@ -10,9 +10,14 @@ const module = read('js/grove.js'), game=read('js/game.js'),
 for (const token of ['ASSET_FLR_bellflower_dwarf','ASSET_FLR_moonfern_young',
  'ASSET_FLR_short_grass','mergeGeometries','installGroveProps',
  'tint: -1','!world.flowerbedsEnabled']) assert.ok(module.includes(token), token);
-assert.ok(game.includes('await installGroveProps(this.world)'));
+assert.ok(game.includes('await installGroveProps(this.world, { full: groveMode === \'full\' })'));
 assert.ok(game.includes("this.world.groveStatus = 'fallback'"));
-assert.ok(sw.includes('resonant-wilds-v14-20261029-nikki-default'));
+assert.ok(sw.includes('resonant-wilds-v15-20261029-canonical'));
+assert.ok(sw.includes('./js/grove-catalog.js'));
+assert.ok(module.includes('loadGroveVisual'));
+assert.ok(browser.includes('desktop-grove-full'));
+const manifest = JSON.parse(read('ASSET_RELEASE_MANIFEST.json'));
+assert.equal(manifest.optionalModels.length, 63);
 assert.ok(sw.includes('./js/grove.js'));
 assert.ok(sw.includes('./assets/models/harmonic-grove-37.glb'));
 for (const state of ['desktop-grove-glb','mobile-grove-dense',
