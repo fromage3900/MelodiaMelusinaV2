@@ -33,7 +33,7 @@ for (const module of ['js/flags.js', 'js/playground.js', 'js/grove-catalog.js',
   'js/floraison-pov.js', 'js/flower-landscape.js', 'js/resonant-botany.js']) {
   assert.ok(sw.includes("'./" + module + "'"), module + ' missing offline cache');
 }
-assert.match(sw, /painterly\\.js/);
+assert.match(sw, /js\/painterly\.js/);
 assert.equal(existsSync(join(dir, 'js/painterly.js')), true,
   'Crisp Kuwahara must remain opt-in and bundled');
 assert.match(game, /flagPostfx/);
