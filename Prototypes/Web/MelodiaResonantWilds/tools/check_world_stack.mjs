@@ -17,6 +17,7 @@ assert.match(a, /planExploration\(b, bi, rng, this\.pois\.slice\(\)\)/);
 assert.match(smoke, /desktop-worldexp-postfx/);
 assert.match(smoke, /destinations >= 16/);
 assert.match(sw, /resonant-wilds-v13-20261029-nikki-ability/);
+assert.match(sw, /js\/playground\.js/);
 const ow = read('js/openworld.js');
 for (const id of ['choir_marsh', 'glass_orchard', 'starlit_moor']) {
   assert.match(ow, new RegExp(id + '\\s*:'));
