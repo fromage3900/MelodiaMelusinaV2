@@ -1,0 +1,46 @@
+{
+ "schema": "melodia.sourcecontrol_receipt.v1",
+ "when": "2026-10-28",
+ "git": {
+  "branch": "feature/vfx-universal-material-convergence",
+  "head": "6a0379b7b",
+  "worktrees": 16,
+  "dirty_entries": 594,
+  "dirty_note": "other lanes' working-tree changes; not touched",
+  "staged_entries": 0,
+  "unpushed_vs_origin": 15,
+  "origin_branch_exists": true,
+  "fsck": "clean (no output)",
+  "actions": [
+   "removed stale .git/objects/d2/tmp_obj_xpScSp (crashed-process garbage)",
+   "git lfs prune: 579 local objects deleted (537 MB class)"
+  ]
+ },
+ "perforce": {
+  "server_root": "D:\\perforce\\root",
+  "opened_total": 1294,
+  "pending_changelists": {
+   "307": {"files": 745, "note": "mixed pending opens accidentally renumbered from default on 2026-10-28; description renamed to PARK; DO NOT submit as a batch"},
+   "303": {"files": 543, "note": "Melodia Enchanted Interiors pending opens"},
+   "298": {"files": 1, "note": "Houdini Engine bake scratch"},
+   "235": {"files": 1, "note": "single-copy protection"}
+  },
+  "checkpoint": {
+   "file": "D:\\perforce\\root\\checkpoint.48.gz",
+   "bytes": 15150706,
+   "md5_file": "checkpoint.48.md5",
+   "created": "2026-10-28T23:19:55",
+   "note": "p4 admin checkpoint -Z; checkpoints land in the server root, not D:\\perforce\\checkpoints (that dir is unused)"
+  },
+  "persistence": {
+   "file": "%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\MelodiaP4d.cmd",
+   "effect": "starts p4d at user logon (no admin required); schtasks route needs elevation"
+  }
+ },
+ "open_decisions": [
+  "Push the 15 unpushed lane commits to origin? GitHub is the only offsite copy; workers normally do not push (integrator lands).",
+  "Run git gc? 16 worktrees + active agents; deferred pending owner decision.",
+  "Triage pending CLs 307/303/298/235 (745+543+1+1 files) - revert vs submit is an owner call per file.",
+  "Retire stale lane worktrees (16 total; many detached from Oct 21-28) - requires owner approval for worktree removal."
+ ]
+}
