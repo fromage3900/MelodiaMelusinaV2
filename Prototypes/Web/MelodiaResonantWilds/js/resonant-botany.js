@@ -28,6 +28,7 @@ export function sampleBotanicalPlate({ family = 'bellflower', mode = [3, 5],
   if (!spec) throw new Error('Unknown botanical family: ' + family);
   if (!Array.isArray(mode) || mode.length !== 2 || !mode.every(x => Number.isInteger(x) && x > 0 && x <= 12) || mode[0] === mode[1]) throw new Error('Invalid Chladni mode');
   if (!Number.isFinite(extent) || extent <= 0 || !Number.isInteger(cells) || cells < 4 || cells > 256 || !Number.isFinite(threshold) || threshold <= 0 || threshold > 1 || !Number.isInteger(maxInstances) || maxInstances < 0 || maxInstances > 5000) throw new Error('Invalid botanical budget');
+  if (maxInstances === 0) return [];
   const out = [];
   for (let iy = 0; iy < cells; iy++) for (let ix = 0; ix < cells; ix++) {
     const u = (ix + 0.5) / cells, v = (iy + 0.5) / cells;
@@ -40,9 +41,11 @@ export function sampleBotanicalPlate({ family = 'bellflower', mode = [3, 5],
       scale: spec.scale * (0.8 + hash(ix, iy, seed + 3) * 0.4),
       rotation: hash(ix, iy, seed + 4) * Math.PI * 2,
       family, asset: spec.asset, mode: [...mode] });
-    if (out.length >= maxInstances) return out;
   }
-  return out;
+  // Spread the instance budget across the entire figure; an early raster exit
+  // clips garden patterns to their northern edge at ordinary mobile budgets.
+  if (out.length <= maxInstances) return out;
+  return Array.from({ length: maxInstances }, (_, i) => out[Math.floor((i + 0.5) * out.length / maxInstances)]);
 }
 export function nineBotanicalStudies(options = {}) {
   return Object.keys(BOTANY_FAMILIES).flatMap(family =>
