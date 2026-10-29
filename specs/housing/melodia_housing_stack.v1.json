@@ -2,7 +2,7 @@
   "contract_id": "melodia.housing.stack.v1",
   "kind": "housing_hda_stack_pin",
   "schema_version": "1.0",
-  "status": "house-hda-green-ue-stage-next",
+  "status": "batch-C-commit-ready-ue-stage-blocked",
   "updated": "2026-10-28",
   "authority": {
     "status_doc": "CURRENT_STATE.md",
@@ -278,5 +278,11 @@
       "one validation dressing pass (nothing visually accepted yet)"
     ],
     "provenance": "Codex house-dressing lane (worktree lane-house-dressing-ecv-20261022b, NOT in main; no wholesale merge - binding only)"
+  },
+  "airi_vex_review": {
+    "model": "hf.co/anshulVashist/Qwen3-8B-Houdini-VEX-v11:Q5_K_M (local Ollama)",
+    "run1": "rambling, no usable snippet (unstructured prompt)",
+    "run2": "structured JSON prompt -> usable switch/ch() density pattern + 2 traps",
+    "verdict": "VEX path confirmed (int bridge + setprimgroup proven in throwaway); density-attrib single-scatter simplification DEFERRED to roof/corridor batch - current 5xBlast+Scatter is green and proven, no churning green"
   }
 }
