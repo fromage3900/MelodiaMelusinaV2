@@ -1,0 +1,279 @@
+{
+  "schema_version": "1.0",
+  "kind": "melodia_ue_playable_capstone_audit",
+  "contract_id": "ue_playable_capstone_audit_2026_10_29",
+  "status": "github_audit_landed_runtime_proof_owed",
+  "audited_at": "2026-10-29",
+  "audited_tip": "f42a8d26ce3b48fb8e1599b2f02d3b37b501fa10",
+  "repository": "fromage3900/MelodiaMelusinaV2",
+  "engine": "UE5.8",
+  "evidence_boundary": {
+    "included": [
+      "origin/main source inspection",
+      "tracked Content LFS pointers",
+      "branch ahead/behind census",
+      "CURRENT_STATE documented PIE claims as historical context only"
+    ],
+    "excluded": [
+      "Unreal Editor PIE",
+      "git lfs smudge of binaries in cloud",
+      "Perforce Content",
+      "packaged build",
+      "Resonant Wilds web prototype"
+    ],
+    "rule": "source_inspection_is_not_runtime_proof"
+  },
+  "canonical_paths": {
+    "status": "CURRENT_STATE.md",
+    "ownership_map": "SYSTEM_MAP.md",
+    "agent_rules": "AGENTS.md",
+    "rig_canon": "Docs/Production/MELUSINA_RUNTIME_CANON_2026-10-05.md",
+    "sheep_context": "Docs/References/ChoralSheepCapstone/AGENT_CONTEXT.md",
+    "integration_p0": "specs/p0/core_p0_dream_golden_run.v1.json",
+    "experience_p0": "specs/p0/poitou_p0_golden_walk.v1.json",
+    "cpp_root": "Source/BS_GodFile/MelodiaIntegration/",
+    "package_script": "deploy/package_game.ps1",
+    "ultimate_pawn": "/Game/MelodiaIntegration/Blueprints/BP_MelusinaJRPGCharacter",
+    "game_mode": "/Game/MelodiaIntegration/Blueprints/BP_MelodiaJRPGGameMode",
+    "systems_map": "/Game/MelodiaIntegration/Maps/MelodiaIntegrationMap",
+    "live_poitou_level": "/Game/EnvSandbox/Poitou/L_Poitou_v2",
+    "faraway_blockout": "/Game/EnvSandbox/Monoliths/FarawayMother/Blockout/L_FarawayMother_Blockout",
+    "hybrid_showcase": "/Game/EnvSandbox/Environments/WP/L_WP_CosmicOrrery"
+  },
+  "inventory": [
+    {
+      "id": 1,
+      "name": "BP_Melusina_and_skeleton",
+      "state": ["implemented", "partial", "unverifiable_here"],
+      "notes": "Main BP LFS oid 89ac3203 party-switch; wings blob ce8db281 not current tip; dual SK_Melusina_Skeleton paths — Melodia tree is canon"
+    },
+    {
+      "id": 2,
+      "name": "movement_traversal_input",
+      "state": ["implemented", "partial", "unverifiable_here"],
+      "notes": "Legacy BindKey/DefaultInput.ini; no Melodia IA_/IMC_ assets; ACF melee to resonance not wired"
+    },
+    {
+      "id": 3,
+      "name": "bow_waveharp_hit",
+      "state": ["implemented", "unverifiable_here"],
+      "notes": "Main tip is archery/scythe WaveHarp (226-line header). Full 3-form + WaterChorus only on feature/poitou-sanctuary-convergence"
+    },
+    {
+      "id": 4,
+      "name": "animation_retarget",
+      "state": ["implemented", "partial", "unverifiable_here"],
+      "notes": "Canon arm gate 15.774|28.561|28.615; overwrite=true retarget banned"
+    },
+    {
+      "id": 5,
+      "name": "hybrid_combat_first_resonance",
+      "state": ["implemented", "partial", "unverifiable_here"],
+      "notes": "C++ + Hybrid Content on main; MelodiaIntegrationMap blob differs from hybrid-first branch; OFPA MelodiaIntegration gitignored"
+    },
+    {
+      "id": 6,
+      "name": "save_load_narrative",
+      "state": ["implemented", "partial", "unverifiable_here"],
+      "notes": "BP_JRPGSaveGame gitignored; core_p0_dream_golden_run owner_run_required; packaged golden OPEN"
+    },
+    {
+      "id": 7,
+      "name": "poitou_faraway",
+      "state": ["partial", "missing_from_github", "unverifiable_here"],
+      "notes": "L_Poitou_v2 gitignored; Morning 37KB shell; Faraway blockout tracked; poitou_layout_live.hdalc not on inspected branches"
+    },
+    {
+      "id": 8,
+      "name": "choral_sheep",
+      "state": ["implemented", "partial", "unverifiable_here"],
+      "notes": "BP_ChoralSheep + AMelodiaChoralSheepActor; demo presets hide sheep; flock import historically crashed"
+    },
+    {
+      "id": 9,
+      "name": "world_compiler_pcg_houdini_cymatics",
+      "state": ["implemented", "partial", "unverifiable_here"],
+      "notes": "Single-writer cymatics; World Compiler offline; no second compiler"
+    },
+    {
+      "id": 10,
+      "name": "niagara_metasound_feedback",
+      "state": ["implemented", "partial", "unverifiable_here"],
+      "notes": "Architecture in Source; many AV binaries LFS/P4 only"
+    }
+  ],
+  "branch_protection": {
+    "critical": [
+      {
+        "branch": "feature/poitou-sanctuary-convergence",
+        "reason": "MelodiaWaterChorus, MelodiaWaveHarpFormTests, WaveHarp 3-form machine, Houdini room_shell pile",
+        "tip": "3ea365f16e26af2de6eafc7a149a430c8e0f153f"
+      },
+      {
+        "branch": "feature/poitou-intheme-architecture-20261021",
+        "reason": "intheme gate/cards/extra VEX; Sir flight ahead of main",
+        "tip": "bdaec1d35c6aa64f5cce592c8f8577bc37420d77"
+      },
+      {
+        "branch": "collab/gdrive-parked-20261013",
+        "reason": "HDA_Foundry_Deposition_1.0.hda + selective Melusina deltas; never wholesale-merge Config",
+        "tip": "688b688ccb7ac867f5ea5beb42cd3753185a511e"
+      }
+    ],
+    "archive_only_never_merge": [
+      "converge/hybrid-flow-367-20261001"
+    ],
+    "soft_recovery_shas": [
+      {
+        "sha": "bff9ca927571fed101203b34ef1922ef8e3c65dd",
+        "note": "form/choral-sheep-da-companion-role tip; remote ref may be stale"
+      },
+      {
+        "sha": "05077c78fcd68902d512b4cff0abdaeb1889504a",
+        "note": "form/choral-sheep-follow-velocity-bakeuv tip; remote ref may be stale"
+      }
+    ],
+    "already_landed_gameplay": [
+      "feature/hybrid-combat-bridge-2026-09-28",
+      "feature/archery-waveharp-slice",
+      "feature/hybrid-first-resonance-20261017 (Hybrid Content/C++; do not merge tip WaveHarp)"
+    ],
+    "safety": [
+      "no_branch_deletion",
+      "no_force_push",
+      "no_history_rewrite",
+      "no_wholesale_merge_of_protected_branches"
+    ]
+  },
+  "playable_proof_gaps": [
+    {
+      "proof": "melusina_spawns",
+      "blocker": "lfs_pull_and_bp_wings_reconcile"
+    },
+    {
+      "proof": "movement_camera",
+      "blocker": "same"
+    },
+    {
+      "proof": "bow_anim_states",
+      "blocker": "upperbody_slot_pie"
+    },
+    {
+      "proof": "projectile_combat",
+      "blocker": "confirm_first_resonance_actor_on_main_map"
+    },
+    {
+      "proof": "choral_sheep_visible",
+      "blocker": "place_or_unhide_on_integration_map"
+    },
+    {
+      "proof": "procedural_env_effect",
+      "blocker": "arrow_bell_or_hit_pulse_pie"
+    },
+    {
+      "proof": "save_load_continue",
+      "blocker": "owner_core_p0_dream_golden_run"
+    }
+  ],
+  "top_five_fixes": [
+    {
+      "rank": 1,
+      "title": "Confirm or restore First Resonance fixture on MelodiaIntegrationMap",
+      "files": [
+        "Content/MelodiaIntegration/Maps/MelodiaIntegrationMap.umap",
+        "Content/MelodiaIntegration/Hybrid/*",
+        "compare: origin/feature/hybrid-first-resonance-20261017"
+      ],
+      "tests": [
+        "Melodia.Hybrid.ResonanceLockGatesSequence",
+        "PIE arrows -> lock -> TAB Sequence"
+      ],
+      "verify": "Editor actor First Resonance; log MELODIA_HYBRID_RESONANCE",
+      "requires": ["UnrealEditor", "git_lfs_pull"]
+    },
+    {
+      "rank": 2,
+      "title": "Reconcile BP_MelusinaJRPGCharacter party-switch + wings",
+      "files": [
+        "Content/MelodiaIntegration/Blueprints/BP_MelusinaJRPGCharacter.uasset"
+      ],
+      "blobs": {
+        "main_party_switch": "89ac3203264a59e6b54b050642bbf5087402209840921f46cd64f0db8c81e00e",
+        "wings_toon": "ce8db28103caa5f7ab689e60a6916d6bd04e3a8a0c06b9ce4838456f744a5442"
+      },
+      "tests": [
+        "spawn under BP_MelodiaJRPGGameMode",
+        "movement",
+        "WaveHarp draw anim"
+      ],
+      "verify": "PIE possession of Melusina not Sir-only",
+      "requires": ["UnrealEditor", "git_lfs_pull"]
+    },
+    {
+      "rank": 3,
+      "title": "Unhide or place one Choral Sheep on IntegrationMap",
+      "files": [
+        "Content/Melodia/Companions/ChoralSheep/BP_ChoralSheep.uasset",
+        "Content/Melodia/Companions/ChoralSheep/DA_ChoralSheepDefinition.uasset",
+        "Tools/Editor/demo_presets.py"
+      ],
+      "tests": ["TryBeginHarmonize", "mesh visible"],
+      "verify": "PIE camera + companion follow",
+      "requires": ["UnrealEditor"]
+    },
+    {
+      "rank": 4,
+      "title": "Bow projectile ResolveWorldFlowAttack on live slime",
+      "files": [
+        "Source/BS_GodFile/MelodiaIntegration/MelodiaWaveHarpCombatComponent.*",
+        "Source/BS_GodFile/MelodiaIntegration/MelodiaWaveArrow.*",
+        "ABP_Melusina_Current UpperBody slot"
+      ],
+      "tests": [
+        "Melodia.Hybrid.*",
+        "real RMB charge (main tip; WaveHarp form suite is sanctuary-only until recovered)"
+      ],
+      "verify": "HP drop + resonance %; single damage writer",
+      "requires": ["UnrealEditor"]
+    },
+    {
+      "rank": 5,
+      "title": "Canonical save/load Continue proof",
+      "files": [
+        "Source/BS_GodFile/MelodiaIntegration/MelodiaSaveSlotLibrary.*",
+        "workstation BP_JRPGSaveGame (gitignored)"
+      ],
+      "tests": [
+        "SaveGame round-trip automation",
+        "specs/p0/core_p0_dream_golden_run.v1.json"
+      ],
+      "verify": "process restart; slot load; no duplicated quest/reward",
+      "requires": ["UnrealEditor", "Perforce_or_local_SaveGame_BP"]
+    }
+  ],
+  "shortest_safe_route": [
+    "On Windows UE workstation: git lfs pull for MelodiaIntegration + Melusina + Companions + Hybrid; sync P4 for Poitou/Faraway if needed",
+    "Use MelodiaIntegrationMap first — not Poitou — for systems proof",
+    "Diff/reconcile IntegrationMap vs feature/hybrid-first-resonance-20261017 for First Resonance actor only (additive)",
+    "Reconcile BP_MelusinaJRPGCharacter (party-switch + wings) without wholesale branch merge",
+    "Run headless Melodia.Hybrid then real-input PIE checklist (do not claim Melodia.WaveHarp form suite until sanctuary recovery)",
+    "Place or unhide one BP_ChoralSheep if missing",
+    "Save MelodiaJRPGSlot0 -> editor restart -> Continue",
+    "Poitou/Faraway remain protected portfolio tracks, not the first playable gate"
+  ],
+  "editor_verification_requirements": [
+    "Single editor; Monolith only; no load_level immediately after PIE stop",
+    "git lfs pull before trusting assets; confirm file sizes >> 130 B",
+    "Closed-editor build if any reflected C++ changed",
+    "Headless UnrealEditor-Cmd Automation Melodia.Hybrid",
+    "Real keyboard PIE for bow/lock/sheep/save — probes are not play evidence",
+    "Motion claims need .mp4 + freezedetect",
+    "Packaged deploy/package_game.ps1 only after PIE green"
+  ],
+  "non_claims": [
+    "This audit does not prove successful gameplay, PIE, or packaged build",
+    "Main tip web Resonant Wilds work does not replace the UE spine",
+    "No speculative replacement of existing systems",
+    "No autonomous integration of local production assets from this cloud pass"
+  ]
+}

@@ -1,5 +1,20 @@
 # Melodia Melusina ? Current State
 
+## UE5.8 playable capstone audit — landed 2026-10-29 (GitHub-visible; runtime proof owed)
+
+**Status: AUDIT LANDED ON GITHUB. No Unreal Editor, LFS binary smudge, Perforce, PIE, or packaged build was run in the cloud pass.** Machine form: [`specs/p0/ue_playable_capstone_audit.v1.json`](specs/p0/ue_playable_capstone_audit.v1.json). Audited tip `f42a8d26c` (`origin/main`). Resonant Wilds web prototype is out of scope for this UE gate.
+
+**Verdict:** The UE spine is implemented in C++ and partially tracked as LFS Content, with historical PIE claims for WaveHarp, First Resonance, and Choral Sheep. Main tip commits are dominated by web releases. `L_Poitou_v2` is gitignored (P4/workstation). First Resonance hybrid **map** commits are not ancestors of main (`MelodiaIntegrationMap` blob differs; MelodiaIntegration OFPA is gitignored). Canonical pawn on main is party-switch LFS oid `89ac3203…`, missing wings/toon `ce8db281…`. WaveHarp **3-form + WaterChorus + MelodiaWaveHarpFormTests** live on `feature/poitou-sanctuary-convergence` only — not on main tip (226-line archery/scythe header). Source inspection is not runtime proof.
+
+**Protect (do not delete / force-push / wholesale-merge):** `feature/poitou-sanctuary-convergence` (critical), `feature/poitou-intheme-architecture-20261021`, `collab/gdrive-parked-20261013` (selective; never Config wholesale), `converge/hybrid-flow-367-20261001` (archive only). Soft-freeze sheep SHAs `bff9ca927` / `05077c78f` (form/* remote refs may be stale) via tags `archive/recovery/choral-sheep-*`.
+
+**Shortest safe workstation route (IntegrationMap first, not Poitou):** (1) `git lfs pull` MelodiaIntegration + Melusina + Companions + Hybrid; P4 for Poitou/Faraway binaries. (2) Confirm/restore First Resonance actor on `MelodiaIntegrationMap`. (3) Reconcile `BP_MelusinaJRPGCharacter` (party-switch + wings). (4) Headless `Melodia.Hybrid` then real-input bow → slime → lock. (5) Unhide/place one `BP_ChoralSheep`. (6) One cymatic/PCG feedback pulse. (7) `MelodiaJRPGSlot0` save → restart → Continue. Poitou Temp-geometry recook remains the top environment fix but secondary to this spine.
+
+**Top five fixes (files/tests):** see `specs/p0/ue_playable_capstone_audit.v1.json` → `top_five_fixes`. Rank 1 map fixture; 2 Melusina BP reconcile; 3 sheep on IntegrationMap; 4 bow→`ResolveWorldFlowAttack`; 5 save/Continue (`BP_JRPGSaveGame` is gitignored — local/P4).
+
+**Non-claims:** no PIE success claimed; no packaged proof; no web-game work; no autonomous P4/binary integration from this pass.
+
+
 ## Houdini production hardening — execution contract proposed 2026-10-28
 
 **Status: PLAN / REPOSITORY REVIEW ONLY. No workstation filesystem, HAPI session, Perforce changelist, live UE cook or packaged build was inspected or changed in this pass.** Preserve the canonical single-writer World Compiler, current Faraway/Poitou scene ownership, existing Chladni (3,5), and all hand-authored Houdini sources. No upgrade, mass recook, destructive cleanup, or experimental Sonifold integration in this gate.
