@@ -43,7 +43,11 @@ if (-not $SkipManifest) {
     New-Item -ItemType Directory -Force -Path $ManifestDir | Out-Null
     $stamp = Get-Date -Format 'yyyyMMdd_HHmmss'
     $newCsv = Join-Path $ManifestDir ("content_manifest_$stamp.csv")
-    $files = Get-ChildItem 'Content' -Recurse -File -ErrorAction SilentlyContinue
+    $files = @()
+    foreach ($sub in @('Content', 'Saved')) {
+        $files += Get-ChildItem $sub -Recurse -File -ErrorAction SilentlyContinue |
+            Where-Object { $_.FullName -notmatch '\\Saved\\(Logs|Crashes|Shaders|ShaderDebugInfo|UnrealBuildTool|DerivedDataCache)\\' }
+    }
     $files |
         Select-Object @{ n = 'path'; e = { $_.FullName.Substring($root.Length + 1) } },
                       Length,

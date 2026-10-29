@@ -47,8 +47,11 @@ function Invoke-Snapshot {
     New-Item -ItemType Directory -Force -Path $snap | Out-Null
 
     $cut = $now.AddMinutes(-$LookbackMinutes)
-    $files = @(Get-ChildItem (Join-Path $root 'Content') -Recurse -File -ErrorAction SilentlyContinue |
-        Where-Object { $_.LastWriteTime -ge $cut })
+    $files = @()
+    foreach ($sub in @('Content', 'Saved')) {
+        $files += Get-ChildItem (Join-Path $root $sub) -Recurse -File -ErrorAction SilentlyContinue |
+            Where-Object { $_.LastWriteTime -ge $cut -and $_.FullName -notmatch '\\Saved\\(Logs|Crashes|Shaders|ShaderDebugInfo|UnrealBuildTool|DerivedDataCache)\\' }
+    }
 
     $n = 0; [long]$bytes = 0
     foreach ($f in $files) {

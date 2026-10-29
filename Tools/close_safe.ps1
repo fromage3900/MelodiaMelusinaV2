@@ -49,8 +49,11 @@ try {
 
 # 2. recently modified Content files
 $cut = $now.AddHours(-$ModifiedHours)
-$recent = @(Get-ChildItem (Join-Path $root 'Content') -Recurse -File -ErrorAction SilentlyContinue |
-    Where-Object { $_.LastWriteTime -ge $cut })
+$recent = @()
+foreach ($sub in @('Content', 'Saved')) {
+    $recent += Get-ChildItem (Join-Path $root $sub) -Recurse -File -ErrorAction SilentlyContinue |
+        Where-Object { $_.LastWriteTime -ge $cut -and $_.FullName -notmatch '\\Saved\\(Logs|Crashes|Shaders|ShaderDebugInfo|UnrealBuildTool|DerivedDataCache)\\' }
+}
 
 $set1 = Copy-Set $openedFiles 'p4-opened (local-only pending work)'
 $set2 = Copy-Set $recent 'modified Content (last ' + $ModifiedHours + 'h)'

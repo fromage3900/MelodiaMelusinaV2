@@ -21,6 +21,8 @@
 
 **`C:\EnvironmentPortfolio\BS_GodFile` is the source of truth.** Git and Perforce are backup and transport, not authority. No agent may overwrite the owner's checkout from them: never `p4 sync`, `p4 revert`, `p4 sync -f`, `git checkout`, `git reset`, `git stash`, or `git clean` against this checkout without explicit owner approval. Agents work in their own lane worktrees and copy in only reviewed artifacts. Recovery layers: `Tools/loss_vault.ps1` snapshots modified Content to `D:\MelodiaVault` every 5 minutes from logon; `Tools/lane_guard.ps1` diffs the Content manifest and reports missing files. A save on C: is the work; a submit or commit is the backup.
 
+**`Saved/` is protected.** Never delete or clear `Saved/Staging`, `Saved/Audit`, `Saved/Autosaves`, `Saved/Blender`, or any `Saved` subfolder without explicit owner approval. Deletions under `Saved` are not recoverable from git or Perforce; the loss vault now snapshots modified `Content` and `Saved` files every 5 minutes.
+
 ## BINDING RULES — every agent (Hermes, Codex, Claude, subagents)
 
 Hermes loads this file, not `CLAUDE.md`, so the binding rules are repeated here. **Read
