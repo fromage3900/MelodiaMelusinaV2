@@ -55,7 +55,7 @@ assert.ok(model.byteLength < 1024 * 1024, 'P0 GLB must fit 1 MiB');
 const manifest = JSON.parse(file('manifest.json'));
 for (const icon of manifest.icons) assert.ok(exists(icon.src), 'missing PWA icon ' + icon.src);
 const sw = file('sw.js');
-assert.match(sw, /resonant-wilds-v13-20261029-nikki-ability/);
+assert.match(sw, /resonant-wilds-v15-20261029-floraison-release/);
 assert.match(sw, /js\/playground\.js/);
 assert.match(sw, /js\/flags\.js/);
 assert.match(sw, /js\/grove-catalog\.js/);
