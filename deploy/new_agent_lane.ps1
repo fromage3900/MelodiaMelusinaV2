@@ -63,12 +63,12 @@ if (-not (Test-Path $Registry)) {
 }
 
 Write-Host "==> lane '$LaneSlug'  task='$Task'  base=$Base" -ForegroundColor Cyan
-& git -C $Root fetch --prune origin 2>&1 | Out-String | Write-Verbose
-Invoke-Native git @('-C', $Root, 'fetch', '--prune', 'origin') -AllowFail | Out-Null
+Invoke-Native git @('-C', $Root, 'fetch', 'origin') | Out-Null
 $BaseSha = (Invoke-Native git @('-C', $Root, 'rev-parse', $Base)).Lines[0].Trim()
 Write-Host "    base sha $BaseSha"
 
-if (Test-Path $LanePath) {
+$ReusingExistingLane = Test-Path $LanePath
+if ($ReusingExistingLane) {
     if (-not $Reuse) {
         throw "Lane worktree already exists: $LanePath`nRe-run with -Reuse to reuse it, or remove it with: git worktree remove '$LanePath'"
     }
@@ -83,12 +83,25 @@ if (Test-Path $LanePath) {
     Write-Host "    worktree $LanePath (detached at $($BaseSha.Substring(0,8)))"
 }
 
-Invoke-Native git @('-C', $LanePath, 'update-ref', $LaneRef, $BaseSha) | Out-Null
-
-$initArgs = @($Registry, "init", "--lane", $LaneSlug,
-              "--worktree", $LanePath, "--branch", $LaneRef)
-if ($Tier) { $initArgs += @("--tier", $Tier) }
-(Invoke-Native python $initArgs).Lines | ForEach-Object { Write-Host "    $_" }
+# Reuse must never reset an existing lane ref to origin/main.
+if ($ReusingExistingLane) {
+    $probe = Invoke-Native git @('-C', $LanePath, 'rev-parse', '--verify', '--quiet', $LaneRef) -AllowFail
+    if ($probe.Code -ne 0) {
+        throw "SAFE STOP: $LaneRef missing. Preserve worktree HEAD and reflog; do not reinitialize."
+    }
+    $RefSha = (Invoke-Native git @('-C', $LanePath, 'rev-parse', $LaneRef)).Lines[0].Trim()
+    $HeadSha = (Invoke-Native git @('-C', $LanePath, 'rev-parse', 'HEAD')).Lines[0].Trim()
+    if ($RefSha -ne $HeadSha) {
+        throw "SAFE STOP: existing $LaneRef ($RefSha) differs from HEAD ($HeadSha). Preserve both for manual recovery."
+    }
+    Write-Host "    preserved existing lane ref $LaneRef ($($RefSha.Substring(0,8)))" -ForegroundColor Yellow
+} else {
+    Invoke-Native git @('-C', $LanePath, 'update-ref', $LaneRef, $BaseSha) | Out-Null
+    $initArgs = @($Registry, "init", "--lane", $LaneSlug,
+                  "--worktree", $LanePath, "--branch", $LaneRef)
+    if ($Tier) { $initArgs += @("--tier", $Tier) }
+    (Invoke-Native python $initArgs).Lines | ForEach-Object { Write-Host "    $_" }
+}
 
 if ($Paths.Count -gt 0 -or $Globs.Count -gt 0) {
     $claimArgs = @($Registry, "claim", "--lane", $LaneSlug)
