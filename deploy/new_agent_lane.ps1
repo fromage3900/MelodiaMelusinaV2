@@ -12,6 +12,7 @@
 #
 #   * it does NOT create a branch
 #   * it does NOT touch the primary checkout
+#   * -Reuse NEVER resets an existing refs/agents/<lane> to origin/main
 #
 # Why detached: several agents share this repository. Branches accumulate and get
 # forgotten; refs do not. The lane's work is durable because the ref is updated on
@@ -54,12 +55,16 @@ function Invoke-Native {
 $Root = Split-Path -Parent $PSScriptRoot
 $Worktrees = Join-Path (Split-Path -Parent $Root) "_worktrees"
 $Registry = Join-Path $Root "Tools\agent_lane_registry.py"
+$Authority = Join-Path $Root "Tools\agent_lane_local_authority.py"
 $LaneSlug = ($Lane -replace '[^A-Za-z0-9\-_]', '-').ToLower()
 $LanePath = Join-Path $Worktrees "lane-$LaneSlug"
 $LaneRef = "refs/agents/$LaneSlug"
 
 if (-not (Test-Path $Registry)) {
     throw "Tools/agent_lane_registry.py is missing; run this from the repository root."
+}
+if (-not (Test-Path $Authority)) {
+    throw "Tools/agent_lane_local_authority.py is missing; run this from the repository root."
 }
 
 Write-Host "==> lane '$LaneSlug'  task='$Task'  base=$Base" -ForegroundColor Cyan
@@ -70,7 +75,11 @@ Write-Host "    base sha $BaseSha"
 $ReusingExistingLane = Test-Path $LanePath
 if ($ReusingExistingLane) {
     if (-not $Reuse) {
-        throw "Lane worktree already exists: $LanePath`nRe-run with -Reuse to reuse it, or remove it with: git worktree remove '$LanePath'"
+        throw @"
+Lane worktree already exists: $LanePath
+Re-run with -Reuse to reuse it without resetting refs/agents/$LaneSlug.
+Removing a lane worktree requires explicit owner approval (do not auto-clean recovery lanes).
+"@
     }
     Write-Host "    reusing existing worktree" -ForegroundColor Yellow
 } else {
@@ -86,13 +95,23 @@ if ($ReusingExistingLane) {
 # Reuse must never reset an existing lane ref to origin/main.
 if ($ReusingExistingLane) {
     $probe = Invoke-Native git @('-C', $LanePath, 'rev-parse', '--verify', '--quiet', $LaneRef) -AllowFail
-    if ($probe.Code -ne 0) {
-        throw "SAFE STOP: $LaneRef missing. Preserve worktree HEAD and reflog; do not reinitialize."
+    $RefSha = ""
+    $HeadSha = ""
+    if ($probe.Code -eq 0) {
+        $RefSha = (Invoke-Native git @('-C', $LanePath, 'rev-parse', $LaneRef)).Lines[0].Trim()
+        $HeadSha = (Invoke-Native git @('-C', $LanePath, 'rev-parse', 'HEAD')).Lines[0].Trim()
     }
-    $RefSha = (Invoke-Native git @('-C', $LanePath, 'rev-parse', $LaneRef)).Lines[0].Trim()
-    $HeadSha = (Invoke-Native git @('-C', $LanePath, 'rev-parse', 'HEAD')).Lines[0].Trim()
-    if ($RefSha -ne $HeadSha) {
-        throw "SAFE STOP: existing $LaneRef ($RefSha) differs from HEAD ($HeadSha). Preserve both for manual recovery."
+    $reuseArgs = @(
+        $Authority, 'reuse',
+        '--lane-ref', $LaneRef
+    )
+    if ($probe.Code -eq 0) {
+        $reuseArgs += @('--ref-exists', '--ref-sha', $RefSha, '--head-sha', $HeadSha)
+    }
+    $reuseEval = Invoke-Native python $reuseArgs -AllowFail
+    $reuseEval.Lines | ForEach-Object { Write-Host "    $_" }
+    if ($reuseEval.Code -ne 0) {
+        throw "SAFE STOP: lane reuse refused by Tools/agent_lane_local_authority.py (exit $($reuseEval.Code)). Preserve worktree HEAD, $LaneRef and reflog; do not reinitialize."
     }
     Write-Host "    preserved existing lane ref $LaneRef ($($RefSha.Substring(0,8)))" -ForegroundColor Yellow
 } else {

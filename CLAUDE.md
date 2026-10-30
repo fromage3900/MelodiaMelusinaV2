@@ -14,7 +14,7 @@ updated.
 `origin/main` and pinned by `refs/agents/<lane>`; workers do not create feature branches,
 push, or open PRs. Commits inside the worker's own lane need no per-commit approval, and the
 integrator may perform the normal bounded landing flow without asking again. The integrator
-owns any temporary PR branch and retires it after landing.
+owns any temporary PR branch and preserves it by default after landing (delete/FF need owner switches).
 
 Explicit owner approval is still required for destructive or history-rewriting operations:
 `git reset --hard`, `git checkout -- .`, `git clean`, force-push, history rewrite,

@@ -27,6 +27,25 @@ REQUIRED = {
         "`main` is not a place you work",
         "refs/agents/<lane>",
         "30 minutes",
+        "preserves it by default",
+        "-OwnerReviewedLocalState",
+    ],
+    "deploy/land_agent_lane.ps1": [
+        "OwnerReviewedLocalState",
+        "OwnerApprovedBranchDeletion",
+        "OwnerApprovedPrimarySync",
+        "agent_lane_local_authority.py",
+        "preserve by default",
+    ],
+    "deploy/new_agent_lane.ps1": [
+        "agent_lane_local_authority.py",
+        "Reuse must never reset",
+        "owner approval",
+    ],
+    "Tools/agent_lane_local_authority.py": [
+        "evaluate_reuse",
+        "evaluate_local_authority",
+        "UNKNOWN",
     ],
     "Docs/Production/GIT_HEALTH_CONTRACT.md": [
         "zero ambiguous integration state",

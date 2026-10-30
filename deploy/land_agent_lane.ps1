@@ -1,13 +1,13 @@
 # deploy/land_agent_lane.ps1 -- the integrator. Lands lane work on main.
 #
-#   .\deploy\land_agent_lane.ps1 -Lane cline
-#   .\deploy\land_agent_lane.ps1 -All
+#   .\deploy\land_agent_lane.ps1 -Lane cline -OwnerReviewedLocalState
+#   .\deploy\land_agent_lane.ps1 -All -OwnerReviewedLocalState
 #   .\deploy\land_agent_lane.ps1 -All -DryRun
 #
 # This is the only path that moves `main`. Agents never push and never open a PR:
 # they commit in their lane worktree and pin the tip with refs/agents/<lane>.
 #
-# How it lands, and why the branch count stays at zero for you:
+# How it lands, and why recovery stays safe by default:
 #
 #   1. compute the lane's bounded delta:  origin/main..refs/agents/<lane>
 #   2. push that ref straight to a temporary remote branch name
@@ -18,6 +18,9 @@
 #
 # The temporary branch is retained by default for recovery/provenance. Step 2 works
 # from the lane worktree, so the primary checkout is never used as a staging area.
+#
+# Local production authority is fail-closed: missing UE/Houdini/Perforce evidence is
+# UNKNOWN, not clean. Decision policy lives in Tools/agent_lane_local_authority.py.
 #
 # `main` is protected by .githooks/pre-push, so a direct push is impossible from here
 # too -- that is intentional and this script does not work around it.
@@ -55,9 +58,20 @@ function Invoke-Native {
 
 $Root = Split-Path -Parent $PSScriptRoot
 $Registry = Join-Path $Root "Tools\agent_lane_registry.py"
+$Authority = Join-Path $Root "Tools\agent_lane_local_authority.py"
 $RepoSlug = "fromage3900/MelodiaMelusinaV2"
+$ProductionPathspecs = @(
+    ':(glob)Content/**',
+    ':(glob)**/*.uasset',
+    ':(glob)**/*.umap',
+    ':(glob)**/*.hip',
+    ':(glob)**/*.hiplc',
+    ':(glob)**/*.hipnc',
+    ':(glob)Saved/**'
+)
 
 if (-not (Test-Path $Registry)) { throw "Tools/agent_lane_registry.py is missing." }
+if (-not (Test-Path $Authority)) { throw "Tools/agent_lane_local_authority.py is missing." }
 if (-not $Lane -and -not $All) { throw "Pass -Lane <id> or -All." }
 
 $env:GH_TOKEN = (& gh auth token 2>$null)
@@ -88,40 +102,79 @@ function Sync-Primary {
     }
 }
 
+function Test-ProcessNamePresent([string[]]$Names) {
+    foreach ($name in $Names) {
+        if (Get-Process -Name $name -ErrorAction SilentlyContinue) {
+            return $true
+        }
+    }
+    return $false
+}
+
+function Get-GitPorcelain([string]$RepoPath, [switch]$IgnoredOnly) {
+    $args = @('-C', $RepoPath, 'status', '--porcelain', '--untracked-files=all')
+    if ($IgnoredOnly) {
+        $args += @('--ignored=matching')
+        $args += $ProductionPathspecs
+    }
+    return (Invoke-Native git $args -AllowFail)
+}
+
 # This is a local-only safety check. GitHub CI cannot see C:, G:, Perforce or unsaved editor state.
+# Probe facts are gathered here; fail-closed policy is Tools/agent_lane_local_authority.py.
 function Assert-LocalAuthority([string]$LaneWorktree) {
-    if (-not $OwnerReviewedLocalState) {
-        throw "SAFE STOP: owner must review live C:/G: workspaces, native Unreal/Houdini files, Perforce and unsaved editor state first. Re-run with -OwnerReviewedLocalState only after real review."
+    $primaryStatus = Get-GitPorcelain -RepoPath $Root
+    $laneStatus = Get-GitPorcelain -RepoPath $LaneWorktree
+    $primaryIgnored = Get-GitPorcelain -RepoPath $Root -IgnoredOnly
+    $laneIgnored = Get-GitPorcelain -RepoPath $LaneWorktree -IgnoredOnly
+    $gitFailed = ($primaryStatus.Code -ne 0) -or ($laneStatus.Code -ne 0) -or ($primaryIgnored.Code -ne 0) -or ($laneIgnored.Code -ne 0)
+
+    $p4Available = [bool](Get-Command 'p4' -ErrorAction SilentlyContinue)
+    $p4InfoOk = $false
+    $p4InfoFailed = $false
+    $p4InfoLines = @()
+    $p4OpenedCode = 1
+    $p4OpenedLines = @()
+    $p4OpenedFailed = $false
+    if ($p4Available) {
+        $info = Invoke-Native p4 @('info') -AllowFail
+        $p4InfoLines = @($info.Lines)
+        $p4InfoOk = ($info.Code -eq 0) -and (@($info.Lines | Where-Object { $_ -match 'Server address:' }).Count -gt 0)
+        $p4InfoFailed = -not $p4InfoOk
+        $opened = Invoke-Native p4 @('opened', '-m', '1') -AllowFail
+        $p4OpenedCode = $opened.Code
+        $p4OpenedLines = @($opened.Lines)
+        $openedText = $opened.Lines -join [Environment]::NewLine
+        if ($openedText -match 'File\(s\) not opened') {
+            $p4OpenedFailed = $false
+        } elseif ($opened.Code -ne 0) {
+            $p4OpenedFailed = $true
+        }
     }
-    if (-not (Test-Path (Join-Path $Root 'BS_GodFile.uproject'))) {
-        throw "SAFE STOP: no local Unreal project at $Root. Git-only integration cannot certify production state."
+
+    $snapshot = [ordered]@{
+        owner_reviewed_local_state = [bool]$OwnerReviewedLocalState
+        uproject_present           = [bool](Test-Path (Join-Path $Root 'BS_GodFile.uproject'))
+        unreal_running             = Test-ProcessNamePresent -Names @('UnrealEditor', 'UnrealEditor-Cmd')
+        houdini_running            = Test-ProcessNamePresent -Names @('houdini', 'houdinifx', 'houdinicore', 'hython', 'happrentice')
+        primary_git_porcelain      = @($primaryStatus.Lines | Where-Object { $_.Trim() })
+        lane_git_porcelain         = @($laneStatus.Lines | Where-Object { $_.Trim() })
+        primary_ignored_porcelain  = @($primaryIgnored.Lines | Where-Object { $_.Trim() })
+        lane_ignored_porcelain     = @($laneIgnored.Lines | Where-Object { $_.Trim() })
+        p4_available               = $p4Available
+        p4_info_ok                 = $p4InfoOk
+        p4_info_lines              = $p4InfoLines
+        p4_opened_code             = $p4OpenedCode
+        p4_opened_lines            = $p4OpenedLines
+        git_status_failed          = $gitFailed
+        p4_info_failed             = $p4InfoFailed
+        p4_opened_failed           = $p4OpenedFailed
     }
-    if (Get-Process -Name 'UnrealEditor' -ErrorAction SilentlyContinue) {
-        throw "SAFE STOP: Unreal Editor is running and may have unsaved changes. Preserve them before landing."
-    }
-    $primary = Invoke-Native git @('-C', $Root, 'status', '--porcelain', '--untracked-files=all')
-    if (@($primary.Lines | Where-Object { $_.Trim() }).Count -gt 0) {
-        throw "SAFE STOP: primary worktree has local changes. Preserve/reconcile before landing."
-    }
-    $lane = Invoke-Native git @('-C', $LaneWorktree, 'status', '--porcelain', '--untracked-files=all')
-    if (@($lane.Lines | Where-Object { $_.Trim() }).Count -gt 0) {
-        throw "SAFE STOP: lane worktree has uncommitted/untracked files. Preserve before landing."
-    }
-    if (-not (Get-Command 'p4' -ErrorAction SilentlyContinue)) {
-        throw "SAFE STOP: Perforce client unavailable; binary production state unknown."
-    }
-    $info = Invoke-Native p4 @('info') -AllowFail
-    if ($info.Code -ne 0 -or @($info.Lines | Where-Object { $_ -match 'Server address:' }).Count -eq 0) {
-        throw "SAFE STOP: Perforce server inaccessible; cannot assume Git contains the full project."
-    }
-    $opened = Invoke-Native p4 @('opened', '-m', '1') -AllowFail
-    $openedText = $opened.Lines -join [Environment]::NewLine
-    if ($openedText -match 'File\(s\) not opened') {
-        # Perforce may report an empty client with exit code 0 or nonzero.
-    } elseif ($opened.Code -ne 0) {
-        throw "SAFE STOP: Perforce opened check failed: $openedText"
-    } elseif ($openedText.Trim()) {
-        throw "SAFE STOP: Perforce has pending opened files. Inspect and preserve native assets first."
+    $snapshotJson = $snapshot | ConvertTo-Json -Compress -Depth 6
+    $eval = Invoke-Native python @($Authority, 'evaluate', '--snapshot-json', $snapshotJson) -AllowFail
+    $eval.Lines | ForEach-Object { Write-Host "    $_" }
+    if ($eval.Code -ne 0) {
+        throw "SAFE STOP: local production authority refused landing (exit $($eval.Code)). Missing or unverified UE/Houdini/Perforce evidence is UNKNOWN, not clean."
     }
     Write-Host "    local gate passed: owner attestation + bounded probes (NOT proof of C:/G: backup)" -ForegroundColor Green
 }
@@ -134,14 +187,28 @@ function Invoke-LandOne([object]$LaneObj) {
     Write-Host "==> landing lane '$id'" -ForegroundColor Cyan
     if (-not $ref) { $ref = "refs/agents/$id" }
 
-    if (-not (Test-Path $wt)) {
-        Write-Host "    SKIP: lane worktree is gone ($wt)" -ForegroundColor Yellow
+    $worktreeExists = Test-Path $wt
+    $refExists = $false
+    if ($worktreeExists) {
+        $verify = Invoke-Native git @('-C', $wt, 'rev-parse', '--verify', '--quiet', $ref) -AllowFail
+        $refExists = ($verify.Code -eq 0)
+    }
+
+    $missingArgs = @($Authority, 'missing-target')
+    if (-not $All) { $missingArgs += '--named-lane' }
+    if ($worktreeExists) { $missingArgs += '--worktree-exists' }
+    if ($refExists) { $missingArgs += '--ref-exists' }
+    $missingEval = Invoke-Native python $missingArgs -AllowFail
+    $missingEval.Lines | ForEach-Object { Write-Host "    $_" }
+    if ($missingEval.Code -eq 2) {
+        throw "SAFE STOP: named lane target missing or unverifiable ($id / $ref). State is UNKNOWN; refusing soft-skip."
+    }
+    if ($missingEval.Code -eq 3) {
+        Write-Host "    UNKNOWN: lane target missing under -All ($wt / $ref); not clean — skipping" -ForegroundColor Yellow
         return $false
     }
-    $verify = Invoke-Native git @('-C', $wt, 'rev-parse', '--verify', '--quiet', $ref) -AllowFail
-    if ($verify.Code -ne 0) {
-        Write-Host "    SKIP: ref $ref does not exist" -ForegroundColor Yellow
-        return $false
+    if ($missingEval.Code -ne 0) {
+        throw "SAFE STOP: lane target policy check failed (exit $($missingEval.Code))."
     }
 
     Invoke-Native git @('-C', $wt, 'fetch', 'origin') | Out-Null
@@ -157,7 +224,7 @@ function Invoke-LandOne([object]$LaneObj) {
     $sha = (Invoke-Native git @('-C', $wt, 'rev-parse', $ref)).Lines[0].Trim()
 
     if ($DryRun) {
-        Write-Host "    DRY RUN: would push $ref ($($sha.Substring(0,8))) -> refs/heads/$temp, PR, merge, delete." -ForegroundColor Yellow
+        Write-Host "    DRY RUN: would push $ref ($($sha.Substring(0,8))) -> refs/heads/$temp, open PR, merge; preserve by default (delete/FF require owner switches)." -ForegroundColor Yellow
         return $false
     }
 
