@@ -1,0 +1,55 @@
+{
+ "schema": "melodia.recovery_roundtrip.v1",
+ "when": "2026-10-29",
+ "blender_roundtrip": {
+  "blend": "D:\\MelodiaVault\\recovery_20261029\\MelodiaHedges_Rebuilt_20261029.blend",
+  "opened_headless": true,
+  "objects": 7,
+  "node_groups_evaluated": {
+   "MEL_hedge": {"verts": 4456, "polys": 2496},
+   "MEL_hedge_wild": {"verts": 98053, "polys": 44564},
+   "MEL_topiary_ball": {"verts": 40652, "polys": 18212},
+   "MEL_topiary_cone": {"verts": 36425, "polys": 16192},
+   "MEL_topiary_spline": {"verts": 37100, "polys": 18480},
+   "MEL_foliage_clutter": {"verts": 0, "polys": 0, "note": "scatter-only group; needs surface input - expected empty on a bare plane"}
+  },
+  "source": "melodia_gn/hedge_clutter.py SHA256 BFC3214587A1D32C"
+ },
+ "ue_roundtrip": {
+  "level": "/Game/EnvSandbox/Monoliths/FarawayMother/Blockout/L_FarawayMother_Blockout",
+  "actors": 545,
+  "bad_material_slots": 0,
+  "nikki_master": {
+   "path": "/Game/EnvSandbox/Materials/Masters/M_Master_Nikki",
+   "base_tint": [0.98, 0.93, 0.96],
+   "albedo": "T_Cymatic_FarawayAlabasterDrape_BaseColor",
+   "iris_mask": "T_RadialMask_01"
+  },
+  "hda_import": {
+   "source": "Content/HDA/MelodiaStainedGlassWindow_Vex.hda",
+   "destination": "/Game/EnvSandbox/Materials/Recovery_20261029/HDA_StainedGlass_Vex_Recovered",
+   "asset_class": "HoudiniAsset",
+   "loaded": true,
+   "cook_in_ue": "not run - requires a HoudiniAssetComponent in a level; the HDA itself was cooked/gated in Houdini 22 (PASS)"
+  }
+ },
+ "safety_roundtrip": {
+  "vault_snapshots": 158,
+  "vault_latest": {"when": "2026-10-29T21:20:07", "files": 37, "bytes": 50424904},
+  "vault_coverage": "Content + Saved (excludes Logs/Crashes/Shaders)",
+  "guard_manifest": {"files": 55443, "gb": 94.06, "missing": ["Content/EnvSandbox/Materials/Masters/M_Universal_Enhanced_Fabric.uasset"], "missing_note": "intentional canon deletion; self-clears next manifest"},
+  "close_safe": "archives p4-opened + modified Content/Saved to D:\\MelodiaVault\\close_safe"
+ },
+ "perforce": {
+  "canon_change": 320,
+  "level_change": 319,
+  "staging_restored": ["HUD_Figma_20260925", "HUD_Figma_20260925_bleed", "MelusinaExport_20260925", "MelusinaFaceSDF"],
+  "staging_files": 382
+ },
+ "remaining": [
+  "HDA cook-in-UE via a HoudiniAssetComponent (import verified; Houdini-side cook PASS)",
+  "undelete scan for MelodiaHedges_Demo.blend requires an elevated shell (winfr C: D: /regular /n *MelodiaHedges*)",
+  "Cathedral V2 / GrokPrep / HousingUltimate variants blocked on missing intermediate sources with no builder",
+  "STEP4 Universal audio-reactive runtime proof still pending from the material lane"
+ ]
+}
