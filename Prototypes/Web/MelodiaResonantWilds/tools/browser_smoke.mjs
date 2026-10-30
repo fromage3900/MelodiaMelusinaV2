@@ -25,7 +25,10 @@ const variants = [
   { name: 'desktop-petal-cantata', query: '?flowerbeds=1', chibi: false, shrine: false, mobile: false, flowerbed: true, worldexp: true, postfx: true },
   { name: 'desktop-original-flowers', query: '?flowerbeds=0', chibi: false, shrine: false, mobile: false, flowerbed: false, worldexp: true, postfx: true },
   { name: 'desktop-npr-v2', query: '?npr=v2&avatar=chibi&shrine=glb', chibi: true, shrine: true, mobile: false, npr: true, worldexp: true, postfx: true },
-  { name: 'retired-kuwahara-flag', query: '?npr=v2&kuwahara=1&avatar=chibi&shrine=glb', chibi: true, shrine: true, mobile: false, npr: true, worldexp: true, postfx: true },
+  { name: 'desktop-crisp-kuwahara', query: '?npr=v2&kuwahara=1&avatar=chibi&shrine=glb&paint=1&rad=3&anis=1.5&edge=3.7&sharp=0.95&scale=0.5', chibi: true, shrine: true, mobile: false, npr: true, worldexp: true, postfx: true, paint: true },
+  { name: 'desktop-kuwahara-ab', query: '?npr=v2&kuwahara=1&paint=0&postfx=0', chibi: false, shrine: false, mobile: false, npr: true, worldexp: true, postfx: false, paint: true, noPaint: true },
+  { name: 'desktop-floraison-crisp', query: '?grove=full&botany=1&pov=1&npr=v2&kuwahara=1&paint=0.82&rad=2&anis=1.5&edge=3.7&sharp=0.96&tune=1&look=custom', chibi: false, shrine: false, mobile: false, npr: true, grove: 'full', worldexp: true, postfx: true, botany: true, pov: true, paint: true, tune: true },
+  { name: 'mobile-floraison-crisp', query: '?botany=1&pov=1&lite=1&kuwahara=1&paint=0.62&rad=3&sharp=0.95', chibi: false, shrine: false, mobile: true, npr: true, worldexp: false, postfx: false, botany: true, pov: true, paint: true },
   { name: 'mobile-npr-v2', query: '?npr=v2', chibi: false, shrine: false, mobile: true, npr: true, worldexp: true, postfx: true },
   { name: 'desktop-live-tuner', query: '?npr=v2&avatar=chibi&shrine=glb&tune=1&look=soft', chibi: true, shrine: true, mobile: false, npr: true, tune: true, worldexp: true, postfx: true },
   { name: 'desktop-worldexp', query: '?worldexp=1', chibi: false, shrine: false, mobile: false, worldexp: true, postfx: true },
@@ -78,7 +81,12 @@ try {
       modeN: window.__melodia.world.uniforms.uModeN.value,
       modeM: window.__melodia.world.uniforms.uModeM.value,
       heritageTimeline: window.__melodia.activities.shrineTimeline.sample(2).values,
-      retiredPostFX: 'painterly' in window.__melodia,
+      painterlyEnabled: !!window.__melodia.painterly,
+      paintPassEnabled: !!window.__melodia.painterly?.pass.enabled,
+      paintFullRes: !!window.__melodia.painterly &&
+        !('target' in window.__melodia.painterly),
+      paintRadius: window.__melodia.painterly?.settings.radius ?? 0,
+      paintEdgeLock: window.__melodia.painterly?.settings.edgeLock ?? 0,
       postfx: !!window.__melodia.postfx,
       worldexp: !!window.__melodia.world.worldExpansionEnabled,
       destinations: window.__melodia.activities.pois.filter(p => p.type === 'destination').length,
@@ -119,8 +127,14 @@ try {
     assert.equal(before.bellflowers, expectedFlowers, test.name + ': incorrect bellflower count');
     assert.equal(before.boxLanterns, 12 - expectedFlowers, test.name + ': original lantern fallback mismatch');
     assert.equal(before.legacyTerrain, !!test.legacy, test.name + ': wrong environment shading');
-    assert.equal(before.retiredPostFX, false, test.name + ': retired Kuwahara runtime still present');
-    assert.equal(before.postfx, !!test.postfx, test.name + ': unexpected postprocessing state');
+    assert.equal(before.painterlyEnabled, !!test.paint, test.name + ': wrong painterly opt-in state');
+    assert.equal(before.paintPassEnabled, !!test.paint && !test.noPaint, test.name + ': wrong painterly-pass state');
+    if (test.paint) {
+      assert.equal(before.paintFullRes, true, test.name + ': half-resolution scene target restored');
+      assert.ok(before.paintEdgeLock >= 0.9, test.name + ': crisp edges were not protected');
+      if (test.mobile) assert.ok(before.paintRadius <= 2, test.name + ': mobile kernel budget exceeded');
+    }
+    assert.equal(before.postfx, !!(test.postfx || test.paint), test.name + ': wrong composer state');
     assert.equal(before.worldexp, !!test.worldexp, test.name + ': world expansion flag mismatch');
     if (test.worldexp) {
       assert.ok(before.destinations >= 16, test.name + ': destination POIs not generated');
@@ -174,7 +188,7 @@ try {
       });
       assert.equal(tuning.shadow, 0.62);
       assert.equal(tuning.ink, 0.73);
-      assert.equal(tuning.sliders, 5);
+      assert.equal(tuning.sliders, test.paint ? 10 : 5);
       assert.equal(tuning.band.hardness, 0.99);
       assert.equal(tuning.band.threshold, 0.53);
       assert.equal(tuning.band.depth, 0.31);
@@ -225,7 +239,8 @@ try {
         (test.name === 'desktop-petal-cantata' || test.name === 'desktop-original-flowers' ||
          test.name === 'desktop-grove-glb' || test.name === 'desktop-npr-colour-review' ||
          test.name === 'desktop-default' || test.name === 'desktop-floraison-pov' ||
-         test.name === 'mobile-floraison-pov')) {
+         test.name === 'mobile-floraison-pov' || test.name === 'desktop-crisp-kuwahara' ||
+         test.name === 'desktop-floraison-crisp' || test.name === 'mobile-floraison-crisp')) {
       if (!test.pov) await page.evaluate(() => {
         const g = window.__melodia, x = 0, z = -210;
         g.player.pos.set(x, g.world.height(x, z), z);
