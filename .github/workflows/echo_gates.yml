@@ -97,6 +97,9 @@ jobs:
       - name: Validate Git health enforcement contract
         run: python Tools/validate_git_health_contract.py
 
+      - name: Agent lane local production authority tests
+        run: python Tools/test_agent_lane_local_authority.py
+
       - name: Validate echo manifest
         run: python Tools/echo_run.py validate-spec specs/echo_pipeline.json
 
