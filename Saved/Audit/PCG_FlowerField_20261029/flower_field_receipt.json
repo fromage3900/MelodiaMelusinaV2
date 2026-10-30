@@ -1,0 +1,40 @@
+{
+ "schema": "melodia.flower_field.v1",
+ "when": "2026-10-29",
+ "master": {
+  "path": "/Game/EnvSandbox/Materials/Masters/M_Melodia_Foliage_Master",
+  "blend": "masked",
+  "two_sided": true,
+  "base_color": "BaseColor * PerInstanceCustomData3Vector (UseInstanceColor lerp, default 0 = palette colour)",
+  "chladni_mask": "/Game/Melodia/World/Textures/T_Faraway_Chladni_ResonanceMask_16bit",
+  "chladni_emissive": "ChladniMask * ChladniStrength * PetalTint",
+  "recompiled": true,
+  "saved": true
+ },
+ "palettes": {
+  "Rose": "MI_Foliage_Rose", "Peony": "MI_Foliage_Peony", "Lotus": "MI_Foliage_Lotus",
+  "Camellia": "MI_Foliage_Camellia", "Lavender": "MI_Foliage_Lavender", "Cream": "MI_Foliage_Cream"
+ },
+ "graph": {
+  "path": "/Game/Melodia/PCG/Meadow/PCG_Melodia_FlowerField_v1",
+  "base": "/Game/Melodia/PCG/Meadow/PCG_Meadow_RainbowBloom",
+  "chain": "CreatePointsGrid -> WorldRayHitQuery -> Projection -> TransformPoints -> StaticMeshSpawner",
+  "settings": {
+   "grid_cell_size": [55.0, 55.0, 100.0],
+   "scale_min": [0.45, 0.45, 0.45],
+   "scale_max": [0.8, 0.8, 0.8],
+   "rotation_yaw": [0.0, 360.0],
+   "spawner_seed": -1025269183,
+   "weighted_entries": 14
+  },
+  "ported_entries": "alternating SM_MelodiaGN_Bloom_Rose / SM_MelodiaGN_Bloom_Peony; override_materials cycle MI_Foliage_Rose, Peony, Lotus, Camellia, Lavender, Cream",
+  "saved": true,
+  "verified": "14/14 entries reload with the new meshes and palette MIs"
+ },
+ "open": [
+  "live spline hedge graph: duplicate PCG_SplinePath -> PCG_Melodia_HedgeSpline with SM_MelodiaGN_Hedge_Formal",
+  "level placement: PCG volume(s) over L_FarawayMother_Blockout + world-compiler meadow recipe",
+  "Chladni density/colour modulation in the graph (master mask is bound; graph driver not wired)",
+  "p4 submission of the new assets (master, 6 MIs, graph) - vault/guard covers them meanwhile"
+ ]
+}
