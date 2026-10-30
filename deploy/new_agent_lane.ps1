@@ -12,6 +12,7 @@
 #
 #   * it does NOT create a branch
 #   * it does NOT touch the primary checkout
+#   * -Reuse NEVER resets an existing refs/agents/<lane> to origin/main
 #
 # Why detached: several agents share this repository. Branches accumulate and get
 # forgotten; refs do not. The lane's work is durable because the ref is updated on
@@ -54,6 +55,7 @@ function Invoke-Native {
 $Root = Split-Path -Parent $PSScriptRoot
 $Worktrees = Join-Path (Split-Path -Parent $Root) "_worktrees"
 $Registry = Join-Path $Root "Tools\agent_lane_registry.py"
+$Authority = Join-Path $Root "Tools\agent_lane_local_authority.py"
 $LaneSlug = ($Lane -replace '[^A-Za-z0-9\-_]', '-').ToLower()
 $LanePath = Join-Path $Worktrees "lane-$LaneSlug"
 $LaneRef = "refs/agents/$LaneSlug"
@@ -61,16 +63,23 @@ $LaneRef = "refs/agents/$LaneSlug"
 if (-not (Test-Path $Registry)) {
     throw "Tools/agent_lane_registry.py is missing; run this from the repository root."
 }
+if (-not (Test-Path $Authority)) {
+    throw "Tools/agent_lane_local_authority.py is missing; run this from the repository root."
+}
 
 Write-Host "==> lane '$LaneSlug'  task='$Task'  base=$Base" -ForegroundColor Cyan
-& git -C $Root fetch --prune origin 2>&1 | Out-String | Write-Verbose
-Invoke-Native git @('-C', $Root, 'fetch', '--prune', 'origin') -AllowFail | Out-Null
+Invoke-Native git @('-C', $Root, 'fetch', 'origin') | Out-Null
 $BaseSha = (Invoke-Native git @('-C', $Root, 'rev-parse', $Base)).Lines[0].Trim()
 Write-Host "    base sha $BaseSha"
 
-if (Test-Path $LanePath) {
+$ReusingExistingLane = Test-Path $LanePath
+if ($ReusingExistingLane) {
     if (-not $Reuse) {
-        throw "Lane worktree already exists: $LanePath`nRe-run with -Reuse to reuse it, or remove it with: git worktree remove '$LanePath'"
+        throw @"
+Lane worktree already exists: $LanePath
+Re-run with -Reuse to reuse it without resetting refs/agents/$LaneSlug.
+Removing a lane worktree requires explicit owner approval (do not auto-clean recovery lanes).
+"@
     }
     Write-Host "    reusing existing worktree" -ForegroundColor Yellow
 } else {
@@ -83,12 +92,35 @@ if (Test-Path $LanePath) {
     Write-Host "    worktree $LanePath (detached at $($BaseSha.Substring(0,8)))"
 }
 
-Invoke-Native git @('-C', $LanePath, 'update-ref', $LaneRef, $BaseSha) | Out-Null
-
-$initArgs = @($Registry, "init", "--lane", $LaneSlug,
-              "--worktree", $LanePath, "--branch", $LaneRef)
-if ($Tier) { $initArgs += @("--tier", $Tier) }
-(Invoke-Native python $initArgs).Lines | ForEach-Object { Write-Host "    $_" }
+# Reuse must never reset an existing lane ref to origin/main.
+if ($ReusingExistingLane) {
+    $probe = Invoke-Native git @('-C', $LanePath, 'rev-parse', '--verify', '--quiet', $LaneRef) -AllowFail
+    $RefSha = ""
+    $HeadSha = ""
+    if ($probe.Code -eq 0) {
+        $RefSha = (Invoke-Native git @('-C', $LanePath, 'rev-parse', $LaneRef)).Lines[0].Trim()
+        $HeadSha = (Invoke-Native git @('-C', $LanePath, 'rev-parse', 'HEAD')).Lines[0].Trim()
+    }
+    $reuseArgs = @(
+        $Authority, 'reuse',
+        '--lane-ref', $LaneRef
+    )
+    if ($probe.Code -eq 0) {
+        $reuseArgs += @('--ref-exists', '--ref-sha', $RefSha, '--head-sha', $HeadSha)
+    }
+    $reuseEval = Invoke-Native python $reuseArgs -AllowFail
+    $reuseEval.Lines | ForEach-Object { Write-Host "    $_" }
+    if ($reuseEval.Code -ne 0) {
+        throw "SAFE STOP: lane reuse refused by Tools/agent_lane_local_authority.py (exit $($reuseEval.Code)). Preserve worktree HEAD, $LaneRef and reflog; do not reinitialize."
+    }
+    Write-Host "    preserved existing lane ref $LaneRef ($($RefSha.Substring(0,8)))" -ForegroundColor Yellow
+} else {
+    Invoke-Native git @('-C', $LanePath, 'update-ref', $LaneRef, $BaseSha) | Out-Null
+    $initArgs = @($Registry, "init", "--lane", $LaneSlug,
+                  "--worktree", $LanePath, "--branch", $LaneRef)
+    if ($Tier) { $initArgs += @("--tier", $Tier) }
+    (Invoke-Native python $initArgs).Lines | ForEach-Object { Write-Host "    $_" }
+}
 
 if ($Paths.Count -gt 0 -or $Globs.Count -gt 0) {
     $claimArgs = @($Registry, "claim", "--lane", $LaneSlug)

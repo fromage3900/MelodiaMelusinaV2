@@ -10,12 +10,11 @@ This section mirrors the current repo-wide contract in `AGENTS.md`,
 those newer repo-wide Git contracts, the current repo-wide contracts win until this file is
 updated.
 
-Canonical authority is `origin/main`. **`main` is a landing target, never an agent
-workspace.** Normal worker execution uses a detached lane worktree created from current
+`origin/main` is canonical for tracked Git source, NOT the full Unreal/Houdini production state. Inspect the owner-selected live C:/G: workspace, Perforce pending files and editor state before destructive cleanup, lane retirement, or promotion. Unknown local state means FAIL CLOSED: preserve recovery refs, files and worktrees. Never reset a reused lane reference. The integrator requires explicit owner-reviewed local state. **`main` is a landing target, never an agent workspace.** Normal worker execution uses a detached lane worktree created from current
 `origin/main` and pinned by `refs/agents/<lane>`; workers do not create feature branches,
 push, or open PRs. Commits inside the worker's own lane need no per-commit approval, and the
 integrator may perform the normal bounded landing flow without asking again. The integrator
-owns any temporary PR branch and retires it after landing.
+owns any temporary PR branch and preserves it by default after landing (delete/FF need owner switches).
 
 Explicit owner approval is still required for destructive or history-rewriting operations:
 `git reset --hard`, `git checkout -- .`, `git clean`, force-push, history rewrite,

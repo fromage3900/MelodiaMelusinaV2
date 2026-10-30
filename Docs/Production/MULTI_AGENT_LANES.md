@@ -33,7 +33,9 @@ refs/agents/<lane>        # a ref: never appears in `git branch`, never accumula
 
 Git only lists `refs/heads/*` as branches, so a repo with any number of active lanes
 still shows zero working branches. The canonical landing path creates **one temporary
-remote branch per landing and deletes it in the same run** — you never see or manage it.
+remote branch per landing and preserves it by default** for recovery/provenance. Deleting
+that branch or fast-forwarding the primary checkout requires explicit owner switches
+(`-OwnerApprovedBranchDeletion`, `-OwnerApprovedPrimarySync`).
 
 ## Start a lane
 
@@ -64,14 +66,16 @@ commit is reachable only from the worktree's HEAD and can be lost to a prune.
 ## Hand it over — do not push
 
 ```powershell
-.\deploy\land_agent_lane.ps1 -Lane cline      # the integrator lands it
-.\deploy\land_agent_lane.ps1 -All
+.\deploy\land_agent_lane.ps1 -Lane cline -OwnerReviewedLocalState
+.\deploy\land_agent_lane.ps1 -All -OwnerReviewedLocalState
 .\deploy\land_agent_lane.ps1 -All -DryRun
 ```
 
 The integrator computes `origin/main..refs/agents/<lane>`, pushes that ref to a temporary
-branch, opens a PR, rebase-merges it, deletes the temporary branch, and fast-forwards the
-primary. Agents never push.
+branch, opens a PR, and rebase-merges it. The temporary branch is **preserved by default**;
+branch deletion and primary fast-forward are opt-in owner approvals. Landing is fail-closed
+when local UE/Houdini/Perforce state cannot be verified (`Tools/agent_lane_local_authority.py`).
+Agents never push.
 
 ## What is refused, and by which hook
 
